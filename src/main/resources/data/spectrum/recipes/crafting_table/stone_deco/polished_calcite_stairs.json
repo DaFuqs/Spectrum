@@ -1,17 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "W  ",
-        "WW ",
-        "WWW"
-    ],
-    "key": {
-        "W": {
-	        "item": "spectrum:polished_calcite"
-        }
-    },
-    "result": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W  ",
+    "WW ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:polished_calcite"
+    }
+  },
+  "result": {
     "item": "spectrum:polished_calcite_stairs",
     "count": 6
-    }
+  }
 }

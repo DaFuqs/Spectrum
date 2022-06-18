@@ -1,10 +1,10 @@
 {
-	"variants": {
-		"half=lower": {
-			"model": "spectrum:block/topaz_decostone_bottom"
-		},
-		"half=upper": {
-			"model": "spectrum:block/topaz_decostone_top"
-		}
-	}
+  "variants": {
+    "half=lower": {
+      "model": "spectrum:block/topaz_decostone_bottom"
+    },
+    "half=upper": {
+      "model": "spectrum:block/topaz_decostone_top"
+    }
+  }
 }

@@ -32,7 +32,7 @@
       "item": "spectrum:four_leaf_clover"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:looting\", lvl: 1s}]}"
   },

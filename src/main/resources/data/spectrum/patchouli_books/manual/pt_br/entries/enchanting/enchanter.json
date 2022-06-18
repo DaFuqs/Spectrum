@@ -1,32 +1,32 @@
 {
-    "name": "O Encantador",
-    "icon": "spectrum:enchanter",
-    "priority": true,
-    "sortnum": 0,
-    "advancement": "spectrum:midgame/enter_liquid_crystal",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Na sua pesquisa pela ferramenta perfeita, você notou que a Mesa de Encantamentos nem sempre te da o desejado. Usando essa Mesa de Encantamentos altamente modificado deve resolver a maior parte dos problemas da sua original.$()$(br2)Te permite:$(li)$(l:enchanting/creating_enchanted_books)criar novos Livros Encantados$(/l)$(li)$(l:enchanting/upgrading_enchanted_books)aprimorá-los$(/l)$(li)$(l:enchanting/enchanting_items)encantar itens sem consumir Livros Encantados$(/l)"
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Receita de Pedestal",
-            "recipe": "spectrum:pedestal/tier3/enchanter",
-            "text": "O Encantador precisa de uma estrutura de foco para funcionar."
-        },
-        {
-            "type": "patchouli:multiblock",
-            "name": "Estrutura de Encantação",
-            "multiblock_id": "spectrum:enchanter_structure",
-            "enable_visualize": true,
-            "text": "Os espaços em volta dos blocos de pedra gema devem ser preenchidos com $(l:magical_blocks/liquid_crystal)Cristal Líquido$(). (não mostrado)"
-        },
-        {
-            "type": "patchouli:text",
-            "title": "Lista Cheque de Blocos",
-            "text": "$(li)1 Encantador$(li)8 Tijelas de Item$(li)4+ Baldes de Cristal Líquido$(li)4 Blocos Polidos de Pedra Gema$(li)8 Lâmpadas de Pedra Gema$(li)12 Pilares Polidos$(li)24 Lajes Polidas$(li)159 Blocos Polidos$(br2)$(italic)Aprimore o Encantador com Melhorias colocando-as nos Blocos de Pedra Gema.$()"
-        }
-    ]
+  "name": "O Encantador",
+  "icon": "spectrum:enchanter",
+  "priority": true,
+  "sortnum": 0,
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Na sua pesquisa pela ferramenta perfeita, você notou que a Mesa de Encantamentos nem sempre te da o desejado. Usando essa Mesa de Encantamentos altamente modificado deve resolver a maior parte dos problemas da sua original.$()$(br2)Te permite:$(li)$(l:enchanting/creating_enchanted_books)criar novos Livros Encantados$(/l)$(li)$(l:enchanting/upgrading_enchanted_books)aprimorá-los$(/l)$(li)$(l:enchanting/enchanting_items)encantar itens sem consumir Livros Encantados$(/l)"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Receita de Pedestal",
+      "recipe": "spectrum:pedestal/tier3/enchanter",
+      "text": "O Encantador precisa de uma estrutura de foco para funcionar."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Estrutura de Encantação",
+      "multiblock_id": "spectrum:enchanter_structure",
+      "enable_visualize": true,
+      "text": "Os espaços em volta dos blocos de pedra gema devem ser preenchidos com $(l:magical_blocks/liquid_crystal)Cristal Líquido$(). (não mostrado)"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Lista Cheque de Blocos",
+      "text": "$(li)1 Encantador$(li)8 Tijelas de Item$(li)4+ Baldes de Cristal Líquido$(li)4 Blocos Polidos de Pedra Gema$(li)8 Lâmpadas de Pedra Gema$(li)12 Pilares Polidos$(li)24 Lajes Polidas$(li)159 Blocos Polidos$(br2)$(italic)Aprimore o Encantador com Melhorias colocando-as nos Blocos de Pedra Gema.$()"
+    }
+  ]
 }

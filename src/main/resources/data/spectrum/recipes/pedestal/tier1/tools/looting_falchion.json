@@ -21,7 +21,7 @@
       "item": "minecraft:amethyst_shard"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:looting_falchion",
     "nbt": "{Enchantments: [{id: \"minecraft:looting\", lvl: 3s}]}",
     "count": 1

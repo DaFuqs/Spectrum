@@ -13,7 +13,7 @@
     "III"
   ],
   "key": {
-	"A": {
+    "A": {
       "item": "minecraft:amethyst_shard"
     },
     "R": {
@@ -26,7 +26,7 @@
       "item": "minecraft:copper_ingot"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:redstone_timer",
     "count": 1
   },

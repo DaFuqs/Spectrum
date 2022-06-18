@@ -1,7 +1,7 @@
 {
-    "parent": "spectrum:block/template_shooting_star",
-    "textures": {
-        "side": "spectrum:block/shooting_star_gemstone_side",
-        "core": "spectrum:block/shooting_star_gemstone"
-    }
+  "parent": "spectrum:block/template_shooting_star",
+  "textures": {
+    "side": "spectrum:block/shooting_star_gemstone_side",
+    "core": "spectrum:block/shooting_star_gemstone"
+  }
 }

@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/amethyst_chiseled_calcite" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/amethyst_chiseled_calcite"
     }
+  }
 }

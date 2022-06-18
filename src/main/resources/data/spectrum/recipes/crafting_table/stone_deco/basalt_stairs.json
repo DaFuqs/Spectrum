@@ -1,17 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "W  ",
-        "WW ",
-        "WWW"
-    ],
-    "key": {
-        "W": {
-	        "item": "minecraft:smooth_basalt"
-        }
-    },
-    "result": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W  ",
+    "WW ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:smooth_basalt"
+    }
+  },
+  "result": {
     "item": "spectrum:smooth_basalt_stairs",
     "count": 6
-    }
+  }
 }

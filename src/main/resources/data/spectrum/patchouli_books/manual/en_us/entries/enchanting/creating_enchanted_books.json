@@ -12,7 +12,9 @@
     },
     {
       "type": "patchouli:image",
-      "images": [ "spectrum:textures/gui/manual/creating_enchanted_books.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/creating_enchanted_books.png"
+      ],
       "border": true,
       "text": "$(italic)Maybe you could even make use of this process to enchant your magical tools."
     }

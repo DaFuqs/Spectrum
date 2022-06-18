@@ -15,9 +15,9 @@
     "DDD"
   ],
   "key": {
-	"S": {
-	  "tag": "minecraft:saplings"
-	},
+    "S": {
+      "tag": "minecraft:saplings"
+    },
     "V": {
       "item": "spectrum:vegetal"
     },
@@ -25,9 +25,9 @@
       "item": "minecraft:yellow_dye"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:yellow_sapling",
     "count": 1
   },
-  "required_advancement":  "spectrum:progression/colored_saplings/unlock_yellow_sapling"
+  "required_advancement": "spectrum:progression/colored_saplings/unlock_yellow_sapling"
 }

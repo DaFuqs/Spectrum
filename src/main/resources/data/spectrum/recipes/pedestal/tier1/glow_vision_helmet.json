@@ -13,14 +13,14 @@
     "GRG"
   ],
   "key": {
-	"G": {
-	  "item": "minecraft:glow_ink_sac"
-	},
+    "G": {
+      "item": "minecraft:glow_ink_sac"
+    },
     "R": {
       "item": "minecraft:rabbit_hide"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:glow_vision_helmet",
     "count": 1
   },

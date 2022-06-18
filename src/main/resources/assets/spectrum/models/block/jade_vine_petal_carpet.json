@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:block/carpet",
-    "textures": {
-        "wool": "spectrum:block/jade_vine_petal_block"
-    }
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "spectrum:block/jade_vine_petal_block"
+  }
 }

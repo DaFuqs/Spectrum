@@ -1,5 +1,7 @@
 {
   "variants": {
-      "": { "model": "spectrum:block/ominous_sapling" }
+    "": {
+      "model": "spectrum:block/ominous_sapling"
+    }
   }
 }

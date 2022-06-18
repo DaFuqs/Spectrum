@@ -32,7 +32,7 @@
       "item": "spectrum:bedrock_dust"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:protection\", lvl: 1s}]}"
   },

@@ -1,24 +1,24 @@
 {
-    "name": "A new Resource",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:milestones/reveal_lightning_stones",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:midgame/collect_lightning_stone",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "Where to find",
-            "completion_advancement": "spectrum:midgame/collect_lightning_stone",
-            "cost": "spectrum:neolith#8",
-            "text": "Thunderstorms are a powerful display of nature. There are tremendous energies playing."
-        },
-        {
-            "type": "spectrum:hint",
-            "title": "Concise Instructions",
-            "cost": "spectrum:neolith#24",
-            "text": "Sometimes you are able to find weird shards at places where lightning struck. There even is a way to focus Lightning at a specific position, to make gathering them even more efficient."
-        }
-    ]
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_lightning_stones",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_lightning_stone",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:midgame/collect_lightning_stone",
+      "cost": "spectrum:neolith#8",
+      "text": "Thunderstorms are a powerful display of nature. There are tremendous energies playing."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:neolith#24",
+      "text": "Sometimes you are able to find weird shards at places where lightning struck. There even is a way to focus Lightning at a specific position, to make gathering them even more efficient."
+    }
+  ]
 }

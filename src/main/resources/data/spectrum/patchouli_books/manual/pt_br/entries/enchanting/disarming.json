@@ -1,30 +1,30 @@
 {
-    "name": "Desarmamento",
-    "icon": "minecraft:iron_sword",
-    "advancement": "spectrum:progression/enchantments/disarming",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Os zumbis que você encontra todo dia vesta vários equipamentos valiosos. Mas quando eles morre, disaparecem e nunca mais são vistos.$(br2)Não é um problema se você conseguir pegar enquanto eles ainda estão vivos."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Características",
-            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:disarming\", lvl: 2s}]}",
-            "text": "Pequena chance de criaturas (e outros jogadores!) de derrubarem seu equipamento quando atingidos.$(br2)Maior Nível: 2$(br)Aplicável a armas corpo a corpo."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Receita de Encantador",
-            "recipe": "spectrum:enchanter/spectrum_books/book_disarming",
-            "text": "Você pode infusionar um livro comum com Desarmamento rodeando seu Encantador com Pigmento e outros materiais necessários."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Melhoria de Encantador",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/disarming_level_2",
-            "text": "Melhorar Desarmamento do nível 1 ao nível 2 é razoavelmente barato no começo.$(br)Esse preço rapidamenta aumenta para mais e mais Pigmento e Experiência para cada nível adicional."
-        }
-    ]
+  "name": "Desarmamento",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/disarming",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Os zumbis que você encontra todo dia vesta vários equipamentos valiosos. Mas quando eles morre, disaparecem e nunca mais são vistos.$(br2)Não é um problema se você conseguir pegar enquanto eles ainda estão vivos."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Características",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:disarming\", lvl: 2s}]}",
+      "text": "Pequena chance de criaturas (e outros jogadores!) de derrubarem seu equipamento quando atingidos.$(br2)Maior Nível: 2$(br)Aplicável a armas corpo a corpo."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Receita de Encantador",
+      "recipe": "spectrum:enchanter/spectrum_books/book_disarming",
+      "text": "Você pode infusionar um livro comum com Desarmamento rodeando seu Encantador com Pigmento e outros materiais necessários."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Melhoria de Encantador",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/disarming_level_2",
+      "text": "Melhorar Desarmamento do nível 1 ao nível 2 é razoavelmente barato no começo.$(br)Esse preço rapidamenta aumenta para mais e mais Pigmento e Experiência para cada nível adicional."
+    }
+  ]
 }

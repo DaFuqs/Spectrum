@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/preservation_stone"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/preservation_stone"
+    }
+  }
 }

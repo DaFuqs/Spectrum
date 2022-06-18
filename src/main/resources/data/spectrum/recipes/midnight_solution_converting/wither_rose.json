@@ -3,7 +3,7 @@
   "ingredient": {
     "tag": "minecraft:flowers"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:wither_rose",
     "count": 1
   }

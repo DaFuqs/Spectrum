@@ -20,13 +20,17 @@
       "item": "spectrum:moonstone_shard"
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:spectral_shard"
   },
   "required_advancement": "spectrum:lategame/spectrum_lategame",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ "single_visual_explosion_on_shrine", "nothing", "lightning_around_shrine" ],
+  "during_crafting_effects": [
+    "single_visual_explosion_on_shrine",
+    "nothing",
+    "lightning_around_shrine"
+  ],
   "finish_crafting_effect": "lightning_on_shrine",
   "description": "spectrum.recipe.fusion_shrine.explanation.spectral_shard"
 }

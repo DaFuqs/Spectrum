@@ -9,7 +9,9 @@
     {
       "type": "patchouli:image",
       "title": "Item Crushing",
-      "images": [ "spectrum:textures/gui/manual/anvil_crushing.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/anvil_crushing.png"
+      ],
       "border": true,
       "text": "$(italic)\"To create something new$(br)you have to go the way of destruction\"      - someone"
     },

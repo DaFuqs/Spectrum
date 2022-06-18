@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-		"spectrum:smooth_basalt_wall",
-		"spectrum:polished_basalt_wall",
-		"spectrum:basalt_brick_wall",
-		"spectrum:calcite_wall",
-		"spectrum:polished_calcite_wall",
-		"spectrum:calcite_brick_wall"
+    "spectrum:smooth_basalt_wall",
+    "spectrum:polished_basalt_wall",
+    "spectrum:basalt_brick_wall",
+    "spectrum:calcite_wall",
+    "spectrum:polished_calcite_wall",
+    "spectrum:calcite_brick_wall"
   ]
 }

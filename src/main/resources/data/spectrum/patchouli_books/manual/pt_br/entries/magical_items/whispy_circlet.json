@@ -1,18 +1,18 @@
 {
-    "name": "Whispy Circlet",
-    "icon": "spectrum:whispy_circlet",
-    "advancement": "spectrum:progression/unlock_whispy_circlet",
-    "category": "spectrum:magical_items_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "Not just the bags under your eyes that are evidence of your lack of sleep. There are those creatures that come haunt you straight out of your missed nightmares when you don't regularly lie down to sleep - almost like they feel cheated.$(br)This here is the manifestation of relaxation, no sleep necessary. After just a few minutes of wear, you feel physically and mentally refreshed."
-        },
-        {
-            "type": "spectrum:fusion_shrine_crafting",
-            "title": "Fusion Recipe",
-            "recipe": "spectrum:fusion_shrine/trinkets/whispy_circlet",
-            "text": "$(italic)The pleasures of a good night's sleep"
-        }
-    ]
+  "name": "Whispy Circlet",
+  "icon": "spectrum:whispy_circlet",
+  "advancement": "spectrum:progression/unlock_whispy_circlet",
+  "category": "spectrum:magical_items_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Not just the bags under your eyes that are evidence of your lack of sleep. There are those creatures that come haunt you straight out of your missed nightmares when you don't regularly lie down to sleep - almost like they feel cheated.$(br)This here is the manifestation of relaxation, no sleep necessary. After just a few minutes of wear, you feel physically and mentally refreshed."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/whispy_circlet",
+      "text": "$(italic)The pleasures of a good night's sleep"
+    }
+  ]
 }

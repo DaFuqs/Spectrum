@@ -1,16 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "WW",
-        "WW"
-    ],
-    "key": {
-        "W": {
-	        "item": "spectrum:onyx_shard"
-        }
-    },
-    "result": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:onyx_shard"
+    }
+  },
+  "result": {
     "item": "spectrum:onyx_block",
     "count": 1
-    }
+  }
 }

@@ -1,8 +1,8 @@
 {
-	"values": [
-		"spectrum:small_topaz_bud",
-		"spectrum:medium_topaz_bud",
-		"spectrum:large_topaz_bud",
-		"spectrum:topaz_cluster"
-	]
+  "values": [
+    "spectrum:small_topaz_bud",
+    "spectrum:medium_topaz_bud",
+    "spectrum:large_topaz_bud",
+    "spectrum:topaz_cluster"
+  ]
 }

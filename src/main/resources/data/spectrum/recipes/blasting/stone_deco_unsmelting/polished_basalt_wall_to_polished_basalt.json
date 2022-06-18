@@ -1,9 +1,9 @@
 {
-    "type": "minecraft:blasting",
-    "ingredient": {
-        "item": "spectrum:polished_basalt_wall"
-    },
-    "result": "spectrum:polished_basalt",
-    "experience": 0.1,
-    "cookingtime": 100
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:polished_basalt_wall"
+  },
+  "result": "spectrum:polished_basalt",
+  "experience": 0.1,
+  "cookingtime": 100
 }

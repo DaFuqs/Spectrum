@@ -35,7 +35,9 @@
     {
       "type": "patchouli:image",
       "title": "Individualize!",
-      "images": [ "spectrum:textures/gui/manual/spectrum_hall_customisation.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/spectrum_hall_customisation.png"
+      ],
       "text": "Mix them up to create your personal variation!"
     }
   ]

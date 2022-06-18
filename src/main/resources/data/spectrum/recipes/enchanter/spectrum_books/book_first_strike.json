@@ -31,7 +31,7 @@
       "item": "minecraft:ghast_tear"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:first_strike\", lvl: 1s}]}"
   },

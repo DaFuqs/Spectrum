@@ -1,7 +1,13 @@
 {
-    "variants": {
-        "decay_state=default": { "model": "spectrum:block/fading_default" },
-        "decay_state=leaves": { "model": "spectrum:block/fading_leaves" },
-        "decay_state=magic_leaves": { "model": "spectrum:block/fading_leaves" }
+  "variants": {
+    "decay_state=default": {
+      "model": "spectrum:block/fading_default"
+    },
+    "decay_state=leaves": {
+      "model": "spectrum:block/fading_leaves"
+    },
+    "decay_state=magic_leaves": {
+      "model": "spectrum:block/fading_leaves"
     }
+  }
 }

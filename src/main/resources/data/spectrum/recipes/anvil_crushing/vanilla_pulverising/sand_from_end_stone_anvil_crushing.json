@@ -5,7 +5,7 @@
   },
   "crushedItemsPerPointOfDamage": 1.5,
   "experience": 0,
-  "result" : {
+  "result": {
     "item": "minecraft:sand",
     "count": 1
   },

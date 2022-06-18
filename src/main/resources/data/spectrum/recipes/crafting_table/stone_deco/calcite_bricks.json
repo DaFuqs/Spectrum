@@ -1,16 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "WW",
-        "WW"
-    ],
-    "key": {
-        "W": {
-	        "item": "spectrum:polished_calcite"
-        }
-    },
-    "result": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:polished_calcite"
+    }
+  },
+  "result": {
     "item": "spectrum:calcite_bricks",
     "count": 4
-    }
+  }
 }

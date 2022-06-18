@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:gold_ore"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:nether_gold_ore",
     "count": 1
   }

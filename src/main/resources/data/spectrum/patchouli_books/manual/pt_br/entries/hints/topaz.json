@@ -1,18 +1,18 @@
 {
-    "name": "A Gemstone",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:spectrum",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:hidden/collect_shards/collect_topaz_shard",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "Where to find",
-            "completion_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
-            "cost": "minecraft:amethyst_shard#16",
-            "text": "This type of geode is found at great heights, typically on top of hills and sky-high mountains."
-        }
-    ]
+  "name": "A Gemstone",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:spectrum",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_shards/collect_topaz_shard",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "cost": "minecraft:amethyst_shard#16",
+      "text": "This type of geode is found at great heights, typically on top of hills and sky-high mountains."
+    }
+  ]
 }

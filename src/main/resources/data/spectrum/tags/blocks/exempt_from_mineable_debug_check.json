@@ -1,17 +1,17 @@
 {
-	"values": [
-		"#spectrum:mob_heads",
-		"#spectrum:unbreakable",
-		"spectrum:mud",
-		"spectrum:liquid_crystal",
-		"spectrum:midnight_solution",
-		"spectrum:decaying_light",
-		"spectrum:deeper_down_portal",
-		"spectrum:wand_light",
-		"spectrum:block_flooder",
-		"spectrum:cracked_end_portal_frame",
-		"spectrum:creative_particle_spawner",
-		"spectrum:tinted_preservation_glass",
-		"spectrum:jade_vine_roots"
-	]
+  "values": [
+    "#spectrum:mob_heads",
+    "#spectrum:unbreakable",
+    "spectrum:mud",
+    "spectrum:liquid_crystal",
+    "spectrum:midnight_solution",
+    "spectrum:decaying_light",
+    "spectrum:deeper_down_portal",
+    "spectrum:wand_light",
+    "spectrum:block_flooder",
+    "spectrum:cracked_end_portal_frame",
+    "spectrum:creative_particle_spawner",
+    "spectrum:tinted_preservation_glass",
+    "spectrum:jade_vine_roots"
+  ]
 }

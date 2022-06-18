@@ -12,7 +12,7 @@
     {
       "type": "patchouli:text",
       "text": "The latest findings from your last experiment make you strive for more and more. Squeeze every last ounce of energy out of your gemstones.$(br2)Neolith is the key! Yes, it must be! If you combine all the stones you have collected so far with it, something must be created that holds incredible power. Alone for you and ONLY for you, master of Pigment!"
-	},
+    },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
@@ -30,6 +30,6 @@
       "type": "patchouli:text",
       "advancement": "spectrum:midgame/create_midnight_aberration",
       "text": "While the chaos that ensued $(italic)definitely$() was not the outcome you craved for, the result still does hold immense power.$(br)So much in fact, that if not used quick it crumbles into dust.$(br2)And then there is that aggressive blackish fluid that manifested in the process. Because of its color you named it $(l:magical_blocks/midnight_solution)Midnight Solution$(/l)."
-	}
+    }
   ]
 }

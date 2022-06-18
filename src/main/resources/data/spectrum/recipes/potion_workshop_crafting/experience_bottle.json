@@ -15,7 +15,7 @@
   "ingredient3": {
     "item": "spectrum:lime_pigment"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:experience_bottle"
   }
 }

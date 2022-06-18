@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:item/generated",
-    "textures": {
-        "layer0": "spectrum:item/bottle_of_decay_away"
-    }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:item/bottle_of_decay_away"
+  }
 }

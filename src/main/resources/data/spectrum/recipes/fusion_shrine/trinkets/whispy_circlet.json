@@ -9,23 +9,23 @@
     },
     {
       "item": "spectrum:mermaids_gem",
-	  "count": 2
+      "count": 2
     },
     {
       "item": "minecraft:phantom_membrane",
-	  "count": 4
+      "count": 4
     },
     {
       "item": "spectrum:brown_pigment",
-	  "count": 16
+      "count": 16
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:whispy_circlet"
   },
   "required_advancement": "spectrum:progression/unlock_whispy_circlet",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

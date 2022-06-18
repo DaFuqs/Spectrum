@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "spectrum:block/ruin_bedrock"
-    }
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "spectrum:block/ruin_bedrock"
+  }
 }

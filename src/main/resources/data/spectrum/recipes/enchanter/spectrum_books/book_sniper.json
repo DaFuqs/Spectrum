@@ -31,7 +31,7 @@
       "item": "minecraft:diamond"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:sniper\", lvl: 1s}]}"
   },

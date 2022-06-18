@@ -1,24 +1,26 @@
 {
-    "name": "Quitoxic Reeds",
-    "icon": "spectrum:quitoxic_reeds",
-    "advancement": "spectrum:collect_quitoxic_reeds",
-    "category": "spectrum:resources_category",
-    "extra_recipe_mappings": {
-        "spectrum:quitoxic_reeds": 0,
-        "spectrum:quitoxic_powder": 0
+  "name": "Quitoxic Reeds",
+  "icon": "spectrum:quitoxic_reeds",
+  "advancement": "spectrum:collect_quitoxic_reeds",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:quitoxic_reeds": 0,
+    "spectrum:quitoxic_powder": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Quitoxic Reeds",
+      "images": [
+        "spectrum:textures/gui/manual/quitoxic_reed.png"
+      ],
+      "border": true,
+      "text": "Grows exclusively in Swamps and seems to devour Clay as a form of nutrient."
     },
-    "pages": [
-        {
-            "type": "patchouli:image",
-            "title": "Quitoxic Reeds",
-            "images": [ "spectrum:textures/gui/manual/quitoxic_reed.png" ],
-            "border": true,
-            "text": "Grows exclusively in Swamps and seems to devour Clay as a form of nutrient."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "item": "spectrum:quitoxic_powder",
-            "text": "A purple glittering powder can be extracted from the stems of the alien-looking plant by crushing it with an anvil.$(br)Smell and consistency are very unusual when rubbed between your fingers.$(br2)$(italic)...wait a moment, what are fingers?"
-        }
-    ]
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:quitoxic_powder",
+      "text": "A purple glittering powder can be extracted from the stems of the alien-looking plant by crushing it with an anvil.$(br)Smell and consistency are very unusual when rubbed between your fingers.$(br2)$(italic)...wait a moment, what are fingers?"
+    }
+  ]
 }

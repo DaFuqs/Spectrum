@@ -1,26 +1,26 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "FSF",
-        "SSS",
-        "ERE"
-    ],
-    "key": {
-        "S": {
-	        "item": "spectrum:topaz_shard"
-        },
-        "E": {
-	        "item": "spectrum:polished_calcite"
-        },
-        "F": {
-	        "item": "spectrum:polished_basalt"
-        },
-        "R": {
-            "item": "minecraft:redstone"
-        }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FSF",
+    "SSS",
+    "ERE"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:topaz_shard"
     },
-    "result": {
-        "item": "spectrum:pedestal_basic_topaz",
-        "count": 1
+    "E": {
+      "item": "spectrum:polished_calcite"
+    },
+    "F": {
+      "item": "spectrum:polished_basalt"
+    },
+    "R": {
+      "item": "minecraft:redstone"
     }
+  },
+  "result": {
+    "item": "spectrum:pedestal_basic_topaz",
+    "count": 1
+  }
 }

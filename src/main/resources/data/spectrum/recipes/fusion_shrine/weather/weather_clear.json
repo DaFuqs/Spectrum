@@ -9,7 +9,9 @@
     }
   ],
   "required_advancement": "spectrum:progression/weather/weather_clear",
-  "world_conditions": [ "rain" ],
+  "world_conditions": [
+    "rain"
+  ],
   "start_crafting_effect": "single_visual_explosion_on_shrine",
   "during_crafting_effects": [],
   "finish_crafting_effect": "weather_clear",

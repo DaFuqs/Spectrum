@@ -15,12 +15,12 @@
   "key": {
     "P": {
       "item": "botania:orange_mystical_flower"
-	},
+    },
     "S": {
       "item": "spectrum:sparklestone_gem"
     }
   },
-  "result" : {
+  "result": {
     "item": "botania:orange_shiny_flower",
     "count": 1
   },

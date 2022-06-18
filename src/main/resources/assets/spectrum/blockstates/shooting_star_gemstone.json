@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/shooting_star_gemstone"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/shooting_star_gemstone"
+    }
+  }
 }

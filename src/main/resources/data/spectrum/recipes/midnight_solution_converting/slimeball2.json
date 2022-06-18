@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:dried_kelp_block"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:slime_ball",
     "count": 1
   }

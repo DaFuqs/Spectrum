@@ -1,24 +1,24 @@
 {
-    "name": "A new Resource",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:milestones/unlock_shooting_stars",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:collect_shooting_star",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "What to look for",
-            "completion_advancement": "spectrum:collect_shooting_star",
-            "cost": "spectrum:sparklestone_gem#8",
-            "text": "Shooting Stars only show up at night. Having something ready to better see them in the darkness will surely help a lot. They show up with a noticeable particle trail."
-        },
-        {
-            "type": "spectrum:hint",
-            "title": "Concise Instructions",
-            "cost": "spectrum:sparklestone_gem#24",
-            "text": "Your best chances to see a Shooting Star are to search for it with Night Vision and a Spyglass equipped. If you see one crashing down on the earth try to trace its steps to find out where it landed. They shoot up particles like a beam."
-        }
-    ]
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/unlock_shooting_stars",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:collect_shooting_star",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "What to look for",
+      "completion_advancement": "spectrum:collect_shooting_star",
+      "cost": "spectrum:sparklestone_gem#8",
+      "text": "Shooting Stars only show up at night. Having something ready to better see them in the darkness will surely help a lot. They show up with a noticeable particle trail."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:sparklestone_gem#24",
+      "text": "Your best chances to see a Shooting Star are to search for it with Night Vision and a Spyglass equipped. If you see one crashing down on the earth try to trace its steps to find out where it landed. They shoot up particles like a beam."
+    }
+  ]
 }

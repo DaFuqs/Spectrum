@@ -14,7 +14,7 @@
       "item": "spectrum:citrine_shard"
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:onyx_shard"
   },
   "required_advancement": "spectrum:collect_all_basic_pigments_besides_brown",
@@ -23,7 +23,11 @@
     "midnight"
   ],
   "start_crafting_effect": "weather_rain",
-  "during_crafting_effects": [ "visual_explosions_on_shrine", "nothing", "visual_explosions_on_shrine" ],
+  "during_crafting_effects": [
+    "visual_explosions_on_shrine",
+    "nothing",
+    "visual_explosions_on_shrine"
+  ],
   "finish_crafting_effect": "lightning_on_shrine",
   "description": "spectrum.recipe.fusion_shrine.explanation.onyx_shard"
 }

@@ -21,7 +21,7 @@
       "item": "minecraft:sand"
     }
   },
-  "result" : {
+  "result": {
     "item": "minecraft:tnt",
     "nbt": "{BlockStateTag:{unstable:\"true\"},display: {Lore: ['{\"text\":\"unstable\"}']}}",
     "count": 2

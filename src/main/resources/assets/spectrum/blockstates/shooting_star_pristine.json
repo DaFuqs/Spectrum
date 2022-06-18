@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/shooting_star_pristine"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/shooting_star_pristine"
+    }
+  }
 }

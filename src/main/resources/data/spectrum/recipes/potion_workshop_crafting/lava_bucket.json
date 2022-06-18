@@ -14,7 +14,7 @@
   "ingredient3": {
     "item": "spectrum:orange_pigment"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:lava_bucket"
   }
 }

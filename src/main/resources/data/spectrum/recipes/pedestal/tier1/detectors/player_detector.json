@@ -27,9 +27,9 @@
       "tag": "minecraft:wooden_slabs"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:player_detector",
     "count": 1
   },
-  "required_advancement":  "spectrum:progression/detectors/unlock_player_detector"
+  "required_advancement": "spectrum:progression/detectors/unlock_player_detector"
 }

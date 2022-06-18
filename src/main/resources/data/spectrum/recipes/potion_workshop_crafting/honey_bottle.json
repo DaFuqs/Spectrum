@@ -14,7 +14,7 @@
   "ingredient3": {
     "item": "spectrum:green_pigment"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:honey_bottle"
   }
 }

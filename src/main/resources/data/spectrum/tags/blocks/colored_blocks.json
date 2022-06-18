@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-	  "spectrum:black_block",
-	  "spectrum:blue_block",
-	  "spectrum:brown_block",
-	  "spectrum:cyan_block",
-	  "spectrum:gray_block",
-	  "spectrum:green_block",
-	  "spectrum:light_blue_block",
-	  "spectrum:light_gray_block",
-	  "spectrum:lime_block",
-	  "spectrum:magenta_block",
-	  "spectrum:orange_block",
-	  "spectrum:pink_block",
-	  "spectrum:purple_block",
-	  "spectrum:red_block",
-	  "spectrum:white_block",
-	  "spectrum:yellow_block"
+    "spectrum:black_block",
+    "spectrum:blue_block",
+    "spectrum:brown_block",
+    "spectrum:cyan_block",
+    "spectrum:gray_block",
+    "spectrum:green_block",
+    "spectrum:light_blue_block",
+    "spectrum:light_gray_block",
+    "spectrum:lime_block",
+    "spectrum:magenta_block",
+    "spectrum:orange_block",
+    "spectrum:pink_block",
+    "spectrum:purple_block",
+    "spectrum:red_block",
+    "spectrum:white_block",
+    "spectrum:yellow_block"
   ]
 }

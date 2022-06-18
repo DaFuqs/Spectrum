@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/budding_moonstone" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/budding_moonstone"
     }
+  }
 }

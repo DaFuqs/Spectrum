@@ -20,14 +20,14 @@
     "G": {
       "item": "minecraft:glass"
     },
-	"C": {
+    "C": {
       "item": "spectrum:four_leaf_clover"
     },
     "S": {
       "item": "spectrum:sparklestone_gem"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:ink_assortment",
     "count": 1
   },

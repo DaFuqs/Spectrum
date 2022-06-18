@@ -1,41 +1,41 @@
 {
-    "name": "Stratine",
-    "advancement": "spectrum:midgame/collect_scarlet",
-    "icon": "spectrum:scarlet_fragments",
-    "category": "spectrum:resources_category",
-    "extra_recipe_mappings": {
-        "spectrum:scarlet_ore": 0,
-        "spectrum:scarlet_fragments": 0,
-        "spectrum:scarlet_gem": 0,
-        "spectrum:scarlet_fragment_block": 0
+  "name": "Stratine",
+  "advancement": "spectrum:midgame/collect_scarlet",
+  "icon": "spectrum:scarlet_fragments",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:scarlet_ore": 0,
+    "spectrum:scarlet_fragments": 0,
+    "spectrum:scarlet_gem": 0,
+    "spectrum:scarlet_fragment_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Stratine",
+      "item": "spectrum:scarlet_fragments",
+      "text": "This very heavy ore is scattered around the depths of the Nether.$(br)It's probably not the best idea to carry large amounts of it home at once."
     },
-    "pages": [
-        {
-            "type": "patchouli:spotlight",
-            "title": "Stratine",
-            "item": "spectrum:scarlet_fragments",
-            "text": "This very heavy ore is scattered around the depths of the Nether.$(br)It's probably not the best idea to carry large amounts of it home at once."
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Stratine Gem",
-            "advancement": "spectrum:hidden/collect_scarlet_gem",
-            "recipe": "spectrum:pedestal/tier3/scarlet_gem",
-            "text": "Rarely can one carve an intact stone. It can be used in recipes for which the Fragments were simply too small. Though with effort you can merge those together."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Stratine Floatblock",
-            "advancement": "spectrum:midgame/carry_too_many_heavy_gravity_blocks",
-            "item": "spectrum:scarlet_fragment_block",
-            "text": "Stratine - as you may have already noticed - is an exceptionally heavy material. And difficult to shape, too. Even the blazing heat of the Nether could not harm the material.$(br2)However, shaping it via your $(l:general/pedestal)Pedestal$() should not be a problem whatsoever."
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Pedestal Recipe",
-            "advancement": "spectrum:midgame/carry_too_many_heavy_gravity_blocks",
-            "recipe": "spectrum:pedestal/tier1/compacting/scarlet_fragment_block",
-            "text": "$(italic)Heavy Metal"
-        }
-    ]
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Stratine Gem",
+      "advancement": "spectrum:hidden/collect_scarlet_gem",
+      "recipe": "spectrum:pedestal/tier3/scarlet_gem",
+      "text": "Rarely can one carve an intact stone. It can be used in recipes for which the Fragments were simply too small. Though with effort you can merge those together."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Stratine Floatblock",
+      "advancement": "spectrum:midgame/carry_too_many_heavy_gravity_blocks",
+      "item": "spectrum:scarlet_fragment_block",
+      "text": "Stratine - as you may have already noticed - is an exceptionally heavy material. And difficult to shape, too. Even the blazing heat of the Nether could not harm the material.$(br2)However, shaping it via your $(l:general/pedestal)Pedestal$() should not be a problem whatsoever."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "advancement": "spectrum:midgame/carry_too_many_heavy_gravity_blocks",
+      "recipe": "spectrum:pedestal/tier1/compacting/scarlet_fragment_block",
+      "text": "$(italic)Heavy Metal"
+    }
+  ]
 }

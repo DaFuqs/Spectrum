@@ -1,11 +1,11 @@
 {
-	"parent": "spectrum:block/template_fusion_shrine",
-	"textures": {
-		"0": "spectrum:block/fusion_shrine_basalt",
-		"1": "spectrum:block/polished_calcite_pillar_side",
-		"2": "spectrum:block/amethyst_storage_block",
-		"3": "spectrum:block/citrine_storage_block",
-		"4": "spectrum:block/topaz_storage_block",
-		"particle": "spectrum:block/polished_basalt"
-	}
+  "parent": "spectrum:block/template_fusion_shrine",
+  "textures": {
+    "0": "spectrum:block/fusion_shrine_basalt",
+    "1": "spectrum:block/polished_calcite_pillar_side",
+    "2": "spectrum:block/amethyst_storage_block",
+    "3": "spectrum:block/citrine_storage_block",
+    "4": "spectrum:block/topaz_storage_block",
+    "particle": "spectrum:block/polished_basalt"
+  }
 }

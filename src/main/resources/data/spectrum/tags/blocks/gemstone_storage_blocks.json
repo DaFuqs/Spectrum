@@ -1,10 +1,10 @@
 {
-	"values": [
-		"spectrum:amethyst_storage_block",
-		"spectrum:citrine_storage_block",
-		"spectrum:onyx_storage_block",
-		"spectrum:moonstone_storage_block",
-		"spectrum:topaz_storage_block",
-		"spectrum:spectral_shard_storage_block"
-	]
+  "values": [
+    "spectrum:amethyst_storage_block",
+    "spectrum:citrine_storage_block",
+    "spectrum:onyx_storage_block",
+    "spectrum:moonstone_storage_block",
+    "spectrum:topaz_storage_block",
+    "spectrum:spectral_shard_storage_block"
+  ]
 }

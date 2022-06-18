@@ -1,7 +1,7 @@
 {
-    "parent": "minecraft:block/cube_column",
-    "textures": {
-        "end": "spectrum:block/polished_calcite_crest_top",
-        "side": "spectrum:block/polished_calcite_crest_side"
-    }
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/polished_calcite_crest_top",
+    "side": "spectrum:block/polished_calcite_crest_side"
+  }
 }

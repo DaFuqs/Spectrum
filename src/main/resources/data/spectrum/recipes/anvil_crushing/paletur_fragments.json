@@ -5,7 +5,7 @@
   },
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0.5,
-  "result" : {
+  "result": {
     "item": "spectrum:paletur_fragments",
     "count": 8
   },

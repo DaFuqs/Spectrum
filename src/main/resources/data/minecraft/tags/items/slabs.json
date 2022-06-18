@@ -1,12 +1,12 @@
 {
   "replace": false,
   "values": [
-		"spectrum:smooth_basalt_slab",
-		"spectrum:polished_basalt_slab",
-		"spectrum:basalt_brick_slab",
-		"spectrum:calcite_slab",
-		"spectrum:polished_calcite_slab",
-		"spectrum:calcite_brick_slab",
-		"#spectrum:colored_slabs"
+    "spectrum:smooth_basalt_slab",
+    "spectrum:polished_basalt_slab",
+    "spectrum:basalt_brick_slab",
+    "spectrum:calcite_slab",
+    "spectrum:polished_calcite_slab",
+    "spectrum:calcite_brick_slab",
+    "#spectrum:colored_slabs"
   ]
 }

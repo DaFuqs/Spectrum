@@ -9,7 +9,9 @@
     {
       "type": "patchouli:image",
       "title": "Color Mixing",
-      "images": [ "spectrum:textures/gui/manual/color_mixing.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/color_mixing.png"
+      ],
       "text": "By using the base colors $(c_cyan)Cyan$(), $(c_magenta)Magenta$() and $(c_yellow)Yellow$(), (almost) every color can be created."
     },
     {

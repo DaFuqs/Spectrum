@@ -5,10 +5,10 @@
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
-	  "item": "spectrum:topaz_shard"
+      "item": "spectrum:topaz_shard"
     },
     {
-	  "item": "minecraft:amethyst_shard"
+      "item": "minecraft:amethyst_shard"
     },
     {
       "item": "spectrum:citrine_shard"
@@ -20,13 +20,22 @@
       "item": "spectrum:neolith"
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:midnight_aberration"
   },
   "required_advancement": "spectrum:progression/unlock_midnight_aberration",
-  "world_conditions": [ "day", "clear_sky" ],
+  "world_conditions": [
+    "day",
+    "clear_sky"
+  ],
   "start_crafting_effect": "single_visual_explosion_on_shrine",
-  "during_crafting_effects": [ "nothing", "lightning_on_shrine", "visual_explosions_on_shrine", "lightning_around_shrine", "maybe_place_midnight_solution" ],
+  "during_crafting_effects": [
+    "nothing",
+    "lightning_on_shrine",
+    "visual_explosions_on_shrine",
+    "lightning_around_shrine",
+    "maybe_place_midnight_solution"
+  ],
   "finish_crafting_effect": "place_midnight_solution",
   "description": "spectrum.recipe.fusion_shrine.explanation.midnight_aberration"
 }

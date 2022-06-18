@@ -1,19 +1,19 @@
 {
-"type": "minecraft:block",
-"pools": [
-{
-    "rolls": 1,
-    "entries": [
+  "type": "minecraft:block",
+  "pools": [
     {
-        "type": "minecraft:item",
-        "name": "spectrum:basalt_brick_wall"
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:basalt_brick_wall"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
     }
-    ],
-    "conditions": [
-    {
-        "condition": "minecraft:survives_explosion"
-    }
-    ]
-}
-]
+  ]
 }

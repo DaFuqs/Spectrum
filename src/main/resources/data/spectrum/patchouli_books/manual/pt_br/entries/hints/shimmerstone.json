@@ -1,24 +1,24 @@
 {
-    "name": "A new Ore",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:milestones/reveal_sparklestone",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:collect_sparklestone",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "Where to find",
-            "completion_advancement": "spectrum:collect_sparklestone",
-            "cost": "minecraft:copper_ingot#8",
-            "text": "There is a new Ore to be found in the Overworld at and above surface level."
-        },
-        {
-            "type": "spectrum:hint",
-            "title": "Concise Instructions",
-            "cost": "minecraft:copper_ingot#24",
-            "text": "It generates in all biomes in the center and upper layers of the Overworld in large veins. Most often you can find it exposed in mountains."
-        }
-    ]
+  "name": "A new Ore",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_sparklestone",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:collect_sparklestone",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:collect_sparklestone",
+      "cost": "minecraft:copper_ingot#8",
+      "text": "There is a new Ore to be found in the Overworld at and above surface level."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "minecraft:copper_ingot#24",
+      "text": "It generates in all biomes in the center and upper layers of the Overworld in large veins. Most often you can find it exposed in mountains."
+    }
+  ]
 }

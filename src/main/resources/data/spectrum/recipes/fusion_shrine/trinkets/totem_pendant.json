@@ -15,19 +15,19 @@
     },
     {
       "item": "spectrum:neolith",
-	  "count": 2
+      "count": 2
     },
     {
       "item": "spectrum:blue_pigment",
-	  "count": 16
+      "count": 16
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:totem_pendant"
   },
   "required_advancement": "spectrum:progression/unlock_totem_pendant",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

@@ -1,24 +1,24 @@
 {
-    "name": "A new Resource",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:get_ender_treasure",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "Where to find",
-            "completion_advancement": "spectrum:get_ender_treasure",
-            "cost": "minecraft:ender_pearl#4",
-            "text": "Not every block that an Enderman carries seems to be what is looks like at first glance."
-        },
-        {
-            "type": "spectrum:hint",
-            "title": "Concise Instructions",
-            "cost": "minecraft:ender_pearl#12",
-            "text": "Some Endermen appear in the Overworld carrying Blocks that could very well be small relics of the End itself. You can get a hold of one by killing an Endermen while it carries what loks like Cobblestone. Endermen holding these blocks can also be found in the End, albeit more rarely."
-        }
-    ]
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:get_ender_treasure",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:get_ender_treasure",
+      "cost": "minecraft:ender_pearl#4",
+      "text": "Not every block that an Enderman carries seems to be what is looks like at first glance."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "minecraft:ender_pearl#12",
+      "text": "Some Endermen appear in the Overworld carrying Blocks that could very well be small relics of the End itself. You can get a hold of one by killing an Endermen while it carries what loks like Cobblestone. Endermen holding these blocks can also be found in the End, albeit more rarely."
+    }
+  ]
 }

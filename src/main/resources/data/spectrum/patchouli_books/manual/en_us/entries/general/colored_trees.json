@@ -22,7 +22,6 @@
     "spectrum:red_sapling": 0,
     "spectrum:white_sapling": 0,
     "spectrum:yellow_sapling": 0,
-
     "spectrum:black_log": 0,
     "spectrum:blue_log": 0,
     "spectrum:brown_log": 0,
@@ -39,7 +38,6 @@
     "spectrum:red_log": 0,
     "spectrum:white_log": 0,
     "spectrum:yellow_log": 0,
-
     "spectrum:black_leaves": 0,
     "spectrum:blue_leaves": 0,
     "spectrum:brown_leaves": 0,
@@ -56,7 +54,6 @@
     "spectrum:red_leaves": 0,
     "spectrum:white_leaves": 0,
     "spectrum:yellow_leaves": 0,
-
     "spectrum:black_planks": 0,
     "spectrum:blue_planks": 0,
     "spectrum:brown_planks": 0,
@@ -73,7 +70,6 @@
     "spectrum:red_planks": 0,
     "spectrum:white_planks": 0,
     "spectrum:yellow_planks": 0,
-
     "spectrum:black_plank_stairs": 0,
     "spectrum:blue_plank_stairs": 0,
     "spectrum:brown_plank_stairs": 0,
@@ -90,7 +86,6 @@
     "spectrum:red_plank_stairs": 0,
     "spectrum:white_plank_stairs": 0,
     "spectrum:yellow_plank_stairs": 0,
-
     "spectrum:black_plank_pressure_plate": 0,
     "spectrum:blue_plank_pressure_plate": 0,
     "spectrum:brown_plank_pressure_plate": 0,
@@ -107,7 +102,6 @@
     "spectrum:red_plank_pressure_plate": 0,
     "spectrum:white_plank_pressure_plate": 0,
     "spectrum:yellow_plank_pressure_plate": 0,
-
     "spectrum:black_plank_fence": 0,
     "spectrum:blue_plank_fence": 0,
     "spectrum:brown_plank_fence": 0,
@@ -124,7 +118,6 @@
     "spectrum:red_plank_fence": 0,
     "spectrum:white_plank_fence": 0,
     "spectrum:yellow_plank_fence": 0,
-
     "spectrum:black_plank_fence_gate": 0,
     "spectrum:blue_plank_fence_gate": 0,
     "spectrum:brown_plank_fence_gate": 0,
@@ -141,7 +134,6 @@
     "spectrum:red_plank_fence_gate": 0,
     "spectrum:white_plank_fence_gate": 0,
     "spectrum:yellow_plank_fence_gate": 0,
-
     "spectrum:black_plank_button": 0,
     "spectrum:blue_plank_button": 0,
     "spectrum:brown_plank_button": 0,
@@ -158,7 +150,6 @@
     "spectrum:red_plank_button": 0,
     "spectrum:white_plank_button": 0,
     "spectrum:yellow_plank_button": 0,
-
     "spectrum:black_plank_slab": 0,
     "spectrum:blue_plank_slab": 0,
     "spectrum:brown_plank_slab": 0,
@@ -192,7 +183,9 @@
       "type": "patchouli:image",
       "title": "Natural Generation",
       "advancement": "spectrum:craft_colored_sapling",
-      "images": [ "spectrum:textures/gui/manual/colored_trees.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/colored_trees.png"
+      ],
       "text": "They existed around you all along! Who knows what else is out there?"
     },
     {

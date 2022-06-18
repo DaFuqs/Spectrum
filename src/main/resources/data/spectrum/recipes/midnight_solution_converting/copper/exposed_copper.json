@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:copper_block"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:exposed_copper",
     "count": 1
   }

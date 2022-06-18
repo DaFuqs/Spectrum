@@ -1,15 +1,15 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "XX"
-    ],
-    "key": {
-        "X": {
-	        "item": "spectrum:jade_vine_petal_block"
-        }
-    },
-    "result": {
-        "item": "spectrum:jade_vine_petal_carpet",
-        "count": 3
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "spectrum:jade_vine_petal_block"
     }
+  },
+  "result": {
+    "item": "spectrum:jade_vine_petal_carpet",
+    "count": 3
+  }
 }

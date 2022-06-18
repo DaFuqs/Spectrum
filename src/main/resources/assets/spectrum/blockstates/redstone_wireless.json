@@ -86,7 +86,6 @@
         "y": 90
       }
     },
-
     {
       "when": {
         "powered": true,
@@ -130,7 +129,6 @@
         "y": 90
       }
     },
-
     {
       "when": {
         "powered": false,

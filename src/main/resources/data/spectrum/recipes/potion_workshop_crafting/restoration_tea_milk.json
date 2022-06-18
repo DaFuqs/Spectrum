@@ -15,7 +15,7 @@
   "ingredient3": {
     "item": "minecraft:milk_bucket"
   },
-  "result" : {
+  "result": {
     "item": "spectrum:restoration_tea",
     "nbt": "{Milk:1b}",
     "count": 1

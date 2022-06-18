@@ -1,8 +1,8 @@
 {
-	"parent": "spectrum:block/template_sparklestone_light",
-	"textures": {
-		"outer": "spectrum:block/polished_calcite",
-		"inner": "spectrum:block/sparklestone_light",
-		"particle": "spectrum:block/polished_calcite"
-	}
+  "parent": "spectrum:block/template_sparklestone_light",
+  "textures": {
+    "outer": "spectrum:block/polished_calcite",
+    "inner": "spectrum:block/sparklestone_light",
+    "particle": "spectrum:block/polished_calcite"
+  }
 }

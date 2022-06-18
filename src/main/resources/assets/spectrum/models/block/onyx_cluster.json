@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:block/cross",
-    "textures": {
+  "parent": "minecraft:block/cross",
+  "textures": {
     "cross": "spectrum:block/onyx_cluster"
-    }
+  }
 }

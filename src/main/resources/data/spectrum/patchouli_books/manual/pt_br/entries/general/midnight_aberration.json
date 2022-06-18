@@ -12,7 +12,7 @@
     {
       "type": "patchouli:text",
       "text": "As últimas descobertas do seu último experimento faz você se esforçar mais mais. Exprema até a última gota de energia das suas pedras gemas.$(br2)Neolito é a chave! Sim, tem que ser! Se você combinar todas as pedras que coletou até agora com ele, algo que contém poderes incríveis deve ser criado. Somente pra você e APENAS pra você, mestre do Pigmento!"
-	},
+    },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Receita de Fusão",
@@ -30,6 +30,6 @@
       "type": "patchouli:text",
       "advancement": "spectrum:midgame/create_midnight_aberration",
       "text": "Mesmo que o caos criado $(italic)definitivamente$() não foi o que você desejava, o resultado ainda contém poder imenso.$(br)Tanto pode, que se não usado rapidamento se desmorona em pó.$(br2)E ainda tem aquele líquido agresssivamente escuro que se manifestou no processo. Por causa da sua cor você o nomeou de $(l:magical_blocks/midnight_solution)Solução da Meia Noite$(/l)."
-	}
+    }
   ]
 }

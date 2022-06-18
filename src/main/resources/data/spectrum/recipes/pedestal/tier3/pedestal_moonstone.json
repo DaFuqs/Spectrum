@@ -14,11 +14,11 @@
     "   "
   ],
   "key": {
-	"M": {
-	  "item": "spectrum:moonstone_shard"
-	}
+    "M": {
+      "item": "spectrum:moonstone_shard"
+    }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:pedestal_moonstone",
     "count": 1
   },

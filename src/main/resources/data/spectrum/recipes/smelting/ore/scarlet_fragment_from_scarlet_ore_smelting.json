@@ -1,9 +1,9 @@
 {
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "spectrum:scarlet_ore"
-    },
-    "result": "spectrum:scarlet_fragments",
-    "experience": 0.2,
-    "cookingtime": 200
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "spectrum:scarlet_ore"
+  },
+  "result": "spectrum:scarlet_fragments",
+  "experience": 0.2,
+  "cookingtime": 200
 }

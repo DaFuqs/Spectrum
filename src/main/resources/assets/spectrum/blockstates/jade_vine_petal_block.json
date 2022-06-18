@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/jade_vine_petal_block"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/jade_vine_petal_block"
+    }
+  }
 }

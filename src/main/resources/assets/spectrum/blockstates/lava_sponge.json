@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "spectrum:block/lava_sponge" }
+    "": {
+      "model": "spectrum:block/lava_sponge"
+    }
   }
 }

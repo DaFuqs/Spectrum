@@ -25,7 +25,7 @@
       "item": "minecraft:glow_ink_sac"
     }
   },
-  "result" : {
+  "result": {
     "item": "chalk:cyan_glow_chalk",
     "nbt": "{Unbreakable:1}"
   },

@@ -1,20 +1,20 @@
 {
-	"values": [
-		"spectrum:glow_vision_helmet",
-		"spectrum:jeopardant",
-		"spectrum:seven_league_boots",
-		"spectrum:radiance_pin",
-		"spectrum:totem_pendant",
-		"spectrum:take_off_belt",
-		"spectrum:azure_dike_belt",
-		"spectrum:azure_dike_ring",
-		"spectrum:pigment_palette",
-		"spectrum:gleaming_pin",
-		"#spectrum:potion_pendants",
-		"spectrum:ashen_circlet",
-		"spectrum:tidal_circlet",
-		"spectrum:puff_circlet",
-		"spectrum:whispy_circlet",
-		"spectrum:neat_ring"
-	]
+  "values": [
+    "spectrum:glow_vision_helmet",
+    "spectrum:jeopardant",
+    "spectrum:seven_league_boots",
+    "spectrum:radiance_pin",
+    "spectrum:totem_pendant",
+    "spectrum:take_off_belt",
+    "spectrum:azure_dike_belt",
+    "spectrum:azure_dike_ring",
+    "spectrum:pigment_palette",
+    "spectrum:gleaming_pin",
+    "#spectrum:potion_pendants",
+    "spectrum:ashen_circlet",
+    "spectrum:tidal_circlet",
+    "spectrum:puff_circlet",
+    "spectrum:whispy_circlet",
+    "spectrum:neat_ring"
+  ]
 }

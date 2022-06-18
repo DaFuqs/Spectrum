@@ -1,12 +1,12 @@
 {
-    "parent": "minecraft:block/cube",
-    "textures": {
-        "particle": "spectrum:block/pedestal_basic_topaz_powered",
-        "north": "spectrum:block/pedestal_basic_topaz_powered",
-        "south": "spectrum:block/pedestal_basic_topaz_powered",
-        "east": "spectrum:block/pedestal_basic_topaz_powered",
-        "west": "spectrum:block/pedestal_basic_topaz_powered",
-        "up": "spectrum:block/pedestal_basic_topaz_top",
-        "down": "spectrum:block/pedestal_bottom"
-    }
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "spectrum:block/pedestal_basic_topaz_powered",
+    "north": "spectrum:block/pedestal_basic_topaz_powered",
+    "south": "spectrum:block/pedestal_basic_topaz_powered",
+    "east": "spectrum:block/pedestal_basic_topaz_powered",
+    "west": "spectrum:block/pedestal_basic_topaz_powered",
+    "up": "spectrum:block/pedestal_basic_topaz_top",
+    "down": "spectrum:block/pedestal_bottom"
+  }
 }

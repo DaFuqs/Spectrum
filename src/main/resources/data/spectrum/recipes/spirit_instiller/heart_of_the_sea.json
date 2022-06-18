@@ -11,7 +11,7 @@
   "center_ingredient": {
     "item": "minecraft:nautilus_shell"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:heart_of_the_sea"
   }
 }

@@ -32,7 +32,7 @@
       "item": "spectrum:paletur_fragments"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:mending\", lvl: 1s}]}"
   },

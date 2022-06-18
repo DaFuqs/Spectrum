@@ -24,7 +24,7 @@
       "item": "minecraft:phantom_membrane"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:voiding_pickaxe",
     "nbt": "{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
     "count": 1

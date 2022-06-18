@@ -15,15 +15,15 @@
     },
     {
       "item": "spectrum:purple_pigment",
-	  "count": 16
+      "count": 16
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:seven_league_boots"
   },
   "required_advancement": "spectrum:progression/unlock_seven_league_boots",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

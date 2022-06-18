@@ -24,10 +24,12 @@
       "text": "No subterrânio você achou essa estrutura gigante, a entrada da qual parece estar protegida por uma forte, força mágica."
     },
     {
-	  "type": "patchouli:image",
-	  "title": "A Entrada",
-	  "images": [ "spectrum:textures/gui/manual/ancient_ruins.png" ],
-	  "border": true,
+      "type": "patchouli:image",
+      "title": "A Entrada",
+      "images": [
+        "spectrum:textures/gui/manual/ancient_ruins.png"
+      ],
+      "border": true,
       "text": "O que pode estar se escondendo de você atrás dessa barreira? Qual o significado desses glifos?"
     },
     {

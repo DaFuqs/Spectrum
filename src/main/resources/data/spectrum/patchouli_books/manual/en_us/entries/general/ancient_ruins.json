@@ -24,10 +24,12 @@
       "text": "Deep underground you found this huge structure, which entrance seems to be protected by a strong, magical force."
     },
     {
-	  "type": "patchouli:image",
-	  "title": "The Entrance",
-	  "images": [ "spectrum:textures/gui/manual/ancient_ruins.png" ],
-	  "border": true,
+      "type": "patchouli:image",
+      "title": "The Entrance",
+      "images": [
+        "spectrum:textures/gui/manual/ancient_ruins.png"
+      ],
+      "border": true,
       "text": "What might be hiding from you behind this barrier? What do these glyphs mean?"
     },
     {

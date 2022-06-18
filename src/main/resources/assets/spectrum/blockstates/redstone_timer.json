@@ -1,14 +1,15 @@
 {
-  "multipart": [{
-    "when": {
-      "powered": true,
-      "facing": "north"
+  "multipart": [
+    {
+      "when": {
+        "powered": true,
+        "facing": "north"
+      },
+      "apply": {
+        "model": "spectrum:block/redstone_timer_base",
+        "y": 180
+      }
     },
-    "apply": {
-      "model": "spectrum:block/redstone_timer_base",
-      "y": 180
-    }
-  },
     {
       "when": {
         "powered": true,

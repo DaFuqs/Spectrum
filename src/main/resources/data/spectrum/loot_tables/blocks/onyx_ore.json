@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-		      "name": "spectrum:onyx_ore",
+              "name": "spectrum:onyx_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -29,7 +29,7 @@
             },
             {
               "type": "minecraft:item",
-			  "name": "spectrum:onyx_shard",
+              "name": "spectrum:onyx_shard",
               "functions": [
                 {
                   "function": "minecraft:set_count",

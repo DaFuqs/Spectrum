@@ -1,11 +1,11 @@
 {
-	"variants": {
-		"cardinal_facing=false": {
-			"model": "spectrum:block/polished_calcite_crest",
-			"y": 90
-		},
-		"cardinal_facing=true": {
-			"model": "spectrum:block/polished_calcite_crest"
-		}
-	}
+  "variants": {
+    "cardinal_facing=false": {
+      "model": "spectrum:block/polished_calcite_crest",
+      "y": 90
+    },
+    "cardinal_facing=true": {
+      "model": "spectrum:block/polished_calcite_crest"
+    }
+  }
 }

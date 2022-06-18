@@ -27,9 +27,9 @@
       "item": "minecraft:nautilus_shell"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:emergency_chestplate",
     "count": 1
   },
-  "required_advancement":  "spectrum:hidden/collect_vanilla/collect_nautilus_shell"
+  "required_advancement": "spectrum:hidden/collect_vanilla/collect_nautilus_shell"
 }

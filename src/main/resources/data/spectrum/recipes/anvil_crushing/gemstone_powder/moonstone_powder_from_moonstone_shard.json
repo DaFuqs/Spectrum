@@ -5,7 +5,7 @@
   },
   "crushedItemsPerPointOfDamage": 0.6,
   "experience": 0.4,
-  "result" : {
+  "result": {
     "item": "spectrum:moonstone_powder",
     "count": 2
   },

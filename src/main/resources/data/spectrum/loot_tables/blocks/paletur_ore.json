@@ -1,82 +1,82 @@
 {
-    "type": "minecraft:block",
-    "pools": [
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
         {
-            "rolls": 1,
-            "entries": [
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:paletur_ore",
+              "conditions": [
                 {
-                    "type": "minecraft:alternatives",
-                    "children": [
-                        {
-                            "type": "minecraft:item",
-                            "name": "spectrum:paletur_ore",
-                            "conditions": [
-                                {
-                                    "condition": "minecraft:match_tool",
-                                    "predicate": {
-                                        "enchantments": [
-                                            {
-                                                "enchantment": "minecraft:silk_touch",
-                                                "levels": {
-                                                    "min": 1
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "type": "minecraft:item",
-                            "name": "spectrum:paletur_gem",
-                            "conditions": [
-                                {
-                                    "condition": "minecraft:match_tool",
-                                    "predicate": {
-                                        "enchantments": [
-                                            {
-                                                "enchantment": "spectrum:resonance",
-                                                "levels": {
-                                                    "min": 1
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
-                        {
-                            "type": "minecraft:alternatives",
-                            "children": [
-                                {
-                                    "type": "minecraft:item",
-                                    "name": "spectrum:paletur_gem",
-                                    "conditions": [
-                                        {
-                                            "condition": "minecraft:random_chance",
-                                            "chance": 0.04
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "minecraft:item",
-                                    "name": "spectrum:paletur_fragments",
-                                    "functions": [
-                                        {
-                                            "function": "minecraft:apply_bonus",
-                                            "enchantment": "minecraft:fortune",
-                                            "formula": "minecraft:ore_drops"
-                                        },
-                                        {
-                                            "function": "minecraft:explosion_decay"
-                                        }
-                                    ]
-                                }
-                            ]
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
                         }
+                      }
                     ]
+                  }
                 }
-            ]
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:paletur_gem",
+              "conditions": [
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "spectrum:resonance",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:alternatives",
+              "children": [
+                {
+                  "type": "minecraft:item",
+                  "name": "spectrum:paletur_gem",
+                  "conditions": [
+                    {
+                      "condition": "minecraft:random_chance",
+                      "chance": 0.04
+                    }
+                  ]
+                },
+                {
+                  "type": "minecraft:item",
+                  "name": "spectrum:paletur_fragments",
+                  "functions": [
+                    {
+                      "function": "minecraft:apply_bonus",
+                      "enchantment": "minecraft:fortune",
+                      "formula": "minecraft:ore_drops"
+                    },
+                    {
+                      "function": "minecraft:explosion_decay"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }

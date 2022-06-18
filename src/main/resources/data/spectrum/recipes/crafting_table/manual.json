@@ -1,20 +1,20 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        " S ",
-        "SBS",
-        " S "
-    ],
-    "key": {
-        "S": {
-	        "tag": "spectrum:gemstone_shards"
-        },
-        "B": {
-	        "item": "minecraft:book"
-        }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SBS",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "tag": "spectrum:gemstone_shards"
     },
-    "result": {
-        "item": "spectrum:manual",
-        "count": 1
+    "B": {
+      "item": "minecraft:book"
     }
+  },
+  "result": {
+    "item": "spectrum:manual",
+    "count": 1
+  }
 }

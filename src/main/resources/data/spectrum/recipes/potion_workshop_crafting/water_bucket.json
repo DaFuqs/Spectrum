@@ -8,7 +8,7 @@
   "ingredient1": {
     "item": "spectrum:light_blue_pigment"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:water_bucket"
   }
 }

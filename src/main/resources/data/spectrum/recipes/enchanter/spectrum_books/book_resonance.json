@@ -31,7 +31,7 @@
       "item": "spectrum:mermaids_gem"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}"
   },

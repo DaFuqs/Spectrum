@@ -5,7 +5,7 @@
   },
   "crushedItemsPerPointOfDamage": 2,
   "experience": 0.2,
-  "result" : {
+  "result": {
     "item": "botania:black_petal",
     "count": 8
   },

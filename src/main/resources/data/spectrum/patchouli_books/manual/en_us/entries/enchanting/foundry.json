@@ -1,24 +1,24 @@
 {
-    "name": "Foundry",
-    "icon": "minecraft:iron_pickaxe",
-    "advancement": "spectrum:progression/enchantments/autosmelt",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)You still remember the first days in this world, when you laboriously knocked coal out of the stone to melt your mined ore. But those days are numbered, you vowed. The future is now, old man.$(br2)Everything comes with a price, though: you'll lose the experience you'd normally get from smelting the ore."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:autosmelt\", lvl: 1s}]}",
-            "text": "Automatically smelts broken blocks.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Silk Touch and Resonance."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_autosmelt",
-            "text": "You can infuse a common Book with Foundry by surrounding your Enchanter with Pigment and the other required materials."
-        }
-    ]
+  "name": "Foundry",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:progression/enchantments/autosmelt",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)You still remember the first days in this world, when you laboriously knocked coal out of the stone to melt your mined ore. But those days are numbered, you vowed. The future is now, old man.$(br2)Everything comes with a price, though: you'll lose the experience you'd normally get from smelting the ore."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:autosmelt\", lvl: 1s}]}",
+      "text": "Automatically smelts broken blocks.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Silk Touch and Resonance."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_autosmelt",
+      "text": "You can infuse a common Book with Foundry by surrounding your Enchanter with Pigment and the other required materials."
+    }
+  ]
 }

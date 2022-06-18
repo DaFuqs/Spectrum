@@ -1,30 +1,30 @@
 {
-    "name": "Inertia",
-    "icon": "minecraft:iron_pickaxe",
-    "advancement": "spectrum:progression/enchantments/inertia",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)You'd almost think this enchantment breathes a little bit of life into your tools.$(br2)Like a living creature, the tool gradually gets used to the block you are mining and specializes in it. In return, however, the mining of other blocks becomes slower."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inertia\", lvl: 3s}]}",
-            "text": "Decreased mining speed. Speed increases with each block mined of the same type.$(br2)Max Level: 3$(br)Applicable to mining tools.$(br)Mutually exclusive with Efficiency."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_inertia",
-            "text": "You can infuse a common Book with Inertia by surrounding your Enchanter with Pigment and the other required materials."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Enchantment Upgrading",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/inertia_level_2",
-            "text": "Upgrading Inertia from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
-        }
-    ]
+  "name": "Inertia",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:progression/enchantments/inertia",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)You'd almost think this enchantment breathes a little bit of life into your tools.$(br2)Like a living creature, the tool gradually gets used to the block you are mining and specializes in it. In return, however, the mining of other blocks becomes slower."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inertia\", lvl: 3s}]}",
+      "text": "Decreased mining speed. Speed increases with each block mined of the same type.$(br2)Max Level: 3$(br)Applicable to mining tools.$(br)Mutually exclusive with Efficiency."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_inertia",
+      "text": "You can infuse a common Book with Inertia by surrounding your Enchanter with Pigment and the other required materials."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Enchantment Upgrading",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/inertia_level_2",
+      "text": "Upgrading Inertia from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
+    }
+  ]
 }

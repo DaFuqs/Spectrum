@@ -1,9 +1,9 @@
 {
-	"values": [
-		"minecraft:amethyst_cluster",
-		"spectrum:citrine_cluster",
-		"spectrum:topaz_cluster",
-		"spectrum:onyx_cluster",
-		"spectrum:moonstone_cluster"
-	]
+  "values": [
+    "minecraft:amethyst_cluster",
+    "spectrum:citrine_cluster",
+    "spectrum:topaz_cluster",
+    "spectrum:onyx_cluster",
+    "spectrum:moonstone_cluster"
+  ]
 }

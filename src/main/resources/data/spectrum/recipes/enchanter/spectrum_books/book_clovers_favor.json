@@ -31,7 +31,7 @@
       "item": "minecraft:gold_ingot"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:clovers_favor\", lvl: 1s}]}"
   },

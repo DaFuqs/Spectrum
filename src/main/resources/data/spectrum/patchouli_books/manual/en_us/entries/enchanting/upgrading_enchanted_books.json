@@ -12,7 +12,9 @@
     },
     {
       "type": "patchouli:image",
-      "images": [ "spectrum:textures/gui/manual/upgrading_enchanted_books.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/upgrading_enchanted_books.png"
+      ],
       "border": true,
       "text": "Just try not to interrupt said process, otherwise it will stop entirely."
     }

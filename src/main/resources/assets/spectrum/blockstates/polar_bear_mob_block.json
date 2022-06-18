@@ -1,10 +1,10 @@
 {
-	"variants": {
-		"cooldown=false": {
-			"model": "spectrum:block/mob_block"
-		},
-		"cooldown=true": {
-			"model": "spectrum:block/mob_block_cooldown"
-		}
-	}
+  "variants": {
+    "cooldown=false": {
+      "model": "spectrum:block/mob_block"
+    },
+    "cooldown=true": {
+      "model": "spectrum:block/mob_block_cooldown"
+    }
+  }
 }

@@ -12,42 +12,46 @@
       "text": "$(italic)Logistics is a complicated thing.$(br)Your primitive ways of item transport like hopper arrays do not compare to the Pastel Network - that is what you called clusters of Azurite-based Nodes. Each Node with its own special features. Placed in close proximity, nodes will connect wirelessly to one another and form an item transfer network."
     },
     {
-		"type": "patchouli:image",
-		"title": "",
-		"images": [ "spectrum:textures/gui/manual/pastel_network.png" ],
-		"border": true,
-		"text": "All Nodes have a range of 16 blocks and need to have line of sight to one another."
+      "type": "patchouli:image",
+      "title": "",
+      "images": [
+        "spectrum:textures/gui/manual/pastel_network.png"
+      ],
+      "border": true,
+      "text": "All Nodes have a range of 16 blocks and need to have line of sight to one another."
     },
     {
-		"type": "patchouli:spotlight",
-		"title": "Dyeing Nodes",
-		"item": "spectrum:purple_pigment",
-		"text": "You can use $(l:general/pigment)Pigment$(/l) on Pastel Network Nodes to dye them.$(br2)Each node can only transfer items to nodes of the same color and colors it composites into, but not the other way around (Cyan nodes can transfer to Blue ones, but not Blue nodes to Cyan)."
-    },
-	{
-		"type": "patchouli:image",
-		"title": "",
-		"images": [ "spectrum:textures/gui/manual/composite_colors.png" ],
-		"border": true,
-		"text": ""
+      "type": "patchouli:spotlight",
+      "title": "Dyeing Nodes",
+      "item": "spectrum:purple_pigment",
+      "text": "You can use $(l:general/pigment)Pigment$(/l) on Pastel Network Nodes to dye them.$(br2)Each node can only transfer items to nodes of the same color and colors it composites into, but not the other way around (Cyan nodes can transfer to Blue ones, but not Blue nodes to Cyan)."
     },
     {
-		"type": "patchouli:spotlight",
-		"title": "Colored Nodes",
-		"item": "spectrum:red_pigment",
-		"text": "Using Pigment you can very finely adjust which Nodes can interact with others, allowing you to build complex transfer chains.$(br2)The default $(bold)White$() nodes, lacking all forms of color are only able to connect to other white nodes."
+      "type": "patchouli:image",
+      "title": "",
+      "images": [
+        "spectrum:textures/gui/manual/composite_colors.png"
+      ],
+      "border": true,
+      "text": ""
     },
     {
-		"type": "patchouli:spotlight",
-		"title": "Spectral Colored Nodes",
-		"item": "spectrum:spectral_shard",
-		"text": "$(bold)Black$() in contrast, as the combination of all Pigment Colors, is able to interact with all other Nodes, including other black ones.$(br2)Nodes colored with spectral pigment are able to interact with all nodes, regardless of their color."
+      "type": "patchouli:spotlight",
+      "title": "Colored Nodes",
+      "item": "spectrum:red_pigment",
+      "text": "Using Pigment you can very finely adjust which Nodes can interact with others, allowing you to build complex transfer chains.$(br2)The default $(bold)White$() nodes, lacking all forms of color are only able to connect to other white nodes."
     },
     {
-		"type": "patchouli:spotlight",
-		"title": "",
-		"item": "spectrum:purple_pigment",
-		"text": "Using a $(l:resources/mermaids_brush)Mermaids Gem$(/l) on a node will change it to a Fluid Node.$(br)It will behave very similar than before - but will be able to wirelessly tranfer liquid instead of items."
+      "type": "patchouli:spotlight",
+      "title": "Spectral Colored Nodes",
+      "item": "spectrum:spectral_shard",
+      "text": "$(bold)Black$() in contrast, as the combination of all Pigment Colors, is able to interact with all other Nodes, including other black ones.$(br2)Nodes colored with spectral pigment are able to interact with all nodes, regardless of their color."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "",
+      "item": "spectrum:purple_pigment",
+      "text": "Using a $(l:resources/mermaids_brush)Mermaids Gem$(/l) on a node will change it to a Fluid Node.$(br)It will behave very similar than before - but will be able to wirelessly tranfer liquid instead of items."
     }
   ]
 }

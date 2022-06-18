@@ -1,25 +1,25 @@
 {
-    "name": "Curse of the Void",
-    "icon": "minecraft:wooden_pickaxe",
-    "advancement": "spectrum:progression/tools/unlock_voiding_pickaxe",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Your tools with this enchantment seem to dissolve all things they mine into thin air. Broken down into the finest sand and blown away by the wind.$(br2)For this one time, however, when you want to knock half a city out of rough stone, it might even come in handy. Some things are probably curse and blessing at the same time."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
-            "text": "Destroys the drops of all broken blocks.$(br2)Max Level: 1$(br)Applicable to mining tools."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_voiding",
-            "advancement": "spectrum:progression/enchantments/voiding",
-            "text": "You can infuse a common Book with Curse of the Void by surrounding your Enchanter with Pigment and the other required materials."
-        }
-    ]
+  "name": "Curse of the Void",
+  "icon": "minecraft:wooden_pickaxe",
+  "advancement": "spectrum:progression/tools/unlock_voiding_pickaxe",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Your tools with this enchantment seem to dissolve all things they mine into thin air. Broken down into the finest sand and blown away by the wind.$(br2)For this one time, however, when you want to knock half a city out of rough stone, it might even come in handy. Some things are probably curse and blessing at the same time."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
+      "text": "Destroys the drops of all broken blocks.$(br2)Max Level: 1$(br)Applicable to mining tools."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_voiding",
+      "advancement": "spectrum:progression/enchantments/voiding",
+      "text": "You can infuse a common Book with Curse of the Void by surrounding your Enchanter with Pigment and the other required materials."
+    }
+  ]
 }

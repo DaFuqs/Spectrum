@@ -1,24 +1,24 @@
 {
-    "name": "A new Ore",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:milestones/reveal_paletur",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:lategame/collect_paletur",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "Where to find",
-            "completion_advancement": "spectrum:lategame/collect_paletur",
-            "cost": "spectrum:moonstone_shard#8",
-            "text": "There is a new turquoise ore found in the End."
-        },
-        {
-            "type": "spectrum:hint",
-            "title": "Concise Instructions",
-            "cost": "spectrum:moonstone_shard#32",
-            "text": "This ore, that you are now able to perceive is generating at both the central island and the outer regions of the End. Catch it, before it is too late!"
-        }
-    ]
+  "name": "A new Ore",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_paletur",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/collect_paletur",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:lategame/collect_paletur",
+      "cost": "spectrum:moonstone_shard#8",
+      "text": "There is a new turquoise ore found in the End."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:moonstone_shard#32",
+      "text": "This ore, that you are now able to perceive is generating at both the central island and the outer regions of the End. Catch it, before it is too late!"
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/notched_polished_basalt"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/notched_polished_basalt"
+    }
+  }
 }

@@ -14,13 +14,16 @@
       "item": "spectrum:midnight_aberration"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:netherite_ingot"
   },
   "required_advancement": "spectrum:progression/unlock_netherite_ingot_fusion_recipe",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ "nothing", "visual_explosions_on_shrine" ],
+  "during_crafting_effects": [
+    "nothing",
+    "visual_explosions_on_shrine"
+  ],
   "finish_crafting_effect": "single_visual_explosion_on_shrine",
   "description": "spectrum.recipe.fusion_shrine.explanation.netherite_ingot"
 }

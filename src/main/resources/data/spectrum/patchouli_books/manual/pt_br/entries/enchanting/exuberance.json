@@ -1,30 +1,30 @@
 {
-    "name": "Exuberância",
-    "icon": "spectrum:multitool",
-    "advancement": "spectrum:progression/enchantments/exuberance",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Aquela sua mesa de livro de obsidiana e diamante, enquanto útil, meio que pega todo pedaço de experiência assim que você consegue esse experiência. Para satisfazer sua fome insasiável de prover sua lista crescente de ferramentas encantadas.$(br2)Expremer até a última gota de experiência de seus oponenetes vai ajudar bastante."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Características",
-            "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
-            "text": "Aumenta o XP obtido por abates de monstros.$(br2)Nível Máximo: 5$(br)Aplicável a armas corpo a corpo e ferramentas de mineração."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Receita de Encantador",
-            "recipe": "spectrum:enchanter/spectrum_books/book_exuberance",
-            "text": "Você pode infusionar um livro comum com Exuberância rodeando seu Encantador com Pigmento e outros materiais necessários."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Melhoria de Encantador",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/exuberance_level_2",
-            "text": "Melhorar Exuberância do nível 1 ao nível 2 é razoavelmente barato no começo.$(br)Esse preço rapidamenta aumenta para mais e mais Pigmento e Experiência para cada nível adicional."
-        }
-    ]
+  "name": "Exuberância",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:progression/enchantments/exuberance",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Aquela sua mesa de livro de obsidiana e diamante, enquanto útil, meio que pega todo pedaço de experiência assim que você consegue esse experiência. Para satisfazer sua fome insasiável de prover sua lista crescente de ferramentas encantadas.$(br2)Expremer até a última gota de experiência de seus oponenetes vai ajudar bastante."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Características",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
+      "text": "Aumenta o XP obtido por abates de monstros.$(br2)Nível Máximo: 5$(br)Aplicável a armas corpo a corpo e ferramentas de mineração."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Receita de Encantador",
+      "recipe": "spectrum:enchanter/spectrum_books/book_exuberance",
+      "text": "Você pode infusionar um livro comum com Exuberância rodeando seu Encantador com Pigmento e outros materiais necessários."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Melhoria de Encantador",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/exuberance_level_2",
+      "text": "Melhorar Exuberância do nível 1 ao nível 2 é razoavelmente barato no começo.$(br)Esse preço rapidamenta aumenta para mais e mais Pigmento e Experiência para cada nível adicional."
+    }
+  ]
 }

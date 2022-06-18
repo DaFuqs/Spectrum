@@ -4,16 +4,16 @@
   "experience": 8.0,
   "ingredient1": {
     "item": "spectrum:vegetal",
-	"count": 4
+    "count": 4
   },
   "ingredient2": {
     "item": "spectrum:jade_vine_petals",
-	"count": 4
+    "count": 4
   },
   "center_ingredient": {
     "item": "botania:black_lotus"
   },
-  "result" : {
+  "result": {
     "item": "botania:blacker_lotus"
   },
   "fabric:load_conditions": [

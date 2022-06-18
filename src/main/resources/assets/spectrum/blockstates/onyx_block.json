@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/onyx_block" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/onyx_block"
     }
+  }
 }

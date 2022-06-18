@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/preservation_bricks"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/preservation_bricks"
+    }
+  }
 }

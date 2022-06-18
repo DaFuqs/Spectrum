@@ -23,7 +23,7 @@
     }
   },
   "required_advancement": "spectrum:hidden/collect_pigment/collect_cyan_pigment",
-  "result" : {
+  "result": {
     "item": "chalk:cyan_chalk",
     "nbt": "{Unbreakable:1}"
   },

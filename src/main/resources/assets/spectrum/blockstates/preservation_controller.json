@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/preservation_controller"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/preservation_controller"
+    }
+  }
 }

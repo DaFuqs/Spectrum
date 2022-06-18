@@ -1,10 +1,10 @@
 {
-	"variants": {
-		"dead=false": {
-			"model": "spectrum:block/jade_vine_roots"
-		},
-		"dead=true": {
-			"model": "spectrum:block/jade_vine_roots_dead"
-		}
-	}
+  "variants": {
+    "dead=false": {
+      "model": "spectrum:block/jade_vine_roots"
+    },
+    "dead=true": {
+      "model": "spectrum:block/jade_vine_roots_dead"
+    }
+  }
 }

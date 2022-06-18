@@ -1,24 +1,24 @@
 {
-    "name": "Indestructible",
-    "icon": "spectrum:multitool",
-    "advancement": "spectrum:progression/enchantments/indestructible",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)You've come this far and you still have to deal with the fact that your common tools like Flint and Steel keep breaking once you use it too many times. And you had more than enough equipment, which was previously too fragile to use for long.$(br)Now that you have Bedrock Dust though? No problem."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:indestructible\", lvl: 1s}]}",
-            "text": "Makes a tool fully unbreakable, not taking damage anymore.$(br2)Max Level: 1$(br)Applicable to all tools."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_indestructible",
-            "text": "You can infuse a common Book with Indestructible by surrounding your Enchanter with Pigment and the other required materials."
-        }
-    ]
+  "name": "Indestructible",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:progression/enchantments/indestructible",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)You've come this far and you still have to deal with the fact that your common tools like Flint and Steel keep breaking once you use it too many times. And you had more than enough equipment, which was previously too fragile to use for long.$(br)Now that you have Bedrock Dust though? No problem."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:indestructible\", lvl: 1s}]}",
+      "text": "Makes a tool fully unbreakable, not taking damage anymore.$(br2)Max Level: 1$(br)Applicable to all tools."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_indestructible",
+      "text": "You can infuse a common Book with Indestructible by surrounding your Enchanter with Pigment and the other required materials."
+    }
+  ]
 }

@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/spectral_shard_block" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/spectral_shard_block"
     }
+  }
 }

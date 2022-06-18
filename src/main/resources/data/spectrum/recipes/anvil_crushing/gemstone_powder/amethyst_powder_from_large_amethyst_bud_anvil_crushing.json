@@ -5,7 +5,7 @@
   },
   "crushedItemsPerPointOfDamage": 0.6,
   "experience": 0.4,
-  "result" : {
+  "result": {
     "item": "spectrum:amethyst_powder",
     "count": 8
   },

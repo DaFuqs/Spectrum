@@ -11,7 +11,7 @@
   "ingredient2": {
     "item": "spectrum:cyan_pigment"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:powder_snow_bucket"
   }
 }

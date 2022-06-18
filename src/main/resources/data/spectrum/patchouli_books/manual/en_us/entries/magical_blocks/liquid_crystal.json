@@ -1,48 +1,48 @@
 {
-    "name": "Liquid Crystal",
-    "advancement": "spectrum:progression/unlock_liquid_crystal_bucket",
-    "icon": "spectrum:liquid_crystal_bucket",
-    "category": "spectrum:magical_blocks_category",
-    "extra_recipe_mappings": {
-        "spectrum:liquid_crystal_bucket": 0,
-        "spectrum:blazing_crystal": 0,
-        "spectrum:frostbite_crystal": 0,
-        "spectrum:resonant_lily": 0
+  "name": "Liquid Crystal",
+  "advancement": "spectrum:progression/unlock_liquid_crystal_bucket",
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:liquid_crystal_bucket": 0,
+    "spectrum:blazing_crystal": 0,
+    "spectrum:frostbite_crystal": 0,
+    "spectrum:resonant_lily": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:liquid_crystal_bucket",
+      "text": "$(italic)The pure energy of gemstones in their liquid form. It is said to have a healing effect."
     },
-    "pages": [
-        {
-            "type": "patchouli:spotlight",
-            "item": "spectrum:liquid_crystal_bucket",
-            "text": "$(italic)The pure energy of gemstones in their liquid form. It is said to have a healing effect."
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Pedestal Recipe",
-            "recipe": "spectrum:pedestal/tier3/liquid_crystal_bucket",
-            "text": "Combining it with various other liquids results in all kinds of weird looking materials to form. Best to try it in the nether, too!"
-        },
-		{
-            "type": "patchouli:spotlight",
-            "item": "minecraft:clay",
-            "text": "Letting Liquid Crystal collide with Mud created Clay! Surely there are more combinations to discover!$(br2)$(italic)Thomas had never seen such unbalance before.$()"
-        },
-		{
-            "type": "patchouli:spotlight",
-			"advancement": "spectrum:hidden/collect_blazing_crystal",
-            "item": "spectrum:blazing_crystal",
-            "text": "Letting a full block of Liquid Crystal absorb the immense heat of Lava resulted in this.$(br)Almost feels like a Magma Block, albeit way hotter."
-        },
-		{
-            "type": "patchouli:spotlight",
-			"advancement": "spectrum:hidden/collect_frostbite_crystal",
-            "item": "spectrum:frostbite_crystal",
-            "text": "As Water tried to flow to a full block of Liquid Crystal the crystal turned solid.$(br)Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal"
-        },
-		{
-            "type": "patchouli:spotlight",
-			"advancement": "spectrum:midgame/collect_resonant_lily",
-            "item": "spectrum:resonant_lily",
-            "text": "This is an interesting one. The roots of flowers absorb this magical liquid, turning into elusive plants. But even then the cannot withstand the raw energy of the liquid, making them pop."
-        }
-    ]
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/liquid_crystal_bucket",
+      "text": "Combining it with various other liquids results in all kinds of weird looking materials to form. Best to try it in the nether, too!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:clay",
+      "text": "Letting Liquid Crystal collide with Mud created Clay! Surely there are more combinations to discover!$(br2)$(italic)Thomas had never seen such unbalance before.$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "item": "spectrum:blazing_crystal",
+      "text": "Letting a full block of Liquid Crystal absorb the immense heat of Lava resulted in this.$(br)Almost feels like a Magma Block, albeit way hotter."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_frostbite_crystal",
+      "item": "spectrum:frostbite_crystal",
+      "text": "As Water tried to flow to a full block of Liquid Crystal the crystal turned solid.$(br)Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/collect_resonant_lily",
+      "item": "spectrum:resonant_lily",
+      "text": "This is an interesting one. The roots of flowers absorb this magical liquid, turning into elusive plants. But even then the cannot withstand the raw energy of the liquid, making them pop."
+    }
+  ]
 }

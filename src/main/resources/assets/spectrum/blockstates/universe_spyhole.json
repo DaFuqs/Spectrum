@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/universe_spyhole"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/universe_spyhole"
+    }
+  }
 }

@@ -1,25 +1,25 @@
 {
-    "name": "Shimmerstone",
-    "advancement": "spectrum:collect_sparklestone",
-    "icon": "spectrum:sparklestone_ore",
-    "category": "spectrum:resources_category",
-    "extra_recipe_mappings": {
-        "spectrum:sparklestone_ore": 0,
-        "spectrum:deepslate_sparklestone_ore": 0,
-        "spectrum:sparklestone_gem": 0,
-        "spectrum:sparklestone_block": 0
+  "name": "Shimmerstone",
+  "advancement": "spectrum:collect_sparklestone",
+  "icon": "spectrum:sparklestone_ore",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:sparklestone_ore": 0,
+    "spectrum:deepslate_sparklestone_ore": 0,
+    "spectrum:sparklestone_gem": 0,
+    "spectrum:sparklestone_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Shimmerstone",
+      "item": "spectrum:sparklestone_gem",
+      "text": "A yellow ore that does not only emit energy in the form of light, but is able to manipulate it, too.$(br2)Shimmerstone is found close to sea level altitudes."
     },
-    "pages": [
-        {
-            "type": "patchouli:spotlight",
-            "title": "Shimmerstone",
-            "item": "spectrum:sparklestone_gem",
-            "text": "A yellow ore that does not only emit energy in the form of light, but is able to manipulate it, too.$(br2)Shimmerstone is found close to sea level altitudes."
-        },
-        {
-            "type": "patchouli:crafting",
-            "recipe": "spectrum:crafting_table/storage_blocks/sparklestone_block",
-            "text": "Full blocks of Shimmerstone emit glowing bright yellow particles."
-        }
-    ]
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spectrum:crafting_table/storage_blocks/sparklestone_block",
+      "text": "Full blocks of Shimmerstone emit glowing bright yellow particles."
+    }
+  ]
 }

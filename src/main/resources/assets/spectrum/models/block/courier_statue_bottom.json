@@ -1,85 +1,305 @@
 {
-	"parent": "minecraft:block/block",
-	"credit": "Made with Blockbench",
-	"textures": {
-		"0": "spectrum:block/courier_statue",
-		"particle": "spectrum:block/courier_statue"
-	},
-	"elements": [
-		{
-			"from": [2, 0, 2.75],
-			"to": [14, 3, 13.75],
-			"faces": {
-				"north": {"uv": [0, 0, 12, 3], "texture": "#0"},
-				"east": {"uv": [0, 0, 11, 3], "texture": "#0"},
-				"south": {"uv": [0, 0, 12, 3], "texture": "#0"},
-				"west": {"uv": [0, 0, 11, 3], "texture": "#0"},
-				"up": {"uv": [0, 0, 12, 11], "texture": "#0"},
-				"down": {"uv": [0, 0, 12, 11], "texture": "#0"}
-			}
-		},
-		{
-			"from": [3, 3, 4.75],
-			"to": [13, 5, 11.75],
-			"faces": {
-				"north": {"uv": [0, 0, 10, 2], "texture": "#0"},
-				"east": {"uv": [0, 0, 7, 2], "texture": "#0"},
-				"south": {"uv": [0, 0, 10, 2], "texture": "#0"},
-				"west": {"uv": [0, 0, 7, 2], "texture": "#0"},
-				"up": {"uv": [0, 0, 10, 7], "texture": "#0"},
-				"down": {"uv": [0, 0, 10, 7], "texture": "#0"}
-			}
-		},
-		{
-			"from": [5, 5, 6],
-			"to": [11, 16, 10.75],
-			"faces": {
-				"north": {"uv": [6, 1, 12, 12], "texture": "#0"},
-				"east": {"uv": [7, 1, 11.75, 12], "texture": "#0"},
-				"south": {"uv": [5, 1, 11, 12], "texture": "#0"},
-				"west": {"uv": [4, 1, 8.75, 12], "texture": "#0"},
-				"up": {"uv": [5, 4, 11, 8.75], "texture": "#0"},
-				"down": {"uv": [4, 3, 10, 7.75], "texture": "#0"}
-			}
-		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"rotation": [30.25, 0, 0],
-			"translation": [0.25, 0, 0.75],
-			"scale": [0.50781, 0.50781, 0.50781]
-		},
-		"thirdperson_lefthand": {
-			"scale": [0.5625, 0.5625, 0.5625]
-		},
-		"firstperson_righthand": {
-			"scale": [0.52344, 0.52344, 0.52344]
-		},
-		"firstperson_lefthand": {
-			"scale": [0.49414, 0.49414, 0.49414]
-		},
-		"ground": {
-			"scale": [0.58984, 0.58984, 0.58984]
-		},
-		"gui": {
-			"rotation": [180, 40.25, 180],
-			"translation": [0, -2.75, 0],
-			"scale": [0.48047, 0.48047, 0.48047]
-		},
-		"fixed": {
-			"translation": [0, -2.75, -1.25],
-			"scale": [0.62109, 0.62109, 0.62109]
-		}
-	},
-	"groups": [
-		0,
-		1,
-		2,
-		{
-			"name": "top",
-			"origin": [0.75, -2.25, 0],
-			"color": 0,
-			"children": []
-		}
-	]
+  "parent": "minecraft:block/block",
+  "credit": "Made with Blockbench",
+  "textures": {
+    "0": "spectrum:block/courier_statue",
+    "particle": "spectrum:block/courier_statue"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        0,
+        2.75
+      ],
+      "to": [
+        14,
+        3,
+        13.75
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            12,
+            3
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            11,
+            3
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            12,
+            3
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            11,
+            3
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            12,
+            11
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            12,
+            11
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        4.75
+      ],
+      "to": [
+        13,
+        5,
+        11.75
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            7,
+            2
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            10,
+            2
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            7,
+            2
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            10,
+            7
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            10,
+            7
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        5,
+        6
+      ],
+      "to": [
+        11,
+        16,
+        10.75
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            6,
+            1,
+            12,
+            12
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            7,
+            1,
+            11.75,
+            12
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            5,
+            1,
+            11,
+            12
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            4,
+            1,
+            8.75,
+            12
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            5,
+            4,
+            11,
+            8.75
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            4,
+            3,
+            10,
+            7.75
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        30.25,
+        0,
+        0
+      ],
+      "translation": [
+        0.25,
+        0,
+        0.75
+      ],
+      "scale": [
+        0.50781,
+        0.50781,
+        0.50781
+      ]
+    },
+    "thirdperson_lefthand": {
+      "scale": [
+        0.5625,
+        0.5625,
+        0.5625
+      ]
+    },
+    "firstperson_righthand": {
+      "scale": [
+        0.52344,
+        0.52344,
+        0.52344
+      ]
+    },
+    "firstperson_lefthand": {
+      "scale": [
+        0.49414,
+        0.49414,
+        0.49414
+      ]
+    },
+    "ground": {
+      "scale": [
+        0.58984,
+        0.58984,
+        0.58984
+      ]
+    },
+    "gui": {
+      "rotation": [
+        180,
+        40.25,
+        180
+      ],
+      "translation": [
+        0,
+        -2.75,
+        0
+      ],
+      "scale": [
+        0.48047,
+        0.48047,
+        0.48047
+      ]
+    },
+    "fixed": {
+      "translation": [
+        0,
+        -2.75,
+        -1.25
+      ],
+      "scale": [
+        0.62109,
+        0.62109,
+        0.62109
+      ]
+    }
+  },
+  "groups": [
+    0,
+    1,
+    2,
+    {
+      "name": "top",
+      "origin": [
+        0.75,
+        -2.25,
+        0
+      ],
+      "color": 0,
+      "children": []
+    }
+  ]
 }

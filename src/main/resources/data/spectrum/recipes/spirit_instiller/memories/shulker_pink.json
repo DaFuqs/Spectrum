@@ -13,7 +13,7 @@
     "tag": "spectrum:memory_bonding_agents",
     "count": 4
   },
-  "result" : {
+  "result": {
     "item": "spectrum:memory",
     "nbt": "{EntityTag: {id: \"minecraft:shulker\", Color:6}, TicksToManifest: 80}"
   }

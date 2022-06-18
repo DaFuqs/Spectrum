@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:stone"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:blackstone",
     "count": 1
   }

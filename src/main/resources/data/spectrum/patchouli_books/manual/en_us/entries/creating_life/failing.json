@@ -23,7 +23,7 @@
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/collect_neolith",
-	  "title": "Neolith",
+      "title": "Neolith",
       "anchor": "neolith",
       "item": "spectrum:neolith",
       "text": "The obsidian was literally pulverized by your experiment. This is what you call power!$(br2)The result was this sturdy reagent."

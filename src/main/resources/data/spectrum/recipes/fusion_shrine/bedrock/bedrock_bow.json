@@ -13,11 +13,11 @@
     },
     {
       "item": "spectrum:black_pigment",
-	  "count": 4
+      "count": 4
     },
     {
       "item": "spectrum:onyx_powder",
-	  "count": 4
+      "count": 4
     },
     {
       "item": "spectrum:scarlet_fragments",
@@ -28,13 +28,13 @@
       "count": 3
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:bedrock_bow",
     "nbt": "{Enchantments: [{id: \"minecraft:power\", lvl: 6s}]}"
   },
   "required_advancement": "spectrum:progression/unlock_bedrock_tools",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

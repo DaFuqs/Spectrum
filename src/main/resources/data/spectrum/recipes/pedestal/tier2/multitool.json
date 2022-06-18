@@ -21,7 +21,7 @@
       "item": "minecraft:iron_ingot"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:multitool",
     "nbt": "{Enchantments: [{id: \"minecraft:efficiency\", lvl: 1s}]}",
     "count": 1

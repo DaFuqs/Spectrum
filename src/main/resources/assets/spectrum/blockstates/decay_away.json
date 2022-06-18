@@ -1,5 +1,7 @@
 {
-    "variants": {
-        "": { "model": "spectrum:block/decay_away" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/decay_away"
     }
+  }
 }

@@ -11,11 +11,14 @@
       "item": "minecraft:gold_ingot"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:gilded_blackstone"
   },
   "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ "nothing", "visual_explosions_on_shrine" ],
+  "during_crafting_effects": [
+    "nothing",
+    "visual_explosions_on_shrine"
+  ],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/onyx_chime"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/onyx_chime"
+    }
+  }
 }

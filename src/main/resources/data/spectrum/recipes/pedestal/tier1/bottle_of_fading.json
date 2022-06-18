@@ -15,9 +15,9 @@
     "FSF"
   ],
   "key": {
-	"S": {
-	  "item": "spectrum:sparklestone_gem"
-	},
+    "S": {
+      "item": "spectrum:sparklestone_gem"
+    },
     "F": {
       "item": "minecraft:fermented_spider_eye"
     },
@@ -28,9 +28,9 @@
       "item": "minecraft:honey_bottle"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:bottle_of_fading",
     "count": 1
   },
-  "required_advancement":  "spectrum:progression/unlock_bottle_of_fading"
+  "required_advancement": "spectrum:progression/unlock_bottle_of_fading"
 }

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:brown_mushroom"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:warped_fungus",
     "count": 1
   }

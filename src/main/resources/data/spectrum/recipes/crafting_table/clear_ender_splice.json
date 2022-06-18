@@ -1,12 +1,12 @@
 {
-    "type": "minecraft:crafting_shapeless",
-    "ingredients": [
-        {
-            "item": "spectrum:ender_splice"
-        }
-    ],
-    "result": {
-        "item": "spectrum:ender_splice",
-        "count": 1
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "spectrum:ender_splice"
     }
+  ],
+  "result": {
+    "item": "spectrum:ender_splice",
+    "count": 1
+  }
 }

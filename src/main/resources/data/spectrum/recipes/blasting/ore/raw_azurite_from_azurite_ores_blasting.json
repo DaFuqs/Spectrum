@@ -1,9 +1,9 @@
 {
-    "type": "minecraft:blasting",
-    "ingredient": {
-        "tag": "spectrum:azurite_ores"
-    },
-    "result": "spectrum:raw_azurite",
-    "experience": 2,
-    "cookingtime": 100
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "spectrum:azurite_ores"
+  },
+  "result": "spectrum:raw_azurite",
+  "experience": 2,
+  "cookingtime": 100
 }

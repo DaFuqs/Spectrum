@@ -1,14 +1,14 @@
 {
-	"type": "advancement_reward",
-	"pools": [
-		{
-			"rolls": 1,
-			"entries": [
-				{
-					"type": "minecraft:item",
-					"name": "spectrum:spectral_shard"
-				}
-			]
-		}
-	]
+  "type": "advancement_reward",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:spectral_shard"
+        }
+      ]
+    }
+  ]
 }

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:weathered_copper"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:oxidized_copper",
     "count": 1
   }

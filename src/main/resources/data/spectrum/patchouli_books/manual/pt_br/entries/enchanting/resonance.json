@@ -1,54 +1,54 @@
 {
-    "name": "Ressonância",
-    "icon": "minecraft:diamond_pickaxe",
-    "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Sempre teve blocos que você esteve interassado, mas você nunca conseguiu tirá-los do chão com cuidado suficiente para pegá-los perfeitamente. Você notou, porém, que esses blocos vibrão de forma similar as gemas que você esteve preocupado com recentemente.$(br)Se você acertar a frequência certa, você finalmente vai poder ter alguns deles em suas mãos."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Características",
-            "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
-            "text": "Usa vibrações gentis para fazer com que alguns blocos se derrubem.$(br2)Nível Máximo: 1$(br)Aplicável a ferramentas de mineração.$(br)Mutualmente exclusivo com Fortuna, Fundição e Controle de Pragas.$(br2)$(br2)$(italic)A gente deveria pegar esse geodo$(br)e empurrá-lo para algum outro lugar.$()"
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Receita de Encantador",
-            "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
-            "text": "Você pode infusionar um livro comum com Ressonância rodeando seu Encantador com Pigmento e outros materiais necessários."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Blocos de Drusa",
-            "item": "spectrum:budding_citrine",
-            "text": "As rachaduras nesse blocos permitem criar novos cristais em poco tempo (bem, se comparado com o tempo de sua criação; pra você, a espera ainda parece que dura eras).$(br2)Esperar na sua casa ao invés de esperar em um daqueles acampamentos parace mais confortável."
-        },
-		{
-            "type": "patchouli:spotlight",
-            "title": "Cristais de Pedra Gema",
-            "item": "minecraft:medium_amethyst_bud",
-            "text": "Os cristais menores normalmente são muito frágeis para serem quebrados do seu bloco mãe.$(br2)Mas, se você acertar a frequência certa, os cristal menores vão quebrar da pedra quase que sozinhos."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Folhas Coloridas",
-            "item": "spectrum:orange_leaves",
-            "text": "Folhas Coloridas são estimuladas de uma forma que elas soltam mais mudas.$(br2)Aplicado em uma enxada essa finalmente vai ser a chave para conseguir $(l:general/colored_trees)Mudas Coloridas$() de forma renovável."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Coletando Geradores",
-            "item": "minecraft:spawner",
-            "text": "Nas profundezas você se deparou com gaiolas que parecem cuspir um número infinito de inimigos. Que louco colocou elas la, que próposito elas tem e se realmente valeu o esforço é um mistério pra você. Porém, você definitivamente conseguiu um usa pra isso. Quem quer que criou não vai sentir falta se você pegar algumas."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Blocos Infestados",
-            "item": "minecraft:infested_stone_bricks",
-            "text": "As vibrações gentis acalmam as traças escondidas no bloco.$(br2)Você pode pegar os blocos junto com as traças e levar com você, sem elas saberem que isso está acontecendo com elas.$(br)Doce, doce vingança?"
-        }
-    ]
+  "name": "Ressonância",
+  "icon": "minecraft:diamond_pickaxe",
+  "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Sempre teve blocos que você esteve interassado, mas você nunca conseguiu tirá-los do chão com cuidado suficiente para pegá-los perfeitamente. Você notou, porém, que esses blocos vibrão de forma similar as gemas que você esteve preocupado com recentemente.$(br)Se você acertar a frequência certa, você finalmente vai poder ter alguns deles em suas mãos."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Características",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "Usa vibrações gentis para fazer com que alguns blocos se derrubem.$(br2)Nível Máximo: 1$(br)Aplicável a ferramentas de mineração.$(br)Mutualmente exclusivo com Fortuna, Fundição e Controle de Pragas.$(br2)$(br2)$(italic)A gente deveria pegar esse geodo$(br)e empurrá-lo para algum outro lugar.$()"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Receita de Encantador",
+      "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
+      "text": "Você pode infusionar um livro comum com Ressonância rodeando seu Encantador com Pigmento e outros materiais necessários."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Blocos de Drusa",
+      "item": "spectrum:budding_citrine",
+      "text": "As rachaduras nesse blocos permitem criar novos cristais em poco tempo (bem, se comparado com o tempo de sua criação; pra você, a espera ainda parece que dura eras).$(br2)Esperar na sua casa ao invés de esperar em um daqueles acampamentos parace mais confortável."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Cristais de Pedra Gema",
+      "item": "minecraft:medium_amethyst_bud",
+      "text": "Os cristais menores normalmente são muito frágeis para serem quebrados do seu bloco mãe.$(br2)Mas, se você acertar a frequência certa, os cristal menores vão quebrar da pedra quase que sozinhos."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Folhas Coloridas",
+      "item": "spectrum:orange_leaves",
+      "text": "Folhas Coloridas são estimuladas de uma forma que elas soltam mais mudas.$(br2)Aplicado em uma enxada essa finalmente vai ser a chave para conseguir $(l:general/colored_trees)Mudas Coloridas$() de forma renovável."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Coletando Geradores",
+      "item": "minecraft:spawner",
+      "text": "Nas profundezas você se deparou com gaiolas que parecem cuspir um número infinito de inimigos. Que louco colocou elas la, que próposito elas tem e se realmente valeu o esforço é um mistério pra você. Porém, você definitivamente conseguiu um usa pra isso. Quem quer que criou não vai sentir falta se você pegar algumas."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Blocos Infestados",
+      "item": "minecraft:infested_stone_bricks",
+      "text": "As vibrações gentis acalmam as traças escondidas no bloco.$(br2)Você pode pegar os blocos junto com as traças e levar com você, sem elas saberem que isso está acontecendo com elas.$(br)Doce, doce vingança?"
+    }
+  ]
 }

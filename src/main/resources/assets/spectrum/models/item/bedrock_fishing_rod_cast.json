@@ -1,6 +1,6 @@
 {
-    "parent": "item/fishing_rod",
-    "textures": {
-        "layer0": "spectrum:item/bedrock_fishing_rod_cast"
-    }
+  "parent": "item/fishing_rod",
+  "textures": {
+    "layer0": "spectrum:item/bedrock_fishing_rod_cast"
+  }
 }

@@ -1,54 +1,54 @@
 {
-    "name": "Resonance",
-    "icon": "minecraft:diamond_pickaxe",
-    "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.$(br)If you hit the right frequency, you finally can hold some of them in your hands."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
-            "text": "Uses gentle vibrations to allow some blocks to drop themselves.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(br2)$(italic)We should take this geode$(br)and push it somewhere else.$()"
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
-            "text": "You can infuse a common Book with Resonance by surrounding your Enchanter with Pigment and the other required materials."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Budding Blocks",
-            "item": "spectrum:budding_citrine",
-            "text": "The cracks in these blocks allows them to create new buds in a short time (well, short compared to their creation history; for you, the wait still feels like eons).$(br2)Waiting for them in your own house instead of one of your outposts sounds cozier."
-        },
-		{
-            "type": "patchouli:spotlight",
-            "title": "Gemstone Buds",
-            "item": "minecraft:medium_amethyst_bud",
-            "text": "The smaller gem buds are usually too fragile to be broken from their mother block.$(br2)However, if you hit the right frequency, the small bods will break from the stone almost by themselves."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Colored Leaves",
-            "item": "spectrum:orange_leaves",
-            "text": "Colored Leaves get stimulated in a way to release more saplings.$(br2)Applied to a hoe his will finally be your key to get $(l:general/colored_trees)Colored Saplings$() renewably."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Harvesting Spawners",
-            "item": "minecraft:spawner",
-            "text": "In the depths you have come across cages that seem to spit out an endless number of enemies. Which madman placed them there, what purpose they serve and whether it was really worth the effort is a mystery to you. However, you can definitely find some use for these. Whoever the maker was certainly won't miss you packing a few."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Infested Blocks",
-            "item": "minecraft:infested_stone_bricks",
-            "text": "The gentle vibrations lull the silverfish hiding in the blocks.$(br2)You can pack up the blocks including the silverfish and take them with you, without them knowing what is happening to them.$(br)Sweet, sweet revenge?"
-        }
-    ]
+  "name": "Resonance",
+  "icon": "minecraft:diamond_pickaxe",
+  "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.$(br)If you hit the right frequency, you finally can hold some of them in your hands."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "Uses gentle vibrations to allow some blocks to drop themselves.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(br2)$(italic)We should take this geode$(br)and push it somewhere else.$()"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
+      "text": "You can infuse a common Book with Resonance by surrounding your Enchanter with Pigment and the other required materials."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Budding Blocks",
+      "item": "spectrum:budding_citrine",
+      "text": "The cracks in these blocks allows them to create new buds in a short time (well, short compared to their creation history; for you, the wait still feels like eons).$(br2)Waiting for them in your own house instead of one of your outposts sounds cozier."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Gemstone Buds",
+      "item": "minecraft:medium_amethyst_bud",
+      "text": "The smaller gem buds are usually too fragile to be broken from their mother block.$(br2)However, if you hit the right frequency, the small bods will break from the stone almost by themselves."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Colored Leaves",
+      "item": "spectrum:orange_leaves",
+      "text": "Colored Leaves get stimulated in a way to release more saplings.$(br2)Applied to a hoe his will finally be your key to get $(l:general/colored_trees)Colored Saplings$() renewably."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Harvesting Spawners",
+      "item": "minecraft:spawner",
+      "text": "In the depths you have come across cages that seem to spit out an endless number of enemies. Which madman placed them there, what purpose they serve and whether it was really worth the effort is a mystery to you. However, you can definitely find some use for these. Whoever the maker was certainly won't miss you packing a few."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Infested Blocks",
+      "item": "minecraft:infested_stone_bricks",
+      "text": "The gentle vibrations lull the silverfish hiding in the blocks.$(br2)You can pack up the blocks including the silverfish and take them with you, without them knowing what is happening to them.$(br)Sweet, sweet revenge?"
+    }
+  ]
 }

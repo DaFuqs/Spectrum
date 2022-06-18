@@ -1,9 +1,9 @@
 {
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "spectrum:polished_calcite_crest"
-    },
-    "result": "spectrum:polished_calcite",
-    "experience": 0.1,
-    "cookingtime": 200
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "spectrum:polished_calcite_crest"
+  },
+  "result": "spectrum:polished_calcite",
+  "experience": 0.1,
+  "cookingtime": 200
 }

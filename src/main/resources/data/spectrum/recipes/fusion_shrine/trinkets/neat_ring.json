@@ -9,7 +9,7 @@
     },
     {
       "item": "minecraft:gold_ingot",
-	  "count": 8
+      "count": 8
     },
     {
       "item": "spectrum:moonstone_shard"
@@ -18,12 +18,12 @@
       "item": "spectrum:resonant_lily"
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:neat_ring"
   },
   "required_advancement": "spectrum:progression/unlock_neat_ring",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

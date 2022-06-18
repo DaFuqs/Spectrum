@@ -12,19 +12,19 @@
     },
     {
       "item": "minecraft:glass",
-	  "count": 4
+      "count": 4
     },
     {
       "item": "spectrum:pink_pigment",
-	  "count": 16
+      "count": 16
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:lesser_potion_pendant"
   },
   "required_advancement": "spectrum:progression/unlock_lesser_potion_pendant",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

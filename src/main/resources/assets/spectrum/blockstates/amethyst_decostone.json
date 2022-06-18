@@ -1,10 +1,10 @@
 {
-	"variants": {
-		"half=lower": {
-			"model": "spectrum:block/amethyst_decostone_bottom"
-		},
-		"half=upper": {
-			"model": "spectrum:block/amethyst_decostone_top"
-		}
-	}
+  "variants": {
+    "half=lower": {
+      "model": "spectrum:block/amethyst_decostone_bottom"
+    },
+    "half=upper": {
+      "model": "spectrum:block/amethyst_decostone_top"
+    }
+  }
 }

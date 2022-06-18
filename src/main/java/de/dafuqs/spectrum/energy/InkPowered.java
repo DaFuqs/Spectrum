@@ -18,6 +18,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -62,7 +63,7 @@ public interface InkPowered {
         }
 	}
 	
-	static long tryDrainEnergyFromStack(ItemStack stack, InkColor color, long amount) {
+	static long tryDrainEnergyFromStack(@NotNull ItemStack stack, InkColor color, long amount) {
 		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
 			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
 			long drained = inkStorage.drainEnergy(color, amount);
@@ -81,7 +82,7 @@ public interface InkPowered {
 	 * If not enough energy is available it will be drained as much as is available
 	 * but return will still be false
 	 **/
-	static boolean tryPayCost(Inventory inventory, InkColor color, long amount) {
+	static boolean tryPayCost(@NotNull Inventory inventory, InkColor color, long amount) {
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
 			if (!currentStack.isEmpty()) { // fast fail
@@ -106,7 +107,10 @@ public interface InkPowered {
 	 * - Trinket Slots
 	 * - Inventory
 	 **/
-	static boolean tryPayCost(PlayerEntity player, InkColor color, long amount) {
+	static boolean tryPayCost(@NotNull PlayerEntity player, InkColor color, long amount) {
+		if(player.isCreative()) {
+			return true;
+		}
 		if(!canUse(player)) {
 			return false;
 		}
@@ -142,14 +146,17 @@ public interface InkPowered {
 		return false;
 	}
 	
-	static long getAvailableInk(PlayerEntity player, InkColor color) {
+	static long getAvailableInk(@NotNull PlayerEntity player, InkColor color) {
+		if(player.isCreative()) {
+			return Long.MAX_VALUE;
+		}
 		if(!canUse(player)) {
 			return 0;
 		}
 		
 		long available = 0;
 		// offhand
-		for (ItemStack itemStack : player.getInventory().offHand) {
+		for (ItemStack itemStack : player.getItemsHand()) {
 			available += tryGetEnergy(itemStack, color);
 		}
 		
@@ -205,8 +212,7 @@ public interface InkPowered {
 		return false;
 	}
 	
-	
-	static long tryGetEnergy(ItemStack stack, InkColor color) {
+	static long tryGetEnergy(@NotNull ItemStack stack, InkColor color) {
 		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
 			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
 			return inkStorage.getEnergy(color);

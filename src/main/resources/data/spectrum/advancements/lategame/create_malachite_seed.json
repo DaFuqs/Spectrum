@@ -1,0 +1,28 @@
+{
+  "parent": "spectrum:lategame/collect_bismuth_crystal",
+  "display": {
+    "icon": {
+        "item": "spectrum:malachite_seed"
+    },
+    "title": {
+      "translate": "advancements.spectrum.create_malachite_seed.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_malachite_seed.description"
+    }
+  },
+  "criteria": {
+    "fully_grow_bismuth": {
+      "trigger":"spectrum:crystallarieum_growing",
+      "conditions": {
+        "block": {
+          "block": "spectrum:bismuth_cluster"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:lategame/collect_bismuth_crystal" }
+    }
+  }
+}

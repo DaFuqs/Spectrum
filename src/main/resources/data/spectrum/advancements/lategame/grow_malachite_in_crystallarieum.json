@@ -1,0 +1,28 @@
+{
+  "parent": "spectrum:lategame/create_malachite_seed",
+  "display": {
+    "icon": {
+        "item": "spectrum:malachite_crystal"
+    },
+    "title": {
+      "translate": "advancements.spectrum.grow_malachite_in_crystallarieum.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.grow_malachite_in_crystallarieum.description"
+    }
+  },
+  "criteria": {
+    "fully_grow_malachite": {
+      "trigger":"spectrum:crystallarieum_growing",
+      "conditions": {
+        "block": {
+          "block": "spectrum:malachite_cluster"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:lategame/create_malachite_seed" }
+    }
+  }
+}

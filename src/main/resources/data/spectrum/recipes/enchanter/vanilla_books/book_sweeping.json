@@ -32,7 +32,7 @@
       "item": "spectrum:lightning_stone"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:sweeping\", lvl: 1s}]}"
   },

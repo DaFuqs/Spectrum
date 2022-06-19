@@ -1,30 +1,30 @@
 {
-    "name": "Clovers' Favor",
-    "icon": "minecraft:iron_sword",
-    "advancement": "spectrum:progression/enchantments/clovers_favor",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Every now and then you are lucky enough to have an enemy leave behind a single rare item.$(br)The connection to luck of $(l:resources/clover)Clover$(/l) and $(l:general/pigment#light_blue)Light Blue Pigment$(/l) you can increase those chances dramatically."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 3s}]}",
-            "text": "Higher chance to get rare loot drops, like Iron Ingots from Zombies.$(br)May even increase your chances of getting the most valuable of drops?$(br2)Max Level: 3$(br)Applicable to melee weapons."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_clovers_favor",
-            "text": "You can infuse a common Book with Clovers' Favor by surrounding your Enchanter with Pigment and the other required materials."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Enchantment Upgrading",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
-            "text": "Upgrading Clovers' Favor from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
-        }
-    ]
+  "name": "Clovers' Favor",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/clovers_favor",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Every now and then you are lucky enough to have an enemy leave behind a single rare item.$(br)The connection to luck of $(l:resources/clover)Clover$(/l) and $(l:general/pigment#light_blue)Light Blue Pigment$(/l) you can increase those chances dramatically."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 3s}]}",
+      "text": "Higher chance to get rare loot drops, like Iron Ingots from Zombies.$(br)May even increase your chances of getting the most valuable of drops?$(br2)Max Level: 3$(br)Applicable to melee weapons."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_clovers_favor",
+      "text": "You can infuse a common Book with Clovers' Favor by surrounding your Enchanter with Pigment and the other required materials."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Enchantment Upgrading",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
+      "text": "Upgrading Clovers' Favor from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
+    }
+  ]
 }

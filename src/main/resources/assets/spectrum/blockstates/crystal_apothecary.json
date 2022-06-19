@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/crystal_apothecary"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/crystal_apothecary"
+    }
+  }
 }

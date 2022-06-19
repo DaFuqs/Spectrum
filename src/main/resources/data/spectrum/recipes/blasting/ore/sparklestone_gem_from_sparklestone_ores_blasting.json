@@ -1,9 +1,9 @@
 {
-    "type": "minecraft:blasting",
-    "ingredient": {
-        "tag": "spectrum:sparklestone_ores"
-    },
-    "result": "spectrum:sparklestone_gem",
-    "experience": 0.1,
-    "cookingtime": 100
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "spectrum:sparklestone_ores"
+  },
+  "result": "spectrum:sparklestone_gem",
+  "experience": 0.1,
+  "cookingtime": 100
 }

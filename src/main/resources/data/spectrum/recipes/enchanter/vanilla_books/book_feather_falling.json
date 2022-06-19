@@ -32,7 +32,7 @@
       "item": "spectrum:quitoxic_powder"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:feather_falling\", lvl: 1s}]}"
   },

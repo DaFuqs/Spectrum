@@ -9,9 +9,14 @@
     }
   ],
   "required_advancement": "spectrum:progression/weather/weather_thunder",
-  "world_conditions": [ "not_thunder" ],
+  "world_conditions": [
+    "not_thunder"
+  ],
   "start_crafting_effect": "single_visual_explosion_on_shrine",
-  "during_crafting_effects": [ "lightning_on_shrine", "lightning_around_shrine" ],
+  "during_crafting_effects": [
+    "lightning_on_shrine",
+    "lightning_around_shrine"
+  ],
   "finish_crafting_effect": "weather_thunder",
   "description": "spectrum.recipe.fusion_shrine.explanation.weather_thunder"
 }

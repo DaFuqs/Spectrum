@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-	  "advancement": "spectrum:lategame/grow_ominous_sapling",
+      "advancement": "spectrum:lategame/grow_ominous_sapling",
       "title": "Spirit Sallow",
       "text": "TODO"
     }

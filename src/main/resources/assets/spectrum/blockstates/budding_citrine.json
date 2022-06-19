@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/budding_citrine" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/budding_citrine"
     }
+  }
 }

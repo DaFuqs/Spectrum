@@ -1,24 +1,24 @@
 {
-    "name": "Experiment #2",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:midgame/craft_bottle_of_failing",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:midgame/collect_neolith",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "Small Clue",
-            "completion_advancement": "spectrum:midgame/collect_neolith",
-            "cost": "spectrum:scarlet_fragments#8",
-            "text": "Just like Fading, they prefer a specific block placed next to them. This time a lot more strong, though. 'I hate mining this' strong, to be precise."
-        },
-        {
-            "type": "spectrum:hint",
-            "title": "Concise Instructions",
-            "cost": "spectrum:scarlet_fragments#24",
-            "text": "The preferred food is Obsidian. Watch out for their insatiable hunger, though. They will eat quite a lot, if given the chance..."
-        }
-    ]
+  "name": "Experiment #2",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/craft_bottle_of_failing",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_neolith",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Small Clue",
+      "completion_advancement": "spectrum:midgame/collect_neolith",
+      "cost": "spectrum:scarlet_fragments#8",
+      "text": "Just like Fading, they prefer a specific block placed next to them. This time a lot more strong, though. 'I hate mining this' strong, to be precise."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:scarlet_fragments#24",
+      "text": "The preferred food is Obsidian. Watch out for their insatiable hunger, though. They will eat quite a lot, if given the chance..."
+    }
+  ]
 }

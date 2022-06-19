@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:red_mushroom"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:crimson_fungus",
     "count": 1
   }

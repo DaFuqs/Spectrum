@@ -1,9 +1,9 @@
 {
-	"values": [
-		"spectrum:shooting_star_glistering",
-		"spectrum:shooting_star_fiery",
-		"spectrum:shooting_star_colorful",
-		"spectrum:shooting_star_pristine",
-		"spectrum:shooting_star_gemstone"
-	]
+  "values": [
+    "spectrum:shooting_star_glistering",
+    "spectrum:shooting_star_fiery",
+    "spectrum:shooting_star_colorful",
+    "spectrum:shooting_star_pristine",
+    "spectrum:shooting_star_gemstone"
+  ]
 }

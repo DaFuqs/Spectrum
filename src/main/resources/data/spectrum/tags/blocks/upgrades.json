@@ -1,13 +1,13 @@
 {
-	"values": [
-		"spectrum:upgrade_speed",
-		"spectrum:upgrade_speed2",
-		"spectrum:upgrade_speed3",
-		"spectrum:upgrade_efficiency",
-		"spectrum:upgrade_efficiency2",
-		"spectrum:upgrade_yield",
-		"spectrum:upgrade_yield2",
-		"spectrum:upgrade_experience",
-		"spectrum:upgrade_experience2"
-	]
+  "values": [
+    "spectrum:upgrade_speed",
+    "spectrum:upgrade_speed2",
+    "spectrum:upgrade_speed3",
+    "spectrum:upgrade_efficiency",
+    "spectrum:upgrade_efficiency2",
+    "spectrum:upgrade_yield",
+    "spectrum:upgrade_yield2",
+    "spectrum:upgrade_experience",
+    "spectrum:upgrade_experience2"
+  ]
 }

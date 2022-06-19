@@ -1,12 +1,12 @@
 {
-    "parent": "minecraft:block/cube_all",
-    "textures": {
-        "particle": "spectrum:block/hover_block_side",
-        "north": "spectrum:block/hover_block_side",
-        "east": "spectrum:block/hover_block_side",
-        "south": "spectrum:block/hover_block_side",
-        "west": "spectrum:block/hover_block_side",
-        "up": "spectrum:block/hover_block_vertical",
-        "down": "spectrum:block/hover_block_vertical"
-    }
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "spectrum:block/hover_block_side",
+    "north": "spectrum:block/hover_block_side",
+    "east": "spectrum:block/hover_block_side",
+    "south": "spectrum:block/hover_block_side",
+    "west": "spectrum:block/hover_block_side",
+    "up": "spectrum:block/hover_block_vertical",
+    "down": "spectrum:block/hover_block_vertical"
+  }
 }

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:dirt"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:soul_soil",
     "count": 1
   }

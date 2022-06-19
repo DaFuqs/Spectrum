@@ -12,7 +12,7 @@
     "item": "spectrum:quitoxic_powder",
     "count": 4
   },
-  "result" : {
+  "result": {
     "item": "conjuring:lesser_conjuration_essence"
   },
   "fabric:load_conditions": [

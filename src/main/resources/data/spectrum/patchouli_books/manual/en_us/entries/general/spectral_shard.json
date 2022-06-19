@@ -24,13 +24,13 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-	  "advancement": "spectrum:lategame/create_spectral_shard",
+      "advancement": "spectrum:lategame/create_spectral_shard",
       "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_block",
       "text": "$(italic)Pretty!$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
-	  "advancement": "spectrum:lategame/create_spectral_shard",
+      "advancement": "spectrum:lategame/create_spectral_shard",
       "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_storage_block",
       "text": "$(italic)And you thought a beacon out of Netherite Blocks was a excessive?$()"
     }

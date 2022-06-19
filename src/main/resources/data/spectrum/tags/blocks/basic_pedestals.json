@@ -1,7 +1,7 @@
 {
-	"values": [
-		"spectrum:pedestal_basic_topaz",
-		"spectrum:pedestal_basic_amethyst",
-		"spectrum:pedestal_basic_citrine"
-	]
+  "values": [
+    "spectrum:pedestal_basic_topaz",
+    "spectrum:pedestal_basic_amethyst",
+    "spectrum:pedestal_basic_citrine"
+  ]
 }

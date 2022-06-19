@@ -14,9 +14,9 @@
     "CMC"
   ],
   "key": {
-	"B": {
-	  "item": "minecraft:lava_bucket"
-	},
+    "B": {
+      "item": "minecraft:lava_bucket"
+    },
     "M": {
       "item": "minecraft:magma_block"
     },
@@ -24,7 +24,7 @@
       "item": "minecraft:magma_cream"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:lava_sponge",
     "count": 1
   },

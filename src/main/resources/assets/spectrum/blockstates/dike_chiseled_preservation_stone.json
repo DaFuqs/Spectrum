@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/dike_chiseled_preservation_stone"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/dike_chiseled_preservation_stone"
+    }
+  }
 }

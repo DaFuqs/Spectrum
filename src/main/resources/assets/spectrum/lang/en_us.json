@@ -241,6 +241,7 @@
   "spectrum.recipe.fusion_shrine.explanation.weather_clear": "Summons Sunny Weather",
   "spectrum.recipe.fusion_shrine.explanation.weather_rain": "Summons Rain",
   "spectrum.recipe.fusion_shrine.explanation.weather_thunder": "Summons a Thunderstorm",
+  "spectrum.recipe.fusion_shrine.explanation.dreamflayer": "Midnight on a full moon",
 
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
 
@@ -312,6 +313,9 @@
   "spectrum.subtitles.air_launch_belt_charging": "Take-Off Belt charging",
   "spectrum.subtitles.midnight_aberration_crumbling": "Midnight Aberration crumbles",
   "spectrum.subtitles.structure_success": "Chimey tune",
+  "spectrum.subtitles.dreamflayer_activates": "Dreamflayer activates",
+  "spectrum.subtitles.dreamflayer_deactivates": "Dreamflayer deactivates",
+
   "subtitles.block.citrine_block.chime": "Citrine chimes",
   "subtitles.block.topaz_block.chime": "Topaz chimes",
   "subtitles.block.onyx_block.chime": "Onyx chimes",
@@ -1311,12 +1315,12 @@
   "item.spectrum.midnight_aberration.tooltip.stable": "§oHeld together by mysterious force",
   "item.spectrum.midnight_chip": "Midnight Chip",
 
+  "item.spectrum.small_bismuth_bud": "Bismuth Seed",
   "block.spectrum.small_bismuth_bud": "Small Bismuth Bud",
   "block.spectrum.large_bismuth_bud": "Large Bismuth Bud",
   "block.spectrum.bismuth_cluster": "Bismuth Cluster",
   "block.spectrum.bismuth_block": "Block of Bismuth",
-  "item.spectrum.bismuth_crystal": "Bismuth Crystals",
-  "item.spectrum.bismuth_chip": "Bismuth Chip",
+  "item.spectrum.bismuth_crystal": "Bismuth Crystal",
 
   "item.spectrum.logo_banner_pattern": "Banner Pattern",
   "item.spectrum.logo_banner_pattern.desc": "Color Theory",
@@ -1623,6 +1627,7 @@
   "item.spectrum.fanciful_belt": "Fanciful Belt",
   "item.spectrum.fanciful_pendant": "Fanciful Pendant",
   "item.spectrum.fanciful_circlet": "Fanciful Circlet",
+  "item.spectrum.fanciful_gloves": "Fanciful Gloves",
   "item.spectrum.jeopardant": "Jeopardant",
   "item.spectrum.jeopardant.tooltip.damage_zero": "§7Increased Damage on low HP (currently §80 %%§7)",
   "item.spectrum.jeopardant.tooltip.damage": "§7Increased Damage on low HP (currently §a+%d %%§7)",

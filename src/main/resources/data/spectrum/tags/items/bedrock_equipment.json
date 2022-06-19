@@ -1,13 +1,13 @@
 {
-	"values": [
-		"spectrum:bedrock_pickaxe",
-		"spectrum:bedrock_axe",
-		"spectrum:bedrock_shovel",
-		"spectrum:bedrock_sword",
-		"spectrum:bedrock_hoe",
-		"spectrum:bedrock_bow",
-		"spectrum:bedrock_crossbow",
-		"spectrum:bedrock_shears",
-		"spectrum:bedrock_fishing_rod"
-	]
+  "values": [
+    "spectrum:bedrock_pickaxe",
+    "spectrum:bedrock_axe",
+    "spectrum:bedrock_shovel",
+    "spectrum:bedrock_sword",
+    "spectrum:bedrock_hoe",
+    "spectrum:bedrock_bow",
+    "spectrum:bedrock_crossbow",
+    "spectrum:bedrock_shears",
+    "spectrum:bedrock_fishing_rod"
+  ]
 }

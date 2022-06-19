@@ -1,14 +1,14 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "spectrum:item/ender_splice_unbound"
-    },
-    "overrides": [
-        {
-            "predicate": {
-                "bound": 1
-            },
-            "model": "spectrum:item/ender_splice_bound"
-        }
-    ]
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "spectrum:item/ender_splice_unbound"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "bound": 1
+      },
+      "model": "spectrum:item/ender_splice_bound"
+    }
+  ]
 }

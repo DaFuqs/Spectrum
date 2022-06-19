@@ -31,7 +31,7 @@
       "item": "minecraft:soul_sand"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}"
   },

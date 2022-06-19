@@ -15,19 +15,19 @@
     "SPS"
   ],
   "key": {
-  	"P": {
+    "P": {
       "item": "spectrum:light_gray_pigment"
     },
-	"R": {
+    "R": {
       "item": "minecraft:redstone"
     },
-	"S": {
+    "S": {
       "item": "spectrum:sparklestone_gem"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:light_gray_lamp",
     "count": 2
   },
-  "required_advancement":  "spectrum:progression/colored_lamps/unlock_light_gray_lamp"
+  "required_advancement": "spectrum:progression/colored_lamps/unlock_light_gray_lamp"
 }

@@ -5,7 +5,7 @@
   },
   "crushedItemsPerPointOfDamage": 1,
   "experience": 0,
-  "result" : {
+  "result": {
     "item": "minecraft:cobblestone",
     "count": 1
   },

@@ -1,17 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "W  ",
-        "WW ",
-        "WWW"
-    ],
-    "key": {
-        "W": {
-	        "item": "spectrum:calcite_bricks"
-        }
-    },
-    "result": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W  ",
+    "WW ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:calcite_bricks"
+    }
+  },
+  "result": {
     "item": "spectrum:calcite_brick_stairs",
     "count": 6
-    }
+  }
 }

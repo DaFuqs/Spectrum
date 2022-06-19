@@ -1,9 +1,9 @@
 {
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "spectrum:notched_polished_basalt"
-    },
-    "result": "spectrum:polished_basalt",
-    "experience": 0.1,
-    "cookingtime": 200
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "spectrum:notched_polished_basalt"
+  },
+  "result": "spectrum:polished_basalt",
+  "experience": 0.1,
+  "cookingtime": 200
 }

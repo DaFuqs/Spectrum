@@ -1,30 +1,30 @@
 {
-    "name": "Disarming",
-    "icon": "minecraft:iron_sword",
-    "advancement": "spectrum:progression/enchantments/disarming",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)The zombies you encounter every day wear lots of valuable equipment. But when they die, it disappears never to be seen again.$(br2)No problem if you manage to snatch it from them while they are still alive. Gotcha!"
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:disarming\", lvl: 2s}]}",
-            "text": "Small chance for mobs (and other players!) to drop their equipment when hit.$(br2)Max Level: 2$(br)Applicable to melee weapons."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_disarming",
-            "text": "You can infuse a common Book with Disarming by surrounding your Enchanter with Pigment and the other required materials."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Enchantment Upgrading",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/disarming_level_2",
-            "text": "Upgrading Disarming from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
-        }
-    ]
+  "name": "Disarming",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/disarming",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)The zombies you encounter every day wear lots of valuable equipment. But when they die, it disappears never to be seen again.$(br2)No problem if you manage to snatch it from them while they are still alive. Gotcha!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:disarming\", lvl: 2s}]}",
+      "text": "Small chance for mobs (and other players!) to drop their equipment when hit.$(br2)Max Level: 2$(br)Applicable to melee weapons."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_disarming",
+      "text": "You can infuse a common Book with Disarming by surrounding your Enchanter with Pigment and the other required materials."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Enchantment Upgrading",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/disarming_level_2",
+      "text": "Upgrading Disarming from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
+    }
+  ]
 }

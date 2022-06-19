@@ -1,9 +1,9 @@
 {
-	"values": [
-		"#spectrum:amethyst_buds",
-		"#spectrum:topaz_buds",
-		"#spectrum:citrine_buds",
-		"#spectrum:onyx_buds",
-		"#spectrum:moonstone_buds"
-	]
+  "values": [
+    "#spectrum:amethyst_buds",
+    "#spectrum:topaz_buds",
+    "#spectrum:citrine_buds",
+    "#spectrum:onyx_buds",
+    "#spectrum:moonstone_buds"
+  ]
 }

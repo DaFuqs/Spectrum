@@ -11,7 +11,7 @@
   "center_ingredient": {
     "item": "spectrum:onyx_block"
   },
-  "result" : {
+  "result": {
     "item": "spectrum:budding_onyx"
   },
   "required_advancement": "spectrum:progression/unlock_budding_onyx"

@@ -22,7 +22,7 @@
       "item": "spectrum:orange_pigment"
     }
   },
-  "result" : {
+  "result": {
     "item": "chalk:orange_chalk",
     "nbt": "{Unbreakable:1}"
   },

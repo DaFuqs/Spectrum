@@ -1,41 +1,41 @@
 {
-    "name": "Paltaeria",
-    "advancement": "spectrum:lategame/collect_paletur",
-    "icon": "spectrum:paletur_fragments",
-    "category": "spectrum:resources_category",
-    "extra_recipe_mappings": {
-        "spectrum:paletur_ore": 0,
-        "spectrum:paletur_fragments": 0,
-        "spectrum:paletur_gem": 0,
-        "spectrum:paletur_fragment_block": 0
+  "name": "Paltaeria",
+  "advancement": "spectrum:lategame/collect_paletur",
+  "icon": "spectrum:paletur_fragments",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:paletur_ore": 0,
+    "spectrum:paletur_fragments": 0,
+    "spectrum:paletur_gem": 0,
+    "spectrum:paletur_fragment_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Paltaeria",
+      "item": "spectrum:paletur_fragments",
+      "text": "The light blue color is the trademark of this ore. It is found exclusively in the end in small clusters.$(br)Like the end itself, the curious properties of this material are not to be overlooked."
     },
-    "pages": [
-        {
-            "type": "patchouli:spotlight",
-            "title": "Paltaeria",
-            "item": "spectrum:paletur_fragments",
-            "text": "The light blue color is the trademark of this ore. It is found exclusively in the end in small clusters.$(br)Like the end itself, the curious properties of this material are not to be overlooked."
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Paltaeria Gem",
-            "advancement": "spectrum:hidden/collect_paletur_gem",
-            "recipe": "spectrum:pedestal/tier4/paletur_gem",
-            "text": "Rarely can one carve an intact stone. It can be used in recipes for which the Fragments were simply too small. Though with effort you can merge those together."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Paltaeria Floatblock",
-            "advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
-            "item": "spectrum:paletur_fragment_block",
-            "text": "From your previous experience with Paltaeria, you can already guess that it would not be a good idea to place this block in open sky.$(br2)The arrow on this block will service you as a reminder - your future self will thank you."
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Pedestal Recipe",
-            "advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
-            "recipe": "spectrum:pedestal/tier1/compacting/paletur_fragment_block",
-            "text": "   $(italic)~Fly far away~"
-        }
-    ]
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Paltaeria Gem",
+      "advancement": "spectrum:hidden/collect_paletur_gem",
+      "recipe": "spectrum:pedestal/tier4/paletur_gem",
+      "text": "Rarely can one carve an intact stone. It can be used in recipes for which the Fragments were simply too small. Though with effort you can merge those together."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Paltaeria Floatblock",
+      "advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
+      "item": "spectrum:paletur_fragment_block",
+      "text": "From your previous experience with Paltaeria, you can already guess that it would not be a good idea to place this block in open sky.$(br2)The arrow on this block will service you as a reminder - your future self will thank you."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
+      "recipe": "spectrum:pedestal/tier1/compacting/paletur_fragment_block",
+      "text": "   $(italic)~Fly far away~"
+    }
+  ]
 }

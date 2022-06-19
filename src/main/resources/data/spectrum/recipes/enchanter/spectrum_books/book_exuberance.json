@@ -31,7 +31,7 @@
       "item": "minecraft:experience_bottle"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:exuberance\", lvl: 1s}]}"
   },

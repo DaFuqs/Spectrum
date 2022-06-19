@@ -1,19 +1,19 @@
 {
-    "type": "minecraft:block",
-    "pools": [
+  "type": "minecraft:block",
+  "pools": [
     {
-        "rolls": 1,
-        "entries": [
-            {
-                "type": "minecraft:item",
-                "name": "spectrum:glowing_player_only_glass"
-            }
-            ],
-            "conditions": [
-            {
-                "condition": "minecraft:survives_explosion"
-            }
-            ]
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:glowing_player_only_glass"
         }
-    ]
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
 }

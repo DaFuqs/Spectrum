@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:cut_copper_slab"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:exposed_cut_copper_slab",
     "count": 1
   }

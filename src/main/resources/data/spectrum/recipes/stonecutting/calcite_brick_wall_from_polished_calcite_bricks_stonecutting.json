@@ -1,8 +1,8 @@
 {
-    "type": "minecraft:stonecutting",
-    "ingredient": {
-        "item": "spectrum:calcite_bricks"
-    },
-    "result": "spectrum:calcite_brick_wall",
-    "count": 1
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:calcite_bricks"
+  },
+  "result": "spectrum:calcite_brick_wall",
+  "count": 1
 }

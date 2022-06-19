@@ -21,7 +21,9 @@
     {
       "type": "patchouli:image",
       "title": "Automation",
-      "images": [ "spectrum:textures/gui/manual/bottomless_bundle_automation.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/bottomless_bundle_automation.png"
+      ],
       "text": "Crouching places it down, making it able to be automatically filled / emptied."
     },
     {

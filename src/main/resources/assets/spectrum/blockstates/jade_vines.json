@@ -1,78 +1,76 @@
 {
-	"variants": {
-		"age=0,part=base": {
-			"model": "spectrum:block/jade_vine_base_dead"
-		},
-		"age=1,part=base": {
-			"model": "spectrum:block/jade_vine_base_leaves"
-		},
-		"age=2,part=base": {
-			"model": "spectrum:block/jade_vine_base_leaves"
-		},
-		"age=3,part=base": {
-			"model": "spectrum:block/jade_vine_base_petals"
-		},
-		"age=4,part=base": {
-			"model": "spectrum:block/jade_vine_base_petals"
-		},
-		"age=5,part=base": {
-			"model": "spectrum:block/jade_vine_base_petals"
-		},
-		"age=6,part=base": {
-			"model": "spectrum:block/jade_vine_base_petals"
-		},
-		"age=7,part=base": {
-			"model": "spectrum:block/jade_vine_base_bloom"
-		},
-
-		"age=0,part=middle": {
-			"model": "spectrum:block/jade_vine_middle_dead"
-		},
-		"age=1,part=middle": {
-			"model": "spectrum:block/jade_vine_middle_leaves"
-		},
-		"age=2,part=middle": {
-			"model": "spectrum:block/jade_vine_middle_leaves"
-		},
-		"age=3,part=middle": {
-			"model": "spectrum:block/jade_vine_middle_petals"
-		},
-		"age=4,part=middle": {
-			"model": "spectrum:block/jade_vine_middle_petals"
-		},
-		"age=5,part=middle": {
-			"model": "spectrum:block/jade_vine_middle_petals"
-		},
-		"age=6,part=middle": {
-			"model": "spectrum:block/jade_vine_middle_petals"
-		},
-		"age=7,part=middle": {
-			"model": "spectrum:block/jade_vine_middle_bloom"
-		},
-
-		"age=0,part=tip": {
-			"model": "spectrum:block/jade_vine_tip_dead"
-		},
-		"age=1,part=tip": {
-			"model": "spectrum:block/jade_vine_tip_leaves"
-		},
-		"age=2,part=tip": {
-			"model": "spectrum:block/jade_vine_tip_leaves"
-		},
-		"age=3,part=tip": {
-			"model": "spectrum:block/jade_vine_tip_petals"
-		},
-		"age=4,part=tip": {
-			"model": "spectrum:block/jade_vine_tip_petals"
-		},
-		"age=5,part=tip": {
-			"model": "spectrum:block/jade_vine_tip_petals"
-		},
-		"age=6,part=tip": {
-			"model": "spectrum:block/jade_vine_tip_petals"
-		},
-		"age=7,part=tip": {
-			"model": "spectrum:block/jade_vine_tip_bloom"
-		}
-	}
+  "variants": {
+    "age=0,part=base": {
+      "model": "spectrum:block/jade_vine_base_dead"
+    },
+    "age=1,part=base": {
+      "model": "spectrum:block/jade_vine_base_leaves"
+    },
+    "age=2,part=base": {
+      "model": "spectrum:block/jade_vine_base_leaves"
+    },
+    "age=3,part=base": {
+      "model": "spectrum:block/jade_vine_base_petals"
+    },
+    "age=4,part=base": {
+      "model": "spectrum:block/jade_vine_base_petals"
+    },
+    "age=5,part=base": {
+      "model": "spectrum:block/jade_vine_base_petals"
+    },
+    "age=6,part=base": {
+      "model": "spectrum:block/jade_vine_base_petals"
+    },
+    "age=7,part=base": {
+      "model": "spectrum:block/jade_vine_base_bloom"
+    },
+    "age=0,part=middle": {
+      "model": "spectrum:block/jade_vine_middle_dead"
+    },
+    "age=1,part=middle": {
+      "model": "spectrum:block/jade_vine_middle_leaves"
+    },
+    "age=2,part=middle": {
+      "model": "spectrum:block/jade_vine_middle_leaves"
+    },
+    "age=3,part=middle": {
+      "model": "spectrum:block/jade_vine_middle_petals"
+    },
+    "age=4,part=middle": {
+      "model": "spectrum:block/jade_vine_middle_petals"
+    },
+    "age=5,part=middle": {
+      "model": "spectrum:block/jade_vine_middle_petals"
+    },
+    "age=6,part=middle": {
+      "model": "spectrum:block/jade_vine_middle_petals"
+    },
+    "age=7,part=middle": {
+      "model": "spectrum:block/jade_vine_middle_bloom"
+    },
+    "age=0,part=tip": {
+      "model": "spectrum:block/jade_vine_tip_dead"
+    },
+    "age=1,part=tip": {
+      "model": "spectrum:block/jade_vine_tip_leaves"
+    },
+    "age=2,part=tip": {
+      "model": "spectrum:block/jade_vine_tip_leaves"
+    },
+    "age=3,part=tip": {
+      "model": "spectrum:block/jade_vine_tip_petals"
+    },
+    "age=4,part=tip": {
+      "model": "spectrum:block/jade_vine_tip_petals"
+    },
+    "age=5,part=tip": {
+      "model": "spectrum:block/jade_vine_tip_petals"
+    },
+    "age=6,part=tip": {
+      "model": "spectrum:block/jade_vine_tip_petals"
+    },
+    "age=7,part=tip": {
+      "model": "spectrum:block/jade_vine_tip_bloom"
+    }
+  }
 }

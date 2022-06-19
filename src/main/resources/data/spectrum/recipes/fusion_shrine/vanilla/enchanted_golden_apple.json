@@ -16,12 +16,12 @@
       "count": 4
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_golden_apple"
   },
   "required_advancement": "spectrum:create_onyx_shard",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

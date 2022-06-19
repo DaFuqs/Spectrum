@@ -1,9 +1,9 @@
 {
-	"values": [
-		"minecraft:amethyst_block",
-		"spectrum:citrine_block",
-		"spectrum:onyx_block",
-		"spectrum:moonstone_block",
-		"spectrum:topaz_block"
-	]
+  "values": [
+    "minecraft:amethyst_block",
+    "spectrum:citrine_block",
+    "spectrum:onyx_block",
+    "spectrum:moonstone_block",
+    "spectrum:topaz_block"
+  ]
 }

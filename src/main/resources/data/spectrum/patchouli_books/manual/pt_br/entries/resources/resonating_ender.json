@@ -1,21 +1,21 @@
 {
-    "name": "Resonating Ender",
-    "advancement": "spectrum:milestones/reveal_ender_treasure",
-    "icon": "minecraft:ender_pearl",
-    "category": "spectrum:resources_category",
-    "extra_recipe_mappings": {
-        "spectrum:ender_treasure": 0
+  "name": "Resonating Ender",
+  "advancement": "spectrum:milestones/reveal_ender_treasure",
+  "icon": "minecraft:ender_pearl",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_treasure": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Those pesky Endermen!$(br2)They always show up at night and steal blocks off the ground right from your nose. You have the feeling that the whole area here will be nothing but a single crater landscape in a month.$()"
     },
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Those pesky Endermen!$(br2)They always show up at night and steal blocks off the ground right from your nose. You have the feeling that the whole area here will be nothing but a single crater landscape in a month.$()"
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Resonating Ender",
-            "item": "spectrum:ender_treasure",
-            "text": "The Endermen come to this world to place those blocks. But what is this stuff? And $(italic)WHY$() do they leave it here?$(br2)Now that you hold one in your hands... they are everywhere! How didn't you notice earlier? Anyways, you are sure that you can take advantage of this interesting material."
-        }
-    ]
+    {
+      "type": "patchouli:spotlight",
+      "title": "Resonating Ender",
+      "item": "spectrum:ender_treasure",
+      "text": "The Endermen come to this world to place those blocks. But what is this stuff? And $(italic)WHY$() do they leave it here?$(br2)Now that you hold one in your hands... they are everywhere! How didn't you notice earlier? Anyways, you are sure that you can take advantage of this interesting material."
+    }
+  ]
 }

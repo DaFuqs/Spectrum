@@ -31,7 +31,7 @@
       "item": "minecraft:glowstone_dust"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}"
   },

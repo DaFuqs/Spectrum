@@ -21,7 +21,7 @@
       "item": "minecraft:sand"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:redstone_sand",
     "count": 1
   },

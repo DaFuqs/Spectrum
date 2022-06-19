@@ -11,7 +11,7 @@
   "center_ingredient": {
     "item": "minecraft:wheat_seeds"
   },
-  "result" : {
+  "result": {
     "item": "botania:overgrowth_seed"
   },
   "fabric:load_conditions": [

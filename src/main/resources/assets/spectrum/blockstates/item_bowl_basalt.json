@@ -1,7 +1,7 @@
 {
-    "variants": {
-        "": {
-            "model": "spectrum:block/item_bowl_basalt"
-        }
+  "variants": {
+    "": {
+      "model": "spectrum:block/item_bowl_basalt"
     }
+  }
 }

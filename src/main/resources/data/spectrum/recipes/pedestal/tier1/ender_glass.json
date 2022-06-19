@@ -14,14 +14,14 @@
     " G "
   ],
   "key": {
-	"E": {
-	  "item": "spectrum:ender_treasure"
-	},
+    "E": {
+      "item": "spectrum:ender_treasure"
+    },
     "G": {
       "item": "minecraft:glass"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:ender_glass",
     "count": 4
   },

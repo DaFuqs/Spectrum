@@ -22,7 +22,7 @@
       "item": "spectrum:light_gray_pigment"
     }
   },
-  "result" : {
+  "result": {
     "item": "chalk:light_gray_chalk",
     "nbt": "{Unbreakable:1}"
   },

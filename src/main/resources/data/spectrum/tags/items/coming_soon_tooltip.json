@@ -26,16 +26,13 @@
     "spectrum:ink_flask",
     "spectrum:ink_assortment",
     "spectrum:artists_palette",
-
     "spectrum:paletur_ore",
     "spectrum:paletur_fragments",
     "spectrum:paletur_gem",
     "spectrum:paletur_fragment_block",
-
     "spectrum:spectral_shard",
     "spectrum:spectral_shard_block",
     "spectrum:spectral_shard_storage_block",
-
     "spectrum:ominous_sapling",
     "spectrum:spirit_sallow_roots",
     "spectrum:spirit_sallow_log",
@@ -52,7 +49,6 @@
     "spectrum:lucid_black_catkin",
     "spectrum:lucid_white_catkin",
     "spectrum:sacred_soil",
-
     "spectrum:moonstone_shard",
     "spectrum:moonstone_powder",
     "spectrum:moonstone_storage_block",
@@ -72,7 +68,6 @@
     "spectrum:moonstone_cluster",
     "spectrum:moonstone_ore",
     "spectrum:deepslate_moonstone_ore",
-
     "spectrum:white_pigment",
     "spectrum:light_gray_pigment",
     "spectrum:gray_pigment",
@@ -118,7 +113,6 @@
     "spectrum:white_spore_blossom",
     "spectrum:gray_spore_blossom",
     "spectrum:light_gray_spore_blossom",
-
     "spectrum:connection_node",
     "spectrum:provider_node",
     "spectrum:storage_node",

@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/budding_onyx" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/budding_onyx"
     }
+  }
 }

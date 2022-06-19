@@ -1,6 +1,6 @@
 {
-    "parent": "block/cube_all",
-    "textures": {
-        "all": "spectrum:block/decay_away"
-    }
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "spectrum:block/decay_away"
+  }
 }

@@ -1,8 +1,8 @@
 {
-	"values": [
-		"spectrum:emergency_helmet",
-		"spectrum:emergency_chestplate",
-		"spectrum:emergency_leggings",
-		"spectrum:emergency_boots"
-	]
+  "values": [
+    "spectrum:emergency_helmet",
+    "spectrum:emergency_chestplate",
+    "spectrum:emergency_leggings",
+    "spectrum:emergency_boots"
+  ]
 }

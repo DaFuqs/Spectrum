@@ -14,9 +14,9 @@
     "   "
   ],
   "key": {
-	"T": {
-	  "item": "spectrum:topaz_shard"
-	},
+    "T": {
+      "item": "spectrum:topaz_shard"
+    },
     "A": {
       "item": "minecraft:amethyst_shard"
     },
@@ -24,7 +24,7 @@
       "item": "spectrum:citrine_shard"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:pedestal_all_basic",
     "count": 1
   },

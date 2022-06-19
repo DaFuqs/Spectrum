@@ -1,24 +1,24 @@
 {
-    "name": "A new Resource",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:milestones/reveal_quitoxic_reeds",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:collect_quitoxic_reeds",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "Where to find",
-            "completion_advancement": "spectrum:collect_quitoxic_reeds",
-            "cost": "minecraft:clay_ball#16",
-            "text": "Time for an adventure trip on the surface. Visit a Swamp!"
-        },
-        {
-            "type": "spectrum:hint",
-            "title": "Concise Instructions",
-            "cost": "minecraft:clay_ball#48",
-            "text": "Strange looking plants have been seen in Swamps, growing on patches of Clay. They grow higher with more clay around and consume that clay in the process."
-        }
-    ]
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_quitoxic_reeds",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:collect_quitoxic_reeds",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:collect_quitoxic_reeds",
+      "cost": "minecraft:clay_ball#16",
+      "text": "Time for an adventure trip on the surface. Visit a Swamp!"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "minecraft:clay_ball#48",
+      "text": "Strange looking plants have been seen in Swamps, growing on patches of Clay. They grow higher with more clay around and consume that clay in the process."
+    }
+  ]
 }

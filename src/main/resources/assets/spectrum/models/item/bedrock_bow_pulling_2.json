@@ -1,6 +1,6 @@
 {
-    "parent": "item/bow",
-    "textures": {
-        "layer0": "spectrum:item/bedrock_bow_pulling_2"
-    }
+  "parent": "item/bow",
+  "textures": {
+    "layer0": "spectrum:item/bedrock_bow_pulling_2"
+  }
 }

@@ -1,68 +1,68 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "spectrum:item/knowledge_gem0"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "spectrum:item/knowledge_gem0"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "stored_experience_10000": 0.0001
+      },
+      "model": "spectrum:item/knowledge_gem1"
     },
-    "overrides": [
-        {
-            "predicate": {
-                "stored_experience_10000": 0.0001
-            },
-            "model": "spectrum:item/knowledge_gem1"
-        },
-        {
-            "predicate": {
-                "stored_experience_10000": 0.001
-            },
-            "model": "spectrum:item/knowledge_gem2"
-        },
-        {
-            "predicate": {
-                "stored_experience_10000": 0.0025
-            },
-            "model": "spectrum:item/knowledge_gem3"
-        },
-        {
-            "predicate": {
-                "stored_experience_10000": 0.005
-            },
-            "model": "spectrum:item/knowledge_gem4"
-        },
-        {
-            "predicate": {
-                "stored_experience_10000": 0.01
-            },
-            "model": "spectrum:item/knowledge_gem5"
-        },
-        {
-            "predicate": {
-                "stored_experience_10000": 0.025
-            },
-            "model": "spectrum:item/knowledge_gem6"
-        },
-        {
-            "predicate": {
-                "stored_experience_10000": 0.05
-            },
-            "model": "spectrum:item/knowledge_gem7"
-        },
-        {
-            "predicate": {
-                "stored_experience_10000": 0.1
-            },
-            "model": "spectrum:item/knowledge_gem8"
-        },
-        {
-            "predicate": {
-                "stored_experience_10000": 0.25
-            },
-            "model": "spectrum:item/knowledge_gem9"
-        },
-        {
-            "predicate": {
-                "stored_experience_10000": 0.5
-            },
-            "model": "spectrum:item/knowledge_gem10"
-        }
-    ]
+    {
+      "predicate": {
+        "stored_experience_10000": 0.001
+      },
+      "model": "spectrum:item/knowledge_gem2"
+    },
+    {
+      "predicate": {
+        "stored_experience_10000": 0.0025
+      },
+      "model": "spectrum:item/knowledge_gem3"
+    },
+    {
+      "predicate": {
+        "stored_experience_10000": 0.005
+      },
+      "model": "spectrum:item/knowledge_gem4"
+    },
+    {
+      "predicate": {
+        "stored_experience_10000": 0.01
+      },
+      "model": "spectrum:item/knowledge_gem5"
+    },
+    {
+      "predicate": {
+        "stored_experience_10000": 0.025
+      },
+      "model": "spectrum:item/knowledge_gem6"
+    },
+    {
+      "predicate": {
+        "stored_experience_10000": 0.05
+      },
+      "model": "spectrum:item/knowledge_gem7"
+    },
+    {
+      "predicate": {
+        "stored_experience_10000": 0.1
+      },
+      "model": "spectrum:item/knowledge_gem8"
+    },
+    {
+      "predicate": {
+        "stored_experience_10000": 0.25
+      },
+      "model": "spectrum:item/knowledge_gem9"
+    },
+    {
+      "predicate": {
+        "stored_experience_10000": 0.5
+      },
+      "model": "spectrum:item/knowledge_gem10"
+    }
+  ]
 }

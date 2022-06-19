@@ -1,14 +1,14 @@
 {
-	"parent": "minecraft:item/handheld",
-	"textures": {
-		"layer0": "spectrum:item/light_staff"
-	},
-	"overrides": [
-		{
-			"predicate": {
-				"in_use": 1
-			},
-			"model": "spectrum:item/light_staff_use"
-		}
-	]
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "spectrum:item/light_staff"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_use": 1
+      },
+      "model": "spectrum:item/light_staff_use"
+    }
+  ]
 }

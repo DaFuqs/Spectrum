@@ -1,24 +1,24 @@
 {
-    "name": "Pest Control",
-    "icon": "minecraft:iron_pickaxe",
-    "advancement": "spectrum:progression/enchantments/pest_control",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)You found a huge underground structure that seemed like an underground fortress of a civilization that lived far before you.$(br)Although they seemed to have technology that allowed them to open a portal to another world, they definitely should have done something about their vermin problem."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
-            "text": "Gets rid of Silverfish when breaking Infested Blocks.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Resonance."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_pest_control",
-            "text": "You can infuse a common Book with Pest Control by surrounding your Enchanter with Pigment and the other required materials."
-        }
-    ]
+  "name": "Pest Control",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:progression/enchantments/pest_control",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)You found a huge underground structure that seemed like an underground fortress of a civilization that lived far before you.$(br)Although they seemed to have technology that allowed them to open a portal to another world, they definitely should have done something about their vermin problem."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
+      "text": "Gets rid of Silverfish when breaking Infested Blocks.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Resonance."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_pest_control",
+      "text": "You can infuse a common Book with Pest Control by surrounding your Enchanter with Pigment and the other required materials."
+    }
+  ]
 }

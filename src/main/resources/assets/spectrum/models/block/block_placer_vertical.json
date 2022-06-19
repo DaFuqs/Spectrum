@@ -1,7 +1,7 @@
 {
-    "parent": "minecraft:block/orientable_vertical",
-    "textures": {
-        "front": "spectrum:block/block_placer_front_vertical",
-        "side": "minecraft:block/furnace_top"
-    }
+  "parent": "minecraft:block/orientable_vertical",
+  "textures": {
+    "front": "spectrum:block/block_placer_front_vertical",
+    "side": "minecraft:block/furnace_top"
+  }
 }

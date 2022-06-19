@@ -15,19 +15,19 @@
     "SPS"
   ],
   "key": {
-  	"P": {
+    "P": {
       "item": "spectrum:brown_pigment"
     },
-	"R": {
+    "R": {
       "item": "minecraft:redstone"
     },
-	"S": {
+    "S": {
       "item": "spectrum:sparklestone_gem"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:brown_lamp",
     "count": 2
   },
-  "required_advancement":  "spectrum:progression/colored_lamps/unlock_brown_lamp"
+  "required_advancement": "spectrum:progression/colored_lamps/unlock_brown_lamp"
 }

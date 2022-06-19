@@ -1,115 +1,540 @@
 {
-	"credit": "Made with Blockbench",
-	"texture_size": [64, 64],
-	"textures": {
-		"0": "spectrum:block/jade_vine_plant_ripe",
-		"particle": "spectrum:block/jade_vine_plant_ripe"
-	},
-	"elements": [
-		{
-			"name": "frills",
-			"from": [-10.45821, 0.28268, 0],
-			"to": [5.54179, 0.28268, 16],
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [4.98731, -0.35, 8]},
-			"faces": {
-				"north": {"uv": [8, 0, 4, 4], "rotation": 90, "texture": "#0"},
-				"east": {"uv": [8, 0, 4, 4], "rotation": 90, "texture": "#0"},
-				"south": {"uv": [8, 0, 4, 4], "rotation": 90, "texture": "#0"},
-				"west": {"uv": [8, 0, 4, 4], "rotation": 90, "texture": "#0"},
-				"up": {"uv": [8, 0, 4, 4], "rotation": 90, "texture": "#0"},
-				"down": {"uv": [8, 0, 4, 4], "rotation": 90, "texture": "#0"}
-			}
-		},
-		{
-			"name": "frills",
-			"from": [-0.01269, 0.18268, -10.44552],
-			"to": [15.98731, 0.18268, 5.55448],
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [7.98731, -0.35, 5]},
-			"faces": {
-				"north": {"uv": [4, 4, 8, 0], "texture": "#0"},
-				"east": {"uv": [4, 4, 8, 0], "texture": "#0"},
-				"south": {"uv": [4, 4, 8, 0], "texture": "#0"},
-				"west": {"uv": [4, 4, 8, 0], "texture": "#0"},
-				"up": {"uv": [4, 4, 8, 0], "texture": "#0"},
-				"down": {"uv": [4, 4, 8, 0], "rotation": 180, "texture": "#0"}
-			}
-		},
-		{
-			"name": "frills",
-			"from": [10.43283, 0.15, 0],
-			"to": [26.43283, 0.15, 16],
-			"rotation": {"angle": 22.5, "axis": "z", "origin": [10.98731, -0.35, 8]},
-			"faces": {
-				"north": {"uv": [8, 0, 4, 4], "rotation": 270, "texture": "#0"},
-				"east": {"uv": [8, 0, 4, 4], "rotation": 270, "texture": "#0"},
-				"south": {"uv": [8, 0, 4, 4], "rotation": 270, "texture": "#0"},
-				"west": {"uv": [8, 0, 4, 4], "rotation": 270, "texture": "#0"},
-				"up": {"uv": [8, 0, 4, 4], "rotation": 270, "texture": "#0"},
-				"down": {"uv": [8, 0, 4, 4], "rotation": 270, "texture": "#0"}
-			}
-		},
-		{
-			"name": "frills",
-			"from": [-0.01269, 0.15, 10.44552],
-			"to": [15.98731, 0.15, 26.44552],
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [7.98731, -0.35, 11]},
-			"faces": {
-				"north": {"uv": [4, 4, 8, 0], "rotation": 180, "texture": "#0"},
-				"east": {"uv": [4, 4, 8, 0], "rotation": 180, "texture": "#0"},
-				"south": {"uv": [4, 4, 8, 0], "rotation": 180, "texture": "#0"},
-				"west": {"uv": [4, 4, 8, 0], "rotation": 180, "texture": "#0"},
-				"up": {"uv": [4, 4, 8, 0], "rotation": 180, "texture": "#0"},
-				"down": {"uv": [4, 4, 8, 0], "texture": "#0"}
-			}
-		},
-		{
-			"name": "root",
-			"from": [5, 0, 5],
-			"to": [11, 16, 11],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, -6, 0]},
-			"faces": {
-				"north": {"uv": [1.25, 0, 2.75, 4], "texture": "#0"},
-				"east": {"uv": [1.25, 0, 2.75, 4], "texture": "#0"},
-				"south": {"uv": [1.25, 0, 2.75, 4], "texture": "#0"},
-				"west": {"uv": [1.25, 0, 2.75, 4], "texture": "#0"},
-				"up": {"uv": [14.5, 14.5, 16, 16], "texture": "#0"},
-				"down": {"uv": [14.5, 14.5, 16, 16], "texture": "#0"}
-			}
-		},
-		{
-			"name": "root inverse",
-			"from": [10.75, 16, 10.75],
-			"to": [5.25, 0, 5.25],
-			"rotation": {"angle": 0, "axis": "y", "origin": [0, -6, 0]},
-			"faces": {
-				"north": {"uv": [1.25, 0, 2.75, 4], "texture": "#0"},
-				"east": {"uv": [1.25, 0, 2.75, 4], "texture": "#0"},
-				"south": {"uv": [1.25, 0, 2.75, 4], "texture": "#0"},
-				"west": {"uv": [1.25, 0, 2.75, 4], "texture": "#0"},
-				"up": {"uv": [14.5, 14.5, 16, 16], "texture": "#0"},
-				"down": {"uv": [14.5, 14.5, 16, 16], "texture": "#0"}
-			}
-		}
-	],
-	"groups": [
-		{
-			"name": "root",
-			"origin": [0, 0, 0],
-			"color": 0,
-			"children": [
-				{
-					"name": "root frills",
-					"origin": [8, 32, 15],
-					"color": 0,
-					"children": [0, 1, 2, 3]
-				},
-				{
-					"name": "taproot",
-					"origin": [0, 0, 0],
-					"color": 0,
-					"children": [4, 5]
-				}
-			]
-		}
-	]
+  "credit": "Made with Blockbench",
+  "texture_size": [
+    64,
+    64
+  ],
+  "textures": {
+    "0": "spectrum:block/jade_vine_plant_ripe",
+    "particle": "spectrum:block/jade_vine_plant_ripe"
+  },
+  "elements": [
+    {
+      "name": "frills",
+      "from": [
+        -10.45821,
+        0.28268,
+        0
+      ],
+      "to": [
+        5.54179,
+        0.28268,
+        16
+      ],
+      "rotation": {
+        "angle": -22.5,
+        "axis": "z",
+        "origin": [
+          4.98731,
+          -0.35,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 90,
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 90,
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 90,
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 90,
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 90,
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 90,
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "frills",
+      "from": [
+        -0.01269,
+        0.18268,
+        -10.44552
+      ],
+      "to": [
+        15.98731,
+        0.18268,
+        5.55448
+      ],
+      "rotation": {
+        "angle": 22.5,
+        "axis": "x",
+        "origin": [
+          7.98731,
+          -0.35,
+          5
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "frills",
+      "from": [
+        10.43283,
+        0.15,
+        0
+      ],
+      "to": [
+        26.43283,
+        0.15,
+        16
+      ],
+      "rotation": {
+        "angle": 22.5,
+        "axis": "z",
+        "origin": [
+          10.98731,
+          -0.35,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            8,
+            0,
+            4,
+            4
+          ],
+          "rotation": 270,
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "frills",
+      "from": [
+        -0.01269,
+        0.15,
+        10.44552
+      ],
+      "to": [
+        15.98731,
+        0.15,
+        26.44552
+      ],
+      "rotation": {
+        "angle": -22.5,
+        "axis": "x",
+        "origin": [
+          7.98731,
+          -0.35,
+          11
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "rotation": 180,
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            4,
+            4,
+            8,
+            0
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "root",
+      "from": [
+        5,
+        0,
+        5
+      ],
+      "to": [
+        11,
+        16,
+        11
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          -6,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            1.25,
+            0,
+            2.75,
+            4
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            1.25,
+            0,
+            2.75,
+            4
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            1.25,
+            0,
+            2.75,
+            4
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            1.25,
+            0,
+            2.75,
+            4
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            14.5,
+            14.5,
+            16,
+            16
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            14.5,
+            14.5,
+            16,
+            16
+          ],
+          "texture": "#0"
+        }
+      }
+    },
+    {
+      "name": "root inverse",
+      "from": [
+        10.75,
+        16,
+        10.75
+      ],
+      "to": [
+        5.25,
+        0,
+        5.25
+      ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          -6,
+          0
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            1.25,
+            0,
+            2.75,
+            4
+          ],
+          "texture": "#0"
+        },
+        "east": {
+          "uv": [
+            1.25,
+            0,
+            2.75,
+            4
+          ],
+          "texture": "#0"
+        },
+        "south": {
+          "uv": [
+            1.25,
+            0,
+            2.75,
+            4
+          ],
+          "texture": "#0"
+        },
+        "west": {
+          "uv": [
+            1.25,
+            0,
+            2.75,
+            4
+          ],
+          "texture": "#0"
+        },
+        "up": {
+          "uv": [
+            14.5,
+            14.5,
+            16,
+            16
+          ],
+          "texture": "#0"
+        },
+        "down": {
+          "uv": [
+            14.5,
+            14.5,
+            16,
+            16
+          ],
+          "texture": "#0"
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "name": "root",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "color": 0,
+      "children": [
+        {
+          "name": "root frills",
+          "origin": [
+            8,
+            32,
+            15
+          ],
+          "color": 0,
+          "children": [
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "name": "taproot",
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "color": 0,
+          "children": [
+            4,
+            5
+          ]
+        }
+      ]
+    }
+  ]
 }

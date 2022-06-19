@@ -15,14 +15,14 @@
     "PQP"
   ],
   "key": {
-  	"P": {
+    "P": {
       "item": "spectrum:purple_pigment"
     },
-	"Q": {
+    "Q": {
       "item": "spectrum:quitoxic_powder"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:purple_glowblock",
     "count": 4
   },

@@ -32,7 +32,7 @@
       "item": "spectrum:mermaids_gem"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:respiration\", lvl: 1s}]}"
   },

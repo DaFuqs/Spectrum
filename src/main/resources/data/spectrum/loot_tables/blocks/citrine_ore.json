@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-		      "name": "spectrum:citrine_ore",
+              "name": "spectrum:citrine_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -29,7 +29,7 @@
             },
             {
               "type": "minecraft:item",
-			  "name": "spectrum:citrine_shard",
+              "name": "spectrum:citrine_shard",
               "functions": [
                 {
                   "function": "minecraft:set_count",

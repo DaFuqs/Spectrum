@@ -1,12 +1,12 @@
 {
-    "parent": "minecraft:block/cube_all",
-    "textures": {
-        "particle": "spectrum:block/preservation_stone",
-        "north": "spectrum:block/dike_gate_fountain_side",
-        "south": "spectrum:block/dike_gate_fountain_side",
-        "east": "spectrum:block/dike_gate_fountain_side",
-        "west": "spectrum:block/dike_gate_fountain_side",
-        "up": "spectrum:block/dike_gate_fountain_top",
-        "down": "spectrum:block/preservation_stone"
-    }
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "spectrum:block/preservation_stone",
+    "north": "spectrum:block/dike_gate_fountain_side",
+    "south": "spectrum:block/dike_gate_fountain_side",
+    "east": "spectrum:block/dike_gate_fountain_side",
+    "west": "spectrum:block/dike_gate_fountain_side",
+    "up": "spectrum:block/dike_gate_fountain_top",
+    "down": "spectrum:block/preservation_stone"
+  }
 }

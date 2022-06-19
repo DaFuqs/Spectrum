@@ -1,12 +1,12 @@
 {
-    "parent": "minecraft:block/cube",
-    "textures": {
-        "particle": "spectrum:block/pedestal_all_basic_amethyst_unpowered",
-        "north": "spectrum:block/pedestal_all_basic_amethyst_unpowered",
-        "south": "spectrum:block/pedestal_all_basic_amethyst_unpowered",
-        "east": "spectrum:block/pedestal_all_basic_citrine_unpowered",
-        "west": "spectrum:block/pedestal_all_basic_topaz_unpowered",
-        "up": "spectrum:block/pedestal_all_basic_top",
-        "down": "spectrum:block/pedestal_bottom"
-    }
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "spectrum:block/pedestal_all_basic_amethyst_unpowered",
+    "north": "spectrum:block/pedestal_all_basic_amethyst_unpowered",
+    "south": "spectrum:block/pedestal_all_basic_amethyst_unpowered",
+    "east": "spectrum:block/pedestal_all_basic_citrine_unpowered",
+    "west": "spectrum:block/pedestal_all_basic_topaz_unpowered",
+    "up": "spectrum:block/pedestal_all_basic_top",
+    "down": "spectrum:block/pedestal_bottom"
+  }
 }

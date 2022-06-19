@@ -12,7 +12,7 @@
   "ingredient2": {
     "item": "minecraft:cocoa_beans"
   },
-  "result" : {
+  "result": {
     "item": "spectrum:restoration_tea",
     "count": 1
   },

@@ -1,6 +1,6 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "spectrum:item/knowledge_gem1"
-    }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "spectrum:item/knowledge_gem1"
+  }
 }

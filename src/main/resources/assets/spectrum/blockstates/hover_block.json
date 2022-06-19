@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/hover_block"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/hover_block"
+    }
+  }
 }

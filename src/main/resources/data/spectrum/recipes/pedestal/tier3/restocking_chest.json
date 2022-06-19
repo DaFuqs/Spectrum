@@ -30,9 +30,9 @@
       "item": "spectrum:red_pigment"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:restocking_chest",
     "count": 1
   },
-  "required_advancement":  "spectrum:progression/unlock_restocking_chest"
+  "required_advancement": "spectrum:progression/unlock_restocking_chest"
 }

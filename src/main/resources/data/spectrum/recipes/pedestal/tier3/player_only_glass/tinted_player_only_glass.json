@@ -25,7 +25,7 @@
       "item": "minecraft:tinted_glass"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:tinted_player_only_glass",
     "count": 6
   },

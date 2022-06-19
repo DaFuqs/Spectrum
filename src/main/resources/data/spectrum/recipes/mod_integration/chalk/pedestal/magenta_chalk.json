@@ -22,7 +22,7 @@
       "item": "spectrum:magenta_pigment"
     }
   },
-  "result" : {
+  "result": {
     "item": "chalk:magenta_chalk",
     "nbt": "{Unbreakable:1}"
   },

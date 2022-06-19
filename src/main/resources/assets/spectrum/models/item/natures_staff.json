@@ -1,14 +1,14 @@
 {
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "spectrum:item/natures_staff"
-    },
-    "overrides": [
-        {
-            "predicate": {
-                "in_use": 1
-            },
-            "model": "spectrum:item/natures_staff_use"
-        }
-    ]
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "spectrum:item/natures_staff"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_use": 1
+      },
+      "model": "spectrum:item/natures_staff_use"
+    }
+  ]
 }

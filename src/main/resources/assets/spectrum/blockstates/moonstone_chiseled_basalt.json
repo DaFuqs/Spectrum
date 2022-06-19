@@ -1,16 +1,16 @@
 {
-    "variants": {
-        "axis=x": {
-            "model": "spectrum:block/moonstone_chiseled_basalt",
-            "x": 90,
-            "y": 90
-        },
-        "axis=y": {
-            "model": "spectrum:block/moonstone_chiseled_basalt"
-        },
-        "axis=z": {
-            "model": "spectrum:block/moonstone_chiseled_basalt",
-            "x": 90
-        }
+  "variants": {
+    "axis=x": {
+      "model": "spectrum:block/moonstone_chiseled_basalt",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spectrum:block/moonstone_chiseled_basalt"
+    },
+    "axis=z": {
+      "model": "spectrum:block/moonstone_chiseled_basalt",
+      "x": 90
     }
+  }
 }

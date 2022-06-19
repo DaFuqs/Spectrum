@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/budding_topaz" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/budding_topaz"
     }
+  }
 }

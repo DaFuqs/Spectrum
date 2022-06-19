@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/interaction_node"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/interaction_node"
+    }
+  }
 }

@@ -1,20 +1,20 @@
 {
-	"values": [
-		"spectrum:black_glowblock",
-		"spectrum:blue_glowblock",
-		"spectrum:brown_glowblock",
-		"spectrum:cyan_glowblock",
-		"spectrum:gray_glowblock",
-		"spectrum:green_glowblock",
-		"spectrum:light_blue_glowblock",
-		"spectrum:light_gray_glowblock",
-		"spectrum:lime_glowblock",
-		"spectrum:magenta_glowblock",
-		"spectrum:orange_glowblock",
-		"spectrum:pink_glowblock",
-		"spectrum:purple_glowblock",
-		"spectrum:red_glowblock",
-		"spectrum:white_glowblock",
-		"spectrum:yellow_glowblock"
-	]
+  "values": [
+    "spectrum:black_glowblock",
+    "spectrum:blue_glowblock",
+    "spectrum:brown_glowblock",
+    "spectrum:cyan_glowblock",
+    "spectrum:gray_glowblock",
+    "spectrum:green_glowblock",
+    "spectrum:light_blue_glowblock",
+    "spectrum:light_gray_glowblock",
+    "spectrum:lime_glowblock",
+    "spectrum:magenta_glowblock",
+    "spectrum:orange_glowblock",
+    "spectrum:pink_glowblock",
+    "spectrum:purple_glowblock",
+    "spectrum:red_glowblock",
+    "spectrum:white_glowblock",
+    "spectrum:yellow_glowblock"
+  ]
 }

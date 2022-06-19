@@ -1,10 +1,10 @@
 {
-	"parent": "spectrum:block/template_item_bowl",
-	"textures": {
-		"0": "spectrum:block/item_bowl_basalt",
-		"1": "spectrum:block/polished_basalt_pillar_side",
-		"2": "spectrum:block/polished_basalt",
-		"3": "spectrum:block/polished_basalt_pillar_top",
-		"particle": "spectrum:block/item_bowl_basalt"
-	}
+  "parent": "spectrum:block/template_item_bowl",
+  "textures": {
+    "0": "spectrum:block/item_bowl_basalt",
+    "1": "spectrum:block/polished_basalt_pillar_side",
+    "2": "spectrum:block/polished_basalt",
+    "3": "spectrum:block/polished_basalt_pillar_top",
+    "particle": "spectrum:block/item_bowl_basalt"
+  }
 }

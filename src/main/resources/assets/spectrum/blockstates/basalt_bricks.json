@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/basalt_bricks" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/basalt_bricks"
     }
+  }
 }

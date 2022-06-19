@@ -1,3 +1,3 @@
 {
-    "parent": "spectrum:block/preservation_controller"
+  "parent": "spectrum:block/preservation_controller"
 }

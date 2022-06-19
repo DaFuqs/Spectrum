@@ -1,8 +1,8 @@
 {
-	"parent": "spectrum:block/template_sparklestone_light",
-	"textures": {
-		"outer": "minecraft:block/polished_andesite",
-		"inner": "spectrum:block/sparklestone_light",
-		"particle": "minecraft:block/polished_andesite"
-	}
+  "parent": "spectrum:block/template_sparklestone_light",
+  "textures": {
+    "outer": "minecraft:block/polished_andesite",
+    "inner": "spectrum:block/sparklestone_light",
+    "particle": "minecraft:block/polished_andesite"
+  }
 }

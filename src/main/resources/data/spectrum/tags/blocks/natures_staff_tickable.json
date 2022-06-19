@@ -1,8 +1,8 @@
 {
-	"values": [
-		"minecraft:vine",
-		"minecraft:chorus_flower",
-		"spectrum:mermaids_brush",
-		"spectrum:quitoxic_reeds"
-	]
+  "values": [
+    "minecraft:vine",
+    "minecraft:chorus_flower",
+    "spectrum:mermaids_brush",
+    "spectrum:quitoxic_reeds"
+  ]
 }

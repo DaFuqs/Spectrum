@@ -6,21 +6,21 @@
   "secret": true,
   "read_by_default": true,
   "turnin": "spectrum:generate_ancient_ruins_loot",
-    "pages": [
-      {
-        "type": "spectrum:hint",
-        "title": "Where to find",
-        "completion_advancement": "spectrum:generate_ancient_ruins_loot",
-        "cost": "spectrum:refined_azurite#4",
-        "text": "There are impenetrable structures hidden deep underground in the Overworld in any biome. They seem to be built from an unbreakable stone."
-      },
-      {
-        "type": "spectrum:hint",
-        "title": "Entering",
-        "advancement": "spectrum:find_ancient_ruins",
-        "completion_advancement": "spectrum:generate_ancient_ruins_loot",
-        "cost": "spectrum:refined_azurite#12",
-        "text": "The entrance seems to be blocked by a powerful forcefield. Whoever built those was kind enough to leave you clues, however! The hearts on the forcefield's sides seem to indicate you have to have Azure Dike active."
-      }
-    ]
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:generate_ancient_ruins_loot",
+      "cost": "spectrum:refined_azurite#4",
+      "text": "There are impenetrable structures hidden deep underground in the Overworld in any biome. They seem to be built from an unbreakable stone."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Entering",
+      "advancement": "spectrum:find_ancient_ruins",
+      "completion_advancement": "spectrum:generate_ancient_ruins_loot",
+      "cost": "spectrum:refined_azurite#12",
+      "text": "The entrance seems to be blocked by a powerful forcefield. Whoever built those was kind enough to leave you clues, however! The hearts on the forcefield's sides seem to indicate you have to have Azure Dike active."
+    }
+  ]
 }

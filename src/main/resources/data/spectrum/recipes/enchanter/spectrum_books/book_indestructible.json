@@ -31,7 +31,7 @@
       "item": "spectrum:moonstone_shard"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:indestructible\", lvl: 1s}]}"
   },

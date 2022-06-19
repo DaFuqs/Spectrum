@@ -164,9 +164,12 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 						itemsChanged = true;
 					} else {
 						if (!handStack.isEmpty()) {
+							int previousCount = handStack.getCount();
 							ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, spiritInstillerBlockEntity.getInventory(), null);
-							player.setStackInHand(hand, remainingStack);
-							itemsChanged = true;
+							if(remainingStack.getCount() != previousCount) {
+								player.setStackInHand(hand, remainingStack);
+								itemsChanged = true;
+							}
 						}
 						if (!currentStack.isEmpty()) {
 							player.giveItemStack(currentStack);

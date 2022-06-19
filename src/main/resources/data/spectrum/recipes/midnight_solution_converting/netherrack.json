@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:cobblestone"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:netherrack",
     "count": 1
   }

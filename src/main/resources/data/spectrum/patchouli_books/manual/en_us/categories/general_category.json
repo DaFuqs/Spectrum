@@ -1,6 +1,6 @@
 {
-	"name": "Your journey",
-	"description": "A short overview of how to get started with Spectrum and your journey through the mod.",
-	"icon": "spectrum:pedestal_basic_amethyst",
-	"sortnum": 0
+  "name": "Your journey",
+  "description": "A short overview of how to get started with Spectrum and your journey through the mod.",
+  "icon": "spectrum:pedestal_basic_amethyst",
+  "sortnum": 0
 }

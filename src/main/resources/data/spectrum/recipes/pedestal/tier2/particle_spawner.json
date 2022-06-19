@@ -30,7 +30,7 @@
       "item": "minecraft:redstone"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:particle_spawner",
     "count": 1
   },

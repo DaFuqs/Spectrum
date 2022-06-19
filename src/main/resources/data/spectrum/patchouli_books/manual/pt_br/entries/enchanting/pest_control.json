@@ -1,24 +1,24 @@
 {
-    "name": "Controle de Pragas",
-    "icon": "minecraft:iron_pickaxe",
-    "advancement": "spectrum:progression/enchantments/pest_control",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Você encontrou uma grande estrutura que parecia ser a fortaleza subterrânea de uma civilização que viveu muito antes de você.$(br)Mesmo que eles tenham a tecnologia que permitia abrir um portal para outro mundo, eles definitivamente deveriam ter feito algumam coisa sobre os problemas com minhocas."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Características",
-            "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
-            "text": "Se livra de Traças quando quebra Blocos Infestados.$(br2)Nível Máximo: 1$(br)Aplicável a ferramentas de mineração.$(br)Mutualmente exclusivo com Ressonância."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Receita de Encantador",
-            "recipe": "spectrum:enchanter/spectrum_books/book_pest_control",
-            "text": "Você pode infusionar um livro comum com Controle de Pragas rodeando seu Encantador com Pigmento e outros materiais necessários."
-        }
-    ]
+  "name": "Controle de Pragas",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:progression/enchantments/pest_control",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Você encontrou uma grande estrutura que parecia ser a fortaleza subterrânea de uma civilização que viveu muito antes de você.$(br)Mesmo que eles tenham a tecnologia que permitia abrir um portal para outro mundo, eles definitivamente deveriam ter feito algumam coisa sobre os problemas com minhocas."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Características",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
+      "text": "Se livra de Traças quando quebra Blocos Infestados.$(br2)Nível Máximo: 1$(br)Aplicável a ferramentas de mineração.$(br)Mutualmente exclusivo com Ressonância."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Receita de Encantador",
+      "recipe": "spectrum:enchanter/spectrum_books/book_pest_control",
+      "text": "Você pode infusionar um livro comum com Controle de Pragas rodeando seu Encantador com Pigmento e outros materiais necessários."
+    }
+  ]
 }

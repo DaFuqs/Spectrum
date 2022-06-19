@@ -1,30 +1,30 @@
 {
-    "name": "Exuberance",
-    "icon": "spectrum:multitool",
-    "advancement": "spectrum:progression/enchantments/exuberance",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)That fancy book table of obsidian and diamond of yours, while useful, more or less swallows every piece of experience, as soon as you acquire it. To satisfy its never diminishing hunger to supply your ever-growing list of enchanted tools.$(br2)Squeezing the last bit of experience out of your opponents will help a lot."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
-            "text": "Increases dropped XP for mob kills.$(br2)Max Level: 5$(br)Applicable to melee weapons and mining tools."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_exuberance",
-            "text": "You can infuse a common Book with Exuberance by surrounding your Enchanter with Pigment and the other required materials."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Enchantment Upgrading",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/exuberance_level_2",
-            "text": "Upgrading Exuberance from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
-        }
-    ]
+  "name": "Exuberance",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:progression/enchantments/exuberance",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)That fancy book table of obsidian and diamond of yours, while useful, more or less swallows every piece of experience, as soon as you acquire it. To satisfy its never diminishing hunger to supply your ever-growing list of enchanted tools.$(br2)Squeezing the last bit of experience out of your opponents will help a lot."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
+      "text": "Increases dropped XP for mob kills.$(br2)Max Level: 5$(br)Applicable to melee weapons and mining tools."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_exuberance",
+      "text": "You can infuse a common Book with Exuberance by surrounding your Enchanter with Pigment and the other required materials."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Enchantment Upgrading",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/exuberance_level_2",
+      "text": "Upgrading Exuberance from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
+    }
+  ]
 }

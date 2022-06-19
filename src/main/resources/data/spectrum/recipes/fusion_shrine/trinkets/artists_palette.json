@@ -6,22 +6,22 @@
   "ingredients": [
     {
       "tag": "minecraft:planks",
-	  "count": 4
+      "count": 4
     },
     {
       "tag": "spectrum:pigments",
-	  "count": 16
+      "count": 16
     },
     {
       "item": "spectrum:spectral_shard"
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:artists_palette"
   },
   "required_advancement": "spectrum:progression/unlock_artists_palette",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

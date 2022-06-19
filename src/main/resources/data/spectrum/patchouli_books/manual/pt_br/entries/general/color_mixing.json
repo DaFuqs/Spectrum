@@ -9,7 +9,9 @@
     {
       "type": "patchouli:image",
       "title": "Misturar Cores",
-      "images": [ "spectrum:textures/gui/manual/color_mixing.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/color_mixing.png"
+      ],
       "text": "Ao usar as cores base $(c_cyan)Ciano$(), $(c_magenta)Magenta$() e $(c_yellow)Amarelo$(), (quase) toda cor pode ser criada."
     },
     {

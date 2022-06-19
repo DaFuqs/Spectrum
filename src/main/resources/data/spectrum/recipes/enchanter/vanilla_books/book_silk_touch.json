@@ -32,7 +32,7 @@
       "item": "spectrum:refined_azurite"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
   },

@@ -24,7 +24,7 @@
       "item": "spectrum:sparklestone_gem"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:fortune_pickaxe",
     "nbt": "{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
     "count": 1

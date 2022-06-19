@@ -5,7 +5,7 @@
   },
   "crushedItemsPerPointOfDamage": 2,
   "experience": 0.0,
-  "result" : {
+  "result": {
     "item": "minecraft:glowstone_dust",
     "count": 4
   },

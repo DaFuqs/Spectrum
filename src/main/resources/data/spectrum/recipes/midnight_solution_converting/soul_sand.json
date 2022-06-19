@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:sand"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:soul_sand",
     "count": 1
   }

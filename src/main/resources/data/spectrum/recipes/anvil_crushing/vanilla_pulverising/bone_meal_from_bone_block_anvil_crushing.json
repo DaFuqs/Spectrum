@@ -5,7 +5,7 @@
   },
   "crushedItemsPerPointOfDamage": 1.5,
   "experience": 0,
-  "result" : {
+  "result": {
     "item": "minecraft:bone_meal",
     "count": 9
   },

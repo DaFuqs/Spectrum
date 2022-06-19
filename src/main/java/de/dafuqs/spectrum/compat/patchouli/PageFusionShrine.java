@@ -44,7 +44,7 @@ public class PageFusionShrine extends PageDoubleRecipeRegistry<FusionShrineRecip
 		
 		// the ingredients
 		List<IngredientStack> ingredients = recipe.getIngredientStacks();
-		int startX = Math.max(3, 30 - ingredients.size() * 8);
+		int startX = Math.max(-5, 30 - ingredients.size() * 8);
 		for (int i = 0; i < ingredients.size(); i++) {
 			PatchouliHelper.renderIngredientStack(parent, ms, recipeX + startX + i * 16, recipeY + 3, mouseX, mouseY, ingredients.get(i));
 		}

@@ -13,14 +13,14 @@
     "CC"
   ],
   "key": {
-	"B": {
-	  "item": "spectrum:polished_basalt"
-	},
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
     "C": {
       "item": "spectrum:polished_calcite"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:crafting_tablet",
     "count": 1
   },

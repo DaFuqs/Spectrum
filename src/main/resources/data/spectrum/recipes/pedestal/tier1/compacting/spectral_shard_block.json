@@ -13,11 +13,11 @@
     "SS"
   ],
   "key": {
-	"S": {
-	  "item": "spectrum:spectral_shard"
-	}
+    "S": {
+      "item": "spectrum:spectral_shard"
+    }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:spectral_shard_block",
     "count": 1
   },

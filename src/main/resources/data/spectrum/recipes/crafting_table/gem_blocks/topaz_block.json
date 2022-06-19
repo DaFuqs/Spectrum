@@ -1,16 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "WW",
-        "WW"
-    ],
-    "key": {
-        "W": {
-	        "item": "spectrum:topaz_shard"
-        }
-    },
-    "result": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:topaz_shard"
+    }
+  },
+  "result": {
     "item": "spectrum:topaz_block",
     "count": 1
-    }
+  }
 }

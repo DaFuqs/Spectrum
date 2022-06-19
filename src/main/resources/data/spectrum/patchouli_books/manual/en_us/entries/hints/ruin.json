@@ -1,24 +1,24 @@
 {
-    "name": "Experiment #3",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:midgame/craft_bottle_of_ruin",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:midgame/break_decayed_bedrock",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "Small Clue",
-            "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
-            "cost": "spectrum:brown_pigment#8",
-            "text": "This absolutely aggressive variant called Ruin is able to consume the most resistant material there is. Even ones too resistant for you to ever break before."
-        },
-        {
-            "type": "spectrum:hint",
-            "title": "A Warning",
-            "cost": "spectrum:brown_pigment#24",
-            "text": "What could be more resistant than the unbreakable Bedrock itself? Better have a backup plan up your sleeve if anything goes wrong."
-        }
-    ]
+  "name": "Experiment #3",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/craft_bottle_of_ruin",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/break_decayed_bedrock",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Small Clue",
+      "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
+      "cost": "spectrum:brown_pigment#8",
+      "text": "This absolutely aggressive variant called Ruin is able to consume the most resistant material there is. Even ones too resistant for you to ever break before."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "A Warning",
+      "cost": "spectrum:brown_pigment#24",
+      "text": "What could be more resistant than the unbreakable Bedrock itself? Better have a backup plan up your sleeve if anything goes wrong."
+    }
+  ]
 }

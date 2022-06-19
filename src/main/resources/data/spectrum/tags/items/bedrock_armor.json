@@ -1,8 +1,8 @@
 {
-	"values": [
-		"spectrum:bedrock_helmet",
-		"spectrum:bedrock_chestplate",
-		"spectrum:bedrock_leggings",
-		"spectrum:bedrock_boots"
-	]
+  "values": [
+    "spectrum:bedrock_helmet",
+    "spectrum:bedrock_chestplate",
+    "spectrum:bedrock_leggings",
+    "spectrum:bedrock_boots"
+  ]
 }

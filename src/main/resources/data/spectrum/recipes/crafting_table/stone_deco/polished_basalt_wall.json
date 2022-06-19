@@ -1,16 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "WWW",
-        "WWW"
-    ],
-    "key": {
-        "W": {
-	        "item": "spectrum:polished_basalt"
-        }
-    },
-    "result": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:polished_basalt"
+    }
+  },
+  "result": {
     "item": "spectrum:polished_basalt_wall",
     "count": 6
-    }
+  }
 }

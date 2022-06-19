@@ -1,24 +1,24 @@
 {
-    "name": "Steadfast",
-    "icon": "spectrum:multitool",
-    "advancement": "spectrum:progression/enchantments/steadfast",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Knowing you, you create the perfect tool for yourself, only to have it fall into lava in a moment of derangement. And then there is the dimension of the Endermen, which dramatically punishes every mistake.$(br2)This new enchantment will protect your favorite tools in case of such an emergency (and be it throwing it against a cactus)."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:steadfast\", lvl: 1s}]}",
-            "text": "Protects tools from all kinds of damage when on lying the ground, even from lava or falling into the Void.$(br2)Max Level: 1$(br)Applicable to all tools."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_steadfast",
-            "text": "You can infuse a common Book with Steadfast by surrounding your Enchanter with Pigment and the other required materials."
-        }
-    ]
+  "name": "Steadfast",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:progression/enchantments/steadfast",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Knowing you, you create the perfect tool for yourself, only to have it fall into lava in a moment of derangement. And then there is the dimension of the Endermen, which dramatically punishes every mistake.$(br2)This new enchantment will protect your favorite tools in case of such an emergency (and be it throwing it against a cactus)."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:steadfast\", lvl: 1s}]}",
+      "text": "Protects tools from all kinds of damage when on lying the ground, even from lava or falling into the Void.$(br2)Max Level: 1$(br)Applicable to all tools."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_steadfast",
+      "text": "You can infuse a common Book with Steadfast by surrounding your Enchanter with Pigment and the other required materials."
+    }
+  ]
 }

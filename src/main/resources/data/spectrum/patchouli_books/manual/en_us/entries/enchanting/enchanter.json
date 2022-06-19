@@ -1,32 +1,32 @@
 {
-    "name": "The Enchanter",
-    "icon": "spectrum:enchanter",
-    "priority": true,
-    "sortnum": 0,
-    "advancement": "spectrum:midgame/enter_liquid_crystal",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)In your search for the perfect tool, you've found that the Enchanting Table often doesn't do your bidding. Using this highly modified Enchanting Table should resolve most of the issue you had with your original one.$()$(br2)It allows you to:$(li)$(l:enchanting/creating_enchanted_books)create new Enchanted Books$(/l)$(li)$(l:enchanting/upgrading_enchanted_books)upgrade them$(/l)$(li)$(l:enchanting/enchanting_items)enchant items without consuming Enchanted Books$(/l)"
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Pedestal Recipe",
-            "recipe": "spectrum:pedestal/tier3/enchanter",
-            "text": "The Enchanter needs a focus structure to work."
-        },
-        {
-            "type": "patchouli:multiblock",
-            "name": "Enchanting Structure",
-            "multiblock_id": "spectrum:enchanter_structure",
-            "enable_visualize": true,
-            "text": "The pools around the gemstone blocks have to be filled with $(l:magical_blocks/liquid_crystal)Liquid Crystal$(). (not shown)"
-        },
-        {
-            "type": "patchouli:text",
-            "title": "Block Checklist",
-            "text": "$(li)1 Enchanter$(li)8 Item Bowls$(li)4+ Liquid Crystal Buckets$(li)4 Polished Gemstone Blocks$(li)8 Gemstone Lamps$(li)12 Polished Pillars$(li)24 Polished Slabs$(li)159 Polished Blocks$(br2)$(italic)Enhance the Enchanter with Upgrades by placing them on the Gemstone Blocks.$()"
-        }
-    ]
+  "name": "The Enchanter",
+  "icon": "spectrum:enchanter",
+  "priority": true,
+  "sortnum": 0,
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)In your search for the perfect tool, you've found that the Enchanting Table often doesn't do your bidding. Using this highly modified Enchanting Table should resolve most of the issue you had with your original one.$()$(br2)It allows you to:$(li)$(l:enchanting/creating_enchanted_books)create new Enchanted Books$(/l)$(li)$(l:enchanting/upgrading_enchanted_books)upgrade them$(/l)$(li)$(l:enchanting/enchanting_items)enchant items without consuming Enchanted Books$(/l)"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/enchanter",
+      "text": "The Enchanter needs a focus structure to work."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Enchanting Structure",
+      "multiblock_id": "spectrum:enchanter_structure",
+      "enable_visualize": true,
+      "text": "The pools around the gemstone blocks have to be filled with $(l:magical_blocks/liquid_crystal)Liquid Crystal$(). (not shown)"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Block Checklist",
+      "text": "$(li)1 Enchanter$(li)8 Item Bowls$(li)4+ Liquid Crystal Buckets$(li)4 Polished Gemstone Blocks$(li)8 Gemstone Lamps$(li)12 Polished Pillars$(li)24 Polished Slabs$(li)159 Polished Blocks$(br2)$(italic)Enhance the Enchanter with Upgrades by placing them on the Gemstone Blocks.$()"
+    }
+  ]
 }

@@ -1,27 +1,27 @@
 {
-    "name": "Azurite",
-    "advancement": "spectrum:midgame/collect_azurite",
-    "icon": "spectrum:azurite_ore",
-    "category": "spectrum:resources_category",
-    "extra_recipe_mappings": {
-        "spectrum:azurite_ore": 0,
-        "spectrum:deepslate_azurite_ore": 0,
-        "spectrum:raw_azurite": 0,
-        "spectrum:refined_azurite": 0,
-        "spectrum:azurite_block": 0
+  "name": "Azurite",
+  "advancement": "spectrum:midgame/collect_azurite",
+  "icon": "spectrum:azurite_ore",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:azurite_ore": 0,
+    "spectrum:deepslate_azurite_ore": 0,
+    "spectrum:raw_azurite": 0,
+    "spectrum:refined_azurite": 0,
+    "spectrum:azurite_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Azurite",
+      "item": "spectrum:raw_azurite",
+      "text": "A rich blue ore, which, at a distance, can almost be mistaken for lapis. In its natural form it contains many impurities, which must first be removed, before it can be used.$(br2)It is found deep underground and seems to be able to intensify any Pigments energy."
     },
-    "pages": [
-        {
-            "type": "patchouli:spotlight",
-            "title": "Azurite",
-            "item": "spectrum:raw_azurite",
-            "text": "A rich blue ore, which, at a distance, can almost be mistaken for lapis. In its natural form it contains many impurities, which must first be removed, before it can be used.$(br2)It is found deep underground and seems to be able to intensify any Pigments energy."
-        },
-        {
-            "type": "spectrum:fusion_shrine_crafting",
-            "title": "Refining Azurite",
-            "recipe": "spectrum:fusion_shrine/refined_azurite",
-            "text": "Refining Azurite is not a cheap task.$(br)In this refined ingot form Azurite can be used for a lot more recipes."
-        }
-    ]
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Refining Azurite",
+      "recipe": "spectrum:fusion_shrine/refined_azurite",
+      "text": "Refining Azurite is not a cheap task.$(br)In this refined ingot form Azurite can be used for a lot more recipes."
+    }
+  ]
 }

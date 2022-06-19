@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "minecraft:bismuth"
+  },
+  "growth_stages": [
+    "spectrum:small_bismuth_bud",
+    "spectrum:large_bismuth_bud",
+    "spectrum:bismuth_cluster"
+  ],
+  "ticks_per_growth_stage": 4800,
+  "ink_color": "white",
+  "ink_per_tick": 1,
+  "grows_without_catalyst": false,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "spectrum:quitoxic_powder"
+      },
+      "growth_acceleration_mod": 3.0,
+      "ink_efficiency_mod": 1.0,
+      "amount_consumed_when_growing_stage": 0.0
+    }
+  ],
+  "required_advancement": "spectrum:progression/unlock_crystallarieum"
+}

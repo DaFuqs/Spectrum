@@ -24,7 +24,7 @@
       "item": "spectrum:paletur_gem"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:resonant_pickaxe",
     "nbt": "{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
     "count": 1

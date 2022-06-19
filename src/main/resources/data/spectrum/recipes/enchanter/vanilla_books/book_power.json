@@ -32,7 +32,7 @@
       "item": "spectrum:neolith"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:power\", lvl: 1s}]}"
   },

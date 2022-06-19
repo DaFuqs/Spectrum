@@ -13,7 +13,7 @@
   "center_ingredient": {
     "item": "conjuring:conjuration_essence"
   },
-  "result" : {
+  "result": {
     "item": "spectrum:spawner"
   },
   "fabric:load_conditions": [

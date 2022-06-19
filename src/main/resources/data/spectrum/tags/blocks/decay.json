@@ -1,8 +1,8 @@
 {
-	"values": [
-		"spectrum:fading",
-		"spectrum:failing",
-		"spectrum:ruin",
-		"spectrum:terror"
-	]
+  "values": [
+    "spectrum:fading",
+    "spectrum:failing",
+    "spectrum:ruin",
+    "spectrum:terror"
+  ]
 }

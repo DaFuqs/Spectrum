@@ -54,6 +54,10 @@ import java.util.Random;
 
 public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkPowered {
 	
+	public static final InkColor USED_COLOR = InkColors.LIME;
+	public static final int BASE_COST = 20;
+	public static ItemStack COST = new ItemStack(SpectrumItems.VEGETAL, 1);
+	
 	public static final Map<Block, BlockState> BLOCK_CONVERSIONS = new HashMap<>() {{
 		// BLOCKS
 		put(Blocks.DIRT, Blocks.GRASS_BLOCK.getDefaultState());
@@ -90,7 +94,6 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 		put(Blocks.DEAD_TUBE_CORAL_FAN, Blocks.TUBE_CORAL_FAN.getDefaultState());
 		put(Blocks.DEAD_TUBE_CORAL_WALL_FAN, Blocks.TUBE_CORAL_WALL_FAN.getDefaultState());
 	}};
-	public static ItemStack COST = new ItemStack(SpectrumItems.VEGETAL, 1);
 	
 	public NaturesStaffItem(Settings settings) {
 		super(settings);
@@ -220,7 +223,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 	
 	public int getInkCost(ItemStack itemStack) {
 		int efficiency = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
-		return Math.max(5, 20 - 2 * efficiency);
+		return Math.max(5, BASE_COST - 2 * efficiency);
 	}
 	
 	public ActionResult useOnBlock(ItemUsageContext context) {
@@ -231,7 +234,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 			BlockPos blockPos = context.getBlockPos();
 			
 			if (world.isClient) {
-				if (context.getPlayer().isCreative() || InkPowered.hasAvailableInk(user, InkColors.LIME, getInkCost(context.getStack())) || context.getPlayer().getInventory().contains(COST)) {
+				if (context.getPlayer().isCreative() || InkPowered.hasAvailableInk(user, USED_COLOR, getInkCost(context.getStack())) || context.getPlayer().getInventory().contains(COST)) {
 					BlockState blockState = world.getBlockState(blockPos);
 					if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE) || blockState.isOf(Blocks.BAMBOO)) {
 						int i = 0;
@@ -251,7 +254,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 				ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
 				boolean paid = player.isCreative(); // free for creative players
 				if(!paid) { // try pay with ink
-					paid = InkPowered.tryPayCost((ServerPlayerEntity) context.getPlayer(), InkColors.LIME, getInkCost(context.getStack()));
+					paid = InkPowered.tryPayCost((ServerPlayerEntity) context.getPlayer(), USED_COLOR, getInkCost(context.getStack()));
 				}
 				if(!paid) {  // try pay with item
 					int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.getStack());
@@ -350,7 +353,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 
     @Override
     public List<InkColor> getUsedColors() {
-        return List.of(InkColors.LIME);
+        return List.of(USED_COLOR);
     }
 	
 }

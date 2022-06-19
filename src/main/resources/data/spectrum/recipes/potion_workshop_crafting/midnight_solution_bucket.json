@@ -14,7 +14,7 @@
   "ingredient3": {
     "item": "spectrum:black_pigment"
   },
-  "result" : {
+  "result": {
     "item": "spectrum:midnight_solution_bucket"
   },
   "required_advancement": "spectrum:progression/unlock_midnight_solution"

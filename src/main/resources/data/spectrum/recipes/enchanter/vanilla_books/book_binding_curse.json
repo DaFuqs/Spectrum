@@ -32,7 +32,7 @@
       "item": "spectrum:scarlet_fragments"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:binding_curse\", lvl: 1s}]}"
   },

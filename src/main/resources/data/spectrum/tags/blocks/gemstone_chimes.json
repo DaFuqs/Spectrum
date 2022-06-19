@@ -1,9 +1,9 @@
 {
-	"values": [
-		"spectrum:amethyst_chime",
-		"spectrum:citrine_chime",
-		"spectrum:onyx_chime",
-		"spectrum:moonstone_chime",
-		"spectrum:topaz_chime"
-	]
+  "values": [
+    "spectrum:amethyst_chime",
+    "spectrum:citrine_chime",
+    "spectrum:onyx_chime",
+    "spectrum:moonstone_chime",
+    "spectrum:topaz_chime"
+  ]
 }

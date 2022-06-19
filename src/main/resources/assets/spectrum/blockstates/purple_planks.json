@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "spectrum:block/purple_planks" }
+    "": {
+      "model": "spectrum:block/purple_planks"
+    }
   }
 }

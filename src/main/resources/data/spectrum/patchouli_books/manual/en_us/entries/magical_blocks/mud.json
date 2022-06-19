@@ -1,23 +1,23 @@
 {
-    "name": "Mud",
-    "advancement": "spectrum:progression/unlock_mud_bucket",
-    "icon": "spectrum:mud_bucket",
-    "category": "spectrum:magical_blocks_category",
-    "extra_recipe_mappings": {
-        "spectrum:mud_bucket": 0
+  "name": "Mud",
+  "advancement": "spectrum:progression/unlock_mud_bucket",
+  "icon": "spectrum:mud_bucket",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:mud_bucket": 0
+  },
+  "pages": [
+    {
+      "title": "Mud",
+      "type": "patchouli:spotlight",
+      "item": "spectrum:mud_bucket",
+      "text": "$(italic)Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the mud with water or lava. This creates dirt or coarse dirt, respectively."
     },
-    "pages": [
-        {
-            "title":"Mud",
-            "type": "patchouli:spotlight",
-            "item": "spectrum:mud_bucket",
-            "text": "$(italic)Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the mud with water or lava. This creates dirt or coarse dirt, respectively."
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Pedestal Recipe",
-            "recipe": "spectrum:pedestal/tier1/mud_bucket",
-            "text": "While a mud bath sounds like wellness it is not advised."
-        }
-    ]
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/mud_bucket",
+      "text": "While a mud bath sounds like wellness it is not advised."
+    }
+  ]
 }

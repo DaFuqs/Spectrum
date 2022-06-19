@@ -1,9 +1,9 @@
 {
-	"values": [
-		"spectrum:amethyst_powder",
-		"spectrum:citrine_powder",
-		"spectrum:topaz_powder",
-		"spectrum:onyx_powder",
-		"spectrum:moonstone_powder"
-	]
+  "values": [
+    "spectrum:amethyst_powder",
+    "spectrum:citrine_powder",
+    "spectrum:topaz_powder",
+    "spectrum:onyx_powder",
+    "spectrum:moonstone_powder"
+  ]
 }

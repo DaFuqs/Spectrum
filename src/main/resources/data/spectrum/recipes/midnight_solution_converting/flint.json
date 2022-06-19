@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:gravel"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:flint",
     "count": 1
   }

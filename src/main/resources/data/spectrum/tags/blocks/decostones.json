@@ -1,9 +1,9 @@
 {
-	"values": [
-		"spectrum:amethyst_decostone",
-		"spectrum:citrine_decostone",
-		"spectrum:onyx_decostone",
-		"spectrum:moonstone_decostone",
-		"spectrum:topaz_decostone"
-	]
+  "values": [
+    "spectrum:amethyst_decostone",
+    "spectrum:citrine_decostone",
+    "spectrum:onyx_decostone",
+    "spectrum:moonstone_decostone",
+    "spectrum:topaz_decostone"
+  ]
 }

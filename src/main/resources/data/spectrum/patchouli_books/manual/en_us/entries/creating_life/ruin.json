@@ -23,7 +23,7 @@
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
-	  "title": "Bedrock Dust",
+      "title": "Bedrock Dust",
       "item": "spectrum:bedrock_dust",
       "text": "Even Bedrock was not strong enough to withstand your newly created \"life\".  It broke through the Bedrock like dandelions through concrete."
     },

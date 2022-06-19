@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
+import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.tools.DreamflayerItem;
 import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
@@ -23,6 +24,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.EntityDamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -34,12 +36,12 @@ import net.minecraft.network.packet.s2c.play.MobSpawnS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.system.CallbackI;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -78,6 +80,14 @@ public abstract class LivingEntityMixin {
 	@Shadow public abstract Vec3d applyMovementInput(Vec3d movementInput, float slipperiness);
 	
 	@Shadow public abstract void readFromPacket(MobSpawnS2CPacket packet);
+	
+	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
+	
+	@Shadow public abstract boolean removeStatusEffect(StatusEffect type);
+	
+	@Shadow public abstract void setHealth(float health);
+	
+	@Shadow public abstract ItemStack getMainHandStack();
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -144,17 +154,45 @@ public abstract class LivingEntityMixin {
 		}
 	}
 	
-	@ModifyVariable(method = "applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"))
+	@ModifyVariable(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), argsOnly = true)
 	public float spectrum$applyDreamflayerDamage(float amount, DamageSource source) {
 		if(!(source.getAttacker() instanceof LivingEntity attacker))
 			return amount;
 		
 		LivingEntity target = (LivingEntity) (Object) this;
-		if (amount > 0 && source.getSource() instanceof LivingEntity) {
+		if (amount > 0 && source instanceof EntityDamageSource && source.getSource() instanceof LivingEntity livingSource) {
 			ItemStack mainHandStack = attacker.getMainHandStack();
 			if (mainHandStack.isOf(SpectrumItems.DREAMFLAYER)) {
-				float armorDifference = (target.getArmor() + DreamflayerItem.ARMOR_DIFFERENCE_DAMAGE_MULTIPLIER) / (attacker.getArmor() + DreamflayerItem.ARMOR_DIFFERENCE_DAMAGE_MULTIPLIER);
-				return amount * armorDifference;
+				if(ActivatableItem.isActivated(mainHandStack)) {
+					float newDamage = DreamflayerItem.getDamageAfterModifier(amount, attacker, target);
+					
+					// deal 1/2 as magic damage
+					if (!source.isMagic() && newDamage >= 1.0F) {
+						this.applyDamage(DamageSource.magic(livingSource, livingSource), amount / 2);
+					}
+					
+					// deal 1/4 directly
+					// that has to hurt
+					float quarterDamage = newDamage / 4;
+					float h = target.getHealth();
+					target.setHealth(h - quarterDamage);
+					target.getDamageTracker().onDamage(source, h, quarterDamage);
+					if (target.isDead()) {
+						target.onDeath(source);
+					}
+					
+					// deal 1/4 as normal damage
+					return quarterDamage;
+				} else {
+					float newDamage = DreamflayerItem.getDamageAfterModifier(amount, attacker, target);
+					
+					// deal 1/4 as magic damage
+					if (!source.isMagic() && newDamage >= 1.0F) {
+						this.applyDamage(DamageSource.magic(livingSource, livingSource), amount / 4);
+					}
+					// deal 3/4 as normal damage
+					return newDamage / 4 * 3;
+				}
 			}
 		}
 		

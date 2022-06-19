@@ -1,6 +1,6 @@
 {
-	"values": [
-		"spectrum:spawner",
-		"minecraft:spawner"
-	]
+  "values": [
+    "spectrum:spawner",
+    "minecraft:spawner"
+  ]
 }

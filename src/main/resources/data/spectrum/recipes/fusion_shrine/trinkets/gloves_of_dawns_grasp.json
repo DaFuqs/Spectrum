@@ -8,24 +8,24 @@
       "item": "spectrum:fanciful_gloves"
     },
     {
-      "item": "minecraft:leather",
-	  "count": 4
+      "item": "spectrum:neolith",
+      "count": 8
     },
     {
-      "item": "spectrum:neolith",
-	  "count": 8
+      "item": "spectrum:light_blue_pigment",
+      "count": 16
     },
     {
       "item": "spectrum:green_pigment",
-	  "count": 16
+      "count": 8
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:gloves_of_dawns_grasp"
   },
   "required_advancement": "spectrum:progression/unlock_gloves_of_dawns_grasp",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

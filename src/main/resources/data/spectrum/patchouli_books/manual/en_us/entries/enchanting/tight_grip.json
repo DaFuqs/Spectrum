@@ -1,30 +1,30 @@
 {
-    "name": "Tight Grip",
-    "icon": "minecraft:iron_sword",
-    "advancement": "spectrum:progression/enchantments/tight_grip",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)It almost seems like a fever dream that you could strike with weapons faster than you can think. In the meantime, every blow costs you so much strength that you have to pause for a moment.$(br)Maybe you are getting old.$(br2)With a few small tweaks to your weapon, you can reduce this downtime somewhat."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:tight_grip\", lvl: 2s}]}",
-            "text": "Decreases attack cooldown.$(br2)Max Level: 2$(br)Applicable to melee weapons."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_tight_grip",
-            "text": "You can infuse a common Book with Tight Grip by surrounding your Enchanter with Pigment and the other required materials."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Enchantment Upgrading",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/tight_grip_level_2",
-            "text": "Upgrading Tight Grip from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
-        }
-    ]
+  "name": "Tight Grip",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/tight_grip",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)It almost seems like a fever dream that you could strike with weapons faster than you can think. In the meantime, every blow costs you so much strength that you have to pause for a moment.$(br)Maybe you are getting old.$(br2)With a few small tweaks to your weapon, you can reduce this downtime somewhat."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:tight_grip\", lvl: 2s}]}",
+      "text": "Decreases attack cooldown.$(br2)Max Level: 2$(br)Applicable to melee weapons."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_tight_grip",
+      "text": "You can infuse a common Book with Tight Grip by surrounding your Enchanter with Pigment and the other required materials."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Enchantment Upgrading",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/tight_grip_level_2",
+      "text": "Upgrading Tight Grip from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
+    }
+  ]
 }

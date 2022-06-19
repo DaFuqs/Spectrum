@@ -1,10 +1,10 @@
 {
-	"values": [
-		"spectrum:pedestal_basic_topaz",
-		"spectrum:pedestal_basic_amethyst",
-		"spectrum:pedestal_basic_citrine",
-		"spectrum:pedestal_all_basic",
-		"spectrum:pedestal_onyx",
-		"spectrum:pedestal_moonstone"
-	]
+  "values": [
+    "spectrum:pedestal_basic_topaz",
+    "spectrum:pedestal_basic_amethyst",
+    "spectrum:pedestal_basic_citrine",
+    "spectrum:pedestal_all_basic",
+    "spectrum:pedestal_onyx",
+    "spectrum:pedestal_moonstone"
+  ]
 }

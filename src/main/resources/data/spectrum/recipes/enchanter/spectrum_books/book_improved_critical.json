@@ -31,7 +31,7 @@
       "item": "minecraft:flint"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:improved_critical\", lvl: 1s}]}"
   },

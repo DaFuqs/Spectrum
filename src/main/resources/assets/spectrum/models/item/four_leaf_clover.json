@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:item/generated",
-    "textures": {
-        "layer0": "spectrum:item/four_leaf_clover"
-    }
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:item/four_leaf_clover"
+  }
 }

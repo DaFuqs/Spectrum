@@ -1,9 +1,9 @@
 {
-	"values": [
-		"minecraft:budding_amethyst",
-		"spectrum:budding_citrine",
-		"spectrum:budding_onyx",
-		"spectrum:budding_moonstone",
-		"spectrum:budding_topaz"
-	]
+  "values": [
+    "minecraft:budding_amethyst",
+    "spectrum:budding_citrine",
+    "spectrum:budding_onyx",
+    "spectrum:budding_moonstone",
+    "spectrum:budding_topaz"
+  ]
 }

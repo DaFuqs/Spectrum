@@ -1,11 +1,11 @@
 {
   "replace": false,
   "values": [
-		"spectrum:smooth_basalt_stairs",
-		"spectrum:polished_basalt_stairs",
-		"spectrum:basalt_brick_stairs",
-		"spectrum:calcite_stairs",
-		"spectrum:polished_calcite_stairs",
-		"spectrum:calcite_brick_stairs"
+    "spectrum:smooth_basalt_stairs",
+    "spectrum:polished_basalt_stairs",
+    "spectrum:basalt_brick_stairs",
+    "spectrum:calcite_stairs",
+    "spectrum:polished_calcite_stairs",
+    "spectrum:calcite_brick_stairs"
   ]
 }

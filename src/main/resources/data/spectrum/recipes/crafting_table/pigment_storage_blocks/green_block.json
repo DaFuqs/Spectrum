@@ -1,17 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "GGG",
-        "GGG",
-        "GGG"
-    ],
-    "key": {
-        "G": {
-	        "item": "spectrum:green_pigment"
-        }
-    },
-    "result": {
-        "item": "spectrum:green_block",
-        "count": 1
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "spectrum:green_pigment"
     }
+  },
+  "result": {
+    "item": "spectrum:green_block",
+    "count": 1
+  }
 }

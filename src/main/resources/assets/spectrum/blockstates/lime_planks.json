@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "spectrum:block/lime_planks" }
+    "": {
+      "model": "spectrum:block/lime_planks"
+    }
   }
 }

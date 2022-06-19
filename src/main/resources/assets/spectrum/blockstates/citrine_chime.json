@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "spectrum:block/citrine_chime"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "spectrum:block/citrine_chime"
+    }
+  }
 }

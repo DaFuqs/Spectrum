@@ -1,30 +1,30 @@
 {
-    "name": "First Strike",
-    "icon": "minecraft:iron_sword",
-    "advancement": "spectrum:progression/enchantments/first_strike",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)All it takes is a single well-considered hit... or so the saying must have gone.$(br2)Whatever.$(br)On a related note: you invented this First Strike improvement. It will be a great help especially against many weak opponents."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Characteristics",
-            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:first_strike\", lvl: 2s}]}",
-            "text": "Greatly increased damage if the target has full life.$(br2)Max Level: 2$(br)Applicable to melee weapons."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Enchanter Recipe",
-            "recipe": "spectrum:enchanter/spectrum_books/book_first_strike",
-            "text": "You can infuse a common Book with First Strike by surrounding your Enchanter with Pigment and the other required materials."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Enchantment Upgrading",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/first_strike_level_2",
-            "text": "Upgrading First Strike from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
-        }
-    ]
+  "name": "First Strike",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/first_strike",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)All it takes is a single well-considered hit... or so the saying must have gone.$(br2)Whatever.$(br)On a related note: you invented this First Strike improvement. It will be a great help especially against many weak opponents."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:first_strike\", lvl: 2s}]}",
+      "text": "Greatly increased damage if the target has full life.$(br2)Max Level: 2$(br)Applicable to melee weapons."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_first_strike",
+      "text": "You can infuse a common Book with First Strike by surrounding your Enchanter with Pigment and the other required materials."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Enchantment Upgrading",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/first_strike_level_2",
+      "text": "Upgrading First Strike from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
+    }
+  ]
 }

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:weathered_cut_copper_slab"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:oxidized_cut_copper_slab",
     "count": 1
   }

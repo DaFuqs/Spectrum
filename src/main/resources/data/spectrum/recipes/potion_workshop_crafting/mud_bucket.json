@@ -11,7 +11,7 @@
   "ingredient2": {
     "item": "minecraft:coarse_dirt"
   },
-  "result" : {
+  "result": {
     "item": "spectrum:mud_bucket"
   }
 }

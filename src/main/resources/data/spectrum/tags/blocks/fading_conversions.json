@@ -1,11 +1,11 @@
 {
-	"values": [
-		"#minecraft:leaves",
-		"minecraft:hay_block",
-		"minecraft:moss_block",
-		"minecraft:dried_kelp_block",
-		"minecraft:melon",
-		"minecraft:pumpkin",
-		"spectrum:glistering_melon"
-	]
+  "values": [
+    "#minecraft:leaves",
+    "minecraft:hay_block",
+    "minecraft:moss_block",
+    "minecraft:dried_kelp_block",
+    "minecraft:melon",
+    "minecraft:pumpkin",
+    "spectrum:glistering_melon"
+  ]
 }

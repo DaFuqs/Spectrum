@@ -1,12 +1,12 @@
 {
-	"values": [
-		"spectrum:vanilla_player_only_glass",
-		"spectrum:tinted_player_only_glass",
-		"spectrum:glowing_player_only_glass",
-		"spectrum:amethyst_player_only_glass",
-		"spectrum:topaz_player_only_glass",
-		"spectrum:citrine_player_only_glass",
-		"spectrum:onyx_player_only_glass",
-		"spectrum:moonstone_player_only_glass"
-	]
+  "values": [
+    "spectrum:vanilla_player_only_glass",
+    "spectrum:tinted_player_only_glass",
+    "spectrum:glowing_player_only_glass",
+    "spectrum:amethyst_player_only_glass",
+    "spectrum:topaz_player_only_glass",
+    "spectrum:citrine_player_only_glass",
+    "spectrum:onyx_player_only_glass",
+    "spectrum:moonstone_player_only_glass"
+  ]
 }

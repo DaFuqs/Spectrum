@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/moonstone_block" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/moonstone_block"
     }
+  }
 }

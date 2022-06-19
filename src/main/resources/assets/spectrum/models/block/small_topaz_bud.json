@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:block/cross",
-    "textures": {
+  "parent": "minecraft:block/cross",
+  "textures": {
     "cross": "spectrum:block/small_topaz_bud"
-    }
+  }
 }

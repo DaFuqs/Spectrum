@@ -31,7 +31,7 @@
       "item": "minecraft:chorus_flower"
     }
   ],
-  "result" : {
+  "result": {
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}"
   },

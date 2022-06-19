@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:exposed_copper"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:weathered_copper",
     "count": 1
   }

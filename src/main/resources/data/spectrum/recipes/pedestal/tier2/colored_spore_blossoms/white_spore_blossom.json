@@ -15,14 +15,14 @@
     "PPP"
   ],
   "key": {
-  	"P": {
+    "P": {
       "item": "spectrum:white_pigment"
     },
-	"S": {
+    "S": {
       "item": "minecraft:spore_blossom"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:white_spore_blossom",
     "count": 1
   },

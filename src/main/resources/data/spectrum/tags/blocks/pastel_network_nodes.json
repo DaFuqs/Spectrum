@@ -1,10 +1,10 @@
 {
-	"values": [
-		"spectrum:connection_node",
-		"spectrum:provider_node",
-		"spectrum:storage_node",
-		"spectrum:pusher_node",
-		"spectrum:puller_node",
-		"spectrum:interaction_node"
-	]
+  "values": [
+    "spectrum:connection_node",
+    "spectrum:provider_node",
+    "spectrum:storage_node",
+    "spectrum:pusher_node",
+    "spectrum:puller_node",
+    "spectrum:interaction_node"
+  ]
 }

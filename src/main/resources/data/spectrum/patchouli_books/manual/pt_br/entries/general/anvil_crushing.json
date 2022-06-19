@@ -9,7 +9,9 @@
     {
       "type": "patchouli:image",
       "title": "Esmagar Item",
-      "images": [ "spectrum:textures/gui/manual/anvil_crushing.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/anvil_crushing.png"
+      ],
       "border": true,
       "text": "$(italic)\"Para criar algo novo$(br)você tem que ir pelo caminho da destruição\"      - alguém"
     },

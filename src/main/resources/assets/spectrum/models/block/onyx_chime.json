@@ -1,6 +1,6 @@
 {
-    "parent": "spectrum:block/template_chime",
-    "textures": {
-        "gemstone": "spectrum:block/onyx_glass"
-    }
+  "parent": "spectrum:block/template_chime",
+  "textures": {
+    "gemstone": "spectrum:block/onyx_glass"
+  }
 }

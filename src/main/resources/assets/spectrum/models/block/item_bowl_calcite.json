@@ -1,10 +1,10 @@
 {
-	"parent": "spectrum:block/template_item_bowl",
-	"textures": {
-		"0": "spectrum:block/item_bowl_calcite",
-		"1": "spectrum:block/polished_calcite_pillar_side",
-		"2": "spectrum:block/polished_calcite",
-		"3": "spectrum:block/polished_calcite_pillar_top",
-		"particle": "spectrum:block/item_bowl_calcite"
-	}
+  "parent": "spectrum:block/template_item_bowl",
+  "textures": {
+    "0": "spectrum:block/item_bowl_calcite",
+    "1": "spectrum:block/polished_calcite_pillar_side",
+    "2": "spectrum:block/polished_calcite",
+    "3": "spectrum:block/polished_calcite_pillar_top",
+    "particle": "spectrum:block/item_bowl_calcite"
+  }
 }

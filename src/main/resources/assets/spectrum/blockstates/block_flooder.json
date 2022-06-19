@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "spectrum:block/block_flooder" }
+    "": {
+      "model": "spectrum:block/block_flooder"
+    }
   }
 }

@@ -14,11 +14,11 @@
     "   "
   ],
   "key": {
-	"O": {
-	  "item": "spectrum:onyx_shard"
-	}
+    "O": {
+      "item": "spectrum:onyx_shard"
+    }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:pedestal_onyx",
     "count": 1
   },

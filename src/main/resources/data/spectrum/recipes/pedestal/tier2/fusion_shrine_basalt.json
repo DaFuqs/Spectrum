@@ -31,10 +31,10 @@
       "item": "spectrum:polished_calcite"
     }
   },
-  "result" : {
+  "result": {
     "item": "spectrum:fusion_shrine_basalt",
     "count": 1
   },
-  "required_advancement":  "spectrum:collect_all_basic_pigments_besides_brown",
+  "required_advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "disable_yield_upgrades": true
 }

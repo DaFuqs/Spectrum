@@ -1,30 +1,30 @@
 {
-    "name": "Auxílio do Trevo",
-    "icon": "minecraft:iron_sword",
-    "advancement": "spectrum:progression/enchantments/clovers_favor",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)De vez em quando você tem sorte de um inimigo deixar um único item raro pra trás.$(br)Com a conexão da sorte de $(l:resources/clover)Trevos$(/l) e $(l:general/pigment#light_blue)Pigmento Azul-Claro$(/l) você pode aumentar essas chances drasticamente."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Características",
-            "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 3s}]}",
-            "text": "Maior chance de conseguir espólios raros, como Barras de Ferro de Zumbis.$(br)Pode até aumentar a chance de conseguir os espólios mais valiosos?$(br2)Maior Nível: 3$(br)Aplicável a armas corpo a corpo."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Receita de Encantador",
-            "recipe": "spectrum:enchanter/spectrum_books/book_clovers_favor",
-            "text": "Você pode infusionar um livro comum com Auxílio do Trevo rodeando seu Encantador com Pigmento e outros materiais necessários."
-        },
-        {
-            "type": "spectrum:enchanter_upgrading",
-            "title": "Melhoria de Encantador",
-            "recipe": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
-            "text": "Melhorar Auxílio do Trevo do nível 1 ao nível 2 é razoavelmente barato no começo.$(br)Esse preço rapidamenta aumenta para mais e mais Pigmento e Experiência para cada nível adicional."
-        }
-    ]
+  "name": "Auxílio do Trevo",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/clovers_favor",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)De vez em quando você tem sorte de um inimigo deixar um único item raro pra trás.$(br)Com a conexão da sorte de $(l:resources/clover)Trevos$(/l) e $(l:general/pigment#light_blue)Pigmento Azul-Claro$(/l) você pode aumentar essas chances drasticamente."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Características",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 3s}]}",
+      "text": "Maior chance de conseguir espólios raros, como Barras de Ferro de Zumbis.$(br)Pode até aumentar a chance de conseguir os espólios mais valiosos?$(br2)Maior Nível: 3$(br)Aplicável a armas corpo a corpo."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Receita de Encantador",
+      "recipe": "spectrum:enchanter/spectrum_books/book_clovers_favor",
+      "text": "Você pode infusionar um livro comum com Auxílio do Trevo rodeando seu Encantador com Pigmento e outros materiais necessários."
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "Melhoria de Encantador",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
+      "text": "Melhorar Auxílio do Trevo do nível 1 ao nível 2 é razoavelmente barato no começo.$(br)Esse preço rapidamenta aumenta para mais e mais Pigmento e Experiência para cada nível adicional."
+    }
+  ]
 }

@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-		      "name": "spectrum:deepslate_amethyst_ore",
+              "name": "spectrum:deepslate_amethyst_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -29,7 +29,7 @@
             },
             {
               "type": "minecraft:item",
-			  "name": "minecraft:amethyst_shard",
+              "name": "minecraft:amethyst_shard",
               "functions": [
                 {
                   "function": "minecraft:set_count",

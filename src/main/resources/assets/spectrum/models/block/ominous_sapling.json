@@ -1,6 +1,6 @@
 {
-    "parent": "minecraft:block/cross",
-    "textures": {
-        "cross": "spectrum:block/ominous_sapling"
-    }
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "spectrum:block/ominous_sapling"
+  }
 }

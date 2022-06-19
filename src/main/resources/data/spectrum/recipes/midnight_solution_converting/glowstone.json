@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "minecraft:glowstone"
   },
-  "result" : {
+  "result": {
     "item": "minecraft:gunpowder",
     "count": 1
   }

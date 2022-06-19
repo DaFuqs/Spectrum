@@ -95,7 +95,9 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 		
 		if (blockEntity instanceof PrivateChestBlockEntity privateChestBlockEntity) {
 			if (privateChestBlockEntity.canBreak(player.getUuid())) {
-				return super.calcBlockBreakingDelta(state, player, world, pos);
+				float hardness = 20.0F;
+				int i = player.canHarvest(state) ? 30 : 100;
+				return player.getBlockBreakingSpeed(state) / hardness / (float)i;
 			}
 		}
 		return -1;

@@ -1,22 +1,22 @@
 {
-    "name": "Mermaids Gems",
-    "icon": "spectrum:mermaids_gem",
-    "advancement": "spectrum:collect_mermaids_gem",
-    "category": "spectrum:resources_category",
-    "extra_recipe_mappings": {
-        "spectrum:mermaids_gem": 0,
-        "spectrum:mermaids_brush": 0
+  "name": "Mermaids Gems",
+  "icon": "spectrum:mermaids_gem",
+  "advancement": "spectrum:collect_mermaids_gem",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:mermaids_gem": 0,
+    "spectrum:mermaids_brush": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:mermaids_brush",
+      "text": "$(italic)This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single blossom, which slowly develops into a filigree shaped seed.$()$(br2)Mermaids Brushes can be harvested using shears."
     },
-    "pages": [
-        {
-            "type": "patchouli:spotlight",
-            "item": "spectrum:mermaids_brush",
-            "text": "$(italic)This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single blossom, which slowly develops into a filigree shaped seed.$()$(br2)Mermaids Brushes can be harvested using shears."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "item": "spectrum:mermaids_gem",
-            "text": "Fully grown, these hollow seeds float to the surface of the sea to be carried away by the soft waves.$(br2)Mermaids Gems have a strong bond with water - obviously."
-        }
-    ]
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:mermaids_gem",
+      "text": "Fully grown, these hollow seeds float to the surface of the sea to be carried away by the soft waves.$(br2)Mermaids Gems have a strong bond with water - obviously."
+    }
+  ]
 }

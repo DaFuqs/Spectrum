@@ -12,7 +12,7 @@
   "center_ingredient": {
     "item": "spectrum:hibernating_jade_vine_seeds"
   },
-  "result" : {
+  "result": {
     "item": "spectrum:germinated_jade_vine_seeds"
   },
   "required_advancement": "spectrum:hidden/collect_hibernating_jade_vine_seeds"

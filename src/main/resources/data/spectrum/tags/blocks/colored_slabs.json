@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-		"spectrum:black_plank_slab",
-		"spectrum:blue_plank_slab",
-		"spectrum:brown_plank_slab",
-		"spectrum:cyan_plank_slab",
-		"spectrum:gray_plank_slab",
-		"spectrum:green_plank_slab",
-		"spectrum:light_blue_plank_slab",
-		"spectrum:light_gray_plank_slab",
-		"spectrum:lime_plank_slab",
-		"spectrum:magenta_plank_slab",
-		"spectrum:orange_plank_slab",
-		"spectrum:pink_plank_slab",
-		"spectrum:purple_plank_slab",
-		"spectrum:red_plank_slab",
-		"spectrum:white_plank_slab",
-		"spectrum:yellow_plank_slab"
+    "spectrum:black_plank_slab",
+    "spectrum:blue_plank_slab",
+    "spectrum:brown_plank_slab",
+    "spectrum:cyan_plank_slab",
+    "spectrum:gray_plank_slab",
+    "spectrum:green_plank_slab",
+    "spectrum:light_blue_plank_slab",
+    "spectrum:light_gray_plank_slab",
+    "spectrum:lime_plank_slab",
+    "spectrum:magenta_plank_slab",
+    "spectrum:orange_plank_slab",
+    "spectrum:pink_plank_slab",
+    "spectrum:purple_plank_slab",
+    "spectrum:red_plank_slab",
+    "spectrum:white_plank_slab",
+    "spectrum:yellow_plank_slab"
   ]
 }

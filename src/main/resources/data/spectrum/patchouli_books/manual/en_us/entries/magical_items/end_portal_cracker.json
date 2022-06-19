@@ -15,7 +15,9 @@
     {
       "type": "patchouli:image",
       "title": "End Portal Relocation",
-      "images": [ "spectrum:textures/gui/manual/end_portal.png" ],
+      "images": [
+        "spectrum:textures/gui/manual/end_portal.png"
+      ],
       "border": true,
       "text": "The end portal, like found in strongholds."
     },
@@ -30,19 +32,25 @@
       "name": "Reconstructed End Portal",
       "multiblock": {
         "pattern": [
-          [ " HHH ",
+          [
+            " HHH ",
             "VPPPV",
             "VPPPV",
             "VPPPV",
             " HHH ",
-            "  0  " ]
+            "  0  "
+          ]
         ],
         "mapping": {
           "H": "spectrum:cracked_end_portal_frame[eye_type=ender,facing_vertical=false]",
           "V": "spectrum:cracked_end_portal_frame[eye_type=ender,facing_vertical=true]",
           "P": "minecraft:end_portal"
         },
-        "offset": [ 0, 3, 0 ],
+        "offset": [
+          0,
+          3,
+          0
+        ],
         "symmetrical": false
       },
       "text": "You just put the portal back together the way it was initially, add Ender Pearls, done!"

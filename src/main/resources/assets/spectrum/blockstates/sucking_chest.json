@@ -1,8 +1,19 @@
 {
   "variants": {
-    "facing=north": { "model": "spectrum:block/sucking_chest" },
-    "facing=east":  { "model": "spectrum:block/sucking_chest", "y":  90},
-    "facing=south": { "model": "spectrum:block/sucking_chest", "y": 180 },
-    "facing=west":  { "model": "spectrum:block/sucking_chest", "y": 270 }
+    "facing=north": {
+      "model": "spectrum:block/sucking_chest"
+    },
+    "facing=east": {
+      "model": "spectrum:block/sucking_chest",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "spectrum:block/sucking_chest",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "spectrum:block/sucking_chest",
+      "y": 270
+    }
   }
 }

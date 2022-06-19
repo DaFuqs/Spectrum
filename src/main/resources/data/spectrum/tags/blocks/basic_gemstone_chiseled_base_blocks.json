@@ -1,10 +1,10 @@
 {
-	"values": [
-		"spectrum:amethyst_chiseled_basalt",
-		"spectrum:topaz_chiseled_basalt",
-		"spectrum:citrine_chiseled_basalt",
-		"spectrum:amethyst_chiseled_calcite",
-		"spectrum:topaz_chiseled_calcite",
-		"spectrum:citrine_chiseled_calcite"
-	]
+  "values": [
+    "spectrum:amethyst_chiseled_basalt",
+    "spectrum:topaz_chiseled_basalt",
+    "spectrum:citrine_chiseled_basalt",
+    "spectrum:amethyst_chiseled_calcite",
+    "spectrum:topaz_chiseled_calcite",
+    "spectrum:citrine_chiseled_calcite"
+  ]
 }

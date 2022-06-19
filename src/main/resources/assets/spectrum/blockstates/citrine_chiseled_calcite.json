@@ -1,5 +1,7 @@
 {
-    "variants": {
-    "": { "model": "spectrum:block/citrine_chiseled_calcite" }
+  "variants": {
+    "": {
+      "model": "spectrum:block/citrine_chiseled_calcite"
     }
+  }
 }

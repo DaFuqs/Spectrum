@@ -1,29 +1,29 @@
 {
-	"variants": {
-		"facing=east": {
-			"model": "spectrum:block/inkwell",
-			"x": 90,
-			"y": 90
-		},
-		"facing=north": {
-			"model": "spectrum:block/inkwell",
-			"x": 90
-		},
-		"facing=south": {
-			"model": "spectrum:block/inkwell",
-			"x": 270
-		},
-		"facing=west": {
-			"model": "spectrum:block/inkwell",
-			"x": 90,
-			"y": 270
-		},
-		"facing=up": {
-			"model": "spectrum:block/inkwell"
-		},
-		"facing=down": {
-			"model": "spectrum:block/inkwell",
-			"x": 180
-		}
-	}
+  "variants": {
+    "facing=east": {
+      "model": "spectrum:block/inkwell",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "spectrum:block/inkwell",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "spectrum:block/inkwell",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "spectrum:block/inkwell",
+      "x": 90,
+      "y": 270
+    },
+    "facing=up": {
+      "model": "spectrum:block/inkwell"
+    },
+    "facing=down": {
+      "model": "spectrum:block/inkwell",
+      "x": 180
+    }
+  }
 }

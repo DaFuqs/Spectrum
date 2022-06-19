@@ -5,7 +5,7 @@
   },
   "crushedItemsPerPointOfDamage": 0.8,
   "experience": 0,
-  "result" : {
+  "result": {
     "item": "minecraft:cobbled_deepslate",
     "count": 1
   },

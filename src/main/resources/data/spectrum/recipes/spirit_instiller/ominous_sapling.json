@@ -11,7 +11,7 @@
   "center_ingredient": {
     "item": "spectrum:vegetal"
   },
-  "result" : {
+  "result": {
     "item": "spectrum:ominous_sapling"
   },
   "required_advancement": "spectrum:__lategame/spectrum_lategame"

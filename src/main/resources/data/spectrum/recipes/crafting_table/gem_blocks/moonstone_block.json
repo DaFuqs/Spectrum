@@ -1,16 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "WW",
-        "WW"
-    ],
-    "key": {
-        "W": {
-	        "item": "spectrum:moonstone_shard"
-        }
-    },
-    "result": {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:moonstone_shard"
+    }
+  },
+  "result": {
     "item": "spectrum:moonstone_block",
     "count": 1
-    }
+  }
 }

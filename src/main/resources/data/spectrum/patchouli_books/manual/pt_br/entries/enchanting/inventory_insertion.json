@@ -1,24 +1,24 @@
 {
-    "name": "Insersão de Inventário",
-    "icon": "minecraft:iron_pickaxe",
-    "advancement": "spectrum:progression/enchantments/inventory_insertion",
-    "category": "spectrum:enchanting_category",
-    "pages": [
-        {
-            "type": "patchouli:text",
-            "text": "$(italic)Se você ganhasse um bloco de terra pra cada vez que você minerou algo e caiu na lava, você teria muita terra.$(br2)Não sei o que você faria com tanta terra. Talvez dar para um amigo que acabou de chegar aqui e precisa de um abrigo para sua primeria noite?$(br)De qualquer forma, derrubar coisas na lava tem que parar."
-        },
-        {
-            "type": "patchouli:spotlight",
-            "title": "Características",
-            "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}",
-            "text": "Coloca blocos quebrados direto no seu inventário ao invés de derrubá-los no chão.$(br2)Nível Máximo: 1$(br)Aplicável a ferramentas de mineração."
-        },
-        {
-            "type": "spectrum:enchanter_crafting",
-            "title": "Receita de Encantador",
-            "recipe": "spectrum:enchanter/spectrum_books/book_inventory_insertion",
-            "text": "Você pode infusionar um livro comum com Insersão de Inventário rodeando seu Encantador com Pigmento e outros materiais necessários."
-        }
-    ]
+  "name": "Insersão de Inventário",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:progression/enchantments/inventory_insertion",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Se você ganhasse um bloco de terra pra cada vez que você minerou algo e caiu na lava, você teria muita terra.$(br2)Não sei o que você faria com tanta terra. Talvez dar para um amigo que acabou de chegar aqui e precisa de um abrigo para sua primeria noite?$(br)De qualquer forma, derrubar coisas na lava tem que parar."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Características",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}",
+      "text": "Coloca blocos quebrados direto no seu inventário ao invés de derrubá-los no chão.$(br2)Nível Máximo: 1$(br)Aplicável a ferramentas de mineração."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Receita de Encantador",
+      "recipe": "spectrum:enchanter/spectrum_books/book_inventory_insertion",
+      "text": "Você pode infusionar um livro comum com Insersão de Inventário rodeando seu Encantador com Pigmento e outros materiais necessários."
+    }
+  ]
 }

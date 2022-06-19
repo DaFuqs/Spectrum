@@ -1,19 +1,19 @@
 {
-	"values": [
-		"minecraft:small_amethyst_bud",
-		"minecraft:medium_amethyst_bud",
-		"minecraft:large_amethyst_bud",
-		"spectrum:small_citrine_bud",
-		"spectrum:medium_citrine_bud",
-		"spectrum:large_citrine_bud",
-		"spectrum:small_topaz_bud",
-		"spectrum:medium_topaz_bud",
-		"spectrum:large_topaz_bud",
-		"spectrum:small_onyx_bud",
-		"spectrum:medium_onyx_bud",
-		"spectrum:large_onyx_bud",
-		"spectrum:small_moonstone_bud",
-		"spectrum:medium_moonstone_bud",
-		"spectrum:large_moonstone_bud"
-	]
+  "values": [
+    "minecraft:small_amethyst_bud",
+    "minecraft:medium_amethyst_bud",
+    "minecraft:large_amethyst_bud",
+    "spectrum:small_citrine_bud",
+    "spectrum:medium_citrine_bud",
+    "spectrum:large_citrine_bud",
+    "spectrum:small_topaz_bud",
+    "spectrum:medium_topaz_bud",
+    "spectrum:large_topaz_bud",
+    "spectrum:small_onyx_bud",
+    "spectrum:medium_onyx_bud",
+    "spectrum:large_onyx_bud",
+    "spectrum:small_moonstone_bud",
+    "spectrum:medium_moonstone_bud",
+    "spectrum:large_moonstone_bud"
+  ]
 }

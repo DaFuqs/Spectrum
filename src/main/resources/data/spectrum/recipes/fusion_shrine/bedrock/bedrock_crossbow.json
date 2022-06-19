@@ -13,11 +13,11 @@
     },
     {
       "item": "spectrum:black_pigment",
-	  "count": 5
+      "count": 5
     },
     {
       "item": "spectrum:onyx_powder",
-	  "count": 5
+      "count": 5
     },
     {
       "item": "spectrum:scarlet_fragments",
@@ -28,13 +28,13 @@
       "count": 3
     }
   ],
-  "result" : {
+  "result": {
     "item": "spectrum:bedrock_crossbow",
     "nbt": "{Enchantments: [{id: \"minecraft:quick_charge\", lvl: 3s}]}"
   },
   "required_advancement": "spectrum:progression/unlock_bedrock_tools",
-  "world_conditions": [ ],
+  "world_conditions": [],
   "start_crafting_effect": "nothing",
-  "during_crafting_effects": [ ],
+  "during_crafting_effects": [],
   "finish_crafting_effect": "single_visual_explosion_on_shrine"
 }

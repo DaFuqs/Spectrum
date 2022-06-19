@@ -1,24 +1,24 @@
 {
-    "name": "A new Resource",
-    "category": "spectrum:hints_category",
-    "icon": "minecraft:writable_book",
-    "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
-    "secret": true,
-    "read_by_default": true,
-    "turnin": "spectrum:collect_mermaids_gem",
-    "pages": [
-        {
-            "type": "spectrum:hint",
-            "title": "Where to find",
-            "completion_advancement": "spectrum:collect_mermaids_gem",
-            "cost": "spectrum:onyx_shard#4",
-            "text": "Sometimes there are shiny gems found in oceans, floating on top of the water, getting rocked back and forth by the waves. If you spend some time near or in the ocean you may find one yourself!"
-        },
-        {
-            "type": "spectrum:hint",
-            "title": "Concise Instructions",
-            "cost": "spectrum:onyx_shard#12",
-            "text": "Source is a delicate flower, found at the bottom of the sea, growing in small groups. The plant emits a faint glow and if you wear an active Glow Squid helmet it sparkles, too. Wait next to it until it is fully grown and releases its precious treasure and collect it."
-        }
-    ]
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:collect_mermaids_gem",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:collect_mermaids_gem",
+      "cost": "spectrum:onyx_shard#4",
+      "text": "Sometimes there are shiny gems found in oceans, floating on top of the water, getting rocked back and forth by the waves. If you spend some time near or in the ocean you may find one yourself!"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:onyx_shard#12",
+      "text": "Source is a delicate flower, found at the bottom of the sea, growing in small groups. The plant emits a faint glow and if you wear an active Glow Squid helmet it sparkles, too. Wait next to it until it is fully grown and releases its precious treasure and collect it."
+    }
+  ]
 }

@@ -1,0 +1,50 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 2400,
+  "experience": 16.0,
+  "fluid": "spectrum:midnight_solution",
+  "ingredients": [
+    {
+      "item": "minecraft:netherite_sword"
+    },
+    {
+      "item": "spectrum:bismuth_crystal",
+      "count": 2
+    },
+    {
+      "item": "spectrum:moonstruck_nectar"
+    },
+    {
+      "item": "spectrum:red_pigment",
+      "count": 4
+    },
+    {
+      "item": "spectrum:light_blue_pigment",
+      "count": 4
+    },
+    {
+      "item": "spectrum:light_gray_pigment",
+      "count": 4
+    },
+    {
+      "item": "spectrum:black_pigment",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "spectrum:dreamflayer"
+  },
+  "required_advancement": "spectrum:progression/unlock_dreamflayer",
+  "world_conditions": [
+    "midnight",
+    "full_moon"
+  ],
+  "start_crafting_effect": "single_visual_explosion_on_shrine",
+  "during_crafting_effects": [
+    "nothing",
+    "visual_explosions_on_shrine",
+    "nothing"
+  ],
+  "finish_crafting_effect": "lightning_on_shrine",
+  "description": "spectrum.recipe.fusion_shrine.explanation.dreamflayer"
+}

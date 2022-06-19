@@ -1,9 +1,9 @@
 {
-	"values": [
-		"#spectrum:terror_safe",
-		"minecraft:air",
-		"minecraft:cave_air",
-		"minecraft:light",
-		"spectrum:wand_light"
-	]
+  "values": [
+    "#spectrum:terror_safe",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:light",
+    "spectrum:wand_light"
+  ]
 }

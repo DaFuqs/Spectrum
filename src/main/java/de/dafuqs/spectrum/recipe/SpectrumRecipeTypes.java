@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.recipe;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipeSerializer;
+import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
+import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipeSerializer;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipeSerializer;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
@@ -29,36 +31,28 @@ public class SpectrumRecipeTypes {
 	
 	public static RecipeSerializer<PedestalCraftingRecipe> PEDESTAL_RECIPE_SERIALIZER;
 	public static RecipeType<PedestalCraftingRecipe> PEDESTAL;
-	
 	public static RecipeSerializer<AnvilCrushingRecipe> ANVIL_CRUSHING_RECIPE_SERIALIZER;
 	public static RecipeType<AnvilCrushingRecipe> ANVIL_CRUSHING;
-	
 	public static RecipeSerializer<FusionShrineRecipe> FUSION_SHRINE_RECIPE_SERIALIZER;
 	public static RecipeType<FusionShrineRecipe> FUSION_SHRINE;
-	
 	public static RecipeSerializer<EnchanterRecipe> ENCHANTER_RECIPE_SERIALIZER;
 	public static RecipeType<EnchanterRecipe> ENCHANTER;
-	
 	public static RecipeSerializer<EnchantmentUpgradeRecipe> ENCHANTMENT_UPGRADE_RECIPE_SERIALIZER;
 	public static RecipeType<EnchantmentUpgradeRecipe> ENCHANTMENT_UPGRADE;
-	
 	public static RecipeSerializer<PotionWorkshopBrewingRecipe> POTION_WORKSHOP_BREWING_RECIPE_SERIALIZER;
 	public static RecipeType<PotionWorkshopBrewingRecipe> POTION_WORKSHOP_BREWING;
-	
 	public static RecipeSerializer<PotionWorkshopCraftingRecipe> POTION_WORKSHOP_CRAFTING_RECIPE_SERIALIZER;
 	public static RecipeType<PotionWorkshopCraftingRecipe> POTION_WORKSHOP_CRAFTING;
-	
 	public static RecipeSerializer<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING_SERIALIZER;
 	public static RecipeType<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING;
-	
 	public static RecipeSerializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_RECIPE_SERIALIZER;
 	public static RecipeType<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_RECIPE;
-	
 	public static RecipeSerializer<SpiritInstillerRecipe> SPIRIT_INSTILLING_SERIALIZER;
 	public static RecipeType<ISpiritInstillerRecipe> SPIRIT_INSTILLING;
-	
 	public static RecipeSerializer<InkConvertingRecipe> INK_CONVERTING_RECIPE_SERIALIZER;
 	public static RecipeType<InkConvertingRecipe> INK_CONVERTING;
+	public static RecipeSerializer<CrystallarieumRecipe> CRYSTALLARIEUM_RECIPE_SERIALIZER;
+	public static RecipeType<CrystallarieumRecipe> CRYSTALLARIEUM;
 	
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
 		return Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
@@ -154,6 +148,14 @@ public class SpectrumRecipeTypes {
 			@Override
 			public String toString() {
 				return "spectrum:ink_converting";
+			}
+		});
+		
+		CRYSTALLARIEUM_RECIPE_SERIALIZER = registerSerializer("crystallarieum_growing", new CrystallarieumRecipeSerializer(CrystallarieumRecipe::new));
+		CRYSTALLARIEUM = registerRecipeType("crystallarieum_growing", new RecipeType<CrystallarieumRecipe>() {
+			@Override
+			public String toString() {
+				return "spectrum:crystallarieum_growing";
 			}
 		});
 		

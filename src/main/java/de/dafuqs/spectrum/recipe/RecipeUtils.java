@@ -1,16 +1,18 @@
 package de.dafuqs.spectrum.recipe;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
+import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.id.incubus_core.recipe.IngredientStack;
+import net.minecraft.block.BlockState;
+import net.minecraft.command.argument.BlockArgumentParser;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.JsonHelper;
 
@@ -66,6 +68,14 @@ public class RecipeUtils {
 		Ingredient ingredient = Ingredient.fromJson(json);
 		int count = json.has("count") ? json.get("count").getAsInt() : 1;
 		return IngredientStack.of(ingredient, count);
+	}
+	
+	public static BlockState blockStateFromString(String string) throws CommandSyntaxException {
+		return new BlockArgumentParser(new StringReader(string), true).parse(false).getBlockState();
+	}
+	
+	public static String blockStateToString(BlockState state) {
+		return BlockArgumentParser.stringifyBlockState(state);
 	}
 	
 }

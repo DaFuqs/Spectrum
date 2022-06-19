@@ -21,5 +21,6 @@ public class SpectrumPlugins {
 	public static final CategoryIdentifier<HeatingDisplay> HEATING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "heating"));
 	public static final CategoryIdentifier<FreezingDisplay> FREEZING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "freezing"));
 	public static final CategoryIdentifier<InkConvertingDisplay> INK_CONVERTING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "ink_converting"));
+	public static final CategoryIdentifier<CrystallarieumDisplay> CRYSTALLARIEUM = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "crystallarieum"));
 	
 }

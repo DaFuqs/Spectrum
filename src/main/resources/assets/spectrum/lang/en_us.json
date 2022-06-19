@@ -337,6 +337,8 @@
   "spectrum.toast.ink_converting_recipes_unlocked.title": "New Ink Converting recipes:",
   "spectrum.toast.potion_reagent_unlocked.title": "New Potion Reagent:",
   "spectrum.toast.potion_reagents_unlocked.title": "New Potion Reagents:",
+  "spectrum.toast.crystallarieum_recipe_unlocked.title": "New Crystallarieum recipe:",
+  "spectrum.toast.crystallarieum_recipes_unlocked.title": "New Crystallarieum recipes:",
 
   "spectrum.toast.message.second_advancement_tree_unlocked.title": "Chapter 2: Fall from Grace",
   "spectrum.toast.message.second_advancement_tree_unlocked.text": "You unlocked a new Advancement Tree",
@@ -438,6 +440,7 @@
   "block.spectrum.item_bowl_calcite": "Item Bowl",
   "block.spectrum.potion_workshop": "Potion Workshop",
   "block.spectrum.spirit_instiller": "Spirit Instiller",
+  "block.spectrum.crystallarieum": "Crystallarieum",
 
   "block.spectrum.memory": "Memory",
   "item.spectrum.memory.tooltip.entity_type": "§7Remembers a §f%s",

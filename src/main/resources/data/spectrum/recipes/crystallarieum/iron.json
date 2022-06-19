@@ -1,9 +1,9 @@
 {
   "type": "spectrum:crystallarieum_growing",
   "ingredient": {
-    "item": "minecraft:diamond"
+    "item": "minecraft:raw_iron"
   },
-  "growth_stages": [
+  "growth_stage_states": [
     "spectrum:small_iron_bud",
     "spectrum:medium_iron_bud",
     "spectrum:large_iron_bud",
@@ -20,8 +20,7 @@
       },
       "growth_acceleration_mod": 3.0,
       "ink_efficiency_mod": 1.0,
-      "amount_consumed_when_growing_stage": 0.0
+      "consume_chance_per_second": 0.0
     }
-  ],
-  "required_advancement": "spectrum:progression/unlock_crystallarieum"
+  ]
 }

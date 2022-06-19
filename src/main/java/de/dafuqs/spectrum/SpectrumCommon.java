@@ -24,6 +24,7 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.crafting.RepairAnythingRecipe;
+import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
@@ -283,6 +284,7 @@ public class SpectrumCommon implements ModInitializer {
 			@Override
 			public void reload(ResourceManager manager) {
 				CompactingChestBlockEntity.clearCache();
+				CrystallarieumRecipe.clearCache();
 				
 				if (minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);

@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
 import net.fabricmc.yarn.constants.MiningLevels;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Lazy;
 

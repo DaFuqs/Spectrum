@@ -8,8 +8,8 @@ package de.dafuqs.spectrum.inventories.widgets;
 import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.inventories.ColorPickerScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Drawable;
@@ -19,12 +19,8 @@ import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,7 +74,7 @@ public class VerticalInkMeterWidget extends DrawableHelper implements Drawable, 
 	}
 	
 	
-	public void draw(ColorPickerScreen screen, MatrixStack matrices) {
+	public void draw(MatrixStack matrices) {
 		long currentTotal = inkStorage.getCurrentTotal();
 		
 		if (currentTotal > 0) {
@@ -89,7 +85,7 @@ public class VerticalInkMeterWidget extends DrawableHelper implements Drawable, 
 				long amount = inkStorage.getEnergy(color);
 				if(amount > 0) {
 					int height = Math.max(1, Math.round (((float) inkStorage.getEnergy(color) / ((float) maxTotal / this.height))));
-					screen.fillQuad(matrices, this.x, currentHeight - height, height, this.width, ColorHelper.getVec(color.getDyeColor()));
+					RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, ColorHelper.getVec(color.getDyeColor()));
 					currentHeight -= height;
 				}
 			}

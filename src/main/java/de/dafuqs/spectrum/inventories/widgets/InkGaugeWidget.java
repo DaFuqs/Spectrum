@@ -8,7 +8,7 @@ package de.dafuqs.spectrum.inventories.widgets;
 import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.inventories.ColorPickerScreen;
+import de.dafuqs.spectrum.helpers.RenderHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Drawable;
@@ -90,7 +90,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	}
 	
 	
-	public void draw(ColorPickerScreen screen, MatrixStack matrices) {
+	public void draw(MatrixStack matrices) {
 		long totalInk = inkStorage.getCurrentTotal();
 		
 		if (totalInk > 0) {
@@ -114,7 +114,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 						int p3x = (int) (radius * Math.cos(endRad));
 						int p3y = (int) (radius * Math.sin(endRad));
 						
-						screen.fillTriangle(matrices,
+						RenderHelper.fillTriangle(matrices,
 								centerX, centerY, // center point
 								centerX + p3x, centerY + p3y, // end point
 								centerX + p2x, centerY + p2y, // start point
@@ -123,7 +123,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 						double middleRad = startRad + curr * Math.PI;
 						int pmx = (int) (radius * Math.cos(middleRad));
 						int pmy = (int) (radius * Math.sin(middleRad));
-						screen.fillTriangle(matrices,
+						RenderHelper.fillTriangle(matrices,
 								centerX + p3x, centerY + p3y,
 								centerX + pmx, centerY + pmy,
 								centerX + p2x, centerY + p2y,

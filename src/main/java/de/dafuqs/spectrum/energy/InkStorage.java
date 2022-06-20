@@ -1,12 +1,8 @@
 package de.dafuqs.spectrum.energy;
 
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.screen.ScreenHandlerListener;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 

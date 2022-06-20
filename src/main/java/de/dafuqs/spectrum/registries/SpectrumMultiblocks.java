@@ -85,8 +85,7 @@ public class SpectrumMultiblocks {
 				{"_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________"},
 				{"_K_____K_", "_________", "__I___I__", "_________", "_________", "_________", "_________", "_________", "_________"},
 				{"_P_____P_", "___LLL___", "__CLSLC__", "___LLL___", "___LLL___", "___LLL___", "G_______G", "_________", "_________"},
-				{"_PXXXXXP_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "__XXXXX__", "P__XXX__P", "___LLL___", "_________"},
-				{"XXXXXXXXX", "XXXXXXXXX", "XXXXXXXXX", "XXXXXXXXX", "XXXX0XXXX", "XXXXXXXXX", "XXXXXXXXX", "_XXXXXXX_", "__XXXXX__"}
+				{"_PXXXXXP_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "_XXX0XXX_", "__XXXXX__", "P__XXX__P", "___LLL___", "_________"}
 		};
 		SPIRIT_INSTILLER_IDENTIFIER = registerMultiBlock("spirit_instiller_structure", structure, targetBlocks);
 	}

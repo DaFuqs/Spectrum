@@ -20,7 +20,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+
+import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
 @Environment(EnvType.CLIENT)
 public class InkGaugeWidget extends DrawableHelper implements Drawable, Element, Selectable {
@@ -64,7 +67,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	}
 	
 	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
-		List<Text> list = new ArrayList<>();
+		List<Text> tooltip = new ArrayList<>();
 		int padding = 0;
 		for (InkColor color : InkColor.all()) {
 			padding = Math.max(padding, StringUtils.length(String.valueOf(inkStorage.getEnergy(color))));
@@ -72,16 +75,16 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 		for (InkColor color : InkColor.all()) {
 			long amount = inkStorage.getEnergy(color);
 			if (amount > 0) {
-				list.add(new LiteralText(StringUtils.leftPad(String.valueOf(amount), padding, "_") + " ").append(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + color.toString())));
+				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + color.toString().toLowerCase(Locale.ROOT), getShortenedNumberString(amount)));
 			}
 		}
-		if (list.size() == 0) {
-			list.add(new TranslatableText("spectrum.tooltip.ink_powered.empty"));
+		if (tooltip.size() == 0) {
+			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.empty"));
 		} else {
-			list.add(0, new TranslatableText("spectrum.tooltip.ink_powered.stored"));
+			tooltip.add(0, new TranslatableText("spectrum.tooltip.ink_powered.stored"));
 		}
 		
-		screen.renderTooltip(matrices, list, Optional.empty(), x, y);
+		screen.renderTooltip(matrices, tooltip, Optional.empty(), x, y);
 	}
 	
 	

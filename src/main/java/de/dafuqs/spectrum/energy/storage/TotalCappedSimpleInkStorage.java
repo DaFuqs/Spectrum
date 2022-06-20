@@ -164,7 +164,7 @@ public class TotalCappedSimpleInkStorage implements InkStorage {
 		tooltip.add(new TranslatableText("item.spectrum.total_capped_simple_pigment_energy_storage.tooltip", getShortenedNumberString(maxEnergyTotal)));
 		for (Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
 			if (color.getValue() > 0) {
-				tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip.stored_energy." + color.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(color.getValue())));
+				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + color.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(color.getValue())));
 			}
 		}
 	}

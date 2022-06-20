@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import net.minecraft.util.Identifier;
 import vazkii.patchouli.client.book.ClientBookRegistry;
 
@@ -15,6 +16,7 @@ public class PatchouliPages {
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "potion_workshop_crafting"), PagePotionWorkshopCrafting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_crafting"), PageSpiritInstillerCrafting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "midnight_solution_converting"), PageMidnightSolutionConverting.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "crystallarieum_growing"), PageCrystallarieumGrowing.class);
 		
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "hint"), PageHint.class);
 	}

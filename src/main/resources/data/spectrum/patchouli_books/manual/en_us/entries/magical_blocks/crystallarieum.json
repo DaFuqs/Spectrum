@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You designed the Crystallarieum with Budding Blocks in mind: an ink-powered apparatus, which could automatically grow resources from raw ore or crystals on it's top.$(br)While, even after all your efforts, you could not get it to grow actual gemstone shards, you quickly recognised it's potential for growing all kinds of other resources."
+      "text": "You designed the Crystallarieum with Budding Blocks in mind: an ink-powered apparatus, which could automatically grow resources from raw ore or crystals on it's top.$(br)While, even after all your efforts, you could not get it to grow actual $(l:general/shards)Gemstone Shards$(/l), you quickly recognised it's potential for growing all kinds of other resources."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/crystallarieum",
-      "text": "It can fit a few stacks of catalysts, which it uses to enhance the growth process. For a few rare materials, like $(l:resources/bismuth)Bismuth$(/l) that even seems required."
+      "text": "It can fit a few stacks of catalysts, which it uses to enhance the growth process. For a few rare materials that even seems required."
     }
   ]
 }

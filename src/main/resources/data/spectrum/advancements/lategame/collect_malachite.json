@@ -2,19 +2,20 @@
   "parent": "spectrum:lategame/spectrum_lategame",
   "display": {
     "icon": {
-      "item": "spectrum:bismuth_crystal"
+      "item": "spectrum:deepslate_malachite_ore"
     },
+    "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.collect_bismuth_crystal.title"
+      "translate": "advancements.spectrum.collect_malachite.title"
     },
     "description": {
-      "translate": "advancements.spectrum.collect_bismuth_crystal.description"
+      "translate": "advancements.spectrum.collect_malachite.description"
     }
   },
   "criteria": {
-    "collected_hover_block": {
+    "collected_malachite": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:bismuth_crystal" ]}] }
+      "conditions": { "items": [{ "tag": [ "spectrum:malachite_ores" ]}] }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

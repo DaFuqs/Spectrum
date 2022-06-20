@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:midgame/collect_bismuth",
+  "display": {
+    "icon": {
+      "item": "spectrum:bismuth_crystal"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_bismuth_crystal.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_bismuth_crystal.description"
+    }
+  },
+  "criteria": {
+    "collected_bismuth_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:bismuth_crystal" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_bismuth" }
+    }
+  }
+}

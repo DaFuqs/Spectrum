@@ -1,6 +1,6 @@
 {
   "name": "Bismuth",
-  "advancement": "spectrum:hidden/collect_bismuth",
+  "advancement": "spectrum:midgame/collect_bismuth",
   "icon": "spectrum:small_bismuth_bud",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
@@ -14,19 +14,14 @@
     {
       "type": "patchouli:text",
       "title": "Bismuth",
-      "text": "A metal that shimmers in all the colors of the rainbow.$(br2)It seems to have strong magical properties, almost like a $(l:dimension/dimension)Deeper Down$() analog of $(l:resources/azurite)Azurite$()."
+      "text": "A metal that shimmers in all the colors of the rainbow.$(br)The small seedlings you collected are far too small to be used for any meaningful purpose. The shimmering metal seems to grow larger very slowly by absorbing the energy of other metallic blocks in it's vicinity."
     },
     {
-      "type": "patchouli:spotlight",
-      "title": "Growing Bismuth",
-      "item": "spectrum:small_bismuth_bud",
-      "text": "The small seedlings you collected are far too small to be used for any meaningful purpose. The shimmering metal seems to grow larger very slowly by absorbing the energy of other metallic blocks in it's vicinity."
-    },
-    {
-      "type": "patchouli:text",
+      "type": "spectrum:crystallarieum_growing",
       "advancement": "spectrum:progression/unlock_crystallarieum",
       "title": "Growing Bismuth",
-      "text": "Instead of providing metal blocks, the $(l:magical_blocks/crystallarieum)Crystallarieum$(), too, provides a controlled substrate and also finer and more efficient way to provide nutrients."
+      "recipe": "spectrum:crystallarieum/bismuth",
+      "text": "Instead of providing whole metal blocks, the $(l:magical_blocks/crystallarieum)Crystallarieum$(), too, provides a controlled substrate and also finer and more efficient way to provide nutrients."
     }
   ]
 }

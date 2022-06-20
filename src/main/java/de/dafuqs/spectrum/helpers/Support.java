@@ -110,6 +110,26 @@ public class Support {
 	}
 	
 	/**
+	 * Calculates the percentage of x / y from 0-100, but in a way it feels logical to players
+	 * If x > 0 the result is always at least 1,
+	 * If it approaches 100 %, but is not yet still there, returns 99
+	 */
+	public static String getSensiblePercent(long x, long y) {
+		if(y == 0) {
+			return "0";
+		}
+		
+		double result = (double) x / y;
+		if(result < 0.01 && x > 0) {
+			return "1";
+		} else if(result > 0.99 && x != y) {
+			return "99";
+		} else {
+			return df2.format(Math.round(result * 100L));
+		}
+	}
+	
+	/**
 	 * Adds a stack to the players inventory.
 	 * If there is not enough room drop it on the ground instead
 	 *

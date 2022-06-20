@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.energy.color;
 
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.math.Vec3f;
 
 import java.util.*;
 
@@ -11,9 +12,11 @@ public abstract class InkColor {
 	protected static final Collection<ElementalColor> ELEMENTAL_COLORS = new ArrayList<>();
 	
 	protected final DyeColor dyeColor;
+	protected final Vec3f color;
 	
-	protected InkColor(DyeColor dyeColor) {
+	protected InkColor(DyeColor dyeColor, Vec3f color) {
 		this.dyeColor = dyeColor;
+		this.color = color;
 		COLORS.put(dyeColor, this);
 	}
 	
@@ -60,6 +63,9 @@ public abstract class InkColor {
 		return new TranslatableText("spectrum.ink.color." + this);
 	}
 	
+	public Vec3f getColor() {
+		return this.color;
+	}
 	
 }
 

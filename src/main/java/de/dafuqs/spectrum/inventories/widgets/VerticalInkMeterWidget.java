@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package de.dafuqs.spectrum.inventories.widgets;
 
 import de.dafuqs.spectrum.energy.InkStorage;
@@ -68,11 +63,11 @@ public class VerticalInkMeterWidget extends DrawableHelper implements Drawable, 
 	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
 		long currentTotal = this.inkStorage.getCurrentTotal();
 		String readableCurrentTotalString = Support.getShortenedNumberString(currentTotal);
+		String percent = Support.getSensiblePercent(this.inkStorage.getCurrentTotal(), (this.inkStorage.getMaxTotal()));
 		screen.renderTooltip(matrices,
-				List.of(new TranslatableText("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, this.inkStorage.getCurrentTotal() / (this.inkStorage.getMaxTotal() / 100))),
+				List.of(new TranslatableText("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
 				Optional.empty(), x, y);
 	}
-	
 	
 	public void draw(MatrixStack matrices) {
 		long currentTotal = inkStorage.getCurrentTotal();

@@ -80,7 +80,7 @@ public class VerticalInkMeterWidget extends DrawableHelper implements Drawable, 
 				long amount = inkStorage.getEnergy(color);
 				if(amount > 0) {
 					int height = Math.max(1, Math.round (((float) inkStorage.getEnergy(color) / ((float) maxTotal / this.height))));
-					RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, ColorHelper.getVec(color.getDyeColor()));
+					RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, color.getColor());
 					currentHeight -= height;
 				}
 			}

@@ -113,7 +113,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 								centerX, centerY, // center point
 								centerX + p3x, centerY + p3y, // end point
 								centerX + p2x, centerY + p2y, // start point
-								ColorHelper.getVec(color.getDyeColor()));
+								color.getColor());
 						
 						double middleRad = startRad + curr * Math.PI;
 						int pmx = (int) (radius * Math.cos(middleRad));
@@ -122,7 +122,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 								centerX + p3x, centerY + p3y,
 								centerX + pmx, centerY + pmy,
 								centerX + p2x, centerY + p2y,
-								ColorHelper.getVec(color.getDyeColor()));
+								color.getColor());
 						
 						startRad = endRad;
 					}

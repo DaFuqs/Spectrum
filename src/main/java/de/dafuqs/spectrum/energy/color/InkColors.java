@@ -22,7 +22,7 @@ public class InkColors {
 		put(CYAN, 1F / 3F);
 		put(YELLOW, 2F / 3F);
 	}});
-	public static CompoundColor PINK = new CompoundColor(DyeColor.PINK, new Vec3f(1f, 0.44f, 0.5f), new HashMap<>() {{
+	public static CompoundColor PINK = new CompoundColor(DyeColor.PINK, new Vec3f(0.99f, 0.56f, 1f), new HashMap<>() {{
 		put(MAGENTA, 2F / 3F);
 		put(YELLOW, 1F / 3F);
 	}});

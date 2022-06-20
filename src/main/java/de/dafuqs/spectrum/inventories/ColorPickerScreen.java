@@ -1,17 +1,12 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.google.common.primitives.UnsignedInteger;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.inventories.widgets.ColorSelectionWidget;
 import de.dafuqs.spectrum.inventories.widgets.InkGaugeWidget;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.screen.Screen;
+import de.dafuqs.spectrum.inventories.widgets.VerticalInkMeterWidget;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.Window;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -22,8 +17,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3f;
 
-import java.util.List;
-
 public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> implements ScreenHandlerListener {
 	
 	protected static final BufferBuilder builder = Tessellator.getInstance().getBuffer();
@@ -31,6 +24,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	protected final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/color_picker.png");
 	protected ColorSelectionWidget colorSelectionWidget;
 	protected InkGaugeWidget inkGaugeWidget;
+	protected VerticalInkMeterWidget inkMeterWidget;
 	
 	public ColorPickerScreen(ColorPickerScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
@@ -46,6 +40,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		
 		this.colorSelectionWidget = new ColorSelectionWidget(startX + 113, startY + 55, 56, 14, this.handler.getBlockEntity().getSelectedColor());
 		this.inkGaugeWidget = new InkGaugeWidget(startX + 54, startY + 21, 42, 42, this, this.handler.getBlockEntity().getEnergyStorage());
+		this.inkMeterWidget = new VerticalInkMeterWidget(startX + 100, startY + 21, 4, 40, this, this.handler.getBlockEntity().getEnergyStorage());
 		handler.addListener(this);
 	}
 	
@@ -80,6 +75,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
         drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
 		
 		this.inkGaugeWidget.draw(this, matrices);
+		this.inkMeterWidget.draw(this, matrices);
 
 		// gauge blanket
 		drawTexture(matrices, startX+52, startY+18, 176 ,0 ,46 , 46);
@@ -96,6 +92,8 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
 		if(this.inkGaugeWidget.isMouseOver(x, y)) {
 			this.inkGaugeWidget.drawMouseoverTooltip(matrices, x, y);
+		} else if(this.inkMeterWidget.isMouseOver(x, y)) {
+			this.inkMeterWidget.drawMouseoverTooltip(matrices, x, y);
 		} else {
 			super.drawMouseoverTooltip(matrices, x, y);
 		}
@@ -115,7 +113,8 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	 * Draws a filled triangle
 	 * Attention: The points specified have to be ordered in counter-clockwise order, or will now show up at all
 	 */
-	public void fillTri(Matrix4f matrix, int p1x, int p1y, int p2x, int p2y, int p3x, int p3y, Vec3f color){
+	public void fillTriangle(MatrixStack matrices, int p1x, int p1y, int p2x, int p2y, int p3x, int p3y, Vec3f color){
+		Matrix4f matrix = matrices.peek().getPositionMatrix();
 		float red = color.getX();
 		float green = color.getY();
 		float blue = color.getZ();
@@ -129,6 +128,28 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		builder.vertex(matrix, p1x, p1y, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, p2x, p2y, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, p3x, p3y, 0F).color(red, green, blue, alpha).next();
+		builder.end();
+		BufferRenderer.draw(builder);
+		RenderSystem.enableTexture();
+		RenderSystem.disableBlend();
+	}
+	
+	public void fillQuad(MatrixStack matrices, int x, int y, int height, int width, Vec3f color){
+		Matrix4f matrix = matrices.peek().getPositionMatrix();
+		float red = color.getX();
+		float green = color.getY();
+		float blue = color.getZ();
+		float alpha = 1.0F;
+		
+		RenderSystem.enableBlend();
+		RenderSystem.disableTexture();
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.setShader(GameRenderer::getPositionColorShader);
+		builder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
+		builder.vertex(matrix, x, y, 0F).color(red, green, blue, alpha).next();
+		builder.vertex(matrix, x, y+height, 0F).color(red, green, blue, alpha).next();
+		builder.vertex(matrix, x+width, y+height, 0F).color(red, green, blue, alpha).next();
+		builder.vertex(matrix, x+width, y, 0F).color(red, green, blue, alpha).next();
 		builder.end();
 		BufferRenderer.draw(builder);
 		RenderSystem.enableTexture();

@@ -1,12 +1,17 @@
 package de.dafuqs.spectrum.energy;
 
 import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.screen.ScreenHandlerListener;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * This interface defines that an object can
@@ -94,6 +99,11 @@ public interface InkStorage {
 	
 	// gets the amount of stored energy of that type
 	long getEnergy(InkColor color);
+	
+	// sets the amount of stored energy of that type
+	// only use for syncing server <=> clientside
+	@Deprecated
+	void setEnergy(Map<InkColor, Long> colors, long total);
 	
 	// gets the amount of energy that can be stored per individual color
 	long getMaxPerColor();

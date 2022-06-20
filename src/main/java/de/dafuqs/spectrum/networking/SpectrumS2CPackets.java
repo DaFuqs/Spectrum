@@ -28,5 +28,5 @@ public class SpectrumS2CPackets {
 	public static final Identifier START_SKY_LERPING = new Identifier(SpectrumCommon.MOD_ID, "start_sky_lerping");
 	public static final Identifier PLAY_MEMORY_MANIFESTING_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_memory_manifesting_particles");
 	public static final Identifier UPDATE_BOSS_BAR = new Identifier(SpectrumCommon.MOD_ID, "update_boss_bar");
-	
+	public static final Identifier UPDATE_BLOCK_ENTITY_INK = new Identifier(SpectrumCommon.MOD_ID, "update_block_entity_ink");
 }

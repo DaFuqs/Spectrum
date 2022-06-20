@@ -211,6 +211,7 @@
   "spectrum.tooltip.ink_powered.bullet.pink": "§d◆ Pink Ink§r",
   "spectrum.tooltip.ink_powered.bullet.purple": "§5◆ Purple Ink§r",
   "spectrum.tooltip.ink_powered.bullet.red": "§c◆ Red Ink§r",
+  "spectrum.tooltip.ink_powered.empty": "Empty",
 
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.cyan": "%d §bCyan§r Ink until next improvement",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.magenta": "%d §dMagenta§r Ink until next improvement",

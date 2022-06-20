@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
@@ -102,6 +103,15 @@ public class SingleInkStorage implements InkStorage {
 			return this.storedEnergy;
 		} else {
 			return 0;
+		}
+	}
+	
+	@Override
+	public void setEnergy(Map<InkColor, Long> colors, long total) {
+		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
+			if (storedEnergy == 0 || this.storedColor == color.getKey()) {
+				this.storedEnergy = color.getValue();
+			}
 		}
 	}
 	

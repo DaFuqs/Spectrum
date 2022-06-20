@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
 import de.dafuqs.spectrum.inventories.slots.ColorPickerInputSlot;
 import de.dafuqs.spectrum.inventories.slots.InkStorageSlot;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -10,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -21,12 +23,24 @@ public class ColorPickerScreenHandler extends ScreenHandler {
 	protected final World world;
 	protected ColorPickerBlockEntity blockEntity;
 	
+	public final ServerPlayerEntity player;
+	
+	@Override
+	public void sendContentUpdates() {
+		super.sendContentUpdates();
+		
+		if(this.player != null) { // TODO: make more performant: send not every tick, only when changed => blockEntity.inkChanged?
+			SpectrumS2CPacketSender.updateBlockEntityStorage(blockEntity.getPos(), blockEntity.getEnergyStorage(), player);
+		}
+	}
+	
 	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
 		this(syncId, playerInventory, buf.readBlockPos());
 	}
 	
 	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos) {
 		super(SpectrumScreenHandlerTypes.COLOR_PICKER, syncId);
+		this.player = playerInventory.player instanceof ServerPlayerEntity serverPlayerEntity ? serverPlayerEntity : null;
 		this.world = playerInventory.player.world;
 		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
 		if (blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {

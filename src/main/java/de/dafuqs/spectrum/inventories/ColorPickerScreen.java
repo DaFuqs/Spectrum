@@ -20,13 +20,14 @@ import net.minecraft.screen.ScreenHandlerListener;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix4f;
+import net.minecraft.util.math.Vec3f;
 
 import java.util.List;
 
 public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> implements ScreenHandlerListener {
-    BufferBuilder builder = Tessellator.getInstance().getBuffer();
-
-    Window window = MinecraftClient.getInstance().getWindow();
+	
+	protected static final BufferBuilder builder = Tessellator.getInstance().getBuffer();
+	
 	protected final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/color_picker.png");
 	protected ColorSelectionWidget colorSelectionWidget;
 	protected InkGaugeWidget inkGaugeWidget;
@@ -39,11 +40,12 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	@Override
 	protected void init() {
 		super.init();
-		int centerX = (this.width - this.backgroundWidth) / 2;
-		int centerY = (this.height - this.backgroundHeight) / 2;
 		
-		this.colorSelectionWidget = new ColorSelectionWidget(centerX + 62, centerY + 24, 98, 12, this.handler.getBlockEntity().getSelectedColor());
-		this.inkGaugeWidget = new InkGaugeWidget(centerX + 62, centerY + 24, 98, 12);
+		int startX = (this.width - this.backgroundWidth) / 2;
+		int startY = (this.height - this.backgroundHeight) / 2;
+		
+		this.colorSelectionWidget = new ColorSelectionWidget(startX + 113, startY + 55, 56, 14, this.handler.getBlockEntity().getSelectedColor());
+		this.inkGaugeWidget = new InkGaugeWidget(startX + 54, startY + 21, 42, 42, this, this.handler.getBlockEntity().getEnergyStorage());
 		handler.addListener(this);
 	}
 	
@@ -73,11 +75,14 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		
 		int startX = (this.width - this.backgroundWidth) / 2;
 		int startY = (this.height - this.backgroundHeight) / 2;
+		
 		// main background
         drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
-        fillTri(matrices.peek().getPositionMatrix(), window.getScaledWidth()-startX, 0, 150, 125,startX + (inkGaugeWidget.x + (inkGaugeWidget.width/2)),startY + (inkGaugeWidget.height/2), List.of(1F, 0.0F, 1.0F, 1.0F));
-        drawTexture(matrices, startX+54, startY+20, 176 ,0 ,42 , 42);
+		
+		this.inkGaugeWidget.draw(this, matrices);
 
+		// gauge blanket
+		drawTexture(matrices, startX+54, startY+20, 176 ,0 ,42 , 42);
 	}
 	
 	@Override
@@ -89,7 +94,11 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	
 	@Override
 	protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
-		super.drawMouseoverTooltip(matrices, x, y);
+		if(this.inkGaugeWidget.isMouseOver(x, y)) {
+			this.inkGaugeWidget.drawMouseoverTooltip(matrices, x, y);
+		} else {
+			super.drawMouseoverTooltip(matrices, x, y);
+		}
 	}
 	
 	@Override
@@ -101,29 +110,30 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	public void onPropertyUpdate(ScreenHandler handler, int property, int value) {
 	
 	}
-
-    public void fillTri(Matrix4f matrix, Integer p1x, Integer p1y, Integer p2x, Integer p2y, Integer p3x, Integer p3y, List<Float> color){
-        Float alpha = color.get(0);
-        Float red = color.get(1);
-        Float green = color.get(2);
-        Float blue = color.get(3);
-        RenderSystem.enableBlend();
-        RenderSystem.disableTexture();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.setShader(GameRenderer::getPositionColorShader);
-        builder.begin(VertexFormat.DrawMode.TRIANGLES, VertexFormats.POSITION_COLOR);
-        builder.vertex(matrix, p1x, p1y, 0F).color(red, green, blue, alpha).next();
-        builder.vertex(matrix, p2x, p2y, 0F).color(red, green, blue, alpha).next();
-        builder.vertex(matrix, p3x, p3y, 0F).color(red, green, blue, alpha).next();
-        builder.end();
-        BufferRenderer.draw(builder);
-        RenderSystem.enableTexture();
-        RenderSystem.disableBlend();
-    }
-
-    private Integer getAbsolutePos(Integer relativeX, Integer relativeY, Integer startX, Integer startY){
-
-
-        return null;
-    }
+	
+	/**
+	 * Draws a filled triangle
+	 * Attention: The points specified have to be ordered in counter-clockwise order, or will now show up at all
+	 */
+	public void fillTri(Matrix4f matrix, Integer p1x, Integer p1y, Integer p2x, Integer p2y, Integer p3x, Integer p3y, Vec3f color){
+		float red = color.getX();
+		float green = color.getY();
+		float blue = color.getZ();
+		float alpha = 1.0F;
+		
+		RenderSystem.enableBlend();
+		RenderSystem.disableTexture();
+		RenderSystem.defaultBlendFunc();
+		RenderSystem.setShader(GameRenderer::getPositionColorShader);
+		builder.begin(VertexFormat.DrawMode.TRIANGLES, VertexFormats.POSITION_COLOR);
+		builder.vertex(matrix, p1x, p1y, 0F).color(red, green, blue, alpha).next();
+		builder.vertex(matrix, p2x, p2y, 0F).color(red, green, blue, alpha).next();
+		builder.vertex(matrix, p3x, p3y, 0F).color(red, green, blue, alpha).next();
+		builder.end();
+		BufferRenderer.draw(builder);
+		RenderSystem.enableTexture();
+		RenderSystem.disableBlend();
+	}
+	
+	
 }

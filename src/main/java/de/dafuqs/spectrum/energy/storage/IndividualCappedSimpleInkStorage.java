@@ -107,6 +107,13 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 	}
 	
 	@Override
+	@Deprecated
+	public void setEnergy(Map<InkColor, Long> colors, long total) {
+		this.storedEnergy.putAll(colors);
+		this.currentTotal = total;
+	}
+	
+	@Override
 	public long getMaxTotal() {
 		return this.maxEnergyPerColor * this.storedEnergy.size();
 	}
@@ -156,8 +163,10 @@ public class IndividualCappedSimpleInkStorage implements InkStorage {
 	}
 	
 	public void fillCompletely() {
+		this.currentTotal = 0;
 		for (InkColor color : InkColor.all()) {
 			storedEnergy.put(color, this.maxEnergyPerColor);
+			this.currentTotal += this.maxEnergyPerColor;
 		}
 	}
 	

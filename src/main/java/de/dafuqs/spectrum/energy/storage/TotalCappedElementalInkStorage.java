@@ -178,6 +178,17 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	}
 	
 	@Override
+	@Deprecated
+	public void setEnergy(Map<InkColor, Long> colors, long total) {
+		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
+			if (color instanceof ElementalColor elementalColor) {
+				this.storedEnergy.put(elementalColor, color.getValue());
+			}
+		}
+		this.currentTotal = total;
+	}
+	
+	@Override
 	public long getMaxTotal() {
 		return this.maxEnergyTotal;
 	}
@@ -217,6 +228,7 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	public void fillCompletely() {
 		long energyPerColor = this.maxEnergyTotal / this.storedEnergy.size();
 		this.storedEnergy.replaceAll((c, v) -> energyPerColor);
+		this.currentTotal += this.storedEnergy.size() * energyPerColor;
 	}
 	
 	@Override

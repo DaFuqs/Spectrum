@@ -5,6 +5,9 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
+import de.dafuqs.spectrum.energy.InkStorage;
+import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
+import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.ColorHelper;
@@ -21,6 +24,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
 import net.minecraft.item.ItemStack;
@@ -40,6 +44,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
@@ -352,6 +357,24 @@ public class SpectrumS2CPacketReceiver {
 					if (clientBossBar instanceof SpectrumClientBossBar spectrumClientBossBar) {
 						spectrumClientBossBar.setSerpentMusic(hasSerpentMusic);
 					}
+				}
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.UPDATE_BLOCK_ENTITY_INK, (client, handler, buf, responseSender) -> {
+			BlockPos blockPos = buf.readBlockPos();
+			long colorTotal = buf.readLong();
+			
+			Map<InkColor, Long> colors = new HashMap<>();
+			for(InkColor inkColor : InkColor.all()) {
+				colors.put(inkColor, buf.readLong());
+			}
+			
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				BlockEntity blockEntity = client.getInstance().player.world.getBlockEntity(blockPos);
+				if(blockEntity instanceof InkStorageBlockEntity inkStorageBlockEntity) {
+					inkStorageBlockEntity.getEnergyStorage().setEnergy(colors, colorTotal);
 				}
 			});
 		});

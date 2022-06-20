@@ -129,6 +129,7 @@ public class SpectrumMultiblocks {
 				'C', "#spectrum:chiseled_base_blocks",
 				'K', "#spectrum:notched_base_blocks",
 				'R', "#spectrum:basic_gemstone_chiseled_base_blocks",
+				'r', "#spectrum:basic_and_onyx_gemstone_chiseled_base_blocks",
 				'O', "#spectrum:onyx_chiseled_base_blocks",
 				'm', "#spectrum:moonstone_chiseled_base_blocks",
 				'M', "#spectrum:moonstone_chiseled_base_blocks",
@@ -149,6 +150,7 @@ public class SpectrumMultiblocks {
 				'C', "spectrum:chiseled_polished_basalt",
 				'K', "spectrum:notched_polished_basalt",
 				'R', "spectrum:amethyst_chiseled_basalt",
+				'r', "spectrum:amethyst_chiseled_basalt",
 				'O', "spectrum:onyx_chiseled_basalt",
 				'm', "spectrum:moonstone_chiseled_basalt[axis=x]",
 				'M', "spectrum:moonstone_chiseled_basalt[axis=y]",
@@ -169,7 +171,7 @@ public class SpectrumMultiblocks {
 		PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_PLACE = registerMultiBlock("pedestal_simple_structure_place", tier1Structure, targetBlocksPlace);
 		
 		String[][] tier2Structure = {
-				{"_____________", "_SttR___RttS_", "_T_________T_", "_T_________T_", "_R_________R_", "_____________", "_____________", "_____________", "_R_________R_", "_T_________T_", "_T_________T_", "_SttR___RttS_", "_____________"},
+				{"_____________", "_Sttr___rttS_", "_T_________T_", "_T_________T_", "_r_________r_", "_____________", "_____________", "_____________", "_r_________r_", "_T_________T_", "_T_________T_", "_Sttr___rttS_", "_____________"},
 				{"_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________"},
 				{"_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________"},
 				{"_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________"},
@@ -181,7 +183,7 @@ public class SpectrumMultiblocks {
 		
 		String[][] tier3Structure = {
 				{"_____________", "____XtStX____", "_____________", "_____________", "_X__OtttO__X_", "_T__T___T__T_", "_S__T___T__S_", "_T__T___T__T_", "_X__OtttO__X_", "_____________", "_____________", "____XtStX____", "_____________"},
-				{"_____________", "_SttR___RttS_", "_T__T___T__T_", "_T__T___T__T_", "_RttX___XttR_", "_____________", "_____________", "_____________", "_RttX___XttR_", "_T__T___T__T_", "_T__T___T__T_", "_SttR___RttS_", "_____________"},
+				{"_____________", "_Sttr___rttS_", "_T__T___T__T_", "_T__T___T__T_", "_rttX___Xttr_", "_____________", "_____________", "_____________", "_rttX___Xttr_", "_T__T___T__T_", "_T__T___T__T_", "_Sttr___rttS_", "_____________"},
 				{"_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________"},
 				{"_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________"},
 				{"_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________"},

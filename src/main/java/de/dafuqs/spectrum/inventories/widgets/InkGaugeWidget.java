@@ -94,32 +94,41 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 		if (totalInk > 0) {
 			int centerX = x + width / 2;
 			int centerY = y + width / 2;
-			int radius = 21;
+			int radius = 22;
 			
-			double currentRad = 0;
+			double startRad = -0.5 * Math.PI;
 			for (InkColor color : InkColor.all()) {
 				long currentInk = inkStorage.getEnergy(color);
 				if (currentInk > 0) {
-					double thisRad = ((double) currentInk / (double) totalInk) * 2 * Math.PI;
-					
-					int p2x = centerX + (int) (radius * Math.cos(thisRad));
-					int p2y = centerY + (int) (radius * Math.sin(thisRad));
-					int p3x = centerX + (int) (radius * Math.cos(currentRad));
-					int p3y = centerY + (int) (radius * Math.sin(currentRad));
-					
-					screen.fillTri(matrices.peek().getPositionMatrix(),
-							centerX, centerY, // center point
-							p2x, p2y, // end point
-							p3x, p3y, // start point
-							ColorHelper.getVec(color.getDyeColor()));
-					
-					screen.fillTri(matrices.peek().getPositionMatrix(),
-							p2x, p2y, // end point
-							p3x, p2y, // outside point
-							p3x, p3y, // start point
-							ColorHelper.getVec(color.getDyeColor()));
-					
-					currentRad = thisRad;
+					double thisPart = ((double) currentInk / (double) totalInk);
+					while (thisPart > 0) {
+						double curr = Math.min(0.20, thisPart);
+						thisPart -= curr;
+						
+						double endRad = startRad + curr * 2 * Math.PI;
+						
+						int p2x = (int) (radius * Math.cos(startRad));
+						int p2y = (int) (radius * Math.sin(startRad));
+						int p3x = (int) (radius * Math.cos(endRad));
+						int p3y = (int) (radius * Math.sin(endRad));
+						
+						screen.fillTri(matrices.peek().getPositionMatrix(),
+								centerX, centerY, // center point
+								centerX + p3x, centerY + p3y, // end point
+								centerX + p2x, centerY + p2y, // start point
+								ColorHelper.getVec(color.getDyeColor()));
+						
+						double middleRad = startRad + curr * Math.PI;
+						int pmx = (int) (radius * Math.cos(middleRad));
+						int pmy = (int) (radius * Math.sin(middleRad));
+						screen.fillTri(matrices.peek().getPositionMatrix(),
+								centerX + p3x, centerY + p3y,
+								centerX + pmx, centerY + pmy,
+								centerX + p2x, centerY + p2y,
+								ColorHelper.getVec(color.getDyeColor()));
+						
+						startRad = endRad;
+					}
 				}
 			}
 		}

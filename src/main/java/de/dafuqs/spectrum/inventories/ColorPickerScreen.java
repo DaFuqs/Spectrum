@@ -82,7 +82,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		this.inkGaugeWidget.draw(this, matrices);
 
 		// gauge blanket
-		drawTexture(matrices, startX+54, startY+20, 176 ,0 ,42 , 42);
+		drawTexture(matrices, startX+52, startY+18, 176 ,0 ,46 , 46);
 	}
 	
 	@Override
@@ -115,7 +115,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	 * Draws a filled triangle
 	 * Attention: The points specified have to be ordered in counter-clockwise order, or will now show up at all
 	 */
-	public void fillTri(Matrix4f matrix, Integer p1x, Integer p1y, Integer p2x, Integer p2y, Integer p3x, Integer p3y, Vec3f color){
+	public void fillTri(Matrix4f matrix, int p1x, int p1y, int p2x, int p2y, int p3x, int p3y, Vec3f color){
 		float red = color.getX();
 		float green = color.getY();
 		float blue = color.getZ();
@@ -134,6 +134,5 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		RenderSystem.enableTexture();
 		RenderSystem.disableBlend();
 	}
-	
 	
 }

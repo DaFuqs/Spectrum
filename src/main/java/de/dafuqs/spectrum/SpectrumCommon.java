@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
+import de.dafuqs.spectrum.components.SpectrumComponents;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
 import de.dafuqs.spectrum.energy.color.InkColors;
@@ -95,6 +96,10 @@ public class SpectrumCommon implements ModInitializer {
 	public static void logError(String message) {
 		LOGGER.error("[Spectrum] " + message);
 	}
+
+	public static Identifier locate(String name) {
+		return new Identifier(MOD_ID, name);
+	}
 	
 	private static <T> BiConsumer<T, Identifier> registerInRegistry(Registry<? super T> registry) {
 		return (t, id) -> Registry.register(registry, id, t);
@@ -150,6 +155,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumBlocks.register();
 		logInfo("Registering Items...");
 		SpectrumItems.register();
+		logInfo("Registering SAR Components...");
+		SpectrumComponents.register();
 
 		// Tags
 		logInfo("Fetching Item Tags...");

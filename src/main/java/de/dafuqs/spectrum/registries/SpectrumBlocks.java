@@ -62,6 +62,7 @@ import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlock;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
+import de.dafuqs.spectrum.blocks.stonesetting_workshop.StonesettingWorkshopBlock;
 import de.dafuqs.spectrum.blocks.structure.DikeGateBlock;
 import de.dafuqs.spectrum.blocks.structure.PreservationControllerBlock;
 import de.dafuqs.spectrum.blocks.structure.StatueBlock;
@@ -507,6 +508,8 @@ public class SpectrumBlocks {
 	private static final FabricBlockSettings FUSION_SHINE_BLOCK_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).requiresTool().nonOpaque().luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL));
 	public static final Block FUSION_SHRINE_BASALT = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
 	public static final Block FUSION_SHRINE_CALCITE = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
+
+	public static final Block STONESETTING_WORKSHOP = new StonesettingWorkshopBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	
 	private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool();
 	private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
@@ -832,6 +835,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettingsSingle, BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"), DyeColor.WHITE);
 		registerBlockWithItem("fusion_shrine_basalt", FUSION_SHRINE_BASALT, generalItemSettingsSingle, DyeColor.GRAY);
 		registerBlockWithItem("fusion_shrine_calcite", FUSION_SHRINE_CALCITE, generalItemSettingsSingle, DyeColor.GRAY);
+		registerBlockWithItem("stonesetting_workshop", STONESETTING_WORKSHOP, generalItemSettingsSingle, DyeColor.WHITE);
 		registerBlockWithItem("enchanter", ENCHANTER, generalItemSettingsSingle, DyeColor.PURPLE);
 		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, generalItemSettingsSixteen, DyeColor.PINK);
 		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, generalItemSettingsSixteen, DyeColor.PINK);

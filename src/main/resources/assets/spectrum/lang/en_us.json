@@ -1221,6 +1221,8 @@
   "item.spectrum.paletur_gem": "Paltaeria Gem",
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
 
+  "item.spectrum.white_crystal_grace": "Moony Crystal",
+
   "item.spectrum.knowledge_gem": "Knowledge Gem",
   "item.spectrum.knowledge_gem.tooltip.stored_experience": "/ %d Experience stored",
   "item.spectrum.knowledge_gem.tooltip.use": "Use to drain, or crouch-use to store experience (%d/tick)",

@@ -72,6 +72,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		
 		this.inkGaugeWidget.draw(matrices);
 		this.inkMeterWidget.draw(matrices);
+        this.colorSelectionWidget.draw(matrices);
 
 		// gauge blanket
 		drawTexture(matrices, startX+52, startY+18, 176 ,0 ,46 , 46);

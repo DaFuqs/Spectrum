@@ -197,6 +197,11 @@ public abstract class LivingEntityMixin {
 		
 		return amount;
 	}
+
+	@ModifyVariable(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), argsOnly = true)
+	public float spectrum$applyGraceDamage(float amount, DamageSource source) {
+		return amount;
+	}
 	
 	@Inject(at = @At("RETURN"), method = "tryUseTotem(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)
 	public void spectrum$checkForTotemPendant(DamageSource source, CallbackInfoReturnable<Boolean> cir) {

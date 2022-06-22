@@ -18,6 +18,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.id.incubus_core.render.IncubusShaders;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
@@ -44,6 +45,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 		
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
+		IncubusShaders.enableBloom();
 		logInfo("Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();
 		

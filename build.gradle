@@ -80,6 +80,7 @@ dependencies {
 	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cca_version}"
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-item:${cca_version}"
 
 	// https://github.com/TheEpicBlock/banner-plus-plus
 	modImplementation include("io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2")
@@ -87,6 +88,7 @@ dependencies {
 	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:2.1.1")
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
+	modImplementation include("com.github.devs-immortal:Some-Assembly-Required:${project.sar_version}")
 	modImplementation include("io.github.ladysnake:satin:${project.satin_version}")
 
 	// Soft dependencies:

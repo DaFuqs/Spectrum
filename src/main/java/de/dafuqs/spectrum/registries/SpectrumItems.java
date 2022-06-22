@@ -181,7 +181,13 @@ public class SpectrumItems {
 	public static final FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(bedrockToolItemSettings);
 	
 	public static final SwordItem DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, toolUncommonItemSettingsSingle);
-	
+
+	// Graces
+	public static OwoItemSettings graceSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE).maxCount(1).fireproof();
+
+	public static final CrystalGraceItem WHITE_CRYSTAL_GRACE = new CrystalGraceItem(graceSettings, "ooooo go stick a dildo in Azzy's ass oooo");
+
+
 	// Bedrock Armor
 	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.HEAD, bedrockArmorItemSettings) {
 		@Override
@@ -343,6 +349,7 @@ public class SpectrumItems {
 		
 		registerStructurePlacers();
 		registerGemstoneItems();
+		registerGraces();
 		registerPigments();
 		registerCatkin();
 		registerResources();
@@ -364,6 +371,10 @@ public class SpectrumItems {
 		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);
 		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH, DyeColor.MAGENTA);
 		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
+	}
+
+	public static void registerGraces() {
+		register("white_crystal_grace", WHITE_CRYSTAL_GRACE, DyeColor.WHITE);
 	}
 	
 	public static void registerStructurePlacers() {

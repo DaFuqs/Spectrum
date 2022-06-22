@@ -43,7 +43,7 @@ public class SpectrumFluids {
 	public static final FlowableFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.FlowingMidnightSolution();
 	
 	private static void registerFluid(String name, Fluid fluid, DyeColor dyeColor) {
-		Registry.register(Registry.FLUID, new Identifier(SpectrumCommon.MOD_ID, name), fluid);
+		Registry.register(Registry.FLUID, SpectrumCommon.locate(name), fluid);
 		ItemColors.FLUID_COLORS.registerColorMapping(fluid, dyeColor);
 	}
 	
@@ -58,20 +58,20 @@ public class SpectrumFluids {
 	
 	@Environment(EnvType.CLIENT)
 	public static void registerClient() {
-		setupFluidRendering(LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL, new Identifier(SpectrumCommon.MOD_ID, "liquid_crystal"), 0xcbbbcb);
+		setupFluidRendering(LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL, "liquid_crystal", 0xcbbbcb);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL);
 		
-		setupFluidRendering(MUD, FLOWING_MUD, new Identifier(SpectrumCommon.MOD_ID, "mud"), 0x4e2e0a);
+		setupFluidRendering(MUD, FLOWING_MUD, "mud", 0x4e2e0a);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MUD, FLOWING_MUD);
 		
-		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, new Identifier(SpectrumCommon.MOD_ID, "midnight_solution"), 0x11183b);
+		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, "midnight_solution", 0x11183b);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION);
 	}
 	
 	@Environment(EnvType.CLIENT)
-	private static void setupFluidRendering(final Fluid still, final Fluid flowing, final Identifier textureFluidId, final int color) {
-		final Identifier stillSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_still");
-		final Identifier flowingSpriteId = new Identifier(textureFluidId.getNamespace(), "block/" + textureFluidId.getPath() + "_flow");
+	private static void setupFluidRendering(final Fluid still, final Fluid flowing, final String textureFluidId, final int color) {
+		final Identifier stillSpriteId = SpectrumCommon.locate("block/" + textureFluidId + "_still");
+		final Identifier flowingSpriteId = SpectrumCommon.locate("block/" + textureFluidId + "_flow");
 		
 		// If they're not already present, add the sprites to the block atlas
 		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {

@@ -42,6 +42,8 @@ import de.dafuqs.spectrum.blocks.structure.TreasureChestBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockEntity;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
+import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatterns;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -105,52 +107,56 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
 	
+	private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
+		return Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
+	}
+	
 	public static void register() {
-		OMINOUS_SAPLING = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ominous_sapling_block_entity"), FabricBlockEntityTypeBuilder.create(OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING).build());
-		PEDESTAL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pedestal_block_entity"), FabricBlockEntityTypeBuilder.create(PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE).build());
-		FUSION_SHRINE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine_block_entity"), FabricBlockEntityTypeBuilder.create(FusionShrineBlockEntity::new, SpectrumBlocks.FUSION_SHRINE_BASALT, SpectrumBlocks.FUSION_SHRINE_CALCITE).build());
-		ENCHANTER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "enchanter_block_entity"), FabricBlockEntityTypeBuilder.create(EnchanterBlockEntity::new, SpectrumBlocks.ENCHANTER).build());
-		STONESETTING_WORKSHOP = Registry.register(Registry.BLOCK_ENTITY_TYPE, locate("stonesetting_workshop"), FabricBlockEntityTypeBuilder.create(StonesettingWorkshopBlockEntity::new, SpectrumBlocks.STONESETTING_WORKSHOP).build());
-		ITEM_BOWL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "item_bowl_block_entity"), FabricBlockEntityTypeBuilder.create(ItemBowlBlockEntity::new, SpectrumBlocks.ITEM_BOWL_BASALT, SpectrumBlocks.ITEM_BOWL_CALCITE).build());
-		ENDER_DROPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_dropper"), FabricBlockEntityTypeBuilder.create(EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER).build());
-		ENDER_HOPPER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "ender_hopper"), FabricBlockEntityTypeBuilder.create(EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER).build());
-		PARTICLE_SPAWNER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "particle_spawner"), FabricBlockEntityTypeBuilder.create(ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER).build());
-		CREATIVE_PARTICLE_SPAWNER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "creative_particle_spawner"), FabricBlockEntityTypeBuilder.create(CreativeParticleSpawnerBlockEntity::new, SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER).build());
-		DEEPER_DOWN_PORTAL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "deeper_down_portal"), FabricBlockEntityTypeBuilder.create(DeeperDownPortalBlockEntity::new, SpectrumBlocks.DEEPER_DOWN_PORTAL).build());
-		COMPACTING_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "compacting_chest"), FabricBlockEntityTypeBuilder.create(CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST).build());
-		RESTOCKING_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "restocking_chest"), FabricBlockEntityTypeBuilder.create(RestockingChestBlockEntity::new, SpectrumBlocks.RESTOCKING_CHEST).build());
-		PRIVATE_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "private_chest"), FabricBlockEntityTypeBuilder.create(PrivateChestBlockEntity::new, SpectrumBlocks.PRIVATE_CHEST).build());
-		SUCKING_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "sucking_chest"), FabricBlockEntityTypeBuilder.create(SuckingChestBlockEntity::new, SpectrumBlocks.SUCKING_CHEST).build());
-		TREASURE_CHEST = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "treasure_chest"), FabricBlockEntityTypeBuilder.create(TreasureChestBlockEntity::new, SpectrumBlocks.TREASURE_CHEST).build());
-		PLAYER_DETECTOR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "player_detector"), FabricBlockEntityTypeBuilder.create(PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR).build());
-		REDSTONE_CALCULATOR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "redstone_calculator"), FabricBlockEntityTypeBuilder.create(RedstoneCalculatorBlockEntity::new, SpectrumBlocks.REDSTONE_CALCULATOR).build());
-		REDSTONE_WIRELESS = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "redstone_wireless"), FabricBlockEntityTypeBuilder.create(RedstoneWirelessBlockEntity::new, SpectrumBlocks.REDSTONE_WIRELESS).build());
-		BLOCK_PLACER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "block_placer"), FabricBlockEntityTypeBuilder.create(BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER).build());
-		BLOCK_FLOODER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "block_flooder"), FabricBlockEntityTypeBuilder.create(BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER).build());
-		SHOOTING_STAR = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "shooting_star"), FabricBlockEntityTypeBuilder.create(ShootingStarBlockEntity::new, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR).build());
-		BOTTOMLESS_BUNDLE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "bottomless_bundle"), FabricBlockEntityTypeBuilder.create(BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE).build());
-		POTION_WORKSHOP = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "potion_workshop"), FabricBlockEntityTypeBuilder.create(PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP).build());
-		SPIRIT_INSTILLER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller"), FabricBlockEntityTypeBuilder.create(SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER).build());
-		MEMORY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "memory"), FabricBlockEntityTypeBuilder.create(MemoryBlockEntity::new, SpectrumBlocks.MEMORY).build());
-		JADE_VINE_ROOTS = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "jade_vine_roots"), FabricBlockEntityTypeBuilder.create(JadeVineRootsBlockEntity::new, SpectrumBlocks.JADE_VINE_ROOTS).build());
-		CRYSTALLARIEUM = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "crystallarieum"), FabricBlockEntityTypeBuilder.create(CrystallarieumBlockEntity::new, SpectrumBlocks.CRYSTALLARIEUM).build());
-		CRYSTAL_APOTHECARY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "crystal_apothecary"), FabricBlockEntityTypeBuilder.create(CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY).build());
-		COLOR_PICKER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "color_picker"), FabricBlockEntityTypeBuilder.create(ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER).build());
+		OMINOUS_SAPLING = register("ominous_sapling_block_entity", OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING);
+		PEDESTAL = register("pedestal_block_entity", PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE);
+		FUSION_SHRINE = register("fusion_shrine_block_entity", FusionShrineBlockEntity::new, SpectrumBlocks.FUSION_SHRINE_BASALT, SpectrumBlocks.FUSION_SHRINE_CALCITE);
+		ENCHANTER = register("enchanter_block_entity", EnchanterBlockEntity::new, SpectrumBlocks.ENCHANTER);
+		STONESETTING_WORKSHOP = register("stonesetting_workshop", StonesettingWorkshopBlockEntity::new, SpectrumBlocks.STONESETTING_WORKSHOP);
+		ITEM_BOWL = register("item_bowl_block_entity", ItemBowlBlockEntity::new, SpectrumBlocks.ITEM_BOWL_BASALT, SpectrumBlocks.ITEM_BOWL_CALCITE);
+		ENDER_DROPPER = register("ender_dropper", EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER);
+		ENDER_HOPPER = register("ender_hopper", EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER);
+		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER);
+		CREATIVE_PARTICLE_SPAWNER = register("creative_particle_spawner", CreativeParticleSpawnerBlockEntity::new, SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
+		DEEPER_DOWN_PORTAL = register("deeper_down_portal", DeeperDownPortalBlockEntity::new, SpectrumBlocks.DEEPER_DOWN_PORTAL);
+		COMPACTING_CHEST = register("compacting_chest", CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST);
+		RESTOCKING_CHEST = register("restocking_chest", RestockingChestBlockEntity::new, SpectrumBlocks.RESTOCKING_CHEST);
+		PRIVATE_CHEST = register("private_chest", PrivateChestBlockEntity::new, SpectrumBlocks.PRIVATE_CHEST);
+		SUCKING_CHEST = register("sucking_chest", SuckingChestBlockEntity::new, SpectrumBlocks.SUCKING_CHEST);
+		TREASURE_CHEST = register("treasure_chest", TreasureChestBlockEntity::new, SpectrumBlocks.TREASURE_CHEST);
+		PLAYER_DETECTOR = register("player_detector", PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR);
+		REDSTONE_CALCULATOR = register("redstone_calculator", RedstoneCalculatorBlockEntity::new, SpectrumBlocks.REDSTONE_CALCULATOR);
+		REDSTONE_WIRELESS = register("redstone_wireless", RedstoneWirelessBlockEntity::new, SpectrumBlocks.REDSTONE_WIRELESS);
+		BLOCK_PLACER = register("block_placer", BlockPlacerBlockEntity::new, SpectrumBlocks.BLOCK_PLACER);
+		BLOCK_FLOODER = register("block_flooder", BlockFlooderBlockEntity::new, SpectrumBlocks.BLOCK_FLOODER);
+		SHOOTING_STAR = register("shooting_star", ShootingStarBlockEntity::new, SpectrumBlocks.COLORFUL_SHOOTING_STAR, SpectrumBlocks.FIERY_SHOOTING_STAR, SpectrumBlocks.GEMSTONE_SHOOTING_STAR, SpectrumBlocks.GLISTERING_SHOOTING_STAR, SpectrumBlocks.PRISTINE_SHOOTING_STAR);
+		BOTTOMLESS_BUNDLE = register("bottomless_bundle", BottomlessBundleBlockEntity::new, SpectrumBlocks.BOTTOMLESS_BUNDLE);
+		POTION_WORKSHOP = register("potion_workshop", PotionWorkshopBlockEntity::new, SpectrumBlocks.POTION_WORKSHOP);
+		SPIRIT_INSTILLER = register("spirit_instiller", SpiritInstillerBlockEntity::new, SpectrumBlocks.SPIRIT_INSTILLER);
+		MEMORY = register("memory", MemoryBlockEntity::new, SpectrumBlocks.MEMORY);
+		JADE_VINE_ROOTS = register("jade_vine_roots", JadeVineRootsBlockEntity::new, SpectrumBlocks.JADE_VINE_ROOTS);
+		CRYSTALLARIEUM = register("crystallarieum", CrystallarieumBlockEntity::new, SpectrumBlocks.CRYSTALLARIEUM);
+		CRYSTAL_APOTHECARY = register("crystal_apothecary", CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY);
+		COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
 		
 		// All the pastel network nodes
-		CONNECTION_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "connection_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE).build());
-		PROVIDER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "provider_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkProviderNodeBlockEntity::new, SpectrumBlocks.PROVIDER_NODE).build());
-		STORAGE_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "storage_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkStorageNodeBlockEntity::new, SpectrumBlocks.STORAGE_NODE).build());
-		PUSHER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "pusher_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkPusherNodeBlockEntity::new, SpectrumBlocks.PUSHER_NODE).build());
-		PULLER_NODE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "puller_node"), FabricBlockEntityTypeBuilder.create(PastelNetworkPullerNodeBlockEntity::new, SpectrumBlocks.PULLER_NODE).build());
+		CONNECTION_NODE = register("connection_node", PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE);
+		PROVIDER_NODE = register("provider_node", PastelNetworkProviderNodeBlockEntity::new, SpectrumBlocks.PROVIDER_NODE);
+		STORAGE_NODE = register("storage_node", PastelNetworkStorageNodeBlockEntity::new, SpectrumBlocks.STORAGE_NODE);
+		PUSHER_NODE = register("pusher_node", PastelNetworkPusherNodeBlockEntity::new, SpectrumBlocks.PUSHER_NODE);
+		PULLER_NODE = register("puller_node", PastelNetworkPullerNodeBlockEntity::new, SpectrumBlocks.PULLER_NODE);
 		
-		PRESERVATION_CONTROLLER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "preservation_controller"), FabricBlockEntityTypeBuilder.create(PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER).build());
+		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
 		
 		// All the upgrades
 		List<Block> upgradeBlocksList = UpgradeBlock.getRegisteredUpgradeBlocks();
 		Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
 		upgradeBlocksArray = upgradeBlocksList.toArray(upgradeBlocksArray);
-		UPGRADE_BLOCK = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "upgrade_block"), FabricBlockEntityTypeBuilder.create(UpgradeBlockEntity::new, upgradeBlocksArray).build());
+		UPGRADE_BLOCK = register("upgrade_block", UpgradeBlockEntity::new, upgradeBlocksArray);
 		
 		// All the skulls
 		List<Block> skullBlocksList = new ArrayList<>();
@@ -159,7 +165,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		
 		Block[] skullBlocksArray = new Block[skullBlocksList.size()];
 		skullBlocksArray = skullBlocksList.toArray(skullBlocksArray);
-		SKULL = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, "skull"), FabricBlockEntityTypeBuilder.create(SpectrumSkullBlockEntity::new, skullBlocksArray).build());
+		SKULL = register("skull", SpectrumSkullBlockEntity::new, skullBlocksArray);
 	}
 	
 	public static void registerClient() {

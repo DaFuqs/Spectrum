@@ -106,26 +106,26 @@ public class SpectrumItems {
 	public static final Item MANUAL = new GuidebookItem(toolItemSettingsSingle);
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(toolItemSettingsSingle);
 	
-	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_simple_structure_place"));
-	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_advanced_structure_place"));
-	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "pedestal_complex_structure_place"));
-	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "fusion_shrine_structure"));
-	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "enchanter_structure"));
-	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_structure"));
+	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("pedestal_simple_structure_place"));
+	public static final Item PEDESTAL_TIER_2_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("pedestal_advanced_structure_place"));
+	public static final Item PEDESTAL_TIER_3_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("pedestal_complex_structure_place"));
+	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("fusion_shrine_structure"));
+	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("enchanter_structure"));
+	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("spirit_instiller_structure"));
 	
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(resourcesItemSettings);
 	public static final Item CITRINE_SHARD = new Item(resourcesItemSettings);
-	public static final Item ONYX_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "collect_all_basic_pigments_besides_brown"), Items.BLACK_DYE);
-	public static final Item MOONSTONE_SHARD = new CloakedItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.WHITE_DYE);
-	public static final Item SPECTRAL_SHARD = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
+	public static final Item ONYX_SHARD = new CloakedItem(resourcesItemSettings, SpectrumCommon.locate("collect_all_basic_pigments_besides_brown"), Items.BLACK_DYE);
+	public static final Item MOONSTONE_SHARD = new CloakedItem(resourcesItemSettings, SpectrumCommon.locate("midgame/break_decayed_bedrock"), Items.WHITE_DYE);
+	public static final Item SPECTRAL_SHARD = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
 	
-	private static final Identifier GEMSTONE_POWDER_CLOAK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "place_pedestal");
+	private static final Identifier GEMSTONE_POWDER_CLOAK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
 	public static final Item TOPAZ_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.CYAN);
 	public static final Item AMETHYST_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.MAGENTA);
 	public static final Item CITRINE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.YELLOW);
-	public static final Item ONYX_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"), BuiltinGemstoneColor.BLACK);
-	public static final Item MOONSTONE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
+	public static final Item ONYX_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, SpectrumCommon.locate("create_onyx_shard"), BuiltinGemstoneColor.BLACK);
+	public static final Item MOONSTONE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, SpectrumCommon.locate("midgame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
 	
 	// Pigment
 	public static final Item BLACK_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.BLACK);
@@ -185,7 +185,7 @@ public class SpectrumItems {
 	// Graces
 	public static OwoItemSettings graceSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE).maxCount(1).fireproof();
 
-	public static final CrystalGraceItem WHITE_CRYSTAL_GRACE = new CrystalGraceItem(graceSettings, "ooooo go stick a dildo in Azzy's ass oooo");
+	public static final CrystalGraceItem WHITE_CRYSTAL_GRACE = new CrystalGraceItem(graceSettings, "ooooo go stick my dick in Azzy's ass oooo");
 
 
 	// Bedrock Armor
@@ -222,13 +222,13 @@ public class SpectrumItems {
 	public static final Item EMERGENCY_BOOTS = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.FEET, gemstoneArmorItemSettings);
 	
 	// Decay drops
-	public static final Item VEGETAL = new CloakedItemWithLoomPattern(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "craft_bottle_of_fading"), Items.GUNPOWDER, SpectrumBannerPatterns.VEGETAL);
-	public static final Item NEOLITH = new CloakedItemWithLoomPattern(resourcesUncommonItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_bottle_of_failing"), Items.GUNPOWDER, SpectrumBannerPatterns.NEOLITH);
-	public static final Item BEDROCK_DUST = new CloakedItemWithLoomPattern(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/break_decayed_bedrock"), Items.GUNPOWDER, SpectrumBannerPatterns.BEDROCK_DUST);
+	public static final Item VEGETAL = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("craft_bottle_of_fading"), Items.GUNPOWDER, SpectrumBannerPatterns.VEGETAL);
+	public static final Item NEOLITH = new CloakedItemWithLoomPattern(resourcesUncommonItemSettings, SpectrumCommon.locate("midgame/craft_bottle_of_failing"), Items.GUNPOWDER, SpectrumBannerPatterns.NEOLITH);
+	public static final Item BEDROCK_DUST = new CloakedItemWithLoomPattern(resourcesRareItemSettings, SpectrumCommon.locate("midgame/break_decayed_bedrock"), Items.GUNPOWDER, SpectrumBannerPatterns.BEDROCK_DUST);
 	
-	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
-	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration"), Items.GRAY_DYE);
-	public static final Item BISMUTH_CRYSTAL = new CloakedItem(resourcesRareItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/enter_dimension"), Items.CYAN_DYE);
+	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
+	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), Items.GRAY_DYE);
+	public static final Item BISMUTH_CRYSTAL = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
 	
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1).recipeRemainder(Items.BUCKET));
@@ -253,14 +253,14 @@ public class SpectrumItems {
 	
 	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(resourcesItemSettings, ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final CloakedItem LIGHTNING_STONE = new CloakedItem(resourcesItemSettingsSixteen, ((RevelationAware) SpectrumBlocks.STUCK_LIGHTNING_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
-	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
-	public static final CloakedItem SHOOTING_STAR = new CloakedItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
-	public static final CloakedItem STARDUST = new CloakedItemWithLoomPattern(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
+	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(resourcesItemSettingsSixteen, SpectrumCommon.locate("craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
+	public static final CloakedItem SHOOTING_STAR = new CloakedItem(resourcesItemSettingsSixteen, SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
+	public static final CloakedItem STARDUST = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
 	
 	public static final Item HIBERNATING_JADE_VINE_SEEDS = new ItemWithTooltip(resourcesItemSettingsSixteen, "item.spectrum.hibernating_jade_vine_seeds.tooltip");
-	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
-	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(resourcesItemSettings, new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
-	public static final CloakedItem MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(MoonstruckNectarItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE), new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
+	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
+	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
+	public static final CloakedItem MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(MoonstruckNectarItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(JadeJellyItem.FOOD_COMPONENT));
 	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
 	
@@ -331,8 +331,8 @@ public class SpectrumItems {
 	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(toolUncommonItemSettingsSingle, 64 * 64 * 64 * 64 * 100);
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(toolUncommonItemSettingsSingle);
-	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 1, 2, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_lesser_potion_pendant"));
-	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 3, 0, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_greater_potion_pendant"));
+	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 1, 2, SpectrumCommon.locate("progression/unlock_lesser_potion_pendant"));
+	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 3, 0, SpectrumCommon.locate("progression/unlock_greater_potion_pendant"));
 	public static final Item ASHEN_CIRCLET = new AshenCircletItem(toolUncommonItemSettingsSingleFireproof);
 	public static final Item TIDAL_CIRCLET = new TidalCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(toolUncommonItemSettingsSingle);
@@ -340,7 +340,7 @@ public class SpectrumItems {
 	public static final Item NEAT_RING = new NeatRingItem(toolRareItemSettingsSingle);
 	
 	private static void register(String name, Item item, DyeColor dyeColor) {
-		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), item);
+		Registry.register(Registry.ITEM, SpectrumCommon.locate(name), item);
 		ItemColors.ITEM_COLORS.registerColorMapping(item, dyeColor);
 	}
 	

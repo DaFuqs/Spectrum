@@ -101,20 +101,6 @@ public class SpectrumCommon implements ModInitializer {
 		return new Identifier(MOD_ID, name);
 	}
 	
-	private static <T> BiConsumer<T, Identifier> registerInRegistry(Registry<? super T> registry) {
-		return (t, id) -> Registry.register(registry, id, t);
-	}
-	
-	public static void registerRecipeSerializers(BiConsumer<RecipeSerializer<?>, Identifier> identifier) {
-		identifier.accept(SpawnerCreatureChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_creature_change"));
-		identifier.accept(SpawnerMaxNearbyEntitiesChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_max_nearby_entities_change"));
-		identifier.accept(SpawnerRequiredPlayerRangeChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawner_player_range_change"));
-		identifier.accept(SpawnerSpawnCountChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_count_change"));
-		identifier.accept(SpawnerSpawnDelayChangeRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "spirit_instiller_spawner_spawn_delay_change"));
-		
-		identifier.accept(RepairAnythingRecipe.SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, "repair_anything"));
-	}
-	
 	@Override
 	public void onInitialize() {
 		logInfo("Starting Common Startup");
@@ -224,7 +210,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumItemGroups.ITEM_GROUP_BLOCKS.initialize();
 		
 		logInfo("Registering Special Recipes...");
-		registerRecipeSerializers(registerInRegistry(Registry.RECIPE_SERIALIZER));
+		SpectrumCustomRecipeSerializers.registerRecipeSerializers();
 		
 		logInfo("Registering Dispenser Behaviors..");
 		DispenserBlock.registerBehavior(SpectrumItems.BOTTOMLESS_BUNDLE, new BottomlessBundleItem.BottomlessBundlePlacementDispenserBehavior());

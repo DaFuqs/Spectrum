@@ -28,10 +28,10 @@ import java.util.Map;
 
 public class SpectrumItemGroups {
 	
-	private static final Identifier ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group.png");
-	private static final Identifier ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/item_group_button.png");
+	private static final Identifier ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group.png");
+	private static final Identifier ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER = SpectrumCommon.locate("textures/gui/item_group_button.png");
 	
-	public static final OwoItemGroup ITEM_GROUP_GENERAL = new OwoItemGroup(new Identifier(SpectrumCommon.MOD_ID, "general")) {
+	public static final OwoItemGroup ITEM_GROUP_GENERAL = new OwoItemGroup(SpectrumCommon.locate("general")) {
 		
 		@Override
 		protected void setup() {
@@ -50,12 +50,12 @@ public class SpectrumItemGroups {
 		
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST);
+			return SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem().getDefaultStack();
 		}
 		
 	};
 	
-	public static final OwoItemGroup ITEM_GROUP_BLOCKS = new OwoItemGroup(new Identifier(SpectrumCommon.MOD_ID, "blocks")) {
+	public static final OwoItemGroup ITEM_GROUP_BLOCKS = new OwoItemGroup(SpectrumCommon.locate("blocks")) {
 		
 		@Override
 		protected void setup() {
@@ -143,7 +143,7 @@ public class SpectrumItemGroups {
 		
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(SpectrumBlocks.MOONSTONE_CHISELED_CALCITE);
+			return SpectrumBlocks.MOONSTONE_CHISELED_CALCITE.asItem().getDefaultStack();
 		}
 		
 	};

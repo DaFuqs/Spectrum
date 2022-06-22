@@ -6,9 +6,7 @@ import net.minecraft.util.DyeColor;
 public class SpectrumFlammableBlocks {
 	
 	public static void register() {
-		
 		FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.CLOVER, 60, 100);
-		// FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.FOUR_LEAF_CLOVER, 60, 100); // nope C:
 		
 		for (DyeColor dyeColor : DyeColor.values()) {
 			FlammableBlockRegistry.getDefaultInstance().add(SpectrumBlocks.getColoredLogBlock(dyeColor), 5, 5);

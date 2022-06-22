@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.inventories.widgets;
 
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
+import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.inventories.ColorPickerScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Drawable;
@@ -9,11 +11,14 @@ import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.screen.narration.NarrationPart;
 import net.minecraft.client.gui.widget.ClickableWidget;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
+
+import static de.dafuqs.spectrum.helpers.RenderHelper.fillQuad;
 
 @Environment(EnvType.CLIENT)
 public class ColorSelectionWidget extends ClickableWidget implements Drawable, Element {
@@ -62,5 +67,26 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	public void appendNarrations(NarrationMessageBuilder builder) {
 		builder.put(NarrationPart.TITLE, new TranslatableText("spectrum.narration.color_selection", this.selectedColor));
 	}
+
+    public void draw(MatrixStack matrices){
+        int i = -1;
+        int currentX=this.x+1;
+        int currentY=this.y+1;
+        for (InkColor color : InkColor.all()) {
+            fillQuad(matrices, currentX, currentY, 5, 5, ColorHelper.getVec(color.getDyeColor()));
+            i = i + 1;
+            currentX = currentX + 7;
+            if(i == 7){
+                currentY = currentY+7;
+                currentX = this.x+1;
+            }
+
+
+
+
+        }
+
+        }
+
 	
 }

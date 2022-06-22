@@ -41,10 +41,10 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 				return null;
 			}
 		}
-		int ticksPerGrowthStage = JsonHelper.getInt(jsonObject, "ticks_per_growth_stage");
+		int secondsPerGrowthStage = JsonHelper.getInt(jsonObject, "seconds_per_growth_stage");
 		InkColor inkColor = InkColor.of(JsonHelper.getString(jsonObject, "ink_color"));
-		int inkPerTick = JsonHelper.getInt(jsonObject, "ink_per_tick");
-		boolean growthWithoutCatalyst = JsonHelper.getBoolean(jsonObject, "grows_without_catalyst");
+		int inkPerSecond = JsonHelper.getInt(jsonObject, "ink_per_second");
+		boolean growsWithoutCatalyst = JsonHelper.getBoolean(jsonObject, "grows_without_catalyst");
 		
 		List<CrystallarieumCatalyst> catalysts = new ArrayList<>();
 		JsonArray catalystArray = JsonHelper.getArray(jsonObject, "catalysts");
@@ -53,7 +53,7 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 		}
 		Identifier requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		
-		return this.recipeFactory.create(identifier, group, inputIngredient, growthStages, ticksPerGrowthStage, inkColor, inkPerTick, growthWithoutCatalyst, catalysts, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, inputIngredient, growthStages, secondsPerGrowthStage, inkColor, inkPerSecond, growsWithoutCatalyst, catalysts, requiredAdvancementIdentifier);
 	}
 	
 	@Override
@@ -64,10 +64,10 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 		for(BlockState state : recipe.growthStages) {
 			packetByteBuf.writeString(RecipeUtils.blockStateToString(state));
 		}
-		packetByteBuf.writeInt(recipe.ticksPerGrowthStage);
+		packetByteBuf.writeInt(recipe.secondsPerGrowthStage);
 		packetByteBuf.writeString(recipe.inkColor.toString());
-		packetByteBuf.writeInt(recipe.inkPerTick);
-		packetByteBuf.writeBoolean(recipe.growthWithoutCatalyst);
+		packetByteBuf.writeInt(recipe.inkPerSecond);
+		packetByteBuf.writeBoolean(recipe.growsWithoutCatalyst);
 		packetByteBuf.writeInt(recipe.catalysts.size());
 		for(CrystallarieumCatalyst catalyst : recipe.catalysts) {
 			catalyst.write(packetByteBuf);
@@ -91,9 +91,9 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 			}
 		}
 		
-		int ticksPerGrowthStage = packetByteBuf.readInt();
+		int secondsPerGrowthStage = packetByteBuf.readInt();
 		InkColor inkColor = InkColor.of(packetByteBuf.readString());
-		int inkPerTick = packetByteBuf.readInt();
+		int inkPerSecond = packetByteBuf.readInt();
 		boolean growthWithoutCatalyst = packetByteBuf.readBoolean();
 		List<CrystallarieumCatalyst> catalysts = new ArrayList<>();
 		count = packetByteBuf.readInt();
@@ -103,11 +103,11 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 		
 		@Nullable Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
 		
-		return this.recipeFactory.create(identifier, group, inputIngredient, growthStages, ticksPerGrowthStage, inkColor, inkPerTick, growthWithoutCatalyst, catalysts, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, inputIngredient, growthStages, secondsPerGrowthStage, inkColor, inkPerSecond, growthWithoutCatalyst, catalysts, requiredAdvancementIdentifier);
 	}
 	
 	public interface RecipeFactory<CrystallarieumRecipe> {
-		CrystallarieumRecipe create(Identifier id, String group, Ingredient inputIngredient, List<BlockState> growthStages, int ticksPerGrowthStage, InkColor inkColor, int inkPerTick, boolean growthWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, @Nullable Identifier requiredAdvancementIdentifier);
+		CrystallarieumRecipe create(Identifier id, String group, Ingredient inputIngredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, @Nullable Identifier requiredAdvancementIdentifier);
 	}
 	
 }

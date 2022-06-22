@@ -33,10 +33,10 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	protected final Ingredient inputIngredient;
 	protected final List<BlockState> growthStages;
-	protected final int ticksPerGrowthStage;
+	protected final int secondsPerGrowthStage;
 	protected final InkColor inkColor;
-	protected final int inkPerTick;
-	protected final boolean growthWithoutCatalyst;
+	protected final int inkPerSecond;
+	protected final boolean growsWithoutCatalyst;
 	protected final List<CrystallarieumCatalyst> catalysts;
 	
 	@Nullable
@@ -45,15 +45,15 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final static Map<Ingredient, CrystallarieumRecipe> ingredientMap = new HashMap<>();
 	protected final static Map<BlockState, CrystallarieumRecipe> stateMap = new HashMap<>();
 	
-	public CrystallarieumRecipe(Identifier id, String group, Ingredient inputIngredient, List<BlockState> growthStages, int ticksPerGrowthStage, InkColor inkColor, int inkPerTick, boolean growthWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, @Nullable Identifier requiredAdvancementIdentifier) {
+	public CrystallarieumRecipe(Identifier id, String group, Ingredient inputIngredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, @Nullable Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
 		this.inputIngredient = inputIngredient;
 		this.growthStages = growthStages;
-		this.ticksPerGrowthStage = ticksPerGrowthStage;
+		this.secondsPerGrowthStage = secondsPerGrowthStage;
 		this.inkColor = inkColor;
-		this.inkPerTick = inkPerTick;
-		this.growthWithoutCatalyst = growthWithoutCatalyst;
+		this.inkPerSecond = inkPerSecond;
+		this.growsWithoutCatalyst = growsWithoutCatalyst;
 		this.catalysts = catalysts;
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 	}

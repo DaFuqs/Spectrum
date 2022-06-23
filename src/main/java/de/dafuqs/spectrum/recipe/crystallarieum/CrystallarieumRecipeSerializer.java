@@ -51,7 +51,13 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 		for (int i = 0; i < catalystArray.size(); i++) {
 			catalysts.add(CrystallarieumCatalyst.fromJson(catalystArray.get(i).getAsJsonObject()));
 		}
-		Identifier requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
+		Identifier requiredAdvancementIdentifier;
+		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
+			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
+		} else {
+			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
+			requiredAdvancementIdentifier = CrystallarieumRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
+		}
 		
 		return this.recipeFactory.create(identifier, group, inputIngredient, growthStages, secondsPerGrowthStage, inkColor, inkPerSecond, growsWithoutCatalyst, catalysts, requiredAdvancementIdentifier);
 	}

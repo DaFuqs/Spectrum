@@ -41,7 +41,7 @@ public class EnchanterRecipeSerializer implements RecipeSerializer<EnchanterReci
 			noBenefitsFromYieldAndEfficiencyUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_and_efficiency_upgrades", false);
 		}
 		
-		Identifier requiredAdvancementIdentifier = null;
+		Identifier requiredAdvancementIdentifier;
 		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {

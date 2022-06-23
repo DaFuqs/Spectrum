@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "spectrum:block/gobette_nether_cluster"
+    "crop": "spectrum:block/globette_nether_cluster"
   }
 }

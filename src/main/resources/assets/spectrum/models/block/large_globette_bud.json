@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "spectrum:block/large_gobette_bud"
+    "crop": "spectrum:block/large_globette_bud"
   }
 }

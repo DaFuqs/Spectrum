@@ -1,13 +1,13 @@
 {
   "type": "spectrum:crystallarieum_growing",
   "ingredient": {
-    "item": "gobber2:gobber2_gobette_nether"
+    "item": "gobber2:gobber2_globette_nether"
   },
   "growth_stage_states": [
-    "spectrum:small_gobette_nether_bud",
-    "spectrum:medium_gobette_nether_bud",
-    "spectrum:large_gobette_nether_bud",
-    "spectrum:gobette_nether_cluster"
+    "spectrum:small_globette_nether_bud",
+    "spectrum:medium_globette_nether_bud",
+    "spectrum:large_globette_nether_bud",
+    "spectrum:globette_nether_cluster"
   ],
   "seconds_per_growth_stage": 120,
   "ink_color": "red",

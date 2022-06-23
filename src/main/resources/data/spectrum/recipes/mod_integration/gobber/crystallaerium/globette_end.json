@@ -1,13 +1,13 @@
 {
   "type": "spectrum:crystallarieum_growing",
   "ingredient": {
-    "item": "gobber2:gobber2_gobette_end"
+    "item": "gobber2:gobber2_globette_end"
   },
   "growth_stage_states": [
-    "spectrum:small_gobette_end_bud",
-    "spectrum:medium_gobette_end_bud",
-    "spectrum:large_gobette_end_bud",
-    "spectrum:gobette_end_cluster"
+    "spectrum:small_globette_end_bud",
+    "spectrum:medium_globette_end_bud",
+    "spectrum:large_globette_end_bud",
+    "spectrum:globette_end_cluster"
   ],
   "seconds_per_growth_stage": 180,
   "ink_color": "green",

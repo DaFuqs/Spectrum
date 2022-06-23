@@ -5,7 +5,7 @@
 		"bonus_rolls": 0.0,
 		"entries": [{
 			"type": "minecraft:item",
-			"name": "spectrum:large_gobette_end_bud"
+			"name": "spectrum:large_globette_end_bud"
 		}],
 		"conditions": [{
 			"condition": "minecraft:survives_explosion"

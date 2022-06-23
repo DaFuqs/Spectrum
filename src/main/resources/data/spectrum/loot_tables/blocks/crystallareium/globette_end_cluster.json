@@ -5,7 +5,7 @@
 		"bonus_rolls": 0.0,
 		"entries": [{
 			"type": "minecraft:item",
-			"name": "spectrum:gobette_end_cluster"
+			"name": "spectrum:globette_end_cluster"
 		}],
 		"conditions": [{
 			"condition": "minecraft:survives_explosion"

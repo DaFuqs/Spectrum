@@ -5,7 +5,7 @@
 		"bonus_rolls": 0.0,
 		"entries": [{
 			"type": "minecraft:item",
-			"name": "spectrum:small_gobette_bud"
+			"name": "spectrum:small_globette_bud"
 		}],
 		"conditions": [{
 			"condition": "minecraft:survives_explosion"

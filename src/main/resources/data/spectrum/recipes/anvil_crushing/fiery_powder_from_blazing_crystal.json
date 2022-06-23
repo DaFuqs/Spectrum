@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:blazing_crystal"
+  },
+  "crushedItemsPerPointOfDamage": 1.5,
+  "experience": 4.0,
+  "result": {
+    "item": "spectrum:fiery_powder",
+    "count": 16
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.glass.break"
+}

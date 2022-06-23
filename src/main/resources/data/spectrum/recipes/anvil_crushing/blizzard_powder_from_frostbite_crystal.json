@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:frostbite_crystal"
+  },
+  "crushedItemsPerPointOfDamage": 1.5,
+  "experience": 4.0,
+  "result": {
+    "item": "spectrum:blizzard_powder",
+    "count": 16
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.glass.break"
+}

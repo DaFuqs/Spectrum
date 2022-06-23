@@ -23,7 +23,7 @@
     },
     {
       "ingredient": {
-        "item": "spectrum:shimmerstone_gem"
+        "item": "spectrum:sparklestone_gem"
       },
       "growth_acceleration_mod": 1.0,
       "ink_consumption_mod": 0.25,

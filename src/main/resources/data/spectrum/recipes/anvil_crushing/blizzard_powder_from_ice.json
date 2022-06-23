@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "tag": "minecraft:ice"
+  },
+  "crushedItemsPerPointOfDamage": 1.5,
+  "experience": 0.25,
+  "result": {
+    "item": "spectrum:blizzard_powder",
+    "count": 1
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.glass.break"
+}

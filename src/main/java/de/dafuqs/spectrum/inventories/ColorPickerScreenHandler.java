@@ -29,7 +29,7 @@ public class ColorPickerScreenHandler extends ScreenHandler {
 	public void sendContentUpdates() {
 		super.sendContentUpdates();
 		
-		if(this.player != null) { // TODO: make more performant: send not every tick, only when changed => blockEntity.inkChanged?
+		if(this.player != null && this.blockEntity.shouldUpdateClients()) { // TODO: make more performant: send not every tick, only when changed => blockEntity.inkChanged?
 			SpectrumS2CPacketSender.updateBlockEntityStorage(blockEntity.getPos(), blockEntity.getEnergyStorage(), player);
 		}
 	}

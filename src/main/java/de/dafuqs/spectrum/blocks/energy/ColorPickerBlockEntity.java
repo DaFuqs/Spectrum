@@ -257,4 +257,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		return this.selectedColor;
 	}
 	
+	public boolean shouldUpdateClients() {
+		return !this.paused;
+	}
 }

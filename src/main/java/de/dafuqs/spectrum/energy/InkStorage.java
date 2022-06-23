@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.energy;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.text.Text;
+import net.minecraft.util.Pair;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -95,6 +96,11 @@ public interface InkStorage {
 	
 	// gets the amount of stored energy of that type
 	long getEnergy(InkColor color);
+	
+	// gets all stored ink
+	// only use for syncing server <=> clientside
+	@Deprecated
+	Map<InkColor, Long> getEnergy();
 	
 	// sets the amount of stored energy of that type
 	// only use for syncing server <=> clientside

@@ -179,6 +179,12 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	
 	@Override
 	@Deprecated
+	public Map<InkColor, Long> getEnergy() {
+		return new HashMap<>(this.storedEnergy);
+	}
+	
+	@Override
+	@Deprecated
 	public void setEnergy(Map<InkColor, Long> colors, long total) {
 		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
 			if (color instanceof ElementalColor elementalColor) {

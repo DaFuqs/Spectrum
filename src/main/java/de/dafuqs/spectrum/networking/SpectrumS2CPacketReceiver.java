@@ -364,9 +364,10 @@ public class SpectrumS2CPacketReceiver {
 			BlockPos blockPos = buf.readBlockPos();
 			long colorTotal = buf.readLong();
 			
+			int colorEntries = buf.readInt();
 			Map<InkColor, Long> colors = new HashMap<>();
-			for(InkColor inkColor : InkColor.all()) {
-				colors.put(inkColor, buf.readLong());
+			for(int i = 0; i < colorEntries; i++) {
+				colors.put(InkColor.of(buf.readString()), buf.readLong());
 			}
 			
 			client.execute(() -> {

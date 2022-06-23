@@ -108,6 +108,12 @@ public class TotalCappedSimpleInkStorage implements InkStorage {
 	
 	@Override
 	@Deprecated
+	public Map<InkColor, Long> getEnergy() {
+		return this.storedEnergy;
+	}
+	
+	@Override
+	@Deprecated
 	public void setEnergy(Map<InkColor, Long> colors, long total) {
 		this.storedEnergy.putAll(colors);
 		this.currentTotal = total;

@@ -29,8 +29,8 @@ public class ColorPickerScreenHandler extends ScreenHandler {
 	public void sendContentUpdates() {
 		super.sendContentUpdates();
 		
-		if(this.player != null && this.blockEntity.shouldUpdateClients()) { // TODO: make more performant: send not every tick, only when changed => blockEntity.inkChanged?
-			SpectrumS2CPacketSender.updateBlockEntityStorage(blockEntity.getPos(), blockEntity.getEnergyStorage(), player);
+		if(this.player != null && this.blockEntity.shouldUpdateClients()) {
+			SpectrumS2CPacketSender.updateBlockEntityInk(blockEntity.getPos(), blockEntity.getEnergyStorage(), player);
 		}
 	}
 	
@@ -66,6 +66,10 @@ public class ColorPickerScreenHandler extends ScreenHandler {
 		// player hotbar
 		for (int j = 0; j < 9; ++j) {
 			this.addSlot(new Slot(playerInventory, j, PLAYER_INVENTORY_START_X + j * 18, PLAYER_INVENTORY_START_Y + 58));
+		}
+		
+		if(this.player != null) {
+			SpectrumS2CPacketSender.updateBlockEntityInk(blockEntity.getPos(), this.blockEntity.getEnergyStorage(), player);
 		}
 	}
 	

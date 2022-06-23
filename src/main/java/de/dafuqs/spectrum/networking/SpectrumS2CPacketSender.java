@@ -32,9 +32,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collection;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class SpectrumS2CPacketSender {
 	
@@ -396,12 +394,16 @@ public class SpectrumS2CPacketSender {
 		
 	}
 	
-	public static void updateBlockEntityStorage(BlockPos pos, InkStorage inkStorage, ServerPlayerEntity player) {
+	public static void updateBlockEntityInk(BlockPos pos, InkStorage inkStorage, ServerPlayerEntity player) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(pos);
 		buf.writeLong(inkStorage.getCurrentTotal());
-		for(InkColor color : InkColor.all()) {
-			buf.writeLong(inkStorage.getEnergy(color));
+		
+		Map<InkColor, Long> colors = inkStorage.getEnergy();
+		buf.writeInt(colors.size());
+		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
+			buf.writeString(color.getKey().toString());
+			buf.writeLong(color.getValue());
 		}
 		
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.UPDATE_BLOCK_ENTITY_INK, buf);

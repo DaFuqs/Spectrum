@@ -107,9 +107,18 @@ public class SingleInkStorage implements InkStorage {
 	}
 	
 	@Override
+	@Deprecated
+	public Map<InkColor, Long> getEnergy() {
+		return Map.of(this.storedColor, this.storedEnergy);
+	}
+	
+	@Override
+	@Deprecated
 	public void setEnergy(Map<InkColor, Long> colors, long total) {
 		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
-			if (storedEnergy == 0 || this.storedColor == color.getKey()) {
+			long value = color.getValue();
+			if(value > 0) {
+				this.storedColor = color.getKey();
 				this.storedEnergy = color.getValue();
 			}
 		}

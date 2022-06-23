@@ -1392,6 +1392,9 @@
   "item.spectrum.midnight_aberration.tooltip.stable": "§oHeld together by mysterious force",
   "item.spectrum.midnight_chip": "Midnight Chip",
 
+  "item.spectrum.fiery_powder": "Fiery Powder",
+  "item.spectrum.blizzard_powder": "Blizzard Powder",
+
   "item.spectrum.small_bismuth_bud": "Bismuth Flake",
   "block.spectrum.small_bismuth_bud": "Small Bismuth Bud",
   "block.spectrum.large_bismuth_bud": "Large Bismuth Bud",

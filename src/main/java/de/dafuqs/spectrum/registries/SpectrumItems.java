@@ -281,6 +281,10 @@ public class SpectrumItems {
 	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(toolRareItemSettings);
 	public static final Item CRESCENT_CLOCK = new Item(toolItemSettingsSingle);
 	
+	// Elemental Powder
+	public static final Item FIERY_POWDER = new Item(resourcesItemSettings);
+	public static final Item BLIZZARD_POWDER = new Item(resourcesItemSettings);
+	
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, resourcesItemSettings);
 	public static final Item VIBRANT_MAGENTA_CATKIN = new CatkinItem(BuiltinGemstoneColor.MAGENTA, false, resourcesItemSettings);
@@ -467,6 +471,9 @@ public class SpectrumItems {
 		register("midnight_chip", MIDNIGHT_CHIP, DyeColor.GRAY);
 		register("bismuth_crystal", BISMUTH_CRYSTAL, DyeColor.CYAN);
 		register("malachite_crystal", MALACHITE_CRYSTAL, DyeColor.WHITE);
+		
+		register("fiery_powder", FIERY_POWDER, DyeColor.ORANGE);
+		register("blizzard_powder", BLIZZARD_POWDER, DyeColor.LIGHT_BLUE);
 	}
 	
 	public static void registerDecayBottles() {

@@ -18,10 +18,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
@@ -69,13 +66,14 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
 		List<Text> tooltip = new ArrayList<>();
 		int padding = 0;
-		for (InkColor color : InkColor.all()) {
-			padding = Math.max(padding, StringUtils.length(String.valueOf(inkStorage.getEnergy(color))));
+		Map<InkColor, Long> energy = inkStorage.getEnergy();
+		for (Long color : energy.values()) {
+			padding = Math.max(padding, StringUtils.length(String.valueOf(color)));
 		}
-		for (InkColor color : InkColor.all()) {
-			long amount = inkStorage.getEnergy(color);
+		for (Map.Entry<InkColor, Long> entry : energy.entrySet()) {
+			long amount = entry.getValue();
 			if (amount > 0) {
-				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + color.toString().toLowerCase(Locale.ROOT), getShortenedNumberString(amount)));
+				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + entry.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(amount)));
 			}
 		}
 		if (tooltip.size() == 0) {
@@ -97,8 +95,10 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 			int radius = 22;
 			
 			double startRad = -0.5 * Math.PI;
-			for (InkColor color : InkColor.all()) {
-				long currentInk = inkStorage.getEnergy(color);
+			for (Map.Entry<InkColor, Long> entry : inkStorage.getEnergy().entrySet()) {
+				InkColor color = entry.getKey();
+				long currentInk = entry.getValue();
+				
 				if (currentInk > 0) {
 					double thisPart = ((double) currentInk / (double) totalInk);
 					while (thisPart > 0) {

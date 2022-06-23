@@ -17,6 +17,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.TranslatableText;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
@@ -76,11 +77,11 @@ public class VerticalInkMeterWidget extends DrawableHelper implements Drawable, 
 			long maxTotal = inkStorage.getMaxTotal();
 			
 			int currentHeight = this.y + this.height;
-			for (InkColor color : InkColor.all()) {
-				long amount = inkStorage.getEnergy(color);
+			for (Map.Entry<InkColor, Long> entry : inkStorage.getEnergy().entrySet()) {
+				long amount = entry.getValue();
 				if(amount > 0) {
-					int height = Math.max(1, Math.round (((float) inkStorage.getEnergy(color) / ((float) maxTotal / this.height))));
-					RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, color.getColor());
+					int height = Math.max(1, Math.round (((float) amount / ((float) maxTotal / this.height))));
+					RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, entry.getKey().getColor());
 					currentHeight -= height;
 				}
 			}

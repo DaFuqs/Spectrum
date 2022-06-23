@@ -6,13 +6,14 @@ $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "gr
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 $upgrades = @("upgrade_speed", "upgrade_speed2", "upgrade_speed3", "upgrade_efficiency", "upgrade_efficiency2", "upgrade_yield", "upgrade_yield2", "upgrade_experience", "upgrade_experience2")
 
-$new = @('small_bismuth_bud', 'medium_bismuth_bud', 'large_bismuth_bud', 'bismuth_cluster', 'bismuth_storage_block')
+$new = @("malachite_ore", "deepslate_malachite_ore", "malachite_block")
 
 enum BlockType {
     Default
     Lamp
     Log
     Upgrade
+    Crystallarieum
 }
 
 Function Generate-BlockFiles {
@@ -53,7 +54,7 @@ Function Generate-BlockFiles {
         function Get-RegisterBlockAndItems([string[]] $Names) {
             $Names | Foreach-Object {
                 $o = $_.toUpper()
-                "registerBlockWithItem(`"$_`", $o, fabricItemSettings);"
+                "registerBlockWithItem(`"$_`", $o, fabricItemSettings, DyeColor.XXX);"
             }
         }
 
@@ -133,6 +134,19 @@ Function Generate-BlockFiles {
 	"variants": {
 		"": {
 			"model": "spectrum:block/$NameWithoutNumber"
+		}
+	}
+}
+"@
+}
+
+
+        function Get-BlockStateCrystallarieum($Name) {
+            Write-Output @"
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/$Name"
 		}
 	}
 }
@@ -223,6 +237,19 @@ Function Generate-BlockFiles {
     }
 }
 "@
+        }
+
+
+        function Get-BlockModelCrystallarieum($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "spectrum:block/$_"
+  }
+}
+"@
+
         }
 
 
@@ -324,6 +351,8 @@ Function Generate-BlockFiles {
                 $blockState = Get-BlockStateLamp -Name $_
             } elseif ($blockType -eq [BlockType]::Upgrade) {
                 $blockState = Get-BlockStateUpgrade -Name $_
+            } elseif ($blockType -eq [BlockType]::Crystallarieum) {
+                $blockState = Get-BlockStateCrystallarieum -Name $_
             }
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\blockstates\") -Name "$_`.json" -ItemType File -Force -Value $blockState | Out-Null
     
@@ -345,6 +374,9 @@ Function Generate-BlockFiles {
                 $NameWithoutNumber = $_ -replace "[0-9]", ""
                 $blockModel = Get-BlockModelUpgrade -Name $NameWithoutNumber
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$NameWithoutNumber`.json" -ItemType File -Force -Value $blockModel | Out-Null
+            } elseif ($blockType -eq [BlockType]::Crystallarieum) {
+                $blockModel = Get-BlockModelCrystallarieum -Name $_
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModel | Out-Null
             }
 
             # ITEM MODEL
@@ -384,6 +416,8 @@ Function Generate-BlockFiles {
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$NameWithoutNumber`_inner.png" -ItemType File -Force | Out-Null
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$NameWithoutNumber`_outer.png" -ItemType File -Force | Out-Null
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$NameWithoutNumber`_base.png" -ItemType File -Force | Out-Null
+            } elseif($blockType -eq [BlockType]::Crystallarieum) {
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\textures\block\") -Name "$_`.png" -ItemType File -Force | Out-Null
             }
 
             # LOOT TABLE

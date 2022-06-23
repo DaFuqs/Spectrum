@@ -1,25 +1,33 @@
 {
   "type": "spectrum:crystallarieum_growing",
   "ingredient": {
-    "item": "minecraft:small_bismuth_bud"
+    "item": "spectrum:small_bismuth_bud"
   },
   "growth_stage_states": [
     "spectrum:small_bismuth_bud",
     "spectrum:large_bismuth_bud",
     "spectrum:bismuth_cluster"
   ],
-  "ticks_per_growth_stage": 4800,
-  "ink_color": "white",
-  "ink_per_tick": 1,
-  "grows_without_catalyst": false,
+  "seconds_per_growth_stage": 480,
+  "ink_color": "cyan",
+  "ink_per_second": 100,
+  "grows_without_catalyst": true,
   "catalysts": [
     {
       "ingredient": {
-        "item": "spectrum:quitoxic_powder"
+        "item": "spectrum:small_bismuth_bud"
       },
-      "growth_acceleration_mod": 3.0,
-      "ink_efficiency_mod": 1.0,
-      "consume_chance_per_second": 0.0
+      "growth_acceleration_mod": 8.0,
+      "ink_consumption_mod": 1.0,
+      "consume_chance_per_second": 0.2
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:shimmerstone"
+      },
+      "growth_acceleration_mod": 1.0,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.02
     }
   ]
 }

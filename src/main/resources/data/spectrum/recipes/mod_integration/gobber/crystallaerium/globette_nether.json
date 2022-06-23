@@ -1,0 +1,50 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "gobber2:gobber2_gobette_nether"
+  },
+  "growth_stage_states": [
+    "spectrum:small_gobette_nether_bud",
+    "spectrum:medium_gobette_nether_bud",
+    "spectrum:large_gobette_nether_bud",
+    "spectrum:gobette_nether_cluster"
+  ],
+  "seconds_per_growth_stage": 120,
+  "ink_color": "red",
+  "ink_per_second": 40,
+  "grows_without_catalyst": true,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "gobber2:gobber2_foo"
+      },
+      "growth_acceleration_mod": 2.0,
+      "ink_consumption_mod": 0.5,
+      "consume_chance_per_second": 0.1
+    },
+    {
+      "ingredient": {
+        "item": "gobber2:gobber2_foo_nether"
+      },
+      "growth_acceleration_mod": 4.0,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.1
+    },
+    {
+      "ingredient": {
+        "item": "gobber2:gobber2_foo_end"
+      },
+      "growth_acceleration_mod": 8.0,
+      "ink_consumption_mod": 0.125,
+      "consume_chance_per_second": 0.1
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "gobber2"
+      ]
+    }
+  ]
+}

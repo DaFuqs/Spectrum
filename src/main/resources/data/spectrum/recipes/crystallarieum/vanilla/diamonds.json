@@ -1,0 +1,42 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "minecraft:diamond"
+  },
+  "growth_stage_states": [
+    "spectrum:small_diamond_bud",
+    "spectrum:medium_diamond_bud",
+    "spectrum:large_diamond_bud",
+    "spectrum:diamond_cluster"
+  ],
+  "seconds_per_growth_stage": 480,
+  "ink_color": "cyan",
+  "ink_per_second": 40,
+  "grows_without_catalyst": true,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "minecraft:coal"
+      },
+      "growth_acceleration_mod": 8.0,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.2
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:coal_block"
+      },
+      "growth_acceleration_mod": 10.0,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.02
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:charcoal"
+      },
+      "growth_acceleration_mod": 16.0,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 1.0
+    }
+  ]
+}

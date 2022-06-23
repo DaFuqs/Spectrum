@@ -1,0 +1,42 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "ae2:certus_quartz_crystal"
+  },
+  "growth_stage_states": [
+    "spectrum:small_certus_quartz_bud",
+    "spectrum:medium_certus_quartz_bud",
+    "spectrum:large_certus_quartz_bud",
+    "spectrum:certus_quartz_cluster"
+  ],
+  "seconds_per_growth_stage": 60,
+  "ink_color": "yellow",
+  "ink_per_second": 20,
+  "grows_without_catalyst": true,
+  "catalysts": [
+    {
+      "ingredient": {
+        "tag": "minecraft:sand"
+      },
+      "growth_acceleration_mod": 2.0,
+      "ink_consumption_mod": 1.0,
+      "consume_chance_per_second": 0.2
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:lightning_stone"
+      },
+      "growth_acceleration_mod": 4.0,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.1
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ae2"
+      ]
+    }
+  ]
+}

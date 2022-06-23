@@ -115,6 +115,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.Locale;
 
+import static de.dafuqs.spectrum.SpectrumCommon.locate;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 
 public class SpectrumBlocks {
@@ -168,6 +169,13 @@ public class SpectrumBlocks {
 	public static final Block LARGE_BISMUTH_BUD = new BismuthClusterBlock(5, 3, BISMUTH_CLUSTER.getDefaultState(), FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
 	public static final Block SMALL_BISMUTH_BUD = new BismuthClusterBlock(3, 4, LARGE_BISMUTH_BUD.getDefaultState(), FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
 	public static final Block BISMUTH_BLOCK = new Block(FabricBlockSettings.of(Material.METAL, MapColor.DARK_AQUA).requiresTool().strength(20.0F).sounds(BlockSoundGroup.CHAIN));
+	
+	public static final Block MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block SMALL_MALACHITE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_MALACHITE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MALACHITE_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
 	
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
@@ -422,12 +430,12 @@ public class SpectrumBlocks {
 	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(FabricBlockSettings.of(Material.CARPET, MapColor.PALE_GREEN).strength(0.1F).nonOpaque().sounds(BlockSoundGroup.WOOL).luminance(3));
 	
 	// ORES
-	public static final Block SPARKLESTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_sparklestone"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_SPARKLESTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_sparklestone"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block AZURITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).requiresTool(), UniformIntProvider.create(4, 7), new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_azurite"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_AZURITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).requiresTool(), UniformIntProvider.create(4, 7), new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_azurite"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block PALETUR_ORE = new CloakedOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().requiresTool().strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 4), new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_paletur"), Blocks.END_STONE.getDefaultState());
-	public static final Block SCARLET_ORE = new CloakedOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.PALE_YELLOW).requiresTool().strength(3.0F, 9.0F).requiresTool(), UniformIntProvider.create(3, 5), new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_scarlet"), Blocks.NETHERRACK.getDefaultState());
+	public static final Block SPARKLESTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_sparklestone"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_SPARKLESTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_sparklestone"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block AZURITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).requiresTool(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_AZURITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).requiresTool(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block PALETUR_ORE = new CloakedOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().requiresTool().strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 4), locate("milestones/reveal_paletur"), Blocks.END_STONE.getDefaultState());
+	public static final Block SCARLET_ORE = new CloakedOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.PALE_YELLOW).requiresTool().strength(3.0F, 9.0F).requiresTool(), UniformIntProvider.create(3, 5), locate("milestones/reveal_scarlet"), Blocks.NETHERRACK.getDefaultState());
 	public static final Block SPARKLESTONE_BLOCK = new SparklestoneBlock(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
 	public static final Block AZURITE_BLOCK = new SpectrumFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
 	public static final FloatBlock PALETUR_FRAGMENT_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.2F);
@@ -513,18 +521,18 @@ public class SpectrumBlocks {
 	
 	private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool();
 	private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
-	public static final Block TOPAZ_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_topaz_shard"), Blocks.STONE.getDefaultState());
-	public static final Block AMETHYST_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_amethyst_shard"), Blocks.STONE.getDefaultState());
-	public static final Block CITRINE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_citrine_shard"), Blocks.STONE.getDefaultState());
-	public static final Block ONYX_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"), Blocks.STONE.getDefaultState());
-	public static final Block MOONSTONE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"), Blocks.STONE.getDefaultState());
+	public static final Block TOPAZ_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), Blocks.STONE.getDefaultState());
+	public static final Block AMETHYST_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.STONE.getDefaultState());
+	public static final Block CITRINE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.STONE.getDefaultState());
+	public static final Block ONYX_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.STONE.getDefaultState());
+	public static final Block MOONSTONE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("midgame/collect_moonstone_shard"), Blocks.STONE.getDefaultState());
 	
 	private static final FabricBlockSettings deepslateGemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE);
-	public static final Block DEEPSLATE_TOPAZ_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_topaz_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_AMETHYST_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_amethyst_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_CITRINE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, new Identifier(SpectrumCommon.MOD_ID, "hidden/collect_shards/collect_citrine_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_ONYX_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, new Identifier(SpectrumCommon.MOD_ID, "create_onyx_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_MOONSTONE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, new Identifier(SpectrumCommon.MOD_ID, "midgame/collect_moonstone_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_TOPAZ_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_AMETHYST_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_CITRINE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_ONYX_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block DEEPSLATE_MOONSTONE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("midgame/collect_moonstone_shard"), Blocks.DEEPSLATE.getDefaultState());
 	
 	private static final FabricBlockSettings gemstoneStorageBlockSettings = FabricBlockSettings.of(Material.AMETHYST).requiresTool().strength(5.0F, 6.0F);
 	public static final Block TOPAZ_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);
@@ -675,6 +683,76 @@ public class SpectrumBlocks {
 	public static final Block ANDESITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
 	public static final Block DEEPSLATE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
 	
+	// CRYSTALLARIEUM
+	public static final Block SMALL_COAL_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_COAL_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_COAL_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block COAL_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_COPPER_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_COPPER_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_COPPER_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block COPPER_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_DIAMOND_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_DIAMOND_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_DIAMOND_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block DIAMOND_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_EMERALD_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_EMERALD_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_EMERALD_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block EMERALD_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_GLOWSTONE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_GLOWSTONE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_GLOWSTONE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block GLOWSTONE_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_GOLD_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_GOLD_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_GOLD_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block GOLD_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_IRON_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_IRON_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_IRON_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block IRON_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_LAPIS_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_LAPIS_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_LAPIS_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LAPIS_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_NETHERITE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_NETHERITE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_NETHERITE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block NETHERITE_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_PRISMARINE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_PRISMARINE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_PRISMARINE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block PRISMARINE_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_QUARTZ_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_QUARTZ_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_QUARTZ_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block QUARTZ_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_REDSTONE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_REDSTONE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_REDSTONE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block REDSTONE_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_CERTUS_QUARTZ_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_CERTUS_QUARTZ_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_CERTUS_QUARTZ_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block CERTUS_QUARTZ_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_FLUIX_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_FLUIX_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_FLUIX_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block FLUIX_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_GLOBETTE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_GLOBETTE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_GLOBETTE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block GLOBETTE_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_GLOBETTE_END_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_GLOBETTE_END_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_GLOBETTE_END_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block GLOBETTE_END_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block SMALL_GLOBETTE_NETHER_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MEDIUM_GLOBETTE_NETHER_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block LARGE_GLOBETTE_NETHER_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block GLOBETTE_NETHER_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	
 	// STRUCTURE BLOCKS
 	private static final FabricBlockSettings preservationBlockSettings = FabricBlockSettings.of(Material.STONE).strength(-1.0F).dropsNothing();
 	public static final Block PRESERVATION_STONE = new Block(preservationBlockSettings);
@@ -805,24 +883,24 @@ public class SpectrumBlocks {
 	}
 	
 	private static void registerBlock(String name, Block block) {
-		Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
+		Registry.register(Registry.BLOCK, locate(name), block);
 	}
 	
 	private static void registerBlockItem(String name, BlockItem blockItem, DyeColor dyeColor) {
-		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), blockItem);
+		Registry.register(Registry.ITEM, locate(name), blockItem);
 		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 	
 	private static void registerBlockWithItem(String name, Block block, FabricItemSettings itemSettings, DyeColor dyeColor) {
-		Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
+		Registry.register(Registry.BLOCK, locate(name), block);
 		BlockItem blockItem = new BlockItem(block, itemSettings);
-		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), blockItem);
+		Registry.register(Registry.ITEM, locate(name), blockItem);
 		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 	
 	private static void registerBlockWithItem(String name, Block block, BlockItem blockItem, DyeColor dyeColor) {
-		Registry.register(Registry.BLOCK, new Identifier(SpectrumCommon.MOD_ID, name), block);
-		Registry.register(Registry.ITEM, new Identifier(SpectrumCommon.MOD_ID, name), blockItem);
+		Registry.register(Registry.BLOCK, locate(name), block);
+		Registry.register(Registry.ITEM, locate(name), blockItem);
 		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 	
@@ -862,14 +940,6 @@ public class SpectrumBlocks {
 		registerPastelNetworkNodes(generalItemSettingsSixteen);
 		registerStoneBlocks(decorationItemSettings);
 		registerGemBlocks(worldgenItemSettings);
-		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsUncommon, DyeColor.BLACK);
-		
-		registerBlockWithItem("small_bismuth_bud", SMALL_BISMUTH_BUD, new AliasedBlockItem(SMALL_BISMUTH_BUD, worldgenItemSettings), DyeColor.CYAN);
-		registerBlockWithItem("large_bismuth_bud", LARGE_BISMUTH_BUD, worldgenItemSettings, DyeColor.CYAN);
-		registerBlockWithItem("bismuth_cluster", BISMUTH_CLUSTER, worldgenItemSettings, DyeColor.CYAN);
-		registerBlockWithItem("bismuth_block", BISMUTH_BLOCK, decorationItemSettingsUncommon, DyeColor.CYAN);
-		
-		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, decorationItemSettingsRare, DyeColor.WHITE);
 		
 		registerShootingStarBlocks(resourcesItemSettingUncommonSingle);
 		
@@ -893,6 +963,7 @@ public class SpectrumBlocks {
 		registerSpiritTree(generalItemSettings);
 		registerMobBlocks(mobBlockItemSettings);
 		registerMobHeads(mobHeadItemSettings);
+		registerCrystallarieumGrowingBlocks(resourcesItemSettings);
 		
 		// Decay
 		registerBlock("fading", FADING);
@@ -911,7 +982,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, generalItemSettings, DyeColor.ORANGE);
 		registerBlockWithItem("resonant_lily", RESONANT_LILY, generalItemSettings, DyeColor.GREEN);
 		registerBlockWithItem("clover", CLOVER, worldgenItemSettings, DyeColor.LIME);
-		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, worldgenItemSettings, new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_four_leaf_clover"), CLOVER.asItem()), DyeColor.LIME);
+		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, worldgenItemSettings, locate("milestones/reveal_four_leaf_clover"), CLOVER.asItem()), DyeColor.LIME);
 		
 		// Worldgen
 		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings, DyeColor.PURPLE);
@@ -930,6 +1001,82 @@ public class SpectrumBlocks {
 		registerBlock("decaying_light", DECAYING_LIGHT_BLOCK);
 		registerBlock("block_flooder", BLOCK_FLOODER);
 		registerBlock("bottomless_bundle", BOTTOMLESS_BUNDLE);
+	}
+	
+	private static void registerCrystallarieumGrowingBlocks(FabricItemSettings fabricItemSettings) {
+		// vanilla
+		registerBlockWithItem("small_coal_bud", SMALL_COAL_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("medium_coal_bud", MEDIUM_COAL_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("large_coal_bud", LARGE_COAL_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("coal_cluster", COAL_CLUSTER, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("small_copper_bud", SMALL_COPPER_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("medium_copper_bud", MEDIUM_COPPER_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("large_copper_bud", LARGE_COPPER_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("copper_cluster", COPPER_CLUSTER, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("small_diamond_bud", SMALL_DIAMOND_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("medium_diamond_bud", MEDIUM_DIAMOND_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("large_diamond_bud", LARGE_DIAMOND_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("diamond_cluster", DIAMOND_CLUSTER, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("small_emerald_bud", SMALL_EMERALD_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("medium_emerald_bud", MEDIUM_EMERALD_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("large_emerald_bud", LARGE_EMERALD_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("emerald_cluster", EMERALD_CLUSTER, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("small_glowstone_bud", SMALL_GLOWSTONE_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("medium_glowstone_bud", MEDIUM_GLOWSTONE_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("large_glowstone_bud", LARGE_GLOWSTONE_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("glowstone_cluster", GLOWSTONE_CLUSTER, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("small_gold_bud", SMALL_GOLD_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("medium_gold_bud", MEDIUM_GOLD_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("large_gold_bud", LARGE_GOLD_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("gold_cluster", GOLD_CLUSTER, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("small_iron_bud", SMALL_IRON_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("medium_iron_bud", MEDIUM_IRON_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("large_iron_bud", LARGE_IRON_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("iron_cluster", IRON_CLUSTER, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("small_lapis_bud", SMALL_LAPIS_BUD, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("medium_lapis_bud", MEDIUM_LAPIS_BUD, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("large_lapis_bud", LARGE_LAPIS_BUD, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("lapis_cluster", LAPIS_CLUSTER, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("small_netherite_bud", SMALL_NETHERITE_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("medium_netherite_bud", MEDIUM_NETHERITE_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("large_netherite_bud", LARGE_NETHERITE_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("netherite_cluster", NETHERITE_CLUSTER, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("small_prismarine_bud", SMALL_PRISMARINE_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("medium_prismarine_bud", MEDIUM_PRISMARINE_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("large_prismarine_bud", LARGE_PRISMARINE_BUD, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("prismarine_cluster", PRISMARINE_CLUSTER, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("small_quartz_bud", SMALL_QUARTZ_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("medium_quartz_bud", MEDIUM_QUARTZ_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("large_quartz_bud", LARGE_QUARTZ_BUD, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("quartz_cluster", QUARTZ_CLUSTER, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("small_redstone_bud", SMALL_REDSTONE_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("medium_redstone_bud", MEDIUM_REDSTONE_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("large_redstone_bud", LARGE_REDSTONE_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("redstone_cluster", REDSTONE_CLUSTER, fabricItemSettings, DyeColor.YELLOW);
+		
+		// ae2
+		registerBlockWithItem("small_certus_quartz_bud", SMALL_CERTUS_QUARTZ_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("medium_certus_quartz_bud", MEDIUM_CERTUS_QUARTZ_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("large_certus_quartz_bud", LARGE_CERTUS_QUARTZ_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("certus_quartz_cluster", CERTUS_QUARTZ_CLUSTER, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("small_fluix_bud", SMALL_FLUIX_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("medium_fluix_bud", MEDIUM_FLUIX_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("large_fluix_bud", LARGE_FLUIX_BUD, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("fluix_cluster", FLUIX_CLUSTER, fabricItemSettings, DyeColor.YELLOW);
+		
+		// gobber2
+		registerBlockWithItem("small_globette_bud", SMALL_GLOBETTE_BUD, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("medium_globette_bud", MEDIUM_GLOBETTE_BUD, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("large_globette_bud", LARGE_GLOBETTE_BUD, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("globette_cluster", GLOBETTE_CLUSTER, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("small_globette_end_bud", SMALL_GLOBETTE_END_BUD, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("medium_globette_end_bud", MEDIUM_GLOBETTE_END_BUD, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("large_globette_end_bud", LARGE_GLOBETTE_END_BUD, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("globette_end_cluster", GLOBETTE_END_CLUSTER, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("small_globette_nether_bud", SMALL_GLOBETTE_NETHER_BUD, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("medium_globette_nether_bud", MEDIUM_GLOBETTE_NETHER_BUD, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("large_globette_nether_bud", LARGE_GLOBETTE_NETHER_BUD, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("globette_nether_cluster", GLOBETTE_NETHER_CLUSTER, fabricItemSettings, DyeColor.RED);
 	}
 	
 	private static void registerRedstone(FabricItemSettings fabricItemSettings) {
@@ -1019,6 +1166,18 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("scarlet_ore", SCARLET_ORE, new FloatBlockItem(SCARLET_ORE, fabricItemSettingsFireProof, 1.01F), DyeColor.RED);
 		registerBlockWithItem("paletur_ore", PALETUR_ORE, new FloatBlockItem(PALETUR_ORE, fabricItemSettings, 0.99F), DyeColor.CYAN);
+		
+		registerBlockWithItem("small_bismuth_bud", SMALL_BISMUTH_BUD, new AliasedBlockItem(SMALL_BISMUTH_BUD, worldgenItemSettings), DyeColor.CYAN);
+		registerBlockWithItem("large_bismuth_bud", LARGE_BISMUTH_BUD, worldgenItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("bismuth_cluster", BISMUTH_CLUSTER, worldgenItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("bismuth_block", BISMUTH_BLOCK, decorationItemSettingsUncommon, DyeColor.CYAN);
+		
+		registerBlockWithItem("malachite_ore", MALACHITE_ORE, worldgenItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("deepslate_malachite_ore", DEEPSLATE_MALACHITE_ORE, worldgenItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("small_malachite_bud", SMALL_MALACHITE_BUD, worldgenItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("large_malachite_bud", LARGE_MALACHITE_BUD, worldgenItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, worldgenItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("malachite_block", MALACHITE_BLOCK, decorationItemSettingsUncommon, DyeColor.WHITE);
 	}
 	
 	private static void registerOreStorageBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
@@ -1028,6 +1187,9 @@ public class SpectrumBlocks {
 		registerBlockWithItem("onyx_storage_block", ONYX_STORAGE_BLOCK, fabricItemSettings, DyeColor.BLACK);
 		registerBlockWithItem("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK, fabricItemSettings, DyeColor.WHITE);
 		registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, fabricItemSettings, DyeColor.WHITE);
+		
+		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsUncommon, DyeColor.BLACK);
+		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, decorationItemSettingsRare, DyeColor.WHITE);
 		
 		registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings, DyeColor.BLUE);
 		registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings, DyeColor.YELLOW);
@@ -1777,6 +1939,80 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GEMSTONE_SHOOTING_STAR, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLISTERING_SHOOTING_STAR, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRISTINE_SHOOTING_STAR, RenderLayer.getCutout());
+		
+		// CRYSTALLARIEUM GROWABLES
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_COAL_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_COAL_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_COAL_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COAL_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_COPPER_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_COPPER_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_COPPER_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COPPER_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_DIAMOND_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_DIAMOND_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_DIAMOND_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIAMOND_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_EMERALD_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_EMERALD_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_EMERALD_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EMERALD_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GLOWSTONE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GLOWSTONE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GLOWSTONE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOWSTONE_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GOLD_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GOLD_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GOLD_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GOLD_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_IRON_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_IRON_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_IRON_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.IRON_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_LAPIS_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_LAPIS_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_LAPIS_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LAPIS_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_NETHERITE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_NETHERITE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_NETHERITE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.NETHERITE_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_PRISMARINE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_PRISMARINE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_PRISMARINE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRISMARINE_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_QUARTZ_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_QUARTZ_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_QUARTZ_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.QUARTZ_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_REDSTONE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_REDSTONE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_REDSTONE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_CERTUS_QUARTZ_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_CERTUS_QUARTZ_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_CERTUS_QUARTZ_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CERTUS_QUARTZ_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_FLUIX_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_FLUIX_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_FLUIX_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.FLUIX_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GLOBETTE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GLOBETTE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GLOBETTE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOBETTE_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GLOBETTE_END_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GLOBETTE_END_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GLOBETTE_END_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOBETTE_END_CLUSTER, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GLOBETTE_NETHER_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GLOBETTE_NETHER_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GLOBETTE_NETHER_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOBETTE_NETHER_CLUSTER, RenderLayer.getCutout());
+		
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_MALACHITE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_MALACHITE_BUD, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MALACHITE_CLUSTER, RenderLayer.getCutout());
 	}
 	
 	@NotNull

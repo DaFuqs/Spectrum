@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 80,
+  "experience": 0.2,
+  "fluid": "minecraft:water",
+  "ingredients": [
+    {
+      "item": "spectrum:lightning_stone"
+    },
+    {
+      "item": "ae2:certus_quartz_crystal"
+    }
+  ],
+  "result": {
+    "item": "ae2:charged_certus_quartz_crystal"
+  },
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "lightning_on_shrine",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ae2"
+      ]
+    }
+  ]
+}

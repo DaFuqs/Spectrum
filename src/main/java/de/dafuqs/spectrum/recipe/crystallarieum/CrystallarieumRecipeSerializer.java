@@ -49,7 +49,7 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 		List<CrystallarieumCatalyst> catalysts = new ArrayList<>();
 		JsonArray catalystArray = JsonHelper.getArray(jsonObject, "catalysts");
 		for (int i = 0; i < catalystArray.size(); i++) {
-			catalysts.add(CrystallarieumCatalyst.fromJson(growthStageArray.get(i).getAsJsonObject()));
+			catalysts.add(CrystallarieumCatalyst.fromJson(catalystArray.get(i).getAsJsonObject()));
 		}
 		Identifier requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		

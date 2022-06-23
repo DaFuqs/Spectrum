@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "spectrum:small_malachite_bud"
+  },
+  "growth_stage_states": [
+    "spectrum:small_malachite_bud",
+    "spectrum:large_malachite_bud",
+    "spectrum:malachite_cluster"
+  ],
+  "seconds_per_growth_stage": 300,
+  "ink_color": "white",
+  "ink_per_second": 800,
+  "grows_without_catalyst": false,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "spectrum:moonstone_shard"
+      },
+      "growth_acceleration_mod": 1.0,
+      "ink_consumption_mod": 1.0,
+      "consume_chance_per_second": 0.0
+    }
+  ],
+  "required_advancement": "spectrum:lategame/collect_malachite"
+}

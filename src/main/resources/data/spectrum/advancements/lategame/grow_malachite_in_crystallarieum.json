@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/create_malachite_seed",
+  "parent": "spectrum:lategame/collect_malachite",
   "display": {
     "icon": {
         "item": "spectrum:malachite_crystal"
@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "fully_grow_malachite": {
+    "grown_malachite_in_crystallarieum": {
       "trigger":"spectrum:crystallarieum_growing",
       "conditions": {
         "block": {
@@ -22,7 +22,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/create_malachite_seed" }
+      "conditions": { "advancement_identifier": "spectrum:lategame/collect_malachite" }
     }
   }
 }

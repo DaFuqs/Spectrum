@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "minecraft:prismarine_crystals"
+  },
+  "growth_stage_states": [
+    "spectrum:small_prismarine_bud",
+    "spectrum:medium_prismarine_bud",
+    "spectrum:large_prismarine_bud",
+    "spectrum:prismarine_cluster"
+  ],
+  "seconds_per_growth_stage": 60,
+  "ink_color": "cyan",
+  "ink_per_second": 40,
+  "grows_without_catalyst": true,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "minecraft:prismarine_shard"
+      },
+      "growth_acceleration_mod": 2.0,
+      "ink_consumption_mod": 0.5,
+      "consume_chance_per_second": 0.04
+    }
+  ]
+}

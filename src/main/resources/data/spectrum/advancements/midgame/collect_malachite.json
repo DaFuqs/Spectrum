@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/enter_dimension",
   "display": {
     "icon": {
-      "item": "spectrum:malachite_flake"
+      "item": "spectrum:small_malachite_bud"
     },
     "hidden": true,
     "title": {
@@ -19,10 +19,9 @@
         "items": [
           {
             "items": [
-              "spectrum:malachite_flake",
-              "spectrum:stone_malachite_ore",
-              "spectrum:deepslate_malachite_ore",
-              "spectrum:downstone_malachite_ore"
+              "spectrum:small_malachite_bud",
+              "spectrum:malachite_ore",
+              "spectrum:deepslate_malachite_ore"
             ]
           }
         ]

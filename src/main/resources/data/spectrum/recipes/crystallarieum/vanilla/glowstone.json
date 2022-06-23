@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "minecraft:glowstone_dust"
+  },
+  "growth_stage_states": [
+    "spectrum:small_glowstone_bud",
+    "spectrum:medium_glowstone_bud",
+    "spectrum:large_glowstone_bud",
+    "spectrum:glowstone_cluster"
+  ],
+  "seconds_per_growth_stage": 120,
+  "ink_color": "yellow",
+  "ink_per_second": 10,
+  "grows_without_catalyst": true,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "spectrum:sparklestone_gem"
+      },
+      "growth_acceleration_mod": 4.0,
+      "ink_consumption_mod": 1.0,
+      "consume_chance_per_second": 0.1
+    },
+	{
+      "ingredient": {
+        "item": "spectrum:moonstone_shard"
+      },
+      "growth_acceleration_mod": 1.0,
+      "ink_consumption_mod": 0.1,
+      "consume_chance_per_second": 0.05
+    }
+  ]
+}

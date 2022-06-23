@@ -229,6 +229,7 @@ public class SpectrumItems {
 	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), Items.GRAY_DYE);
 	public static final Item BISMUTH_CRYSTAL = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
+	public static final Item MALACHITE_CRYSTAL = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("milestones_reveal_malachite"), Items.WHITE_DYE);
 	
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1).recipeRemainder(Items.BUCKET));
@@ -465,6 +466,7 @@ public class SpectrumItems {
 		register("midnight_aberration", MIDNIGHT_ABERRATION, DyeColor.GRAY);
 		register("midnight_chip", MIDNIGHT_CHIP, DyeColor.GRAY);
 		register("bismuth_crystal", BISMUTH_CRYSTAL, DyeColor.CYAN);
+		register("malachite_crystal", MALACHITE_CRYSTAL, DyeColor.WHITE);
 	}
 	
 	public static void registerDecayBottles() {

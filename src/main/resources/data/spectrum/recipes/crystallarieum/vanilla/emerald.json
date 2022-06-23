@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "minecraft:raw_emerald"
+  },
+  "growth_stage_states": [
+    "spectrum:small_emerald_bud",
+    "spectrum:medium_emerald_bud",
+    "spectrum:large_emerald_bud",
+    "spectrum:emerald_cluster"
+  ],
+  "seconds_per_growth_stage": 60,
+  "ink_color": "cyan",
+  "ink_per_second": 40,
+  "grows_without_catalyst": true,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "minecraft:gunpowder"
+      },
+      "growth_acceleration_mod": 3.0,
+      "ink_consumption_mod": 3.0,
+      "consume_chance_per_second": 0.04
+    }
+  ]
+}

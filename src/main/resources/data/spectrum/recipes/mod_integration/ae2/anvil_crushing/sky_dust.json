@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "ae2:sky_stone_block"
+  },
+  "crushedItemsPerPointOfDamage": 0.5,
+  "experience": 0.1,
+  "result": {
+    "item": "ae2:sky_dust"
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.stone.break",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ae2"
+      ]
+    }
+  ]
+}

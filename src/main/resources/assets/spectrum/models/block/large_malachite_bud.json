@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "spectrum:block/large_malachite_bud"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "minecraft:quartz"
+  },
+  "growth_stage_states": [
+    "spectrum:small_quartz_bud",
+    "spectrum:medium_quartz_bud",
+    "spectrum:large_quartz_bud",
+    "spectrum:quartz_cluster"
+  ],
+  "seconds_per_growth_stage": 180,
+  "ink_color": "cyan",
+  "ink_per_second": 40,
+  "grows_without_catalyst": false,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "minecraft:coal"
+      },
+      "growth_acceleration_mod": 1.0,
+      "ink_consumption_mod": 1.0,
+      "consume_chance_per_second": 0.1
+    }
+  ]
+}

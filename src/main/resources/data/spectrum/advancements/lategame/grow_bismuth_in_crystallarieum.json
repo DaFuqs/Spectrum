@@ -1,14 +1,14 @@
 {
-  "parent": "spectrum:lategame/collect_bismuth_crystal",
+  "parent": "spectrum:midgame/collect_bismuth_crystal",
   "display": {
     "icon": {
         "item": "spectrum:crystallarieum"
     },
     "title": {
-      "translate": "advancements.spectrum.grow_bismuth_cluster_in_crystallarieum.title"
+      "translate": "advancements.spectrum.grow_bismuth_in_crystallarieum.title"
     },
     "description": {
-      "translate": "advancements.spectrum.grow_bismuth_cluster_in_crystallarieum.description"
+      "translate": "advancements.spectrum.grow_bismuth_in_crystallarieum.description"
     }
   },
   "criteria": {

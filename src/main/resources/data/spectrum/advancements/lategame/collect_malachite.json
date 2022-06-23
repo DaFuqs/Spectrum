@@ -15,7 +15,7 @@
   "criteria": {
     "collected_malachite": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "tag": [ "spectrum:malachite_ores" ]}] }
+      "conditions": { "items": [{ "tag": "spectrum:malachite_ores" }] }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

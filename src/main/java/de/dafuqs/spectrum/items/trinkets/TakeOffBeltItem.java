@@ -44,7 +44,7 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 	}
 	
 	public static int getJumpBoostAmplifier(int sneakTime, int powerEnchantmentLevel) {
-		return (int) Math.floor(sneakTime * (1.5 + powerEnchantmentLevel * 0.25));
+		return (int) Math.floor(sneakTime * (2.0 + powerEnchantmentLevel * 0.5));
 	}
 	
 	public static int getCurrentCharge(PlayerEntity playerEntity) {

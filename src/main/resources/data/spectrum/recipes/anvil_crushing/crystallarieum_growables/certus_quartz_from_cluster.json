@@ -1,13 +1,13 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:redstone_cluster"
+    "item": "spectrum:certus_quartz_cluster"
   },
-  "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 2.0,
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 3.0,
   "result": {
-    "item": "minecraft:redstone",
-    "count": 6
+    "item": "ae2:certus_quartz_dust",
+    "count": 12
   },
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "block.amethyst_cluster.break"

@@ -1,12 +1,12 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:netherite_cluster"
+    "item": "spectrum:copper_cluster"
   },
-  "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 2.0,
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 3.0,
   "result": {
-    "item": "minecraft:netherite_ingot",
+    "item": "minecraft:copper_ingot",
     "count": 6
   },
   "particleEffectIdentifier": "explosion",

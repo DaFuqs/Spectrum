@@ -1,12 +1,12 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:fluix_cluster"
+    "item": "spectrum:globette_end_cluster"
   },
-  "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 2.0,
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 3.0,
   "result": {
-    "item": "ae2:fluix_crystal",
+    "item": "gobber2:globette_end_cluster",
     "count": 6
   },
   "particleEffectIdentifier": "explosion",

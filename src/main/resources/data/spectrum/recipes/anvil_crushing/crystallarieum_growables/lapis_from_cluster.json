@@ -1,12 +1,12 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:globette_nether_cluster"
+    "item": "spectrum:lapis_cluster"
   },
-  "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 2.0,
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 3.0,
   "result": {
-    "item": "gobber2:globette_nether_cluster",
+    "item": "minecraft:lapis_lazuli",
     "count": 6
   },
   "particleEffectIdentifier": "explosion",

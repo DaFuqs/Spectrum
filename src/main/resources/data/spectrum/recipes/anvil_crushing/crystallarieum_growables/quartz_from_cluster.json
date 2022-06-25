@@ -1,12 +1,12 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:prismarine_cluster"
+    "item": "spectrum:quartz_cluster"
   },
-  "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 2.0,
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 3.0,
   "result": {
-    "item": "minecraft:prismarine_crystals",
+    "item": "minecraft:quartz",
     "count": 6
   },
   "particleEffectIdentifier": "explosion",

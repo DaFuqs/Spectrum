@@ -11,10 +11,10 @@
       "item": "spectrum:large_copper_bud"
     }
   ],
-  "crushedItemsPerPointOfDamage": 0.75,
+  "crushedItemsPerPointOfDamage": 1.0,
   "experience": 2.0,
   "result": {
-    "item": "minecraft:copper",
+    "item": "minecraft:copper_ingot",
     "count": 2
   },
   "particleEffectIdentifier": "explosion",

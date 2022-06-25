@@ -11,10 +11,10 @@
       "item": "spectrum:large_certus_quartz_bud"
     }
   ],
-  "crushedItemsPerPointOfDamage": 0.75,
+  "crushedItemsPerPointOfDamage": 1.0,
   "experience": 2.0,
   "result": {
-    "item": "ae2:certus_quartz",
+    "item": "ae2:certus_quartz_dust",
     "count": 2
   },
   "particleEffectIdentifier": "explosion",

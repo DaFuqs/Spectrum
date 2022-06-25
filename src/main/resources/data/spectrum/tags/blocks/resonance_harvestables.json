@@ -2,9 +2,8 @@
   "values": [
     "#spectrum:budding_blocks",
     "#spectrum:gemstone_buds",
-    "#spectrum:bismuth_buds",
-    "#spectrum:malachite_buds",
-    "#spectrum:crystallarieum_buds",
+    "#spectrum:crystallarieum_growable_buds",
+    "#spectrum:crystallarieum_growable_clusters",
     "#spectrum:infested_blocks",
     "#spectrum:spawners",
     {

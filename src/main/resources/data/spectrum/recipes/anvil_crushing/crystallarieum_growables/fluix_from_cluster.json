@@ -1,13 +1,13 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:glowstone_cluster"
+    "item": "spectrum:fluix_cluster"
   },
-  "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 2.0,
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 3.0,
   "result": {
-    "item": "minecraft:glowstone",
-    "count": 6
+    "item": "ae2:fluix_dust",
+    "count": 12
   },
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "block.amethyst_cluster.break"

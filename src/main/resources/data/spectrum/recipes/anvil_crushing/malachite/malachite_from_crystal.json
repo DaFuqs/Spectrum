@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:malachite_crystal"
+  },
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 0.5,
+  "result": {
+    "item": "spectrum:small_malachite_bud",
+    "count": 5
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.chain.break"
+}

@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:malachite_cluster",
+    "spectrum:bismuth_cluster",
+
+    "spectrum:coal_cluster",
+    "spectrum:copper_cluster",
+    "spectrum:diamond_cluster",
+    "spectrum:emerald_cluster",
+    "spectrum:glowstone_cluster",
+    "spectrum:gold_cluster",
+    "spectrum:iron_cluster",
+    "spectrum:lapis_cluster",
+    "spectrum:netherite_cluster",
+    "spectrum:prismarine_cluster",
+    "spectrum:quartz_cluster",
+    "spectrum:redstone_cluster",
+
+    "spectrum:certus_quartz_cluster",
+    "spectrum:fluix_cluster",
+
+    "spectrum:globette_cluster",
+    "spectrum:globette_end_cluster",
+    "spectrum:globette_nether_cluster"
+  ]
+}

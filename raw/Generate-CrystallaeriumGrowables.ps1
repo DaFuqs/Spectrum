@@ -67,7 +67,7 @@ foreach($entry in $entries.GetEnumerator()) {
       "item": "spectrum:large_$name`_bud"
     }
   ],
-  "crushedItemsPerPointOfDamage": 0.75,
+  "crushedItemsPerPointOfDamage": 1.0,
   "experience": 2.0,
   "result": {
     "item": "$res",
@@ -78,14 +78,14 @@ foreach($entry in $entries.GetEnumerator()) {
 }
 "@
 
-    New-Item -Path ".\anvil_crushing\native_$name`_from_cluster.json" -ItemType File -Force -Value @"
+    New-Item -Path ".\anvil_crushing\$name`_from_cluster.json" -ItemType File -Force -Value @"
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
     "item": "spectrum:$name`_cluster"
   },
-  "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 2.0,
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 3.0,
   "result": {
     "item": "$res",
     "count": 6

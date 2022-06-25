@@ -4,6 +4,7 @@
     "minecraft:amethyst_cluster",
     "spectrum:citrine_cluster",
     "spectrum:onyx_cluster",
-    "spectrum:moonstone_cluster"
+    "spectrum:moonstone_cluster",
+    "#spectrum:crystallarieum_growable_clusters"
   ]
 }

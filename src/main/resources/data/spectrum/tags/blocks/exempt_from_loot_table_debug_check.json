@@ -1,5 +1,8 @@
 {
   "values": [
+    "#spectrum:shooting_stars",
+    "#spectrum:unbreakable",
+    "#spectrum:crystallarieum_growable_buds",
     "spectrum:fading",
     "spectrum:failing",
     "spectrum:ruin",
@@ -11,12 +14,10 @@
     "spectrum:deeper_down_portal",
     "spectrum:wand_light",
     "spectrum:block_flooder",
-    "#spectrum:shooting_stars",
     "spectrum:bottomless_bundle",
     "spectrum:creative_particle_spawner",
     "spectrum:decaying_light",
     "spectrum:black_materia",
-    "#spectrum:unbreakable",
     "spectrum:tinted_preservation_glass",
     "spectrum:jade_vine_roots"
   ]

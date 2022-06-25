@@ -932,7 +932,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, generalUncommonItemSettingsEight, "upgrade_experience2"), DyeColor.LIGHT_GRAY);
 		
 		registerStructureBlocks(generalItemSettings);
-		registerJadeVineBlocks(generalItemSettings);
 		
 		registerMachines(generalItemSettingsEight);
 		registerPastelNetworkNodes(generalItemSettingsSixteen);
@@ -962,6 +961,7 @@ public class SpectrumBlocks {
 		registerMobBlocks(mobBlockItemSettings);
 		registerMobHeads(mobHeadItemSettings);
 		registerCrystallarieumGrowingBlocks(resourcesItemSettings);
+		registerJadeVineBlocks(decorationItemSettings);
 		
 		// Decay
 		registerBlock("fading", FADING);

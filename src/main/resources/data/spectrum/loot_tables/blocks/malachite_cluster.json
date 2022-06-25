@@ -3,21 +3,21 @@
   "pools": [
     {
       "rolls": 1,
-      "bonus_rolls": 0.0,
+      "bonus_rolls": 0,
       "entries": [
         {
           "type": "minecraft:alternatives",
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:deepslate_malachite_ore",
+              "name": "spectrum:malachite_cluster",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
                     "enchantments": [
                       {
-                        "enchantment": "minecraft:silk_touch",
+                        "enchantment": "spectrum:resonance",
                         "levels": {
                           "min": 1
                         }
@@ -29,21 +29,31 @@
             },
             {
               "type": "minecraft:item",
-              "name": "spectrum:small_malachite_bud",
+              "name": "spectrum:malachite_crystal",
               "functions": [
                 {
                   "function": "minecraft:set_count",
-                  "count": {
-                    "type": "minecraft:uniform",
-                    "min": 1.0,
-                    "max": 2.0
-                  },
+                  "count": 2,
                   "add": false
                 },
                 {
                   "function": "minecraft:apply_bonus",
                   "enchantment": "minecraft:fortune",
                   "formula": "minecraft:ore_drops"
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:malachite_crystal",
+              "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "min": 2,
+                    "max": 3
+                  },
+                  "add": false
                 },
                 {
                   "function": "minecraft:explosion_decay"

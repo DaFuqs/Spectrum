@@ -332,7 +332,7 @@ public class SpectrumItems {
 	
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(toolItemSettingsSingle, 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(toolItemSettingsSingle, 64 * 100);
-	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(toolUncommonItemSettingsSingle, 64 * 64 * 64 * 100);
+	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(toolUncommonItemSettingsSingle, 64 * 64 * 100);
 	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(toolUncommonItemSettingsSingle, 64 * 64 * 64 * 64 * 100);
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(toolUncommonItemSettingsSingle);

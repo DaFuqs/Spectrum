@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:large_bismuth_bud"
+  },
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 0.25,
+  "result": {
+    "item": "spectrum:small_bismuth_bud",
+    "count": 2
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.chain.break"
+}

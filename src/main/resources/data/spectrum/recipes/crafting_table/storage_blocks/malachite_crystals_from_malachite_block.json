@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "spectrum:bismuth_block"
+      "item": "spectrum:malachite_block"
     }
   ],
   "result": {
-    "item": "spectrum:bismuth_crystal",
+    "item": "spectrum:malachite_crystal",
     "count": 9
   }
 }

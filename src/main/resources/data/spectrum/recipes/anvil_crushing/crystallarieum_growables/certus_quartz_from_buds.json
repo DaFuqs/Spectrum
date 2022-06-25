@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "spectrum:small_certus_quartz_bud"
+    },
+    {
+      "item": "spectrum:medium_certus_quartz_bud"
+    },
+    {
+      "item": "spectrum:large_certus_quartz_bud"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 2.0,
+  "result": {
+    "item": "ae2:certus_quartz",
+    "count": 2
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.amethyst_cluster.break"
+}

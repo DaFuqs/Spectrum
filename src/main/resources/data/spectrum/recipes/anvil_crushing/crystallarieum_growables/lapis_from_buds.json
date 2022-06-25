@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "spectrum:small_lapis_bud"
+    },
+    {
+      "item": "spectrum:medium_lapis_bud"
+    },
+    {
+      "item": "spectrum:large_lapis_bud"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 2.0,
+  "result": {
+    "item": "minecraft:lapis_lazuli",
+    "count": 2
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.amethyst_cluster.break"
+}

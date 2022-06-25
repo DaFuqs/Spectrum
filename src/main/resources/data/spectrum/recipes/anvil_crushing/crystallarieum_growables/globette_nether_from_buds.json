@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "spectrum:small_globette_nether_bud"
+    },
+    {
+      "item": "spectrum:medium_globette_nether_bud"
+    },
+    {
+      "item": "spectrum:large_globette_nether_bud"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 2.0,
+  "result": {
+    "item": "gobber2:globette_nether_cluster",
+    "count": 2
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.amethyst_cluster.break"
+}

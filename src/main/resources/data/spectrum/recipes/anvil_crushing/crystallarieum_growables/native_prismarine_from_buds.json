@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "spectrum:small_prismarine_bud"
+    },
+    {
+      "item": "spectrum:medium_prismarine_bud"
+    },
+    {
+      "item": "spectrum:large_prismarine_bud"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 2.0,
+  "result": {
+    "item": "spectrum:native_prismarine",
+    "count": 2
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.amethyst_cluster.break"
+}

@@ -1,14 +1,25 @@
 {
-	"type": "minecraft:block",
-	"pools": [{
-		"rolls": 1,
-		"bonus_rolls": 0.0,
-		"entries": [{
-			"type": "minecraft:item",
-			"name": "spectrum:fluix_cluster"
-		}],
-		"conditions": [{
-			"condition": "minecraft:survives_explosion"
-		}]
-	}]
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:native_fluix",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 7
+              },
+              "add": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

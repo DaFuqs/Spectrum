@@ -23,30 +23,6 @@ foreach($entry in $entries.GetEnumerator()) {
     $name = $entry.Key
     $res = $entry.Value
 
-    New-Item -Path ".\loot\small_$name`_bud.json" -ItemType File -Force -Value @"
-{
-  "type": "minecraft:block",
-  "pools": [
-    {
-      "rolls": 1,
-      "bonus_rolls": 0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "$res"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
-    }
-  ]
-}
-"@
-
-
     New-Item -Path ".\loot\$name`_cluster.json" -ItemType File -Force -Value @"
 {
   "type": "minecraft:block",
@@ -57,56 +33,44 @@ foreach($entry in $entries.GetEnumerator()) {
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "$res"
-        }
-      ],
-      "functions": [
-        {
-          "function": "minecraft:set_count",
-          "count": {
-            "min": 5,
-            "max": 7
-          }
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
+          "name": "spectrum:native_$name",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 7
+              },
+              "add": false
+            }
+          ]
         }
       ]
     }
   ]
 }
+
 "@
 
 
-    New-Item -Path ".\anvil_crushing\native_$name`_from_small_$name`_bud.json" -ItemType File -Force -Value @"
+    New-Item -Path ".\anvil_crushing\$name`_from_buds.json" -ItemType File -Force -Value @"
 {
   "type": "spectrum:anvil_crushing",
-  "ingredient": {
-    "item": "spectrum:small_$name`_bud"
-  },
+  "ingredient": [
+    {
+      "item": "spectrum:small_$name`_bud"
+    },
+    {
+      "item": "spectrum:medium_$name`_bud"
+    },
+    {
+      "item": "spectrum:large_$name`_bud"
+    }
+  ],
   "crushedItemsPerPointOfDamage": 0.75,
   "experience": 2.0,
   "result": {
-    "item": "spectrum:native_$name",
-    "count": 1
-  },
-  "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.amethyst_cluster.break"
-}
-"@
-
-    New-Item -Path ".\anvil_crushing\native_$name`_from_medium_$name`_bud.json" -ItemType File -Force -Value @"
-{
-  "type": "spectrum:anvil_crushing",
-  "ingredient": {
-    "item": "spectrum:medium_$name`_bud"
-  },
-  "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 2.0,
-  "result": {
-    "item": "spectrum:native_$name",
+    "item": "$res",
     "count": 2
   },
   "particleEffectIdentifier": "explosion",
@@ -114,33 +78,16 @@ foreach($entry in $entries.GetEnumerator()) {
 }
 "@
 
-    New-Item -Path ".\anvil_crushing\native_$name`_from_large_$name`_bud.json" -ItemType File -Force -Value @"
+    New-Item -Path ".\anvil_crushing\native_$name`_from_cluster.json" -ItemType File -Force -Value @"
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:large_$name`_bud"
+    "item": "spectrum:$name`_cluster"
   },
   "crushedItemsPerPointOfDamage": 0.75,
   "experience": 2.0,
   "result": {
-    "item": "spectrum:native_$name",
-    "count": 3
-  },
-  "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.amethyst_cluster.break"
-}
-"@
-
-    New-Item -Path ".\anvil_crushing\native_$name`_from_$name`_cluster.json" -ItemType File -Force -Value @"
-{
-  "type": "spectrum:anvil_crushing",
-  "ingredient": {
-    "item": "$name`_cluster"
-  },
-  "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 2.0,
-  "result": {
-    "item": "spectrum:native_$name",
+    "item": "$res",
     "count": 6
   },
   "particleEffectIdentifier": "explosion",

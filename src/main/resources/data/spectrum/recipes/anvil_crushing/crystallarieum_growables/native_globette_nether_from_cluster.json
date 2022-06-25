@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:globette_nether_cluster"
+  },
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 2.0,
+  "result": {
+    "item": "gobber2:globette_nether_cluster",
+    "count": 6
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.amethyst_cluster.break"
+}

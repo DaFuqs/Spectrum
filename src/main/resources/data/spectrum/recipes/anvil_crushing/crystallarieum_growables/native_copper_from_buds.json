@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "spectrum:small_copper_bud"
+    },
+    {
+      "item": "spectrum:medium_copper_bud"
+    },
+    {
+      "item": "spectrum:large_copper_bud"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 0.75,
+  "experience": 2.0,
+  "result": {
+    "item": "spectrum:native_copper",
+    "count": 2
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.amethyst_cluster.break"
+}

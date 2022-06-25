@@ -344,6 +344,27 @@ public class SpectrumItems {
 	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item NEAT_RING = new NeatRingItem(toolRareItemSettingsSingle);
 	
+	// Native Clusters
+	public static final Item NATIVE_EMERALD = new Item(resourcesItemSettings);
+	public static final Item NATIVE_PRISMARINE = new Item(resourcesItemSettings);
+	public static final Item NATIVE_COAL = new Item(resourcesItemSettings);
+	public static final Item NATIVE_REDSTONE = new Item(resourcesItemSettings);
+	public static final Item NATIVE_GLOWSTONE = new Item(resourcesItemSettings);
+	public static final Item NATIVE_LAPIS = new Item(resourcesItemSettings);
+	public static final Item NATIVE_COPPER = new Item(resourcesItemSettings);
+	public static final Item NATIVE_QUARTZ = new Item(resourcesItemSettings);
+	public static final Item NATIVE_GOLD = new Item(resourcesItemSettings);
+	public static final Item NATIVE_DIAMOND = new Item(resourcesItemSettings);
+	public static final Item NATIVE_IRON = new Item(resourcesItemSettings);
+	public static final Item NATIVE_NETHERITE = new Item(resourcesItemSettings);
+	
+	public static final Item NATIVE_CERTUS_QUARTZ = new Item(resourcesItemSettings);
+	public static final Item NATIVE_FLUIX = new Item(resourcesItemSettings);
+	public static final Item NATIVE_GLOBETTE = new Item(resourcesItemSettings);
+	public static final Item NATIVE_GLOBETTE_NETHER = new Item(resourcesItemSettings);
+	public static final Item NATIVE_GLOBETTE_END = new Item(resourcesItemSettings);
+	
+	
 	private static void register(String name, Item item, DyeColor dyeColor) {
 		Registry.register(Registry.ITEM, SpectrumCommon.locate(name), item);
 		ItemColors.ITEM_COLORS.registerColorMapping(item, dyeColor);
@@ -364,6 +385,7 @@ public class SpectrumItems {
 		registerTrinkets();
 		registerFluidBuckets();
 		registerBannerPatterns();
+		registerNativeClusters();
 		
 		register("crafting_tablet", CRAFTING_TABLET, DyeColor.LIGHT_GRAY);
 		register("void_bundle", BOTTOMLESS_BUNDLE, DyeColor.LIGHT_GRAY);
@@ -378,6 +400,26 @@ public class SpectrumItems {
 		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
 	}
 
+	public static void registerNativeClusters() {
+		register("native_emerald", NATIVE_EMERALD, DyeColor.WHITE);
+		register("native_prismarine", NATIVE_PRISMARINE, DyeColor.WHITE);
+		register("native_coal", NATIVE_COAL, DyeColor.WHITE);
+		register("native_certus_quartz", NATIVE_CERTUS_QUARTZ, DyeColor.WHITE);
+		register("native_redstone", NATIVE_REDSTONE, DyeColor.WHITE);
+		register("native_glowstone", NATIVE_GLOWSTONE, DyeColor.WHITE);
+		register("native_lapis", NATIVE_LAPIS, DyeColor.WHITE);
+		register("native_copper", NATIVE_COPPER, DyeColor.WHITE);
+		register("native_quartz", NATIVE_QUARTZ, DyeColor.WHITE);
+		register("native_gold", NATIVE_GOLD, DyeColor.WHITE);
+		register("native_diamond", NATIVE_DIAMOND, DyeColor.WHITE);
+		register("native_globette_end", NATIVE_GLOBETTE_END, DyeColor.WHITE);
+		register("native_fluix", NATIVE_FLUIX, DyeColor.WHITE);
+		register("native_globette", NATIVE_GLOBETTE, DyeColor.WHITE);
+		register("native_netherite", NATIVE_NETHERITE, DyeColor.WHITE);
+		register("native_iron", NATIVE_IRON, DyeColor.WHITE);
+		register("native_globette_nether", NATIVE_GLOBETTE_NETHER, DyeColor.WHITE);
+	}
+	
 	public static void registerGraces() {
 		register("white_crystal_grace", WHITE_CRYSTAL_GRACE, DyeColor.WHITE);
 	}

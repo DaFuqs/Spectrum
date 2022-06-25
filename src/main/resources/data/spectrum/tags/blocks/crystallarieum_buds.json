@@ -49,6 +49,7 @@
     "spectrum:medium_redstone_bud",
     "spectrum:large_redstone_bud",
     "spectrum:redstone_cluster",
+
     "spectrum:small_certus_quartz_bud",
     "spectrum:medium_certus_quartz_bud",
     "spectrum:large_certus_quartz_bud",
@@ -57,6 +58,7 @@
     "spectrum:medium_fluix_bud",
     "spectrum:large_fluix_bud",
     "spectrum:fluix_cluster",
+
     "spectrum:small_globette_bud",
     "spectrum:medium_globette_bud",
     "spectrum:large_globette_bud",
@@ -68,6 +70,6 @@
     "spectrum:small_globette_nether_bud",
     "spectrum:medium_globette_nether_bud",
     "spectrum:large_globette_nether_bud",
-    "spectrum:globette_nether_cluster",
+    "spectrum:globette_nether_cluster"
   ]
 }

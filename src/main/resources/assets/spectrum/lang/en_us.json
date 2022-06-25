@@ -444,6 +444,7 @@
   "block.spectrum.potion_workshop": "Potion Workshop",
   "block.spectrum.spirit_instiller": "Spirit Instiller",
   "block.spectrum.crystallarieum": "Crystallarieum",
+  "block.spectrum.stonesetting_workshop": "Stonesetting Workshop",
 
   "block.spectrum.memory": "Memory",
   "item.spectrum.memory.tooltip.entity_type": "§7Remembers a §f%s",
@@ -1183,6 +1184,7 @@
   "block.spectrum.medium_redstone_bud": "Medium Redstone Bud",
   "block.spectrum.large_redstone_bud": "Large Redstone Bud",
   "block.spectrum.redstone_cluster": "Redstone Cluster",
+
   "block.spectrum.small_certus_quartz_bud": "Small Certus Quartz Bud",
   "block.spectrum.medium_certus_quartz_bud": "Medium Certus Quartz Bud",
   "block.spectrum.large_certus_quartz_bud": "Large Certus Quartz Bud",
@@ -1191,6 +1193,7 @@
   "block.spectrum.medium_fluix_bud": "Medium Fluix Bud",
   "block.spectrum.large_fluix_bud": "Large Fluix Bud",
   "block.spectrum.fluix_cluster": "Fluix Cluster",
+
   "block.spectrum.small_globette_bud": "Small Globette Bud",
   "block.spectrum.medium_globette_bud": "Medium Globette Bud",
   "block.spectrum.large_globette_bud": "Large Globette Bud",
@@ -1203,6 +1206,27 @@
   "block.spectrum.medium_globette_nether_bud": "Medium Nether Globette Bud",
   "block.spectrum.large_globette_nether_bud": "Large Nether Globette Bud",
   "block.spectrum.globette_nether_cluster": "Nether Globette Cluster",
+
+  "item.spectrum.native_emerald": "Native Emerald",
+  "item.spectrum.native_prismarine": "Native Prismarine",
+  "item.spectrum.native_coal": "Native Coal",
+  "item.spectrum.native_redstone": "Native Redstone",
+  "item.spectrum.native_glowstone": "Native Glowstone",
+  "item.spectrum.native_lapis": "Native Lapis",
+  "item.spectrum.native_copper": "Native Copper",
+  "item.spectrum.native_quartz": "Native Quartz",
+  "item.spectrum.native_gold": "Native Gold",
+  "item.spectrum.native_diamond": "Native Diamond",
+  "item.spectrum.native_netherite": "Native Netherite",
+  "item.spectrum.native_iron": "Native Iron",
+
+  "item.spectrum.native_certus_quartz": "Native Certus Quartz",
+  "item.spectrum.native_fluix": "Native Fluix",
+
+  "item.spectrum.native_globette": "Native Gobber Globette",
+  "item.spectrum.native_globette_end": "Native End Gobber Globette",
+  "item.spectrum.native_globette_nether": "Native Nether Gobber Globette",
+
 
   "block.spectrum.mob_block.tooltip": "When triggered via use/stepping on/projectile hit:",
   "block.spectrum.bonemealing_mob_block.tooltip": "§7Fertilises a plant next to it",

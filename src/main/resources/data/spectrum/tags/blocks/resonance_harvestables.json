@@ -2,8 +2,10 @@
   "values": [
     "#spectrum:budding_blocks",
     "#spectrum:gemstone_buds",
+    "#spectrum:bismuth_buds",
+    "#spectrum:malachite_buds",
+    "#spectrum:crystallarieum_buds",
     "#spectrum:infested_blocks",
-    "#spectrum:gemstone_buds",
     "#spectrum:spawners",
     {
       "id": "botania:enchanted_soil",

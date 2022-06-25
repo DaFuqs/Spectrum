@@ -401,23 +401,25 @@ public class SpectrumItems {
 	}
 
 	public static void registerNativeClusters() {
-		register("native_emerald", NATIVE_EMERALD, DyeColor.WHITE);
-		register("native_prismarine", NATIVE_PRISMARINE, DyeColor.WHITE);
-		register("native_coal", NATIVE_COAL, DyeColor.WHITE);
-		register("native_certus_quartz", NATIVE_CERTUS_QUARTZ, DyeColor.WHITE);
-		register("native_redstone", NATIVE_REDSTONE, DyeColor.WHITE);
-		register("native_glowstone", NATIVE_GLOWSTONE, DyeColor.WHITE);
-		register("native_lapis", NATIVE_LAPIS, DyeColor.WHITE);
-		register("native_copper", NATIVE_COPPER, DyeColor.WHITE);
-		register("native_quartz", NATIVE_QUARTZ, DyeColor.WHITE);
-		register("native_gold", NATIVE_GOLD, DyeColor.WHITE);
-		register("native_diamond", NATIVE_DIAMOND, DyeColor.WHITE);
-		register("native_globette_end", NATIVE_GLOBETTE_END, DyeColor.WHITE);
-		register("native_fluix", NATIVE_FLUIX, DyeColor.WHITE);
-		register("native_globette", NATIVE_GLOBETTE, DyeColor.WHITE);
-		register("native_netherite", NATIVE_NETHERITE, DyeColor.WHITE);
-		register("native_iron", NATIVE_IRON, DyeColor.WHITE);
-		register("native_globette_nether", NATIVE_GLOBETTE_NETHER, DyeColor.WHITE);
+		register("native_coal", NATIVE_COAL, DyeColor.BROWN);
+		register("native_iron", NATIVE_IRON, DyeColor.BROWN);
+		register("native_gold", NATIVE_GOLD, DyeColor.BROWN);
+		register("native_diamond", NATIVE_DIAMOND, DyeColor.CYAN);
+		register("native_emerald", NATIVE_EMERALD, DyeColor.CYAN);
+		register("native_redstone", NATIVE_REDSTONE, DyeColor.RED);
+		register("native_lapis", NATIVE_LAPIS, DyeColor.PURPLE);
+		register("native_copper", NATIVE_COPPER, DyeColor.BROWN);
+		register("native_quartz", NATIVE_QUARTZ, DyeColor.BROWN);
+		register("native_netherite", NATIVE_NETHERITE, DyeColor.BROWN);
+		register("native_glowstone", NATIVE_GLOWSTONE, DyeColor.YELLOW);
+		register("native_prismarine", NATIVE_PRISMARINE, DyeColor.CYAN);
+		
+		register("native_certus_quartz", NATIVE_CERTUS_QUARTZ, DyeColor.YELLOW);
+		register("native_fluix", NATIVE_FLUIX, DyeColor.YELLOW);
+		
+		register("native_globette", NATIVE_GLOBETTE, DyeColor.BLUE);
+		register("native_globette_nether", NATIVE_GLOBETTE_NETHER, DyeColor.RED);
+		register("native_globette_end", NATIVE_GLOBETTE_END, DyeColor.GREEN);
 	}
 	
 	public static void registerGraces() {

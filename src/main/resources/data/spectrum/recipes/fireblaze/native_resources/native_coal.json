@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:fireblaze",
+  "ingredient": {
+    "item": "spectrum:native_coal"
+  },
+  "results": [
+    {
+      "item": "minecraft:coal",
+      "count": 2.0
+    }
+  ],
+  "experience": 0.5,
+  "time": 200
+}

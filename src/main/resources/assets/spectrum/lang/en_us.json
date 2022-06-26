@@ -2107,7 +2107,7 @@
   "advancements.spectrum.doubled_output_in_fireblaze.title": "Ink to Matter",
   "advancements.spectrum.doubled_output_in_fireblaze.description": "Use Light Blue Ink in the Full Blast Fireblaze to double your smelting Output",
   "advancements.spectrum.smelt_native_resource_in_fireblaze.title": "Efficiency Avalanche",
-  "advancements.spectrum.smelt_native_resource_in_fireblaze.description": "The Full Blast Fireblaze allows you to get immensely yielding output when smelting native resource clusters compared to a mundane furnace",
+  "advancements.spectrum.smelt_native_resource_in_fireblaze.description": "The Full Blast Fireblaze allows you to get immensely yielding output when smelting native resource clusters compared to a mundane Blast Furnace",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

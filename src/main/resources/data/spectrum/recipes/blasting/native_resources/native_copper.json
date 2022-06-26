@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:native_copper"
+  },
+  "result": "minecraft:copper",
+  "experience": 0.5,
+  "cookingtime": 100
+}

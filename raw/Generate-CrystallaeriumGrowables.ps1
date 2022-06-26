@@ -144,6 +144,37 @@ foreach($entry in $entries.GetEnumerator()) {
 
 
 
+    New-Item -Path ".\blasting_recipes\native_$name`.json" -ItemType File -Force -Value @"
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:native_$name"
+  },
+  "result": "$res",
+  "experience": 0.5,
+  "cookingtime": 100
+}
+"@
+
+    New-Item -Path ".\fireblaze_recipes\native_$name`.json" -ItemType File -Force -Value @"
+{
+  "type": "spectrum:fireblaze",
+  "ingredient": {
+    "item": "spectrum:native_$name"
+  },
+  "results": [
+    {
+      "item": "$res",
+      "count": 2.0
+    }
+  ],
+  "experience": 0.5,
+  "time": 200
+}
+"@
+
+
+
 }
 
 

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:native_iron"
+  },
+  "result": "minecraft:iron_ingot",
+  "experience": 0.5,
+  "cookingtime": 100
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:native_emerald"
+  },
+  "result": "minecraft:emerald",
+  "experience": 0.5,
+  "cookingtime": 100
+}

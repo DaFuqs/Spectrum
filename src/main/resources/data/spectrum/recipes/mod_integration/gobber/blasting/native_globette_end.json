@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:native_globette_end"
+  },
+  "result": "gobber2:gobber2_globette_end",
+  "experience": 0.5,
+  "cookingtime": 100,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "gobber2"
+      ]
+    }
+  ]
+}

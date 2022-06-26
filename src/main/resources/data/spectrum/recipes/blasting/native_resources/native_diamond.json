@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:native_diamond"
+  },
+  "result": "minecraft:diamond",
+  "experience": 0.5,
+  "cookingtime": 100
+}

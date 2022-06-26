@@ -95,6 +95,42 @@ foreach($entry in $entries.GetEnumerator()) {
 }
 "@
 
+    New-Item -Path ".\item_models\small_$name`_bud.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:item/small_amethyst_bud",
+  "textures": {
+    "layer0": "spectrum:block/small_$name`_bud"
+  }
+}
+"@
+
+    New-Item -Path ".\item_models\medium_$name`_bud.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:item/medium_amethyst_bud",
+  "textures": {
+    "layer0": "spectrum:block/medium_$name`_bud"
+  }
+}
+"@
+
+    New-Item -Path ".\item_models\large_$name`_bud.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:item/large_amethyst_bud",
+  "textures": {
+    "layer0": "spectrum:block/large_$name`_bud"
+  }
+}
+"@
+
+
+    New-Item -Path ".\item_models\$name`_cluster.json" -ItemType File -Force -Value @"
+{
+  "parent": "minecraft:item/amethyst_cluster",
+  "textures": {
+    "layer0": "spectrum:block/$name`_cluster"
+  }
+}
+"@
 
     New-Item -Path ".\item_models\native_$name`.json" -ItemType File -Force -Value @"
 {

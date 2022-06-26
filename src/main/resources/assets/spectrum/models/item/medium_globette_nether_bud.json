@@ -1,3 +1,6 @@
 {
-  "parent": "spectrum:block/medium_globette_nether_bud"
+  "parent": "minecraft:item/medium_amethyst_bud",
+  "textures": {
+    "layer0": "spectrum:block/medium_globette_nether_bud"
+  }
 }

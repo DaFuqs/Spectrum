@@ -1,3 +1,6 @@
 {
-  "parent": "spectrum:block/large_certus_quartz_bud"
+  "parent": "minecraft:item/large_amethyst_bud",
+  "textures": {
+    "layer0": "spectrum:block/large_certus_quartz_bud"
+  }
 }

@@ -1,3 +1,6 @@
 {
-  "parent": "spectrum:block/coal_cluster"
+  "parent": "minecraft:item/amethyst_cluster",
+  "textures": {
+    "layer0": "spectrum:block/coal_cluster"
+  }
 }

@@ -2104,6 +2104,10 @@
   "advancements.spectrum.collect_malachite.description": "Bump into Malachite on your way through the Deeper Down",
   "advancements.spectrum.grow_malachite_in_crystallarieum.title": "Eons squeezed into Minutes",
   "advancements.spectrum.grow_malachite_in_crystallarieum.description": "The growth of Malachite seems so slow, you will probably not be able to experience it in your lifetime. Is there an other way?",
+  "advancements.spectrum.doubled_output_in_fireblaze.title": "Ink to Matter",
+  "advancements.spectrum.doubled_output_in_fireblaze.description": "Use Light Blue Ink in the Full Blast Fireblaze to double your smelting Output",
+  "advancements.spectrum.smelt_native_resource_in_fireblaze.title": "Efficiency Avalanche",
+  "advancements.spectrum.smelt_native_resource_in_fireblaze.description": "The Full Blast Fireblaze allows you to get immensely yielding output when smelting native resource clusters compared to a mundane furnace",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

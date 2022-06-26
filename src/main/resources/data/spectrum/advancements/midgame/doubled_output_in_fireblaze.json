@@ -1,0 +1,31 @@
+{
+  "parent": "spectrum:midgame/collect_scarlet",
+  "display": {
+    "icon": {
+      "item": "spectrum:native_iron"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.doubled_output_in_fireblaze.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.doubled_output_in_fireblaze.description"
+    }
+  },
+  "criteria": {
+    "smelted_in_fireblaze": {
+      "trigger": "spectrum:fireblaze_smelting",
+      "conditions": {
+        "yield_multiplier": {
+          "min": 2.0
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_scarlet"
+      }
+    }
+  }
+}

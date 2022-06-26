@@ -18,6 +18,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -47,8 +48,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
-public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, EventQueue.Callback {
+public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory, EventQueue.Callback {
 	
 	public static final int INVENTORY_SIZE = 28;
 	public static final int ITEM_FILTER_SLOTS = 5;
@@ -224,4 +226,18 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 		return this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT).getItem() instanceof ExperienceStorageItem;
 	}
 	
+	@Override
+	public int[] getAvailableSlots(Direction side) {
+		return IntStream.rangeClosed(0, EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT-1).toArray();
+	}
+	
+	@Override
+	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+		return true;
+	}
+	
+	@Override
+	public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+		return true;
+	}
 }

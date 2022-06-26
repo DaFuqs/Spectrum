@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.PlantBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 import java.util.UUID;
 
-public class OminousSaplingBlock extends Block implements BlockEntityProvider {
+public class OminousSaplingBlock extends PlantBlock implements BlockEntityProvider {
 	
 	public OminousSaplingBlock(Settings settings) {
 		super(settings);

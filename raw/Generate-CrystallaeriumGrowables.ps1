@@ -11,11 +11,11 @@
     "prismarine" = "minecraft:prismarine_crystals"
     "quartz" = "minecraft:quartz"
     "redstone" = "minecraft:redstone"
-    "certus_quartz" = "ae2:certus_quartz"
+    "certus_quartz" = "ae2:certus_quartz_crystal"
     "fluix" = "ae2:fluix_crystal"
-    "globette" = "gobber2:globette_cluster"
-    "globette_nether" = "gobber2:globette_nether_cluster"
-    "globette_end" = "gobber2:globette_end_cluster"
+    "globette" = "gobber2:gobber2_globette"
+    "globette_nether" = "gobber2:gobber2_globette_nether"
+    "globette_end" = "gobber2:gobber2_globette_end"
 }
 
 

@@ -120,7 +120,7 @@ public class SpectrumConfiguredFeatures {
 				Feature.ORE,
 				new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, scarletOre, 6),
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(64)), // min and max height
-				CountPlacementModifier.of(14) // number of veins per chunk
+				CountPlacementModifier.of(18) // number of veins per chunk
 		);
 		
 		registerConfiguredAndPlacedFeature(
@@ -128,7 +128,7 @@ public class SpectrumConfiguredFeatures {
 				Feature.ORE,
 				new OreFeatureConfig(Rules.END_STONE, paleturOre, 4, 0.3F),
 				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), // min and max height
-				CountPlacementModifier.of(10) // number of veins per chunk
+				CountPlacementModifier.of(16) // number of veins per chunk
 		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, sparklestoneOreIdentifier));

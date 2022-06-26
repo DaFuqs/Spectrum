@@ -60,7 +60,7 @@ dependencies {
 	// dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modImplementation "com.github.DaFuqs:Revelationary:1.0.0"
+	modImplementation "com.github.DaFuqs:Revelationary:${project.revelationary_version}"
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"){
 		exclude(group: "net.fabricmc.fabric-api")

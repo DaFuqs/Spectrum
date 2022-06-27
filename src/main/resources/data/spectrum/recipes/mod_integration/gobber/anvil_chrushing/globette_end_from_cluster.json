@@ -6,7 +6,7 @@
   "crushedItemsPerPointOfDamage": 1.0,
   "experience": 3.0,
   "result": {
-    "item": "gobber2:globette_end_cluster",
+    "item": "gobber2:gobber2_globette_end",
     "count": 6
   },
   "particleEffectIdentifier": "explosion",

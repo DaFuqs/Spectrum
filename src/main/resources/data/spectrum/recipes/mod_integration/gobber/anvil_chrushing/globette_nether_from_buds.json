@@ -14,7 +14,7 @@
   "crushedItemsPerPointOfDamage": 1.0,
   "experience": 2.0,
   "result": {
-    "item": "gobber2:globette_nether_cluster",
+    "item": "gobber2:gobber2_globette_nether",
     "count": 2
   },
   "particleEffectIdentifier": "explosion",

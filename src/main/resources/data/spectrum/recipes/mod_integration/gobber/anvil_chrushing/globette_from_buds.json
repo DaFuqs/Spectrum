@@ -18,5 +18,13 @@
     "count": 2
   },
   "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.amethyst_cluster.break"
+  "soundEventIdentifier": "block.amethyst_cluster.break",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "gobber2"
+      ]
+    }
+  ]
 }

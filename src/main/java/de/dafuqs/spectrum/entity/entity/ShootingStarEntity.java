@@ -134,7 +134,7 @@ public class ShootingStarEntity extends Entity {
 		int multiplier = 1;
 		ItemStack handStack = playerEntity.getMainHandStack();
 		if (handStack != null && handStack.isOf(Items.SPYGLASS)) {
-			multiplier++;
+			multiplier += 2;
 		}
 		StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.NIGHT_VISION);
 		if (statusEffectInstance != null && statusEffectInstance.getDuration() > 0) {

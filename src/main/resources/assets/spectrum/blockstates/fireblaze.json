@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=east": {
+			"model": "spectrum:block/fireblaze",
+			"y": 90
+		},
+		"facing=north": {
+			"model": "spectrum:block/fireblaze"
+		},
+		"facing=south": {
+			"model": "spectrum:block/fireblaze",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "spectrum:block/fireblaze",
+			"y": 270
+		}
+	}
+}

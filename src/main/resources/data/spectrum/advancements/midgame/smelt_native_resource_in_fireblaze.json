@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/smelt_in_fireblaze",
+  "parent": "spectrum:midgame/doubled_output_in_fireblaze",
   "display": {
     "icon": {
       "item": "spectrum:native_iron"
@@ -24,7 +24,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/smelt_in_fireblaze"
+        "advancement_identifier": "spectrum:midgame/doubled_output_in_fireblaze"
       }
     }
   }

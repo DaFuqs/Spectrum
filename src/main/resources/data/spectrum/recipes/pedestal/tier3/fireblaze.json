@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "advanced",
+  "cyan": 8,
+  "magenta": 16,
+  "yellow": 16,
+  "black": 4,
+  "white": 0,
+  "experience": 8.0,
+  "pattern": [
+    "III",
+    "CPC",
+    "BPB"
+  ],
+  "key": {
+    "I": {
+      "item": "spectrum:bismuth_crystal"
+    },
+    "C": {
+      "item": "spectrum:polished_calcite"
+    },
+    "B": {
+      "item": "spectrum:polished_basalt"
+    },
+    "P": {
+      "item": "spectrum:paletur_fragments"
+    }
+  },
+  "result": {
+    "item": "spectrum:fireblaze",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_fireblaze"
+}

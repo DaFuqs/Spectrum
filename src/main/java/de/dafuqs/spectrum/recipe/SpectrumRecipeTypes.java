@@ -9,6 +9,8 @@ import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipeSerializer;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
+import de.dafuqs.spectrum.recipe.fireblaze.FireblazeRecipe;
+import de.dafuqs.spectrum.recipe.fireblaze.FireblazeRecipeSerializer;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeSerializer;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
@@ -53,6 +55,8 @@ public class SpectrumRecipeTypes {
 	public static RecipeType<InkConvertingRecipe> INK_CONVERTING;
 	public static RecipeSerializer<CrystallarieumRecipe> CRYSTALLARIEUM_RECIPE_SERIALIZER;
 	public static RecipeType<CrystallarieumRecipe> CRYSTALLARIEUM;
+	public static RecipeSerializer<FireblazeRecipe> FIREBLAZE_RECIPE_SERIALIZER;
+	public static RecipeType<FireblazeRecipe> FIREBLAZE;
 	
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
 		return Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
@@ -156,6 +160,14 @@ public class SpectrumRecipeTypes {
 			@Override
 			public String toString() {
 				return "spectrum:crystallarieum_growing";
+			}
+		});
+		
+		FIREBLAZE_RECIPE_SERIALIZER = registerSerializer("fireblaze", new FireblazeRecipeSerializer(FireblazeRecipe::new));
+		FIREBLAZE = registerRecipeType("fireblaze", new RecipeType<FireblazeRecipe>() {
+			@Override
+			public String toString() {
+				return "spectrum:fireblaze";
 			}
 		});
 		

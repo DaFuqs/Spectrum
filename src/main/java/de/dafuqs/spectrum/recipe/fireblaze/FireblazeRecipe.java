@@ -19,7 +19,9 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FireblazeRecipe implements Recipe<Inventory>, GatedRecipe {
 	
@@ -129,5 +131,24 @@ public class FireblazeRecipe implements Recipe<Inventory>, GatedRecipe {
 	public TranslatableText getMultipleUnlockToastString() {
 		return new TranslatableText("spectrum.toast.fireblaze_recipes_unlocked.title");
 	}
-
+	
+	public float getExperience() {
+		return this.experience;
+	}
+	
+	public double getCraftingTime() {
+		return this.time;
+	}
+	
+	public List<ItemStack> getRolledOutputs(Random random) {
+		List<ItemStack> output = new ArrayList<>();
+		for(Pair<ItemStack, Float> possibleOutput : this.outputsWithChance) {
+			float chance = possibleOutput.getRight();
+			if(chance >= 1.0 || random.nextFloat() < chance) {
+				output.add(possibleOutput.getLeft());
+			}
+		}
+		return output;
+	}
+	
 }

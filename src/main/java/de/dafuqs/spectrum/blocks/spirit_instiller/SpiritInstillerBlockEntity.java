@@ -452,6 +452,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
+		this.markDirty();
 	}
 	
 	@Override
@@ -490,7 +491,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	public void inventoryChanged() {
 		this.inventoryChanged = true;
 		this.autoCraftingInventory.clear();
-		inventory.markDirty();
+		this.inventory.markDirty();
 		markDirty();
 		updateInClientWorld();
 	}

@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlockEntity;
 import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
 import de.dafuqs.spectrum.blocks.energy.CrystalApothecaryBlockEntity;
+import de.dafuqs.spectrum.blocks.fireblaze.FireblazeBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
@@ -80,6 +81,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	public static BlockEntityType<BottomlessBundleBlockEntity> BOTTOMLESS_BUNDLE;
 	public static BlockEntityType<PotionWorkshopBlockEntity> POTION_WORKSHOP;
 	public static BlockEntityType<CrystallarieumBlockEntity> CRYSTALLARIEUM;
+	public static BlockEntityType<FireblazeBlockEntity> FIREBLAZE;
 	
 	public static BlockEntityType<CrystalApothecaryBlockEntity> CRYSTAL_APOTHECARY;
 	public static BlockEntityType<ColorPickerBlockEntity> COLOR_PICKER;
@@ -142,6 +144,7 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 		CRYSTALLARIEUM = register("crystallarieum", CrystallarieumBlockEntity::new, SpectrumBlocks.CRYSTALLARIEUM);
 		CRYSTAL_APOTHECARY = register("crystal_apothecary", CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY);
 		COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
+		FIREBLAZE = register("fireblaze", FireblazeBlockEntity::new, SpectrumBlocks.FIREBLAZE);
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = register("connection_node", PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE);

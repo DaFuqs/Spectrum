@@ -189,6 +189,47 @@ public class InventoryHelper {
 		return originalStack;
 	}
 	
+	public static void addToInventory(Inventory inventory, ItemStack itemStack, int rangeStart, int rangeEnd) {
+		for (int i = rangeStart; i < rangeEnd; i++) {
+			ItemStack currentStack = inventory.getStack(i);
+			if (currentStack.isEmpty()) {
+				inventory.setStack(i, itemStack);
+				return;
+			} else if (itemStack.isStackable()) {
+				combineStacks(currentStack, itemStack);
+				if (itemStack.isEmpty()) {
+					return;
+				}
+			}
+		}
+	}
+	
+	public static void addToInventory(Inventory inventory, List<ItemStack> itemStacks, int rangeStart, int rangeEnd) {
+		for (int i = rangeStart; i < rangeEnd; i++) {
+			ItemStack currentStack = inventory.getStack(i);
+			if (currentStack.isEmpty()) {
+				inventory.setStack(i, itemStacks.get(0));
+				itemStacks.remove(0);
+				if(itemStacks.isEmpty()) {
+					return;
+				}
+			}
+			for(int j = 0; j < itemStacks.size(); j++) {
+				ItemStack itemStack = itemStacks.get(j);
+				if (itemStack.isStackable()) {
+					combineStacks(currentStack, itemStack);
+					if (itemStack.isEmpty()) {
+						itemStacks.remove(j);
+						if(itemStacks.isEmpty()) {
+							return;
+						}
+						j--;
+					}
+				}
+			}
+		}
+	}
+	
 	public static void addToInventory(List<ItemStack> inventory, ItemStack itemStack, int rangeStart, int rangeEnd) {
 		for (int i = rangeStart; i < rangeEnd; i++) {
 			ItemStack currentStack = inventory.get(i);

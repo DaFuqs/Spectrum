@@ -1,6 +1,6 @@
 {
   "name": "Spirit Sallow",
-  "advancement": "spectrum:progression/TODO",
+  "advancement": "spectrum:lategame/spectrum_lategame",
   "icon": "spectrum:ominous_sapling",
   "category": "spectrum:magic_category",
   "priority": true,

@@ -24,5 +24,13 @@
     }
   },
   "min_forge_tier": 2,
-  "fuel_per_tick": 5
+  "fuel_per_tick": 5,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "alloy_forgery"
+      ]
+    }
+  ]
 }

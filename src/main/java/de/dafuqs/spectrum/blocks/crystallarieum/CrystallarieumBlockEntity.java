@@ -39,7 +39,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	}
 	
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity fusionShrineBlockEntity) {
-
+	
 	}
 	
 	@Override

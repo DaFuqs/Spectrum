@@ -253,6 +253,11 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		return transferredAmount > 0;
 	}
 	
+	public void setSelectedColor(InkColor inkColor) {
+		this.selectedColor = inkColor;
+		this.markDirty();
+	}
+	
 	public InkColor getSelectedColor() {
 		return this.selectedColor;
 	}

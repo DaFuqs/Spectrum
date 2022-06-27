@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
+import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.inventories.slots.ColorPickerInputSlot;
 import de.dafuqs.spectrum.inventories.slots.InkStorageSlot;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
@@ -15,7 +16,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ColorPickerScreenHandler extends ScreenHandler {
+public class ColorPickerScreenHandler extends ScreenHandler implements InkColorSelectedPacketReceiver {
 	
 	public static final int PLAYER_INVENTORY_START_X = 8;
 	public static final int PLAYER_INVENTORY_START_Y = 84;
@@ -111,6 +112,11 @@ public class ColorPickerScreenHandler extends ScreenHandler {
 		}
 		
 		return itemStack;
+	}
+	
+	@Override
+	public void onInkColorSelectedPacket(InkColor inkColor) {
+		this.blockEntity.setSelectedColor(inkColor);
 	}
 	
 }

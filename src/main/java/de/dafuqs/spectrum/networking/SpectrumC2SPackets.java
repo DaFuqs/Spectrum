@@ -11,5 +11,6 @@ public class SpectrumC2SPackets {
 	public static final Identifier CHANGE_COMPACTING_CHEST_SETTINGS_PACKET_ID = new Identifier(SpectrumCommon.MOD_ID, "change_compacting_chest_settings");
 	public static final Identifier GUIDEBOOK_HINT_BOUGHT = new Identifier(SpectrumCommon.MOD_ID, "guidebook_tip_used");
 	public static final Identifier BIND_ENDER_SPLICE_TO_PLAYER = new Identifier(SpectrumCommon.MOD_ID, "bind_ender_splice_to_player");
+	public static final Identifier INK_COLOR_SELECTED_IN_GUI = new Identifier(SpectrumCommon.MOD_ID, "ink_color_select");
 	
 }

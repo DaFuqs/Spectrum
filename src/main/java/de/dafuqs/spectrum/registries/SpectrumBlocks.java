@@ -922,7 +922,7 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, generalItemSettingsSingle, DyeColor.WHITE);
 		registerBlockWithItem("crystallarieum", CRYSTALLARIEUM, generalItemSettingsSingle, DyeColor.BROWN);
-		registerBlockWithItem("fireblaze", FIREBLAZE, generalItemSettingsSingle, DyeColor.ORANGE);
+		registerBlockWithItem("fireblaze", FIREBLAZE, generalItemSettingsSingleFireproof, DyeColor.ORANGE);
 		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, generalUncommonItemSettingsSingle), DyeColor.LIGHT_GRAY);
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"), DyeColor.LIGHT_GRAY);

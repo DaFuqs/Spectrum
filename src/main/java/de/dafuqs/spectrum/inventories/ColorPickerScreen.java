@@ -55,7 +55,6 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		
 		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
 		this.textRenderer.draw(matrices, this.playerInventoryTitle, ColorPickerScreenHandler.PLAYER_INVENTORY_START_X, ColorPickerScreenHandler.PLAYER_INVENTORY_START_Y - 10, 3289650);
-        //this.textRenderer.draw(matrices, String.valueOf(inkGaugeWidget.x), titleX, titleY, 3289650);
 	}
 	
 	@Override

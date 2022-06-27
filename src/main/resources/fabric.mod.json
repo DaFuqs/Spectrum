@@ -49,7 +49,7 @@
     "java": ">=17",
     "revelationary": ">=1.0.0",
     "cloth-config": ">=6.0.0",
-    "patchouli": "*",
+    "patchouli": ">=1.18.2-71.1-FABRIC",
     "owo": ">=0.5.4",
     "trinkets": ">=3.3.0"
   },

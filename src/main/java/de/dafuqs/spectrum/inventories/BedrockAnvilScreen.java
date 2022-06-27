@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.LoreHelper;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
+import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -147,7 +148,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 			
 			PacketByteBuf packetByteBuf = PacketByteBufs.create();
 			packetByteBuf.writeString(name);
-			ClientPlayNetworking.send(SpectrumC2SPacketSender.RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, packetByteBuf);
+			ClientPlayNetworking.send(SpectrumC2SPackets.RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, packetByteBuf);
 		}
 	}
 	
@@ -156,7 +157,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
 		packetByteBuf.writeString(lore);
-		ClientPlayNetworking.send(SpectrumC2SPacketSender.ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID, packetByteBuf);
+		ClientPlayNetworking.send(SpectrumC2SPackets.ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID, packetByteBuf);
 	}
 	
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {

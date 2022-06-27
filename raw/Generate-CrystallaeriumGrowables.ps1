@@ -1,6 +1,6 @@
 ﻿$entries = @{
     "coal" = "minecraft:coal"
-    "copper" = "minecraft:copper"
+    "copper" = "minecraft:copper_ingot"
     "diamond" = "minecraft:diamond"
     "emerald" = "minecraft:emerald"
     "glowstone" = "minecraft:glowstone"

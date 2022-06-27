@@ -69,9 +69,9 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 			// if the player has never opened the book before
 			// automatically open the introduction page
 			if (isNewPlayer(serverPlayerEntity)) {
-				openManual(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, "general/intro"), 0);
+				openGuidebook(serverPlayerEntity, SpectrumCommon.locate("general/intro"), 0);
 			} else {
-				openManual(serverPlayerEntity);
+				openGuidebook(serverPlayerEntity);
 			}
 			
 			user.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -86,12 +86,12 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 		return serverPlayerEntity.getStatHandler().getStat(Stats.USED, this) == 0;
 	}
 	
-	private void openManual(ServerPlayerEntity serverPlayerEntity) {
-		PatchouliAPI.get().openBookGUI(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, "manual"));
+	private void openGuidebook(ServerPlayerEntity serverPlayerEntity) {
+		PatchouliAPI.get().openBookGUI(serverPlayerEntity, SpectrumCommon.locate("manual"));
 	}
 	
-	private void openManual(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
-		PatchouliAPI.get().openBookEntry(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, "manual"), entry, page);
+	private void openGuidebook(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
+		PatchouliAPI.get().openBookEntry(serverPlayerEntity, SpectrumCommon.locate("manual"), entry, page);
 	}
 	
 	@Override

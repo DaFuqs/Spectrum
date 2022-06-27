@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:native_copper"
   },
-  "result": "minecraft:copper",
+  "result": "minecraft:copper_ingot",
   "experience": 0.5,
   "cookingtime": 100
 }

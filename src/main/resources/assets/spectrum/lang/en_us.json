@@ -1285,6 +1285,7 @@
   "item.spectrum.mermaids_gem": "Mermaids Gem",
   "item.spectrum.end_portal_cracker": "End Portal Cracker",
   "item.spectrum.manual": "Colorful World",
+  "item.spectrum.manual.landing_text": "$(br)The energies growing$(br)$(c_gray) like roots, they sprout$()$(br)magic of nature overflowing$(br)$(c_gray) ’til you discover$(br) what's all about.",
   "item.spectrum.multitool": "Multitool",
   "item.spectrum.silker_pickaxe": "Tender Pickaxe",
   "item.spectrum.fortune_pickaxe": "Lucky Pickaxe",

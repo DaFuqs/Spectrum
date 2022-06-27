@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
 import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
+import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
 import de.dafuqs.spectrum.sound.HintRevelationSoundInstance;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -13,6 +15,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import vazkii.patchouli.api.IVariable;
 import vazkii.patchouli.client.base.PersistentData;
 import vazkii.patchouli.client.book.BookContentsBuilder;
@@ -100,14 +103,14 @@ public class PageHint extends BookPage {
 		return calculatedText;
 	}
 	
-	protected String getEntryId() {
-		return entry.getId().toString() + "_" + this.pageNum;
+	protected Identifier getEntryId() {
+		return new Identifier(entry.getId().getNamespace(), entry.getId().getPath() + "_" + this.pageNum);
 	}
 	
 	protected void paymentButtonClicked(ButtonWidget button) {
 		if (MinecraftClient.getInstance().player.isCreative() || InventoryHelper.removeFromInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory(), true)) {
 			// mark as complete in book data
-			PersistentData.DataHolder.BookData data = PersistentData.data.getBookData(parent.book);
+			PersistentData.BookData data = PersistentData.data.getBookData(parent.book);
 			data.completedManualQuests.add(getEntryId());
 			PersistentData.save();
 			entry.markReadStateDirty();

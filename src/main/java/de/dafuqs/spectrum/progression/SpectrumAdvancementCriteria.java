@@ -28,6 +28,7 @@ public class SpectrumAdvancementCriteria {
 	public static CrystalApothecaryCollectingCriterion CRYSTAL_APOTHECARY_COLLECTING;
 	public static UpgradePlaceCriterion UPGRADE_PLACING;
 	public static CrystallarieumGrownCriterion CRYSTALLARIEUM_GROWING;
+	public static FireblazeSmeltingCriterion FIREBLAZE_SMELTING;
 	
 	public static void register() {
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
@@ -53,6 +54,7 @@ public class SpectrumAdvancementCriteria {
 		CRYSTAL_APOTHECARY_COLLECTING = CriteriaAccessor.callRegister(new CrystalApothecaryCollectingCriterion());
 		UPGRADE_PLACING = CriteriaAccessor.callRegister(new UpgradePlaceCriterion());
 		CRYSTALLARIEUM_GROWING = CriteriaAccessor.callRegister(new CrystallarieumGrownCriterion());
+		FIREBLAZE_SMELTING = CriteriaAccessor.callRegister(new FireblazeSmeltingCriterion());
 	}
 	
 }

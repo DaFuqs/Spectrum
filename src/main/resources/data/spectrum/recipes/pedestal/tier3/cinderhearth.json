@@ -2,20 +2,20 @@
   "type": "spectrum:pedestal",
   "time": 600,
   "tier": "advanced",
-  "cyan": 8,
-  "magenta": 16,
-  "yellow": 16,
-  "black": 4,
+  "cyan": 4,
+  "magenta": 4,
+  "yellow": 8,
+  "black": 2,
   "white": 0,
   "experience": 8.0,
   "pattern": [
-    "III",
-    "CPC",
-    "BPB"
+    "PPP",
+    "CGC",
+    "BFB"
   ],
   "key": {
-    "I": {
-      "item": "spectrum:bismuth_crystal"
+    "P": {
+      "item": "spectrum:fiery_powder"
     },
     "C": {
       "item": "spectrum:polished_calcite"
@@ -23,8 +23,11 @@
     "B": {
       "item": "spectrum:polished_basalt"
     },
-    "P": {
-      "item": "spectrum:paletur_fragments"
+    "G": {
+      "item": "spectrum:scarlet_gem"
+    },
+    "F": {
+      "item": "spectrum:scarlet_fragments"
     }
   },
   "result": {

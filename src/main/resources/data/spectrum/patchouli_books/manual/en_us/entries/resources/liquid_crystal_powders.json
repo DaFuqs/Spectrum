@@ -1,0 +1,38 @@
+{
+  "name": "Liquid Crystal Powders",
+  "advancement": "spectrum:guidebook/unlock_crystal_powders_guidebook_entry",
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:blazing_crystal": 0,
+    "spectrum:fiery_powder": 0,
+    "spectrum:frostbite_crystal": 0,
+    "spectrum:blizzard_powder": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "item": "spectrum:blazing_crystal",
+      "text": "Letting a full block of Liquid Crystal absorb the immense heat of Lava resulted in this.$(br)Almost feels like a Magma Block, albeit way hotter."
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "advancement": "spectrum:hidden/collect_blazing_crystal",
+      "recipe": "spectrum:anvil_crushing/fiery_powder_from_blazing_crystal",
+      "text": "Crushing $(thing)Blazing Crystal$() with an Anvil yields this burning hot powder, which almost sets your hand in flames by holding it. Crushing $(thing)Magma Blocks$() seems to work, too, albeit with much less yield."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_frostbite_crystal",
+      "item": "spectrum:frostbite_crystal",
+      "text": "As Water tried to flow to a full block of Liquid Crystal the crystal turned solid.$(br)Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal"
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "advancement": "spectrum:hidden/collect_frostbite_crystal",
+      "recipe": "spectrum:anvil_crushing/blizzard_powder_from_frostbite_crystal",
+      "text": "Crushing $(thing)Frostbite Crystal$() with an Anvil yields this ice cold powder, which almost makes your hand freeze just by holding it. Crushing $(thing)Ice$() seems to work, too, albeit with much less yield."
+    }
+  ]
+}

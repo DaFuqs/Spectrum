@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.storage.TotalCappedSimpleInkStorage;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.ColorPickerScreenHandler;
+import de.dafuqs.spectrum.inventories.InkColorSelectedPacketReceiver;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
@@ -253,6 +254,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	public void setSelectedColor(InkColor inkColor) {
 		this.selectedColor = inkColor;
+		this.paused = false;
 		this.markDirty();
 	}
 	
@@ -263,4 +265,5 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	public boolean shouldUpdateClients() {
 		return !this.paused;
 	}
+	
 }

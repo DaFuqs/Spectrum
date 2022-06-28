@@ -16,6 +16,11 @@
       "spectrum:enchanter_ding"
     ]
   },
+  "button_click": {
+    "sounds": [
+      "spectrum:button_click"
+    ]
+  },
   "structure_success": {
     "subtitle": "spectrum.subtitles.structure_success",
     "sounds": [

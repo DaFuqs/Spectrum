@@ -10,6 +10,8 @@ import de.dafuqs.spectrum.inventories.widgets.VerticalInkMeterWidget;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -122,7 +124,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	public void accept(InkColor inkColor) {
 		ColorPickerBlockEntity colorPicker = this.handler.getBlockEntity();
 		colorPicker.setSelectedColor(inkColor);
-		this.handler.player.playSound(SoundEvents.UI_BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+		MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 		SpectrumC2SPacketSender.sendInkColorSelectedInGUI(this.handler.player, inkColor);
 	}
 	

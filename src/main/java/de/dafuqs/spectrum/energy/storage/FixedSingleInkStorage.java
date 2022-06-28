@@ -6,23 +6,23 @@ import net.minecraft.nbt.NbtElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class FixedInkColorStorage extends SingleInkStorage {
+public class FixedSingleInkStorage extends SingleInkStorage {
 	
-	public FixedInkColorStorage(long maxEnergy, InkColor color) {
+	public FixedSingleInkStorage(long maxEnergy, InkColor color) {
 		super(maxEnergy);
 		this.storedColor = color;
 	}
 	
-	public FixedInkColorStorage(long maxEnergy, InkColor color, long amount) {
+	public FixedSingleInkStorage(long maxEnergy, InkColor color, long amount) {
 		super(maxEnergy, color, amount);
 	}
 	
-	public static @Nullable FixedInkColorStorage fromNbt(@NotNull NbtCompound compound) {
+	public static @Nullable FixedSingleInkStorage fromNbt(@NotNull NbtCompound compound) {
 		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
 			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
 			InkColor color = InkColor.of(compound.getString("Color"));
 			long amount = compound.getLong("Amount");
-			return new FixedInkColorStorage(maxEnergyTotal, color, amount);
+			return new FixedSingleInkStorage(maxEnergyTotal, color, amount);
 		}
 		return null;
 	}
@@ -37,12 +37,12 @@ public class FixedInkColorStorage extends SingleInkStorage {
 	}
 	
 	@Override
-	public boolean requestEnergy(InkColor color, long amount) {
-		return false;
-	}
-	
-	public long drainEnergy(InkColor color, long amount) {
-		return 0;
+	public long getRoom(InkColor color) {
+		if (this.storedColor == color) {
+			return this.maxEnergy - this.storedEnergy;
+		} else {
+			return 0;
+		}
 	}
 	
 }

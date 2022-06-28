@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.storage.FixedInkColorStorage;
+import de.dafuqs.spectrum.energy.storage.FixedSingleInkStorage;
 import de.dafuqs.spectrum.helpers.Support;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedInkColorStorage> {
+public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedSingleInkStorage> {
 	
 	public final InkColor inkColor;
 	public final long maxInk;
@@ -32,7 +32,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		
-		FixedInkColorStorage inkStorage = getEnergyStorage(stack);
+		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		
 		long nextStepInk;
@@ -51,14 +51,14 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	
 	@Override
 	public boolean hasGlint(ItemStack stack) {
-		FixedInkColorStorage inkStorage = getEnergyStorage(stack);
+		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		return storedInk == maxInk;
 	}
 	
 	@Override
 	public Rarity getRarity(ItemStack stack) {
-		FixedInkColorStorage inkStorage = getEnergyStorage(stack);
+		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		if (storedInk == maxInk) {
 			return Rarity.EPIC;
@@ -79,16 +79,16 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	}
 	
 	@Override
-	public FixedInkColorStorage getEnergyStorage(ItemStack itemStack) {
+	public FixedSingleInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound != null && compound.contains("EnergyStore")) {
-			return FixedInkColorStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return FixedSingleInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new FixedInkColorStorage(maxInk, inkColor);
+		return new FixedSingleInkStorage(maxInk, inkColor);
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, FixedInkColorStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, FixedSingleInkStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.put("EnergyStore", storage.toNbt());
 	}

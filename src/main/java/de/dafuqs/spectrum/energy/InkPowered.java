@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.energy;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.helpers.Support;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -35,7 +35,7 @@ public interface InkPowered {
 	}
 	
 	static boolean canUse(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, InkPowered.REQUIRED_ADVANCEMENT);
+		return AdvancementHelper.hasAdvancement(playerEntity, InkPowered.REQUIRED_ADVANCEMENT);
 	}
 	
 	/**

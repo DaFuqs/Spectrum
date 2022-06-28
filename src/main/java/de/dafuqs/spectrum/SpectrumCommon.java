@@ -24,11 +24,9 @@ import de.dafuqs.spectrum.networking.SpectrumC2SPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.crafting.RepairAnythingRecipe;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
-import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
@@ -48,7 +46,6 @@ import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
@@ -65,7 +62,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
-import java.util.function.BiConsumer;
 
 public class SpectrumCommon implements ModInitializer {
 	

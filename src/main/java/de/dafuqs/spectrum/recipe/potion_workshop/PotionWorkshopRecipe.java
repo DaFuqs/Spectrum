@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -166,7 +166,7 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	public abstract boolean usesReagents();

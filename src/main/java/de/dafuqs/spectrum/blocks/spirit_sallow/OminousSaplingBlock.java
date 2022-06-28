@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.spirit_sallow;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PlantBlock;

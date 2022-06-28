@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
@@ -60,7 +60,7 @@ public class EnchanterDisplay implements SimpleGridMenuDisplay, GatedRecipeDispl
 	}
 	
 	public boolean isUnlocked() {
-		return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

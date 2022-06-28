@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.recipe.ink_converting;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -115,7 +115,7 @@ public class InkConvertingRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

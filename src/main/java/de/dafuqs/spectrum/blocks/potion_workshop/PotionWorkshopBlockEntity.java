@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.potion_workshop;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
@@ -541,7 +542,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		if (playerEntity == null) {
 			return false;
 		} else {
-			return Support.hasAdvancement(playerEntity, FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER);
+			return AdvancementHelper.hasAdvancement(playerEntity, FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER);
 		}
 	}
 	

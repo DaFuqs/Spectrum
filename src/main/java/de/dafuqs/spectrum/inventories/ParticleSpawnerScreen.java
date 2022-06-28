@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
-import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

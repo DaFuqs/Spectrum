@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
@@ -51,7 +51,7 @@ public class CrystallarieumDisplay extends BasicDisplay implements GatedRecipeDi
 	}
 	
 	public boolean isUnlocked() {
-		return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}
 	
 }

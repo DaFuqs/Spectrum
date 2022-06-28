@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
@@ -102,7 +103,7 @@ public class ShootingStarEntity extends Entity {
 				long timeOfDay = serverWorld.getTimeOfDay() % 24000;
 				if (timeOfDay > 13000 && timeOfDay < 22000) { // 90 chances in a night
 					for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
-						if (!playerEntity.isSpectator() && Support.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
+						if (!playerEntity.isSpectator() && AdvancementHelper.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
 							// 1 % chance for each cycle to spawn a lot of shooting stars for the player
 							// making it an amazing display
 							if (serverWorld.getRandom().nextFloat() < 0.01) {

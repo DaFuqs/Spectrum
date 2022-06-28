@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
 import de.dafuqs.spectrum.compat.REI.REIHelper;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
@@ -70,7 +70,7 @@ public class FusionShrineDisplay implements SimpleGridMenuDisplay, GatedRecipeDi
 	}
 	
 	public boolean isUnlocked() {
-		return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

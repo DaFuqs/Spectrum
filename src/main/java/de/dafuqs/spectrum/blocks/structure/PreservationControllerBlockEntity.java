@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.structure;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.registries.*;
@@ -183,7 +184,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			for (PlayerEntity playerEntity : players) {
 				if (playerEntity.isCreative() || playerEntity.isSpectator()) {
 					// fine
-				} else if (this.requiredAdvancement != null && Support.hasAdvancement(playerEntity, requiredAdvancement)) {
+				} else if (this.requiredAdvancement != null && AdvancementHelper.hasAdvancement(playerEntity, requiredAdvancement)) {
 					if (this.unlockedAdvancement != null && this.unlockedAdvancementCriterion != null) {
 						Support.grantAdvancementCriterion((ServerPlayerEntity) playerEntity, unlockedAdvancement, unlockedAdvancementCriterion);
 					}

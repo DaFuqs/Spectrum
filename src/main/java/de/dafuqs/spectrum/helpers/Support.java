@@ -205,32 +205,6 @@ public class Support {
 		grantAdvancementCriterion(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, advancementString), criterion);
 	}
 	
-	public static boolean hasAdvancement(PlayerEntity playerEntity, Identifier advancementIdentifier) {
-		if (playerEntity == null) {
-			return false;
-		} else if (advancementIdentifier == null) {
-			return true;
-		}
-		
-		if (playerEntity instanceof ServerPlayerEntity) {
-			Advancement advancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
-			if (advancement == null) {
-				SpectrumCommon.logError("Player " + playerEntity.getName() + " was getting an advancement check for an advancement that does not exist: " + advancementIdentifier);
-				return false;
-			} else {
-				return ((ServerPlayerEntity) playerEntity).getAdvancementTracker().getProgress(advancement).isDone();
-			}
-			// we cannot test for "net.minecraft.client.network.ClientPlayerEntity" there because that will get obfuscated
-			// to "net.minecraft.class_xxxxx" in compiled versions => works in dev env, breaks in prod
-		} else if (playerEntity.getClass().getCanonicalName().startsWith("net.minecraft")) {
-			return AdvancementHelper.hasAdvancementClient(advancementIdentifier);
-		} else {
-			// thank you, Kibe FakePlayerEntity
-			// it neither is a ServerPlayerEntity, nor a ClientPlayerEntity
-			return false;
-		}
-	}
-	
 	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {
 		switch (dimensionKeyString) {
 			case "minecraft:overworld":
@@ -267,7 +241,7 @@ public class Support {
 	}
 	
 	public static boolean hasPlayerFinishedMod(PlayerEntity player) {
-		return Support.hasAdvancement(player, PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER);
+		return AdvancementHelper.hasAdvancement(player, PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER);
 	}
 	
 	public static Optional<BlockPos> getNexReplaceableBlockPosUpDown(World world, BlockPos blockPos, int maxUpDown) {

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.enchantment_upgrade;
 
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -186,7 +186,7 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, EnchanterRecipe.UNLOCK_ENCHANTING_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(playerEntity, EnchanterRecipe.UNLOCK_ENCHANTING_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

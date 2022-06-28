@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -248,7 +248,7 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

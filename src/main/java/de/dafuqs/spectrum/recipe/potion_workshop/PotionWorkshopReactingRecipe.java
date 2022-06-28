@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.recipe.DescriptiveGatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -118,7 +118,7 @@ public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, Descript
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, PotionWorkshopRecipe.UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(playerEntity, PotionWorkshopRecipe.UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	public static boolean isReagent(Item item) {

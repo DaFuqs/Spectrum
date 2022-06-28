@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
@@ -155,7 +156,7 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
-import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;

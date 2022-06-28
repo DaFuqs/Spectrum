@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.energy.color;
 
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Vec3f;
-import org.lwjgl.system.CallbackI;
 
 import java.util.HashMap;
 

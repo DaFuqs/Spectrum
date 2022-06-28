@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.DescriptiveGatedRecipe;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -59,7 +59,7 @@ public abstract class GatedItemInformationDisplay extends BasicDisplay implement
 	
 	@Environment(EnvType.CLIENT)
 	public boolean isUnlockedClient() {
-		return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}
 	
 	public Item getItem() {

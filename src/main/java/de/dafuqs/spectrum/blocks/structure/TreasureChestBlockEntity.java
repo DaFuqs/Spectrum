@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.structure;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlockEntity;
 import de.dafuqs.spectrum.enums.ProgressionStage;
 import de.dafuqs.spectrum.helpers.Support;
@@ -148,7 +149,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 		if (this.requiredAdvancementIdentifierToOpen == null) {
 			return true;
 		} else {
-			return Support.hasAdvancement(player, this.requiredAdvancementIdentifierToOpen);
+			return AdvancementHelper.hasAdvancement(player, this.requiredAdvancementIdentifierToOpen);
 		}
 	}
 	

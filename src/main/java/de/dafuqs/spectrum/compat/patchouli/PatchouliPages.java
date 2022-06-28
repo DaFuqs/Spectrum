@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import net.minecraft.util.Identifier;
 import vazkii.patchouli.client.book.ClientBookRegistry;
 

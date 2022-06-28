@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.inventories.widgets;
 
 import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import net.fabricmc.api.EnvType;

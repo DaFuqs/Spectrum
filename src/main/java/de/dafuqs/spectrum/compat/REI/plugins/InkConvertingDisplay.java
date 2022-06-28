@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
@@ -36,7 +36,7 @@ public class InkConvertingDisplay extends BasicDisplay implements GatedRecipeDis
 	}
 	
 	public boolean isUnlocked() {
-		return Support.hasAdvancement(MinecraftClient.getInstance().player, InkConvertingRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, InkConvertingRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}
 	
 }

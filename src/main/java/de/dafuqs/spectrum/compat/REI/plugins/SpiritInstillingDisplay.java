@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
 import de.dafuqs.spectrum.compat.REI.REIHelper;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
 import de.dafuqs.spectrum.helpers.LoreHelper;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.SpawnerChangeRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
@@ -73,7 +73,7 @@ public class SpiritInstillingDisplay implements SimpleGridMenuDisplay, GatedReci
 	
 	public boolean isUnlocked() {
 		PlayerEntity player = MinecraftClient.getInstance().player;
-		return Support.hasAdvancement(player, UNLOCK_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(player, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(player, UNLOCK_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(player, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

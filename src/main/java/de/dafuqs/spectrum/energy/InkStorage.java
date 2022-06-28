@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.energy;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.text.Text;
-import net.minecraft.util.Pair;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 

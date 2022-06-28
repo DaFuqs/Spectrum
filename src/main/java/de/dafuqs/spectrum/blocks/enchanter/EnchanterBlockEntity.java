@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
@@ -821,8 +822,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
-		this.canOwnerApplyConflictingEnchantments = Support.hasAdvancement(playerEntity, APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER);
-		this.canOwnerOverenchant = Support.hasAdvancement(playerEntity, OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
+		this.canOwnerApplyConflictingEnchantments = AdvancementHelper.hasAdvancement(playerEntity, APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER);
+		this.canOwnerOverenchant = AdvancementHelper.hasAdvancement(playerEntity, OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
 	}
 	
 	// UPGRADEABLE

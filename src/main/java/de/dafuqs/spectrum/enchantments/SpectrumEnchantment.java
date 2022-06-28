@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -61,7 +61,7 @@ public abstract class SpectrumEnchantment extends Enchantment {
 	
 	public boolean canEntityUse(Entity entity) {
 		if (entity instanceof PlayerEntity playerEntity) {
-			return Support.hasAdvancement(playerEntity, unlockAdvancementIdentifier);
+			return AdvancementHelper.hasAdvancement(playerEntity, unlockAdvancementIdentifier);
 		} else {
 			return false;
 		}

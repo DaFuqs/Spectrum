@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.recipe.pedestal;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -273,7 +273,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return PedestalRecipeTier.hasUnlockedRequiredTier(playerEntity, this.tier) && Support.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+		return PedestalRecipeTier.hasUnlockedRequiredTier(playerEntity, this.tier) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
 	/**

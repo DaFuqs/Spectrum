@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
@@ -57,7 +57,7 @@ public abstract class SpectrumTrinketItem extends TrinketItem {
 	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		if (entity instanceof PlayerEntity playerEntity) {
 			// does the player have the matching advancement?
-			if (Support.hasAdvancement(playerEntity, getUnlockIdentifier())) {
+			if (AdvancementHelper.hasAdvancement(playerEntity, getUnlockIdentifier())) {
 				// Can only a single trinket of that type be equipped at once?
 				if (!canEquipMoreThanOne() && hasEquipped(entity, this)) {
 					return false;

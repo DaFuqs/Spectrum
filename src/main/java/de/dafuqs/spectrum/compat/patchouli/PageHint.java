@@ -1,10 +1,8 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
 import de.dafuqs.spectrum.SpectrumClient;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
-import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
 import de.dafuqs.spectrum.sound.HintRevelationSoundInstance;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;

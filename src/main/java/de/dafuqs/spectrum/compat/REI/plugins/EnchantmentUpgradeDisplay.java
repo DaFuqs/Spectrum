@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
@@ -82,10 +82,10 @@ public class EnchantmentUpgradeDisplay implements SimpleGridMenuDisplay, GatedRe
 	
 	public boolean isUnlocked() {
 		if (enchantmentDestinationLevel > enchantment.getMaxLevel()) {
-			return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier)
-					&& Support.hasAdvancement(MinecraftClient.getInstance().player, EnchanterBlockEntity.OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
+			return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier)
+					&& AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, EnchanterBlockEntity.OVERENCHANTING_ADVANCEMENT_IDENTIFIER);
 		} else {
-			return Support.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+			return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 		}
 	}
 	

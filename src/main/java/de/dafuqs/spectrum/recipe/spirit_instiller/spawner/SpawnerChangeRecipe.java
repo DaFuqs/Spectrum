@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
@@ -140,7 +141,7 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 	
 	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return Support.hasAdvancement(playerEntity, SpiritInstillerRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER) && Support.hasAdvancement(playerEntity, UNLOCK_IDENTIFIER);
+		return AdvancementHelper.hasAdvancement(playerEntity, SpiritInstillerRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_IDENTIFIER);
 	}
 	
 	@Override

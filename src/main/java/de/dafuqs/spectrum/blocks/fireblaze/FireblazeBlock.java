@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.blocks.fireblaze;
 
-import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
@@ -26,7 +24,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

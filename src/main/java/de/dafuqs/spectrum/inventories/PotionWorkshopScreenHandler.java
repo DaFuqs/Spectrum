@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlockEntity;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.inventories.slots.DisabledSlot;
 import de.dafuqs.spectrum.inventories.slots.ReagentSlot;
 import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
@@ -60,7 +60,7 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 		this.addSlot(new Slot(inventory, 4, 41, 42));
 		
 		// reagent slots
-		if (Support.hasAdvancement(playerInventory.player, PotionWorkshopBlockEntity.FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER)) {
+		if (AdvancementHelper.hasAdvancement(playerInventory.player, PotionWorkshopBlockEntity.FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER)) {
 			this.addSlot(new ReagentSlot(inventory, 5, 51, 19));
 			this.addSlot(new ReagentSlot(inventory, 6, 74, 19));
 			this.addSlot(new ReagentSlot(inventory, 7, 97, 19));

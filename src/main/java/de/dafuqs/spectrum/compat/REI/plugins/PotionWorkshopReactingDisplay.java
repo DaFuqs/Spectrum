@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReactingRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import net.fabricmc.api.EnvType;
@@ -18,7 +18,7 @@ public class PotionWorkshopReactingDisplay extends GatedItemInformationDisplay {
 	
 	@Environment(EnvType.CLIENT)
 	public boolean isUnlockedClient() {
-		return Support.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER) && super.isUnlockedClient();
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER) && super.isUnlockedClient();
 	}
 	
 	@Override

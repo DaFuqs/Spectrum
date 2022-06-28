@@ -27,7 +27,7 @@
         "item": "spectrum:moonstone_shard"
       },
       "growth_acceleration_mod": 1.0,
-      "ink_consumption_mod": 0.1,
+      "ink_consumption_mod": 0.01,
       "consume_chance_per_second": 0.05
     }
   ]

@@ -16,11 +16,27 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "minecraft:cobblestone"
+        "item": "minecraft:iron_nugget"
       },
-      "growth_acceleration_mod": 3.0,
-      "ink_consumption_mod": 3.0,
+      "growth_acceleration_mod": 4.0,
+      "ink_consumption_mod": 0.5,
       "consume_chance_per_second": 0.2
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:bedrock_dust"
+      },
+      "growth_acceleration_mod": 8.0,
+      "ink_consumption_mod": 2.0,
+      "consume_chance_per_second": 0.05
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:neolith"
+      },
+      "growth_acceleration_mod": 1.5,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.02
     }
   ]
 }

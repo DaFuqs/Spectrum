@@ -18,9 +18,25 @@
       "ingredient": {
         "item": "minecraft:coal"
       },
-      "growth_acceleration_mod": 1.0,
+      "growth_acceleration_mod": 4.0,
       "ink_consumption_mod": 1.0,
       "consume_chance_per_second": 0.1
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:jade_vine_petals"
+      },
+      "growth_acceleration_mod": 32.0,
+      "ink_consumption_mod": 8.0,
+      "consume_chance_per_second": 0.1
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:midnight_chip"
+      },
+      "growth_acceleration_mod": 1.0,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.01
     }
   ]
 }

@@ -15,7 +15,7 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "spectrum:moonstone_shard"
+        "item": "spectrum:moonstone_powder"
       },
       "growth_acceleration_mod": 1.0,
       "ink_consumption_mod": 1.0,

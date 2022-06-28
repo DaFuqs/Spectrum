@@ -16,11 +16,11 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "minecraft:cobblestone"
+        "item": "spectrum:neolith"
       },
-      "growth_acceleration_mod": 3.0,
-      "ink_consumption_mod": 3.0,
-      "consume_chance_per_second": 0.2
+      "growth_acceleration_mod": 1.5,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.02
     }
   ]
 }

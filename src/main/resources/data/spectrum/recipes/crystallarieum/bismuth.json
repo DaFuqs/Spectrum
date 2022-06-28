@@ -23,11 +23,19 @@
     },
     {
       "ingredient": {
-        "item": "spectrum:sparklestone_gem"
+        "item": "spectrum:stardust"
       },
-      "growth_acceleration_mod": 1.0,
+      "growth_acceleration_mod": 2.0,
       "ink_consumption_mod": 0.25,
       "consume_chance_per_second": 0.02
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:star_fragment"
+      },
+      "growth_acceleration_mod": 1.25,
+      "ink_consumption_mod": 1.0,
+      "consume_chance_per_second": 0.0
     }
   ]
 }

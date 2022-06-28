@@ -21,6 +21,22 @@
       "growth_acceleration_mod": 2.0,
       "ink_consumption_mod": 0.5,
       "consume_chance_per_second": 0.04
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:wet_sponge"
+      },
+      "growth_acceleration_mod": 1.0,
+      "ink_consumption_mod": 0.5,
+      "consume_chance_per_second": 0.0
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:mermaids_gem"
+      },
+      "growth_acceleration_mod": 32.0,
+      "ink_consumption_mod": 2.0,
+      "consume_chance_per_second": 0.1
     }
   ]
 }

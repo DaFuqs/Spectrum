@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:native_certus_quartz"
+  },
+  "results": [
+    {
+      "item": "ae2:certus_quartz_crystal",
+      "count": 2.0
+    }
+  ],
+  "experience": 0.5,
+  "time": 200,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ae2"
+      ]
+    }
+  ]
+}

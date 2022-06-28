@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "spectrum:block/cinderhearth_top",
+    "front": "spectrum:block/cinderhearth_front",
+    "side": "spectrum:block/cinderhearth_side"
+  }
+}

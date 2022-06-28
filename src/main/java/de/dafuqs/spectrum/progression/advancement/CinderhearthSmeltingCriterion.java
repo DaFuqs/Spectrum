@@ -13,22 +13,22 @@ import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
-public class FireblazeSmeltingCriterion extends AbstractCriterion<FireblazeSmeltingCriterion.Conditions> {
+public class CinderhearthSmeltingCriterion extends AbstractCriterion<CinderhearthSmeltingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "fireblaze_smelting");
+	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "cinderhearth_smelting");
 	
 	public Identifier getId() {
 		return ID;
 	}
 	
-	public FireblazeSmeltingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
+	public CinderhearthSmeltingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate input = ItemPredicate.fromJson(jsonObject.get("input"));
 		ItemPredicate output = ItemPredicate.fromJson(jsonObject.get("output"));
 		NumberRange.FloatRange speedMultiplierRange = NumberRange.FloatRange.fromJson(jsonObject.get("speed_multiplier"));
 		NumberRange.FloatRange yieldMultiplierRange = NumberRange.FloatRange.fromJson(jsonObject.get("yield_multiplier"));
 		NumberRange.FloatRange experienceMultiplierRange = NumberRange.FloatRange.fromJson(jsonObject.get("experience_multiplier"));
 		
-		return new FireblazeSmeltingCriterion.Conditions(extended, input, output, speedMultiplierRange, yieldMultiplierRange, experienceMultiplierRange);
+		return new CinderhearthSmeltingCriterion.Conditions(extended, input, output, speedMultiplierRange, yieldMultiplierRange, experienceMultiplierRange);
 	}
 	
 	public void trigger(ServerPlayerEntity player, ItemStack input, ItemStack output, float speedMultiplier, float yieldMultiplier, float experienceMultiplier) {

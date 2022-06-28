@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.fireblaze;
+package de.dafuqs.spectrum.recipe.cinderhearth;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
@@ -23,9 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class FireblazeRecipe implements Recipe<Inventory>, GatedRecipe {
+public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_fireblaze");
+	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_cinderhearth");
 	
 	protected final Identifier id;
 	protected final String group;
@@ -36,7 +36,7 @@ public class FireblazeRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final List<Pair<ItemStack, Float>> outputsWithChance;
 	protected final Identifier requiredAdvancementIdentifier;
 
-	public FireblazeRecipe(Identifier id, String group, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance, Identifier requiredAdvancementIdentifier) {
+	public CinderhearthRecipe(Identifier id, String group, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
 		this.inputIngredient = inputIngredient;
@@ -78,7 +78,7 @@ public class FireblazeRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public ItemStack createIcon() {
-		return new ItemStack(SpectrumBlocks.FIREBLAZE);
+		return new ItemStack(SpectrumBlocks.CINDERHEARTH);
 	}
 	
 	@Override
@@ -88,12 +88,12 @@ public class FireblazeRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public RecipeSerializer<?> getSerializer() {
-		return SpectrumRecipeTypes.FIREBLAZE_RECIPE_SERIALIZER;
+		return SpectrumRecipeTypes.CINDERHEARTH_RECIPE_SERIALIZER;
 	}
 	
 	@Override
 	public RecipeType<?> getType() {
-		return SpectrumRecipeTypes.FIREBLAZE;
+		return SpectrumRecipeTypes.CINDERHEARTH;
 	}
 	
 	@Override
@@ -105,8 +105,8 @@ public class FireblazeRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public boolean equals(Object object) {
-		if (object instanceof FireblazeRecipe fireblazeRecipe) {
-			return fireblazeRecipe.getId().equals(this.getId());
+		if (object instanceof CinderhearthRecipe cinderhearthRecipe) {
+			return cinderhearthRecipe.getId().equals(this.getId());
 		}
 		return false;
 	}
@@ -124,12 +124,12 @@ public class FireblazeRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.fireblaze_recipe_unlocked.title");
+		return new TranslatableText("spectrum.toast.cinderhearth_recipe_unlocked.title");
 	}
 	
 	@Override
 	public TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.fireblaze_recipes_unlocked.title");
+		return new TranslatableText("spectrum.toast.cinderhearth_recipes_unlocked.title");
 	}
 	
 	public float getExperience() {

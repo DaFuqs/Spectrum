@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "top": "spectrum:block/fireblaze_top",
-    "front": "spectrum:block/fireblaze_front",
-    "side": "spectrum:block/fireblaze_side"
-  }
-}

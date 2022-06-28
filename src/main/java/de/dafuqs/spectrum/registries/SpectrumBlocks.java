@@ -25,7 +25,7 @@ import de.dafuqs.spectrum.blocks.energy.ColorPickerBlock;
 import de.dafuqs.spectrum.blocks.energy.CrystalApothecaryBlock;
 import de.dafuqs.spectrum.blocks.energy.InkDuctBlock;
 import de.dafuqs.spectrum.blocks.energy.InkwellBlock;
-import de.dafuqs.spectrum.blocks.fireblaze.FireblazeBlock;
+import de.dafuqs.spectrum.blocks.cinderhearth.CinderhearthBlock;
 import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalFluidBlock;
 import de.dafuqs.spectrum.blocks.fluid.MidnightSolutionFluidBlock;
 import de.dafuqs.spectrum.blocks.fluid.MudFluidBlock;
@@ -134,7 +134,7 @@ public class SpectrumBlocks {
 	public static final Block POTION_WORKSHOP = new PotionWorkshopBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	public static final Block SPIRIT_INSTILLER = new SpiritInstillerBlock(FabricBlockSettings.of(Material.STONE).strength(3.0F, 5.0F).nonOpaque());
 	public static final Block CRYSTALLARIEUM = new CrystallarieumBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F).nonOpaque());
-	public static final Block FIREBLAZE = new FireblazeBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F));
+	public static final Block CINDERHEARTH = new CinderhearthBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F));
 	public static final Block MEMORY = new MemoryBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).nonOpaque().ticksRandomly());
 	
 	// GEMS
@@ -922,7 +922,7 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, generalItemSettingsSingle, DyeColor.WHITE);
 		registerBlockWithItem("crystallarieum", CRYSTALLARIEUM, generalItemSettingsSingle, DyeColor.BROWN);
-		registerBlockWithItem("fireblaze", FIREBLAZE, generalItemSettingsSingleFireproof, DyeColor.ORANGE);
+		registerBlockWithItem("cinderhearth", CINDERHEARTH, generalItemSettingsSingleFireproof, DyeColor.ORANGE);
 		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, generalUncommonItemSettingsSingle), DyeColor.LIGHT_GRAY);
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, generalItemSettingsEight, "upgrade_speed"), DyeColor.LIGHT_GRAY);

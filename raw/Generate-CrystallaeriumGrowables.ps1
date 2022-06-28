@@ -156,9 +156,9 @@ foreach($entry in $entries.GetEnumerator()) {
 }
 "@
 
-    New-Item -Path ".\fireblaze_recipes\native_$name`.json" -ItemType File -Force -Value @"
+    New-Item -Path ".\cinderhearth_recipes\native_$name`.json" -ItemType File -Force -Value @"
 {
-  "type": "spectrum:fireblaze",
+  "type": "spectrum:cinderhearth",
   "ingredient": {
     "item": "spectrum:native_$name"
   },

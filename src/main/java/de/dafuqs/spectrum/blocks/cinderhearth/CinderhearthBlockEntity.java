@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.fireblaze;
+package de.dafuqs.spectrum.blocks.cinderhearth;
 
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
@@ -8,7 +8,7 @@ import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.fireblaze.FireblazeRecipe;
+import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
@@ -39,7 +39,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-public class FireblazeBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, Inventory {
+public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, Inventory {
 	
 	public static final int INVENTORY_SIZE = 10;
 	public static final int INPUT_SLOT_ID = 0;
@@ -51,12 +51,12 @@ public class FireblazeBlockEntity extends LockableContainerBlockEntity implement
 	protected boolean inventoryChanged;
 	private UUID ownerUUID;
 	private Map<UpgradeType, Float> upgrades;
-	private Recipe currentRecipe; // blasting & fireblaze
+	private Recipe currentRecipe; // blasting & cinderhearth
 	private int craftingTime;
 	private int craftingTimeTotal;
 	
-	public FireblazeBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.FIREBLAZE, pos, state);
+	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
+		super(SpectrumBlockEntityRegistry.CINDERHEARTH, pos, state);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 	}
 	
@@ -143,140 +143,140 @@ public class FireblazeBlockEntity extends LockableContainerBlockEntity implement
 		}
 	}
 	
-	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, FireblazeBlockEntity fireblazeBlockEntity) {
-		if (fireblazeBlockEntity.upgrades == null) {
-			fireblazeBlockEntity.calculateUpgrades();
+	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, CinderhearthBlockEntity cinderhearthBlockEntity) {
+		if (cinderhearthBlockEntity.upgrades == null) {
+			cinderhearthBlockEntity.calculateUpgrades();
 		}
 		
-		if (fireblazeBlockEntity.inventoryChanged) {
-			calculateRecipe(world, fireblazeBlockEntity);
-			fireblazeBlockEntity.inventoryChanged = false;
+		if (cinderhearthBlockEntity.inventoryChanged) {
+			calculateRecipe(world, cinderhearthBlockEntity);
+			cinderhearthBlockEntity.inventoryChanged = false;
 		}
 		
-		if (fireblazeBlockEntity.currentRecipe != null) {
-			if (fireblazeBlockEntity.craftingTime % 60 == 1) {
-				if (!checkRecipeRequirements(world, blockPos, fireblazeBlockEntity)) {
-					fireblazeBlockEntity.craftingTime = 0;
-					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) fireblazeBlockEntity.world, fireblazeBlockEntity.pos);
+		if (cinderhearthBlockEntity.currentRecipe != null) {
+			if (cinderhearthBlockEntity.craftingTime % 60 == 1) {
+				if (!checkRecipeRequirements(world, blockPos, cinderhearthBlockEntity)) {
+					cinderhearthBlockEntity.craftingTime = 0;
+					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) cinderhearthBlockEntity.world, cinderhearthBlockEntity.pos);
 					return;
 				}
 			}
 			
-			if (fireblazeBlockEntity.currentRecipe != null) {
-				fireblazeBlockEntity.craftingTime++;
+			if (cinderhearthBlockEntity.currentRecipe != null) {
+				cinderhearthBlockEntity.craftingTime++;
 				
-				if (fireblazeBlockEntity.craftingTime == fireblazeBlockEntity.craftingTimeTotal) {
-					if(fireblazeBlockEntity.currentRecipe instanceof FireblazeRecipe fireblazeRecipe) {
-						craftFireblazeRecipe(world, fireblazeBlockEntity, fireblazeRecipe);
-					} else if(fireblazeBlockEntity.currentRecipe instanceof BlastingRecipe blastingRecipe) {
-						craftBlastingRecipe(world, fireblazeBlockEntity, blastingRecipe);
+				if (cinderhearthBlockEntity.craftingTime == cinderhearthBlockEntity.craftingTimeTotal) {
+					if(cinderhearthBlockEntity.currentRecipe instanceof CinderhearthRecipe cinderhearthRecipe) {
+						craftCinderhearthRecipe(world, cinderhearthBlockEntity, cinderhearthRecipe);
+					} else if(cinderhearthBlockEntity.currentRecipe instanceof BlastingRecipe blastingRecipe) {
+						craftBlastingRecipe(world, cinderhearthBlockEntity, blastingRecipe);
 					}
 				}
 				
-				fireblazeBlockEntity.markDirty();
+				cinderhearthBlockEntity.markDirty();
 			}
 		} else {
-			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) fireblazeBlockEntity.world, fireblazeBlockEntity.pos);
+			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) cinderhearthBlockEntity.world, cinderhearthBlockEntity.pos);
 		}
 	}
 	
 	
-	private static void calculateRecipe(@NotNull World world, @NotNull FireblazeBlockEntity fireblazeBlockEntity) {
+	private static void calculateRecipe(@NotNull World world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
 		// test the cached recipe => faster
-		if (fireblazeBlockEntity.currentRecipe != null) {
-			if (fireblazeBlockEntity.currentRecipe.matches(fireblazeBlockEntity.inventory, world)) {
+		if (cinderhearthBlockEntity.currentRecipe != null) {
+			if (cinderhearthBlockEntity.currentRecipe.matches(cinderhearthBlockEntity.inventory, world)) {
 				return;
 			}
 		}
 		
 		// cached recipe did not match => calculate new
-		ItemStack instillerStack = fireblazeBlockEntity.inventory.getStack(0);
+		ItemStack instillerStack = cinderhearthBlockEntity.inventory.getStack(0);
 		if (!instillerStack.isEmpty()) {
-			FireblazeRecipe fireblazeRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FIREBLAZE, fireblazeBlockEntity, world).orElse(null);
-			if(fireblazeRecipe == null) {
-				BlastingRecipe blastingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.BLASTING, fireblazeBlockEntity, world).orElse(null);
+			CinderhearthRecipe cinderhearthRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.CINDERHEARTH, cinderhearthBlockEntity, world).orElse(null);
+			if(cinderhearthRecipe == null) {
+				BlastingRecipe blastingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.BLASTING, cinderhearthBlockEntity, world).orElse(null);
 				if(blastingRecipe == null) {
-					fireblazeBlockEntity.currentRecipe = null;
-					fireblazeBlockEntity.craftingTime = 0;
+					cinderhearthBlockEntity.currentRecipe = null;
+					cinderhearthBlockEntity.craftingTime = 0;
 				} else {
-					fireblazeBlockEntity.currentRecipe = blastingRecipe;
-					fireblazeBlockEntity.craftingTimeTotal = (int) Math.ceil(blastingRecipe.getCookTime() / fireblazeBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
+					cinderhearthBlockEntity.currentRecipe = blastingRecipe;
+					cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(blastingRecipe.getCookTime() / cinderhearthBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
 				}
 			} else {
-				fireblazeBlockEntity.currentRecipe = fireblazeRecipe;
-				fireblazeBlockEntity.craftingTimeTotal = (int) Math.ceil(fireblazeRecipe.getCraftingTime() / fireblazeBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
+				cinderhearthBlockEntity.currentRecipe = cinderhearthRecipe;
+				cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(cinderhearthRecipe.getCraftingTime() / cinderhearthBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
 			}
 		}
 	}
 	
-	private static boolean checkRecipeRequirements(World world, BlockPos blockPos, @NotNull FireblazeBlockEntity fireblazeBlockEntity) {
-		PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(fireblazeBlockEntity.ownerUUID);
+	private static boolean checkRecipeRequirements(World world, BlockPos blockPos, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
+		PlayerEntity lastInteractedPlayer = PlayerOwned.getPlayerEntityIfOnline(cinderhearthBlockEntity.ownerUUID);
 		if (lastInteractedPlayer == null) {
 			return false;
 		}
 		
-		if (!FireblazeBlock.verifyStructure(world, blockPos, null)) {
-			world.playSound(null, fireblazeBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + fireblazeBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + fireblazeBlockEntity.world.random.nextFloat() * 0.2F);
+		if (!CinderhearthBlock.verifyStructure(world, blockPos, null)) {
+			world.playSound(null, cinderhearthBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + cinderhearthBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + cinderhearthBlockEntity.world.random.nextFloat() * 0.2F);
 			return false;
 		}
 		
-		if(fireblazeBlockEntity.currentRecipe instanceof GatedRecipe gatedRecipe) {
+		if(cinderhearthBlockEntity.currentRecipe instanceof GatedRecipe gatedRecipe) {
 			return gatedRecipe.canPlayerCraft(lastInteractedPlayer);
 		}
 		return true;
 	}
 	
-	public static void craftBlastingRecipe(World world, @NotNull FireblazeBlockEntity fireblazeBlockEntity, @NotNull BlastingRecipe blastingRecipe) {
+	public static void craftBlastingRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity, @NotNull BlastingRecipe blastingRecipe) {
 		// output
-		ItemStack inputStack = fireblazeBlockEntity.inventory.getStack(INPUT_SLOT_ID);
+		ItemStack inputStack = cinderhearthBlockEntity.inventory.getStack(INPUT_SLOT_ID);
 		ItemStack output = blastingRecipe.getOutput();
 		
-		InventoryHelper.addToInventory(fireblazeBlockEntity, output, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+		InventoryHelper.addToInventory(cinderhearthBlockEntity, output, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
 		Item remainder = inputStack.getItem().getRecipeRemainder();
 		if(remainder != null) {
-			InventoryHelper.addToInventory(fireblazeBlockEntity, output, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+			InventoryHelper.addToInventory(cinderhearthBlockEntity, output, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
 		}
 		
 		// use up input ingredient
 		inputStack.decrement(1);
 		
 		// grant experience
-		ExperienceStorageItem.addStoredExperience(fireblazeBlockEntity.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), blastingRecipe.getExperience(), world.random);
+		ExperienceStorageItem.addStoredExperience(cinderhearthBlockEntity.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), blastingRecipe.getExperience(), world.random);
 		
 		// effects
-		playCraftingFinishedEffects(fireblazeBlockEntity);
+		playCraftingFinishedEffects(cinderhearthBlockEntity);
 		
 		// reset
-		fireblazeBlockEntity.craftingTime = 0;
-		fireblazeBlockEntity.inventoryChanged();
+		cinderhearthBlockEntity.craftingTime = 0;
+		cinderhearthBlockEntity.inventoryChanged();
 	}
 	
-	public static void craftFireblazeRecipe(World world, @NotNull FireblazeBlockEntity fireblazeBlockEntity, @NotNull FireblazeRecipe fireblazeRecipe) {
+	public static void craftCinderhearthRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity, @NotNull CinderhearthRecipe cinderhearthRecipe) {
 		// output
-		List<ItemStack> outputs = fireblazeRecipe.getRolledOutputs(world.random);
+		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random);
 		
-		ItemStack inputStack = fireblazeBlockEntity.inventory.getStack(INPUT_SLOT_ID);
+		ItemStack inputStack = cinderhearthBlockEntity.inventory.getStack(INPUT_SLOT_ID);
 		Item remainder = inputStack.getItem().getRecipeRemainder();
 		if(remainder != null) {
 			outputs.add(remainder.getDefaultStack());
 		}
-		InventoryHelper.addToInventory(fireblazeBlockEntity, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+		InventoryHelper.addToInventory(cinderhearthBlockEntity, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
 		
 		// use up input ingredient
 		inputStack.decrement(1);
 		
 		// grant experience
-		ExperienceStorageItem.addStoredExperience(fireblazeBlockEntity.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), fireblazeRecipe.getExperience(), fireblazeBlockEntity.world.random);
+		ExperienceStorageItem.addStoredExperience(cinderhearthBlockEntity.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), cinderhearthRecipe.getExperience(), cinderhearthBlockEntity.world.random);
 		
 		// effects
-		playCraftingFinishedEffects(fireblazeBlockEntity);
+		playCraftingFinishedEffects(cinderhearthBlockEntity);
 		
 		// reset
-		fireblazeBlockEntity.craftingTime = 0;
-		fireblazeBlockEntity.inventoryChanged();
+		cinderhearthBlockEntity.craftingTime = 0;
+		cinderhearthBlockEntity.inventoryChanged();
 	}
 	
-	public static void playCraftingFinishedEffects(@NotNull FireblazeBlockEntity fireblazeBlockEntity) {
+	public static void playCraftingFinishedEffects(@NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
 		// TODO
 	}
 	

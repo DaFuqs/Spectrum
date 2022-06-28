@@ -113,7 +113,7 @@ public class SpectrumItems {
 	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("fusion_shrine_structure"));
 	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("enchanter_structure"));
 	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("spirit_instiller_structure"));
-	public static final Item FIREBLAZE_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("fireblaze_structure"));
+	public static final Item cinderhearth_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("cinderhearth_structure"));
 	
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(resourcesItemSettings);
@@ -435,7 +435,7 @@ public class SpectrumItems {
 		register("fusion_shrine_structure_placer", FUSION_SHRINE_STRUCTURE_PLACER, DyeColor.WHITE);
 		register("enchanter_structure_placer", ENCHANTER_STRUCTURE_PLACER, DyeColor.WHITE);
 		register("spirit_instiller_structure_placer", SPIRIT_INSTILLER_STRUCTURE_PLACER, DyeColor.WHITE);
-		register("fireblaze_structure_placer", FIREBLAZE_STRUCTURE_PLACER, DyeColor.WHITE);
+		register("cinderhearth_structure_placer", cinderhearth_STRUCTURE_PLACER, DyeColor.WHITE);
 	}
 	
 	public static void registerBannerPatterns() {

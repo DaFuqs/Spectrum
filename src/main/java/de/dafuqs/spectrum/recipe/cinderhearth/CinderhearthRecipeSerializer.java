@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.fireblaze;
+package de.dafuqs.spectrum.recipe.cinderhearth;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -15,16 +15,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FireblazeRecipeSerializer implements RecipeSerializer<FireblazeRecipe> {
+public class CinderhearthRecipeSerializer implements RecipeSerializer<CinderhearthRecipe> {
 	
-	public final RecipeFactory<FireblazeRecipe> recipeFactory;
+	public final RecipeFactory<CinderhearthRecipe> recipeFactory;
 	
-	public FireblazeRecipeSerializer(RecipeFactory<FireblazeRecipe> recipeFactory) {
+	public CinderhearthRecipeSerializer(RecipeFactory<CinderhearthRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
 	@Override
-	public FireblazeRecipe read(Identifier identifier, JsonObject jsonObject) {
+	public CinderhearthRecipe read(Identifier identifier, JsonObject jsonObject) {
 		String group = JsonHelper.getString(jsonObject, "group", "");
 		Ingredient inputIngredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient"));
 		int time = JsonHelper.getInt(jsonObject, "time");
@@ -46,14 +46,14 @@ public class FireblazeRecipeSerializer implements RecipeSerializer<FireblazeReci
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
 			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
-			requiredAdvancementIdentifier = FireblazeRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
+			requiredAdvancementIdentifier = de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
 		}
 		
 		return this.recipeFactory.create(identifier, group, inputIngredient, time, experience, outputsWithChance, requiredAdvancementIdentifier);
 	}
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, FireblazeRecipe recipe) {
+	public void write(PacketByteBuf packetByteBuf, CinderhearthRecipe recipe) {
 		packetByteBuf.writeString(recipe.group);
 		recipe.inputIngredient.write(packetByteBuf);
 		packetByteBuf.writeInt(recipe.time);
@@ -69,7 +69,7 @@ public class FireblazeRecipeSerializer implements RecipeSerializer<FireblazeReci
 	}
 	
 	@Override
-	public FireblazeRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
+	public CinderhearthRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
 		Ingredient inputIngredient = Ingredient.fromPacket(packetByteBuf);
 		int time = packetByteBuf.readInt();
@@ -86,8 +86,8 @@ public class FireblazeRecipeSerializer implements RecipeSerializer<FireblazeReci
 		return this.recipeFactory.create(identifier, group, inputIngredient, time, experience, outputsWithChance, requiredAdvancementIdentifier);
 	}
 	
-	public interface RecipeFactory<FireblazeRecipe> {
-		FireblazeRecipe create(Identifier id, String group, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance, Identifier requiredAdvancementIdentifier);
+	public interface RecipeFactory<CinderhearthRecipe> {
+		CinderhearthRecipe create(Identifier id, String group, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance, Identifier requiredAdvancementIdentifier);
 	}
 	
 }

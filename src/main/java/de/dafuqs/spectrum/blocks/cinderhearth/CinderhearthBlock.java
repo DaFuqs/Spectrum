@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.fireblaze;
+package de.dafuqs.spectrum.blocks.cinderhearth;
 
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
@@ -32,18 +32,18 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.Random;
 
-public class FireblazeBlock extends BlockWithEntity {
+public class CinderhearthBlock extends BlockWithEntity {
 	
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 	
-	public FireblazeBlock(Settings settings) {
+	public CinderhearthBlock(Settings settings) {
 		super(settings);
 	}
 	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new FireblazeBlockEntity(pos, state);
+		return new CinderhearthBlockEntity(pos, state);
 	}
 	
 	@Nullable
@@ -52,14 +52,14 @@ public class FireblazeBlock extends BlockWithEntity {
 		if (world.isClient) {
 			return null;
 		} else {
-			return checkType(type, SpectrumBlockEntityRegistry.FIREBLAZE, FireblazeBlockEntity::serverTick);
+			return checkType(type, SpectrumBlockEntityRegistry.CINDERHEARTH, CinderhearthBlockEntity::serverTick);
 		}
 	}
 	
 	protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof FireblazeBlockEntity fireblazeBlockEntity) {
-			player.openHandledScreen(fireblazeBlockEntity);
+		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+			player.openHandledScreen(cinderhearthBlockEntity);
 		}
 	}
 	
@@ -79,8 +79,8 @@ public class FireblazeBlock extends BlockWithEntity {
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		if (itemStack.hasCustomName()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof FireblazeBlockEntity fireblazeBlockEntity) {
-				fireblazeBlockEntity.setCustomName(itemStack.getName());
+			if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+				cinderhearthBlockEntity.setCustomName(itemStack.getName());
 			}
 		}
 		
@@ -89,9 +89,9 @@ public class FireblazeBlock extends BlockWithEntity {
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof FireblazeBlockEntity fireblazeBlockEntity) {
+			if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
 				if (world instanceof ServerWorld) {
-					ItemScatterer.spawn(world, pos, fireblazeBlockEntity);
+					ItemScatterer.spawn(world, pos, cinderhearthBlockEntity);
 				}
 				world.updateComparators(pos, this);
 			}
@@ -143,7 +143,7 @@ public class FireblazeBlock extends BlockWithEntity {
 	}
 	
 	public static boolean verifyStructure(World world, @NotNull BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
-		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.FIREBLAZE_IDENTIFIER);
+		IMultiblock multiblock = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_IDENTIFIER);
 		
 		boolean valid = multiblock.validate(world, blockPos.down(1), BlockRotation.NONE);
 		
@@ -153,7 +153,7 @@ public class FireblazeBlock extends BlockWithEntity {
 			}
 		} else {
 			if (world.isClient) {
-				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.spirit_instiller.structure"), blockPos.down(2), BlockRotation.NONE);
+				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.cinderhearth.structure"), blockPos.down(2), BlockRotation.NONE);
 			}
 		}
 		

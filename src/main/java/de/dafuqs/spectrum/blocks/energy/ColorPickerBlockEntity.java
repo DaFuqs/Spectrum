@@ -47,8 +47,6 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	protected @Nullable InkColor selectedColor;
 	private UUID ownerUUID;
 	
-	//protected final InkPropertyDelegate propertyDelegate;
-	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntityRegistry.COLOR_PICKER, blockPos, blockState);
 		

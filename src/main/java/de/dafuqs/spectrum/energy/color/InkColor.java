@@ -8,8 +8,9 @@ import java.util.*;
 
 public abstract class InkColor {
 	
-	protected static final Map<DyeColor, InkColor> COLORS = new HashMap<>();
-	protected static final Collection<ElementalColor> ELEMENTAL_COLORS = new ArrayList<>();
+	protected static final Map<DyeColor, InkColor> DYE_TO_COLOR = new HashMap<>();
+	protected static final List<InkColor> ALL_COLORS = new ArrayList<>();
+	protected static final List<ElementalColor> ELEMENTAL_COLORS = new ArrayList<>();
 	
 	protected final DyeColor dyeColor;
 	protected final Vec3f color;
@@ -17,22 +18,24 @@ public abstract class InkColor {
 	protected InkColor(DyeColor dyeColor, Vec3f color) {
 		this.dyeColor = dyeColor;
 		this.color = color;
-		COLORS.put(dyeColor, this);
+		
+		ALL_COLORS.add(this);
+		DYE_TO_COLOR.put(dyeColor, this);
 	}
 	
 	public static InkColor of(DyeColor dyeColor) {
-		return COLORS.get(dyeColor);
+		return DYE_TO_COLOR.get(dyeColor);
 	}
 	
 	public static InkColor of(String colorString) {
-		return COLORS.get(DyeColor.valueOf(colorString.toUpperCase(Locale.ROOT)));
+		return DYE_TO_COLOR.get(DyeColor.valueOf(colorString.toUpperCase(Locale.ROOT)));
 	}
 	
-	public static Collection<InkColor> all() {
-		return COLORS.values();
+	public static List<InkColor> all() {
+		return ALL_COLORS;
 	}
 	
-	public static Collection<ElementalColor> elementals() {
+	public static List<ElementalColor> elementals() {
 		return ELEMENTAL_COLORS;
 	}
 	

@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
+import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Drawable;
@@ -22,18 +22,19 @@ import static de.dafuqs.spectrum.helpers.RenderHelper.fillQuad;
 @Environment(EnvType.CLIENT)
 public class ColorSelectionWidget extends ClickableWidget implements Drawable, Element {
 	
-	protected InkColor selectedColor;
+	protected ColorPickerBlockEntity colorPicker;
 	
 	@Nullable
 	private Consumer<InkColor> changedListener;
 	
-	public ColorSelectionWidget(int x, int y, int width, int height, InkColor selectedColor) {
-		super(x, y, width, height, new TranslatableText(""));
-		this.selectedColor = selectedColor;
-	}
+	int selectedDotX;
+	int selectedDotY;
 	
-	public InkColor selectedColor() {
-		return this.selectedColor;
+	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, ColorPickerBlockEntity colorPicker) {
+		super(x, y, 56, 14, new TranslatableText(""));
+		this.colorPicker = colorPicker;
+		this.selectedDotX = selectedDotX;
+		this.selectedDotY = selectedDotY;
 	}
 	
 	public void setChangedListener(@Nullable Consumer<InkColor> changedListener) {
@@ -49,13 +50,17 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		boolean bl = mouseX >= (double) this.x && mouseX < (double) (this.x + this.width) && mouseY >= (double) this.y && mouseY < (double) (this.y + this.height);
 		
-		if (this.isFocused() && bl && button == 0) {
-			int i = MathHelper.floor(mouseX) - this.x;
-			int j = MathHelper.floor(mouseX) - this.y;
+		if (bl && button == 0) {
+			int xOffset = MathHelper.floor(mouseX) - this.x;
+			int yOffset = MathHelper.floor(mouseY) - this.y;
 			
-			// TODO: choose correct color
-			this.selectedColor = InkColors.BROWN;
-			onChanged(this.selectedColor);
+			int horizontalColorOffset = xOffset / 7;
+			int verticalColorOffset = yOffset / 7;
+			int newColorIndex = horizontalColorOffset + verticalColorOffset * 8;
+			InkColor newColor = InkColor.all().get(newColorIndex);
+			if(this.colorPicker.getSelectedColor() != newColor) {
+				onChanged(newColor);
+			}
 			return true;
 		} else {
 			return false;
@@ -64,7 +69,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	
 	@Override
 	public void appendNarrations(NarrationMessageBuilder builder) {
-		builder.put(NarrationPart.TITLE, new TranslatableText("spectrum.narration.color_selection", this.selectedColor));
+		builder.put(NarrationPart.TITLE, new TranslatableText("spectrum.narration.color_selection", this.colorPicker.getSelectedColor()));
 	}
 	
 	public void draw(MatrixStack matrices) {
@@ -73,13 +78,19 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		int currentX = this.x + 1;
 		int currentY = this.y + 1;
 		for (InkColor color : InkColor.all()) {
-			fillQuad(matrices, currentX, currentY, 5, 5, ColorHelper.getVec(color.getDyeColor()));
+			fillQuad(matrices, currentX, currentY, 5, 5, color.getColor());
 			i = i + 1;
 			currentX = currentX + 7;
 			if (i == 7) {
 				currentY = currentY + 7;
 				currentX = this.x + 1;
 			}
+		}
+		
+		// draw selected icon
+		InkColor selectedColor = this.colorPicker.getSelectedColor();
+		if(selectedColor != null) {
+			fillQuad(matrices, selectedDotX, selectedDotY, 5, 5, selectedColor.getColor());
 		}
 	}
 	

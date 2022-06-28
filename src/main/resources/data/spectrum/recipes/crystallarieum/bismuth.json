@@ -31,7 +31,7 @@
     },
     {
       "ingredient": {
-        "item": "spectrum:star_fragment"
+        "item": "spectrum:shooting_star"
       },
       "growth_acceleration_mod": 1.25,
       "ink_consumption_mod": 1.0,

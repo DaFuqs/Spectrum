@@ -2,9 +2,14 @@ package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
+import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.inventories.widgets.ColorSelectionWidget;
 import de.dafuqs.spectrum.inventories.widgets.InkGaugeWidget;
 import de.dafuqs.spectrum.inventories.widgets.VerticalInkMeterWidget;
+import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
+import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -12,10 +17,14 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerListener;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> implements ScreenHandlerListener {
+import java.util.function.Consumer;
+
+public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> implements ScreenHandlerListener, Consumer<InkColor> {
 	
 	protected final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/color_picker.png");
 	protected ColorSelectionWidget colorSelectionWidget;
@@ -34,9 +43,13 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		int startX = (this.width - this.backgroundWidth) / 2;
 		int startY = (this.height - this.backgroundHeight) / 2;
 		
-		this.colorSelectionWidget = new ColorSelectionWidget(startX + 113, startY + 55, 56, 14, this.handler.getBlockEntity().getSelectedColor());
+		this.colorSelectionWidget = new ColorSelectionWidget(startX + 113, startY + 55, startX + 139, startY + 25, this.handler.getBlockEntity());
 		this.inkGaugeWidget = new InkGaugeWidget(startX + 54, startY + 21, 42, 42, this, this.handler.getBlockEntity().getEnergyStorage());
 		this.inkMeterWidget = new VerticalInkMeterWidget(startX + 100, startY + 21, 4, 40, this, this.handler.getBlockEntity().getEnergyStorage());
+		
+		this.colorSelectionWidget.setChangedListener(this);
+		
+		addSelectableChild(this.colorSelectionWidget);
 		handler.addListener(this);
 	}
 	
@@ -105,6 +118,12 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	
 	}
 	
-
+	@Override
+	public void accept(InkColor inkColor) {
+		ColorPickerBlockEntity colorPicker = this.handler.getBlockEntity();
+		colorPicker.setSelectedColor(inkColor);
+		this.handler.player.playSound(SoundEvents.UI_BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+		SpectrumC2SPacketSender.sendInkColorSelectedInGUI(this.handler.player, inkColor);
+	}
 	
 }

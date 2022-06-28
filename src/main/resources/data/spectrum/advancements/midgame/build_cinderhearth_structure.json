@@ -1,0 +1,27 @@
+{
+  "parent": "spectrum:midgame/collect_scarlet",
+  "display": {
+    "icon": {
+      "item": "spectrum:cinderhearth"
+    },
+    "title": {
+      "translate": "advancements.spectrum.build_cinderhearth_structure.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.build_cinderhearth_structure.description"
+    }
+  },
+  "criteria": {
+    "built_structure": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": { "multiblock_identifier": "spectrum:enchanter_structure" }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_scarlet" }
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}

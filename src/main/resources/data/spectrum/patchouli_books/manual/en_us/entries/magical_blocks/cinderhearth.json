@@ -1,0 +1,28 @@
+{
+  "name": "Cinderhearth",
+  "icon": "spectrum:cinderhearth",
+  "advancement": "spectrum:progression/unlock_cinderhearth",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:cinderhearth": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/cinderhearth",
+      "text": ""
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Cinderhearth Structure",
+      "multiblock_id": "spectrum:cinderhearth_structure",
+      "enable_visualize": true,
+      "text": "As always you are able to switch Basalt with Calcite."
+    }
+  ]
+}

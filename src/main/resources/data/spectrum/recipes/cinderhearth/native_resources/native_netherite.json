@@ -5,8 +5,13 @@
   },
   "results": [
     {
-      "item": "minecraft:netherite_ingot",
-      "count": 2.0
+      "item": "minecraft:raw_netherite",
+      "count": 2
+    },
+    {
+      "item": "minecraft:raw_netherite",
+      "count": 1,
+      "chance": 0.25
     }
   ],
   "experience": 0.5,

@@ -6,7 +6,12 @@
   "results": [
     {
       "item": "minecraft:glowstone",
-      "count": 2.0
+      "count": 4
+    },
+    {
+      "item": "minecraft:glowstone",
+      "count": 1,
+      "chance": 0.5
     }
   ],
   "experience": 0.5,

@@ -6,7 +6,12 @@
   "results": [
     {
       "item": "minecraft:lapis_lazuli",
-      "count": 2.0
+      "count": 4
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 1,
+      "chance": 0.5
     }
   ],
   "experience": 0.5,

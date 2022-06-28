@@ -6,7 +6,12 @@
   "results": [
     {
       "item": "gobber2:gobber2_globette",
-      "count": 2.0
+      "count": 4
+    },
+    {
+      "item": "minecraft:gobber2_globette",
+      "count": 2,
+      "chance": 0.5
     }
   ],
   "experience": 0.5,

@@ -6,23 +6,23 @@ import net.minecraft.nbt.NbtElement;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class FixedSingleInkDrain extends SingleInkStorage {
+public class FixedInkColorStorage extends SingleInkStorage {
 	
-	public FixedSingleInkDrain(long maxEnergy, InkColor color) {
+	public FixedInkColorStorage(long maxEnergy, InkColor color) {
 		super(maxEnergy);
 		this.storedColor = color;
 	}
 	
-	public FixedSingleInkDrain(long maxEnergy, InkColor color, long amount) {
+	public FixedInkColorStorage(long maxEnergy, InkColor color, long amount) {
 		super(maxEnergy, color, amount);
 	}
 	
-	public static @Nullable FixedSingleInkDrain fromNbt(@NotNull NbtCompound compound) {
+	public static @Nullable FixedInkColorStorage fromNbt(@NotNull NbtCompound compound) {
 		if (compound.contains("MaxEnergyTotal", NbtElement.LONG_TYPE)) {
 			long maxEnergyTotal = compound.getLong("MaxEnergyTotal");
 			InkColor color = InkColor.of(compound.getString("Color"));
 			long amount = compound.getLong("Amount");
-			return new FixedSingleInkDrain(maxEnergyTotal, color, amount);
+			return new FixedInkColorStorage(maxEnergyTotal, color, amount);
 		}
 		return null;
 	}

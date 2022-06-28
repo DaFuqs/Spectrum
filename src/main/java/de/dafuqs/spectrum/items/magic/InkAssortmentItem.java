@@ -24,6 +24,11 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	}
 	
 	@Override
+	public Drainability getDrainability() {
+		return Drainability.ALWAYS;
+	}
+	
+	@Override
 	public IndividualCappedSimpleInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound != null && compound.contains("EnergyStore")) {

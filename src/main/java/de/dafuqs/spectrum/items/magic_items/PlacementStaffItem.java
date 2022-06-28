@@ -131,7 +131,7 @@ public class PlacementStaffItem extends BuildingStaffItem implements InkPowered 
 						if (!player.isCreative()) {
 							Item finalTargetBlockItem = targetBlockItem;
 							player.getInventory().remove(stack -> stack.getItem().equals(finalTargetBlockItem), taken, player.getInventory());
-							InkPowered.tryPayCost((ServerPlayerEntity) player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
+							InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
 						}
 						
 						if (taken > 0) {

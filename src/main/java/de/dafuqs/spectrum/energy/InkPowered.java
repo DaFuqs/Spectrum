@@ -34,7 +34,7 @@ public interface InkPowered {
 		return canUse(MinecraftClient.getInstance().player);
 	}
 	
-	static boolean canUse(PlayerEntity playerEntity) {
+	private static boolean canUse(PlayerEntity playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, InkPowered.REQUIRED_ADVANCEMENT);
 	}
 	
@@ -62,8 +62,12 @@ public interface InkPowered {
         }
 	}
 	
-	static long tryDrainEnergyFromStack(@NotNull ItemStack stack, InkColor color, long amount) {
+	private static long tryDrainEnergy(@NotNull ItemStack stack, InkColor color, long amount, boolean viaPlayer) {
 		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
+			if(!inkStorageItem.getDrainability().canDrain(viaPlayer)) {
+				return 0;
+			}
+			
 			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
 			long drained = inkStorage.drainEnergy(color, amount);
 			if(drained > 0) {
@@ -75,17 +79,26 @@ public interface InkPowered {
 		}
 	}
 	
+	private static long tryGetEnergy(@NotNull ItemStack stack, InkColor color) {
+		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
+			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
+			return inkStorage.getEnergy(color);
+		} else {
+			return 0;
+		}
+	}
+	
 	/**
 	 * Searches an inventory for InkEnergyStorageItems and tries to drain the color energy.
 	 * If enough could be drained returns true, else false.
 	 * If not enough energy is available it will be drained as much as is available
 	 * but return will still be false
 	 **/
-	static boolean tryPayCost(@NotNull Inventory inventory, InkColor color, long amount) {
+	static boolean tryDrainEnergy(@NotNull Inventory inventory, InkColor color, long amount) {
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
 			if (!currentStack.isEmpty()) { // fast fail
-				amount -= tryDrainEnergyFromStack(currentStack, color, amount);
+				amount -= tryDrainEnergy(currentStack, color, amount, false);
 				if (amount <= 0) {
 					return true;
 				}
@@ -93,7 +106,6 @@ public interface InkPowered {
 		}
 		return false;
 	}
-
 
     /**
 	 * Searches the players Trinkets for energy storage first and inventory second
@@ -107,7 +119,7 @@ public interface InkPowered {
 	 * - Trinket Slots
 	 * - Inventory
 	 **/
-	static boolean tryPayCost(@NotNull PlayerEntity player, InkColor color, long amount) {
+	static boolean tryDrainEnergy(@NotNull PlayerEntity player, InkColor color, long amount) {
 		if(player.isCreative()) {
 			return true;
 		}
@@ -117,7 +129,7 @@ public interface InkPowered {
 		
 		// hands (main hand, too, if someone uses the staff from the offhand)
 		for (ItemStack itemStack : player.getItemsHand()) {
-			amount -= tryDrainEnergyFromStack(itemStack, color, amount);
+			amount -= tryDrainEnergy(itemStack, color, amount, true);
 			if (amount <= 0) {
 				return true;
 			}
@@ -128,7 +140,7 @@ public interface InkPowered {
 		if (optionalTrinketComponent.isPresent()) {
 			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorage);
 			for (Pair<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
-				amount -= tryDrainEnergyFromStack(trinketEnergyStorageStack.getRight(), color, amount);
+				amount -= tryDrainEnergy(trinketEnergyStorageStack.getRight(), color, amount, true);
 				if (amount <= 0) {
 					return true;
 				}
@@ -137,7 +149,7 @@ public interface InkPowered {
 		
 		// inventory
 		for (ItemStack itemStack : player.getInventory().main) {
-			amount -= tryDrainEnergyFromStack(itemStack, color, amount);
+			amount -= tryDrainEnergy(itemStack, color, amount, true);
 			if (amount <= 0) {
 				return true;
 			}
@@ -212,13 +224,5 @@ public interface InkPowered {
 		return false;
 	}
 	
-	static long tryGetEnergy(@NotNull ItemStack stack, InkColor color) {
-		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
-			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
-			return inkStorage.getEnergy(color);
-		} else {
-			return 0;
-		}
-	}
 }
 

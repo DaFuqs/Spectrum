@@ -30,6 +30,11 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	}
 	
 	@Override
+	public Drainability getDrainability() {
+		return Drainability.PLAYER_ONLY;
+	}
+	
+	@Override
 	public ArtistsPaletteInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound != null && compound.contains("EnergyStore")) {

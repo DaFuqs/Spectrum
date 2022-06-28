@@ -254,7 +254,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 				ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
 				boolean paid = player.isCreative(); // free for creative players
 				if(!paid) { // try pay with ink
-					paid = InkPowered.tryPayCost((ServerPlayerEntity) context.getPlayer(), USED_COLOR, getInkCost(context.getStack()));
+					paid = InkPowered.tryDrainEnergy(context.getPlayer(), USED_COLOR, getInkCost(context.getStack()));
 				}
 				if(!paid) {  // try pay with item
 					int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.getStack());

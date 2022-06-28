@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.energy.storage.FixedSingleInkDrain;
+import de.dafuqs.spectrum.energy.storage.FixedInkColorStorage;
 import dev.emi.trinkets.api.SlotReference;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -50,7 +50,7 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 	
 	@Override
 	public int maxAzureDike(ItemStack stack) {
-		FixedSingleInkDrain inkStorage = getEnergyStorage(stack);
+		FixedInkColorStorage inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		if (storedInk < 100) {
 			return 0;

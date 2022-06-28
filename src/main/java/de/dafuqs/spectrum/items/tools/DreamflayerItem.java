@@ -74,7 +74,7 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 				world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
 			}
 		} else {
-			if (InkPowered.tryPayCost(user, USED_COLOR, INK_COST_FOR_ACTIVATION)) {
+			if (InkPowered.tryDrainEnergy(user, USED_COLOR, INK_COST_FOR_ACTIVATION)) {
 				ActivatableItem.setActivated(stack, true);
 				if (!world.isClient) {
 					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_ACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
@@ -91,7 +91,7 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		if (ActivatableItem.isActivated(stack) && world.getTime() % 20 == 0 && entity instanceof ServerPlayerEntity player && !InkPowered.tryPayCost(player, USED_COLOR, INK_COST_PER_SECOND)) {
+		if (ActivatableItem.isActivated(stack) && world.getTime() % 20 == 0 && entity instanceof ServerPlayerEntity player && !InkPowered.tryDrainEnergy(player, USED_COLOR, INK_COST_PER_SECOND)) {
 			ActivatableItem.setActivated(stack, false);
 			world.playSound(null, player.getX(), player.getY(), player.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 0.8F, 1F);
 		}

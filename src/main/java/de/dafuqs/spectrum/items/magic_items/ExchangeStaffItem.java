@@ -164,7 +164,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 					for (ItemStack stack : stacks) {
 						Support.givePlayer(player, stack);
 					}
-					InkPowered.tryPayCost((ServerPlayerEntity) player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
+					InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
 				}
 				
 				if (blocksReplaced > 0) {

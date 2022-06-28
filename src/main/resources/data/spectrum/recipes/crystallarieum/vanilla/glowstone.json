@@ -18,9 +18,17 @@
       "ingredient": {
         "item": "spectrum:sparklestone_gem"
       },
-      "growth_acceleration_mod": 4.0,
+      "growth_acceleration_mod": 16.0,
       "ink_consumption_mod": 1.0,
       "consume_chance_per_second": 0.1
+    },
+    {
+      "ingredient": {
+        "item": "spectrum:blizzard_powder"
+      },
+      "growth_acceleration_mod": 4.0,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.02
     },
 	{
       "ingredient": {

@@ -90,7 +90,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		// draw selected icon
 		InkColor selectedColor = this.colorPicker.getSelectedColor();
 		if(selectedColor != null) {
-			fillQuad(matrices, selectedDotX, selectedDotY, 5, 5, selectedColor.getColor());
+			fillQuad(matrices, selectedDotX, selectedDotY, 4, 4, selectedColor.getColor());
 		}
 	}
 	

@@ -21,7 +21,7 @@
       "name": "Enchanting Structure",
       "multiblock_id": "spectrum:enchanter_structure",
       "enable_visualize": true,
-      "text": "The pools around the gemstone blocks have to be filled with $(l:magical_blocks/liquid_crystal)Liquid Crystal$(). (not shown)"
+      "text": "The pools around the gemstone blocks have to be filled with $(l:magical_blocks/liquid_crystal)Liquid Crystal$()."
     },
     {
       "type": "patchouli:text",

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
@@ -12,6 +13,7 @@ import net.minecraft.client.gui.screen.narration.NarrationPart;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -78,19 +80,24 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		int currentX = this.x + 1;
 		int currentY = this.y + 1;
 		for (InkColor color : InkColor.all()) {
-			fillQuad(matrices, currentX, currentY, 5, 5, color.getColor());
-			i = i + 1;
-			currentX = currentX + 7;
-			if (i == 7) {
-				currentY = currentY + 7;
-				currentX = this.x + 1;
-			}
-		}
+            if (!(color == InkColors.WHITE && !AdvancementHelper.hasAdvancementClient(new Identifier("spectrum:midgame/collect_moonstone_shard")))) {
+                fillQuad(matrices, currentX, currentY, 5, 5, color.getColor());
+                i = i + 1;
+                currentX = currentX + 7;
+                if (i == 7) {
+                    currentY = currentY + 7;
+                    currentX = this.x + 1;
+                }
+            }
+        }
 		
 		// draw selected icon
 		InkColor selectedColor = this.colorPicker.getSelectedColor();
 		if(selectedColor != null) {
-			fillQuad(matrices, selectedDotX, selectedDotY, 5, 5, selectedColor.getColor());
+
+            if (!(selectedColor == InkColors.WHITE && !AdvancementHelper.hasAdvancementClient(new Identifier("spectrum:midgame/collect_moonstone_shard")))) {
+                fillQuad(matrices, selectedDotX, selectedDotY, 5, 5, selectedColor.getColor());
+            }
 		}
 	}
 	

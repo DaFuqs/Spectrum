@@ -9,20 +9,30 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "A state-of-your-art Blast Furnace, which consumes $(c_orange)Orange Ink$() to smelt ores ahd the like."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/cinderhearth",
-      "text": ""
+      "text": "Supplying a $(l:magical_items/knowledge_gem)Knowledge Gem() allows you to automatically collect XP while smelting."
     },
     {
       "type": "patchouli:multiblock",
       "name": "Cinderhearth Structure",
       "multiblock_id": "spectrum:cinderhearth_structure",
       "enable_visualize": true,
-      "text": "As always you are able to switch Basalt with Calcite."
+      "text": "$(italic)Did it really need the Lava underneath if you already have $(c_orange)Ink$()? No, not really. But it looks so much better."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Block Checklist",
+      "text": "$(li)1 Cinderhearth$(li)2 Chiseled Blocks$(li)6 Lava Buckets$(li)5 Glass-like Blocks$(li)7 Crest Blocks$(li)27 Polished Blocks"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Upgrades",
+      "text": "Upgrades placed on the $(thing)Chiseled Blocks$() do not work automatically, but requires you to supply an additional type of Ink to the Cinderhearth. The higher the upgrades, the higher the consumption.$(li)Speed:$(br)Faster smelt times - $(c_magenta)Magenta Ink$()$(li)Yield: Chance to multiply the output for most blocks - $(c_light_blue)Light Blue$()$(li)Experience:$(br)Vastly increases experience gain - $(c_purple)Purple$()$(li)Efficiency:$(br)Greatly decreases Ink Consumption of the other types - $(c_red)Red$()"
     }
   ]
 }

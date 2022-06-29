@@ -122,16 +122,16 @@ public class SpectrumMultiblocks {
 				'C', "#spectrum:chiseled_base_blocks",
 				'c', "#spectrum:crest_base_blocks",
 				'G', "#minecraft:impermeable",
-				'0', "minecraft:lava",
+				'L', "minecraft:lava",
 				'_', StateMatcher.ANY,
-				'H', "spectrum:cinderhearth[half=upper]",
-				'h', "spectrum:cinderhearth[half=lower]",
+				'H', "spectrum:cinderhearth[half=lower]",
+				'0', "spectrum:cinderhearth[half=upper]",
 		};
 		
 		String[][] structure = {
-				{"C___C", "_____", "__H__", "_____" },
-				{"XcccX", "cGGGc", "cGhGc", "XXXXX" },
-				{"XXXXX", "XLLLX", "XL0LX", "XXXXX" },
+				{"C___C", "_____", "__0__", "_____" },
+				{"XcccX", "cGGGc", "cGHGc", "XXXXX" },
+				{"XXXXX", "XLLLX", "XLLLX", "XXXXX" },
 				{"_____", "_XXX_", "_XXX_", "_____" }
 		};
 		CINDERHEARTH_IDENTIFIER = registerMultiBlock("cinderhearth_structure", structure, targetBlocks);

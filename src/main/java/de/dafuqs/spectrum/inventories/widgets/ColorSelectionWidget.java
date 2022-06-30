@@ -10,6 +10,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.screen.narration.NarrationPart;
 import net.minecraft.client.gui.widget.ClickableWidget;
@@ -32,17 +33,19 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	
 	@Nullable
 	private Consumer<InkColor> changedListener;
+	protected Screen screen;
 	
 	List<Pair<InkColor, Boolean>> usableColors = new ArrayList<>(); // stores if a certain color should be displayed
 	
 	int selectedDotX;
 	int selectedDotY;
 	
-	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, ColorPickerBlockEntity colorPicker) {
+	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker) {
 		super(x, y, 56, 14, new TranslatableText(""));
 		this.colorPicker = colorPicker;
 		this.selectedDotX = selectedDotX;
 		this.selectedDotY = selectedDotY;
+		this.screen = screen;
 		
 		for(InkColor inkColor : InkColor.all()) {
 			usableColors.add(new Pair<>(inkColor, AdvancementHelper.hasAdvancementClient(inkColor.getRequiredAdvancement())));
@@ -119,5 +122,18 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		}
 	}
 	
-	
+	public void drawMouseoverTooltip(MatrixStack matrices, int mouseX, int mouseY) {
+		int xOffset = MathHelper.floor(mouseX) - this.x;
+		int yOffset = MathHelper.floor(mouseY) - this.y;
+		
+		int horizontalColorOffset = xOffset / 7;
+		int verticalColorOffset = yOffset / 7;
+		int newColorIndex = horizontalColorOffset + verticalColorOffset * 8;
+		InkColor newColor = InkColor.all().get(newColorIndex);
+		
+		if(AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
+			screen.renderTooltip(matrices, List.of(new TranslatableText("spectrum.ink.color." + newColor)), Optional.empty(), x, y);
+		}
+		
+	}
 }

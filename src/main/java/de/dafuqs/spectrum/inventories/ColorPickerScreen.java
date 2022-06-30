@@ -42,7 +42,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		int startX = (this.width - this.backgroundWidth) / 2;
 		int startY = (this.height - this.backgroundHeight) / 2;
 		
-		this.colorSelectionWidget = new ColorSelectionWidget(startX + 113, startY + 55, startX + 139, startY + 25, this.handler.getBlockEntity());
+		this.colorSelectionWidget = new ColorSelectionWidget(startX + 113, startY + 55, startX + 139, startY + 25, this, this.handler.getBlockEntity());
 		this.inkGaugeWidget = new InkGaugeWidget(startX + 54, startY + 21, 42, 42, this, this.handler.getBlockEntity().getEnergyStorage());
 		this.inkMeterWidget = new VerticalInkMeterWidget(startX + 100, startY + 21, 4, 40, this, this.handler.getBlockEntity().getEnergyStorage());
 		
@@ -95,6 +95,8 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 			this.inkGaugeWidget.drawMouseoverTooltip(matrices, x, y);
 		} else if(this.inkMeterWidget.isMouseOver(x, y)) {
 			this.inkMeterWidget.drawMouseoverTooltip(matrices, x, y);
+		} else if(this.colorSelectionWidget.isMouseOver(x, y)) {
+			this.colorSelectionWidget.drawMouseoverTooltip(matrices, x, y);
 		} else {
 			super.drawMouseoverTooltip(matrices, x, y);
 		}

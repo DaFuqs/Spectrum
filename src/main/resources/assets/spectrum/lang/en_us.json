@@ -164,7 +164,7 @@
   "spectrum.ink.color.black": "§8Black§r",
   "spectrum.ink.color.red": "§cRed§r",
   "spectrum.ink.color.green": "§2Green§r",
-  "spectrum.ink.color.brown": "§fBrown§r",
+  "spectrum.ink.color.brown": "§6Brown§r",
   "spectrum.ink.color.blue": "§9Blue§r",
   "spectrum.ink.color.purple": "§5Purple§r",
   "spectrum.ink.color.cyan": "§bCyan§r",
@@ -175,7 +175,7 @@
   "spectrum.ink.color.yellow": "§eYellow§r",
   "spectrum.ink.color.light_blue": "§3Light Blue§r",
   "spectrum.ink.color.magenta": "§dMagenta§r",
-  "spectrum.ink.color.orange": "Orange",
+  "spectrum.ink.color.orange": "§6Orange",
   "spectrum.ink.color.white": "§fWhite§r",
 
   "spectrum.tooltip.ink_powered.prefix": "Consumes the following ink types:  ",

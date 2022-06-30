@@ -166,7 +166,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	@Override
 	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
 		buf.writeBlockPos(pos);
-		if(selectedColor == null) {
+		if(this.selectedColor == null) {
 			buf.writeBoolean(false);
 		} else {
 			buf.writeBoolean(true);

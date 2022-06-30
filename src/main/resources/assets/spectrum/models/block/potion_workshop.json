@@ -6,7 +6,8 @@
     64
   ],
   "textures": {
-    "9": "spectrum:block/potion_workshop"
+    "9": "spectrum:block/potion_workshop",
+    "particle": "spectrum:block/polished_basalt"
   },
   "elements": [
     {

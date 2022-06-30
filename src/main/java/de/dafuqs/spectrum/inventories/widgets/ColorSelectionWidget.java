@@ -123,17 +123,24 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	}
 	
 	public void drawMouseoverTooltip(MatrixStack matrices, int mouseX, int mouseY) {
-		int xOffset = MathHelper.floor(mouseX) - this.x;
-		int yOffset = MathHelper.floor(mouseY) - this.y;
-		
-		int horizontalColorOffset = xOffset / 7;
-		int verticalColorOffset = yOffset / 7;
-		int newColorIndex = horizontalColorOffset + verticalColorOffset * 8;
-		InkColor newColor = InkColor.all().get(newColorIndex);
-		
-		if(AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
-			screen.renderTooltip(matrices, List.of(new TranslatableText("spectrum.ink.color." + newColor)), Optional.empty(), x, y);
+		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
+		if (overUnselection) {
+			screen.renderTooltip(matrices, List.of(new TranslatableText("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
+		} else {
+			
+			int xOffset = MathHelper.floor(mouseX) - this.x;
+			int yOffset = MathHelper.floor(mouseY) - this.y;
+			
+			int horizontalColorOffset = xOffset / 7;
+			int verticalColorOffset = yOffset / 7;
+			int newColorIndex = horizontalColorOffset + verticalColorOffset * 8;
+			InkColor newColor = InkColor.all().get(newColorIndex);
+			
+			if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
+				screen.renderTooltip(matrices, List.of(newColor.getName()), Optional.empty(), x, y);
+			} else {
+				screen.renderTooltip(matrices, List.of(new TranslatableText("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
+			}
 		}
-		
 	}
 }

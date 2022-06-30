@@ -214,6 +214,7 @@
   "spectrum.tooltip.ink_powered.bullet.red": "§c◆ %d §cRed Ink§r",
   "spectrum.tooltip.ink_powered.empty": "Empty",
   "spectrum.tooltip.ink_powered.stored": "Stored:",
+  "spectrum.tooltip.ink_powered.unselect_color": "Unselect Color",
   "spectrum.tooltip.ink_powered.percent_filled": "%d Ink (%d %%)",
 
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.cyan": "%d §bCyan Ink§r until next improvement",

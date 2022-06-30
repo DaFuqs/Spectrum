@@ -51,7 +51,7 @@ import java.util.*;
 
 public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, Inventory, ExtendedScreenHandlerFactory, InkStorageBlockEntity<IndividualCappedInkStorage> {
 	
-	public static final int INVENTORY_SIZE = 10;
+	public static final int INVENTORY_SIZE = 11;
 	public static final int INPUT_SLOT_ID = 0;
 	public static final int INK_PROVIDER_SLOT_ID = 1;
 	public static final int EXPERIENCE_STORAGE_ITEM_SLOT_ID = 2;

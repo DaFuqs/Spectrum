@@ -113,9 +113,17 @@ public class SpectrumC2SPacketReceiver {
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.INK_COLOR_SELECTED_IN_GUI, (server, player, handler, buf, responseSender) -> {
 			ScreenHandler screenHandler = player.currentScreenHandler;
 			if(screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
-				String inkColorString = buf.readString();
-				InkColor color = InkColor.of(inkColorString);
+				boolean isSelection = buf.readBoolean();
+				
+				InkColor color;
+				if(isSelection) {
+					String inkColorString = buf.readString();
+					color = InkColor.of(inkColorString);
+				} else {
+					color = null;
+				}
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
+				
 			}
 		});
 		

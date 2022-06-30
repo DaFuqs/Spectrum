@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
+import org.jetbrains.annotations.Nullable;
 
 public class SpectrumC2SPacketSender {
 	
@@ -26,9 +27,14 @@ public class SpectrumC2SPacketSender {
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public static void sendInkColorSelectedInGUI(PlayerEntity playerEntity, InkColor color) {
+	public static void sendInkColorSelectedInGUI(@Nullable InkColor color) {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
-		packetByteBuf.writeString(color.toString());
+		if(color == null) {
+			packetByteBuf.writeBoolean(false);
+		} else {
+			packetByteBuf.writeBoolean(true);
+			packetByteBuf.writeString(color.toString());
+		}
 		ClientPlayNetworking.send(SpectrumC2SPackets.INK_COLOR_SELECTED_IN_GUI, packetByteBuf);
 	}
 	

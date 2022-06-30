@@ -104,8 +104,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	public void accept(InkColor inkColor) {
 		ColorPickerBlockEntity colorPicker = this.handler.getBlockEntity();
 		colorPicker.setSelectedColor(inkColor);
-		MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-		SpectrumC2SPacketSender.sendInkColorSelectedInGUI(this.handler.player, inkColor);
+		SpectrumC2SPacketSender.sendInkColorSelectedInGUI(inkColor);
 	}
 	
 }

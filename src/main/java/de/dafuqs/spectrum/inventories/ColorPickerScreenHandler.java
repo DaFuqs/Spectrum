@@ -15,6 +15,7 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class ColorPickerScreenHandler extends ScreenHandler implements InkColorSelectedPacketReceiver {
 	
@@ -115,7 +116,7 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 	}
 	
 	@Override
-	public void onInkColorSelectedPacket(InkColor inkColor) {
+	public void onInkColorSelectedPacket(@Nullable InkColor inkColor) {
 		this.blockEntity.setSelectedColor(inkColor);
 	}
 	

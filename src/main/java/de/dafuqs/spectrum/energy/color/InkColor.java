@@ -15,6 +15,7 @@ public abstract class InkColor {
 	
 	protected final DyeColor dyeColor;
 	protected final Vec3f color;
+	
 	protected final Identifier requiredAdvancement;
 	
 	protected InkColor(DyeColor dyeColor, Vec3f color, Identifier requiredAdvancement) {
@@ -71,6 +72,10 @@ public abstract class InkColor {
 	
 	public Vec3f getColor() {
 		return this.color;
+	}
+	
+	public Identifier getRequiredAdvancement() {
+		return requiredAdvancement;
 	}
 	
 }

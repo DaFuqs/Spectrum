@@ -19,7 +19,6 @@ import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
 
 public class IndividualCappedInkStorage implements InkStorage {
 	
-	protected Set<InkColor> supportedColors;
 	protected final long maxEnergyPerColor;
 	protected final Map<InkColor, Long> storedEnergy;
 	protected long currentTotal; // This is a cache for quick lookup. Can be recalculated anytime using the values in storedEnergy.
@@ -31,7 +30,6 @@ public class IndividualCappedInkStorage implements InkStorage {
 	
 	// support selected ink colors
 	public IndividualCappedInkStorage(long maxEnergyPerColor, Set<InkColor> supportedColors) {
-		this.supportedColors = supportedColors;
 		this.maxEnergyPerColor = maxEnergyPerColor;
 		this.currentTotal = 0;
 		
@@ -43,8 +41,8 @@ public class IndividualCappedInkStorage implements InkStorage {
 	
 	public IndividualCappedInkStorage(long maxEnergyPerColor, Map<InkColor, Long> colors) {
 		this.maxEnergyPerColor = maxEnergyPerColor;
-		
 		this.storedEnergy = colors;
+		
 		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
 			this.storedEnergy.put(color.getKey(), color.getValue());
 			this.currentTotal += color.getValue();
@@ -66,7 +64,7 @@ public class IndividualCappedInkStorage implements InkStorage {
 	
 	@Override
 	public boolean accepts(InkColor color) {
-		return this.supportedColors.contains(color);
+		return this.storedEnergy.containsKey(color);
 	}
 	
 	@Override
@@ -174,7 +172,7 @@ public class IndividualCappedInkStorage implements InkStorage {
 	
 	public void fillCompletely() {
 		this.currentTotal = 0;
-		for (InkColor color : this.supportedColors) {
+		for (InkColor color : this.storedEnergy.keySet()) {
 			storedEnergy.put(color, this.maxEnergyPerColor);
 			this.currentTotal += this.maxEnergyPerColor;
 		}

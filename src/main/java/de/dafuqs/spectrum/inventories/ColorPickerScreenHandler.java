@@ -37,16 +37,17 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 	}
 	
 	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
-		this(syncId, playerInventory, buf.readBlockPos());
+		this(syncId, playerInventory, buf.readBlockPos(), buf.readBoolean() ? InkColor.of(buf.readString()) : null);
 	}
 	
-	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos) {
+	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, @Nullable InkColor selectedColor) {
 		super(SpectrumScreenHandlerTypes.COLOR_PICKER, syncId);
 		this.player = playerInventory.player instanceof ServerPlayerEntity serverPlayerEntity ? serverPlayerEntity : null;
 		this.world = playerInventory.player.world;
 		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
 		if (blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {
 			this.blockEntity = colorPickerBlockEntity;
+			this.blockEntity.setSelectedColor(selectedColor);
 		} else {
 			throw new IllegalArgumentException("GUI called with a position where no valid BlockEntity exists");
 		}

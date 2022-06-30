@@ -5,9 +5,13 @@ import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
 import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
+import de.dafuqs.spectrum.inventories.InkColorSelectedPacketReceiver;
 import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -411,4 +415,16 @@ public class SpectrumS2CPacketSender {
 		
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.UPDATE_BLOCK_ENTITY_INK, buf);
 	}
+	
+	public static void sendInkColorSelected(@Nullable InkColor color, ServerPlayerEntity player) {
+		PacketByteBuf packetByteBuf = PacketByteBufs.create();
+		if(color == null) {
+			packetByteBuf.writeBoolean(false);
+		} else {
+			packetByteBuf.writeBoolean(true);
+			packetByteBuf.writeString(color.toString());
+		}
+		ServerPlayNetworking.send(player, SpectrumS2CPackets.INK_COLOR_SELECTED, packetByteBuf);
+	}
+	
 }

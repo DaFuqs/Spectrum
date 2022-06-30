@@ -114,7 +114,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return new ColorPickerScreenHandler(syncId, playerInventory, this.pos);
+		return new ColorPickerScreenHandler(syncId, playerInventory, this.pos, this.selectedColor);
 	}
 	
 	@Override
@@ -166,6 +166,12 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	@Override
 	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
 		buf.writeBlockPos(pos);
+		if(selectedColor == null) {
+			buf.writeBoolean(false);
+		} else {
+			buf.writeBoolean(true);
+			buf.writeString(selectedColor.toString());
+		}
 	}
 	
 	protected boolean tryConvertPigmentToEnergy(World world) {

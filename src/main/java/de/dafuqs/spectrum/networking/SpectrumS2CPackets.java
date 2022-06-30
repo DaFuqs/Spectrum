@@ -29,4 +29,5 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_MEMORY_MANIFESTING_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "play_memory_manifesting_particles");
 	public static final Identifier UPDATE_BOSS_BAR = new Identifier(SpectrumCommon.MOD_ID, "update_boss_bar");
 	public static final Identifier UPDATE_BLOCK_ENTITY_INK = new Identifier(SpectrumCommon.MOD_ID, "update_block_entity_ink");
+	public static final Identifier INK_COLOR_SELECTED = new Identifier(SpectrumCommon.MOD_ID, "ink_color_select");
 }

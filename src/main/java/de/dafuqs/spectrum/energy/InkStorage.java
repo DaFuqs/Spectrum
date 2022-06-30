@@ -52,9 +52,9 @@ public interface InkStorage {
 			long destinationRoom = destination.getRoom(color);
 			if (destinationRoom > 0) {
 				long destinationAmount = destination.getEnergy(color);
-				long transferAmount = Math.max(0, (sourceAmount - destinationAmount) / 32); // the constant here is simulating pressure flow
-				transferAmount = Math.min(transferAmount, Math.min(sourceAmount, destinationRoom));
-				if (transferAmount > 0) {
+				if(sourceAmount > destinationAmount + 1) {
+					long transferAmount = Math.max(1, (sourceAmount - destinationAmount) / 32); // the constant here is simulating pressure flow
+					transferAmount = Math.min(transferAmount, Math.min(sourceAmount, destinationRoom));
 					destination.addEnergy(color, transferAmount);
 					source.drainEnergy(color, transferAmount);
 					return transferAmount;

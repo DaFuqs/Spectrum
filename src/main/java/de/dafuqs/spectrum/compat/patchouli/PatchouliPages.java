@@ -19,6 +19,7 @@ public class PatchouliPages {
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "crystallarieum_growing"), PageCrystallarieumGrowing.class);
 		
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "hint"), PageHint.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "checklist"), PageChecklist.class);
 	}
 	
 }

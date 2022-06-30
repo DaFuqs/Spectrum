@@ -42,7 +42,30 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Finally! You were able to obtain absolutely pure color pigments from the leaves of $(l:general/colored_trees)Colored Trees$().$(br)And by using a hoe harvesting them is pretty fast, too.$(br2)These pigments, composed of their fundamentals $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER$(), definitely feel magical Each ones embodies an element of nature."
+      "text": "Finally! You were able to obtain absolutely pure color pigments from the leaves of $(l:general/colored_trees)Colored Trees$().$(br)And by using a hoe harvesting them is pretty fast, too.$(br2)These pigments, composed of their fundamentals $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER$(), definitely feel magical.$(br)If each pigment had an associated color, it would be these:"
+    },
+    {
+      "type": "spectrum:checklist",
+      "title": "Pigment Colors",
+      "checklist": {
+        "spectrum:hidden/collect_pigment/collect_black_pigment": "$(c_black)Black",
+        "spectrum:hidden/collect_pigment/collect_blue_pigment": "$(c_blue)Blue",
+        "spectrum:hidden/collect_pigment/collect_brown_pigment": "$(c_brown)Brown",
+        "spectrum:hidden/collect_pigment/collect_cyan_pigment": "$(c_cyan)Cyan",
+        "spectrum:hidden/collect_pigment/collect_gray_pigment": "$(c_gray)Gray",
+        "spectrum:hidden/collect_pigment/collect_green_pigment": "$(c_green)Green",
+        "spectrum:hidden/collect_pigment/collect_light_blue_pigment": "$(c_light_blue)Light Blue",
+        "spectrum:hidden/collect_pigment/collect_light_gray_pigment": "$(c_light_gray)Light Gray",
+        "spectrum:hidden/collect_pigment/collect_lime_pigment": "$(c_lime)Lime",
+        "spectrum:hidden/collect_pigment/collect_magenta_pigment": "$(c_magenta)Magenta",
+        "spectrum:hidden/collect_pigment/collect_orange_pigment": "$(c_orange)Orange",
+        "spectrum:hidden/collect_pigment/collect_pink_pigment": "$(c_pink)Pink",
+        "spectrum:hidden/collect_pigment/collect_purple_pigment": "$(c_purple)Purple",
+        "spectrum:hidden/collect_pigment/collect_red_pigment": "$(c_red)Red",
+        "spectrum:hidden/collect_pigment/collect_white_pigment": "$(c_white)White",
+        "spectrum:hidden/collect_pigment/collect_yellow_pigment": "$(c_yellow)Yellow"
+      },
+      "text": ""
     },
     {
       "type": "patchouli:spotlight",

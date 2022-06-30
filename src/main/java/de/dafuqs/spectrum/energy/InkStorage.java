@@ -141,6 +141,9 @@ public interface InkStorage {
 	// fill up the storage with as much energy as possible
 	void fillCompletely();
 	
+	// completely empty the storage
+	void clear();
+	
 	// returns true if all energy could be drained successfully
 	// boolean requestEnergy(Map<CMYKColor, Integer> colors);
 	
@@ -150,5 +153,6 @@ public interface InkStorage {
 	void addTooltip(World world, List<Text> tooltip, TooltipContext context);
 	
 	long getRoom(InkColor color);
+
 	
 }

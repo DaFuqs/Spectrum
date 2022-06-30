@@ -178,4 +178,9 @@ public class IndividualCappedInkStorage implements InkStorage {
 		}
 	}
 	
+	@Override
+	public void clear() {
+		this.storedEnergy.replaceAll((c, v) -> 0L);
+	}
+	
 }

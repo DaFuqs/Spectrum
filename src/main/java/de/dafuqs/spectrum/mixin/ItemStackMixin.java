@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.inventories.slots.ShadowSlot;
+import de.dafuqs.spectrum.inventories.slots.SlotWithOnClickAction;
 import de.dafuqs.spectrum.mixin.accessors.ItemAccessor;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
@@ -45,8 +46,8 @@ public abstract class ItemStackMixin {
 	// Injecting into onStackClicked instead of onClicked because onStackClicked is called first
 	@Inject(at = @At("HEAD"), method = "onStackClicked", cancellable = true)
 	public void spectrum$onStackClicked(Slot slot, ClickType clickType, PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
-		if (slot instanceof ShadowSlot) {
-			if (((ShadowSlot) slot).onClicked((ItemStack) (Object) this, clickType, player)) {
+		if (slot instanceof SlotWithOnClickAction slotWithOnClickAction) {
+			if (slotWithOnClickAction.onClicked((ItemStack) (Object) this, clickType, player)) {
 				cir.setReturnValue(true);
 			}
 		}

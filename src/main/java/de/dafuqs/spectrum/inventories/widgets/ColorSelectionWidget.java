@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.inventories.widgets;
 
 import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.Drawable;

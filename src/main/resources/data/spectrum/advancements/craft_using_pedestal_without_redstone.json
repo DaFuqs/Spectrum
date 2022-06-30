@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:redstone_torch"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_using_pedestal_without_redstone.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.craft_using_pedestal_without_redstone.description"
+    }
+  },
+  "parent": "spectrum:place_pedestal",
+  "criteria": {
+    "code_triggered": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:place_pedestal"
+      }
+    }
+  }
+}

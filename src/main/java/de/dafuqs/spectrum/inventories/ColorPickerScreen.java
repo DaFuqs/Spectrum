@@ -8,8 +8,6 @@ import de.dafuqs.spectrum.inventories.widgets.ColorSelectionWidget;
 import de.dafuqs.spectrum.inventories.widgets.InkGaugeWidget;
 import de.dafuqs.spectrum.inventories.widgets.VerticalInkMeterWidget;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
-import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -20,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerListener;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 

@@ -76,7 +76,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	@Override
 	public void calculateUpgrades() {
-		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, Support.rotationFromDirection(world.getBlockState(pos).get(CinderhearthBlock.FACING)), -2, 1, this.ownerUUID);
+		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, Support.rotationFromDirection(world.getBlockState(pos).get(CinderhearthBlock.FACING)), 2, 1, 1, this.ownerUUID);
 		this.markDirty();
 	}
 	

@@ -102,7 +102,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		BlockPos blockPos = pos.up();
-		world.setBlockState(blockPos, this.getDefaultState().with(HALF, DoubleBlockHalf.UPPER));
+		world.setBlockState(blockPos, state.with(HALF, DoubleBlockHalf.UPPER));
 		if (itemStack.hasCustomName()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {

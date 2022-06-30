@@ -3,6 +3,7 @@
     "icon": {
       "item": "minecraft:redstone_torch"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.craft_using_pedestal_without_redstone.title"
     },

@@ -2,7 +2,13 @@ package de.dafuqs.spectrum.blocks.cinderhearth;
 
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
+import de.dafuqs.spectrum.energy.InkStorage;
+import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
+import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
@@ -34,12 +40,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
-public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, Inventory {
+public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, Inventory, InkStorageBlockEntity<IndividualCappedInkStorage> {
 	
 	public static final int INVENTORY_SIZE = 10;
 	public static final int INPUT_SLOT_ID = 0;
@@ -49,6 +52,10 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	protected SimpleInventory inventory;
 	protected boolean inventoryChanged;
+	
+	public static final long INK_STORAGE_SIZE = 64*100;
+	protected IndividualCappedInkStorage inkStorage;
+	
 	private UUID ownerUUID;
 	private Map<UpgradeType, Float> upgrades;
 	private Recipe currentRecipe; // blasting & cinderhearth
@@ -58,6 +65,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.CINDERHEARTH, pos, state);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE, Set.of(InkColors.ORANGE, InkColors.LIGHT_BLUE, InkColors.MAGENTA, InkColors.BLACK));
 	}
 	
 	@Override
@@ -68,7 +76,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	@Override
 	public void calculateUpgrades() {
-		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 2, 2, this.ownerUUID);
+		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, Support.rotationFromDirection(world.getBlockState(pos).get(CinderhearthBlock.FACING)), -2, 1, this.ownerUUID);
 		this.markDirty();
 	}
 	
@@ -97,7 +105,10 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
+		this.inventory.readNbtList(nbt.getList("Inventory", 10));
+		if(nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
+			this.inkStorage = IndividualCappedInkStorage.fromNbt(nbt.getCompound("InkStorage"));
+		}
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
@@ -128,7 +139,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		nbt.put("inventory", this.inventory.toNbtList());
+		nbt.put("Inventory", this.inventory.toNbtList());
+		nbt.put("InkStorage", this.inkStorage.toNbt());
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
@@ -339,4 +351,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	}
 	
+	@Override
+	public IndividualCappedInkStorage getEnergyStorage() {
+		return this.inkStorage;
+	}
 }

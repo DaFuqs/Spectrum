@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PigmentPaletteInkStorage extends IndividualCappedSimpleInkStorage {
+public class PigmentPaletteInkStorage extends IndividualCappedInkStorage {
 	
 	public PigmentPaletteInkStorage(long maxEnergyPerColor) {
 		super(maxEnergyPerColor);

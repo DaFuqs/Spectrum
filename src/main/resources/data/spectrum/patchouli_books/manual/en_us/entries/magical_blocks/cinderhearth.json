@@ -36,7 +36,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Speed ($(c_magenta)Magenta Ink$()):$(br)Faster smelt times$(br)$(li)Yield ($(c_light_blue)Light Blue Ink$()):$(br)Chance to multiply the output for most blocks$(br)$(li)Experience ($(c_purple)Purple Ink$()):$(br)Vastly increases experience gain$(br)$(li)Efficiency ($(c_red)Red Ink$()):$(br)Greatly decreases Ink Consumption of the other types, including $(c_orange)Orange$()"
+      "text": "$(li)Speed ($(c_magenta)Magenta Ink$()):$(br)Faster smelt times$(br)$(li)Yield ($(c_light_blue)Light Blue Ink$()):$(br)Chance to multiply the output for most blocks$(br)$(li)Experience ($(c_purple)Purple Ink$()):$(br)Vastly increases experience gain$(br)$(li)Efficiency ($(c_black)Black Ink$()):$(br)Greatly decreases Ink Consumption of the other types, including $(c_orange)Orange$()"
     }
   ]
 }

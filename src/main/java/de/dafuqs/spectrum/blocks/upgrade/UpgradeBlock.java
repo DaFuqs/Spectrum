@@ -43,6 +43,12 @@ public class UpgradeBlock extends BlockWithEntity {
 		add(new Vec3i(-4, -1, 4));
 		add(new Vec3i(4, -1, -4));
 		add(new Vec3i(-4, -1, -4));
+		
+		// Cinderhearth
+		add(new Vec3i(2, -1, 2));
+		add(new Vec3i(-2, -1, 2));
+		add(new Vec3i(2, -1, -2));
+		add(new Vec3i(-2, -1, -2));
 	}};
 	// Like: The further the player progresses,
 	// the higher are the chances for good mods?

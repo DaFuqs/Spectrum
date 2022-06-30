@@ -4,10 +4,9 @@ import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.storage.TotalCappedSimpleInkStorage;
+import de.dafuqs.spectrum.energy.storage.TotalCappedInkStorage;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.ColorPickerScreenHandler;
-import de.dafuqs.spectrum.inventories.InkColorSelectedPacketReceiver;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
@@ -34,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ColorPickerBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory, PlayerOwned, InkStorageBlockEntity<TotalCappedSimpleInkStorage> {
+public class ColorPickerBlockEntity extends LootableContainerBlockEntity implements ExtendedScreenHandlerFactory, PlayerOwned, InkStorageBlockEntity<TotalCappedInkStorage> {
 	
 	public static final int INVENTORY_SIZE = 2; // input & output slots
 	public static final int INPUT_SLOT_ID = 0;
@@ -42,7 +41,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	public static final long TICKS_PER_CONVERSION = 5;
 	public static final long STORAGE_AMOUNT = 64 * 64 * 64;
 	public DefaultedList<ItemStack> inventory;
-	protected TotalCappedSimpleInkStorage inkStorage;
+	protected TotalCappedInkStorage inkStorage;
 	protected boolean paused;
 	protected @Nullable InkConvertingRecipe cachedRecipe;
 	protected @Nullable InkColor selectedColor;
@@ -52,7 +51,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		super(SpectrumBlockEntityRegistry.COLOR_PICKER, blockPos, blockState);
 		
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-		this.inkStorage = new TotalCappedSimpleInkStorage(STORAGE_AMOUNT);
+		this.inkStorage = new TotalCappedInkStorage(STORAGE_AMOUNT);
 		this.selectedColor = null;
 	}
 	
@@ -82,7 +81,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			Inventories.readNbt(nbt, this.inventory);
 		}
 		if (nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
-			this.inkStorage = TotalCappedSimpleInkStorage.fromNbt(nbt.getCompound("InkStorage"));
+			this.inkStorage = TotalCappedInkStorage.fromNbt(nbt.getCompound("InkStorage"));
 		}
 		if (nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
@@ -129,7 +128,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	}
 	
 	@Override
-	public TotalCappedSimpleInkStorage getEnergyStorage() {
+	public TotalCappedInkStorage getEnergyStorage() {
 		return inkStorage;
 	}
 	

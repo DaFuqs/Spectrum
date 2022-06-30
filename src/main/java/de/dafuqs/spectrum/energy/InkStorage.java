@@ -22,6 +22,23 @@ public interface InkStorage {
 	 *
 	 * @param source      The ink storage that is getting drawn from
 	 * @param destination The ink storage receiving energy
+	 * @return the total amount of energy that could be transferred
+	 */
+	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination) {
+		long transferred = 0;
+		for(InkColor inkColor : source.getEnergy().keySet()) {
+			transferred += transferInk(source, destination, inkColor);
+		}
+		return transferred;
+	}
+	
+	/**
+	 * Transfer Ink from one storage to another
+	 * Transfers Ink using a "pressure like" system: Tries to balance the ink in source and destination.
+	 * The more energy is in source, the more is getting transferred, up to when both storages even out.
+	 *
+	 * @param source      The ink storage that is getting drawn from
+	 * @param destination The ink storage receiving energy
 	 * @param color       The ink type to transfer
 	 * @return the amount of energy that could be transferred
 	 */

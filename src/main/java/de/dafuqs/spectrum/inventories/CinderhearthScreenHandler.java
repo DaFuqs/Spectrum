@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.inventories.slots.ColorPickerInputSlot;
-import de.dafuqs.spectrum.inventories.slots.InkStorageSlot;
+import de.dafuqs.spectrum.blocks.cinderhearth.CinderhearthBlockEntity;
+import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,13 +14,13 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ColorPickerScreenHandler extends ScreenHandler implements InkColorSelectedPacketReceiver {
+public class CinderhearthScreenHandler extends ScreenHandler {
 	
 	public static final int PLAYER_INVENTORY_START_X = 8;
 	public static final int PLAYER_INVENTORY_START_Y = 84;
 	
 	protected final World world;
-	protected ColorPickerBlockEntity blockEntity;
+	protected CinderhearthBlockEntity blockEntity;
 	
 	public final ServerPlayerEntity player;
 	
@@ -35,27 +33,31 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 		}
 	}
 	
-	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
+	public CinderhearthScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
 		this(syncId, playerInventory, buf.readBlockPos());
 	}
 	
-	public ColorPickerScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos) {
-		super(SpectrumScreenHandlerTypes.COLOR_PICKER, syncId);
+	public CinderhearthScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos) {
+		super(SpectrumScreenHandlerTypes.CINDERHEARTH, syncId);
 		this.player = playerInventory.player instanceof ServerPlayerEntity serverPlayerEntity ? serverPlayerEntity : null;
 		this.world = playerInventory.player.world;
 		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
-		if (blockEntity instanceof ColorPickerBlockEntity colorPickerBlockEntity) {
-			this.blockEntity = colorPickerBlockEntity;
+		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+			this.blockEntity = cinderhearthBlockEntity;
 		} else {
 			throw new IllegalArgumentException("GUI called with a position where no valid BlockEntity exists");
 		}
 		
-		checkSize(colorPickerBlockEntity, ColorPickerBlockEntity.INVENTORY_SIZE);
-		colorPickerBlockEntity.onOpen(playerInventory.player);
+		checkSize(cinderhearthBlockEntity, CinderhearthBlockEntity.INVENTORY_SIZE);
+		cinderhearthBlockEntity.onOpen(playerInventory.player);
+
+		this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.INPUT_SLOT_ID, 133, 33));
+		this.addSlot(new InkInputSlot(cinderhearthBlockEntity, CinderhearthBlockEntity.INK_PROVIDER_SLOT_ID, 133, 33));
+		this.addSlot(new ExperienceStorageItemSlot(cinderhearthBlockEntity, CinderhearthBlockEntity.EXPERIENCE_STORAGE_ITEM_SLOT_ID, 133, 33));
 		
-		// color picker slots
-		this.addSlot(new ColorPickerInputSlot(colorPickerBlockEntity, 0, 26, 33));
-		this.addSlot(new InkStorageSlot(colorPickerBlockEntity, 1, 133, 33));
+		for(int i = 0; i < CinderhearthBlockEntity.LAST_OUTPUT_SLOT_ID; i++) {
+			this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.FIRST_OUTPUT_SLOT_ID+i, 133, 33));
+		}
 		
 		// player inventory
 		for (int j = 0; j < 3; ++j) {
@@ -74,7 +76,7 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 		}
 	}
 	
-	public ColorPickerBlockEntity getBlockEntity() {
+	public CinderhearthBlockEntity getBlockEntity() {
 		return this.blockEntity;
 	}
 	
@@ -96,11 +98,11 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 		if (slot.hasStack()) {
 			ItemStack itemStack2 = slot.getStack();
 			itemStack = itemStack2.copy();
-			if (index < ColorPickerBlockEntity.INVENTORY_SIZE) {
-				if (!this.insertItem(itemStack2, ColorPickerBlockEntity.INVENTORY_SIZE, this.slots.size(), true)) {
+			if (index < CinderhearthBlockEntity.INVENTORY_SIZE) {
+				if (!this.insertItem(itemStack2, CinderhearthBlockEntity.INVENTORY_SIZE, this.slots.size(), true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.insertItem(itemStack2, 0, ColorPickerBlockEntity.INVENTORY_SIZE, false)) {
+			} else if (!this.insertItem(itemStack2, 0, CinderhearthBlockEntity.INVENTORY_SIZE, false)) {
 				return ItemStack.EMPTY;
 			}
 			
@@ -112,11 +114,6 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 		}
 		
 		return itemStack;
-	}
-	
-	@Override
-	public void onInkColorSelectedPacket(InkColor inkColor) {
-		this.blockEntity.setSelectedColor(inkColor);
 	}
 	
 }

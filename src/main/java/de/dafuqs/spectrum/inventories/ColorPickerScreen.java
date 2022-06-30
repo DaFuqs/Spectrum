@@ -23,7 +23,7 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Consumer;
 
-public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> implements ScreenHandlerListener, Consumer<InkColor> {
+public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> implements Consumer<InkColor> {
 	
 	protected final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/color_picker.png");
 	protected ColorSelectionWidget colorSelectionWidget;
@@ -49,13 +49,6 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		this.colorSelectionWidget.setChangedListener(this);
 		
 		addSelectableChild(this.colorSelectionWidget);
-		handler.addListener(this);
-	}
-	
-	@Override
-	public void removed() {
-		super.removed();
-		handler.removeListener(this);
 	}
 	
 	@Override
@@ -105,16 +98,6 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		} else {
 			super.drawMouseoverTooltip(matrices, x, y);
 		}
-	}
-	
-	@Override
-	public void onSlotUpdate(ScreenHandler handler, int slotId, ItemStack stack) {
-	
-	}
-	
-	@Override
-	public void onPropertyUpdate(ScreenHandler handler, int property, int value) {
-	
 	}
 	
 	@Override

@@ -27,7 +27,7 @@
     {
       "type": "patchouli:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Cinderhearth$(li)2 Chiseled Blocks$(li)6 Lava Buckets$(li)5 Glass-like Blocks$(li)7 Crest Blocks$(li)27 Polished Blocks"
+      "text": "$(li)1 Cinderhearth$(li)2 Chiseled Blocks$(li)6 Lava Buckets$(li)5 Glass-like Blocks$(li)7 Crest Blocks$(li)23 Polished Blocks"
     },
     {
       "type": "patchouli:text",

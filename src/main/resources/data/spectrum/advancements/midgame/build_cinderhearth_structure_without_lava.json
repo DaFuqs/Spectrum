@@ -1,20 +1,21 @@
 {
-  "parent": "spectrum:midgame/collect_scarlet",
+  "parent": "spectrum:midgame/build_cinderhearth_structure",
   "display": {
     "icon": {
       "item": "spectrum:cinderhearth"
     },
+    "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.build_cinderhearth_structure.title"
+      "translate": "advancements.spectrum.build_cinderhearth_without_lava_structure.title"
     },                                          
     "description": {                            
-      "translate": "advancements.spectrum.build_cinderhearth_structure.description"
+      "translate": "advancements.spectrum.build_cinderhearth_without_lava_structure.description"
     }
   },
   "criteria": {
     "built_structure": {
       "trigger": "spectrum:completed_multiblock",
-      "conditions": { "multiblock_identifier": "spectrum:cinderhearth_structure" }
+      "conditions": { "multiblock_identifier": "spectrum:cinderhearth_without_lava_structure" }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

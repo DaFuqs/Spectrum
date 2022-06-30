@@ -29,6 +29,7 @@ public class SpectrumMultiblocks {
 	public static Identifier ENCHANTER_IDENTIFIER;
 	public static Identifier SPIRIT_INSTILLER_IDENTIFIER;
 	public static Identifier CINDERHEARTH_IDENTIFIER;
+	public static Identifier CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER;
 	
 	private static Identifier registerMultiBlock(String identifierString, String[][] structure, Object[] targetBlocks) {
 		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, identifierString);
@@ -129,12 +130,20 @@ public class SpectrumMultiblocks {
 		};
 		
 		String[][] structure = {
-				{"C___C", "_____", "__0__", "_____" },
-				{"XcccX", "cGGGc", "cGHGc", "XXXXX" },
-				{"XXXXX", "XLLLX", "XLLLX", "XXXXX" },
+				{"C___C", "__0__", "_____", "_____" },
+				{"XcccX", "cGHGc", "cGGGc", "XXXXX" },
+				{"_XXX_", "XLLLX", "XLLLX", "_XXX_" },
 				{"_____", "_XXX_", "_XXX_", "_____" }
 		};
 		CINDERHEARTH_IDENTIFIER = registerMultiBlock("cinderhearth_structure", structure, targetBlocks);
+		
+		String[][] withoutLavaStructure = {
+				{"C___C", "__0__", "_____", "_____" },
+				{"XcccX", "cGHGc", "cGGGc", "XXXXX" },
+				{"_XXX_", "X___X", "X___X", "_XXX_" },
+				{"_____", "_XXX_", "_XXX_", "_____" }
+		};
+		CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER = registerMultiBlock("cinderhearth_without_lava_structure", withoutLavaStructure, targetBlocks);
 	}
 	
 	private static void registerPedestal() {

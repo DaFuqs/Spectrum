@@ -62,7 +62,7 @@ public class PageChecklist extends BookPage {
 	}
 	
 	public int getTextHeight() {
-		return title == null ? -2 : title.isEmpty() ? -2 : 14;
+		return title == null ? -4 : title.isEmpty() ? -4 : 14;
 	}
 	
 	@Override

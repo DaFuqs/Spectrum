@@ -42,7 +42,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Finally! You were able to obtain absolutely pure color pigments from the leaves of $(l:general/colored_trees)Colored Trees$().$(br)And by using a hoe harvesting them is pretty fast, too.$(br2)These pigments, composed of their fundamentals $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER$(), definitely feel magical."
+      "text": "Finally! You were able to obtain absolutely pure color pigments from the leaves of $(l:general/colored_trees)Colored Trees$().$(br)And by using a hoe harvesting them is pretty fast, too.$(br)These pigments, composed of their fundamentals $(bold)$(c_magenta)TIME$(), $(bold)$(c_yellow)ENERGY$() and $(bold)$(c_cyan)MATTER$(), definitely feel magical.$(br2)Still not fully convinced all of these exist. Maybe it's missing $(l:general/color_mixing)something$(/l)?"
     },
     {
       "type": "spectrum:checklist",
@@ -64,7 +64,7 @@
         "spectrum:hidden/collect_pigment/collect_white_pigment": "$(c_white)White",
         "spectrum:hidden/collect_pigment/collect_yellow_pigment": "$(c_yellow)Yellow"
       },
-      "text": "Maybe these exist?"
+      "text": "A hypothetical list?"
     },
     {
       "type": "patchouli:spotlight",

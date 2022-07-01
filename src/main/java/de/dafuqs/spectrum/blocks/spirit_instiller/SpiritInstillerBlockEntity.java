@@ -55,7 +55,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		add(new Vec3i(2, 0, 0));
 		add(new Vec3i(-2, 0, 0));
 	}};
-	private final Inventory autoCraftingInventory;
+	private final Inventory autoCraftingInventory; // 0: instiller stack; 1-2: item bowl stacks
 	protected int INVENTORY_SIZE = 1;
 	protected SimpleInventory inventory;
 	protected boolean inventoryChanged;
@@ -74,7 +74,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		if (spiritInstillerBlockEntity.currentRecipe != null && spiritInstillerBlockEntity.canCraft) {
+		if (spiritInstillerBlockEntity.currentRecipe != null) {
 			spiritInstillerBlockEntity.doInstillerParticles(world);
 			if (world.getTime() % 40 == 0) {
 				spiritInstillerBlockEntity.doChimeParticles(world);
@@ -166,7 +166,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		if (spiritInstillerBlockEntity.currentRecipe == null) {
 			spiritInstillerBlockEntity.canCraft = false;
 		} else {
-			spiritInstillerBlockEntity.canCraft = spiritInstillerBlockEntity.currentRecipe.canCraftWithStacks(instillerStack, spiritInstillerBlockEntity.autoCraftingInventory.getStack(1), spiritInstillerBlockEntity.autoCraftingInventory.getStack(1));
+			spiritInstillerBlockEntity.canCraft = spiritInstillerBlockEntity.currentRecipe.canCraftWithStacks(instillerStack, spiritInstillerBlockEntity.autoCraftingInventory.getStack(1), spiritInstillerBlockEntity.autoCraftingInventory.getStack(2));
 		}
 		
 		spiritInstillerBlockEntity.updateInClientWorld();

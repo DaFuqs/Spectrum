@@ -1,6 +1,6 @@
 {
   "type": "spectrum:spirit_instiller",
-  "time": 1200,
+  "time": 600,
   "experience": 20.0,
   "ingredient1": {
     "item": "spectrum:liquid_crystal_bucket"

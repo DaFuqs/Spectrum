@@ -63,11 +63,11 @@ public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 	default boolean matches(Inventory inv, World world) {
 		List<IngredientStack> ingredientStacks = getIngredientStacks();
 		if (inv.size() > 2) {
-			if (ingredientStacks.get(2).test(inv.getStack(0))) {
-				if (ingredientStacks.get(0).test(inv.getStack(1))) {
-					return ingredientStacks.get(1).test(inv.getStack(2));
-				} else if (ingredientStacks.get(0).test(inv.getStack(2))) {
-					return ingredientStacks.get(1).test(inv.getStack(1));
+			if (ingredientStacks.get(0).test(inv.getStack(0))) {
+				if (ingredientStacks.get(1).test(inv.getStack(1))) {
+					return ingredientStacks.get(2).test(inv.getStack(2));
+				} else if (ingredientStacks.get(1).test(inv.getStack(2))) {
+					return ingredientStacks.get(2).test(inv.getStack(1));
 				}
 			}
 		}

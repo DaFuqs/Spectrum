@@ -28,9 +28,9 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	protected final Identifier id;
 	protected final String group;
 	
-	protected final IngredientStack inputIngredient1;
-	protected final IngredientStack inputIngredient2;
 	protected final IngredientStack centerIngredient;
+	protected final IngredientStack bowlIngredient1;
+	protected final IngredientStack bowlIngredient2;
 	protected final ItemStack outputItemStack;
 	
 	protected final int craftingTime;
@@ -38,12 +38,12 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	protected final Identifier requiredAdvancementIdentifier;
 	protected final boolean noBenefitsFromYieldAndEfficiencyUpgrades;
 	
-	public SpiritInstillerRecipe(Identifier id, String group, IngredientStack inputIngredient1, IngredientStack inputIngredient2, IngredientStack centerIngredient, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier) {
+	public SpiritInstillerRecipe(Identifier id, String group, IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
-		this.inputIngredient1 = inputIngredient1;
-		this.inputIngredient2 = inputIngredient2;
 		this.centerIngredient = centerIngredient;
+		this.bowlIngredient1 = bowlIngredient1;
+		this.bowlIngredient2 = bowlIngredient2;
 		this.outputItemStack = outputItemStack;
 		this.craftingTime = craftingTime;
 		this.experience = experience;
@@ -72,17 +72,17 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		defaultedList.add(this.inputIngredient1.getIngredient());
-		defaultedList.add(this.inputIngredient2.getIngredient());
 		defaultedList.add(this.centerIngredient.getIngredient());
+		defaultedList.add(this.bowlIngredient1.getIngredient());
+		defaultedList.add(this.bowlIngredient2.getIngredient());
 		return defaultedList;
 	}
 	
 	public List<IngredientStack> getIngredientStacks() {
 		DefaultedList<IngredientStack> defaultedList = DefaultedList.of();
-		defaultedList.add(this.inputIngredient1);
-		defaultedList.add(this.inputIngredient2);
 		defaultedList.add(this.centerIngredient);
+		defaultedList.add(this.bowlIngredient1);
+		defaultedList.add(this.bowlIngredient2);
 		return defaultedList;
 	}
 	

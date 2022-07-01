@@ -49,10 +49,6 @@ public class SpectrumMobSpawnerItem extends Item {
 		}
 	}
 	
-	protected boolean place(ItemPlacementContext context, BlockState state) {
-		return context.getWorld().setBlockState(context.getBlockPos(), state, 11);
-	}
-	
 	public ActionResult place(ItemPlacementContext context) {
 		if (!context.canPlace()) {
 			return ActionResult.FAIL;
@@ -60,7 +56,7 @@ public class SpectrumMobSpawnerItem extends Item {
 			BlockState blockState = Blocks.SPAWNER.getDefaultState();
 			if (blockState == null) {
 				return ActionResult.FAIL;
-			} else if (!this.place(context, blockState)) {
+			} else if (!context.getWorld().setBlockState(context.getBlockPos(), blockState, 11)) {
 				return ActionResult.FAIL;
 			} else {
 				BlockPos blockPos = context.getBlockPos();
@@ -69,8 +65,7 @@ public class SpectrumMobSpawnerItem extends Item {
 				ItemStack itemStack = context.getStack();
 				BlockState blockState2 = world.getBlockState(blockPos);
 				if (blockState2.isOf(blockState.getBlock())) {
-					blockState2 = this.placeFromNbt(blockPos, world, itemStack, blockState2);
-					this.postPlacement(blockPos, world, playerEntity, itemStack, blockState2);
+					BlockItem.writeNbtToBlockEntity(world, playerEntity, blockPos, itemStack);
 					blockState2.getBlock().onPlaced(world, blockPos, blockState2, playerEntity, itemStack);
 					if (playerEntity instanceof ServerPlayerEntity) {
 						Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
@@ -78,7 +73,7 @@ public class SpectrumMobSpawnerItem extends Item {
 				}
 				
 				BlockSoundGroup blockSoundGroup = blockState2.getSoundGroup();
-				world.playSound(playerEntity, blockPos, Blocks.SPAWNER.getSoundGroup(blockState).getPlaceSound(), SoundCategory.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
+				world.playSound(playerEntity, blockPos, Blocks.SPAWNER.getSoundGroup(blockState2).getPlaceSound(), SoundCategory.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
 				world.emitGameEvent(playerEntity, GameEvent.BLOCK_PLACE, blockPos);
 				if (playerEntity == null || !playerEntity.getAbilities().creativeMode) {
 					itemStack.decrement(1);
@@ -89,37 +84,9 @@ public class SpectrumMobSpawnerItem extends Item {
 		}
 	}
 	
-	private BlockState placeFromNbt(BlockPos pos, World world, ItemStack stack, BlockState state) {
-		BlockState blockState = state;
-		NbtCompound nbtCompound = stack.getNbt();
-		if (nbtCompound != null) {
-			NbtCompound nbtCompound2 = nbtCompound.getCompound("BlockStateTag");
-			StateManager<Block, BlockState> stateManager = state.getBlock().getStateManager();
-			
-			for (String string : nbtCompound2.getKeys()) {
-				Property<?> property = stateManager.getProperty(string);
-				if (property != null) {
-					String string2 = Objects.requireNonNull(nbtCompound2.get(string)).asString();
-					blockState = with(blockState, property, string2);
-				}
-			}
-		}
-		
-		if (blockState != state) {
-			world.setBlockState(pos, blockState, 2);
-		}
-		
-		return blockState;
-	}
-	
 	private static <T extends Comparable<T>> BlockState with(BlockState state, Property<T> property, String name) {
 		return property.parse(name).map((value) -> state.with(property, value)).orElse(state);
 	}
-	
-	protected boolean postPlacement(BlockPos pos, World world, @Nullable PlayerEntity player, ItemStack stack, BlockState state) {
-		return BlockItem.writeNbtToBlockEntity(world, player, pos, stack);
-	}
-	
 	
 	public static ItemStack toItemStack(MobSpawnerBlockEntity mobSpawnerBlockEntity) {
 		ItemStack itemStack = new ItemStack(SpectrumItems.SPAWNER, 1);

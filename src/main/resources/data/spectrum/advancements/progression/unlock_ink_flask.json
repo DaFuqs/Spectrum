@@ -2,7 +2,7 @@
   "criteria": {
     "reached_midgame": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:__midgame/spectrum_midgame" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/spectrum_midgame" }
     }
   }
 }

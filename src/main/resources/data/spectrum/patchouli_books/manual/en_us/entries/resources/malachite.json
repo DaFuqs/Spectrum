@@ -1,6 +1,6 @@
 {
   "name": "Malachite",
-  "advancement": "spectrum:hidden/collect_malachite",
+  "advancement": "spectrum:lategame/collect_malachite",
   "icon": "spectrum:small_malachite_bud",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {

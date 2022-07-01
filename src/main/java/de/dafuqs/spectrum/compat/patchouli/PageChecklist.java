@@ -3,17 +3,22 @@ package de.dafuqs.spectrum.compat.patchouli;
 import com.google.gson.annotations.SerializedName;
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import vazkii.patchouli.api.IVariable;
 import vazkii.patchouli.client.book.BookPage;
 import vazkii.patchouli.client.book.gui.BookTextRenderer;
+import vazkii.patchouli.client.book.gui.GuiBook;
 import vazkii.patchouli.client.book.gui.GuiBookEntry;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class PageChecklist extends BookPage {
+	
+	protected String title;
+	transient Text titleText;
 	
 	protected IVariable text;
 	transient BookTextRenderer textRender;
@@ -38,6 +43,7 @@ public class PageChecklist extends BookPage {
 				stringBuilder.append("$(m)");
 				stringBuilder.append(value);
 				stringBuilder.append("$()");
+				stringBuilder.append(" ✔");
 			} else {
 				stringBuilder.append("$(li)");
 				stringBuilder.append(value);
@@ -46,10 +52,17 @@ public class PageChecklist extends BookPage {
 		}
 		
 		textRender = new BookTextRenderer(parent, IVariable.wrap(stringBuilder.toString()).as(Text.class), 0, getTextHeight());
+		
+		if (title == null) {
+			title = "";
+			titleText = new LiteralText("");
+		} else {
+			titleText = i18nText(title);
+		}
 	}
 	
 	public int getTextHeight() {
-		return 0;
+		return title == null ? -2 : title.isEmpty() ? -2 : 14;
 	}
 	
 	@Override
@@ -57,6 +70,11 @@ public class PageChecklist extends BookPage {
 		super.render(ms, mouseX, mouseY, pticks);
 		
 		textRender.render(ms, mouseX, mouseY);
+		parent.drawCenteredStringNoShadow(ms, getTitle().asOrderedText(), GuiBook.PAGE_WIDTH / 2, 0, book.headerColor);
+	}
+	
+	protected Text getTitle() {
+		return titleText;
 	}
 	
 }

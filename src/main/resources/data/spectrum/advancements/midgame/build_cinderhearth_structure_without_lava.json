@@ -1,0 +1,28 @@
+{
+  "parent": "spectrum:midgame/build_cinderhearth_structure",
+  "display": {
+    "icon": {
+      "item": "spectrum:cinderhearth"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.build_cinderhearth_without_lava_structure.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.build_cinderhearth_without_lava_structure.description"
+    }
+  },
+  "criteria": {
+    "built_structure": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": { "multiblock_identifier": "spectrum:cinderhearth_without_lava_structure" }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_scarlet" }
+    }
+  },
+  "rewards": {
+    "experience": 50
+  }
+}

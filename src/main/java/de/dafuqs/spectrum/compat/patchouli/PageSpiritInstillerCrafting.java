@@ -44,9 +44,9 @@ public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<ISpiri
 		
 		// the ingredients
 		List<IngredientStack> ingredients = recipe.getIngredientStacks();
-		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 3, recipeY + 8, mouseX, mouseY, ingredients.get(0)); // left
-		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 44, recipeY + 8, mouseX, mouseY, ingredients.get(1)); // right
-		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 23, recipeY + 11, mouseX, mouseY, ingredients.get(2)); // center
+		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 3, recipeY + 8, mouseX, mouseY, ingredients.get(1)); // left
+		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 23, recipeY + 11, mouseX, mouseY, ingredients.get(0)); // center
+		PatchouliHelper.renderIngredientStack(parent, ms, recipeX + 44, recipeY + 8, mouseX, mouseY, ingredients.get(2)); // right
 		
 		// spirit instiller
 		parent.renderItemStack(ms, recipeX + 23, recipeY + 25, mouseX, mouseY, recipe.createIcon());

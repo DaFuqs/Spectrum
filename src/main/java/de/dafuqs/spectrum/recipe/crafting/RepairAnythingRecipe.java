@@ -25,7 +25,7 @@ public class RepairAnythingRecipe extends SpecialCraftingRecipe {
 		boolean nectarFound = false;
 		boolean itemFound = false;
 		
-		for(int j = 0; j < craftingInventory.size(); ++j) {
+		for (int j = 0; j < craftingInventory.size(); ++j) {
 			ItemStack itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty()) {
 				if (MOONSTRUCK_NECTAR.test(itemStack)) {
@@ -47,14 +47,14 @@ public class RepairAnythingRecipe extends SpecialCraftingRecipe {
 	
 	public ItemStack craft(CraftingInventory craftingInventory) {
 		ItemStack itemStack = ItemStack.EMPTY;
-		for(int j = 0; j < craftingInventory.size(); ++j) {
+		for (int j = 0; j < craftingInventory.size(); ++j) {
 			itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty() && !MOONSTRUCK_NECTAR.test(itemStack)) {
 				break;
 			}
 		}
 		
-		if(itemStack.isDamageable() && itemStack.isDamaged() && !itemStack.isIn(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED)) {
+		if (itemStack.isDamageable() && itemStack.isDamaged() && !itemStack.isIn(SpectrumItemTags.INDESTRUCTIBLE_BLACKLISTED)) {
 			ItemStack returnStack = itemStack.copy();
 			int damage = returnStack.getDamage();
 			int maxDamage = returnStack.getMaxDamage();

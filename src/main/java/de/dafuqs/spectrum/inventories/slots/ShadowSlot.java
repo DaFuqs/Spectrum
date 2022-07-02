@@ -5,7 +5,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ClickType;
 
-public class ShadowSlot extends ReadOnlySlot {
+public class ShadowSlot extends ReadOnlySlot implements SlotWithOnClickAction {
 	
 	public ShadowSlot(Inventory inventory, int index, int x, int y) {
 		super(inventory, index, x, y);

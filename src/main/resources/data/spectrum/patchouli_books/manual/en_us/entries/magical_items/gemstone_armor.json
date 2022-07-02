@@ -15,8 +15,14 @@
       "text": "You had more than enough time to develop your own individual fighting style.$(br)To best support this style, you've designed a range of matching gear out of interesting materials.$(br2)Disadvantage: The shards used in the production are kind of brittle. Therefore, this equipment has a comparatively low durability."
     },
     {
-      "type": "patchouli:text",
-      "text": "To take advantage of their unique abilities you will need some special materials.$(br2)$(bold)Helmet:$() When nothingness meets hell$(br2)$(bold)Chestplate:$() The golden Ratio$(br2)$(bold)Leggings:$() The source of nightmares$(br2)$(bold)Boots:$() Mourning of the Nether$(br2)They can be repaired in Anvils by using $(l:general/gemstone_shards)Gemstone Shards$()."
+      "type": "spectrum:checklist",
+      "checklist": {
+        "spectrum:hidden/collect_vanilla/collect_ender_eye": "Helmet: When nothingness meets hell",
+        "spectrum:hidden/collect_vanilla/collect_nautilus_shell": "Chestplate: The golden Ratio",
+        "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "Leggings: The source of nightmares",
+        "spectrum:hidden/collect_vanilla/collect_ghast_tear": "Boots: Mourning of the Nether"
+      },
+      "text": "They can be repaired in Anvils by using $(l:general/shards)Gemstone Shards$().$(br2)To take advantage of their unique abilities you will need some special materials:"
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -57,6 +57,7 @@ public class ProgressionSanityCommand {
 		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_blacklisted_memory_fail"));
 		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_blacklisted_memory_success"));
 		add(new Identifier(SpectrumCommon.MOD_ID, "find_ancient_ruins"));
+		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/build_cinderhearth_structure_without_lava"));
 	}};
 	
 	
@@ -108,7 +109,7 @@ public class ProgressionSanityCommand {
 		}
 		
 		// Statistic: Build an empty hashmap of hashmaps for counting used gem colors for each tier
-		// This info can be used to balance the usage times a bit
+		// This info can be used to balance usage a bit
 		HashMap<PedestalRecipeTier, HashMap<BuiltinGemstoneColor, Integer>> usedColorsForEachTier = new HashMap<>();
 		for (PedestalRecipeTier pedestalRecipeTier : PedestalRecipeTier.values()) {
 			HashMap<BuiltinGemstoneColor, Integer> colorMap = new HashMap<>();

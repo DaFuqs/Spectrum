@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.inventories.InkColorSelectedPacketReceiver;
 import de.dafuqs.spectrum.mixin.client.accessors.BossBarHudAccessor;
 import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -22,6 +23,7 @@ import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.gui.hud.BossBarHud;
@@ -31,6 +33,7 @@ import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.DyeColor;
@@ -48,9 +51,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
+@Environment(EnvType.CLIENT)
 public class SpectrumS2CPacketReceiver {
 	
-	@Environment(EnvType.CLIENT)
 	public static void registerS2CReceivers() {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_AT_EXACT_BLOCK_POSITION_WITHOUT_VELOCITY_ID, (client, handler, buf, responseSender) -> {
 			BlockPos position = buf.readBlockPos();
@@ -377,6 +380,22 @@ public class SpectrumS2CPacketReceiver {
 					inkStorageBlockEntity.getEnergyStorage().setEnergy(colors, colorTotal);
 				}
 			});
+		});
+		
+		ServerPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INK_COLOR_SELECTED, (server, player, handler, buf, responseSender) -> {
+			ScreenHandler screenHandler = player.currentScreenHandler;
+			if(screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
+				boolean isSelection = buf.readBoolean();
+				
+				InkColor color;
+				if(isSelection) {
+					String inkColorString = buf.readString();
+					color = InkColor.of(inkColorString);
+				} else {
+					color = null;
+				}
+				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
+			}
 		});
 	}
 	

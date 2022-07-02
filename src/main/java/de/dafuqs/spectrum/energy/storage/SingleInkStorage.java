@@ -178,6 +178,11 @@ public class SingleInkStorage implements InkStorage {
 		this.storedEnergy = this.maxEnergy;
 	}
 	
+	@Override
+	public void clear() {
+		this.storedEnergy = 0;
+	}
+	
 	public void convertColor(InkColor color) {
 		this.storedColor = color;
 	}

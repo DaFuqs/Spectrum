@@ -240,6 +240,24 @@ public class Support {
 		}
 	}
 	
+	@Contract(pure = true)
+	public static BlockRotation rotationFromDirection(@NotNull Direction direction) {
+		switch (direction) {
+			case EAST -> {
+				return BlockRotation.NONE;
+			}
+			case SOUTH -> {
+				return BlockRotation.CLOCKWISE_90;
+			}
+			case WEST -> {
+				return BlockRotation.CLOCKWISE_180;
+			}
+			default -> {
+				return BlockRotation.COUNTERCLOCKWISE_90;
+			}
+		}
+	}
+	
 	public static boolean hasPlayerFinishedMod(PlayerEntity player) {
 		return AdvancementHelper.hasAdvancement(player, PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER);
 	}

@@ -65,19 +65,19 @@ public interface Upgradeable {
 	static @NotNull Map<UpgradeType, Float> calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffset, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> positions = new ArrayList<>();
 		switch (multiblockRotation) {
-			case NONE: {
+			case NONE -> {
 				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
 				positions.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
 			}
-			case CLOCKWISE_90: {
+			case CLOCKWISE_90 -> {
 				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
 				positions.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
 			}
-			case CLOCKWISE_180: {
+			case CLOCKWISE_180 -> {
 				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
 				positions.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
 			}
-			default: {
+			default -> {
 				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
 				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
 			}
@@ -86,7 +86,31 @@ public interface Upgradeable {
 		return calculateUpgrades(world, blockPos, positions, advancementPlayerUUID);
 	}
 	
-	static @NotNull Map<UpgradeType, Float> calculateUpgrades(World world, BlockPos blockPos, @NotNull List<BlockPos> positions, @Nullable UUID advancementPlayerUUID) {
+	static @NotNull Map<UpgradeType, Float> calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffsetX, int horizontalOffsetZ, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
+		List<BlockPos> positions = new ArrayList<>();
+		switch (multiblockRotation) {
+			case NONE -> {
+				positions.add(blockPos.add(-horizontalOffsetZ, verticalOffset, -horizontalOffsetX));
+				positions.add(blockPos.add(-horizontalOffsetZ, verticalOffset, horizontalOffsetX));
+			}
+			case CLOCKWISE_90 -> {
+				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, horizontalOffsetZ));
+				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, -horizontalOffsetZ));
+			}
+			case CLOCKWISE_180 -> {
+				positions.add(blockPos.add(horizontalOffsetZ, verticalOffset, horizontalOffsetX)); // works
+				positions.add(blockPos.add(horizontalOffsetZ, verticalOffset, -horizontalOffsetX));
+			}
+			default -> {
+				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, horizontalOffsetZ)); // works
+				positions.add(blockPos.add(horizontalOffsetX, verticalOffset, horizontalOffsetZ));
+			}
+		}
+		
+		return calculateUpgrades(world, blockPos, positions, advancementPlayerUUID);
+	}
+	
+	private static @NotNull Map<UpgradeType, Float> calculateUpgrades(World world, BlockPos blockPos, @NotNull List<BlockPos> positions, @Nullable UUID advancementPlayerUUID) {
 		// create a hash map of upgrade types and mods
 		HashMap<UpgradeType, List<Float>> upgradeMods = new HashMap<>();
 		int upgradeCount = 0;

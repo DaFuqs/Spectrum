@@ -2,26 +2,90 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.MobSpawnerBlockEntity;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.Property;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
-public class SpectrumMobSpawnerItem extends BlockItem {
+public class SpectrumMobSpawnerItem extends Item {
 	
-	public SpectrumMobSpawnerItem(Block block, FabricItemSettings fabricItemSettings) {
-		super(block, fabricItemSettings);
+	public SpectrumMobSpawnerItem(FabricItemSettings fabricItemSettings) {
+		super(fabricItemSettings);
+	}
+	
+	@Override
+	public ActionResult useOnBlock(ItemUsageContext context) {
+		ActionResult actionResult = this.place(new ItemPlacementContext(context));
+		if (!actionResult.isAccepted() && this.isFood()) {
+			ActionResult actionResult2 = this.use(context.getWorld(), context.getPlayer(), context.getHand()).getResult();
+			return actionResult2 == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : actionResult2;
+		} else {
+			return actionResult;
+		}
+	}
+	
+	public ActionResult place(ItemPlacementContext context) {
+		if (!context.canPlace()) {
+			return ActionResult.FAIL;
+		} else {
+			BlockState blockState = Blocks.SPAWNER.getDefaultState();
+			if (blockState == null) {
+				return ActionResult.FAIL;
+			} else if (!context.getWorld().setBlockState(context.getBlockPos(), blockState, 11)) {
+				return ActionResult.FAIL;
+			} else {
+				BlockPos blockPos = context.getBlockPos();
+				World world = context.getWorld();
+				PlayerEntity playerEntity = context.getPlayer();
+				ItemStack itemStack = context.getStack();
+				BlockState blockState2 = world.getBlockState(blockPos);
+				if (blockState2.isOf(blockState.getBlock())) {
+					BlockItem.writeNbtToBlockEntity(world, playerEntity, blockPos, itemStack);
+					blockState2.getBlock().onPlaced(world, blockPos, blockState2, playerEntity, itemStack);
+					if (playerEntity instanceof ServerPlayerEntity) {
+						Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
+					}
+				}
+				
+				BlockSoundGroup blockSoundGroup = blockState2.getSoundGroup();
+				world.playSound(playerEntity, blockPos, Blocks.SPAWNER.getSoundGroup(blockState2).getPlaceSound(), SoundCategory.BLOCKS, (blockSoundGroup.getVolume() + 1.0F) / 2.0F, blockSoundGroup.getPitch() * 0.8F);
+				world.emitGameEvent(playerEntity, GameEvent.BLOCK_PLACE, blockPos);
+				if (playerEntity == null || !playerEntity.getAbilities().creativeMode) {
+					itemStack.decrement(1);
+				}
+				
+				return ActionResult.success(world.isClient);
+			}
+		}
+	}
+	
+	private static <T extends Comparable<T>> BlockState with(BlockState state, Property<T> property, String name) {
+		return property.parse(name).map((value) -> state.with(property, value)).orElse(state);
 	}
 	
 	public static ItemStack toItemStack(MobSpawnerBlockEntity mobSpawnerBlockEntity) {

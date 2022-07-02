@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.inventories.slots.DisabledSlot;
-import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
+import de.dafuqs.spectrum.inventories.slots.PedestalPreviewSlot;
 import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
@@ -105,7 +105,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		this.addSlot(new StackFilterSlot(inventory, PedestalBlockEntity.CRAFTING_TABLET_SLOT_ID, 93, 19, SpectrumItems.CRAFTING_TABLET));
 		
 		// preview slot
-		this.addSlot(new ReadOnlySlot(craftingResultInventory, 15, 127, 37));
+		this.addSlot(new PedestalPreviewSlot(craftingResultInventory, 15, 127, 37));
 		
 		// player inventory
 		int l;

@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.items.magic;
 
 import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.energy.storage.IndividualCappedSimpleInkStorage;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
@@ -12,9 +13,10 @@ import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashSet;
 import java.util.List;
 
-public class InkAssortmentItem extends Item implements InkStorageItem<IndividualCappedSimpleInkStorage> {
+public class InkAssortmentItem extends Item implements InkStorageItem<IndividualCappedInkStorage> {
 	
 	private final long maxEnergy;
 	
@@ -29,12 +31,12 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	}
 	
 	@Override
-	public IndividualCappedSimpleInkStorage getEnergyStorage(ItemStack itemStack) {
+	public IndividualCappedInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound != null && compound.contains("EnergyStore")) {
-			return IndividualCappedSimpleInkStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return IndividualCappedInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new IndividualCappedSimpleInkStorage(this.maxEnergy);
+		return new IndividualCappedInkStorage(this.maxEnergy);
 	}
 	
 	// Omitting this would crash outside the dev env o.O
@@ -44,7 +46,7 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, IndividualCappedSimpleInkStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, IndividualCappedInkStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.put("EnergyStore", storage.toNbt());
 	}

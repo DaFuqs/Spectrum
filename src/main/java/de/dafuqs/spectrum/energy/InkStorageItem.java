@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
  * @param <PStorage>
  */
 public interface InkStorageItem<PStorage extends InkStorage> {
-	
+
 	enum Drainability {
 		ALWAYS,
 		MACHINE_ONLY,
@@ -49,5 +49,12 @@ public interface InkStorageItem<PStorage extends InkStorage> {
 		setEnergyStorage(stack, storage);
 		return stack;
 	}
+	
+	default void clearEnergyStorage(ItemStack stack) {
+		PStorage storage = getEnergyStorage(stack);
+		storage.clear();
+		setEnergyStorage(stack, storage);
+	}
+	
 	
 }

@@ -26,7 +26,7 @@
     {
       "type": "patchouli:link",
       "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
-      "text": "$(br2)$(br2)$(italic)Seriously, look it up! The way we perceive brown is fascinating!$()",
+      "text": "$(br2)$(br2)$(br2)$(br)$(italic)Seriously, look it up! The way we perceive brown is fascinating!$()",
       "url": "https://www.youtube.com/watch?v=wh4aWZRtTwU",
       "link_text": "Brown is weird"
     }

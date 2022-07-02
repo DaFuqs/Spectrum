@@ -9,7 +9,18 @@
     "spectrum:spirit_sallow_roots": 0,
     "spectrum:spirit_sallow_log": 0,
     "spectrum:spirit_sallow_leaves": 0,
-    "spectrum:spirit_sallow_heart": 0
+    "spectrum:spirit_sallow_heart": 0,
+
+    "spectrum:vibrant_cyan_catkin": 0,
+    "spectrum:vibrant_magenta_catkin": 0,
+    "spectrum:vibrant_yellow_catkin": 0,
+    "spectrum:vibrant_black_catkin": 0,
+    "spectrum:vibrant_white_catkin": 0,
+    "spectrum:lucid_cyan_catkin": 0,
+    "spectrum:lucid_magenta_catkin": 0,
+    "spectrum:lucid_yellow_catkin": 0,
+    "spectrum:lucid_black_catkin": 0,
+    "spectrum:lucid_white_catkin": 0
   },
   "pages": [
     {
@@ -21,6 +32,16 @@
       "type": "patchouli:text",
       "advancement": "spectrum:lategame/grow_ominous_sapling",
       "title": "Spirit Sallow",
+      "text": "TODO"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:vibrant_cyan_catkin",
+      "text": "TODO"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Lucid Catkin",
       "text": "TODO"
     }
   ]

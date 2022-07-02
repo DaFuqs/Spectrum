@@ -2,8 +2,17 @@ package de.dafuqs.spectrum.blocks.cinderhearth;
 
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
+import de.dafuqs.spectrum.energy.InkStorage;
+import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
+import de.dafuqs.spectrum.energy.InkStorageItem;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
+import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.inventories.CinderhearthScreenHandler;
+import de.dafuqs.spectrum.inventories.ColorPickerScreenHandler;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
@@ -11,6 +20,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,43 +31,50 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.BlastingRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
-public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, Inventory {
+public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, Inventory, ExtendedScreenHandlerFactory, InkStorageBlockEntity<IndividualCappedInkStorage> {
 	
-	public static final int INVENTORY_SIZE = 10;
+	public static final int INVENTORY_SIZE = 11;
 	public static final int INPUT_SLOT_ID = 0;
-	public static final int EXPERIENCE_STORAGE_ITEM_SLOT_ID = 1;
-	public static final int FIRST_OUTPUT_SLOT_ID = 2;
-	public static final int LAST_OUTPUT_SLOT_ID = 9;
+	public static final int INK_PROVIDER_SLOT_ID = 1;
+	public static final int EXPERIENCE_STORAGE_ITEM_SLOT_ID = 2;
+	public static final int FIRST_OUTPUT_SLOT_ID = 3;
+	public static final int LAST_OUTPUT_SLOT_ID = 10;
 	
 	protected SimpleInventory inventory;
 	protected boolean inventoryChanged;
+	
+	public static final long INK_STORAGE_SIZE = 64*100;
+	protected IndividualCappedInkStorage inkStorage;
+	
 	private UUID ownerUUID;
 	private Map<UpgradeType, Float> upgrades;
 	private Recipe currentRecipe; // blasting & cinderhearth
 	private int craftingTime;
 	private int craftingTimeTotal;
+	protected boolean paused;
 	
 	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.CINDERHEARTH, pos, state);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE, Set.of(InkColors.ORANGE, InkColors.LIGHT_BLUE, InkColors.MAGENTA, InkColors.BLACK));
 	}
 	
 	@Override
@@ -68,7 +85,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	@Override
 	public void calculateUpgrades() {
-		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 2, 2, this.ownerUUID);
+		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, Support.rotationFromDirection(world.getBlockState(pos).get(CinderhearthBlock.FACING)), 2, 1, 1, this.ownerUUID);
 		this.markDirty();
 	}
 	
@@ -85,21 +102,30 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	@Override
 	protected Text getContainerName() {
-		return null;
+		return new TranslatableText("block.spectrum.cinderhearth");
 	}
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return null;
+		return new CinderhearthScreenHandler(syncId, playerInventory, this.pos);
+	}
+	
+	@Override
+	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+		buf.writeBlockPos(pos);
 	}
 	
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
+		this.inventory.readNbtList(nbt.getList("Inventory", 10));
+		if(nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
+			this.inkStorage = IndividualCappedInkStorage.fromNbt(nbt.getCompound("InkStorage"));
+		}
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
+		this.paused = nbt.getBoolean("Paused");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
 		if (nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
@@ -128,9 +154,11 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		nbt.put("inventory", this.inventory.toNbtList());
+		nbt.put("Inventory", this.inventory.toNbtList());
+		nbt.put("InkStorage", this.inkStorage.toNbt());
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
+		nbt.putBoolean("Paused", this.paused);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
@@ -146,6 +174,20 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static void serverTick(World world, BlockPos blockPos, BlockState blockState, CinderhearthBlockEntity cinderhearthBlockEntity) {
 		if (cinderhearthBlockEntity.upgrades == null) {
 			cinderhearthBlockEntity.calculateUpgrades();
+		}
+		
+		if (!cinderhearthBlockEntity.paused) {
+			boolean didSomething = false;
+			ItemStack stack = cinderhearthBlockEntity.inventory.getStack(INK_PROVIDER_SLOT_ID);
+			if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
+				InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
+				didSomething = InkStorage.transferInk(itemStorage, cinderhearthBlockEntity.inkStorage) != 0;
+			}
+			if (didSomething) {
+				cinderhearthBlockEntity.markDirty();
+			} else {
+				cinderhearthBlockEntity.paused = true;
+			}
 		}
 		
 		if (cinderhearthBlockEntity.inventoryChanged) {
@@ -337,6 +379,15 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	@Override
 	public void provideRecipeInputs(RecipeMatcher finder) {
 	
+	}
+	
+	@Override
+	public IndividualCappedInkStorage getEnergyStorage() {
+		return this.inkStorage;
+	}
+	
+	public boolean shouldUpdateClients() {
+		return !this.paused;
 	}
 	
 }

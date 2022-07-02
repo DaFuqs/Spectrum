@@ -518,7 +518,7 @@ public class SpectrumBlocks {
 	public static final Block FUSION_SHRINE_BASALT = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
 	public static final Block FUSION_SHRINE_CALCITE = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
 
-	public static final Block STONESETTING_WORKSHOP = new StonesettingWorkshopBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
+	public static final Block STONESETTING_WORKSHOP = new StonesettingWorkshopBlock(FabricBlockSettings.copyOf(POLISHED_BASALT).nonOpaque().solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	
 	private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool();
 	private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);

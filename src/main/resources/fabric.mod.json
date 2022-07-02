@@ -39,7 +39,8 @@
   ],
   "custom": {
     "cardinal-components": [
-      "spectrum:azure_dike"
+      "spectrum:azure_dike",
+      "spectrum:crystal_grace_effect_holder"
     ]
   },
   "depends": {

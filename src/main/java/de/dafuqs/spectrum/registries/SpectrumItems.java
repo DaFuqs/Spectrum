@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeJellyItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
+import de.dafuqs.spectrum.graces.crystal.ColorPool;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
@@ -187,7 +188,7 @@ public class SpectrumItems {
 	// Graces
 	public static OwoItemSettings graceSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE).maxCount(1).fireproof();
 
-	public static final CrystalGraceItem WHITE_CRYSTAL_GRACE = new CrystalGraceItem(graceSettings, "ooooo go stick my dick in Azzy's ass oooo");
+	public static final CrystalGraceItem WHITE_CRYSTAL_GRACE = new CrystalGraceItem(ColorPool.WHITE, graceSettings, "ooooo go stick my dick in Azzy's ass oooo");
 
 
 	// Bedrock Armor

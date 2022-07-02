@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableMap;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
-import de.dafuqs.spectrum.components.SpectrumComponents;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
 import de.dafuqs.spectrum.energy.color.InkColors;
@@ -29,6 +28,7 @@ import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
+import de.dafuqs.spectrum.sar.SpectrumComponents;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import de.dafuqs.spectrum.worldgen.structure_features.SpectrumStructureFeatures;
@@ -109,6 +109,9 @@ public class SpectrumCommon implements ModInitializer {
 		
 		// Register internals
 		InkColors.register();
+
+		logInfo("Registering Registries...");
+		SpectrumRegistryRegistry.register();
 		
 		logInfo("Registering Banner Patterns...");
 		SpectrumBannerPatterns.register();

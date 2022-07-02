@@ -1,0 +1,25 @@
+{
+  "name": "A new Resource",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/create_midnight_aberration",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_midnight_chip",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "A small tip",
+      "completion_advancement": "spectrum:midgame/collect_midnight_chip",
+      "cost": "spectrum:neolith#8",
+      "text": "This liquid, which was created during the creation of the Midnight Aberration... it damages everything it touches."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "completion_advancement": "spectrum:midgame/collect_midnight_chip",
+      "cost": "spectrum:neolith#24",
+      "text": "Midnight Solution has various effects depending on what lands in it. Enchanted items lose their magical powers, some items change altogether and creatures killed by it drop a small mysterious fragment."
+    }
+  ]
+}

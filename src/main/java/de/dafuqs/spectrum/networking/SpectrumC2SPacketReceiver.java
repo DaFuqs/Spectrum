@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.networking;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.inventories.BedrockAnvilScreenHandler;
-import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
-import de.dafuqs.spectrum.inventories.InkColorSelectedPacketReceiver;
-import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
+import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
@@ -110,12 +108,25 @@ public class SpectrumC2SPacketReceiver {
 			}
 		});
 		
-		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.INK_COLOR_SELECTED_IN_GUI, (server, player, handler, buf, responseSender) -> {
+		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.INK_COLOR_SELECTED, (server, player, handler, buf, responseSender) -> {
 			ScreenHandler screenHandler = player.currentScreenHandler;
 			if(screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
-				String inkColorString = buf.readString();
-				InkColor color = InkColor.of(inkColorString);
+				boolean isSelection = buf.readBoolean();
+				
+				InkColor color;
+				if(isSelection) {
+					String inkColorString = buf.readString();
+					color = InkColor.of(inkColorString);
+				} else {
+					color = null;
+				}
+				
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
+				for(ServerPlayerEntity serverPlayer : SpectrumCommon.minecraftServer.getPlayerManager().getPlayerList()) {
+					if(serverPlayer.currentScreenHandler instanceof InkColorSelectedPacketReceiver receiver && receiver.getBlockEntity() == inkColorSelectedPacketReceiver.getBlockEntity()) {
+						SpectrumS2CPacketSender.sendInkColorSelected(color, serverPlayer);
+					}
+				}
 			}
 		});
 		

@@ -10,8 +10,8 @@ import java.util.Map;
 public class ElementalColor extends InkColor {
 	
 	protected Map<CompoundColor, Float> mixedColors = new HashMap<>(); // colors that can be mixed from this
-	
-	public ElementalColor(DyeColor dyeColor, Identifier requiredAdvancement, Vec3f color) {
+  
+	public ElementalColor(DyeColor dyeColor, Vec3f color, Identifier requiredAdvancement) {
 		super(dyeColor, color, requiredAdvancement);
 		ELEMENTAL_COLORS.add(this);
 	}

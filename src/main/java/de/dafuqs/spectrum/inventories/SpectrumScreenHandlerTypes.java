@@ -18,6 +18,7 @@ public class SpectrumScreenHandlerTypes {
 	public static ScreenHandlerType<SuckingChestScreenHandler> SUCKING_CHEST;
 	public static ScreenHandlerType<PotionWorkshopScreenHandler> POTION_WORKSHOP;
 	public static ScreenHandlerType<ColorPickerScreenHandler> COLOR_PICKER;
+	public static ScreenHandlerType<CinderhearthScreenHandler> CINDERHEARTH;
 	
 	public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER1_9X3;
 	public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER2_9X3;
@@ -47,6 +48,7 @@ public class SpectrumScreenHandlerTypes {
 		COMPACTING_CHEST = registerExtended(SpectrumContainers.COMPACTING_CHEST, CompactingChestScreenHandler::new);
 		SUCKING_CHEST = registerExtended(SpectrumContainers.SUCKING_CHEST, SuckingChestScreenHandler::new);
 		COLOR_PICKER = registerExtended(SpectrumContainers.COLOR_PICKER, ColorPickerScreenHandler::new);
+		CINDERHEARTH = registerExtended(SpectrumContainers.CINDERHEARTH, CinderhearthScreenHandler::new);
 		
 		CRAFTING_TABLET = registerSimple(SpectrumContainers.CRAFTING_TABLET, CraftingTabletScreenHandler::new);
 		RESTOCKING_CHEST = registerSimple(SpectrumContainers.RESTOCKING_CHEST, RestockingChestScreenHandler::new);
@@ -76,6 +78,7 @@ public class SpectrumScreenHandlerTypes {
 		HandledScreens.register(SpectrumScreenHandlerTypes.SUCKING_CHEST, SuckingChestScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.POTION_WORKSHOP, PotionWorkshopScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.COLOR_PICKER, ColorPickerScreen::new);
+		HandledScreens.register(SpectrumScreenHandlerTypes.CINDERHEARTH, CinderhearthScreen::new);
 		
 		HandledScreens.register(SpectrumScreenHandlerTypes.GENERIC_TIER1_9X3, SpectrumGenericContainerScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.GENERIC_TIER2_9X3, SpectrumGenericContainerScreen::new);

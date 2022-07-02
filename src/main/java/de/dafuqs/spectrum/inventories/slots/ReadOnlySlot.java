@@ -19,5 +19,4 @@ public class ReadOnlySlot extends Slot {
 		return false;
 	}
 	
-	
 }

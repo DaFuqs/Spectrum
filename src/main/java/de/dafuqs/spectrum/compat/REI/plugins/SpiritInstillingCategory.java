@@ -56,9 +56,9 @@ public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillin
 			// input slots
 			int ingredientSize = display.craftingInputs.size();
 			int startX = Math.max(0, 10 - ingredientSize * 10);
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX, startPoint.y)).markInput().entries(display.craftingInputs.get(0)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 40, startPoint.y)).markInput().entries(display.craftingInputs.get(1)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 20, startPoint.y)).markInput().entries(display.craftingInputs.get(2)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX, startPoint.y)).markInput().entries(display.craftingInputs.get(1)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 20, startPoint.y)).markInput().entries(display.craftingInputs.get(0)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 40, startPoint.y)).markInput().entries(display.craftingInputs.get(2)));
 			
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 17)).entries(ITEM_BOWL_CALCITE).disableBackground());
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 17)).entries(SPIRIT_INSTILLER).disableBackground());

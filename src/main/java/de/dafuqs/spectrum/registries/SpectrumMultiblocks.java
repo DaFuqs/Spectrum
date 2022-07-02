@@ -29,6 +29,7 @@ public class SpectrumMultiblocks {
 	public static Identifier ENCHANTER_IDENTIFIER;
 	public static Identifier SPIRIT_INSTILLER_IDENTIFIER;
 	public static Identifier CINDERHEARTH_IDENTIFIER;
+	public static Identifier CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER;
 	
 	private static Identifier registerMultiBlock(String identifierString, String[][] structure, Object[] targetBlocks) {
 		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, identifierString);
@@ -83,11 +84,11 @@ public class SpectrumMultiblocks {
 		};
 		
 		String[][] structure = {
-				{"_________", "_________", "__M___M__", "_________", "_________", "_________", "_________", "_________", "_________"},
-				{"_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________"},
-				{"_K_____K_", "_________", "__I___I__", "_________", "_________", "_________", "_________", "_________", "_________"},
-				{"_P_____P_", "___LLL___", "__CLSLC__", "___LLL___", "___LLL___", "___LLL___", "G_______G", "_________", "_________"},
-				{"_PXXXXXP_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "_XXX0XXX_", "__XXXXX__", "P__XXX__P", "___LLL___", "_________"}
+				{"_________", "_________", "__M___M__", "_________", "_________", "_________", "_________", "_________" },
+				{"_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________" },
+				{"_K_____K_", "_________", "__I___I__", "_________", "_________", "_________", "_________", "_________" },
+				{"_P_____P_", "___LLL___", "__CLSLC__", "___LLL___", "___LLL___", "___LLL___", "G_______G", "_________" },
+				{"_PXXXXXP_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "_XXX0XXX_", "__XXXXX__", "P__XXX__P", "___LLL___" }
 		};
 		SPIRIT_INSTILLER_IDENTIFIER = registerMultiBlock("spirit_instiller_structure", structure, targetBlocks);
 	}
@@ -119,23 +120,30 @@ public class SpectrumMultiblocks {
 	private static void registerCinderhearth() {
 		Object[] targetBlocks = {
 				'X', "#spectrum:polished_base_blocks",
-				'P', "#spectrum:pillar_base_blocks",
-				'L', "#spectrum:polished_base_block_slabs",
-				'S', "#spectrum:gemstone_storage_blocks",
 				'C', "#spectrum:chiseled_base_blocks",
-				'F', "spectrum:cinderhearth",
+				'c', "#spectrum:crest_base_blocks",
+				'G', "#minecraft:impermeable",
+				'L', "minecraft:lava",
 				'_', StateMatcher.ANY,
-				'0', "#spectrum:polished_base_blocks",
+				'H', "spectrum:cinderhearth[half=lower]",
+				'0', "spectrum:cinderhearth[half=upper]",
 		};
 		
 		String[][] structure = {
-				{"_________", "_L_____L_", "_________", "_________", "_________", "_________", "_________", "_L_ ___L_", "_________"},
-				{"_________", "_S_____S_", "_________", "_________", "_________", "_________", "_________", "_S_____S_", "_________"},
-				{"_________", "_P_____P_", "_________", "_________", "_________", "_________", "_________", "_P_____P_", "_________"},
-				{"__XXXXX__", "_P_____P_", "X_______X", "X_______X", "X___F___X", "X_______X", "X_______X", "_P_____P_", "__XXXXX__"},
-				{"__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__"}
+				{"C___C", "__0__", "_____", "_____" },
+				{"XcccX", "cGHGc", "cGGGc", "XXXXX" },
+				{"_XXX_", "XLLLX", "XLLLX", "_XXX_" },
+				{"_____", "_XXX_", "_XXX_", "_____" }
 		};
 		CINDERHEARTH_IDENTIFIER = registerMultiBlock("cinderhearth_structure", structure, targetBlocks);
+		
+		String[][] withoutLavaStructure = {
+				{"C___C", "__0__", "_____", "_____" },
+				{"XcccX", "cGHGc", "cGGGc", "XXXXX" },
+				{"_XXX_", "X___X", "X___X", "_XXX_" },
+				{"_____", "_XXX_", "_XXX_", "_____" }
+		};
+		CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER = registerMultiBlock("cinderhearth_without_lava_structure", withoutLavaStructure, targetBlocks);
 	}
 	
 	private static void registerPedestal() {

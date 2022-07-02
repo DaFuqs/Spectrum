@@ -238,6 +238,11 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	}
 	
 	@Override
+	public void clear() {
+		this.storedEnergy.replaceAll((c, v) -> 0L);
+	}
+	
+	@Override
 	public long getRoom(InkColor color) {
 		if (color instanceof ElementalColor) {
 			return this.maxEnergyTotal - this.currentTotal;

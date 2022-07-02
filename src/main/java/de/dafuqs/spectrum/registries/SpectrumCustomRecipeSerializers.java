@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.recipe.crafting.ClearInkRecipe;
 import de.dafuqs.spectrum.recipe.crafting.RepairAnythingRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import net.minecraft.recipe.RecipeSerializer;
@@ -16,6 +17,7 @@ public class SpectrumCustomRecipeSerializers {
 	public static void registerRecipeSerializers() {
 		// Crafting
 		register(RepairAnythingRecipe.SERIALIZER, "repair_anything");
+		register(ClearInkRecipe.SERIALIZER, "clear_ink");
 		
 		// Spirit Instiller
 		register(SpawnerCreatureChangeRecipe.SERIALIZER, "spirit_instiller_spawner_creature_change");

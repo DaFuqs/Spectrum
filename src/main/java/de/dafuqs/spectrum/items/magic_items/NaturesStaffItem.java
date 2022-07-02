@@ -236,7 +236,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 			if (world.isClient) {
 				if (context.getPlayer().isCreative() || InkPowered.hasAvailableInk(user, USED_COLOR, getInkCost(context.getStack())) || context.getPlayer().getInventory().contains(COST)) {
 					BlockState blockState = world.getBlockState(blockPos);
-					if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE) || blockState.isOf(Blocks.BAMBOO)) {
+					if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
 						int i = 0;
 						while (world.getBlockState(context.getBlockPos().up(i)).isOf(blockState.getBlock())) {
 							BoneMealItem.createParticles(world, context.getBlockPos().up(i), 3);

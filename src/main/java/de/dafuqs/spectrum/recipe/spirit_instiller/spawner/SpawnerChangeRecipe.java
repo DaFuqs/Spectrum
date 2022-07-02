@@ -102,11 +102,11 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 	}
 	
 	@Override
-	public List<IngredientStack> getIngredientStacks() {
+	public List<IngredientStack> getIngredientStacks() { // 0: instiller stack; 1-2: item bowl stacks
 		DefaultedList<IngredientStack> defaultedList = DefaultedList.of();
+		defaultedList.add(IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SPAWNERS)));
 		defaultedList.add(getIngredientStack());
 		defaultedList.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.VEGETAL), 4));
-		defaultedList.add(IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SPAWNERS)));
 		return defaultedList;
 	}
 	

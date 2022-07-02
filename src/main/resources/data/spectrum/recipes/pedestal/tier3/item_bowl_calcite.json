@@ -26,5 +26,5 @@
     "item": "spectrum:item_bowl_calcite",
     "count": 1
   },
-  "required_advancement": "spectrum:midgame/enter_liquid_crystal"
+  "required_advancement": "spectrum:progression/unlock_item_bowl"
 }

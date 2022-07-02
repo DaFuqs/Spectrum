@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "unlocked_enchanter": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_enchanter" }
+    },
+    "unlocked_spirit_instiller": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_spirit_instiller" }
+    }
+  }
+}

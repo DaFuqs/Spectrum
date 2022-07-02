@@ -106,7 +106,7 @@ public class PageHint extends BookPage {
 	}
 	
 	protected void paymentButtonClicked(ButtonWidget button) {
-		if (MinecraftClient.getInstance().player.isCreative() || InventoryHelper.removeFromInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory(), true)) {
+		if (MinecraftClient.getInstance().player.isCreative() || InventoryHelper.hasInInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory())) {
 			// mark as complete in book data
 			PersistentData.BookData data = PersistentData.data.getBookData(parent.book);
 			data.completedManualQuests.add(getEntryId());

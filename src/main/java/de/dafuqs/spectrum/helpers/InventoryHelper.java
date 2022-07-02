@@ -11,7 +11,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SidedInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Pair;
@@ -245,7 +247,7 @@ public class InventoryHelper {
 		}
 	}
 	
-	public static boolean removeFromInventory(List<Ingredient> ingredients, Inventory inventory, boolean test) {
+	public static boolean hasInInventory(List<Ingredient> ingredients, Inventory inventory) {
 		List<Ingredient> ingredientsToFind = new ArrayList<>();
 		List<Integer> requiredIngredientAmounts = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
@@ -262,28 +264,20 @@ public class InventoryHelper {
 				break;
 			}
 			ItemStack currentStack = inventory.getStack(i);
-			
-			int amount = currentStack.getCount();
-			for (int j = 0; j < ingredientsToFind.size(); j++) {
-				Ingredient ingredient = ingredientsToFind.get(j);
-				
-				if (amount > 0 && ingredient.test(currentStack)) {
-					int ingredientCount = requiredIngredientAmounts.get(j);
-					if (amount >= ingredientCount) {
-						ingredientsToFind.remove(j);
-						requiredIngredientAmounts.remove(j);
-					} else {
-						requiredIngredientAmounts.set(j, requiredIngredientAmounts.get(j) - amount);
-					}
-					j--;
-					
-					amount -= ingredientCount;
-					if (!test) {
-						if (amount > 0) {
-							currentStack.setCount(amount);
+			if(!currentStack.isEmpty()) {
+				int amount = currentStack.getCount();
+				for (int j = 0; j < ingredientsToFind.size(); j++) {
+					if (ingredientsToFind.get(j).test(currentStack)) {
+						int ingredientCount = requiredIngredientAmounts.get(j);
+						if (amount >= ingredientCount) {
+							ingredientsToFind.remove(j);
+							requiredIngredientAmounts.remove(j);
 						} else {
-							inventory.setStack(i, ItemStack.EMPTY);
+							requiredIngredientAmounts.set(j, requiredIngredientAmounts.get(j) - amount);
 						}
+						j--;
+						
+						amount -= ingredientCount;
 					}
 				}
 			}
@@ -292,19 +286,74 @@ public class InventoryHelper {
 		return ingredientsToFind.size() == 0;
 	}
 	
-	public static boolean removeFromInventory(ItemStack removeItemStack, List<ItemStack> inventory) {
+	// return are the recipe remainders
+	public static List<ItemStack> removeFromInventoryWithRemainders(List<Ingredient> ingredients, Inventory inventory) {
+		List<ItemStack> remainders = new ArrayList<>();
+		
+		List<Ingredient> requiredIngredients = new ArrayList<>();
+		List<Integer> requiredIngredientAmounts = new ArrayList<>();
+		for (Ingredient ingredient : ingredients) {
+			requiredIngredients.add(ingredient);
+			if (ingredient.getMatchingStacks().length > 0) {
+				requiredIngredientAmounts.add(ingredient.getMatchingStacks()[0].getCount());
+			} else {
+				requiredIngredientAmounts.add(1);
+			}
+		}
+		
+		for (int i = 0; i < inventory.size(); i++) {
+			if (requiredIngredients.size() == 0) {
+				break;
+			}
+			
+			ItemStack currentStack = inventory.getStack(i);
+			if(!currentStack.isEmpty()) {
+				for (int j = 0; j < requiredIngredients.size(); j++) {
+					int currentStackCount = currentStack.getCount();
+					if (requiredIngredients.get(j).test(currentStack)) {
+						int ingredientCount = requiredIngredientAmounts.get(j);
+						Item remainder = currentStack.getItem().getRecipeRemainder();
+						if (currentStackCount >= ingredientCount) {
+							if(remainder != null && remainder != Items.AIR) {
+								ItemStack remainderStack = remainder.getDefaultStack();
+								remainderStack.setCount(requiredIngredientAmounts.get(j));
+								remainders.add(remainderStack);
+							}
+							requiredIngredients.remove(j);
+							requiredIngredientAmounts.remove(j);
+							j--;
+						} else {
+							if(remainder != null && remainder != Items.AIR) {
+								ItemStack remainderStack = remainder.getDefaultStack();
+								remainderStack.setCount(currentStackCount);
+								remainders.add(remainderStack);
+							}
+							
+							requiredIngredientAmounts.set(j, requiredIngredientAmounts.get(j) - currentStackCount);
+						}
+						
+						currentStack.setCount(currentStackCount - ingredientCount);
+					}
+				}
+			}
+		}
+		
+		return remainders;
+	}
+	
+	public static boolean removeFromInventory(ItemStack removeItemStack, Inventory inventory) {
 		int removeItemStackCount = removeItemStack.getCount();
 		for (int i = 0; i < inventory.size(); i++) {
-			ItemStack currentStack = inventory.get(i);
+			ItemStack currentStack = inventory.getStack(i);
 			if (removeItemStack.isItemEqual(currentStack)) {
 				int currentStackCount = currentStack.getCount();
 				if (currentStackCount >= removeItemStackCount) {
 					currentStack.decrement(removeItemStackCount);
-					inventory.set(i, currentStack);
+					inventory.setStack(i, currentStack);
 					removeItemStackCount = 0;
 				} else {
 					removeItemStackCount -= currentStackCount;
-					inventory.set(i, ItemStack.EMPTY);
+					inventory.setStack(i, ItemStack.EMPTY);
 				}
 			}
 			if (removeItemStackCount == 0) {

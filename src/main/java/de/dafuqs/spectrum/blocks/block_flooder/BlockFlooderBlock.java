@@ -169,7 +169,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 					world.setBlockState(pos, targetState, 3);
 					PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(blockFlooderBlockEntity.getOwnerUUID());
 					if (!owner.isCreative()) {
-						InventoryHelper.removeFromInventory(new ItemStack(targetState.getBlock().asItem()), owner.getInventory().main);
+						InventoryHelper.removeFromInventory(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
 					}
 				}
 			}

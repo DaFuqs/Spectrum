@@ -68,5 +68,4 @@ public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHand
 		drawMouseoverTooltip(matrices, mouseX, mouseY);
 	}
 	
-	
 }

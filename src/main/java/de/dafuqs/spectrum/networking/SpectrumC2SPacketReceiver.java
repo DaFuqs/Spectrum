@@ -16,6 +16,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.SharedConstants;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.screen.ScreenHandler;
@@ -87,11 +88,14 @@ public class SpectrumC2SPacketReceiver {
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.GUIDEBOOK_HINT_BOUGHT, (server, player, handler, buf, responseSender) -> {
 			// pay cost
 			Ingredient payment = Ingredient.fromPacket(buf);
-			if (InventoryHelper.removeFromInventory(List.of(payment), player.getInventory(), false)) {
-				// give the player the hidden "used_tip" advancement and play a sound
-				Support.grantAdvancementCriterion(player, "hidden/used_tip", "used_tip");
-				player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			
+			for(ItemStack remainder : InventoryHelper.removeFromInventoryWithRemainders(List.of(payment), player.getInventory())) {
+				InventoryHelper.smartAddToInventory(remainder, player.getInventory(), null);
 			}
+			
+			// give the player the hidden "used_tip" advancement and play a sound
+			Support.grantAdvancementCriterion(player, "hidden/used_tip", "used_tip");
+			player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		});
 		
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.BIND_ENDER_SPLICE_TO_PLAYER, (server, player, handler, buf, responseSender) -> {

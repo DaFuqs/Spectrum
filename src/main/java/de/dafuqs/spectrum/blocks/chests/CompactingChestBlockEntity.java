@@ -227,7 +227,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	public boolean tryCraftInInventory(DefaultedList<ItemStack> inventory, CraftingRecipe craftingRecipe, ItemVariant itemVariant) {
 		ItemStack inputStack = itemVariant.toStack(this.autoCraftingMode.getItemCount());
-		InventoryHelper.removeFromInventory(inputStack, inventory);
+		InventoryHelper.removeFromInventory(inputStack, this);
 		
 		boolean spaceInInventory;
 		

@@ -59,6 +59,10 @@ public class CraftingTabletInventory extends CraftingInventory {
 	
 	}
 	
+	public int size() {
+		return 9+6;
+	}
+	
 	public boolean canPlayerUse(PlayerEntity player) {
 		return true;
 	}

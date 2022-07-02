@@ -102,7 +102,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 		}
 		
 		// preview slot
-		lockableCraftingResultSlot = new LockableCraftingResultSlot(playerInventory.player, craftingInventory, craftingResultInventory, 0, 127, 37);
+		lockableCraftingResultSlot = new LockableCraftingResultSlot(playerInventory.player, craftingInventory, 0, 8, 14, 127, 37);
 		this.addSlot(lockableCraftingResultSlot);
 		
 		// player inventory

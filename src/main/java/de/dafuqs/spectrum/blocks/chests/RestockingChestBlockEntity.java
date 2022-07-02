@@ -23,6 +23,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class RestockingChestBlockEntity extends SpectrumChestBlockEntity implements SidedInventory {
 	
 	public static final int INVENTORY_SIZE = 27 + 4 + 4; // 27 items, 4 crafting tablets, 4 result slots
@@ -87,13 +89,17 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 				DefaultedList<Ingredient> ingredients = recipe.getIngredients();
 				ItemStack outputItemStack = recipe.getOutput();
 				ItemStack currentItemStack = restockingChestBlockEntity.inventory.get(RESULT_SLOTS[index]);
-				if (InventoryHelper.canCombineItemStacks(currentItemStack, outputItemStack) && InventoryHelper.removeFromInventory(ingredients, restockingChestBlockEntity, true)) {
-					InventoryHelper.removeFromInventory(ingredients, restockingChestBlockEntity, false);
+				if (InventoryHelper.canCombineItemStacks(currentItemStack, outputItemStack) && InventoryHelper.hasInInventory(ingredients, restockingChestBlockEntity)) {
+					List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(ingredients, restockingChestBlockEntity);
 					
 					if (currentItemStack.isEmpty()) {
 						restockingChestBlockEntity.inventory.set(RESULT_SLOTS[index], outputItemStack.copy());
 					} else {
 						currentItemStack.increment(outputItemStack.getCount());
+					}
+					
+					for(ItemStack remainder : remainders) {
+						InventoryHelper.smartAddToInventory(remainder, restockingChestBlockEntity, null);
 					}
 					return true;
 				}

@@ -130,10 +130,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumMusicType.register();
 		logInfo("Registering BlockSound Groups...");
 		SpectrumBlockSoundGroups.register();
-		logInfo("Registering Fluid Tags...");
-		SpectrumFluidTags.register();
-		logInfo("Fetching Block Tags...");
-		SpectrumBlockTags.getReferences();
 		logInfo("Registering Fluids...");
 		SpectrumFluids.register();
 		logInfo("Registering Blocks...");
@@ -142,10 +138,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumItems.register();
 		logInfo("Registering SAR Components...");
 		SpectrumComponents.register();
-
-		// Tags
-		logInfo("Fetching Item Tags...");
-		SpectrumItemTags.getReferences();
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntityRegistry.register();
 		

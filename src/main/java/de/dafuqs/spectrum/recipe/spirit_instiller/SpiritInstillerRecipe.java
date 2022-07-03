@@ -111,7 +111,7 @@ public class SpiritInstillerRecipe implements ISpiritInstillerRecipe {
 			}
 			
 			if (resultStack.isOf(SpectrumBlocks.MEMORY.asItem())) {
-				boolean makeUnrecognizable = spiritInstillerBlockEntity.getStack(0).isIn(SpectrumItemTags.MEMORY_BONDING_AGENTS_CONCEILABLE);
+				boolean makeUnrecognizable = spiritInstillerBlockEntity.getStack(0).isIn(SpectrumItemTags.MEMORY_BONDING_AGENTS_CONCEALABLE);
 				if (makeUnrecognizable) {
 					MemoryItem.makeUnrecognizable(resultStack);
 				}

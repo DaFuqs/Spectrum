@@ -36,6 +36,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Optional;
 
+// TODO: taking item out does not work
 public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	
 	private static final Text TITLE = new TranslatableText("item.spectrum.crafting_tablet");

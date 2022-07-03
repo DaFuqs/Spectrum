@@ -227,21 +227,13 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	public boolean tryCraftInInventory(DefaultedList<ItemStack> inventory, CraftingRecipe craftingRecipe, ItemVariant itemVariant) {
 		ItemStack inputStack = itemVariant.toStack(this.autoCraftingMode.getItemCount());
-		InventoryHelper.removeFromInventory(inputStack, this);
+		List<ItemStack> remainders = InventoryHelper.removeFromInventory(inputStack, this);
 		
 		boolean spaceInInventory;
 		
 		List<ItemStack> additionItemStacks = new ArrayList<>();
 		additionItemStacks.add(craftingRecipe.getOutput());
-		
-		// room for output?
-		ItemStack remainderStack;
-		Item recipeRemainderItem = itemVariant.getItem().getRecipeRemainder();
-		if (recipeRemainderItem != null) {
-			remainderStack = recipeRemainderItem.getDefaultStack();
-			remainderStack.setCount(this.autoCraftingMode.getItemCount());
-			additionItemStacks.add(remainderStack);
-		}
+		additionItemStacks.addAll(remainders);
 		
 		spaceInInventory = smartAddToInventory(additionItemStacks, inventory, true);
 		if (spaceInInventory) {

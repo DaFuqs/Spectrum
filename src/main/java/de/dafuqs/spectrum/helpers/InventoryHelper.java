@@ -272,12 +272,15 @@ public class InventoryHelper {
 						if (amount >= ingredientCount) {
 							ingredientsToFind.remove(j);
 							requiredIngredientAmounts.remove(j);
+							j--;
 						} else {
 							requiredIngredientAmounts.set(j, requiredIngredientAmounts.get(j) - amount);
 						}
-						j--;
 						
 						amount -= ingredientCount;
+						if(amount < 1) {
+							break;
+						}
 					}
 				}
 			}
@@ -341,26 +344,41 @@ public class InventoryHelper {
 		return remainders;
 	}
 	
-	public static boolean removeFromInventory(ItemStack removeItemStack, Inventory inventory) {
-		int removeItemStackCount = removeItemStack.getCount();
+	// returns recipe remainders
+	public static List<ItemStack> removeFromInventory(ItemStack removeItemStack, Inventory inventory) {
+		List<ItemStack> remainders = new ArrayList<>();
+		
+		int removeItemStackCount = removeItemStack.getCount(); // TODO: handle recipe remainders
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
 			if (removeItemStack.isItemEqual(currentStack)) {
+				Item remainder = currentStack.getItem().getRecipeRemainder();
+				
 				int currentStackCount = currentStack.getCount();
 				if (currentStackCount >= removeItemStackCount) {
 					currentStack.decrement(removeItemStackCount);
-					inventory.setStack(i, currentStack);
-					removeItemStackCount = 0;
+					
+					if(remainder != null && remainder != Items.AIR) {
+						ItemStack remainderStack = remainder.getDefaultStack();
+						remainderStack.setCount(removeItemStackCount);
+						remainders.add(remainderStack);
+					}
+					break;
 				} else {
 					removeItemStackCount -= currentStackCount;
-					inventory.setStack(i, ItemStack.EMPTY);
+					
+					if(remainder != null && remainder != Items.AIR) {
+						ItemStack remainderStack = remainder.getDefaultStack();
+						remainderStack.setCount(currentStackCount);
+						remainders.add(remainderStack);
+					}
 				}
 			}
 			if (removeItemStackCount == 0) {
-				return true;
+				return remainders;
 			}
 		}
-		return false;
+		return remainders;
 	}
 	
 	public static IntStream getAvailableSlots(Inventory inventory, Direction side) {

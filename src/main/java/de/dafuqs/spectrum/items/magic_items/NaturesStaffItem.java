@@ -258,7 +258,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 				}
 				if(!paid) {  // try pay with item
 					int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.getStack());
-					paid = (efficiencyLevel == 0 && InventoryHelper.removeFromInventory(context.getPlayer(), COST)) || (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventory(context.getPlayer(), COST));
+					paid = (efficiencyLevel == 0 && InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), COST)) || (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), COST));
 				}
 				
 				if (paid) {

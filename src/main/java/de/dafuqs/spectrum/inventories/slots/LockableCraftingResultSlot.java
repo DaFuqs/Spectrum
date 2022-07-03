@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.inventories.slots;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.slot.CraftingResultSlot;
@@ -15,8 +16,8 @@ public class LockableCraftingResultSlot extends CraftingResultSlot {
 	protected final int craftingGridEndIndex;
 	boolean locked;
 	
-	public LockableCraftingResultSlot(PlayerEntity player, CraftingInventory input, int craftingGridStartIndex, int craftingGridEndIndex, int index, int x, int y) {
-		super(player, input, input, index, x, y);
+	public LockableCraftingResultSlot(Inventory craftingResultInventory, int index, int x, int y, PlayerEntity player, CraftingInventory input, int craftingGridStartIndex, int craftingGridEndIndex) {
+		super(player, input, craftingResultInventory, index, x, y);
 		this.player = player;
 		this.input = input;
 		this.craftingGridStartIndex = craftingGridStartIndex;

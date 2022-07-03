@@ -41,7 +41,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem {
 					if (nightVisionInstance == null || nightVisionInstance.getDuration() < 10 * 20) { // prevent "night vision running out" flashing
 						// no / short night vision => search for glow ink sac and add night vision if found
 						
-						if (InventoryHelper.removeFromInventory(serverPlayerEntity, COST)) {
+						if (InventoryHelper.removeFromInventoryWithRemainders(serverPlayerEntity, COST)) {
 							StatusEffectInstance newNightVisionInstance = new StatusEffectInstance(StatusEffects.NIGHT_VISION, 20 * SpectrumCommon.CONFIG.GlowVisionGogglesDuration);
 							serverPlayerEntity.addStatusEffect(newNightVisionInstance);
 							world.playSoundFromEntity(null, serverPlayerEntity, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundCategory.PLAYERS, 0.2F, 1.0F);

@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -227,7 +226,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	
 	public boolean tryCraftInInventory(DefaultedList<ItemStack> inventory, CraftingRecipe craftingRecipe, ItemVariant itemVariant) {
 		ItemStack inputStack = itemVariant.toStack(this.autoCraftingMode.getItemCount());
-		List<ItemStack> remainders = InventoryHelper.removeFromInventory(inputStack, this);
+		List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(inputStack, this);
 		
 		boolean spaceInInventory;
 		

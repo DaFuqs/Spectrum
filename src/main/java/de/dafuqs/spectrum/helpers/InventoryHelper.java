@@ -30,7 +30,7 @@ import java.util.stream.IntStream;
 
 public class InventoryHelper {
 	
-	public static boolean removeFromInventory(@NotNull PlayerEntity playerEntity, @NotNull ItemStack stackToRemove) {
+	public static boolean removeFromInventoryWithRemainders(@NotNull PlayerEntity playerEntity, @NotNull ItemStack stackToRemove) {
 		if (playerEntity.isCreative()) {
 			return true;
 		} else {
@@ -345,10 +345,10 @@ public class InventoryHelper {
 	}
 	
 	// returns recipe remainders
-	public static List<ItemStack> removeFromInventory(ItemStack removeItemStack, Inventory inventory) {
+	public static List<ItemStack> removeFromInventoryWithRemainders(ItemStack removeItemStack, Inventory inventory) {
 		List<ItemStack> remainders = new ArrayList<>();
 		
-		int removeItemStackCount = removeItemStack.getCount(); // TODO: handle recipe remainders
+		int removeItemStackCount = removeItemStack.getCount();
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack currentStack = inventory.getStack(i);
 			if (removeItemStack.isItemEqual(currentStack)) {
@@ -381,16 +381,8 @@ public class InventoryHelper {
 		return remainders;
 	}
 	
-	public static IntStream getAvailableSlots(Inventory inventory, Direction side) {
-		return inventory instanceof SidedInventory ? IntStream.of(((SidedInventory) inventory).getAvailableSlots(side)) : IntStream.range(0, inventory.size());
-	}
-	
 	public static boolean canExtract(Inventory inv, ItemStack stack, int slot, Direction facing) {
 		return !(inv instanceof SidedInventory) || ((SidedInventory) inv).canExtract(slot, stack, facing);
-	}
-	
-	private static boolean isInventoryEmpty(Inventory inv, Direction facing) {
-		return getAvailableSlots(inv, facing).allMatch((i) -> inv.getStack(i).isEmpty());
 	}
 	
 	public static boolean canCombineItemStacks(ItemStack currentItemStack, ItemStack additionalItemStack) {

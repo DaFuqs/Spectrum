@@ -1,0 +1,24 @@
+{
+  "type": "techreborn:grinder",
+  "power": 4,
+  "time": 270,
+  "ingredients": [
+    {
+      "tag": "spectrum:citrine_ores"
+    }
+  ],
+  "results": [
+    {
+      "item": "spectrum:citrine_powder",
+      "count": 12
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "techreborn"
+      ]
+    }
+  ]
+}

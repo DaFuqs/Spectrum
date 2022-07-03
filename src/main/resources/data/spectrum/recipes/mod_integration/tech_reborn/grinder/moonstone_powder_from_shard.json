@@ -1,0 +1,23 @@
+{
+  "type": "techreborn:grinder",
+  "power": 4,
+  "time": 270,
+  "ingredients": [
+    {
+      "item": "spectrum:moonstone_shard"
+    }
+  ],
+  "results": [
+    {
+      "item": "spectrum:moonstone_powder"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "techreborn"
+      ]
+    }
+  ]
+}

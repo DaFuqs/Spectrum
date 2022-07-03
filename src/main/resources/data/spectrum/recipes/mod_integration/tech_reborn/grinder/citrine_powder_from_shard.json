@@ -1,0 +1,23 @@
+{
+  "type": "techreborn:grinder",
+  "power": 4,
+  "time": 270,
+  "ingredients": [
+    {
+      "item": "spectrum:citrine_shard"
+    }
+  ],
+  "results": [
+    {
+      "item": "spectrum:citrine_powder"
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "techreborn"
+      ]
+    }
+  ]
+}

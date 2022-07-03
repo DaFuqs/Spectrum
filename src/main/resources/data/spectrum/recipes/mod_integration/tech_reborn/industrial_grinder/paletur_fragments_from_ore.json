@@ -1,0 +1,28 @@
+{
+  "type": "techreborn:industrial_grinder",
+  "power": 64,
+  "time": 100,
+  "tank": {
+    "fluid": "spectrum:liquid_crystal",
+    "amount": 100
+  },
+  "ingredients": [
+    {
+      "item": "spectrum:paletur_ore"
+    }
+  ],
+  "results": [
+    {
+      "item": "spectrum:paletur_fragments",
+      "count": 6
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "techreborn"
+      ]
+    }
+  ]
+}

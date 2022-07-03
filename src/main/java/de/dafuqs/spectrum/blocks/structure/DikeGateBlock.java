@@ -45,7 +45,11 @@ public class DikeGateBlock extends AbstractGlassBlock {
 	}
 	
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return getCollisionShape(state, world, pos, context);
+		if(context.isHolding(this.asItem())) {
+			return VoxelShapes.fullCube();
+		} else {
+			return getCollisionShape(state, world, pos, context);
+		}
 	}
 	
 	@Override

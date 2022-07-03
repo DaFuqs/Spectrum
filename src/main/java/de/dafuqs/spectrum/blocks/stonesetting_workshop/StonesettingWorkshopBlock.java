@@ -1,8 +1,6 @@
 package de.dafuqs.spectrum.blocks.stonesetting_workshop;
 
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -12,10 +10,14 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class StonesettingWorkshopBlock extends BlockWithEntity {
+
+    private static final VoxelShape SHAPE = Block.createCuboidShape(1, 0, 1, 15, 15, 15);
 
     public StonesettingWorkshopBlock(Settings settings) {
         super(settings);
@@ -24,7 +26,7 @@ public class StonesettingWorkshopBlock extends BlockWithEntity {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 
-        if (player.getStackInHand(hand).isEmpty())
+        if(hand == Hand.OFF_HAND)
             return super.onUse(state, world, pos, player, hand, hit);
 
         var blockEntity = world.getBlockEntity(pos);
@@ -32,14 +34,17 @@ public class StonesettingWorkshopBlock extends BlockWithEntity {
 
             var stack = player.getStackInHand(hand);
             if (stack.isEmpty()) {
+                var extracted = workshop.tryExtractItem(player, hand);
 
-
+                if (extracted)
+                    return ActionResult.success(true);
 
             }
             else {
+                var inserted = workshop.tryInsertItem(stack, player, hand);
 
-                if (workshop.tryInsertItem(stack, player, hand))
-                    return ActionResult.success(world.isClient());
+                if (inserted)
+                    return ActionResult.success(true);
 
             }
         }
@@ -56,8 +61,18 @@ public class StonesettingWorkshopBlock extends BlockWithEntity {
     }
 
     @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
+    }
+
+    @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    @Override
+    public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
+        return true;
     }
 
     @Nullable

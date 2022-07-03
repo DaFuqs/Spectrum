@@ -15,9 +15,11 @@ import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
+import de.dafuqs.spectrum.sar.modifier.SimpleDamageMultiplier;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.immortaldevs.sar.base.SarItemStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -36,6 +38,7 @@ import net.minecraft.network.packet.s2c.play.MobSpawnS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -87,7 +90,7 @@ public abstract class LivingEntityMixin {
 	@Shadow public abstract void setHealth(float health);
 	
 	@Shadow public abstract ItemStack getMainHandStack();
-	
+
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -198,8 +201,22 @@ public abstract class LivingEntityMixin {
 		return amount;
 	}
 
-	@ModifyVariable(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), argsOnly = true)
+	@ModifyVariable(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"), argsOnly = true)
 	public float spectrum$applyGraceDamage(float amount, DamageSource source) {
+
+		if (attacker == null)
+			return amount;
+
+		var mainHand = attacker.getStackInHand(Hand.MAIN_HAND);
+		var offHand = attacker.getStackInHand(Hand.OFF_HAND);
+		var mainMod = Optional.ofNullable(mainHand.getModifiers().get(SimpleDamageMultiplier.class));
+		var offMod = Optional.ofNullable(offHand.getModifiers().get(SimpleDamageMultiplier.class));
+
+		if (mainMod.isPresent())
+			amount = mainMod.get().apply(source, mainHand, amount);
+		if (offMod.isPresent())
+			amount = offMod.get().apply(source, mainHand, amount);
+
 		return amount;
 	}
 	

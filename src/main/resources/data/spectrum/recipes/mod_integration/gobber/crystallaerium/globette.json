@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_globette_bud",
-    "spectrum:medium_globette_bud",
     "spectrum:large_globette_bud",
     "spectrum:globette_cluster"
   ],

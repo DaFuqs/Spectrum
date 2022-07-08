@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_gold_bud",
-    "spectrum:medium_gold_bud",
     "spectrum:large_gold_bud",
     "spectrum:gold_cluster"
   ],

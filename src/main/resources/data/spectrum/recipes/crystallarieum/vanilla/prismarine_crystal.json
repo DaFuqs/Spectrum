@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_prismarine_bud",
-    "spectrum:medium_prismarine_bud",
     "spectrum:large_prismarine_bud",
     "spectrum:prismarine_cluster"
   ],

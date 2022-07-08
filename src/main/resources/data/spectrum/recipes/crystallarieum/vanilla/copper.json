@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_copper_bud",
-    "spectrum:medium_copper_bud",
     "spectrum:large_copper_bud",
     "spectrum:copper_cluster"
   ],

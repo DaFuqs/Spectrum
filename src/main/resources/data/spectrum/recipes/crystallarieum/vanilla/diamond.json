@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_diamond_bud",
-    "spectrum:medium_diamond_bud",
     "spectrum:large_diamond_bud",
     "spectrum:diamond_cluster"
   ],

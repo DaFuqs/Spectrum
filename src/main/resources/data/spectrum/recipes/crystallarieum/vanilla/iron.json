@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_iron_bud",
-    "spectrum:medium_iron_bud",
     "spectrum:large_iron_bud",
     "spectrum:iron_cluster"
   ],

@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_redstone_bud",
-    "spectrum:medium_redstone_bud",
     "spectrum:large_redstone_bud",
     "spectrum:redstone_cluster"
   ],

@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_coal_bud",
-    "spectrum:medium_coal_bud",
     "spectrum:large_coal_bud",
     "spectrum:coal_cluster"
   ],

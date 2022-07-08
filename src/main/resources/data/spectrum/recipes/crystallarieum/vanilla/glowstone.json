@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_glowstone_bud",
-    "spectrum:medium_glowstone_bud",
     "spectrum:large_glowstone_bud",
     "spectrum:glowstone_cluster"
   ],

@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_emerald_bud",
-    "spectrum:medium_emerald_bud",
     "spectrum:large_emerald_bud",
     "spectrum:emerald_cluster"
   ],

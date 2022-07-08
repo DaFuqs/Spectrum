@@ -686,71 +686,54 @@ public class SpectrumBlocks {
 	
 	// CRYSTALLARIEUM
 	public static final Block SMALL_COAL_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.COAL_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_COAL_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COAL_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_COAL_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COAL_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block COAL_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COAL_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_COPPER_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.COPPER_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_COPPER_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COPPER_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_COPPER_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COPPER_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block COPPER_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COPPER_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_DIAMOND_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.DIAMOND_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_DIAMOND_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_DIAMOND_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_DIAMOND_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_DIAMOND_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block DIAMOND_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_DIAMOND_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_EMERALD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.EMERALD_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_EMERALD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_EMERALD_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_EMERALD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_EMERALD_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block EMERALD_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_EMERALD_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.GLOWSTONE.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOWSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_GLOWSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOWSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block GLOWSTONE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOWSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_GOLD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.GOLD_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_GOLD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GOLD_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_GOLD_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GOLD_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block GOLD_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GOLD_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_IRON_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.IRON_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_IRON_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_IRON_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_IRON_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_IRON_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block IRON_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_IRON_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_LAPIS_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.LAPIS_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_LAPIS_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_LAPIS_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_LAPIS_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_LAPIS_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block LAPIS_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_LAPIS_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_NETHERITE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.NETHERITE_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_NETHERITE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_NETHERITE_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_NETHERITE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_NETHERITE_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block NETHERITE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_NETHERITE_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_PRISMARINE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.PRISMARINE_BRICKS.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_PRISMARINE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_PRISMARINE_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_PRISMARINE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_PRISMARINE_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block PRISMARINE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_PRISMARINE_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_QUARTZ_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.QUARTZ_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_QUARTZ_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_QUARTZ_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_QUARTZ_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_QUARTZ_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block QUARTZ_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_QUARTZ_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_REDSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.REDSTONE_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_REDSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_REDSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_REDSTONE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_REDSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block REDSTONE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_REDSTONE_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_CERTUS_QUARTZ_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(MapColor.TERRACOTTA_WHITE).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_CERTUS_QUARTZ_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_CERTUS_QUARTZ_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_CERTUS_QUARTZ_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_CERTUS_QUARTZ_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block CERTUS_QUARTZ_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_CERTUS_QUARTZ_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_FLUIX_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.PURPLE_CONCRETE.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_FLUIX_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_FLUIX_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_FLUIX_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_FLUIX_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block FLUIX_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_FLUIX_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_GLOBETTE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.BLUE_CONCRETE.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_GLOBETTE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_GLOBETTE_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block GLOBETTE_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_GLOBETTE_NETHER_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.RED_CONCRETE.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_GLOBETTE_NETHER_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_NETHER_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_GLOBETTE_NETHER_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_NETHER_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block GLOBETTE_NETHER_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_NETHER_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	public static final Block SMALL_GLOBETTE_END_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.GREEN_CONCRETE.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
-	public static final Block MEDIUM_GLOBETTE_END_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_END_BUD), CrystallarieumGrowableBlock.GrowthStage.MEDIUM);
 	public static final Block LARGE_GLOBETTE_END_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_END_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block GLOBETTE_END_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_END_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	
@@ -1008,89 +991,72 @@ public class SpectrumBlocks {
 	private static void registerCrystallarieumGrowingBlocks(FabricItemSettings fabricItemSettings) {
 		// vanilla
 		registerBlockWithItem("small_coal_bud", SMALL_COAL_BUD, fabricItemSettings, DyeColor.BROWN);
-		registerBlockWithItem("medium_coal_bud", MEDIUM_COAL_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("large_coal_bud", LARGE_COAL_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("coal_cluster", COAL_CLUSTER, fabricItemSettings, DyeColor.BROWN);
 		
 		registerBlockWithItem("small_iron_bud", SMALL_IRON_BUD, fabricItemSettings, DyeColor.BROWN);
-		registerBlockWithItem("medium_iron_bud", MEDIUM_IRON_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("large_iron_bud", LARGE_IRON_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("iron_cluster", IRON_CLUSTER, fabricItemSettings, DyeColor.BROWN);
 		
 		registerBlockWithItem("small_gold_bud", SMALL_GOLD_BUD, fabricItemSettings, DyeColor.BROWN);
-		registerBlockWithItem("medium_gold_bud", MEDIUM_GOLD_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("large_gold_bud", LARGE_GOLD_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("gold_cluster", GOLD_CLUSTER, fabricItemSettings, DyeColor.BROWN);
 		
 		registerBlockWithItem("small_diamond_bud", SMALL_DIAMOND_BUD, fabricItemSettings, DyeColor.CYAN);
-		registerBlockWithItem("medium_diamond_bud", MEDIUM_DIAMOND_BUD, fabricItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("large_diamond_bud", LARGE_DIAMOND_BUD, fabricItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("diamond_cluster", DIAMOND_CLUSTER, fabricItemSettings, DyeColor.CYAN);
 		
 		registerBlockWithItem("small_emerald_bud", SMALL_EMERALD_BUD, fabricItemSettings, DyeColor.CYAN);
-		registerBlockWithItem("medium_emerald_bud", MEDIUM_EMERALD_BUD, fabricItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("large_emerald_bud", LARGE_EMERALD_BUD, fabricItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("emerald_cluster", EMERALD_CLUSTER, fabricItemSettings, DyeColor.CYAN);
 		
 		registerBlockWithItem("small_redstone_bud", SMALL_REDSTONE_BUD, fabricItemSettings, DyeColor.RED);
-		registerBlockWithItem("medium_redstone_bud", MEDIUM_REDSTONE_BUD, fabricItemSettings, DyeColor.RED);
 		registerBlockWithItem("large_redstone_bud", LARGE_REDSTONE_BUD, fabricItemSettings, DyeColor.RED);
 		registerBlockWithItem("redstone_cluster", REDSTONE_CLUSTER, fabricItemSettings, DyeColor.RED);
 		
 		registerBlockWithItem("small_lapis_bud", SMALL_LAPIS_BUD, fabricItemSettings, DyeColor.PURPLE);
-		registerBlockWithItem("medium_lapis_bud", MEDIUM_LAPIS_BUD, fabricItemSettings, DyeColor.PURPLE);
 		registerBlockWithItem("large_lapis_bud", LARGE_LAPIS_BUD, fabricItemSettings, DyeColor.PURPLE);
 		registerBlockWithItem("lapis_cluster", LAPIS_CLUSTER, fabricItemSettings, DyeColor.PURPLE);
 		
 		registerBlockWithItem("small_copper_bud", SMALL_COPPER_BUD, fabricItemSettings, DyeColor.BROWN);
-		registerBlockWithItem("medium_copper_bud", MEDIUM_COPPER_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("large_copper_bud", LARGE_COPPER_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("copper_cluster", COPPER_CLUSTER, fabricItemSettings, DyeColor.BROWN);
 		
 		registerBlockWithItem("small_quartz_bud", SMALL_QUARTZ_BUD, fabricItemSettings, DyeColor.BROWN);
-		registerBlockWithItem("medium_quartz_bud", MEDIUM_QUARTZ_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("large_quartz_bud", LARGE_QUARTZ_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("quartz_cluster", QUARTZ_CLUSTER, fabricItemSettings, DyeColor.BROWN);
 		
 		registerBlockWithItem("small_netherite_bud", SMALL_NETHERITE_BUD, fabricItemSettings, DyeColor.BROWN);
-		registerBlockWithItem("medium_netherite_bud", MEDIUM_NETHERITE_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("large_netherite_bud", LARGE_NETHERITE_BUD, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("netherite_cluster", NETHERITE_CLUSTER, fabricItemSettings, DyeColor.BROWN);
 		
 		registerBlockWithItem("small_glowstone_bud", SMALL_GLOWSTONE_BUD, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("medium_glowstone_bud", MEDIUM_GLOWSTONE_BUD, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("large_glowstone_bud", LARGE_GLOWSTONE_BUD, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("glowstone_cluster", GLOWSTONE_CLUSTER, fabricItemSettings, DyeColor.YELLOW);
 		
 		registerBlockWithItem("small_prismarine_bud", SMALL_PRISMARINE_BUD, fabricItemSettings, DyeColor.CYAN);
-		registerBlockWithItem("medium_prismarine_bud", MEDIUM_PRISMARINE_BUD, fabricItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("large_prismarine_bud", LARGE_PRISMARINE_BUD, fabricItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("prismarine_cluster", PRISMARINE_CLUSTER, fabricItemSettings, DyeColor.CYAN);
 		
 		// ae2
 		registerBlockWithItem("small_certus_quartz_bud", SMALL_CERTUS_QUARTZ_BUD, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("medium_certus_quartz_bud", MEDIUM_CERTUS_QUARTZ_BUD, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("large_certus_quartz_bud", LARGE_CERTUS_QUARTZ_BUD, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("certus_quartz_cluster", CERTUS_QUARTZ_CLUSTER, fabricItemSettings, DyeColor.YELLOW);
 		
 		registerBlockWithItem("small_fluix_bud", SMALL_FLUIX_BUD, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("medium_fluix_bud", MEDIUM_FLUIX_BUD, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("large_fluix_bud", LARGE_FLUIX_BUD, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("fluix_cluster", FLUIX_CLUSTER, fabricItemSettings, DyeColor.YELLOW);
 		
 		// gobber2
 		registerBlockWithItem("small_globette_bud", SMALL_GLOBETTE_BUD, fabricItemSettings, DyeColor.BLUE);
-		registerBlockWithItem("medium_globette_bud", MEDIUM_GLOBETTE_BUD, fabricItemSettings, DyeColor.BLUE);
 		registerBlockWithItem("large_globette_bud", LARGE_GLOBETTE_BUD, fabricItemSettings, DyeColor.BLUE);
 		registerBlockWithItem("globette_cluster", GLOBETTE_CLUSTER, fabricItemSettings, DyeColor.BLUE);
 		
 		registerBlockWithItem("small_globette_nether_bud", SMALL_GLOBETTE_NETHER_BUD, fabricItemSettings, DyeColor.RED);
-		registerBlockWithItem("medium_globette_nether_bud", MEDIUM_GLOBETTE_NETHER_BUD, fabricItemSettings, DyeColor.RED);
 		registerBlockWithItem("large_globette_nether_bud", LARGE_GLOBETTE_NETHER_BUD, fabricItemSettings, DyeColor.RED);
 		registerBlockWithItem("globette_nether_cluster", GLOBETTE_NETHER_CLUSTER, fabricItemSettings, DyeColor.RED);
 		
 		registerBlockWithItem("small_globette_end_bud", SMALL_GLOBETTE_END_BUD, fabricItemSettings, DyeColor.GREEN);
-		registerBlockWithItem("medium_globette_end_bud", MEDIUM_GLOBETTE_END_BUD, fabricItemSettings, DyeColor.GREEN);
 		registerBlockWithItem("large_globette_end_bud", LARGE_GLOBETTE_END_BUD, fabricItemSettings, DyeColor.GREEN);
 		registerBlockWithItem("globette_end_cluster", GLOBETTE_END_CLUSTER, fabricItemSettings, DyeColor.GREEN);
 	}
@@ -1958,71 +1924,54 @@ public class SpectrumBlocks {
 		
 		// CRYSTALLARIEUM GROWABLES
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_COAL_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_COAL_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_COAL_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COAL_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_COPPER_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_COPPER_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_COPPER_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.COPPER_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_DIAMOND_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_DIAMOND_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_DIAMOND_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIAMOND_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_EMERALD_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_EMERALD_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_EMERALD_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EMERALD_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GLOWSTONE_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GLOWSTONE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GLOWSTONE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOWSTONE_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GOLD_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GOLD_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GOLD_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GOLD_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_IRON_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_IRON_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_IRON_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.IRON_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_LAPIS_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_LAPIS_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_LAPIS_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LAPIS_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_NETHERITE_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_NETHERITE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_NETHERITE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.NETHERITE_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_PRISMARINE_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_PRISMARINE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_PRISMARINE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.PRISMARINE_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_QUARTZ_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_QUARTZ_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_QUARTZ_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.QUARTZ_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_REDSTONE_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_REDSTONE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_REDSTONE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.REDSTONE_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_CERTUS_QUARTZ_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_CERTUS_QUARTZ_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_CERTUS_QUARTZ_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CERTUS_QUARTZ_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_FLUIX_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_FLUIX_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_FLUIX_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.FLUIX_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GLOBETTE_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GLOBETTE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GLOBETTE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOBETTE_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GLOBETTE_END_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GLOBETTE_END_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GLOBETTE_END_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOBETTE_END_CLUSTER, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GLOBETTE_NETHER_BUD, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEDIUM_GLOBETTE_NETHER_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GLOBETTE_NETHER_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOBETTE_NETHER_CLUSTER, RenderLayer.getCutout());
 		

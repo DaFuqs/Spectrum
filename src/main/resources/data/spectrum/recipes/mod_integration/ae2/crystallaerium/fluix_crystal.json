@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_fluix_bud",
-    "spectrum:medium_fluix_bud",
     "spectrum:large_fluix_bud",
     "spectrum:fluix_cluster"
   ],

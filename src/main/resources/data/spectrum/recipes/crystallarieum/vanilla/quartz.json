@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_quartz_bud",
-    "spectrum:medium_quartz_bud",
     "spectrum:large_quartz_bud",
     "spectrum:quartz_cluster"
   ],

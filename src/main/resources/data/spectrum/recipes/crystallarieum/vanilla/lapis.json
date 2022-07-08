@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_lapis_bud",
-    "spectrum:medium_lapis_bud",
     "spectrum:large_lapis_bud",
     "spectrum:lapis_cluster"
   ],

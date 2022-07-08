@@ -5,7 +5,6 @@
   },
   "growth_stage_states": [
     "spectrum:small_netherite_bud",
-    "spectrum:medium_netherite_bud",
     "spectrum:large_netherite_bud",
     "spectrum:netherite_cluster"
   ],

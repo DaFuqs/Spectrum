@@ -173,10 +173,10 @@ public class SpectrumBlocks {
 	
 	public static final Block MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
 	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block SMALL_MALACHITE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-	public static final Block LARGE_MALACHITE_BUD = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-	public static final Block MALACHITE_CLUSTER = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
-	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.STONE).hardness(4.0f));
+	public static final Block MALACHITE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.CHAIN));
+	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.CHAIN));
+	public static final Block SMALL_MALACHITE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.CHAIN));
+	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
 	
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));

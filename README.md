@@ -11,10 +11,10 @@ There is no hand-holding, so everything will require a fair bit of experimentati
 The world is interspersed with three kinds of fundamental kinds of magic: Time, Matter and Energy.
 Where these magical energies overflow in the spectral plane they form manifestations in the physical realm, crystallizing as shards. You can find these phenomena in the form of gemstone geodes.
 
-Your journey will be to go on an exploration journey to find out more about those energies and how to harness them and combine these basic energies to form all kinds of natural forces (color symbolism, basically, like lime standing for fertility).
+Your journey will be to go on an exploration journey to find out more about those energies and how to harness them and combine these basic energies to form all kinds of natural forces.
 
-Spectrum uses the CMYK color system to mix its colors: Amethyst as magenta, Topaz as Cyan, Citrines as Yellow.
-You are an Artist of Magic, using natural energies manifested in color to form truly wonderful constructions and phenomena. There is powerful treasure to uncover, but your path will be plastered with lots of hurdles - some of them more dangerous than others. 
+Spectrum uses the CMYK color system to mix its colors: Amethyst as Magenta, Topaz as Cyan, Citrines as Yellow.
+You are an Artist of Magic, using natural energies manifested in color to form truly wonderful constructions and phenomenae. There is powerful treasure to uncover, but your path will be plastered with lots of hurdles - some of them more dangerous than others. 
 
 At first you as a player are just tinkering around with what is possible, but sooner or later will find out where the true source of these energies lies.
 Your final goal? Discovering what's up with the magical energies surrounding the world and what is waiting for you beneath the once impenetrable bedrock floor.

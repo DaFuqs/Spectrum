@@ -3,7 +3,7 @@
   "base_ingredient": {
     "item": "minecraft:bucket"
   },
-  "use_up_base_ingredient": false,
+  "use_up_base_ingredient": true,
   "color": 526373,
   "ingredient1": {
     "item": "spectrum:midnight_chip"

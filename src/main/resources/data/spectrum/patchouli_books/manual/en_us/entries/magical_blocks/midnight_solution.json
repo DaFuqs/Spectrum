@@ -3,6 +3,7 @@
   "icon": "spectrum:midnight_solution_bucket",
   "advancement": "spectrum:progression/unlock_midnight_solution",
   "category": "spectrum:magical_blocks_category",
+  "turnin": "spectrum:midgame/collect_midnight_chip",
   "extra_recipe_mappings": {
     "spectrum:midnight_solution_bucket": 0,
     "spectrum:midnight_chip": 0,

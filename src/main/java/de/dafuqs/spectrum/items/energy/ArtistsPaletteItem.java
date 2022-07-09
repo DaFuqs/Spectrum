@@ -1,8 +1,8 @@
-package de.dafuqs.spectrum.items.magic;
+package de.dafuqs.spectrum.items.energy;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.energy.storage.PigmentPaletteInkStorage;
+import de.dafuqs.spectrum.energy.storage.ArtistsPaletteInkStorage;
 import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
@@ -20,13 +20,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorageItem<PigmentPaletteInkStorage>, LoomPatternProvider {
+public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorageItem<ArtistsPaletteInkStorage>, LoomPatternProvider {
 	
-	private final long maxEnergyPerColor;
+	private final long maxEnergyTotal;
 	
-	public PigmentPaletteItem(Settings settings, long maxEnergyPerColor) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_pigment_palette"));
-		this.maxEnergyPerColor = maxEnergyPerColor;
+	public ArtistsPaletteItem(Settings settings, long maxEnergyTotal) {
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_artists_palette"));
+		this.maxEnergyTotal = maxEnergyTotal;
 	}
 	
 	@Override
@@ -35,12 +35,12 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 	}
 	
 	@Override
-	public PigmentPaletteInkStorage getEnergyStorage(ItemStack itemStack) {
+	public ArtistsPaletteInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound != null && compound.contains("EnergyStore")) {
-			return PigmentPaletteInkStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return ArtistsPaletteInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new PigmentPaletteInkStorage(this.maxEnergyPerColor);
+		return new ArtistsPaletteInkStorage(this.maxEnergyTotal);
 	}
 	
 	// Omitting this would crash outside the dev env o.O
@@ -50,7 +50,7 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, PigmentPaletteInkStorage storage) {
+	public void setEnergyStorage(ItemStack itemStack, ArtistsPaletteInkStorage storage) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.put("EnergyStore", storage.toNbt());
 	}

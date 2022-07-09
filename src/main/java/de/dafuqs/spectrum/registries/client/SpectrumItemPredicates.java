@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries.client;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.items.magic.InkFlaskItem;
+import de.dafuqs.spectrum.items.energy.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.registries.SpectrumItems;

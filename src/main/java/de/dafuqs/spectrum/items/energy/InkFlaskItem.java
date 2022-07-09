@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.magic;
+package de.dafuqs.spectrum.items.energy;
 
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.color.InkColor;

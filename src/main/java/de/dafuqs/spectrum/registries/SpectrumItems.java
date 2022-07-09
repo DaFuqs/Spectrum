@@ -13,12 +13,9 @@ import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
 import de.dafuqs.spectrum.items.conditional.CloakedGemstoneColorItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
+import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
-import de.dafuqs.spectrum.items.magic.ArtistsPaletteItem;
-import de.dafuqs.spectrum.items.magic.InkAssortmentItem;
-import de.dafuqs.spectrum.items.magic.InkFlaskItem;
-import de.dafuqs.spectrum.items.magic.PigmentPaletteItem;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
@@ -26,7 +23,6 @@ import de.dafuqs.spectrum.registries.color.ItemColors;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
@@ -67,6 +63,7 @@ public class SpectrumItems {
 	public static FabricItemSettings toolUncommonItemSettingsSixteen = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16);
 	public static FabricItemSettings toolRareItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE);
 	public static FabricItemSettings toolRareItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(1);
+	public static FabricItemSettings toolEpicItemSettingsSingle = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.EPIC).maxCount(1);
 	
 	public static FabricItemSettings bedrockToolItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability());
 	public static FabricItemSettings bedrockArmorItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(-1);
@@ -337,6 +334,7 @@ public class SpectrumItems {
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(toolItemSettingsSingle, 64 * 100);
 	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(toolUncommonItemSettingsSingle, 64 * 64 * 100);
 	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(toolUncommonItemSettingsSingle, 64 * 64 * 64 * 64 * 100);
+	public static final CreativeInkAssortmentItem CREATIVE_INK_ASSORTMENT = new CreativeInkAssortmentItem(toolEpicItemSettingsSingle);
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(toolUncommonItemSettingsSingle);
 	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 1, 2, SpectrumCommon.locate("progression/unlock_lesser_potion_pendant"));
@@ -604,10 +602,11 @@ public class SpectrumItems {
 		register("whispy_circlet", WHISPY_CIRCLET, DyeColor.BROWN);
 		register("neat_ring", NEAT_RING, DyeColor.GREEN);
 		
-		register("ink_flask", INK_FLASK, DyeColor.PURPLE);
-		register("ink_assortment", INK_ASSORTMENT, DyeColor.PURPLE);
-		register("pigment_palette", PIGMENT_PALETTE, DyeColor.PURPLE);
-		register("artists_palette", ARTISTS_PALETTE, DyeColor.PURPLE);
+		register("ink_flask", INK_FLASK, DyeColor.WHITE);
+		register("ink_assortment", INK_ASSORTMENT, DyeColor.WHITE);
+		register("pigment_palette", PIGMENT_PALETTE, DyeColor.WHITE);
+		register("artists_palette", ARTISTS_PALETTE, DyeColor.WHITE);
+		register("creative_ink_assortment", CREATIVE_INK_ASSORTMENT, DyeColor.WHITE);
 	}
 	
 	public static void registerFluidBuckets() {

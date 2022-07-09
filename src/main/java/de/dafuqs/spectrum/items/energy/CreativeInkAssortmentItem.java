@@ -1,7 +1,7 @@
-package de.dafuqs.spectrum.items.magic;
+package de.dafuqs.spectrum.items.energy;
 
 import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.storage.CreativeInkStorage;
 import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -13,16 +13,12 @@ import net.minecraft.text.Text;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
 import java.util.List;
 
-public class InkAssortmentItem extends Item implements InkStorageItem<IndividualCappedInkStorage> {
+public class CreativeInkAssortmentItem extends Item implements InkStorageItem<CreativeInkStorage> {
 	
-	private final long maxEnergy;
-	
-	public InkAssortmentItem(Settings settings, long maxEnergy) {
+	public CreativeInkAssortmentItem(Settings settings) {
 		super(settings);
-		this.maxEnergy = maxEnergy;
 	}
 	
 	@Override
@@ -31,12 +27,12 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	}
 	
 	@Override
-	public IndividualCappedInkStorage getEnergyStorage(ItemStack itemStack) {
+	public CreativeInkStorage getEnergyStorage(ItemStack itemStack) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound != null && compound.contains("EnergyStore")) {
-			return IndividualCappedInkStorage.fromNbt(compound.getCompound("EnergyStore"));
+			return CreativeInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new IndividualCappedInkStorage(this.maxEnergy);
+		return new CreativeInkStorage();
 	}
 	
 	// Omitting this would crash outside the dev env o.O
@@ -46,10 +42,7 @@ public class InkAssortmentItem extends Item implements InkStorageItem<Individual
 	}
 	
 	@Override
-	public void setEnergyStorage(ItemStack itemStack, IndividualCappedInkStorage storage) {
-		NbtCompound compound = itemStack.getOrCreateNbt();
-		compound.put("EnergyStore", storage.toNbt());
-	}
+	public void setEnergyStorage(ItemStack itemStack, CreativeInkStorage storage) {	}
 	
 	@Override
 	@Environment(EnvType.CLIENT)

@@ -1764,6 +1764,9 @@
   "item.spectrum.ink_assortment": "Ink Assortment",
   "item.spectrum.ink_assortment.tooltip": "§7Stores up to %d§7 Ink per type",
 
+  "item.spectrum.creative_ink_assortment": "Creative Ink Assortment",
+  "item.spectrum.creative_ink_assortment.tooltip": "§7A never ending well of Ink",
+
   "block.spectrum.color_picker": "Color Picker",
   "block.spectrum.color_picker.tooltip": "Converts §2P§3i§cg§6m§be§en§dt§7 into Ink",
   "block.spectrum.inkwell": "Inkwell",

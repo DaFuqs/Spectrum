@@ -55,7 +55,9 @@ public class IndividualCappedInkStorage implements InkStorage {
 			
 			Map<InkColor, Long> colors = new HashMap<>();
 			for (InkColor color : InkColor.all()) {
-				colors.put(color, compound.getLong(color.toString()));
+				if(compound.contains(color.toString())) {
+					colors.put(color, compound.getLong(color.toString()));
+				}
 			}
 			return new IndividualCappedInkStorage(maxEnergyPerColor, colors);
 		}
@@ -156,8 +158,10 @@ public class IndividualCappedInkStorage implements InkStorage {
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip", getShortenedNumberString(maxEnergyPerColor)));
+	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
+		if(includeHeader) {
+			tooltip.add(new TranslatableText("item.spectrum.pigment_palette.tooltip", getShortenedNumberString(maxEnergyPerColor)));
+		}
 		for (Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
 			if (color.getValue() > 0) {
 				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + color.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(color.getValue())));
@@ -181,6 +185,10 @@ public class IndividualCappedInkStorage implements InkStorage {
 	@Override
 	public void clear() {
 		this.storedEnergy.replaceAll((c, v) -> 0L);
+	}
+	
+	public Set<InkColor> getSupportedColors() {
+		return this.storedEnergy.keySet();
 	}
 	
 }

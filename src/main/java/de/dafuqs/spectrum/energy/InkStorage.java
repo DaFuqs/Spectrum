@@ -150,9 +150,8 @@ public interface InkStorage {
 	// returns all stored energy with amounts
 	//Map<ICMYKColor, Integer> getEnergy();
 	
-	void addTooltip(World world, List<Text> tooltip, TooltipContext context);
+	void addTooltip(List<Text> tooltip, boolean includeHeader);
 	
 	long getRoom(InkColor color);
 
-	
 }

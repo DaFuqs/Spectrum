@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.InkStorageItem;
+import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
@@ -59,6 +60,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	protected SimpleInventory inventory;
 	protected boolean inventoryChanged;
 	
+	public static final Set<InkColor> USED_INK_COLORS = Set.of(InkColors.ORANGE, InkColors.LIGHT_BLUE, InkColors.MAGENTA, InkColors.BLACK);
 	public static final long INK_STORAGE_SIZE = 64*100;
 	protected IndividualCappedInkStorage inkStorage;
 	
@@ -67,12 +69,12 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	private Recipe currentRecipe; // blasting & cinderhearth
 	private int craftingTime;
 	private int craftingTimeTotal;
-	protected boolean paused;
+	protected boolean canTransferInk;
 	
 	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.CINDERHEARTH, pos, state);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE, Set.of(InkColors.ORANGE, InkColors.LIGHT_BLUE, InkColors.MAGENTA, InkColors.BLACK));
+		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE, USED_INK_COLORS);
 	}
 	
 	@Override
@@ -123,7 +125,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		}
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
-		this.paused = nbt.getBoolean("Paused");
+		this.canTransferInk = nbt.getBoolean("Paused");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
 		if (nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
@@ -156,7 +158,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		nbt.put("InkStorage", this.inkStorage.toNbt());
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbt.putBoolean("Paused", this.paused);
+		nbt.putBoolean("Paused", this.canTransferInk);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
@@ -174,7 +176,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			cinderhearthBlockEntity.calculateUpgrades();
 		}
 		
-		if (!cinderhearthBlockEntity.paused) {
+		if (cinderhearthBlockEntity.canTransferInk) {
 			boolean didSomething = false;
 			ItemStack stack = cinderhearthBlockEntity.inventory.getStack(INK_PROVIDER_SLOT_ID);
 			if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
@@ -184,7 +186,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			if (didSomething) {
 				cinderhearthBlockEntity.markDirty();
 			} else {
-				cinderhearthBlockEntity.paused = true;
+				cinderhearthBlockEntity.canTransferInk = false;
 			}
 		}
 		
@@ -359,8 +361,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	public void inventoryChanged() {
 		this.inventoryChanged = true;
-		this.inventory.markDirty();
-		markDirty();
+		this.canTransferInk = true;
+		this.markDirty();
 	}
 	
 	@Override
@@ -384,7 +386,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	public boolean shouldUpdateClients() {
-		return !this.paused;
+		return this.canTransferInk;
 	}
 	
 }

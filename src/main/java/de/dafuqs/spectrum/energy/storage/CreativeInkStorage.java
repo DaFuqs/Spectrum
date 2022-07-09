@@ -99,8 +99,10 @@ public class CreativeInkStorage implements InkStorage {
 	public void clear() { }
 	
 	@Override
-	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.creative_ink_assortment.tooltip"));
+	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
+		if(includeHeader) {
+			tooltip.add(new TranslatableText("item.spectrum.creative_ink_assortment.tooltip"));
+		}
 	}
 	
 	@Override

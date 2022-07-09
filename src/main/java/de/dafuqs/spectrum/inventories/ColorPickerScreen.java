@@ -6,7 +6,8 @@ import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.inventories.widgets.ColorSelectionWidget;
 import de.dafuqs.spectrum.inventories.widgets.InkGaugeWidget;
-import de.dafuqs.spectrum.inventories.widgets.VerticalInkMeterWidget;
+import de.dafuqs.spectrum.inventories.widgets.InkMeterWidget;
+import de.dafuqs.spectrum.inventories.widgets.StackedInkMeterWidget;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
@@ -22,7 +23,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	protected final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/color_picker.png");
 	protected ColorSelectionWidget colorSelectionWidget;
 	protected InkGaugeWidget inkGaugeWidget;
-	protected VerticalInkMeterWidget inkMeterWidget;
+	protected StackedInkMeterWidget inkMeterWidget;
 	
 	public ColorPickerScreen(ColorPickerScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
@@ -38,7 +39,7 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		
 		this.colorSelectionWidget = new ColorSelectionWidget(startX + 113, startY + 55, startX + 139, startY + 25, this, this.handler.getBlockEntity());
 		this.inkGaugeWidget = new InkGaugeWidget(startX + 54, startY + 21, 42, 42, this, this.handler.getBlockEntity().getEnergyStorage());
-		this.inkMeterWidget = new VerticalInkMeterWidget(startX + 100, startY + 21, 4, 40, this, this.handler.getBlockEntity().getEnergyStorage());
+		this.inkMeterWidget = new StackedInkMeterWidget(startX + 100, startY + 21, 4, 40, this, this.handler.getBlockEntity().getEnergyStorage());
 		
 		this.colorSelectionWidget.setChangedListener(this);
 		

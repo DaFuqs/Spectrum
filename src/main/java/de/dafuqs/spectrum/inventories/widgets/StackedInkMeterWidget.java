@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
-public class VerticalInkMeterWidget extends DrawableHelper implements Drawable, Element, Selectable {
+public class StackedInkMeterWidget extends DrawableHelper implements Drawable, Element, Selectable {
 	
 	public int x;
 	public int y;
@@ -31,7 +31,7 @@ public class VerticalInkMeterWidget extends DrawableHelper implements Drawable, 
 	protected Screen screen;
 	protected InkStorage inkStorage;
 	
-	public VerticalInkMeterWidget(int x, int y, int width, int height, Screen screen, InkStorage inkStorage) {
+	public StackedInkMeterWidget(int x, int y, int width, int height, Screen screen, InkStorage inkStorage) {
 		this.x = x;
 		this.y = y;
 		this.width = width;

@@ -2,25 +2,33 @@ package de.dafuqs.spectrum.inventories.widgets;
 
 import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Environment(EnvType.CLIENT)
-public class InkStorageMeterWidget extends DrawableHelper implements Drawable, Element, Selectable {
+public class InkMeterWidget extends DrawableHelper implements Drawable, Element, Selectable {
+	
+	public static int WIDTH_PER_COLOR = 4;
+	public static int SPACE_BETWEEN_COLORS = 2;
 	
 	public int x;
 	public int y;
@@ -29,12 +37,12 @@ public class InkStorageMeterWidget extends DrawableHelper implements Drawable, E
 	protected boolean hovered;
 	
 	protected Screen screen;
-	protected InkStorage inkStorage;
+	protected IndividualCappedInkStorage inkStorage;
 	
-	public InkStorageMeterWidget(int x, int y, int width, int height, Screen screen, InkStorage inkStorage) {
+	public InkMeterWidget(int x, int y, int height, Screen screen, IndividualCappedInkStorage inkStorage) {
 		this.x = x;
 		this.y = y;
-		this.width = width;
+		this.width = inkStorage.getSupportedColors().size() * (WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS) - SPACE_BETWEEN_COLORS;
 		this.height = height;
 		
 		this.screen = screen;
@@ -61,30 +69,26 @@ public class InkStorageMeterWidget extends DrawableHelper implements Drawable, E
 	}
 	
 	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
-		long currentTotal = this.inkStorage.getCurrentTotal();
-		String readableCurrentTotalString = Support.getShortenedNumberString(currentTotal);
-		String percent = Support.getSensiblePercent(this.inkStorage.getCurrentTotal(), (this.inkStorage.getMaxTotal()));
-		screen.renderTooltip(matrices,
-				List.of(new TranslatableText("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
-				Optional.empty(), x, y);
+		List<Text> tooltip = new ArrayList<>();
+		inkStorage.addTooltip(tooltip, false);
+		screen.renderTooltip(matrices, tooltip, Optional.empty(), x, y);
 	}
 	
 	public void draw(MatrixStack matrices) {
-		long currentTotal = inkStorage.getCurrentTotal();
+		int startHeight = this.y + this.height;
+		int currentXOffset = 0;
 		
-		if (currentTotal > 0) {
-			long maxTotal = inkStorage.getMaxTotal();
-			
-			int currentHeight = this.y + this.height;
-			for (Map.Entry<InkColor, Long> entry : inkStorage.getEnergy().entrySet()) {
-				long amount = entry.getValue();
-				if(amount > 0) {
-					int height = Math.max(1, Math.round (((float) amount / ((float) maxTotal / this.height))));
-					RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, entry.getKey().getColor());
-					currentHeight -= height;
-				}
+		long total = inkStorage.getMaxPerColor();
+		for(InkColor inkColor : inkStorage.getSupportedColors()) {
+			long amount = inkStorage.getEnergy(inkColor);
+			if (amount > 0) {
+				int height = Math.max(1, Math.round(((float) amount / ((float) total / this.height))));
+				RenderHelper.fillQuad(matrices, this.x + currentXOffset, startHeight - height, height, WIDTH_PER_COLOR, inkColor.getColor());
 			}
+			currentXOffset = currentXOffset + WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS;
 		}
+		
+
 	}
 	
 }

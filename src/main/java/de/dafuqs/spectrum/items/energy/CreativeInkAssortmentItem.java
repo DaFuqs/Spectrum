@@ -47,7 +47,7 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		getEnergyStorage(stack).addTooltip(world, tooltip, context);
+		getEnergyStorage(stack).addTooltip(tooltip, true);
 	}
 	
 }

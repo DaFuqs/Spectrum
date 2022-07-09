@@ -252,10 +252,11 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void addTooltip(World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
-		tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip.mix_on_demand"));
-		
+	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
+		if(includeHeader) {
+			tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
+			tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip.mix_on_demand"));
+		}
 		long cyan = this.storedEnergy.get(InkColors.CYAN);
 		if (cyan > 0) {
 			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet.cyan", getShortenedNumberString(cyan)));

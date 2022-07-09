@@ -1,6 +1,6 @@
 {
   "name": "Resonance",
-  "icon": "minecraft:diamond_pickaxe",
+  "icon": "spectrum:resonant_pickaxe",
   "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
   "category": "spectrum:enchanting_category",
   "pages": [
@@ -12,19 +12,21 @@
       "type": "patchouli:spotlight",
       "title": "Characteristics",
       "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
-      "text": "Uses gentle vibrations to allow some blocks to drop themselves.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune, Foundry and Pest Control.$(br2)$(br2)$(italic)We should take this geode$(br)and push it somewhere else.$()"
+      "text": "Uses gentle vibrations to allow some blocks to drop themselves.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Foundry and Pest Control.$(br2)$(br2)"
     },
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
+      "advancement": "spectrum:progression/enchantments/resonance",
       "recipe": "spectrum:enchanter/spectrum_books/book_resonance",
       "text": "You can infuse a common Book with Resonance by surrounding your Enchanter with Pigment and the other required materials."
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Budding Blocks",
-      "item": "spectrum:budding_citrine",
-      "text": "The cracks in these blocks allows them to create new buds in a short time (well, short compared to their creation history; for you, the wait still feels like eons).$(br2)Waiting for them in your own house instead of one of your outposts sounds cozier."
+      "title": "Native Resources",
+      "item": "spectrum:native_iron",
+      "advancement": "spectrum:lategame/collect_native_resource",
+      "text": "Breaking Ores with Resonance directly drops $(l:resources/native_resources)Native Resources$()."
     },
     {
       "type": "patchouli:spotlight",

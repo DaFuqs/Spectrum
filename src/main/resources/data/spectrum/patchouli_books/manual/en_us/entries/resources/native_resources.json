@@ -1,0 +1,40 @@
+{
+  "name": "Native Resources",
+  "advancement": "spectrum:lategame/collect_native_resource",
+  "icon": "spectrum:native_iron",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:native_coal": 0,
+    "spectrum:native_iron": 0,
+    "spectrum:native_gold": 0,
+    "spectrum:native_diamond": 0,
+    "spectrum:native_emerald": 0,
+    "spectrum:native_redstone": 0,
+    "spectrum:native_lapis": 0,
+    "spectrum:native_copper": 0,
+    "spectrum:native_quartz": 0,
+    "spectrum:native_netherite": 0,
+    "spectrum:native_glowstone": 0,
+    "spectrum:native_prismarine": 0,
+
+    "spectrum:native_certus_quartz": 0,
+    "spectrum:native_fluix": 0,
+
+    "spectrum:native_globette": 0,
+    "spectrum:native_globette_nether": 0,
+    "spectrum:native_globette_end": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Native Resources",
+      "text": "Comparable to their common resource counterparts, like $(thing)Raw Copper$(), these variants much more pure than what you were used to before. Not only that: These shivers are almost surrounded by a invisible sheen, gently protecting it from outside forces, up to $(thing)Native Copper$() not even oxidizing anymore."
+    },
+    {
+      "type": "spectrum:cinderhearth_smelting",
+      "recipe": "spectrum:recipes/cinderhearth/native_resources/native_iron",
+      "advancement": "spectrum:midgame/smelt_native_resource_in_cinderhearth",
+      "text": "Smelting these in the $(l:magical_blocks/cinderhearth)Cinderhearth$() yields a higher output instead of their common variants, like $(thing)Raw Iron$()."
+    }
+  ]
+}

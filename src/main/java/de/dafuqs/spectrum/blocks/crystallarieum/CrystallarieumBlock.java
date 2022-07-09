@@ -26,8 +26,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class CrystallarieumBlock extends BlockWithEntity {
 	
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-	
 	public CrystallarieumBlock(Settings settings) {
 		super(settings);
 	}
@@ -96,11 +94,6 @@ public class CrystallarieumBlock extends BlockWithEntity {
 			crystallarieumBlockEntity.setOwner(player);
 			player.openHandledScreen(crystallarieumBlockEntity);
 		}
-	}
-	
-	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
 	}
 	
 	// drop all currently stored items

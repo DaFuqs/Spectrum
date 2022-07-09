@@ -1,8 +1,9 @@
 {
-	"credit": "Made by Azazelthedemonlord ~ https://azazelthedemonlord.newgrounds.com/ ~ ♡",
+	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "spectrum:block/crystallarieum",
+		"1": "spectrum:block/liquid_crystal_still",
 		"particle": "spectrum:block/crystallarieum"
 	},
 	"elements": [
@@ -70,6 +71,19 @@
 				"up": {"uv": [8.5, 8.5, 15.5, 15.5], "texture": "#0"},
 				"down": {"uv": [8.5, 8.5, 15.5, 15.5], "texture": "#0"}
 			}
+		},
+		{
+			"name": "fluid",
+			"from": [1, 15.5, 1],
+			"to": [15, 15.5, 15],
+			"faces": {
+				"north": {"uv": [0, 0, 7, 0], "texture": "#missing"},
+				"east": {"uv": [0, 0, 7, 0], "texture": "#missing"},
+				"south": {"uv": [0, 0, 7, 0], "texture": "#missing"},
+				"west": {"uv": [0, 0, 7, 0], "texture": "#missing"},
+				"up": {"uv": [0, 0, 7, 7], "texture": "#1"},
+				"down": {"uv": [0, 0, 7, 7], "texture": "#missing"}
+			}
 		}
 	],
 	"display": {
@@ -119,7 +133,8 @@
 					"children": []
 				},
 				3,
-				4
+				4,
+				5
 			]
 		}
 	]

@@ -2104,6 +2104,8 @@
   "advancements.spectrum.doubled_output_in_cinderhearth.description": "Use Light Blue Ink in the Cinderhearth to double your smelting Output",
   "advancements.spectrum.smelt_native_resource_in_cinderhearth.title": "Ore Avalanche",
   "advancements.spectrum.smelt_native_resource_in_cinderhearth.description": "The Cinderhearth seems to be immensely more efficient when smelting native resource clusters compared to a mundane Blast Furnace",
+  "advancements.spectrum.collect_native_resource.title": "Same, but Different",
+  "advancements.spectrum.collect_native_resource.description": "Collect a Native Resource Cluster. These are much more pure than your basic ore scraps",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

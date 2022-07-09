@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.graces;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.azure_dike.AzureDikeComponent;
 import de.dafuqs.spectrum.items.CrystalGraceItem;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;

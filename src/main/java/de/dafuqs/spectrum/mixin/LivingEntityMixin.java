@@ -19,7 +19,6 @@ import de.dafuqs.spectrum.sar.modifier.SimpleDamageMultiplier;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
-import net.immortaldevs.sar.base.SarItemStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;

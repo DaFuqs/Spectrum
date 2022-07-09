@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.graces;
 
-import de.dafuqs.spectrum.items.CrystalGraceItem;
 import dev.onyxstudios.cca.api.v3.item.ItemComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;

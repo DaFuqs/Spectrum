@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.mixin;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.inventories.slots.ShadowSlot;
 import de.dafuqs.spectrum.inventories.slots.SlotWithOnClickAction;
 import de.dafuqs.spectrum.mixin.accessors.ItemAccessor;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;

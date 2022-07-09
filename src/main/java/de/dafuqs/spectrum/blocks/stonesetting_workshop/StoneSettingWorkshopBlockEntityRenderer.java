@@ -9,7 +9,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3f;
 
-import static de.dafuqs.spectrum.blocks.stonesetting_workshop.StonesettingWorkshopBlockEntity.*;
+import static de.dafuqs.spectrum.blocks.stonesetting_workshop.StonesettingWorkshopBlockEntity.INFUSEE_SLOT;
+import static de.dafuqs.spectrum.blocks.stonesetting_workshop.StonesettingWorkshopBlockEntity.SHARD_SLOT;
 
 public class StoneSettingWorkshopBlockEntityRenderer implements BlockEntityRenderer<StonesettingWorkshopBlockEntity> {
 

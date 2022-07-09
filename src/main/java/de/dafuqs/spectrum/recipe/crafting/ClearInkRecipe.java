@@ -1,8 +1,6 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
-import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;

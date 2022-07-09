@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.energy;
 
-import de.dafuqs.spectrum.blocks.pastel_network.nodes.PastelNetworkNodeBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;

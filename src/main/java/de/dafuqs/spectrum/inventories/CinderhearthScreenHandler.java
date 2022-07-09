@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.blocks.cinderhearth.CinderhearthBlockEntity;
-import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.inventories.slots.ExperienceStorageItemSlot;
+import de.dafuqs.spectrum.inventories.slots.InkInputSlot;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;

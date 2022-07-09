@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.sar;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.graces.GraceBearerComponent;
 import de.dafuqs.spectrum.graces.crystal.CrystalGraceComponent;
 import net.immortaldevs.sar.api.Component;
 import net.immortaldevs.sar.api.SarRegistries;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumComponents {

@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.energy;
 
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.storage.CreativeInkStorage;
-import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;

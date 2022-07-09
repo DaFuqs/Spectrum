@@ -13,7 +13,9 @@ public class InkInputSlot extends Slot {
 	
 	@Override
 	public boolean canInsert(ItemStack stack) {
-		return super.canInsert(stack) && stack.getItem() instanceof InkStorageItem inkStorageItem && (inkStorageItem.getDrainability() == InkStorageItem.Drainability.ALWAYS || inkStorageItem.getDrainability() == InkStorageItem.Drainability.MACHINE_ONLY);
+		return super.canInsert(stack)
+				&& stack.getItem() instanceof InkStorageItem inkStorageItem
+				&& (inkStorageItem.getDrainability() == InkStorageItem.Drainability.ALWAYS || inkStorageItem.getDrainability() == InkStorageItem.Drainability.MACHINE_ONLY);
 	}
 	
 }

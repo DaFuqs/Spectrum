@@ -50,9 +50,9 @@ import java.util.*;
 public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, Inventory, ExtendedScreenHandlerFactory, InkStorageBlockEntity<IndividualCappedInkStorage> {
 	
 	public static final int INVENTORY_SIZE = 11;
-	public static final int INPUT_SLOT_ID = 0;
-	public static final int INK_PROVIDER_SLOT_ID = 1;
-	public static final int EXPERIENCE_STORAGE_ITEM_SLOT_ID = 2;
+	public static final int INK_PROVIDER_SLOT_ID = 0;
+	public static final int EXPERIENCE_STORAGE_ITEM_SLOT_ID = 1;
+	public static final int INPUT_SLOT_ID = 2;
 	public static final int FIRST_OUTPUT_SLOT_ID = 3;
 	public static final int LAST_OUTPUT_SLOT_ID = 10;
 	
@@ -219,7 +219,6 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) cinderhearthBlockEntity.world, cinderhearthBlockEntity.pos);
 		}
 	}
-	
 	
 	private static void calculateRecipe(@NotNull World world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
 		// test the cached recipe => faster

@@ -77,12 +77,7 @@
 			"from": [1, 15.5, 1],
 			"to": [15, 15.5, 15],
 			"faces": {
-				"north": {"uv": [0, 0, 7, 0], "texture": "#missing"},
-				"east": {"uv": [0, 0, 7, 0], "texture": "#missing"},
-				"south": {"uv": [0, 0, 7, 0], "texture": "#missing"},
-				"west": {"uv": [0, 0, 7, 0], "texture": "#missing"},
-				"up": {"uv": [0, 0, 7, 7], "texture": "#1"},
-				"down": {"uv": [0, 0, 7, 7], "texture": "#missing"}
+				"up": {"uv": [0, 0, 7, 7], "texture": "#1"}
 			}
 		}
 	],

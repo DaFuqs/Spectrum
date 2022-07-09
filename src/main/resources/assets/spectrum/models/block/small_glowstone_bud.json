@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/crop",
+  "parent": "spectrum:block/crystallarieum_farmable",
   "textures": {
-    "crop": "spectrum:block/small_glowstone_bud"
+    "cross": "spectrum:block/small_glowstone_bud"
   }
 }

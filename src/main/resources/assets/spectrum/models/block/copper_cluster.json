@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/crop",
+  "parent": "spectrum:block/crystallarieum_farmable",
   "textures": {
-    "crop": "spectrum:block/copper_cluster"
+    "cross": "spectrum:block/copper_cluster"
   }
 }

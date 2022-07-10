@@ -11,6 +11,11 @@
     {
       "item": "ae2:fluix_dust",
       "count": 2
+    },
+    {
+      "item": "ae2:fluix_crystal_seed",
+      "count": 1,
+      "chance": 0.04
     }
   ],
   "experience": 1,

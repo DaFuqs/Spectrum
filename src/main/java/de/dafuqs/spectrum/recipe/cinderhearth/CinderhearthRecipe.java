@@ -145,7 +145,7 @@ public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
 		for(Pair<ItemStack, Float> possibleOutput : this.outputsWithChance) {
 			float chance = possibleOutput.getRight();
 			if(chance >= 1.0 || random.nextFloat() < chance) {
-				output.add(possibleOutput.getLeft());
+				output.add(possibleOutput.getLeft().copy());
 			}
 		}
 		return output;

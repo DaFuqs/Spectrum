@@ -11,6 +11,11 @@
     {
       "item": "ae2:certus_quartz_dust",
       "count": 2
+    },
+    {
+      "item": "ae2:certus_crystal_seed",
+      "count": 1,
+      "chance": 0.04
     }
   ],
   "experience": 1,

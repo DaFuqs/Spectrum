@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.inventories.PotionWorkshopScreen;
 import de.dafuqs.spectrum.items.magic_items.NaturesStaffItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
+import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
@@ -56,10 +57,11 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new FreezingCategory());
 		registry.add(new InkConvertingCategory());
 		registry.add(new CrystallarieumCategory());
+		registry.add(new CinderhearthCategory());
 		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
 		
-		EntryIngredient pedestalStacks = EntryIngredient.of(
+		EntryIngredient pedestals = EntryIngredient.of(
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_TOPAZ),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_BASIC_CITRINE),
@@ -67,30 +69,28 @@ public class REIClientIntegration implements REIClientPlugin {
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_ONYX),
 				EntryStacks.of(SpectrumBlocks.PEDESTAL_MOONSTONE)
 		);
-		registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestalStacks);
-		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestalStacks);
-		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.SCARLET_FRAGMENT_BLOCK), EntryStacks.of(SpectrumBlocks.PALETUR_FRAGMENT_BLOCK));
+		registry.addWorkstations(BuiltinPlugin.CRAFTING, pedestals);
+		registry.addWorkstations(SpectrumPlugins.PEDESTAL_CRAFTING, pedestals);
 		
-		EntryIngredient fusionShrineStacks = EntryIngredient.of(
-				EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT),
-				EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE)
-		);
-		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, fusionShrineStacks);
+		registry.addWorkstations(SpectrumPlugins.ANVIL_CRUSHING, EntryStacks.of(Blocks.ANVIL), EntryStacks.of(SpectrumBlocks.BEDROCK_ANVIL), EntryStacks.of(SpectrumBlocks.SCARLET_FRAGMENT_BLOCK), EntryStacks.of(SpectrumBlocks.PALETUR_FRAGMENT_BLOCK));
+		registry.addWorkstations(SpectrumPlugins.FUSION_SHRINE, EntryIngredient.of(EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT), EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_CALCITE)));
 		registry.addWorkstations(SpectrumPlugins.NATURES_STAFF, EntryStacks.of(SpectrumItems.NATURES_STAFF));
 		registry.addWorkstations(SpectrumPlugins.HEATING, EntryStacks.of(SpectrumBlocks.BLAZE_MOB_BLOCK));
 		registry.addWorkstations(SpectrumPlugins.FREEZING, EntryStacks.of(SpectrumBlocks.POLAR_BEAR_MOB_BLOCK));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTER, EntryStacks.of(SpectrumBlocks.ENCHANTER));
 		registry.addWorkstations(SpectrumPlugins.ENCHANTMENT_UPGRADE, EntryStacks.of(SpectrumBlocks.ENCHANTER));
+		registry.addWorkstations(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING, EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
+		registry.addWorkstations(SpectrumPlugins.SPIRIT_INSTILLER, EntryStacks.of(SpectrumBlocks.SPIRIT_INSTILLER));
+		registry.addWorkstations(SpectrumPlugins.INK_CONVERTING, EntryStacks.of(SpectrumBlocks.COLOR_PICKER));
+		registry.addWorkstations(SpectrumPlugins.CRYSTALLARIEUM, EntryStacks.of(SpectrumBlocks.CRYSTALLARIEUM));
 		
 		registry.addWorkstations(BuiltinPlugin.BREWING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_BREWING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_CRAFTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		registry.addWorkstations(SpectrumPlugins.POTION_WORKSHOP_REACTING, EntryStacks.of(SpectrumBlocks.POTION_WORKSHOP));
 		
-		registry.addWorkstations(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING, EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET));
-		registry.addWorkstations(SpectrumPlugins.SPIRIT_INSTILLER, EntryStacks.of(SpectrumBlocks.SPIRIT_INSTILLER));
-		registry.addWorkstations(SpectrumPlugins.INK_CONVERTING, EntryStacks.of(SpectrumBlocks.COLOR_PICKER));
-		registry.addWorkstations(SpectrumPlugins.CRYSTALLARIEUM, EntryStacks.of(SpectrumBlocks.CRYSTALLARIEUM));
+		registry.addWorkstations(BuiltinPlugin.BLASTING, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
+		registry.addWorkstations(SpectrumPlugins.CINDERHEARTH, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		
 		// For item crushing and others are in-world recipes there is no gui to fill
 		// therefore the plus button is obsolete
@@ -104,7 +104,6 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.removePlusButton(SpectrumPlugins.SPIRIT_INSTILLER);
 		registry.removePlusButton(SpectrumPlugins.HEATING);
 		registry.removePlusButton(SpectrumPlugins.FREEZING);
-		registry.removePlusButton(SpectrumPlugins.CRYSTALLARIEUM);
 	}
 	
 	@Override
@@ -121,6 +120,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerRecipeFiller(InkConvertingRecipe.class, SpectrumRecipeTypes.INK_CONVERTING, InkConvertingDisplay::new);
 		registry.registerRecipeFiller(PotionWorkshopReactingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, PotionWorkshopReactingDisplay::new);
 		registry.registerRecipeFiller(CrystallarieumRecipe.class, SpectrumRecipeTypes.CRYSTALLARIEUM, CrystallarieumDisplay::new);
+		registry.registerRecipeFiller(CinderhearthRecipe.class, SpectrumRecipeTypes.CINDERHEARTH, CinderhearthDisplay::new);
 		
 		NaturesStaffItem.BLOCK_CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()))));
 		FreezingMobBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
@@ -155,6 +155,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerContainerClickArea(new Rectangle(28, 41, 10, 42), PotionWorkshopScreen.class, SpectrumPlugins.POTION_WORKSHOP_CRAFTING);
 		
 		registry.registerContainerClickArea(new Rectangle(35, 33, 22, 15), CinderhearthScreen.class, SpectrumPlugins.CINDERHEARTH);
+		registry.registerContainerClickArea(new Rectangle(35, 33, 22, 15), CinderhearthScreen.class, BuiltinPlugin.BLASTING);
 	}
 	
 }

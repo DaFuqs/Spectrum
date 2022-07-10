@@ -33,6 +33,7 @@ public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final Ingredient inputIngredient;
 	protected final int time;
 	protected final float experience;
+	
 	protected final List<Pair<ItemStack, Float>> outputsWithChance;
 	protected final Identifier requiredAdvancementIdentifier;
 
@@ -136,7 +137,7 @@ public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
 		return this.experience;
 	}
 	
-	public double getCraftingTime() {
+	public int getCraftingTime() {
 		return this.time;
 	}
 	
@@ -149,6 +150,18 @@ public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
 			}
 		}
 		return output;
+	}
+	
+	public List<ItemStack> getPossibleOutputs() {
+		List<ItemStack> outputs = new ArrayList<>();
+		for(Pair<ItemStack, Float> pair : this.outputsWithChance) {
+			outputs.add(pair.getLeft());
+		}
+		return outputs;
+	}
+	
+	public List<Pair<ItemStack, Float>> getOutputsWithChance() {
+		return outputsWithChance;
 	}
 	
 }

@@ -11,7 +11,9 @@ import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -21,11 +23,16 @@ import java.util.List;
 public class CinderhearthDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
 	protected final Identifier requiredAdvancementIdentifier;
+	protected final float experience;
+	protected final int craftingTime;
+	protected final List<Pair<ItemStack, Float>> outputsWithChance;
 	
 	public CinderhearthDisplay(@NotNull CinderhearthRecipe recipe) {
-		super(Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredientStack())), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
-
+		super(Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), List.of(EntryIngredients.ofItemStacks(recipe.getPossibleOutputs())));
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
+		this.outputsWithChance = recipe.getOutputsWithChance();
+		this.experience = recipe.getExperience();
+		this.craftingTime = recipe.getCraftingTime();
 	}
 	
 	@Override

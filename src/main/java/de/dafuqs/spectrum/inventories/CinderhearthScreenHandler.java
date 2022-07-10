@@ -32,7 +32,7 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 	public void sendContentUpdates() {
 		super.sendContentUpdates();
 		
-		if(this.player != null && this.blockEntity.shouldUpdateClients()) {
+		if(this.player != null && this.blockEntity.getInkDirty()) {
 			SpectrumS2CPacketSender.updateBlockEntityInk(blockEntity.getPos(), blockEntity.getEnergyStorage(), player);
 		}
 	}

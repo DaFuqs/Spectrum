@@ -102,7 +102,7 @@ public interface InkStorage {
 	// returns the amount of energy that could not be added
 	long addEnergy(InkColor color, long amount);
 	
-	// returns requestedAmount of energy. Returns the amount of energy that could be drained
+	// Drains energy from the storage. Returns the amount of energy that could be drained
 	// In contrast to requestEnergy this drains the energy up until 0, even if not requestedAmount of energy is stored
 	long drainEnergy(InkColor color, long requestedAmount);
 	

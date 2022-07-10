@@ -31,7 +31,7 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 	public void sendContentUpdates() {
 		super.sendContentUpdates();
 		
-		if(this.player != null && this.blockEntity.shouldUpdateClients()) {
+		if(this.player != null && this.blockEntity.getInkDirty()) {
 			SpectrumS2CPacketSender.updateBlockEntityInk(blockEntity.getPos(), blockEntity.getEnergyStorage(), player);
 		}
 	}

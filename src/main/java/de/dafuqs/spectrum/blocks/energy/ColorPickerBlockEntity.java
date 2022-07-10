@@ -43,6 +43,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	public DefaultedList<ItemStack> inventory;
 	protected TotalCappedInkStorage inkStorage;
 	protected boolean paused;
+	protected boolean inkDirty;
 	protected @Nullable InkConvertingRecipe cachedRecipe;
 	protected @Nullable InkColor selectedColor;
 	private UUID ownerUUID;
@@ -66,6 +67,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			didSomething = didSomething | blockEntity.tryFillInkContainer(); // that's an OR
 			
 			if (didSomething) {
+				blockEntity.setInkDirty();
 				blockEntity.markDirty();
 			} else {
 				blockEntity.paused = true;
@@ -130,6 +132,16 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	@Override
 	public TotalCappedInkStorage getEnergyStorage() {
 		return inkStorage;
+	}
+	
+	@Override
+	public void setInkDirty() {
+		this.inkDirty = true;
+	}
+	
+	@Override
+	public boolean getInkDirty() {
+		return inkDirty;
 	}
 	
 	@Override
@@ -265,10 +277,6 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	public InkColor getSelectedColor() {
 		return this.selectedColor;
-	}
-	
-	public boolean shouldUpdateClients() {
-		return !this.paused;
 	}
 	
 }

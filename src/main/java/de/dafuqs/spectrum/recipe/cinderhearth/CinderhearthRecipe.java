@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.cinderhearth;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -141,12 +142,16 @@ public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
 		return this.time;
 	}
 	
-	public List<ItemStack> getRolledOutputs(Random random) {
+	public List<ItemStack> getRolledOutputs(Random random, float yieldMod) {
 		List<ItemStack> output = new ArrayList<>();
 		for(Pair<ItemStack, Float> possibleOutput : this.outputsWithChance) {
 			float chance = possibleOutput.getRight();
 			if(chance >= 1.0 || random.nextFloat() < chance) {
-				output.add(possibleOutput.getLeft().copy());
+				ItemStack stack = possibleOutput.getLeft().copy();
+				if(yieldMod > 1) {
+					stack.setCount(Math.min(stack.getMaxCount(), Support.getIntFromDecimalWithChance(stack.getCount() * yieldMod, random)));
+				}
+				output.add(stack);
 			}
 		}
 		return output;

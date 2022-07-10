@@ -39,7 +39,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 	public void render(EnchanterBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		
 		// The item lying on top of the enchanter
-		ItemStack stack = blockEntity.inventory.getStack(0);
+		ItemStack stack = blockEntity.getStack(0);
 		if (!stack.isEmpty() && blockEntity.getItemFacingDirection() != null) {
 			Direction itemFacingDirection = blockEntity.getItemFacingDirection();
 			
@@ -73,7 +73,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		}
 		
 		// The Experience Item rendered in the air
-		ItemStack experienceItemStack = blockEntity.inventory.getStack(1);
+		ItemStack experienceItemStack = blockEntity.getStack(1);
 		if (!experienceItemStack.isEmpty() && experienceItemStack.getItem() instanceof ExperienceStorageItem) {
 			renderExperienceOrb((float) blockEntity.getWorld().getTime() + tickDelta, ExperienceHelper.getExperienceOrbSizeForExperience(ExperienceStorageItem.getStoredExperience(experienceItemStack)), matrixStack, vertexConsumerProvider, experienceSpriteBrightness);
 		}

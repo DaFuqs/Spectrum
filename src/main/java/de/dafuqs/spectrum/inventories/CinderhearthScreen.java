@@ -3,12 +3,15 @@ package de.dafuqs.spectrum.inventories;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.cinderhearth.CinderhearthBlockEntity;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.inventories.widgets.InkMeterWidget;
 import de.dafuqs.spectrum.inventories.widgets.StackedInkMeterWidget;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.screen.AbstractFurnaceScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -30,7 +33,7 @@ public class CinderhearthScreen extends HandledScreen<CinderhearthScreenHandler>
 		int startX = (this.width - this.backgroundWidth) / 2;
 		int startY = (this.height - this.backgroundHeight) / 2;
 		
-		this.inkMeterWidget = new InkMeterWidget(startX + 146, startY + 34, 40, this, this.handler.getBlockEntity().getEnergyStorage());
+		this.inkMeterWidget = new InkMeterWidget(startX + 140, startY + 34, 40, this, this.handler.getBlockEntity().getEnergyStorage());
 	}
 	
 	@Override
@@ -57,6 +60,22 @@ public class CinderhearthScreen extends HandledScreen<CinderhearthScreenHandler>
         drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
 
 		this.inkMeterWidget.draw(matrices);
+		
+		int craftingTime = this.handler.getCraftingTime();
+		int craftingTimeTotal = this.handler.getCraftingTimeTotal();
+		
+		if(this.handler.getBlockEntity().getEnergyStorage().getEnergy(InkColors.ORANGE) > 0) {
+			this.drawTexture(matrices, this.x + 14, this.y + 62, 176, 14, 15, 2);
+		}
+		
+		if (craftingTimeTotal > 0) {
+			// the fire
+			this.drawTexture(matrices, this.x + 15, this.y + 48, 176, 0, 14, 14);
+			
+			// the arrow
+			this.drawTexture(matrices, this.x + 35, this.y + 32, 176, 16, (craftingTime * 22) / craftingTimeTotal, 16);
+		}
+		
 	}
 	
 	@Override

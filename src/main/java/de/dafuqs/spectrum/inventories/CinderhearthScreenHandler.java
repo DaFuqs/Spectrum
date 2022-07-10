@@ -9,6 +9,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -22,6 +24,7 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 	
 	protected final World world;
 	protected CinderhearthBlockEntity blockEntity;
+	private final PropertyDelegate propertyDelegate;
 	
 	public final ServerPlayerEntity player;
 	
@@ -35,13 +38,14 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 	}
 	
 	public CinderhearthScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
-		this(syncId, playerInventory, buf.readBlockPos());
+		this(syncId, playerInventory, buf.readBlockPos(), new ArrayPropertyDelegate(2));
 	}
 	
-	public CinderhearthScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos) {
+	public CinderhearthScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, PropertyDelegate propertyDelegate) {
 		super(SpectrumScreenHandlerTypes.CINDERHEARTH, syncId);
 		this.player = playerInventory.player instanceof ServerPlayerEntity serverPlayerEntity ? serverPlayerEntity : null;
 		this.world = playerInventory.player.world;
+		this.propertyDelegate = propertyDelegate;
 		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
 		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
 			this.blockEntity = cinderhearthBlockEntity;
@@ -51,16 +55,16 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 		
 		checkSize(cinderhearthBlockEntity, CinderhearthBlockEntity.INVENTORY_SIZE);
 		cinderhearthBlockEntity.onOpen(playerInventory.player);
-
-		this.addSlot(new InkInputSlot(cinderhearthBlockEntity, CinderhearthBlockEntity.INK_PROVIDER_SLOT_ID, 149, 13));
-		this.addSlot(new ExperienceStorageItemSlot(cinderhearthBlockEntity, CinderhearthBlockEntity.EXPERIENCE_STORAGE_ITEM_SLOT_ID, 42, 52));
-		this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.INPUT_SLOT_ID, 18, 28));
+		
+		this.addSlot(new InkInputSlot(cinderhearthBlockEntity, CinderhearthBlockEntity.INK_PROVIDER_SLOT_ID, 146, 13));
+		this.addSlot(new ExperienceStorageItemSlot(cinderhearthBlockEntity, CinderhearthBlockEntity.EXPERIENCE_STORAGE_ITEM_SLOT_ID, 38, 52));
+		this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.INPUT_SLOT_ID, 14, 28));
 		
 		for(int i = 0; i < 4; i++) {
-			this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.FIRST_OUTPUT_SLOT_ID + i, 66 + i * 18, 28));
+			this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.FIRST_OUTPUT_SLOT_ID + i, 62 + i * 18, 28));
 		}
 		for(int i = 0; i < 4; i++) {
-			this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.FIRST_OUTPUT_SLOT_ID + 4 + i, 66 + i * 18, 28 + 18));
+			this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.FIRST_OUTPUT_SLOT_ID + 4 + i, 62 + i * 18, 28 + 18));
 		}
 		
 		// player inventory
@@ -78,6 +82,8 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 		if(this.player != null) {
 			SpectrumS2CPacketSender.updateBlockEntityInk(blockEntity.getPos(), this.blockEntity.getEnergyStorage(), player);
 		}
+		
+		this.addProperties(propertyDelegate);
 	}
 	
 	public CinderhearthBlockEntity getBlockEntity() {
@@ -118,6 +124,14 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 		}
 		
 		return itemStack;
+	}
+	
+	public int getCraftingTime() {
+		return this.propertyDelegate.get(0);
+	}
+	
+	public int getCraftingTimeTotal() {
+		return this.propertyDelegate.get(1);
 	}
 	
 }

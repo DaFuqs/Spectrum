@@ -73,7 +73,7 @@ public class EnchanterBlock extends BlockWithEntity {
 		Block block = world.getBlockState(pos).getBlock();
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
-			ItemScatterer.spawn(world, pos, enchanterBlockEntity.getInventory());
+			ItemScatterer.spawn(world, pos, enchanterBlockEntity);
 			enchanterBlockEntity.inventoryChanged = true;
 			world.updateComparators(pos, block);
 		}
@@ -129,13 +129,11 @@ public class EnchanterBlock extends BlockWithEntity {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
 				if (blockEntity instanceof EnchanterBlockEntity enchanterBlockEntity) {
 					boolean itemsChanged = false;
-					Inventory inventory = enchanterBlockEntity.getInventory();
-					
-					int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? inventory.getStack(1).isEmpty() ? 1 : 0 : 0;
+					int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? enchanterBlockEntity.getStack(1).isEmpty() ? 1 : 0 : 0;
 					if (player.isSneaking() || handStack.isEmpty()) {
 						// sneaking or empty hand: remove items
 						for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
-							ItemStack retrievedStack = inventory.removeStack(i);
+							ItemStack retrievedStack = enchanterBlockEntity.removeStack(i);
 							if (!retrievedStack.isEmpty()) {
 								player.giveItemStack(retrievedStack);
 								itemsChanged = true;
@@ -145,8 +143,8 @@ public class EnchanterBlock extends BlockWithEntity {
 					} else {
 						// hand is full and inventory is empty: add
 						// hand is full and inventory already contains item: exchange them
-						ItemStack currentStack = inventory.getStack(inputInventorySlotIndex);
-						inventory.setStack(inputInventorySlotIndex, handStack);
+						ItemStack currentStack = enchanterBlockEntity.getStack(inputInventorySlotIndex);
+						enchanterBlockEntity.setStack(inputInventorySlotIndex, handStack);
 						if (currentStack.isEmpty()) {
 							player.setStackInHand(hand, ItemStack.EMPTY);
 						} else {
@@ -159,8 +157,6 @@ public class EnchanterBlock extends BlockWithEntity {
 						enchanterBlockEntity.inventoryChanged();
 						enchanterBlockEntity.setItemFacingDirection(player.getHorizontalFacing());
 						enchanterBlockEntity.setOwner(player);
-						
-						enchanterBlockEntity.markDirty();
 						enchanterBlockEntity.updateInClientWorld();
 						world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 					}

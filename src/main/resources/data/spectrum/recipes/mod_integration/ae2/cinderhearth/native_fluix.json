@@ -9,12 +9,11 @@
       "count": 4
     },
     {
-      "item": "minecraft:fluix_crystal",
-      "count": 2,
-      "chance": 0.5
+      "item": "ae2:fluix_dust",
+      "count": 2
     }
   ],
-  "experience": 0.5,
+  "experience": 1,
   "time": 200,
   "fabric:load_conditions": [
     {

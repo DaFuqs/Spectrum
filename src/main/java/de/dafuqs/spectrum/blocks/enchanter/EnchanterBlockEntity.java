@@ -30,6 +30,7 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.BookItem;
@@ -48,6 +49,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -58,7 +60,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Upgradeable {
+public class EnchanterBlockEntity extends BlockEntity implements Inventory, PlayerOwned, Upgradeable {
 	
 	public static final List<Vec3i> itemBowlOffsets = new ArrayList<>() {{
 		add(new Vec3i(5, 0, -3));
@@ -78,7 +80,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem;
 	
 	protected UUID ownerUUID;
-	protected SimpleInventory inventory;
+	protected DefaultedList<ItemStack> inventory;
 	
 	protected boolean canOwnerApplyConflictingEnchantments;
 	protected boolean canOwnerOverenchant;
@@ -102,14 +104,14 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	public EnchanterBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntityRegistry.ENCHANTER, pos, state);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		this.currentItemProcessingTime = -1;
 	}
 	
 	public static void clientTick(World world, BlockPos blockPos, BlockState blockState, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		if (enchanterBlockEntity.currentRecipe != null) {
-			ItemStack experienceStack = enchanterBlockEntity.getInventory().getStack(1);
+			ItemStack experienceStack = enchanterBlockEntity.getStack(1);
 			if (!experienceStack.isEmpty() && experienceStack.getItem() instanceof ExperienceStorageItem) {
 				int experience = ExperienceStorageItem.getStoredExperience(experienceStack);
 				int amount = ExperienceHelper.getExperienceOrbSizeForExperience(experience);
@@ -310,8 +312,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public static void enchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
-		ItemStack centerStack = enchanterBlockEntity.getInventory().getStack(0);
-		ItemStack centerStackCopy = enchanterBlockEntity.getInventory().getStack(0).copy();
+		ItemStack centerStack = enchanterBlockEntity.getStack(0);
+		ItemStack centerStackCopy = enchanterBlockEntity.getStack(0).copy();
 		Map<Enchantment, Integer> highestEnchantments = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 		
 		for (Enchantment enchantment : highestEnchantments.keySet()) {
@@ -323,7 +325,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			spawnOutputAsItemEntity(enchanterBlockEntity.world, enchanterBlockEntity, centerStackCopy);
 			centerStack.decrement(1);
 		} else {
-			enchanterBlockEntity.getInventory().setStack(0, centerStackCopy);
+			enchanterBlockEntity.setStack(0, centerStackCopy);
 		}
 		
 		// vanilla
@@ -348,7 +350,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		boolean valid = false;
-		ItemStack centerStackCopy = enchanterBlockEntity.inventory.getStack(0).copy();
+		ItemStack centerStackCopy = enchanterBlockEntity.inventory.get(0);
 		if (!centerStackCopy.isEmpty() && (centerStackCopy.getItem().isEnchantable(centerStackCopy) || SpectrumEnchantmentHelper.isEnchantableBook(centerStackCopy) || centerStackCopy.getItem() instanceof EnchanterEnchantable)) {
 			Map<Enchantment, Integer> highestEnchantmentLevels = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 			int requiredExperience = 0;
@@ -469,7 +471,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		// if there is room: place the output on the table
 		// otherwise: pop it off
 		ItemStack resultStack = enchanterRecipe.getOutput().copy();
-		ItemStack existingCenterStack = enchanterBlockEntity.getInventory().getStack(0);
+		ItemStack existingCenterStack = enchanterBlockEntity.getStack(0);
 		
 		if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.get(UpgradeType.YIELD) != 1.0) {
 			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * enchanterBlockEntity.upgrades.get(UpgradeType.YIELD), world.random);
@@ -480,7 +482,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 			existingCenterStack.decrement(1);
 			spawnItemStackAsEntitySplitViaMaxCount(world, enchanterBlockEntity.pos, resultStack, resultStack.getCount());
 		} else {
-			enchanterBlockEntity.getInventory().setStack(0, resultStack);
+			enchanterBlockEntity.setStack(0, resultStack);
 		}
 		
 		// vanilla
@@ -548,9 +550,9 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public static void craftEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
 		enchanterBlockEntity.drainExperience(enchantmentUpgradeRecipe.getRequiredExperience());
 		
-		ItemStack resultStack = enchanterBlockEntity.getInventory().getStack(0);
+		ItemStack resultStack = enchanterBlockEntity.getStack(0);
 		resultStack = SpectrumEnchantmentHelper.addOrExchangeEnchantment(resultStack, enchantmentUpgradeRecipe.getEnchantment(), enchantmentUpgradeRecipe.getEnchantmentDestinationLevel(), false, true);
-		enchanterBlockEntity.getInventory().setStack(0, resultStack);
+		enchanterBlockEntity.setStack(0, resultStack);
 		
 		// vanilla
 		grantPlayerEnchantingAdvancementCriterion(enchanterBlockEntity.ownerUUID, resultStack, enchantmentUpgradeRecipe.getRequiredExperience());
@@ -646,11 +648,12 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		this.craftingTimeTotal = nbt.getInt("crafting_time_total");
 		this.currentItemProcessingTime = nbt.getInt("current_item_processing_time");
 		
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		Inventories.readNbt(nbt, this.inventory);
+		
 		this.inventoryChanged = nbt.getBoolean("inventory_changed");
 		this.canOwnerApplyConflictingEnchantments = nbt.getBoolean("owner_can_apply_conflicting_enchantments");
 		this.canOwnerOverenchant = nbt.getBoolean("owner_can_overenchant");
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
 		this.virtualInventoryRecipeOrientation = nbt.getInt("virtual_recipe_orientation");
 		this.virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		this.virtualInventoryIncludingBowlStacks.readNbtList(nbt.getList("virtual_inventory", 10));
@@ -691,7 +694,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		nbt.putInt("crafting_time_total", this.craftingTimeTotal);
 		nbt.putInt("current_item_processing_time", this.currentItemProcessingTime);
 		
-		nbt.put("inventory", this.inventory.toNbtList());
+		Inventories.writeNbt(nbt, this.inventory);
 		nbt.putInt("virtual_recipe_orientation", this.virtualInventoryRecipeOrientation);
 		nbt.putBoolean("inventory_changed", this.inventoryChanged);
 		nbt.putBoolean("owner_can_apply_conflicting_enchantments", this.canOwnerApplyConflictingEnchantments);
@@ -728,10 +731,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
 	}
 	
-	public Inventory getInventory() {
-		return this.inventory;
-	}
-	
 	public Direction getItemFacingDirection() {
 		// if placed via pipe or other sources
 		return Objects.requireNonNullElse(this.itemFacing, Direction.NORTH);
@@ -752,7 +751,7 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	}
 	
 	public boolean drainExperience(int amount) {
-		ItemStack experienceProviderStack = getInventory().getStack(1);
+		ItemStack experienceProviderStack = getStack(1);
 		if (experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
 			if (currentStoredExperience > 0) {
@@ -778,8 +777,8 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	
 	public void inventoryChanged() {
 		virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
-		virtualInventoryIncludingBowlStacks.setStack(0, this.inventory.getStack(0)); // center item
-		virtualInventoryIncludingBowlStacks.setStack(1, this.inventory.getStack(1)); // knowledge gem
+		virtualInventoryIncludingBowlStacks.setStack(0, this.getStack(0)); // center item
+		virtualInventoryIncludingBowlStacks.setStack(1, this.getStack(1)); // knowledge gem
 		virtualInventoryIncludingBowlStacks.setStack(2, getItemBowlStack(this.world, pos.add(5, 0, -3)));
 		virtualInventoryIncludingBowlStacks.setStack(3, getItemBowlStack(this.world, pos.add(5, 0, 3)));
 		virtualInventoryIncludingBowlStacks.setStack(4, getItemBowlStack(this.world, pos.add(3, 0, 5)));
@@ -792,7 +791,6 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 		currentItemProcessingTime = -1;
 		
 		this.markDirty();
-		this.inventory.markDirty();
 		this.virtualInventoryIncludingBowlStacks.markDirty();
 		this.inventoryChanged = true;
 	}
@@ -835,6 +833,69 @@ public class EnchanterBlockEntity extends BlockEntity implements PlayerOwned, Up
 	public void calculateUpgrades() {
 		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 3, 0, this.ownerUUID);
 		this.markDirty();
+	}
+	
+	@Override
+	public int size() {
+		return INVENTORY_SIZE;
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		Iterator<ItemStack> var1 = this.inventory.iterator();
+		
+		ItemStack itemStack;
+		do {
+			if (!var1.hasNext()) {
+				return true;
+			}
+			
+			itemStack = var1.next();
+		} while (itemStack.isEmpty());
+		
+		return false;
+	}
+	
+	@Override
+	public ItemStack getStack(int slot) {
+		return this.inventory.get(slot);
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot, int amount) {
+		ItemStack removedStack = Inventories.splitStack(this.inventory, slot, amount);
+		this.inventoryChanged = true;
+		this.markDirty();
+		return removedStack;
+	}
+	
+	@Override
+	public ItemStack removeStack(int slot) {
+		ItemStack removedStack = Inventories.removeStack(this.inventory, slot);
+		this.inventoryChanged = true;
+		this.markDirty();
+		return removedStack;
+	}
+	
+	@Override
+	public void setStack(int slot, @NotNull ItemStack stack) {
+		this.inventory.set(slot, stack);
+		this.inventoryChanged = true;
+		this.markDirty();
+	}
+	
+	@Override
+	public boolean canPlayerUse(PlayerEntity player) {
+		if (this.world.getBlockEntity(this.pos) != this) {
+			return false;
+		} else {
+			return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
+		}
+	}
+	
+	@Override
+	public void clear() {
+		this.inventory.clear();
 	}
 	
 }

@@ -81,12 +81,12 @@ public class CinderhearthBlock extends BlockWithEntity {
 			}
 			return ActionResult.CONSUME;
 		}
-		
 	}
 	
 	protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+			cinderhearthBlockEntity.setOwner(player);
 			player.openHandledScreen(cinderhearthBlockEntity);
 		}
 	}
@@ -98,11 +98,15 @@ public class CinderhearthBlock extends BlockWithEntity {
 	
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		BlockPos blockPos = pos.up();
-		world.setBlockState(blockPos, state.with(HALF, DoubleBlockHalf.UPPER));
-		if (itemStack.hasCustomName()) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+		BlockPos topPos = pos.up();
+		world.setBlockState(topPos, state.with(HALF, DoubleBlockHalf.UPPER));
+		
+		BlockEntity blockEntity = world.getBlockEntity(topPos);
+		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+			if(placer instanceof PlayerEntity player) {
+				cinderhearthBlockEntity.setOwner(player);
+			}
+			if (itemStack.hasCustomName()) {
 				cinderhearthBlockEntity.setCustomName(itemStack.getName());
 			}
 		}

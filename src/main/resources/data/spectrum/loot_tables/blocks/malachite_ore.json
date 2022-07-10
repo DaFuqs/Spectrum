@@ -29,7 +29,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "spectrum:small_malachite_bud",
+              "name": "spectrum:raw_malachite",
               "functions": [
                 {
                   "function": "minecraft:set_count",

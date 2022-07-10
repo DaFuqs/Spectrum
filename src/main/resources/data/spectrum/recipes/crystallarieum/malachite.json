@@ -1,7 +1,7 @@
 {
   "type": "spectrum:crystallarieum_growing",
   "ingredient": {
-    "item": "spectrum:small_malachite_bud"
+    "item": "spectrum:raw_malachite"
   },
   "growth_stage_states": [
     "spectrum:small_malachite_bud",

@@ -46,7 +46,7 @@ public class EnchantmentUpgradeDisplay implements SimpleGridMenuDisplay, GatedRe
 		int requiredItemCountModulo = recipe.getRequiredItemCount() % 8;
 		for (int i = 0; i < 8; i++) {
 			int addAmount = i < requiredItemCountModulo ? 1 : 0;
-			this.inputs.add(EntryIngredients.of(new ItemStack(recipe.getRequiredItem(), requiredItemCountSplit + addAmount)));
+			this.inputs.add(EntryIngredients.of(recipe.getRequiredItem(), requiredItemCountSplit + addAmount));
 		}
 		
 		this.inputs.add(EntryIngredients.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience())));

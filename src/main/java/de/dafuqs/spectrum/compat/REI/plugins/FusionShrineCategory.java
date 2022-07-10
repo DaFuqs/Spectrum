@@ -23,7 +23,7 @@ import java.util.List;
 
 public class FusionShrineCategory implements DisplayCategory<FusionShrineDisplay> {
 	
-	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT));
+	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(SpectrumBlocks.FUSION_SHRINE_BASALT);
 	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {

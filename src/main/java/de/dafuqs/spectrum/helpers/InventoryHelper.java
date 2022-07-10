@@ -190,6 +190,14 @@ public class InventoryHelper {
 		return originalStack;
 	}
 	
+	/**
+	 * Adds a single stacks to an inventory in a given slot range
+	 * @param inventory the inventory to add to
+	 * @param stackToAdd the stack to add to the inventory
+	 * @param rangeStart the start insert slot
+	 * @param rangeEnd the last insert slot
+	 * @return false if the stack could not be completely added
+	 */
 	public static boolean addToInventory(Inventory inventory, ItemStack stackToAdd, int rangeStart, int rangeEnd) {
 		for (int i = rangeStart; i < rangeEnd; i++) {
 			ItemStack currentStack = inventory.getStack(i);
@@ -206,6 +214,14 @@ public class InventoryHelper {
 		return false;
 	}
 	
+	/**
+	 * Adds a list of stacks to an inventory in a given slot range
+	 * @param inventory the inventory to add to
+	 * @param stacksToAdd the stacks to add to the inventory
+	 * @param rangeStart the start insert slot
+	 * @param rangeEnd the last insert slot
+	 * @return false if not add stacksToAdd could be added
+	 */
 	public static boolean addToInventory(Inventory inventory, List<ItemStack> stacksToAdd, int rangeStart, int rangeEnd) {
 		for (int i = rangeStart; i < rangeEnd; i++) {
 			ItemStack inventoryStack = inventory.getStack(i);

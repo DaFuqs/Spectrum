@@ -21,27 +21,27 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class CrystallarieumCategory implements DisplayCategory<FusionShrineDisplay> {
+public class CinderhearthCategory implements DisplayCategory<CinderhearthDisplay> {
 	
-	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(SpectrumBlocks.FUSION_SHRINE_BASALT);
+	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(SpectrumBlocks.CINDERHEARTH);
 	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
-		return SpectrumPlugins.FUSION_SHRINE;
+		return SpectrumPlugins.CINDERHEARTH;
 	}
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("block.spectrum.fusion_shrine");
+		return new TranslatableText("block.spectrum.cinderhearth");
 	}
 	
 	@Override
 	public Renderer getIcon() {
-		return EntryStacks.of(SpectrumBlocks.FUSION_SHRINE_BASALT);
+		return EntryStacks.of(SpectrumBlocks.CINDERHEARTH);
 	}
 	
 	@Override
-	public List<Widget> setupDisplay(@NotNull FusionShrineDisplay display, @NotNull Rectangle bounds) {
+	public List<Widget> setupDisplay(@NotNull CinderhearthDisplay display, @NotNull Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 58, bounds.getCenterY() - 43);
 		List<Widget> widgets = Lists.newArrayList();
 		

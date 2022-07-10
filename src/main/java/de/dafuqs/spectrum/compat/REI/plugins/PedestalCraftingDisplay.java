@@ -124,7 +124,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		if (gemstonePowderInputs.containsKey(gemstoneColor)) {
 			int amount = gemstonePowderInputs.get(gemstoneColor);
 			if (amount > 0) {
-				this.craftingInputs.add(EntryIngredients.of(new ItemStack(item, amount)));
+				this.craftingInputs.add(EntryIngredients.of(item, amount));
 			} else {
 				this.craftingInputs.add(EntryIngredient.empty());
 			}

@@ -56,8 +56,8 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Luck",
-      "advancement": "spectrum:collect_four_leaf_clover",
-      "recipe": "spectrum:progression/potions/unlock_luck_potion",
+      "advancement": "spectrum:progression/potions/unlock_luck_potion",
+      "recipe": "spectrum:potion_workshop_brewing/luck",
       "text": "Adding a Fermented Spider Eye will change the Effect to $(bold)Bad Luck$() instead."
     },
     {

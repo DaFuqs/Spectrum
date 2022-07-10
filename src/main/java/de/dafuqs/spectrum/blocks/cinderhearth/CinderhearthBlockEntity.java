@@ -318,7 +318,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			cinderhearthBlockEntity.craftingTime = 0;
 			cinderhearthBlockEntity.inventoryChanged();
 		} else {
-			// prevent from trying to craft more until the inventory is freed up
+			// prevents trying to craft more until the inventory is freed up
 			cinderhearthBlockEntity.craftingTime = 0;
 			cinderhearthBlockEntity.currentRecipe = null;
 		}
@@ -361,7 +361,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		} else {
 			cinderhearthBlockEntity.inventory = backupInventory;
 			
-			// prevent from trying to craft more until the inventory is freed up
+			// prevents trying to craft more until the inventory is freed up
 			cinderhearthBlockEntity.craftingTimeTotal = 0;
 			cinderhearthBlockEntity.currentRecipe = null;
 			cinderhearthBlockEntity.inventoryChanged = false;

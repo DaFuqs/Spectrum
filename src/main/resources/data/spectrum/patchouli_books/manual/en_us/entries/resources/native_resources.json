@@ -32,7 +32,8 @@
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "recipe": "spectrum:recipes/cinderhearth/native_resources/native_iron",
+      "title": "Cinderhearth Smelting",
+      "recipe": "spectrum:mod_integration/ae2/cinderhearth/native_certus_quartz",
       "advancement": "spectrum:midgame/smelt_native_resource_in_cinderhearth",
       "text": "Smelting these in the $(l:magical_blocks/cinderhearth)Cinderhearth$() yields a higher output instead of their common variants, like $(thing)Raw Iron$()."
     }

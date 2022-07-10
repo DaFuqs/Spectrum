@@ -328,33 +328,41 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		// output
 		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random);
 		
-		boolean couldAdd = InventoryHelper.addToInventory(cinderhearthBlockEntity, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
-		ItemStack inputStack = cinderhearthBlockEntity.getStack(INPUT_SLOT_ID);
-		Item remainder = inputStack.getItem().getRecipeRemainder();
 		
-		// use up input ingredient
-		inputStack.decrement(1);
-		
-		if(remainder != null) {
-			boolean remainderAdded = InventoryHelper.addToInventory(cinderhearthBlockEntity, remainder.getDefaultStack(), FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
-			if(!remainderAdded) {
-				cinderhearthBlockEntity.setStack(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder.getDefaultStack());
-			}
+		DefaultedList<ItemStack> backupInventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		for(int i = 0; i < cinderhearthBlockEntity.inventory.size(); i++) {
+			backupInventory.set(i, cinderhearthBlockEntity.inventory.get(i));
 		}
 		
-		// grant experience
-		ExperienceStorageItem.addStoredExperience(cinderhearthBlockEntity.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), cinderhearthRecipe.getExperience(), cinderhearthBlockEntity.world.random);
-		
-		// effects
-		playCraftingFinishedEffects(cinderhearthBlockEntity);
-		
-		// reset
-		cinderhearthBlockEntity.craftingTime = 0;
-		cinderhearthBlockEntity.inventoryChanged();
-		
-		if(!couldAdd) {
-			// prevent from trying to craft more until the inventory is freed up
+		boolean couldAdd = InventoryHelper.addToInventory(cinderhearthBlockEntity, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+		if(couldAdd) {
+			ItemStack inputStack = cinderhearthBlockEntity.getStack(INPUT_SLOT_ID);
+			Item remainder = inputStack.getItem().getRecipeRemainder();
+			
+			// use up input ingredient
+			inputStack.decrement(1);
+			
+			if(remainder != null) {
+				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearthBlockEntity, remainder.getDefaultStack(), FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
+				if(!remainderAdded) {
+					cinderhearthBlockEntity.setStack(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder.getDefaultStack());
+				}
+			}
+			
+			// grant experience
+			ExperienceStorageItem.addStoredExperience(cinderhearthBlockEntity.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), cinderhearthRecipe.getExperience(), cinderhearthBlockEntity.world.random);
+			
+			// effects
+			playCraftingFinishedEffects(cinderhearthBlockEntity);
+			
+			// reset
 			cinderhearthBlockEntity.craftingTime = 0;
+			cinderhearthBlockEntity.inventoryChanged();
+		} else {
+			cinderhearthBlockEntity.inventory = backupInventory;
+			
+			// prevent from trying to craft more until the inventory is freed up
+			cinderhearthBlockEntity.craftingTimeTotal = 0;
 			cinderhearthBlockEntity.currentRecipe = null;
 			cinderhearthBlockEntity.inventoryChanged = false;
 		}

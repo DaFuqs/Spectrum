@@ -190,45 +190,47 @@ public class InventoryHelper {
 		return originalStack;
 	}
 	
-	public static void addToInventory(Inventory inventory, ItemStack itemStack, int rangeStart, int rangeEnd) {
+	public static boolean addToInventory(Inventory inventory, ItemStack stackToAdd, int rangeStart, int rangeEnd) {
 		for (int i = rangeStart; i < rangeEnd; i++) {
 			ItemStack currentStack = inventory.getStack(i);
 			if (currentStack.isEmpty()) {
-				inventory.setStack(i, itemStack);
-				return;
-			} else if (itemStack.isStackable()) {
-				combineStacks(currentStack, itemStack);
-				if (itemStack.isEmpty()) {
-					return;
+				inventory.setStack(i, stackToAdd);
+				return true;
+			} else if (stackToAdd.isStackable()) {
+				combineStacks(currentStack, stackToAdd);
+				if (stackToAdd.isEmpty()) {
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 	
-	public static void addToInventory(Inventory inventory, List<ItemStack> itemStacks, int rangeStart, int rangeEnd) {
+	public static boolean addToInventory(Inventory inventory, List<ItemStack> stacksToAdd, int rangeStart, int rangeEnd) {
 		for (int i = rangeStart; i < rangeEnd; i++) {
-			ItemStack currentStack = inventory.getStack(i);
-			if (currentStack.isEmpty()) {
-				inventory.setStack(i, itemStacks.get(0));
-				itemStacks.remove(0);
-				if(itemStacks.isEmpty()) {
-					return;
+			ItemStack inventoryStack = inventory.getStack(i);
+			if (inventoryStack.isEmpty()) {
+				inventory.setStack(i, stacksToAdd.get(0));
+				stacksToAdd.remove(0);
+				if(stacksToAdd.isEmpty()) {
+					return true;
 				}
 			}
-			for(int j = 0; j < itemStacks.size(); j++) {
-				ItemStack itemStack = itemStacks.get(j);
-				if (itemStack.isStackable()) {
-					combineStacks(currentStack, itemStack);
-					if (itemStack.isEmpty()) {
-						itemStacks.remove(j);
-						if(itemStacks.isEmpty()) {
-							return;
+			for(int j = 0; j < stacksToAdd.size(); j++) {
+				ItemStack stackToAdd = stacksToAdd.get(j);
+				if (stackToAdd.isStackable()) {
+					combineStacks(inventoryStack, stackToAdd);
+					if (stackToAdd.isEmpty()) {
+						stacksToAdd.remove(j);
+						if(stacksToAdd.isEmpty()) {
+							return true;
 						}
 						j--;
 					}
 				}
 			}
 		}
+		return false;
 	}
 	
 	public static void addToInventory(List<ItemStack> inventory, ItemStack itemStack, int rangeStart, int rangeEnd) {

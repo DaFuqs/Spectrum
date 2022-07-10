@@ -13,6 +13,11 @@
       "count": 2
     },
     {
+      "item": "ae2:charged_certus_quartz_crystal",
+      "count": 1,
+      "chance": 0.1
+    },
+    {
       "item": "ae2:certus_crystal_seed",
       "count": 1,
       "chance": 0.04

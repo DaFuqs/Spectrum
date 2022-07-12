@@ -1,0 +1,21 @@
+{
+	"pages":[
+		{
+			"text":"您没有随机选择光芒之针的名称以类似$(l:magical_items/radiance_staff)光芒法杖$(/l)。$(br)如果您处于黑暗区域，光芒之针会自动在您身上创建一个不可见的光。然而，与$(l:magical_items/radiance_staff)光芒法杖$(/l)的灯光不同，它们慢慢变得越来越暗，直到最终完全消散。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:fusion_shrine/trinkets/radiance_pin",
+			"text":"很高兴看到你在洞穴探险中走过的道路。",
+			"type":"spectrum:fusion_shrine_crafting",
+			"title":"融合配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_radiance_pin",
+	"extra_recipe_mappings":{
+		"spectrum:radiance_pin":0
+	},
+	"name":"光芒之针",
+	"icon":"spectrum:radiance_pin",
+	"category":"spectrum:magical_items_category"
+}

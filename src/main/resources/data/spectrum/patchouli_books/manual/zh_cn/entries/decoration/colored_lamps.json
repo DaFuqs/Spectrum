@@ -1,0 +1,36 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)你终于能够正确地混合颜色了。还有什么比立即测试新颜料的性能更自然的呢？到现在为止，你已经受够了普通的红石灯。是时候添加一点色彩了！$()",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/colored_lamps/cyan_lamp",
+			"text":"当激活时，它们被充满活力的光包围。除此之外，彩色灯的功能与乏味的红石灯类似。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/colored_lamps/unlock_any_colored_lamp",
+	"extra_recipe_mappings":{
+		"spectrum:white_lamp":0,
+		"spectrum:light_blue_lamp":0,
+		"spectrum:red_lamp":0,
+		"spectrum:orange_lamp":0,
+		"spectrum:purple_lamp":0,
+		"spectrum:yellow_lamp":0,
+		"spectrum:blue_lamp":0,
+		"spectrum:black_lamp":0,
+		"spectrum:lime_lamp":0,
+		"spectrum:magenta_lamp":0,
+		"spectrum:light_gray_lamp":0,
+		"spectrum:pink_lamp":0,
+		"spectrum:gray_lamp":0,
+		"spectrum:green_lamp":0,
+		"spectrum:brown_lamp":0,
+		"spectrum:cyan_lamp":0
+	},
+	"name":"彩色灯",
+	"icon":"spectrum:cyan_lamp",
+	"category":"spectrum:decoration_category"
+}

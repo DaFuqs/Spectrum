@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:multitool",
+			"text":"每当你离开家，你都会随身携带半个工具棚。考虑到你可以随身携带大量石头，这甚至不值得一提。然而，一个结合了镐、斧、铲和锄头功能的通用工具将适合您。$()$(br)",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier2/multitool",
+			"text":"它在单个任务中效率不高，但比每三秒更换一次工具要好得多。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:build_basic_pedestal_structure",
+	"extra_recipe_mappings":{
+		"spectrum:multitool":0
+	},
+	"name":"多用途工具",
+	"icon":"spectrum:multitool",
+	"category":"spectrum:magical_items_category"
+}

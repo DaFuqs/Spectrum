@@ -1,0 +1,18 @@
+{
+	"pages":[
+		{
+			"text":"待办",
+			"type":"patchouli:text"
+		},
+		{
+			"item":"spectrum:bottle_of_ruin",
+			"text":"待办",
+			"type":"patchouli:spotlight"
+		}
+	],
+	"advancement":"spectrum:lategame/__spectrum_lategame",
+	"name":"越陷越深",
+	"icon":"spectrum:bottle_of_ruin",
+	"sortnum":0,
+	"category":"spectrum:dimension_category"
+}

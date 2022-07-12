@@ -1,0 +1,24 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)你还记得世界上最初的几天，当你费力地从石头中挖出煤来融化你开采的矿石。但那些日子屈指可数了，你发誓。未来就是现在，老鸟。$(br2)然而，一切都是有代价的：你将失去通常从冶炼矿石中获得的经验。",
+			"type":"patchouli:text"
+		},
+		{
+			"item":"minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:autosmelt\", lvl: 1s}]}",
+			"text":"自动熔炼断块。$(br2)最大级别：1$(br)适用于采矿工具。$(br)丝质触感与共鸣相互排斥。",
+			"type":"patchouli:spotlight",
+			"title":"特点"
+		},
+		{
+			"recipe":"spectrum:enchanter/spectrum_books/book_autosmelt",
+			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，用铸造厂注入一本普通的书。",
+			"type":"spectrum:enchanter_crafting",
+			"title":"注魔基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/enchantments/autosmelt",
+	"name":"铸造厂",
+	"icon":"minecraft:iron_pickaxe",
+	"category":"spectrum:enchanting_category"
+}

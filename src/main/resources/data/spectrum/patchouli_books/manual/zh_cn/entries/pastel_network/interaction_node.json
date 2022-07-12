@@ -1,0 +1,19 @@
+{
+	"pages":[
+		{
+			"text":"待办事项。走近它，你会看到一个存储在其连接网络中的所有物品的列表。只要伸手去拿，它就会自动从网络中为你拔出。",
+			"type":"patchouli:text",
+			"title":"交互节点"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/pastel_network/interaction_node",
+			"text":"待办事项",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/pastel_network/__unlock_interaction_node",
+	"name":"交互节点",
+	"icon":"spectrum:provider_node",
+	"category":"spectrum:pastel_network_category"
+}

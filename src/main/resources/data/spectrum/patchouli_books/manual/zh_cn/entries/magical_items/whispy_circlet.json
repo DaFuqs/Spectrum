@@ -1,0 +1,18 @@
+{
+	"pages":[
+		{
+			"text":"不仅仅是你眼睛下面的眼袋是你缺乏睡眠的证据。当你不经常躺下睡觉的时候，这些生物会直接从你错过的噩梦中困扰你——几乎就像他们感觉被欺骗一样。$(br)这是放松的表现，不需要睡觉。只穿几分钟后，你就会感觉身体和精神都焕然一新。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:fusion_shrine/trinkets/whispy_circlet",
+			"text":"$(italic)睡个好觉的乐趣",
+			"type":"spectrum:fusion_shrine_crafting",
+			"title":"融合配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_whispy_circlet",
+	"name":"舒适头箍",
+	"icon":"spectrum:whispy_circlet",
+	"category":"spectrum:magical_items_category"
+}

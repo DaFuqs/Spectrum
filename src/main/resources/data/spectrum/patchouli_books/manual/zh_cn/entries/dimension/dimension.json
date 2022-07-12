@@ -1,0 +1,19 @@
+{
+	"pages":[
+		{
+			"item":"minecraft:bedrock",
+			"text":"$(italic)待办",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"text":"太阳永远不会照耀的地方",
+			"type":"patchouli:text",
+			"title":""
+		}
+	],
+	"advancement":"spectrum:midgame/__enter_dimension",
+	"name":"更深层次的",
+	"icon":"minecraft:bedrock",
+	"sortnum":1,
+	"category":"spectrum:dimension_category"
+}

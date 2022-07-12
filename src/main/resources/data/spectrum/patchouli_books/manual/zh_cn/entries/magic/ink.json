@@ -1,0 +1,18 @@
+{
+	"pages":[
+		{
+			"text":"既然你已经熟悉了颜料，你就没有理由像中世纪那样拖着它到处走了。你已经找到了一种将色素转化为更高形式能量的方法。$(br)你叫$(c_cyan)它$(c_magenta)墨$(c_yellow)水。$()",
+			"type":"patchouli:text"
+		},
+		{
+			"text":"颜料可以使用$(l:magic/color_picker)颜色选择器$(/l)转换为墨水，然后提取到容器中，如$(l:magic/ink_flask)墨水瓶$(/l)。$(br2)唯一的缺点是：失去了它的物理形态，就没有办法将墨水转化回颜料。",
+			"type":"patchouli:text",
+			"title":"生产和储存"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_ink_flask",
+	"name":"墨水",
+	"icon":"spectrum:ink_flask",
+	"category":"spectrum:magic_category",
+	"priority":true
+}

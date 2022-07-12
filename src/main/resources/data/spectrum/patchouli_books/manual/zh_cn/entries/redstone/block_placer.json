@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:block_placer",
+			"text":"$(italic)你可以自动打破方块，称重，排序或把他们放在你的一个箱子。有一件事是你所有的创意装置都做不到的：放置东西。这已经成为过去。$(br)$(l:general/shards#topaz)黄玉$(/l)具有与物质的亲和力，可以让你从它的库存中物化方块。",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/block_placer",
+			"text":"它做到了！",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_block_placer",
+	"extra_recipe_mappings":{
+		"spectrum:block_placer":0
+	},
+	"name":"方块放置器",
+	"icon":"spectrum:block_placer",
+	"category":"spectrum:redstone_category"
+}

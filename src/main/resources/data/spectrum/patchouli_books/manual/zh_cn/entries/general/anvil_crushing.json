@@ -1,0 +1,23 @@
+{
+  "name": "物品分解",
+  "icon": "minecraft:anvil",
+  "sortnum": 3,
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:collect_gemstone_powder",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "物品分解",
+      "images": [
+        "spectrum:textures/gui/manual/anvil_crushing.png"
+      ],
+      "border": true,
+      "text": "$(italic)\"旧的不去新的不来\"      - 某人"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "目前为止，你主要使用铁砧修理和升级工具。像铁砧这么重的东西一定有别的用途吧！所以！为啥不用它大力出奇迹直接把东西碾成粉末！比如敌人的头骨和物品啥的，是不是感觉贼棒。$(br2)你可以用物品分解把 $(l:general/shards)宝石矿碎片$() 分解成 $(l:general/gemstone_powder)粉末$()。$(br2)$(italic)提示：铁砧落得越远越好！"
+    }
+  ]
+}

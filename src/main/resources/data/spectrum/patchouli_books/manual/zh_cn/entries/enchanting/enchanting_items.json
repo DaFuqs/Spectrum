@@ -1,0 +1,34 @@
+{
+	"pages":[
+		{
+			"text":"使用注魔基座对物品进行附魔相当简单：$(br)将附魔书放置在$(l:decoration/item_bowl)物品基座$(/l)上，并将你想要对注魔基座本身进行附魔的物品上。$(br2)与普通的附魔不同，这不会消耗书籍，而是需要更多的经验。",
+			"type":"patchouli:text",
+			"title":"光谱附魔"
+		},
+		{
+			"border":true,
+			"images":[
+				"spectrum:textures/gui/manual/enchanting_items.png"
+			],
+			"text":"最后，通过$(l:magical_items/knowledge_gem)知识宝石$(/l)提供稳定的经验流，你就准备好了。",
+			"type":"patchouli:image"
+		},
+		{
+			"item":"minecraft:enchanted_book",
+			"text":"你也可以使用这个机制来创建新的附魔书。只需将你想要复制的$(l:decoration/item_bowl)附魔书$(/l)放在$(l:enchanting/enchanter)物品基座$(/l)中，并将一本简单的书放在注魔基座上。$(br2)然而，由于书籍的世俗性质，这将需要大量的经验。",
+			"type":"patchouli:spotlight",
+			"title":"复制魔法书"
+		},
+		{
+			"text":"$(bold)在大多数情况下，每个附魔的经验值在50到200之间$()。$(br)一个附魔越稀有，其等级越高，目标物品吸收附魔的能力就越好，$(br)其他一些因素也会影响这个结果。干扰会进一步增加此成本，例如不适合你的目标的附魔。",
+			"type":"patchouli:text",
+			"title":"所需经验"
+		}
+	],
+	"advancement":"spectrum:midgame/enter_liquid_crystal",
+	"name":"光谱附魔",
+	"icon":"spectrum:enchanter",
+	"sortnum":1,
+	"priority":true,
+	"category":"spectrum:enchanting_category"
+}

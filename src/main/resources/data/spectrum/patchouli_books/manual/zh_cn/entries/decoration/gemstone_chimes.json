@@ -1,0 +1,26 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)在处理这些宝石足够长的时间后，你现在发现自己能够以最好的方式塑造这些脆弱的资源。$(br2)钟声在风中缓缓摇曳，让你想起了旅程的开始——第一次踏上大地。",
+			"type":"patchouli:text",
+			"title":"宝石编钟"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
+			"text":"每个钟声都发出相应宝石的舒缓声音。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/gemstone_chimes/unlock_any_chime",
+	"extra_recipe_mappings":{
+		"spectrum:topaz_chime":0,
+		"spectrum:citrine_chime":0,
+		"spectrum:amethyst_chime":0,
+		"spectrum:moonstone_chime":0,
+		"spectrum:onyx_chime":0
+	},
+	"name":"宝石编钟",
+	"icon":"spectrum:amethyst_chime",
+	"category":"spectrum:decoration_category"
+}

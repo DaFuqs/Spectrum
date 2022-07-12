@@ -1,0 +1,19 @@
+{
+	"pages":[
+		{
+			"text":"被动地将连接的库存中的所有物品提供给其连接的$(l:pastel_network/pastel_network)彩绘网络$(/l)。物品不会被推送到其他节点，但可以被请求，例如通过$(l:pastel_network/puller_node)接受节点$(/l)。",
+			"type":"patchouli:text",
+			"title":"提供节点"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/pastel_network/provider_node",
+			"text":"",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/pastel_network/__unlock_basic_nodes",
+	"name":"提供节点",
+	"icon":"spectrum:provider_node",
+	"category":"spectrum:pastel_network_category"
+}

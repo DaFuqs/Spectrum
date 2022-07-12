@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"text":"黄水晶对风暴期间释放的能量非常敏感。$(br2)如果天气探测器直接暴露在雨或雷雨中，它会发出红石信号。",
+			"type":"patchouli:text",
+			"title":"天气探测器"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/detectors/weather_detector",
+			"text":"雨发出的信号强度为8，雷雨为15。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/detectors/unlock_weather_detector",
+	"extra_recipe_mappings":{
+		"spectrum:weather_detector":0
+	},
+	"name":"天气探测器",
+	"icon":"spectrum:player_detector",
+	"category":"spectrum:redstone_category"
+}

@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:redstone_calculator",
+			"text":"$(italic)有了来自地下的红色数学粉末，你已经建造了几座巨大的建筑，只是为了模仿鹦鹉的计算能力。当你看到这些，你的呼吸就会停止（世界上其他地方也是如此，每秒数次）。充满能量的$(l:general/shards#citrine)黄水晶$(/l)似乎与基本算术逻辑完美匹配。",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/redstone_calculator",
+			"text":"可用模式：加法、减法、乘法、除法、模、最小和最大。第一个输入是背面，第二个是侧面的最高信号。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_redstone_calculator",
+	"extra_recipe_mappings":{
+		"spectrum:redstone_calculator":0
+	},
+	"name":"红石计算器",
+	"icon":"spectrum:redstone_calculator",
+	"category":"spectrum:redstone_category"
+}

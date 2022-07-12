@@ -1,0 +1,26 @@
+{
+	"pages":[
+		{
+			"completion_advancement":"spectrum:generate_ancient_ruins_loot",
+			"cost":"spectrum:refined_azurite#4",
+			"text":"在任何生物群落的超世界深处都隐藏着无法穿透的结构。它们似乎是用一块牢不可破的石头建造的。",
+			"type":"spectrum:hint",
+			"title":"在哪里可以找到"
+		},
+		{
+			"completion_advancement":"spectrum:generate_ancient_ruins_loot",
+			"cost":"spectrum:refined_azurite#12",
+			"advancement":"spectrum:find_ancient_ruins",
+			"text":"入口似乎被一个强大的力场堵住了。然而，无论是谁建造了这些建筑，都会给你留下线索！力场两侧的红心似乎表明你必须激活蔚蓝防御。",
+			"type":"spectrum:hint",
+			"title":"入口"
+		}
+	],
+	"advancement":"spectrum:midgame/get_azure_dike_charge",
+	"read_by_default":true,
+	"name":"结构",
+	"icon":"minecraft:writable_book",
+	"turnin":"spectrum:generate_ancient_ruins_loot",
+	"secret":true,
+	"category":"spectrum:hints_category"
+}

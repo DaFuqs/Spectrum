@@ -1,0 +1,30 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:vibrant_cyan_catkin",
+			"text":"待办事项",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"text":"待办事项",
+			"type":"patchouli:text",
+			"title":"透明柳絮"
+		}
+	],
+	"advancement":"spectrum:progression/__grow_ominous_sapling",
+	"extra_recipe_mappings":{
+		"spectrum:lucid_yellow_catkin":0,
+		"spectrum:lucid_white_catkin":0,
+		"spectrum:lucid_magenta_catkin":0,
+		"spectrum:vibrant_cyan_catkin":0,
+		"spectrum:vibrant_black_catkin":0,
+		"spectrum:vibrant_yellow_catkin":0,
+		"spectrum:lucid_cyan_catkin":0,
+		"spectrum:vibrant_magenta_catkin":0,
+		"spectrum:vibrant_white_catkin":0,
+		"spectrum:lucid_black_catkin":0
+	},
+	"name":"柳絮",
+	"icon":"spectrum:vibrant_cyan_catkin",
+	"category":"spectrum:magic_category"
+}

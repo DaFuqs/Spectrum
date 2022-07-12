@@ -1,0 +1,19 @@
+{
+	"pages":[
+		{
+			"text":"虽然存储节点本身并不引人注目，但它将与$(l:pastel_network/pusher_node)发送节点$(/l)（将物品推送到该节点）和$(l:pastel_network/puller_node)接受节点$(/l)（将物品从中拉出来）结合使用，显示出其最大的用途。",
+			"type":"patchouli:text",
+			"title":"存储节点"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/pastel_network/storage_node",
+			"text":"右键单击它以打开其物品过滤器。此过滤器允许您指定存储节点能够接收和提供哪些物品。否则，它将作为所有类型物品的通用存储。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/pastel_network/__unlock_basic_nodes",
+	"name":"存储节点",
+	"icon":"spectrum:provider_node",
+	"category":"spectrum:pastel_network_category"
+}

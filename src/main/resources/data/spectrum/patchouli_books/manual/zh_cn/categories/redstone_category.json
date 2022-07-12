@@ -1,0 +1,6 @@
+{
+  "name": "红石组件",
+  "description": "当你手持第一片宝石矿，你就应该注意到了，即使环境发生了微小的改变，宝石碎片也会有所变化。$(br)你可以通过这一特性来获取优势——在新的生成结构中使用宝石矿或者将它们连接到你的原始尘埃线（primitive dust lines）。",
+  "icon": "minecraft:redstone",
+  "sortnum": 4
+}

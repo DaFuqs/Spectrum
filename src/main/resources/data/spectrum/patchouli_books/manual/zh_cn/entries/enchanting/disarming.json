@@ -1,0 +1,30 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)你每天遇到的僵尸都戴着很多贵重的装备。但当他们死后，它就消失了，再也看不见了。$(br2)如果你能在他们还活着的时候从他们那里抢走它，那没问题。明白了！",
+			"type":"patchouli:text"
+		},
+		{
+			"item":"minecraft:iron_sword{Enchantments: [{id: \"spectrum:disarming\", lvl: 2s}]}",
+			"text":"生物（和其他玩家！）在被击中时放下他们的装备。$(br2)最大等级：2$(br)适用于近战武器。",
+			"type":"patchouli:spotlight",
+			"title":"特点"
+		},
+		{
+			"recipe":"spectrum:enchanter/spectrum_books/book_disarming",
+			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，为一本普通的书注入解除武装的效果。",
+			"type":"spectrum:enchanter_crafting",
+			"title":"注魔基座配方"
+		},
+		{
+			"recipe":"spectrum:enchantment_upgrade/spectrum/disarming_level_2",
+			"text":"首先，将解除武装从1级升级到2级相当便宜。每增加一个级别，$(br)这个价格将迅速增加到越来越多的颜料和经验。",
+			"type":"spectrum:enchanter_upgrading",
+			"title":"附魔升级"
+		}
+	],
+	"advancement":"spectrum:progression/enchantments/disarming",
+	"name":"解除防护",
+	"icon":"minecraft:iron_sword",
+	"category":"spectrum:enchanting_category"
+}

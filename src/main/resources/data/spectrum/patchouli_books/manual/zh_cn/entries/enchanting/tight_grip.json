@@ -1,0 +1,30 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)你用武器打击的速度比你想象的要快，这几乎就像一个狂热的梦想。同时，每一次打击都会消耗你太多的力量，以至于你不得不暂停片刻。$(br)也许你正在变老。$(br2)通过对你的武器进行一些小的调整，你可以在一定程度上减少停机时间。",
+			"type":"patchouli:text"
+		},
+		{
+			"item":"minecraft:iron_sword{Enchantments: [{id: \"spectrum:tight_grip\", lvl: 2s}]}",
+			"text":"减少攻击冷却时间。$(br2)最大等级：2$(br)适用于近战武器。",
+			"type":"patchouli:spotlight",
+			"title":"特点"
+		},
+		{
+			"recipe":"spectrum:enchanter/spectrum_books/book_tight_grip",
+			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，让普通的书注入快手。",
+			"type":"spectrum:enchanter_crafting",
+			"title":"注魔基座配方"
+		},
+		{
+			"recipe":"spectrum:enchantment_upgrade/spectrum/tight_grip_level_2",
+			"text":"一开始，将快手从1级提升到2级相当便宜。每增加一个级别，$(br)这个价格将迅速增加到越来越多的颜料和经验。",
+			"type":"spectrum:enchanter_upgrading",
+			"title":"附魔升级"
+		}
+	],
+	"advancement":"spectrum:progression/enchantments/tight_grip",
+	"name":"快手",
+	"icon":"minecraft:iron_sword",
+	"category":"spectrum:enchanting_category"
+}

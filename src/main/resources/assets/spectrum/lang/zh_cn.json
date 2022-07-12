@@ -984,6 +984,7 @@
     "item.spectrum.mermaids_gem": "美人鱼宝石",
     "item.spectrum.end_portal_cracker": "末影传送门破译器",
     "item.spectrum.manual": "七彩世界",
+    "item.spectrum.manual.landing_text": "$(br)能量$(br)$(c_gray)盘根错节$()的生长，它们生出$(br)充满大自然的魔法，(br)$(c_gray)直至你发现一切的真谛。",
     "item.spectrum.multitool": "多功能工具",
     "item.spectrum.silker_pickaxe": "精准采集镐",
     "item.spectrum.fortune_pickaxe": "幸运之镐",

@@ -1,0 +1,32 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:bottle_of_failing",
+			"text":"由于你的玛瑙和红丹的强大能量，这第二个有机体显然是。。。比上一次创作更活跃。$(br2)$(bold)而且肯定更饥渴。$(br)更加饥渴了。",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/bottle_of_failing",
+			"text":"也许你知道的最结实的材料之一可以满足他们的饥饿感？",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		},
+		{
+			"item":"spectrum:neolith",
+			"advancement":"spectrum:midgame/collect_neolith",
+			"anchor":"neolith",
+			"text":"黑曜石确实被你的实验粉碎了。这就是你所说的力量！$(br2)结果就是这种坚固的试剂。",
+			"type":"patchouli:spotlight",
+			"title":"黑曜能量粉"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_bottle_of_failing",
+	"extra_recipe_mappings":{
+		"spectrum:bottle_of_failing":0,
+		"spectrum:neolith":0
+	},
+	"name":"实验#2：侵蚀",
+	"icon":"spectrum:bottle_of_failing",
+	"turnin":"spectrum:midgame/collect_neolith",
+	"category":"spectrum:creating_life_category"
+}

@@ -1,0 +1,29 @@
+{
+	"pages":[
+		{
+			"text":"这次升级很有趣。虽然几率很小，但你可以增加你的制作效果。$(br2)$(italic)你的钱更划算！",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier4/upgrade_yield",
+			"text":"放在你的$(l:general/pedestal)颜料基座$(/l)上的宝石方块或錾制方块的$(l:general/fusion_shrine)融合神殿$(/l)。额外的影响会降低。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		},
+		{
+			"advancement":"spectrum:progression/unlock_upgrade_yield2",
+			"recipe":"spectrum:pedestal/tier4/upgrade_yield2",
+			"text":"这个升级版本更强大，让你的手工艺获得更多的输出。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"第2层"
+		}
+	],
+	"advancement":"spectrum:lategame/collect_paletur",
+	"extra_recipe_mappings":{
+		"spectrum:upgrade_yield":0,
+		"spectrum:upgrade_yield2":0
+	},
+	"name":"产量激增",
+	"icon":"spectrum:upgrade_yield",
+	"category":"spectrum:magical_blocks_category"
+}

@@ -1,0 +1,21 @@
+{
+	"pages":[
+		{
+			"text":"这个奇怪的方块让你的视线穿透地面和岩石。它直接放在墙上或地上，可以让你瞥见另一面。$(br2)$(italic)末影珍宝让你用其奇怪的特性创造的创造物永远不会停止让你惊讶。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/universe_spyhole",
+			"text":"$(italic)我知道你在那里做了什么",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_universe_spyhole",
+	"extra_recipe_mappings":{
+		"spectrum:universe_spyhole":0
+	},
+	"name":"宇宙窥视孔",
+	"icon":"spectrum:universe_spyhole",
+	"category":"spectrum:magical_blocks_category"
+}

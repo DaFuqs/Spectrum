@@ -45,6 +45,7 @@ repositories {
 			artifact() //Look directly for artifact
 		}
 	}
+	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 	mavenCentral() // incubus core
 }
 
@@ -90,6 +91,7 @@ dependencies {
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 	modImplementation include("com.github.devs-immortal:Some-Assembly-Required:${project.sar_version}")
 	modImplementation include("io.github.ladysnake:satin:${project.satin_version}")
+	modImplementation("software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}")
 
 	// Soft dependencies:
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/

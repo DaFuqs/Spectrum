@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import de.dafuqs.spectrum.registries.client.SpectrumItemPredicates;
 import de.dafuqs.spectrum.render.HudRenderers;
 import de.dafuqs.spectrum.render.SkyLerper;
+import de.dafuqs.spectrum.render.SpectrumGeoRenderers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -59,6 +60,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 		SpectrumBlockEntityRegistry.registerClient();
 		logInfo("Setting up Entity Renderers...");
 		SpectrumEntityRenderers.registerClient();
+		logInfo("Setting up Geckolib Renderers...");
+		SpectrumGeoRenderers.register();
 		
 		logInfo("Registering Server to Client Package Receivers...");
 		SpectrumS2CPacketReceiver.registerS2CReceivers();

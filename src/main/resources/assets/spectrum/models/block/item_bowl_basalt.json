@@ -5,6 +5,6 @@
     "1": "spectrum:block/polished_basalt_pillar_side",
     "2": "spectrum:block/polished_basalt",
     "3": "spectrum:block/polished_basalt_pillar_top",
-    "particle": "spectrum:block/item_bowl_basalt"
+    "particle": "spectrum:block/polished_basalt"
   }
 }

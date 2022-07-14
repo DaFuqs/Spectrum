@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "spectrum:block/malachite_block"
+    "end": "spectrum:block/malachite_block_top",
+    "side": "spectrum:block/malachite_block"
   }
 }

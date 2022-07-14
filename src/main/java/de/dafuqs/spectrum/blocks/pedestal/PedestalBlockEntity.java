@@ -204,7 +204,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		// try to output the currently stored output stack
 		ItemStack outputItemStack = pedestalBlockEntity.inventory.get(OUTPUT_SLOT_ID);
 		if (outputItemStack != ItemStack.EMPTY) {
-			if (world.getBlockState(blockPos.up()).isAir()) {
+			if (world.getBlockState(blockPos.up()).getCollisionShape(world, blockPos.up()).isEmpty()) {
 				spawnOutputAsItemEntity(world, blockPos, pedestalBlockEntity, outputItemStack);
 				playCraftingFinishedSoundEvent(pedestalBlockEntity, calculatedRecipe);
 			} else {

@@ -6,12 +6,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)In a painting you have seen a fantastic creature that seems to be made of Soul Sand and Wither Skeleton Skulls. For hours you lay in wait in a Nether Fortress, only to almost almost loose your head yourself while searching for a Wither Skeleton with a spine loose enough to drop its skull. Heads up, you never were the one to bury your head in the sand."
+      "text": "$(italic)In a painting you have seen a fantastic creature that seems to be made of Soul Sand and Wither Skeleton Skulls. For hours you waited in a Nether Fortress, only to almost almost lose your head yourself while searching for a Wither Skeleton with a spine loose enough to drop its skull. Heads up, you never were the one to bury your head in the sand."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:cow_head",
-      "text": "$(italic)But then there were the Creepers! Once struck by lightning, they explode so hefty that their explosion blows the heads of his opponents right off their heads (worst case: yourself).$(br)As if struck by lightning you thought out this new enchantment using $(l:resources/lightning_stones)Storm Stones$(/l).$(br)And so Treasure Hunter was born, allowing you to collect $(l:creating_life/mob_heads)Heads from all kind of Mobs$(/l)"
+      "text": "$(italic)But then there were the Creepers! Once struck by lightning, they explode so hefty that their explosion blows the heads of his opponents right off their necks (worst case: yourself).$(br)As if struck by lightning you thought out this new enchantment using $(l:resources/lightning_stones)Storm Stones$(/l).$(br)And so Treasure Hunter was born, allowing you to collect $(l:creating_life/mob_heads)Heads from all kinds of Mobs$(/l)"
     },
     {
       "type": "patchouli:spotlight",

@@ -28,7 +28,7 @@
     {
       "type": "patchouli:text",
       "title": "Native Resources",
-      "text": "Comparable to their common resource counterparts, like $(thing)Raw Copper$(), these variants much more pure than what you were used to before. Not only that: These shivers are almost surrounded by a invisible sheen, gently protecting it from outside forces, up to $(thing)Native Copper$() not even oxidizing anymore."
+      "text": "Compared to the common resources you were used to before, such as $(thing)Raw Copper$(), their crystalline counterparts are much more pure. On closer inspection: they almost appear surrounded by an invisible sheen, gently protecting them from outside forces. This shroud seems to be what protects $(thing)Native Copper$() from oxidization."
     },
     {
       "type": "spectrum:cinderhearth_smelting",

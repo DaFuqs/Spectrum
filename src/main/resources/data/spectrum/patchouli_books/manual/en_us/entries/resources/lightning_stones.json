@@ -10,7 +10,7 @@
     {
       "type": "patchouli:text",
       "title": "Thunderstorms",
-      "text": "Thunderstorms are a powerful sign of the forces of nature.$(br)With the $(l:general/fusion_shrine)Fusion Shrine$() you did even start them when crafting some powerful resources.$(br2)There was no doubt coming across something here that had a connection to the magic of pigments."
+      "text": "Thunderstorms are a powerful sign of the forces of nature.$(br)Using the $(l:general/fusion_shrine)Fusion Shrine$() you did even start them when crafting some powerful resources.$(br2)There was no doubt coming across something here that had a connection to the magic of pigments."
     },
     {
       "type": "patchouli:spotlight",

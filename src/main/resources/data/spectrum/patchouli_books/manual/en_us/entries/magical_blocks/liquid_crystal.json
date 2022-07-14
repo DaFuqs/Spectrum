@@ -3,6 +3,7 @@
   "advancement": "spectrum:progression/unlock_liquid_crystal_bucket",
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:magical_blocks_category",
+  "turnin": "spectrum:midgame/enter_liquid_crystal",
   "extra_recipe_mappings": {
     "spectrum:liquid_crystal_bucket": 0,
     "spectrum:blazing_crystal": 0,

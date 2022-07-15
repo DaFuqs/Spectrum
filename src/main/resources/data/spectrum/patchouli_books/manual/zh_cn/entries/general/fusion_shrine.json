@@ -1,0 +1,61 @@
+{
+  "name": "融合神龛",
+  "icon": "spectrum:fusion_shrine_basalt",
+  "sortnum": 9,
+  "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
+  "turnin": "spectrum:build_fusion_shrine",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:fusion_shrine_basalt": 1,
+    "spectrum:fusion_shrine_calcite": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "为了制作 $(l:general/onyx_shards)黑色碎片$()，你发现了一种新的建筑.$(br2)你可以点击或者把物品和桶扔到上面。你甚至可以一次处理所有的融合材料，这使得融合比每次只使用一件物品更有效。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
+      "text": "可以由玄武岩或方解石构成。$(br)需要聚焦结构和清晰的天空视野。 "
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "神龛配方",
+      "multiblock_id": "spectrum:fusion_shrine_structure",
+      "enable_visualize": true,
+      "text": "像往常一样，你可以切换玄武岩与方解石，并选择你喜欢的$(l:decoration/gemstone_storage_blocks)宝石块$(/l)."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "方块清单",
+      "text": "$(li)1 融合神龛$(li)4 磨制宝石块$(li)4 錾制磨制块$(li)8 磨制柱子$(li)12 磨制台阶$(li)77 磨制块"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "改变天气",
+      "text": "你为融合神龛设计了一个结构，将$(c_cyan)物质$()，$(c_magenta)时间$() 和 $(c_yellow)能量$()的魔法能量捆绑在一起、并将它们集中在一个单一的中心，即融合神殿本身。$(br2)这些强大的组合能量甚至有足够的力量来改变天气。"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "晴天",
+      "recipe": "spectrum:fusion_shrine/weather/weather_clear",
+      "text": "$(italic)又是新的一天$(br)太阳当空照$(br)小鸟都在歌唱$(br)今天是你的忌日。"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "雨天",
+      "advancement": "spectrum:collect_mermaids_gem",
+      "recipe": "spectrum:fusion_shrine/weather/weather_rain",
+      "text": "$(italic)咚咚咚$(br)是谁？$(br)天气预报$(br)预报什么？$(br)预报今晚会下雨。"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "雷暴",
+      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "recipe": "spectrum:fusion_shrine/weather/weather_thunder",
+      "text": "$(italic)雷神为什么要喝水?$(br2)因为他脾气暴躁（thorsty）"
+    }
+  ]
+}

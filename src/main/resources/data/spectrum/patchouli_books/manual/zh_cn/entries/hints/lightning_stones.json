@@ -1,0 +1,24 @@
+{
+	"pages":[
+		{
+			"completion_advancement":"spectrum:midgame/collect_lightning_stone",
+			"cost":"spectrum:neolith#8",
+			"text":"雷雨是大自然的有力展示。有巨大的能量在发挥。",
+			"type":"spectrum:hint",
+			"title":"在哪里可以找到"
+		},
+		{
+			"cost":"spectrum:neolith#24",
+			"text":"有时你可以在闪电击中的地方找到奇怪的碎片。甚至有一种方法可以将闪电聚焦在特定位置，使收集它们更加有效。",
+			"type":"spectrum:hint",
+			"title":"简明说明"
+		}
+	],
+	"advancement":"spectrum:milestones/reveal_lightning_stones",
+	"read_by_default":true,
+	"name":"新资源",
+	"icon":"minecraft:writable_book",
+	"turnin":"spectrum:midgame/collect_lightning_stone",
+	"secret":true,
+	"category":"spectrum:hints_category"
+}

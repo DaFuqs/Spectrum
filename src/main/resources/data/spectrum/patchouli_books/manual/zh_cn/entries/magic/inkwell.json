@@ -1,0 +1,18 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)当你把这个想法写在纸上时，你的手在颤抖。这将是一件大事。$()$(br2)生产油墨一直是一个乏味的过程：从收集$(l:general/shards)宝石碎片$(/l)，$(l:general/anvil_crushing)压碎$(/l)它们，$(l:general/colored_trees)创造树木$(/l)只是为了再次砍伐它们以获取$(l:general/pigment)颜料$(/l)，只是为了在$(l:magic/color_picker)颜色选择器$(/l)中将其转换为油墨。$(br)$(italic)是时候取消所有这些中间阶段了。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/inkwell",
+			"text":"墨水池放置在$(l:magic/crystal_apothecary)水晶药剂师$(/l)上，直接将晶洞能量转换为墨水，允许其通过$(l:magic/ink_duct)墨水管道$(/l)传输。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_inkwell",
+	"name":"墨水池",
+	"icon":"spectrum:inkwell",
+	"category":"spectrum:magic_category"
+}

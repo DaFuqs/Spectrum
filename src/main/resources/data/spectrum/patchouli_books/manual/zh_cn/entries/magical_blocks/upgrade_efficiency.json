@@ -1,0 +1,29 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)用$(l:general/pedestal)颜料基座$(/l)制作物体会吞噬大量的宝石粉。$(br2)通过使用此升级，您应该能够缓冲消费。只是一点点，但总有一天会好起来的。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/upgrade_efficiency",
+			"text":"放在你的$(l:general/pedestal)颜料基座$(/l)上的宝石方块或錾制方块的$(l:general/fusion_shrine)融合神殿$(/l)。额外的影响会降低。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		},
+		{
+			"advancement":"spectrum:progression/unlock_upgrade_efficiency2",
+			"recipe":"spectrum:pedestal/tier4/upgrade_efficiency2",
+			"text":"这种“升级的升级”进一步减少了输入材料的消耗。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"第2层"
+		}
+	],
+	"advancement":"spectrum:midgame/create_refined_azurite",
+	"extra_recipe_mappings":{
+		"spectrum:upgrade_efficiency":0,
+		"spectrum:upgrade_efficiency2":0
+	},
+	"name":"效率斜率",
+	"icon":"spectrum:upgrade_efficiency",
+	"category":"spectrum:magical_blocks_category"
+}

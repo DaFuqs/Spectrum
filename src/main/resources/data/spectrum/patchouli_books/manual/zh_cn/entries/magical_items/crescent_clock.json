@@ -1,0 +1,21 @@
+{
+	"pages":[
+		{
+			"text":"时间的流动似乎有一些神奇的东西。$(br)这个时钟是由时间的见证人组成的，它将在这源源不断的开始和流逝中为你指明一条道路。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier2/crescent_clock",
+			"text":"$(italic)如果我们的影子冒犯了你，你要知道，但这一切都会得到弥补。$(br)当这些幻象出现的时候，你们只是在这里睡着了。$(br)而这个软弱而无聊的主题，不再屈服，而是一个梦想。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_crescent_clock",
+	"extra_recipe_mappings":{
+		"spectrum:crescent_clock":0
+	},
+	"name":"新月时钟",
+	"icon":"spectrum:crescent_clock",
+	"category":"spectrum:magical_items_category"
+}

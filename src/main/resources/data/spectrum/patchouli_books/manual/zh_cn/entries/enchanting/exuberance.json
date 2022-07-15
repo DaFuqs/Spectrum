@@ -1,0 +1,30 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)你那张由黑曜石和钻石组成的精美书桌，虽然很有用，但只要你获得它，或多或少就会吞噬掉每一段经验。为了满足它不断减少的饥饿感，提供您不断增长的魔法工具列表。$(br2)从对手身上榨取最后一点经验会有很大帮助。",
+			"type":"patchouli:text"
+		},
+		{
+			"item":"spectrum:multitool{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
+			"text":"增加了生物杀死的经验值。$(br2)最大等级：5$(br)适用于近战武器和采矿工具。",
+			"type":"patchouli:spotlight",
+			"title":"特点"
+		},
+		{
+			"recipe":"spectrum:enchanter/spectrum_books/book_exuberance",
+			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，让普通的书充满活力。",
+			"type":"spectrum:enchanter_crafting",
+			"title":"注魔基座配方"
+		},
+		{
+			"recipe":"spectrum:enchantment_upgrade/spectrum/exuberance_level_2",
+			"text":"一开始，将繁荣从1级升级到2级相当便宜。每增加一个级别，$(br)这个价格将迅速增加到越来越多的颜料和经验。",
+			"type":"spectrum:enchanter_upgrading",
+			"title":"附魔升级"
+		}
+	],
+	"advancement":"spectrum:progression/enchantments/exuberance",
+	"name":"活力勃发",
+	"icon":"spectrum:multitool",
+	"category":"spectrum:enchanting_category"
+}

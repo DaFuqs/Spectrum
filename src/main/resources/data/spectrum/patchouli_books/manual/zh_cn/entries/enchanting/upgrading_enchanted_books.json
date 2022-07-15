@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)附魔和你的色彩魔法有很多共同点。这就是为什么当你第一次尝试将《附魔》与$(l:general/pigment)颜料$(/l)结合在一起时，你并不感到惊讶。$()$(br2)将一本附魔书放在注魔基座身上，用匹配的颜料将其包围，并提供稳定的经验流，可以提高你的书的等级。",
+			"type":"patchouli:text"
+		},
+		{
+			"border":true,
+			"images":[
+				"spectrum:textures/gui/manual/upgrading_enchanted_books.png"
+			],
+			"text":"尽量不要打断上述过程，否则它会完全停止。",
+			"type":"patchouli:image"
+		}
+	],
+	"advancement":"spectrum:midgame/enter_liquid_crystal",
+	"name":"升级书籍",
+	"icon":"minecraft:enchanted_book",
+	"sortnum":3,
+	"priority":true,
+	"category":"spectrum:enchanting_category"
+}

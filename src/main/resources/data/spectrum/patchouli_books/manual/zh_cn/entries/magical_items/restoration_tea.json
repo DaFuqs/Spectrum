@@ -1,0 +1,21 @@
+{
+	"pages":[
+		{
+			"text":"有什么比在下雨的晚上坐在家里的壁炉旁喝一杯茶更舒适的了吗？$(br)当然：事先杀了一个BOSS。$(br)这种茶是由$(l:resources/jade_vines)古玉藤树$(/l)的花瓣酿造而成的，既能让你放松，又能保护你免受调零的致命影响。$(italic)实用$()",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:potion_workshop_crafting/restoration_tea",
+			"text":"$(italic)别想和牛奶一起喝！",
+			"type":"spectrum:potion_workshop_crafting",
+			"title":"工厂配方"
+		}
+	],
+	"advancement":"spectrum:hidden/collect_jade_vine_petals",
+	"extra_recipe_mappings":{
+		"spectrum:restoration_tea":0
+	},
+	"name":"恢复之茶",
+	"icon":"spectrum:restoration_tea",
+	"category":"spectrum:magical_items_category"
+}

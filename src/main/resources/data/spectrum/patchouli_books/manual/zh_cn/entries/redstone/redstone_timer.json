@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:redstone_timer",
+			"text":"$(italic)虽然有很多计算时间的方法，但大多数方法似乎相对而言有点古老，的你的袖子里有一个新把戏：$(l:general/shards#amethyst)紫水晶$(/l)碎片的时间亲和力。",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/redstone_timer",
+			"text":"您可以切换活动时间（$(k:use)）和非活动时间（$(k:sneak)+$(k:use)空手）的持续时间。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_redstone_timer",
+	"extra_recipe_mappings":{
+		"spectrum:redstone_timer":0
+	},
+	"name":"红石计时器",
+	"icon":"spectrum:redstone_timer",
+	"category":"spectrum:redstone_category"
+}

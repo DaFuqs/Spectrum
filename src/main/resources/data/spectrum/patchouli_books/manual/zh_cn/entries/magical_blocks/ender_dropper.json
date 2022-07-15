@@ -1,0 +1,23 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:ender_dropper",
+			"text":"末影滴管与末影漏斗相对应。每推一次红石，它就会从你的个人末影箱弹出一件物品。$(br2)注意：末影滴管只在你在线的时候起作用。谁在阻止任何人在它旁边放一个按钮并清空你的末影箱？",
+			"type":"patchouli:spotlight",
+			"title":"末影滴管"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier2/ender_dropper",
+			"text":"",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_ender_blocks",
+	"extra_recipe_mappings":{
+		"spectrum:ender_dropper":0
+	},
+	"name":"末影滴管",
+	"icon":"spectrum:ender_dropper",
+	"category":"spectrum:magical_blocks_category"
+}

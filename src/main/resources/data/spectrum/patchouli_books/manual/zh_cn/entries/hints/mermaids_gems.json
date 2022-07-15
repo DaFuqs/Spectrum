@@ -1,0 +1,24 @@
+{
+	"pages":[
+		{
+			"completion_advancement":"spectrum:collect_mermaids_gem",
+			"cost":"spectrum:onyx_shard#4",
+			"text":"有时在海洋中会发现闪闪发光的宝石，漂浮在水面上，被海浪来回摇晃。如果你花一些时间在附近或在海洋中，你可能会发现一个自己！",
+			"type":"spectrum:hint",
+			"title":"在哪里可以找到"
+		},
+		{
+			"cost":"spectrum:onyx_shard#12",
+			"text":"源是一种娇嫩的花，生长在海底，成群结队。这种植物会发出微弱的辉光，如果你戴上活跃的辉光乌贼头盔，它也会发光。在它旁边等待，直到它完全长大，释放出宝贵的宝藏并收集起来。",
+			"type":"spectrum:hint",
+			"title":"简明说明"
+		}
+	],
+	"advancement":"spectrum:midgame/build_advanced_pedestal_structure",
+	"read_by_default":true,
+	"name":"新资源",
+	"icon":"minecraft:writable_book",
+	"turnin":"spectrum:collect_mermaids_gem",
+	"secret":true,
+	"category":"spectrum:hints_category"
+}

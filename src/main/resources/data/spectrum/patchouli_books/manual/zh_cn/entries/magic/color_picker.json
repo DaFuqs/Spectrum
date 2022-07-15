@@ -1,0 +1,18 @@
+{
+	"pages":[
+		{
+			"text":"将颜料$(l:general/pigment)转化为纯墨水$(/l)。$(br)用于填充储存墨水的物品，如$(l:magic/ink_flask)墨水瓶$()。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier2/color_picker",
+			"text":"",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_color_picker",
+	"name":"颜色选择器",
+	"icon":"spectrum:color_picker",
+	"category":"spectrum:magic_category"
+}

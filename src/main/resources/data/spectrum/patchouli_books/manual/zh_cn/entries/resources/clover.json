@@ -1,0 +1,24 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:clover",
+			"text":"这些多汁的绿色三叶草生长在平原和其他充满生机的绿色生物群落中。$(br2)$(italic)今天是你的幸运日吗？$()",
+			"type":"patchouli:spotlight",
+			"title":"三叶草"
+		},
+		{
+			"item":"spectrum:four_leaf_clover",
+			"advancement":"spectrum:collect_four_leaf_clover",
+			"text":"确实如此！$(br)你肯定这个小小的幸运信号会派上用场。",
+			"type":"patchouli:spotlight"
+		}
+	],
+	"advancement":"spectrum:hidden/collect_clover",
+	"extra_recipe_mappings":{
+		"spectrum:four_leaf_clover":0,
+		"spectrum:clover":0
+	},
+	"name":"三叶草",
+	"icon":"spectrum:four_leaf_clover",
+	"category":"spectrum:resources_category"
+}

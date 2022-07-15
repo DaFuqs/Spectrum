@@ -1,0 +1,19 @@
+{
+	"pages":[
+		{
+			"text":"作为最基本的节点，连接节点本身没有任何用途。$(br)它们非常小，只是作为一种廉价且不引人注目的方式来扩大您的网络范围。",
+			"type":"patchouli:text",
+			"title":"连接节点"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/pastel_network/connection_node",
+			"text":"与所有其他节点一样，连接节点具有16个方块的范围。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/pastel_network/__unlock_basic_nodes",
+	"name":"连接节点",
+	"icon":"spectrum:provider_node",
+	"category":"spectrum:pastel_network_category"
+}

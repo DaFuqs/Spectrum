@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"text":"生物探测器内置的宝石对地面的微振动有反应。这使生物探测器能够测量附近生物的数量。",
+			"type":"patchouli:text",
+			"title":"生物探测器"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/detectors/entity_detector",
+			"text":"对于半径为10方块的每个生物，生物探测器会额外输出1的强度。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/detectors/unlock_entity_detector",
+	"extra_recipe_mappings":{
+		"spectrum:entity_detector":0
+	},
+	"name":"实体检测器",
+	"icon":"spectrum:player_detector",
+	"category":"spectrum:redstone_category"
+}

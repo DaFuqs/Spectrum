@@ -1,0 +1,21 @@
+{
+	"pages":[
+		{
+			"text":"艺术家调色板将$(l:magic/pigment_palette)颜料调色板$(/l)的储墨能力与$(l:magic/color_picker)颜色选择器$(/l)的混合能力相结合。$(br)它直接存储元素墨水，并根据需要混合其他墨水，同时容量大大增加。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:fusion_shrine/trinkets/artists_palette",
+			"text":"",
+			"type":"spectrum:fusion_shrine_crafting",
+			"title":"融合配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_artists_palette",
+	"extra_recipe_mappings":{
+		"spectrum:artists_palette":0
+	},
+	"name":"艺术家调色板",
+	"icon":"spectrum:artists_palette",
+	"category":"spectrum:magic_category"
+}

@@ -1,0 +1,21 @@
+{
+	"pages":[
+		{
+			"text":"像穴居人一样，你总是在附近手动照明或关闭难看的洞穴出口。为了让你摆脱这项工作，你将$(l:creating_life/fading)消逝$(/l)的自我复制能力作为开发方块洪水的灵感。$(br)扔进洞穴入口、池塘或沟壑，它们被填满了——在5%的情况下，结果看起来甚至可以接受！",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier2/block_flooder",
+			"text":"为了填补空白，它直接从您的库存中提取匹配的方块。如果你没有任何匹配的方块，它将回落到鹅卵石。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_block_flooder",
+	"extra_recipe_mappings":{
+		"spectrum:block_flooder":0
+	},
+	"name":"方块洪水",
+	"icon":"spectrum:block_flooder",
+	"category":"spectrum:magical_items_category"
+}

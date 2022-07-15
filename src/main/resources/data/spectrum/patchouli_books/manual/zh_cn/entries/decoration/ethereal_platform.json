@@ -1,0 +1,23 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:ethereal_platform",
+			"text":"$(italic)在你寻找一个对你来说可以通行但不会破坏建筑物外观的方块时，流星是一个很大的帮助。$(br2)随着玛瑙的增强，你能够将粒子增强到一定程度，使其变为固体。",
+			"type":"patchouli:spotlight",
+			"title":"以太平台"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier3/ethereal_platform",
+			"text":"以太平台的另一个实用特征是，该平台仅对生物作出反应。对象（如物品）只是简单地通过它。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_ethereal_platform",
+	"extra_recipe_mappings":{
+		"spectrum:ethereal_platform":0
+	},
+	"name":"以太平台",
+	"icon":"spectrum:ethereal_platform",
+	"category":"spectrum:decoration_category"
+}

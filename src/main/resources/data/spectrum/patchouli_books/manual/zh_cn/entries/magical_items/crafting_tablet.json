@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"recipe":"spectrum:pedestal/tier1/crafting_tablet",
+			"text":"制作平板电脑不仅仅是一个便携式的制作台。它可以保存一个插入的配方，让你按需制作。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"制作平板电脑"
+		},
+		{
+			"text":"可能会有一段时间，你觉得你经常需要某种材料，以至于你想把它自动化。或者你是那些把每一件物品都自动化的受虐狂之一，因为他们可以。$(br2)$(l:general/pedestal)颜料基座$()有一个专用槽，用于制作平板电脑。当您添加带有漏斗或类似于基座的物品时，它们将被适当、均匀地放置，就像保存的配方中指定的那样。",
+			"type":"patchouli:text",
+			"title":"基座自动化"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_crafting_tablet",
+	"extra_recipe_mappings":{
+		"spectrum:crafting_tablet":0
+	},
+	"name":"制作平板电脑",
+	"icon":"spectrum:crafting_tablet",
+	"category":"spectrum:magical_items_category"
+}

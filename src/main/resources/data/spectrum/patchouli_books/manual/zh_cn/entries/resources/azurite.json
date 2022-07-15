@@ -1,0 +1,27 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:raw_azurite",
+			"text":"一种富含蓝色的矿石，从远处看，几乎可以被误认为是青金石。在其天然形式中，它含有许多杂质，必须先将其去除，然后才能使用。$(br2)它被发现在地下深处，似乎能够增强任何色素的能量。",
+			"type":"patchouli:spotlight",
+			"title":"蓝铜矿"
+		},
+		{
+			"recipe":"spectrum:fusion_shrine/refined_azurite",
+			"text":"提炼蓝铜矿不是一项廉价的任务。$(br)在这种精炼的锭型中，蓝铜矿可以用于更多的配方。",
+			"type":"spectrum:fusion_shrine_crafting",
+			"title":"精炼蓝铜矿"
+		}
+	],
+	"advancement":"spectrum:midgame/collect_azurite",
+	"extra_recipe_mappings":{
+		"spectrum:refined_azurite":0,
+		"spectrum:azurite_block":0,
+		"spectrum:raw_azurite":0,
+		"spectrum:azurite_ore":0,
+		"spectrum:deepslate_azurite_ore":0
+	},
+	"name":"蓝铜矿",
+	"icon":"spectrum:azurite_ore",
+	"category":"spectrum:resources_category"
+}

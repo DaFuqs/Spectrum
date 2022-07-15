@@ -1,0 +1,24 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)你发现了一个巨大的地下建筑，看起来像是远在你之前的文明的地下堡垒。$(br)虽然他们似乎拥有能够打开通向另一个世界的门户的技术，但他们肯定应该对自己的害虫问题做些什么。",
+			"type":"patchouli:text"
+		},
+		{
+			"item":"minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
+			"text":"打破受感染的方块时，摆脱蠢虫。$(br2)最大级别：1$(br)适用于采矿工具。$(br)与共振相互排斥。",
+			"type":"patchouli:spotlight",
+			"title":"特点"
+		},
+		{
+			"recipe":"spectrum:enchanter/spectrum_books/book_pest_control",
+			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，为一本普通的书注入害虫控制。",
+			"type":"spectrum:enchanter_crafting",
+			"title":"注魔基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/enchantments/pest_control",
+	"name":"害虫防治",
+	"icon":"minecraft:iron_pickaxe",
+	"category":"spectrum:enchanting_category"
+}

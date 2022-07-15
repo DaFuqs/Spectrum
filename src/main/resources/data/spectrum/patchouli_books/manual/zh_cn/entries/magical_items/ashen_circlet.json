@@ -1,0 +1,21 @@
+{
+	"pages":[
+		{
+			"text":"你放在这个圆环里的深红色宝石本身就是冥界的产物，可以轻松地吸收你身上的高温。$(br)它甚至可以保护你免受熔岩的炽热——即使只是很短的一段时间，直到它有机会再次冷却下来。$(br)把它和一些能让你抵抗火的东西搭配，你可以像在水里一样在熔岩中游泳。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:fusion_shrine/trinkets/ashen_circlet",
+			"text":"$(li)防火和熔岩块造成伤害。$(li)如果冷却下来，对熔岩给予短暂保护",
+			"type":"spectrum:fusion_shrine_crafting",
+			"title":"融合配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_ashen_circlet",
+	"extra_recipe_mappings":{
+		"spectrum:ashen_circlet":0
+	},
+	"name":"灰白色圆环",
+	"icon":"spectrum:ashen_circlet",
+	"category":"spectrum:magical_items_category"
+}

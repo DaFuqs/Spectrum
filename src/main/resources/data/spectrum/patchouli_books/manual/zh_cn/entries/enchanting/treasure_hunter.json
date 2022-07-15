@@ -1,0 +1,35 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)在一幅画中，你看到了一个神奇的生物，它似乎是由灵魂沙和枯萎的骷髅头骨组成的。你在一个幽冥的堡垒里等了几个小时，却发现自己的脑袋几乎要松了，而你正在寻找一具脊椎松得足以掉落头骨的枯萎骨骼。抬头，你从来不是那种把头埋在沙子里的人。",
+			"type":"patchouli:text"
+		},
+		{
+			"item":"spectrum:cow_head",
+			"text":"$(italic)但是还有苦力怕！一旦被闪电击中，它们就会爆炸，爆炸威力巨大，以至于将对手的头颅从他们的头颅炸飞（最糟糕的情况是：你自己）。$(br)就像被闪电击中一样，你用$(l:resources/lightning_stones)风暴石$(/l)想出了这个新的魔法。$(br)于是灵魂猎手诞生了，你可以从$(l:creating_life/mob_heads)各种生物那里收集头颅$(/l)",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"item":"minecraft:iron_sword{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
+			"text":"击杀生物偶尔掉落头颅。$(br2)最大等级：3$(br)适用于近战武器。$(br)与掠夺相互排斥。",
+			"type":"patchouli:spotlight",
+			"title":"特点"
+		},
+		{
+			"recipe":"spectrum:enchanter/spectrum_books/book_treasure_hunter",
+			"text":"你可以用颜料和其他所需材料包围你的注魔基座，为一本普通书注入灵魂猎手。",
+			"type":"spectrum:enchanter_crafting",
+			"title":"注魔基座配方"
+		},
+		{
+			"recipe":"spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2",
+			"text":"一开始把灵魂猎手从一级升级到二级相当便宜。每增加一个级别，$(br)这个价格将迅速增加到越来越多的颜料和经验。",
+			"type":"spectrum:enchanter_upgrading",
+			"title":"附魔升级"
+		}
+	],
+	"advancement":"spectrum:progression/enchantments/treasure_hunter",
+	"name":"灵魂猎手",
+	"icon":"minecraft:iron_sword",
+	"category":"spectrum:enchanting_category"
+}

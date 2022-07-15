@@ -1,0 +1,32 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:bottle_of_fading",
+			"text":"没过多久，你就想到了一个建设计划。$(br2)你创造的有机体很弱，但你创造新生命的计划似乎是成功的，至少在原则上是成功的！不可否认，这只是一群微生物，但它们是活的！",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/bottle_of_fading",
+			"text":"每个生物基本上都有相同的目标：吃和繁殖。$()所以这些弱小的生物吃什么？其他方块？绝对是容易消化的东西。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		},
+		{
+			"item":"spectrum:vegetal",
+			"advancement":"spectrum:collect_vegetal",
+			"anchor":"vegetal",
+			"text":"答案似乎是有机物！确实容易消化。$(br)当消化有机物时，会产生一种有趣的副产品，你称之为植物。它由$(bold)自然的原始能量$()组成。$(br2)你肯定这对你很有用。",
+			"type":"patchouli:spotlight",
+			"title":"植物能量粉"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_bottle_of_fading",
+	"extra_recipe_mappings":{
+		"spectrum:bottle_of_fading":0,
+		"spectrum:vegetal":0
+	},
+	"name":"实验#1：消逝",
+	"icon":"spectrum:bottle_of_fading",
+	"turnin":"spectrum:collect_vegetal",
+	"category":"spectrum:creating_life_category"
+}

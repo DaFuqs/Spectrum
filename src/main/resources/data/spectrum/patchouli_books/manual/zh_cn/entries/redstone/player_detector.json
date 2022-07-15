@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)你知道有人用红石建造巨大的建筑，只是为了打开一扇超大的门。然后他们用一个难看的压盘触发它。另一方面，$(br)玩家检测器能够感知你或其他玩家在远处的存在，并发出相应的红石信号。$(br)好多了。",
+			"type":"patchouli:text",
+			"title":"玩家检测器"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/detectors/player_detector",
+			"text":"范围：10个方块。$(br)如果检测到放置信号的玩家，则发出全强度信号，否则为8。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/detectors/unlock_player_detector",
+	"extra_recipe_mappings":{
+		"spectrum:player_detector":0
+	},
+	"name":"玩家检测器",
+	"icon":"spectrum:player_detector",
+	"category":"spectrum:redstone_category"
+}

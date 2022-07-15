@@ -1,0 +1,32 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:citrine_basalt_lamp",
+			"text":"$(italic)当你踏上第一个晶洞时，你会看到舒适宜人的光芒。凭借您的知识和闪光石的帮助，可以很容易地放大这种光线，以创建奇特的灯具。$()",
+			"type":"patchouli:spotlight",
+			"title":"宝石灯"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/gem_lamps/citrine_basalt_lamp",
+			"text":"宝石灯有各种颜色的宝石供您选择。$(l:decoration/block_variants#polished_basalt)錾制方解石$()和$(l:decoration/block_variants#polished_calcite)錾制玄武岩$()均可用作基底。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:collect_sparklestone",
+	"extra_recipe_mappings":{
+		"spectrum:amethyst_calcite_lamp":0,
+		"spectrum:citrine_calcite_lamp":0,
+		"spectrum:moonstone_calcite_lamp":0,
+		"spectrum:amethyst_basalt_lamp":0,
+		"spectrum:citrine_basalt_lamp":0,
+		"spectrum:topaz_basalt_lamp":0,
+		"spectrum:moonstone_basalt_lamp":0,
+		"spectrum:topaz_calcite_lamp":0,
+		"spectrum:onyx_basalt_lamp":0,
+		"spectrum:onyx_calcite_lamp":0
+	},
+	"name":"宝石灯",
+	"icon":"spectrum:citrine_basalt_lamp",
+	"category":"spectrum:decoration_category"
+}

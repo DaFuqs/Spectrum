@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"text":"物品检测器用于计算位于其10方块半径内地面上的物品。$(br)红石信号的强度取决于周围有多少物品。",
+			"type":"patchouli:text",
+			"title":"物品检测器"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/detectors/item_detector",
+			"text":"64个物品产生最大强度的信号。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/detectors/unlock_item_detector",
+	"extra_recipe_mappings":{
+		"spectrum:item_detector":0
+	},
+	"name":"物品检测器",
+	"icon":"spectrum:player_detector",
+	"category":"spectrum:redstone_category"
+}

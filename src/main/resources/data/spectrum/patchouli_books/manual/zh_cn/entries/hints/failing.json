@@ -1,0 +1,24 @@
+{
+	"pages":[
+		{
+			"completion_advancement":"spectrum:midgame/collect_neolith",
+			"cost":"spectrum:scarlet_fragments#8",
+			"text":"就像褪色一样，他们更喜欢放在旁边的特定方块。不过，这次要强大得多。”确切地说，我讨厌挖掘这种“强大”。",
+			"type":"spectrum:hint",
+			"title":"小线索"
+		},
+		{
+			"cost":"spectrum:scarlet_fragments#24",
+			"text":"最喜欢的食物是黑曜石。不过，要提防他们的贪得无厌。如果有机会，他们会吃很多。。。",
+			"type":"spectrum:hint",
+			"title":"简明说明"
+		}
+	],
+	"advancement":"spectrum:midgame/craft_bottle_of_failing",
+	"read_by_default":true,
+	"name":"实验#2",
+	"icon":"minecraft:writable_book",
+	"turnin":"spectrum:midgame/collect_neolith",
+	"secret":true,
+	"category":"spectrum:hints_category"
+}

@@ -1,0 +1,26 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:redstone_sand",
+			"text":"$(italic)你愉快地回想起那些为朋友设下小圈套的日子。碰错了方块，他们被沙子完全掩埋了。$(br)到现在为止，你的朋友们还不那么容易上当受骗。$(br2)似乎现代问题需要现代解决方案。",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"text":"通过向沙子中加入红石和一些魔法，它获得了一个有趣的特性：像其他方块一样，它一直留在空气中，直到里面的宝石粉开始振动。$(br2)红石砂的行为就像一个坚实的方块，直到它得到红石信号。$(br)红石触发器通过所有连接的方块传播，使其不稳定，重力定律迫使其下降。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/redstone_sand",
+			"text":"$(italic)有这么多的可能性",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_redstone_sand",
+	"extra_recipe_mappings":{
+		"spectrum:redstone_sand":0
+	},
+	"name":"红石沙",
+	"icon":"spectrum:redstone_sand",
+	"category":"spectrum:redstone_category"
+}

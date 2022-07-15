@@ -1,0 +1,30 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:ender_glass",
+			"text":"$(italic)你已经认为，当你把配方写在纸上的那一刻，这个创造将是一个特别的东西。$(br2)末地的力量、红石和魔法的结合赋予了它非常奇怪的特性。",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"text":"根据应用红石信号的强度，该方块具有不同的特性。$(br2)没有红石，它是完全固体；当红石信号到达时，它变得透明，几乎像玻璃一样。$(br)然而，当施加全强度的红石信号时，它达到了最奇怪的状态。。。",
+			"type":"patchouli:text"
+		},
+		{
+			"text":"$(br2)更奇怪的是，这种材料似乎只对最后施加的信号做出反应，而不是最强的。$(br2)真正的好奇心从最后。",
+			"type":"patchouli:text"
+		},
+		{
+			"test":"With the smallest external influence in the form of blocks it falls back to the state of lowest energy.",
+			"recipe":"spectrum:pedestal/tier1/ender_glass",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_ender_glass",
+	"extra_recipe_mappings":{
+		"spectrum:ender_glass":0
+	},
+	"name":"末影玻璃",
+	"icon":"spectrum:ender_glass",
+	"category":"spectrum:redstone_category"
+}

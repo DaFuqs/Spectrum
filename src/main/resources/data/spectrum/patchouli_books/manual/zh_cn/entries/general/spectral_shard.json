@@ -1,0 +1,38 @@
+{
+  "name": "光谱碎片",
+  "advancement": "spectrum:lategame/spectrum_lategame",
+  "sortnum": 15,
+  "icon": "spectrum:spectral_shard",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:lategame/create_spectral_shard",
+  "extra_recipe_mappings": {
+    "spectrum:spectral_shard": 0,
+    "spectrum:spectral_shard_block": 0,
+    "spectrum:spectral_shard_storage_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "光谱碎片",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "融合配方",
+      "recipe": "spectrum:fusion_shrine/spectral_shard",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:lategame/create_spectral_shard",
+      "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_block",
+      "text": "$(italic)棒极了!$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:lategame/create_spectral_shard",
+      "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_storage_block",
+      "text": "$(italic)你是不是觉得下届合金信标有点过分？$()"
+    }
+  ]
+}

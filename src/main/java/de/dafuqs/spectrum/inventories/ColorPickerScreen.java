@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.inventories.widgets.ColorSelectionWidget;
 import de.dafuqs.spectrum.inventories.widgets.InkGaugeWidget;
-import de.dafuqs.spectrum.inventories.widgets.InkMeterWidget;
 import de.dafuqs.spectrum.inventories.widgets.StackedInkMeterWidget;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;

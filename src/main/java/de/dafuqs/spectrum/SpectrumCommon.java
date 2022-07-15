@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
+import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
@@ -186,6 +187,9 @@ public class SpectrumCommon implements ModInitializer {
 		
 		logInfo("Registering Client To ServerPackage Receivers...");
 		SpectrumC2SPacketReceiver.registerC2SReceivers();
+		
+		logInfo("Registering Data Loaders...");
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(ResonanceEnchantment.ResonanceDropsDataLoader.INSTANCE);
 		
 		logInfo("Registering MultiBlocks...");
 		SpectrumMultiblocks.register();

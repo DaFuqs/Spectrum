@@ -39,7 +39,7 @@ public abstract class BlockMixin {
 	
 	@Inject(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"), cancellable = true)
 	private static void spectrum$getDroppedStacks(BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfoReturnable<List<ItemStack>> cir) {
-		List<ItemStack> droppedStacks = new ArrayList<>();
+		List<ItemStack> droppedStacks = cir.getReturnValue();
 		Map<Enchantment, Integer> enchantmentMap = EnchantmentHelper.get(stack);
 		
 		// Voiding curse: no drops
@@ -47,16 +47,23 @@ public abstract class BlockMixin {
 			world.spawnParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.5, 0.5, 0.5, 0.05);
 		// Resonance: drop itself
 		} else if(enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && (state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
+			droppedStacks = new ArrayList<>();
 			droppedStacks.add(state.getBlock().asItem().getDefaultStack());
-		} else {
-			droppedStacks = cir.getReturnValue();
 		}
 		
 		if (droppedStacks.size() > 0) {
+			// Resonance enchant: grant different drops for some items
+			if(enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
+				for(int i = 0; i < droppedStacks.size(); i++) {
+					droppedStacks.set(i, ResonanceEnchantment.applyResonance(droppedStacks.get(i)));
+				}
+			}
+			
 			// Foundry enchant: try smelting recipe for each stack
 			if (enchantmentMap.containsKey(SpectrumEnchantments.FOUNDRY) && SpectrumEnchantments.FOUNDRY.canEntityUse(entity)) {
 				droppedStacks = AutoSmeltEnchantment.applyAutoSmelt(world, droppedStacks);
 			}
+			
 			// Inventory Insertion enchant? Add it to players inventory if there is room
 			if (enchantmentMap.containsKey(SpectrumEnchantments.INVENTORY_INSERTION) && SpectrumEnchantments.INVENTORY_INSERTION.canEntityUse(entity)) {
 				List<ItemStack> leftoverReturnStacks = new ArrayList<>();

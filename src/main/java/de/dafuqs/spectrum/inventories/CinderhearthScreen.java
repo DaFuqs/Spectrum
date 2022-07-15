@@ -2,16 +2,12 @@ package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.cinderhearth.CinderhearthBlockEntity;
-import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.inventories.widgets.InkMeterWidget;
-import de.dafuqs.spectrum.inventories.widgets.StackedInkMeterWidget;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.AbstractFurnaceScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 

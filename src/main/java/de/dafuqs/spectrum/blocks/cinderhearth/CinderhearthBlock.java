@@ -39,27 +39,23 @@ import java.util.Random;
 
 public class CinderhearthBlock extends BlockWithEntity {
 	
-	public static final EnumProperty<DoubleBlockHalf> HALF = TallPlantBlock.HALF;
 	public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
 	
 	public CinderhearthBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(HALF, DoubleBlockHalf.LOWER).with(FACING, Direction.NORTH));
+		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
 	}
 	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		if(state.get(HALF) == DoubleBlockHalf.UPPER) {
-			return new CinderhearthBlockEntity(pos, state);
-		}
-		return null;
+		return new CinderhearthBlockEntity(pos, state);
 	}
 	
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		if (world.isClient || state.get(HALF) == DoubleBlockHalf.LOWER) {
+		if (world.isClient) {
 			return null;
 		} else {
 			return checkType(type, SpectrumBlockEntityRegistry.CINDERHEARTH, CinderhearthBlockEntity::serverTick);
@@ -69,15 +65,11 @@ public class CinderhearthBlock extends BlockWithEntity {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
-			if(state.get(HALF) == DoubleBlockHalf.UPPER) {
-				verifyStructure(world, pos, null);
-			}
+			verifyStructure(world, pos, null);
 			return ActionResult.SUCCESS;
 		} else {
-			if(state.get(HALF) == DoubleBlockHalf.UPPER) {
-				if (verifyStructure(world, pos, (ServerPlayerEntity) player)) {
-					this.openScreen(world, pos, player);
-				}
+			if (verifyStructure(world, pos, (ServerPlayerEntity) player)) {
+				this.openScreen(world, pos, player);
 			}
 			return ActionResult.CONSUME;
 		}
@@ -98,10 +90,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 	
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		BlockPos topPos = pos.up();
-		world.setBlockState(topPos, state.with(HALF, DoubleBlockHalf.UPPER));
-		
-		BlockEntity blockEntity = world.getBlockEntity(topPos);
+		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
 			if(placer instanceof PlayerEntity player) {
 				cinderhearthBlockEntity.setOwner(player);
@@ -109,51 +98,6 @@ public class CinderhearthBlock extends BlockWithEntity {
 			if (itemStack.hasCustomName()) {
 				cinderhearthBlockEntity.setCustomName(itemStack.getName());
 			}
-		}
-	}
-	
-	@Override
-	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (!world.isClient) {
-			if (player.isCreative()) {
-				onBreakInCreative(world, pos, state, player);
-			} else {
-				dropStacks(state, world, pos, null, player, player.getMainHandStack());
-			}
-		}
-		
-		super.onBreak(world, pos, state, player);
-	}
-	
-	protected static void onBreakInCreative(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		DoubleBlockHalf doubleBlockHalf = state.get(HALF);
-		if (doubleBlockHalf == DoubleBlockHalf.UPPER) {
-			BlockPos blockPos = pos.down();
-			BlockState blockState = world.getBlockState(blockPos);
-			if (blockState.isOf(state.getBlock()) && blockState.get(HALF) == DoubleBlockHalf.LOWER) {
-				world.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 35);
-				world.syncWorldEvent(player, 2001, blockPos, Block.getRawIdFromState(blockState));
-			}
-		}
-	}
-	
-	@Override
-	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		DoubleBlockHalf doubleBlockHalf = state.get(HALF);
-		if (direction.getAxis() == Direction.Axis.Y && doubleBlockHalf == DoubleBlockHalf.LOWER == (direction == Direction.UP) && (!neighborState.isOf(this) || neighborState.get(HALF) == doubleBlockHalf)) {
-			return Blocks.AIR.getDefaultState();
-		} else {
-			return doubleBlockHalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
-		}
-	}
-	
-	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		if (state.get(HALF) != DoubleBlockHalf.UPPER) {
-			return super.canPlaceAt(state, world, pos);
-		} else {
-			BlockState blockState = world.getBlockState(pos.down());
-			return blockState.isOf(this) && blockState.get(HALF) == DoubleBlockHalf.LOWER;
 		}
 	}
 	
@@ -198,7 +142,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(FACING, HALF);
+		builder.add(FACING);
 	}
 	
 	@Override
@@ -225,22 +169,41 @@ public class CinderhearthBlock extends BlockWithEntity {
 		BlockRotation rotation = Support.rotationFromDirection(world.getBlockState(blockPos).get(FACING));
 		
 		IMultiblock multiblockWithLava = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_IDENTIFIER);
-		if (multiblockWithLava.validate(world, blockPos, rotation)) {
-			if (serverPlayerEntity != null) {
-				SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithLava);
+		IMultiblock multiblockWithoutLava = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER);
+		if(world.isClient) {
+			if (multiblockWithoutLava.validate(world, blockPos.down(3), rotation)) {
+				return true;
+			} else {
+				PatchouliAPI.get().showMultiblock(multiblockWithLava, new TranslatableText("multiblock.spectrum.cinderhearth.structure"), blockPos.down(4), rotation);
+				return false;
 			}
-			return true;
 		} else {
-			IMultiblock multiblockWithoutLava = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER);
-			if (multiblockWithoutLava.validate(world, blockPos, rotation)) {
+			if (multiblockWithLava.validate(world, blockPos.down(3), rotation)) {
 				if (serverPlayerEntity != null) {
-					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithoutLava);
+					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithLava);
 				}
 				return true;
-			} else if (world.isClient) {
-				PatchouliAPI.get().showMultiblock(multiblockWithLava, new TranslatableText("multiblock.spectrum.cinderhearth.structure"), blockPos.down(1), rotation);
+			} else {
+				if (multiblockWithoutLava.validate(world, blockPos.down(3), rotation)) {
+					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithoutLava);
+					return true;
+				}
+				return false;
 			}
-			return false;
+		}
+	}
+	
+	@Override
+	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+		if (world.isClient()) {
+			clearCurrentlyRenderedMultiBlock();
+		}
+	}
+	
+	public static void clearCurrentlyRenderedMultiBlock() {
+		IMultiblock currentlyRenderedMultiBlock = PatchouliAPI.get().getCurrentMultiblock();
+		if (currentlyRenderedMultiBlock != null && currentlyRenderedMultiBlock.getID().equals(SpectrumMultiblocks.CINDERHEARTH_IDENTIFIER)) {
+			PatchouliAPI.get().clearMultiblock();
 		}
 	}
 	

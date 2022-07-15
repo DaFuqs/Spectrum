@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "ae2:certus_quartz_dust"
+  },
+  "results": [
+    {
+      "item": "ae2:silicon",
+      "count": 3
+    }
+  ],
+  "experience": 1,
+  "time": 200,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ae2"
+      ]
+    }
+  ]
+}

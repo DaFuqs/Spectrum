@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:native_netherite"
   },
-  "result": "minecraft:netherite_ingot",
+  "result": "minecraft:netherite_scrap",
   "experience": 0.5,
   "cookingtime": 100
 }

@@ -6,7 +6,7 @@
   "crushedItemsPerPointOfDamage": 1.0,
   "experience": 3.0,
   "result": {
-    "item": "minecraft:glowstone",
+    "item": "minecraft:glowstone_dust",
     "count": 12
   },
   "particleEffectIdentifier": "explosion",

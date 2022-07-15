@@ -125,23 +125,23 @@ public class SpectrumMultiblocks {
 				'G', "#minecraft:impermeable",
 				'L', "minecraft:lava",
 				'_', StateMatcher.ANY,
-				'H', "spectrum:cinderhearth[half=lower]",
-				'0', "spectrum:cinderhearth[half=upper]",
+				'H', "spectrum:cinderhearth",
+				'0', "#spectrum:polished_base_blocks",
 		};
 		
 		String[][] structure = {
-				{"C___C", "__0__", "_____", "_____" },
-				{"XcccX", "cGHGc", "cGGGc", "XXXXX" },
+				{"C___C", "__H__", "_____", "_____" },
+				{"Xc cX", "cG_Gc", "cGGGc", "_XXX_" },
 				{"_XXX_", "XLLLX", "XLLLX", "_XXX_" },
-				{"_____", "_XXX_", "_XXX_", "_____" }
+				{"_____", "_X0X_", "_XXX_", "_____" }
 		};
 		CINDERHEARTH_IDENTIFIER = registerMultiBlock("cinderhearth_structure", structure, targetBlocks);
 		
 		String[][] withoutLavaStructure = {
-				{"C___C", "__0__", "_____", "_____" },
-				{"XcccX", "cGHGc", "cGGGc", "XXXXX" },
+				{"C___C", "__H__", "_____", "_____" },
+				{"XcccX", "cG_Gc", "cGGGc", "_XXX_" },
 				{"_XXX_", "X___X", "X___X", "_XXX_" },
-				{"_____", "_XXX_", "_XXX_", "_____" }
+				{"_____", "_X0X_", "_XXX_", "_____" }
 		};
 		CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER = registerMultiBlock("cinderhearth_without_lava_structure", withoutLavaStructure, targetBlocks);
 	}

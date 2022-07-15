@@ -1,7 +1,7 @@
 {
   "type": "spectrum:midnight_solution_converting",
   "ingredient": {
-    "item": "minecraft:glowstone"
+    "item": "minecraft:glowstone_dust"
   },
   "result": {
     "item": "minecraft:gunpowder",

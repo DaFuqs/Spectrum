@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "tag": "minecraft:logs_that_burn"
+  },
+  "results": [
+    {
+      "item": "minecraft:charcoal",
+      "count": 2
+    }
+  ],
+  "experience": 0.3,
+  "time": 100
+}

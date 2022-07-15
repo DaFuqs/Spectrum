@@ -1,0 +1,30 @@
+{
+  "values": [
+    {
+      "id": "c:dusts",
+      "required": false
+    },
+
+    "spectrum:polished_calcite_wall",
+    "spectrum:polished_calcite_stairs",
+    "spectrum:polished_calcite_pillar",
+    "spectrum:polished_calcite_crest",
+    "spectrum:notched_polished_calcite",
+    "spectrum:chiseled_polished_calcite",
+    "spectrum:calcite_bricks",
+    "spectrum:calcite_brick_wall",
+    "spectrum:calcite_brick_stairs",
+
+    "spectrum:polished_basalt_wall",
+    "spectrum:polished_basalt_stairs",
+    "spectrum:polished_basalt_pillar",
+    "spectrum:polished_basalt_crest",
+    "spectrum:notched_polished_basalt",
+    "spectrum:chiseled_polished_basalt",
+    "spectrum:basalt_bricks",
+    "spectrum:basalt_brick_wall",
+    "spectrum:basalt_brick_stairs",
+
+    "minecraft:wet_sponge"
+  ]
+}

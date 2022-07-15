@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "minecraft:sand"
+  },
+  "results": [
+    {
+      "item": "minecraft:glass",
+      "count": 2
+    }
+  ],
+  "experience": 0.2,
+  "time": 100
+}

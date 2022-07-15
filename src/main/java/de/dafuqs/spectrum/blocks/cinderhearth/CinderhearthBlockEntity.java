@@ -17,6 +17,7 @@ import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -304,7 +305,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		// output
 		ItemStack inputStack = cinderhearthBlockEntity.getStack(INPUT_SLOT_ID);
 		ItemStack output = blastingRecipe.getOutput().copy();
-		float yieldMod = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(UpgradeType.YIELD), InkColors.LIGHT_BLUE, cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY));
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(UpgradeType.YIELD), InkColors.LIGHT_BLUE, cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY));
 		if(yieldMod > 1) {
 			output.setCount(Math.min(output.getMaxCount(), Support.getIntFromDecimalWithChance(output.getCount() * yieldMod, world.random)));
 		}
@@ -345,7 +346,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	public static void craftCinderhearthRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearthBlockEntity, @NotNull CinderhearthRecipe cinderhearthRecipe) {
 		// output
-		float yieldMod = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(UpgradeType.YIELD), InkColors.LIGHT_BLUE, cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY));
+		ItemStack inputStack = cinderhearthBlockEntity.getStack(INPUT_SLOT_ID);
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(UpgradeType.YIELD), InkColors.LIGHT_BLUE, cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY));
 		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random, yieldMod);
 		
 		DefaultedList<ItemStack> backupInventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
@@ -356,8 +358,6 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		boolean couldAdd = InventoryHelper.addToInventory(cinderhearthBlockEntity, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
 		if(couldAdd) {
 			cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY), InkColors.BLACK);
-			
-			ItemStack inputStack = cinderhearthBlockEntity.getStack(INPUT_SLOT_ID);
 			Item remainder = inputStack.getItem().getRecipeRemainder();
 			
 			// use up input ingredient

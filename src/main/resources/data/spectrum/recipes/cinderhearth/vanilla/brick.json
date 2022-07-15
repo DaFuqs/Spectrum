@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "minecraft:clay_ball"
+  },
+  "results": [
+    {
+      "item": "minecraft:brick",
+      "count": 2
+    }
+  ],
+  "experience": 0.6,
+  "time": 100
+}

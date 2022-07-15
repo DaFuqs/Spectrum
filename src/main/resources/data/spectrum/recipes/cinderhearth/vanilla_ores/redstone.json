@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "minecraft:redstone_ore"
+  },
+  "results": [
+    {
+      "item": "minecraft:redstone",
+      "count": 2
+    },
+    {
+      "item": "minecraft:glowstone_dust",
+      "chance": 0.1
+    }
+  ],
+  "experience": 0.2,
+  "time": 100
+}

@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "spectrum:native_glowstone"
   },
-  "result": "minecraft:glowstone",
+  "result": "minecraft:glowstone_dust",
   "experience": 0.5,
   "cookingtime": 100
 }

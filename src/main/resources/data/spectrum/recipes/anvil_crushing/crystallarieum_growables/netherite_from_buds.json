@@ -11,7 +11,7 @@
   "crushedItemsPerPointOfDamage": 1.0,
   "experience": 2.0,
   "result": {
-    "item": "minecraft:netherite_ingot",
+    "item": "minecraft:netherite_scrap",
     "count": 2
   },
   "particleEffectIdentifier": "explosion",

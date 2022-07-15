@@ -22,6 +22,7 @@ public class SpectrumItemTags {
 	public static TagKey<Item> MOB_HEADS = getReference("mob_heads");
 	public static TagKey<Item> SPAWNERS = getReference("spawners");
 	public static TagKey<Item> INDESTRUCTIBLE_BLACKLISTED = getReference("indestructible_blacklisted");
+	public static final TagKey<Item> NO_CINDERHEARTH_DOUBLING = getReference("no_cinderhearth_doubling");
 	
 	private static TagKey<Item> getReference(String id) {
 		return TagKey.of(Registry.ITEM_KEY, new Identifier(SpectrumCommon.MOD_ID, id));

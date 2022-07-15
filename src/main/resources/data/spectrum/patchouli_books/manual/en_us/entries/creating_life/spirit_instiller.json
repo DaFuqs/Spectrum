@@ -27,7 +27,7 @@
     {
       "type": "patchouli:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Spirit Instiller$(li)2 Item Bowls$(li)2 Notched Polished Blocks$(li)2 Onyx Chiseled Blocks$(li)6 Polished Pillars$(li)17 Polished Slabs$(li)41 Polished Blocks$(li)2 Gemstone Chimes"
+      "text": "$(li)1 Spirit Instiller$(li)2 Item Bowls$(li)2 Notched Polished Blocks$(li)2 Chiseled Polished Blocks$(li)2 Onyx Chiseled Blocks$(li)6 Polished Pillars$(li)17 Polished Slabs$(li)41 Polished Blocks$(li)2 Gemstone Chimes"
     }
   ]
 }

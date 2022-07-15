@@ -27,12 +27,12 @@
     {
       "type": "patchouli:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Cinderhearth$(li)2 Chiseled Blocks$(li)6 Lava Buckets$(li)5 Glass-like Blocks$(li)7 Crest Blocks$(li)23 Polished Blocks"
+      "text": "$(li)1 Cinderhearth$(li)23 Polished Blocks$(li)6 Crest Blocks$(li)5 Glass-like Blocks$(li)2 Chiseled Blocks$(li)6 Buckets of Lava"
     },
     {
       "type": "patchouli:text",
       "title": "Upgrades",
-      "text": "Upgrades placed on the $(thing)Chiseled Blocks$() do not work automatically, but requires you to supply an additional type of Ink to the Cinderhearth. The higher the upgrades, the higher the consumption.$(br)Is a single Ink type missing, the Cinderhearth completely will cease operation."
+      "text": "Upgrades placed on the $(thing)Chiseled Blocks$() do not work automatically, but requires you to supply an additional type of Ink to the Cinderhearth. The higher the upgrades, the higher the consumption."
     },
     {
       "type": "patchouli:text",

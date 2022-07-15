@@ -142,6 +142,10 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntityRegistry.register();
 		
+		// Dimension
+		logInfo("Registering Dimension...");
+		DeeperDownDimension.setup();
+		
 		// Worldgen
 		logInfo("Registering Structure Features...");
 		SpectrumStructureFeatures.register();
@@ -149,10 +153,6 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumFeatures.register();
 		logInfo("Registering Configured and Placed Features...");
 		SpectrumConfiguredFeatures.register();
-		
-		// Dimension
-		logInfo("Registering Dimension...");
-		DeeperDownDimension.setup();
 		
 		// Recipes
 		logInfo("Registering Recipe Types...");

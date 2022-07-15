@@ -7,6 +7,7 @@
     "AnvilBlockMixin",
     "BlockMixin",
     "BuddingAmethystBlockMixin",
+    "ChunkNoiseSamplerMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
     "EnderEyeItemMixin",

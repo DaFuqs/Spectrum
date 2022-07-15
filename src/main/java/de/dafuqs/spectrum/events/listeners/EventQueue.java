@@ -28,7 +28,6 @@ public abstract class EventQueue<D> implements GameEventListener {
 	
 	public void tick(World world) {
 		if (!eventQueue.isEmpty()) {
-			// TODO: test for ConcurrentModificationExceptions
 			D[] keys = (D[]) eventQueue.keySet().toArray();
 			for (D key : keys) {
 				Integer tickCounter = eventQueue.get(key);

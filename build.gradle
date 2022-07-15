@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.11-SNAPSHOT'
+	id 'fabric-loom' version '0.12-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -41,12 +41,12 @@ repositories {
 	maven {
 		name = "JitPack"
 		url = 'https://jitpack.io'
-		metadataSources {// thank you, Incubus Core >:(
-			artifact() //Look directly for artifact
-		}
+		//metadataSources {// thank you, Incubus Core >:(
+		//	artifact() //Look directly for artifact
+		//}
 	}
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-	mavenCentral() // incubus core
+	//mavenCentral() // incubus core
 }
 
 dependencies {

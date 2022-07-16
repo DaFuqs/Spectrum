@@ -26,6 +26,12 @@ repositories {
 		url = 'https://ladysnake.jfrog.io/artifactory/mods'
 	}
 	maven {
+		url 'https://api.modrinth.com/maven'
+		content {
+			includeGroup "maven.modrinth"
+		}
+	}
+	maven {
 		name = "banner++"
 		url "https://maven.theepicblock.nl"
 	}
@@ -46,6 +52,7 @@ repositories {
 		//}
 	}
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+	maven { url 'https://maven.modrinth' }
 	//mavenCentral() // incubus core
 }
 
@@ -92,6 +99,7 @@ dependencies {
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 	modImplementation include("com.github.devs-immortal:Some-Assembly-Required:${project.sar_version}")
 	modImplementation include("io.github.ladysnake:satin:${project.satin_version}")
+	modImplementation("com.github.LudoCrypt:Liminal-Library:5.2.1")
 	modImplementation("software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}")
 
 	// Soft dependencies:

@@ -19,7 +19,7 @@ public class DDBiome {
 			.effects(new BiomeEffects.Builder()
 					.waterColor(0x050533)
 					.waterFogColor(0x050533)
-					.fogColor(0x3b3b3b)
+					.fogColor(0x000000)
 					.skyColor(0x000000)
 					.foliageColor(0x3a482f)
 					.grassColor(0x6e7d4e)

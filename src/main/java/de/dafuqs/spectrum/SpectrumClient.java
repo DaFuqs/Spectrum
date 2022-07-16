@@ -19,6 +19,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.ludocrypt.limlib.access.DimensionEffectsAccess;
+import net.ludocrypt.limlib.api.LiminalEffects;
+import net.ludocrypt.limlib.api.sound.ReverbSettings;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
@@ -27,6 +30,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import java.util.Optional;
 import java.util.Set;
 
 import static de.dafuqs.spectrum.SpectrumCommon.logInfo;

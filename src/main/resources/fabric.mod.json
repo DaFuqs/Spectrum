@@ -59,7 +59,8 @@
     "colored_lights": ">=1.0.3",
     "advancements-enlarger": ">=0.2.4",
     "paginatedadvancements": "*",
-    "the_aether": "*"
+    "the_aether": "*",
+    "limlib": "*"
   },
   "breaks": {
     "Dashloader": "<=3.0.9"

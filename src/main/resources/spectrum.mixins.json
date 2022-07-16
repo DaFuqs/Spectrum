@@ -50,7 +50,8 @@
     "accessors.MooshroomEntityAccessor",
     "accessors.ShapedRecipeAccessor",
     "accessors.SlimeEntityAccessor",
-    "accessors.StructureFeatureAccessor"
+    "accessors.StructureFeatureAccessor",
+    "client.ClientWorldMixin"
   ],
   "client": [
     "client.BlockOverlayRendererMixin",

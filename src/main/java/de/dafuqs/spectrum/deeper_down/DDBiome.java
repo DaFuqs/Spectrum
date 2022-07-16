@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.dimension;
+package de.dafuqs.spectrum.deeper_down;
 
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumMusicType;
@@ -8,7 +8,7 @@ import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 
-public class DeeperDownBiome {
+public class DDBiome {
 	
 	public static final Biome INSTANCE = new Biome.Builder()
 			.generationSettings(new GenerationSettings.Builder().build())

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.google.common.collect.ImmutableList;
-import de.dafuqs.spectrum.dimension.DeeperDownOreVeinSampler;
+import de.dafuqs.spectrum.deeper_down.DDOreVeinSampler;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.chunk.AquiferSampler;
 import net.minecraft.world.gen.chunk.Blender;
@@ -27,7 +27,7 @@ public abstract class ChunkNoiseSamplerMixin {
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	public void randomTick(int horizontalSize, int height, int minimumY, NoiseRouter noiseRouter, int x, int z, DensityFunctionTypes.class_7050 noiseType, ChunkGeneratorSettings chunkGeneratorSettings, AquiferSampler.FluidLevelSampler fluidLevelSampler, Blender blender, CallbackInfo callbackInfo, ImmutableList.Builder<ChunkNoiseSampler.BlockStateSampler> builder) {
 		if (chunkGeneratorSettings.defaultBlock() == Blocks.DEEPSLATE.getDefaultState()) {
-			builder.add(DeeperDownOreVeinSampler.create(noiseRouter.veinToggle().apply(this::method_40529), noiseRouter.veinRidged().apply(this::method_40529), noiseRouter.veinGap().apply(this::method_40529), noiseRouter.oreVeinsPositionalRandomFactory()));
+			builder.add(DDOreVeinSampler.create(noiseRouter.veinToggle().apply(this::method_40529), noiseRouter.veinRidged().apply(this::method_40529), noiseRouter.veinGap().apply(this::method_40529), noiseRouter.oreVeinsPositionalRandomFactory()));
 		}
 	}
 	

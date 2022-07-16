@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.worldgen;
 import com.google.common.collect.ImmutableList;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.conditional.MermaidsBrushBlock;
-import de.dafuqs.spectrum.dimension.DeeperDownDimension;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
@@ -22,7 +21,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
@@ -48,12 +46,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;
+
 public class SpectrumConfiguredFeatures {
 	
 	// Overworld
-	public static RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> CLOVER_PATCH;
-	public static HashMap<DyeColor, RegistryEntry<? extends ConfiguredFeature<?, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for saplings
-	public static RegistryEntry<PlacedFeature> RANDOM_COLORED_TREES_FEATURE; // for worldgen
+	public static RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> CLOVER_PATCH; // for bonemealing
+	public static HashMap<DyeColor, RegistryEntry<? extends ConfiguredFeature<?, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for sapling growing
+	public static RegistryEntry<PlacedFeature> RANDOM_COLORED_TREES_FEATURE; // for worldgen placing
 	
 	public static final Identifier CITRINE_GEODE_IDENTIFIER = SpectrumCommon.locate("citrine_geode");
 	public static final Identifier TOPAZ_GEODE_IDENTIFIER = SpectrumCommon.locate("topaz_geode");
@@ -67,27 +67,6 @@ public class SpectrumConfiguredFeatures {
 		registerOres();
 		registerColoredTrees();
 		registerPlants();
-	}
-	
-	public static <T extends FeatureConfig> Feature<T> registerFeature(Feature<T> feature, Identifier id) {
-		return Registry.register(Registry.FEATURE, id, feature);
-	}
-	
-	protected static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> registerConfiguredFeature(Identifier identifier, F feature, FC featureConfig) {
-		return registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, identifier, new ConfiguredFeature<>(feature, featureConfig));
-	}
-	
-	public static <V extends T, T> RegistryEntry<V> registerConfiguredFeature(Registry<T> registry, Identifier identifier, V value) {
-		return (RegistryEntry<V>) BuiltinRegistries.add(registry, identifier, value);
-	}
-	
-	public static RegistryEntry<PlacedFeature> registerPlacedFeature(Identifier identifier, RegistryEntry<? extends ConfiguredFeature<?, ?>> feature, PlacementModifier... modifiers) {
-		return BuiltinRegistries.add(BuiltinRegistries.PLACED_FEATURE, identifier, new PlacedFeature(RegistryEntry.upcast(feature), List.of(modifiers)));
-	}
-	
-	public static RegistryEntry<PlacedFeature> registerConfiguredAndPlacedFeature(Identifier identifier, Feature feature, FeatureConfig featureConfig, PlacementModifier... placementModifiers) {
-		RegistryEntry configuredFeature = registerConfiguredFeature(identifier, feature, featureConfig);
-		return registerPlacedFeature(identifier, configuredFeature, placementModifiers);
 	}
 	
 	private static void registerOres() {
@@ -167,39 +146,29 @@ public class SpectrumConfiguredFeatures {
 		
 		// Black/White and brown variants are not found in the wild and have to be created by the player
 		List<RegistryEntry> treeList = new ArrayList<>();
-		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BLACK));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.BLUE));
-		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.BROWN));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.CYAN));
-		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.GRAY));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.GREEN));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.LIGHT_BLUE));
-		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.LIGHT_GRAY));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.LIME));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.MAGENTA));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.ORANGE));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.PINK));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.PURPLE));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.RED));
-		//treeList.add(COLORED_TREE_FEATURES.get(DyeColor.WHITE));
 		treeList.add(COLORED_TREE_CONFIGURED_FEATURES.get(DyeColor.YELLOW));
 		
 		List<Integer> weightList = new ArrayList<>();
-		//weightList.add(1);
 		weightList.add(25);
-		//weightList.add(25);
 		weightList.add(75);
-		//weightList.add(1);
 		weightList.add(25);
 		weightList.add(25);
-		//weightList.add(1);
 		weightList.add(25);
 		weightList.add(75);
 		weightList.add(25);
 		weightList.add(25);
 		weightList.add(25);
 		weightList.add(25);
-		//weightList.add(1);
 		weightList.add(75);
 		
 		List<PlacementModifier> treePlacementModifiers = List.of(

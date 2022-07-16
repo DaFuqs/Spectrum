@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.dimension;
+package de.dafuqs.spectrum.deeper_down;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -8,7 +8,7 @@ import net.minecraft.world.gen.densityfunction.DensityFunction;
 import net.minecraft.world.gen.random.AbstractRandom;
 import net.minecraft.world.gen.random.RandomDeriver;
 
-public final class DeeperDownOreVeinSampler {
+public final class DDOreVeinSampler {
     private static final float field_36620 = 0.4F;
     private static final int field_36621 = 20;
     private static final double field_36622 = 0.2D;
@@ -19,13 +19,13 @@ public final class DeeperDownOreVeinSampler {
     private static final float RAW_ORE_BLOCK_CHANCE = 0.05F;
     private static final float field_36628 = -0.3F;
 
-    private DeeperDownOreVeinSampler() {
+    private DDOreVeinSampler() {
     }
 
     public static ChunkNoiseSampler.BlockStateSampler create(DensityFunction veinToggle, DensityFunction veinRidged, DensityFunction veinGap, RandomDeriver randomDeriver) {
         return (pos) -> {
             double veinTypeSample = veinToggle.sample(pos);
-            DeeperDownOreVeinSampler.VeinType veinType = VeinType.getVeinTypeForSample(veinTypeSample);
+            DDOreVeinSampler.VeinType veinType = VeinType.getVeinTypeForSample(veinTypeSample);
             double absVeinTypeSample = Math.abs(veinTypeSample);
     
             int i = pos.blockY();
@@ -82,7 +82,7 @@ public final class DeeperDownOreVeinSampler {
         }
         
         public static VeinType getVeinTypeForSample(double veinTypeSample) {
-            return veinTypeSample > 0.0D ? DeeperDownOreVeinSampler.VeinType.COPPER : DeeperDownOreVeinSampler.VeinType.IRON; // TODO: expand
+            return veinTypeSample > 0.0D ? DDOreVeinSampler.VeinType.COPPER : DDOreVeinSampler.VeinType.IRON; // TODO: expand
         }
         
     }

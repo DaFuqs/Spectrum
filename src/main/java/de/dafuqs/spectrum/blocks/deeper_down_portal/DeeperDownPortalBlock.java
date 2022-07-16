@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.deeper_down_portal;
 
-import de.dafuqs.spectrum.dimension.DeeperDownDimension;
+import de.dafuqs.spectrum.deeper_down.DDDimension;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -44,7 +44,7 @@ public class DeeperDownPortalBlock extends EndPortalBlock {
 				&& entity.canUsePortals()
 				&& VoxelShapes.matchesAnywhere(VoxelShapes.cuboid(entity.getBoundingBox().offset((-pos.getX()), (-pos.getY()), (-pos.getZ()))), state.getOutlineShape(world, pos), BooleanBiFunction.AND)) {
 			
-			RegistryKey<World> registryKey = world.getRegistryKey() == World.OVERWORLD ? DeeperDownDimension.DEEPER_DOWN_DIMENSION_KEY : World.OVERWORLD;
+			RegistryKey<World> registryKey = world.getRegistryKey() == World.OVERWORLD ? DDDimension.DEEPER_DOWN_DIMENSION_KEY : World.OVERWORLD;
 			
 			ServerWorld serverWorld = ((ServerWorld) world).getServer().getWorld(registryKey);
 			if (serverWorld != null) {

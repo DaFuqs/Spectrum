@@ -87,7 +87,6 @@ dependencies {
 	modImplementation include("io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2")
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
 	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
-	modImplementation include("com.github.AmyMialeeMods:double-jump-attribute:${project.double_jump_attribute_version}")
 
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:2.1.1")
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")

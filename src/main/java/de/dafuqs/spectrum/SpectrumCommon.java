@@ -6,6 +6,8 @@ import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.dimension.DeeperDownDimension;
+import de.dafuqs.spectrum.dimension.DeeperDownFeatures;
+import de.dafuqs.spectrum.dimension.mod_integration.DeeperDownAE2Ores;
 import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
@@ -145,6 +147,7 @@ public class SpectrumCommon implements ModInitializer {
 		// Dimension
 		logInfo("Registering Dimension...");
 		DeeperDownDimension.setup();
+		DeeperDownFeatures.register();
 		
 		// Worldgen
 		logInfo("Registering Structure Features...");

@@ -57,10 +57,8 @@ public class SpectrumConfiguredFeatures {
 	
 	public static final Identifier CITRINE_GEODE_IDENTIFIER = SpectrumCommon.locate("citrine_geode");
 	public static final Identifier TOPAZ_GEODE_IDENTIFIER = SpectrumCommon.locate("topaz_geode");
-	public static final Identifier MOONSTONE_GEODE_IDENTIFIER = SpectrumCommon.locate("moonstone_geode");
 	public static RegistryEntry<PlacedFeature> TOPAZ_GEODE;
 	public static RegistryEntry<PlacedFeature> CITRINE_GEODE;
-	public static RegistryEntry<PlacedFeature> MOONSTONE_GEODE;
 	
 	// Deeper Down
 	
@@ -69,8 +67,6 @@ public class SpectrumConfiguredFeatures {
 		registerOres();
 		registerColoredTrees();
 		registerPlants();
-		
-		registerDeeperDownOres();
 	}
 	
 	public static <T extends FeatureConfig> Feature<T> registerFeature(Feature<T> feature, Identifier id) {
@@ -89,27 +85,9 @@ public class SpectrumConfiguredFeatures {
 		return BuiltinRegistries.add(BuiltinRegistries.PLACED_FEATURE, identifier, new PlacedFeature(RegistryEntry.upcast(feature), List.of(modifiers)));
 	}
 	
-	private static RegistryEntry<PlacedFeature> registerConfiguredAndPlacedFeature(Identifier identifier, Feature feature, FeatureConfig featureConfig, PlacementModifier... placementModifiers) {
+	public static RegistryEntry<PlacedFeature> registerConfiguredAndPlacedFeature(Identifier identifier, Feature feature, FeatureConfig featureConfig, PlacementModifier... placementModifiers) {
 		RegistryEntry configuredFeature = registerConfiguredFeature(identifier, feature, featureConfig);
 		return registerPlacedFeature(identifier, configuredFeature, placementModifiers);
-	}
-	
-	private static void registerDeeperDownOres() {
-		Identifier malachiteOreIdentifier = SpectrumCommon.locate("malachite_ore");
-		registerConfiguredAndPlacedFeature(
-				malachiteOreIdentifier,
-				Feature.ORE,
-				new OreFeatureConfig(ImmutableList.of(
-						OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, SpectrumBlocks.MALACHITE_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_MALACHITE_ORE.getDefaultState())
-				), 7),
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(64), YOffset.belowTop(256)), // min and max height
-				CountPlacementModifier.of(80) // number of veins per chunk
-		);
-		
-		// see: https://minecraft.fandom.com/wiki/Biome/JSON_format
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DeeperDownDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, malachiteOreIdentifier));
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DeeperDownDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.LOCAL_MODIFICATIONS, RegistryKey.of(Registry.PLACED_FEATURE_KEY, MOONSTONE_GEODE_IDENTIFIER));
 	}
 	
 	private static void registerOres() {
@@ -281,10 +259,6 @@ public class SpectrumConfiguredFeatures {
 		BlockState LARGE_TOPAZ_BUD = SpectrumBlocks.LARGE_TOPAZ_BUD.getDefaultState();
 		BlockState TOPAZ_CLUSTER = SpectrumBlocks.TOPAZ_CLUSTER.getDefaultState();
 		
-		BlockState MOONSTONE_BLOCK = SpectrumBlocks.MOONSTONE_BLOCK.getDefaultState();
-		BlockState BUDDING_MOONSTONE = SpectrumBlocks.BUDDING_MOONSTONE.getDefaultState();
-		BlockState MOONSTONE_CLUSTER = SpectrumBlocks.MOONSTONE_CLUSTER.getDefaultState();
-		
 		CITRINE_GEODE = registerConfiguredAndPlacedFeature(
 				CITRINE_GEODE_IDENTIFIER,
 				SpectrumFeatures.AIR_CHECK_GEODE,
@@ -334,32 +308,6 @@ public class SpectrumConfiguredFeatures {
 				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.TopazGeodeChunkChance),
 				SquarePlacementModifier.of(),
 				HeightRangePlacementModifier.uniform(YOffset.fixed(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight), YOffset.belowTop(SpectrumCommon.CONFIG.TopazGeodeMaxBelowTopGenerationHeight)),
-				BiomePlacementModifier.of()
-		);
-		
-		MOONSTONE_GEODE = registerConfiguredAndPlacedFeature(
-				MOONSTONE_GEODE_IDENTIFIER,
-				Feature.GEODE,
-				new GeodeFeatureConfig(
-						new GeodeLayerConfig(
-								BlockStateProvider.of(AIR),
-								BlockStateProvider.of(MOONSTONE_BLOCK),
-								BlockStateProvider.of(BUDDING_MOONSTONE),
-								BlockStateProvider.of(CALCITE),
-								BlockStateProvider.of(SMOOTH_BASALT),
-								ImmutableList.of(MOONSTONE_CLUSTER), // forever untouched by man: generate with clusters only
-								BlockTags.FEATURES_CANNOT_REPLACE,
-								BlockTags.GEODE_INVALID_BLOCKS),
-						new GeodeLayerThicknessConfig(4.0D, 5.0D, 6.0D, 7.0D),
-						new GeodeCrackConfig(0.95D, 4.0D, 4),
-						1.0D, 0.1D, true,
-						UniformIntProvider.create(4, 6),
-						UniformIntProvider.create(3, 4),
-						UniformIntProvider.create(1, 2),
-						-16, 16, 0.05D, 1),
-				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.MoonstoneGeodeChunkChance),
-				SquarePlacementModifier.of(),
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(16), YOffset.aboveBottom(128)),
 				BiomePlacementModifier.of()
 		);
 		

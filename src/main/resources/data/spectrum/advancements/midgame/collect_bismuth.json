@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:small_bismuth_bud"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.collect_bismuth.title"
     },

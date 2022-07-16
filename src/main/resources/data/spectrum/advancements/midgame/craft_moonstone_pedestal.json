@@ -14,7 +14,7 @@
     "announce_to_chat": false
   },
   "criteria": {
-    "craft_pedestal": {
+    "crafted_moonstone_pedestal": {
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": { "items": [{ "items": [ "spectrum:pedestal_moonstone" ]}] }
     },

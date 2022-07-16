@@ -13,7 +13,7 @@
     }
   },
   "criteria": {
-    "equipped_three_trinkets": {
+    "equipped_neat_ring": {
       "trigger": "spectrum:trinket_change",
 	  "conditions": {
         "items": [{

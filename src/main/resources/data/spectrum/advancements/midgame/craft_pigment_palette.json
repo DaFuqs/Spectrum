@@ -13,7 +13,7 @@
     }
   },
   "criteria": {
-    "craft_pedestal": {
+    "crafted_pigment_palette": {
   	  "trigger": "spectrum:crafted_with_pedestal",
   	  "conditions": { "items": [{ "items": [ "spectrum:pigment_palette" ]}] }
     },

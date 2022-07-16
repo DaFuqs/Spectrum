@@ -13,7 +13,7 @@
     }
   },
   "criteria": {
-    "built_structure": {
+    "built_cinderhearth_structure_without_lava": {
       "trigger": "spectrum:completed_multiblock",
       "conditions": { "multiblock_identifier": "spectrum:cinderhearth_without_lava_structure" }
     },

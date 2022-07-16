@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "built_structure": {
+    "built_cinderhearth_structure": {
       "trigger": "spectrum:completed_multiblock",
       "conditions": { "multiblock_identifier": "spectrum:cinderhearth_structure" }
     },

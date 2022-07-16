@@ -23,7 +23,7 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("Every x chunks there is a chance for a geode to generate, Moonstone geodes do not spawn in the Overworld")
 	public int TopazGeodeChunkChance = 7;
 	public int CitrineGeodeChunkChance = 50;
-	public int MoonstoneGeodeChunkChance = 35;
+	public int MoonstoneGeodeChunkChance = 45;
 	
 	@Comment("The amount of colored tree patches to generate every X chunks")
 	public int ColoredTreePatchChanceChunk = 75;

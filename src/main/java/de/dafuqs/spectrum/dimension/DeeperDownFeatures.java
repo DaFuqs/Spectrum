@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.dimension;
 
 import com.google.common.collect.ImmutableList;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.dimension.mod_integration.DeeperDownAE2Ores;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -14,6 +13,7 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.*;
@@ -33,10 +33,6 @@ public class DeeperDownFeatures {
 		registerVanillaOres();
 		registerGeodes();
 		registerDecorators();
-		
-		if(DeeperDownAE2Ores.shouldRun()) {
-			DeeperDownAE2Ores.register();
-		}
 	}
 	
 	// see: https://minecraft.fandom.com/wiki/Biome/JSON_format
@@ -164,6 +160,10 @@ public class DeeperDownFeatures {
 		
 		id = SpectrumCommon.locate("dd_springs");
 		SpectrumConfiguredFeatures.registerPlacedFeature(id, MiscConfiguredFeatures.SPRING_WATER, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(256));
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DeeperDownDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
+		
+		id = SpectrumCommon.locate("dd_lichen");
+		SpectrumConfiguredFeatures.registerPlacedFeature(id, UndergroundConfiguredFeatures.GLOW_LICHEN, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(UniformIntProvider.create(104, 157)), SquarePlacementModifier.of(), SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, -2147483648, -13));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DeeperDownDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 	}
 	

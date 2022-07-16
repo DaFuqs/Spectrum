@@ -45,7 +45,6 @@ public class DDDimension {
 		registerDecorators();
 	}
 	
-	
 	// see: https://minecraft.fandom.com/wiki/Biome/JSON_format
 	public static void registerAndAddOreFeature(String identifier, OreFeatureConfig oreFeatureConfig, PlacementModifier... placementModifiers) {
 		Identifier id = SpectrumCommon.locate(identifier);
@@ -79,7 +78,15 @@ public class DDDimension {
 						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_IRON_ORE.getDefaultState())
 				), 25),
 				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(192), YOffset.aboveBottom(384)),
-				CountPlacementModifier.of(30));
+				CountPlacementModifier.of(20));
+		
+		registerAndAddOreFeature("dd_iron_ore2",
+				new OreFeatureConfig(ImmutableList.of(
+						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.IRON_ORE.getDefaultState()),
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_IRON_ORE.getDefaultState())
+				), 25),
+				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(4), YOffset.belowTop(4)),
+				CountPlacementModifier.of(10));
 		
 		registerAndAddOreFeature("dd_gold_ore",
 				new OreFeatureConfig(ImmutableList.of(
@@ -89,13 +96,21 @@ public class DDDimension {
 				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(128), YOffset.aboveBottom(256)),
 				CountPlacementModifier.of(20));
 		
+		registerAndAddOreFeature("dd_gold_ore2",
+				new OreFeatureConfig(ImmutableList.of(
+						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.GOLD_ORE.getDefaultState()),
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_GOLD_ORE.getDefaultState())
+				), 15),
+				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(4), YOffset.belowTop(4)),
+				CountPlacementModifier.of(8));
+		
 		registerAndAddOreFeature("dd_diamond_ore",
 				new OreFeatureConfig(ImmutableList.of(
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.DIAMOND_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState())
 				), 9),
 				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(0), YOffset.aboveBottom(256)),
-				CountPlacementModifier.of(5));
+				CountPlacementModifier.of(3));
 		
 		registerAndAddOreFeature("dd_emerald_ore",
 				new OreFeatureConfig(ImmutableList.of(
@@ -160,6 +175,10 @@ public class DDDimension {
 		id = SpectrumCommon.locate("dd_lichen");
 		registerPlacedFeature(id, UndergroundConfiguredFeatures.GLOW_LICHEN, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(UniformIntProvider.create(104, 157)), SquarePlacementModifier.of(), SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, -2147483648, -13));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
+		
+		id = SpectrumCommon.locate("dd_bismuth");
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.BISMUTH_BUDS, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(UniformIntProvider.create(16, 24)), SquarePlacementModifier.of());
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 	}
 	
 }

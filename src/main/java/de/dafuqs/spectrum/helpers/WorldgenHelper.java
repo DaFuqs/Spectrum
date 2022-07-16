@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.helpers;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -14,8 +15,8 @@ import java.util.List;
 
 public class WorldgenHelper {
 	
-	public static <T extends FeatureConfig> Feature<T> registerFeature(Feature<T> feature, Identifier id) {
-		return Registry.register(Registry.FEATURE, id, feature);
+	public static <C extends FeatureConfig, F extends Feature<C>> F registerFeature(String name, F feature) {
+		return Registry.register(Registry.FEATURE, new Identifier(SpectrumCommon.MOD_ID, name), feature);
 	}
 	
 	public static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> registerConfiguredFeature(Identifier identifier, F feature, FC featureConfig) {

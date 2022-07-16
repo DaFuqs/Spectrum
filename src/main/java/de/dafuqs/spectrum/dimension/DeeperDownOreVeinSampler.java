@@ -23,26 +23,25 @@ public final class DeeperDownOreVeinSampler {
     }
 
     public static ChunkNoiseSampler.BlockStateSampler create(DensityFunction veinToggle, DensityFunction veinRidged, DensityFunction veinGap, RandomDeriver randomDeriver) {
-        BlockState blockState = null;
         return (pos) -> {
             double veinTypeSample = veinToggle.sample(pos);
-            int i = pos.blockY();
             DeeperDownOreVeinSampler.VeinType veinType = VeinType.getVeinTypeForSample(veinTypeSample);
             double absVeinTypeSample = Math.abs(veinTypeSample);
-            
+    
+            int i = pos.blockY();
             int j = veinType.maxY - i;
             int k = i - veinType.minY;
             if (k >= 0 && j >= 0) {
                 int l = Math.min(j, k);
                 double f = MathHelper.clampedLerpFromProgress(l, 0.0D, field_36621, field_36622, 0.0D);
                 if (absVeinTypeSample + f < 0.4) {
-                    return blockState;
+                    return null;
                 } else {
                     AbstractRandom abstractRandom = randomDeriver.createRandom(pos.blockX(), i, pos.blockZ());
                     if (abstractRandom.nextFloat() > field_36623) {
-                        return blockState;
+                        return null;
                     } else if (veinRidged.sample(pos) >= 0.0D) {
-                        return blockState;
+                        return null;
                     } else {
                         double g = MathHelper.clampedLerpFromProgress(absVeinTypeSample, field_36620, field_36626, field_36624, field_36625);
                         if ((double)abstractRandom.nextFloat() < g && veinGap.sample(pos) > field_36628) {
@@ -53,7 +52,7 @@ public final class DeeperDownOreVeinSampler {
                     }
                 }
             } else {
-                return blockState;
+                return null;
             }
         };
     }

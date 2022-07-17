@@ -16,7 +16,7 @@
       "spectrum:enchanter_ding"
     ]
   },
-  "button_click": {
+  "spectrum.ui.button_click": {
     "sounds": [
       "spectrum:button_click"
     ]
@@ -68,7 +68,7 @@
       "spectrum:puff_circlet"
     ]
   },
-  "text_revealed": {
+  "spectrum.ui.text_revealed": {
     "subtitle": "spectrum.subtitles.text_revealed",
     "sounds": [
       "spectrum:text_revealed"
@@ -147,19 +147,19 @@
       "spectrum:block.ruin.place"
     ]
   },
-  "spectrum_theme": {
+  "spectrum.music.spectrum_theme": {
     "subtitle": "spectrum.subtitles.spectrum_theme_plays",
     "sounds": [
       "spectrum:spectrum_theme"
     ]
   },
-  "boss_theme": {
+  "spectrum.music.boss_theme": {
     "subtitle": "spectrum.subtitles.boss_theme_plays",
     "sounds": [
       "spectrum:radiarc_irrelevance_fading"
     ]
   },
-  "deeper_down_theme": {
+  "spectrum.music.deeper_down_theme": {
     "subtitle": "spectrum.subtitles.deeper_down_theme_plays",
     "sounds": [
       "spectrum:sunsette_darker_than_hell"
@@ -171,12 +171,12 @@
       "spectrum:dimension_ambient"
     ]
   },
-  "new_revelation": {
+  "spectrum.ui.new_revelation": {
     "sounds": [
       "spectrum:new_revelation"
     ]
   },
-  "new_recipe": {
+  "spectrum.ui.new_recipe": {
     "sounds": [
       "spectrum:new_recipe"
     ]

@@ -13,7 +13,7 @@ import java.util.Optional;
 public class LiminalDimensionReverb {
 	
 	public static void setReverbForClientDimension(ClientWorld clientWorld) {
-		LiminalEffects liminalEffects = new LiminalEffects(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.of(new ReverbSettings().setEnabled(true).setDecayTime(10).setDensity(0.75F)));
+		LiminalEffects liminalEffects = new LiminalEffects(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.of(new ReverbSettings().setEnabled(true).setDecayTime(8).setDensity(0.5F)));
 		((DimensionEffectsAccess) clientWorld.getDimension()).setLiminalEffects(liminalEffects);
 	}
 	

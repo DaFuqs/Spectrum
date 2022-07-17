@@ -50,10 +50,10 @@
     "accessors.MooshroomEntityAccessor",
     "accessors.ShapedRecipeAccessor",
     "accessors.SlimeEntityAccessor",
-    "accessors.StructureFeatureAccessor",
-    "client.ClientWorldMixin"
+    "accessors.StructureFeatureAccessor"
   ],
   "client": [
+    "client.ClientWorldMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.DimensionTypeMixin",

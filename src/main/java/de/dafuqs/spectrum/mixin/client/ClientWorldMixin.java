@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.liminal_library.LiminalDimensionReverb;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -20,7 +21,7 @@ public class ClientWorldMixin {
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void spectrum$init(ClientPlayNetworkHandler netHandler, ClientWorld.Properties properties, RegistryKey registryRef, RegistryEntry registryEntry, int loadDistance, int simulationDistance, Supplier profiler, WorldRenderer worldRenderer, boolean debugWorld, long seed, CallbackInfo ci) {
 		ClientWorld clientWorld = (ClientWorld) (Object) this;
-		if(clientWorld.getDimension().getEffects().getPath().equals("deeper_down") && FabricLoader.getInstance().isModLoaded("limlib")) {
+		if(clientWorld.getDimension().getEffects().equals(SpectrumCommon.locate("deeper_down")) && FabricLoader.getInstance().isModLoaded("limlib")) {
 			LiminalDimensionReverb.setReverbForClientDimension(clientWorld);
 		}
 	}

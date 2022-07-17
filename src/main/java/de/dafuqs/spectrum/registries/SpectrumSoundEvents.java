@@ -8,9 +8,9 @@ import net.minecraft.util.registry.Registry;
 public class SpectrumSoundEvents {
 	
 	// Music
-	public static final SoundEvent SPECTRUM_THEME = register("spectrum_theme");
-	public static final SoundEvent BOSS_THEME = register("boss_theme");
-	public static final SoundEvent DEEPER_DOWN_THEME = register("deeper_down_theme");
+	public static final SoundEvent SPECTRUM_THEME = register("spectrum.music.spectrum_theme");
+	public static final SoundEvent BOSS_THEME = register("spectrum.music.boss_theme");
+	public static final SoundEvent DEEPER_DOWN_THEME = register("spectrum.music.deeper_down_theme");
 	
 	// Sounds
 	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");
@@ -25,7 +25,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent FUSION_SHRINE_CRAFTING = register("fusion_shrine_crafting");
 	public static final SoundEvent FUSION_SHRINE_CRAFTING_FINISHED = register("fusion_shrine_crafting_finished");
 	public static final SoundEvent CRAFTING_ABORTED = register("fusion_shrine_crafting_aborted");
-	public static final SoundEvent BUTTON_CLICK = register("button_click");
+	public static final SoundEvent BUTTON_CLICK = register("spectrum.ui.button_click");
 	
 	public static final SoundEvent ENCHANTER_WORKING = register("enchanter_working");
 	public static final SoundEvent ENCHANTER_DING = register("enchanter_ding");
@@ -37,10 +37,10 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent CELESTIAL_POCKET_WATCH_FLY_BY = register("celestial_pocket_watch_sky_fly_by");
 	
 	public static final SoundEvent SHOOTING_STAR_CRACKER = register("shooting_star_cracker");
-	public static final SoundEvent TEXT_REVEALED = register("text_revealed");
+	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");
-	public static final SoundEvent NEW_REVELATION = register("new_revelation");
-	public static final SoundEvent NEW_RECIPE = register("new_recipe");
+	public static final SoundEvent NEW_REVELATION = register("spectrum.ui.new_revelation");
+	public static final SoundEvent NEW_RECIPE = register("spectrum.ui.new_recipe");
 	public static final SoundEvent DIMENSION_SOUNDS = register("dimension_sounds");
 	public static final SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = register("armor_equip_glow_vision");
 	public static final SoundEvent PLAYER_TELEPORTS = register("player_teleports");

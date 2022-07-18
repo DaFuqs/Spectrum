@@ -1,24 +1,28 @@
 package de.dafuqs.spectrum.items.armor;
 
+import de.dafuqs.spectrum.SpectrumClient;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.items.Preenchanted;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
-public class BedrockArmorItem extends ArmorItem implements Preenchanted, IAnimatable {
-	private final AnimationFactory factory = new AnimationFactory(this);
+public class BedrockArmorItem extends ArmorItem implements Preenchanted {
+	@Environment(EnvType.CLIENT)
+	private BipedEntityModel<LivingEntity> model;
 
 	public BedrockArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
 		super(material, slot, settings);
@@ -56,17 +60,28 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted, IAnimat
 		}
 	}
 
-	private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-		return PlayState.CONTINUE;
+	@Environment(EnvType.CLIENT)
+	protected BipedEntityModel<LivingEntity> provideArmorModelForSlot(EquipmentSlot slot) {
+		var models = MinecraftClient.getInstance().getEntityModelLoader();
+		var root = models.getModelPart(SpectrumClient.BEDROCK_LAYER);
+		return new FullArmorModel(root, slot);
+	}
+
+	@Environment(EnvType.CLIENT)
+	public BipedEntityModel<LivingEntity> getArmorModel() {
+		if (model == null) {
+			model = provideArmorModelForSlot(slot);
+		}
+		return model;
+	}
+
+	@NotNull
+	public Identifier getArmorTexture(ItemStack stack, EquipmentSlot slot) {
+		return SpectrumCommon.locate("textures/armor/bedrock_armor.png");
 	}
 
 	@Override
-	public void registerControllers(AnimationData animationData) {
-		animationData.addAnimationController(new AnimationController(this, "controller", 20, this::predicate));
-	}
-
-	@Override
-	public AnimationFactory getFactory() {
-		return factory;
+	public boolean hasGlint(ItemStack stack) {
+		return super.hasGlint(stack);
 	}
 }

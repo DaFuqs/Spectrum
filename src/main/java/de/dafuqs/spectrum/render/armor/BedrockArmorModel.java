@@ -1,45 +1,162 @@
 package de.dafuqs.spectrum.render.armor;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import net.minecraft.client.model.*;
 
-public class BedrockArmorModel extends AnimatedGeoModel<BedrockArmorItem> {
+public class BedrockArmorModel {
+    public final ModelPart head;
+    public final ModelPart body;
+    public final ModelPart rightArm;
+    public final ModelPart left_arm;
+    public final ModelPart rightLeg;
+    public final ModelPart leftLeg;
 
-    @Override
-    public Identifier getModelLocation(BedrockArmorItem object) {
-        return SpectrumCommon.locate("geo/armor/bedrock_armor.geo.json");
+    public BedrockArmorModel(ModelPart root) {
+        this.head = root.getChild("head");
+        this.body = root.getChild("body");
+        this.rightArm = root.getChild("right_arm");
+        this.left_arm = root.getChild("left_arm");
+        this.rightLeg = root.getChild("right_leg");
+        this.leftLeg = root.getChild("left_leg");
     }
 
-    @Override
-    public Identifier getTextureLocation(BedrockArmorItem object) {
-        return SpectrumCommon.locate("textures/armor/bedrock_armor.png");
+    public static ModelData getModelData() {
+        ModelData data = new ModelData();
+        var root = data.getRoot();
+
+        root.addChild("hat", ModelPartBuilder.create(), ModelTransform.NONE);
+
+        var head = root.addChild("head", ModelPartBuilder.create(), ModelTransform.NONE);
+
+        head.addChild(
+                "armor_head",
+                ModelPartBuilder.create()
+                        .uv(0, 20)
+                        .cuboid(-4.5F, -8.5F, -4.5F, 9.0F, 9.0F, 9.0F)
+                        .uv(0, 0)
+                        .cuboid(-5.0F, -9.0F, -5.0F, 10.0F, 10.0F, 10.0F),
+                ModelTransform.NONE
+        );
+
+        var body = root.addChild("body", ModelPartBuilder.create(), ModelTransform.NONE);
+
+        var armorBody = body.addChild(
+                "armor_body",
+                ModelPartBuilder.create()
+                        .uv(31, 33)
+                        .cuboid(-4.5F, -0.5F, -2.5F, 9.0F, 13.0F, 5.0F)
+                        .uv(36, 20)
+                        .cuboid(-5.0F, 0.0F, -3.0F, 10.0F, 10.0F, 3.0F),
+                ModelTransform.NONE
+        );
+
+        armorBody.addChild(
+                "cock_bone",
+                ModelPartBuilder.create()
+                        .uv(62, 55)
+                        .cuboid(-3.5F, 0.0F, 0.0F, 7.0F, 14.0F, 0.0F),
+                ModelTransform.pivot(0.0F, 8.0F, -2.85F)
+        );
+
+        armorBody.addChild(
+                "cape_bone",
+                ModelPartBuilder.create()
+                        .uv(0, 38)
+                        .cuboid(-5.5F, 0.0F, -0.05F, 11.0F, 23.0F, 0.0F),
+                ModelTransform.pivot(0.0F, 0.5F, 2.9F)
+        );
+
+        var rightArm = root.addChild(
+                "right_arm",
+                ModelPartBuilder.create(),
+                ModelTransform.NONE
+        );
+
+        var armorRightArm = rightArm.addChild(
+                "armor_right_arm",
+                ModelPartBuilder.create()
+                        .uv(22, 51)
+                        .cuboid(-4.25F, -2.5F, -2.5F, 5.0F, 13.0F, 5.0F),
+                ModelTransform.pivot(1.0F, 0.0F, 0.0F)
+        );
+
+        armorRightArm.addChild(
+                "armor_right_arm_extra",
+                ModelPartBuilder.create()
+                        .uv(57, 45)
+                        .cuboid(-4.0F, -1.5F, -3.0F, 6.0F, 4.0F, 6.0F),
+                ModelTransform.of(-1.5F, -1.5F, 0.0F, 0.0F, 0.0F, -0.4363F)
+        );
+
+        var leftArm = root.addChild(
+                "left_arm",
+                ModelPartBuilder.create(),
+                ModelTransform.NONE
+        );
+
+        var armorLeftArm = leftArm.addChild(
+                "armor_left_arm",
+                ModelPartBuilder.create()
+                        .uv(40, 0)
+                        .cuboid(-1.5F, -2.5F, -2.5F, 5.0F, 13.0F, 5.0F),
+                ModelTransform.NONE
+        );
+
+        armorLeftArm.addChild(
+                "armor_left_arm_extra",
+                ModelPartBuilder.create()
+                        .uv(62, 20)
+                        .cuboid(-1.75F, -1.25F, -2.0F, 5.0F, 1.0F, 5.0F)
+                        .uv(54, 12)
+                        .cuboid(-1.75F, -0.25F, -2.5F, 6.0F, 2.0F, 6.0F),
+                ModelTransform.of(1.0F, -1.75F, -0.5F, 0.0F, 0.0F, 0.4363F)
+        );
+
+        var leftLeg = root.addChild(
+                "left_leg",
+                ModelPartBuilder.create(),
+                ModelTransform.NONE
+        );
+
+        leftLeg.addChild(
+                "armor_left_leg",
+                ModelPartBuilder.create()
+                        .uv(42, 51)
+                        .cuboid(-2.0F, 0.0F, -2.5F, 5.0F, 10.0F, 5.0F),
+                ModelTransform.NONE
+        );
+
+        leftLeg.addChild(
+                "armor_left_boot",
+                ModelPartBuilder.create()
+                        .uv(60, 0)
+                        .cuboid(-2.0F, 9.0F, -2.5F, 5.0F, 3.0F, 5.0F),
+                ModelTransform.NONE
+        );
+
+        var rightLeg = root.addChild(
+                "right_leg",
+                ModelPartBuilder.create(),
+                ModelTransform.NONE
+        );
+
+        rightLeg.addChild(
+                "armor_right_leg",
+                ModelPartBuilder.create()
+                        .uv(59, 28)
+                        .cuboid(-3.0F, 0.0F, -2.5F, 5.0F, 10.0F, 5.0F),
+                ModelTransform.NONE
+        );
+
+        rightLeg.addChild(
+                "right_boot",
+                ModelPartBuilder.create()
+                        .uv(0, 61)
+                        .cuboid(-3.0F, 9.0F, -2.5F, 5.0F, 3.0F, 5.0F),
+                ModelTransform.NONE
+        );
+
+        return data;
+
     }
 
-    @Override
-    public Identifier getAnimationFileLocation(BedrockArmorItem animatable) {
-        return SpectrumCommon.locate("animations/armor/bedrock_armor.animation.json");
-    }
-
-    @Override
-    public void setLivingAnimations(BedrockArmorItem item, Integer uniqueID, AnimationEvent event) {
-        super.setLivingAnimations(item, uniqueID, event);
-        var wearer = (LivingEntity) event.getExtraDataOfType(LivingEntity.class).get(0);
-        var loincloth = getAnimationProcessor().getBone("cock_bone");
-        var cape = getAnimationProcessor().getBone("cape_bone");
-
-        if(wearer.isInSneakingPose()) {
-            loincloth.setRotationX(loincloth.getPositionX() + 0.55F);
-            cape.setRotationX(cape.getPositionX() + 0.05F);
-        }
-
-        var velocity = wearer.getVelocity().length();
-
-        if(velocity > 0.05) {
-            cape.setRotationX((float) (cape.getPositionX() - velocity));
-        }
-    }
 }

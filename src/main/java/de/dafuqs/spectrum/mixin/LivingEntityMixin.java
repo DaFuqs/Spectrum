@@ -208,8 +208,8 @@ public abstract class LivingEntityMixin {
 
 		var mainHand = attacker.getStackInHand(Hand.MAIN_HAND);
 		var offHand = attacker.getStackInHand(Hand.OFF_HAND);
-		var mainMod = Optional.ofNullable(mainHand.getModifiers().get(SimpleDamageMultiplier.class));
-		var offMod = Optional.ofNullable(offHand.getModifiers().get(SimpleDamageMultiplier.class));
+		var mainMod = Optional.ofNullable(mainHand.getModifier(SimpleDamageMultiplier.class));
+		var offMod = Optional.ofNullable(offHand.getModifier(SimpleDamageMultiplier.class));
 
 		if (mainMod.isPresent())
 			amount = mainMod.get().apply(source, mainHand, amount);

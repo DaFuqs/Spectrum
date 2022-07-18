@@ -1,8 +1,6 @@
 package de.dafuqs.spectrum.sar.modifier;
 
 import net.immortaldevs.sar.api.Modifier;
-import net.immortaldevs.sar.api.ModifierMap;
-import net.immortaldevs.sar.base.SarItemStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
@@ -17,12 +15,22 @@ public class SimpleDamageMultiplier implements Modifier {
     }
 
     public float apply(DamageSource source, ItemStack stack, float amount) {
-        var sarStack = (SarItemStack) (Object) stack;
+        var sarStack = stack;
         return amount;
     }
 
     @Override
-    public void register(@NotNull ModifierMap modifierMap) {
-
+    public Class getType() {
+        return null;
     }
+
+    @Override
+    public Modifier merge(Modifier that) {
+        return null;
+    }
+
+    //@Override
+    //public void register(@NotNull ModifierMap modifierMap) {
+//
+    //}
 }

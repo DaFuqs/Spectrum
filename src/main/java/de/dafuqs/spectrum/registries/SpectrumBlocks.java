@@ -748,6 +748,9 @@ public class SpectrumBlocks {
 	private static final FabricBlockSettings preservationGlassBlockSettings = FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never);
 	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationGlassBlockSettings);
 	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).strength(Float.MAX_VALUE, 3600000.0F));
+
+	// DD BLOCKS
+	public static final Block BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE));
 	
 	private static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
 	private static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
@@ -1271,6 +1274,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("calcite_brick_slab", CALCITE_BRICK_SLAB, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_brick_wall", CALCITE_BRICK_WALL, fabricItemSettings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_brick_stairs", CALCITE_BRICK_STAIRS, fabricItemSettings, DyeColor.BROWN);
+
+		registerBlockWithItem("blackslag", BLACKSLAG, fabricItemSettings, DyeColor.BLACK);
 	}
 	
 	private static void registerRunes(FabricItemSettings fabricItemSettings) {

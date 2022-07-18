@@ -82,6 +82,6 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 
 	@Override
 	public boolean hasGlint(ItemStack stack) {
-		return super.hasGlint(stack);
+		return false;
 	}
 }

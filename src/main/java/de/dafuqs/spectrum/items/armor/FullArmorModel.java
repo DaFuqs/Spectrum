@@ -66,12 +66,7 @@ public class FullArmorModel extends BipedEntityModel<LivingEntity> {
                 rightArm.visible = true;
                 leftArm.visible = true;
             }
-            case LEGS -> {
-                body.visible = true;
-                rightLeg.visible = true;
-                leftLeg.visible = true;
-            }
-            case FEET -> {
+            case LEGS, FEET -> {
                 rightLeg.visible = true;
                 leftLeg.visible = true;
             }

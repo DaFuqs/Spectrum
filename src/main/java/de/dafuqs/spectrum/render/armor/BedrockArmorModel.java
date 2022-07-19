@@ -121,7 +121,7 @@ public class BedrockArmorModel {
                 "armor_left_leg",
                 ModelPartBuilder.create()
                         .uv(42, 51)
-                        .cuboid(-2.0F, 0.0F, -2.5F, 5.0F, 10.0F, 5.0F),
+                        .cuboid(-2.5F, 0.0F, -2.5F, 5.0F, 10.0F, 5.0F),
                 ModelTransform.NONE
         );
 
@@ -129,7 +129,7 @@ public class BedrockArmorModel {
                 "armor_left_boot",
                 ModelPartBuilder.create()
                         .uv(60, 0)
-                        .cuboid(-2.0F, 9.0F, -2.5F, 5.0F, 3.0F, 5.0F),
+                        .cuboid(-2.5F, 9.0F, -2.5F, 5.0F, 3.0F, 5.0F),
                 ModelTransform.NONE
         );
 
@@ -143,7 +143,7 @@ public class BedrockArmorModel {
                 "armor_right_leg",
                 ModelPartBuilder.create()
                         .uv(59, 28)
-                        .cuboid(-3.0F, 0.0F, -2.5F, 5.0F, 10.0F, 5.0F),
+                        .cuboid(-2.5F, 0.0F, -2.5F, 5.0F, 10.0F, 5.0F),
                 ModelTransform.NONE
         );
 
@@ -151,7 +151,7 @@ public class BedrockArmorModel {
                 "right_boot",
                 ModelPartBuilder.create()
                         .uv(0, 61)
-                        .cuboid(-3.0F, 9.0F, -2.5F, 5.0F, 3.0F, 5.0F),
+                        .cuboid(-2.5F, 9.0F, -2.5F, 5.0F, 3.0F, 5.0F),
                 ModelTransform.NONE
         );
 

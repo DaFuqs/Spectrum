@@ -5,27 +5,22 @@ import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
-import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
 import de.dafuqs.spectrum.progression.toast.RevelationToast;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.client.SpectrumArmorRenderers;
 import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import de.dafuqs.spectrum.registries.client.SpectrumItemPredicates;
 import de.dafuqs.spectrum.render.HudRenderers;
 import de.dafuqs.spectrum.render.SkyLerper;
-import de.dafuqs.spectrum.render.armor.BedrockArmorModel;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.model.TexturedModelData;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.TranslatableText;
@@ -37,9 +32,6 @@ import java.util.Set;
 import static de.dafuqs.spectrum.SpectrumCommon.logInfo;
 
 public class SpectrumClient implements ClientModInitializer, RevealingCallback {
-
-	// TODO - Move this
-	public static final EntityModelLayer BEDROCK_LAYER = new EntityModelLayer(SpectrumCommon.locate("bedrock_armor"), "main");
 	
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
@@ -95,26 +87,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 			}
 		});
 
-		// TODO - Move this
-		EntityModelLayerRegistry.registerModelLayer(BEDROCK_LAYER,
-				() -> TexturedModelData.of(BedrockArmorModel.getModelData(), 128, 128));
+		logInfo("Registering Model Layers...");
+		SpectrumModelLayers.register();
 
-		Item[] armors = Registry.ITEM.stream()
-				.filter(i -> i instanceof BedrockArmorItem
-						&& Registry.ITEM.getKey(i).get().getValue().getNamespace().equals(SpectrumCommon.MOD_ID))
-				.toArray(Item[]::new);
-
-		ArmorRenderer renderer = (matrices, vertexConsumers, stack, entity, slot, light, contextModel) -> {
-
-			BedrockArmorItem armor = (BedrockArmorItem) stack.getItem();
-			var model = armor.getArmorModel();
-			var texture = armor.getArmorTexture(stack, slot);
-			contextModel.setAttributes(model);
-
-			ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, model, texture);
-
-		};
-		ArmorRenderer.register(renderer, armors);
+		logInfo("Registering Armor Renderers...");
+		SpectrumArmorRenderers.register();
 
 		RevealingCallback.register(this);
 		

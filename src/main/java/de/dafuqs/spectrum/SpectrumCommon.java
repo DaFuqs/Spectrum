@@ -19,7 +19,7 @@ import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
 import de.dafuqs.spectrum.loot.EnchantmentDrops;
 import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
-import de.dafuqs.spectrum.mixin.RecipeManagerMixin;
+import de.dafuqs.spectrum.mixin.accessors.RecipeManagerAccessor;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -297,7 +297,7 @@ public class SpectrumCommon implements ModInitializer {
 	public void injectEnchantmentUpgradeRecipes(MinecraftServer minecraftServer) {
 		if (!EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.isEmpty()) {
 			ImmutableMap<Identifier, Recipe<?>> collectedRecipes = EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.stream().collect(ImmutableMap.toImmutableMap(EnchantmentUpgradeRecipe::getId, enchantmentUpgradeRecipe -> enchantmentUpgradeRecipe));
-			Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes = ((RecipeManagerMixin) minecraftServer.getRecipeManager()).getRecipes();
+			Map<RecipeType<?>, Map<Identifier, Recipe<?>>> recipes = ((RecipeManagerAccessor) minecraftServer.getRecipeManager()).getRecipes();
 			
 			ArrayList<Recipe<?>> newList = new ArrayList<>();
 			for (Map<Identifier, Recipe<?>> r : recipes.values()) {

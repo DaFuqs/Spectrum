@@ -11,11 +11,11 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
 import de.dafuqs.spectrum.progression.toast.RevelationToast;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.client.SpectrumArmorRenderers;
 import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import de.dafuqs.spectrum.registries.client.SpectrumItemPredicates;
 import de.dafuqs.spectrum.render.HudRenderers;
 import de.dafuqs.spectrum.render.SkyLerper;
-import de.dafuqs.spectrum.render.SpectrumGeoRenderers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -62,8 +62,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 		SpectrumBlockEntities.registerClient();
 		logInfo("Setting up Entity Renderers...");
 		SpectrumEntityRenderers.registerClient();
-		logInfo("Setting up Geckolib Renderers...");
-		SpectrumGeoRenderers.register();
 		
 		logInfo("Registering Server to Client Package Receivers...");
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
@@ -93,6 +91,13 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 				lines.add(new TranslatableText("spectrum.tooltip.coming_soon"));
 			}
 		});
+
+		logInfo("Registering Model Layers...");
+		SpectrumModelLayers.register();
+
+		logInfo("Registering Armor Renderers...");
+		SpectrumArmorRenderers.register();
+
 		RevealingCallback.register(this);
 		
 		logInfo("Client startup completed!");

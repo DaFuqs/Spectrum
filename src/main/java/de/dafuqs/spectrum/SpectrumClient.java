@@ -3,6 +3,7 @@ package de.dafuqs.spectrum;
 import de.dafuqs.revelationary.api.revelations.RevealingCallback;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliFlags;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
+import de.dafuqs.spectrum.compat.shimmer.ShimmerLights;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
@@ -83,6 +84,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
 			SpectrumClient.minecraftClient = minecraftClient;
 			SpectrumColorProviders.registerClient();
+			
+			ShimmerLights.register();
 		});
 		
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {

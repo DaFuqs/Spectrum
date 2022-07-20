@@ -11,6 +11,8 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+
+	mavenLocal()
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com" }
 	maven {
@@ -52,8 +54,21 @@ repositories {
 		//}
 	}
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-	maven { url 'https://maven.modrinth' }
 	//mavenCentral() // incubus core
+
+	maven {
+		name = "ProgrammerArtInjector"
+		url = 'https://maven.extracraftx.com'
+	}
+
+	maven {
+		name = "Shimmer"
+		url = 'https://maven.firstdarkdev.xyz/snapshots'
+	}
+
+	maven {
+		url 'https://cfa2.cursemaven.com'
+	}
 }
 
 dependencies {
@@ -96,7 +111,7 @@ dependencies {
 	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:2.1.1")
-	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
+	modImplementation include("azzy.fabric:incubus-core:${project.incubus_core_version}")
 	modImplementation include("com.github.devs-immortal:Some-Assembly-Required:${project.sar_version}")
 	modImplementation include("com.github.devs-immortal:Divine-Intervention:${project.divine_intervention_version}")
 	modImplementation include("io.github.ladysnake:satin:${project.satin_version}")
@@ -107,7 +122,13 @@ dependencies {
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/
 	modCompileOnly("net.darkhax.enchdesc:EnchantmentDescriptions-Common-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
 
+	// includes the textures in the "programmer art" folder in the programmer art texture pack
+	modImplementation "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"
+	include "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"
+
+	// colored lights: purely soft dependencies
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json
+	modImplementation "com.lowdragmc.shimmer:Shimmer-fabric-1.18.2:0.1.9"
 }
 
 loom {

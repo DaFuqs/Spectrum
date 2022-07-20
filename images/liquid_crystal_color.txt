@@ -1,6 +1,0 @@
-Water => Liquid Crystal
-
-Farbton/Sättigung
-farbton: 20
-helligkeit: 72
-Sättigung: -70

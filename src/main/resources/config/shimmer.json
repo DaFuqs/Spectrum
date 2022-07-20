@@ -1,0 +1,31 @@
+{
+  "BloomBlock": [
+    {
+      "fluid": "minecraft:lava"
+    },
+    {
+      "block": "minecraft:glowstone"
+    },
+    {
+      "block": "minecraft:redstone_wire"
+    },
+    {
+      "block": "minecraft:redstone_lamp",
+      "state": {
+        "lit": true
+      }
+    },
+    {
+      "block": "spectrum:orange_lamp",
+      "state": {
+        "lit": true
+      }
+    },
+    {
+      "block": "spectrum:orange_glowblock"
+    },
+    {
+      "block": "spectrum:andesite_sparklestone_light"
+    }
+  ]
+}

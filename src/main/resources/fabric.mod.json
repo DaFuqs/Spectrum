@@ -57,7 +57,6 @@
   "suggests": {
     "chalk": ">=2.0.0",
     "colored_lights": ">=1.0.3",
-    "advancements-enlarger": ">=0.2.4",
     "paginatedadvancements": "*",
     "the_aether": "*",
     "limlib": "*"

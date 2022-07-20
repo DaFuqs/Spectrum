@@ -2,6 +2,7 @@
   "name": "First Strike",
   "icon": "minecraft:iron_sword",
   "advancement": "spectrum:progression/enchantments/first_strike",
+  "flag": "spectrum:enchantment_exists_spectrum_first_strike",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

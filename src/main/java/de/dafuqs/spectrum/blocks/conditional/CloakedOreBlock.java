@@ -52,11 +52,7 @@ public class CloakedOreBlock extends OreBlock implements RevelationAware {
 		// workaround: since onStacksDropped() has no way of checking if it was
 		// triggered by a player we have to cache that information here
 		PlayerEntity lootPlayerEntity = RevelationAware.getLootPlayerEntity(builder);
-		if (lootPlayerEntity != null && isVisibleTo(lootPlayerEntity)) {
-			dropXP = true;
-		} else {
-			dropXP = false;
-		}
+		dropXP = lootPlayerEntity != null && isVisibleTo(lootPlayerEntity);
 		
 		return super.getDroppedStacks(state, builder);
 	}

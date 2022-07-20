@@ -2,6 +2,7 @@
   "name": "Disarming",
   "icon": "minecraft:iron_sword",
   "advancement": "spectrum:progression/enchantments/disarming",
+  "flag": "spectrum:enchantment_exists_spectrum_disarming",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

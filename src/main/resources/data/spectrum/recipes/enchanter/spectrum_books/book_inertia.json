@@ -35,5 +35,13 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:inertia\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/inertia"
+  "required_advancement": "spectrum:progression/enchantments/inertia",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:inertia"
+      ]
+    }
+  ]
 }

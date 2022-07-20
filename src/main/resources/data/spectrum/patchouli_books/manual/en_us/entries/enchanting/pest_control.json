@@ -2,6 +2,7 @@
   "name": "Pest Control",
   "icon": "minecraft:iron_pickaxe",
   "advancement": "spectrum:progression/enchantments/pest_control",
+  "flag": "spectrum:enchantment_exists_spectrum_pest_control",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

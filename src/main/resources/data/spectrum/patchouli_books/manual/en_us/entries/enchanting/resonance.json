@@ -2,6 +2,7 @@
   "name": "Resonance",
   "icon": "spectrum:resonant_pickaxe",
   "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
+  "flag": "spectrum:enchantment_exists_spectrum_resonance",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

@@ -2,6 +2,7 @@
   "name": "Inventory Insertion",
   "icon": "minecraft:iron_pickaxe",
   "advancement": "spectrum:progression/enchantments/inventory_insertion",
+  "flag": "spectrum:enchantment_exists_spectrum_inventory_insertion",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

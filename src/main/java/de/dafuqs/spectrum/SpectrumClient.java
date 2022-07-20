@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum;
 
 import de.dafuqs.revelationary.api.revelations.RevealingCallback;
+import de.dafuqs.spectrum.compat.patchouli.PatchouliFlags;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
@@ -74,8 +75,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 		logInfo("Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();
 		
-		logInfo("Registering custom Patchouli Pages...");
+		logInfo("Registering custom Patchouli Pages & Flags...");
 		PatchouliPages.register();
+		PatchouliFlags.register();
 		
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {

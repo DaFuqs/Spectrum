@@ -2,6 +2,7 @@
   "name": "Foundry",
   "icon": "minecraft:iron_pickaxe",
   "advancement": "spectrum:progression/enchantments/autosmelt",
+  "flag": "spectrum:enchantment_exists_spectrum_autosmelt",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

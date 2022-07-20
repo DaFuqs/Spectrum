@@ -23,5 +23,13 @@
       "item_count": 512
     }
   ],
-  "required_advancement": "spectrum:progression/enchantments/first_strike"
+  "required_advancement": "spectrum:progression/enchantments/first_strike",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:first_strike"
+      ]
+    }
+  ]
 }

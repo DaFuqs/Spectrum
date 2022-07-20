@@ -2,6 +2,7 @@
   "name": "Steadfast",
   "icon": "spectrum:multitool",
   "advancement": "spectrum:progression/enchantments/steadfast",
+  "flag": "spectrum:enchantment_exists_spectrum_steadfast",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

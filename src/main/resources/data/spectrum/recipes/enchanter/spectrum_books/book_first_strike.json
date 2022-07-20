@@ -35,5 +35,13 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:first_strike\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/first_strike"
+  "required_advancement": "spectrum:progression/enchantments/first_strike",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:first_strike"
+      ]
+    }
+  ]
 }

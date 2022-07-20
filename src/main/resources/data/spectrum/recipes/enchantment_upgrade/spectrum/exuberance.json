@@ -48,5 +48,13 @@
       "item_count": 2048
     }
   ],
-  "required_advancement": "spectrum:progression/enchantments/exuberance"
+  "required_advancement": "spectrum:progression/enchantments/exuberance",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:exuberance"
+      ]
+    }
+  ]
 }

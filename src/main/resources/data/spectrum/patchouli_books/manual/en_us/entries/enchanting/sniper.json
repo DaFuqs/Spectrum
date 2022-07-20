@@ -2,6 +2,7 @@
   "name": "Sniping",
   "icon": "minecraft:crossbow",
   "advancement": "spectrum:progression/enchantments/sniper",
+  "flag": "spectrum:enchantment_exists_spectrum_sniper",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

@@ -33,9 +33,9 @@ import java.util.Map;
 
 public class FirestarterMobBlock extends MobBlock {
 	
-	// Block: The Block to freeze
-	// BlockState: The BlockState when Block is getting frozen
-	// Float: The chance to freeze
+	// Block: The Block to burn
+	// BlockState: The BlockState when Block is getting burnt
+	// Float: The chance to burn
 	public static final Map<Block, Pair<BlockState, Float>> BURNING_MAP = new HashMap<>() {{
 		put(Blocks.RED_MUSHROOM, new Pair<>(Blocks.CRIMSON_FUNGUS.getDefaultState(), 0.2F));
 		put(Blocks.BROWN_MUSHROOM, new Pair<>(Blocks.WARPED_FUNGUS.getDefaultState(), 0.2F));

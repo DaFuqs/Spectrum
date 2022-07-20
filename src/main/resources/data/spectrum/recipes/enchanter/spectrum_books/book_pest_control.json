@@ -35,5 +35,13 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/pest_control"
+  "required_advancement": "spectrum:progression/enchantments/pest_control",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:pest_control"
+      ]
+    }
+  ]
 }

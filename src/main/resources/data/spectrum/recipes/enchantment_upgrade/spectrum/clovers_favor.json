@@ -28,5 +28,13 @@
       "item_count": 2028
     }
   ],
-  "required_advancement": "spectrum:progression/enchantments/clovers_favor"
+  "required_advancement": "spectrum:progression/enchantments/clovers_favor",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:clovers_favor"
+      ]
+    }
+  ]
 }

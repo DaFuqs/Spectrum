@@ -69,7 +69,7 @@ public class CrystallarieumCategory implements DisplayCategory<FusionShrineDispl
 			}
 			
 			// output arrow and slot
-			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 35)));
+			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 35)).animationDurationTicks(display.craftingTime));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 35)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 35)).markOutput().disableBackground().entries(output.get(0)));
 			

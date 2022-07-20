@@ -45,11 +45,15 @@
         "spectrum:textures/gui/manual/geode.png"
       ],
       "border": true,
-      "text": "Geodes form in places where magical energy is so abundant, it crystallizes to physical form - as Gemstones. Each type of gemstone seems to represent a different type of fundamental property."
+      "text": "Geodes form in places where magical energy is so abundant, it physically crystallizes."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(br)Breaking Clusters gets you Gemstone Shards, which seem to inherit lots of the original magical properties.$(br)Each type of gemstone seems to represent a different type of fundamental property.$(br2)Different heights promote formation of certain types. To find them all, it makes sense to search in different places."
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Geode Structure",
+      "name": "A Geode",
       "enable_visualize": false,
       "multiblock": {
         "pattern": [
@@ -135,7 +139,7 @@
             "  SCCAB  AAACSS ",
             " SCCAB     ACCS ",
             " SCA       AACS ",
-            "SCA         ACSS",
+            "SCA    0    ACSS",
             "SCA        AACSS",
             "SCA        AACS ",
             "SCAA      AACCS ",
@@ -165,7 +169,7 @@
             "O  SCAAA AAACCS ",
             "  SCAA     AACS ",
             "  SBA       ACSS",
-            " SCA    0   ACCS",
+            " SCA        ACCS",
             " SCB        ACCS",
             "  CA        ACSS",
             "  S        ACCSS",
@@ -277,7 +281,7 @@
         },
         "symmetrical": false
       },
-      "text": "Different heights promote formation of certain types. To find them all, it makes sense to search in different places."
+      "text": "The precious gemstones are protected by layers of Basalt and Calcite."
     },
     {
       "type": "patchouli:spotlight",
@@ -312,13 +316,7 @@
       "advancement": "spectrum:midgame/collect_moonstone_shard",
       "title": "Moonstone Geodes",
       "item": "spectrum:moonstone_block",
-      "text": "TODO"
-    },
-    {
-      "type": "patchouli:text",
-      "advancement": "spectrum:lategame/collect_resonance_enchanted_tool",
-      "title": "Acquiring Budding Blocks",
-      "text": "=> $(l:enchanting/resonance)Resonance$()."
+      "text": "In the $(l:dimension/dimension)Deeper Down$() you stumbled upon Moonstone Geodes!$(br)You always suspected that there would be another variant and here you are. Those often majestic geodes shine in the brightest of whites, almost blinding, when only accustomed to the darkness of the Deeper Down."
     }
   ]
 }

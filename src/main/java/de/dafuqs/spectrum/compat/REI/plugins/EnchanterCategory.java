@@ -74,7 +74,7 @@ public class EnchanterCategory implements DisplayCategory<EnchanterDisplay> {
 			
 			// output arrow and slot
 			List<EntryIngredient> output = display.getOutputEntries();
-			widgets.add(Widgets.createArrow(new Point(startPoint.x + 80, startPoint.y + 40)));
+			widgets.add(Widgets.createArrow(new Point(startPoint.x + 80, startPoint.y + 40)).animationDurationTicks(display.craftingTime));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 111, startPoint.y + 40)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 40)).markOutput().disableBackground().entries(output.get(0)));
 			

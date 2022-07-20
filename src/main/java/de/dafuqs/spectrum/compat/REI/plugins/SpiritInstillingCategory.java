@@ -64,7 +64,7 @@ public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillin
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 40, startPoint.y + 17)).entries(ITEM_BOWL_CALCITE).disableBackground());
 			
 			// output arrow and slot
-			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 9)));
+			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 9)).animationDurationTicks(display.craftingTime));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 9)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 9)).markOutput().disableBackground().entries(output.get(0)));
 			

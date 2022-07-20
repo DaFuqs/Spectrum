@@ -38,7 +38,7 @@ public abstract class PotionWorkshopCategory implements DisplayCategory<PotionWo
 		} else {
 			// bubbles
 			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 18, startPoint.y + 19, 197, 0, 10, 27));
-			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 18)));
+			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 18)).animationDurationTicks(display.craftingTime));
 			
 			// input slots
 			List<EntryIngredient> inputs = display.getInputEntries();

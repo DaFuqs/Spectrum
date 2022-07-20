@@ -33,6 +33,7 @@ public class BedrockArmorModel extends AnimatedGeoModel<BedrockArmorItem> {
 
         if(wearer.isInSneakingPose()) {
             loincloth.setRotationX(loincloth.getPositionX() + 0.55F);
+            cape.setRotationX(cape.getPositionX() + 0.05F);
         }
 
         var velocity = wearer.getVelocity().length();

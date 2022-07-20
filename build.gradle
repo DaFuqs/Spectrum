@@ -98,6 +98,7 @@ dependencies {
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:2.1.1")
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 	modImplementation include("com.github.devs-immortal:Some-Assembly-Required:${project.sar_version}")
+	modImplementation include("com.github.devs-immortal:Divine-Intervention:${project.divine_intervention_version}")
 	modImplementation include("io.github.ladysnake:satin:${project.satin_version}")
 	modImplementation("com.github.LudoCrypt:Liminal-Library:5.2.1")
 	modImplementation("software.bernie.geckolib:geckolib-fabric-${project.geckolib_version}")

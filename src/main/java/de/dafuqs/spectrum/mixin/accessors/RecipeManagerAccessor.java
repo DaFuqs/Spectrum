@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+package de.dafuqs.spectrum.mixin.accessors;
 
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import java.util.Map;
 
 @Mixin(RecipeManager.class)
-public interface RecipeManagerMixin {
+public interface RecipeManagerAccessor {
 	
 	@Accessor("recipes")
 	Map<RecipeType<?>, Map<Identifier, Recipe<?>>> getRecipes();

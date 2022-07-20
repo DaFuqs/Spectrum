@@ -18,7 +18,7 @@ import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.advancement.criterion.Criteria;
@@ -103,7 +103,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	private Direction itemFacing; // for rendering the item on the enchanter only
 	
 	public EnchanterBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.ENCHANTER, pos, state);
+		super(SpectrumBlockEntities.ENCHANTER, pos, state);
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		this.currentItemProcessingTime = -1;

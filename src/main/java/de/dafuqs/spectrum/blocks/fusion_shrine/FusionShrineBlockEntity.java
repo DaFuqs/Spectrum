@@ -11,7 +11,7 @@ import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.id.incubus_core.recipe.IngredientStack;
@@ -66,7 +66,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	private boolean inventoryChanged = true;
 	
 	public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.FUSION_SHRINE, pos, state);
+		super(SpectrumBlockEntities.FUSION_SHRINE, pos, state);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 		this.storedFluid = Fluids.EMPTY;
 	}

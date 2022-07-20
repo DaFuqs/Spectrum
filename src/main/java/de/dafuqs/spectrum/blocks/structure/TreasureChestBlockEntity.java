@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlockEntity;
 import de.dafuqs.spectrum.enums.ProgressionStage;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -46,7 +46,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	}
 	
 	public TreasureChestBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.TREASURE_CHEST, pos, state);
+		super(SpectrumBlockEntities.TREASURE_CHEST, pos, state);
 	}
 	
 	@Override

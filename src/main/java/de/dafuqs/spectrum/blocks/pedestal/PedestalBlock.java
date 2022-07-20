@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -227,9 +227,9 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull World world, BlockState state, BlockEntityType<T> type) {
 		if (world.isClient) {
-			return checkType(type, SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntity::clientTick);
+			return checkType(type, SpectrumBlockEntities.PEDESTAL, PedestalBlockEntity::clientTick);
 		} else {
-			return checkType(type, SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntity::serverTick);
+			return checkType(type, SpectrumBlockEntities.PEDESTAL, PedestalBlockEntity::serverTick);
 		}
 	}
 	

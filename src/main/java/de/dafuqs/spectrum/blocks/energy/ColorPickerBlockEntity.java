@@ -10,7 +10,7 @@ import de.dafuqs.spectrum.inventories.ColorPickerScreenHandler;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -49,7 +49,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	private UUID ownerUUID;
 	
 	public ColorPickerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.COLOR_PICKER, blockPos, blockState);
+		super(SpectrumBlockEntities.COLOR_PICKER, blockPos, blockState);
 		
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.inkStorage = new TotalCappedInkStorage(STORAGE_AMOUNT);

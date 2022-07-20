@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -38,7 +38,7 @@ public class CreativeParticleSpawnerBlock extends ParticleSpawnerBlock {
 	
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return world.isClient ? checkType(type, SpectrumBlockEntityRegistry.CREATIVE_PARTICLE_SPAWNER, ParticleSpawnerBlockEntity::clientTick) : null;
+		return world.isClient ? checkType(type, SpectrumBlockEntities.CREATIVE_PARTICLE_SPAWNER, ParticleSpawnerBlockEntity::clientTick) : null;
 	}
 	
 	@Override

@@ -16,7 +16,7 @@ import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -77,7 +77,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	
 	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.CINDERHEARTH, pos, state);
+		super(SpectrumBlockEntities.CINDERHEARTH, pos, state);
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE, USED_INK_COLORS);
 		

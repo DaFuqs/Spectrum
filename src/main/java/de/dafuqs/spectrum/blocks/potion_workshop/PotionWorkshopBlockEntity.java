@@ -11,7 +11,7 @@ import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
@@ -77,7 +77,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	protected StatusEffect lastBrewedStatusEffect;
 	
 	public PotionWorkshopBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.POTION_WORKSHOP, pos, state);
+		super(SpectrumBlockEntities.POTION_WORKSHOP, pos, state);
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		
 		this.propertyDelegate = new PropertyDelegate() {

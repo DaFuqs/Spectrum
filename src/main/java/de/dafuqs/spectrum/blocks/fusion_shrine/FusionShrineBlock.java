@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.mixin.transfer.BucketItemAccessor;
@@ -298,9 +298,9 @@ public class FusionShrineBlock extends BlockWithEntity {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (world.isClient) {
-			return checkType(type, SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntity::clientTick);
+			return checkType(type, SpectrumBlockEntities.FUSION_SHRINE, FusionShrineBlockEntity::clientTick);
 		} else {
-			return checkType(type, SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntity::serverTick);
+			return checkType(type, SpectrumBlockEntities.FUSION_SHRINE, FusionShrineBlockEntity::serverTick);
 		}
 	}
 	

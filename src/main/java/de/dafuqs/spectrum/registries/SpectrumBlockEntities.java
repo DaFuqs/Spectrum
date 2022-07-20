@@ -58,7 +58,7 @@ import net.minecraft.util.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
+public class SpectrumBlockEntities<T extends BlockEntity> {
 	
 	public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING;
 	public static BlockEntityType<PedestalBlockEntity> PEDESTAL;
@@ -169,27 +169,27 @@ public class SpectrumBlockEntityRegistry<T extends BlockEntity> {
 	}
 	
 	public static void registerClient() {
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PEDESTAL, PedestalBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, RestockingChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.TREASURE_CHEST, SpectrumChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SUCKING_CHEST, SuckingChestBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.ENCHANTER, EnchanterBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SKULL, SpectrumSkullBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.STONESETTING_WORKSHOP, StoneSettingWorkshopBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PEDESTAL, PedestalBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PRIVATE_CHEST, PrivateChestBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.COMPACTING_CHEST, CompactingChestBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.RESTOCKING_CHEST, RestockingChestBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.TREASURE_CHEST, SpectrumChestBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.SUCKING_CHEST, SuckingChestBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.UPGRADE_BLOCK, UpgradeBlockBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.ENCHANTER, EnchanterBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.SKULL, SpectrumSkullBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.STONESETTING_WORKSHOP, StoneSettingWorkshopBlockEntityRenderer::new);
 		
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PROVIDER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.STORAGE_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PUSHER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntityRegistry.PULLER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PROVIDER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.STORAGE_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PUSHER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PULLER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
 		
 		registerTextureAtlasCallback();
 	}

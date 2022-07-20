@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -31,7 +31,7 @@ public class RestockingChestBlock extends SpectrumChestBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, SpectrumBlockEntityRegistry.RESTOCKING_CHEST, RestockingChestBlockEntity::tick);
+		return checkType(type, SpectrumBlockEntities.RESTOCKING_CHEST, RestockingChestBlockEntity::tick);
 	}
 	
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {

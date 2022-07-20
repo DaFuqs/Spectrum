@@ -140,7 +140,7 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering SAR Components...");
 		SpectrumComponents.register();
 		logInfo("Registering Block Entities...");
-		SpectrumBlockEntityRegistry.register();
+		SpectrumBlockEntities.register();
 		
 		// Worldgen
 		logInfo("Registering Structure Features...");

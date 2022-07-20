@@ -15,7 +15,7 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
@@ -84,7 +84,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	protected boolean inventoryChanged;
 	
 	public PedestalBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.PEDESTAL, blockPos, blockState);
+		super(SpectrumBlockEntities.PEDESTAL, blockPos, blockState);
 		
 		if (blockState.getBlock() instanceof PedestalBlock) {
 			this.pedestalVariant = ((PedestalBlock) (blockState.getBlock())).getVariant();

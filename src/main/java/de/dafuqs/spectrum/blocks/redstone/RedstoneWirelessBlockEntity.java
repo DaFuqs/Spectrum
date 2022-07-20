@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.redstone;
 import de.dafuqs.spectrum.events.RedstoneTransferGameEvent;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.events.listeners.WirelessRedstoneSignalEventQueue;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,7 +27,7 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 	private int currentSignal;
 	
 	public RedstoneWirelessBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.REDSTONE_WIRELESS, blockPos, blockState);
+		super(SpectrumBlockEntities.REDSTONE_WIRELESS, blockPos, blockState);
 		this.listener = new WirelessRedstoneSignalEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 	}
 	

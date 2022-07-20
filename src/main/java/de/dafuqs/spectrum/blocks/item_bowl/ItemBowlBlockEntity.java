@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.Transphere;
 import de.dafuqs.spectrum.particle.effect.TransphereParticleEffect;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.minecraft.block.Block;
@@ -40,7 +40,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 	protected SimpleInventory inventory;
 	
 	public ItemBowlBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.ITEM_BOWL, pos, state);
+		super(SpectrumBlockEntities.ITEM_BOWL, pos, state);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 	}
 	

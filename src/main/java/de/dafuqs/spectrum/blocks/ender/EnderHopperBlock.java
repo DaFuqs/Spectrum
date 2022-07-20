@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.ender;
 
 import de.dafuqs.spectrum.enums.ProgressionStage;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.Entity;
@@ -72,7 +72,7 @@ public class EnderHopperBlock extends BlockWithEntity {
 		if (world.isClient) {
 			return null;
 		} else {
-			return checkType(type, SpectrumBlockEntityRegistry.ENDER_HOPPER, EnderHopperBlockEntity::serverTick);
+			return checkType(type, SpectrumBlockEntities.ENDER_HOPPER, EnderHopperBlockEntity::serverTick);
 		}
 	}
 	

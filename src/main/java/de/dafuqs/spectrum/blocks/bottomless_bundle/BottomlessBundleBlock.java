@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -61,7 +61,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (!world.isClient && player.isSneaking()) {
-			world.getBlockEntity(pos, SpectrumBlockEntityRegistry.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
+			world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
 				ItemStack itemStack = bottomlessBundleBlockEntity.retrieveVoidBundle();
 				
 				world.setBlockState(pos, Blocks.AIR.getDefaultState());

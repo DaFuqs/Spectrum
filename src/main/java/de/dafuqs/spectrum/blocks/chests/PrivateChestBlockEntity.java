@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.chests;
 import de.dafuqs.spectrum.enums.ProgressionStage;
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +29,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 	private long lastNonOwnerOpenedTick;
 	
 	public PrivateChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.PRIVATE_CHEST, blockPos, blockState);
+		super(SpectrumBlockEntities.PRIVATE_CHEST, blockPos, blockState);
 		this.lastNonOwnerOpenedTick = -1;
 	}
 	

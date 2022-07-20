@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +17,7 @@ public class PlayerDetectorBlockEntity extends BlockEntity implements PlayerOwne
 	private String ownerName;
 	
 	public PlayerDetectorBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.PLAYER_DETECTOR, blockPos, blockState);
+		super(SpectrumBlockEntities.PLAYER_DETECTOR, blockPos, blockState);
 	}
 	
 	public void writeNbt(NbtCompound tag) {

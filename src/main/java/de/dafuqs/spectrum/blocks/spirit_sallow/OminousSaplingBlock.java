@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PlantBlock;
@@ -63,7 +63,7 @@ public class OminousSaplingBlock extends PlantBlock implements BlockEntityProvid
 	
 	@Override
 	public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new OminousSaplingBlockEntity(SpectrumBlockEntityRegistry.OMINOUS_SAPLING, pos, state);
+		return new OminousSaplingBlockEntity(SpectrumBlockEntities.OMINOUS_SAPLING, pos, state);
 	}
 	
 	@Override

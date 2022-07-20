@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.potion_workshop;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -53,7 +53,7 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (!world.isClient) {
-			return checkType(type, SpectrumBlockEntityRegistry.POTION_WORKSHOP, PotionWorkshopBlockEntity::tick);
+			return checkType(type, SpectrumBlockEntities.POTION_WORKSHOP, PotionWorkshopBlockEntity::tick);
 		}
 		return null;
 	}

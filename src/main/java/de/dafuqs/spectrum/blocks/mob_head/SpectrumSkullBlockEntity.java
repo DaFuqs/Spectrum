@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 public class SpectrumSkullBlockEntity extends BlockEntity {
 	
 	public SpectrumSkullBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.SKULL, pos, state);
+		super(SpectrumBlockEntities.SKULL, pos, state);
 	}
 	
 	public void readNbt(NbtCompound tag) {

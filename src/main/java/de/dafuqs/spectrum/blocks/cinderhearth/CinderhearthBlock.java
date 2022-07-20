@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.cinderhearth;
 
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -55,7 +55,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 		if (world.isClient) {
 			return null;
 		} else {
-			return checkType(type, SpectrumBlockEntityRegistry.CINDERHEARTH, CinderhearthBlockEntity::serverTick);
+			return checkType(type, SpectrumBlockEntities.CINDERHEARTH, CinderhearthBlockEntity::serverTick);
 		}
 	}
 	

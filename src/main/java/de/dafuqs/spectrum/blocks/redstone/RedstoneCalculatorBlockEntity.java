@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -11,7 +11,7 @@ public class RedstoneCalculatorBlockEntity extends BlockEntity {
 	private int outputSignal;
 	
 	public RedstoneCalculatorBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.REDSTONE_CALCULATOR, pos, state);
+		super(SpectrumBlockEntities.REDSTONE_CALCULATOR, pos, state);
 	}
 	
 	public void writeNbt(NbtCompound nbt) {

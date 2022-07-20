@@ -9,7 +9,7 @@ import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -60,7 +60,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 	private final List<Item> filterItems;
 	
 	public SuckingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.SUCKING_CHEST, blockPos, blockState);
+		super(SpectrumBlockEntities.SUCKING_CHEST, blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOTS, Items.AIR);
 	}

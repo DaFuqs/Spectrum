@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.ender;
 
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +20,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 	private String ownerName;
 	
 	public EnderDropperBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.ENDER_DROPPER, blockPos, blockState);
+		super(SpectrumBlockEntities.ENDER_DROPPER, blockPos, blockState);
 	}
 	
 	protected Text getContainerName() {

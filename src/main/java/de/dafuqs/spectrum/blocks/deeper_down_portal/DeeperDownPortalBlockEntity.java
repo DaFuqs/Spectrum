@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.deeper_down_portal;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
@@ -16,7 +16,7 @@ public class DeeperDownPortalBlockEntity extends BlockEntity {
 	}
 	
 	public DeeperDownPortalBlockEntity(BlockPos pos, BlockState state) {
-		this(SpectrumBlockEntityRegistry.DEEPER_DOWN_PORTAL, pos, state);
+		this(SpectrumBlockEntities.DEEPER_DOWN_PORTAL, pos, state);
 	}
 	
 	@Environment(EnvType.CLIENT)

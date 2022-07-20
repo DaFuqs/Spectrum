@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.energy;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
@@ -99,7 +99,7 @@ public class CrystalApothecaryBlock extends BlockWithEntity {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, SpectrumBlockEntityRegistry.CRYSTAL_APOTHECARY, CrystalApothecaryBlockEntity::tick);
+		return checkType(type, SpectrumBlockEntities.CRYSTAL_APOTHECARY, CrystalApothecaryBlockEntity::tick);
 	}
 	
 	@Nullable

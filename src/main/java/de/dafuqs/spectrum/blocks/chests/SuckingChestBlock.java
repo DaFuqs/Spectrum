@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -33,7 +33,7 @@ public class SuckingChestBlock extends SpectrumChestBlock {
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return checkType(type, SpectrumBlockEntityRegistry.SUCKING_CHEST, SuckingChestBlockEntity::tick);
+		return checkType(type, SpectrumBlockEntities.SUCKING_CHEST, SuckingChestBlockEntity::tick);
 	}
 	
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {

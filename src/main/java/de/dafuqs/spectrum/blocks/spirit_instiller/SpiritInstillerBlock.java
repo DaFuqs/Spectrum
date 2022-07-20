@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -115,9 +115,9 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (world.isClient) {
-			return checkType(type, SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntity::clientTick);
+			return checkType(type, SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntity::clientTick);
 		} else {
-			return checkType(type, SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, SpiritInstillerBlockEntity::serverTick);
+			return checkType(type, SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntity::serverTick);
 		}
 	}
 	

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -66,7 +66,7 @@ public class PreservationControllerBlock extends BlockWithEntity {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (!world.isClient) {
-			return checkType(type, SpectrumBlockEntityRegistry.PRESERVATION_CONTROLLER, PreservationControllerBlockEntity::serverTick);
+			return checkType(type, SpectrumBlockEntities.PRESERVATION_CONTROLLER, PreservationControllerBlockEntity::serverTick);
 		}
 		return null;
 	}

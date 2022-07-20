@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.chests;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.RestockingChestScreenHandler;
 import de.dafuqs.spectrum.items.CraftingTabletItem;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
@@ -34,7 +34,7 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	private int coolDownTicks = 0;
 	
 	public RestockingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.RESTOCKING_CHEST, blockPos, blockState);
+		super(SpectrumBlockEntities.RESTOCKING_CHEST, blockPos, blockState);
 	}
 	
 	public static void tick(World world, BlockPos pos, BlockState state, RestockingChestBlockEntity restockingChestBlockEntity) {

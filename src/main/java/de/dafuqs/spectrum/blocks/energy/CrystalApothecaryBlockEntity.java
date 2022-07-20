@@ -7,7 +7,7 @@ import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
 import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -68,7 +68,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	private String ownerName;
 	
 	public CrystalApothecaryBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.CRYSTAL_APOTHECARY, blockPos, blockState);
+		super(SpectrumBlockEntities.CRYSTAL_APOTHECARY, blockPos, blockState);
 		this.blockPosEventTransferListener = new BlockPosEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 		this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
 		this.listenerPaused = false;

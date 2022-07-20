@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
 import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -73,7 +73,7 @@ public class ParticleSpawnerBlock extends BlockWithEntity implements RedstonePow
 	
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return world.isClient ? checkType(type, SpectrumBlockEntityRegistry.PARTICLE_SPAWNER, ParticleSpawnerBlockEntity::clientTick) : null;
+		return world.isClient ? checkType(type, SpectrumBlockEntities.PARTICLE_SPAWNER, ParticleSpawnerBlockEntity::clientTick) : null;
 	}
 	
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

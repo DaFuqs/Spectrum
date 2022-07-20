@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -16,7 +16,7 @@ public class OminousSaplingBlockEntity extends BlockEntity implements PlayerOwne
 	public UUID ownerUUID;
 	
 	public OminousSaplingBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.OMINOUS_SAPLING, blockPos, blockState);
+		super(SpectrumBlockEntities.OMINOUS_SAPLING, blockPos, blockState);
 	}
 	
 	public OminousSaplingBlockEntity(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.stonesetting_workshop;
 
 import de.dafuqs.spectrum.items.CrystalGraceItem;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.id.incubus_core.be.IncubusBaseBE;
 import net.minecraft.block.BlockState;
@@ -23,7 +23,7 @@ public class StonesettingWorkshopBlockEntity extends IncubusBaseBE {
     private int filledGraceSlots;
 
     public StonesettingWorkshopBlockEntity(BlockPos pos, BlockState state) {
-        super(SpectrumBlockEntityRegistry.STONESETTING_WORKSHOP, pos, state);
+        super(SpectrumBlockEntities.STONESETTING_WORKSHOP, pos, state);
     }
 
     /**

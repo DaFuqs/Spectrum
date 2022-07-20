@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.crystallarieum;
 
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,8 +33,10 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	@Nullable
 	protected CrystallarieumRecipe currentRecipe;
 	
+	protected int currentGrowthDuration;
+	
 	public CrystallarieumBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.CRYSTALLARIEUM, pos, state);
+		super(SpectrumBlockEntities.CRYSTALLARIEUM, pos, state);
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 	}
 	
@@ -59,8 +61,6 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		// TODO
-		//return new CrystallarieumScreenHandler(syncId, playerInventory, this, this.pos);
 		return null;
 	}
 	
@@ -109,7 +109,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	 * @param recipe optionally the matching CrystallarieumRecipe. If null is passed it will be calculated
 	 */
 	public void onTopBlockChange(BlockState newState, @Nullable CrystallarieumRecipe recipe) {
-		CrystallarieumRecipe currentRecipe = recipe == null ? CrystallarieumRecipe.getRecipeForState(newState) : recipe;
+		this.currentRecipe = recipe == null ? CrystallarieumRecipe.getRecipeForState(newState) : recipe;
 	}
 	
 }

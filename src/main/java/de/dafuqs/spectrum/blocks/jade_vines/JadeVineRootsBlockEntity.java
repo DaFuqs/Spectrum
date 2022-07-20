@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
 import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -25,7 +25,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	private long lastGrowthTick = -1;
 	
 	public JadeVineRootsBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.JADE_VINE_ROOTS, pos, state);
+		super(SpectrumBlockEntities.JADE_VINE_ROOTS, pos, state);
 		this.fenceBlockState = Blocks.OAK_FENCE.getDefaultState();
 	}
 	

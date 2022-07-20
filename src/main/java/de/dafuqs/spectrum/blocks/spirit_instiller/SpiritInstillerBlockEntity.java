@@ -11,7 +11,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ItemColors;
 import net.id.incubus_core.recipe.IngredientStack;
@@ -68,7 +68,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	private boolean canCraft;
 	
 	public SpiritInstillerBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.SPIRIT_INSTILLER, pos, state);
+		super(SpectrumBlockEntities.SPIRIT_INSTILLER, pos, state);
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 		this.autoCraftingInventory = new SimpleInventory(INVENTORY_SIZE + 2); // 2 item bowls
 	}

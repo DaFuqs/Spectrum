@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -27,7 +27,7 @@ public class BottomlessBundleBlockEntity extends BlockEntity implements SidedInv
 	protected ItemStack currentOutputStack;
 	
 	public BottomlessBundleBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.BOTTOMLESS_BUNDLE, pos, state);
+		super(SpectrumBlockEntities.BOTTOMLESS_BUNDLE, pos, state);
 		this.bottomlessBundleStack = ItemStack.EMPTY;
 		this.acceptedItemStack = ItemStack.EMPTY;
 		this.currentOutputStack = ItemStack.EMPTY;

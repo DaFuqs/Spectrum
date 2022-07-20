@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -28,7 +28,7 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 	
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return world.isClient ? checkType(type, SpectrumBlockEntityRegistry.PRIVATE_CHEST, PrivateChestBlockEntity::clientTick) : null;
+		return world.isClient ? checkType(type, SpectrumBlockEntities.PRIVATE_CHEST, PrivateChestBlockEntity::clientTick) : null;
 	}
 	
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {

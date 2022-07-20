@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.particle_spawner;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -53,7 +53,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	public boolean initialized = false;
 	
 	public ParticleSpawnerBlockEntity(BlockPos blockPos, BlockState blockState) {
-		this(SpectrumBlockEntityRegistry.PARTICLE_SPAWNER, blockPos, blockState);
+		this(SpectrumBlockEntities.PARTICLE_SPAWNER, blockPos, blockState);
 	}
 	
 	public ParticleSpawnerBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {

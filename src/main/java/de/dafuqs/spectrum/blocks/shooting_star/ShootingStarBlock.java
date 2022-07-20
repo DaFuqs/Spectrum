@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.shooting_star;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
@@ -57,7 +57,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
 		ItemStack itemStack = super.getPickStack(world, pos, state);
-		world.getBlockEntity(pos, SpectrumBlockEntityRegistry.SHOOTING_STAR).ifPresent((blockEntity) -> {
+		world.getBlockEntity(pos, SpectrumBlockEntities.SHOOTING_STAR).ifPresent((blockEntity) -> {
 			blockEntity.setStackNbt(itemStack);
 		});
 		return itemStack;
@@ -67,7 +67,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 	public void onBreak(@NotNull World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		if (!world.isClient && !player.isCreative()) {
 			ItemStack itemStack = this.shootingStarType.getBlock().asItem().getDefaultStack();
-			world.getBlockEntity(pos, SpectrumBlockEntityRegistry.SHOOTING_STAR).ifPresent((blockEntity) -> {
+			world.getBlockEntity(pos, SpectrumBlockEntities.SHOOTING_STAR).ifPresent((blockEntity) -> {
 				blockEntity.setStackNbt(itemStack);
 			});
 			

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.ender;
 
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -40,7 +40,7 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	private int transferCooldown;
 	
 	public EnderHopperBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.ENDER_HOPPER, blockPos, blockState);
+		super(SpectrumBlockEntities.ENDER_HOPPER, blockPos, blockState);
 	}
 	
 	public static void onEntityCollided(World world, BlockPos pos, BlockState state, Entity entity, EnderHopperBlockEntity enderHopperBlockEntity) {

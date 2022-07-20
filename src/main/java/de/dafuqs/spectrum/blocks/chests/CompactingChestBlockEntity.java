@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.chests;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
 import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
 import net.minecraft.block.BlockState;
@@ -37,7 +37,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	boolean hasToCraft;
 	
 	public CompactingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntityRegistry.COMPACTING_CHEST, blockPos, blockState);
+		super(SpectrumBlockEntities.COMPACTING_CHEST, blockPos, blockState);
 		this.autoCraftingMode = AutoCompactingInventory.AutoCraftingMode.ThreeXThree;
 		this.lastItemVariant = null;
 		this.lastCraftingRecipe = null;

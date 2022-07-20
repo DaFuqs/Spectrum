@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.AbstractRedstoneGateBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -147,7 +147,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (!world.isClient) {
-			return checkType(type, SpectrumBlockEntityRegistry.REDSTONE_WIRELESS, RedstoneWirelessBlockEntity::serverTick);
+			return checkType(type, SpectrumBlockEntities.REDSTONE_WIRELESS, RedstoneWirelessBlockEntity::serverTick);
 		}
 		return null;
 	}

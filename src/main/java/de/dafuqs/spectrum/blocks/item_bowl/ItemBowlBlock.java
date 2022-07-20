@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.blocks.item_bowl;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -107,7 +107,7 @@ public class ItemBowlBlock extends BlockWithEntity {
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		if (world.isClient) {
-			return checkType(type, SpectrumBlockEntityRegistry.ITEM_BOWL, ItemBowlBlockEntity::clientTick);
+			return checkType(type, SpectrumBlockEntities.ITEM_BOWL, ItemBowlBlockEntity::clientTick);
 		} else {
 			return null;
 		}

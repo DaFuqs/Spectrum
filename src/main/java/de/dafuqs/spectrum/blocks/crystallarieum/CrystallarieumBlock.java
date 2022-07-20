@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -41,7 +41,7 @@ public class CrystallarieumBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return !world.isClient ? checkType(type, SpectrumBlockEntityRegistry.CRYSTALLARIEUM, CrystallarieumBlockEntity::serverTick) : null;
+		return !world.isClient ? checkType(type, SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntity::serverTick) : null;
 	}
 	
 	@Override

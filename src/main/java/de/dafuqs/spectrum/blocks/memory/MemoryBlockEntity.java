@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.mixin.accessors.FoxEntityAccessor;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntityRegistry;
+import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
@@ -47,7 +47,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	private int tint2 = -1;
 	
 	public MemoryBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntityRegistry.MEMORY, pos, state);
+		super(SpectrumBlockEntities.MEMORY, pos, state);
 	}
 	
 	@Contract("_ -> new")

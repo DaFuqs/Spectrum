@@ -53,7 +53,7 @@
     "accessors.StructureFeatureAccessor"
   ],
   "client": [
-    "client.ClientWorldMixin",
+    "client.ClientWorldReverbMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.DimensionTypeMixin",

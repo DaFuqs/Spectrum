@@ -1,6 +1,7 @@
 {
   "values": [
     "#spectrum:ruin_safe",
-    "minecraft:bedrock"
+    "minecraft:bedrock",
+    "spectrum:bedrock_storage_block"
   ]
 }

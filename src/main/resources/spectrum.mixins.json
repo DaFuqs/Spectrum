@@ -53,13 +53,14 @@
     "accessors.StructureFeatureAccessor"
   ],
   "client": [
-    "client.ClientWorldReverbMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
+    "client.ClientWorldReverbMixin",
     "client.DimensionTypeMixin",
     "client.HeadFeatureRendererMixin",
     "client.InGameHudMixin",
     "client.ItemFrameEntityRendererMixin",
+    "client.ItemRendererMixin",
     "client.MinecraftClientMixin",
     "client.PotionItemClientMixin",
     "client.TransparentBlockMixin",

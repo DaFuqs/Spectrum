@@ -1,6 +1,9 @@
 package de.dafuqs.spectrum.render.armor;
 
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.ModelData;
+import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.ModelPartBuilder;
+import net.minecraft.client.model.ModelTransform;
 
 public class BedrockArmorModel {
     public final ModelPart head;

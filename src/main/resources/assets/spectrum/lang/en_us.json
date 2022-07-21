@@ -1772,7 +1772,7 @@
   "block.spectrum.color_picker": "Color Picker",
   "block.spectrum.color_picker.tooltip": "Converts §2P§3i§cg§6m§be§en§dt§7 into Ink",
   "block.spectrum.inkwell": "Inkwell",
-  "block.spectrum.inkwell.tooltip": "Place on a Gemstone Farmer to extract Ink",
+  "block.spectrum.inkwell.tooltip": "Place on a Crystal Apothecary to extract Ink",
   "block.spectrum.ink_duct": "Ink Duct",
   "block.spectrum.ink_duct.tooltip": "Transfers Ink in a straight line",
   "block.spectrum.crystal_apothecary": "Crystal Apothecary",

@@ -67,7 +67,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/crystallarieum",
-      "text": "It can fit a few stacks of catalysts, which it uses to enhance the growth process. For a few rare materials that even seems required."
+      "text": "It can fit a stack of catalysts, which it uses to enhance the growth process. For a few rare materials that even may be required."
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -84,9 +84,9 @@
     {
       "type": "patchouli:spotlight",
       "title": "Native Resources",
-      "item": "spectrum:native_iron",
+      "item": "spectrum:iron_cluster",
       "advancement": "spectrum:lategame/collect_native_resource",
-      "text": "Growing materials using Ink seems to yield a much purer variant than plain $(thing)Raw Ore$()."
+      "text": "Growing materials using Ink seems to yield a $(l:resources/native_respources)much purer variant$(/l) than plain $(thing)Raw Ore$()."
     }
   ]
 }

@@ -2,7 +2,7 @@
   "name": "Ancient Ruins",
   "icon": "spectrum:dike_chiseled_preservation_stone",
   "advancement": "spectrum:find_ancient_ruins",
-  "sortnum": 16,
+  "sortnum": 13,
   "turnin": "spectrum:generate_ancient_ruins_loot",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

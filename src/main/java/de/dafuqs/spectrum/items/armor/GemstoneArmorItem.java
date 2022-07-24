@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.armor;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
@@ -67,28 +68,26 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 		switch (equipmentSlot) {
 			case HEAD -> {
 				if (source.getAttacker() instanceof LivingEntity) {
-					StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.WEAKNESS, 5 * 20, 2);
+					StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.WEAKNESS, 5 * 20, SpectrumCommon.CONFIG.GemstoneArmorWeaknessAmplifier);
 					((LivingEntity) source.getAttacker()).addStatusEffect(statusEffectInstance);
-					statusEffectInstance = new StatusEffectInstance(StatusEffects.SLOWNESS, 5 * 20, 2);
+					statusEffectInstance = new StatusEffectInstance(StatusEffects.SLOWNESS, 5 * 20, SpectrumCommon.CONFIG.GemstoneArmorSlownessAmplifier);
 					((LivingEntity) source.getAttacker()).addStatusEffect(statusEffectInstance);
 				}
 			}
 			case CHEST -> {
-				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.ABSORPTION, 5 * 20, 0);
+				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.ABSORPTION, 5 * 20, SpectrumCommon.CONFIG.GemstoneArmorAbsorptionAmplifier);
 				targetEntity.addStatusEffect(statusEffectInstance);
-				statusEffectInstance = new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0);
+				statusEffectInstance = new StatusEffectInstance(StatusEffects.RESISTANCE, 5 * 20, SpectrumCommon.CONFIG.GemstoneArmorResistanceAmplifier);
 				targetEntity.addStatusEffect(statusEffectInstance);
 			}
 			case FEET -> {
-				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.RESISTANCE, 5 * 20, 2);
-				targetEntity.addStatusEffect(statusEffectInstance);
-				statusEffectInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 5 * 20, 1);
+				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 5 * 20, SpectrumCommon.CONFIG.GemstoneArmorRegenerationAmplifier);
 				targetEntity.addStatusEffect(statusEffectInstance);
 			}
 			case LEGS -> {
-				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.SPEED, 5 * 20, 2);
+				StatusEffectInstance statusEffectInstance = new StatusEffectInstance(StatusEffects.SPEED, 5 * 20, SpectrumCommon.CONFIG.GemstoneArmorSpeedAmplifier);
 				targetEntity.addStatusEffect(statusEffectInstance);
-				statusEffectInstance = new StatusEffectInstance(StatusEffects.INVISIBILITY, 5 * 20, 2);
+				statusEffectInstance = new StatusEffectInstance(StatusEffects.INVISIBILITY, 5 * 20, 0);
 				targetEntity.addStatusEffect(statusEffectInstance);
 			}
 		}

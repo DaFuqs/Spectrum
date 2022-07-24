@@ -125,6 +125,27 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("The duration a glow ink sac gives night vision when wearing a glow vision helmet in seconds")
 	public int GlowVisionGogglesDuration = 240;
 	
+	public int GemstoneArmorHelmetProtection = 3;
+	public int GemstoneArmorLeggingsProtection = 5;
+	public int GemstoneArmorChestplateProtection = 7;
+	public int GemstoneArmorBootsProtection = 3;
+	public float GemstoneArmorToughness = 0.0F;
+	public float GemstoneArmorKnockbackResistance = 0.0F;
+	
+	public int GemstoneArmorWeaknessAmplifier = 1;
+	public int GemstoneArmorSlownessAmplifier = 1;
+	public int GemstoneArmorAbsorptionAmplifier = 0;
+	public int GemstoneArmorResistanceAmplifier = 1;
+	public int GemstoneArmorRegenerationAmplifier = 1;
+	public int GemstoneArmorSpeedAmplifier = 2;
+	
+	public int BedrockArmorHelmetProtection = 3;
+	public int BedrockArmorLeggingsProtection = 5;
+	public int BedrockArmorChestplateProtection = 7;
+	public int BedrockArmorBootsProtection = 3;
+	public float BedrockArmorToughness = 4.0F;
+	public float BedrockArmorKnockbackResistance = 0.4F;
+	
 	@Comment("By Default, Roughly Enough Items will show a 'recipe not unlocked yet' screen for not yet unlocked recipes. Setting this value to false will instead not show this screen, showing no recipes whatsoever, until unlocked")
 	public boolean REIListsRecipesAsNotUnlocked = true;
 	

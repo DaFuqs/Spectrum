@@ -1381,6 +1381,10 @@
   "item.spectrum.bedrock_boots": "Bedrock Boots",
 
   "item.spectrum.dreamflayer": "Dreamflayer",
+  "item.spectrum.dreamflayer.tooltip": "Deals more damage the greater the difference in",
+  "item.spectrum.dreamflayer.tooltip2": "armor between the wearer and the target is",
+  "item.spectrum.dreamflayer.tooltip.deactivated": "Crouch-Use to overpower (consumes lots of §cRed Ink§r)",
+  "item.spectrum.dreamflayer.tooltip.activated": "Overpowered. Crouch-Use to unpower",
 
   "item.spectrum.spawner": "Empty Spawner",
   "item.spectrum.spawner.tooltip.unknown_mob": "Unknown Mob",

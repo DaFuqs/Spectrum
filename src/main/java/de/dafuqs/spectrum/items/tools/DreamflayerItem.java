@@ -6,8 +6,10 @@ import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.items.ActivatableItem;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -18,12 +20,17 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -91,9 +98,32 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		if (ActivatableItem.isActivated(stack) && world.getTime() % 20 == 0 && entity instanceof ServerPlayerEntity player && !InkPowered.tryDrainEnergy(player, USED_COLOR, INK_COST_PER_SECOND)) {
-			ActivatableItem.setActivated(stack, false);
-			world.playSound(null, player.getX(), player.getY(), player.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 0.8F, 1F);
+		if(world.isClient) {
+			if(ActivatableItem.isActivated(stack)) {
+				Vec3d pos = entity.getPos();
+				world.addParticle(SpectrumParticleTypes.RED_CRAFTING,
+						pos.getX() + world.random.nextDouble(), pos.getY() + 1.05D, pos.getZ() + world.random.nextDouble(),
+						0.0D, 0.1D, 0.0D);
+			}
+		} else {
+			if (world.getTime() % 20 == 0 && ActivatableItem.isActivated(stack)) {
+				if (entity instanceof ServerPlayerEntity player && !InkPowered.tryDrainEnergy(player, USED_COLOR, INK_COST_PER_SECOND)) {
+					ActivatableItem.setActivated(stack, false);
+					world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 0.8F, 1F);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(new TranslatableText("item.spectrum.dreamflayer.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.dreamflayer.tooltip2").formatted(Formatting.GRAY));
+		if(ActivatableItem.isActivated(stack)) {
+			tooltip.add(new TranslatableText("item.spectrum.dreamflayer.tooltip.activated").formatted(Formatting.GRAY));
+		} else {
+			tooltip.add(new TranslatableText("item.spectrum.dreamflayer.tooltip.deactivated").formatted(Formatting.GRAY));
 		}
 	}
 	

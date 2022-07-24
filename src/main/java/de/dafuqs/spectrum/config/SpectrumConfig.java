@@ -139,10 +139,10 @@ public class SpectrumConfig implements ConfigData {
 	public int GemstoneArmorRegenerationAmplifier = 1;
 	public int GemstoneArmorSpeedAmplifier = 2;
 	
-	public int BedrockArmorHelmetProtection = 3;
-	public int BedrockArmorLeggingsProtection = 5;
-	public int BedrockArmorChestplateProtection = 7;
-	public int BedrockArmorBootsProtection = 3;
+	public int BedrockArmorHelmetProtection = 6;
+	public int BedrockArmorLeggingsProtection = 10;
+	public int BedrockArmorChestplateProtection = 14;
+	public int BedrockArmorBootsProtection = 6;
 	public float BedrockArmorToughness = 4.0F;
 	public float BedrockArmorKnockbackResistance = 0.4F;
 	
@@ -219,6 +219,10 @@ public class SpectrumConfig implements ConfigData {
 		}
 		if (QuitoxicReedsGenerationBiomes.isEmpty()) {
 			QuitoxicReedsGenerationBiomes.add("minecraft:swamp");
+			QuitoxicReedsGenerationBiomes.add("byg:bayou");
+			QuitoxicReedsGenerationBiomes.add("byg:cypress_swamplands");
+			QuitoxicReedsGenerationBiomes.add("terralith:orchid_swamp");
+			QuitoxicReedsGenerationBiomes.add("terralith:ice_marsh");
 		}
 	}
 	

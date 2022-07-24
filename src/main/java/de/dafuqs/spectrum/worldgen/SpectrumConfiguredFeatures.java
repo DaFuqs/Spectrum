@@ -324,12 +324,7 @@ public class SpectrumConfiguredFeatures {
 		
 		Collection<RegistryKey<Biome>> swamps = new ArrayList<>();
 		for (String biomeString : SpectrumCommon.CONFIG.QuitoxicReedsGenerationBiomes) {
-			RegistryKey<Biome> biomeKey = RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString));
-			if (biomeKey == null) {
-				SpectrumCommon.logError("Quitoxic Reeds are configured to spawn in biome " + biomeString + " but that does not exist!");
-			} else {
-				swamps.add(biomeKey);
-			}
+			swamps.add(RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString)));
 		}
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(swamps), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, quitoxicReedsIdentifier));
 		

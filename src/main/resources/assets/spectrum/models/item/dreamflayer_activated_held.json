@@ -1,6 +1,6 @@
 {
   "parent": "spectrum:item/handheld_oversized",
   "textures": {
-    "layer0": "spectrum:item/dreamflayer_activated"
+    "layer0": "spectrum:item/dreamflayer_activated_held"
   }
 }

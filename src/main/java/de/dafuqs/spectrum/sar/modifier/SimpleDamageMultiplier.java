@@ -4,7 +4,6 @@ import net.immortaldevs.sar.api.Modifier;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Predicate;
 

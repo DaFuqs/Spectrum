@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.graces.crystal;
 import net.immortaldevs.sar.api.Component;
 import net.immortaldevs.sar.api.ComponentNode;
 import net.immortaldevs.sar.api.ComponentNodeHandler;
-import org.jetbrains.annotations.NotNull;
 
 public class CrystalGraceComponent extends Component {
 

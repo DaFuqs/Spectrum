@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries.client;
 
+import com.ibm.icu.text.Normalizer2;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
@@ -8,6 +9,7 @@ import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
+import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,6 +19,8 @@ import net.minecraft.util.Identifier;
 
 // Vanilla models see: ModelPredicateProviderRegistry
 public class SpectrumItemPredicates {
+	
+	public static ModelTransformation.Mode currentItemRenderMode;
 	
 	public static void registerClient() {
 		registerBowPredicates(SpectrumItems.BEDROCK_BOW);
@@ -29,17 +33,7 @@ public class SpectrumItemPredicates {
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerSinglePigmentEnergyStorageItemPredicates(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
-		registerActivatablePredicates(SpectrumItems.DREAMFLAYER);
-	}
-	
-	private static void registerActivatablePredicates(Item item) {
-		FabricModelPredicateProviderRegistry.register(item, new Identifier(ActivatableItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
-			if(ActivatableItem.isActivated(itemStack)) {
-				return 1.0F;
-			} else {
-				return 0.0F;
-			}
-		});
+		registerDreamFlayerPredicates(SpectrumItems.DREAMFLAYER);
 	}
 	
 	private static void registerMoonPhasePredicates(Item item) {
@@ -59,6 +53,19 @@ public class SpectrumItemPredicates {
 				} else {
 					return clientWorld.getMoonPhase() / 8F;
 				}
+			}
+		});
+	}
+	
+	private static void registerDreamFlayerPredicates(Item item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("in_inventory"), (itemStack, world, livingEntity, i) -> {
+			return currentItemRenderMode == ModelTransformation.Mode.GUI ? 1.0F : 0.0F;
+		});
+		FabricModelPredicateProviderRegistry.register(item, new Identifier(ActivatableItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
+			if(ActivatableItem.isActivated(itemStack)) {
+				return 1.0F;
+			} else {
+				return 0.0F;
 			}
 		});
 	}

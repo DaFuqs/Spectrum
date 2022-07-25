@@ -1,9 +1,5 @@
 package de.dafuqs.spectrum.compat.shimmer;
 
-import com.lowdragmc.shimmer.client.light.ColorPointLight;
-import com.lowdragmc.shimmer.client.light.LightManager;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-
 public class ShimmerLights {
 	
 	public static void register() {

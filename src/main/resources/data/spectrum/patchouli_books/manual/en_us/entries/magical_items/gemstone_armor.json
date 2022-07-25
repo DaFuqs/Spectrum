@@ -34,19 +34,19 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_vanilla/collect_nautilus_shell",
       "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_chestplate",
-      "text": "Grants Absorption and Instant Health when you get hit, making you a formidable close combat fighter."
+      "text": "Grants Absorption and Resistance when you get hit, making you a massive wall for a short duration."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_vanilla/collect_phantom_membrane",
       "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_leggings",
-      "text": "Gives a short burst of Speed and Invisibility when you get hit, giving you an opportunity to retreat. Perfect for ranged combat."
+      "text": "Gives you a short burst of Regeneration on hit, making you get right back up after each hit."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_vanilla/collect_ghast_tear",
       "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_boots",
-      "text": "Gives you a short burst of Resistance and Regeneration on hit, making you a massive wall for a short duration."
+      "text": "Gives a short burst of Speed and Invisibility when you get hit, giving you an opportunity to retreat. Perfect for ranged combat."
     }
   ]
 }

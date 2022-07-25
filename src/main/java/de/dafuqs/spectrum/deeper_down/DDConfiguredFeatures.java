@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.deeper_down;
 
 import com.google.common.collect.ImmutableList;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import de.dafuqs.spectrum.worldgen.features.RandomBudsFeaturesConfig;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.tag.BlockTags;

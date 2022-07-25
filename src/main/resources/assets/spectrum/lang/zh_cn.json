@@ -1381,6 +1381,10 @@
   "item.spectrum.bedrock_boots": "基岩靴子",
 
   "item.spectrum.dreamflayer": "离梦利刃",
+  "item.spectrum.dreamflayer.tooltip": "自身与对方防御值差距越大",
+  "item.spectrum.dreamflayer.tooltip2": "造成的伤害越高",
+  "item.spectrum.dreamflayer.tooltip.deactivated": "潜行使用进行充能（消耗巨量§c红墨水§r）",
+  "item.spectrum.dreamflayer.tooltip.activated": "已充能。再次潜行使用以取消激活。",
 
   "item.spectrum.spawner": "空刷怪笼",
   "item.spectrum.spawner.tooltip.unknown_mob": "未知生物",
@@ -2104,7 +2108,7 @@
   "advancements.spectrum.build_cinderhearth_structure.title": "开足热力",
   "advancements.spectrum.build_cinderhearth_structure.description": "使炼化炉工作起来",
   "advancements.spectrum.build_cinderhearth_without_lava_structure.title": "怎么会是呢？",
-  "advancements.spectrum.build_cinderhearth_without_lava_structure.description": "我应该说过“有岩浆的话就*好多了*”对吧？大聪明。",
+  "advancements.spectrum.build_cinderhearth_without_lava_structure.description": "我应该说过“有岩浆的话就§l再§l好§l不§l过§r”对吧？大聪明。",
   "advancements.spectrum.doubled_output_in_cinderhearth.title": "由墨水到物质",
   "advancements.spectrum.doubled_output_in_cinderhearth.description": "在炼化炉中使用淡蓝色墨水来使你的烧炼产出加倍。",
   "advancements.spectrum.smelt_native_resource_in_cinderhearth.title": "矿产大丰收",

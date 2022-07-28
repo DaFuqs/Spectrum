@@ -12,12 +12,12 @@ public final class DDOreVeinSampler {
     private static final float field_36620 = 0.4F;
     private static final int field_36621 = 20;
     private static final double field_36622 = 0.2D;
-    private static final float VEIN_LIMIT = 0.5F;
+    private static final float VEIN_LIMIT = 0.7F;
     private static final float field_36624 = 0.1F;
     private static final float field_36625 = 0.3F;
     private static final float field_36626 = 0.6F;
     private static final float RAW_ORE_BLOCK_CHANCE = 0.08F;
-    private static final float ORE_OR_STONE_THRESHOLD = -0.25F;
+    private static final float ORE_OR_STONE_THRESHOLD = -0.15F;
 
     private DDOreVeinSampler() {
     }

@@ -32,6 +32,7 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> BUILDING_STAFFS_BLACKLISTED = getReference("building_staffs_blacklisted");
 	public static TagKey<Block> CRYSTAL_APOTHECARY_HARVESTABLE = getReference("crystal_apothecary_harvestable");
 	public static TagKey<Block> GEMSTONE_BUDS = getReference("gemstone_buds");
+	public static final TagKey<Block> BASE_STONE_DEEPER_DOWN = getReference("base_stone_deeper_down");
 
 	// DEBUG
 	public static TagKey<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK = getReference("exempt_from_mineable_debug_check");

@@ -16,10 +16,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.MiscConfiguredFeatures;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.UndergroundConfiguredFeatures;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.heightprovider.VeryBiasedToBottomHeightProvider;
 import net.minecraft.world.gen.placementmodifier.*;
 
@@ -137,23 +134,27 @@ public class DDDimension {
 	
 	public static void registerDecorators() {
 		Identifier id = SpectrumCommon.locate("dd_tuff");
-		registerPlacedFeature(id, ORE_TUFF, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(32));
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.TUFF_DISK, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(32));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_gravel");
-		registerPlacedFeature(id, ORE_GRAVEL, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(32));
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.GRAVEL_DISK, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(32));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_infested");
-		registerPlacedFeature(id, ORE_INFESTED, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(32));
+		registerPlacedFeature(id, OreConfiguredFeatures.ORE_INFESTED, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(32));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_granite");
-		registerPlacedFeature(id, ORE_GRANITE, HeightRangePlacementModifier.uniform(YOffset.belowTop(192), YOffset.belowTop(64)), CountPlacementModifier.of(8));
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.GRANITE_DISK, HeightRangePlacementModifier.uniform(YOffset.belowTop(192), YOffset.belowTop(64)), CountPlacementModifier.of(8));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_diorite");
-		registerPlacedFeature(id, ORE_DIORITE, HeightRangePlacementModifier.uniform(YOffset.belowTop(128), YOffset.getTop()), CountPlacementModifier.of(8));
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.DIORITE_DISK, HeightRangePlacementModifier.uniform(YOffset.belowTop(128), YOffset.getTop()), CountPlacementModifier.of(8));
+		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
+		
+		id = SpectrumCommon.locate("dd_andesite");
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.ANDESITE_DISK, HeightRangePlacementModifier.uniform(YOffset.belowTop(128), YOffset.getTop()), CountPlacementModifier.of(8));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_bedrock");
@@ -169,11 +170,11 @@ public class DDDimension {
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_springs");
-		registerPlacedFeature(id, MiscConfiguredFeatures.SPRING_WATER, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(256));
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.SPRING_WATER, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(256));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_lichen");
-		registerPlacedFeature(id, UndergroundConfiguredFeatures.GLOW_LICHEN, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(UniformIntProvider.create(84, 127)), SquarePlacementModifier.of(), SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, -2147483648, -13));
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.GLOW_LICHEN, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(UniformIntProvider.create(84, 127)), SquarePlacementModifier.of(), SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, -2147483648, -13));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_bismuth");

@@ -173,7 +173,7 @@ public class DDDimension {
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_springs");
-		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.SPRING_WATER, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(256));
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.WATER_SPRING, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(256));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_lichen");

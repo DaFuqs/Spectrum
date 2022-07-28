@@ -35,7 +35,7 @@ public class DDConfiguredFeatures {
 	public static final ConfiguredFeature<OreFeatureConfig, ?> BEDROCK_DISK = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, Blocks.BEDROCK.getDefaultState(), 40));
 	public static final ConfiguredFeature<OreFeatureConfig, ?> BEDROCK_DISK_SLOPED = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, Blocks.BEDROCK.getDefaultState(), 40));
 	
-	public static final ConfiguredFeature<SpringFeatureConfig, ?> SPRING_WATER = new ConfiguredFeature<>(Feature.SPRING_FEATURE, new SpringFeatureConfig(Fluids.WATER.getDefaultState(), true, 4, 1, DD_BASE_BLOCKS));
+	public static final ConfiguredFeature<SpringFeatureConfig, ?> WATER_SPRING = new ConfiguredFeature<>(Feature.SPRING_FEATURE, new SpringFeatureConfig(Fluids.WATER.getDefaultState(), true, 4, 1, DD_BASE_BLOCKS));
 	public static final ConfiguredFeature<GlowLichenFeatureConfig, ?> GLOW_LICHEN = new ConfiguredFeature<>(Feature.GLOW_LICHEN, new GlowLichenFeatureConfig(20, false, true, true, 0.5F, DD_BASE_BLOCKS));
 	
 	

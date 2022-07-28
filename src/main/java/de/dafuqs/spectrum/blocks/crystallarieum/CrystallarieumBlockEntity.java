@@ -62,7 +62,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	}
 	
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
-		if(world.getTime() % 20 == 0 && crystallarieum.currentRecipe != null) {
+		if(world.getTime() % 20 == 0 && crystallarieum.canWork && crystallarieum.currentRecipe != null) {
 			// advance growing
 			if(crystallarieum.currentCatalyst == null) {
 				if(!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
@@ -117,6 +117,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 						}
 					}
 				}
+				crystallarieum.currentGrowthStageDuration = 0;
 			}
 			
 		}
@@ -237,6 +238,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 						world.spawnEntity(itemEntity);
 					}
 				}
+				this.canWork = true;
 				return;
 			}
 		}
@@ -250,12 +252,13 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 						itemStack.setCount(0);
 					}
 					this.currentCatalyst = optionalCatalyst.get();
+					this.canWork = true;
 				}
 			} else if(ItemStack.canCombine(currentCatalystStack, itemStack)) {
 				InventoryHelper.combineStacks(currentCatalystStack, itemStack);
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+				this.canWork = true;
 			}
-			this.canWork = false;
 			updateInClientWorld();
 		}
 	}

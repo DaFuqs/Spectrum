@@ -47,27 +47,58 @@
 		{
 			"name": "basin outside",
 			"from": [0, 14, 0],
-			"to": [16, 16, 16],
+			"to": [16, 15, 16],
 			"faces": {
-				"north": {"uv": [0, 0, 8, 1], "texture": "#0"},
-				"east": {"uv": [0, 0, 8, 1], "texture": "#0"},
-				"south": {"uv": [0, 0, 8, 1], "texture": "#0"},
-				"west": {"uv": [0, 0, 8, 1], "texture": "#0"},
-				"up": {"uv": [8, 0, 16, 8], "texture": "#0"},
+				"north": {"uv": [0, 0.5, 8, 1], "texture": "#0"},
+				"east": {"uv": [0, 0.5, 8, 1], "texture": "#0"},
+				"south": {"uv": [0, 0.5, 8, 1], "texture": "#0"},
+				"west": {"uv": [0, 0.5, 8, 1], "texture": "#0"},
+				"up": {"uv": [8, 8, 16, 16], "texture": "#0"},
 				"down": {"uv": [8, 8, 16, 16], "texture": "#0"}
 			}
 		},
 		{
-			"name": "basin inside",
-			"from": [15, 16, 15],
-			"to": [1, 15, 1],
+			"name": "basin outside",
+			"from": [0, 15, 0],
+			"to": [1, 16, 16],
 			"faces": {
-				"north": {"uv": [8.5, 8.5, 15.5, 9], "texture": "#0"},
-				"east": {"uv": [8.5, 8.5, 15.5, 9], "texture": "#0"},
-				"south": {"uv": [8.5, 8.5, 15.5, 9], "texture": "#0"},
-				"west": {"uv": [8.5, 8.5, 15.5, 9], "texture": "#0"},
-				"up": {"uv": [8.5, 8.5, 15.5, 15.5], "texture": "#0"},
-				"down": {"uv": [8.5, 8.5, 15.5, 15.5], "texture": "#0"}
+				"north": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"east": {"uv": [0, 0, 8, 0.5], "texture": "#0"},
+				"south": {"uv": [7.5, 0, 8, 0.5], "texture": "#0"},
+				"west": {"uv": [0, 0, 8, 0.5], "texture": "#0"},
+				"up": {"uv": [15.5, 8, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "basin outside",
+			"from": [15, 15, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 0.5, 0.5], "texture": "#0"},
+				"east": {"uv": [0, 0, 8, 0.5], "texture": "#0"},
+				"south": {"uv": [7.5, 0, 8, 0.5], "texture": "#0"},
+				"west": {"uv": [0, 0, 8, 0.5], "texture": "#0"},
+				"up": {"uv": [8, 8, 8.5, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "basin outside",
+			"from": [1, 15, 0],
+			"to": [15, 16, 1],
+			"faces": {
+				"north": {"uv": [0.5, 0, 7.5, 0.5], "texture": "#0"},
+				"south": {"uv": [0.5, 0, 7.5, 0.5], "texture": "#0"},
+				"up": {"uv": [8.5, 8, 15.5, 8.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "basin outside",
+			"from": [1, 15, 15],
+			"to": [15, 16, 16],
+			"faces": {
+				"north": {"uv": [0.5, 0, 7.5, 0.5], "texture": "#0"},
+				"south": {"uv": [0.5, 0, 7.5, 0.5], "texture": "#0"},
+				"up": {"uv": [8.5, 8, 15.5, 8.5], "texture": "#0"}
 			}
 		},
 		{
@@ -127,7 +158,10 @@
 				},
 				3,
 				4,
-				5
+				5,
+				6,
+				7,
+				8
 			]
 		}
 	]

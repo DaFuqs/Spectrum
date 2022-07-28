@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.cinderhearth.CinderhearthBlockEntity;
 import de.dafuqs.spectrum.blocks.crystallarieum.CrystallarieumBlockEntity;
+import de.dafuqs.spectrum.blocks.crystallarieum.CrystallarieumBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
@@ -184,6 +185,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.STONESETTING_WORKSHOP, StoneSettingWorkshopBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PROVIDER_NODE, PastelNetworkNodeBlockEntityRenderer::new);

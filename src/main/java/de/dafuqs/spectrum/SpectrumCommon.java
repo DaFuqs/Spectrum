@@ -56,6 +56,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.profiler.Profiler;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
@@ -63,6 +64,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 public class SpectrumCommon implements ModInitializer {
 	
@@ -275,7 +278,6 @@ public class SpectrumCommon implements ModInitializer {
 			@Override
 			public void reload(ResourceManager manager) {
 				CompactingChestBlockEntity.clearCache();
-				CrystallarieumRecipe.clearCache();
 				
 				if (minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);

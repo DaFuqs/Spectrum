@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -72,7 +74,7 @@ public class CrystallarieumBlock extends BlockWithEntity {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
 				if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
 					ItemStack stack = itemEntity.getStack();
-					crystallarieumBlockEntity.tryPlantAndDecrease(stack);
+					crystallarieumBlockEntity.acceptStack(stack, false);
 				}
 			}
 		} else {
@@ -85,7 +87,14 @@ public class CrystallarieumBlock extends BlockWithEntity {
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
 		} else {
-			this.openScreen(world, pos, player);
+			if (world.getBlockEntity(pos) instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
+				if(player.isSneaking()) {
+					ItemStack stack = crystallarieumBlockEntity.popCatalyst();
+					Support.givePlayer(player, stack);
+				} else {
+					crystallarieumBlockEntity.acceptStack(player.getStackInHand(hand), player.isCreative());
+				}
+			}
 			return ActionResult.CONSUME;
 		}
 	}

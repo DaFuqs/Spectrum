@@ -394,12 +394,9 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		this.ownerUUID = playerEntity.getUuid();
 	}
 	
+	// update block entity on client side
 	public void updateInClientWorld() {
-		// update block entity on client side
 		((ServerWorld) world).getChunkManager().markForUpdate(pos);
-		// update fluid (light updates automatically)
-		//fusionShrineBlockEntity.world.updateListeners(fusionShrineBlockEntity.pos, fusionShrineBlockEntity.world.getBlockState(fusionShrineBlockEntity.pos), fusionShrineBlockEntity.world.getBlockState(fusionShrineBlockEntity.pos), Block.NO_REDRAW);
-		//fusionShrineBlockEntity.world.addSyncedBlockEvent(fusionShrineBlockEntity.pos, fusionShrineBlockEntity.world.getBlockState(fusionShrineBlockEntity.pos).getBlock(), 1, 0);
 	}
 	
 	// UPGRADEABLE

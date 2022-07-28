@@ -23,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	
@@ -56,6 +57,11 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.growsWithoutCatalyst = growsWithoutCatalyst;
 		this.catalysts = catalysts;
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
+		
+		ingredientMap.put(inputIngredient, this);
+		for(BlockState growthStage : growthStages) {
+			stateMap.put(growthStage, this);
+		}
 	}
 	
 	@Nullable
@@ -171,5 +177,14 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	public Ingredient getIngredientStack() {
 		return this.inputIngredient;
+	}
+	
+	public Optional<CrystallarieumCatalyst> getCatalyst(ItemStack itemStack) {
+		for(CrystallarieumCatalyst catalyst : this.catalysts) {
+			if(catalyst.ingredient.test(itemStack)) {
+				return Optional.of(catalyst);
+			}
+		}
+		return Optional.empty();
 	}
 }

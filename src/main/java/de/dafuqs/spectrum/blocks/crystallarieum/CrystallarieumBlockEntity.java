@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
-import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumCatalyst;
@@ -8,7 +7,6 @@ import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

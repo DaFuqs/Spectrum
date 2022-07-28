@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;

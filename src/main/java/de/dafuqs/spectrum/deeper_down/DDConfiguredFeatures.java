@@ -42,7 +42,7 @@ public class DDConfiguredFeatures {
 					new GeodeCrackConfig(0.95D, 4.0D, 4),
 					1.0D, 0.1D, true,
 					UniformIntProvider.create(4, 6),
-					UniformIntProvider.create(3, 4),
+					UniformIntProvider.create(2, 3),
 					UniformIntProvider.create(1, 2),
 					-16, 16, 0.05D, 1));
 	

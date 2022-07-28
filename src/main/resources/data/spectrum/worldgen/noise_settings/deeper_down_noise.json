@@ -37,7 +37,7 @@
     "terrain_shaper": {
       "offset": 2,
       "factor": 1,
-      "jaggedness": 1
+      "jaggedness": 20
     }
   },
   "noise_router": {
@@ -85,9 +85,9 @@
                 "argument1": {
                   "type": "minecraft:y_clamped_gradient",
                   "from_value": 0.0,
-                  "from_y": -448,
+                  "from_y": -380,
                   "to_value": 1.0,
-                  "to_y": -348
+                  "to_y": -340
                 },
                 "argument2": {
                   "type": "minecraft:add",
@@ -100,14 +100,21 @@
                       "argument1": {
                         "type": "minecraft:y_clamped_gradient",
                         "from_value": 1.0,
-                        "from_y": -348,
+                        "from_y": -320,
                         "to_value": 0.0,
                         "to_y": -64
                       },
                       "argument2": {
                         "type": "minecraft:add",
                         "argument1": -0.9375,
-                        "argument2": "minecraft:overworld/base_3d_noise"
+                        "argument2": {
+                          "type": "minecraft:old_blended_noise",
+                          "smear_scale_multiplier": 8.0,
+                          "xz_factor": 80.0,
+                          "xz_scale": 0.25,
+                          "y_factor": 40.0,
+                          "y_scale": 0.2
+                        }
                       }
                     }
                   }
@@ -153,7 +160,7 @@
               "type": "minecraft:range_choice",
               "input": "minecraft:y",
               "max_exclusive": -80.0,
-              "min_inclusive": -420.0,
+              "min_inclusive": -400.0,
               "when_in_range": {
                 "type": "minecraft:noise",
                 "noise": "minecraft:ore_vein_a",
@@ -172,7 +179,7 @@
               "type": "minecraft:range_choice",
               "input": "minecraft:y",
               "max_exclusive": -80.0,
-              "min_inclusive": -420.0,
+              "min_inclusive": -360.0,
               "when_in_range": {
                 "type": "minecraft:noise",
                 "noise": "minecraft:ore_vein_b",
@@ -189,25 +196,6 @@
   "surface_rule": {
     "type": "minecraft:sequence",
     "sequence": [
-      {
-        "type": "minecraft:condition",
-        "if_true": {
-          "type": "minecraft:vertical_gradient",
-          "random_name": "minecraft:bedrock_floor",
-          "true_at_and_below": {
-            "above_bottom": 0
-          },
-          "false_at_and_above": {
-            "above_bottom": 5
-          }
-        },
-        "then_run": {
-          "type": "minecraft:block",
-          "result_state": {
-            "Name": "minecraft:bedrock"
-          }
-        }
-      },
       {
         "type": "minecraft:condition",
         "if_true": {
@@ -233,45 +221,20 @@
       {
         "type": "minecraft:condition",
         "if_true": {
-          "type": "minecraft:stone_depth",
-          "offset": 0,
-          "surface_type": "floor",
-          "add_surface_depth": false,
-          "secondary_depth_range": 0
+          "type": "minecraft:vertical_gradient",
+          "false_at_and_above": {
+            "absolute": -250
+          },
+          "random_name": "minecraft:deepslate",
+          "true_at_and_below": {
+            "absolute": -264
+          }
         },
         "then_run": {
-          "type": "minecraft:sequence",
-          "sequence": [
-            {
-              "type": "minecraft:condition",
-              "if_true": {
-                "type": "minecraft:not",
-                "invert": {
-                  "type": "minecraft:y_above",
-                  "anchor": {
-                    "absolute": -400
-                  },
-                  "surface_depth_multiplier": 0,
-                  "add_stone_depth": false
-                }
-              },
-              "then_run": {
-                "type": "minecraft:condition",
-                "if_true": {
-                  "type": "minecraft:hole"
-                },
-                "then_run": {
-                  "type": "minecraft:block",
-                  "result_state": {
-                    "Name": "minecraft:water",
-                    "Properties": {
-                      "level": "0"
-                    }
-                  }
-                }
-              }
-            }
-          ]
+          "type": "minecraft:block",
+          "result_state": {
+            "Name": "spectrum:blackslag"
+          }
         }
       },
       {

@@ -48,12 +48,11 @@ repositories {
 	maven {
 		name = "JitPack"
 		url = 'https://jitpack.io'
-		//metadataSources {// thank you, Incubus Core >:(
-		//	artifact() //Look directly for artifact
-		//}
+		metadataSources {// thank you, Incubus Core >:(
+			artifact() //Look directly for artifact
+		}
 	}
 	maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-	//mavenCentral() // incubus core
 
 	maven {
 		name = "ProgrammerArtInjector"
@@ -123,6 +122,8 @@ dependencies {
 	// includes the textures in the "programmer art" folder in the programmer art texture pack
 	modImplementation "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"
 	include "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"
+
+	//modImplementation "io.wispforest:jello:${project.jello_version}"
 
 	// colored lights: purely soft dependencies
 	// https://github.com/Gegy/colored-lights // uses colored_lights/light_colors.json

@@ -1,37 +1,37 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:bottle_of_ruin",
-			"text":"就是这样。你配方的完美。你甚至不会让它变得微妙。这东西是故意让人$(#ff0000)讨厌$()的，你不是为了好玩才这么叫的。$(br)这可能是一件足以摧毁之前被视为牢不可破的材料的具有侵略性的事情。$(br)$(bold)如果你不小心，你可能会毁掉世界。字面上$()",
-			"type":"patchouli:spotlight"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/bottle_of_ruin",
-			"text":"你可能没有创造出你最初想象的生活，但你仍然创造出了一些明显强大的东西。我猜这很重要？",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		},
-		{
-			"item":"spectrum:bedrock_dust",
-			"advancement":"spectrum:midgame/break_decayed_bedrock",
-			"text":"即使是基岩也不足以承受你新创造的“生命”。它像蒲公英穿过混凝土一样冲破了基岩。",
-			"type":"patchouli:spotlight",
-			"title":"基岩粉尘"
-		},
-		{
-			"advancement":"spectrum:midgame/break_decayed_bedrock",
-			"text":"如果你在这里阅读笔记，而其中一些内容仍然免费，你应该尽快改变，否则你会后悔的。$(br2)幸运的是，你已经发明了一种合适的$(l:creating_life/decay_away)合适的反制物$(/l)。",
-			"type":"patchouli:text",
-			"title":"友好的提醒"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_bottle_of_ruin",
-	"extra_recipe_mappings":{
-		"spectrum:bottle_of_ruin":0,
-		"spectrum:bedrock_dust":0
-	},
-	"name":"实验#3：损毁",
-	"icon":"spectrum:bottle_of_ruin",
-	"turnin":"spectrum:midgame/break_decayed_bedrock",
-	"category":"spectrum:creating_life_category"
+  "name": "实验#3：坏灭",
+  "icon": "spectrum:bottle_of_ruin",
+  "advancement": "spectrum:progression/unlock_bottle_of_ruin",
+  "category": "spectrum:creating_life_category",
+  "turnin": "spectrum:midgame/break_decayed_bedrock",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_ruin": 0,
+    "spectrum:bedrock_dust": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_ruin",
+      "text": "妙绝。这就是你的完美配方，不留任何情面。这可是字面意义上的$(#ff0000)凶残$()玩意儿，丝毫没有开玩笑的意思。$(br)它可能凶残到能够摧毁你先前认为坚不可摧的事物。$(br)$(bold)如果使用不当，你的世界真的会毁在你手上。$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/bottle_of_ruin",
+      "text": "好像这种生命体没有你一开始想得那么强大——但肯定还是很强的嘛？"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "基岩粉",
+      "item": "spectrum:bedrock_dust",
+      "text": "基岩都经受不住你所创造的这股“生命”的力量。就如微渺的种子突破了磐石一般……"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "友情小贴士",
+      "text": "如果你在阅读这串文字的时候还没收拾好场面，我建议你在追悔莫及之前火速整理干净。$(br2)还好，你已经设计过一套$(l:creating_life/decay_away)合适的反制措施$(/l)了。"
+    }
+  ]
 }

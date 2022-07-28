@@ -1,6 +1,6 @@
 {
-  "name": "七彩网路",
-  "description": "使用颜料来无线传输物品！",
+  "name": "绘彩联络",
+  "description": "颜料驱动的物品无线传输网络。",
   "icon": "spectrum:provider_node",
   "sortnum": 9
 }

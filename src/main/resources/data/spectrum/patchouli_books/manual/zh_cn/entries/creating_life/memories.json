@@ -1,28 +1,28 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
-			"text":"有了$(l:creating_life/spirit_instiller)灵魂注入器$(/l)，你可以给一个曾经死去的生物注入新的生命。$(br)它将以$(italic)记忆$()的形式出现。",
-			"type":"patchouli:spotlight",
-			"title":"记忆"
-		},
-		{
-			"recipe":"spectrum:spirit_instiller/memories/fox",
-			"text":"为了记住关于一个生物的记忆，你需要它的$(l:creating_life/mob_heads)头$(/l)，以及它最心爱的物品和$(l:creating_life/fading#vegetal)植物能量粉$(/l)作为粘合剂。$(br)使用$(l:creating_life/failing#neolith)黑曜能量粉$(/l)似乎完全压倒了生物的能量，使产生的记忆无法识别，直到它显现出来。",
-			"type":"spectrum:spirit_instiller_crafting",
-			"title":"灵魂注入器配方"
-		},
-		{
-			"text":"记忆需要一定的时间才能显现，就像鸡蛋一样：你必须把它们放下来等待。根据生物的不同，它可能相当快，也可能需要很长时间。$(br2)$(italic)将它们放在某些方块的顶部似乎可以加快这一过程或完全停止这一过程。",
-			"type":"patchouli:text",
-			"title":"显现"
-		}
-	],
-	"advancement":"spectrum:midgame/collect_neolith",
-	"extra_recipe_mappings":{
-		"spectrum:memory":0
-	},
-	"name":"记忆",
-	"icon":"spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
-	"category":"spectrum:creating_life_category"
+  "name": "回忆",
+  "icon": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
+  "advancement": "spectrum:midgame/collect_neolith",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:memory": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "回忆",
+      "item": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
+      "text": "有了$(l:creating_life/spirit_instiller)灵魂灌注台$(/l)，你可以复苏死去的生物。$(br)它们会以$(italic)回忆$()的形式具现化。"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "灵魂灌注配方",
+      "recipe": "spectrum:spirit_instiller/memories/fox",
+      "text": "重唤回忆需要生物的$(l:creating_life/mob_heads)头颅$(/l)和它最喜欢的物品，并使用$(l:creating_life/fading#vegetal)植本质$(/l)进行结合。$(br)换用$(l:creating_life/failing#neolith)坚新石$(/l)则会完全遮蔽生物本来的能量，使得回忆本身无法被识别，持续到它完全具现化为止。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "具现化",
+      "text": "回忆具现是需要时间的，好比孵蛋：放置下来，静等孵化。所耗时间长短也取决于生物种类：可能很快，也可能要等上一辈子。$(br2)$(italic)放置在某些特定的方块上似乎能加速这一进程，抑或是令其完全停止。"
+    }
+  ]
 }

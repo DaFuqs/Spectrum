@@ -102,7 +102,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 			}
 			
 			// advanced enough? grow!
-			if(crystallarieum.currentGrowthStageDuration >= crystallarieum.currentRecipe.getSecondsPerGrowthStage()) {
+			if(crystallarieum.currentGrowthStageDuration >= crystallarieum.currentRecipe.getSecondsPerGrowthStage() * 20) {
 				BlockPos topPos = blockPos.up();
 				BlockState topState = world.getBlockState(topPos);
 				for (Iterator<BlockState> it = crystallarieum.currentRecipe.getGrowthStages().iterator(); it.hasNext(); ) {
@@ -225,20 +225,6 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 				world.setBlockState(pos.up(), placedState);
 				onTopBlockChange(placedState, recipe);
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-				
-				ItemStack catalystStack = getStack(CATALYST_SLOT_ID);
-				if(!catalystStack.isEmpty()) {
-					Optional<CrystallarieumCatalyst> newCatalyst = this.currentRecipe.getCatalyst(catalystStack);
-					if(newCatalyst.isPresent()) {
-						this.currentCatalyst = newCatalyst.get();
-					} else {
-						this.currentCatalyst = null;
-						ItemEntity itemEntity = new ItemEntity(world, this.getPos().getX() + 0.5, this.getPos().getY() + 1, this.getPos().getZ() + 0.5, catalystStack);
-						this.setStack(CATALYST_SLOT_ID, ItemStack.EMPTY);
-						world.spawnEntity(itemEntity);
-					}
-				}
-				this.canWork = true;
 				return;
 			}
 		}
@@ -293,6 +279,21 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 			this.currentRecipe = null;
 		} else {
 			this.currentRecipe = recipe == null ? CrystallarieumRecipe.getRecipeForState(newState) : recipe;
+			
+			ItemStack catalystStack = getStack(CATALYST_SLOT_ID);
+			if(!catalystStack.isEmpty()) {
+				Optional<CrystallarieumCatalyst> newCatalyst = this.currentRecipe.getCatalyst(catalystStack);
+				if(newCatalyst.isPresent()) {
+					this.currentCatalyst = newCatalyst.get();
+				} else {
+					this.currentCatalyst = null;
+					ItemEntity itemEntity = new ItemEntity(world, this.getPos().getX() + 0.5, this.getPos().getY() + 1, this.getPos().getZ() + 0.5, catalystStack);
+					this.setStack(CATALYST_SLOT_ID, ItemStack.EMPTY);
+					world.spawnEntity(itemEntity);
+				}
+			}
+			updateInClientWorld();
+			this.canWork = true;
 		}
 	}
 	

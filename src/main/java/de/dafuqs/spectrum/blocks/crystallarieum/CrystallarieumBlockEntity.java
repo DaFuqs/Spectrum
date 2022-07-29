@@ -54,7 +54,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	
 	protected DefaultedList<ItemStack> inventory;
 	
-	public static final long INK_STORAGE_SIZE = 64*100;
+	public static final long INK_STORAGE_SIZE = 64*64*100;
 	protected IndividualCappedInkStorage inkStorage;
 	protected boolean inkDirty;
 	
@@ -78,8 +78,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 			if (amount > 0) {
 				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(crystallarieum.currentRecipe.getInkColor().getDyeColor());
 				
-				int particleAmount = Support.getIntFromDecimalWithChance (amount / 200.0, world.random);
-				for (int i = 0; i < particleAmount; i++) {
+				if(amount > 199 || Support.getIntFromDecimalWithChance(amount / 200.0, world.random) > 0) {
 					double randomX = world.getRandom().nextDouble() * 0.8;
 					double randomZ = world.getRandom().nextDouble() * 0.8;
 					world.addParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);

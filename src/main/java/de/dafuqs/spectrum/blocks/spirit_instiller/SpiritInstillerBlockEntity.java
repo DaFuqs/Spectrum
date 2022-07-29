@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.decoration.GemstoneChimeBlock;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
@@ -318,24 +319,18 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		} else {
 			this.ownerUUID = null;
 		}
+		
+		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if (!recipeString.isEmpty()) {
-				Optional<? extends Recipe> optionalRecipe = Optional.empty();
-				if (world != null) {
-					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
-				}
+				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof ISpiritInstillerRecipe spiritInstillerRecipe) {
 					this.currentRecipe = spiritInstillerRecipe;
-				} else {
-					this.currentRecipe = null;
 				}
-			} else {
-				this.currentRecipe = null;
 			}
-		} else {
-			this.currentRecipe = null;
 		}
+		
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		}

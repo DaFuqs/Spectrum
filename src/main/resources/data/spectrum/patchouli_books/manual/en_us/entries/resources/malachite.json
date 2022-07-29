@@ -4,6 +4,7 @@
   "icon": "spectrum:malachite_cluster",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
+    "spectrum:raw_malachite": 0,
     "spectrum:malachite_block": 0,
     "spectrum:small_malachite_bud": 0,
     "spectrum:large_malachite_bud": 0,

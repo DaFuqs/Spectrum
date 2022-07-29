@@ -187,4 +187,24 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 		}
 		return Optional.empty();
 	}
+	
+	public List<BlockState> getGrowthStages() {
+		return growthStages;
+	}
+	
+	public int getSecondsPerGrowthStage() {
+		return secondsPerGrowthStage;
+	}
+	
+	public InkColor getInkColor() {
+		return inkColor;
+	}
+	
+	public int getInkPerSecond() {
+		return inkPerSecond;
+	}
+	
+	public boolean growsWithoutCatalyst() {
+		return growsWithoutCatalyst;
+	}
 }

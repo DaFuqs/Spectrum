@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.registries.client;
 
-import com.ibm.icu.text.Normalizer2;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;

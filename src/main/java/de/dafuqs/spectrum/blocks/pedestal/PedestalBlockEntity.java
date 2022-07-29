@@ -563,21 +563,16 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (nbt.contains("inventory_changed")) {
 			this.inventoryChanged = nbt.getBoolean("inventory_changed");
 		}
+		
+		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && world != null) {
-				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent()) {
-					this.currentRecipe = optionalRecipe.get();
-				} else {
-					this.currentRecipe = null;
-				}
-			} else {
-				this.currentRecipe = null;
+			if (!recipeString.isEmpty()) {
+				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
+				this.currentRecipe = optionalRecipe.orElse(null);
 			}
-		} else {
-			this.currentRecipe = null;
 		}
+		
 		if (nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {

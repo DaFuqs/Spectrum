@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.Block;
@@ -16,9 +15,12 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -28,10 +30,61 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Locale;
+
 public class CrystallarieumBlock extends BlockWithEntity {
+	
+	public enum ActiveEnergy implements StringIdentifiable {
+		NONE,
+		BLACK_OFF,
+		BLUE_OFF,
+		BROWN_OFF,
+		CYAN_OFF,
+		GRAY_OFF,
+		GREEN_OFF,
+		LIGHT_BLUE_OFF,
+		LIGHT_GRAY_OFF,
+		LIME_OFF,
+		MAGENTA_OFF,
+		ORANGE_OFF,
+		PINK_OFF,
+		PURPLE_OFF,
+		RED_OFF,
+		WHITE_OFF,
+		YELLOW_OFF,
+		BLACK_ON,
+		BLUE_ON,
+		BROWN_ON,
+		CYAN_ON,
+		GRAY_ON,
+		GREEN_ON,
+		LIGHT_BLUE_ON,
+		LIGHT_GRAY_ON,
+		LIME_ON,
+		MAGENTA_ON,
+		ORANGE_ON,
+		PINK_ON,
+		PURPLE_ON,
+		RED_ON,
+		WHITE_ON,
+		YELLOW_ON;
+		
+		@Override
+		public String asString() {
+			return this.toString().toLowerCase(Locale.ROOT);
+		}
+	}
+	
+	public static final EnumProperty<ActiveEnergy> ACTIVE_ENERGY = EnumProperty.of("active_energy", ActiveEnergy.class);
 	
 	public CrystallarieumBlock(Settings settings) {
 		super(settings);
+		setDefaultState(getStateManager().getDefaultState().with(ACTIVE_ENERGY, ActiveEnergy.NONE));
+	}
+	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+		stateManager.add(ACTIVE_ENERGY);
 	}
 	
 	@Nullable
@@ -43,7 +96,7 @@ public class CrystallarieumBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return !world.isClient ? checkType(type, SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntity::serverTick) : null;
+		return !world.isClient ? checkType(type, SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntity::serverTick) : checkType(type, SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntity::clientTick);
 	}
 	
 	@Override
@@ -58,7 +111,7 @@ public class CrystallarieumBlock extends BlockWithEntity {
 	
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		if(direction == Direction.UP) {
+		if (!world.isClient() && direction == Direction.UP) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
 				crystallarieumBlockEntity.onTopBlockChange(neighborState, null);
@@ -88,7 +141,7 @@ public class CrystallarieumBlock extends BlockWithEntity {
 			return ActionResult.SUCCESS;
 		} else {
 			if (world.getBlockEntity(pos) instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
-				if(player.isSneaking()) {
+				if (player.isSneaking()) {
 					ItemStack stack = crystallarieumBlockEntity.popCatalyst();
 					Support.givePlayer(player, stack);
 				} else {

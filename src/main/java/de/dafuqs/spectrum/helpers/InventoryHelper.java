@@ -268,6 +268,10 @@ public class InventoryHelper {
 		List<Ingredient> ingredientsToFind = new ArrayList<>();
 		List<Integer> requiredIngredientAmounts = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
+			if(ingredient.isEmpty()) {
+				continue;
+			}
+			
 			ingredientsToFind.add(ingredient);
 			if (ingredient.getMatchingStacks().length > 0) {
 				requiredIngredientAmounts.add(ingredient.getMatchingStacks()[0].getCount());
@@ -313,6 +317,10 @@ public class InventoryHelper {
 		List<Ingredient> requiredIngredients = new ArrayList<>();
 		List<Integer> requiredIngredientAmounts = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
+			if(ingredient.isEmpty()) {
+				continue;
+			}
+			
 			requiredIngredients.add(ingredient);
 			if (ingredient.getMatchingStacks().length > 0) {
 				requiredIngredientAmounts.add(ingredient.getMatchingStacks()[0].getCount());

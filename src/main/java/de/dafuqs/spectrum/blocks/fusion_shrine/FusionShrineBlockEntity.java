@@ -287,24 +287,18 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		} else {
 			this.ownerUUID = null;
 		}
+		
+		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if (!recipeString.isEmpty()) {
-				Optional<? extends Recipe> optionalRecipe = Optional.empty();
-				if (world != null) {
-					optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
-				}
+				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof FusionShrineRecipe optionalFusionRecipe) {
 					this.currentRecipe = optionalFusionRecipe;
-				} else {
-					this.currentRecipe = null;
 				}
-			} else {
-				this.currentRecipe = null;
 			}
-		} else {
-			this.currentRecipe = null;
 		}
+		
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		}

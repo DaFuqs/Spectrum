@@ -1,15 +1,19 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumCatalyst;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,6 +22,10 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -61,6 +69,22 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 		this.canWork = true;
 	}
 	
+	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
+		if(crystallarieum.canWork && crystallarieum.currentRecipe != null) {
+			int amount = crystallarieum.currentRecipe.getInkPerSecond();
+			if (amount > 0) {
+				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(crystallarieum.currentRecipe.getInkColor().getDyeColor());
+				
+				int particleAmount = Support.getIntFromDecimalWithChance (amount / 200.0, world.random);
+				for (int i = 0; i < particleAmount; i++) {
+					double randomX = world.getRandom().nextDouble() * 0.8;
+					double randomZ = world.getRandom().nextDouble() * 0.8;
+					world.addParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);
+				}
+			}
+		}
+	}
+	
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
 		if(world.getTime() % 20 == 0 && crystallarieum.canWork && crystallarieum.currentRecipe != null) {
 			// advance growing
@@ -74,6 +98,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 				if(crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
 					crystallarieum.setInkDirty();
 					crystallarieum.canWork = false;
+					crystallarieum.updateInClientWorld();
 					return;
 				}
 				
@@ -85,6 +110,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 				if(crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
 					crystallarieum.setInkDirty();
 					crystallarieum.canWork = false;
+					crystallarieum.updateInClientWorld();
 					return;
 				}
 				
@@ -97,6 +123,9 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 					catalystStack.decrement(1);
 					if(catalystStack.isEmpty()) {
 						crystallarieum.currentCatalyst = null;
+						if(!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
+							crystallarieum.canWork = false;
+						}
 					}
 				}
 			}
@@ -113,6 +142,12 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 							world.setBlockState(topPos, targetState);
 							if (targetState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 								world.emitGameEvent(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, topPos);
+							}
+							
+							// if the stone on top can not grow any further: pause
+							if(!it.hasNext()) {
+								crystallarieum.canWork = false;
+								crystallarieum.updateInClientWorld();
 							}
 						}
 					}
@@ -142,11 +177,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if (!recipeString.isEmpty()) {
-				Optional<CrystallarieumRecipe> optionalRecipe = Optional.empty();
-				if (world != null) {
-					optionalRecipe = (Optional<CrystallarieumRecipe>) world.getRecipeManager().get(new Identifier(recipeString));
-				}
-				this.currentRecipe = optionalRecipe.orElse(null);
+				this.currentRecipe = ((Optional<CrystallarieumRecipe>) SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString))).orElse(null);
 			} else {
 				this.currentRecipe = null;
 			}
@@ -239,13 +270,16 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 					}
 					this.currentCatalyst = optionalCatalyst.get();
 					this.canWork = true;
+					updateInClientWorld();
+					markDirty();
 				}
 			} else if(ItemStack.canCombine(currentCatalystStack, itemStack)) {
 				InventoryHelper.combineStacks(currentCatalystStack, itemStack);
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 				this.canWork = true;
+				updateInClientWorld();
+				markDirty();
 			}
-			updateInClientWorld();
 		}
 	}
 	
@@ -264,6 +298,12 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 		return nbtCompound;
 	}
 	
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.create(this);
+	}
+	
 	public void updateInClientWorld() {
 		((ServerWorld) world).getChunkManager().markForUpdate(pos);
 	}
@@ -277,6 +317,9 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	public void onTopBlockChange(BlockState newState, @Nullable CrystallarieumRecipe recipe) {
 		if(newState.isAir()) { // fast fail
 			this.currentRecipe = null;
+			this.canWork = false;
+			markDirty();
+			updateInClientWorld();
 		} else {
 			this.currentRecipe = recipe == null ? CrystallarieumRecipe.getRecipeForState(newState) : recipe;
 			
@@ -292,8 +335,9 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 					world.spawnEntity(itemEntity);
 				}
 			}
-			updateInClientWorld();
 			this.canWork = true;
+			markDirty();
+			updateInClientWorld();
 		}
 	}
 	

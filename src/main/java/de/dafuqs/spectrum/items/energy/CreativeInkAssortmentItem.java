@@ -32,6 +32,7 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 			if (blockEntity instanceof InkStorageBlockEntity inkStorageBlockEntity) {
 				inkStorageBlockEntity.getEnergyStorage().fillCompletely();
 				inkStorageBlockEntity.setInkDirty();
+				blockEntity.markDirty();
 			}
 		}
 		return super.useOnBlock(context);

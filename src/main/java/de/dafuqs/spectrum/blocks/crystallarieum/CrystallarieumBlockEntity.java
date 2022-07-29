@@ -10,6 +10,8 @@ import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumCatalyst;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
+import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.minecraft.block.BlockState;
@@ -26,6 +28,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -174,15 +177,16 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 		} else {
 			this.ownerUUID = null;
 		}
+		
+		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
 			if (!recipeString.isEmpty()) {
-				this.currentRecipe = ((Optional<CrystallarieumRecipe>) SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString))).orElse(null);
-			} else {
-				this.currentRecipe = null;
+				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
+				if (optionalRecipe.isPresent() && (optionalRecipe.get() instanceof CrystallarieumRecipe crystallarieumRecipe)) {
+					this.currentRecipe = crystallarieumRecipe;
+				}
 			}
-		} else {
-			this.currentRecipe = null;
 		}
 	}
 	

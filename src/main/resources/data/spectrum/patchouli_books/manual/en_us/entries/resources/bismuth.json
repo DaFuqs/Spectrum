@@ -1,9 +1,10 @@
 {
   "name": "Bismuth",
   "advancement": "spectrum:midgame/collect_bismuth",
-  "icon": "spectrum:small_bismuth_bud",
+  "icon": "spectrum:bismuth_flake",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
+    "spectrum:bismuth_flake": 0,
     "spectrum:bismuth_block": 0,
     "spectrum:small_bismuth_bud": 0,
     "spectrum:large_bismuth_bud": 0,

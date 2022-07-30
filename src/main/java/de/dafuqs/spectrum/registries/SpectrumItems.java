@@ -228,6 +228,8 @@ public class SpectrumItems {
 	
 	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), Items.GRAY_DYE);
+	
+	public static final Item BISMUTH_FLAKE = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
 	public static final Item BISMUTH_CRYSTAL = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
 	
 	public static final Item RAW_MALACHITE = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
@@ -517,6 +519,8 @@ public class SpectrumItems {
 		register("bedrock_dust", BEDROCK_DUST, DyeColor.BLACK);
 		register("midnight_aberration", MIDNIGHT_ABERRATION, DyeColor.GRAY);
 		register("midnight_chip", MIDNIGHT_CHIP, DyeColor.GRAY);
+		
+		register("bismuth_flake", BISMUTH_FLAKE, DyeColor.CYAN);
 		register("bismuth_crystal", BISMUTH_CRYSTAL, DyeColor.CYAN);
 		
 		register("raw_malachite", RAW_MALACHITE, DyeColor.GREEN);

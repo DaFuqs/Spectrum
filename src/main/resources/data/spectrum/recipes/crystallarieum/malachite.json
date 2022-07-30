@@ -19,7 +19,7 @@
       },
       "growth_acceleration_mod": 1.0,
       "ink_consumption_mod": 1.0,
-      "consume_chance_per_second": 0.0
+      "consume_chance_per_second": 0.04
     }
   ],
   "required_advancement": "spectrum:lategame/collect_malachite"

@@ -207,4 +207,8 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	public boolean growsWithoutCatalyst() {
 		return growsWithoutCatalyst;
 	}
+	
+	public List<CrystallarieumCatalyst> getCatalysts() {
+		return this.catalysts;
+	}
 }

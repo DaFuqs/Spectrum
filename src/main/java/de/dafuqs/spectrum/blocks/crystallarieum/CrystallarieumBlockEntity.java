@@ -255,7 +255,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 				if(!creative) {
 					itemStack.decrement(1);
 				}
-				BlockState placedState = recipe.getBlockStates().get(0);
+				BlockState placedState = recipe.getGrowthStages().get(0);
 				world.setBlockState(pos.up(), placedState);
 				onTopBlockChange(placedState, recipe);
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);

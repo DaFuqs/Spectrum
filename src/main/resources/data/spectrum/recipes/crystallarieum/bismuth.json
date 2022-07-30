@@ -1,7 +1,7 @@
 {
   "type": "spectrum:crystallarieum_growing",
   "ingredient": {
-    "item": "spectrum:small_bismuth_bud"
+    "item": "spectrum:bismuth_flake"
   },
   "growth_stage_states": [
     "spectrum:small_bismuth_bud",
@@ -15,7 +15,7 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "spectrum:small_bismuth_bud"
+        "item": "spectrum:bismuth_flake"
       },
       "growth_acceleration_mod": 8.0,
       "ink_consumption_mod": 1.0,

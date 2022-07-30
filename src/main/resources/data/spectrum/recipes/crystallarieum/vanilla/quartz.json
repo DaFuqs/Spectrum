@@ -11,7 +11,7 @@
   "seconds_per_growth_stage": 180,
   "ink_color": "cyan",
   "ink_per_second": 40,
-  "grows_without_catalyst": false,
+  "grows_without_catalyst": true,
   "catalysts": [
     {
       "ingredient": {

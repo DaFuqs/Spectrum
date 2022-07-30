@@ -101,7 +101,7 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public ItemStack getOutput() {
-		List<BlockState> states = getBlockStates();
+		List<BlockState> states = getGrowthStages();
 		return states.get(states.size()-1).getBlock().asItem().getDefaultStack();
 	}
 	
@@ -171,10 +171,6 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 		return new TranslatableText("spectrum.toast.crystallarieum_recipes_unlocked.title");
 	}
 	
-	public List<BlockState> getBlockStates() {
-		return this.growthStages;
-	}
-	
 	public Ingredient getIngredientStack() {
 		return this.inputIngredient;
 	}
@@ -206,5 +202,9 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	public boolean growsWithoutCatalyst() {
 		return growsWithoutCatalyst;
+	}
+	
+	public List<CrystallarieumCatalyst> getCatalysts() {
+		return this.catalysts;
 	}
 }

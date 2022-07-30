@@ -90,6 +90,14 @@
   "container.spectrum.rei.chance": "Chance: %.0f %%",
   "container.spectrum.rei.ink_converting.color": "Color: %s",
   "container.spectrum.rei.ink_converting.amount": "Amount: %d",
+  "container.spectrum.rei.crystallarieum.requires_catalyst": "Requires Catalyst",
+  "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds": "%f seconds per stage",
+  "container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_required": "%f sec - req. catalyst",
+  "container.spectrum.patchouli.crystallarieum.catalyst": "Catalyst:$(br)Accel:$(br)Ink Cons:$(br)Used Up:",
+  "container.spectrum.rei.crystallarieum.catalyst": "Catalyst:",
+  "container.spectrum.rei.crystallarieum.accelerator": "Accel:",
+  "container.spectrum.rei.crystallarieum.ink_consumption": "Ink Cons:",
+  "container.spectrum.rei.crystallarieum.used_up": "Used Up:",
 
   "container.spectrum.bedrock_anvil": "Repair & write Lore",
   "container.spectrum.bedrock_anvil.tooltip": "Indestructible. Free renaming, unlimited",
@@ -1415,11 +1423,11 @@
   "item.spectrum.fiery_powder": "Fiery Powder",
   "item.spectrum.blizzard_powder": "Blizzard Powder",
 
-  "item.spectrum.small_bismuth_bud": "Bismuth Flake",
   "block.spectrum.small_bismuth_bud": "Small Bismuth Bud",
   "block.spectrum.large_bismuth_bud": "Large Bismuth Bud",
   "block.spectrum.bismuth_cluster": "Bismuth Cluster",
   "block.spectrum.bismuth_block": "Block of Bismuth",
+  "item.spectrum.bismuth_flake": "Bismuth Flake'",
   "item.spectrum.bismuth_crystal": "Bismuth Crystal",
 
   "block.spectrum.malachite_ore": "Malachite Ore",

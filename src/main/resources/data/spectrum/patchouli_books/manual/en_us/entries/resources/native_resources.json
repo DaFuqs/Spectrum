@@ -31,11 +31,18 @@
       "text": "Compared to the common resources you were used to before, such as $(thing)Raw Copper$(), their crystalline counterparts are much more pure. On closer inspection: they almost appear surrounded by an invisible sheen, gently protecting them from outside forces. This shroud seems to be what protects $(thing)Native Copper$() from oxidization."
     },
     {
+      "type": "patchouli:blasting",
+      "title": "Native Resources",
+      "recipe": "spectrum:blasting/native_resources/native_iron",
+      "recipe2": "spectrum:blasting/native_resources/native_gold",
+      "text": "Growing materials in the $(l:magical_blocks/crystallarieum)Crystallarieum$(/l) yields this much purer variant than plain $(thing)Raw Ore$().$(br)Blasting it gets you the plain variant."
+    },
+    {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Cinderhearth Smelting",
-      "recipe": "spectrum:mod_integration/ae2/cinderhearth/native_certus_quartz",
+      "recipe": "spectrum:cinderhearth/native_resources/native_iron",
       "advancement": "spectrum:midgame/smelt_native_resource_in_cinderhearth",
-      "text": "Smelting these in the $(l:magical_blocks/cinderhearth)Cinderhearth$() yields a higher output instead of their common variants, like $(thing)Raw Iron$()."
+      "text": "Blasting these in the $(l:magical_blocks/cinderhearth)Cinderhearth$() yields a higher output."
     }
   ]
 }

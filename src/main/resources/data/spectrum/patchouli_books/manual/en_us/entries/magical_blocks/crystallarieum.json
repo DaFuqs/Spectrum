@@ -70,23 +70,84 @@
       "text": "It can fit a stack of catalysts, which it uses to enhance the growth process. For a few rare materials that even may be required."
     },
     {
+      "type": "patchouli:blasting",
+      "title": "Native Resources",
+      "recipe": "spectrum:blasting/native_resources/native_iron",
+      "recipe2": "spectrum:blasting/native_resources/native_gold",
+      "advancement": "spectrum:lategame/collect_native_resource",
+      "text": "Growing materials using Ink yields a $(l:resources/native_resources)much purer variant$(/l) than plain $(thing)Raw Ore$().$(br)It always has to be blasted."
+    },
+    {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Metal Growing",
+      "title": "Iron Growing",
       "recipe": "spectrum:crystallarieum/vanilla/iron",
       "text": "Metallic resources can be grown by throwing unrefined materials, like $(thing)Raw Iron$() on top of it. Result is a small iron bud that steadily grows until it reaches maturity and can safely be harvested."
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "title": "Crystal Growing",
-      "recipe": "spectrum:crystallarieum/vanilla/diamond",
-      "text": "Crystal-like blocks, like $(thing)Diamonds$() can be grown, too! Albeit requiring quite a bit more Ink than their metal counterparts, their crystal nature allows you to grow them as much as you like - $(thing)Diamond Clusters$() yielding $(thing)Diamonds$()."
+      "title": "Copper Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/copper",
+      "text": ""
     },
     {
-      "type": "patchouli:spotlight",
-      "title": "Native Resources",
-      "item": "spectrum:iron_cluster",
-      "advancement": "spectrum:lategame/collect_native_resource",
-      "text": "Growing materials using Ink seems to yield a $(l:resources/native_respources)much purer variant$(/l) than plain $(thing)Raw Ore$()."
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Gold Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/gold",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Netherite Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/netherite",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Diamond Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/diamond",
+      "text": "Crystal-like blocks, like $(thing)Diamonds$() can be grown, too! Albeit most requiring more Ink than metal ones, their crystal nature allows you to grow them again and again - $(thing)Diamond Clusters$() yielding $(thing)Diamonds$()."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Coal Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/coal",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Emerald Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/emerald",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Glowstone Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/glowstone",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Lapis Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/lapis",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Prismarine Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/prismarine_crystal",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Quartz Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/quartz",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Redstone Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/redstone",
+      "text": ""
     }
   ]
 }

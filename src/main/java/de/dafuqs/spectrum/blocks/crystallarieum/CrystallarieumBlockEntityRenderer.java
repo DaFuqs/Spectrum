@@ -1,29 +1,35 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.model.*;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.block.entity.EnchantingTableBlockEntityRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEntity> implements BlockEntityRenderer<T> {
 	
-	public CrystallarieumBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+	public static final SpriteIdentifier SPRITE_IDENTIFIER = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/crystallarieum_overlay"));
+	private final ModelPart body;
 	
+	public CrystallarieumBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+		TexturedModelData texturedModelData = createBodyLayer();
+		ModelPart root = texturedModelData.createModel();
+		this.body = root.getChild("body");
 	}
 	
 	@Override
@@ -34,12 +40,8 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 		if(recipe != null) {
 			InkColor inkColor = recipe.getInkColor();
 			
-			RenderSystem.setShaderTexture(0, SpectrumCommon.locate("block/crystallarieum"));
-			RenderSystem.enableBlend();
-			RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
-			RenderSystem.setShaderColor(inkColor.getColor().getX(), inkColor.getColor().getY(), inkColor.getColor().getZ(), 1.0F);
-			MatrixStack matrixStack = RenderSystem.getModelViewStack();
-			matrixStack.push();
+			VertexConsumer vertexConsumer = SPRITE_IDENTIFIER.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
+			body.render(matrices, vertexConsumer, light, overlay, inkColor.getColor().getX(), inkColor.getColor().getY(), inkColor.getColor().getZ(), 1.0F);
 		}
 		
 		if(!catalystStack.isEmpty()) {
@@ -80,6 +82,13 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 			
 			matrices.pop();
 		}
+	}
+	
+	public static TexturedModelData createBodyLayer() {
+		ModelData modelData = new ModelData();
+		ModelPartData root = modelData.getRoot();
+		root.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(0.0F, 5.0F, 0.0F, 16.0F, 4.0F, 16.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		return TexturedModelData.of(modelData, 64, 64);
 	}
 	
 	@Override

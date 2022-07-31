@@ -1,14 +1,22 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
+import net.minecraft.client.render.block.entity.EnchantingTableBlockEntityRenderer;
 import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
@@ -21,6 +29,19 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	@Override
 	public void render(CrystallarieumBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		ItemStack catalystStack = entity.getStack(CrystallarieumBlockEntity.CATALYST_SLOT_ID);
+		
+		CrystallarieumRecipe recipe = entity.getCurrentRecipe();
+		if(recipe != null) {
+			InkColor inkColor = recipe.getInkColor();
+			
+			RenderSystem.setShaderTexture(0, SpectrumCommon.locate("block/crystallarieum"));
+			RenderSystem.enableBlend();
+			RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
+			RenderSystem.setShaderColor(inkColor.getColor().getX(), inkColor.getColor().getY(), inkColor.getColor().getZ(), 1.0F);
+			MatrixStack matrixStack = RenderSystem.getModelViewStack();
+			matrixStack.push();
+		}
+		
 		if(!catalystStack.isEmpty()) {
 			matrices.push();
 			

@@ -34,57 +34,8 @@ import java.util.Locale;
 
 public class CrystallarieumBlock extends BlockWithEntity {
 	
-	public enum ActiveEnergy implements StringIdentifiable {
-		NONE,
-		BLACK_OFF,
-		BLUE_OFF,
-		BROWN_OFF,
-		CYAN_OFF,
-		GRAY_OFF,
-		GREEN_OFF,
-		LIGHT_BLUE_OFF,
-		LIGHT_GRAY_OFF,
-		LIME_OFF,
-		MAGENTA_OFF,
-		ORANGE_OFF,
-		PINK_OFF,
-		PURPLE_OFF,
-		RED_OFF,
-		WHITE_OFF,
-		YELLOW_OFF,
-		BLACK_ON,
-		BLUE_ON,
-		BROWN_ON,
-		CYAN_ON,
-		GRAY_ON,
-		GREEN_ON,
-		LIGHT_BLUE_ON,
-		LIGHT_GRAY_ON,
-		LIME_ON,
-		MAGENTA_ON,
-		ORANGE_ON,
-		PINK_ON,
-		PURPLE_ON,
-		RED_ON,
-		WHITE_ON,
-		YELLOW_ON;
-		
-		@Override
-		public String asString() {
-			return this.toString().toLowerCase(Locale.ROOT);
-		}
-	}
-	
-	public static final EnumProperty<ActiveEnergy> ACTIVE_ENERGY = EnumProperty.of("active_energy", ActiveEnergy.class);
-	
 	public CrystallarieumBlock(Settings settings) {
 		super(settings);
-		setDefaultState(getStateManager().getDefaultState().with(ACTIVE_ENERGY, ActiveEnergy.NONE));
-	}
-	
-	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
-		stateManager.add(ACTIVE_ENERGY);
 	}
 	
 	@Nullable

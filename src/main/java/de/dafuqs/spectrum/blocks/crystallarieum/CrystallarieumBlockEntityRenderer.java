@@ -9,6 +9,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEntity> implements BlockEntityRenderer<T> {
@@ -18,23 +19,43 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	}
 	
 	@Override
-	public void render(T entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+	public void render(CrystallarieumBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		ItemStack catalystStack = entity.getStack(CrystallarieumBlockEntity.CATALYST_SLOT_ID);
 		if(!catalystStack.isEmpty()) {
 			matrices.push();
-			matrices.translate(0.5, 0.95, 0.7);
 			
 			int count = catalystStack.getCount();
-			if(count > 48) {
-			
+			if(count > 0) {
+				matrices.translate(0.65, 0.95, 0.65);
+				matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
+				matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+				matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(70));
+				MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+				
+				if(count > 4) {
+					matrices.translate(0.45, 0.0, 0.01);
+					matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(140));
+					MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+					
+					if(count > 16) {
+						matrices.translate(0.2, 0.5, 0.01);
+						matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(100));
+						MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+						
+						if(count > 32) {
+							matrices.translate(-0.55, 0.0, 0.01);
+							matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(40));
+							MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+							
+							if(count > 48) {
+								matrices.translate(0.6, 0.0, 0.01);
+								matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(170));
+								MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+							}
+						}
+					}
+				}
 			}
-			if(count > 32) {
-			
-			}
-			if(count > 16) {
-			
-			}
-			MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
 			
 			matrices.pop();
 		}

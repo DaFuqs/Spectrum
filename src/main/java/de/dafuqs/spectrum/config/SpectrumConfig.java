@@ -127,8 +127,8 @@ public class SpectrumConfig implements ConfigData {
 	public int GlowVisionGogglesDuration = 240;
 	
 	public int GemstoneArmorHelmetProtection = 3;
-	public int GemstoneArmorLeggingsProtection = 5;
 	public int GemstoneArmorChestplateProtection = 7;
+	public int GemstoneArmorLeggingsProtection = 5;
 	public int GemstoneArmorBootsProtection = 3;
 	public float GemstoneArmorToughness = 0.0F;
 	public float GemstoneArmorKnockbackResistance = 0.0F;

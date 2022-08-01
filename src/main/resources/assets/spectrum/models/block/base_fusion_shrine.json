@@ -1,0 +1,93 @@
+{
+	"credit": "Made by Azazelthedemonlord ~ https://azazelthedemonlord.newgrounds.com/ ~ ♡",
+	"texture_size": [32, 32],
+	"textures": {
+		"0": "#shrine",
+		"particle": "#shrine"
+	},
+	"elements": [
+		{
+			"name": "neck",
+			"from": [2, 0, 2],
+			"to": [14, 12, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 6, 6], "texture": "#0"},
+				"east": {"uv": [0, 0, 6, 6], "texture": "#0"},
+				"south": {"uv": [0, 0, 6, 6], "texture": "#0"},
+				"west": {"uv": [0, 0, 6, 6], "texture": "#0"},
+				"up": {"uv": [8.5, 0.5, 14.5, 6.5], "texture": "#0"},
+				"down": {"uv": [0.5, 8.5, 6.5, 14.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "basin",
+			"from": [1, 12, 1],
+			"to": [15, 15, 15],
+			"faces": {
+				"north": {"uv": [0, 6, 7, 7.5], "texture": "#0"},
+				"east": {"uv": [0, 6, 7, 7.5], "texture": "#0"},
+				"south": {"uv": [0, 6, 7, 7.5], "texture": "#0"},
+				"west": {"uv": [0, 6, 7, 7.5], "texture": "#0"},
+				"up": {"uv": [8, 0, 15, 7], "texture": "#0"},
+				"down": {"uv": [0, 8, 7, 15], "texture": "#0"}
+			}
+		},
+		{
+			"name": "basin inner",
+			"from": [14, 15, 14],
+			"to": [2, 13, 2],
+			"faces": {
+				"north": {"uv": [0.5, 14, 6.5, 15], "texture": "#0"},
+				"east": {"uv": [0.5, 14, 6.5, 15], "texture": "#0"},
+				"south": {"uv": [0.5, 14, 6.5, 15], "texture": "#0"},
+				"west": {"uv": [0.5, 14, 6.5, 15], "texture": "#0"},
+				"up": {"uv": [0.5, 8.5, 6.5, 14.5], "texture": "#0"},
+				"down": {"uv": [8.5, 0.5, 14.5, 6.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "crystal Z",
+			"from": [6.5, 13, 6.5],
+			"to": [9.5, 23, 9.5],
+			"faces": {
+				"north": {"uv": [11, 11, 12.5, 16], "texture": "#0"},
+				"east": {"uv": [11, 11, 12.5, 16], "texture": "#0"},
+				"south": {"uv": [11, 11, 12.5, 16], "texture": "#0"},
+				"west": {"uv": [11, 11, 12.5, 16], "texture": "#0"},
+				"up": {"uv": [11, 9.5, 12.5, 11], "texture": "#0"},
+				"down": {"uv": [9.5, 9.5, 11, 11], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 225, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

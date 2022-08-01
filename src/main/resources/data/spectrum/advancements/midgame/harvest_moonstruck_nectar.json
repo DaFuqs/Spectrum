@@ -24,7 +24,10 @@
           "block": {
             "blocks": [
               "spectrum:jade_vines"
-            ]
+            ],
+            "state": {
+              "age": 7
+            }
           }
         }
       }

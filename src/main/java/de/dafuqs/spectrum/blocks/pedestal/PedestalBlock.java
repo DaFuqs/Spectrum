@@ -8,10 +8,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -33,6 +30,9 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.NotNull;
@@ -46,6 +46,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	
 	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "place_pedestal");
 	public static final BooleanProperty POWERED = BooleanProperty.of("powered");
+	private static final VoxelShape SHAPE;
 	private final PedestalVariant variant;
 	
 	public PedestalBlock(Settings settings, PedestalVariant variant) {
@@ -222,7 +223,12 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	public int getComparatorOutput(BlockState state, @NotNull World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
-	
+
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
+
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull World world, BlockState state, BlockEntityType<T> type) {
@@ -273,6 +279,14 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	
 	public PedestalVariant getVariant() {
 		return this.variant;
+	}
+
+	static {
+		var foot = Block.createCuboidShape(3, 0, 3, 13, 3, 13);
+		var neck = Block.createCuboidShape(5, 3, 5, 11, 12, 11);
+		var head = Block.createCuboidShape(0, 12, 0, 16, 16, 16);
+		foot = VoxelShapes.union(foot, neck);
+		SHAPE = VoxelShapes.union(foot, head);
 	}
 	
 }

@@ -75,7 +75,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		// The Experience Item rendered in the air
 		ItemStack experienceItemStack = blockEntity.getStack(1);
 		if (!experienceItemStack.isEmpty() && experienceItemStack.getItem() instanceof ExperienceStorageItem) {
-			renderExperienceOrb((float) blockEntity.getWorld().getTime() + tickDelta, ExperienceHelper.getExperienceOrbSizeForExperience(ExperienceStorageItem.getStoredExperience(experienceItemStack)), matrixStack, vertexConsumerProvider, experienceSpriteBrightness);
+			renderExperienceOrb((float) blockEntity.getWorld().getTime() % 50000 + tickDelta, ExperienceHelper.getExperienceOrbSizeForExperience(ExperienceStorageItem.getStoredExperience(experienceItemStack)), matrixStack, vertexConsumerProvider, experienceSpriteBrightness);
 		}
 		
 		//renderLight(blockEntity, matrixStack, vertexConsumerProvider, 3, 0, null, null, null, null);

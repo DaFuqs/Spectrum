@@ -23,7 +23,7 @@ public class ItemBowlBlockEntityRenderer implements BlockEntityRenderer<ItemBowl
 	public void render(ItemBowlBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		ItemStack stack = blockEntity.inventory.getStack(0);
 		if (!stack.isEmpty()) {
-			float time = blockEntity.getWorld().getTime() + tickDelta;
+			float time = blockEntity.getWorld().getTime() % 50000 + tickDelta;
 			
 			matrixStack.push();
 			double currentRadiant = radiant + (radiant * (time / 16.0) / 8.0F);

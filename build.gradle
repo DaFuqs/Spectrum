@@ -65,7 +65,8 @@ repositories {
 	}
 
 	maven {
-		url 'https://cfa2.cursemaven.com'
+		name = "Curse"
+		url = 'https://cfa2.cursemaven.com'
 	}
 }
 

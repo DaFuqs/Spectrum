@@ -1,6 +1,7 @@
 {
   "name": "End Portal Relocation",
   "advancement": "spectrum:progression/unlock_end_portal_cracker",
+  "secret": true,
   "icon": "minecraft:end_portal_frame",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

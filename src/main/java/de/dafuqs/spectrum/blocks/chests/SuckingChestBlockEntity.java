@@ -159,7 +159,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 			}
 		} else if (entry instanceof ItemEntityEventQueue.EventEntry itemEntry) {
 			ItemEntity itemEntity = itemEntry.itemEntity;
-			if (itemEntity != null && itemEntity.isAlive() && acceptsItemStack(itemEntity.getStack())) { //&& itemEntity.cannotPickup()) { // risky. But that is always false for newly dropped items
+			if (itemEntity != null && itemEntity.isAlive() && acceptsItemStack(itemEntity.getStack())) {
 				int previousAmount = itemEntity.getStack().getCount();
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
 				
@@ -167,6 +167,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 					SpectrumS2CPacketSender.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
 					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
 					itemEntity.setStack(ItemStack.EMPTY);
+					itemEntity.discard();
 				} else {
 					if (remainingStack.getCount() != previousAmount) {
 						SpectrumS2CPacketSender.sendPlayItemEntityAbsorbedParticle(world, itemEntity);

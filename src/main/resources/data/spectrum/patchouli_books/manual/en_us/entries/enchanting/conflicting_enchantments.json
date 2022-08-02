@@ -2,6 +2,7 @@
   "name": "Enchanting Mastery",
   "icon": "minecraft:enchanted_book",
   "priority": true,
+  "secret": true,
   "sortnum": 5,
   "advancement": "spectrum:milestones/unlock_conflicted_enchanting_with_enchanter",
   "category": "spectrum:enchanting_category",

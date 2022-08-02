@@ -1,6 +1,7 @@
 {
   "name": "Production Surge",
   "advancement": "spectrum:lategame/collect_paletur",
+  "secret": true,
   "icon": "spectrum:upgrade_yield",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

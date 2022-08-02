@@ -1,6 +1,7 @@
 {
   "name": "Ink Duct",
   "advancement": "spectrum:progression/unlock_ink_duct",
+  "secret": true,
   "icon": "spectrum:ink_duct",
   "category": "spectrum:magic_category",
   "pages": [

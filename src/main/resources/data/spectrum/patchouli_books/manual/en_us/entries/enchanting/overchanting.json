@@ -2,6 +2,7 @@
   "name": "Overchanting",
   "icon": "minecraft:enchanted_book",
   "priority": true,
+  "secret": true,
   "sortnum": 4,
   "advancement": "spectrum:milestones/unlock_overenchanting_with_enchanter",
   "category": "spectrum:enchanting_category",

@@ -51,8 +51,9 @@ public class SpectrumConfig implements ConfigData {
 			per night per player that unlocked the required progression.""")
 	public float ShootingStarChance = 0.004F;
 	
-	@Comment("The biomes where the biome specific plants are growing")
-	public List<String> MermaidsBrushGenerationBiomes = new ArrayList<>();
+	public int MermaidsBrushChanceChunk = 16;
+	public int QuitoxicReedsCountPerChunk = 25;
+	@Comment("The biomes where Quitoxic Reeds are growing (usually swamps)")
 	public List<String> QuitoxicReedsGenerationBiomes = new ArrayList<>();
 	
 	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
@@ -126,8 +127,8 @@ public class SpectrumConfig implements ConfigData {
 	public int GlowVisionGogglesDuration = 240;
 	
 	public int GemstoneArmorHelmetProtection = 3;
-	public int GemstoneArmorLeggingsProtection = 5;
 	public int GemstoneArmorChestplateProtection = 7;
+	public int GemstoneArmorLeggingsProtection = 5;
 	public int GemstoneArmorBootsProtection = 3;
 	public float GemstoneArmorToughness = 0.0F;
 	public float GemstoneArmorKnockbackResistance = 0.0F;
@@ -204,18 +205,6 @@ public class SpectrumConfig implements ConfigData {
 		if (LightningStonesWorlds.isEmpty()) {
 			LightningStonesWorlds.add("minecraft:overworld");
 			LightningStonesWorlds.add("starry_sky:starry_sky");
-		}
-		if (MermaidsBrushGenerationBiomes.isEmpty()) {
-			MermaidsBrushGenerationBiomes.add("minecraft:ocean");
-			MermaidsBrushGenerationBiomes.add("minecraft:cold_ocean");
-			MermaidsBrushGenerationBiomes.add("minecraft:frozen_ocean");
-			MermaidsBrushGenerationBiomes.add("minecraft:lukewarm_ocean");
-			MermaidsBrushGenerationBiomes.add("minecraft:warm_ocean");
-			MermaidsBrushGenerationBiomes.add("minecraft:deep_ocean");
-			MermaidsBrushGenerationBiomes.add("minecraft:deep_cold_ocean");
-			MermaidsBrushGenerationBiomes.add("minecraft:deep_frozen_ocean");
-			MermaidsBrushGenerationBiomes.add("minecraft:deep_warm_ocean");
-			MermaidsBrushGenerationBiomes.add("minecraft:deep_lukewarm_ocean");
 		}
 		if (QuitoxicReedsGenerationBiomes.isEmpty()) {
 			QuitoxicReedsGenerationBiomes.add("minecraft:swamp");

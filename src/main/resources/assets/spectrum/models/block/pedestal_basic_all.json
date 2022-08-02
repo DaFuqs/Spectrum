@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:block/base_pedestal",
+  "textures": {
+    "pedestal": "spectrum:block/pedestal_cmy"
+  }
+}

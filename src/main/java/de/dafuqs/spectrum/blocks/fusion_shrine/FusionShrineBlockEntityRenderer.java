@@ -80,7 +80,7 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 				}
 			}
 			
-			float time = fusionShrineBlockEntity.getWorld().getTime() + tickDelta;
+			float time = fusionShrineBlockEntity.getWorld().getTime() % 500000 + tickDelta;
 			double radiant = Math.toRadians(360.0F / inventoryStacks.size());
 			float distance = 1.2F;
 			

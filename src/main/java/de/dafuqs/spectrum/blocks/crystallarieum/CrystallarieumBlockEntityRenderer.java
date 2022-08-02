@@ -1,43 +1,94 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.model.*;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEntity> implements BlockEntityRenderer<T> {
 	
-	public CrystallarieumBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+	public static final SpriteIdentifier SPRITE_IDENTIFIER = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/crystallarieum_overlay"));
+	private final ModelPart body;
 	
+	public CrystallarieumBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
+		TexturedModelData texturedModelData = createBodyLayer();
+		ModelPart root = texturedModelData.createModel();
+		this.body = root.getChild("body");
 	}
 	
 	@Override
-	public void render(T entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+	public void render(CrystallarieumBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		ItemStack catalystStack = entity.getStack(CrystallarieumBlockEntity.CATALYST_SLOT_ID);
+		
+		CrystallarieumRecipe recipe = entity.getCurrentRecipe();
+		if(recipe != null) {
+			InkColor inkColor = recipe.getInkColor();
+			
+			VertexConsumer vertexConsumer = SPRITE_IDENTIFIER.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
+			body.render(matrices, vertexConsumer, light, overlay, inkColor.getColor().getX(), inkColor.getColor().getY(), inkColor.getColor().getZ(), 1.0F);
+		}
+		
 		if(!catalystStack.isEmpty()) {
 			matrices.push();
-			matrices.translate(0.5, 0.95, 0.7);
 			
 			int count = catalystStack.getCount();
-			if(count > 48) {
-			
+			if(count > 0) {
+				matrices.translate(0.65, 0.95, 0.65);
+				matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
+				matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+				matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(70));
+				MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+				
+				if(count > 4) {
+					matrices.translate(0.45, 0.0, 0.01);
+					matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(140));
+					MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+					
+					if(count > 16) {
+						matrices.translate(0.2, 0.5, 0.01);
+						matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(100));
+						MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+						
+						if(count > 32) {
+							matrices.translate(-0.55, 0.0, 0.01);
+							matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(40));
+							MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+							
+							if(count > 48) {
+								matrices.translate(0.6, 0.0, 0.01);
+								matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(170));
+								MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+							}
+						}
+					}
+				}
 			}
-			if(count > 32) {
-			
-			}
-			if(count > 16) {
-			
-			}
-			MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
 			
 			matrices.pop();
 		}
+	}
+	
+	public static TexturedModelData createBodyLayer() {
+		ModelData modelData = new ModelData();
+		ModelPartData root = modelData.getRoot();
+		root.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(0.0F, 5.0F, 0.0F, 16.0F, 4.0F, 16.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+		return TexturedModelData.of(modelData, 64, 64);
 	}
 	
 	@Override

@@ -292,23 +292,14 @@ public class SpectrumConfiguredFeatures {
 				Feature.SIMPLE_BLOCK,
 				new SimpleBlockFeatureConfig(new RandomizedIntBlockStateProvider(SimpleBlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH), MermaidsBrushBlock.AGE, UniformIntProvider.create(5, 6))),
 				BiomePlacementModifier.of(),
-				RarityFilterPlacementModifier.of(16),
+				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.MermaidsBrushChanceChunk),
 				CountPlacementModifier.of(UniformIntProvider.create(2, 3)),
 				SquarePlacementModifier.of(),
 				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
 				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
 		);
-		
-		Collection<RegistryKey<Biome>> oceans = new ArrayList<>();
-		for (String biomeString : SpectrumCommon.CONFIG.MermaidsBrushGenerationBiomes) {
-			RegistryKey<Biome> biomeKey = RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString));
-			if (biomeKey == null) {
-				SpectrumCommon.logError("Mermaids Brush is configured to spawn in biome " + biomeString + ", but that does not exist!");
-			} else {
-				oceans.add(biomeKey);
-			}
-		}
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(oceans), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
+
+		BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
 		
 		// QUITOXIC REED
 		Identifier quitoxicReedsIdentifier = SpectrumCommon.locate("quitoxic_reeds");
@@ -316,7 +307,7 @@ public class SpectrumConfiguredFeatures {
 				Feature.BLOCK_COLUMN,
 				BlockColumnFeatureConfig.create(BiasedToBottomIntProvider.create(2, 4), BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS)),
 				BiomePlacementModifier.of(),
-				CountPlacementModifier.of(25),
+				CountPlacementModifier.of(SpectrumCommon.CONFIG.QuitoxicReedsCountPerChunk),
 				SquarePlacementModifier.of(),
 				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
 				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))

@@ -1,10 +1,7 @@
 {
   "variants": {
-    "powered=false": {
-      "model": "spectrum:block/pedestal_basic_topaz_unpowered"
-    },
-    "powered=true": {
-      "model": "spectrum:block/pedestal_basic_topaz_powered"
+    "": {
+      "model": "spectrum:block/pedestal_basic_topaz"
     }
   }
 }

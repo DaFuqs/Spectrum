@@ -63,7 +63,6 @@ import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlock;
 import de.dafuqs.spectrum.blocks.spirit_sallow.*;
-import de.dafuqs.spectrum.blocks.stonesetting_workshop.StonesettingWorkshopBlock;
 import de.dafuqs.spectrum.blocks.structure.DikeGateBlock;
 import de.dafuqs.spectrum.blocks.structure.PreservationControllerBlock;
 import de.dafuqs.spectrum.blocks.structure.StatueBlock;

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.stonesetting_workshop;
+/*package de.dafuqs.spectrum.blocks.stonesetting_workshop;
 
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -87,3 +87,4 @@ public class StonesettingWorkshopBlock extends BlockWithEntity {
         return new StonesettingWorkshopBlockEntity(pos, state);
     }
 }
+*/

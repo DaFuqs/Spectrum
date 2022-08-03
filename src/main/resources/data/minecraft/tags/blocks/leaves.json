@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:colored_leaves"
+    "#spectrum:colored_leaves",
+    "spectrum:jade_vine_petal_block",
+    "spectrum:spirit_sallow_leaves"
   ]
 }

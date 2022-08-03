@@ -1,0 +1,12 @@
+{
+  "name": "Botania",
+  "icon": "minecraft:dirt",
+  "flag": "mod:botania",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

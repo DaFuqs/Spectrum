@@ -1,0 +1,22 @@
+{
+  "name": "Chalk",
+  "icon": "chalk:chalk",
+  "flag": "mod:chalk",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "required_advancement": "spectrum:collect_pigment",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:mod_integration/chalk/pedestal/orange_chalk",
+      "text": "The little pieces of chalk you colored before with plain dye always didn't last long. By using pigments instead, the chalk just sprays with energy and provides you with a seemingly never-ending supply."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "required_advancement": "spectrum:collect_pigment",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:mod_integration/chalk/pedestal/pink_glow_chalk",
+      "text": "Unbreakable Glow Chalk can be created, too."
+    }
+  ]
+}

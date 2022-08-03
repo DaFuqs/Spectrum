@@ -1,0 +1,12 @@
+{
+  "name": "Gobber",
+  "icon": "minecraft:dirt",
+  "flag": "mod:gobber2",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

@@ -520,7 +520,7 @@ public class SpectrumBlocks {
 	public static final Block FUSION_SHRINE_BASALT = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
 	public static final Block FUSION_SHRINE_CALCITE = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
 
-	public static final Block STONESETTING_WORKSHOP = new StonesettingWorkshopBlock(FabricBlockSettings.copyOf(POLISHED_BASALT).nonOpaque().solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
+	//public static final Block STONESETTING_WORKSHOP = new StonesettingWorkshopBlock(FabricBlockSettings.copyOf(POLISHED_BASALT).nonOpaque().solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	
 	private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool();
 	private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
@@ -902,7 +902,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("pedestal_moonstone", PEDESTAL_MOONSTONE, new PedestalBlockItem(PEDESTAL_MOONSTONE, generalItemSettingsSingle, BuiltinPedestalVariant.MOONSTONE, "item.spectrum.pedestal.tooltip.moonstone"), DyeColor.WHITE);
 		registerBlockWithItem("fusion_shrine_basalt", FUSION_SHRINE_BASALT, generalItemSettingsSingle, DyeColor.GRAY);
 		registerBlockWithItem("fusion_shrine_calcite", FUSION_SHRINE_CALCITE, generalItemSettingsSingle, DyeColor.GRAY);
-		registerBlockWithItem("stonesetting_workshop", STONESETTING_WORKSHOP, generalItemSettingsSingle, DyeColor.WHITE);
+		//registerBlockWithItem("stonesetting_workshop", STONESETTING_WORKSHOP, generalItemSettingsSingle, DyeColor.WHITE);
 		registerBlockWithItem("enchanter", ENCHANTER, generalItemSettingsSingle, DyeColor.PURPLE);
 		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, generalItemSettingsSixteen, DyeColor.PINK);
 		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, generalItemSettingsSixteen, DyeColor.PINK);

@@ -12,9 +12,9 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "minecraft:orange_pigment",
+      "item": "spectrum:orange_pigment",
       "required_advancement": "spectrum:collect_pigment",
-      "text": "Even better, if you excavate part of their burrow with a shovel, you can even salvage pure pigment.$(br2)Always happy to help, @MastroCaleb 😀"
+      "text": "Even better, if you excavate part of their burrow with a shovel, you can even salvage pure pigment.$(br2)$(br2)Shoutout to @MastroCaleb!"
     }
   ]
 }

@@ -1,6 +1,7 @@
 {
   "name": "Dreamflayer",
   "advancement": "spectrum:progression/unlock_dreamflayer",
+  "secret": true,
   "icon": "spectrum:dreamflayer",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

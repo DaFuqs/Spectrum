@@ -15,7 +15,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/lesser_potion_pendant",
-      "text": "Use the $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) to fill it with a Potion, exactly as if you were using a Bottle."
+      "text": "Use the $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) to fill it with a Potion, exactly as if you were using a Bottle.$(br)To clear it's effect, put it in a crafting grid."
     }
   ]
 }

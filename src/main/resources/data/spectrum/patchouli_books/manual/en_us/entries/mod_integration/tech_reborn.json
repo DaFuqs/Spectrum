@@ -1,0 +1,12 @@
+{
+  "name": "Tech Reborn",
+  "icon": "minecraft:dirt",
+  "flag": "mod:techreborn",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

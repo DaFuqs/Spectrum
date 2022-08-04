@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.jade_vines;
 
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -14,6 +15,7 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
@@ -116,6 +118,10 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 					if (world.isClient) {
 						return ActionResult.SUCCESS;
 					} else {
+						if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+							Criteria.ITEM_USED_ON_BLOCK.trigger(serverPlayerEntity, pos, handStack);
+						}
+						
 						handStack.decrement(1);
 						setHarvested(state, (ServerWorld) world, pos);
 						

@@ -38,8 +38,6 @@ import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
-import de.dafuqs.spectrum.blocks.stonesetting_workshop.StoneSettingWorkshopBlockEntityRenderer;
-import de.dafuqs.spectrum.blocks.stonesetting_workshop.StonesettingWorkshopBlockEntity;
 import de.dafuqs.spectrum.blocks.structure.PreservationControllerBlockEntity;
 import de.dafuqs.spectrum.blocks.structure.TreasureChestBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
@@ -66,7 +64,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<FusionShrineBlockEntity> FUSION_SHRINE;
 	public static BlockEntityType<EnchanterBlockEntity> ENCHANTER;
 
-	public static BlockEntityType<StonesettingWorkshopBlockEntity> STONESETTING_WORKSHOP;
+	//public static BlockEntityType<StonesettingWorkshopBlockEntity> STONESETTING_WORKSHOP;
 	public static BlockEntityType<ItemBowlBlockEntity> ITEM_BOWL;
 	public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
 	public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
@@ -116,7 +114,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		PEDESTAL = register("pedestal_block_entity", PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE);
 		FUSION_SHRINE = register("fusion_shrine_block_entity", FusionShrineBlockEntity::new, SpectrumBlocks.FUSION_SHRINE_BASALT, SpectrumBlocks.FUSION_SHRINE_CALCITE);
 		ENCHANTER = register("enchanter_block_entity", EnchanterBlockEntity::new, SpectrumBlocks.ENCHANTER);
-		STONESETTING_WORKSHOP = register("stonesetting_workshop", StonesettingWorkshopBlockEntity::new, SpectrumBlocks.STONESETTING_WORKSHOP);
+		//STONESETTING_WORKSHOP = register("stonesetting_workshop", StonesettingWorkshopBlockEntity::new, SpectrumBlocks.STONESETTING_WORKSHOP);
 		ITEM_BOWL = register("item_bowl_block_entity", ItemBowlBlockEntity::new, SpectrumBlocks.ITEM_BOWL_BASALT, SpectrumBlocks.ITEM_BOWL_CALCITE);
 		ENDER_DROPPER = register("ender_dropper", EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER);
 		ENDER_HOPPER = register("ender_hopper", EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER);
@@ -184,7 +182,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.STONESETTING_WORKSHOP, StoneSettingWorkshopBlockEntityRenderer::new);
+		//BlockEntityRendererRegistry.register(SpectrumBlockEntities.STONESETTING_WORKSHOP, StoneSettingWorkshopBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);

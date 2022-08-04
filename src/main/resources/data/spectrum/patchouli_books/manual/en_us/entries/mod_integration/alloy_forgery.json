@@ -1,0 +1,12 @@
+{
+  "name": "Alloy Forgery",
+  "icon": "minecraft:dirt",
+  "flag": "mod:alloy_forgery",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

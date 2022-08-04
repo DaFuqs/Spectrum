@@ -59,7 +59,10 @@
     "colored_lights": ">=1.0.3",
     "paginatedadvancements": "*",
     "the_aether": "*",
-    "limlib": "*"
+    "limlib": "*",
+    "ants": "*",
+    "bettercombat": "*",
+    "shimmer": "*"
   },
   "breaks": {
     "Dashloader": "<=3.0.9"

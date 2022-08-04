@@ -183,9 +183,8 @@ public class SpectrumItems {
 	public static final SwordItem DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, toolUncommonItemSettingsSingle);
 
 	// Graces
-	public static OwoItemSettings graceSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE).maxCount(1).fireproof();
-
-	public static final CrystalGraceItem WHITE_CRYSTAL_GRACE = new CrystalGraceItem(ColorPool.WHITE, graceSettings, "ooooo go stick my dick in Azzy's ass oooo");
+	//public static OwoItemSettings graceSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE).maxCount(1).fireproof();
+	//public static final CrystalGraceItem WHITE_CRYSTAL_GRACE = new CrystalGraceItem(ColorPool.WHITE, graceSettings, "ooooo go stick my dick in Azzy's ass oooo");
 
 
 	// Bedrock Armor
@@ -428,7 +427,7 @@ public class SpectrumItems {
 	}
 	
 	public static void registerGraces() {
-		register("white_crystal_grace", WHITE_CRYSTAL_GRACE, DyeColor.WHITE);
+		//register("white_crystal_grace", WHITE_CRYSTAL_GRACE, DyeColor.WHITE);
 	}
 	
 	public static void registerStructurePlacers() {

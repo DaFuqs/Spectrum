@@ -1,0 +1,12 @@
+{
+  "name": "Conjuring",
+  "icon": "minecraft:dirt",
+  "flag": "mod:conjuring",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

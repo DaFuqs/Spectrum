@@ -1,6 +1,7 @@
 {
   "name": "Paltaeria",
   "advancement": "spectrum:lategame/collect_paletur",
+  "secret": true,
   "icon": "spectrum:paletur_fragments",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {

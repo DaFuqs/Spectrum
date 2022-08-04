@@ -69,25 +69,25 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack stack = user.getStackInHand(hand);
-		if (hand == Hand.MAIN_HAND && user.isSneaking() && !user.getOffHandStack().isEmpty()) {
-			return TypedActionResult.pass(stack);
-		}
-		
-		boolean isActivated = ActivatableItem.isActivated(stack);
-		if (isActivated) {
-			ActivatableItem.setActivated(stack, false);
-			if (!world.isClient) {
-				world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
-			}
-		} else {
-			if (InkPowered.tryDrainEnergy(user, USED_COLOR, INK_COST_FOR_ACTIVATION)) {
-				ActivatableItem.setActivated(stack, true);
+		if (hand == Hand.MAIN_HAND && user.isSneaking()) {
+			boolean isActivated = ActivatableItem.isActivated(stack);
+			if (isActivated) {
+				ActivatableItem.setActivated(stack, false);
 				if (!world.isClient) {
-					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_ACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
+					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
 				}
-			} else if (!world.isClient) {
-				world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
+			} else {
+				if (InkPowered.tryDrainEnergy(user, USED_COLOR, INK_COST_FOR_ACTIVATION)) {
+					ActivatableItem.setActivated(stack, true);
+					if (!world.isClient) {
+						world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_ACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
+					}
+				} else if (!world.isClient) {
+					world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.DREAMFLAYER_DEACTIVATE, SoundCategory.PLAYERS, 1.0F, 1F);
+				}
 			}
+			
+			return TypedActionResult.pass(stack);
 		}
 		
 		return TypedActionResult.success(stack);

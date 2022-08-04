@@ -1,0 +1,19 @@
+{
+  "type": "ants:colony_shoveling",
+  "group": "spectrum_leaves_shoveling",
+  "hive_ingredient": {
+    "item": "spectrum:lime_leaves"
+  },
+  "result" : {
+    "item": "spectrum:lime_pigment",
+	"count": 6
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ants"
+      ]
+    }
+  ]
+}

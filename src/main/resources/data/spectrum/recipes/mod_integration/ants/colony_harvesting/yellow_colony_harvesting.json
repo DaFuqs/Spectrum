@@ -1,0 +1,19 @@
+{
+  "type": "ants:colony_harvesting",
+  "group": "spectrum_leaves_harvesting",
+  "hive_ingredient": {
+    "item": "spectrum:yellow_leaves"
+  },
+  "result" : {
+    "item": "minecraft:yellow_dye",
+	"count": 6
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ants"
+      ]
+    }
+  ]
+}

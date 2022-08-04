@@ -2,6 +2,7 @@
   "name": "The Deeper Down",
   "icon": "minecraft:bedrock",
   "sortnum": 1,
+  "secret": true,
   "advancement": "spectrum:midgame/__enter_dimension",
   "category": "spectrum:dimension_category",
   "pages": [

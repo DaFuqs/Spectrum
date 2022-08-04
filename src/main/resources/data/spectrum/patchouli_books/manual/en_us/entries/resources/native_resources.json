@@ -1,6 +1,7 @@
 {
   "name": "Native Resources",
   "advancement": "spectrum:lategame/collect_native_resource",
+  "secret": true,
   "icon": "spectrum:native_iron",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {

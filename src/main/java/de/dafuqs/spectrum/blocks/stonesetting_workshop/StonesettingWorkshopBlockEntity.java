@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.stonesetting_workshop;
+/*package de.dafuqs.spectrum.blocks.stonesetting_workshop;
 
 import de.dafuqs.spectrum.items.CrystalGraceItem;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
@@ -29,7 +29,7 @@ public class StonesettingWorkshopBlockEntity extends IncubusBaseBE {
     /**
      * Attempts to insert an item, returns whether that insertion was successful.
      */
-    public boolean tryInsertItem(ItemStack stack, PlayerEntity player, Hand hand) {
+    /*public boolean tryInsertItem(ItemStack stack, PlayerEntity player, Hand hand) {
 
         if (world == null)
             return false;
@@ -75,7 +75,7 @@ public class StonesettingWorkshopBlockEntity extends IncubusBaseBE {
      * Oppositely, tries to extract items
      */
 
-    public boolean tryExtractItem(PlayerEntity player, Hand hand) {
+    /*public boolean tryExtractItem(PlayerEntity player, Hand hand) {
 
         if (world == null)
             return false;
@@ -188,3 +188,4 @@ public class StonesettingWorkshopBlockEntity extends IncubusBaseBE {
         load(nbt);
     }
 }
+*/

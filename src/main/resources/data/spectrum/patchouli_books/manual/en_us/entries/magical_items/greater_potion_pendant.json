@@ -1,6 +1,7 @@
 {
   "name": "Greater Potion Pendant",
   "advancement": "spectrum:progression/unlock_greater_potion_pendant",
+  "secret": true,
   "icon": "spectrum:greater_potion_pendant",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

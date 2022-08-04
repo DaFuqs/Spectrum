@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.stonesetting_workshop;
+/*package de.dafuqs.spectrum.blocks.stonesetting_workshop;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -34,7 +34,7 @@ public class StoneSettingWorkshopBlockEntityRenderer implements BlockEntityRende
     /**
      * Renders the crystal graces around the infusee
      */
-    private void tryRenderGraces(StonesettingWorkshopBlockEntity entity, float time, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    /*private void tryRenderGraces(StonesettingWorkshopBlockEntity entity, float time, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         var inv = entity.getInventory();
         var rotation = 0f;
         var filledSlots = entity.getFilledGraceSlots();
@@ -69,7 +69,7 @@ public class StoneSettingWorkshopBlockEntityRenderer implements BlockEntityRende
     /**
      * Renders the infusee
      */
-    private void tryRenderInfusee(StonesettingWorkshopBlockEntity entity, float time, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
+    /*private void tryRenderInfusee(StonesettingWorkshopBlockEntity entity, float time, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         var infusee = entity.getInventory().get(INFUSEE_SLOT);
 
         if (infusee.isEmpty())
@@ -90,3 +90,4 @@ public class StoneSettingWorkshopBlockEntityRenderer implements BlockEntityRende
         MinecraftClient.getInstance().getItemRenderer().renderItem(item, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
     }
 }
+*/

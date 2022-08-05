@@ -508,6 +508,13 @@
   "block.spectrum.treasure_chest": "Treasure Chest",
 
   "block.spectrum.blackslag": "Blackslag",
+  "block.spectrum.blackslag_coal_ore": "Blackslag Coal Ore",
+  "block.spectrum.blackslag_iron_ore": "Blackslag Iron Ore",
+  "block.spectrum.blackslag_gold_ore": "Blackslag Gold Ore",
+  "block.spectrum.blackslag_diamond_ore": "Blackslag Diamond Ore",
+  "block.spectrum.blackslag_redstone_ore": "Blackslag Redstone Ore",
+  "block.spectrum.blackslag_lapis_ore": "Blackslag Lapis Ore",
+  "block.spectrum.blackslag_sparklestone_ore": "Blackslag Sparklestone Ore",
 
   "block.spectrum.jade_vines": "Jade Vines",
   "block.spectrum.jade_vine_petal_block": "Jade Petal Block",

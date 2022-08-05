@@ -34,6 +34,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -47,7 +48,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "collect_all_basic_pigments_besides_brown");
 	public static final IntProperty LIGHT_LEVEL = IntProperty.of("light_level", 0, 15);
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 15.0D, 14.0D);
+	protected static final VoxelShape SHAPE;
 	
 	public FusionShrineBlock(Settings settings) {
 		super(settings);
@@ -312,5 +313,12 @@ public class FusionShrineBlock extends BlockWithEntity {
 		}
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
-	
+
+	static {
+		var neck = Block.createCuboidShape(2, 0, 2, 14, 12, 14);
+		var head = Block.createCuboidShape(1, 12, 1, 15, 15, 15);
+		var crystal = Block.createCuboidShape(6.5, 13, 6.5, 9.5, 23, 9.5);
+		neck = VoxelShapes.union(neck, head);
+		SHAPE = VoxelShapes.union(neck, crystal);
+	}
 }

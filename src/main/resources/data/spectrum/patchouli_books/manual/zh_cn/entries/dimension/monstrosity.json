@@ -1,14 +1,15 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)小心不要被这个怪物撕碎和吞噬。总是存在，总是潜伏。只是在等待合适的时机罢工。$()",
-			"type":"patchouli:text",
-			"title":"黑暗中潜伏着什么东西"
-		}
-	],
-	"advancement":"spectrum:lategame/__spectrum_lategame",
-	"name":"怪物",
-	"icon":"minecraft:bedrock",
-	"sortnum":2,
-	"category":"spectrum:dimension_category"
+  "name": "怪物",
+  "icon": "minecraft:bedrock",
+  "sortnum": 2,
+  "secret": true,
+  "advancement": "spectrum:lategame/__spectrum_lategame",
+  "category": "spectrum:dimension_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "黑暗之中潜伏着什么东西…",
+      "text": "$(italic)注意不要被“那个怪物”吞噬。潜伏藏匿于黑暗之中，无时无刻不伺机而动……$()"
+    }
+  ]
 }

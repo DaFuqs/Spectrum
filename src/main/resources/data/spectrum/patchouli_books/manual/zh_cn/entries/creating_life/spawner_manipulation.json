@@ -22,7 +22,7 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "生成生成延迟",
+      "title": "生物生成延迟",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_delay_change",
       "text": "缩短生物生成周期的最小和最大延迟。"
     },

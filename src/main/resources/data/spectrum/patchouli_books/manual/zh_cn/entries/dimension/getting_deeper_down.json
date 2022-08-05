@@ -1,18 +1,19 @@
 {
-	"pages":[
-		{
-			"text":"待办",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"spectrum:bottle_of_ruin",
-			"text":"待办",
-			"type":"patchouli:spotlight"
-		}
-	],
-	"advancement":"spectrum:lategame/__spectrum_lategame",
-	"name":"越陷越深",
-	"icon":"spectrum:bottle_of_ruin",
-	"sortnum":0,
-	"category":"spectrum:dimension_category"
+  "name": "挺进深渊",
+  "icon": "spectrum:bottle_of_ruin",
+  "sortnum": 0,
+  "secret": true,
+  "advancement": "spectrum:lategame/__spectrum_lategame",
+  "category": "spectrum:dimension_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "未完成"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bottle_of_ruin",
+      "text": "未完成"
+    }
+  ]
 }

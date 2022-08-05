@@ -1,26 +1,26 @@
 {
-	"pages":[
-		{
-			"text":"这两块高的装饰石代表着你的珍贵发现。$(br2)它们给人留下了深刻的印象。",
-			"type":"patchouli:text",
-			"title":"摆件"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/decostones/topaz_decostone",
-			"text":"摆件有多种宝石颜色供您选择。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/decostones/unlock_any_decostone",
-	"extra_recipe_mappings":{
-		"spectrum:topaz_decostone":0,
-		"spectrum:citrine_decostone":0,
-		"spectrum:onyx_decostone":0,
-		"spectrum:moonstone_decostone":0,
-		"spectrum:amethyst_decostone":0
-	},
-	"name":"摆件",
-	"icon":"spectrum:amethyst_decostone",
-	"category":"spectrum:decoration_category"
+  "name": "摆件",
+  "icon": "spectrum:amethyst_decostone",
+  "advancement": "spectrum:progression/decostones/unlock_any_decostone",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_decostone": 0,
+    "spectrum:amethyst_decostone": 0,
+    "spectrum:citrine_decostone": 0,
+    "spectrum:onyx_decostone": 0,
+    "spectrum:moonstone_decostone": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "摆件",
+      "text": "这些两格高的摆件展现的是你对所见所得的美学运用。$(br2)令人印象深刻啊。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier1/decostones/topaz_decostone",
+      "text": "摆件的颜色取决于选用的宝石晶材料。"
+    }
+  ]
 }

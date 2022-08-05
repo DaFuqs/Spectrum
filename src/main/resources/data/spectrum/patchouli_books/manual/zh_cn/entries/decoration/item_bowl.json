@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:item_bowl_basalt",
-			"text":"$(italic)有一件物品你在挖矿时总是忘记，比如一支粉笔，用来标记返回地面的路。放在这个装饰性的物品碗里应该是一个很好的提醒。$()$(br2)它包括磨制玄武岩和磨制方解石变体。",
-			"type":"patchouli:spotlight",
-			"title":"物品基座"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/item_bowl_calcite",
-			"text":"物品基座呈现一个漂浮在其上方的单个物品堆栈。$(br)点击一个物品到基座里，或者把它扔到上面把它放进去。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:midgame/enter_liquid_crystal",
-	"extra_recipe_mappings":{
-		"spectrum:item_bowl_calcite":0,
-		"spectrum:item_bowl_basalt":0
-	},
-	"name":"物品基座",
-	"icon":"spectrum:item_bowl_basalt",
-	"category":"spectrum:decoration_category"
+  "name": "物品底座",
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "icon": "spectrum:item_bowl_basalt",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:item_bowl_basalt": 0,
+    "spectrum:item_bowl_calcite": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "物品底座",
+      "item": "spectrum:item_bowl_basalt",
+      "text": "$(italic)出行冒险的时候总会一个不小心忘了带上什么东西，要是把随身携带的用于标记归途的粉笔给忘了那可就麻烦了。用底座来展示这些必需品以时刻提醒自己兴许是一个好主意呢。$()$(br2)磨制方解石与磨制玄武岩皆可用于制作底座。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/item_bowl_calcite",
+      "text": "将一叠物品放置在底座中会令其悬浮展示。$(br)右击物品底座或将物品掷入底座皆可进行放置。"
+    }
+  ]
 }

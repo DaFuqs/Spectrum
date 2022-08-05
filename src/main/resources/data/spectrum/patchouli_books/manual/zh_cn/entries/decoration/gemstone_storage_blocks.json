@@ -1,55 +1,55 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)这些宝石外表异常美丽。$(br)原始宝石的外观，正如你从晶洞中了解到的，对于你的前卫建筑来说，似乎有点太自然了。然而，如果有足够的资源，这应该不是问题。$(br2)如果你在某个时候用完了宝石，装饰很容易再次被破坏。$()",
-			"type":"patchouli:text",
-			"title":"宝石块"
-		},
-		{
-			"recipe2":"spectrum:crafting_table/storage_blocks/topaz_shards_from_topaz_storage_block",
-			"advancement":"spectrum:hidden/collect_shards/collect_topaz_shard",
-			"recipe":"spectrum:crafting_table/storage_blocks/topaz_storage_block",
-			"type":"patchouli:crafting",
-			"title":"磨制黄玉"
-		},
-		{
-			"recipe2":"spectrum:crafting_table/storage_blocks/amethyst_shards_from_amethyst_storage_block",
-			"advancement":"spectrum:hidden/collect_shards/collect_amethyst_shard",
-			"recipe":"spectrum:crafting_table/storage_blocks/amethyst_storage_block",
-			"type":"patchouli:crafting",
-			"title":"磨制紫水晶"
-		},
-		{
-			"recipe2":"spectrum:crafting_table/storage_blocks/citrine_shards_from_citrine_storage_block",
-			"advancement":"spectrum:hidden/collect_shards/collect_citrine_shard",
-			"recipe":"spectrum:crafting_table/storage_blocks/citrine_storage_block",
-			"type":"patchouli:crafting",
-			"title":"磨制黄水晶"
-		},
-		{
-			"recipe2":"spectrum:crafting_table/storage_blocks/onyx_shards_from_onyx_storage_block",
-			"advancement":"spectrum:create_onyx_shard",
-			"recipe":"spectrum:crafting_table/storage_blocks/onyx_storage_block",
-			"type":"patchouli:crafting",
-			"title":"磨制玛瑙"
-		},
-		{
-			"recipe2":"spectrum:crafting_table/storage_blocks/moonstone_shards_from_moonstone_storage_block",
-			"advancement":"spectrum:midgame/collect_moonstone_shard",
-			"recipe":"spectrum:crafting_table/storage_blocks/moonstone_storage_block",
-			"type":"patchouli:crafting",
-			"title":"磨制月光石"
-		}
-	],
-	"advancement":"spectrum:spectrum",
-	"extra_recipe_mappings":{
-		"spectrum:moonstone_storage_block":0,
-		"spectrum:amethyst_storage_block":0,
-		"spectrum:citrine_storage_block":0,
-		"spectrum:onyx_storage_block":0,
-		"spectrum:topaz_storage_block":0
-	},
-	"name":"宝石块",
-	"icon":"spectrum:citrine_storage_block",
-	"category":"spectrum:decoration_category"
+  "name": "磨制宝石晶方块",
+  "advancement": "spectrum:spectrum",
+  "icon": "spectrum:citrine_storage_block",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_storage_block": 0,
+    "spectrum:amethyst_storage_block": 0,
+    "spectrum:citrine_storage_block": 0,
+    "spectrum:onyx_storage_block": 0,
+    "spectrum:moonstone_storage_block": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "宝石晶方块",
+      "text": "$(italic)宝石晶的外观实在是绚烂夺目。$(br)然而，天然宝石晶块的表现还是过分温润，并不适合更加狂野的建筑构思。但既然手头的资源足够，这种事情理应不在话下。$(br2)这些磨制方块也可以作为压缩的资源存储方式，以便不时之需。$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "磨制托帕石晶块",
+      "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
+      "recipe": "spectrum:crafting_table/storage_blocks/topaz_storage_block",
+      "recipe2": "spectrum:crafting_table/storage_blocks/topaz_shards_from_topaz_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "磨制紫水晶块",
+      "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
+      "recipe": "spectrum:crafting_table/storage_blocks/amethyst_storage_block",
+      "recipe2": "spectrum:crafting_table/storage_blocks/amethyst_shards_from_amethyst_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "磨制黄水晶块 ",
+      "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
+      "recipe": "spectrum:crafting_table/storage_blocks/citrine_storage_block",
+      "recipe2": "spectrum:crafting_table/storage_blocks/citrine_shards_from_citrine_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "磨制缟玛瑙晶块",
+      "advancement": "spectrum:create_onyx_shard",
+      "recipe": "spectrum:crafting_table/storage_blocks/onyx_storage_block",
+      "recipe2": "spectrum:crafting_table/storage_blocks/onyx_shards_from_onyx_storage_block"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "磨制月长石晶块",
+      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "recipe": "spectrum:crafting_table/storage_blocks/moonstone_storage_block",
+      "recipe2": "spectrum:crafting_table/storage_blocks/moonstone_shards_from_moonstone_storage_block"
+    }
+  ]
 }

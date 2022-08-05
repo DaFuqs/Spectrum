@@ -1,5 +1,5 @@
 {
-  "name": "Spawner Manipulation",
+  "name": "刷怪笼操纵",
   "advancement": "spectrum:milestones/unlock_spawner_manipulation",
   "icon": "spectrum:spawner",
   "category": "spectrum:creating_life_category",
@@ -10,39 +10,39 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "title": "Harvesting Spawners",
+      "title": "获取刷怪笼",
       "item": "spectrum:resonant_pickaxe",
-      "text": "The $(l:enchanting/resonance)Resonance$(/l) enchantment enables you to get Spawners to drop, to be collected by you.$(br2)While you haven't yet figured out how to make these constructs yourself, you now feel more than capable of changing their properties in your favor, using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
+      "text": "$(l:enchanting/resonance)共振$(/l)附魔允许你采集刷怪笼。$(br2)虽然你仍然不知道怎么制作刷怪笼，利用$(l:creating_life/spirit_instiller)灵魂灌注台$(/l)你依然可以随心所欲地操纵刷怪笼的性质。"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Changing Creature",
+      "title": "更换生物",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_creature_change",
-      "text": "Using a similar technique to $(l:creating_life/memory)remembering Memories$(/l) you can change the Spawners creature association, making it spew out another type of creature alltogether."
+      "text": "使用类似$(l:creating_life/memory)回忆$(/l)的法术，你可以更改刷怪笼生成的生物类型。"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Spawn Delay",
+      "title": "生成生成延迟",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_delay_change",
-      "text": "Lowers both min and max spawn delay."
+      "text": "缩短生物生成周期的最小和最大延迟。"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Spawn Count",
+      "title": "生物生成数量",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_spawn_count_change",
-      "text": "Increases the count of Creatures summoned with each cycle."
+      "text": "增加每一周期生成的生物数量。"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Summoning Criteria",
+      "title": "生物生成容量",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_max_nearby_entities_change",
-      "text": "Increases the number of creatures allowed to be close to the spawner.$(br)$(italic)Spawners seem to naturally stop spawning creatures when there are a lot of them close-by already. Almost like they want to give you a chance. Pathetic, isn't it? As if you would need that."
+      "text": "提高刷怪笼周围所能容纳的生物容量上限。$(br)$(italic)刷怪笼周围生物太多的时候就会停止刷怪。难道是在放你一马不成？搞得好像你没有能耐似的，无趣。"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Activation Range",
+      "title": "玩家半径",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_required_player_range_change",
-      "text": "Increases the range you can stand for the spawner to still spawn creatures."
+      "text": "增加刷怪笼检测的玩家半径。"
     }
   ]
 }

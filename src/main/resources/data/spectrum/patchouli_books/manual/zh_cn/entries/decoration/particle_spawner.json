@@ -1,22 +1,22 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)你捡到的流星在坠落地面的过程中留下了大量的粒子。你创建了粒子怪物笼来复制这个场景——还有很多其他的——你自己。$()$(br2)烟囱？火箭发射粒子？基座结构的大气粒子雨？粒子怪物笼帮你找到了目标。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier2/particle_spawner",
-			"text":"在“粒子怪物笼”GUI中，您可以根据自己的喜好配置生成的粒子。应用红石开始精彩的展示。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_particle_spawner",
-	"extra_recipe_mappings":{
-		"spectrum:particle_spawner":0,
-		"spectrum:creative_particle_spawner":0
-	},
-	"name":"粒子怪物笼",
-	"icon":"spectrum:particle_spawner",
-	"category":"spectrum:decoration_category"
+  "name": "粒子生成器",
+  "advancement": "spectrum:progression/unlock_particle_spawner",
+  "icon": "spectrum:particle_spawner",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:particle_spawner": 0,
+    "spectrum:creative_particle_spawner": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)流星坠落时四处播撒的粒子在夜空中划出一道璀璨的尾迹，此等奇观势必由你捕捉重现。为此，你打造了粒子生成器，去营造更为繁华多样的景观。$()$(br2)无论是平实的烟囱还是耀眼的火箭尾焰，还是用来点缀祭坛的气势磅礴的人工雨，粒子生成器始终伴你左右。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier2/particle_spawner",
+      "text": "在粒子生成器的交互界面内你可以随心指定你需要的粒子效果。通上红石信号来开始表演吧！"
+    }
+  ]
 }

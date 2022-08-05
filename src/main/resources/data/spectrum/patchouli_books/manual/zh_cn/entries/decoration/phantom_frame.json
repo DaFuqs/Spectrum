@@ -1,29 +1,29 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)你想展示你最珍贵的物品。到目前为止，您一直使用物品展示框。但是如果你没有看到画框，你的一些展览会看起来更好。$(br)小菜一碟，你只需要利用你宝石的光操纵特性。",
-			"type":"patchouli:text",
-			"title":"幻翼展示框"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/invisible_item_frame",
-			"text":"当您在其中显示一个物品时，幻翼展示框就会不可见。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座制作"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/invisible_glow_item_frame",
-			"text":"这一款还有另一个很好的触感：里面的物品在明亮的光线下闪闪发光，使它看起来更加壮观。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"辉光幻翼展示框"
-		}
-	],
-	"advancement":"spectrum:collect_sparklestone",
-	"extra_recipe_mappings":{
-		"spectrum:invisible_item_frame":0,
-		"spectrum:invisible_glow_item_frame":0
-	},
-	"name":"幻翼展示框",
-	"icon":"spectrum:invisible_item_frame",
-	"category":"spectrum:decoration_category"
+  "name": "幻影物品展示框",
+  "icon": "spectrum:invisible_item_frame",
+  "advancement": "spectrum:collect_sparklestone",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:invisible_item_frame": 0,
+    "spectrum:invisible_glow_item_frame": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "幻影物品展示框",
+      "text": "$(italic)谁不喜欢展示精美的战利品？但展示框本身偶尔也有影响观感的时候……$(br)嘛，不是大事——用宝石晶的特殊光学效应就可以轻松解决这一问题。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier1/invisible_item_frame",
+      "text": "幻影物品展示框会在放入物品后立刻隐形。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "幻影荧光物品展示框",
+      "recipe": "spectrum:pedestal/tier1/invisible_glow_item_frame",
+      "text": "这款更是美妙：放入的物品会放出迷人的光芒。"
+    }
+  ]
 }

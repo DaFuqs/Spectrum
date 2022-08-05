@@ -1,36 +1,36 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)方解石和玄武岩可以控制宝石的能量，只要它们完全包围晶洞，这是肯定的。然而，有时几个世纪以来积累的能量如此强大，以至于在晶洞中撕裂了一个洞。$(br2)你把整个事情都做了缩影。当然，你的新建筑拥有很多神奇的能量。$()",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier2/runes/topaz_chiseled_basalt_from_shards",
-			"text":"有各种宝石颜色可供选择。框架可以由$(l:decoration/block_variants#polished_basalt)磨制玄武岩$()或$(l:decoration/block_variants#polished_calcite)磨制方解石$()制成。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier2/runes/amethyst_chiseled_basalt_from_cluster",
-			"text":"如果你成功地掌握了完整的宝石簇，那么符文的创建效率会更高。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"替代配方"
-		}
-	],
-	"advancement":"spectrum:create_onyx_shard",
-	"extra_recipe_mappings":{
-		"spectrum:topaz_chiseled_basalt":0,
-		"spectrum:moonstone_chiseled_basalt":0,
-		"spectrum:amethyst_chiseled_basalt":0,
-		"spectrum:amethyst_chiseled_calcite":0,
-		"spectrum:topaz_chiseled_calcite":0,
-		"spectrum:citrine_chiseled_basalt":0,
-		"spectrum:onyx_chiseled_basalt":0,
-		"spectrum:citrine_chiseled_calcite":0,
-		"spectrum:onyx_chiseled_calcite":0,
-		"spectrum:moonstone_chiseled_calcite":0
-	},
-	"name":"宝石符文",
-	"icon":"spectrum:citrine_chiseled_calcite",
-	"category":"spectrum:decoration_category"
+  "name": "宝石晶符文",
+  "advancement": "spectrum:create_onyx_shard",
+  "icon": "spectrum:citrine_chiseled_calcite",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_chiseled_basalt": 0,
+    "spectrum:amethyst_chiseled_basalt": 0,
+    "spectrum:citrine_chiseled_basalt": 0,
+    "spectrum:onyx_chiseled_basalt": 0,
+    "spectrum:moonstone_chiseled_basalt": 0,
+    "spectrum:topaz_chiseled_calcite": 0,
+    "spectrum:amethyst_chiseled_calcite": 0,
+    "spectrum:citrine_chiseled_calcite": 0,
+    "spectrum:onyx_chiseled_calcite": 0,
+    "spectrum:moonstone_chiseled_calcite": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)可以确定的是，方解石与玄武岩将晶洞牢牢封存，一同护卫着晶洞蕴含的能量。然而，世纪以来积累的能量终会超载，最终将晶洞的物理结构直接洞穿。$(br2)你用微缩的形式复刻了这份景观。想必其中也封存了很多能量吧——浓缩就是精华。$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier2/runes/topaz_chiseled_basalt_from_shards",
+      "text": "宝石晶符文的材质取决于选用的宝石晶材料。可选$(l:decoration/block_variants#polished_basalt)磨制玄武岩$()与$(l:decoration/block_variants#polished_calcite)磨制方解石$()作为合成原料。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "可选基座配方",
+      "recipe": "spectrum:pedestal/tier2/runes/amethyst_chiseled_basalt_from_cluster",
+      "text": "用完整的宝石晶簇来进行合成，效率就高多了。"
+    }
+  ]
 }

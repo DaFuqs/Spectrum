@@ -1,26 +1,26 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)在处理这些宝石足够长的时间后，你现在发现自己能够以最好的方式塑造这些脆弱的资源。$(br2)钟声在风中缓缓摇曳，让你想起了旅程的开始——第一次踏上大地。",
-			"type":"patchouli:text",
-			"title":"宝石编钟"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
-			"text":"每个钟声都发出相应宝石的舒缓声音。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/gemstone_chimes/unlock_any_chime",
-	"extra_recipe_mappings":{
-		"spectrum:topaz_chime":0,
-		"spectrum:citrine_chime":0,
-		"spectrum:amethyst_chime":0,
-		"spectrum:moonstone_chime":0,
-		"spectrum:onyx_chime":0
-	},
-	"name":"宝石编钟",
-	"icon":"spectrum:amethyst_chime",
-	"category":"spectrum:decoration_category"
+  "name": "宝石晶风铃",
+  "icon": "spectrum:amethyst_chime",
+  "advancement": "spectrum:progression/gemstone_chimes/unlock_any_chime",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_chime": 0,
+    "spectrum:amethyst_chime": 0,
+    "spectrum:citrine_chime": 0,
+    "spectrum:onyx_chime": 0,
+    "spectrum:moonstone_chime": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "宝石晶风铃",
+      "text": "$(italic)宝石晶虽脆弱而难以塑形，但你锻造宝石晶的能力已经出神入化，炉火纯青。$(br2)摇曳时回响的叮铃是否让你回忆起驻足晶洞之间时懵懂的起点？旅途总有启程。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
+      "text": "风铃的鸣响声取决于选用的宝石晶材料。"
+    }
+  ]
 }

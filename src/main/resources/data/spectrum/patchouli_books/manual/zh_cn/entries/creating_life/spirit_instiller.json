@@ -15,7 +15,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/spirit_instiller",
-      "text": "灵魂灌注台也需要基座结构。对着已放置的灵魂灌注台右键来旋转投影。"
+      "text": "灵魂灌注台也需要基座结构。对着已放置的灵魂灌注台右击来旋转投影。"
     },
     {
       "type": "patchouli:multiblock",
@@ -27,7 +27,7 @@
     {
       "type": "patchouli:text",
       "title": "Block Checklist",
-      "text": "$(li)1个灵魂灌注台$(li)2个物品底座$(li)2个錾制缺口岩石方块$(li)2个錾制磨制岩石方块$(li)2个錾制缟玛瑙岩石方块$(li)6个磨制岩石柱$(li)17个磨制岩石半砖$(li)41个磨制岩石方块$(li)2个宝石风铃"
+      "text": "$(li)1个灵魂灌注台$(li)2个物品底座$(li)2个无印錾制岩石方块(li)2个錾制磨制岩石方块$(li)2个錾制缟玛瑙岩石方块$(li)6个磨制岩石柱$(li)17个磨制岩石半砖$(li)41个磨制岩石方块$(li)2个宝石晶风铃"
     }
   ]
 }

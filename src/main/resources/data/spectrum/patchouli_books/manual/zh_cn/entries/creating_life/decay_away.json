@@ -1,5 +1,5 @@
 {
-  "name": "清理微生物",
+  "name": "祛消解微生物 ",
   "icon": "spectrum:bottle_of_decay_away",
   "advancement": "spectrum:progression/unlock_bottle_of_decay_away",
   "category": "spectrum:creating_life_category",  
@@ -8,7 +8,7 @@
   },
   "pages": [
     {
-      "title": "清理微生物",
+      "title": "祛消解微生物",
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_decay_away",
       "text": "你上次的实验不仅危险，还很难清理干净。$(br)为防止事态失控，你创造了这种变体微生物。这次，是为修缮而非吞没你的基地。$(br2)这主意不就好多了！"

@@ -111,7 +111,7 @@
       "type": "patchouli:spotlight",
       "title": "生物头颅",
       "item": "spectrum:cow_head",
-      "text": "$(l:enchanting/treasure_hunter)灵魂猎手$(/l)附魔可以获取生物的头颅。$(br)作为表现征服战果的展品固然不错，但它们依稀闪烁着曾有的生气。"
+      "text": "$(l:enchanting/treasure_hunter)灵魂猎手$(/l)附魔可以获取生物的头颅。$(br)作为彰显征服战果的展品固然不错，但它们依稀闪烁着曾有的生气。"
     }
   ]
 }

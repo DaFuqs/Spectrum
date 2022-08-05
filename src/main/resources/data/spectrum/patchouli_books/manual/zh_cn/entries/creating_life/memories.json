@@ -17,7 +17,7 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "灵魂灌注配方",
       "recipe": "spectrum:spirit_instiller/memories/fox",
-      "text": "重唤回忆需要生物的$(l:creating_life/mob_heads)头颅$(/l)和它最喜欢的物品，并使用$(l:creating_life/fading#vegetal)植本质$(/l)进行结合。$(br)换用$(l:creating_life/failing#neolith)坚新石$(/l)则会完全遮蔽生物本来的能量，使得回忆本身无法被识别，持续到它完全具现化为止。"
+      "text": "重唤回忆需要生物的$(l:creating_life/mob_heads)头颅$(/l)和它最喜欢的物品，并使用$(l:creating_life/fading#vegetal)植本质$(/l)作为介质进行结合。$(br)换用$(l:creating_life/failing#neolith)坚新石$(/l)则会完全遮蔽生物本来的能量，使得回忆本身无法被识别，直到它完全具现化为止。"
     },
     {
       "type": "patchouli:text",

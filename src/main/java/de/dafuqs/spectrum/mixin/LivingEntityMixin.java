@@ -15,7 +15,6 @@ import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import de.dafuqs.spectrum.sar.modifier.SimpleDamageMultiplier;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -200,7 +199,7 @@ public abstract class LivingEntityMixin {
 		return amount;
 	}
 
-	@ModifyVariable(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"), argsOnly = true)
+	/*@ModifyVariable(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"), argsOnly = true)
 	public float spectrum$applyGraceDamage(float amount, DamageSource source) {
 
 		if (attacker == null)
@@ -217,7 +216,7 @@ public abstract class LivingEntityMixin {
 			amount = offMod.get().apply(source, mainHand, amount);
 
 		return amount;
-	}
+	}*/
 	
 	@Inject(at = @At("RETURN"), method = "tryUseTotem(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)
 	public void spectrum$checkForTotemPendant(DamageSource source, CallbackInfoReturnable<Boolean> cir) {

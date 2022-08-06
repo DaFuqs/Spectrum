@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.graces.crystal;
+/*package de.dafuqs.spectrum.graces.crystal;
 
 import net.immortaldevs.sar.api.Component;
 
@@ -12,3 +12,4 @@ public abstract class CrystalEffectComponent extends Component {
         this.pool = pool;
     }
 }
+*/

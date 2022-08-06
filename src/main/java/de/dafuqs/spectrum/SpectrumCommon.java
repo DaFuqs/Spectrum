@@ -28,7 +28,6 @@ import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import de.dafuqs.spectrum.sar.SpectrumComponents;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import de.dafuqs.spectrum.worldgen.structure_features.SpectrumStructureFeatures;
@@ -136,8 +135,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumBlocks.register();
 		logInfo("Registering Items...");
 		SpectrumItems.register();
-		logInfo("Registering SAR Components...");
-		SpectrumComponents.register();
+		//logInfo("Registering SAR Components...");
+		//SpectrumComponents.register();
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register();
 		

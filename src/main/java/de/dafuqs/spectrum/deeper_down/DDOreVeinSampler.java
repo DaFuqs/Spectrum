@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.deeper_down;
 
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.MathHelper;
@@ -58,12 +59,12 @@ public final class DDOreVeinSampler {
     }
 
     protected enum VeinType {
-        IRON(Blocks.DEEPSLATE_IRON_ORE.getDefaultState(), Blocks.RAW_IRON_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -400, -96),
-        GOLD(Blocks.DEEPSLATE_GOLD_ORE.getDefaultState(), Blocks.RAW_GOLD_BLOCK.getDefaultState(), Blocks.DIORITE.getDefaultState(), -384, -128),
-        DIAMOND(Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState(), Blocks.COAL_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -400, -256),
-        REDSTONE(Blocks.DEEPSLATE_REDSTONE_ORE.getDefaultState(), Blocks.REDSTONE_BLOCK.getDefaultState(), Blocks.GRANITE.getDefaultState(), -256, -96),
-        LAPIS(Blocks.DEEPSLATE_LAPIS_ORE.getDefaultState(), Blocks.LAPIS_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -384, -128),
-        EMERALD(Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState(), Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState(), Blocks.DIORITE.getDefaultState(), -400, -128);
+        IRON(SpectrumBlocks.BLACKSLAG_IRON_ORE.getDefaultState(), Blocks.RAW_IRON_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -400, -96),
+        GOLD(SpectrumBlocks.BLACKSLAG_GOLD_ORE.getDefaultState(), Blocks.RAW_GOLD_BLOCK.getDefaultState(), Blocks.DIORITE.getDefaultState(), -384, -128),
+        DIAMOND(SpectrumBlocks.BLACKSLAG_DIAMOND_ORE.getDefaultState(), Blocks.COAL_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -400, -256),
+        REDSTONE(SpectrumBlocks.BLACKSLAG_REDSTONE_ORE.getDefaultState(), Blocks.REDSTONE_BLOCK.getDefaultState(), Blocks.GRANITE.getDefaultState(), -256, -96),
+        LAPIS(SpectrumBlocks.BLACKSLAG_LAPIS_ORE.getDefaultState(), Blocks.LAPIS_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -384, -128),
+        EMERALD(SpectrumBlocks.BLACKSLAG_EMERALD_ORE.getDefaultState(), Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState(), Blocks.DIORITE.getDefaultState(), -400, -128);
 
         final BlockState ore;
         final BlockState rawOreBlock;

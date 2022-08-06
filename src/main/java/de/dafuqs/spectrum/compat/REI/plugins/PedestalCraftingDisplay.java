@@ -32,7 +32,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	 * @param recipe The recipe
 	 */
 	public PedestalCraftingDisplay(PedestalCraftingRecipe recipe) {
-		super(recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new)), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
+		super(mapIngredients(recipe), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
@@ -47,6 +47,15 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
 	}
 	
+	private static List<EntryIngredient> mapIngredients(PedestalCraftingRecipe recipe) {
+		int shownGemstoneSlotCount = recipe.getTier() == PedestalRecipeTier.COMPLEX ? 5 : recipe.getTier() == PedestalRecipeTier.ADVANCED ? 4 : 3;
+		List<EntryIngredient> list = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
+		while(list.size() < 9 + shownGemstoneSlotCount) {
+			list.add(EntryIngredient.empty());
+		}
+		return list;
+	}
+	
 	/**
 	 * When using Shift click on the plus button in the REI gui to autofill crafting grids & recipe favourites
 	 */
@@ -57,12 +66,6 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		this.experience = experience;
 		this.craftingTime = craftingTime;
 		this.pedestalRecipeTier = PedestalRecipeTier.valueOf(recipeTier.toUpperCase(Locale.ROOT));
-	}
-	
-	public static int getSlotWithSize(int recipeWidth, int index) {
-		int x = index % recipeWidth;
-		int y = (index - x) / recipeWidth;
-		return 3 * y + x;
 	}
 	
 	public static Serializer<PedestalCraftingDisplay> serializer() {

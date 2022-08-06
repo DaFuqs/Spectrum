@@ -10,7 +10,7 @@ import me.shedaniel.rei.api.common.transfer.info.simple.RecipeBookGridMenuInfo;
 import me.shedaniel.rei.api.common.transfer.info.simple.SimpleMenuInfoProvider;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
 
-public class REIServerIntegration implements REIServerPlugin {
+public class REICommonIntegration implements REIServerPlugin {
 	
 	// For shift-clicking into crafting gui
 	@Override

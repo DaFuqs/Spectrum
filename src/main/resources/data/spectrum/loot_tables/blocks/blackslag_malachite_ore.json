@@ -2,7 +2,7 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
+      "rolls": 1,
       "bonus_rolls": 0.0,
       "entries": [
         {
@@ -10,6 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
+              "name": "spectrum:blackslag_malachite_ore",
               "conditions": [
                 {
                   "condition": "minecraft:match_tool",
@@ -24,12 +25,21 @@
                     ]
                   }
                 }
-              ],
-              "name": "spectrum:blackslag_gold_ore"
+              ]
             },
             {
               "type": "minecraft:item",
+              "name": "spectrum:raw_malachite",
               "functions": [
+                {
+                  "function": "minecraft:set_count",
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "min": 1.0,
+                    "max": 2.0
+                  },
+                  "add": false
+                },
                 {
                   "function": "minecraft:apply_bonus",
                   "enchantment": "minecraft:fortune",
@@ -38,8 +48,7 @@
                 {
                   "function": "minecraft:explosion_decay"
                 }
-              ],
-              "name": "minecraft:raw_gold"
+              ]
             }
           ]
         }

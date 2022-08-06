@@ -1155,6 +1155,7 @@ public class SpectrumBlocks {
 	private static void registerOreBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
 		registerBlockWithItem("sparklestone_ore", SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("deepslate_sparklestone_ore", DEEPSLATE_SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("blackslag_sparklestone_ore", BLACKSLAG_SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
 		
 		registerBlockWithItem("azurite_ore", AZURITE_ORE, fabricItemSettings, DyeColor.BLUE);
 		registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, fabricItemSettings, DyeColor.BLUE);
@@ -1169,10 +1170,18 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("malachite_ore", MALACHITE_ORE, worldgenItemSettings, DyeColor.GREEN);
 		registerBlockWithItem("deepslate_malachite_ore", DEEPSLATE_MALACHITE_ORE, worldgenItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("blackslag_malachite_ore", BLACKSLAG_MALACHITE_ORE, fabricItemSettings, DyeColor.GREEN);
 		registerBlockWithItem("small_malachite_bud", SMALL_MALACHITE_BUD, worldgenItemSettings, DyeColor.GREEN);
 		registerBlockWithItem("large_malachite_bud", LARGE_MALACHITE_BUD, worldgenItemSettings, DyeColor.GREEN);
 		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, worldgenItemSettings, DyeColor.GREEN);
 		registerBlockWithItem("malachite_block", MALACHITE_BLOCK, decorationItemSettingsUncommon, DyeColor.GREEN);
+		
+		registerBlockWithItem("blackslag_coal_ore", BLACKSLAG_COAL_ORE, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("blackslag_iron_ore", BLACKSLAG_IRON_ORE, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("blackslag_gold_ore", BLACKSLAG_GOLD_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("blackslag_diamond_ore", BLACKSLAG_DIAMOND_ORE, fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("blackslag_redstone_ore", BLACKSLAG_REDSTONE_ORE, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("blackslag_lapis_ore", BLACKSLAG_LAPIS_ORE, fabricItemSettings, DyeColor.BLUE);
 	}
 	
 	private static void registerOreStorageBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
@@ -1286,14 +1295,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("calcite_brick_stairs", CALCITE_BRICK_STAIRS, fabricItemSettings, DyeColor.BROWN);
 
 		registerBlockWithItem("blackslag", BLACKSLAG, fabricItemSettings, DyeColor.BLACK);
-		registerBlockWithItem("blackslag_coal_ore", BLACKSLAG_COAL_ORE, fabricItemSettings, DyeColor.BLACK);
-		registerBlockWithItem("blackslag_iron_ore", BLACKSLAG_IRON_ORE, fabricItemSettings, DyeColor.BROWN);
-		registerBlockWithItem("blackslag_gold_ore", BLACKSLAG_GOLD_ORE, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("blackslag_diamond_ore", BLACKSLAG_DIAMOND_ORE, fabricItemSettings, DyeColor.LIGHT_BLUE);
-		registerBlockWithItem("blackslag_redstone_ore", BLACKSLAG_REDSTONE_ORE, fabricItemSettings, DyeColor.RED);
-		registerBlockWithItem("blackslag_lapis_ore", BLACKSLAG_LAPIS_ORE, fabricItemSettings, DyeColor.BLUE);
-		registerBlockWithItem("blackslag_sparklestone_ore", BLACKSLAG_SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("blackslag_malachite_ore", BLACKSLAG_MALACHITE_ORE, fabricItemSettings, DyeColor.GREEN);
 	}
 	
 	private static void registerRunes(FabricItemSettings fabricItemSettings) {

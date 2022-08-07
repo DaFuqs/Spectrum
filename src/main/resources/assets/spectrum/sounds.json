@@ -16,6 +16,11 @@
       "spectrum:enchanter_ding"
     ]
   },
+  "bottomless_bundle_zip": {
+    "sounds": [
+      "spectrum:bottomless_bundle_zip"
+    ]
+  },
   "spectrum.ui.button_click": {
     "sounds": [
       "spectrum:button_click"

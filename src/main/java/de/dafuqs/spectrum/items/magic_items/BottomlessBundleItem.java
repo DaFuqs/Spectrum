@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.items.tooltip.VoidBundleTooltipData;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
@@ -198,7 +199,20 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
-		if (dropOneBundledStack(itemStack, user)) {
+		if(user.isSneaking()) {
+			if(!world.isClient) {
+				ItemStack handStack = user.getStackInHand(hand);
+				NbtCompound compound = handStack.getOrCreateNbt();
+				if (compound.contains("Locked")) {
+					compound.remove("Locked");
+					plaZipSound(user, 0.8F);
+				} else {
+					compound.putBoolean("Locked", true);
+					plaZipSound(user, 1.0F);
+				}
+			}
+			return TypedActionResult.success(itemStack, world.isClient());
+		} else if (dropOneBundledStack(itemStack, user)) {
 			this.playDropContentsSound(user);
 			user.incrementStat(Stats.USED.getOrCreateStat(this));
 			return TypedActionResult.success(itemStack, world.isClient());
@@ -295,14 +309,25 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+		boolean locked = false;
+		if(stack.getNbt() != null && stack.getNbt().contains("Locked")) {
+			locked = true;
+		}
 		int storedAmount = getStoredAmount(stack);
 		if (storedAmount == 0) {
 			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.empty").formatted(Formatting.GRAY));
+			if(locked) {
+				tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.locked").formatted(Formatting.GRAY));
+			}
 		} else {
 			ItemStack firstStack = getFirstBundledStack(stack);
 			String totalStacks = Support.getShortenedNumberString(storedAmount / (float) firstStack.getMaxCount());
 			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.count", storedAmount, getMaxStoredAmount(stack), totalStacks).formatted(Formatting.GRAY));
-			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
+			if(locked) {
+				tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.locked").formatted(Formatting.GRAY));
+			} else {
+				tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
+			}
 		}
 		if (EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, stack) > 0) {
 			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.voiding"));
@@ -422,6 +447,10 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	
 	private void playDropContentsSound(Entity entity) {
 		entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
+	}
+	
+	private void plaZipSound(Entity entity, float basePitch) {
+		entity.playSound(SpectrumSoundEvents.BOTTOMLESS_BUNDLE_ZIP, 0.8F, basePitch + entity.getWorld().getRandom().nextFloat() * 0.4F);
 	}
 	
 	@Override

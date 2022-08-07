@@ -26,6 +26,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent FUSION_SHRINE_CRAFTING_FINISHED = register("fusion_shrine_crafting_finished");
 	public static final SoundEvent CRAFTING_ABORTED = register("fusion_shrine_crafting_aborted");
 	public static final SoundEvent BUTTON_CLICK = register("spectrum.ui.button_click");
+	public static final SoundEvent BOTTOMLESS_BUNDLE_ZIP = register("bottomless_bundle_zip");
 	
 	public static final SoundEvent ENCHANTER_WORKING = register("enchanter_working");
 	public static final SoundEvent ENCHANTER_DING = register("enchanter_ding");

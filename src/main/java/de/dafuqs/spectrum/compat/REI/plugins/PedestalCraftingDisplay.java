@@ -140,5 +140,4 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		return this.pedestalRecipeTier;
 	}
 	
-	
 }

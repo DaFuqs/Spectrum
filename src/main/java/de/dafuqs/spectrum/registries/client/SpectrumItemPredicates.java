@@ -33,6 +33,23 @@ public class SpectrumItemPredicates {
 		registerSinglePigmentEnergyStorageItemPredicates(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerDreamFlayerPredicates(SpectrumItems.DREAMFLAYER);
+		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
+	}
+	
+	private static void registerBottomlessBundlePredicates(Item item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("locked"), (itemStack, clientWorld, livingEntity, i) -> {
+			NbtCompound compound = itemStack.getNbt();
+			if(compound == null)
+				return 0.0F;
+			return compound.contains("Locked") ? 1.0F : 0.0F;
+		});
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("filled"), (itemStack, clientWorld, livingEntity, i) -> {
+			NbtCompound compound = itemStack.getNbt();
+			if(compound == null)
+				return 0.0F;
+			return compound.contains("StoredStack") ? 1.0F : 0.0F;
+		});
+		
 	}
 	
 	private static void registerMoonPhasePredicates(Item item) {

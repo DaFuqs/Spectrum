@@ -1,12 +1,89 @@
 {
   "name": "Botania",
-  "icon": "minecraft:dirt",
+  "icon": "botania:mana_pool",
   "flag": "mod:botania",
   "category": "spectrum:mod_integration_category",
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": ""
+      "type": "spectrum:anvil_crushing",
+      "title": "Crushing Petals",
+      "advancement": "spectrum:place_pedestal",
+      "recipe": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
+      "text": "While crushing flowers seems a bit unorthodox, it $(italic)did$() seem to work. No problem plucking the petals from the flattened blossom after that."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ink from Petals",
+      "advancement": "spectrum:midgame/place_color_picker",
+      "item": "botania:magenta_petal",
+      "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble $(l:general/colored_trees)Color Trees$(/l) in more than just one point.$(br2)No wonder that their petals can also be used to create $(l:magic/ink)Ink$(/l)."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Glimmering Flowers",
+      "advancement": "spectrum:collect_sparklestone",
+      "recipe": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower",
+      "text": "Adding some $(l:resources/sparklestone)Sparklestone(/l) to magical flowers makes them glimmer."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Colored Mushrooms",
+      "advancement": "spectrum:collect_pigment",
+      "recipe": "spectrum:mod_integration/botania/pedestal/mushrooms/blue_mushroom",
+      "text": "Applying $(l:general/pigment)Pigment$(/l) to mushrooms colors them in the respective color."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:collect_pigment",
+      "recipe": "spectrum:mod_integration/botania/pedestal/floral_fertilizer",
+      "text": "Using $(l:general/pigment)Pigment$(/l) instead of mundane Dye when creating $(thing)Floral Fertilizer$() is quite a bit more yielding."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "advancement": "spectrum:hidden/collect_jade_vine_petals",
+      "recipe": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus",
+      "text": "The $(thing)Black Lotus$() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some $(thing)Jade Petals$()"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
+      "recipe": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed",
+      "text": "Those elusive seeds you could only find in chests hidden around the world? While pricey - maybe not even worth the hassle - you finally found a way to replicate those."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:black_lotus",
+      "text": "Infuses the Potion with a huge amount of additional positive as well as negative, effects, but it's black color also makes it completely unidentifiable. What might you get?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:blacker_lotus",
+      "text": "Infuses the Potion with a huge amount of additional - mostly positive - effects, but it's black color also makes it completely unidentifiable. What might you get?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:life_essence",
+      "text": "Makes your Potions much more potent, but at a huge loss of duration. If the duration will get too short the potion might end up useless altogether..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:mana_powder",
+      "text": "Gives a small multiplicative boost to Duration and a tiny chance to add the last brewed effect, too."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "New Potion Reagent",
+      "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+      "item": "botania:pixie_dust",
+      "text": "Converts the Potions into Lingering Potions as a single reagent. This way it allows you to directly create Tipped Arrows, too!"
     }
   ]
 }

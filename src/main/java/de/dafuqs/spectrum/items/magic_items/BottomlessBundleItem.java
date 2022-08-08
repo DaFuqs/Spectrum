@@ -200,14 +200,16 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
 		if(user.isSneaking()) {
-			if(!world.isClient) {
-				ItemStack handStack = user.getStackInHand(hand);
-				NbtCompound compound = handStack.getOrCreateNbt();
-				if (compound.contains("Locked")) {
-					compound.remove("Locked");
+			ItemStack handStack = user.getStackInHand(hand);
+			NbtCompound compound = handStack.getOrCreateNbt();
+			if (compound.contains("Locked")) {
+				compound.remove("Locked");
+				if(world.isClient) {
 					plaZipSound(user, 0.8F);
-				} else {
-					compound.putBoolean("Locked", true);
+				}
+			} else {
+				compound.putBoolean("Locked", true);
+				if(world.isClient) {
 					plaZipSound(user, 1.0F);
 				}
 			}

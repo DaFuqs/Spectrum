@@ -5,7 +5,7 @@
     "item": "spectrum:black_leaves"
   },
   "result" : {
-    "item": "spectrum:black_pigment",
+    "item": "minecraft:black_dye",
 	"count": 6
   },
   "fabric:load_conditions": [

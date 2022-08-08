@@ -5,7 +5,7 @@
     "item": "spectrum:pink_leaves"
   },
   "result" : {
-    "item": "spectrum:pink_pigment",
+    "item": "minecraft:pink_dye",
 	"count": 6
   },
   "fabric:load_conditions": [

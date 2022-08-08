@@ -25,7 +25,7 @@
   },
   "result": {
     "item": "botania:cyan_mushroom",
-    "count": 3
+    "count": 1
   },
   "required_advancement": "spectrum:hidden/collect_pigment/collect_cyan_pigment",
   "fabric:load_conditions": [

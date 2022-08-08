@@ -25,7 +25,7 @@
   },
   "result": {
     "item": "botania:green_mushroom",
-    "count": 3
+    "count": 1
   },
   "required_advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
   "fabric:load_conditions": [

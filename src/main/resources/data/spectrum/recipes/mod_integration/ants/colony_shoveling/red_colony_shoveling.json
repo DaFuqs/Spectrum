@@ -5,7 +5,7 @@
     "item": "spectrum:red_leaves"
   },
   "result" : {
-    "item": "spectrum:red_pigment",
+    "item": "minecraft:red_dye",
 	"count": 6
   },
   "fabric:load_conditions": [

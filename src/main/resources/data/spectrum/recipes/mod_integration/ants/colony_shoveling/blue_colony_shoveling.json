@@ -5,7 +5,7 @@
     "item": "spectrum:blue_leaves"
   },
   "result" : {
-    "item": "spectrum:blue_pigment",
+    "item": "minecraft:blue_dye",
 	"count": 6
   },
   "fabric:load_conditions": [

@@ -5,7 +5,7 @@
     "item": "spectrum:light_gray_leaves"
   },
   "result" : {
-    "item": "spectrum:light_gray_pigment",
+    "item": "minecraft:light_gray_dye",
 	"count": 6
   },
   "fabric:load_conditions": [

@@ -45,9 +45,10 @@ public abstract class BlockMixin {
 		// Voiding curse: no drops
 		if (enchantmentMap.containsKey(SpectrumEnchantments.VOIDING)) {
 			world.spawnParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.5, 0.5, 0.5, 0.05);
+			droppedStacks.clear();
 		// Resonance: drop itself
 		} else if(enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && (state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
-			droppedStacks = new ArrayList<>();
+			droppedStacks.clear();
 			droppedStacks.add(state.getBlock().asItem().getDefaultStack());
 		}
 		

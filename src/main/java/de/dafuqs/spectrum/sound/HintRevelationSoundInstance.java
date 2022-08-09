@@ -44,7 +44,7 @@ public class HintRevelationSoundInstance extends AbstractSoundInstance implement
 	@Override
 	public void tick() {
 		playtime++;
-		if (player == null || !player.getMainHandStack().isOf(SpectrumItems.MANUAL) || playtime > duration) {
+		if (player == null || !player.getMainHandStack().isOf(SpectrumItems.GUIDEBOOK) || playtime > duration) {
 			this.setDone();
 		}
 	}

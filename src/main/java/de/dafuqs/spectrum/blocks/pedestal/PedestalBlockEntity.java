@@ -73,11 +73,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	protected UUID ownerUUID;
 	protected PedestalVariant pedestalVariant;
 	protected DefaultedList<ItemStack> inventory;
-	protected boolean wasPoweredBefore;
+	protected boolean shouldCraft;
 	protected float storedXP;
 	protected int craftingTime;
 	protected int craftingTimeTotal;
-	protected Recipe currentRecipe;
+	protected @Nullable Recipe currentRecipe;
 	protected PedestalRecipeTier cachedMaxPedestalTier;
 	protected long cachedMaxPedestalTierTick;
 	protected Map<UpgradeType, Float> upgrades;
@@ -154,6 +154,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		Recipe calculatedRecipe = calculateRecipe(world, pedestalBlockEntity);
 		pedestalBlockEntity.inventoryChanged = false;
 		if (pedestalBlockEntity.currentRecipe != calculatedRecipe) {
+			pedestalBlockEntity.shouldCraft = false;
 			pedestalBlockEntity.currentRecipe = calculatedRecipe;
 			pedestalBlockEntity.craftingTime = 0;
 			if (calculatedRecipe instanceof PedestalCraftingRecipe calculatedPedestalCraftingRecipe) {
@@ -167,7 +168,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 		
 		// only craft when there is redstone power
-		if (pedestalBlockEntity.craftingTime == 0 && !(blockState.getBlock() instanceof PedestalBlock && blockState.get(PedestalBlock.POWERED))) {
+		if (pedestalBlockEntity.craftingTime == 0 && !pedestalBlockEntity.shouldCraft && !(blockState.getBlock() instanceof PedestalBlock && blockState.get(PedestalBlock.POWERED))) {
 			return;
 		}
 		
@@ -197,7 +198,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 		}
 		
-		if ((!pedestalBlockEntity.wasPoweredBefore && pedestalBlockEntity.craftingTime > 0) || (pedestalBlockEntity.craftingTime == 1 && pedestalBlockEntity.craftingTimeTotal > 1)) {
+		if (pedestalBlockEntity.craftingTime == 1 && pedestalBlockEntity.craftingTimeTotal > 1) {
 			SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.PEDESTAL_CRAFTING, (ServerWorld) pedestalBlockEntity.world, pedestalBlockEntity.getPos(), pedestalBlockEntity.craftingTimeTotal - pedestalBlockEntity.craftingTime);
 		}
 		
@@ -231,7 +232,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (shouldMarkDirty) {
 			markDirty(world, blockPos, blockState);
 		}
-		pedestalBlockEntity.wasPoweredBefore = true;
 	}
 	
 	@Contract(pure = true)

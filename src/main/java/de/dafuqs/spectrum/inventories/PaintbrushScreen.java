@@ -185,7 +185,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	
 	private void chooseColor(@Nullable InkColor inkColor) {
 		SpectrumC2SPacketSender.sendInkColorSelectedInGUI(inkColor);
-		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SELECT, SoundCategory.NEUTRAL, 0.6F, 1.0F, false);
+		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.NEUTRAL, 0.6F, 1.0F, false);
 		client.player.closeHandledScreen();
 		
 	}

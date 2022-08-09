@@ -291,6 +291,8 @@
   "enchantment.spectrum.indestructible": "Indestructible",
   "enchantment.spectrum.indestructible.desc": "Makes the tool fully unbreakable",
 
+  "spectrum.subtitles.paintbrush_trigger": "Paintbrush activation",
+  "spectrum.subtitles.paintbrush_paint": "Paintbrush paints",
   "spectrum.subtitles.celestial_pocket_watch_ticking": "Pocketwatch ticks",
   "spectrum.subtitles.shooting_star_cracker": "Shooting Star cracks",
   "spectrum.subtitles.block.memory.advance": "Memory defines further",
@@ -1318,6 +1320,7 @@
   "item.spectrum.end_portal_cracker": "End Portal Cracker",
   "item.spectrum.manual": "Colorful World",
   "item.spectrum.manual.landing_text": "$(br)The energies growing$(br)$(c_gray) like roots, they sprout$()$(br)magic of nature overflowing$(br)$(c_gray) ’til you discover$(br) what's all about.",
+  "item.spectrum.paintbrush": "Paintbrush",
   "item.spectrum.multitool": "Multitool",
   "item.spectrum.silker_pickaxe": "Tender Pickaxe",
   "item.spectrum.fortune_pickaxe": "Lucky Pickaxe",

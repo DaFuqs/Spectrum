@@ -17,7 +17,9 @@ public interface PaintbrushTriggered {
 		if(player.getStackInHand(hand).getItem() instanceof PaintBrushItem) {
 			ActionResult actionResult = onPaintBrushTrigger(state, world, pos, player, hand, hit);
 			if(actionResult.isAccepted()) {
-				world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				world.playSound(null, pos, SpectrumSoundEvents.PAINTBRUSH_TRIGGER, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			} else {
+				world.playSound(null, pos, SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			}
 			return actionResult;
 		}

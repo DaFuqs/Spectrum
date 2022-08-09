@@ -37,6 +37,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent CELESTIAL_POCKET_WATCH_TICKING = register("celestial_pocket_watch_ticking");
 	public static final SoundEvent CELESTIAL_POCKET_WATCH_FLY_BY = register("celestial_pocket_watch_sky_fly_by");
 	
+	public static final SoundEvent PAINTBRUSH_TRIGGER = register("paintbrush_trigger");
+	public static final SoundEvent PAINTBRUSH_PAINT = register("paintbrush_paint");
+	
 	public static final SoundEvent SHOOTING_STAR_CRACKER = register("shooting_star_cracker");
 	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");
@@ -70,7 +73,6 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent MIDNIGHT_SOLUTION_AMBIENT = register("midnight_solution_ambient");
 	
 	public static final SoundEvent FADING_PLACED = register("fading_placed");
-	;
 	public static final SoundEvent FAILING_PLACED = register("failing_placed");
 	public static final SoundEvent RUIN_PLACED = register("ruin_placed");
 	
@@ -92,6 +94,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BLOCK_MEDIUM_CITRINE_BUD_PLACE = register("block.medium_citrine_bud.place");
 	public static final SoundEvent BLOCK_LARGE_CITRINE_BUD_BREAK = register("block.large_citrine_bud.break");
 	public static final SoundEvent BLOCK_LARGE_CITRINE_BUD_PLACE = register("block.large_citrine_bud.place");
+	public static final SoundEvent BLOCK_CITRINE_BLOCK_CHIME = register("block.citrine_block.chime");
 	
 	public static final SoundEvent BLOCK_TOPAZ_BLOCK_BREAK = register("block.topaz_block.break");
 	public static final SoundEvent BLOCK_TOPAZ_BLOCK_STEP = register("block.topaz_block.step");
@@ -109,6 +112,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BLOCK_MEDIUM_TOPAZ_BUD_PLACE = register("block.medium_topaz_bud.place");
 	public static final SoundEvent BLOCK_LARGE_TOPAZ_BUD_BREAK = register("block.large_topaz_bud.break");
 	public static final SoundEvent BLOCK_LARGE_TOPAZ_BUD_PLACE = register("block.large_topaz_bud.place");
+	public static final SoundEvent BLOCK_TOPAZ_BLOCK_CHIME = register("block.topaz_block.chime");
+	
 	public static final SoundEvent BLOCK_ONYX_BLOCK_BREAK = register("block.onyx_block.break");
 	public static final SoundEvent BLOCK_ONYX_BLOCK_STEP = register("block.onyx_block.step");
 	public static final SoundEvent BLOCK_ONYX_BLOCK_PLACE = register("block.onyx_block.place");
@@ -125,6 +130,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BLOCK_MEDIUM_ONYX_BUD_PLACE = register("block.medium_onyx_bud.place");
 	public static final SoundEvent BLOCK_LARGE_ONYX_BUD_BREAK = register("block.large_onyx_bud.break");
 	public static final SoundEvent BLOCK_LARGE_ONYX_BUD_PLACE = register("block.large_onyx_bud.place");
+	public static final SoundEvent BLOCK_ONYX_BLOCK_CHIME = register("block.onyx_block.chime");
+	
 	public static final SoundEvent BLOCK_MOONSTONE_BLOCK_BREAK = register("block.moonstone_block.break");
 	public static final SoundEvent BLOCK_MOONSTONE_BLOCK_STEP = register("block.moonstone_block.step");
 	public static final SoundEvent BLOCK_MOONSTONE_BLOCK_PLACE = register("block.moonstone_block.place");
@@ -141,6 +148,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BLOCK_MEDIUM_MOONSTONE_BUD_PLACE = register("block.medium_moonstone_bud.place");
 	public static final SoundEvent BLOCK_LARGE_MOONSTONE_BUD_BREAK = register("block.large_moonstone_bud.break");
 	public static final SoundEvent BLOCK_LARGE_MOONSTONE_BUD_PLACE = register("block.large_moonstone_bud.place");
+	public static final SoundEvent BLOCK_MOONSTONE_BLOCK_CHIME = register("block.moonstone_block.chime");
 	
 	public static final SoundEvent SPECTRAL_BLOCK_BREAK = register("block.spectral_block.break");
 	public static final SoundEvent SPECTRAL_BLOCK_STEP = register("block.spectral_block.step");
@@ -148,11 +156,6 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SPECTRAL_BLOCK_FALL = register("block.spectral_block.fall");
 	public static final SoundEvent SPECTRAL_BLOCK_HIT = register("block.spectral_block.hit");
 	public static final SoundEvent SPECTRAL_BLOCK_CHIME = register("block.spectral_block.chime");
-	
-	public static final SoundEvent BLOCK_CITRINE_BLOCK_CHIME = register("block.citrine_block.chime");
-	public static final SoundEvent BLOCK_TOPAZ_BLOCK_CHIME = register("block.topaz_block.chime");
-	public static final SoundEvent BLOCK_ONYX_BLOCK_CHIME = register("block.onyx_block.chime");
-	public static final SoundEvent BLOCK_MOONSTONE_BLOCK_CHIME = register("block.moonstone_block.chime");
 	
 	private static SoundEvent register(String id) {
 		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, id);

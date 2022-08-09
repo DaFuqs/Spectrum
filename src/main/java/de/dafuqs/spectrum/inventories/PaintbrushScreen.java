@@ -47,9 +47,9 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	}};
 	public static final List<InkColor> YELLOW_GRID = new ArrayList<>() {{
 		add(null);
+		add(InkColors.ORANGE);
 		add(InkColors.LIME);
 		add(InkColors.GREEN);
-		add(InkColors.ORANGE);
 	}};
 	public static final List<InkColor> BLACK_GRID = new ArrayList<>() {{
 		add(InkColors.WHITE);
@@ -74,17 +74,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	
 	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-		// draw "title" and "inventory" texts
-		int titleX = backgroundWidth / 2;
-		int titleY = backgroundHeight / 2;
-		Text title = this.title;
-		int inventoryX = 8;
-		int intInventoryY = 100;
-		
-		this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
-		this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
-		
-		drawGrid(matrices, titleX, titleY, GRIDS.get(currentGrid));
+		drawGrid(matrices, backgroundWidth / 2, backgroundHeight / 2, GRIDS.get(currentGrid));
 	}
 	
 	List<Pair<Integer, Integer>> SQUARE_OFFSETS = List.of(new Pair(-64, -16), new Pair(-16, -64), new Pair(32, -16), new Pair(-16, 32));
@@ -112,13 +102,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
-		RenderSystem.setShaderTexture(0, BACKGROUND);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		
-		int x = (width - backgroundWidth) / 2;
-		int y = (height - backgroundHeight) / 2;
-		//drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+
 	}
 	
 	@Override
@@ -127,12 +111,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		if (options.leftKey.matchesKey(keyCode, scanCode)) {
 			if(currentGrid == 0) {
 				currentGrid = 1;
-				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 1.0F, 1.0F, false);
+				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 			} else {
 				InkColor selectedColor = GRIDS.get(currentGrid).get(0);
 				if(selectedColor == null) {
 					currentGrid = 0;
-					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 1.0F, 1.0F, false);
+					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 				} else {
 					chooseColor(selectedColor);
 				}
@@ -141,12 +125,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		} else if(options.forwardKey.matchesKey(keyCode, scanCode)) {
 			if(currentGrid == 0) {
 				currentGrid = 2;
-				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 1.0F, 1.0F, false);
+				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 			} else {
 				InkColor selectedColor = GRIDS.get(currentGrid).get(1);
 				if(selectedColor == null) {
 					currentGrid = 0;
-					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 1.0F, 1.0F, false);
+					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 				} else {
 					chooseColor(selectedColor);
 				}
@@ -155,12 +139,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		} else if(options.rightKey.matchesKey(keyCode, scanCode)) {
 			if(currentGrid == 0) {
 				currentGrid = 3;
-				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 1.0F, 1.0F, false);
+				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 			} else {
 				InkColor selectedColor = GRIDS.get(currentGrid).get(2);
 				if(selectedColor == null) {
 					currentGrid = 0;
-					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 1.0F, 1.0F, false);
+					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 				} else {
 					chooseColor(selectedColor);
 				}
@@ -169,12 +153,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		} else if(options.backKey.matchesKey(keyCode, scanCode)) {
 			if(currentGrid == 0) {
 				currentGrid = 4;
-				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 1.0F, 1.0F, false);
+				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 			} else {
 				InkColor selectedColor = GRIDS.get(currentGrid).get(3);
 				if(selectedColor == null) {
 					currentGrid = 0;
-					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 1.0F, 1.0F, false);
+					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 				} else {
 					chooseColor(selectedColor);
 				}
@@ -193,7 +177,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	
 	private void chooseColor(@Nullable InkColor inkColor) {
 		SpectrumC2SPacketSender.sendInkColorSelectedInGUI(inkColor);
-		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SELECT, SoundCategory.NEUTRAL, 1.0F, 1.0F, false);
+		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SELECT, SoundCategory.NEUTRAL, 0.6F, 1.0F, false);
 		client.player.closeHandledScreen();
 	}
 	

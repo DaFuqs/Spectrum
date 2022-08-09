@@ -1,0 +1,104 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "spectrum:item/paintbrush"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "color": 0.01
+      },
+      "model": "spectrum:item/paintbrush_white"
+    },
+    {
+      "predicate": {
+        "color": 0.02
+      },
+      "model": "spectrum:item/paintbrush_orange"
+    },
+    {
+      "predicate": {
+        "color": 0.03
+      },
+      "model": "spectrum:item/paintbrush_magenta"
+    },
+    {
+      "predicate": {
+        "color": 0.04
+      },
+      "model": "spectrum:item/paintbrush_light_blue"
+    },
+    {
+      "predicate": {
+        "color": 0.05
+      },
+      "model": "spectrum:item/paintbrush_yellow"
+    },
+    {
+      "predicate": {
+        "color": 0.06
+      },
+      "model": "spectrum:item/paintbrush_lime"
+    }
+    ,{
+      "predicate": {
+        "color": 0.07
+      },
+      "model": "spectrum:item/paintbrush_pink"
+    },
+    {
+      "predicate": {
+        "color": 0.08
+      },
+      "model": "spectrum:item/paintbrush_gray"
+    },
+    {
+      "predicate": {
+        "color": 0.09
+      },
+      "model": "spectrum:item/paintbrush_light_gray"
+    },
+    {
+      "predicate": {
+        "color": 0.10
+      },
+      "model": "spectrum:item/paintbrush_cyan"
+    },
+    {
+      "predicate": {
+        "color": 0.11
+      },
+      "model": "spectrum:item/paintbrush_purple"
+    },
+    {
+      "predicate": {
+        "color": 0.12
+      },
+      "model": "spectrum:item/paintbrush_blue"
+    },
+    {
+      "predicate": {
+        "color": 0.13
+      },
+      "model": "spectrum:item/paintbrush_brown"
+    },
+    {
+      "predicate": {
+        "color": 0.14
+      },
+      "model": "spectrum:item/paintbrush_green"
+    },
+    {
+      "predicate": {
+        "color": 0.15
+      },
+      "model": "spectrum:item/paintbrush_red"
+    },
+    {
+      "predicate": {
+        "color": 0.16
+      },
+      "model": "spectrum:item/paintbrush_black"
+    }
+  ]
+}

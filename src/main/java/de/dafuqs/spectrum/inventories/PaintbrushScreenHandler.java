@@ -13,9 +13,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class PaintbrushScreenHandler extends ScreenHandler implements InkColorSelectedPacketReceiver {
 	
-	private final ScreenHandlerContext context;
-	private final PlayerEntity player;
-	private final World world;
 	private final ItemStack paintBrushStack;
 	
 	public PaintbrushScreenHandler(int syncId, PlayerInventory playerInventory) {
@@ -25,9 +22,6 @@ public class PaintbrushScreenHandler extends ScreenHandler implements InkColorSe
 	public PaintbrushScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, ItemStack paintBrushStack) {
 		super(SpectrumScreenHandlerTypes.PAINTBRUSH, syncId);
 		this.paintBrushStack = paintBrushStack;
-		this.context = context;
-		this.world = playerInventory.player.getEntityWorld();
-		this.player = playerInventory.player;
 	}
 	
 	public boolean canUse(PlayerEntity player) {

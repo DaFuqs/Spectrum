@@ -1,10 +1,12 @@
 package de.dafuqs.spectrum.registries.client;
 
+import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.energy.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
+import de.dafuqs.spectrum.items.magic_items.PaintBrushItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
@@ -15,6 +17,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
+
+import java.util.Optional;
 
 // Vanilla models see: ModelPredicateProviderRegistry
 public class SpectrumItemPredicates {
@@ -34,6 +38,17 @@ public class SpectrumItemPredicates {
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerDreamFlayerPredicates(SpectrumItems.DREAMFLAYER);
 		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
+		registerColorPredicate(SpectrumItems.PAINTBRUSH);
+	}
+	
+	private static void registerColorPredicate(Item item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
+			Optional<InkColor> color = PaintBrushItem.getColor(itemStack);
+			if(color.isEmpty()) {
+				return 0.0F;
+			}
+			return 0.01F + color.get().getDyeColor().ordinal() / 100F;
+		});
 	}
 	
 	private static void registerBottomlessBundlePredicates(Item item) {

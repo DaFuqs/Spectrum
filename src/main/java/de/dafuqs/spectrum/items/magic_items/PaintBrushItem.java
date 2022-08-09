@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.magic_items;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
@@ -38,7 +39,7 @@ public class PaintBrushItem extends Item {
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		if(selected && entity instanceof ServerPlayerEntity serverPlayerEntity) {
-			if(serverPlayerEntity.isSneaking() && serverPlayerEntity.currentScreenHandler instanceof PlayerScreenHandler) {
+			if(serverPlayerEntity.isSneaking() && AdvancementHelper.hasAdvancement(serverPlayerEntity, UNLOCK_COLORING_ADVANCEMENT_ID) && serverPlayerEntity.currentScreenHandler instanceof PlayerScreenHandler) {
 				serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(world, serverPlayerEntity, stack));
 			}
 		}

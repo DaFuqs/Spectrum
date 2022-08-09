@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
@@ -19,9 +20,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	
@@ -65,8 +64,15 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		add(BLACK_GRID);
 	}};
 	
-	private int currentGrid = 0;
+	private static final List<Pair<Integer, Integer>> SQUARE_OFFSETS = List.of(
+			new Pair<>(-64, -16),
+			new Pair<>(-16, -64),
+			new Pair<>(32, -16),
+			new Pair<>(-16, 32)
+	);
 	
+	private int currentGrid = 0;
+
 	public PaintbrushScreen(PaintbrushScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 256;
@@ -77,14 +83,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		drawGrid(matrices, backgroundWidth / 2, backgroundHeight / 2, GRIDS.get(currentGrid));
 	}
 	
-	List<Pair<Integer, Integer>> SQUARE_OFFSETS = List.of(new Pair(-64, -16), new Pair(-16, -64), new Pair(32, -16), new Pair(-16, 32));
-	
 	protected void drawGrid(MatrixStack matrices, int startX, int startY, List<InkColor> grid) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderTexture(0, BACKGROUND);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		if(currentGrid == 0) {
-			drawTexture(matrices, startX - 5, startX - 5, 0, 0, 10, 10);
+			drawTexture(matrices, startX - 5, startY - 5, 0, 0, 10, 10);
 		} else {
 			drawTexture(matrices, startX - 14, startY - 14, 48, 0, 28, 28);
 			RenderHelper.fillQuad(matrices, startX - 12, startY - 12, 24, 24, MAIN_GRID.get(currentGrid-1).getColor());
@@ -152,8 +156,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 			return true;
 		} else if(options.backKey.matchesKey(keyCode, scanCode)) {
 			if(currentGrid == 0) {
-				currentGrid = 4;
-				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+				if(handler.hasAccessToWhites()) {
+					currentGrid = 4;
+					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+				} else {
+					chooseColor(MAIN_GRID.get(3));
+				}
 			} else {
 				InkColor selectedColor = GRIDS.get(currentGrid).get(3);
 				if(selectedColor == null) {
@@ -164,7 +172,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 				}
 			}
 			return true;
-		} else if(options.jumpKey.matchesKey(keyCode, scanCode)) {
+		} else if(options.dropKey.matchesKey(keyCode, scanCode) || options.inventoryKey.matchesKey(keyCode, scanCode)) {
 			if(currentGrid == 0) {
 				chooseColor(null);
 			} else {
@@ -179,13 +187,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		SpectrumC2SPacketSender.sendInkColorSelectedInGUI(inkColor);
 		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SELECT, SoundCategory.NEUTRAL, 0.6F, 1.0F, false);
 		client.player.closeHandledScreen();
+		
 	}
 	
 	@Override
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		renderBackground(matrices);
 		super.render(matrices, mouseX, mouseY, delta);
-		drawMouseoverTooltip(matrices, mouseX, mouseY);
 	}
 	
 }

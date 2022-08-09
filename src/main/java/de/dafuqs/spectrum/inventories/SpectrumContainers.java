@@ -5,7 +5,7 @@ import net.minecraft.util.Identifier;
 
 public class SpectrumContainers {
 	
-	
+	public static Identifier PAINTBRUSH;
 	public static Identifier PEDESTAL;
 	public static Identifier CRAFTING_TABLET;
 	public static Identifier RESTOCKING_CHEST;
@@ -30,6 +30,7 @@ public class SpectrumContainers {
 	public static Identifier GENERIC_TIER3_3X3;
 	
 	public static void register() {
+		PAINTBRUSH = new Identifier(SpectrumCommon.MOD_ID, "paintbrush");
 		PEDESTAL = new Identifier(SpectrumCommon.MOD_ID, "pedestal");
 		CRAFTING_TABLET = new Identifier(SpectrumCommon.MOD_ID, "crafting_tablet");
 		RESTOCKING_CHEST = new Identifier(SpectrumCommon.MOD_ID, "restocking_chest");

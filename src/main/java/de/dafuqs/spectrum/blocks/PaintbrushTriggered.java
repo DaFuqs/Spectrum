@@ -13,6 +13,9 @@ import net.minecraft.world.World;
 
 public interface PaintbrushTriggered {
 	
+	/**
+	 * Use as first entry of onUse() for a block
+	 */
 	default ActionResult checkAndDoPaintbrushTrigger(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if(player.getStackInHand(hand).getItem() instanceof PaintBrushItem) {
 			ActionResult actionResult = onPaintBrushTrigger(state, world, pos, player, hand, hit);
@@ -26,6 +29,10 @@ public interface PaintbrushTriggered {
 		return ActionResult.PASS;
 	}
 	
+	/**
+	 * Do custom logic here
+	 * The Pedestal uses it to start crafting, for example
+	 */
 	ActionResult onPaintBrushTrigger(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit);
 	
 }

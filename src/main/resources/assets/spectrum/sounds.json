@@ -11,6 +11,16 @@
       "spectrum:enchanter_ding"
     ]
   },
+  "paintbrush_switch": {
+    "sounds": [
+      "spectrum:paintbrush_switch"
+    ]
+  },
+  "paintbrush_select": {
+    "sounds": [
+      "spectrum:paintbrush_select"
+    ]
+  },
   "paintbrush_paint": {
     "subtitle": "spectrum.subtitles.paintbrush_paint",
     "sounds": [

@@ -312,7 +312,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 			
 			pedestalBlockEntity.shouldCraft = true;
 			
-			return world.isClient ? ActionResult.SUCCESS : ActionResult.CONSUME;
+			return ActionResult.success(world.isClient);
 		}
 		return ActionResult.FAIL;
 	}

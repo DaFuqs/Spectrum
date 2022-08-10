@@ -13,7 +13,7 @@
   },
   "parent": "spectrum:place_pedestal",
   "criteria": {
-    "code_triggered": {
+    "try_take_out_item_from_pedestal": {
       "trigger": "minecraft:impossible"
     },
     "gotten_previous": {

@@ -21,6 +21,7 @@ import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.CryingObsidianBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
@@ -40,6 +41,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -132,11 +134,44 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				if (amount > 0) {
 					ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(entry.getKey().getDyeColor());
 					
-					float particleAmount = Support.getIntFromDecimalWithChance(amount / 8.0, world.random);
+					float particleAmount = Support.getIntFromDecimalWithChance(amount * 0.125, world.random);
 					for (int i = 0; i < particleAmount; i++) {
 						float randomX = 2.0F - world.getRandom().nextFloat() * 5;
 						float randomZ = 2.0F - world.getRandom().nextFloat() * 5;
 						world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY(), blockPos.getZ() + randomZ, 0.0D, 0.03D, 0.0D);
+					}
+				}
+			}
+		}
+	}
+	
+	public static void spawnCraftingStartParticles(@NotNull World world, BlockPos blockPos) {
+		BlockEntity blockEntity = world.getBlockEntity(blockPos);
+		if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+			Recipe currentRecipe = pedestalBlockEntity.getCurrentRecipe();
+			if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
+				HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
+				
+				for (Map.Entry<BuiltinGemstoneColor, Integer> entry : gemstonePowderInputs.entrySet()) {
+					int amount = entry.getValue();
+					if (amount > 0) {
+						ParticleEffect particleEffect = SpectrumParticleTypes.getCraftingParticle(entry.getKey().getDyeColor());
+						
+						amount = amount * 4;
+						Random random = world.random;
+						for (int i = 0; i < amount; i++) {
+							Direction direction = Direction.random(random);
+							if (direction != Direction.DOWN) {
+								BlockPos offsetPos = blockPos.offset(direction);
+								BlockState offsetState = world.getBlockState(offsetPos);
+								if (!offsetState.isSideSolidFullSquare(world, offsetPos, direction.getOpposite())) {
+									double d = direction.getOffsetX() == 0 ? random.nextDouble() : 0.5D + (double) direction.getOffsetX() * 0.6D;
+									double e = direction.getOffsetY() == 0 ? random.nextDouble() : 0.5D + (double) direction.getOffsetY() * 0.6D;
+									double f = direction.getOffsetZ() == 0 ? random.nextDouble() : 0.5D + (double) direction.getOffsetZ() * 0.6D;
+									world.addParticle(particleEffect, (double) blockPos.getX() + d, (double) blockPos.getY() + e, (double) blockPos.getZ() + f, 0.0D, 0.03D, 0.0D);
+								}
+							}
+						}
 					}
 				}
 			}

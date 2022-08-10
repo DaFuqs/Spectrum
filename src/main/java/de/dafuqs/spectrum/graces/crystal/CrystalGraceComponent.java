@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.graces.crystal;
+/*package de.dafuqs.spectrum.graces.crystal;
 
 import net.immortaldevs.sar.api.Component;
 import net.immortaldevs.sar.api.ComponentNode;
@@ -22,3 +22,4 @@ public class CrystalGraceComponent extends Component {
     //    dataNbt.putBoolean("genRequired", true);
     //}
 }
+*/

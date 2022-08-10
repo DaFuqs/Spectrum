@@ -118,10 +118,9 @@ import static de.dafuqs.spectrum.SpectrumCommon.locate;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 
 public class SpectrumBlocks {
-
-	private static final FabricBlockSettings PEDESTAL_SETTINGS = FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 20.0F).solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).nonOpaque();
-
+	
 	// PEDESTALS
+	private static final FabricBlockSettings PEDESTAL_SETTINGS = FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 20.0F).solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).nonOpaque();
 	public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_TOPAZ);
 	public static final Block PEDESTAL_BASIC_AMETHYST = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_AMETHYST);
 	public static final Block PEDESTAL_BASIC_CITRINE = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_CITRINE);
@@ -172,13 +171,16 @@ public class SpectrumBlocks {
 	public static final Block SMALL_BISMUTH_BUD = new BismuthClusterBlock(3, 4, LARGE_BISMUTH_BUD.getDefaultState(), FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
 	public static final Block BISMUTH_BLOCK = new Block(FabricBlockSettings.of(Material.METAL, MapColor.DARK_AQUA).requiresTool().strength(20.0F).sounds(BlockSoundGroup.CHAIN));
 	
-	public static final Block MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
 	public static final Block MALACHITE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.CHAIN));
 	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.CHAIN));
 	public static final Block SMALL_MALACHITE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.CHAIN));
 	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
 	
+	// DD BLOCKS
+	public static final Block BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(6.0F, 5.0F));
+
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_STAIRS = new SpectrumStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
@@ -444,6 +446,16 @@ public class SpectrumBlocks {
 	public static final FloatBlock SCARLET_FRAGMENT_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_RED).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), -0.2F);
 	public static final FloatBlock HOVER_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.DIAMOND_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.0F);
 	
+	public static final Block BLACKSLAG_COAL_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COAL_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(0, 2));
+	public static final Block BLACKSLAG_IRON_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_GOLD_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_GOLD_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_LAPIS_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 5));
+	public static final Block BLACKSLAG_DIAMOND_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(3, 7));
+	public static final Block BLACKSLAG_REDSTONE_ORE = new RedstoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_REDSTONE_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_EMERALD_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_EMERALD_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_SPARKLESTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_SPARKLESTONE_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 4), locate("milestones/reveal_sparklestone"), BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_MALACHITE_ORE), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), BLACKSLAG.getDefaultState());
+	
 	// FUNCTIONAL BLOCKS
 	public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(-1.0F, 3600000.0F).sounds(BlockSoundGroup.STONE));
 	public static final Block COMPACTING_CHEST = new CompactingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
@@ -476,8 +488,7 @@ public class SpectrumBlocks {
 	public static final Block ENDER_DROPPER = new EnderDropperBlock(FabricBlockSettings.copyOf(Blocks.DROPPER).requiresTool().strength(15F, 60.0F));
 	public static final Block ENDER_HOPPER = new EnderHopperBlock(FabricBlockSettings.copyOf(Blocks.HOPPER).requiresTool().strength(15F, 60.0F));
 	
-	private static final FabricBlockSettings spiritSallowLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 8);
-	public static final Block SPIRIT_SALLOW_LEAVES = new SpiritSallowLeavesBlock(spiritSallowLeavesBlockSettings);
+	public static final Block SPIRIT_SALLOW_LEAVES = new SpiritSallowLeavesBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 8));
 	public static final Block SPIRIT_SALLOW_LOG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
 	public static final Block SPIRIT_SALLOW_ROOTS = new PillarBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
 	public static final Block SPIRIT_SALLOW_HEART = new Block(FabricBlockSettings.copyOf(Blocks.OAK_WOOD).luminance(11));
@@ -749,9 +760,6 @@ public class SpectrumBlocks {
 	private static final FabricBlockSettings preservationGlassBlockSettings = FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never);
 	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationGlassBlockSettings);
 	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).strength(Float.MAX_VALUE, 3600000.0F));
-
-	// DD BLOCKS
-	public static final Block BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE));
 	
 	private static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
 	private static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
@@ -1146,6 +1154,7 @@ public class SpectrumBlocks {
 	private static void registerOreBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
 		registerBlockWithItem("sparklestone_ore", SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("deepslate_sparklestone_ore", DEEPSLATE_SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("blackslag_sparklestone_ore", BLACKSLAG_SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
 		
 		registerBlockWithItem("azurite_ore", AZURITE_ORE, fabricItemSettings, DyeColor.BLUE);
 		registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, fabricItemSettings, DyeColor.BLUE);
@@ -1158,12 +1167,21 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bismuth_cluster", BISMUTH_CLUSTER, worldgenItemSettings, DyeColor.CYAN);
 		registerBlockWithItem("bismuth_block", BISMUTH_BLOCK, decorationItemSettingsUncommon, DyeColor.CYAN);
 		
-		registerBlockWithItem("malachite_ore", MALACHITE_ORE, worldgenItemSettings, DyeColor.BROWN);
-		registerBlockWithItem("deepslate_malachite_ore", DEEPSLATE_MALACHITE_ORE, worldgenItemSettings, DyeColor.BROWN);
-		registerBlockWithItem("small_malachite_bud", SMALL_MALACHITE_BUD, worldgenItemSettings, DyeColor.WHITE);
-		registerBlockWithItem("large_malachite_bud", LARGE_MALACHITE_BUD, worldgenItemSettings, DyeColor.WHITE);
-		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, worldgenItemSettings, DyeColor.WHITE);
-		registerBlockWithItem("malachite_block", MALACHITE_BLOCK, decorationItemSettingsUncommon, DyeColor.WHITE);
+		registerBlockWithItem("malachite_ore", MALACHITE_ORE, worldgenItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("deepslate_malachite_ore", DEEPSLATE_MALACHITE_ORE, worldgenItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("blackslag_malachite_ore", BLACKSLAG_MALACHITE_ORE, fabricItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("small_malachite_bud", SMALL_MALACHITE_BUD, worldgenItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("large_malachite_bud", LARGE_MALACHITE_BUD, worldgenItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, worldgenItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("malachite_block", MALACHITE_BLOCK, decorationItemSettingsUncommon, DyeColor.GREEN);
+		
+		registerBlockWithItem("blackslag_coal_ore", BLACKSLAG_COAL_ORE, fabricItemSettings, DyeColor.BLACK);
+		registerBlockWithItem("blackslag_iron_ore", BLACKSLAG_IRON_ORE, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("blackslag_gold_ore", BLACKSLAG_GOLD_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("blackslag_diamond_ore", BLACKSLAG_DIAMOND_ORE, fabricItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("blackslag_redstone_ore", BLACKSLAG_REDSTONE_ORE, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("blackslag_lapis_ore", BLACKSLAG_LAPIS_ORE, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("blackslag_emerald_ore", BLACKSLAG_EMERALD_ORE, fabricItemSettings, DyeColor.LIME);
 	}
 	
 	private static void registerOreStorageBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {

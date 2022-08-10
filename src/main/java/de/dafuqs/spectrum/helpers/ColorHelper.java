@@ -1,15 +1,25 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.items.PigmentItem;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class ColorHelper {
@@ -78,6 +88,64 @@ public class ColorHelper {
 			}
 		}
 		return Optional.empty();
+	}
+	
+	// cache for cursedBlockColorVariant()
+	private static Map<Block, Map<DyeColor, Block>> coloredStates = new HashMap<>();
+	
+	public static Block cursedBlockColorVariant(World world, BlockPos blockPos, DyeColor newColor) {
+		BlockEntity blockEntity = world.getBlockEntity(blockPos);
+		if(blockEntity != null) {
+			return Blocks.AIR;
+		}
+		
+		BlockState blockState = world.getBlockState(blockPos);
+		Block block = blockState.getBlock();
+		
+		if(coloredStates.containsKey(block)) {
+			Map<DyeColor, Block> colorMap = coloredStates.get(block);
+			if(colorMap.containsKey(newColor)) {
+				return colorMap.get(newColor);
+			}
+		}
+		
+		Identifier identifier = Registry.BLOCK.getId(block);
+		
+		boolean match = false;
+		String[] strings = identifier.getPath().split("_");
+		for(int i = 0; i < strings.length; i++) {
+			String string = strings[i];
+			for(DyeColor dyeColor : DyeColor.values()) {
+				if(string.equals(dyeColor.toString())) {
+					if(dyeColor == newColor) {
+						return Blocks.AIR;
+					}
+					
+					strings[i] = newColor.toString();
+					match = true;
+					i = strings.length;
+					break;
+				}
+			}
+		}
+		
+		Block returnBlock = Blocks.AIR;
+		if(match) {
+			Identifier newIdentifier = new Identifier(identifier.getNamespace(), String.join("_", strings));
+			returnBlock = Registry.BLOCK.get(newIdentifier);
+		}
+		
+		// cache
+		if(coloredStates.containsKey(block)) {
+			Map<DyeColor, Block> colorMap = coloredStates.get(block);
+			colorMap.put(newColor, returnBlock);
+		} else {
+			Map<DyeColor, Block> colorMap = new HashMap<>();
+			colorMap.put(newColor, returnBlock);
+			coloredStates.put(block, colorMap);
+		}
+		
+		return returnBlock;
 	}
 	
 }

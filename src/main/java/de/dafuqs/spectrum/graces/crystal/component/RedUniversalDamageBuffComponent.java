@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.graces.crystal.component;
+/*package de.dafuqs.spectrum.graces.crystal.component;
 
 import de.dafuqs.spectrum.graces.crystal.ColorPool;
 import de.dafuqs.spectrum.graces.crystal.CrystalEffectComponent;
@@ -26,3 +26,4 @@ public class RedUniversalDamageBuffComponent extends CrystalEffectComponent {
     //        data.getOrCreateNbt().putFloat("potency", 0);
     //    }
 }
+*/

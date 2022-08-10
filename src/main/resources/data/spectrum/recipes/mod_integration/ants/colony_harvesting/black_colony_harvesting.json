@@ -4,8 +4,11 @@
   "hive_ingredient": {
     "item": "spectrum:black_leaves"
   },
+  "hand_ingredient": {
+    "item": "spectrum:vegetal"
+  },
   "result" : {
-    "item": "minecraft:black_dye",
+    "item": "spectrum:black_pigment",
 	"count": 6
   },
   "fabric:load_conditions": [

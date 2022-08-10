@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeJellyItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.graces.crystal.ColorPool;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
@@ -102,7 +101,8 @@ public class SpectrumItems {
 	
 	
 	// Main items
-	public static final Item MANUAL = new GuidebookItem(toolItemSettingsSingle);
+	public static final Item GUIDEBOOK = new GuidebookItem(toolItemSettingsSingle);
+	public static final Item PAINTBRUSH = new PaintBrushItem(toolItemSettingsSingle);
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(toolItemSettingsSingle);
 	
 	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("pedestal_simple_structure_place"));
@@ -375,7 +375,8 @@ public class SpectrumItems {
 	}
 	
 	public static void register() {
-		register("manual", MANUAL, DyeColor.WHITE);
+		register("manual", GUIDEBOOK, DyeColor.WHITE);
+		register("paintbrush", PAINTBRUSH, DyeColor.WHITE);
 		
 		registerStructurePlacers();
 		registerGemstoneItems();

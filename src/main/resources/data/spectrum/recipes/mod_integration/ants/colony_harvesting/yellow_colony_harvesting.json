@@ -4,8 +4,11 @@
   "hive_ingredient": {
     "item": "spectrum:yellow_leaves"
   },
+  "hand_ingredient": {
+    "item": "spectrum:vegetal"
+  },
   "result" : {
-    "item": "minecraft:yellow_dye",
+    "item": "spectrum:yellow_pigment",
 	"count": 6
   },
   "fabric:load_conditions": [

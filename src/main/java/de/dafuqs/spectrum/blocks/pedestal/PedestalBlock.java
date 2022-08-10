@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.PaintbrushTriggered;
 import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
 import net.fabricmc.api.EnvType;
@@ -42,7 +44,7 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.Random;
 
-public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock {
+public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock, PaintbrushTriggered {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "place_pedestal");
 	public static final BooleanProperty POWERED = BooleanProperty.of("powered");
@@ -169,6 +171,11 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	}
 	
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		ActionResult actionResult = checkAndDoPaintbrushTrigger(state, world, pos, player, hand, hit);
+		if(actionResult.isAccepted()) {
+			return actionResult;
+		}
+		
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
 		} else {
@@ -287,6 +294,27 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		var head = Block.createCuboidShape(0, 12, 0, 16, 16, 16);
 		foot = VoxelShapes.union(foot, neck);
 		SHAPE = VoxelShapes.union(foot, head);
+	}
+	
+	@Override
+	public ActionResult onPaintBrushTrigger(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+			if(pedestalBlockEntity.craftingTime > 0) {
+				return ActionResult.FAIL;
+			}
+			if(pedestalBlockEntity.currentRecipe == null) {
+				return ActionResult.FAIL;
+			}
+			if(pedestalBlockEntity.currentRecipe instanceof GatedRecipe gatedRecipe && !gatedRecipe.canPlayerCraft(player)) {
+				return ActionResult.FAIL;
+			}
+			
+			pedestalBlockEntity.shouldCraft = true;
+			
+			return ActionResult.success(world.isClient);
+		}
+		return ActionResult.FAIL;
 	}
 	
 }

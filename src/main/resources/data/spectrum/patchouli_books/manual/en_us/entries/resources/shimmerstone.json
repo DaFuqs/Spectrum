@@ -6,6 +6,7 @@
   "extra_recipe_mappings": {
     "spectrum:sparklestone_ore": 0,
     "spectrum:deepslate_sparklestone_ore": 0,
+    "spectrum:blackslag_sparklestone_ore": 0,
     "spectrum:sparklestone_gem": 0,
     "spectrum:sparklestone_block": 0
   },

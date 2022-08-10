@@ -25,8 +25,10 @@
     "modmenu": [
       "de.dafuqs.spectrum.config.ModMenuConfig"
     ],
-    "rei_plugins": [
-      "de.dafuqs.spectrum.compat.REI.REIServerIntegration",
+    "rei_common": [
+      "de.dafuqs.spectrum.compat.REI.REICommonIntegration"
+    ],
+    "rei_client": [
       "de.dafuqs.spectrum.compat.REI.REIClientIntegration"
     ],
     "cardinal-components": [

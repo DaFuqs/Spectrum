@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.sar.modifier;
+/*package de.dafuqs.spectrum.sar.modifier;
 
 import net.immortaldevs.sar.api.Modifier;
 import net.minecraft.entity.Entity;
@@ -33,3 +33,4 @@ public class SimpleDamageMultiplier implements Modifier {
 //
     //}
 }
+*/

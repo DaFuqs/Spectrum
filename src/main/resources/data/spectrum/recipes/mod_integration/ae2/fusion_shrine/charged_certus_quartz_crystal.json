@@ -18,6 +18,7 @@
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],
   "finish_crafting_effect": "lightning_on_shrine",
+  "advancement": "spectrum:midgame/collect_lightning_stone",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.sar;
+/*package de.dafuqs.spectrum.sar;
 
 import de.dafuqs.spectrum.graces.GraceBearerComponent;
 import de.dafuqs.spectrum.graces.crystal.CrystalGraceComponent;
@@ -20,3 +20,4 @@ public class SpectrumComponents {
         Registry.register(SarRegistries.COMPONENT, name, component);
     }
 }
+*/

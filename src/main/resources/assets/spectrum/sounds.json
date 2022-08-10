@@ -5,6 +5,37 @@
       "spectrum:use_fail"
     ]
   },
+  "paintbrush_trigger": {
+    "subtitle": "spectrum.subtitles.paintbrush_trigger",
+    "sounds": [
+      "spectrum:enchanter_ding"
+    ]
+  },
+  "paintbrush_switch": {
+    "sounds": [
+      "spectrum:paintbrush_switch"
+    ]
+  },
+  "paintbrush_select": {
+    "sounds": [
+      "spectrum:paintbrush_select"
+    ]
+  },
+  "paintbrush_paint": {
+    "subtitle": "spectrum.subtitles.paintbrush_paint",
+    "sounds": [
+      "spectrum:paintbrush_paint1",
+      "spectrum:paintbrush_paint2",
+      "spectrum:paintbrush_paint3",
+      "spectrum:paintbrush_paint4",
+      "spectrum:paintbrush_paint5",
+      "spectrum:paintbrush_paint6",
+      "spectrum:paintbrush_paint7",
+      "spectrum:paintbrush_paint8",
+      "spectrum:paintbrush_paint9",
+      "spectrum:paintbrush_paint10"
+    ]
+  },
   "enchanter_working": {
     "subtitle": "spectrum.subtitles.enchanter_working",
     "sounds": [
@@ -14,6 +45,11 @@
   "enchanter_ding": {
     "sounds": [
       "spectrum:enchanter_ding"
+    ]
+  },
+  "bottomless_bundle_zip": {
+    "sounds": [
+      "spectrum:bottomless_bundle_zip"
     ]
   },
   "spectrum.ui.button_click": {

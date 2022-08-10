@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.graces;
+/*package de.dafuqs.spectrum.graces;
 
 import net.immortaldevs.sar.api.Component;
 import net.immortaldevs.sar.api.ComponentNode;
@@ -17,3 +17,4 @@ public class GraceBearerComponent extends Component {
     //    data.loadChildren("effects");
     //}
 }
+*/

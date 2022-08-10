@@ -9,7 +9,7 @@ public interface RedstonePoweredBlock {
 	
 	BooleanProperty POWERED = BooleanProperty.of("powered");
 	
-	public default boolean checkGettingPowered(World world, BlockPos pos) {
+	default boolean checkGettingPowered(World world, BlockPos pos) {
 		Direction[] var4 = Direction.values();
 		int var5 = var4.length;
 		
@@ -38,11 +38,11 @@ public interface RedstonePoweredBlock {
 		}
 	}
 	
-	public default void power(World world, BlockPos pos) {
+	default void power(World world, BlockPos pos) {
 		world.setBlockState(pos, world.getBlockState(pos).with(POWERED, true));
 	}
 	
-	public default void unPower(World world, BlockPos pos) {
+	default void unPower(World world, BlockPos pos) {
 		world.setBlockState(pos, world.getBlockState(pos).with(POWERED, false));
 	}
 	

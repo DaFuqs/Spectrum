@@ -5,7 +5,7 @@
     "item": "spectrum:cyan_leaves"
   },
   "result" : {
-    "item": "spectrum:cyan_pigment",
+    "item": "minecraft:cyan_dye",
 	"count": 6
   },
   "fabric:load_conditions": [

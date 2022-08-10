@@ -5,7 +5,7 @@
     "item": "spectrum:yellow_leaves"
   },
   "result" : {
-    "item": "spectrum:yellow_pigment",
+    "item": "minecraft:yellow_dye",
 	"count": 6
   },
   "fabric:load_conditions": [

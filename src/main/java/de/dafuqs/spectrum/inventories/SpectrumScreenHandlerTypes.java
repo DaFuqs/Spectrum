@@ -9,6 +9,7 @@ import net.minecraft.util.registry.Registry;
 
 public class SpectrumScreenHandlerTypes {
 	
+	public static ScreenHandlerType<PaintbrushScreenHandler> PAINTBRUSH;
 	public static ScreenHandlerType<PedestalScreenHandler> PEDESTAL;
 	public static ScreenHandlerType<CraftingTabletScreenHandler> CRAFTING_TABLET;
 	public static ScreenHandlerType<RestockingChestScreenHandler> RESTOCKING_CHEST;
@@ -43,6 +44,7 @@ public class SpectrumScreenHandlerTypes {
 	}
 	
 	public static void register() {
+		PAINTBRUSH = registerSimple(SpectrumContainers.PAINTBRUSH, PaintbrushScreenHandler::new);
 		PEDESTAL = registerExtended(SpectrumContainers.PEDESTAL, PedestalScreenHandler::new);
 		PARTICLE_SPAWNER = registerExtended(SpectrumContainers.PARTICLE_SPAWNER, ParticleSpawnerScreenHandler::new);
 		COMPACTING_CHEST = registerExtended(SpectrumContainers.COMPACTING_CHEST, CompactingChestScreenHandler::new);
@@ -69,6 +71,7 @@ public class SpectrumScreenHandlerTypes {
 	}
 	
 	public static void registerClient() {
+		HandledScreens.register(SpectrumScreenHandlerTypes.PAINTBRUSH, PaintbrushScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.PEDESTAL, PedestalScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.CRAFTING_TABLET, CraftingTabletScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.RESTOCKING_CHEST, RestockingChestScreen::new);

@@ -5,7 +5,7 @@
     "item": "spectrum:orange_leaves"
   },
   "result" : {
-    "item": "spectrum:orange_pigment",
+    "item": "minecraft:orange_dye",
 	"count": 6
   },
   "fabric:load_conditions": [

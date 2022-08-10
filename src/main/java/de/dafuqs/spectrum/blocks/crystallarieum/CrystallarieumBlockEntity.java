@@ -95,8 +95,8 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 				// running without catalyst
 				int consumedInk = crystallarieum.currentRecipe.getInkPerSecond();
 				if(crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
-					crystallarieum.setInkDirty();
 					crystallarieum.canWork = false;
+					crystallarieum.setInkDirty();
 					crystallarieum.updateInClientWorld();
 					return;
 				}
@@ -107,8 +107,8 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 				// running with catalyst
 				int consumedInk = (int) Math.ceil(crystallarieum.currentRecipe.getInkPerSecond() * crystallarieum.currentCatalyst.inkConsumptionMod);
 				if(crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
-					crystallarieum.setInkDirty();
 					crystallarieum.canWork = false;
+					crystallarieum.setInkDirty();
 					crystallarieum.updateInClientWorld();
 					return;
 				}

@@ -1,7 +1,7 @@
 {
   "name": "Pigment",
   "icon": "spectrum:magenta_pigment",
-  "sortnum": 7,
+  "sortnum": 8,
   "advancement": "spectrum:collect_pigment",
   "category": "spectrum:general_category",
   "turnin": "spectrum:collect_all_basic_pigments_besides_brown",

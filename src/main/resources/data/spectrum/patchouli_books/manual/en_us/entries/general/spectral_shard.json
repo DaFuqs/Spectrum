@@ -1,7 +1,7 @@
 {
   "name": "Spectral Shard",
   "advancement": "spectrum:lategame/spectrum_lategame",
-  "sortnum": 15,
+  "sortnum": 16,
   "secret": true,
   "icon": "spectrum:spectral_shard",
   "category": "spectrum:general_category",

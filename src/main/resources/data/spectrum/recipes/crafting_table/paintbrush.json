@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " RR",
+    " FR",
+    "E  "
+  ],
+  "key": {
+    "E": {
+      "item": "spectrum:polished_calcite"
+    },
+    "F": {
+      "item": "spectrum:polished_basalt"
+    },
+    "R": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "spectrum:paintbrush",
+    "count": 1
+  }
+}

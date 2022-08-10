@@ -1,7 +1,7 @@
 {
   "name": "Color Mixing",
   "icon": "minecraft:light_blue_dye",
-  "sortnum": 5,
+  "sortnum": 6,
   "advancement": "spectrum:collect_vegetal",
   "category": "spectrum:general_category",
   "turnin": "spectrum:craft_colored_sapling",

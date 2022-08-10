@@ -1,7 +1,7 @@
 {
   "name": "Pedestal Moonstone Upgrade",
   "icon": "spectrum:pedestal_moonstone",
-  "sortnum": 14,
+  "sortnum": 15,
   "secret": true,
   "advancement": "spectrum:lategame/spectrum_lategame",
   "category": "spectrum:general_category",

@@ -1,7 +1,7 @@
 {
   "name": "Gemstone Powder",
   "icon": "spectrum:amethyst_powder",
-  "sortnum": 4,
+  "sortnum": 5,
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:general_category",
   "turnin": "spectrum:collect_gemstone_powder",

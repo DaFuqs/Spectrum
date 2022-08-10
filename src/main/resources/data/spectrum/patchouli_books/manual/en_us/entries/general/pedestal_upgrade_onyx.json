@@ -1,7 +1,7 @@
 {
   "name": "Pedestal Onyx Upgrade",
   "icon": "spectrum:pedestal_onyx",
-  "sortnum": 11,
+  "sortnum": 12,
   "advancement": "spectrum:create_onyx_shard",
   "category": "spectrum:general_category",
   "turnin": "spectrum:midgame/build_advanced_pedestal_structure",

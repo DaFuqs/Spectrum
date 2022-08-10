@@ -15,7 +15,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -50,8 +49,8 @@ public class PaintBrushItem extends Item {
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
-		if(selected && entity instanceof ServerPlayerEntity serverPlayerEntity) {
-			if(serverPlayerEntity.isSneaking() && canColor(serverPlayerEntity) && serverPlayerEntity.currentScreenHandler instanceof PlayerScreenHandler) {
+		if (selected && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (serverPlayerEntity.isSneaking() && canColor(serverPlayerEntity) && serverPlayerEntity.currentScreenHandler instanceof PlayerScreenHandler) {
 				serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(world, serverPlayerEntity, stack));
 			}
 		}
@@ -74,7 +73,7 @@ public class PaintBrushItem extends Item {
 	
 	public static void setColor(ItemStack stack, @Nullable InkColor color) {
 		NbtCompound compound = stack.getOrCreateNbt();
-		if(color == null) {
+		if (color == null) {
 			compound.remove(COLOR_NBT_STRING);
 		} else {
 			compound.putString(COLOR_NBT_STRING, color.toString());
@@ -92,19 +91,19 @@ public class PaintBrushItem extends Item {
 	
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
-		if(canColor(context.getPlayer()) && cursedColor(context)) {
+		if (canColor(context.getPlayer()) && cursedColor(context)) {
 			return ActionResult.success(context.getWorld().isClient);
 		}
 		return super.useOnBlock(context);
 	}
 	
 	private boolean cursedColor(ItemUsageContext context) {
-		if(context.getPlayer() == null) {
+		if (context.getPlayer() == null) {
 			return false;
 		}
 		
 		Optional<InkColor> optionalInkColor = getColor(context.getStack());
-		if(optionalInkColor.isEmpty()) {
+		if (optionalInkColor.isEmpty()) {
 			return false;
 		}
 		
@@ -113,17 +112,18 @@ public class PaintBrushItem extends Item {
 		
 		if (!context.getPlayer().isCreative()
 				|| !InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, 10L)
-				|| !InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), DyeItem.byColor(dyeColor).getDefaultStack())
 				|| !InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), PigmentItem.byColor(dyeColor).getDefaultStack())) {
 			return false;
 		}
 		
+		// TODO: Use Jellos API to support all of jellos block colors
+		// https://modrinth.com/mod/jello
 		Block newBlock = ColorHelper.cursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
-		if(newBlock == Blocks.AIR) {
+		if (newBlock == Blocks.AIR) {
 			return false;
 		}
 		
-		if(!context.getWorld().isClient) {
+		if (!context.getWorld().isClient) {
 			context.getWorld().setBlockState(context.getBlockPos(), newBlock.getDefaultState());
 			context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}

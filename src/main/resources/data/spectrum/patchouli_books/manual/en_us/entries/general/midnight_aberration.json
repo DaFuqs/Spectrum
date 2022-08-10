@@ -1,7 +1,7 @@
 {
   "name": "The Perfect Compound?",
   "icon": "spectrum:midnight_aberration",
-  "sortnum": 12,
+  "sortnum": 13,
   "advancement": "spectrum:midgame/collect_neolith",
   "category": "spectrum:general_category",
   "turnin": "spectrum:midgame/create_midnight_aberration",

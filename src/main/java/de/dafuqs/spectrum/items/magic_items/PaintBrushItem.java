@@ -110,24 +110,24 @@ public class PaintBrushItem extends Item {
 		InkColor inkColor = optionalInkColor.get();
 		DyeColor dyeColor = inkColor.getDyeColor();
 		
-		if (!context.getPlayer().isCreative()
-				|| !InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, 10L)
-				|| !InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), PigmentItem.byColor(dyeColor).getDefaultStack())) {
-			return false;
+		if (context.getPlayer().isCreative()
+				|| InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, 10L)
+				|| InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), PigmentItem.byColor(dyeColor).getDefaultStack())) {
+			
+			// TODO: Use Jellos API to support all of jellos block colors
+			// https://modrinth.com/mod/jello
+			Block newBlock = ColorHelper.cursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
+			if (newBlock == Blocks.AIR) {
+				return false;
+			}
+			
+			if (!context.getWorld().isClient) {
+				context.getWorld().setBlockState(context.getBlockPos(), newBlock.getDefaultState());
+				context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			}
+			return true;
 		}
-		
-		// TODO: Use Jellos API to support all of jellos block colors
-		// https://modrinth.com/mod/jello
-		Block newBlock = ColorHelper.cursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
-		if (newBlock == Blocks.AIR) {
-			return false;
-		}
-		
-		if (!context.getWorld().isClient) {
-			context.getWorld().setBlockState(context.getBlockPos(), newBlock.getDefaultState());
-			context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		}
-		return true;
+		return false;
 	}
 	
 	@Override

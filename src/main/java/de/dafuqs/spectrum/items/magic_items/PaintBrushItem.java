@@ -2,9 +2,12 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.PaintbrushScreenHandler;
+import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -12,6 +15,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
@@ -24,10 +28,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -98,14 +99,26 @@ public class PaintBrushItem extends Item {
 	}
 	
 	private boolean cursedColor(ItemUsageContext context) {
-		Optional<InkColor> inkColor = getColor(context.getStack());
-		if(inkColor.isEmpty()) {
+		if(context.getPlayer() == null) {
 			return false;
 		}
 		
-		// todo: drain ink / consume pigment
+		Optional<InkColor> optionalInkColor = getColor(context.getStack());
+		if(optionalInkColor.isEmpty()) {
+			return false;
+		}
 		
-		Block newBlock = ColorHelper.cursedBlockColorVariant(context.getWorld(), context.getBlockPos(), inkColor.get().getDyeColor());
+		InkColor inkColor = optionalInkColor.get();
+		DyeColor dyeColor = inkColor.getDyeColor();
+		
+		if (!context.getPlayer().isCreative()
+				|| !InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, 10L)
+				|| !InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), DyeItem.byColor(dyeColor).getDefaultStack())
+				|| !InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), PigmentItem.byColor(dyeColor).getDefaultStack())) {
+			return false;
+		}
+		
+		Block newBlock = ColorHelper.cursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
 		if(newBlock == Blocks.AIR) {
 			return false;
 		}

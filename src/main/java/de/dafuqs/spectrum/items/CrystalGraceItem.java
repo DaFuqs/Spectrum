@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items;
+/*package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.graces.crystal.ColorPool;
 import net.minecraft.client.item.TooltipContext;
@@ -71,3 +71,4 @@ public class CrystalGraceItem extends ItemWithTooltip{
 
     }
 }
+*/

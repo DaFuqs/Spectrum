@@ -40,7 +40,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 	
 	public CinderhearthBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
+		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.EAST));
 	}
 	
 	@Nullable

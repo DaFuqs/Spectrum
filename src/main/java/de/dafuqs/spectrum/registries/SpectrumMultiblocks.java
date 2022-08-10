@@ -18,24 +18,28 @@ public class SpectrumMultiblocks {
 	
 	public static final Map<Identifier, IMultiblock> MULTIBLOCKS = new ConcurrentHashMap<>();
 	
-	public static Identifier PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK;
-	public static Identifier PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_PLACE;
-	public static Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK;
-	public static Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE;
-	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK;
-	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_PLACE;
+	public static Identifier PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_simple_structure_check");
+	public static Identifier PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_simple_structure_place");
+	public static Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_advanced_structure_check");
+	public static Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_advanced_structure_place");
+	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_complex_structure_check");
+	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_complex_structure_place");
 	
-	public static Identifier FUSION_SHRINE_IDENTIFIER;
-	public static Identifier ENCHANTER_IDENTIFIER;
-	public static Identifier SPIRIT_INSTILLER_IDENTIFIER;
-	public static Identifier CINDERHEARTH_IDENTIFIER;
-	public static Identifier CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER;
+	public static Identifier FUSION_SHRINE_IDENTIFIER = SpectrumCommon.locate("fusion_shrine_structure");
+	public static Identifier ENCHANTER_IDENTIFIER = SpectrumCommon.locate("enchanter_structure");
+	public static Identifier SPIRIT_INSTILLER_IDENTIFIER = SpectrumCommon.locate("spirit_instiller_structure");
+	public static Identifier CINDERHEARTH_IDENTIFIER = SpectrumCommon.locate("cinderhearth_structure");
+	public static Identifier CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER = SpectrumCommon.locate("cinderhearth_without_lava_structure");
 	
-	private static Identifier registerMultiBlock(String identifierString, String[][] structure, Object[] targetBlocks) {
-		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, identifierString);
+	public static Identifier PEDESTAL_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("pedestal_structure_with_upgrades");
+	public static Identifier FUSION_SHRINE_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("fusion_shrine_structure_with_upgrades");
+	public static Identifier ENCHANTER_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("enchanter_structure_with_upgrades");
+	public static Identifier CINDERHEARTH_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("cinderhearth_structure_with_upgrades");
+	public static Identifier SPIRIT_INSTILLER_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("spirit_instiller_structure_with_upgrades");
+	
+	private static void registerMultiBlock(Identifier identifier, String[][] structure, Object[] targetBlocks) {
 		IMultiblock multiblock = PatchouliAPI.get().makeMultiblock(structure, targetBlocks);
 		MULTIBLOCKS.put(identifier, PatchouliAPI.get().registerMultiblock(identifier, multiblock));
-		return identifier;
 	}
 	
 	public static void register() {
@@ -54,6 +58,7 @@ public class SpectrumMultiblocks {
 				'S', "#spectrum:gemstone_storage_blocks",
 				'C', "#spectrum:chiseled_base_blocks",
 				'F', "#spectrum:fusion_shrines",
+				'U', "spectrum:upgrade_speed",
 				'_', StateMatcher.ANY,
 				'0', "#spectrum:polished_base_blocks",
 		};
@@ -65,7 +70,16 @@ public class SpectrumMultiblocks {
 				{"__XXXXX__", "_P_____P_", "X_______X", "X_______X", "X___F___X", "X_______X", "X_______X", "_P_____P_", "__XXXXX__"},
 				{"__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__"}
 		};
-		FUSION_SHRINE_IDENTIFIER = registerMultiBlock("fusion_shrine_structure", structure, targetBlocks);
+		registerMultiBlock(FUSION_SHRINE_IDENTIFIER, structure, targetBlocks);
+		
+		String[][] structureUpgrades = {
+				{"_________", "_L_____L_", "_________", "_________", "____ ____", "_________", "_________", "_L_____L_", "_________"},
+				{"_________", "_S_____S_", "_________", "_________", "____ ____", "_________", "_________", "_S_____S_", "_________"},
+				{"_________", "_P_____P_", "_________", "_________", "____ ____", "_________", "_________", "_P_____P_", "_________"},
+				{"__XXXXX__", "_P_____P_", "X_U___U_X", "X_______X", "X___F___X", "X_______X", "X_U___U_X", "_P_____P_", "__XXXXX__"},
+				{"__XXXXX__", "_XXXXXXX_", "XXCXXXCXX", "XXXLLLXXX", "XXXL0LXXX", "XXXLLLXXX", "XXCXXXCXX", "_XXXXXXX_", "__XXXXX__"}
+		};
+		registerMultiBlock(FUSION_SHRINE_IDENTIFIER_WITH_UPGRADES, structureUpgrades, targetBlocks);
 	}
 	
 	private static void registerSpiritInstiller() {
@@ -79,6 +93,7 @@ public class SpectrumMultiblocks {
 				'K', "#spectrum:notched_base_blocks",
 				'I', "#spectrum:item_bowls",
 				'M', "#spectrum:gemstone_chimes",
+				'U', "spectrum:upgrade_speed",
 				'_', StateMatcher.ANY,
 				'0', "#spectrum:polished_base_blocks",
 		};
@@ -90,7 +105,16 @@ public class SpectrumMultiblocks {
 				{"_P_____P_", "___LLL___", "__CLSLC__", "___LLL___", "___LLL___", "___LLL___", "G_______G", "_________" },
 				{"_PXXXXXP_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "_XXX0XXX_", "__XXXXX__", "P__XXX__P", "___LLL___" }
 		};
-		SPIRIT_INSTILLER_IDENTIFIER = registerMultiBlock("spirit_instiller_structure", structure, targetBlocks);
+		registerMultiBlock(SPIRIT_INSTILLER_IDENTIFIER, structure, targetBlocks);
+		
+		String[][] structureUpgrades = {
+				{"_________", "_________", "__M___M__", "_________", "_________", "_________", "_________", "_________" },
+				{"_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________" },
+				{"_K_____K_", "_________", "__I___I__", "_________", "_________", "_________", "U_______U", "_________" },
+				{"_P_____P_", "___LLL___", "__CLSLC__", "___LLL___", "___LLL___", "___LLL___", "G_______G", "_________" },
+				{"_PXXXXXP_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "_XXX0XXX_", "__XXXXX__", "P__XXX__P", "___LLL___" }
+		};
+		registerMultiBlock(SPIRIT_INSTILLER_IDENTIFIER_WITH_UPGRADES, structureUpgrades, targetBlocks);
 	}
 	
 	private static void registerEnchanter() {
@@ -103,6 +127,7 @@ public class SpectrumMultiblocks {
 				'F', "spectrum:enchanter",
 				'C', "spectrum:liquid_crystal",
 				'I', "#spectrum:item_bowls",
+				'U', "spectrum:upgrade_speed",
 				'_', StateMatcher.ANY,
 				'0', "#spectrum:polished_base_blocks",
 		};
@@ -114,7 +139,16 @@ public class SpectrumMultiblocks {
 				{"_XXXXXXXXX_", "XCCCXXXCCCX", "XCXCXXXCXCX", "XCCCXXXCCCX", "XXXXXXXXXXX", "XXXXX0XXXXX", "XXXXXXXXXXX", "XCCCXXXCCCX", "XCXCXXXCXCX", "XCCCXXXCCCX", "_XXXXXXXXX_",},
 				{"___________", "_XXX___XXX_", "_X_X___X_X_", "_XXX___XXX_", "___________", "___________", "___________", "_XXX___XXX_", "_X_X___X_X_", "_XXX___XXX_", "___________"}
 		};
-		ENCHANTER_IDENTIFIER = registerMultiBlock("enchanter_structure", structure, targetBlocks);
+		registerMultiBlock(ENCHANTER_IDENTIFIER, structure, targetBlocks);
+		
+		String[][] structureUpgrades = {
+				{"__I_____I__", "___________", "I_U_____U_I", "___________", "___________", "_____F_____", "___________", "___________", "I_U_____U_I", "___________", "__I_____I__",},
+				{"__L_____L__", "___________", "L_G_____G_L", "____BBB____", "___BXXXB___", "___BXXXB___", "___BXXXB___", "____BBB____", "L_G_____G_L", "___________", "__L_____L__",},
+				{"__P_____P__", "____BBB____", "P_P_XXX_P_P", "____XXX____", "_BXXXXXXXB_", "_BXXXXXXXB_", "_BXXXXXXXB_", "____XXX____", "P_P_XXX_P_P", "____BBB____", "__P_____P__",},
+				{"_XXXXXXXXX_", "XCCCXXXCCCX", "XCXCXXXCXCX", "XCCCXXXCCCX", "XXXXXXXXXXX", "XXXXX0XXXXX", "XXXXXXXXXXX", "XCCCXXXCCCX", "XCXCXXXCXCX", "XCCCXXXCCCX", "_XXXXXXXXX_",},
+				{"___________", "_XXX___XXX_", "_X_X___X_X_", "_XXX___XXX_", "___________", "___________", "___________", "_XXX___XXX_", "_X_X___X_X_", "_XXX___XXX_", "___________"}
+		};
+		registerMultiBlock(ENCHANTER_IDENTIFIER_WITH_UPGRADES, structureUpgrades, targetBlocks);
 	}
 	
 	private static void registerCinderhearth() {
@@ -124,6 +158,7 @@ public class SpectrumMultiblocks {
 				'c', "#spectrum:crest_base_blocks",
 				'G', "#minecraft:impermeable",
 				'L', "minecraft:lava",
+				'U', "spectrum:upgrade_speed",
 				'_', StateMatcher.ANY,
 				'H', "spectrum:cinderhearth",
 				'0', "#spectrum:polished_base_blocks",
@@ -135,7 +170,7 @@ public class SpectrumMultiblocks {
 				{"_XXX_", "XLLLX", "XLLLX", "_XXX_" },
 				{"_____", "_X0X_", "_XXX_", "_____" }
 		};
-		CINDERHEARTH_IDENTIFIER = registerMultiBlock("cinderhearth_structure", structure, targetBlocks);
+		registerMultiBlock(CINDERHEARTH_IDENTIFIER, structure, targetBlocks);
 		
 		String[][] withoutLavaStructure = {
 				{"C___C", "__H__", "_____", "_____" },
@@ -143,7 +178,16 @@ public class SpectrumMultiblocks {
 				{"_XXX_", "X___X", "X___X", "_XXX_" },
 				{"_____", "_X0X_", "_XXX_", "_____" }
 		};
-		CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER = registerMultiBlock("cinderhearth_without_lava_structure", withoutLavaStructure, targetBlocks);
+		registerMultiBlock(CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER, withoutLavaStructure, targetBlocks);
+		
+		String[][] structureUpgrades = {
+				{"U___U", "_____", "_____", "_____" },
+				{"C___C", "__H__", "_____", "_____" },
+				{"Xc cX", "cG_Gc", "cGGGc", "_XXX_" },
+				{"_XXX_", "XLLLX", "XLLLX", "_XXX_" },
+				{"_____", "_X0X_", "_XXX_", "_____" }
+		};
+		registerMultiBlock(CINDERHEARTH_IDENTIFIER_WITH_UPGRADES, structureUpgrades, targetBlocks);
 	}
 	
 	private static void registerPedestal() {
@@ -188,6 +232,7 @@ public class SpectrumMultiblocks {
 				'2', "spectrum:pedestal_all_basic",
 				'3', "spectrum:pedestal_onyx",
 				'4', "spectrum:pedestal_moonstone",
+				'U', "spectrum:upgrade_speed",
 				'_', StateMatcher.ANY,
 				'0', StateMatcher.ANY
 		};
@@ -198,8 +243,8 @@ public class SpectrumMultiblocks {
 				{"K_________K", "___________", "__Q_____Q__", "___________", "___________", "_____2_____", "___________", "___________", "__Q_____Q__", "___________", "K_________K"},
 				{"___________", "___XXXXX___", "__XXXXXXX__", "_XXXXXXXXX_", "_XXXXXXXXX_", "_XXXX0XXXX_", "_XXXXXXXXX_", "_XXXXXXXXX_", "__XXXXXXX__", "___XXXXX___", "___________"}
 		};
-		PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_simple_structure_check", tier1Structure, targetBlocksCheck);
-		PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_PLACE = registerMultiBlock("pedestal_simple_structure_place", tier1Structure, targetBlocksPlace);
+		registerMultiBlock(PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK, tier1Structure, targetBlocksCheck);
+		registerMultiBlock(PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_PLACE, tier1Structure, targetBlocksPlace);
 		
 		String[][] tier2Structure = {
 				{"_____________", "_Sttr___rttS_", "_T_________T_", "_T_________T_", "_r_________r_", "_____________", "_____________", "_____________", "_r_________r_", "_T_________T_", "_T_________T_", "_Sttr___rttS_", "_____________"},
@@ -209,8 +254,19 @@ public class SpectrumMultiblocks {
 				{"_____________", "_K__Q___Q__K_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______3______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_K__Q___Q__K_", "_____________"},
 				{"XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXRXRXXXXX", "XXXXRXXXRXXXX", "XXXXXX0XXXXXX", "XXXXRXXXRXXXX", "XXXXXRXRXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX"}
 		};
-		PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_advanced_structure_check", tier2Structure, targetBlocksCheck);
-		PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE = registerMultiBlock("pedestal_advanced_structure_place", tier2Structure, targetBlocksPlace);
+		registerMultiBlock(PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK, tier2Structure, targetBlocksCheck);
+		registerMultiBlock(PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE, tier2Structure, targetBlocksPlace);
+		
+		String[][] tier2StructureUpgrades = {
+				{"_____________", "_Sttr___rttS_", "_T_________T_", "_T_________T_", "_r_________r_", "_____________", "_____________", "_____________", "_r_________r_", "_T_________T_", "_T_________T_", "_Sttr___rttS_", "_____________"},
+				{"_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________"},
+				{"_____________", "_C__Q___Q__C_", "_____________", "___U_____U___", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "___U_____U___", "_____________", "_C__Q___Q__C_", "_____________"},
+				{"_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________"},
+				{"_____________", "_K__Q___Q__K_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______3______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_K__Q___Q__K_", "_____________"},
+				{"XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXRXRXXXXX", "XXXXRXXXRXXXX", "XXXXXX0XXXXXX", "XXXXRXXXRXXXX", "XXXXXRXRXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX"}
+		};
+		registerMultiBlock(PEDESTAL_IDENTIFIER_WITH_UPGRADES, tier2StructureUpgrades, targetBlocksPlace);
+		
 		
 		String[][] tier3Structure = {
 				{"_____________", "____XtStX____", "_____________", "_____________", "_X__OtttO__X_", "_T__T___T__T_", "_S__T___T__S_", "_T__T___T__T_", "_X__OtttO__X_", "_____________", "_____________", "____XtStX____", "_____________"},
@@ -221,8 +277,8 @@ public class SpectrumMultiblocks {
 				{"_____________", "_K__Q___Q__K_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______4______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_K__Q___Q__K_", "_____________"},
 				{"XXXXXXXXXXXXX", "XXmmXmmmXmmXX", "XMXXXXXXXXXMX", "XMXXXXXXXXXMX", "XXXXXRXRXXXXX", "XMXXRXXXRXXMX", "XMXXXX0XXXXMX", "XMXXRXXXRXXMX", "XXXXXRXRXXXXX", "XMXXXXXXXXXMX", "XMXXXXXXXXXMX", "XXmmXmmmXmmXX", "XXXXXXXXXXXXX"}
 		};
-		PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK = registerMultiBlock("pedestal_complex_structure_check", tier3Structure, targetBlocksCheck);
-		PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_PLACE = registerMultiBlock("pedestal_complex_structure_place", tier3Structure, targetBlocksPlace);
+		registerMultiBlock(PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK, tier3Structure, targetBlocksCheck);
+		registerMultiBlock(PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_PLACE, tier3Structure, targetBlocksPlace);
 	}
 	
 	@Contract(pure = true)

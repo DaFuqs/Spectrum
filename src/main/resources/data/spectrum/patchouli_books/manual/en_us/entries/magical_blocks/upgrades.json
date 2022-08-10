@@ -1,0 +1,127 @@
+{
+  "name": "Structure Upgrades",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "icon": "spectrum:upgrade_speed",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:upgrade_speed": 0,
+    "spectrum:upgrade_speed2": 0,
+    "spectrum:upgrade_speed3": 0,
+    "spectrum:upgrade_experience": 0,
+    "spectrum:upgrade_experience2": 0,
+    "spectrum:upgrade_efficiency": 0,
+    "spectrum:upgrade_efficiency2": 0,
+    "spectrum:upgrade_yield": 0,
+    "spectrum:upgrade_yield2": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Pigment Pedestal and Fusion Shrine have already proven their worth. But there is still plenty of room for improvement. That's why you created these upgrades. Each one improves the properties of your structures in a different way, depending on what's most important to you personally.$(br)Additional ones of the same type have a decreased effect."
+    },
+
+
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/upgrade_speed",
+      "text": "The crafting time of the $(l:general/pedestal)Pigment Pedestal$(/l) increases a lot when using complex components. This will help you bring back the times to an acceptable level."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/unlock_upgrade_speed2",
+      "title": "Tier 2",
+      "recipe": "spectrum:pedestal/tier3/upgrade_speed2",
+      "text": "The Pedestal Accelerator T2 improves all aspects of the previous variant. Making your crafting even more rapid."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/unlock_upgrade_speed3",
+      "title": "Tier 3",
+      "recipe": "spectrum:pedestal/tier4/upgrade_speed3",
+      "text": "Tier 3 leaves nothing to be desired - at least in terms of crafting speed."
+    },
+
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/unlock_upgrade_experience",
+      "title": "Knowledge Focus",
+      "recipe": "spectrum:pedestal/tier3/upgrade_experience",
+      "text": "For the most part the experience $(l:general/pedestal)Pigment Pedestal$(/l) crafting rewards is pretty much negligible. But using this Focus you could dramatically increase the amount gained."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/unlock_upgrade_experience2",
+      "title": "Tier 2",
+      "recipe": "spectrum:pedestal/tier3/upgrade_experience2",
+      "text": "This improved Knowledge Focus increases the generated XP even more."
+    },
+
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:midgame/create_refined_azurite",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/upgrade_efficiency",
+      "text": "The $(l:general/pedestal)Pigment Pedestal$(/l) devours vast amounts of Gemstone Powder.$(br)Now you should be able to cushion the consumption of your structures a little."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/unlock_upgrade_efficiency2",
+      "title": "Tier 2",
+      "recipe": "spectrum:pedestal/tier4/upgrade_efficiency2",
+      "text": "This 'upgrade of the upgrade' further reduces the consumption of input materials."
+    },
+
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:lategame/collect_paletur",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/upgrade_yield",
+      "text": "This is an interesting one. Although the chance is very small, you can increase the # of your crafting outputs.$(br)$(italic)More bang for your buck!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/unlock_upgrade_yield2",
+      "title": "Tier 2",
+      "recipe": "spectrum:pedestal/tier4/upgrade_yield2",
+      "text": "This upgraded version is much more potent, allowing you to get even more output for your crafting."
+    },
+
+    {
+      "type": "patchouli:multiblock",
+      "name": "Pedestal Placement",
+      "multiblock_id": "spectrum:pedestal_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "4 upgrade slots"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Fusion Shrine Placement",
+      "multiblock_id": "spectrum:fusion_shrine_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "4 upgrade slots"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Enchanter Placement",
+      "multiblock_id": "spectrum:enchanter_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "4 upgrade slots"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Cinderhearth Placement",
+      "multiblock_id": "spectrum:cinderhearth_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "2 upgrade slots"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Spirit Instiller Placement",
+      "multiblock_id": "spectrum:spirit_instiller_structure_with_upgrades",
+      "enable_visualize": false,
+      "text": "2 upgrade slots"
+    }
+  ]
+}

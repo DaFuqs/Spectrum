@@ -21,7 +21,7 @@
       "name": "Enchanting Structure",
       "multiblock_id": "spectrum:enchanter_structure",
       "enable_visualize": true,
-      "text": "The pools around the gemstone blocks have to be filled with $(l:magical_blocks/liquid_crystal)Liquid Crystal$()."
+      "text": "The Enchanter's abilities can be enhanced via $(l:magical_blocks/upgrades)Upgrades$(). Place them on the four Gemstone Blocks."
     },
     {
       "type": "patchouli:text",

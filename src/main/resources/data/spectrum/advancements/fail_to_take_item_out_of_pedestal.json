@@ -1,14 +1,14 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:redstone_torch"
+      "item": "spectrum:paintbrush"
     },
     "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.craft_using_pedestal_without_redstone.title"
+      "translate": "advancements.spectrum.fail_to_take_item_out_of_pedestal.title"
     },
     "description": {
-      "translate": "advancements.spectrum.craft_using_pedestal_without_redstone.description"
+      "translate": "advancements.spectrum.fail_to_take_item_out_of_pedestal.description"
     }
   },
   "parent": "spectrum:place_pedestal",

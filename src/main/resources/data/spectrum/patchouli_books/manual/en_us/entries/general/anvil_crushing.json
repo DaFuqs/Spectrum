@@ -1,7 +1,7 @@
 {
   "name": "Item Crushing",
   "icon": "minecraft:anvil",
-  "sortnum": 3,
+  "sortnum": 4,
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:general_category",
   "turnin": "spectrum:collect_gemstone_powder",

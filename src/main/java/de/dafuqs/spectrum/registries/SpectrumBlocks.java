@@ -310,118 +310,119 @@ public class SpectrumBlocks {
 	public static final Block INK_DUCT = new InkDuctBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
 	public static final Block CRYSTAL_APOTHECARY = new CrystalApothecaryBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F));
 	
-	public static final Block BLACK_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block BLACK_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block BLACK_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block BLACK_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block BLACK_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block BLACK_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block BLACK_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block BLUE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block BLUE_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block BLUE_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block BLUE_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block BLUE_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block BLUE_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block BLUE_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block BROWN_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block BROWN_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block BROWN_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block BROWN_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block BROWN_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block BROWN_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block BROWN_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block CYAN_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block CYAN_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block CYAN_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block CYAN_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block CYAN_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block CYAN_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block CYAN_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block GRAY_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block GRAY_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block GRAY_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block GRAY_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block GRAY_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block GRAY_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block GRAY_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block GREEN_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block GREEN_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block GREEN_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block GREEN_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block GREEN_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block GREEN_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block GREEN_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block LIGHT_BLUE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block LIGHT_BLUE_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block LIGHT_BLUE_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block LIGHT_BLUE_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block LIGHT_BLUE_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block LIGHT_BLUE_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block LIGHT_BLUE_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block LIGHT_GRAY_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block LIGHT_GRAY_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block LIGHT_GRAY_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block LIGHT_GRAY_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block LIGHT_GRAY_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block LIGHT_GRAY_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block LIGHT_GRAY_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block LIME_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block LIME_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block LIME_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block LIME_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block LIME_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block LIME_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block LIME_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block MAGENTA_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block MAGENTA_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block MAGENTA_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block MAGENTA_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block MAGENTA_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block MAGENTA_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block MAGENTA_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block ORANGE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block ORANGE_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block ORANGE_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block ORANGE_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block ORANGE_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block ORANGE_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block ORANGE_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block PINK_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block PINK_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block PINK_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block PINK_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block PINK_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block PINK_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block PINK_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block PURPLE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block PURPLE_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block PURPLE_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block PURPLE_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block PURPLE_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block PURPLE_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block PURPLE_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block RED_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block RED_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block RED_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block RED_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block RED_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block RED_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block RED_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block WHITE_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block WHITE_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block WHITE_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block WHITE_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block WHITE_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block WHITE_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block WHITE_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
-	public static final Block YELLOW_PLANKS = new Block(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
-	public static final Block YELLOW_PLANK_STAIRS = new SpectrumStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS));
-	public static final Block YELLOW_PLANK_PRESSURE_PLATE = new SpectrumPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE));
-	public static final Block YELLOW_PLANK_FENCE = new FenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE));
-	public static final Block YELLOW_PLANK_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE));
-	public static final Block YELLOW_PLANK_BUTTON = new SpectrumWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON));
-	public static final Block YELLOW_PLANK_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB));
+	public static final Block BLACK_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.BLACK);
+	public static final Block BLACK_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.BLACK);
+	public static final Block BLACK_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.BLACK);
+	public static final Block BLACK_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.BLACK);
+	public static final Block BLACK_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.BLACK);
+	public static final Block BLACK_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.BLACK);
+	public static final Block BLACK_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.BLACK);
+	public static final Block BLUE_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.BLUE);
+	public static final Block BLUE_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.BLUE);
+	public static final Block BLUE_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.BLUE);
+	public static final Block BLUE_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.BLUE);
+	public static final Block BLUE_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.BLUE);
+	public static final Block BLUE_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.BLUE);
+	public static final Block BLUE_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.BLUE);
+	public static final Block BROWN_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.BROWN);
+	public static final Block BROWN_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.BROWN);
+	public static final Block BROWN_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.BROWN);
+	public static final Block BROWN_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.BROWN);
+	public static final Block BROWN_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.BROWN);
+	public static final Block BROWN_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.BROWN);
+	public static final Block BROWN_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.BROWN);
+	public static final Block CYAN_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.CYAN);
+	public static final Block CYAN_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.CYAN);
+	public static final Block CYAN_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.CYAN);
+	public static final Block CYAN_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.CYAN);
+	public static final Block CYAN_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.CYAN);
+	public static final Block CYAN_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.CYAN);
+	public static final Block CYAN_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.CYAN);
+	public static final Block GRAY_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.GRAY);
+	public static final Block GRAY_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.GRAY);
+	public static final Block GRAY_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.GRAY);
+	public static final Block GRAY_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.GRAY);
+	public static final Block GRAY_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.GRAY);
+	public static final Block GRAY_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.GRAY);
+	public static final Block GRAY_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.GRAY);
+	public static final Block GREEN_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.GREEN);
+	public static final Block GREEN_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.GREEN);
+	public static final Block GREEN_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.GREEN);
+	public static final Block GREEN_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.GREEN);
+	public static final Block GREEN_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.GREEN);
+	public static final Block GREEN_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.GREEN);
+	public static final Block GREEN_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_BLUE_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_BLUE_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_BLUE_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_BLUE_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_BLUE_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_BLUE_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.LIGHT_GRAY);
+	public static final Block LIGHT_GRAY_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.LIGHT_GRAY);
+	public static final Block LIGHT_GRAY_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.LIGHT_GRAY);
+	public static final Block LIGHT_GRAY_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.LIGHT_GRAY);
+	public static final Block LIGHT_GRAY_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.LIGHT_GRAY);
+	public static final Block LIGHT_GRAY_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.LIGHT_GRAY);
+	public static final Block LIGHT_GRAY_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.LIGHT_GRAY);
+	public static final Block LIME_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.LIME);
+	public static final Block LIME_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.LIME);
+	public static final Block LIME_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.LIME);
+	public static final Block LIME_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.LIME);
+	public static final Block LIME_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.LIME);
+	public static final Block LIME_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.LIME);
+	public static final Block LIME_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.LIME);
+	public static final Block MAGENTA_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.MAGENTA);
+	public static final Block MAGENTA_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.MAGENTA);
+	public static final Block MAGENTA_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.MAGENTA);
+	public static final Block MAGENTA_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.MAGENTA);
+	public static final Block MAGENTA_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.MAGENTA);
+	public static final Block MAGENTA_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.MAGENTA);
+	public static final Block MAGENTA_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.MAGENTA);
+	public static final Block ORANGE_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.ORANGE);
+	public static final Block ORANGE_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.ORANGE);
+	public static final Block ORANGE_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.ORANGE);
+	public static final Block ORANGE_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.ORANGE);
+	public static final Block ORANGE_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.ORANGE);
+	public static final Block ORANGE_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.ORANGE);
+	public static final Block ORANGE_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.ORANGE);
+	public static final Block PINK_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.PINK);
+	public static final Block PINK_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.PINK);
+	public static final Block PINK_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.PINK);
+	public static final Block PINK_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.PINK);
+	public static final Block PINK_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.PINK);
+	public static final Block PINK_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.PINK);
+	public static final Block PINK_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.PINK);
+	public static final Block PURPLE_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.PURPLE);
+	public static final Block PURPLE_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.PURPLE);
+	public static final Block PURPLE_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.PURPLE);
+	public static final Block PURPLE_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.PURPLE);
+	public static final Block PURPLE_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.PURPLE);
+	public static final Block PURPLE_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.PURPLE);
+	public static final Block PURPLE_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.PURPLE);
+	public static final Block RED_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.RED);
+	public static final Block RED_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.RED);
+	public static final Block RED_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.RED);
+	public static final Block RED_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.RED);
+	public static final Block RED_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.RED);
+	public static final Block RED_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.RED);
+	public static final Block RED_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.RED);
+	public static final Block WHITE_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.WHITE);
+	public static final Block WHITE_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.WHITE);
+	public static final Block WHITE_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.WHITE);
+	public static final Block WHITE_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.WHITE);
+	public static final Block WHITE_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.WHITE);
+	public static final Block WHITE_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.WHITE);
+	public static final Block WHITE_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.WHITE);
+	public static final Block YELLOW_PLANKS = new ColoredPlankBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS), DyeColor.YELLOW);
+	public static final Block YELLOW_PLANK_STAIRS = new ColoredStairsBlock(BLACK_PLANKS.getDefaultState(), FabricBlockSettings.copyOf(Blocks.OAK_STAIRS), DyeColor.YELLOW);
+	public static final Block YELLOW_PLANK_PRESSURE_PLATE = new ColoredPressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, FabricBlockSettings.copyOf(Blocks.OAK_PRESSURE_PLATE), DyeColor.YELLOW);
+	public static final Block YELLOW_PLANK_FENCE = new ColoredFenceBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE), DyeColor.YELLOW);
+	public static final Block YELLOW_PLANK_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.YELLOW);
+	public static final Block YELLOW_PLANK_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.YELLOW);
+	public static final Block YELLOW_PLANK_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.YELLOW);
+	
 	public static final Block PRESERVATION_CONTROLLER = new PreservationControllerBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F).dropsNothing().luminance(1).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F).dropsNothing().luminance(3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).hardness(-1.0F));
@@ -557,115 +558,115 @@ public class SpectrumBlocks {
 	
 	// COLORED TREES
 	private static final FabricBlockSettings coloredSaplingBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_SAPLING);
-	public static final Block BLACK_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BLACK), coloredSaplingBlockSettings);
-	public static final Block BLUE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BLUE), coloredSaplingBlockSettings);
-	public static final Block BROWN_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.BROWN), coloredSaplingBlockSettings);
-	public static final Block CYAN_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.CYAN), coloredSaplingBlockSettings);
-	public static final Block GRAY_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.GRAY), coloredSaplingBlockSettings);
-	public static final Block GREEN_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.GREEN), coloredSaplingBlockSettings);
-	public static final Block LIGHT_BLUE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.LIGHT_BLUE), coloredSaplingBlockSettings);
-	public static final Block LIGHT_GRAY_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.LIGHT_GRAY), coloredSaplingBlockSettings);
-	public static final Block LIME_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.LIME), coloredSaplingBlockSettings);
-	public static final Block MAGENTA_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.MAGENTA), coloredSaplingBlockSettings);
-	public static final Block ORANGE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.ORANGE), coloredSaplingBlockSettings);
-	public static final Block PINK_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.PINK), coloredSaplingBlockSettings);
-	public static final Block PURPLE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.PURPLE), coloredSaplingBlockSettings);
-	public static final Block RED_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.RED), coloredSaplingBlockSettings);
-	public static final Block WHITE_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.WHITE), coloredSaplingBlockSettings);
-	public static final Block YELLOW_SAPLING = new ColoredSaplingBlock(new ColoredSaplingGenerator(DyeColor.YELLOW), coloredSaplingBlockSettings);
+	public static final Block BLACK_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.BLACK);
+	public static final Block BLUE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.BLUE);
+	public static final Block BROWN_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.BROWN);
+	public static final Block CYAN_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.CYAN);
+	public static final Block GRAY_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.GRAY);
+	public static final Block GREEN_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block LIME_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.LIME);
+	public static final Block MAGENTA_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.MAGENTA);
+	public static final Block ORANGE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.ORANGE);
+	public static final Block PINK_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.PINK);
+	public static final Block PURPLE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.PURPLE);
+	public static final Block RED_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.RED);
+	public static final Block WHITE_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.WHITE);
+	public static final Block YELLOW_SAPLING = new ColoredSaplingBlock(coloredSaplingBlockSettings, DyeColor.YELLOW);
 	
 	private static final FabricBlockSettings coloredLeavesBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LEAVES).luminance((state) -> 2);
-	public static final Block BLACK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block BLUE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block BROWN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block CYAN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block GRAY_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block GREEN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block LIGHT_BLUE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block LIGHT_GRAY_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block LIME_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block MAGENTA_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block ORANGE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block PINK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block PURPLE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block RED_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block WHITE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
-	public static final Block YELLOW_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings);
+	public static final Block BLACK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.BLACK);
+	public static final Block BLUE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.BLUE);
+	public static final Block BROWN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.BROWN);
+	public static final Block CYAN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.CYAN);
+	public static final Block GRAY_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.GRAY);
+	public static final Block GREEN_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block LIME_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.LIME);
+	public static final Block MAGENTA_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.MAGENTA);
+	public static final Block ORANGE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.ORANGE);
+	public static final Block PINK_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.PINK);
+	public static final Block PURPLE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.PURPLE);
+	public static final Block RED_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.RED);
+	public static final Block WHITE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.WHITE);
+	public static final Block YELLOW_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.YELLOW);
 	
 	private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG).luminance((state) -> 5);
-	public static final Block BLACK_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block BLUE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block BROWN_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block CYAN_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block GRAY_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block GREEN_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block LIGHT_BLUE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block LIGHT_GRAY_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block LIME_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block MAGENTA_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block ORANGE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block PINK_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block PURPLE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block RED_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block WHITE_LOG = new ColoredLogBlock(coloredLogBlockSettings);
-	public static final Block YELLOW_LOG = new ColoredLogBlock(coloredLogBlockSettings);
+	public static final Block BLACK_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.BLACK);
+	public static final Block BLUE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.BLUE);
+	public static final Block BROWN_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.BROWN);
+	public static final Block CYAN_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.CYAN);
+	public static final Block GRAY_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.GRAY);
+	public static final Block GREEN_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block LIME_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.LIME);
+	public static final Block MAGENTA_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.MAGENTA);
+	public static final Block ORANGE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.ORANGE);
+	public static final Block PINK_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.PINK);
+	public static final Block PURPLE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.PURPLE);
+	public static final Block RED_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.RED);
+	public static final Block WHITE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.WHITE);
+	public static final Block YELLOW_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.YELLOW);
 	
 	// FLAT COLORED BLOCKS
 	private static final FabricBlockSettings flatColoredBlockBlockSettings = FabricBlockSettings.of(Material.STONE).hardness(2.5F).requiresTool().luminance(1).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
-	public static final Block BLACK_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block BLUE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block BROWN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block CYAN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block GRAY_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block GREEN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block LIGHT_BLUE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block LIGHT_GRAY_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block LIME_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block MAGENTA_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block ORANGE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block PINK_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block PURPLE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block RED_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block WHITE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
-	public static final Block YELLOW_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings);
+	public static final Block BLACK_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.BLACK);
+	public static final Block BLUE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.BLUE);
+	public static final Block BROWN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.BROWN);
+	public static final Block CYAN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.CYAN);
+	public static final Block GRAY_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.GRAY);
+	public static final Block GREEN_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block LIME_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.LIME);
+	public static final Block MAGENTA_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.MAGENTA);
+	public static final Block ORANGE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.ORANGE);
+	public static final Block PINK_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.PINK);
+	public static final Block PURPLE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.PURPLE);
+	public static final Block RED_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.RED);
+	public static final Block WHITE_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.WHITE);
+	public static final Block YELLOW_GLOWBLOCK = new GlowBlock(flatColoredBlockBlockSettings, DyeColor.YELLOW);
 	
 	// COLORED LAMPS
 	private static final FabricBlockSettings coloredLampBlockBlockSettings = FabricBlockSettings.copyOf(Blocks.REDSTONE_LAMP);
-	public static final Block BLACK_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block BLUE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block BROWN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block CYAN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block GRAY_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block GREEN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block LIGHT_BLUE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block LIGHT_GRAY_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block LIME_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block MAGENTA_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block ORANGE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block PINK_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block PURPLE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block RED_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block WHITE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
-	public static final Block YELLOW_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings);
+	public static final Block BLACK_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.BLACK);
+	public static final Block BLUE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.BLUE);
+	public static final Block BROWN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.BROWN);
+	public static final Block CYAN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.CYAN);
+	public static final Block GRAY_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.GRAY);
+	public static final Block GREEN_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block LIME_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.LIME);
+	public static final Block MAGENTA_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.MAGENTA);
+	public static final Block ORANGE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.ORANGE);
+	public static final Block PINK_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.PINK);
+	public static final Block PURPLE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.PURPLE);
+	public static final Block RED_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.RED);
+	public static final Block WHITE_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.WHITE);
+	public static final Block YELLOW_LAMP = new ColoredLightBlock(coloredLampBlockBlockSettings, DyeColor.YELLOW);
 	
 	// PIGMENT STORAGE BLOCKS
 	private static final FabricBlockSettings pigmentStorageBlockBlockSettings = FabricBlockSettings.of(Material.WOOL).strength(1.0F).sounds(BlockSoundGroup.WOOL);
-	public static final Block BLACK_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block BLUE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block BROWN_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block CYAN_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block GRAY_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block GREEN_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block LIGHT_BLUE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block LIGHT_GRAY_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block LIME_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block MAGENTA_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block ORANGE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block PINK_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block PURPLE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block RED_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block WHITE_BLOCK = new Block(pigmentStorageBlockBlockSettings);
-	public static final Block YELLOW_BLOCK = new Block(pigmentStorageBlockBlockSettings);
+	public static final Block BLACK_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.BLACK);
+	public static final Block BLUE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.BLUE);
+	public static final Block BROWN_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.BROWN);
+	public static final Block CYAN_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.CYAN);
+	public static final Block GRAY_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.GRAY);
+	public static final Block GREEN_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.GREEN);
+	public static final Block LIGHT_BLUE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.LIGHT_BLUE);
+	public static final Block LIGHT_GRAY_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.LIGHT_GRAY);
+	public static final Block LIME_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.LIME);
+	public static final Block MAGENTA_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.MAGENTA);
+	public static final Block ORANGE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.ORANGE);
+	public static final Block PINK_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.PINK);
+	public static final Block PURPLE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.PURPLE);
+	public static final Block RED_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.RED);
+	public static final Block WHITE_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.WHITE);
+	public static final Block YELLOW_BLOCK = new PigmentBlock(pigmentStorageBlockBlockSettings, DyeColor.YELLOW);
 	
 	// SPORE BLOSSOMS
 	private static final FabricBlockSettings sporeBlossomBlockSettings = FabricBlockSettings.copyOf(Blocks.SPORE_BLOSSOM);
@@ -2009,206 +2010,5 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_MALACHITE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MALACHITE_CLUSTER, RenderLayer.getCutout());
 	}
-	
-	@NotNull
-	public static Block getColoredLogBlock(DyeColor dyeColor) {
-		return switch (dyeColor) {
-			case RED -> RED_LOG;
-			case BROWN -> BROWN_LOG;
-			case CYAN -> CYAN_LOG;
-			case GRAY -> GRAY_LOG;
-			case GREEN -> GREEN_LOG;
-			case LIGHT_BLUE -> LIGHT_BLUE_LOG;
-			case LIGHT_GRAY -> LIGHT_GRAY_LOG;
-			case BLUE -> BLUE_LOG;
-			case LIME -> LIME_LOG;
-			case ORANGE -> ORANGE_LOG;
-			case PINK -> PINK_LOG;
-			case PURPLE -> PURPLE_LOG;
-			case WHITE -> WHITE_LOG;
-			case YELLOW -> YELLOW_LOG;
-			case BLACK -> BLACK_LOG;
-			default -> MAGENTA_LOG;
-		};
-	}
-	
-	@NotNull
-	public static Block getColoredLeavesBlock(DyeColor dyeColor) {
-		return switch (dyeColor) {
-			case RED -> RED_LEAVES;
-			case BROWN -> BROWN_LEAVES;
-			case CYAN -> CYAN_LEAVES;
-			case GRAY -> GRAY_LEAVES;
-			case GREEN -> GREEN_LEAVES;
-			case LIGHT_BLUE -> LIGHT_BLUE_LEAVES;
-			case LIGHT_GRAY -> LIGHT_GRAY_LEAVES;
-			case BLUE -> BLUE_LEAVES;
-			case LIME -> LIME_LEAVES;
-			case ORANGE -> ORANGE_LEAVES;
-			case PINK -> PINK_LEAVES;
-			case PURPLE -> PURPLE_LEAVES;
-			case WHITE -> WHITE_LEAVES;
-			case YELLOW -> YELLOW_LEAVES;
-			case BLACK -> BLACK_LEAVES;
-			default -> MAGENTA_LEAVES;
-		};
-	}
-	
-	@NotNull
-	public static Block getColoredPlanksBlock(DyeColor dyeColor) {
-		return switch (dyeColor) {
-			case RED -> RED_PLANKS;
-			case BROWN -> BROWN_PLANKS;
-			case CYAN -> CYAN_PLANKS;
-			case GRAY -> GRAY_PLANKS;
-			case GREEN -> GREEN_PLANKS;
-			case LIGHT_BLUE -> LIGHT_BLUE_PLANKS;
-			case LIGHT_GRAY -> LIGHT_GRAY_PLANKS;
-			case BLUE -> BLUE_PLANKS;
-			case LIME -> LIME_PLANKS;
-			case ORANGE -> ORANGE_PLANKS;
-			case PINK -> PINK_PLANKS;
-			case PURPLE -> PURPLE_PLANKS;
-			case WHITE -> WHITE_PLANKS;
-			case YELLOW -> YELLOW_PLANKS;
-			case BLACK -> BLACK_PLANKS;
-			default -> MAGENTA_PLANKS;
-		};
-	}
-	
-	@NotNull
-	public static Block getColoredSlabsBlock(DyeColor dyeColor) {
-		return switch (dyeColor) {
-			case RED -> RED_PLANK_SLAB;
-			case BROWN -> BROWN_PLANK_SLAB;
-			case CYAN -> CYAN_PLANK_SLAB;
-			case GRAY -> GRAY_PLANK_SLAB;
-			case GREEN -> GREEN_PLANK_SLAB;
-			case LIGHT_BLUE -> LIGHT_BLUE_PLANK_SLAB;
-			case LIGHT_GRAY -> LIGHT_GRAY_PLANK_SLAB;
-			case BLUE -> BLUE_PLANK_SLAB;
-			case LIME -> LIME_PLANK_SLAB;
-			case ORANGE -> ORANGE_PLANK_SLAB;
-			case PINK -> PINK_PLANK_SLAB;
-			case PURPLE -> PURPLE_PLANK_SLAB;
-			case WHITE -> WHITE_PLANK_SLAB;
-			case YELLOW -> YELLOW_PLANK_SLAB;
-			case BLACK -> BLACK_PLANK_SLAB;
-			default -> MAGENTA_PLANK_SLAB;
-		};
-	}
-	
-	@NotNull
-	public static Block getColoredFenceBlock(DyeColor dyeColor) {
-		return switch (dyeColor) {
-			case RED -> RED_PLANK_FENCE;
-			case BROWN -> BROWN_PLANK_FENCE;
-			case CYAN -> CYAN_PLANK_FENCE;
-			case GRAY -> GRAY_PLANK_FENCE;
-			case GREEN -> GREEN_PLANK_FENCE;
-			case LIGHT_BLUE -> LIGHT_BLUE_PLANK_FENCE;
-			case LIGHT_GRAY -> LIGHT_GRAY_PLANK_FENCE;
-			case BLUE -> BLUE_PLANK_FENCE;
-			case LIME -> LIME_PLANK_FENCE;
-			case ORANGE -> ORANGE_PLANK_FENCE;
-			case PINK -> PINK_PLANK_FENCE;
-			case PURPLE -> PURPLE_PLANK_FENCE;
-			case WHITE -> WHITE_PLANK_FENCE;
-			case YELLOW -> YELLOW_PLANK_FENCE;
-			case BLACK -> BLACK_PLANK_FENCE;
-			default -> MAGENTA_PLANK_FENCE;
-		};
-	}
-	
-	@NotNull
-	public static Block getColoredFenceGateBlock(DyeColor dyeColor) {
-		return switch (dyeColor) {
-			case RED -> RED_PLANK_FENCE_GATE;
-			case BROWN -> BROWN_PLANK_FENCE_GATE;
-			case CYAN -> CYAN_PLANK_FENCE_GATE;
-			case GRAY -> GRAY_PLANK_FENCE_GATE;
-			case GREEN -> GREEN_PLANK_FENCE_GATE;
-			case LIGHT_BLUE -> LIGHT_BLUE_PLANK_FENCE_GATE;
-			case LIGHT_GRAY -> LIGHT_GRAY_PLANK_FENCE_GATE;
-			case BLUE -> BLUE_PLANK_FENCE_GATE;
-			case LIME -> LIME_PLANK_FENCE_GATE;
-			case ORANGE -> ORANGE_PLANK_FENCE_GATE;
-			case PINK -> PINK_PLANK_FENCE_GATE;
-			case PURPLE -> PURPLE_PLANK_FENCE_GATE;
-			case WHITE -> WHITE_PLANK_FENCE_GATE;
-			case YELLOW -> YELLOW_PLANK_FENCE_GATE;
-			case BLACK -> BLACK_PLANK_FENCE_GATE;
-			default -> MAGENTA_PLANK_FENCE_GATE;
-		};
-	}
-	
-	@NotNull
-	public static Block getColoredStairsBlock(DyeColor dyeColor) {
-		return switch (dyeColor) {
-			case RED -> RED_PLANK_STAIRS;
-			case BROWN -> BROWN_PLANK_STAIRS;
-			case CYAN -> CYAN_PLANK_STAIRS;
-			case GRAY -> GRAY_PLANK_STAIRS;
-			case GREEN -> GREEN_PLANK_STAIRS;
-			case LIGHT_BLUE -> LIGHT_BLUE_PLANK_STAIRS;
-			case LIGHT_GRAY -> LIGHT_GRAY_PLANK_STAIRS;
-			case BLUE -> BLUE_PLANK_STAIRS;
-			case LIME -> LIME_PLANK_STAIRS;
-			case ORANGE -> ORANGE_PLANK_STAIRS;
-			case PINK -> PINK_PLANK_STAIRS;
-			case PURPLE -> PURPLE_PLANK_STAIRS;
-			case WHITE -> WHITE_PLANK_STAIRS;
-			case YELLOW -> YELLOW_PLANK_STAIRS;
-			case BLACK -> BLACK_PLANK_STAIRS;
-			default -> MAGENTA_PLANK_STAIRS;
-		};
-	}
-	
-	@NotNull
-	public static Item getColoredLeavesItem(DyeColor dyeColor) {
-		return getColoredLeavesBlock(dyeColor).asItem();
-	}
 
-	/*public static Block getColoredSaplingBlock(DyeColor dyeColor) {
-		return switch (dyeColor) {
-			case RED -> RED_SAPLING;
-			case BROWN -> BROWN_SAPLING;
-			case CYAN -> CYAN_SAPLING;
-			case GRAY -> GRAY_SAPLING;
-			case GREEN -> GREEN_SAPLING;
-			case LIGHT_BLUE -> LIGHT_BLUE_SAPLING;
-			case LIGHT_GRAY -> LIGHT_GRAY_SAPLING;
-			case BLUE -> BLUE_SAPLING;
-			case LIME -> LIME_SAPLING;
-			case ORANGE -> ORANGE_SAPLING;
-			case PINK -> PINK_SAPLING;
-			case PURPLE -> PURPLE_SAPLING;
-			case WHITE -> WHITE_SAPLING;
-			case YELLOW -> YELLOW_SAPLING;
-			case BLACK -> BLACK_SAPLING;
-			default -> MAGENTA_SAPLING;
-		};
-	}
-
-	public static Block getColoredBlock(DyeColor dyeColor) {
-		return switch (dyeColor) {
-			case RED -> RED_BLOCK;
-			case BROWN -> BROWN_BLOCK;
-			case CYAN -> CYAN_BLOCK;
-			case GRAY -> GRAY_BLOCK;
-			case GREEN -> GREEN_BLOCK;
-			case LIGHT_BLUE -> LIGHT_BLUE_BLOCK;
-			case LIGHT_GRAY -> LIGHT_GRAY_BLOCK;
-			case BLUE -> BLUE_BLOCK;
-			case LIME -> LIME_BLOCK;
-			case ORANGE -> ORANGE_BLOCK;
-			case PINK -> PINK_BLOCK;
-			case PURPLE -> PURPLE_BLOCK;
-			case WHITE -> WHITE_BLOCK;
-			case YELLOW -> YELLOW_BLOCK;
-			case BLACK -> BLACK_BLOCK;
-			default -> MAGENTA_BLOCK;
-		};
-	}*/
-	
 }

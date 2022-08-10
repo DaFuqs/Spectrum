@@ -1,7 +1,7 @@
 {
   "name": "Colored Trees",
   "icon": "spectrum:red_sapling",
-  "sortnum": 6,
+  "sortnum": 7,
   "advancement": "spectrum:collect_vegetal",
   "turnin": "spectrum:craft_colored_sapling",
   "category": "spectrum:general_category",

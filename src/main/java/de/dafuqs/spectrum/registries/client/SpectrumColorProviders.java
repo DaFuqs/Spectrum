@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.conditional.ColoredLeavesBlock;
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
@@ -43,7 +44,7 @@ public class SpectrumColorProviders {
 			coloredLeavesItemColorProvider = new ToggleableItemColorProvider(leavesItemColorProvider);
 			
 			for (DyeColor dyeColor : DyeColor.values()) {
-				Block block = SpectrumBlocks.getColoredLeavesBlock(dyeColor);
+				Block block = ColoredLeavesBlock.byColor(dyeColor);
 				ColorProviderRegistry.BLOCK.register(coloredLeavesBlockColorProvider, block);
 				ColorProviderRegistry.ITEM.register(coloredLeavesItemColorProvider, block);
 			}

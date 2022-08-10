@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.worldgen;
 
 import com.google.common.collect.ImmutableList;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.conditional.ColoredLeavesBlock;
+import de.dafuqs.spectrum.blocks.conditional.ColoredLogBlock;
 import de.dafuqs.spectrum.blocks.conditional.MermaidsBrushBlock;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
@@ -128,9 +130,9 @@ public class SpectrumConfiguredFeatures {
 		Identifier identifier = SpectrumCommon.locate(identifierString);
 		
 		TreeFeatureConfig treeFeatureConfig = new TreeFeatureConfig.Builder(
-				BlockStateProvider.of(SpectrumBlocks.getColoredLogBlock(dyeColor).getDefaultState()),
+				BlockStateProvider.of(ColoredLogBlock.byColor(dyeColor).getDefaultState()),
 				new StraightTrunkPlacer(4, 2, 2), // 4-8 height
-				BlockStateProvider.of(SpectrumBlocks.getColoredLeavesBlock(dyeColor).getDefaultState()),
+				BlockStateProvider.of(ColoredLeavesBlock.byColor(dyeColor).getDefaultState()),
 				new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
 				new TwoLayersFeatureSize(1, 0, 1)
 		).ignoreVines().build();

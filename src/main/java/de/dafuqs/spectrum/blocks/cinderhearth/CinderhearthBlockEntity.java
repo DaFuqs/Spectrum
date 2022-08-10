@@ -14,6 +14,8 @@ import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.CinderhearthScreenHandler;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
@@ -31,7 +33,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.BlastingRecipe;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeMatcher;
@@ -39,14 +45,18 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
@@ -74,8 +84,15 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	protected boolean canTransferInk;
 	protected boolean inkDirty;
 	
+	protected CinderHearthStructureType structure = CinderHearthStructureType.NONE;
+	
 	protected final PropertyDelegate propertyDelegate;
 	
+	enum CinderHearthStructureType {
+		NONE,
+		WITH_LAVA,
+		WITHOUT_LAVA
+	}
 	
 	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.CINDERHEARTH, pos, state);
@@ -112,7 +129,25 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	@Override
 	public void calculateUpgrades() {
 		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, Support.rotationFromDirection(world.getBlockState(pos).get(CinderhearthBlock.FACING)), 2, 1, 1, this.ownerUUID);
+		this.updateInClientWorld();
 		this.markDirty();
+	}
+	
+	public void updateInClientWorld() {
+		((ServerWorld) world).getChunkManager().markForUpdate(pos);
+	}
+	
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.create(this);
+	}
+	
+	// Called when the chunk is first loaded to initialize this be
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound nbtCompound = new NbtCompound();
+		this.writeNbt(nbtCompound);
+		return nbtCompound;
 	}
 	
 	@Override
@@ -153,6 +188,11 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.canTransferInk = nbt.getBoolean("Paused");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
+		if(nbt.contains("Structure", NbtElement.INT_TYPE)) {
+			this.structure = CinderHearthStructureType.values()[nbt.getInt("Structure")];
+		} else {
+			this.structure = CinderHearthStructureType.NONE;
+		}
 		if (nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {
@@ -183,6 +223,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putBoolean("Paused", this.canTransferInk);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
+		nbt.putInt("Structure", this.structure.ordinal());
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
 		}
@@ -208,6 +249,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			}
 			if (didSomething) {
 				cinderhearthBlockEntity.markDirty();
+				cinderhearthBlockEntity.setInkDirty();
 			} else {
 				cinderhearthBlockEntity.canTransferInk = false;
 			}
@@ -216,6 +258,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		if (cinderhearthBlockEntity.inventoryChanged) {
 			calculateRecipe(world, cinderhearthBlockEntity);
 			cinderhearthBlockEntity.inventoryChanged = false;
+			cinderhearthBlockEntity.updateInClientWorld();
 		}
 		
 		if (cinderhearthBlockEntity.currentRecipe != null) {
@@ -239,6 +282,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 					cinderhearthBlockEntity.setInkDirty();
 				}
 				cinderhearthBlockEntity.craftingTime++;
+				
+				
 				
 				if (cinderhearthBlockEntity.craftingTime == cinderhearthBlockEntity.craftingTimeTotal) {
 					if(cinderhearthBlockEntity.currentRecipe instanceof CinderhearthRecipe cinderhearthRecipe) {
@@ -288,7 +333,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			return false;
 		}
 		
-		if (!CinderhearthBlock.verifyStructure(world, blockPos, null)) {
+		cinderhearthBlockEntity.structure = CinderhearthBlock.verifyStructure(world, blockPos, null);
+		if (cinderhearthBlockEntity.structure == CinderHearthStructureType.NONE) {
 			world.playSound(null, cinderhearthBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + cinderhearthBlockEntity.world.random.nextFloat() * 0.2F, 0.9F + cinderhearthBlockEntity.world.random.nextFloat() * 0.2F);
 			return false;
 		}
@@ -389,7 +435,33 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	public static void playCraftingFinishedEffects(@NotNull CinderhearthBlockEntity cinderhearthBlockEntity) {
-		// TODO
+		Direction.Axis axis = null;
+		Direction direction = null;
+		
+		for(Map.Entry<UpgradeType, Float> entry : cinderhearthBlockEntity.upgrades.entrySet()) {
+			float value = entry.getValue();
+			if(value > 1.0) {
+				if(axis == null) {
+					BlockState state = cinderhearthBlockEntity.world.getBlockState(cinderhearthBlockEntity.pos);
+					direction = state.get(CinderhearthBlock.FACING);
+					axis = direction.getAxis();
+				}
+				
+				double d = (double)cinderhearthBlockEntity.pos.getX() + 0.5D;
+				double e = cinderhearthBlockEntity.pos.getY() + 0.4;
+				double f = (double)cinderhearthBlockEntity.pos.getZ() + 0.5D;
+				double g2 = -3D / 16D;
+				double h2 = 4D / 16D;
+				double i2 = axis == Direction.Axis.X ? (double) direction.getOffsetX() * g2 : h2;
+				double k2 = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * g2 : h2;
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) cinderhearthBlockEntity.world,
+						new Vec3d(d + i2, cinderhearthBlockEntity.pos.getY() + 1.1, f + k2),
+						ParticleTypes.CAMPFIRE_COSY_SMOKE,
+						3,
+						new Vec3d(0.05D, 0.00D, 0.05D),
+						new Vec3d(0.0D, 0.3D, 0.0D));
+			}
+		}
 	}
 	
 	@Override
@@ -475,6 +547,10 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	@Override
 	public boolean getInkDirty() {
 		return this.inkDirty;
+	}
+	
+	public Recipe getCurrentRecipe() {
+		return currentRecipe;
 	}
 	
 }

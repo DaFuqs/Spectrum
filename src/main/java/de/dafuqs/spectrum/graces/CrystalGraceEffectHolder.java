@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.graces;
+/*package de.dafuqs.spectrum.graces;
 
 import dev.onyxstudios.cca.api.v3.item.ItemComponent;
 import net.minecraft.item.ItemStack;
@@ -23,4 +23,4 @@ public class CrystalGraceEffectHolder extends ItemComponent {
     public void onTagInvalidated() {
         super.onTagInvalidated();
     }
-}
+}*/

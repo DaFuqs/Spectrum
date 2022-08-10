@@ -1,7 +1,7 @@
 {
   "name": "Pedestal CMY Upgrade",
   "icon": "spectrum:pedestal_all_basic",
-  "sortnum": 8,
+  "sortnum": 9,
   "advancement": "spectrum:progression/unlock_cmy_pedestal",
   "category": "spectrum:general_category",
   "turnin": "spectrum:build_basic_pedestal_structure",

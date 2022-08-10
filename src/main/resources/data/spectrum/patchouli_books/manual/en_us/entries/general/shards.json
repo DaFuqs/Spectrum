@@ -1,7 +1,7 @@
 {
   "name": "Gemstone Shards",
   "icon": "minecraft:amethyst_shard",
-  "sortnum": 1,
+  "sortnum": 2,
   "category": "spectrum:general_category",
   "turnin": "spectrum:collect_all_basic_shards",
   "extra_recipe_mappings": {

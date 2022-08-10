@@ -1,0 +1,30 @@
+{
+  "name": "Paintbrush",
+  "advancement": "spectrum:place_pedestal",
+  "icon": "spectrum:paintbrush",
+  "category": "spectrum:general_category",
+  "sortnum": 3,
+  "turnin": "spectrum:craft_using_pedestal",
+  "extra_recipe_mappings": {
+    "spectrum:paintbrush": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Paintbrush",
+      "text": "Why a $(italic)brush$() of all things?$(br2)Good question, you wondered that yourself. It was mostly intuition that brought you to this decision. There is something about the colorful Pedestal and the bright colors of the Crystals that awakens your inner artist."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Crafting Recipe",
+      "recipe": "spectrum:crafting_table/paintbrush",
+      "text": "Give the $(l:general/pedestal)Pigment Pedestal$(/l) a hearty wack with it to make it start crafting."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Block Coloring",
+      "advancement": "spectrum:collect_pigment",
+      "text": "What better use is there for $(l:general/pigment)Pigment$() than coloring with it?$(br)Crouch while having your Paintbrush equipped to bring up the color selection menu. You just have to slightly touch the block you would like to color for the $(l:general/pigment)Pigment$() to flow into it and convert it into it's colored variant."
+    }
+  ]
+}

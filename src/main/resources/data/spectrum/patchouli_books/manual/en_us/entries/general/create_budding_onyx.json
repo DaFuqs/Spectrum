@@ -1,7 +1,7 @@
 {
   "name": "Creating Budding Onyx",
   "icon": "spectrum:onyx_cluster",
-  "sortnum": 14,
+  "sortnum": 15,
   "advancement": "spectrum:progression/unlock_budding_onyx",
   "turnin": "spectrum:midgame/create_budding_onyx",
   "category": "spectrum:general_category",

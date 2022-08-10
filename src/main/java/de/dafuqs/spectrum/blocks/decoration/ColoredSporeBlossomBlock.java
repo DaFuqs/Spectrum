@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
+import com.google.common.collect.Maps;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SporeBlossomBlock;
@@ -10,19 +11,31 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
 import java.util.Random;
 
 public class ColoredSporeBlossomBlock extends SporeBlossomBlock {
 	
-	DyeColor dyeColor;
-	ParticleEffect fallingParticleType;
-	ParticleEffect airParticleType;
+	private static final Map<DyeColor, ColoredSporeBlossomBlock> BLOSSOMS = Maps.newEnumMap(DyeColor.class);
+	protected final DyeColor color;
 	
-	public ColoredSporeBlossomBlock(Settings settings, DyeColor dyeColor) {
+	protected final ParticleEffect fallingParticleType;
+	protected final ParticleEffect airParticleType;
+	
+	public ColoredSporeBlossomBlock(Settings settings, DyeColor color) {
 		super(settings);
-		this.dyeColor = dyeColor;
-		this.fallingParticleType = getFallingParticleType(dyeColor);
-		this.airParticleType = getAirParticleType(dyeColor);
+		this.color = color;
+		BLOSSOMS.put(color, this);
+		this.fallingParticleType = getFallingParticleType(color);
+		this.airParticleType = getAirParticleType(color);
+	}
+	
+	public DyeColor getColor() {
+		return this.color;
+	}
+	
+	public static ColoredSporeBlossomBlock byColor(DyeColor color) {
+		return BLOSSOMS.get(color);
 	}
 	
 	public static ParticleEffect getFallingParticleType(@NotNull DyeColor dyeColor) {

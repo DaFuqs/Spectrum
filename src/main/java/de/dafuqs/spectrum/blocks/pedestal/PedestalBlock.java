@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.PaintbrushTriggered;
 import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
@@ -310,7 +311,10 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 				return ActionResult.FAIL;
 			}
 			
-			pedestalBlockEntity.shouldCraft = true;
+			if(!world.isClient) {
+				pedestalBlockEntity.shouldCraft = true;
+				SpectrumS2CPacketSender.spawnPedestalStartCraftingParticles(pedestalBlockEntity);
+			}
 			
 			return ActionResult.success(world.isClient);
 		}

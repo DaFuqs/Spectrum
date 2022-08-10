@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
@@ -243,6 +244,15 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				PedestalBlock.spawnUpgradeParticleEffectsForTier(position, tier);
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PEDESTAL_START_CRAFTING_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
+			BlockPos position = buf.readBlockPos(); // the block pos of the pedestal
+			
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				PedestalBlockEntity.spawnCraftingStartParticles(client.world, position);
 			});
 		});
 		

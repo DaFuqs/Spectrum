@@ -1,17 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "FSF",
-    "SDS",
-    "ERE"
+    " RR",
+    " FR",
+    "E  "
   ],
   "key": {
-    "S": {
-      "item": "spectrum:topaz_shard"
-    },
-    "D": {
-      "item": "minecraft:cyan_dye"
-    },
     "E": {
       "item": "spectrum:polished_calcite"
     },
@@ -19,11 +13,11 @@
       "item": "spectrum:polished_basalt"
     },
     "R": {
-      "item": "minecraft:redstone"
+      "item": "minecraft:string"
     }
   },
   "result": {
-    "item": "spectrum:pedestal_basic_topaz",
+    "item": "spectrum:paintbrush",
     "count": 1
   }
 }

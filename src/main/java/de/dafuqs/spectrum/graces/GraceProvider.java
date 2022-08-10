@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.graces;
+/*package de.dafuqs.spectrum.graces;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.items.CrystalGraceItem;
@@ -17,3 +17,4 @@ public class GraceProvider implements ItemComponentInitializer {
         registry.register(item -> item instanceof CrystalGraceItem, CRYSTAL_GRACE_EFFECT_HOLDER, CrystalGraceEffectHolder::new);
     }
 }
+*/

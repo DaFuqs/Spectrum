@@ -2,9 +2,12 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.PaintbrushScreenHandler;
+import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -24,10 +27,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -49,8 +49,8 @@ public class PaintBrushItem extends Item {
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
-		if(selected && entity instanceof ServerPlayerEntity serverPlayerEntity) {
-			if(serverPlayerEntity.isSneaking() && canColor(serverPlayerEntity) && serverPlayerEntity.currentScreenHandler instanceof PlayerScreenHandler) {
+		if (selected && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (serverPlayerEntity.isSneaking() && canColor(serverPlayerEntity) && serverPlayerEntity.currentScreenHandler instanceof PlayerScreenHandler) {
 				serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(world, serverPlayerEntity, stack));
 			}
 		}
@@ -73,7 +73,7 @@ public class PaintBrushItem extends Item {
 	
 	public static void setColor(ItemStack stack, @Nullable InkColor color) {
 		NbtCompound compound = stack.getOrCreateNbt();
-		if(color == null) {
+		if (color == null) {
 			compound.remove(COLOR_NBT_STRING);
 		} else {
 			compound.putString(COLOR_NBT_STRING, color.toString());
@@ -91,30 +91,43 @@ public class PaintBrushItem extends Item {
 	
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
-		if(canColor(context.getPlayer()) && cursedColor(context)) {
+		if (canColor(context.getPlayer()) && cursedColor(context)) {
 			return ActionResult.success(context.getWorld().isClient);
 		}
 		return super.useOnBlock(context);
 	}
 	
 	private boolean cursedColor(ItemUsageContext context) {
-		Optional<InkColor> inkColor = getColor(context.getStack());
-		if(inkColor.isEmpty()) {
+		if (context.getPlayer() == null) {
 			return false;
 		}
 		
-		// todo: drain ink / consume pigment
-		
-		Block newBlock = ColorHelper.cursedBlockColorVariant(context.getWorld(), context.getBlockPos(), inkColor.get().getDyeColor());
-		if(newBlock == Blocks.AIR) {
+		Optional<InkColor> optionalInkColor = getColor(context.getStack());
+		if (optionalInkColor.isEmpty()) {
 			return false;
 		}
 		
-		if(!context.getWorld().isClient) {
-			context.getWorld().setBlockState(context.getBlockPos(), newBlock.getDefaultState());
-			context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		InkColor inkColor = optionalInkColor.get();
+		DyeColor dyeColor = inkColor.getDyeColor();
+		
+		if (context.getPlayer().isCreative()
+				|| InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, 10L)
+				|| InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), PigmentItem.byColor(dyeColor).getDefaultStack())) {
+			
+			// TODO: Use Jellos API to support all of jellos block colors
+			// https://modrinth.com/mod/jello
+			Block newBlock = ColorHelper.cursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
+			if (newBlock == Blocks.AIR) {
+				return false;
+			}
+			
+			if (!context.getWorld().isClient) {
+				context.getWorld().setBlockState(context.getBlockPos(), newBlock.getDefaultState());
+				context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			}
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	@Override

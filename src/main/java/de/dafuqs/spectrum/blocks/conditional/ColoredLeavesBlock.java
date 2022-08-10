@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
+import com.google.common.collect.Maps;
 import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
@@ -7,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.item.Item;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 
@@ -15,8 +17,13 @@ import java.util.Map;
 
 public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
 	
-	public ColoredLeavesBlock(Settings settings) {
+	private static final Map<DyeColor, ColoredLeavesBlock> LEAVES = Maps.newEnumMap(DyeColor.class);
+	protected final DyeColor color;
+	
+	public ColoredLeavesBlock(Settings settings, DyeColor color) {
 		super(settings);
+		this.color = color;
+		LEAVES.put(color, this);
 		RevelationAware.register(this);
 	}
 	
@@ -54,6 +61,14 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
 			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(true);
 			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(true);
 		}
+	}
+	
+	public DyeColor getColor() {
+		return this.color;
+	}
+	
+	public static ColoredLeavesBlock byColor(DyeColor color) {
+		return LEAVES.get(color);
 	}
 	
 }

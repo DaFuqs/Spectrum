@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.blocks.cinderhearth;
 
+import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
@@ -13,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -32,6 +35,7 @@ import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 
+import java.util.Map;
 import java.util.Random;
 
 public class CinderhearthBlock extends BlockWithEntity {
@@ -40,7 +44,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 	
 	public CinderhearthBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH));
+		this.setDefaultState((this.stateManager.getDefaultState()).with(FACING, Direction.EAST));
 	}
 	
 	@Nullable
@@ -65,7 +69,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 			verifyStructure(world, pos, null);
 			return ActionResult.SUCCESS;
 		} else {
-			if (verifyStructure(world, pos, (ServerPlayerEntity) player)) {
+			if (verifyStructure(world, pos, (ServerPlayerEntity) player) != CinderhearthBlockEntity.CinderHearthStructureType.NONE) {
 				this.openScreen(world, pos, player);
 			}
 			return ActionResult.CONSUME;
@@ -144,48 +148,72 @@ public class CinderhearthBlock extends BlockWithEntity {
 	
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		double d = (double)pos.getX() + 0.5D;
-		double e = pos.getY();
-		double f = (double)pos.getZ() + 0.5D;
-		if (random.nextDouble() < 0.1D) {
-			world.playSound(d, e, f, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if(blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+			Direction direction = state.get(FACING);
+			Direction.Axis axis = direction.getAxis();
+			double d = (double)pos.getX() + 0.5D;
+			double e = pos.getY() + 0.4;
+			double f = (double)pos.getZ() + 0.5D;
+			
+			Recipe recipe = cinderhearthBlockEntity.getCurrentRecipe();
+			if(recipe != null) {
+				if (random.nextDouble() < 0.1D) {
+					world.playSound(d, e, f, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 0.8F, false);
+				}
+				
+				double g = 0.35D;
+				double h = random.nextDouble() * 0.4D - 0.2D;
+				double i = axis == Direction.Axis.X ? (double) direction.getOffsetX() * g : h;
+				double j = random.nextDouble() * 4.0D / 16.0D;
+				double k = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * g : h;
+				world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0D, 0.0D, 0.0D);
+				world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0D, 0.0D, 0.0D);
+				
+				if (random.nextBoolean()) {
+					double g2 = -3D / 16D;
+					double h2 = 4D / 16D;
+					double i2 = axis == Direction.Axis.X ? (double) direction.getOffsetX() * g2 : h2;
+					double k2 = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * g2 : h2;
+					world.addParticle(ParticleTypes.CLOUD, d + i2, pos.getY() + 1.1, f + k2, 0.0D, 0.06D, 0.0D);
+				}
+			}
+			if(cinderhearthBlockEntity.structure == CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA) {
+				for (int v = 0; v < 2; v++) {
+					double g3 = 1.5 - random.nextDouble() * 2.0;
+					double h3 = 1.5 - random.nextDouble() * 3.0;
+					double i3 = axis == Direction.Axis.X ? (double) direction.getOffsetX() * g3 : h3;
+					double k3 = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * g3 : h3;
+					world.addParticle(SpectrumParticleTypes.ORANGE_SPARKLE_RISING, d + i3, pos.getY() - 1.2, f + k3, 0.0D, 0.1D, 0.0D);
+				}
+			}
 		}
-		
-		Direction direction = state.get(FACING);
-		Direction.Axis axis = direction.getAxis();
-		double g = 0.52D;
-		double h = random.nextDouble() * 0.6D - 0.3D;
-		double i = axis == Direction.Axis.X ? (double)direction.getOffsetX() * g : h;
-		double j = random.nextDouble() * 6.0D / 16.0D;
-		double k = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * g : h;
-		world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0D, 0.0D, 0.0D);
-		world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0D, 0.0D, 0.0D);
 	}
 	
-	public static boolean verifyStructure(World world, @NotNull BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
+	public static CinderhearthBlockEntity.CinderHearthStructureType verifyStructure(World world, @NotNull BlockPos blockPos, @Nullable ServerPlayerEntity serverPlayerEntity) {
 		BlockRotation rotation = Support.rotationFromDirection(world.getBlockState(blockPos).get(FACING));
 		
 		IMultiblock multiblockWithLava = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_IDENTIFIER);
 		IMultiblock multiblockWithoutLava = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER);
 		if(world.isClient) {
 			if (multiblockWithoutLava.validate(world, blockPos.down(3), rotation)) {
-				return true;
+				return CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA;
 			} else {
 				PatchouliAPI.get().showMultiblock(multiblockWithLava, new TranslatableText("multiblock.spectrum.cinderhearth.structure"), blockPos.down(4), rotation);
-				return false;
+				return CinderhearthBlockEntity.CinderHearthStructureType.NONE;
 			}
 		} else {
 			if (multiblockWithLava.validate(world, blockPos.down(3), rotation)) {
 				if (serverPlayerEntity != null) {
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithLava);
 				}
-				return true;
+				return CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA;
 			} else {
 				if (multiblockWithoutLava.validate(world, blockPos.down(3), rotation)) {
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger(serverPlayerEntity, multiblockWithoutLava);
-					return true;
+					return CinderhearthBlockEntity.CinderHearthStructureType.WITHOUT_LAVA;
 				}
-				return false;
+				return CinderhearthBlockEntity.CinderHearthStructureType.NONE;
 			}
 		}
 	}

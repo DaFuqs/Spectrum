@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
+import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
 import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
@@ -347,6 +348,15 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
+	public static void spawnPedestalStartCraftingParticles(PedestalBlockEntity pedestalBlockEntity) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(pedestalBlockEntity.getPos());
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos())) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PEDESTAL_START_CRAFTING_PARTICLE_PACKET_ID, buf);
+		}
+	}
+	
 	public static void sendPlayShootingStarParticles(@NotNull ShootingStarEntity shootingStarEntity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(shootingStarEntity.getPos().getX());
@@ -369,7 +379,6 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.START_SKY_LERPING, buf);
 		}
 	}
-	
 	
 	public static void playMemoryManifestingParticles(ServerWorld serverWorld, @NotNull BlockPos blockPos, EntityType<?> entityType, int amount) {
 		Pair<Integer, Integer> eggColors = MemoryBlockEntity.getEggColorsForEntity(entityType);
@@ -422,5 +431,5 @@ public class SpectrumS2CPacketSender {
 		}
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.INK_COLOR_SELECTED, packetByteBuf);
 	}
-	
+
 }

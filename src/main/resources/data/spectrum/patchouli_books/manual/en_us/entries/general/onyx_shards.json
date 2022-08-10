@@ -1,7 +1,7 @@
 {
   "name": "Creating Onyx Shards",
   "icon": "spectrum:onyx_shard",
-  "sortnum": 10,
+  "sortnum": 11,
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "category": "spectrum:general_category",
   "turnin": "spectrum:create_onyx_shard",

@@ -2,12 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "FSF",
-    "SSS",
+    "SDS",
     "ERE"
   ],
   "key": {
     "S": {
       "item": "spectrum:citrine_shard"
+    },
+    "D": {
+      "item": "minecraft:yellow_dye"
     },
     "E": {
       "item": "spectrum:polished_calcite"

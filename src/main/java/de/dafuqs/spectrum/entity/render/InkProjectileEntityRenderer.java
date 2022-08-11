@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class InkProjectileEntityRenderer extends EntityRenderer<InkProjectileEntity> {
 	
-	private static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/ink_projectile.png");
+	private static final Identifier TEXTURE = SpectrumCommon.locate("entity/ink_projectile");
 	
 	public InkProjectileEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);
@@ -54,25 +54,26 @@ public class InkProjectileEntityRenderer extends EntityRenderer<InkProjectileEnt
 		return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
 	}
 	
-	private void renderTexture(MatrixStack ms, VertexConsumer buffer, Sprite icon, Vec3f color, int alpha, int overlay) {
-		float f = icon.getMinU();
-		float f1 = icon.getMaxU();
-		float f2 = icon.getMinV();
-		float f3 = icon.getMaxV();
+	private void renderTexture(MatrixStack matrixStack, VertexConsumer vertexConsumer, Sprite sprite, Vec3f color, int alpha, int overlay) {
+		float minU = sprite.getMinU();
+		float maxU = sprite.getMaxU();
+		float minV = sprite.getMinV();
+		float maxV = sprite.getMaxV();
 		float f4 = 1.0F;
 		float f5 = 0.5F;
 		float f6 = 0.25F;
 		
-		int a = (int) (color.getX() * 255);
-		int r = (int) (color.getY() * 255);
-		int g = (int) (color.getZ() * 255);
-		int b = 180;
-		Matrix4f mat = ms.peek().getPositionMatrix();
+		int r = (int) (color.getX() * 255.0F);
+		int g = (int) (color.getY() * 255.0F);
+		int b = (int) (color.getZ() * 255.0F);
+		int light = 0xF000F0;
+		
+		Matrix4f mat = matrixStack.peek().getPositionMatrix();
 		// POSITION_COLOR_TEXTURE_OVERLAY_LIGHT_NORMAL
-		buffer.vertex(mat, 0.0F - f5, 0.0F - f6, 0.0F).color(r, g, b, a).texture(f, f3).overlay(overlay).light(alpha).normal(0f, 1f, 0f).next();
-		buffer.vertex(mat, f4 - f5, 0.0F - f6, 0.0F).color(r, g, b, a).texture(f1, f3).overlay(overlay).light(alpha).normal(0f, 1f, 0f).next();
-		buffer.vertex(mat, f4 - f5, f4 - f6, 0.0F).color(r, g, b, a).texture(f1, f2).overlay(overlay).light(alpha).normal(0f, 1f, 0f).next();
-		buffer.vertex(mat, 0.0F - f5, f4 - f6, 0.0F).color(r, g, b, a).texture(f, f2).overlay(overlay).light(alpha).normal(0f, 1f, 0f).next();
+		vertexConsumer.vertex(mat, 0.0F - f5, 0.0F - f6, 0.0F).color(r, g, b, alpha).texture(minU, maxV).overlay(overlay).light(light).normal(0f, 1f, 0f).next();
+		vertexConsumer.vertex(mat, f4 - f5, 0.0F - f6, 0.0F).color(r, g, b, alpha).texture(maxU, maxV).overlay(overlay).light(light).normal(0f, 1f, 0f).next();
+		vertexConsumer.vertex(mat, f4 - f5, f4 - f6, 0.0F).color(r, g, b, alpha).texture(maxU, minV).overlay(overlay).light(light).normal(0f, 1f, 0f).next();
+		vertexConsumer.vertex(mat, 0.0F - f5, f4 - f6, 0.0F).color(r, g, b, alpha).texture(minU, minV).overlay(overlay).light(light).normal(0f, 1f, 0f).next();
 	}
 	
 }

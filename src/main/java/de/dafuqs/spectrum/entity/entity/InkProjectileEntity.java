@@ -280,7 +280,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 			}
 			
 			for (int i = 0; i < 10; i++) {
-				SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) this.world, this.getPos(),
+				SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) this.world, blockHitResult.getPos(),
 						SpectrumParticleTypes.getCraftingParticle(DyeColor.byId(colorOrdinal)), 10,
 						Vec3d.ZERO,
 						new Vec3d(-this.getVelocity().x * 3, -this.getVelocity().y * 3, -this.getVelocity().z * 3)

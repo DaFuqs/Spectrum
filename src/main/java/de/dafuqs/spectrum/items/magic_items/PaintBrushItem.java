@@ -39,6 +39,9 @@ public class PaintBrushItem extends Item {
 	public static final Identifier UNLOCK_ADVANCEMENT_ID = SpectrumCommon.locate("progression/unlock_paintbrush");
 	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
 	
+	public static final int BLOCK_COLOR_COST = 10;
+	public static final int INK_FLING_COST = 100;
+	
 	public static final String COLOR_NBT_STRING = "Color";
 	private static final Text GUI_TITLE = new TranslatableText("item.spectrum.paintbrush");
 	
@@ -106,7 +109,7 @@ public class PaintBrushItem extends Item {
 		DyeColor dyeColor = inkColor.getDyeColor();
 		
 		if (context.getPlayer().isCreative()
-				|| InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, 10L)
+				|| InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, BLOCK_COLOR_COST)
 				|| InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), PigmentItem.byColor(dyeColor).getDefaultStack())) {
 			
 			// TODO: Use Jellos API to support all of jellos block colors
@@ -139,10 +142,13 @@ public class PaintBrushItem extends Item {
 			if (optionalInkColor.isPresent()) {
 				if (!world.isClient) {
 					InkColor inkColor = optionalInkColor.get();
-					InkProjectileEntity paintProjectile = new InkProjectileEntity(world, user);
-					paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
-					paintProjectile.setColor(inkColor);
-					world.spawnEntity(paintProjectile);
+					
+					if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_FLING_COST)) {
+						InkProjectileEntity paintProjectile = new InkProjectileEntity(world, user);
+						paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
+						paintProjectile.setColor(inkColor);
+						world.spawnEntity(paintProjectile);
+					}
 				}
 				return TypedActionResult.pass(user.getStackInHand(hand));
 			}

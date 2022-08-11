@@ -199,13 +199,14 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		
 		//Register textures in chest atlas
 		ClientSpriteRegistryCallback.event(TexturedRenderLayers.CHEST_ATLAS_TEXTURE).register((texture, registry) -> {
-			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));
-			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/treasure_chest"));
+			registry.register(SpectrumCommon.locate("entity/private_chest"));
+			registry.register(SpectrumCommon.locate("entity/treasure_chest"));
 		});
 		
 		//Register textures in block atlas
 		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((texture, registry) -> {
-			registry.register(new Identifier(SpectrumCommon.MOD_ID, "entity/pedestal_upgrade_speed"));
+			registry.register(SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
+			registry.register(SpectrumCommon.locate("entity/ink_projectile"));
 		});
 	}
 	

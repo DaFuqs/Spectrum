@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import de.dafuqs.spectrum.sound.InkProjectileSoundInstance;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -45,12 +46,15 @@ import java.util.Arrays;
 public class InkProjectileEntity extends ProjectileEntity {
 	
 	private static final int COLOR_SPLAT_RANGE = 2;
-	private static final TrackedData<Integer> COLOR = DataTracker.registerData(ArrowEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private static final TrackedData<Integer> COLOR = DataTracker.registerData(InkProjectileEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	protected int life;
 	protected int damage = 2;
 	
 	public InkProjectileEntity(EntityType<InkProjectileEntity> type, World world) {
 		super(type, world);
+		if(world.isClient) {
+			InkProjectileSoundInstance.startSoundInstance(SpectrumSoundEvents.INK_PROJECTILE_LAUNCH, this);
+		}
 	}
 	
 	public InkProjectileEntity(EntityType<InkProjectileEntity> type, double x, double y, double z, World world) {

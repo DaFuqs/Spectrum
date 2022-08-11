@@ -46,6 +46,11 @@
       "spectrum:ink_projectile_hit5"
     ]
   },
+  "ink_projectile_launch": {
+    "sounds": [
+      "spectrum:ink_projectile_launch"
+    ]
+  },
   "enchanter_working": {
     "subtitle": "spectrum.subtitles.enchanter_working",
     "sounds": [

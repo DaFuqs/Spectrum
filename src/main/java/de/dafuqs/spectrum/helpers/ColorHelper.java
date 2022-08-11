@@ -123,7 +123,10 @@ public class ColorHelper {
 		Block returnBlock = Blocks.AIR;
 		if(newPath != null) {
 			Identifier newIdentifier = new Identifier(identifier.getNamespace(), newPath);
-			returnBlock = Registry.BLOCK.get(newIdentifier);
+			Block newIdentifierBlock = Registry.BLOCK.get(newIdentifier);
+			if(newIdentifierBlock != block) {
+				returnBlock = newIdentifierBlock;
+			}
 		}
 		
 		// cache

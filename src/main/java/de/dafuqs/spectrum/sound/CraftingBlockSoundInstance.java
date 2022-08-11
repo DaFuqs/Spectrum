@@ -95,22 +95,14 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 				|| !Objects.equals(this.worldKey, MinecraftClient.getInstance().world.getRegistryKey())
 				|| shouldStopPlaying()) {
 			
+			playingSoundInstances.remove(this);
 			this.setDone();
 		}
 	}
 	
 	private boolean shouldStopPlaying() {
 		BlockState blockState = MinecraftClient.getInstance().world.getBlockState(sourceBlockPos);
-		if (!blockState.getBlock().equals(sourceBlock)) {
-			return true;
-		} else if (blockState.getBlock() instanceof PedestalBlock) {
-			return false;
-			//return !blockState.get(PedestalBlock.POWERED);
-		} else if (blockState.getBlock() instanceof FusionShrineBlock) {
-			BlockEntity blockEntity = MinecraftClient.getInstance().world.getBlockEntity(sourceBlockPos);
-			return !(blockEntity instanceof FusionShrineBlockEntity);
-		}
-		return false;
+		return !blockState.getBlock().equals(sourceBlock);
 	}
 	
 	protected final void setDone() {

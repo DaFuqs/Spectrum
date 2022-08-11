@@ -93,7 +93,7 @@ public class ColorHelper {
 	// cache for cursedBlockColorVariant()
 	private static Map<Block, Map<DyeColor, Block>> coloredStates = new HashMap<>();
 	
-	public static Block cursedBlockColorVariant(World world, BlockPos blockPos, DyeColor newColor) {
+	public static Block getCursedBlockColorVariant(World world, BlockPos blockPos, DyeColor newColor) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if(blockEntity != null) {
 			return Blocks.AIR;

@@ -29,7 +29,7 @@ public class SpectrumEntityTypes {
 		INVISIBLE_ITEM_FRAME = register("invisible_item_frame", 10, 2147483647, false, EntityDimensions.changing(0.5F, 0.5F), false, InvisibleItemFrameEntity::new);
 		INVISIBLE_GLOW_ITEM_FRAME = register("invisible_glow_item_frame", 10, 2147483647, false, EntityDimensions.changing(0.5F, 0.5F), false, InvisibleGlowItemFrameEntity::new);
 		BLOCK_FLOODER_PROJECTILE = register("block_flooder_projectile", 4, 10, true, EntityDimensions.changing(0.25F, 0.25F), true, BlockFlooderProjectile::new);
-		PAINT_PROJECTILE = register("paint_projectile", 4, 10, true, EntityDimensions.changing(0.4F, 0.4F), true, PaintProjectileEntity::new);
+		PAINT_PROJECTILE = register("paint_projectile", 4, 10, true, EntityDimensions.changing(0.3F, 0.3F), true, PaintProjectileEntity::new);
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, int trackingDistance, int updateIntervalTicks, boolean alwaysUpdateVelocity, EntityDimensions size, boolean fireImmune, EntityType.EntityFactory<X> factory) {

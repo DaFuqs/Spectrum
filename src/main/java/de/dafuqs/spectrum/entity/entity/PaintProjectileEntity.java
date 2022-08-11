@@ -3,8 +3,13 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.advancement.criterion.Criteria;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -21,11 +26,13 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3f;
@@ -37,6 +44,7 @@ import java.util.Arrays;
 
 public class PaintProjectileEntity extends ProjectileEntity {
 	
+	private static final int COLOR_SPLAT_RANGE = 2;
 	private static final TrackedData<Integer> COLOR = DataTracker.registerData(ArrowEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	protected int life;
 	protected int damage = 2;
@@ -45,15 +53,14 @@ public class PaintProjectileEntity extends ProjectileEntity {
 		super(type, world);
 	}
 	
-	public PaintProjectileEntity(EntityType<PaintProjectileEntity> type, double x, double y, double z, double directionX, double directionY, double directionZ, World world) {
+	public PaintProjectileEntity(EntityType<PaintProjectileEntity> type, double x, double y, double z, World world) {
 		this(type, world);
 		this.refreshPositionAndAngles(x, y, z, this.getYaw(), this.getPitch());
 		this.refreshPosition();
-		double d = Math.sqrt(directionX * directionX + directionY * directionY + directionZ * directionZ);
 	}
 	
-	public PaintProjectileEntity(World world, LivingEntity owner, double directionX, double directionY, double directionZ) {
-		this(SpectrumEntityTypes.PAINT_PROJECTILE, owner.getX(), owner.getY(), owner.getZ(), directionX, directionY, directionZ, world);
+	public PaintProjectileEntity(World world, LivingEntity owner) {
+		this(SpectrumEntityTypes.PAINT_PROJECTILE, owner.getX(), owner.getEyeY() - 0.10000000149011612D, owner.getZ(), world);
 		this.setOwner(owner);
 		this.setRotation(owner.getYaw(), owner.getPitch());
 	}
@@ -101,29 +108,28 @@ public class PaintProjectileEntity extends ProjectileEntity {
 		
 		this.spawnParticles(1);
 		
-		boolean bl = this.isNoClip();
-		Vec3d vec3d = this.getVelocity();
+		boolean noClip = this.isNoClip();
+		Vec3d thisVelocity = this.getVelocity();
 		if (this.prevPitch == 0.0F && this.prevYaw == 0.0F) {
-			double d = vec3d.horizontalLength();
-			this.setYaw((float)(MathHelper.atan2(vec3d.x, vec3d.z) * 57.2957763671875D));
-			this.setPitch((float)(MathHelper.atan2(vec3d.y, d) * 57.2957763671875D));
+			double d = thisVelocity.horizontalLength();
+			this.setYaw((float)(MathHelper.atan2(thisVelocity.x, thisVelocity.z) * 57.2957763671875D));
+			this.setPitch((float)(MathHelper.atan2(thisVelocity.y, d) * 57.2957763671875D));
 			this.prevYaw = this.getYaw();
 			this.prevPitch = this.getPitch();
 		}
 		
-		Vec3d vec3d2;
-		
 		this.age();
 		
-		Vec3d vec3d3 = this.getPos();
-		vec3d2 = vec3d3.add(vec3d);
-		HitResult hitResult = this.world.raycast(new RaycastContext(vec3d3, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this));
+		Vec3d vec3d2;
+		Vec3d thisPos = this.getPos();
+		vec3d2 = thisPos.add(thisVelocity);
+		HitResult hitResult = this.world.raycast(new RaycastContext(thisPos, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this));
 		if ((hitResult).getType() != HitResult.Type.MISS) {
 			vec3d2 = (hitResult).getPos();
 		}
 		
 		if(!this.isRemoved()) {
-			EntityHitResult entityHitResult = this.getEntityCollision(vec3d3, vec3d2);
+			EntityHitResult entityHitResult = this.getEntityCollision(thisPos, vec3d2);
 			if (entityHitResult != null) {
 				hitResult = entityHitResult;
 			}
@@ -136,41 +142,35 @@ public class PaintProjectileEntity extends ProjectileEntity {
 				}
 			}
 			
-			if (hitResult != null && !bl) {
+			if (hitResult != null && !noClip) {
 				this.onCollision(hitResult);
 				this.velocityDirty = true;
 			}
 		}
 		
-		vec3d = this.getVelocity();
-		double e = vec3d.x;
-		double f = vec3d.y;
-		double g = vec3d.z;
+		thisVelocity = this.getVelocity();
+		double velocityX = thisVelocity.x;
+		double velocityY = thisVelocity.y;
+		double velocityZ = thisVelocity.z;
 		
-		double h = this.getX() + e;
-		double j = this.getY() + f;
-		double k = this.getZ() + g;
-		double l = vec3d.horizontalLength();
-		if (bl) {
-			this.setYaw((float)(MathHelper.atan2(-e, -g) * 57.2957763671875D));
+		double h = this.getX() + velocityX;
+		double j = this.getY() + velocityY;
+		double k = this.getZ() + velocityZ;
+		double l = thisVelocity.horizontalLength();
+		if (noClip) {
+			this.setYaw((float)(MathHelper.atan2(-velocityX, -velocityZ) * 57.2957763671875D));
 		} else {
-			this.setYaw((float)(MathHelper.atan2(e, g) * 57.2957763671875D));
+			this.setYaw((float)(MathHelper.atan2(velocityX, velocityZ) * 57.2957763671875D));
 		}
 		
-		this.setPitch((float)(MathHelper.atan2(f, l) * 57.2957763671875D));
+		this.setPitch((float)(MathHelper.atan2(velocityY, l) * 57.2957763671875D));
 		this.setPitch(updateRotation(this.prevPitch, this.getPitch()));
 		this.setYaw(updateRotation(this.prevYaw, this.getYaw()));
-		float m = 0.99F;
+		
 		if (this.isTouchingWater()) {
 			for(int o = 0; o < 4; ++o) {
-				this.world.addParticle(ParticleTypes.BUBBLE, h - e * 0.25D, j - f * 0.25D, k - g * 0.25D, e, f, g);
+				this.world.addParticle(ParticleTypes.BUBBLE, h - velocityX * 0.25D, j - velocityY * 0.25D, k - velocityZ * 0.25D, velocityX, velocityY, velocityZ);
 			}
-		}
-		
-		this.setVelocity(vec3d.multiply(m));
-		if (!this.hasNoGravity() && !bl) {
-			Vec3d vec3d4 = this.getVelocity();
-			this.setVelocity(vec3d4.x, vec3d4.y - 0.05000000074505806D, vec3d4.z);
 		}
 		
 		this.setPosition(h, j, k);
@@ -179,7 +179,7 @@ public class PaintProjectileEntity extends ProjectileEntity {
 	
 	protected void age() {
 		++this.life;
-		if (this.life >= 1200) {
+		if (this.life >= 200) {
 			this.discard();
 		}
 		
@@ -189,14 +189,14 @@ public class PaintProjectileEntity extends ProjectileEntity {
 		if (!this.world.isClient) {
 			return this.noClip;
 		} else {
-			return true; // TODO: or false?
+			return true;
 		}
 	}
 	
 	private void spawnParticles(int amount) {
 		int colorOrdinal = this.getColor();
 		if (colorOrdinal != -1 && amount > 0) {
-			Vec3f inkColor = InkColor.all().get(colorOrdinal).getColor();
+			Vec3f inkColor = InkColor.of(DyeColor.byId(colorOrdinal)).getColor();
 			for(int j = 0; j < amount; ++j) {
 				this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), inkColor.getX(), inkColor.getY(), inkColor.getZ());
 			}
@@ -258,7 +258,6 @@ public class PaintProjectileEntity extends ProjectileEntity {
 	
 	@Override
 	protected void onBlockHit(BlockHitResult blockHitResult) {
-		//BlockState inBlockState = this.world.getBlockState(blockHitResult.getBlockPos());
 		super.onBlockHit(blockHitResult);
 		
 		Vec3d vec3d = blockHitResult.getPos().subtract(this.getX(), this.getY(), this.getZ());
@@ -268,15 +267,28 @@ public class PaintProjectileEntity extends ProjectileEntity {
 		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
 		
 		int colorOrdinal = this.getColor();
-		if(colorOrdinal != -1) {
-			ColorHelper.cursedBlockColorVariant(this.world, blockHitResult.getBlockPos(), InkColor.all().get(colorOrdinal).getDyeColor());
+		if (colorOrdinal != -1) {
+			for (BlockPos blockPos : BlockPos.iterateOutwards(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
+				Block coloredBlock = ColorHelper.getCursedBlockColorVariant(this.world, blockPos, DyeColor.byId(colorOrdinal));
+				if (coloredBlock != Blocks.AIR) {
+					this.world.setBlockState(blockPos, coloredBlock.getDefaultState());
+				}
+			}
+			
+			for (int i = 0; i < 10; i++) {
+				SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) this.world, this.getPos(),
+						SpectrumParticleTypes.getCraftingParticle(DyeColor.byId(colorOrdinal)), 10,
+						Vec3d.ZERO,
+						new Vec3d(-this.getVelocity().x * 3, -this.getVelocity().y * 3, -this.getVelocity().z * 3)
+				);
+			}
 		}
 		
 		this.discard();
 	}
 	
 	protected SoundEvent getHitSound() {
-		return SoundEvents.ENTITY_ARROW_HIT;
+		return SpectrumSoundEvents.INK_PROJECTILE_HIT;
 	}
 	
 	@Nullable
@@ -288,8 +300,6 @@ public class PaintProjectileEntity extends ProjectileEntity {
 		int colorOrdinal = this.getColor();
 		if (colorOrdinal != -1) {
 			//InkColor.all().get(colorOrdinal);
-			
-			
 			
 			Entity entity = target; //this.getEffectCause();
 			

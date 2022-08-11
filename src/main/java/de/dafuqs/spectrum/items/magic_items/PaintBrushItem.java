@@ -116,7 +116,7 @@ public class PaintBrushItem extends Item {
 			
 			// TODO: Use Jellos API to support all of jellos block colors
 			// https://modrinth.com/mod/jello
-			Block newBlock = ColorHelper.cursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
+			Block newBlock = ColorHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
 			if (newBlock == Blocks.AIR) {
 				return false;
 			}
@@ -136,9 +136,8 @@ public class PaintBrushItem extends Item {
 		if(optionalInkColor.isPresent()) {
 			if (!world.isClient) {
 				InkColor inkColor = optionalInkColor.get();
-				Vec3d targetPos = user.getPos().add(0, 0, 10);
-				PaintProjectileEntity paintProjectile = new PaintProjectileEntity(world, user, targetPos.x, targetPos.y, targetPos.z);
-				paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 1.0F);
+				PaintProjectileEntity paintProjectile = new PaintProjectileEntity(world, user);
+				paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
 				paintProjectile.setColor(inkColor);
 				world.spawnEntity(paintProjectile);
 			}

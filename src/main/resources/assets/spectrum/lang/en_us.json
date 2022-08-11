@@ -293,6 +293,7 @@
 
   "spectrum.subtitles.paintbrush_trigger": "Paintbrush activation",
   "spectrum.subtitles.paintbrush_paint": "Paintbrush paints",
+  "spectrum.subtitles.ink_projectile_hit": "Ink hits block",
   "spectrum.subtitles.celestial_pocket_watch_ticking": "Pocketwatch ticks",
   "spectrum.subtitles.shooting_star_cracker": "Shooting Star cracks",
   "spectrum.subtitles.block.memory.advance": "Memory defines further",

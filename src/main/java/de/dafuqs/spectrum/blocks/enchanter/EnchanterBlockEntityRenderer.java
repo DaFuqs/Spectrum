@@ -19,15 +19,16 @@ import org.jetbrains.annotations.NotNull;
 
 public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity> {
 	
-	protected static RenderLayer LAYER;
-	protected static Identifier TEXTURE;
+	protected static final int EXPERIENCE_SPRITE_BRIGHTNESS = 15728768; // max brightness
+	protected static final double ITEM_STACK_RENDER_HEIGHT = 0.65F;
+	
+	protected static RenderLayer layer;
+	protected static Identifier texture;
 	protected static EntityRenderDispatcher dispatcher;
-	protected int experienceSpriteBrightness = 15728768; // max brightness
-	protected double itemStackRenderHeight = 0.65F;
 	
 	public EnchanterBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-		TEXTURE = new Identifier("textures/entity/experience_orb.png");
-		LAYER = RenderLayer.getEntityTranslucentCull(TEXTURE);
+		texture = new Identifier("textures/entity/experience_orb.png");
+		layer = RenderLayer.getEntityTranslucentCull(texture);
 		dispatcher = MinecraftClient.getInstance().getEntityRenderDispatcher();
 	}
 	
@@ -47,21 +48,21 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 			// item stack rotation
 			switch (itemFacingDirection) {
 				case NORTH -> {
-					matrixStack.translate(0.5, itemStackRenderHeight, 0.7);
+					matrixStack.translate(0.5, ITEM_STACK_RENDER_HEIGHT, 0.7);
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
 					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
 				}
 				case SOUTH -> { // perfect
-					matrixStack.translate(0.5, itemStackRenderHeight, 0.3);
+					matrixStack.translate(0.5, ITEM_STACK_RENDER_HEIGHT, 0.3);
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
 				}
 				case EAST -> {
-					matrixStack.translate(0.3, itemStackRenderHeight, 0.5);
+					matrixStack.translate(0.3, ITEM_STACK_RENDER_HEIGHT, 0.5);
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
 					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(270));
 				}
 				case WEST -> {
-					matrixStack.translate(0.7, itemStackRenderHeight, 0.5);
+					matrixStack.translate(0.7, ITEM_STACK_RENDER_HEIGHT, 0.5);
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
 					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(90));
 					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
@@ -75,7 +76,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		// The Experience Item rendered in the air
 		ItemStack experienceItemStack = blockEntity.getStack(1);
 		if (!experienceItemStack.isEmpty() && experienceItemStack.getItem() instanceof ExperienceStorageItem) {
-			renderExperienceOrb((float) blockEntity.getWorld().getTime() % 50000 + tickDelta, ExperienceHelper.getExperienceOrbSizeForExperience(ExperienceStorageItem.getStoredExperience(experienceItemStack)), matrixStack, vertexConsumerProvider, experienceSpriteBrightness);
+			renderExperienceOrb((float) blockEntity.getWorld().getTime() % 50000 + tickDelta, ExperienceHelper.getExperienceOrbSizeForExperience(ExperienceStorageItem.getStoredExperience(experienceItemStack)), matrixStack, vertexConsumerProvider, EXPERIENCE_SPRITE_BRIGHTNESS);
 		}
 		
 		//renderLight(blockEntity, matrixStack, vertexConsumerProvider, 3, 0, null, null, null, null);
@@ -99,7 +100,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		float scale = 0.5F + (float) (Math.sin(timeWithTickDelta / 8.0) / 8.0);
 		matrixStack.scale(scale, scale, scale);
 		
-		VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(LAYER);
+		VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(layer);
 		MatrixStack.Entry entry = matrixStack.peek();
 		Matrix4f matrix4f = entry.getPositionMatrix();
 		Matrix3f matrix3f = entry.getNormalMatrix();

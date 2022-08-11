@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.helpers.BlockVariantHelper;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -273,7 +274,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 		int colorOrdinal = this.getColor();
 		if (colorOrdinal != -1) {
 			for (BlockPos blockPos : BlockPos.iterateOutwards(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
-				Block coloredBlock = ColorHelper.getCursedBlockColorVariant(this.world, blockPos, DyeColor.byId(colorOrdinal));
+				Block coloredBlock = BlockVariantHelper.getCursedBlockColorVariant(this.world, blockPos, DyeColor.byId(colorOrdinal));
 				if (coloredBlock != Blocks.AIR) {
 					this.world.setBlockState(blockPos, coloredBlock.getDefaultState());
 				}

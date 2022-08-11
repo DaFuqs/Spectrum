@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.entity.InkProjectileEntity;
+import de.dafuqs.spectrum.helpers.BlockVariantHelper;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.PaintbrushScreenHandler;
@@ -114,7 +115,7 @@ public class PaintBrushItem extends Item {
 			
 			// TODO: Use Jellos API to support all of jellos block colors
 			// https://modrinth.com/mod/jello
-			Block newBlock = ColorHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
+			Block newBlock = BlockVariantHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
 			if (newBlock == Blocks.AIR) {
 				return false;
 			}

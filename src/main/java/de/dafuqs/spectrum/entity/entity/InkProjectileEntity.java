@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.sound.InkProjectileSoundInstance;
+import de.dafuqs.spectrum.spells.InkSpellEffect;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -47,7 +48,10 @@ import java.util.Arrays;
 public class InkProjectileEntity extends ProjectileEntity {
 	
 	private static final int COLOR_SPLAT_RANGE = 2;
+	private static final int SPELL_POTENCY = 2;
+	
 	private static final TrackedData<Integer> COLOR = DataTracker.registerData(InkProjectileEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	
 	protected int life;
 	protected int damage = 2;
 	
@@ -273,8 +277,10 @@ public class InkProjectileEntity extends ProjectileEntity {
 		
 		int colorOrdinal = this.getColor();
 		if (colorOrdinal != -1) {
+			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
+			
 			for (BlockPos blockPos : BlockPos.iterateOutwards(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
-				Block coloredBlock = BlockVariantHelper.getCursedBlockColorVariant(this.world, blockPos, DyeColor.byId(colorOrdinal));
+				Block coloredBlock = BlockVariantHelper.getCursedBlockColorVariant(this.world, blockPos, dyeColor);
 				if (coloredBlock != Blocks.AIR) {
 					this.world.setBlockState(blockPos, coloredBlock.getDefaultState());
 				}
@@ -282,11 +288,13 @@ public class InkProjectileEntity extends ProjectileEntity {
 			
 			for (int i = 0; i < 10; i++) {
 				SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) this.world, blockHitResult.getPos(),
-						SpectrumParticleTypes.getCraftingParticle(DyeColor.byId(colorOrdinal)), 10,
+						SpectrumParticleTypes.getCraftingParticle(dyeColor), 10,
 						Vec3d.ZERO,
 						new Vec3d(-this.getVelocity().x * 3, -this.getVelocity().y * 3, -this.getVelocity().z * 3)
 				);
 			}
+			
+			InkSpellEffect.trigger(InkColor.of(dyeColor), this.world, blockHitResult.getPos(), SPELL_POTENCY);
 		}
 		
 		this.discard();

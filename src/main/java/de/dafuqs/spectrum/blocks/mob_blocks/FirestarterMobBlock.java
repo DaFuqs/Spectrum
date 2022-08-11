@@ -40,7 +40,7 @@ public class FirestarterMobBlock extends MobBlock {
 		put(Blocks.RED_MUSHROOM, new Pair<>(Blocks.CRIMSON_FUNGUS.getDefaultState(), 0.2F));
 		put(Blocks.BROWN_MUSHROOM, new Pair<>(Blocks.WARPED_FUNGUS.getDefaultState(), 0.2F));
 		put(Blocks.SAND, new Pair<>(Blocks.RED_SAND.getDefaultState(), 1.0F));
-		put(Blocks.GRASS, new Pair<>(Blocks.MYCELIUM.getDefaultState(), 0.25F));
+		put(Blocks.GRASS, new Pair<>(Blocks.DIRT.getDefaultState(), 0.05F));
 		put(Blocks.CALCITE, new Pair<>(Blocks.BASALT.getDefaultState(), 0.5F));
 		put(Blocks.NETHERRACK, new Pair<>(Blocks.MAGMA_BLOCK.getDefaultState(), 0.25F));
 		put(Blocks.MAGMA_BLOCK, new Pair<>(Blocks.LAVA.getDefaultState(), 0.5F));
@@ -68,17 +68,17 @@ public class FirestarterMobBlock extends MobBlock {
 		}
 	}
 	
-	public static void causeFire(@NotNull ServerWorld world, BlockPos blockPos, Direction side) {
+	public static boolean causeFire(@NotNull ServerWorld world, BlockPos blockPos, Direction side) {
 		BlockState blockState = world.getBlockState(blockPos);
 		if (CampfireBlock.canBeLit(blockState) || CandleBlock.canBeLit(blockState) || CandleCakeBlock.canBeLit(blockState)) {
 			// light lightable blocks
-			world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
 			world.setBlockState(blockPos, blockState.with(Properties.LIT, true), 11);
 			world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
+			return true;
 		} else if (blockState.isIn(BlockTags.ICE)) {
 			// smelt ice
-			world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
 			world.setBlockState(blockPos, Blocks.WATER.getDefaultState());
+			return true;
 		} else if (BURNING_MAP.containsKey(blockState.getBlock())) {
 			Pair<BlockState, Float> dest = BURNING_MAP.get(blockState.getBlock());
 			if (dest.getRight() >= 1.0F || world.random.nextFloat() < dest.getRight()) {
@@ -86,21 +86,25 @@ public class FirestarterMobBlock extends MobBlock {
 				world.setBlockState(blockPos, dest.getLeft(), 11);
 				world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
 			}
+			return true;
 		} else {
 			// place fire
 			if (AbstractFireBlock.canPlaceAt(world, blockPos, side)) {
-				world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
 				BlockState blockState2 = AbstractFireBlock.getState(world, blockPos);
 				world.setBlockState(blockPos, blockState2, 11);
 				world.emitGameEvent(null, GameEvent.BLOCK_PLACE, blockPos);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		for (Direction direction : Direction.values()) {
-			causeFire(world, blockPos.offset(direction), direction);
+			if(causeFire(world, blockPos.offset(direction), direction)) {
+				world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
+			}
 		}
 		return true;
 	}

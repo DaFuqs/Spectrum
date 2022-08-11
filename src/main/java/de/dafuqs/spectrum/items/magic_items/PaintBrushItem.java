@@ -16,7 +16,9 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PlayerScreenHandler;
@@ -48,11 +50,6 @@ public class PaintBrushItem extends Item {
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
-		if (selected && entity instanceof ServerPlayerEntity serverPlayerEntity) {
-			if (serverPlayerEntity.isSneaking() && canColor(serverPlayerEntity) && serverPlayerEntity.currentScreenHandler instanceof PlayerScreenHandler) {
-				serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(world, serverPlayerEntity, stack));
-			}
-		}
 	}
 	
 	@Override
@@ -131,19 +128,27 @@ public class PaintBrushItem extends Item {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		Optional<InkColor> optionalInkColor = getColor(user.getStackInHand(hand));
-		if(optionalInkColor.isPresent()) {
-			if (!world.isClient) {
-				InkColor inkColor = optionalInkColor.get();
-				InkProjectileEntity paintProjectile = new InkProjectileEntity(world, user);
-				paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
-				paintProjectile.setColor(inkColor);
-				world.spawnEntity(paintProjectile);
+		if (user.isSneaking()) {
+			if (user instanceof ServerPlayerEntity serverPlayerEntity) {
+				if (canColor(serverPlayerEntity)) {
+					serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(world, serverPlayerEntity, user.getStackInHand(hand)));
+				}
 			}
 			return TypedActionResult.pass(user.getStackInHand(hand));
 		} else {
-			return super.use(world, user, hand);
+			Optional<InkColor> optionalInkColor = getColor(user.getStackInHand(hand));
+			if (optionalInkColor.isPresent()) {
+				if (!world.isClient) {
+					InkColor inkColor = optionalInkColor.get();
+					InkProjectileEntity paintProjectile = new InkProjectileEntity(world, user);
+					paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
+					paintProjectile.setColor(inkColor);
+					world.spawnEntity(paintProjectile);
+				}
+				return TypedActionResult.pass(user.getStackInHand(hand));
+			}
 		}
+		return super.use(world, user, hand);
 	}
 	
 	@Override

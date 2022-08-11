@@ -42,25 +42,25 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 
-public class PaintProjectileEntity extends ProjectileEntity {
+public class InkProjectileEntity extends ProjectileEntity {
 	
 	private static final int COLOR_SPLAT_RANGE = 2;
 	private static final TrackedData<Integer> COLOR = DataTracker.registerData(ArrowEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	protected int life;
 	protected int damage = 2;
 	
-	public PaintProjectileEntity(EntityType<PaintProjectileEntity> type, World world) {
+	public InkProjectileEntity(EntityType<InkProjectileEntity> type, World world) {
 		super(type, world);
 	}
 	
-	public PaintProjectileEntity(EntityType<PaintProjectileEntity> type, double x, double y, double z, World world) {
+	public InkProjectileEntity(EntityType<InkProjectileEntity> type, double x, double y, double z, World world) {
 		this(type, world);
 		this.refreshPositionAndAngles(x, y, z, this.getYaw(), this.getPitch());
 		this.refreshPosition();
 	}
 	
-	public PaintProjectileEntity(World world, LivingEntity owner) {
-		this(SpectrumEntityTypes.PAINT_PROJECTILE, owner.getX(), owner.getEyeY() - 0.10000000149011612D, owner.getZ(), world);
+	public InkProjectileEntity(World world, LivingEntity owner) {
+		this(SpectrumEntityTypes.INK_PROJECTILE, owner.getX(), owner.getEyeY() - 0.10000000149011612D, owner.getZ(), world);
 		this.setOwner(owner);
 		this.setRotation(owner.getYaw(), owner.getPitch());
 	}

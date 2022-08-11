@@ -4,7 +4,7 @@ import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.entity.entity.PaintProjectileEntity;
+import de.dafuqs.spectrum.entity.entity.InkProjectileEntity;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.PaintbrushScreenHandler;
@@ -27,7 +27,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -136,7 +135,7 @@ public class PaintBrushItem extends Item {
 		if(optionalInkColor.isPresent()) {
 			if (!world.isClient) {
 				InkColor inkColor = optionalInkColor.get();
-				PaintProjectileEntity paintProjectile = new PaintProjectileEntity(world, user);
+				InkProjectileEntity paintProjectile = new InkProjectileEntity(world, user);
 				paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
 				paintProjectile.setColor(inkColor);
 				world.spawnEntity(paintProjectile);

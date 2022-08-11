@@ -75,7 +75,7 @@ public class PaintProjectileEntity extends ProjectileEntity {
 	}
 	
 	public void setColor(InkColor inkColor) {
-		this.dataTracker.set(COLOR, inkColor.getDyeColor().ordinal());
+		this.dataTracker.set(COLOR, inkColor.getDyeColor().getId());
 	}
 	
 	protected void setColor(int color) {

@@ -18,9 +18,8 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.List;
 
 public class ColorHelper {
 	
@@ -91,7 +90,9 @@ public class ColorHelper {
 	}
 	
 	// cache for cursedBlockColorVariant()
-	private static Map<Block, Map<DyeColor, Block>> coloredStates = new HashMap<>();
+	private static final Map<Block, Map<DyeColor, Block>> coloredStates = new HashMap<>();
+	// ordered color strings so "light_" variants match before non-light
+	private static final List<String> COLOR_STRINGS = List.of("light_blue", "light_gray", "white", "orange", "magenta", "yellow", "lime", "pink", "gray", "cyan", "purple", "blue", "brown", "green", "red", "black");
 	
 	public static Block getCursedBlockColorVariant(World world, BlockPos blockPos, DyeColor newColor) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
@@ -111,27 +112,17 @@ public class ColorHelper {
 		
 		Identifier identifier = Registry.BLOCK.getId(block);
 		
-		boolean match = false;
-		String[] strings = identifier.getPath().split("_");
-		for(int i = 0; i < strings.length; i++) {
-			String string = strings[i];
-			for(DyeColor dyeColor : DyeColor.values()) {
-				if(string.equals(dyeColor.toString())) {
-					if(dyeColor == newColor) {
-						return Blocks.AIR;
-					}
-					
-					strings[i] = newColor.toString();
-					match = true;
-					i = strings.length;
-					break;
-				}
+		String newPath = null;
+		for(String colorString : COLOR_STRINGS) {
+			if(identifier.getPath().contains(colorString)) {
+				newPath = identifier.getPath().replace(colorString, newColor.toString());
+				break;
 			}
 		}
 		
 		Block returnBlock = Blocks.AIR;
-		if(match) {
-			Identifier newIdentifier = new Identifier(identifier.getNamespace(), String.join("_", strings));
+		if(newPath != null) {
+			Identifier newIdentifier = new Identifier(identifier.getNamespace(), newPath);
 			returnBlock = Registry.BLOCK.get(newIdentifier);
 		}
 		

@@ -4,6 +4,7 @@ import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.entity.entity.PaintProjectileEntity;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.PaintbrushScreenHandler;
@@ -15,9 +16,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PlayerScreenHandler;
@@ -28,6 +27,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -132,7 +132,20 @@ public class PaintBrushItem extends Item {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		return super.use(world, user, hand);
+		Optional<InkColor> optionalInkColor = getColor(user.getStackInHand(hand));
+		if(optionalInkColor.isPresent()) {
+			if (!world.isClient) {
+				InkColor inkColor = optionalInkColor.get();
+				Vec3d targetPos = user.getPos().add(0, 0, 10);
+				PaintProjectileEntity paintProjectile = new PaintProjectileEntity(world, user, targetPos.x, targetPos.y, targetPos.z);
+				paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 1.0F);
+				paintProjectile.setColor(inkColor);
+				world.spawnEntity(paintProjectile);
+			}
+			return TypedActionResult.pass(user.getStackInHand(hand));
+		} else {
+			return super.use(world, user, hand);
+		}
 	}
 	
 	@Override

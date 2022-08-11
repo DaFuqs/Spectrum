@@ -1,6 +1,11 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.entity.entity.PaintProjectileEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.ProjectileDamageSource;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import org.jetbrains.annotations.Nullable;
 
 public class SpectrumDamageSources {
 	
@@ -9,6 +14,10 @@ public class SpectrumDamageSources {
 	public static final DamageSource SHOOTING_STAR = new SpectrumDamageSource("spectrum_shooting_star").setFromFalling().setNeutral().setProjectile();
 	public static final DamageSource MIDNIGHT_SOLUTION = new SpectrumDamageSource("spectrum_midnight_solution").setDropsPlayerLoot().setBypassesArmor().setNeutral().setUsesMagic();
 	public static final DamageSource DIKE_GATE = new SpectrumDamageSource("spectrum_dike_gate").setNeutral().setUsesMagic();
+	
+	public static DamageSource inkProjectile(PaintProjectileEntity projectile, @Nullable Entity attacker) {
+		return (new ProjectileDamageSource("arrow", projectile, attacker)).setProjectile(); // TODO
+	}
 	
 	public static class SpectrumDamageSource extends DamageSource {
 		

@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.helpers.BlockVariantHelper;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.sound.InkProjectileSoundInstance;
@@ -49,11 +50,11 @@ public class InkProjectileEntity extends ProjectileEntity {
 	
 	private static final int COLOR_SPLAT_RANGE = 2;
 	private static final int SPELL_POTENCY = 2;
+	private static final float DAMAGE_PER_POTENCY = 0.5F;
 	
 	private static final TrackedData<Integer> COLOR = DataTracker.registerData(InkProjectileEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	
 	protected int life;
-	protected int damage = 2;
 	
 	public InkProjectileEntity(EntityType<InkProjectileEntity> type, World world) {
 		super(type, world);
@@ -217,7 +218,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 		super.onEntityHit(entityHitResult);
 		Entity entity = entityHitResult.getEntity();
 		float f = (float)this.getVelocity().length();
-		int i = MathHelper.ceil(MathHelper.clamp((double)f * this.damage, 0.0D, 2.147483647E9D));
+		int i = MathHelper.ceil(MathHelper.clamp((double)f * DAMAGE_PER_POTENCY * SPELL_POTENCY, 0.0D, 2.147483647E9D));
 		
 		Entity entity2 = this.getOwner();
 		DamageSource damageSource;
@@ -248,7 +249,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 				if (!this.world.isClient && entity2 instanceof ServerPlayerEntity) {
 					ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity2;
 					if (!entity.isAlive()) {
-						Criteria.KILLED_BY_CROSSBOW.trigger(serverPlayerEntity, Arrays.asList(entity));
+						SpectrumAdvancementCriteria.KILLED_BY_INK_PROJECTILE.trigger(serverPlayerEntity, Arrays.asList(entity));
 					}
 				}
 			}

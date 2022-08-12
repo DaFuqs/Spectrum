@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "upgrade_place");
+	static final Identifier ID = SpectrumCommon.locate("upgrade_place");
 	
 	public static UpgradePlaceCriterion.Conditions create(BlockPredicate blockPredicate, NumberRange.IntRange countRange, NumberRange.FloatRange speedRange, NumberRange.FloatRange experienceRange, NumberRange.FloatRange efficiencyRange, NumberRange.FloatRange yieldRange) {
 		return new UpgradePlaceCriterion.Conditions(EntityPredicate.Extended.EMPTY, blockPredicate, countRange, speedRange, experienceRange, efficiencyRange, yieldRange);

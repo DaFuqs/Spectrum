@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier;
 
 public class JeopardantKillCriterion extends AbstractCriterion<JeopardantKillCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "jeopardant_kill");
+	static final Identifier ID = SpectrumCommon.locate("jeopardant_kill");
 	
 	public Identifier getId() {
 		return ID;

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.progression.advancement.*;
 import net.fabricmc.fabric.mixin.object.builder.CriteriaAccessor;
+import net.minecraft.advancement.criterion.Criteria;
 
 public class SpectrumAdvancementCriteria {
 	
@@ -28,7 +29,8 @@ public class SpectrumAdvancementCriteria {
 	public static CrystalApothecaryCollectingCriterion CRYSTAL_APOTHECARY_COLLECTING;
 	public static UpgradePlaceCriterion UPGRADE_PLACING;
 	public static CrystallarieumGrownCriterion CRYSTALLARIEUM_GROWING;
-	public static CinderhearthSmeltingCriterion cinderhearth_SMELTING;
+	public static CinderhearthSmeltingCriterion CINDERHEARTH_SMELTING;
+	public static InkProjectileKillingCriterion KILLED_BY_INK_PROJECTILE;
 	
 	public static void register() {
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
@@ -54,7 +56,8 @@ public class SpectrumAdvancementCriteria {
 		CRYSTAL_APOTHECARY_COLLECTING = CriteriaAccessor.callRegister(new CrystalApothecaryCollectingCriterion());
 		UPGRADE_PLACING = CriteriaAccessor.callRegister(new UpgradePlaceCriterion());
 		CRYSTALLARIEUM_GROWING = CriteriaAccessor.callRegister(new CrystallarieumGrownCriterion());
-		cinderhearth_SMELTING = CriteriaAccessor.callRegister(new CinderhearthSmeltingCriterion());
+		CINDERHEARTH_SMELTING = CriteriaAccessor.callRegister(new CinderhearthSmeltingCriterion());
+		KILLED_BY_INK_PROJECTILE = CriteriaAccessor.callRegister(new InkProjectileKillingCriterion());
 	}
 	
 }

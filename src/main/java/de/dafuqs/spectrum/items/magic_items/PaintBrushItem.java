@@ -39,6 +39,7 @@ public class PaintBrushItem extends Item {
 	
 	public static final Identifier UNLOCK_ADVANCEMENT_ID = SpectrumCommon.locate("progression/unlock_paintbrush");
 	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
+	public static final Identifier UNLOCK_PAINT_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
 	
 	public static final int BLOCK_COLOR_COST = 10;
 	public static final int INK_FLING_COST = 100;
@@ -64,6 +65,10 @@ public class PaintBrushItem extends Item {
 	
 	public static boolean canColor(PlayerEntity player) {
 		return AdvancementHelper.hasAdvancement(player, UNLOCK_COLORING_ADVANCEMENT_ID);
+	}
+	
+	public static boolean canPaintSling(PlayerEntity player) {
+		return AdvancementHelper.hasAdvancement(player, UNLOCK_PAINT_SLINGING_ADVANCEMENT_ID);
 	}
 	
 	public NamedScreenHandlerFactory createScreenHandlerFactory(World world, ServerPlayerEntity serverPlayerEntity, ItemStack itemStack) {
@@ -138,7 +143,7 @@ public class PaintBrushItem extends Item {
 				}
 			}
 			return TypedActionResult.pass(user.getStackInHand(hand));
-		} else {
+		} else if(canPaintSling(user)){
 			Optional<InkColor> optionalInkColor = getColor(user.getStackInHand(hand));
 			if (optionalInkColor.isPresent()) {
 				if (!world.isClient) {

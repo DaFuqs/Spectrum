@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:midgame/fill_ink_container",
+  "display": {
+    "icon": {
+      "item": "spectrum:paintbrush",
+      "nbt": "{Color: \"red\"}"
+    },
+    "title": {
+      "translate": "advancements.spectrum.kill_entity_with_ink_projectile.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.kill_entity_with_ink_projectile.description"
+    }
+  },
+  "criteria": {
+    "killed_entity_with_ink_projectile": {
+      "trigger": "spectrum:ink_projectile_killing"
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/fill_ink_container" }
+    }
+  }
+}

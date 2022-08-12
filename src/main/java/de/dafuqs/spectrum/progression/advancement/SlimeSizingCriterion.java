@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 public class SlimeSizingCriterion extends AbstractCriterion<SlimeSizingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "slime_sizing");
+	static final Identifier ID = SpectrumCommon.locate("slime_sizing");
 	
 	public Identifier getId() {
 		return ID;

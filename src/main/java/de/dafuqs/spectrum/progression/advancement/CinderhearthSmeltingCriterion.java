@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 
 public class CinderhearthSmeltingCriterion extends AbstractCriterion<CinderhearthSmeltingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "cinderhearth_smelting");
+	static final Identifier ID = SpectrumCommon.locate("cinderhearth_smelting");
 	
 	public Identifier getId() {
 		return ID;

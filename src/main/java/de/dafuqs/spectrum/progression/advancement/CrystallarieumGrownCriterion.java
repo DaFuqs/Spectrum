@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 
 public class CrystallarieumGrownCriterion extends AbstractCriterion<CrystallarieumGrownCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "crystallarieum_growing");
+	static final Identifier ID = SpectrumCommon.locate("crystallarieum_growing");
 	
 	public static CrystallarieumGrownCriterion.Conditions create(ItemPredicate item, BlockPredicate blockPredicate) {
 		return new CrystallarieumGrownCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, blockPredicate);

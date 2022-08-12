@@ -26,7 +26,7 @@ import java.util.Optional;
 
 public class TrinketChangeCriterion extends AbstractCriterion<TrinketChangeCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "trinket_change");
+	static final Identifier ID = SpectrumCommon.locate("trinket_change");
 	
 	public Identifier getId() {
 		return ID;

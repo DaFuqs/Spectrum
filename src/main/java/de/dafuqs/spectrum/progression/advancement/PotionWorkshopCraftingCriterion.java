@@ -17,7 +17,7 @@ import java.util.List;
 
 public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWorkshopCraftingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "crafted_with_potion_workshop");
+	static final Identifier ID = SpectrumCommon.locate("crafted_with_potion_workshop");
 	
 	public static PotionWorkshopCraftingCriterion.Conditions create(ItemPredicate[] item) {
 		return new PotionWorkshopCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);

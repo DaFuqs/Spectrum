@@ -14,7 +14,7 @@ import vazkii.patchouli.api.IMultiblock;
 
 public class CompletedMultiblockCriterion extends AbstractCriterion<CompletedMultiblockCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "completed_multiblock");
+	static final Identifier ID = SpectrumCommon.locate("completed_multiblock");
 	
 	public static CompletedMultiblockCriterion.Conditions create(Identifier id) {
 		return new CompletedMultiblockCriterion.Conditions(EntityPredicate.Extended.EMPTY, id);

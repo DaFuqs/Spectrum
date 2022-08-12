@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "natures_staff_conversion");
+	static final Identifier ID = SpectrumCommon.locate("natures_staff_conversion");
 	
 	@Nullable
 	private static Block getBlock(JsonObject obj, String propertyName) {

@@ -18,7 +18,7 @@ import java.util.List;
 
 public class PedestalCraftingCriterion extends AbstractCriterion<PedestalCraftingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "crafted_with_pedestal");
+	static final Identifier ID = SpectrumCommon.locate("crafted_with_pedestal");
 	
 	public static PedestalCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
 		return new PedestalCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);

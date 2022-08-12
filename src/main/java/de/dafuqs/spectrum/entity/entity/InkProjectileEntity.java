@@ -294,7 +294,8 @@ public class InkProjectileEntity extends ProjectileEntity {
 				);
 			}
 			
-			InkSpellEffect.trigger(InkColor.of(dyeColor), this.world, blockHitResult.getPos(), SPELL_POTENCY);
+			// TODO: uncomment this when all 16 ink effects are finished
+			// InkSpellEffect.trigger(InkColor.of(dyeColor), this.world, blockHitResult.getPos(), SPELL_POTENCY);
 		}
 		
 		this.discard();
@@ -316,10 +317,11 @@ public class InkProjectileEntity extends ProjectileEntity {
 			
 			Entity entity = target; //this.getEffectCause();
 			
+			// TODO: this is a dummy effect
 			Vec3d vec3d = this.getVelocity().multiply(1.0D, 0.0D, 1.0D).normalize().multiply((double) 3 * 0.6D);
 			if (vec3d.lengthSquared() > 0.0D) {
 				entity.addVelocity(vec3d.x, 0.1D, vec3d.z);
-			} // TODO: this is a dummy effect
+			}
 			
 			
 			/*Iterator var3 = this.potion.getEffects().iterator();

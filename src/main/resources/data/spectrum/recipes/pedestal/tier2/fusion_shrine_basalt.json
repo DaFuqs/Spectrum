@@ -11,7 +11,7 @@
   "experience": 2.0,
   "pattern": [
     "BCB",
-    "XAX",
+    "BAB",
     "BTB"
   ],
   "key": {
@@ -26,9 +26,6 @@
     },
     "B": {
       "item": "spectrum:polished_basalt"
-    },
-    "X": {
-      "item": "spectrum:polished_calcite"
     }
   },
   "result": {

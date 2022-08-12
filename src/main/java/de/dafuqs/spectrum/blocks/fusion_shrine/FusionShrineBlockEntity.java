@@ -252,7 +252,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		double yieldModifier = recipe.areYieldUpgradesDisabled() ? 1.0 : blockEntity.upgrades.get(UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
 		
-		EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos, recipe.getOutput(), resultAmountAfterMod);
+		EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos.up(2), recipe.getOutput(), resultAmountAfterMod);
 		
 		int spawnedXPAmount = 0;
 		if (recipe.getExperience() > 0) {

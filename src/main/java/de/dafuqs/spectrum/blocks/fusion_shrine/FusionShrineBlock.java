@@ -267,7 +267,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 							soundToPlay = Optional.of(SoundEvents.ENTITY_ITEM_PICKUP);
 							itemsChanged = true;
 						}
-					} else if (!itemStack.isEmpty() && verifyStructure(world, pos, (ServerPlayerEntity) player)) {
+					} else if (verifyStructure(world, pos, (ServerPlayerEntity) player) && !itemStack.isEmpty()) {
 						fusionShrineBlockEntity.setOwner(player);
 						
 						int previousCount = itemStack.getCount();

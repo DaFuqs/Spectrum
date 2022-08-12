@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe;
 
-import de.dafuqs.spectrum.progression.RecipeUnlockToastManager;
+import de.dafuqs.spectrum.progression.UnlockToastManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
@@ -25,7 +25,7 @@ public interface GatedRecipe extends Recipe<Inventory> {
 	
 	@Environment(EnvType.CLIENT)
 	private void registerInToastManagerClient(RecipeType recipeType, GatedRecipe gatedRecipe) {
-		RecipeUnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
+		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
 	}
 	
 	TranslatableText getSingleUnlockToastString();

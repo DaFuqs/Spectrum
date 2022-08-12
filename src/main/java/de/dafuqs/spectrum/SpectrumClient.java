@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum;
 
+import de.dafuqs.revelationary.api.advancements.ClientAdvancementPacketCallback;
 import de.dafuqs.revelationary.api.revelations.RevealingCallback;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliFlags;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
@@ -9,6 +10,7 @@ import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
+import de.dafuqs.spectrum.progression.UnlockToastManager;
 import de.dafuqs.spectrum.progression.toast.RevelationToast;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.SpectrumArmorRenderers;
@@ -33,7 +35,7 @@ import java.util.Set;
 
 import static de.dafuqs.spectrum.SpectrumCommon.logInfo;
 
-public class SpectrumClient implements ClientModInitializer, RevealingCallback {
+public class SpectrumClient implements ClientModInitializer, RevealingCallback, ClientAdvancementPacketCallback {
 	
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
@@ -99,6 +101,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 		SpectrumArmorRenderers.register();
 
 		RevealingCallback.register(this);
+		ClientAdvancementPacketCallback.registerCallback(this);
 		
 		logInfo("Client startup completed!");
 	}
@@ -112,6 +115,13 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback {
 					break;
 				}
 			}
+		}
+	}
+	
+	@Override
+	public void onClientAdvancementPacket(Set<Identifier> gottenAdvancements, Set<Identifier> removedAdvancements, boolean isJoinPacket) {
+		if(!isJoinPacket) {
+			UnlockToastManager.processAdvancements(gottenAdvancements);
 		}
 	}
 	

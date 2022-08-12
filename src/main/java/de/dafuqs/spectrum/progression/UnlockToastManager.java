@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public class RecipeUnlockToastManager {
+public class UnlockToastManager {
 	// Advancement Identifier + Recipe Type => Recipe
 	public static final Map<Identifier, Map<RecipeType, List<GatedRecipe>>> gatedRecipes = new HashMap<>();
 	
@@ -64,68 +64,66 @@ public class RecipeUnlockToastManager {
 		}
 	}
 	
-	public static void processRemovedAdvancements(List<Identifier> doneAdvancements, boolean showToast) {
-		if (showToast) {
-			HashMap<RecipeType, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
-			List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();
-			
-			for (Identifier doneAdvancement : doneAdvancements) {
-				if (gatedRecipes.containsKey(doneAdvancement)) {
-					Map<RecipeType, List<GatedRecipe>> recipesGatedByAdvancement = gatedRecipes.get(doneAdvancement);
+	public static void processAdvancements(Set<Identifier> doneAdvancements) {
+		HashMap<RecipeType, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
+		List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();
+		
+		for (Identifier doneAdvancement : doneAdvancements) {
+			if (gatedRecipes.containsKey(doneAdvancement)) {
+				Map<RecipeType, List<GatedRecipe>> recipesGatedByAdvancement = gatedRecipes.get(doneAdvancement);
+				
+				for (Map.Entry<RecipeType, List<GatedRecipe>> recipesByType : recipesGatedByAdvancement.entrySet()) {
+					List<GatedRecipe> newRecipes;
+					if (unlockedRecipesByType.containsKey(recipesByType.getKey())) {
+						newRecipes = unlockedRecipesByType.get(recipesByType.getKey());
+					} else {
+						newRecipes = new ArrayList<>();
+					}
 					
-					for (Map.Entry<RecipeType, List<GatedRecipe>> recipesByType : recipesGatedByAdvancement.entrySet()) {
-						List<GatedRecipe> newRecipes;
-						if (unlockedRecipesByType.containsKey(recipesByType.getKey())) {
-							newRecipes = unlockedRecipesByType.get(recipesByType.getKey());
-						} else {
-							newRecipes = new ArrayList<>();
-						}
-						
-						for (GatedRecipe unlockedRecipe : recipesByType.getValue()) {
-							if (unlockedRecipe.canPlayerCraft(MinecraftClient.getInstance().player)) {
-								if (!newRecipes.contains((unlockedRecipe))) {
-									newRecipes.add(unlockedRecipe);
-								}
+					for (GatedRecipe unlockedRecipe : recipesByType.getValue()) {
+						if (unlockedRecipe.canPlayerCraft(MinecraftClient.getInstance().player)) {
+							if (!newRecipes.contains((unlockedRecipe))) {
+								newRecipes.add(unlockedRecipe);
 							}
 						}
-						unlockedRecipesByType.put(recipesByType.getKey(), newRecipes);
 					}
-				}
-				
-				Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = PedestalRecipeTier.hasJustUnlockedANewRecipeTier(doneAdvancement);
-				if (newlyUnlockedRecipeTier.isPresent()) {
-					List<GatedRecipe> unlockedPedestalRecipes;
-					if (unlockedRecipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
-						unlockedPedestalRecipes = unlockedRecipesByType.get(SpectrumRecipeTypes.PEDESTAL);
-					} else {
-						unlockedPedestalRecipes = new ArrayList<>();
-					}
-					List<GatedRecipe> pedestalRecipes = new ArrayList<>();
-					for (Map<RecipeType, List<GatedRecipe>> recipesByType : gatedRecipes.values()) {
-						if (recipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
-							pedestalRecipes.addAll(recipesByType.get(SpectrumRecipeTypes.PEDESTAL));
-						}
-					}
-					
-					for (PedestalCraftingRecipe alreadyUnlockedRecipe : getRecipesForTierWithAllConditionsMet(newlyUnlockedRecipeTier.get(), pedestalRecipes)) {
-						if (!unlockedPedestalRecipes.contains(alreadyUnlockedRecipe)) {
-							unlockedPedestalRecipes.add(alreadyUnlockedRecipe);
-						}
-					}
-				}
-				
-				if (RecipeUnlockToastManager.messageToasts.containsKey(doneAdvancement)) {
-					specialToasts.add(RecipeUnlockToastManager.messageToasts.get(doneAdvancement));
+					unlockedRecipesByType.put(recipesByType.getKey(), newRecipes);
 				}
 			}
 			
-			for (List<GatedRecipe> unlockedRecipeList : unlockedRecipesByType.values()) {
-				showGroupedRecipeUnlockToasts(unlockedRecipeList);
+			Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = PedestalRecipeTier.hasJustUnlockedANewRecipeTier(doneAdvancement);
+			if (newlyUnlockedRecipeTier.isPresent()) {
+				List<GatedRecipe> unlockedPedestalRecipes;
+				if (unlockedRecipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
+					unlockedPedestalRecipes = unlockedRecipesByType.get(SpectrumRecipeTypes.PEDESTAL);
+				} else {
+					unlockedPedestalRecipes = new ArrayList<>();
+				}
+				List<GatedRecipe> pedestalRecipes = new ArrayList<>();
+				for (Map<RecipeType, List<GatedRecipe>> recipesByType : gatedRecipes.values()) {
+					if (recipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
+						pedestalRecipes.addAll(recipesByType.get(SpectrumRecipeTypes.PEDESTAL));
+					}
+				}
+				
+				for (PedestalCraftingRecipe alreadyUnlockedRecipe : getRecipesForTierWithAllConditionsMet(newlyUnlockedRecipeTier.get(), pedestalRecipes)) {
+					if (!unlockedPedestalRecipes.contains(alreadyUnlockedRecipe)) {
+						unlockedPedestalRecipes.add(alreadyUnlockedRecipe);
+					}
+				}
 			}
 			
-			for (Pair<ItemStack, String> messageToast : specialToasts) {
-				MessageToast.showMessageToast(MinecraftClient.getInstance(), messageToast.getLeft(), messageToast.getRight());
+			if (UnlockToastManager.messageToasts.containsKey(doneAdvancement)) {
+				specialToasts.add(UnlockToastManager.messageToasts.get(doneAdvancement));
 			}
+		}
+		
+		for (List<GatedRecipe> unlockedRecipeList : unlockedRecipesByType.values()) {
+			showGroupedRecipeUnlockToasts(unlockedRecipeList);
+		}
+		
+		for (Pair<ItemStack, String> messageToast : specialToasts) {
+			MessageToast.showMessageToast(MinecraftClient.getInstance(), messageToast.getLeft(), messageToast.getRight());
 		}
 	}
 	

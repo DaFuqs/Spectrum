@@ -370,6 +370,10 @@
   "spectrum.toast.message.enchant_conflicting_enchantments_unlocked.text": "Enchant Items regardless of conflicts",
   "spectrum.toast.message.fourth_potion_reagent_unlocked.title": "Brewing Mastery",
   "spectrum.toast.message.fourth_potion_reagent_unlocked.text": "Use a Fourth Reagent in the Potion Brewery",
+  "spectrum.toast.message.block_coloring_unlocked.title": "New Paintbrush Ability:",
+  "spectrum.toast.message.block_coloring_unlocked.text": "Block Coloring",
+  "spectrum.toast.message.paint_flinging_unlocked.title": "New Paintbrush Ability:",
+  "spectrum.toast.message.paint_flinging_unlocked.text": "Ink Slinging",
 
   "text.autoconfig.Spectrum.option.CitrineGeodeMinAboveBottomGenerationHeight": "Min Citrine Geode generation height (from world floor)",
   "text.autoconfig.Spectrum.option.CitrineGeodeFixedMaxGenerationHeight": "Max Citrine Geode generation height (Y value)",

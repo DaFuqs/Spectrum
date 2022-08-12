@@ -15,10 +15,10 @@
     "has_native_resource": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "tag": "spectrum:native_resources" }] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:lategame/spectrum_lategame" }
     }
-  },
-  "gotten_previous": {
-    "trigger":"revelationary:advancement_gotten",
-    "conditions": { "advancement_identifier": "spectrum:lategame/spectrum_lategame" }
   }
 }

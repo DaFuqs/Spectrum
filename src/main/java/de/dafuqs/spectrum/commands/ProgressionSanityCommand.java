@@ -271,7 +271,7 @@ public class ProgressionSanityCommand {
 				}
 				if (!advancementGatingWarningWhitelist.contains(advancement.getId())) {
 					if (previousAdvancementIdentifier == null) {
-						SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has not set its parent set as requirement");
+						SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' does not have its parent set as requirement");
 					} else {
 						if (!advancement.getParent().getId().equals(previousAdvancementIdentifier)) {
 							SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' has its \"gotten_previous\" advancement set to something else than their parent. Intended?");

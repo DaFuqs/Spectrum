@@ -34,11 +34,12 @@ public class SpectrumItemPredicates {
 		registerAnimatedWandPredicates(SpectrumItems.RADIANCE_STAFF);
 		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
 		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
-		registerSinglePigmentEnergyStorageItemPredicates(SpectrumItems.INK_FLASK);
+		registerColorPredicate(SpectrumItems.PAINTBRUSH);
+		registerInkColorPredicate(SpectrumItems.INK_FLASK);
+		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerDreamFlayerPredicates(SpectrumItems.DREAMFLAYER);
 		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
-		registerColorPredicate(SpectrumItems.PAINTBRUSH);
 	}
 	
 	private static void registerColorPredicate(Item item) {
@@ -187,9 +188,17 @@ public class SpectrumItemPredicates {
 		});
 	}
 	
-	private static void registerSinglePigmentEnergyStorageItemPredicates(InkFlaskItem singlePigmentEnergyStorage) {
-		FabricModelPredicateProviderRegistry.register(singlePigmentEnergyStorage, new Identifier("fill_state"), (itemStack, world, livingEntity, i) -> {
-			SingleInkStorage storage = singlePigmentEnergyStorage.getEnergyStorage(itemStack);
+	private static void registerInkColorPredicate(InkFlaskItem item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
+			SingleInkStorage storage = item.getEnergyStorage(itemStack);
+			InkColor color = storage.getStoredColor();
+			return 0.01F + color.getDyeColor().ordinal() / 100F;
+		});
+	}
+	
+	private static void registerInkFillStateItemPredicate(InkFlaskItem item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("fill_state"), (itemStack, world, livingEntity, i) -> {
+			SingleInkStorage storage = item.getEnergyStorage(itemStack);
 			long current = storage.getCurrentTotal();
 			if (current == 0) {
 				return 0.0F;

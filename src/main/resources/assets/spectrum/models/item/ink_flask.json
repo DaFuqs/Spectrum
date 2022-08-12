@@ -1,20 +1,231 @@
 {
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "spectrum:item/ink_flask_base"
-  },
-  "overrides": [
-    {
-      "predicate": {
-        "fill_state": 0.01
-      },
-      "model": "spectrum:item/ink_flask_partially_filled"
-    },
-    {
-      "predicate": {
-        "fill_state": 1
-      },
-      "model": "spectrum:item/ink_flask_full"
-    }
-  ]
+	"parent": "minecraft:item/handheld",
+	"textures": {
+		"layer0": "spectrum:item/ink_flask_base"
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.01
+			},
+			"model": "spectrum:item/ink_flask_white_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.02
+			},
+			"model": "spectrum:item/ink_flask_orange_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.03
+			},
+			"model": "spectrum:item/ink_flask_magenta_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.04
+			},
+			"model": "spectrum:item/ink_flask_light_blue_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.05
+			},
+			"model": "spectrum:item/ink_flask_yellow_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.06
+			},
+			"model": "spectrum:item/ink_flask_lime_partial"
+		}, {
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.07
+			},
+			"model": "spectrum:item/ink_flask_pink_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.08
+			},
+			"model": "spectrum:item/ink_flask_gray_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.09
+			},
+			"model": "spectrum:item/ink_flask_light_gray_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.10
+			},
+			"model": "spectrum:item/ink_flask_cyan_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.11
+			},
+			"model": "spectrum:item/ink_flask_purple_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.12
+			},
+			"model": "spectrum:item/ink_flask_blue_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.13
+			},
+			"model": "spectrum:item/ink_flask_brown_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.14
+			},
+			"model": "spectrum:item/ink_flask_green_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.15
+			},
+			"model": "spectrum:item/ink_flask_red_partial"
+		},
+		{
+			"predicate": {
+				"fill_state": 0.01,
+				"color": 0.16
+			},
+			"model": "spectrum:item/ink_flask_black_partial"
+		},
+
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.01
+			},
+			"model": "spectrum:item/ink_flask_white_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.02
+			},
+			"model": "spectrum:item/ink_flask_orange_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.03
+			},
+			"model": "spectrum:item/ink_flask_magenta_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.04
+			},
+			"model": "spectrum:item/ink_flask_light_blue_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.05
+			},
+			"model": "spectrum:item/ink_flask_yellow_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.06
+			},
+			"model": "spectrum:item/ink_flask_lime_full"
+		}, {
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.07
+			},
+			"model": "spectrum:item/ink_flask_pink_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.08
+			},
+			"model": "spectrum:item/ink_flask_gray_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.09
+			},
+			"model": "spectrum:item/ink_flask_light_gray_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.10
+			},
+			"model": "spectrum:item/ink_flask_cyan_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.11
+			},
+			"model": "spectrum:item/ink_flask_purple_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.12
+			},
+			"model": "spectrum:item/ink_flask_blue_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.13
+			},
+			"model": "spectrum:item/ink_flask_brown_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.14
+			},
+			"model": "spectrum:item/ink_flask_green_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.15
+			},
+			"model": "spectrum:item/ink_flask_red_full"
+		},
+		{
+			"predicate": {
+				"fill_state": 1,
+				"color": 0.16
+			},
+			"model": "spectrum:item/ink_flask_black_full"
+		}
+	]
 }

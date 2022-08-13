@@ -58,7 +58,9 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	public static void tick(World world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
 		if (!world.isClient && !blockEntity.paused) {
+			blockEntity.inkDirty = false;
 			boolean didSomething;
+			
 			if (world.getTime() % TICKS_PER_CONVERSION == 0) {
 				didSomething = blockEntity.tryConvertPigmentToEnergy(world);
 			} else {

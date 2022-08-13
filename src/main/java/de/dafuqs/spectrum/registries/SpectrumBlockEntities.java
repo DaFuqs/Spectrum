@@ -206,7 +206,6 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		//Register textures in block atlas
 		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((texture, registry) -> {
 			registry.register(SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
-			registry.register(SpectrumCommon.locate("entity/ink_projectile"));
 		});
 	}
 	

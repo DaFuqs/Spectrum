@@ -29,6 +29,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,6 +43,7 @@ public class PaintBrushItem extends Item {
 	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
 	public static final Identifier UNLOCK_PAINT_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
 	
+	public static final int COOLDOWN_DURATION_TICKS = 10;
 	public static final int BLOCK_COLOR_COST = 10;
 	public static final int INK_FLING_COST = 100;
 	
@@ -146,20 +149,36 @@ public class PaintBrushItem extends Item {
 		} else if(canPaintSling(user)){
 			Optional<InkColor> optionalInkColor = getColor(user.getStackInHand(hand));
 			if (optionalInkColor.isPresent()) {
-				if (!world.isClient) {
-					InkColor inkColor = optionalInkColor.get();
+				
+				InkColor inkColor = optionalInkColor.get();
+				if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_FLING_COST)) {
 					
-					if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_FLING_COST)) {
+					user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
+					
+					if (!world.isClient) {
+						// spawn projectile
 						InkProjectileEntity paintProjectile = new InkProjectileEntity(world, user);
 						paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
 						paintProjectile.setColor(inkColor);
 						world.spawnEntity(paintProjectile);
+						
 					}
+					
+					// cause the slightest bit of knockback
+					causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
 				}
+				
 				return TypedActionResult.pass(user.getStackInHand(hand));
 			}
 		}
 		return super.use(world, user, hand);
+	}
+	
+	private void causeKnockback(PlayerEntity user, float yaw, float pitch, float roll, float multiplier) {
+		float f = MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * multiplier;
+		float g = MathHelper.sin((pitch + roll) * 0.017453292F) * multiplier;
+		float h = -MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * multiplier;
+		user.addVelocity(f, g, h);
 	}
 	
 	@Override

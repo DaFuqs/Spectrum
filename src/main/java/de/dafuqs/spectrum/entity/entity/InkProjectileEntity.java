@@ -217,8 +217,8 @@ public class InkProjectileEntity extends ProjectileEntity {
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
 		Entity entity = entityHitResult.getEntity();
-		float f = (float)this.getVelocity().length();
-		int i = MathHelper.ceil(MathHelper.clamp((double)f * DAMAGE_PER_POTENCY * SPELL_POTENCY, 0.0D, 2.147483647E9D));
+		float velocity = (float)this.getVelocity().length();
+		int damage = MathHelper.ceil(MathHelper.clamp((double)velocity * DAMAGE_PER_POTENCY * SPELL_POTENCY, 0.0D, 2.147483647E9D));
 		
 		Entity entity2 = this.getOwner();
 		DamageSource damageSource;
@@ -231,7 +231,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 			}
 		}
 		
-		if (entity.damage(damageSource, (float)i)) {
+		if (entity.damage(damageSource, (float)damage)) {
 			if (entity instanceof LivingEntity) {
 				LivingEntity livingEntity = (LivingEntity)entity;
 				

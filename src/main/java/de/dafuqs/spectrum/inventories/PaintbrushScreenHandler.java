@@ -4,18 +4,13 @@ import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.items.magic_items.PaintBrushItem;
-import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Hashtable;
-import java.util.Map;
 
 public class PaintbrushScreenHandler extends ScreenHandler implements InkColorSelectedPacketReceiver {
 	

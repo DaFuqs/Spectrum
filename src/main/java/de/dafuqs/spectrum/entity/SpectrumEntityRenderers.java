@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity;
 
-import de.dafuqs.spectrum.entity.render.InvisibleItemFrameEntityRenderer;
 import de.dafuqs.spectrum.entity.render.InkProjectileEntityRenderer;
+import de.dafuqs.spectrum.entity.render.InvisibleItemFrameEntityRenderer;
 import de.dafuqs.spectrum.entity.render.ShootingStarEntityRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.conditional;
 import com.google.common.collect.Maps;
 import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.items.PigmentItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;

@@ -43,11 +43,10 @@ public class InkProjectileEntityRenderer extends EntityRenderer<InkProjectileEnt
 		
 		VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(LAYER);
 		
-		int j = 3;
-		float h = (float)(j % 4 * 16) / 64.0F;
-		float k = (float)(j % 4 * 16 + 16) / 64.0F;
-		float l = 0F / 64.0F;
-		float m = 16F / 64.0F;
+		float h = 0.75F;
+		float k = 1F;
+		float l = 0F;
+		float m = 0.25F;
 		int s = (int)(starColor.getX() * 255.0F);
 		int t = (int)(starColor.getY() * 255.0F);
 		int u = (int)(starColor.getZ() * 255.0F);

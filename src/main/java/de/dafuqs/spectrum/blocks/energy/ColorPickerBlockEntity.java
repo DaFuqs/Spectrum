@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.energy;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.InkStorageItem;
@@ -7,10 +8,13 @@ import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.storage.TotalCappedInkStorage;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.ColorPickerScreenHandler;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
@@ -23,10 +27,13 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -62,7 +69,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			boolean didSomething;
 			
 			if (world.getTime() % TICKS_PER_CONVERSION == 0) {
-				didSomething = blockEntity.tryConvertPigmentToEnergy(world);
+				didSomething = blockEntity.tryConvertPigmentToEnergy((ServerWorld) world);
 			} else {
 				didSomething = true;
 			}
@@ -188,7 +195,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		}
 	}
 	
-	protected boolean tryConvertPigmentToEnergy(World world) {
+	protected boolean tryConvertPigmentToEnergy(ServerWorld world) {
 		InkConvertingRecipe recipe = getInkConvertingRecipe(world);
 		if (recipe != null) {
 			InkColor color = recipe.getInkColor();
@@ -196,6 +203,16 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			if (this.inkStorage.getEnergy(color) + amount <= this.inkStorage.getMaxPerColor()) {
 				inventory.get(INPUT_SLOT_ID).decrement(1);
 				this.inkStorage.addEnergy(color, amount);
+				
+				world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 1.0F);
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world,
+						new Vec3d(pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5),
+						SpectrumParticleTypes.getFluidRisingParticle(color.getDyeColor()),
+						5,
+						new Vec3d(0.22, 0.0, 0.22),
+						new Vec3d(0.0, 0.1, 0.0)
+				);
+				
 				return true;
 			}
 		}

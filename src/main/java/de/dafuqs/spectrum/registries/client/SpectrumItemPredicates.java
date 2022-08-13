@@ -48,7 +48,7 @@ public class SpectrumItemPredicates {
 			if(color.isEmpty()) {
 				return 0.0F;
 			}
-			return 0.01F + color.get().getDyeColor().ordinal() / 100F;
+			return (1F + color.get().getDyeColor().ordinal()) / 100F;
 		});
 	}
 	
@@ -192,7 +192,7 @@ public class SpectrumItemPredicates {
 		FabricModelPredicateProviderRegistry.register(item, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
 			SingleInkStorage storage = item.getEnergyStorage(itemStack);
 			InkColor color = storage.getStoredColor();
-			return 0.01F + color.getDyeColor().ordinal() / 100F;
+			return (1F + color.getDyeColor().ordinal()) / 100F;
 		});
 	}
 	

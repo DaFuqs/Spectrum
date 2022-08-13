@@ -178,7 +178,7 @@ public class SpectrumItems {
 	public static final ToolItem BEDROCK_SWORD = new BedrockSwordItem(BEDROCK_MATERIAL, 4, -2.4F, bedrockToolItemSettings);
 	public static final ToolItem BEDROCK_HOE = new BedrockHoeItem(BEDROCK_MATERIAL, -2, -0.0F, bedrockToolItemSettings);
 	public static final BedrockBowItem BEDROCK_BOW = new BedrockBowItem(bedrockToolItemSettings);
-	public static final BedrockCrossbowItem BEDROCK_CROSSBOW = new BedrockCrossbowItem(bedrockToolItemSettings);
+	public static final BedrockCrossbowItem BEDROCK_CROSSBOW = new BedrockCrossbowItem(new FabricItemSettings().fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(bedrockToolItemSettings);
 	public static final FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(bedrockToolItemSettings);
 	

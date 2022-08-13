@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "spectrum:item/natures_staff_use"
+    "layer0": "spectrum:item/natures_staff"
   }
 }

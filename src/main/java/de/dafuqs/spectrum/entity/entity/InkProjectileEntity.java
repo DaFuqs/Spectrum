@@ -12,9 +12,11 @@ import de.dafuqs.spectrum.sound.InkProjectileSoundInstance;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.ProtectionEnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
@@ -32,15 +34,15 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.*;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
+import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class InkProjectileEntity extends ProjectileEntity {
 	
@@ -283,6 +285,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 				}
 			}
 			
+			damageAndKnockbackEntities(this.getOwner());
 			spawnImpactParticles(blockHitResult.getPos(), dyeColor);
 			
 			// TODO: uncomment this when all 16 ink effects are finished
@@ -306,6 +309,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 		if (colorOrdinal != -1) {
 			//InkColor.all().get(colorOrdinal);
 			
+			
 			Entity entity = target; //this.getEffectCause();
 			
 			// TODO: this is a dummy effect
@@ -316,7 +320,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 			
 			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
 			spawnImpactParticles(target.getPos(), dyeColor);
-			
+			damageAndKnockbackEntities(this.getOwner());
 			
 			/*Iterator var3 = this.potion.getEffects().iterator();
 			
@@ -354,5 +358,51 @@ public class InkProjectileEntity extends ProjectileEntity {
 		}
 	}
 	
+	public void damageAndKnockbackEntities(Entity attacker) {
+		this.world.emitGameEvent(this, GameEvent.PROJECTILE_LAND, new BlockPos(this.getPos().x, this.getPos().y, this.getPos().z));
+		
+		double posX = this.getPos().x;
+		double posY = this.getPos().y;
+		double posZ = this.getPos().z;
+		
+		float q = SPELL_POTENCY * 2.0F;
+		double k = MathHelper.floor(posX - (double) q - 1.0D);
+		double l = MathHelper.floor(posX + (double) q + 1.0D);
+		int r = MathHelper.floor(posY - (double) q - 1.0D);
+		int s = MathHelper.floor(posY + (double) q + 1.0D);
+		int t = MathHelper.floor(posZ - (double) q - 1.0D);
+		int u = MathHelper.floor(posZ + (double) q + 1.0D);
+		List<Entity> list = this.world.getOtherEntities(this, new Box(k, r, t, l, s, u));
+		Vec3d vec3d = new Vec3d(posX, posY, posZ);
+		
+		for (Entity entity : list) {
+			if (!entity.isImmuneToExplosion()) {
+				double w = Math.sqrt(entity.squaredDistanceTo(vec3d)) / (double) q;
+				if (w <= 1.0D) {
+					double x = entity.getX() - posX;
+					double y = (entity instanceof TntEntity ? entity.getY() : entity.getEyeY()) - posY;
+					double z = entity.getZ() - posZ;
+					double aa = Math.sqrt(x * x + y * y + z * z);
+					if (aa != 0.0D) {
+						x /= aa;
+						y /= aa;
+						z /= aa;
+						double ab = Explosion.getExposure(vec3d, entity);
+						double ac = (1.0D - w) * ab;
+						
+						float damage = (float) ((int) ((ac * ac + ac) / 2.0D * (double) q + 1.0D));
+						entity.damage(SpectrumDamageSources.inkProjectile(this, attacker), damage);
+						
+						double ad = ac;
+						if (entity instanceof LivingEntity) {
+							ad = ProtectionEnchantment.transformExplosionKnockback((LivingEntity) entity, ac);
+						}
+						
+						entity.setVelocity(entity.getVelocity().add(x * ad, y * ad, z * ad));
+					}
+				}
+			}
+		}
+	}
 	
 }

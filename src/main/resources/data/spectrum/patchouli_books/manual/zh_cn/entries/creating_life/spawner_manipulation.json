@@ -40,9 +40,9 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "玩家半径",
+      "title": "玩家激活半径",
       "recipe": "spectrum:spirit_instiller/spawner/spawner_required_player_range_change",
-      "text": "增加刷怪笼检测的玩家半径。"
+      "text": "增大刷怪笼受玩家激活的检测半径。"
     }
   ]
 }

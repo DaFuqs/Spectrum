@@ -1,25 +1,26 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)你带着这种魔力的工具似乎能将它们挖掘的所有东西溶解在稀薄的空气中。分解成最细的沙子，被风吹走。然而，$(br2)就这一次而言，当你想把半座城市从粗糙的石头中敲出来时，它甚至可能派上用场。有些事情可能是诅咒和祝福同时发生。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
-			"text":"摧毁所有断块的水滴。$(br2)最大级别：1$(br)适用于采矿工具。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"advancement":"spectrum:progression/enchantments/voiding",
-			"recipe":"spectrum:enchanter/spectrum_books/book_voiding",
-			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，为一本普通的书注入虚空诅咒。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/tools/unlock_voiding_pickaxe",
-	"name":"虚空诅咒",
-	"icon":"minecraft:wooden_pickaxe",
-	"category":"spectrum:enchanting_category"
+  "name": "虚空诅咒",
+  "icon": "minecraft:wooden_pickaxe",
+  "advancement": "spectrum:progression/tools/unlock_voiding_pickaxe",
+  "flag": "spectrum:enchantment_exists_spectrum_voiding",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)这个魔咒接触到的一切都将化作虚无，如空中的尘埃一般随风消逝，不复存在。$(br2)然而，在你需要大肆破坏，不留痕迹的时候，这样的魔咒又可以派上用场。所谓““祸福相依”是也。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "性质",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
+      "text": "销毁所有被破坏的方块。$(br2)附魔等级上限：1$(br)适用于采掘工具。"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "附魔配方",
+      "recipe": "spectrum:enchanter/spectrum_books/book_voiding",
+      "advancement": "spectrum:progression/enchantments/voiding",
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入虚空诅咒附魔。"
+    }
+  ]
 }

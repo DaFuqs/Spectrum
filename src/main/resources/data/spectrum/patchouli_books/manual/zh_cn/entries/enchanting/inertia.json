@@ -1,30 +1,31 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)你几乎会认为这种魅力为你的工具注入了一点生命。$(br2)像生物一样，该工具逐渐习惯于你正在挖掘的方块，并擅长于此。然而，作为回报，其他方块的开采速度变慢。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inertia\", lvl: 3s}]}",
-			"text":"采矿速度降低。每开采一个相同类型的方块，速度都会增加。$(br2)最大级别：3$(br)适用于采矿工具。$(br)与效率相互排斥。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"recipe":"spectrum:enchanter/spectrum_books/book_inertia",
-			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，让普通的书充满惯性。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		},
-		{
-			"recipe":"spectrum:enchantment_upgrade/spectrum/inertia_level_2",
-			"text":"首先，将惯性从1级升级到2级相当便宜。每增加一个级别，$(br)这个价格将迅速增加到越来越多的颜料和经验。",
-			"type":"spectrum:enchanter_upgrading",
-			"title":"附魔升级"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/inertia",
-	"name":"惯性",
-	"icon":"minecraft:iron_pickaxe",
-	"category":"spectrum:enchanting_category"
+  "name": "惯性",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:progression/enchantments/inertia",
+  "flag": "spectrum:enchantment_exists_spectrum_inertia",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)这个魔咒散发着生命的吐息。$(br2)随着你的挖掘，工具也会慢慢熟络起对应方块的性质，逐渐越挖越快。但是，其它方块的挖掘速度会降低。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "性质",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inertia\", lvl: 3s}]}",
+      "text": "降低挖掘速度。但连续挖相同类型的方块时增加挖掘速度。$(br2)附魔等级上限：3$(br)适用于采掘工具.$(br)与 效率 不兼容。"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "附魔配方",
+      "recipe": "spectrum:enchanter/spectrum_books/book_inertia",
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入惯性附魔。"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "升级附魔",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/inertia_level_2",
+      "text": "将惯性附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
+    }
+  ]
 }

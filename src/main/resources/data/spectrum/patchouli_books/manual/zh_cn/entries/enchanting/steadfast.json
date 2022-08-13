@@ -1,24 +1,25 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)认识了你，你为自己创造了一个完美的工具，却在一个疯狂的瞬间落入熔岩。然后是末影人的维度，它戏剧性地惩罚了每一个错误。$(br2)这个新的附魔将保护你最喜欢的工具在这种情况下的紧急情况（并投掷它对仙人掌）。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"spectrum:multitool{Enchantments: [{id: \"spectrum:steadfast\", lvl: 1s}]}",
-			"text":"当工具躺在地上时，即使是熔岩或落入真空中，也能保护工具免受各种损坏。$(br2)最大级别：1$(br)适用于所有工具。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"recipe":"spectrum:enchanter/spectrum_books/book_steadfast",
-			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，让普通的书充满意志坚定。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/steadfast",
-	"name":"意志坚定",
-	"icon":"spectrum:multitool",
-	"category":"spectrum:enchanting_category"
+  "name": "坚韧",
+  "icon": "spectrum:multitool",
+  "advancement": "spectrum:progression/enchantments/steadfast",
+  "flag": "spectrum:enchantment_exists_spectrum_steadfast",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)想想你的日常：手握高精尖附魔装备，但一脱手它就直冲熔岩；在末影人的地盘就更加恐怖：无边的虚空着实令人头皮发麻。$(br2)用上这个新魔咒，你的装备就再也没有这种后顾之忧啦（甚至包括仙人掌）！"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "性质",
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:steadfast\", lvl: 1s}]}",
+      "text": "变为掉落物时，免疫绝大多数类型的伤害，包括熔岩与虚空伤害。$(br2)附魔等级上限：1$(br)适用于所有工具。"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "附魔配方",
+      "recipe": "spectrum:enchanter/spectrum_books/book_steadfast",
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入坚韧附魔。"
+    }
+  ]
 }

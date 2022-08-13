@@ -1,24 +1,25 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)与弓相比，弩的存在并不引人注目。$(br2)然而，在狙击魔法的作用下，它会将弩变成致命的远程武器。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"minecraft:crossbow{Enchantments: [{id: \"spectrum:sniper\", lvl: 2s}]}",
-			"text":"增加伤害、准确性和投射速度。$(br2)最大等级：$(br)2适用于弩。$(br)与多重射击相互排斥。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"recipe":"spectrum:enchanter/spectrum_books/book_sniper",
-			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，让普通的书充满狙击手。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/sniper",
-	"name":"狙击",
-	"icon":"minecraft:crossbow",
-	"category":"spectrum:enchanting_category"
+  "name": "狙击手",
+  "icon": "minecraft:crossbow",
+  "advancement": "spectrum:progression/enchantments/sniper",
+  "flag": "spectrum:enchantment_exists_spectrum_sniper",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)相比弓之万众瞩目，弩实在是太不起眼了。$(br2)然而狙击手魔咒终于让弩成为又一款快准狠的远程利器。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "性质",
+      "item": "minecraft:crossbow{Enchantments: [{id: \"spectrum:sniper\", lvl: 2s}]}",
+      "text": "增加弹射物的伤害，精准度与速度。$(br2)附魔等级上限：2$(br)适用于弩。$(br)与 多重射击 不兼容。"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "附魔配方",
+      "recipe": "spectrum:enchanter/spectrum_books/book_sniper",
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入狙击手附魔。"
+    }
+  ]
 }

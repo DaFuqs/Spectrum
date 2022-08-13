@@ -1,22 +1,22 @@
 {
-	"pages":[
-		{
-			"text":"通过使用$(l:general/pigment)颜料$(/l)、精选配料和一些经验，$(l:enchanting/enchanter)注魔基座$(/l)可以为普通书籍添加魔法。$(br2)虽然在一个普通的附魔表中，这个过程比附魔消耗更多的经验，但您可以对要创建的附魔进行粒度控制。",
-			"type":"patchouli:text"
-		},
-		{
-			"border":true,
-			"images":[
-				"spectrum:textures/gui/manual/creating_enchanted_books.png"
-			],
-			"text":"$(italic)也许你甚至可以利用这个过程来为你的魔法工具施魔法。",
-			"type":"patchouli:image"
-		}
-	],
-	"advancement":"spectrum:midgame/enter_liquid_crystal",
-	"name":"创建书籍",
-	"icon":"minecraft:enchanted_book",
-	"sortnum":2,
-	"priority":true,
-	"category":"spectrum:enchanting_category"
+  "name": "书的附魔",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "sortnum": 2,
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:enchanting/enchanter)附魔基座$(/l)可以消耗$(l:general/pigment)颜料$(/l)，原材料与经验对书进行附魔。$(br2)虽然经验开销略高于附魔台，但你可以对附魔的魔咒进行更为细致入微的选取。"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/manual/creating_enchanted_books.png"
+      ],
+      "border": true,
+      "text": "$(italic)同样的仪式对魔法工具也能起效也说不定？"
+    }
+  ]
 }

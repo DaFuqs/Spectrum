@@ -1,24 +1,25 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)你发现了一个巨大的地下建筑，看起来像是远在你之前的文明的地下堡垒。$(br)虽然他们似乎拥有能够打开通向另一个世界的门户的技术，但他们肯定应该对自己的害虫问题做些什么。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
-			"text":"打破受感染的方块时，摆脱蠢虫。$(br2)最大级别：1$(br)适用于采矿工具。$(br)与共振相互排斥。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"recipe":"spectrum:enchanter/spectrum_books/book_pest_control",
-			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，为一本普通的书注入害虫控制。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/pest_control",
-	"name":"害虫防治",
-	"icon":"minecraft:iron_pickaxe",
-	"category":"spectrum:enchanting_category"
+  "name": "害虫防治",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:progression/enchantments/pest_control",
+  "flag": "spectrum:enchantment_exists_spectrum_pest_control",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)你在地下发现了由某个疑似史前文明建造的要塞建筑。$(br)他们的科技似乎早已先进到可以打开异世界传送门，但害虫孳生的问题怎么就没想着管管呢……？"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "性质",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:pest_control\", lvl: 1s}]}",
+      "text": "采集被虫蚀的方块的时候清除蠹虫。$(br2)附魔等级上限：1$(br)适用于采掘工具.$(br)与 共振 不兼容。"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "附魔配方",
+      "recipe": "spectrum:enchanter/spectrum_books/book_pest_control",
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入害虫防治附魔。"
+    }
+  ]
 }

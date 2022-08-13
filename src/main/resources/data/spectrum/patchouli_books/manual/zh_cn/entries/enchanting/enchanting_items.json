@@ -1,34 +1,34 @@
 {
-	"pages":[
-		{
-			"text":"使用注魔基座对物品进行附魔相当简单：$(br)将附魔书放置在$(l:decoration/item_bowl)物品基座$(/l)上，并将你想要对注魔基座本身进行附魔的物品上。$(br2)与普通的附魔不同，这不会消耗书籍，而是需要更多的经验。",
-			"type":"patchouli:text",
-			"title":"光谱附魔"
-		},
-		{
-			"border":true,
-			"images":[
-				"spectrum:textures/gui/manual/enchanting_items.png"
-			],
-			"text":"最后，通过$(l:magical_items/knowledge_gem)知识宝石$(/l)提供稳定的经验流，你就准备好了。",
-			"type":"patchouli:image"
-		},
-		{
-			"item":"minecraft:enchanted_book",
-			"text":"你也可以使用这个机制来创建新的附魔书。只需将你想要复制的$(l:decoration/item_bowl)附魔书$(/l)放在$(l:enchanting/enchanter)物品基座$(/l)中，并将一本简单的书放在注魔基座上。$(br2)然而，由于书籍的世俗性质，这将需要大量的经验。",
-			"type":"patchouli:spotlight",
-			"title":"复制魔法书"
-		},
-		{
-			"text":"$(bold)在大多数情况下，每个附魔的经验值在50到200之间$()。$(br)一个附魔越稀有，其等级越高，目标物品吸收附魔的能力就越好，$(br)其他一些因素也会影响这个结果。干扰会进一步增加此成本，例如不适合你的目标的附魔。",
-			"type":"patchouli:text",
-			"title":"所需经验"
-		}
-	],
-	"advancement":"spectrum:midgame/enter_liquid_crystal",
-	"name":"光谱附魔",
-	"icon":"spectrum:enchanter",
-	"sortnum":1,
-	"priority":true,
-	"category":"spectrum:enchanting_category"
+  "name": "光谱附魔",
+  "icon": "spectrum:enchanter",
+  "priority": true,
+  "sortnum": 1,
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "光谱附魔",
+      "text": "附魔基座的附魔工序非常简单：$(br)向$(l:decoration/item_bowl)物品底座$(/l)中放入附魔书，基座中放入需要附魔的物品。$(br2)和普通的附魔工序不同：这不消耗书本，但相对地消耗更多的经验。"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/manual/enchanting_items.png"
+      ],
+      "border": true,
+      "text": "最后通过$(l:magical_items/knowledge_gem)知识宝石$(/l)注入稳定的经验流即可。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:enchanted_book",
+      "title": "复制附魔书",
+      "text": "你也可以复制附魔书。把需要复制的附魔书放入$(l:decoration/item_bowl)物品底座$(/l)，普通的书放入$(l:enchanting/enchanter)附魔基座$(/l)即可。$(br2)当然，给普通的书本注入魔力确实还是要消耗大量经验的。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "所需经验",
+      "text": "$(bold)每一项附魔所需经验预计在50到200之间$()。$(br)附魔的稀有程度，附魔的等级，附魔对象对魔咒的亲和力，以及其它各项因素都会影响所需经验。$(br)干扰项也会造成影响，例如与物品本身无法兼容的附魔。"
+    }
+  ]
 }

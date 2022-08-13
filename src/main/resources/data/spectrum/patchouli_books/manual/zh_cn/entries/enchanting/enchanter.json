@@ -1,32 +1,32 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)在你寻找完美工具的过程中，你会发现附魔Table通常不符合你的要求。使用这个经过高度修改的附魔桌应该可以解决您原来的桌的大部分问题。$()$(br2)它允许你：$(li)$(l:enchanting/creating_enchanted_books)创建新的附魔书$(/l)$(li)$(l:enchanting/upgrading_enchanted_books)升级物品$(/l)$(li)$(l:enchanting/enchanting_items)附魔物品而不消耗附魔书$(/l)",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/enchanter",
-			"text":"注魔基座需要一个焦点结构才能工作。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		},
-		{
-			"multiblock_id":"spectrum:enchanter_structure",
-			"name":"附魔结构",
-			"text":"宝石块周围的水池必须填满$(l:magical_blocks/liquid_crystal)液晶$()。（未显示）",
-			"type":"patchouli:multiblock",
-			"enable_visualize":true
-		},
-		{
-			"text":"$(li)1 注魔基座$(li)8 物品基台 $(li)4+液晶盒$(li)4个磨制宝石块$(li)8个宝石灯$(li)12个磨制柱$(li)24个磨制板条$(li)159个磨制块$(br2)$(italic)通过将其放置在宝石块上来提升注魔基座。$()",
-			"type":"patchouli:text",
-			"title":"方块检查表"
-		}
-	],
-	"advancement":"spectrum:midgame/enter_liquid_crystal",
-	"name":"注魔基座",
-	"icon":"spectrum:enchanter",
-	"sortnum":0,
-	"priority":true,
-	"category":"spectrum:enchanting_category"
+  "name": "附魔基座",
+  "icon": "spectrum:enchanter",
+  "priority": true,
+  "sortnum": 0,
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)用普通的附魔台来打造完美工具未免有点犯难。使用这款高度改造的附魔台应该就能解决不少痛点了。$()$(br2)它可以：$(li)$(l:enchanting/creating_enchanted_books)附魔书本$(/l)$(li)$(l:enchanting/upgrading_enchanted_books)升级书本$(/l)$(li)$(l:enchanting/enchanting_items)不消耗附魔书进行物品的附魔$(/l)"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/enchanter",
+      "text": "附魔基座需要基座结构才能运行。"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "附魔基座结构",
+      "multiblock_id": "spectrum:enchanter_structure",
+      "enable_visualize": true,
+      "text": "宝石晶方块周围的水池需要注入$(l:magical_blocks/liquid_crystal)液态水晶$()。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "方块列表",
+      "text": "$(li)1个附魔基座$(li)8个物品底座$(li)4+桶液态水晶$(li)4个磨制宝石晶方块$(li)8个宝石晶灯$(li)12个磨制岩石柱$(li)24个磨制岩石半砖$(li)159个磨制岩石方块$(br2)$(italic)基座升级放置在宝石晶方块上即可生效。$()"
+    }
+  ]
 }

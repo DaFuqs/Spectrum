@@ -1,30 +1,31 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)偶尔你会幸运地让敌人留下一件稀有的物品。$(br)$(l:resources/clover)三叶草$(/l)和$(l:general/pigment#light_blue)浅蓝色颜料$(/l)与运气的关系可以显著增加这些机会。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"minecraft:iron_sword{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 3s}]}",
-			"text":"获得稀有战利品的几率更高，比如僵尸身上的铁锭。$(br)甚至可能增加你获得最有价值的药水的机会？$(br2)最大等级：3$(br)适用于近战武器。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"recipe":"spectrum:enchanter/spectrum_books/book_clovers_favor",
-			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，让一本普通的书充满三叶草的青睐。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		},
-		{
-			"recipe":"spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
-			"text":"一开始，将三叶草的喜好从1级提升到2级相当便宜。每增加一个级别，$(br)这个价格将迅速增加到越来越多的颜料和经验。",
-			"type":"spectrum:enchanter_upgrading",
-			"title":"附魔升级"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/clovers_favor",
-	"name":"三叶草的青睐",
-	"icon":"minecraft:iron_sword",
-	"category":"spectrum:enchanting_category"
+  "name": "四叶草的恩惠",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/clovers_favor",
+  "flag": "spectrum:enchantment_exists_spectrum_clovers_favor",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)敌人能掉落哪怕一个稀有物品都可以算得上你走运的时候。$(br)或许只要联结$(l:resources/clover)四叶草$(/l)和$(l:general/pigment#light_blue)淡蓝色墨水$(/l)的运气就可以持续不断地走大运也说不定呢！"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "性质",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 3s}]}",
+      "text": "提高稀有掉落物的掉率（如僵尸的铁锭）。$(br)兴许还能提高稀有物品的产出？$(br2)附魔等级上限：3$(br)适用于近战武器。"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "附魔配方",
+      "recipe": "spectrum:enchanter/spectrum_books/book_clovers_favor",
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入四叶草的恩惠附魔。"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "升级附魔",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
+      "text": "将四叶草的恩惠附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
+    }
+  ]
 }

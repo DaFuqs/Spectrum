@@ -1,30 +1,31 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)只需要一次考虑周全的打击。。。或者这句话一定已经过时了。$(br2)不管怎样$(br)关于一个相关的注释：你发明了这个先发制人的改进。这将是一个很大的帮助，尤其是对许多软弱的对手。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"minecraft:iron_sword{Enchantments: [{id: \"spectrum:first_strike\", lvl: 2s}]}",
-			"text":"如果目标有完整的生命，伤害会大大增加。$(br2)最大等级：2$(br)适用于近战武器。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"recipe":"spectrum:enchanter/spectrum_books/book_first_strike",
-			"text":"你可以用颜料和其他所需材料围绕你的注魔基座，为一本普通书注入先发制人。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		},
-		{
-			"recipe":"spectrum:enchantment_upgrade/spectrum/first_strike_level_2",
-			"text":"一开始，将先发制人从1级升级到2级相当便宜。每增加一个级别，$(br)这个价格将迅速增加到越来越多的颜料和经验。",
-			"type":"spectrum:enchanter_upgrading",
-			"title":"附魔升级"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/first_strike",
-	"name":"先发制人",
-	"icon":"minecraft:iron_sword",
-	"category":"spectrum:enchanting_category"
+  "name": "先发制人",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/first_strike",
+  "flag": "spectrum:enchantment_exists_spectrum_first_strike",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)俗语有云：先发制人，后……后面的我忘了。$(br2)随便啦。$(br)顺带一提：你研发了这个名为“先发制人”的魔咒。面对弱小的敌人的时候，攻击会更为有效。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "性质",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:first_strike\", lvl: 2s}]}",
+      "text": "巨幅增加对满血敌人的伤害。$(br2)附魔等级上限：2$(br)适用于近战武器。"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "附魔配方",
+      "recipe": "spectrum:enchanter/spectrum_books/book_first_strike",
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入先发制人附魔。"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "升级附魔",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/first_strike_level_2",
+      "text": "将先发制人附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
+    }
+  ]
 }

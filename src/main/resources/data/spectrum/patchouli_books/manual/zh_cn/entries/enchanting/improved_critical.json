@@ -1,30 +1,31 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)你已经注意到，如果你在攻击时跳跃，会对敌人造成更大的伤害。$(br)为了进一步改善这些跳跃攻击，您开发了此重击增强，它会进一步增加额外伤害。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"minecraft:iron_sword{Enchantments: [{id: \"spectrum:improved_critical\", lvl: 2s}]}",
-			"text":"造成暴击时额外伤害。最$(br2)大等级：2$(br)适用于近战武器。$(br)与锋利相互排斥。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"recipe":"spectrum:enchanter/spectrum_books/book_improved_critical",
-			"text":"你可以用颜料和其他必要的材料围绕你的注魔基座，为一本普通的书注入重击增强。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		},
-		{
-			"recipe":"spectrum:enchantment_upgrade/spectrum/improved_critical_level_2",
-			"text":"首先，将重击增强从级别1升级到级别2相当便宜。每增加一个级别，$(br)这个价格将迅速增加到越来越多的颜料和经验。",
-			"type":"spectrum:enchanter_upgrading",
-			"title":"附魔升级"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/improved_critical",
-	"name":"重击增强",
-	"icon":"minecraft:iron_sword",
-	"category":"spectrum:enchanting_category"
+  "name": "重击增强",
+  "icon": "minecraft:iron_sword",
+  "advancement": "spectrum:progression/enchantments/improved_critical",
+  "flag": "spectrum:enchantment_exists_spectrum_improved_critical",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)在你一跃而起落下重击的时候，你发现你造成的伤害增加了。$(br)为了增进这些跳起攻击的性能，你发明了这个魔咒来提高这些攻击的输出。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "性质",
+      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:improved_critical\", lvl: 2s}]}",
+      "text": "增加暴击伤害。$(br2)附魔等级上限：2$(br)适用于近战武器。$(br)与 锋利 不兼容。"
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "附魔配方",
+      "recipe": "spectrum:enchanter/spectrum_books/book_improved_critical",
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入重击增强附魔。"
+    },
+    {
+      "type": "spectrum:enchanter_upgrading",
+      "title": "升级附魔",
+      "recipe": "spectrum:enchantment_upgrade/spectrum/improved_critical_level_2",
+      "text": "将重击增强附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
+    }
+  ]
 }

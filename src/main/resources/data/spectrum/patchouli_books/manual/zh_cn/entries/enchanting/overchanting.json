@@ -1,30 +1,31 @@
 {
-	"pages":[
-		{
-			"item":"minecraft:enchanted_book{StoredEnchantments: [{id: \"minecraft:fortune\", lvl: 5s}]}",
-			"text":"$(italic)如此熟悉魔法和注魔基座为你打开了新的大门：$(br)过度冷却。$(br2)将如此多的魔法能量压入一本附魔书将是昂贵的。在大多数情况下，甚至不值得这么麻烦。",
-			"type":"patchouli:spotlight",
-			"title":"过度冷却"
-		},
-		{
-			"text":"$(li)三叶草的青睐：3=>6$(li)除你武器：2=>4$(li)精力旺盛：5=>10$(li)先发制人：2=>5$(li)重击增强：2=>4$(li)惯性：2=>5$(li)快手：2=>4$(li)灵魂猎手：3=>5$(li)狙击手：2=>4",
-			"type":"patchouli:text",
-			"title":"光谱附魔"
-		},
-		{
-			"text":"节肢动物的灾祸：5=>8$(li)爆炸保护：4=>8$(li)深海漫游者：3=>3$(li)效率：5=>8$(li)羽落：4=>6$(li)火焰附加：2=>4$(li)火焰保护：4=>8$(li)幸运：3=>5$(li)冰霜行者：2=>4$(li)穿刺：5=>8$(li)击退：2=>5$(li)掠夺：3=>6$(li)忠诚：3=>4$(li)海之眷顾：3=>5",
-			"type":"patchouli:text",
-			"title":"原版附魔"
-		},
-		{
-			"text":"诱惑：3=>5$(li)穿透：4=>8$(li)力量：5=>8$(li)弹射我防护：4=>8$(li)保护：4=>8$(li)冲击：2=>5$(li)快速装填：3=>5$(li)水下呼吸：3=>6$(li)激流：3=>4$(li)锋利：5=>8$(li)击杀：5=>8$(li)灵魂疾行：3=>4$(li)横扫之刃：3=>7$(li)荆棘：3=>6$(li)耐久：3=>6",
-			"type":"patchouli:text"
-		}
-	],
-	"advancement":"spectrum:milestones/unlock_overenchanting_with_enchanter",
-	"name":"过度冷却",
-	"icon":"minecraft:enchanted_book",
-	"sortnum":4,
-	"priority":true,
-	"category":"spectrum:enchanting_category"
+  "name": "超限附魔",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "secret": true,
+  "sortnum": 4,
+  "advancement": "spectrum:milestones/unlock_overenchanting_with_enchanter",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "超限附魔",
+      "item": "minecraft:enchanted_book{StoredEnchantments: [{id: \"minecraft:fortune\", lvl: 5s}]}",
+      "text": "$(italic)魔法与附魔基座向你打开了新世界的大门：$(br)超限附魔。$(br2)然而，将这么多魔法能量注入一本书中的代价相当高昂。大部分情况下，可能并不值得。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "光谱世界附魔",
+      "text": "$(li)四叶草的恩惠：3 => 6$(li)除械：2 => 4$(li)经验充沛：5 => 10$(li)先发制人：2 => 5$(li)重击增强：2 => 4$(li)惯性：2 => 5$(li)快手：2 => 4$(li)奇珍猎手：3 => 5$(li)狙击手：2 => 4"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "原版附魔",
+      "text": "节肢杀手：5 => 8$(li)爆炸保护：4 => 8$(li)深海探索者：3 => 3$(li)效率：5 => 8$(li)摔落保护：4 => 6$(li)火焰附加：2 => 4$(li)火焰保护：4 => 8$(li)时运：3 => 5$(li)冰霜行者：2 => 4$(li)穿刺：5 => 8$(li)击退：2 => 5$(li)抢夺：3 => 6$(li)忠诚：3 => 4$(li)海之眷顾：3 => 5"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "饵钓：3 => 5$(li)穿透：4 => 8$(li)力量：5 => 8$(li)弹射物保护：4 => 8$(li)保护：4 => 8$(li)冲击：2 => 5$(li)快速装填：3 => 5$(li)水下呼吸：3 => 6$(li)激流：3 => 4$(li)锋利：5 => 8$(li)亡灵杀手：5 => 8$(li)灵魂疾行：3 => 4$(li)横扫之刃：3 => 7$(li)荆棘：3 => 6$(li)耐久：3 => 6"
+    }
+  ]
 }

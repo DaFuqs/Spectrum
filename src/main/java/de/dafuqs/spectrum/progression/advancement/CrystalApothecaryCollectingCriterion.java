@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier;
 
 public class CrystalApothecaryCollectingCriterion extends AbstractCriterion<CrystalApothecaryCollectingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "collect_using_crystal_apothecary");
+	static final Identifier ID = SpectrumCommon.locate("collect_using_crystal_apothecary");
 	
 	public static CrystalApothecaryCollectingCriterion.Conditions create(ItemPredicate item) {
 		return new CrystalApothecaryCollectingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);

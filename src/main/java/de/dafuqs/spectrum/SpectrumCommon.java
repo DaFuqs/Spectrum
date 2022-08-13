@@ -28,6 +28,7 @@ import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
+import de.dafuqs.spectrum.spells.InkSpellEffects;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import de.dafuqs.spectrum.worldgen.structure_features.SpectrumStructureFeatures;
@@ -197,6 +198,9 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumComposting.register();
 		logInfo("Registering Game Events...");
 		SpectrumGameEvents.register();
+		
+		logInfo("Registering Spell Effects...");
+		InkSpellEffects.register();
 		
 		logInfo("Initializing Item Groups...");
 		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();

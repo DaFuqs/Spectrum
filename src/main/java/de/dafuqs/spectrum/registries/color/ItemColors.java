@@ -61,8 +61,20 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.GLASS_BOTTLE, DyeColor.LIGHT_GRAY);
 		put(Items.EMERALD, DyeColor.LIME);
 		put(Items.DIAMOND, DyeColor.LIGHT_BLUE);
+		
 		put(Items.NETHERITE_SCRAP, DyeColor.BROWN);
 		put(Items.NETHERITE_INGOT, DyeColor.BROWN);
+		put(Items.NETHERITE_AXE, DyeColor.BROWN);
+		put(Items.NETHERITE_BLOCK, DyeColor.BROWN);
+		put(Items.NETHERITE_BOOTS, DyeColor.BROWN);
+		put(Items.NETHERITE_CHESTPLATE, DyeColor.BROWN);
+		put(Items.NETHERITE_HELMET, DyeColor.BROWN);
+		put(Items.NETHERITE_LEGGINGS, DyeColor.BROWN);
+		put(Items.NETHERITE_SWORD, DyeColor.BROWN);
+		put(Items.NETHERITE_PICKAXE, DyeColor.BROWN);
+		put(Items.NETHERITE_HOE, DyeColor.BROWN);
+		put(Items.NETHERITE_SHOVEL, DyeColor.BROWN);
+		
 		put(Items.ENCHANTED_GOLDEN_APPLE, DyeColor.YELLOW);
 		put(Items.ARROW, DyeColor.RED);
 		put(Items.BLAZE_POWDER, DyeColor.ORANGE);

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
@@ -14,6 +15,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -24,6 +26,8 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	protected final EntryIngredient output;
 	protected final float experience;
 	protected final int craftingTime;
+	
+	protected final Identifier requiredAdvancementIdentifier;
 	protected final PedestalRecipeTier pedestalRecipeTier;
 	
 	/**
@@ -37,6 +41,8 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();
+		
+		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 		this.pedestalRecipeTier = recipe.getTier();
 		
 		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
@@ -59,12 +65,14 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	/**
 	 * When using Shift click on the plus button in the REI gui to autofill crafting grids & recipe favourites
 	 */
-	public PedestalCraftingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, float experience, int craftingTime, String recipeTier) {
+	public PedestalCraftingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, String recipeTier) {
 		super(inputs, outputs);
 		
 		this.output = outputs.get(0);
 		this.experience = experience;
 		this.craftingTime = craftingTime;
+		
+		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		this.pedestalRecipeTier = PedestalRecipeTier.valueOf(recipeTier.toUpperCase(Locale.ROOT));
 	}
 	
@@ -73,17 +81,19 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 			float experience = tag.getFloat("Experience");
 			int craftingTime = tag.getInt("CraftingTime");
 			String recipeTier = tag.getString("RecipeTier");
-			return PedestalCraftingDisplay.simple(input, output, experience, craftingTime, recipeTier);
+			Identifier requiredAdvancementIdentifier = Identifier.tryParse(tag.getString("Advancement"));
+			return PedestalCraftingDisplay.simple(input, output, experience, craftingTime, requiredAdvancementIdentifier, recipeTier);
 		}, (display, tag) -> {
 			tag.putFloat("Experience", display.experience);
 			tag.putInt("CraftingTime", display.craftingTime);
 			tag.putString("RecipeTier", display.pedestalRecipeTier.toString());
+			tag.putString("Advancement", display.requiredAdvancementIdentifier.toString());
 			tag.putInt("Width", display.getWidth());
 		});
 	}
 	
-	private static @NotNull PedestalCraftingDisplay simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, float experience, int craftingTime, String recipeTier) {
-		return new PedestalCraftingDisplay(inputs, outputs, experience, craftingTime, recipeTier);
+	private static @NotNull PedestalCraftingDisplay simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, String recipeTier) {
+		return new PedestalCraftingDisplay(inputs, outputs, experience, craftingTime, requiredAdvancementIdentifier, recipeTier);
 	}
 	
 	private void addGemstonePowderCraftingInput(@NotNull HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs, BuiltinGemstoneColor gemstoneColor, Item item) {
@@ -123,7 +133,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	}
 	
 	public boolean isUnlocked() {
-		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier);
+		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier) && AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

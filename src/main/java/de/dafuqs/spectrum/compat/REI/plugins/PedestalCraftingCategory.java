@@ -54,7 +54,7 @@ public class PedestalCraftingCategory implements DisplayCategory<PedestalCraftin
 		
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
-		if (!display.isUnlocked()) {
+		if (!display.isUnlocked() || display.getInputEntries().isEmpty()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {

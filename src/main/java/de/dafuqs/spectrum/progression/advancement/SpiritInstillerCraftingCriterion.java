@@ -18,7 +18,7 @@ import java.util.List;
 
 public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritInstillerCraftingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "crafted_with_spirit_instiller");
+	static final Identifier ID = SpectrumCommon.locate("crafted_with_spirit_instiller");
 	
 	public static Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
 		return new Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);

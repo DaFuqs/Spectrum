@@ -177,13 +177,19 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
 		if (efficiencyLevel == 0) {
-			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip"));
+			if(InkPowered.canUse()) {
+				tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_ink"));
+			} else {
+				tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip"));
+			}
 		} else {
 			int chancePercent = (int) Math.round(2.0 / (2 + efficiencyLevel) * 100);
-			tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
+			if(InkPowered.canUse()) {
+				tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_ink_and_chance", chancePercent));
+			} else {
+				tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
+			}
 		}
-		
-        addInkPoweredTooltip(tooltip);
 	}
 	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {

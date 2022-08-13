@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "inertia_used");
+	static final Identifier ID = SpectrumCommon.locate("inertia_used");
 	
 	@Nullable
 	private static Block getBlock(JsonObject obj) {

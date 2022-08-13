@@ -239,6 +239,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		if (cinderhearthBlockEntity.upgrades == null) {
 			cinderhearthBlockEntity.calculateUpgrades();
 		}
+		cinderhearthBlockEntity.inkDirty = false;
 		
 		if (cinderhearthBlockEntity.canTransferInk) {
 			boolean didSomething = false;

@@ -24,7 +24,13 @@
       "type": "patchouli:text",
       "title": "Block Coloring",
       "advancement": "spectrum:collect_pigment",
-      "text": "What better use is there for $(l:general/pigment)Pigment$() than coloring with it?$(br)Crouch while having your Paintbrush equipped to bring up the color selection menu. You just have to slightly touch the block you would like to color for the $(l:general/pigment)Pigment$() to flow into it and convert it into it's colored variant."
+      "text": "What better use is there for $(l:general/pigment)Pigment$() than coloring with it?$(br)$(thing)Crouch while having your Paintbrush equipped to bring up the color selection menu$(). You just have to slightly touch the block you would like to color for the $(l:general/pigment)Pigment$() to flow into it and convert it into it's colored variant."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Paint Slinging",
+      "advancement": "spectrum:midgame/fill_ink_container",
+      "text": "Now that you've discovered Ink, your brush has another function: you can bundle paint projectiles and fling them away.$(br)The surface that the projectile hits will be painted as long as the block there can absorb the paint."
     }
   ]
 }

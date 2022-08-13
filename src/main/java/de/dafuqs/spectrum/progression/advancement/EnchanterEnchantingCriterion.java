@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 
 public class EnchanterEnchantingCriterion extends AbstractCriterion<EnchanterEnchantingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "enchanter_enchanting");
+	static final Identifier ID = SpectrumCommon.locate("enchanter_enchanting");
 	
 	public static EnchanterEnchantingCriterion.Conditions create(ItemPredicate itemPredicate, NumberRange.IntRange experienceRange) {
 		return new EnchanterEnchantingCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, experienceRange);

@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "block_broken");
+	static final Identifier ID = SpectrumCommon.locate("block_broken");
 	
 	public Identifier getId() {
 		return ID;

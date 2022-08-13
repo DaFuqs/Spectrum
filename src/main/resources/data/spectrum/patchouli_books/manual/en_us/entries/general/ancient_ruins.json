@@ -21,7 +21,7 @@
       "type": "patchouli:spotlight",
       "title": "Ancient Ruins",
       "item": "spectrum:dike_chiseled_preservation_stone",
-      "text": "Deep underground you found this huge structure, which entrance seems to be protected by a strong, magical force."
+      "text": "Deep underground you found this huge structure, which entrance seems to be protected by a strong, magical force.$(br2)There has to be a way to get in there! If not now, then later..."
     },
     {
       "type": "patchouli:image",

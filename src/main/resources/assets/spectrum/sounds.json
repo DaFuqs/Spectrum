@@ -36,6 +36,21 @@
       "spectrum:paintbrush_paint10"
     ]
   },
+  "ink_projectile_hit": {
+    "subtitle": "spectrum.subtitles.ink_projectile_hit",
+    "sounds": [
+      "spectrum:ink_projectile_hit1",
+      "spectrum:ink_projectile_hit2",
+      "spectrum:ink_projectile_hit3",
+      "spectrum:ink_projectile_hit4",
+      "spectrum:ink_projectile_hit5"
+    ]
+  },
+  "ink_projectile_launch": {
+    "sounds": [
+      "spectrum:ink_projectile_launch"
+    ]
+  },
   "enchanter_working": {
     "subtitle": "spectrum.subtitles.enchanter_working",
     "sounds": [

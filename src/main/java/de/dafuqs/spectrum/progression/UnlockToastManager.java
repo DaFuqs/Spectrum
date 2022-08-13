@@ -2,12 +2,14 @@ package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
+import de.dafuqs.spectrum.items.magic_items.PaintBrushItem;
 import de.dafuqs.spectrum.progression.toast.MessageToast;
 import de.dafuqs.spectrum.progression.toast.UnlockedRecipeGroupToast;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -23,17 +25,19 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public class RecipeUnlockToastManager {
+public class UnlockToastManager {
 	// Advancement Identifier + Recipe Type => Recipe
 	public static final Map<Identifier, Map<RecipeType, List<GatedRecipe>>> gatedRecipes = new HashMap<>();
 	
 	public static final HashMap<Identifier, Pair<ItemStack, String>> messageToasts = new HashMap<>() {{
-		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_shooting_stars"), new Pair<>(new ItemStack(Items.SPYGLASS), "shooting_stars_unlocked"));
-		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter"), new Pair<>(new ItemStack(SpectrumBlocks.ENCHANTER), "overchanting_unlocked"));
-		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter"), new Pair<>(new ItemStack(SpectrumBlocks.ENCHANTER), "enchant_conflicting_enchantments_unlocked"));
-		put(new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_fourth_potion_workshop_reagent_slot"), new Pair<>(new ItemStack(SpectrumBlocks.POTION_WORKSHOP), "fourth_potion_reagent_unlocked"));
-		put(new Identifier(SpectrumCommon.MOD_ID, "midgame/spectrum_midgame"), new Pair<>(new ItemStack(SpectrumBlocks.PEDESTAL_ONYX), "second_advancement_tree_unlocked"));
-		put(new Identifier(SpectrumCommon.MOD_ID, "lategame/spectrum_lategame"), new Pair<>(new ItemStack(SpectrumBlocks.PEDESTAL_MOONSTONE), "third_advancement_tree_unlocked"));
+		put(SpectrumCommon.locate("milestones/unlock_shooting_stars"), new Pair<>(Items.SPYGLASS.getDefaultStack(), "shooting_stars_unlocked"));
+		put(SpectrumCommon.locate("milestones/unlock_overenchanting_with_enchanter"), new Pair<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultStack(), "overchanting_unlocked"));
+		put(SpectrumCommon.locate("milestones/unlock_conflicted_enchanting_with_enchanter"), new Pair<>(SpectrumBlocks.ENCHANTER.asItem().getDefaultStack(), "enchant_conflicting_enchantments_unlocked"));
+		put(SpectrumCommon.locate("milestones/unlock_fourth_potion_workshop_reagent_slot"), new Pair<>(SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultStack(), "fourth_potion_reagent_unlocked"));
+		put(SpectrumCommon.locate("midgame/spectrum_midgame"), new Pair<>(SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultStack(), "second_advancement_tree_unlocked"));
+		put(SpectrumCommon.locate("lategame/spectrum_lategame"), new Pair<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultStack(), "third_advancement_tree_unlocked"));
+		put(PaintBrushItem.UNLOCK_COLORING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "block_coloring_unlocked"));
+		put(PaintBrushItem.UNLOCK_PAINT_SLINGING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "paint_flinging_unlocked"));
 	}};
 	
 	public static void registerGatedRecipe(RecipeType recipeType, GatedRecipe gatedRecipe) {
@@ -60,68 +64,66 @@ public class RecipeUnlockToastManager {
 		}
 	}
 	
-	public static void processRemovedAdvancements(List<Identifier> doneAdvancements, boolean showToast) {
-		if (showToast) {
-			HashMap<RecipeType, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
-			List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();
-			
-			for (Identifier doneAdvancement : doneAdvancements) {
-				if (gatedRecipes.containsKey(doneAdvancement)) {
-					Map<RecipeType, List<GatedRecipe>> recipesGatedByAdvancement = gatedRecipes.get(doneAdvancement);
+	public static void processAdvancements(Set<Identifier> doneAdvancements) {
+		HashMap<RecipeType, List<GatedRecipe>> unlockedRecipesByType = new HashMap<>();
+		List<Pair<ItemStack, String>> specialToasts = new ArrayList<>();
+		
+		for (Identifier doneAdvancement : doneAdvancements) {
+			if (gatedRecipes.containsKey(doneAdvancement)) {
+				Map<RecipeType, List<GatedRecipe>> recipesGatedByAdvancement = gatedRecipes.get(doneAdvancement);
+				
+				for (Map.Entry<RecipeType, List<GatedRecipe>> recipesByType : recipesGatedByAdvancement.entrySet()) {
+					List<GatedRecipe> newRecipes;
+					if (unlockedRecipesByType.containsKey(recipesByType.getKey())) {
+						newRecipes = unlockedRecipesByType.get(recipesByType.getKey());
+					} else {
+						newRecipes = new ArrayList<>();
+					}
 					
-					for (Map.Entry<RecipeType, List<GatedRecipe>> recipesByType : recipesGatedByAdvancement.entrySet()) {
-						List<GatedRecipe> newRecipes;
-						if (unlockedRecipesByType.containsKey(recipesByType.getKey())) {
-							newRecipes = unlockedRecipesByType.get(recipesByType.getKey());
-						} else {
-							newRecipes = new ArrayList<>();
-						}
-						
-						for (GatedRecipe unlockedRecipe : recipesByType.getValue()) {
-							if (unlockedRecipe.canPlayerCraft(MinecraftClient.getInstance().player)) {
-								if (!newRecipes.contains((unlockedRecipe))) {
-									newRecipes.add(unlockedRecipe);
-								}
+					for (GatedRecipe unlockedRecipe : recipesByType.getValue()) {
+						if (unlockedRecipe.canPlayerCraft(MinecraftClient.getInstance().player)) {
+							if (!newRecipes.contains((unlockedRecipe))) {
+								newRecipes.add(unlockedRecipe);
 							}
 						}
-						unlockedRecipesByType.put(recipesByType.getKey(), newRecipes);
 					}
-				}
-				
-				Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = PedestalRecipeTier.hasJustUnlockedANewRecipeTier(doneAdvancement);
-				if (newlyUnlockedRecipeTier.isPresent()) {
-					List<GatedRecipe> unlockedPedestalRecipes;
-					if (unlockedRecipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
-						unlockedPedestalRecipes = unlockedRecipesByType.get(SpectrumRecipeTypes.PEDESTAL);
-					} else {
-						unlockedPedestalRecipes = new ArrayList<>();
-					}
-					List<GatedRecipe> pedestalRecipes = new ArrayList<>();
-					for (Map<RecipeType, List<GatedRecipe>> recipesByType : gatedRecipes.values()) {
-						if (recipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
-							pedestalRecipes.addAll(recipesByType.get(SpectrumRecipeTypes.PEDESTAL));
-						}
-					}
-					
-					for (PedestalCraftingRecipe alreadyUnlockedRecipe : getRecipesForTierWithAllConditionsMet(newlyUnlockedRecipeTier.get(), pedestalRecipes)) {
-						if (!unlockedPedestalRecipes.contains(alreadyUnlockedRecipe)) {
-							unlockedPedestalRecipes.add(alreadyUnlockedRecipe);
-						}
-					}
-				}
-				
-				if (RecipeUnlockToastManager.messageToasts.containsKey(doneAdvancement)) {
-					specialToasts.add(RecipeUnlockToastManager.messageToasts.get(doneAdvancement));
+					unlockedRecipesByType.put(recipesByType.getKey(), newRecipes);
 				}
 			}
 			
-			for (List<GatedRecipe> unlockedRecipeList : unlockedRecipesByType.values()) {
-				showGroupedRecipeUnlockToasts(unlockedRecipeList);
+			Optional<PedestalRecipeTier> newlyUnlockedRecipeTier = PedestalRecipeTier.hasJustUnlockedANewRecipeTier(doneAdvancement);
+			if (newlyUnlockedRecipeTier.isPresent()) {
+				List<GatedRecipe> unlockedPedestalRecipes;
+				if (unlockedRecipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
+					unlockedPedestalRecipes = unlockedRecipesByType.get(SpectrumRecipeTypes.PEDESTAL);
+				} else {
+					unlockedPedestalRecipes = new ArrayList<>();
+				}
+				List<GatedRecipe> pedestalRecipes = new ArrayList<>();
+				for (Map<RecipeType, List<GatedRecipe>> recipesByType : gatedRecipes.values()) {
+					if (recipesByType.containsKey(SpectrumRecipeTypes.PEDESTAL)) {
+						pedestalRecipes.addAll(recipesByType.get(SpectrumRecipeTypes.PEDESTAL));
+					}
+				}
+				
+				for (PedestalCraftingRecipe alreadyUnlockedRecipe : getRecipesForTierWithAllConditionsMet(newlyUnlockedRecipeTier.get(), pedestalRecipes)) {
+					if (!unlockedPedestalRecipes.contains(alreadyUnlockedRecipe)) {
+						unlockedPedestalRecipes.add(alreadyUnlockedRecipe);
+					}
+				}
 			}
 			
-			for (Pair<ItemStack, String> messageToast : specialToasts) {
-				MessageToast.showMessageToast(MinecraftClient.getInstance(), messageToast.getLeft(), messageToast.getRight());
+			if (UnlockToastManager.messageToasts.containsKey(doneAdvancement)) {
+				specialToasts.add(UnlockToastManager.messageToasts.get(doneAdvancement));
 			}
+		}
+		
+		for (List<GatedRecipe> unlockedRecipeList : unlockedRecipesByType.values()) {
+			showGroupedRecipeUnlockToasts(unlockedRecipeList);
+		}
+		
+		for (Pair<ItemStack, String> messageToast : specialToasts) {
+			MessageToast.showMessageToast(MinecraftClient.getInstance(), messageToast.getLeft(), messageToast.getRight());
 		}
 	}
 	

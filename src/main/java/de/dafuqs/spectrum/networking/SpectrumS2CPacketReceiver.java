@@ -21,6 +21,7 @@ import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.render.bossbar.SpectrumClientBossBar;
 import de.dafuqs.spectrum.sound.CraftingBlockSoundInstance;
 import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
+import de.dafuqs.spectrum.spells.InkSpellEffects;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -392,6 +393,7 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
+		// TODO: was does a ServerPlayNetworking receiver here??
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INK_COLOR_SELECTED, (server, player, handler, buf, responseSender) -> {
 			ScreenHandler screenHandler = player.currentScreenHandler;
 			if(screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
@@ -406,6 +408,19 @@ public class SpectrumS2CPacketReceiver {
 				}
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
 			}
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_INK_EFFECT_PARTICLES, (client, handler, buf, responseSender) -> {
+			InkColor inkColor = InkColor.of(buf.readString());
+			double posX = buf.readDouble();
+			double posY = buf.readDouble();
+			double posZ = buf.readDouble();
+			float potency = buf.readFloat();
+			
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				InkSpellEffects.getEffect(inkColor).playEffects(client.world, new Vec3d(posX, posY, posZ), potency);
+			});
 		});
 	}
 	

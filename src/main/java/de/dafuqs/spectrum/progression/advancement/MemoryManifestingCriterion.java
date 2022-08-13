@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 
 public class MemoryManifestingCriterion extends AbstractCriterion<MemoryManifestingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "memory_manifesting");
+	static final Identifier ID = SpectrumCommon.locate("memory_manifesting");
 	
 	public Identifier getId() {
 		return ID;

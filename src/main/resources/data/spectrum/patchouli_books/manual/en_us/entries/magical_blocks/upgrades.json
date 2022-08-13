@@ -104,6 +104,7 @@
     },
     {
       "type": "patchouli:multiblock",
+      "advancement": "spectrum:midgame/enter_liquid_crystal",
       "name": "Enchanter Placement",
       "multiblock_id": "spectrum:enchanter_structure_with_upgrades",
       "enable_visualize": false,
@@ -111,6 +112,7 @@
     },
     {
       "type": "patchouli:multiblock",
+      "advancement": "spectrum:progression/unlock_cinderhearth",
       "name": "Cinderhearth Placement",
       "multiblock_id": "spectrum:cinderhearth_structure_with_upgrades",
       "enable_visualize": false,
@@ -118,6 +120,7 @@
     },
     {
       "type": "patchouli:multiblock",
+      "advancement": "spectrum:progression/unlock_spirit_instiller",
       "name": "Spirit Instiller Placement",
       "multiblock_id": "spectrum:spirit_instiller_structure_with_upgrades",
       "enable_visualize": false,

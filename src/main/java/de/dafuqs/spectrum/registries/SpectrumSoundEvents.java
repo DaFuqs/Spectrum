@@ -42,6 +42,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent PAINTBRUSH_SWITCH = register("paintbrush_switch");
 	public static final SoundEvent PAINTBRUSH_SELECT = register("paintbrush_select");
 	
+	public static final SoundEvent INK_PROJECTILE_HIT = register("ink_projectile_hit");
+	public static final SoundEvent INK_PROJECTILE_LAUNCH = register("ink_projectile_launch");
+	
 	public static final SoundEvent SHOOTING_STAR_CRACKER = register("shooting_star_cracker");
 	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");

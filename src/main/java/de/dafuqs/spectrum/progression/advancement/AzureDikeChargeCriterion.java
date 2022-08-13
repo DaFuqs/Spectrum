@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 public class AzureDikeChargeCriterion extends AbstractCriterion<AzureDikeChargeCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "azure_dike_charge_change");
+	static final Identifier ID = SpectrumCommon.locate("azure_dike_charge_change");
 	
 	public Identifier getId() {
 		return ID;

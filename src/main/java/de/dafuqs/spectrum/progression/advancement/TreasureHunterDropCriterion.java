@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class TreasureHunterDropCriterion extends AbstractCriterion<TreasureHunterDropCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "treasure_hunter_drop");
+	static final Identifier ID = SpectrumCommon.locate("treasure_hunter_drop");
 	
 	public Identifier getId() {
 		return ID;

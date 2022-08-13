@@ -17,7 +17,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/midnight_aberration",
-      "text": "Fusing all those magical energies must result in an incredible source of power.$(br2)Requires daytime and a clear sky"
+      "text": "Fusing all those magical energies must result in an incredible source of power.$(br2)Requires daytime and a clear sky."
     },
     {
       "type": "patchouli:spotlight",

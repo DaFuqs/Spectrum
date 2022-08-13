@@ -17,7 +17,7 @@ public class Transphere {
 		}), PositionSource.CODEC.fieldOf("destination").forGetter((transphere) -> {
 			return transphere.destination;
 		}), Codec.INT.fieldOf("dye_color").forGetter((transphere) -> {
-			return transphere.dyeColor.ordinal();
+			return transphere.dyeColor.getId();
 		}), Codec.INT.fieldOf("arrival_in_ticks").forGetter((transphere) -> {
 			return transphere.arrivalInTicks;
 		})).apply(instance, (Function4) (Transphere::new));
@@ -41,7 +41,7 @@ public class Transphere {
 	public static Transphere readFromBuf(PacketByteBuf buf) {
 		BlockPos blockPos = buf.readBlockPos();
 		PositionSource positionSource = PositionSourceType.read(buf);
-		DyeColor dyeColor = DyeColor.values()[buf.readInt()];
+		DyeColor dyeColor = DyeColor.byId(buf.readInt());
 		int arrivalInTicks = buf.readVarInt();
 		return new Transphere(blockPos, positionSource, arrivalInTicks, dyeColor);
 	}
@@ -49,7 +49,7 @@ public class Transphere {
 	public static void writeToBuf(PacketByteBuf buf, Transphere transphere) {
 		buf.writeBlockPos(transphere.origin);
 		PositionSourceType.write(transphere.destination, buf);
-		buf.writeInt(transphere.getDyeColor().ordinal());
+		buf.writeInt(transphere.getDyeColor().getId());
 		buf.writeVarInt(transphere.arrivalInTicks);
 	}
 	

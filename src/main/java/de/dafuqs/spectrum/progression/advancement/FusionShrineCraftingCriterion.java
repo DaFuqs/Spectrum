@@ -18,7 +18,7 @@ import java.util.List;
 
 public class FusionShrineCraftingCriterion extends AbstractCriterion<FusionShrineCraftingCriterion.Conditions> {
 	
-	static final Identifier ID = new Identifier(SpectrumCommon.MOD_ID, "crafted_with_fusion_shrine");
+	static final Identifier ID = SpectrumCommon.locate("crafted_with_fusion_shrine");
 	
 	public static FusionShrineCraftingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange experienceRange) {
 		return new FusionShrineCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);

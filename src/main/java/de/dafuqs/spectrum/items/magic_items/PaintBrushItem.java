@@ -4,6 +4,8 @@ import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.entity.entity.InkProjectileEntity;
+import de.dafuqs.spectrum.helpers.BlockVariantHelper;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.PaintbrushScreenHandler;
@@ -20,7 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -28,6 +29,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,6 +41,11 @@ public class PaintBrushItem extends Item {
 	
 	public static final Identifier UNLOCK_ADVANCEMENT_ID = SpectrumCommon.locate("progression/unlock_paintbrush");
 	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
+	public static final Identifier UNLOCK_PAINT_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
+	
+	public static final int COOLDOWN_DURATION_TICKS = 10;
+	public static final int BLOCK_COLOR_COST = 10;
+	public static final int INK_FLING_COST = 100;
 	
 	public static final String COLOR_NBT_STRING = "Color";
 	private static final Text GUI_TITLE = new TranslatableText("item.spectrum.paintbrush");
@@ -49,11 +57,6 @@ public class PaintBrushItem extends Item {
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
-		if (selected && entity instanceof ServerPlayerEntity serverPlayerEntity) {
-			if (serverPlayerEntity.isSneaking() && canColor(serverPlayerEntity) && serverPlayerEntity.currentScreenHandler instanceof PlayerScreenHandler) {
-				serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(world, serverPlayerEntity, stack));
-			}
-		}
 	}
 	
 	@Override
@@ -65,6 +68,10 @@ public class PaintBrushItem extends Item {
 	
 	public static boolean canColor(PlayerEntity player) {
 		return AdvancementHelper.hasAdvancement(player, UNLOCK_COLORING_ADVANCEMENT_ID);
+	}
+	
+	public static boolean canPaintSling(PlayerEntity player) {
+		return AdvancementHelper.hasAdvancement(player, UNLOCK_PAINT_SLINGING_ADVANCEMENT_ID);
 	}
 	
 	public NamedScreenHandlerFactory createScreenHandlerFactory(World world, ServerPlayerEntity serverPlayerEntity, ItemStack itemStack) {
@@ -111,12 +118,12 @@ public class PaintBrushItem extends Item {
 		DyeColor dyeColor = inkColor.getDyeColor();
 		
 		if (context.getPlayer().isCreative()
-				|| InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, 10L)
+				|| InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, BLOCK_COLOR_COST)
 				|| InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), PigmentItem.byColor(dyeColor).getDefaultStack())) {
 			
 			// TODO: Use Jellos API to support all of jellos block colors
 			// https://modrinth.com/mod/jello
-			Block newBlock = ColorHelper.cursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
+			Block newBlock = BlockVariantHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
 			if (newBlock == Blocks.AIR) {
 				return false;
 			}
@@ -132,7 +139,48 @@ public class PaintBrushItem extends Item {
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+		if (user.isSneaking()) {
+			if (user instanceof ServerPlayerEntity serverPlayerEntity) {
+				if (canColor(serverPlayerEntity)) {
+					serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(world, serverPlayerEntity, user.getStackInHand(hand)));
+				}
+			}
+			return TypedActionResult.pass(user.getStackInHand(hand));
+		} else if(canPaintSling(user)){
+			Optional<InkColor> optionalInkColor = getColor(user.getStackInHand(hand));
+			if (optionalInkColor.isPresent()) {
+				
+				InkColor inkColor = optionalInkColor.get();
+				if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_FLING_COST)) {
+					
+					user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
+					
+					if (!world.isClient) {
+						// spawn projectile
+						InkProjectileEntity paintProjectile = new InkProjectileEntity(world, user);
+						paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
+						paintProjectile.setColor(inkColor);
+						world.spawnEntity(paintProjectile);
+						
+					}
+					
+					// cause the slightest bit of knockback
+					if(!user.isCreative()) {
+						causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+					}
+				}
+				
+				return TypedActionResult.pass(user.getStackInHand(hand));
+			}
+		}
 		return super.use(world, user, hand);
+	}
+	
+	private void causeKnockback(PlayerEntity user, float yaw, float pitch, float roll, float multiplier) {
+		float f = MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * multiplier;
+		float g = MathHelper.sin((pitch + roll) * 0.017453292F) * multiplier;
+		float h = -MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F) * multiplier;
+		user.addVelocity(f, g, h);
 	}
 	
 	@Override

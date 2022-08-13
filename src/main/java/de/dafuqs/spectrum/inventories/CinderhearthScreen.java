@@ -29,7 +29,7 @@ public class CinderhearthScreen extends HandledScreen<CinderhearthScreenHandler>
 		int startX = (this.width - this.backgroundWidth) / 2;
 		int startY = (this.height - this.backgroundHeight) / 2;
 		
-		this.inkMeterWidget = new InkMeterWidget(startX + 140, startY + 34, 40, this, this.handler.getBlockEntity().getEnergyStorage());
+		this.inkMeterWidget = new InkMeterWidget(startX + 140, startY + 34, 40, this, this.handler.getBlockEntity());
 	}
 	
 	@Override

@@ -51,11 +51,6 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_crossbow",
-      "text": "The Bedrock Crossbow comes with $(bold)Quick Charge III$()."
-    },
-    {
-      "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shears",
       "text": "The Bedrock Shears come with $(bold)Silk Touch$()."
     },

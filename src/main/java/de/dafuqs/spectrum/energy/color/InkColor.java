@@ -63,7 +63,7 @@ public abstract class InkColor {
 	// hash table lookup go wheeeeee!
 	@Override
 	public int hashCode() {
-		return dyeColor.ordinal();
+		return dyeColor.getId();
 	}
 	
 	public TranslatableText getName() {

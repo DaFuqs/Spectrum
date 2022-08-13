@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "FSF",
-    "SDS",
-    "ERE"
+    "DED",
+    "SFS",
+    "WRW"
   ],
   "key": {
     "S": {
@@ -20,6 +20,9 @@
     },
     "R": {
       "item": "minecraft:redstone"
+    },
+    "W": {
+      "tag": "minecraft:planks"
     }
   },
   "result": {

@@ -204,9 +204,10 @@ public class InkProjectileEntity extends ProjectileEntity {
 	private void spawnParticles(int amount) {
 		int colorOrdinal = this.getColor();
 		if (colorOrdinal != -1 && amount > 0) {
-			Vec3f inkColor = InkColor.of(DyeColor.byId(colorOrdinal)).getColor();
+			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
+			Vec3f inkColor = InkColor.of(dyeColor).getColor();
 			for(int j = 0; j < amount; ++j) {
-				this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), inkColor.getX(), inkColor.getY(), inkColor.getZ());
+				this.world.addParticle(SpectrumParticleTypes.getCraftingParticle(dyeColor), this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), inkColor.getX(), inkColor.getY(), inkColor.getZ());
 			}
 		}
 	}
@@ -390,8 +391,8 @@ public class InkProjectileEntity extends ProjectileEntity {
 						double ab = Explosion.getExposure(vec3d, entity);
 						double ac = (1.0D - w) * ab;
 						
-						float damage = (float) ((int) ((ac * ac + ac) / 2.0D * (double) q + 1.0D));
-						entity.damage(SpectrumDamageSources.inkProjectile(this, attacker), damage);
+						//float damage = (float) ((int) ((ac * ac + ac) / 2.0D * (double) q + 1.0D));
+						//entity.damage(SpectrumDamageSources.inkProjectile(this, attacker), damage);
 						
 						double ad = ac;
 						if (entity instanceof LivingEntity) {

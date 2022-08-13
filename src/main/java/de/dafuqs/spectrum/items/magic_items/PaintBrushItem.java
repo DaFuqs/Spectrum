@@ -165,7 +165,9 @@ public class PaintBrushItem extends Item {
 					}
 					
 					// cause the slightest bit of knockback
-					causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+					if(!user.isCreative()) {
+						causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+					}
 				}
 				
 				return TypedActionResult.pass(user.getStackInHand(hand));

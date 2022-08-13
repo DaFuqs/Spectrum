@@ -2,14 +2,10 @@ package de.dafuqs.spectrum.sound;
 
 import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.AbstractSoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;

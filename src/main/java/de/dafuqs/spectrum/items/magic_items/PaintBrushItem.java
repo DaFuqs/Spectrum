@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.entity.InkProjectileEntity;
 import de.dafuqs.spectrum.helpers.BlockVariantHelper;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.PaintbrushScreenHandler;
 import de.dafuqs.spectrum.items.PigmentItem;
@@ -30,7 +29,6 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 

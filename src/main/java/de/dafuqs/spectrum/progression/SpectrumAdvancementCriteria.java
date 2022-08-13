@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.progression.advancement.*;
 import net.fabricmc.fabric.mixin.object.builder.CriteriaAccessor;
-import net.minecraft.advancement.criterion.Criteria;
 
 public class SpectrumAdvancementCriteria {
 	

@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
 import de.dafuqs.spectrum.blocks.ender.EnderHopperBlockEntity;
 import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
+import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.energy.CrystalApothecaryBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
@@ -184,6 +185,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
 		//BlockEntityRendererRegistry.register(SpectrumBlockEntities.STONESETTING_WORKSHOP, StoneSettingWorkshopBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
 		
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PROVIDER_NODE, PastelNetworkNodeBlockEntityRenderer::new);

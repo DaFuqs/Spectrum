@@ -16,6 +16,7 @@ import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,7 +25,10 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -33,10 +37,12 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -76,6 +82,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			didSomething = didSomething | blockEntity.tryFillInkContainer(); // that's an OR
 			
 			if (didSomething) {
+				blockEntity.updateInClientWorld();
 				blockEntity.setInkDirty();
 				blockEntity.markDirty();
 			} else {
@@ -162,21 +169,27 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	protected void setInvStackList(DefaultedList<ItemStack> list) {
 		this.inventory = list;
 		this.paused = false;
+		updateInClientWorld();
 	}
 	
 	public ItemStack removeStack(int slot, int amount) {
+		ItemStack itemStack = super.removeStack(slot, amount);
 		this.paused = false;
-		return super.removeStack(slot, amount);
+		updateInClientWorld();
+		return itemStack;
 	}
 	
 	public ItemStack removeStack(int slot) {
+		ItemStack itemStack = super.removeStack(slot);
 		this.paused = false;
-		return super.removeStack(slot);
+		updateInClientWorld();
+		return itemStack;
 	}
 	
 	public void setStack(int slot, ItemStack stack) {
-		this.paused = false;
 		super.setStack(slot, stack);
+		this.paused = false;
+		updateInClientWorld();
 	}
 	
 	@Override
@@ -206,7 +219,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 				
 				world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 1.0F);
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world,
-						new Vec3d(pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5),
+						new Vec3d(pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5),
 						SpectrumParticleTypes.getFluidRisingParticle(color.getDyeColor()),
 						5,
 						new Vec3d(0.22, 0.0, 0.22),
@@ -296,6 +309,23 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	public InkColor getSelectedColor() {
 		return this.selectedColor;
+	}
+	
+	// Called when the chunk is first loaded to initialize this be
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound nbtCompound = new NbtCompound();
+		this.writeNbt(nbtCompound);
+		return nbtCompound;
+	}
+	
+	@Nullable
+	@Override
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.create(this);
+	}
+	
+	public void updateInClientWorld() {
+		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
 	}
 	
 }

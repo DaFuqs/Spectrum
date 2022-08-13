@@ -3,15 +3,12 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.helpers.BlockVariantHelper;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.sound.InkProjectileSoundInstance;
-import de.dafuqs.spectrum.spells.InkSpellEffect;
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -23,7 +20,6 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.nbt.NbtCompound;
@@ -287,13 +283,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 				}
 			}
 			
-			for (int i = 0; i < 10; i++) {
-				SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) this.world, blockHitResult.getPos(),
-						SpectrumParticleTypes.getCraftingParticle(dyeColor), 10,
-						Vec3d.ZERO,
-						new Vec3d(-this.getVelocity().x * 3, -this.getVelocity().y * 3, -this.getVelocity().z * 3)
-				);
-			}
+			spawnImpactParticles(blockHitResult.getPos(), dyeColor);
 			
 			// TODO: uncomment this when all 16 ink effects are finished
 			// InkSpellEffect.trigger(InkColor.of(dyeColor), this.world, blockHitResult.getPos(), SPELL_POTENCY);
@@ -324,6 +314,9 @@ public class InkProjectileEntity extends ProjectileEntity {
 				entity.addVelocity(vec3d.x, 0.1D, vec3d.z);
 			}
 			
+			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
+			spawnImpactParticles(target.getPos(), dyeColor);
+			
 			
 			/*Iterator var3 = this.potion.getEffects().iterator();
 			
@@ -345,6 +338,21 @@ public class InkProjectileEntity extends ProjectileEntity {
 		
 		this.discard();
 	}
-
+	
+	private void spawnImpactParticles(Vec3d targetPos, DyeColor dyeColor) {
+		SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) this.world, targetPos,
+				SpectrumParticleTypes.getExplosionParticle(dyeColor), 1,
+				Vec3d.ZERO,	Vec3d.ZERO
+		);
+		
+		for (int i = 0; i < 10; i++) {
+			SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) this.world, targetPos,
+					SpectrumParticleTypes.getCraftingParticle(dyeColor), 10,
+					Vec3d.ZERO,
+					new Vec3d(-this.getVelocity().x * 3, -this.getVelocity().y * 3, -this.getVelocity().z * 3)
+			);
+		}
+	}
+	
 	
 }

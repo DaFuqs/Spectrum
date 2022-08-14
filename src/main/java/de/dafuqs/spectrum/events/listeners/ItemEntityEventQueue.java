@@ -19,9 +19,10 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 	}
 	
 	@Override
-	public void acceptEvent(World world, BlockPos pos, GameEvent event, Entity entity, Vec3d sourcePos) {
-		if (world instanceof ServerWorld && entity instanceof ItemEntity itemEntity) {
-			EventEntry eventEntry = new EventEntry(event, itemEntity, MathHelper.floor(Math.sqrt(pos.getSquaredDistance(sourcePos))));
+	public void acceptEvent(World world, GameEvent.Message event, Vec3d sourcePos) {
+		if (world instanceof ServerWorld && event.getEmitter().sourceEntity() instanceof ItemEntity itemEntity) {
+			Vec3d pos = event.getEmitterPos();
+			EventEntry eventEntry = new EventEntry(event.getEvent(), itemEntity, MathHelper.floor(pos.distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
 			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new ItemTransfer(pos, this.positionSource, delay));

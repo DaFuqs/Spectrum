@@ -45,6 +45,7 @@ import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.listener.GameEventListener;
 
 import net.minecraft.util.math.random.Random;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.HashMap;
@@ -247,7 +248,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	}
 	
 	@Override
-	public boolean canAcceptEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, Entity entity, BlockPos sourcePos) {
+	public boolean canAcceptEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, Vec3d sourcePos) {
 		return event == SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN && !this.listenerPaused;
 	}
 	

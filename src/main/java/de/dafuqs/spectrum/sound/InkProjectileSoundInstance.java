@@ -27,7 +27,7 @@ public class InkProjectileSoundInstance extends AbstractSoundInstance implements
 	private boolean done;
 	
 	protected InkProjectileSoundInstance(SoundEvent soundEvent, RegistryKey<World> worldKey, InkProjectileEntity inkProjectile) {
-		super(soundEvent, SoundCategory.NEUTRAL);
+		super(soundEvent, SoundCategory.NEUTRAL, new Random());
 		
 		this.worldKey = worldKey;
 		this.inkProjectile = inkProjectile;

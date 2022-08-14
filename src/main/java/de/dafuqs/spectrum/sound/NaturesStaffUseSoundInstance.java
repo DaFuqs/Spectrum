@@ -17,7 +17,7 @@ public class NaturesStaffUseSoundInstance extends AbstractSoundInstance implemen
 	private boolean done;
 	
 	public NaturesStaffUseSoundInstance(PlayerEntity player) {
-		super(SpectrumSoundEvents.NATURES_STAFF_USE, SoundCategory.PLAYERS);
+		super(SpectrumSoundEvents.NATURES_STAFF_USE, SoundCategory.PLAYERS, new Random());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 0.3F;

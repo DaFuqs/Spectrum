@@ -35,6 +35,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -139,7 +140,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 							BlockState targetState = it.next();
 							world.setBlockState(topPos, targetState);
 							if (targetState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-								world.emitGameEvent(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, topPos);
+								world.emitGameEvent(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, topPos, GameEvent.Emitter.of(blockState));
 							}
 							
 							// if the stone on top can not grow any further: pause

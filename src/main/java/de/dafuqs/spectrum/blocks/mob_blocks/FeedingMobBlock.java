@@ -66,7 +66,7 @@ public class FeedingMobBlock extends MobBlock {
 						stack.decrement(1);
 						int i = animalEntity.getBreedingAge();
 						animalEntity.growUp((int) ((float) (-i / 20) * 0.1F), true);
-						animalEntity.emitGameEvent(GameEvent.MOB_INTERACT, animalEntity.getCameraBlockPos());
+						animalEntity.emitGameEvent(GameEvent.ENTITY_INTERACT, animalEntity);
 					}
 				}
 			}

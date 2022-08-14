@@ -184,7 +184,7 @@ public class ShootingStarEntity extends Entity {
 	
 	public void tick() {
 		super.tick();
-		this.tickNetherPortal();
+		this.tickPortal();
 		
 		boolean wasOnGround = this.onGround;
 		double previousXVelocity = this.getVelocity().getX();
@@ -315,7 +315,7 @@ public class ShootingStarEntity extends Entity {
 			this.updateWaterState();
 		}
 	}
-	
+
 	@Override
 	public void onPlayerCollision(PlayerEntity player) {
 		// if the shooting star is still falling from the sky, and it hits a player:
@@ -431,7 +431,7 @@ public class ShootingStarEntity extends Entity {
 					
 					return true;
 				} else {
-					this.emitGameEvent(GameEvent.ENTITY_DAMAGED, attacker);
+					this.emitGameEvent(GameEvent.ENTITY_DAMAGE, attacker);
 				}
 			}
 			

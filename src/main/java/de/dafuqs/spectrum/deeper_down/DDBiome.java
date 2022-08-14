@@ -14,7 +14,6 @@ public class DDBiome {
 			.generationSettings(new GenerationSettings.Builder().build())
 			.precipitation(Biome.Precipitation.NONE)
 			.temperature(0.2F).downfall(0.2F)
-			.category(Biome.Category.NONE)
 			.temperatureModifier(Biome.TemperatureModifier.NONE)
 			.effects(new BiomeEffects.Builder()
 					.waterColor(0xd3cbb1)

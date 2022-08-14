@@ -85,13 +85,13 @@ public class ItemTransferParticle extends SpriteBillboardParticle {
 	
 	public void tick() {
 		super.tick();
-		Optional<BlockPos> optional = this.itemTransfer.getDestination().getPos(this.world);
+		Optional<Vec3d> optional = this.itemTransfer.getDestination().getPos(this.world);
 		if (!optional.isPresent()) {
 			this.markDead();
 		} else {
 			double d = (double) this.age / (double) this.maxAge;
 			BlockPos blockPos = this.itemTransfer.getOrigin();
-			BlockPos blockPos2 = optional.get();
+			Vec3d blockPos2 = optional.get();
 			this.x = MathHelper.lerp(d, (double) blockPos.getX() + 0.5D, (double) blockPos2.getX() + 0.5D);
 			this.y = MathHelper.lerp(d, (double) blockPos.getY() + 0.5D, (double) blockPos2.getY() + 0.5D);
 			this.z = MathHelper.lerp(d, (double) blockPos.getZ() + 0.5D, (double) blockPos2.getZ() + 0.5D);

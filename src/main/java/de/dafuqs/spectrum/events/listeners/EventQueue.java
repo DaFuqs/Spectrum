@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.events.listeners;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
@@ -48,28 +49,14 @@ public abstract class EventQueue<D> implements GameEventListener {
 	public int getRange() {
 		return this.range;
 	}
-	
-	@Override
-	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
-		Optional<BlockPos> positionSourcePosOptional = this.positionSource.getPos(world);
-		if (positionSourcePosOptional.isEmpty()) {
-			return false;
-		} else {
-			if (!this.callback.canAcceptEvent(world, this, pos, event, entity, positionSourcePosOptional.get())) {
-				return false;
-			} else {
-				this.acceptEvent(world, pos, event, entity, positionSourcePosOptional.get());
-				return true;
-			}
-		}
-	}
+
 	
 	protected abstract void acceptEvent(World world, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos);
 	
 	protected void schedule(D object, int delay) {
 		this.eventQueue.put(object, delay);
 	}
-	
+
 	public interface Callback<D> {
 		/**
 		 * Returns whether the callback wants to accept this event.

@@ -18,7 +18,7 @@ public class HintRevelationSoundInstance extends AbstractSoundInstance implement
 	private int playtime;
 	
 	public HintRevelationSoundInstance(PlayerEntity player, int duration) {
-		super(SpectrumSoundEvents.TEXT_REVEALED, SoundCategory.PLAYERS);
+		super(SpectrumSoundEvents.TEXT_REVEALED, SoundCategory.PLAYERS, new Random());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 1.0F;

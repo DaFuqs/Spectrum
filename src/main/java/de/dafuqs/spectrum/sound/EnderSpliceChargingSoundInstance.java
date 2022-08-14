@@ -21,7 +21,7 @@ public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance impl
 	private boolean done;
 	
 	public EnderSpliceChargingSoundInstance(PlayerEntity player) {
-		super(SpectrumSoundEvents.ENDER_SPLICE_CHARGES, SoundCategory.NEUTRAL);
+		super(SpectrumSoundEvents.ENDER_SPLICE_CHARGES, SoundCategory.NEUTRAL, new Random());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 0.6F;

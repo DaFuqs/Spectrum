@@ -56,12 +56,10 @@ public class CloakedOreBlock extends OreBlock implements RevelationAware {
 		
 		return super.getDroppedStacks(state, builder);
 	}
-	
+
 	@Override
 	public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-		if (dropXP) {
-			super.onStacksDropped(state, world, pos, stack);
-		}
+			super.onStacksDropped(state, world, pos, stack, dropXP);
 	}
 	
 }

@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
@@ -54,11 +55,11 @@ public class WirelessRedstoneSignalListener implements GameEventListener {
 		if (!this.shouldActivate(event, entity)) {
 			return false;
 		} else {
-			Optional<BlockPos> optional = this.positionSource.getPos(world);
+			Optional<Vec3d> optional = this.positionSource.getPos(world);
 			if (optional.isEmpty()) {
 				return false;
 			} else {
-				BlockPos blockPos = optional.get();
+				Vec3d blockPos = optional.get();
 				if (!this.callback.accepts(world, this, pos, event, entity)) {
 					return false;
 				} else {

@@ -35,7 +35,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	private boolean done;
 	
 	protected CraftingBlockSoundInstance(SoundEvent soundEvent, RegistryKey<World> worldKey, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
-		super(soundEvent, SoundCategory.BLOCKS);
+		super(soundEvent, SoundCategory.BLOCKS, new Random());
 		
 		this.worldKey = worldKey;
 		this.sourceBlockPos = sourceBlockPos;

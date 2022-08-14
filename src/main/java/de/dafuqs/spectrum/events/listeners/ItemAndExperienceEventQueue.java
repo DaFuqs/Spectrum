@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
@@ -39,8 +40,8 @@ public class ItemAndExperienceEventQueue implements GameEventListener {
 	}
 	
 	@Override
-	public boolean listen(World world, GameEvent event, @Nullable Entity entity, BlockPos pos) {
-		if (event != SpectrumGameEvents.ENTITY_SPAWNED) {
+	public boolean listen(ServerWorld world, GameEvent.Message event, @Nullable Entity entity, BlockPos pos) {
+		if (event.getEvent() != SpectrumGameEvents.ENTITY_SPAWNED) {
 			return false;
 		}
 		if (entity instanceof ItemEntity && itemQueue.listen(world, event, entity, pos)) {

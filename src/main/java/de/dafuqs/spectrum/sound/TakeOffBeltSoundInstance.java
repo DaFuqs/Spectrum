@@ -24,7 +24,7 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 	private boolean done;
 	
 	public TakeOffBeltSoundInstance() {
-		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS);
+		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS, new Random());
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		this.repeat = false;
 		this.repeatDelay = 0;

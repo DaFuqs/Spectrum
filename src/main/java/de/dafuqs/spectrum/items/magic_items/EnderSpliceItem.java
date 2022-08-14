@@ -123,7 +123,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 				} else {
 					// Nothing stored => Store current position
 					setTeleportTargetPos(itemStack, playerEntity.getEntityWorld(), playerEntity.getPos());
-					playerEntity.networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.ENDER_SPLICE_BOUND.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
+					world.playSound(null, playerEntity.getBlockPos(), SpectrumSoundEvents.ENDER_SPLICE_BOUND, SoundCategory.PLAYERS, 1.0F, 1.0F); // TODO: test
 				}
 			}
 			playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));

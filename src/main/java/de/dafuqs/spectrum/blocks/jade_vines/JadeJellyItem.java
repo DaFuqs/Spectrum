@@ -7,7 +7,6 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
@@ -24,7 +23,7 @@ public class JadeJellyItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		tooltip.add(new TranslatableText("item.spectrum.jade_jelly.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.jade_jelly.tooltip").formatted(Formatting.GRAY));
 	}
 	
 }

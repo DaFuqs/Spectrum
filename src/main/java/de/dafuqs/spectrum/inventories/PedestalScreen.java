@@ -9,7 +9,6 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Contract;
@@ -139,7 +138,7 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 		super.render(matrices, mouseX, mouseY, delta);
 		
 		if (mouseOverInformationIcon(mouseX, mouseY)) {
-			this.renderTooltip(matrices, new TranslatableText("multiblock.spectrum.pedestal.upgrade_available"), mouseX, mouseY);
+			this.renderTooltip(matrices, Text.translatable("multiblock.spectrum.pedestal.upgrade_available"), mouseX, mouseY);
 		} else {
 			drawMouseoverTooltip(matrices, mouseX, mouseY);
 		}

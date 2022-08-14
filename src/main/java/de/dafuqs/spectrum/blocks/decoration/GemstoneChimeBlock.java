@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class GemstoneChimeBlock extends Block {
 	

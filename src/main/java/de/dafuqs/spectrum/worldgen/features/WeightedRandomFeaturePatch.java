@@ -6,7 +6,7 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class WeightedRandomFeaturePatch extends Feature<WeightedRandomFeaturePatchConfig> {
 	

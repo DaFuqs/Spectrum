@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.entity.render.InvisibleItemFrameEntityRenderer;
 import de.dafuqs.spectrum.entity.render.ShootingStarEntityRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.id.incubus_core.blocklikeentities.api.client.BlockLikeEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
@@ -25,7 +25,7 @@ public class SpectrumEntityRenderers {
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {
-		EntityRendererRegistry.INSTANCE.register(type, factory);
+		EntityRendererRegistry.register(type, factory);
 	}
 	
 }

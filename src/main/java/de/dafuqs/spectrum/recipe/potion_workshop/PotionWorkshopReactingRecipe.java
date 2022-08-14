@@ -12,7 +12,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, DescriptiveGatedRecipe {
 	
@@ -107,13 +107,13 @@ public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, Descript
 	}
 	
 	@Override
-	public TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.potion_reagent_unlocked.title");
+	public Text getSingleUnlockToastString() {
+		return Text.translatable("spectrum.toast.potion_reagent_unlocked.title");
 	}
 	
 	@Override
-	public TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.potion_reagents_unlocked.title");
+	public Text getMultipleUnlockToastString() {
+		return Text.translatable("spectrum.toast.potion_reagents_unlocked.title");
 	}
 	
 	@Override
@@ -125,9 +125,9 @@ public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, Descript
 		return reagents.containsKey(item);
 	}
 	
-	public TranslatableText getDescription() {
+	public Text getDescription() {
 		Identifier identifier = Registry.ITEM.getId(this.item);
-		return new TranslatableText("spectrum.rei.potion_workshop_reacting." + identifier.getNamespace() + "." + identifier.getPath());
+		return Text.translatable("spectrum.rei.potion_workshop_reacting." + identifier.getNamespace() + "." + identifier.getPath());
 	}
 	
 	public Item getItem() {

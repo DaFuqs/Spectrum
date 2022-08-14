@@ -37,7 +37,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -47,6 +46,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.util.math.random.Random;
 import java.util.*;
 
 public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, RecipeInputProvider, SidedInventory, PlayerOwned {
@@ -560,7 +560,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	
 	@Override
 	public Text getDisplayName() {
-		return new TranslatableText("block.spectrum.potion_workshop");
+		return Text.translatable("block.spectrum.potion_workshop");
 	}
 	
 	@Nullable

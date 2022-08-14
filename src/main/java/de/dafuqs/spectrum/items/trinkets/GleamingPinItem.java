@@ -18,7 +18,6 @@ import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -56,7 +55,7 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.gleaming_pin.tooltip"));
+		tooltip.add(Text.translatable("item.spectrum.gleaming_pin.tooltip"));
 	}
 	
 	@Override

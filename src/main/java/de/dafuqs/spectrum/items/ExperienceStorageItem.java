@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public interface ExperienceStorageItem {
 	

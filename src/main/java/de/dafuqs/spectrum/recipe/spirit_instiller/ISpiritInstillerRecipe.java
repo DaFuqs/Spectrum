@@ -14,7 +14,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -106,13 +106,13 @@ public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 	boolean canCraftWithStacks(ItemStack instillerStack, ItemStack leftBowlStack, ItemStack rightBowlStack);
 	
 	@Override
-	default TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.spirit_instiller_recipe_unlocked.title");
+	default Text getSingleUnlockToastString() {
+		return Text.translatable("spectrum.toast.spirit_instiller_recipe_unlocked.title");
 	}
 	
 	@Override
-	default TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.spirit_instiller_recipes_unlocked.title");
+	default Text getMultipleUnlockToastString() {
+		return Text.translatable("spectrum.toast.spirit_instiller_recipes_unlocked.title");
 	}
 	
 }

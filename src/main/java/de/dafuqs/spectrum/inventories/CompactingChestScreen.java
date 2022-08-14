@@ -12,9 +12,7 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHandler> {
@@ -39,7 +37,7 @@ public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHa
 		int x = (this.width - this.backgroundWidth) / 2 + 3;
 		int y = (this.height - this.backgroundHeight) / 2 + 3;
 		
-		ButtonWidget craftingModeButton = new ButtonWidget(x + 154, y + 6, 16, 16, new LiteralText("Mode"), this::craftingModeButtonPressed);
+		ButtonWidget craftingModeButton = new ButtonWidget(x + 154, y + 6, 16, 16, Text.literal("Mode"), this::craftingModeButtonPressed);
 		addSelectableChild(craftingModeButton);
 	}
 	
@@ -82,7 +80,7 @@ public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHa
 		super.render(matrices, mouseX, mouseY, delta);
 		
 		if (mouseX > x + 153 && mouseX < x + 153 + 16 && mouseY > y + 5 && mouseY < y + 5 + 16) {
-			this.renderTooltip(matrices, new TranslatableText("block.spectrum.compacting_chest.toggle_crafting_mode"), mouseX, mouseY);
+			this.renderTooltip(matrices, Text.translatable("block.spectrum.compacting_chest.toggle_crafting_mode"), mouseX, mouseY);
 		} else {
 			drawMouseoverTooltip(matrices, mouseX, mouseY);
 		}

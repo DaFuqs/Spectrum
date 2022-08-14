@@ -14,9 +14,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Pair;
 import org.jetbrains.annotations.NotNull;
 
@@ -33,7 +31,7 @@ public class CinderhearthCategory implements DisplayCategory<CinderhearthDisplay
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("block.spectrum.cinderhearth");
+		return Text.translatable("block.spectrum.cinderhearth");
 	}
 	
 	@Override
@@ -49,8 +47,8 @@ public class CinderhearthCategory implements DisplayCategory<CinderhearthDisplay
 		widgets.add(Widgets.createRecipeBase(bounds));
 
 		if (!display.isUnlocked()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 33), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 43), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y)).markInput().entries(display.getInputEntries().get(0))); // input slot
 			
@@ -68,17 +66,17 @@ public class CinderhearthCategory implements DisplayCategory<CinderhearthDisplay
 				widgets.add(Widgets.createResultSlotBackground(point));
 				widgets.add(Widgets.createSlot(point).disableBackground().markOutput().entries(EntryIngredients.of(outputStack)));
 				if(chance < 1.0) {
-					widgets.add(Widgets.createLabel(new Point(point.x - 2, point.y + 23), new LiteralText((int) (chance * 100) + " %")).leftAligned().color(0x3f3f3f).noShadow());
+					widgets.add(Widgets.createLabel(new Point(point.x - 2, point.y + 23), Text.literal((int) (chance * 100) + " %")).leftAligned().color(0x3f3f3f).noShadow());
 				}
 			}
 			
 			// description text
 			// special handling for "1 second". Looks nicer
-			TranslatableText text;
+			Text text;
 			if (display.craftingTime == 20) {
-				text = new TranslatableText("container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp", 1, display.experience);
+				text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp", 1, display.experience);
 			} else {
-				text = new TranslatableText("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
+				text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
 			}
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 43), text).leftAligned().color(0x3f3f3f).noShadow());
 		}

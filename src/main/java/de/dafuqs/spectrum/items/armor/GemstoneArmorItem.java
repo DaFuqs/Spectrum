@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -96,16 +95,16 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 	public void addTooltip(List<Text> tooltip, @NotNull EquipmentSlot equipmentSlot) {
 		switch (equipmentSlot) {
 			case HEAD -> {
-				tooltip.add(new TranslatableText("item.spectrum.emergency_helmet.tooltip").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.emergency_helmet.tooltip").formatted(Formatting.GRAY));
 			}
 			case CHEST -> {
-				tooltip.add(new TranslatableText("item.spectrum.emergency_chestplate.tooltip").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.emergency_chestplate.tooltip").formatted(Formatting.GRAY));
 			}
 			case LEGS -> {
-				tooltip.add(new TranslatableText("item.spectrum.emergency_leggings.tooltip").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.emergency_leggings.tooltip").formatted(Formatting.GRAY));
 			}
 			case FEET -> {
-				tooltip.add(new TranslatableText("item.spectrum.emergency_boots.tooltip").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.emergency_boots.tooltip").formatted(Formatting.GRAY));
 			}
 		}
 	}

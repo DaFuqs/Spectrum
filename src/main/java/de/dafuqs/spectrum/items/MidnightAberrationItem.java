@@ -12,7 +12,6 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -49,7 +48,7 @@ public class MidnightAberrationItem extends CloakedItem {
 		
 		NbtCompound compound = stack.getNbt();
 		if (compound != null && compound.getBoolean("Stable")) {
-			tooltip.add(new TranslatableText("item.spectrum.midnight_aberration.tooltip.stable"));
+			tooltip.add(Text.translatable("item.spectrum.midnight_aberration.tooltip.stable"));
 		}
 	}
 	

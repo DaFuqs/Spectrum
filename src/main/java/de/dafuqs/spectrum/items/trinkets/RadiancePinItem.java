@@ -14,7 +14,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -36,7 +35,7 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.radiance_pin.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.radiance_pin.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override

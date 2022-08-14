@@ -74,7 +74,7 @@ public abstract class WorldRendererMixin {
 		HudRenderers.doNotRenderOverlay();
 		
 		if (client.player != null && renderBlockOutline) {
-			for(ItemStack handStack : client.player.getItemsHand()) {
+			for(ItemStack handStack : client.player.getHandItems()) {
 				Item handItem = handStack.getItem();
 				if (handItem instanceof PlacementStaffItem) {
 					HitResult hitResult = this.client.crosshairTarget;

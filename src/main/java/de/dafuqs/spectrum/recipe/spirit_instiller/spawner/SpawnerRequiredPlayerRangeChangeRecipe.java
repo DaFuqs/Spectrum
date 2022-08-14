@@ -8,7 +8,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe {
@@ -38,8 +38,8 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	}
 	
 	@Override
-	public TranslatableText getOutputLoreText() {
-		return new TranslatableText("recipe.spectrum.spawner.lore.increased_required_player_range");
+	public Text getOutputLoreText() {
+		return Text.translatable("recipe.spectrum.spawner.lore.increased_required_player_range");
 	}
 	
 	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {

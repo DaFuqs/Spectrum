@@ -10,7 +10,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -252,28 +251,28 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
 		if(includeHeader) {
-			tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
-			tooltip.add(new TranslatableText("item.spectrum.artists_palette.tooltip.mix_on_demand"));
+			tooltip.add(Text.translatable("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
+			tooltip.add(Text.translatable("item.spectrum.artists_palette.tooltip.mix_on_demand"));
 		}
 		long cyan = this.storedEnergy.get(InkColors.CYAN);
 		if (cyan > 0) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet.cyan", getShortenedNumberString(cyan)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.cyan", getShortenedNumberString(cyan)));
 		}
 		long magenta = this.storedEnergy.get(InkColors.MAGENTA);
 		if (magenta > 0) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet.magenta", getShortenedNumberString(magenta)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.magenta", getShortenedNumberString(magenta)));
 		}
 		long yellow = this.storedEnergy.get(InkColors.YELLOW);
 		if (yellow > 0) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet.yellow", getShortenedNumberString(yellow)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.yellow", getShortenedNumberString(yellow)));
 		}
 		long black = this.storedEnergy.get(InkColors.BLACK);
 		if (black > 0) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet.black", getShortenedNumberString(black)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.black", getShortenedNumberString(black)));
 		}
 		long white = this.storedEnergy.get(InkColors.WHITE);
 		if (white > 0) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet.white", getShortenedNumberString(white)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet.white", getShortenedNumberString(white)));
 		}
 	}
 	

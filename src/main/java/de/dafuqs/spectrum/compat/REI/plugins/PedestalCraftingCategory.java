@@ -18,7 +18,6 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.displays.crafting.DefaultCraftingDisplay;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -37,7 +36,7 @@ public class PedestalCraftingCategory implements DisplayCategory<PedestalCraftin
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("container.spectrum.rei.pedestal_crafting.title");
+		return Text.translatable("container.spectrum.rei.pedestal_crafting.title");
 	}
 	
 	@Override
@@ -55,8 +54,8 @@ public class PedestalCraftingCategory implements DisplayCategory<PedestalCraftin
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
 		if (!display.isUnlocked() || display.getInputEntries().isEmpty()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 33), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 9, startPoint.y + 43), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 18)).animationDurationTicks(display.craftingTime));
 			
@@ -103,11 +102,11 @@ public class PedestalCraftingCategory implements DisplayCategory<PedestalCraftin
 			
 			// description text
 			// special handling for "1 second". Looks nicer
-			TranslatableText text;
+			Text text;
 			if (display.craftingTime == 20) {
-				text = new TranslatableText("container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp", 1, display.experience);
+				text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp", 1, display.experience);
 			} else {
-				text = new TranslatableText("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
+				text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
 			}
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 82), text).leftAligned().color(0x3f3f3f).noShadow());
 		}

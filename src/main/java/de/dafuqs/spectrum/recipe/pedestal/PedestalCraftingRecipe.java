@@ -21,7 +21,7 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	
@@ -299,13 +299,13 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	public TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.pedestal_recipe_unlocked.title");
+	public Text getSingleUnlockToastString() {
+		return Text.translatable("spectrum.toast.pedestal_recipe_unlocked.title");
 	}
 	
 	@Override
-	public TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.pedestal_recipes_unlocked.title");
+	public Text getMultipleUnlockToastString() {
+		return Text.translatable("spectrum.toast.pedestal_recipes_unlocked.title");
 	}
 	
 }

@@ -9,7 +9,6 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Pair;
 import net.minecraft.world.World;
@@ -118,25 +117,25 @@ public class MemoryItem extends BlockItem {
 		
 		if (entityType.isPresent()) {
 			if (isEntityTypeUnrecognizable(nbt)) {
-				tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.unrecognizable_entity_type").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unrecognizable_entity_type").formatted(Formatting.GRAY));
 			} else {
-				tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.entity_type", entityType.get().getName()));
+				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type", entityType.get().getName()));
 			}
 		} else {
-			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.unset_entity_type").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unset_entity_type").formatted(Formatting.GRAY));
 			return;
 		}
 		
 		if (ticksToHatch <= 0) {
-			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.does_not_manifest").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.does_not_manifest").formatted(Formatting.GRAY));
 		} else if (ticksToHatch > 100) {
-			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.extra_long_time_to_manifest").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.extra_long_time_to_manifest").formatted(Formatting.GRAY));
 		} else if (ticksToHatch > 20) {
-			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.long_time_to_manifest").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.long_time_to_manifest").formatted(Formatting.GRAY));
 		} else if (ticksToHatch > 5) {
-			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.medium_time_to_manifest").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.medium_time_to_manifest").formatted(Formatting.GRAY));
 		} else {
-			tooltip.add(new TranslatableText("item.spectrum.memory.tooltip.short_time_to_manifest").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.short_time_to_manifest").formatted(Formatting.GRAY));
 		}
 	}
 	

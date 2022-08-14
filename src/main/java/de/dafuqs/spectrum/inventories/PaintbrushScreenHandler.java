@@ -29,8 +29,13 @@ public class PaintbrushScreenHandler extends ScreenHandler implements InkColorSe
 		this.hasAccessToWhites = AdvancementHelper.hasAdvancement(playerInventory.player, InkColors.WHITE.getRequiredAdvancement());
 	}
 	
+	@Override
+	public ItemStack transferSlot(PlayerEntity player, int index) {
+		return ItemStack.EMPTY;
+	}
+	
 	public boolean canUse(PlayerEntity player) {
-		for(ItemStack itemStack : player.getItemsHand()) {
+		for(ItemStack itemStack : player.getHandItems()) {
 			if(itemStack == paintBrushStack) {
 				return true;
 			}

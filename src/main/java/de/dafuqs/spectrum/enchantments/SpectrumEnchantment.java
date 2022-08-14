@@ -11,7 +11,6 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -42,7 +41,7 @@ public abstract class SpectrumEnchantment extends Enchantment {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public Text getName(int level) {
-		MutableText mutableText = new TranslatableText(this.getTranslationKey());
+		MutableText mutableText = Text.translatable(this.getTranslationKey());
 		if (this.isCursed()) {
 			mutableText.formatted(Formatting.RED);
 		} else {
@@ -53,7 +52,7 @@ public abstract class SpectrumEnchantment extends Enchantment {
 		}
 		
 		if (level != 1 || this.getMaxLevel() != 1) {
-			mutableText.append(" ").append(new TranslatableText("enchantment.level." + level));
+			mutableText.append(" ").append(Text.translatable("enchantment.level." + level));
 		}
 		
 		return mutableText;

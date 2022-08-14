@@ -15,7 +15,6 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -58,9 +57,9 @@ public class AttackRingItem extends SpectrumTrinketItem {
 		super.appendTooltip(stack, world, tooltip, context);
 		long mod = Math.round(getAttackModifierForEntity(MinecraftClient.getInstance().player) * 100);
 		if (mod == 0) {
-			tooltip.add(new TranslatableText("item.spectrum.jeopardant.tooltip.damage_zero"));
+			tooltip.add(Text.translatable("item.spectrum.jeopardant.tooltip.damage_zero"));
 		} else {
-			tooltip.add(new TranslatableText("item.spectrum.jeopardant.tooltip.damage", mod));
+			tooltip.add(Text.translatable("item.spectrum.jeopardant.tooltip.damage", mod));
 		}
 	}
 	

@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.items;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -13,11 +13,11 @@ import java.util.List;
 
 public class ItemWithTooltip extends Item {
 	
-	TranslatableText tooltipText;
+	MutableText tooltipText;
 	
 	public ItemWithTooltip(Settings settings, String tooltip) {
 		super(settings);
-		this.tooltipText = new TranslatableText(tooltip);
+		this.tooltipText = Text.translatable(tooltip);
 	}
 	
 	@Override

@@ -7,7 +7,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.TickPriority;
@@ -45,13 +44,13 @@ public class DecayPlacerItem extends AliasedBlockItem {
 		
 		Item item = itemStack.getItem();
 		if (item.equals(SpectrumItems.BOTTLE_OF_FADING)) {
-			tooltip.add(new TranslatableText("item.spectrum.bottle_of_fading.tooltip"));
+			tooltip.add(Text.translatable("item.spectrum.bottle_of_fading.tooltip"));
 		} else if (item.equals(SpectrumItems.BOTTLE_OF_FAILING)) {
-			tooltip.add(new TranslatableText("item.spectrum.bottle_of_failing.tooltip"));
+			tooltip.add(Text.translatable("item.spectrum.bottle_of_failing.tooltip"));
 		} else if (item.equals(SpectrumItems.BOTTLE_OF_RUIN)) {
-			tooltip.add(new TranslatableText("item.spectrum.bottle_of_ruin.tooltip"));
+			tooltip.add(Text.translatable("item.spectrum.bottle_of_ruin.tooltip"));
 		} else if (item.equals(SpectrumItems.BOTTLE_OF_DECAY_AWAY)) {
-			tooltip.add(new TranslatableText("item.spectrum.bottle_of_decay_away.tooltip"));
+			tooltip.add(Text.translatable("item.spectrum.bottle_of_decay_away.tooltip"));
 		}
 	}
 	

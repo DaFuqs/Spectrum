@@ -14,12 +14,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 @Mixin(BuddingAmethystBlock.class)
 public class BuddingAmethystBlockMixin {
 	
-	@Inject(method = "randomTick(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Ljava/util/Random;)V",
+	@Inject(method = "randomTick(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/math/random/Random;)V",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/server/world/ServerWorld;setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)Z", shift = At.Shift.AFTER),
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci, Direction direction, BlockPos offsetPos, BlockState originalOffsetState, Block blockToGrow, BlockState blockStateToGrow) {

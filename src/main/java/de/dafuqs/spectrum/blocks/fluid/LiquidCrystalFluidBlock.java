@@ -20,7 +20,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class LiquidCrystalFluidBlock extends FluidBlock {
 	
@@ -95,7 +95,7 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
 					block = SpectrumBlocks.BLAZING_CRYSTAL;
 				} else {
 					// blackstone in the nether, deepslate everywhere else
-					if (world.getDimension().isUltrawarm()) {
+					if (world.getDimension().ultrawarm()) {
 						block = Blocks.BLACKSTONE;
 					} else {
 						block = Blocks.COBBLED_DEEPSLATE;

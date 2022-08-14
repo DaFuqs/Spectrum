@@ -31,7 +31,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -98,7 +97,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 	}
 	
 	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.sucking_chest");
+		return Text.translatable("block.spectrum.sucking_chest");
 	}
 	
 	@Override

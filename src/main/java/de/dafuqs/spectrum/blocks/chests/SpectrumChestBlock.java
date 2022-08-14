@@ -21,7 +21,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 import static net.minecraft.client.render.TexturedRenderLayers.CHEST_ATLAS_TEXTURE;
 

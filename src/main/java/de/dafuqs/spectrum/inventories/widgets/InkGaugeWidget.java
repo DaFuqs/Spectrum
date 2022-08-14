@@ -13,8 +13,9 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.apache.commons.lang3.StringUtils;
+
+import net.minecraft.util.math.random.Random;
 
 import java.util.*;
 
@@ -71,13 +72,13 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 		for (Map.Entry<InkColor, Long> entry : energy.entrySet()) {
 			long amount = entry.getValue();
 			if (amount > 0) {
-				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + entry.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(amount)));
+				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + entry.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(amount)));
 			}
 		}
 		if (tooltip.size() == 0) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.empty"));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.empty"));
 		} else {
-			tooltip.add(0, new TranslatableText("spectrum.tooltip.ink_powered.stored"));
+			tooltip.add(0, Text.translatable("spectrum.tooltip.ink_powered.stored"));
 		}
 		
 		screen.renderTooltip(matrices, tooltip, Optional.empty(), x, y);

@@ -61,6 +61,7 @@ import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.minecraft.util.math.random.Random;
 import java.util.*;
 
 public class SpectrumCommon implements ModInitializer {

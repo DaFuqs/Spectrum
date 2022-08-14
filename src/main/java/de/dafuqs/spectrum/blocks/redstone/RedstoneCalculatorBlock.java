@@ -16,7 +16,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
 	
@@ -66,7 +66,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 				// since this triggers both on server and client side: just send the
 				// message once, client side is enough, since it is pretty irrelevant on the server
-				serverPlayerEntity.sendMessage(new TranslatableText("block.spectrum.redstone_calculator.mode_set").append(new TranslatableText(newModeState.get(CALCULATION_MODE).localizationString)), false);
+				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_calculator.mode_set").append(Text.translatable(newModeState.get(CALCULATION_MODE).localizationString)), false);
 			}
 			this.updatePowered(world, pos, newModeState);
 			return ActionResult.success(world.isClient);

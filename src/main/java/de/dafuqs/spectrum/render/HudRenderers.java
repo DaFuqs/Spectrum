@@ -13,7 +13,7 @@ import net.minecraft.client.util.Window;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import vazkii.patchouli.client.RenderHelper;
 
@@ -22,8 +22,8 @@ import static net.minecraft.client.gui.DrawableHelper.GUI_ICONS_TEXTURE;
 @Environment(EnvType.CLIENT)
 public class HudRenderers {
 	
-	private static final TranslatableText missingInkText = new TranslatableText("item.spectrum.placement_staff.tooltip.missing_ink");
-	private static final TranslatableText noneText = new TranslatableText("item.spectrum.placement_staff.tooltip.none_in_inventory");
+	private static final Text missingInkText = Text.translatable("item.spectrum.placement_staff.tooltip.missing_ink");
+	private static final Text noneText = Text.translatable("item.spectrum.placement_staff.tooltip.none_in_inventory");
 	
 	private static ItemStack itemStackToRender;
 	private static int amount;

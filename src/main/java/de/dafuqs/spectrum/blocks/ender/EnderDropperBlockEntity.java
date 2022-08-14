@@ -9,7 +9,6 @@ import net.minecraft.inventory.EnderChestInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
@@ -25,9 +24,9 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 	
 	protected Text getContainerName() {
 		if (hasOwner()) {
-			return new TranslatableText("block.spectrum.ender_dropper").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
+			return Text.translatable("block.spectrum.ender_dropper").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
 		} else {
-			return new TranslatableText("block.spectrum.ender_dropper");
+			return Text.translatable("block.spectrum.ender_dropper");
 		}
 	}
 	

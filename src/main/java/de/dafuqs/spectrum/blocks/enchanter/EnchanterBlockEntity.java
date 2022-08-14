@@ -58,6 +58,8 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.util.math.random.Random;
+
 import java.util.*;
 
 public class EnchanterBlockEntity extends BlockEntity implements Inventory, PlayerOwned, Upgradeable {
@@ -92,7 +94,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	protected int virtualInventoryRecipeOrientation;
 	
 	protected boolean inventoryChanged;
-	private Map<Upgradeable.UpgradeType, Float> upgrades;
+	private Map<UpgradeType, Float> upgrades;
 	
 	private Recipe currentRecipe;
 	private int craftingTime;

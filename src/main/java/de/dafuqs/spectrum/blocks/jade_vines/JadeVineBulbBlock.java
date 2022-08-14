@@ -18,7 +18,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class JadeVineBulbBlock extends Block implements JadeVine {
 	

@@ -12,7 +12,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
@@ -24,7 +24,7 @@ import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 	
@@ -101,14 +101,14 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 			if (serverPlayerEntity.isSneaking()) {
 				// toggle inactive time
 				TimingStep newStep = blockState.get(INACTIVE_TIME).next();
-				serverPlayerEntity.sendMessage(new TranslatableText("block.spectrum.redstone_timer.setting.inactive").append(new TranslatableText(newStep.localizationString)), false);
+				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.inactive").append(Text.translatable(newStep.localizationString)), false);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
 				world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
 				world.setBlockState(pos, world.getBlockState(pos).with(INACTIVE_TIME, newStep));
 			} else {
 				// toggle active time
 				TimingStep newStep = blockState.get(ACTIVE_TIME).next();
-				serverPlayerEntity.sendMessage(new TranslatableText("block.spectrum.redstone_timer.setting.active").append(new TranslatableText(newStep.localizationString)), false);
+				serverPlayerEntity.sendMessage(Text.translatable("block.spectrum.redstone_timer.setting.active").append(Text.translatable(newStep.localizationString)), false);
 				float pitch = 0.5F + newStep.ordinal() * 0.05F;
 				world.playSound(null, pos, SoundEvents.BLOCK_COMPARATOR_CLICK, SoundCategory.BLOCKS, 0.3F, pitch);
 				world.setBlockState(pos, world.getBlockState(pos).with(ACTIVE_TIME, newStep));

@@ -6,7 +6,7 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 @Environment(EnvType.CLIENT)
 public class VoidFogParticle extends SpriteBillboardParticle {

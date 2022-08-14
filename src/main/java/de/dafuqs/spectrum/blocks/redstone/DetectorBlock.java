@@ -21,7 +21,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public abstract class DetectorBlock extends Block {
 	

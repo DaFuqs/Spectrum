@@ -17,11 +17,12 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import org.jetbrains.annotations.NotNull;
 
+import net.minecraft.util.math.random.Random;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
@@ -129,8 +130,8 @@ public class UnlockToastManager {
 	
 	private static void showGroupedRecipeUnlockToasts(List<GatedRecipe> unlockedRecipes) {
 		if (!unlockedRecipes.isEmpty()) {
-			TranslatableText singleText = unlockedRecipes.get(0).getSingleUnlockToastString();
-			TranslatableText multipleText = unlockedRecipes.get(0).getMultipleUnlockToastString();
+			Text singleText = unlockedRecipes.get(0).getSingleUnlockToastString();
+			Text multipleText = unlockedRecipes.get(0).getMultipleUnlockToastString();
 			
 			HashMap<String, List<ItemStack>> groupedRecipes = new HashMap<>();
 			

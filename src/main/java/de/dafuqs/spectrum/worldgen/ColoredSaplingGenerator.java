@@ -6,7 +6,7 @@ import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class ColoredSaplingGenerator extends SaplingGenerator {
 	

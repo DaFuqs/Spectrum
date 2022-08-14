@@ -11,12 +11,11 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
+import org.objectweb.asm.commons.TableSwitchGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,9 +96,9 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 		} else {
 			finishWorldEffect = FusionShrineRecipeWorldEffect.NOTHING;
 		}
-		TranslatableText description;
+		Text description;
 		if (JsonHelper.hasString(jsonObject, "description")) {
-			description = new TranslatableText(JsonHelper.getString(jsonObject, "description"));
+			description = Text.translatable(JsonHelper.getString(jsonObject, "description"));
 		} else {
 			description = null;
 		}
@@ -136,7 +135,7 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 		}
 		packetByteBuf.writeInt(fusionShrineRecipe.finishWorldEffect.ordinal());
 		if (fusionShrineRecipe.getDescription().isEmpty()) {
-			packetByteBuf.writeText(new LiteralText(""));
+			packetByteBuf.writeText(Text.literal(""));
 		} else {
 			packetByteBuf.writeText(fusionShrineRecipe.getDescription().get());
 		}

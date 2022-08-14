@@ -7,7 +7,7 @@ import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class WeightedRandomFeatureConfig implements FeatureConfig {
 	

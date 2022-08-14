@@ -32,7 +32,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -45,7 +44,12 @@ import net.minecraft.world.event.BlockPositionSource;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.listener.GameEventListener;
 
+import net.minecraft.util.math.random.Random;
+
 import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback {
 	
@@ -160,9 +164,9 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	protected Text getContainerName() {
 		if (hasOwner()) {
-			return new TranslatableText("block.spectrum.crystal_apothecary").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
+			return Text.translatable("block.spectrum.crystal_apothecary").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
 		} else {
-			return new TranslatableText("block.spectrum.crystal_apothecary");
+			return Text.translatable("block.spectrum.crystal_apothecary");
 		}
 	}
 	

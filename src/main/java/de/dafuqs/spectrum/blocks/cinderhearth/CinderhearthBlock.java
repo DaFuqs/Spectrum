@@ -22,7 +22,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class CinderhearthBlock extends BlockWithEntity {
 	
@@ -197,7 +197,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 			if (multiblockWithoutLava.validate(world, blockPos.down(3), rotation)) {
 				return CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA;
 			} else {
-				PatchouliAPI.get().showMultiblock(multiblockWithLava, new TranslatableText("multiblock.spectrum.cinderhearth.structure"), blockPos.down(4), rotation);
+				PatchouliAPI.get().showMultiblock(multiblockWithLava, Text.translatable("multiblock.spectrum.cinderhearth.structure"), blockPos.down(4), rotation);
 				return CinderhearthBlockEntity.CinderHearthStructureType.NONE;
 			}
 		} else {

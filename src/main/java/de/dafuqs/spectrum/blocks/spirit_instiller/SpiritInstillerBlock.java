@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -80,7 +80,7 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 				} else {
 					lastBlockRotation = BlockRotation.NONE;
 				}
-				PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.spirit_instiller.structure"), blockPos.down(2).offset(Support.directionFromRotation(lastBlockRotation), 2), lastBlockRotation);
+				PatchouliAPI.get().showMultiblock(multiblock, Text.translatable("multiblock.spectrum.spirit_instiller.structure"), blockPos.down(2).offset(Support.directionFromRotation(lastBlockRotation), 2), lastBlockRotation);
 			} else {
 				scatterContents(world, blockPos);
 			}

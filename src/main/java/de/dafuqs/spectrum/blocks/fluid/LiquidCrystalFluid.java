@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	

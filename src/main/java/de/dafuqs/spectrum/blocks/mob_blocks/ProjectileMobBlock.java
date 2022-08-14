@@ -13,7 +13,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -41,7 +40,7 @@ public abstract class ProjectileMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.projectile_mob_block.tooltip", this.entityType.getName()));
+		tooltip.add(Text.translatable("block.spectrum.projectile_mob_block.tooltip", this.entityType.getName()));
 	}
 	
 	@Override

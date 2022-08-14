@@ -13,7 +13,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -70,9 +69,9 @@ public class GerminatedJadeVineSeedsItem extends CloakedItem {
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		
-		tooltip.add(new TranslatableText("item.spectrum.germinated_jade_vine_seeds.tooltip"));
-		tooltip.add(new TranslatableText("item.spectrum.germinated_jade_vine_seeds.tooltip2"));
-		tooltip.add(new TranslatableText("item.spectrum.germinated_jade_vine_seeds.tooltip3"));
+		tooltip.add(Text.translatable("item.spectrum.germinated_jade_vine_seeds.tooltip"));
+		tooltip.add(Text.translatable("item.spectrum.germinated_jade_vine_seeds.tooltip2"));
+		tooltip.add(Text.translatable("item.spectrum.germinated_jade_vine_seeds.tooltip3"));
 	}
 	
 }

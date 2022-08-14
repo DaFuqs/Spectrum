@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
@@ -63,9 +62,9 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 	
 	protected Text getContainerName() {
 		if (hasOwner()) {
-			return new TranslatableText("block.spectrum.private_chest").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
+			return Text.translatable("block.spectrum.private_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
 		} else {
-			return new TranslatableText("block.spectrum.private_chest");
+			return Text.translatable("block.spectrum.private_chest");
 		}
 	}
 	
@@ -141,7 +140,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		if (!isOwner && this.world != null) {
 			this.lastNonOwnerOpenedTick = this.world.getTime();
 			updateRedstone(this.pos, this.world.getBlockState(pos));
-			player.sendMessage(new TranslatableText("block.spectrum.private_chest.title_with_owner", this.getOwnerName()), false);
+			player.sendMessage(Text.translatable("block.spectrum.private_chest.title_with_owner", this.getOwnerName()), false);
 		}
 		
 		return isOwner;

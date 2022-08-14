@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.text.MutableText;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -104,7 +104,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	
 	@Override
 	public MutableText getName() {
-		return new TranslatableText("item.spectrum.void_bundle");
+		return Text.translatable("item.spectrum.void_bundle");
 	}
 	
 }

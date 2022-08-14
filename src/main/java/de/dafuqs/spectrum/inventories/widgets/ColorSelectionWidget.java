@@ -15,7 +15,7 @@ import net.minecraft.client.gui.screen.narration.NarrationPart;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.MathHelper;
 import org.jetbrains.annotations.Nullable;
@@ -42,7 +42,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	int selectedDotY;
 	
 	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker) {
-		super(x, y, 56, 14, new TranslatableText(""));
+		super(x, y, 56, 14, Text.literal(""));
 		this.colorPicker = colorPicker;
 		this.selectedDotX = selectedDotX;
 		this.selectedDotY = selectedDotY;
@@ -96,7 +96,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	
 	@Override
 	public void appendNarrations(NarrationMessageBuilder builder) {
-		builder.put(NarrationPart.TITLE, new TranslatableText("spectrum.narration.color_selection", this.colorPicker.getSelectedColor()));
+		builder.put(NarrationPart.TITLE, Text.translatable("spectrum.narration.color_selection", this.colorPicker.getSelectedColor()));
 	}
 	
 	public void draw(MatrixStack matrices) {
@@ -126,7 +126,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	public void drawMouseoverTooltip(MatrixStack matrices, int mouseX, int mouseY) {
 		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (overUnselection) {
-			screen.renderTooltip(matrices, List.of(new TranslatableText("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
+			screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
 		} else {
 			
 			int xOffset = MathHelper.floor(mouseX) - this.x;
@@ -140,7 +140,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
 				screen.renderTooltip(matrices, List.of(newColor.getName()), Optional.empty(), x, y);
 			} else {
-				screen.renderTooltip(matrices, List.of(new TranslatableText("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
+				screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
 			}
 		}
 	}

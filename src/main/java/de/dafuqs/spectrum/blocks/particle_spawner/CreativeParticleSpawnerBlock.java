@@ -9,7 +9,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -27,7 +26,7 @@ public class CreativeParticleSpawnerBlock extends ParticleSpawnerBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.creative_particle_spawner.tooltip"));
+		tooltip.add(Text.translatable("block.spectrum.creative_particle_spawner.tooltip"));
 	}
 	
 	@Nullable

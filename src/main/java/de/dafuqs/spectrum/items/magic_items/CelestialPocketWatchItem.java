@@ -10,7 +10,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -34,7 +33,7 @@ public class CelestialPocketWatchItem extends Item {
 		GameRules.BooleanRule doDaylightCycleRule = world.getGameRules().get(GameRules.DO_DAYLIGHT_CYCLE);
 		if (doDaylightCycleRule.get()) {
 			if (world.getDimension().hasFixedTime()) {
-				player.sendMessage(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), false);
+				player.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), false);
 			} else {
 				SpectrumS2CPacketSender.startSkyLerping(world, TIME_STEP_TICKS);
 				long timeOfDay = world.getTimeOfDay();
@@ -42,7 +41,7 @@ public class CelestialPocketWatchItem extends Item {
 				return true;
 			}
 		} else {
-			player.sendMessage(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), false);
+			player.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), false);
 		}
 		return false;
 	}
@@ -72,12 +71,12 @@ public class CelestialPocketWatchItem extends Item {
 			GameRules.BooleanRule doDaylightCycleRule = world.getGameRules().get(GameRules.DO_DAYLIGHT_CYCLE);
 			if (doDaylightCycleRule.get()) {
 				if (world.getDimension().hasFixedTime()) {
-					tooltip.add(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time").formatted(Formatting.GRAY));
+					tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time").formatted(Formatting.GRAY));
 				} else {
-					tooltip.add(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.working").formatted(Formatting.GRAY));
+					tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.working").formatted(Formatting.GRAY));
 				}
 			} else {
-				tooltip.add(new TranslatableText("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule").formatted(Formatting.GRAY));
 			}
 		}
 	}

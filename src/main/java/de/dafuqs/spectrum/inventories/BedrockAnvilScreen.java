@@ -22,7 +22,6 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerListener;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 
@@ -79,7 +78,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		int i = (this.width - this.backgroundWidth) / 2;
 		int j = (this.height - this.backgroundHeight) / 2;
 		
-		this.nameField = new TextFieldWidget(this.textRenderer, i + 62, j + 24, 98, 12, new TranslatableText("container.spectrum.bedrock_anvil"));
+		this.nameField = new TextFieldWidget(this.textRenderer, i + 62, j + 24, 98, 12, Text.translatable("container.spectrum.bedrock_anvil"));
 		this.nameField.setFocusUnlocked(false);
 		this.nameField.setEditableColor(-1);
 		this.nameField.setUneditableColor(-1);
@@ -91,7 +90,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		this.setInitialFocus(this.nameField);
 		this.nameField.setEditable(false);
 		
-		this.loreField = new TextFieldWidget(this.textRenderer, i + 45, j + 76, 116, 12, new TranslatableText("container.spectrum.bedrock_anvil.lore"));
+		this.loreField = new TextFieldWidget(this.textRenderer, i + 45, j + 76, 116, 12, Text.translatable("container.spectrum.bedrock_anvil.lore"));
 		this.loreField.setFocusUnlocked(false);
 		this.loreField.setEditableColor(-1);
 		this.loreField.setUneditableColor(-1);
@@ -164,7 +163,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		
 		this.textRenderer.draw(matrices, this.title, this.titleX, this.titleY, 3289650);
 		this.textRenderer.draw(matrices, this.playerInventoryTitle, this.playerInventoryTitleX, this.playerInventoryTitleY, 3289650);
-		this.textRenderer.draw(matrices, new TranslatableText("container.spectrum.bedrock_anvil.lore"), playerInventoryTitleX, 76, 3289650);
+		this.textRenderer.draw(matrices, Text.translatable("container.spectrum.bedrock_anvil.lore"), playerInventoryTitleX, 76, 3289650);
 		
 		int levelCost = (this.handler).getLevelCost();
 		if (levelCost > 0 || this.handler.getSlot(2).hasStack()) {
@@ -173,7 +172,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 			if (!handler.getSlot(2).hasStack()) {
 				costText = null;
 			} else {
-				costText = new TranslatableText("container.repair.cost", levelCost);
+				costText = Text.translatable("container.repair.cost", levelCost);
 				if (!handler.getSlot(2).canTakeItems(this.player)) {
 					textColor = 16736352;
 				}

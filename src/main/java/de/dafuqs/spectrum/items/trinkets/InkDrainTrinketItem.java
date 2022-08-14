@@ -8,7 +8,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -43,9 +42,9 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 		} while (storedInk > nextStepInk);
 		
 		if (nextStepInk == maxInk) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_drain.tooltip.maxed_out").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_drain.tooltip.maxed_out").formatted(Formatting.GRAY));
 		} else {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_drain.tooltip.ink_for_next_step." + inkStorage.getStoredColor().toString(), Support.getShortenedNumberString(nextStepInk - storedInk)).formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_drain.tooltip.ink_for_next_step." + inkStorage.getStoredColor().toString(), Support.getShortenedNumberString(nextStepInk - storedInk)).formatted(Formatting.GRAY));
 		}
 	}
 	

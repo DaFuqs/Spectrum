@@ -14,7 +14,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -162,13 +162,13 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	public TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.crystallarieum_recipe_unlocked.title");
+	public Text getSingleUnlockToastString() {
+		return Text.translatable("spectrum.toast.crystallarieum_recipe_unlocked.title");
 	}
 	
 	@Override
-	public TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.crystallarieum_recipes_unlocked.title");
+	public Text getMultipleUnlockToastString() {
+		return Text.translatable("spectrum.toast.crystallarieum_recipes_unlocked.title");
 	}
 	
 	public Ingredient getIngredientStack() {

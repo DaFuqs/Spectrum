@@ -6,7 +6,6 @@ import me.shedaniel.rei.api.client.gui.Renderer;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 
 public class HeatingCategory extends BlockToBlockWithChanceCategory {
 	
@@ -22,7 +21,7 @@ public class HeatingCategory extends BlockToBlockWithChanceCategory {
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("container.spectrum.rei.heating.title");
+		return Text.translatable("container.spectrum.rei.heating.title");
 	}
 	
 }

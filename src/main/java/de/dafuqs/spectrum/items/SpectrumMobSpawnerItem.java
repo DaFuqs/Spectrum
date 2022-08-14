@@ -17,7 +17,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.property.Property;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
@@ -121,27 +120,27 @@ public class SpectrumMobSpawnerItem extends Item {
 				short requiredPlayerRange = blockEntityTag.getShort("RequiredPlayerRange");
 				
 				if (entityType.isPresent()) {
-					tooltip.add(new TranslatableText(entityType.get().getTranslationKey()));
+					tooltip.add(Text.translatable(entityType.get().getTranslationKey()));
 				} else {
-					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.unknown_mob"));
+					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.unknown_mob"));
 				}
 				if (spawnCount > 0) {
-					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_count", spawnCount).formatted(Formatting.GRAY));
+					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.spawn_count", spawnCount).formatted(Formatting.GRAY));
 				}
 				if (minSpawnDelay > 0) {
-					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay).formatted(Formatting.GRAY));
+					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.min_spawn_delay", minSpawnDelay).formatted(Formatting.GRAY));
 				}
 				if (maxSpawnDelay > 0) {
-					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay).formatted(Formatting.GRAY));
+					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.max_spawn_delay", maxSpawnDelay).formatted(Formatting.GRAY));
 				}
 				if (spawnRange > 0) {
-					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.spawn_range", spawnRange).formatted(Formatting.GRAY));
+					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.spawn_range", spawnRange).formatted(Formatting.GRAY));
 				}
 				if (requiredPlayerRange > 0) {
-					tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange).formatted(Formatting.GRAY));
+					tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.required_player_range", requiredPlayerRange).formatted(Formatting.GRAY));
 				}
 			} catch (Exception e) {
-				tooltip.add(new TranslatableText("item.spectrum.spawner.tooltip.unknown_mob"));
+				tooltip.add(Text.translatable("item.spectrum.spawner.tooltip.unknown_mob"));
 			}
 		}
 	}

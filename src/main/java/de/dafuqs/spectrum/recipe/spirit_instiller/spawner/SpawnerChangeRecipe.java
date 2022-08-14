@@ -20,7 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -164,6 +164,6 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 	@Override
 	public abstract RecipeSerializer<?> getSerializer();
 	
-	public abstract TranslatableText getOutputLoreText();
+	public abstract Text getOutputLoreText();
 	
 }

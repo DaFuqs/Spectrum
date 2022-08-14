@@ -14,7 +14,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -24,7 +23,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityProvider {
 	
@@ -36,12 +35,12 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
 	protected static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 8.0D);
 	protected static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0.0D, 4.0D, 4.0D, 8.0D, 12.0D, 12.0D);
 	protected static final VoxelShape SHAPE_WEST = Block.createCuboidShape(8.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D);
-	protected static final Text rangeTooltipText = new TranslatableText("block.spectrum.pastel_network_nodes.tooltip.range").formatted(Formatting.GRAY);
+	protected static final Text rangeTooltipText = Text.translatable("block.spectrum.pastel_network_nodes.tooltip.range").formatted(Formatting.GRAY);
 	protected final Text nodeTypeTooltipText;
 	
 	public PastelNetworkNodeBlock(Settings settings, String tooltipName) {
 		super(settings);
-		this.nodeTypeTooltipText = new TranslatableText(tooltipName);
+		this.nodeTypeTooltipText = Text.translatable(tooltipName);
 	}
 	
 	@Nullable

@@ -7,7 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -41,7 +41,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 				
 				String ownerName = getOwnerName(world, pos);
 				if (ownerName != null && !ownerName.equals("")) {
-					player.sendMessage(new TranslatableText("block.spectrum.player_detector").append(new TranslatableText("container.spectrum.owned_by_player", ownerName)), false);
+					player.sendMessage(Text.translatable("block.spectrum.player_detector").append(Text.translatable("container.spectrum.owned_by_player", ownerName)), false);
 				}
 				return ActionResult.CONSUME;
 			} else {

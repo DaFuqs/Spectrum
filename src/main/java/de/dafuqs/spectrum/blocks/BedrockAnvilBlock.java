@@ -10,7 +10,6 @@ import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
@@ -21,7 +20,7 @@ import java.util.List;
 
 public class BedrockAnvilBlock extends AnvilBlock {
 	
-	private static final Text TITLE = new TranslatableText("container.spectrum.bedrock_anvil");
+	private static final Text TITLE = Text.translatable("container.spectrum.bedrock_anvil");
 	
 	public BedrockAnvilBlock(Settings settings) {
 		super(settings);
@@ -42,8 +41,8 @@ public class BedrockAnvilBlock extends AnvilBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("container.spectrum.bedrock_anvil.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("container.spectrum.bedrock_anvil.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("container.spectrum.bedrock_anvil.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("container.spectrum.bedrock_anvil.tooltip2").formatted(Formatting.GRAY));
 	}
 	
 }

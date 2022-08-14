@@ -20,7 +20,7 @@
     "FishingBobberEntityRendererMixin",
     "GeodesGenerateWithGemstoneOresMixin",
     "GlassBottleItemMixin",
-    "HorseBaseEntityMixin",
+    "AbstractHorseEntityMixin",
     "InfestedBlockMixin",
     "ItemEntityMixin",
     "ItemFrameEntityMixin",
@@ -50,7 +50,6 @@
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
     "accessors.SlimeEntityAccessor",
-    "accessors.StructureFeatureAccessor"
   ],
   "client": [
     "client.BlockOverlayRendererMixin",

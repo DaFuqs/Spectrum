@@ -13,7 +13,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 @Environment(EnvType.CLIENT)
 public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<JadeVineRootsBlockEntity> {

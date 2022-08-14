@@ -16,7 +16,6 @@ import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public class AnvilCrushingCategory implements DisplayCategory<AnvilCrushingDispl
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("container.spectrum.rei.anvil_crushing.title");
+		return Text.translatable("container.spectrum.rei.anvil_crushing.title");
 	}
 	
 	@Override
@@ -67,17 +66,17 @@ public class AnvilCrushingCategory implements DisplayCategory<AnvilCrushingDispl
 		
 		// xp text
 		widgets.add(Widgets.createLabel(new Point(startPoint.x + 84, startPoint.y + 48),
-				new TranslatableText("container.spectrum.rei.anvil_crushing.plus_xp", display.experience)
+				Text.translatable("container.spectrum.rei.anvil_crushing.plus_xp", display.experience)
 		).leftAligned().color(0x3f3f3f).noShadow());
 		
 		// the tooltip text
-		TranslatableText text;
+		Text text;
 		if (display.crushedItemsPerPointOfDamage >= 1) {
-			text = new TranslatableText("container.spectrum.rei.anvil_crushing.low_force_required");
+			text = Text.translatable("container.spectrum.rei.anvil_crushing.low_force_required");
 		} else if (display.crushedItemsPerPointOfDamage >= 0.5) {
-			text = new TranslatableText("container.spectrum.rei.anvil_crushing.medium_force_required");
+			text = Text.translatable("container.spectrum.rei.anvil_crushing.medium_force_required");
 		} else {
-			text = new TranslatableText("container.spectrum.rei.anvil_crushing.high_force_required");
+			text = Text.translatable("container.spectrum.rei.anvil_crushing.high_force_required");
 		}
 		widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 68), text).leftAligned().color(0x3f3f3f).noShadow());
 		

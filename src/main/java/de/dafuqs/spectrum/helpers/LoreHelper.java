@@ -5,9 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtString;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,11 +14,11 @@ import java.util.List;
 
 public class LoreHelper {
 	
-	public static @NotNull List<LiteralText> getLoreTextArrayFromString(@NotNull String string) {
-		List<LiteralText> loreText = new ArrayList<>();
+	public static @NotNull List<Text> getLoreTextArrayFromString(@NotNull String string) {
+		List<Text> loreText = new ArrayList<>();
 		
 		for (String split : string.split("\\\\n")) {
-			loreText.add(0, new LiteralText(split));
+			loreText.add(0, Text.literal(split));
 		}
 		
 		return loreText;
@@ -41,7 +39,7 @@ public class LoreHelper {
 		}
 	}
 	
-	public static void setLore(@NotNull ItemStack itemStack, @Nullable List<LiteralText> lore) {
+	public static void setLore(@NotNull ItemStack itemStack, @Nullable List<Text> lore) {
 		NbtCompound nbtCompound = itemStack.getOrCreateSubNbt("display");
 		if (lore != null) {
 			NbtList nbtList = new NbtList();
@@ -96,7 +94,7 @@ public class LoreHelper {
 		return lore;
 	}
 	
-	public static boolean equalsLore(List<LiteralText> lore, ItemStack stack) {
+	public static boolean equalsLore(List<Text> lore, ItemStack stack) {
 		if (hasLore(stack)) {
 			List<Text> loreList = getLoreList(stack);
 			
@@ -114,7 +112,7 @@ public class LoreHelper {
 		return false;
 	}
 	
-	public static void setLore(@NotNull ItemStack stack, @Nullable TranslatableText lore) {
+	public static void setLore(@NotNull ItemStack stack, @Nullable Text lore) {
 		NbtCompound nbtCompound = stack.getOrCreateSubNbt("display");
 		if (lore != null) {
 			NbtList nbtList = new NbtList();

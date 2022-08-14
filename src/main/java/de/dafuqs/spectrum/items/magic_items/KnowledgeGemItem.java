@@ -20,9 +20,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -128,12 +126,12 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 		int maxExperience = getMaxStoredExperience(itemStack);
 		int storedExperience = ExperienceStorageItem.getStoredExperience(itemStack);
 		if (storedExperience == 0) {
-			tooltip.add(new LiteralText("0 ").formatted(Formatting.DARK_GRAY).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).formatted(Formatting.GRAY)));
+			tooltip.add(Text.literal("0 ").formatted(Formatting.DARK_GRAY).append(Text.translatable("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).formatted(Formatting.GRAY)));
 		} else {
-			tooltip.add(new LiteralText(storedExperience + " ").formatted(Formatting.GREEN).append(new TranslatableText("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).formatted(Formatting.GRAY)));
+			tooltip.add(Text.literal(storedExperience + " ").formatted(Formatting.GREEN).append(Text.translatable("item.spectrum.knowledge_gem.tooltip.stored_experience", maxExperience).formatted(Formatting.GRAY)));
 		}
 		if (shouldDisplayUsageTooltip(itemStack)) {
-			tooltip.add(new TranslatableText("item.spectrum.knowledge_gem.tooltip.use", getTransferableExperiencePerTick(itemStack)).formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.knowledge_gem.tooltip.use", getTransferableExperiencePerTick(itemStack)).formatted(Formatting.GRAY));
 			SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);
 		}
 	}

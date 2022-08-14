@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.WallStandingBlockItem;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -53,7 +52,7 @@ public class SpectrumSkullBlockItem extends WallStandingBlockItem {
 				artistCached = getHeadArtist(SpectrumBlocks.getSkullType(this.getBlock()));
 			}
 			if (!artistCached.equals("")) {
-				tooltip.add(new TranslatableText("item.spectrum.mob_head.tooltip.designer", artistCached));
+				tooltip.add(Text.translatable("item.spectrum.mob_head.tooltip.designer", artistCached));
 			}
 		}
 	}

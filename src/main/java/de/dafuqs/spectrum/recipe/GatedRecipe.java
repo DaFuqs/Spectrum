@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public interface GatedRecipe extends Recipe<Inventory> {
@@ -28,8 +28,8 @@ public interface GatedRecipe extends Recipe<Inventory> {
 		UnlockToastManager.registerGatedRecipe(recipeType, gatedRecipe);
 	}
 	
-	TranslatableText getSingleUnlockToastString();
+	Text getSingleUnlockToastString();
 	
-	TranslatableText getMultipleUnlockToastString();
+	Text getMultipleUnlockToastString();
 	
 }

@@ -14,7 +14,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 @Environment(EnvType.CLIENT)
 public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {

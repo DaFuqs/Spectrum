@@ -4,10 +4,10 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.util.math.random.RandomSplitter;
 import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
 import net.minecraft.world.gen.densityfunction.DensityFunction;
-import net.minecraft.world.gen.random.AbstractRandom;
-import net.minecraft.world.gen.random.RandomDeriver;
 
 public final class DDOreVeinSampler {
     private static final float field_36620 = 0.4F;
@@ -23,7 +23,7 @@ public final class DDOreVeinSampler {
     private DDOreVeinSampler() {
     }
 
-    public static ChunkNoiseSampler.BlockStateSampler create(DensityFunction veinToggle, DensityFunction veinRidged, DensityFunction veinGap, RandomDeriver randomDeriver) {
+    public static ChunkNoiseSampler.BlockStateSampler create(DensityFunction veinToggle, DensityFunction veinRidged, DensityFunction veinGap, RandomSplitter randomDeriver) {
         return (pos) -> {
             double veinTypeSample = veinToggle.sample(pos);
             DDOreVeinSampler.VeinType veinType = VeinType.getVeinTypeForSample(veinTypeSample);
@@ -38,15 +38,15 @@ public final class DDOreVeinSampler {
                 if (absVeinTypeSample + f < 0.05) {
                     return null;
                 } else {
-                    AbstractRandom abstractRandom = randomDeriver.createRandom(pos.blockX(), i, pos.blockZ());
-                    if (abstractRandom.nextFloat() > VEIN_LIMIT) {
+                    Random random = randomDeriver.split(pos.blockX(), i, pos.blockZ());
+                    if (random.nextFloat() > VEIN_LIMIT) {
                         return null;
                     } else if (veinRidged.sample(pos) >= 0.0D) {
                         return null;
                     } else {
                         double g = MathHelper.clampedLerpFromProgress(absVeinTypeSample, field_36620, field_36626, field_36624, field_36625);
-                        if ((double)abstractRandom.nextFloat() < g && veinGap.sample(pos) > ORE_OR_STONE_THRESHOLD) {
-                            return abstractRandom.nextFloat() < RAW_ORE_BLOCK_CHANCE ? veinType.rawOreBlock : veinType.ore;
+                        if ((double)random.nextFloat() < g && veinGap.sample(pos) > ORE_OR_STONE_THRESHOLD) {
+                            return random.nextFloat() < RAW_ORE_BLOCK_CHANCE ? veinType.rawOreBlock : veinType.ore;
                         } else {
                             return veinType.stone;
                         }

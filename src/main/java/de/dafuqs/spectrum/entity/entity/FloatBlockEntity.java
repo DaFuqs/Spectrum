@@ -89,7 +89,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 		
 		List<Entity> otherEntities = this.world.getOtherEntities(this, getBoundingBox().union(getBoundingBox().offset(0, 2 * (this.prevY - this.getY()), 0)));
 		for (Entity entity : otherEntities) {
-			if (!(entity instanceof BlockLikeEntity) && !entity.noClip && this.collides()) {
+			if (!(entity instanceof BlockLikeEntity) && !entity.noClip && this.isCollidable()) {
 				entity.setPosition(entity.getX(), this.getBoundingBox().maxY, entity.getZ());
 			}
 		}

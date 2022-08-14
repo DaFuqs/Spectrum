@@ -10,7 +10,6 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -39,7 +38,7 @@ public class ColorPickerBlock extends BlockWithEntity {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.color_picker.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("block.spectrum.color_picker.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override

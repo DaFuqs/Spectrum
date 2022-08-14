@@ -17,7 +17,6 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -82,12 +81,12 @@ public class RestorationTeaItem extends Item {
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		
-		tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip"));
-		tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip2"));
+		tooltip.add(Text.translatable("item.spectrum.restoration_tea.tooltip"));
+		tooltip.add(Text.translatable("item.spectrum.restoration_tea.tooltip2"));
 		
 		NbtCompound nbtCompound = itemStack.getNbt();
 		if (nbtCompound != null && nbtCompound.contains("Milk")) {
-			tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip_milk"));
+			tooltip.add(Text.translatable("item.spectrum.restoration_tea.tooltip_milk"));
 		}
 	}
 	

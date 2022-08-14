@@ -12,7 +12,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class WetLavaSpongeBlock extends WetSpongeBlock {
 	
@@ -23,7 +23,7 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 	// faster than fire (30+ 0-10)
 	// even more in the nether
 	private static int getRandomTickTime(World world) {
-		if (world.getDimension().isUltrawarm()) {
+		if (world.getDimension().ultrawarm()) {
 			return 10 + world.random.nextInt(5);
 		} else {
 			return 20 + world.random.nextInt(10);

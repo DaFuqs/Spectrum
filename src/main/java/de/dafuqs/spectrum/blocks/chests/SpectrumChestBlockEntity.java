@@ -9,11 +9,7 @@ import net.fabricmc.api.EnvironmentInterface;
 import net.fabricmc.api.EnvironmentInterfaces;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.entity.ChestLidAnimator;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.block.entity.ViewerCountManager;
-import net.minecraft.client.block.ChestAnimationProgress;
+import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
@@ -30,9 +26,9 @@ import net.minecraft.world.World;
 
 @EnvironmentInterfaces({@EnvironmentInterface(
 		value = EnvType.CLIENT,
-		itf = ChestAnimationProgress.class
+		itf = LidOpenable.class
 )})
-public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEntity implements ChestAnimationProgress {
+public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEntity implements LidOpenable {
 	
 	public final ViewerCountManager stateManager;
 	protected final ChestLidAnimator lidAnimator;

@@ -19,7 +19,12 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import net.minecraft.util.math.random.Random;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class BlockFlooderBlock extends BlockWithEntity {
 	
@@ -79,7 +84,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 				return false;
 			}
 			
-			Hashtable<Block, Integer> neighboringBlockAmounts = new Hashtable<>();
+			Map<Block, Integer> neighboringBlockAmounts = new HashMap<>();
 			for (Direction direction : Direction.values()) {
 				BlockPos targetBlockPos = pos.offset(direction);
 				BlockState currentBlockState = world.getBlockState(targetBlockPos);
@@ -102,7 +107,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 					Block currentBlock = currentBlockState.getBlock();
 					
 					if (currentBlockState.isSolidBlock(world, targetBlockPos)) {
-						if (neighboringBlockAmounts.contains(currentBlock)) {
+						if (neighboringBlockAmounts.containsKey(currentBlock)) {
 							neighboringBlockAmounts.put(currentBlock, neighboringBlockAmounts.get(currentBlock) + 1);
 						} else {
 							neighboringBlockAmounts.put(currentBlock, 1);

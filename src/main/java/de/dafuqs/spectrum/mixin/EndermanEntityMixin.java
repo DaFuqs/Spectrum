@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 @Mixin(EndermanEntity.class)
 public abstract class EndermanEntityMixin {

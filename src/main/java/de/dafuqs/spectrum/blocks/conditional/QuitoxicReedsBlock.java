@@ -39,6 +39,8 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.util.math.random.Random;
+
 import java.util.*;
 
 public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterOrLiquidCrystalLogged {

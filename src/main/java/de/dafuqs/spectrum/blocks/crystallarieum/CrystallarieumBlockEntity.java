@@ -31,7 +31,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -213,7 +212,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	
 	@Override
 	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.crystallarieum");
+		return Text.translatable("block.spectrum.crystallarieum");
 	}
 	
 	@Override

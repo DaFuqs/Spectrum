@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -297,16 +297,16 @@ public class SpectrumMultiblocks {
 		return null;
 	}
 	
-	public static @Nullable TranslatableText getPedestalStructureText(@NotNull PedestalRecipeTier pedestalRecipeTier) {
+	public static @Nullable Text getPedestalStructureText(@NotNull PedestalRecipeTier pedestalRecipeTier) {
 		switch (pedestalRecipeTier) {
 			case COMPLEX -> {
-				return new TranslatableText("multiblock.spectrum.pedestal.complex_structure");
+				return Text.translatable("multiblock.spectrum.pedestal.complex_structure");
 			}
 			case ADVANCED -> {
-				return new TranslatableText("multiblock.spectrum.pedestal.advanced_structure");
+				return Text.translatable("multiblock.spectrum.pedestal.advanced_structure");
 			}
 			case SIMPLE -> {
-				return new TranslatableText("multiblock.spectrum.pedestal.simple_structure");
+				return Text.translatable("multiblock.spectrum.pedestal.simple_structure");
 			}
 		}
 		return null;

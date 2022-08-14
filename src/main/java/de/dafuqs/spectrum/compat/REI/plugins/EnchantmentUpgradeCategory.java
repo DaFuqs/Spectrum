@@ -13,7 +13,6 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class EnchantmentUpgradeCategory implements DisplayCategory<EnchantmentUp
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("container.spectrum.rei.enchantment_upgrading.title");
+		return Text.translatable("container.spectrum.rei.enchantment_upgrading.title");
 	}
 	
 	@Override
@@ -43,8 +42,8 @@ public class EnchantmentUpgradeCategory implements DisplayCategory<EnchantmentUp
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
 		if (!display.isUnlocked()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 38), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 48), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 38), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 48), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			// enchanter structure background					                              destinationX	 destinationY          sourceX, sourceY, width, height
 			widgets.add(Widgets.createTexturedWidget(EnchanterCategory.BACKGROUND_TEXTURE, startPoint.x + 12, startPoint.y + 21, 0, 0, 54, 54));
@@ -73,9 +72,9 @@ public class EnchantmentUpgradeCategory implements DisplayCategory<EnchantmentUp
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 111, startPoint.y + 40)).markOutput().disableBackground().entries(output.get(0)));
 			
 			// required amount
-			TranslatableText text;
+			Text text;
 			if (display.requiredItemCount > 0) {
-				text = new TranslatableText("container.spectrum.rei.enchantment_upgrade.required_item_count", display.requiredItemCount);
+				text = Text.translatable("container.spectrum.rei.enchantment_upgrade.required_item_count", display.requiredItemCount);
 				widgets.add(Widgets.createLabel(new Point(startPoint.x + 67, startPoint.y + 78), text).leftAligned().color(0x3f3f3f).noShadow());
 			}
 		}

@@ -6,7 +6,7 @@ import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.widgets.Widget;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.util.List;
 
@@ -19,14 +19,14 @@ public abstract class BlockToBlockWithChanceCategory implements DisplayCategory<
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
 		if (!display.isUnlocked()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 10), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 20), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 10), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 20), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 27, startPoint.y + 4)));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 61, startPoint.y + 5)));
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 4, startPoint.y + 5)).entries(display.getIn()).markInput());
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 61, startPoint.y + 5)).entries(display.getOut()).disableBackground().markInput());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x + 4, startPoint.y + 30), new TranslatableText("container.spectrum.rei.chance", display.getChance() * 100)).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x + 4, startPoint.y + 30), Text.translatable("container.spectrum.rei.chance", display.getChance() * 100)).leftAligned().color(0x3f3f3f).noShadow());
 		}
 		return widgets;
 	}

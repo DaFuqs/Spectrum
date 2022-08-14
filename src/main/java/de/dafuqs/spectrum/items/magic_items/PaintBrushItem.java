@@ -26,7 +26,6 @@ import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -46,7 +45,7 @@ public class PaintBrushItem extends Item {
 	public static final int INK_FLING_COST = 100;
 	
 	public static final String COLOR_NBT_STRING = "Color";
-	private static final Text GUI_TITLE = new TranslatableText("item.spectrum.paintbrush");
+	private static final Text GUI_TITLE = Text.translatable("item.spectrum.paintbrush");
 	
 	public PaintBrushItem(Settings settings) {
 		super(settings);
@@ -61,7 +60,7 @@ public class PaintBrushItem extends Item {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		Optional<InkColor> color = getColor(stack);
-		color.ifPresent(inkColor -> tooltip.add(new TranslatableText("spectrum.ink.color." + inkColor)));
+		color.ifPresent(inkColor -> tooltip.add(Text.translatable("spectrum.ink.color." + inkColor)));
 	}
 	
 	public static boolean canColor(PlayerEntity player) {

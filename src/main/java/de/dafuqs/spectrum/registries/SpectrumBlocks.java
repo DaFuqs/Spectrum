@@ -95,7 +95,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
@@ -162,7 +162,7 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.WHITE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.MOONSTONE_BLOCK).requiresTool(), SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 	public static final Block SPECTRAL_SHARD_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.SPECTRAL_BLOCK).requiresTool(), SpectrumSoundEvents.SPECTRAL_BLOCK_HIT, SpectrumSoundEvents.SPECTRAL_BLOCK_CHIME);
 	
-	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(FabricBlockSettings.of(Material.METAL, MapColor.GRAY).requiresTool().strength(100.0F, 3600.0F), new TranslatableText("spectrum.tooltip.dragon_and_wither_immune"));
+	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(FabricBlockSettings.of(Material.METAL, MapColor.GRAY).requiresTool().strength(100.0F, 3600.0F), Text.translatable("spectrum.tooltip.dragon_and_wither_immune"));
 	
 	public static final Block BISMUTH_CLUSTER = new BismuthClusterBlock(9, 3, null, FabricBlockSettings.of(Material.AMETHYST).mapColor(MapColor.DARK_AQUA).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.CHAIN));
 	public static final Block LARGE_BISMUTH_BUD = new BismuthClusterBlock(5, 3, BISMUTH_CLUSTER.getDefaultState(), FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));

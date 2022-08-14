@@ -12,7 +12,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public abstract class GatedItemInformationDisplay extends BasicDisplay implement
 	protected final List<EntryIngredient> input;
 	protected final Identifier requiredAdvancementIdentifier;
 	protected final Item item;
-	protected final TranslatableText description;
+	protected final Text description;
 	
 	public GatedItemInformationDisplay(DescriptiveGatedRecipe recipe) {
 		super(recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new)), Collections.emptyList());

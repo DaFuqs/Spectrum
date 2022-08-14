@@ -16,9 +16,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.entity.passive.HorseBaseEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
@@ -143,7 +143,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 				hatchedMobEntity.playSpawnEffects();
 			}
 			if (this.ownerUUID != null) {
-				if (hatchedEntity.get() instanceof HorseBaseEntity horseBaseEntity) {
+				if (hatchedEntity.get() instanceof AbstractHorseEntity horseBaseEntity) {
 					horseBaseEntity.setOwnerUuid(this.ownerUUID);
 				} else if (hatchedEntity.get() instanceof FoxEntity foxEntity) {
 					((FoxEntityAccessor) foxEntity).invokeAddTrustedUuid(this.ownerUUID);

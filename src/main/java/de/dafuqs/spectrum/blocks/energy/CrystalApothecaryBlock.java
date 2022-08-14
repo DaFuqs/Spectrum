@@ -14,7 +14,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -43,7 +42,7 @@ public class CrystalApothecaryBlock extends BlockWithEntity {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.crystal_apothecary.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("block.spectrum.crystal_apothecary.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override

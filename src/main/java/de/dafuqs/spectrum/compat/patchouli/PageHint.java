@@ -11,7 +11,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import vazkii.patchouli.api.IVariable;
@@ -67,7 +66,7 @@ public class PageHint extends BookPage {
 			revealProgress = -1;
 			displayedText = calculateTextToRender(rawText);
 			
-			PaymentButtonWidget paymentButtonWidget = new PaymentButtonWidget(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35, 100, 20, LiteralText.EMPTY, this::paymentButtonClicked, this);
+			PaymentButtonWidget paymentButtonWidget = new PaymentButtonWidget(GuiBook.PAGE_WIDTH / 2 - 50, GuiBook.PAGE_HEIGHT - 35, 100, 20, Text.empty(), this::paymentButtonClicked, this);
 			addButton(paymentButtonWidget);
 		} else {
 			displayedText = rawText;
@@ -80,11 +79,11 @@ public class PageHint extends BookPage {
 		if (revealProgress == 0) {
 			return text;
 		} else if (revealProgress < 0) {
-			return new LiteralText("$(obf)" + text.getString());
+			return Text.literal("$(obf)" + text.getString());
 		}
 		
 		// Show a new letter each tick
-		LiteralText calculatedText = new LiteralText(text.asString().substring(0, (int) revealProgress) + "$(obf)" + text.asString().substring((int) revealProgress));
+		Text calculatedText = Text.literal(text.asString().substring(0, (int) revealProgress) + "$(obf)" + text.asString().substring((int) revealProgress));
 		
 		long currentTime = MinecraftClient.getInstance().world.getTime();
 		if (currentTime != lastRevealTick) {

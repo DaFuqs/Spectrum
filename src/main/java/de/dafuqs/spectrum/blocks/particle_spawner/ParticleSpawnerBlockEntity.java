@@ -22,7 +22,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3f;
@@ -32,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
 	
@@ -192,7 +191,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	
 	@Override
 	public Text getDisplayName() {
-		return new TranslatableText("block.spectrum.particle_spawner");
+		return Text.translatable("block.spectrum.particle_spawner");
 	}
 	
 	public void writeSettings(@NotNull PacketByteBuf packetByteBuf) {

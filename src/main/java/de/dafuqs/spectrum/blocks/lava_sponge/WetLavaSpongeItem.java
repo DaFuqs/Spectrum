@@ -9,13 +9,12 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class WetLavaSpongeItem extends BlockItem {
 	
@@ -56,7 +55,7 @@ public class WetLavaSpongeItem extends BlockItem {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		tooltip.add(new TranslatableText("item.spectrum.wet_lava_sponge.tooltip"));
+		tooltip.add(Text.translatable("item.spectrum.wet_lava_sponge.tooltip"));
 	}
 	
 }

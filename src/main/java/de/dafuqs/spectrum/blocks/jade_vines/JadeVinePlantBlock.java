@@ -39,7 +39,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class JadeVinePlantBlock extends Block implements JadeVine {
 	
@@ -113,7 +113,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		JadeVinesGrowthStage growthStage = JadeVinesGrowthStage.fromAge(state.get(AGE));
 		
 		if (growthStage.isFullyGrown()) {
-			for (ItemStack handStack : player.getItemsHand()) {
+			for (ItemStack handStack : player.getHandItems()) {
 				if (handStack.isOf(Items.GLASS_BOTTLE)) {
 					if (world.isClient) {
 						return ActionResult.SUCCESS;

@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.energy.color;
 
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
+
+import net.minecraft.util.math.random.Random;
 
 import java.util.*;
 
@@ -66,8 +68,8 @@ public abstract class InkColor {
 		return dyeColor.getId();
 	}
 	
-	public TranslatableText getName() {
-		return new TranslatableText("spectrum.ink.color." + this);
+	public Text getName() {
+		return Text.translatable("spectrum.ink.color." + this);
 	}
 	
 	public Vec3f getColor() {

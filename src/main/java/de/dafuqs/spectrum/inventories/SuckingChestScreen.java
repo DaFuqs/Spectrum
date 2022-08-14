@@ -52,7 +52,7 @@ public class SuckingChestScreen extends HandledScreen<SuckingChestScreenHandler>
 		super.render(matrices, mouseX, mouseY, delta);
 		
 		/*if(mouseX > x+153 && mouseX < x+153+16 && mouseY > y+5 && mouseY < y+5+16) {
-			this.renderTooltip(matrices, new TranslatableText("block.spectrum.compacting_chest.toggle_crafting_mode"), mouseX, mouseY);
+			this.renderTooltip(matrices, Text.translatable("block.spectrum.compacting_chest.toggle_crafting_mode"), mouseX, mouseY);
 		} else {
 		
 		}*/

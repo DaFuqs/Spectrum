@@ -315,7 +315,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		if (world instanceof ServerWorld) {
 			for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
 				if (world.getBlockState(currPos).isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-					this.blockPosEventTransferListener.acceptEvent(world, currPos, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, null, this.pos);
+					this.blockPosEventTransferListener.acceptEvent(world, currPos, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, null, Vec3d.ofCenter(this.pos));
 				}
 			}
 		}

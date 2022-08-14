@@ -6,6 +6,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.AbstractSoundInstance;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -27,7 +28,7 @@ public class InkProjectileSoundInstance extends AbstractSoundInstance implements
 	private boolean done;
 	
 	protected InkProjectileSoundInstance(SoundEvent soundEvent, RegistryKey<World> worldKey, InkProjectileEntity inkProjectile) {
-		super(soundEvent, SoundCategory.NEUTRAL);
+		super(soundEvent, SoundCategory.NEUTRAL, SoundInstance.createRandom());
 		
 		this.worldKey = worldKey;
 		this.inkProjectile = inkProjectile;

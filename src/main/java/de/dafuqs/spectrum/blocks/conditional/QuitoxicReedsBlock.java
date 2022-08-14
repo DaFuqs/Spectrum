@@ -28,6 +28,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -188,8 +189,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	}
 	
 	private Optional<BlockPos> searchClayPos(World world, @NotNull BlockPos searchPos, BlockState searchBlockState, Random random) {
-		List<Direction> directions = new ArrayList<>(List.of(Direction.values()));
-		Collections.shuffle(directions, random);
+		List<Direction> directions = Util.copyShuffled(Direction.values(), random);
 		
 		int i = 0;
 		int range = 8;
@@ -258,8 +258,4 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 		return 0.15F;
 	}
 	
-	@Override
-	public OffsetType getOffsetType() {
-		return OffsetType.XYZ;
-	}
 }

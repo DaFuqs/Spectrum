@@ -13,6 +13,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.DustParticleEffect;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -101,9 +102,9 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 		builder.add(FACING, POWERED, SENDER, CHANNEL);
 	}
 	
-	@Override
 	@Nullable
-	public <T extends BlockEntity> GameEventListener getGameEventListener(World world, T blockEntity) {
+	@Override
+	public <T extends BlockEntity> GameEventListener getGameEventListener(ServerWorld world, T blockEntity) {
 		return blockEntity instanceof RedstoneWirelessBlockEntity ? ((RedstoneWirelessBlockEntity) blockEntity).getEventListener() : null;
 	}
 	

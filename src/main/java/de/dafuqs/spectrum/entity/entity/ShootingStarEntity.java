@@ -97,6 +97,10 @@ public class ShootingStarEntity extends Entity {
 		this.lastCollisionCount = entity.lastCollisionCount;
 	}
 	
+	public Random getRandom() {
+		return this.random;
+	}
+	
 	public static void doShootingStarSpawns(@NotNull ServerWorld serverWorld) {
 		if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverWorld.getRegistryKey().getValue().toString())) {
 			if (serverWorld.getTime() % 100 == 0) {
@@ -184,7 +188,7 @@ public class ShootingStarEntity extends Entity {
 	
 	public void tick() {
 		super.tick();
-		this.tickNetherPortal();
+		this.tickPortal();
 		
 		boolean wasOnGround = this.onGround;
 		double previousXVelocity = this.getVelocity().getX();
@@ -431,7 +435,7 @@ public class ShootingStarEntity extends Entity {
 					
 					return true;
 				} else {
-					this.emitGameEvent(GameEvent.ENTITY_DAMAGED, attacker);
+					this.emitGameEvent(GameEvent.ENTITY_DAMAGE, attacker);
 				}
 			}
 			

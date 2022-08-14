@@ -8,6 +8,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.AbstractSoundInstance;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -24,7 +25,7 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 	private boolean done;
 	
 	public TakeOffBeltSoundInstance() {
-		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS);
+		super(SpectrumSoundEvents.AIR_LAUNCH_BELT_CHARGING, SoundCategory.PLAYERS, SoundInstance.createRandom());
 		PlayerEntity player = MinecraftClient.getInstance().player;
 		this.repeat = false;
 		this.repeatDelay = 0;

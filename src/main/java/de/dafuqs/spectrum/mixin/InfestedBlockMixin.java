@@ -20,8 +20,8 @@ public class InfestedBlockMixin {
 	/*
 	 * Do not spawn silverfish when block is broken with Resonance Tool
 	 */
-	@Inject(at = @At("HEAD"), method = "onStacksDropped(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;)V", cancellable = true)
-	public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, CallbackInfo ci) {
+	@Inject(at = @At("HEAD"), method = "onStacksDropped(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/item/ItemStack;Z)V", cancellable = true)
+	public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack, boolean dropExperience, CallbackInfo ci) {
 		if (EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
 			ci.cancel();
 		} else if (EnchantmentHelper.getLevel(SpectrumEnchantments.PEST_CONTROL, stack) > 0) {

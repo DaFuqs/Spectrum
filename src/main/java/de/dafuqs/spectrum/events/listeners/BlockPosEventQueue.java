@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
@@ -17,7 +18,7 @@ public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry
 	}
 	
 	@Override
-	public void acceptEvent(World world, BlockPos pos, GameEvent event, Entity entity, BlockPos sourcePos) {
+	public void acceptEvent(World world, BlockPos pos, GameEvent event, Entity entity, Vec3d sourcePos) {
 		if (world instanceof ServerWorld) {
 			EventEntry eventEntry = new EventEntry(event, new BlockPos(pos.getX(), pos.getY(), pos.getZ()), MathHelper.floor(Math.sqrt(pos.getSquaredDistance(sourcePos)))); // copy
 			int delay = eventEntry.distance * 2;

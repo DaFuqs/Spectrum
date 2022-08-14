@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.sound.AbstractSoundInstance;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -17,7 +18,7 @@ public class NaturesStaffUseSoundInstance extends AbstractSoundInstance implemen
 	private boolean done;
 	
 	public NaturesStaffUseSoundInstance(PlayerEntity player) {
-		super(SpectrumSoundEvents.NATURES_STAFF_USE, SoundCategory.PLAYERS);
+		super(SpectrumSoundEvents.NATURES_STAFF_USE, SoundCategory.PLAYERS, SoundInstance.createRandom());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 0.3F;

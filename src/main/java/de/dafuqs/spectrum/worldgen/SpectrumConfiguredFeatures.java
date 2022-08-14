@@ -15,6 +15,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.tag.BiomeTags;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
@@ -28,6 +29,7 @@ import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
@@ -195,20 +197,7 @@ public class SpectrumConfiguredFeatures {
 				BiomePlacementModifier.of()
 		);
 		
-		Predicate<BiomeSelectionContext> treeBiomes = BiomeSelectors.categories(
-				Biome.Category.PLAINS,
-				Biome.Category.EXTREME_HILLS,
-				Biome.Category.JUNGLE,
-				Biome.Category.FOREST,
-				Biome.Category.SWAMP,
-				Biome.Category.MESA,
-				Biome.Category.MOUNTAIN,
-				Biome.Category.DESERT,
-				Biome.Category.ICY,
-				Biome.Category.SAVANNA,
-				Biome.Category.TAIGA);
-		
-		BiomeModifications.addFeature(treeBiomes, GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.excludeByKey(BiomeKeys.MUSHROOM_FIELDS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
 	}
 	
 	private static void registerGeodes() {
@@ -301,7 +290,7 @@ public class SpectrumConfiguredFeatures {
 				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
 		);
 
-		BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.IS_OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
 		
 		// QUITOXIC REED
 		Identifier quitoxicReedsIdentifier = SpectrumCommon.locate("quitoxic_reeds");
@@ -336,7 +325,7 @@ public class SpectrumConfiguredFeatures {
 				PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
 				BiomePlacementModifier.of()
 		);
-		BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, cloversIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.VILLAGE_PLAINS_HAS_STRUCTURE), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, cloversIdentifier));
 	}
 	
 	public static final class Rules {

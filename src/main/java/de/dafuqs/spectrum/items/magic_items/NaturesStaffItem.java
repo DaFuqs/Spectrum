@@ -219,7 +219,6 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 		if (MinecraftClient.getInstance().crosshairTarget.getType() == HitResult.Type.BLOCK) {
 			MinecraftClient.getInstance().interactionManager.interactBlock(
 					MinecraftClient.getInstance().player,
-					MinecraftClient.getInstance().world,
 					MinecraftClient.getInstance().player.getActiveHand(),
 					(BlockHitResult) MinecraftClient.getInstance().crosshairTarget
 			);

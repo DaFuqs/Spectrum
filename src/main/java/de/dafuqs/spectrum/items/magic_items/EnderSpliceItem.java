@@ -175,8 +175,8 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 			
 			// make sure the sound plays even when the player currently teleports
 			if (playerEntity instanceof ServerPlayerEntity) {
-				((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.PLAYER_TELEPORTS.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
-				((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SoundEvents.BLOCK_GLASS_BREAK.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
+				world.playSound(null, playerEntity.getBlockPos(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F); // TODO: test
+				world.playSound(null, playerEntity.getBlockPos(), SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F); // TODO: test
 			}
 		}
 	}

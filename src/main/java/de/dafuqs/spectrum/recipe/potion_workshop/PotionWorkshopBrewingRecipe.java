@@ -137,7 +137,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	@Override
 	public ItemStack getOutput() {
 		if (this.cachedOutput == null) {
-			this.cachedOutput = brewRandomPotion(new PotionMod(), null, new Random());
+			this.cachedOutput = brewRandomPotion(new PotionMod(), null, Random.create());
 		}
 		return this.cachedOutput;
 	}

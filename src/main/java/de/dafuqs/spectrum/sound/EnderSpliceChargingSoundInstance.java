@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.sound.AbstractSoundInstance;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
@@ -21,7 +22,7 @@ public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance impl
 	private boolean done;
 	
 	public EnderSpliceChargingSoundInstance(PlayerEntity player) {
-		super(SpectrumSoundEvents.ENDER_SPLICE_CHARGES, SoundCategory.NEUTRAL);
+		super(SpectrumSoundEvents.ENDER_SPLICE_CHARGES, SoundCategory.NEUTRAL, SoundInstance.createRandom());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 0.6F;

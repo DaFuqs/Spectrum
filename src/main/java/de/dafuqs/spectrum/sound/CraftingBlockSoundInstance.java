@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.AbstractSoundInstance;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -35,7 +36,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	private boolean done;
 	
 	protected CraftingBlockSoundInstance(SoundEvent soundEvent, RegistryKey<World> worldKey, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
-		super(soundEvent, SoundCategory.BLOCKS);
+		super(soundEvent, SoundCategory.BLOCKS, SoundInstance.createRandom());
 		
 		this.worldKey = worldKey;
 		this.sourceBlockPos = sourceBlockPos;

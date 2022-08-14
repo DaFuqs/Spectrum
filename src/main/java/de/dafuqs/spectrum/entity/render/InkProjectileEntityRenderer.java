@@ -32,7 +32,7 @@ public class InkProjectileEntityRenderer extends EntityRenderer<InkProjectileEnt
 		matrixStack.push();
 		Vec3f starColor = InkColor.of(DyeColor.byId(tEntity.getColor())).getColor();
 		
-		double time = (tEntity.world.getTime() % 24000) + tickDelta + new Random(tEntity.getId()).nextInt(200);
+		double time = (tEntity.world.getTime() % 24000) + tickDelta + Random.create(tEntity.getId()).nextInt(200);
 		float scale = 0.75F + 0.1F * (float) Math.sin(time / 10);
 		matrixStack.scale(scale, scale, scale);
 		

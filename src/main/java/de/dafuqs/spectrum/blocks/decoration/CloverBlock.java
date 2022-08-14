@@ -23,10 +23,6 @@ public class CloverBlock extends FernBlock {
 		return SHAPE;
 	}
 	
-	public AbstractBlock.OffsetType getOffsetType() {
-		return OffsetType.XZ;
-	}
-	
 	@Override
 	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
 		return super.isFertilizable(world, pos, state, isClient);

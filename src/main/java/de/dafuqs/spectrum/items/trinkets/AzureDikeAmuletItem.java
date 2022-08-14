@@ -10,7 +10,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -26,7 +25,7 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-		tooltip.add(new TranslatableText("item.spectrum.azure_dike_provider.tooltip", maxAzureDike(stack)));
+		tooltip.add(Text.translatable("item.spectrum.azure_dike_provider.tooltip", maxAzureDike(stack)));
 		super.appendTooltip(stack, world, tooltip, context);
 	}
 	

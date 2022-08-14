@@ -10,7 +10,7 @@ import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 import vazkii.patchouli.client.book.gui.BookTextRenderer;
@@ -64,7 +64,7 @@ public class PageCrystallarieumGrowing extends PageDoubleRecipeRegistry<Crystall
 
 		// catalyst text
 		if(textRenderer == null) {
-			textRenderer = new BookTextRenderer(parent, new TranslatableText("container.spectrum.patchouli.crystallarieum.catalyst"), 0, 38);
+			textRenderer = new BookTextRenderer(parent, Text.translatable("container.spectrum.patchouli.crystallarieum.catalyst"), 0, 38);
 		}
 		textRenderer.render(ms, mouseX, mouseY);
 		

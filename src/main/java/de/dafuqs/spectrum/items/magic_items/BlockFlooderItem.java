@@ -9,7 +9,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -45,10 +44,10 @@ public class BlockFlooderItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.block_flooder.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.block_flooder.tooltip2").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.block_flooder.tooltip3").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.block_flooder.tooltip4").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.block_flooder.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.block_flooder.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.block_flooder.tooltip3").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.block_flooder.tooltip4").formatted(Formatting.GRAY));
 	}
 	
 }

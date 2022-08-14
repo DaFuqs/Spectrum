@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -171,9 +170,9 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	
 	protected Text getContainerName() {
 		if (hasOwner()) {
-			return new TranslatableText("block.spectrum.ender_hopper").append(new TranslatableText("container.spectrum.owned_by_player", this.ownerName));
+			return Text.translatable("block.spectrum.ender_hopper").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
 		} else {
-			return new TranslatableText("block.spectrum.ender_hopper");
+			return Text.translatable("block.spectrum.ender_hopper");
 		}
 	}
 	

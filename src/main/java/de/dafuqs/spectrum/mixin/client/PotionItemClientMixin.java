@@ -8,7 +8,6 @@ import net.minecraft.item.TippedArrowItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,7 +23,7 @@ public class PotionItemClientMixin {
 	private void spectrum$makePotionUnidentifiable(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {
 		NbtCompound nbtCompound = stack.getNbt();
 		if (nbtCompound != null && nbtCompound.contains("spectrum_unidentifiable", NbtElement.BYTE_TYPE) && nbtCompound.getBoolean("spectrum_unidentifiable")) {
-			tooltip.add(new TranslatableText("item.spectrum.potion.tooltip.unidentifiable"));
+			tooltip.add(Text.translatable("item.spectrum.potion.tooltip.unidentifiable"));
 			ci.cancel();
 		}
 	}

@@ -16,7 +16,6 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -73,15 +72,15 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.ashen_circlet.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.ashen_circlet.tooltip2").formatted(Formatting.GRAY));
 		
 		if (world != null) {
 			long cooldownTicks = getCooldownTicks(stack, world);
 			if (cooldownTicks == 0) {
-				tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip.cooldown_full"));
+				tooltip.add(Text.translatable("item.spectrum.ashen_circlet.tooltip.cooldown_full"));
 			} else {
-				tooltip.add(new TranslatableText("item.spectrum.ashen_circlet.tooltip.cooldown_seconds", cooldownTicks / 20));
+				tooltip.add(Text.translatable("item.spectrum.ashen_circlet.tooltip.cooldown_seconds", cooldownTicks / 20));
 			}
 		}
 	}

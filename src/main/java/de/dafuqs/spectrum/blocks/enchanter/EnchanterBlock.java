@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -60,7 +60,7 @@ public class EnchanterBlock extends BlockWithEntity {
 				if (currentMultiBlock == multiblock) {
 					PatchouliAPI.get().clearMultiblock();
 				} else {
-					PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.enchanter.structure"), blockPos.down(4), BlockRotation.NONE);
+					PatchouliAPI.get().showMultiblock(multiblock, Text.translatable("multiblock.spectrum.enchanter.structure"), blockPos.down(4), BlockRotation.NONE);
 				}
 			}
 		}

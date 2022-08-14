@@ -8,7 +8,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.math.Vec3d;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 @Environment(EnvType.CLIENT)
 public class WindParticle extends SpriteBillboardParticle {

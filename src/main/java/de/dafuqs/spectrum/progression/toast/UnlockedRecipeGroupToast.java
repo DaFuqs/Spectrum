@@ -19,7 +19,6 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,15 +43,15 @@ public class UnlockedRecipeGroupToast implements Toast {
 		this.soundPlayed = false;
 	}
 	
-	public static void showRecipeToast(@NotNull MinecraftClient client, ItemStack itemStack, TranslatableText title) {
+	public static void showRecipeToast(@NotNull MinecraftClient client, ItemStack itemStack, Text title) {
 		Text text = getTextForItemStack(itemStack);
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, new ArrayList<>() {{
 			add(itemStack);
 		}}));
 	}
 	
-	public static void showRecipeGroupToast(@NotNull MinecraftClient client, String groupName, List<ItemStack> itemStacks, TranslatableText title) {
-		Text text = new TranslatableText("recipeGroup.spectrum." + groupName);
+	public static void showRecipeGroupToast(@NotNull MinecraftClient client, String groupName, List<ItemStack> itemStacks, Text title) {
+		Text text = Text.translatable("recipeGroup.spectrum." + groupName);
 		client.getToastManager().add(new UnlockedRecipeGroupToast(title, text, itemStacks));
 	}
 	
@@ -64,14 +63,14 @@ public class UnlockedRecipeGroupToast implements Toast {
 			Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
 			if (enchantments.size() > 0) {
 				Map.Entry<Enchantment, Integer> firstEnchantment = enchantments.entrySet().iterator().next();
-				return new TranslatableText(firstEnchantment.getKey().getTranslationKey());
+				return Text.translatable(firstEnchantment.getKey().getTranslationKey());
 			}
 		} else if (itemStack.isOf(Items.POTION)) {
 			// special handling for potions
 			// use the name of the first custom potion effect
 			List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(itemStack);
 			if (effects.size() > 0) {
-				return new TranslatableText(effects.get(0).getTranslationKey()).append(" ").append(new TranslatableText("item.minecraft.potion"));
+				return Text.translatable(effects.get(0).getTranslationKey()).append(" ").append(Text.translatable("item.minecraft.potion"));
 			}
 		}
 		return itemStack.getName();

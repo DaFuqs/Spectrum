@@ -47,7 +47,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -56,6 +55,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import net.minecraft.util.math.random.Random;
 
 import java.util.*;
 
@@ -162,7 +163,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	
 	@Override
 	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.cinderhearth");
+		return Text.translatable("block.spectrum.cinderhearth");
 	}
 	
 	@Override

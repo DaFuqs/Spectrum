@@ -9,7 +9,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -63,8 +63,8 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	}
 	
 	@Override
-	public TranslatableText getOutputLoreText() {
-		return new TranslatableText("recipe.spectrum.spawner.lore.changed_creature");
+	public Text getOutputLoreText() {
+		return Text.translatable("recipe.spectrum.spawner.lore.changed_creature");
 	}
 	
 	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {

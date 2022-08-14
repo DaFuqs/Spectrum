@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -72,7 +72,7 @@ public class EnderDropperBlock extends DispenserBlock {
 					
 					PiglinBrain.onGuardedBlockInteracted(player, true);
 				} else {
-					player.sendMessage(new TranslatableText("block.spectrum.ender_dropper_with_owner", enderDropperBlockEntity.getOwnerName()), false);
+					player.sendMessage(Text.translatable("block.spectrum.ender_dropper_with_owner", enderDropperBlockEntity.getOwnerName()), false);
 				}
 			}
 			return ActionResult.CONSUME;

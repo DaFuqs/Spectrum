@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 public class PotionWorkshopCraftingCategory extends PotionWorkshopCategory {
@@ -21,7 +20,7 @@ public class PotionWorkshopCraftingCategory extends PotionWorkshopCategory {
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("container.spectrum.rei.potion_workshop_crafting.title");
+		return Text.translatable("container.spectrum.rei.potion_workshop_crafting.title");
 	}
 	
 }

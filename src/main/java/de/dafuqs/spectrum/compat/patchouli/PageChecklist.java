@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.patchouli;
 import com.google.gson.annotations.SerializedName;
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import vazkii.patchouli.api.IVariable;
@@ -55,7 +54,7 @@ public class PageChecklist extends BookPage {
 		
 		if (title == null) {
 			title = "";
-			titleText = new LiteralText("");
+			titleText = Text.literal("");
 		} else {
 			titleText = i18nText(title);
 		}

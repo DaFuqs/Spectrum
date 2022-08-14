@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.block.ChestAnimationProgress;
+import net.minecraft.block.entity.LidOpenable;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -21,7 +21,7 @@ import net.minecraft.util.math.Vec3f;
 import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
-public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & ChestAnimationProgress> implements BlockEntityRenderer<T> {
+public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidOpenable> implements BlockEntityRenderer<T> {
 	
 	protected final ModelPart singleChestLid;
 	protected final ModelPart singleChestBase;

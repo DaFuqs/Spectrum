@@ -22,7 +22,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
@@ -58,7 +57,7 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.take_off_belt.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.take_off_belt.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override

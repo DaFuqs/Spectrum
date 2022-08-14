@@ -43,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock, PaintbrushTriggered {
 	

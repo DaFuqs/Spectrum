@@ -7,7 +7,6 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 
 public class PotionWorkshopReactingCategory extends GatedItemInformationPageCategory {
 	
@@ -20,7 +19,7 @@ public class PotionWorkshopReactingCategory extends GatedItemInformationPageCate
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("container.spectrum.rei.potion_workshop_reacting.title");
+		return Text.translatable("container.spectrum.rei.potion_workshop_reacting.title");
 	}
 	
 	@Override

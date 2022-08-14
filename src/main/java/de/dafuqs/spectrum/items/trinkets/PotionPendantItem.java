@@ -11,9 +11,8 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtil;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -44,10 +43,10 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 		if (effects.size() > 0) {
 			List<Pair<EntityAttribute, EntityAttributeModifier>> attributeModifiers = Lists.newArrayList();
 			for (StatusEffectInstance effect : effects) {
-				TranslatableText mutableText = new TranslatableText(effect.getTranslationKey());
+				MutableText mutableText = Text.translatable(effect.getTranslationKey());
 				
 				if (effect.getAmplifier() > 0) {
-					mutableText = new TranslatableText("potion.withAmplifier", mutableText, new TranslatableText("potion.potency." + effect.getAmplifier()));
+					mutableText = Text.translatable("potion.withAmplifier", mutableText, Text.translatable("potion.potency." + effect.getAmplifier()));
 				}
 				tooltip.add(mutableText.formatted(effect.getEffectType().getCategory().getFormatting()));
 				
@@ -61,8 +60,8 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 			}
 			
 			if (!attributeModifiers.isEmpty()) {
-				tooltip.add(LiteralText.EMPTY);
-				tooltip.add((new TranslatableText("potion.whenDrank")).formatted(Formatting.DARK_PURPLE));
+				tooltip.add(Text.empty());
+				tooltip.add((Text.translatable("potion.whenDrank")).formatted(Formatting.DARK_PURPLE));
 				
 				for (Pair<EntityAttribute, EntityAttributeModifier> entityAttributeEntityAttributeModifierPair : attributeModifiers) {
 					EntityAttributeModifier mutableText = entityAttributeEntityAttributeModifierPair.getSecond();
@@ -75,10 +74,10 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 					}
 					
 					if (statusEffect > 0.0D) {
-						tooltip.add((new TranslatableText("attribute.modifier.plus." + mutableText.getOperation().getId(), ItemStack.MODIFIER_FORMAT.format(d), new TranslatableText((entityAttributeEntityAttributeModifierPair.getFirst()).getTranslationKey()))).formatted(Formatting.BLUE));
+						tooltip.add((Text.translatable("attribute.modifier.plus." + mutableText.getOperation().getId(), ItemStack.MODIFIER_FORMAT.format(d), Text.translatable((entityAttributeEntityAttributeModifierPair.getFirst()).getTranslationKey()))).formatted(Formatting.BLUE));
 					} else if (statusEffect < 0.0D) {
 						d *= -1.0D;
-						tooltip.add((new TranslatableText("attribute.modifier.take." + mutableText.getOperation().getId(), ItemStack.MODIFIER_FORMAT.format(d), new TranslatableText((entityAttributeEntityAttributeModifierPair.getFirst()).getTranslationKey()))).formatted(Formatting.RED));
+						tooltip.add((Text.translatable("attribute.modifier.take." + mutableText.getOperation().getId(), ItemStack.MODIFIER_FORMAT.format(d), Text.translatable((entityAttributeEntityAttributeModifierPair.getFirst()).getTranslationKey()))).formatted(Formatting.RED));
 					}
 				}
 			}
@@ -87,11 +86,11 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 		int maxEffectCount = maxEffectCount();
 		if (effects.size() < maxEffectCount) {
 			if (maxEffectCount == 1) {
-				tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_not_full_one"));
+				tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_not_full_one"));
 			} else {
-				tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
+				tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
 			}
-			tooltip.add(new TranslatableText("item.spectrum.potion_pendant.tooltip_max_level").append(new TranslatableText("enchantment.level." + (this.maxAmplifier + 1))));
+			tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_max_level").append(Text.translatable("enchantment.level." + (this.maxAmplifier + 1))));
 		}
 	}
 	

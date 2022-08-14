@@ -24,7 +24,7 @@ import net.minecraft.world.explosion.Explosion;
 
 import java.util.Hashtable;
 import java.util.Map;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class LightningStoneBlock extends Block implements RevelationAware {
 	

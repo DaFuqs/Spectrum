@@ -14,7 +14,6 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -47,8 +46,8 @@ public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillin
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
 		if (!display.isUnlocked()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 13), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 23), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 13), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 23), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			List<EntryIngredient> output = display.getOutputEntries();
 			
@@ -70,11 +69,11 @@ public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillin
 			
 			// description text
 			// special handling for "1 second". Looks nicer
-			TranslatableText text;
+			Text text;
 			if (display.craftingTime == 20) {
-				text = new TranslatableText("container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp", 1, display.experience);
+				text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_one_second_and_xp", 1, display.experience);
 			} else {
-				text = new TranslatableText("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
+				text = Text.translatable("container.spectrum.rei.pedestal_crafting.crafting_time_and_xp", (display.craftingTime / 20), display.experience);
 			}
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 39), text).leftAligned().color(0x3f3f3f).noShadow());
 		}

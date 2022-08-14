@@ -13,7 +13,7 @@ import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.util.List;
 import java.util.Map;
@@ -65,7 +65,7 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 		String readableCurrentTotalString = Support.getShortenedNumberString(currentTotal);
 		String percent = Support.getSensiblePercent(this.inkStorage.getCurrentTotal(), (this.inkStorage.getMaxTotal()));
 		screen.renderTooltip(matrices,
-				List.of(new TranslatableText("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
+				List.of(Text.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
 				Optional.empty(), x, y);
 	}
 	

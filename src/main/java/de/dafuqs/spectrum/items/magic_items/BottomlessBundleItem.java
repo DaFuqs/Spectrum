@@ -33,7 +33,6 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
@@ -317,22 +316,22 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 		int storedAmount = getStoredAmount(stack);
 		if (storedAmount == 0) {
-			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.empty").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.empty").formatted(Formatting.GRAY));
 			if(locked) {
-				tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.locked").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.locked").formatted(Formatting.GRAY));
 			}
 		} else {
 			ItemStack firstStack = getFirstBundledStack(stack);
 			String totalStacks = Support.getShortenedNumberString(storedAmount / (float) firstStack.getMaxCount());
-			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.count", storedAmount, getMaxStoredAmount(stack), totalStacks).formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.count", storedAmount, getMaxStoredAmount(stack), totalStacks).formatted(Formatting.GRAY));
 			if(locked) {
-				tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.locked").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.locked").formatted(Formatting.GRAY));
 			} else {
-				tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
 			}
 		}
 		if (EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, stack) > 0) {
-			tooltip.add(new TranslatableText("item.spectrum.void_bundle.tooltip.voiding"));
+			tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.voiding"));
 		}
 	}
 	

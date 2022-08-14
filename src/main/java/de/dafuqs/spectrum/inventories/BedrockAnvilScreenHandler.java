@@ -17,7 +17,7 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.world.WorldEvents;
 import org.apache.commons.lang3.StringUtils;
 
@@ -307,7 +307,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 					outputStack.removeCustomName();
 				}
 			} else if (!this.newItemName.equals(itemStack.getName().getString())) {
-				outputStack.setCustomName(new LiteralText(this.newItemName));
+				outputStack.setCustomName(Text.literal(this.newItemName));
 				renamed = true;
 			}
 			
@@ -318,7 +318,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 					loreChanged = true;
 				}
 			} else {
-				List<LiteralText> lore = LoreHelper.getLoreTextArrayFromString(this.newLoreString);
+				List<Text> lore = LoreHelper.getLoreTextArrayFromString(this.newLoreString);
 				if (!LoreHelper.equalsLore(lore, itemStack)) {
 					LoreHelper.setLore(outputStack, lore);
 					loreChanged = true;
@@ -359,7 +359,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 			if (StringUtils.isBlank(newItemName)) {
 				itemStack.removeCustomName();
 			} else {
-				itemStack.setCustomName(new LiteralText(this.newItemName));
+				itemStack.setCustomName(Text.literal(this.newItemName));
 			}
 		}
 		this.updateResult();

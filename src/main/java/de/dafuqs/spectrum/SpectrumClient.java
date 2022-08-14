@@ -27,7 +27,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -90,7 +90,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
-				lines.add(new TranslatableText("spectrum.tooltip.coming_soon"));
+				lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
 			}
 		});
 

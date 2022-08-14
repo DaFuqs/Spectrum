@@ -3,8 +3,8 @@ package de.dafuqs.spectrum.loot;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.loot.conditions.*;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.entity.passive.AxolotlEntity;
 import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.MooshroomEntity;
@@ -106,106 +106,106 @@ public class EnchantmentDrops {
 	}};
 	
 	public static void setup() {
-		LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
+		LootTableEvents.MODIFY.register(((resourceManager, lootManager, id, supplier, setter) -> {
 			// TREASURE HUNTER POOLS
 			if (trophyHunterLootPools.containsKey(id)) {
 				TreasureHunterDropDefinition treasureHunterDropDefinition = trophyHunterLootPools.get(id);
-				supplier.withPool(getLootPool(treasureHunterDropDefinition));
+				supplier.pool(getLootPool(treasureHunterDropDefinition));
 			// Some entity types use custom loot conditions
 			// because vanillas are too generic (fox/snow fox both use "fox" loot table)
 			} else if (id.equals(new Identifier("entities/fox"))) {
-				supplier.withPool(getFoxLootPool(FoxEntity.Type.RED, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FOX).asItem(), 0.01F));
-				supplier.withPool(getFoxLootPool(FoxEntity.Type.SNOW, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FOX_ARCTIC).asItem(), 0.01F));
+				supplier.pool(getFoxLootPool(FoxEntity.Type.RED, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FOX).asItem(), 0.01F));
+				supplier.pool(getFoxLootPool(FoxEntity.Type.SNOW, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FOX_ARCTIC).asItem(), 0.01F));
 			} else if (id.equals(new Identifier("entities/mooshroom"))) {
-				supplier.withPool(getMooshroomLootPool(MooshroomEntity.Type.BROWN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.MOOSHROOM_BROWN).asItem(), 0.01F));
-				supplier.withPool(getMooshroomLootPool(MooshroomEntity.Type.RED, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.MOOSHROOM_RED).asItem(), 0.01F));
+				supplier.pool(getMooshroomLootPool(MooshroomEntity.Type.BROWN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.MOOSHROOM_BROWN).asItem(), 0.01F));
+				supplier.pool(getMooshroomLootPool(MooshroomEntity.Type.RED, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.MOOSHROOM_RED).asItem(), 0.01F));
 			} else if (id.equals(new Identifier("entities/shulker"))) {
-				supplier.withPool(getShulkerLootPool(DyeColor.BLACK, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_BLACK).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_BLUE).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.BROWN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_BROWN).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.CYAN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_CYAN).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.GRAY, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_GRAY).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.GREEN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_GREEN).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.LIGHT_BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_LIGHT_BLUE).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.LIGHT_GRAY, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_LIGHT_GRAY).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.LIME, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_LIME).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.MAGENTA, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_MAGENTA).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.ORANGE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_ORANGE).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.PINK, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_PINK).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.PURPLE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_PURPLE).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.RED, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_RED).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.WHITE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_WHITE).asItem(), 0.01F));
-				supplier.withPool(getShulkerLootPool(DyeColor.YELLOW, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_YELLOW).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.BLACK, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_BLACK).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_BLUE).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.BROWN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_BROWN).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.CYAN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_CYAN).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.GRAY, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_GRAY).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.GREEN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_GREEN).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.LIGHT_BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_LIGHT_BLUE).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.LIGHT_GRAY, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_LIGHT_GRAY).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.LIME, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_LIME).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.MAGENTA, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_MAGENTA).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.ORANGE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_ORANGE).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.PINK, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_PINK).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.PURPLE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_PURPLE).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.RED, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_RED).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.WHITE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_WHITE).asItem(), 0.01F));
+				supplier.pool(getShulkerLootPool(DyeColor.YELLOW, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.SHULKER_YELLOW).asItem(), 0.01F));
 			} else if (id.equals(new Identifier("entities/axolotl"))) {
-				supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_BLUE).asItem(), 0.01F));
-				supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.CYAN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_CYAN).asItem(), 0.01F));
-				supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.GOLD, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_GOLD).asItem(), 0.01F));
-				supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.LUCY, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_LEUCISTIC).asItem(), 0.01F));
-				supplier.withPool(getAxolotlLootPool(AxolotlEntity.Variant.WILD, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_BROWN).asItem(), 0.01F));
+				supplier.pool(getAxolotlLootPool(AxolotlEntity.Variant.BLUE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_BLUE).asItem(), 0.01F));
+				supplier.pool(getAxolotlLootPool(AxolotlEntity.Variant.CYAN, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_CYAN).asItem(), 0.01F));
+				supplier.pool(getAxolotlLootPool(AxolotlEntity.Variant.GOLD, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_GOLD).asItem(), 0.01F));
+				supplier.pool(getAxolotlLootPool(AxolotlEntity.Variant.LUCY, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_LEUCISTIC).asItem(), 0.01F));
+				supplier.pool(getAxolotlLootPool(AxolotlEntity.Variant.WILD, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.AXOLOTL_BROWN).asItem(), 0.01F));
 			} else if (id.equals(new Identifier("entities/parrot"))) {
-				supplier.withPool(getParrotLootPool(0, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_RED).asItem(), 0.01F));
-				supplier.withPool(getParrotLootPool(1, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_BLUE).asItem(), 0.01F));
-				supplier.withPool(getParrotLootPool(2, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GREEN).asItem(), 0.01F));
-				supplier.withPool(getParrotLootPool(3, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_CYAN).asItem(), 0.01F));
-				supplier.withPool(getParrotLootPool(4, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GRAY).asItem(), 0.01F));
+				supplier.pool(getParrotLootPool(0, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_RED).asItem(), 0.01F));
+				supplier.pool(getParrotLootPool(1, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_BLUE).asItem(), 0.01F));
+				supplier.pool(getParrotLootPool(2, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GREEN).asItem(), 0.01F));
+				supplier.pool(getParrotLootPool(3, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_CYAN).asItem(), 0.01F));
+				supplier.pool(getParrotLootPool(4, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GRAY).asItem(), 0.01F));
 			}
 			
-		});
+		}));
 	}
 	
 	private static LootPool getLootPool(TreasureHunterDropDefinition treasureHunterDropDefinition) {
 		Item dropItem = treasureHunterDropDefinition.skullItem;
 		float chance = treasureHunterDropDefinition.treasureHunterMultiplier;
 		
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		LootPool.Builder poolBuilder = LootPool.builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, dropItem).build())
-				.withEntry(ItemEntry.builder(dropItem).build());
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, dropItem).build())
+				.with(ItemEntry.builder(dropItem).build());
 		return poolBuilder.build();
 	}
 	
 	private static LootPool getFoxLootPool(FoxEntity.Type foxType, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		LootPool.Builder poolBuilder = LootPool.builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(FoxTypeLootCondition.builder(foxType).build())
-				.withEntry(ItemEntry.builder(item).build());
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(FoxTypeLootCondition.builder(foxType).build())
+				.with(ItemEntry.builder(item).build());
 		return poolBuilder.build();
 	}
 	
 	private static LootPool getMooshroomLootPool(MooshroomEntity.Type mooshroomType, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		LootPool.Builder poolBuilder = LootPool.builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(MooshroomTypeLootCondition.builder(mooshroomType).build())
-				.withEntry(ItemEntry.builder(item).build());
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(MooshroomTypeLootCondition.builder(mooshroomType).build())
+				.with(ItemEntry.builder(item).build());
 		return poolBuilder.build();
 	}
 	
 	private static LootPool getShulkerLootPool(DyeColor dyeColor, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		LootPool.Builder poolBuilder = LootPool.builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(ShulkerColorLootCondition.builder(dyeColor).build())
-				.withEntry(ItemEntry.builder(item).build());
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(ShulkerColorLootCondition.builder(dyeColor).build())
+				.with(ItemEntry.builder(item).build());
 		return poolBuilder.build();
 	}
 	
 	private static LootPool getAxolotlLootPool(AxolotlEntity.Variant variant, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		LootPool.Builder poolBuilder = LootPool.builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(AxolotlVariantLootCondition.builder(variant).build())
-				.withEntry(ItemEntry.builder(item).build());
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(AxolotlVariantLootCondition.builder(variant).build())
+				.with(ItemEntry.builder(item).build());
 		return poolBuilder.build();
 	}
 	
 	private static LootPool getParrotLootPool(int variant, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		LootPool.Builder poolBuilder = LootPool.builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(ParrotVariantLootCondition.builder(variant).build())
-				.withEntry(ItemEntry.builder(item).build());
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(ParrotVariantLootCondition.builder(variant).build())
+				.with(ItemEntry.builder(item).build());
 		return poolBuilder.build();
 	}
 	

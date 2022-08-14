@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.math.BlockPos;
@@ -40,6 +41,11 @@ public class ParticleSpawnerScreenHandler extends ScreenHandler {
 	
 	public ParticleSpawnerBlockEntity getBlockEntity() {
 		return this.particleSpawnerBlockEntity;
+	}
+	
+	@Override
+	public ItemStack transferSlot(PlayerEntity player, int index) {
+		return ItemStack.EMPTY;
 	}
 	
 	@Override

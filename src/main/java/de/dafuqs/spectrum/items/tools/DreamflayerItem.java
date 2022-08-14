@@ -23,7 +23,6 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -117,12 +116,12 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.dreamflayer.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.dreamflayer.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip2").formatted(Formatting.GRAY));
 		if(ActivatableItem.isActivated(stack)) {
-			tooltip.add(new TranslatableText("item.spectrum.dreamflayer.tooltip.activated").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip.activated").formatted(Formatting.GRAY));
 		} else {
-			tooltip.add(new TranslatableText("item.spectrum.dreamflayer.tooltip.deactivated").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip.deactivated").formatted(Formatting.GRAY));
 		}
 	}
 	

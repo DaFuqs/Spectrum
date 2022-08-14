@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -99,7 +98,7 @@ public class CreativeInkStorage implements InkStorage {
 	@Override
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
 		if(includeHeader) {
-			tooltip.add(new TranslatableText("item.spectrum.creative_ink_assortment.tooltip"));
+			tooltip.add(Text.translatable("item.spectrum.creative_ink_assortment.tooltip"));
 		}
 	}
 	

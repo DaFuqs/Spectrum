@@ -8,7 +8,7 @@ import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import org.jetbrains.annotations.NotNull;
@@ -67,7 +67,7 @@ public class PageCinderhearthSmelting extends PageDoubleRecipeRegistry<Cinderhea
 			
 			if(possibleOutput.getRight() < 1.0F) {
 				if(chanceTextRenders.size() < chanceTextIndex + 1) {
-					chanceTextRenders.add(new BookTextRenderer(parent, new LiteralText((int) (possibleOutput.getRight() * 100) + "%"), x, recipeY + 24));
+					chanceTextRenders.add(new BookTextRenderer(parent, Text.literal((int) (possibleOutput.getRight() * 100) + "%"), x, recipeY + 24));
 				}
 				chanceTextRenders.get(chanceTextIndex).render(ms, mouseX, mouseY);
 				chanceTextIndex++;

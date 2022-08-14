@@ -29,7 +29,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -93,7 +93,7 @@ public class FusionShrineBlock extends BlockWithEntity {
 				if (currentMultiBlock == multiblock) {
 					PatchouliAPI.get().clearMultiblock();
 				} else {
-					PatchouliAPI.get().showMultiblock(multiblock, new TranslatableText("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
+					PatchouliAPI.get().showMultiblock(multiblock, Text.translatable("multiblock.spectrum.fusion_shrine.structure"), blockPos.down(2), BlockRotation.NONE);
 				}
 			} else {
 				scatterContents(world, blockPos);

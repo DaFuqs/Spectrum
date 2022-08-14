@@ -17,7 +17,6 @@ import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPointerImpl;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -62,7 +61,7 @@ public class PiglinTradeMobBlock extends MobBlock {
 				return true;
 			}
 		} else if (entity instanceof PlayerEntity player) {
-			for (ItemStack handStack : player.getItemsHand()) {
+			for (ItemStack handStack : player.getHandItems()) {
 				if (handStack.isOf(PiglinBrain.BARTERING_ITEM)) {
 					handStack.decrement(1);
 					
@@ -86,7 +85,7 @@ public class PiglinTradeMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.piglin_trade_mob_block.tooltip"));
+		tooltip.add(Text.translatable("block.spectrum.piglin_trade_mob_block.tooltip"));
 	}
 	
 }

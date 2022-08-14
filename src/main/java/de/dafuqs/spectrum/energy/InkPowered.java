@@ -13,7 +13,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
@@ -51,13 +50,13 @@ public interface InkPowered {
 	default void addInkPoweredTooltip(List<Text> tooltip) {
 		if(canUse()) {
             if (getUsedColors().size() > 1) {
-                tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.prefix").formatted(Formatting.GRAY));
+                tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.prefix").formatted(Formatting.GRAY));
                 for (InkColor color : getUsedColors()) {
-                    tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + color.toString()));
+                    tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.toString()));
 
                 }
             } else {
-                tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered." + getUsedColors().get(0).toString()).formatted(Formatting.GRAY));
+                tooltip.add(Text.translatable("spectrum.tooltip.ink_powered." + getUsedColors().get(0).toString()).formatted(Formatting.GRAY));
             }
         }
 	}
@@ -128,7 +127,7 @@ public interface InkPowered {
 		}
 		
 		// hands (main hand, too, if someone uses the staff from the offhand)
-		for (ItemStack itemStack : player.getItemsHand()) {
+		for (ItemStack itemStack : player.getHandItems()) {
 			amount -= tryDrainEnergy(itemStack, color, amount, true);
 			if (amount <= 0) {
 				return true;
@@ -168,7 +167,7 @@ public interface InkPowered {
 		
 		long available = 0;
 		// offhand
-		for (ItemStack itemStack : player.getItemsHand()) {
+		for (ItemStack itemStack : player.getHandItems()) {
 			available += tryGetEnergy(itemStack, color);
 		}
 		

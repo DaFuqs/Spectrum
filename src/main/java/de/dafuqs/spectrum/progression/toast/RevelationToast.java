@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
@@ -41,8 +40,8 @@ public class RevelationToast implements Toast {
 	
 	@Override
 	public Visibility draw(MatrixStack matrices, ToastManager manager, long startTime) {
-		Text title = new TranslatableText("spectrum.toast.revelation.title");
-		Text text = new TranslatableText("spectrum.toast.revelation.text");
+		Text title = Text.translatable("spectrum.toast.revelation.title");
+		Text text = Text.translatable("spectrum.toast.revelation.text");
 		
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderTexture(0, TEXTURE);

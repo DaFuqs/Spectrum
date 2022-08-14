@@ -31,7 +31,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -184,12 +183,12 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);
-		tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.crouch").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.exchange_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.exchange_staff.tooltip.crouch").formatted(Formatting.GRAY));
 		
 		Optional<Block> optionalBlock = getBlockTarget(stack);
 		if (optionalBlock.isPresent()) {
-			tooltip.add(new TranslatableText("item.spectrum.exchange_staff.tooltip.target", optionalBlock.get().getName()).formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.exchange_staff.tooltip.target", optionalBlock.get().getName()).formatted(Formatting.GRAY));
 		}
 	}
 	

@@ -15,7 +15,7 @@ import net.minecraft.potion.Potions;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
@@ -190,12 +190,12 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		
 		if (potionMod.makeSplashing) {
 			if (potionMod.makeLingering) {
-				itemStack.setCustomName(new TranslatableText("item.spectrum.lingering_potion"));
+				itemStack.setCustomName(Text.translatable("item.spectrum.lingering_potion"));
 			} else {
-				itemStack.setCustomName(new TranslatableText("item.spectrum.splash_potion"));
+				itemStack.setCustomName(Text.translatable("item.spectrum.splash_potion"));
 			}
 		} else {
-			itemStack.setCustomName(new TranslatableText("item.spectrum.potion"));
+			itemStack.setCustomName(Text.translatable("item.spectrum.potion"));
 		}
 		if (potionMod.fastDrinkable) {
 			NbtCompound compound = itemStack.getOrCreateNbt();
@@ -230,7 +230,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			PotionUtil.setCustomPotionEffects(itemStack, effects);
 		}
 		
-		itemStack.setCustomName(new TranslatableText("item.spectrum.tipped_arrow"));
+		itemStack.setCustomName(Text.translatable("item.spectrum.tipped_arrow"));
 		setColor(itemStack, potionMod, effects);
 		
 		return itemStack;

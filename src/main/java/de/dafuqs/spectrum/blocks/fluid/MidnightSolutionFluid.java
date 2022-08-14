@@ -21,7 +21,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	

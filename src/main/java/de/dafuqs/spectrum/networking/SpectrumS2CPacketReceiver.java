@@ -50,7 +50,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 import java.util.UUID;
 
 @Environment(EnvType.CLIENT)

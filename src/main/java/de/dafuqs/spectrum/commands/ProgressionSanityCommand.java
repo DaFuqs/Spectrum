@@ -39,7 +39,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.tag.BlockTags;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
@@ -322,7 +322,7 @@ public class ProgressionSanityCommand {
 		}
 		
 		if (source.getEntity() instanceof ServerPlayerEntity serverPlayerEntity) {
-			serverPlayerEntity.sendMessage(new TranslatableText("commands.spectrum.progression_sanity.success"), false);
+			serverPlayerEntity.sendMessage(Text.translatable("commands.spectrum.progression_sanity.success"), false);
 		}
 		
 		return 0;

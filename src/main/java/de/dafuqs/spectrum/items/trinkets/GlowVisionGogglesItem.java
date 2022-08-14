@@ -13,7 +13,6 @@ import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -55,7 +54,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		tooltip.add(new TranslatableText("item.spectrum.glow_vision_helmet.tooltip"));
+		tooltip.add(Text.translatable("item.spectrum.glow_vision_helmet.tooltip"));
 	}
 	
 }

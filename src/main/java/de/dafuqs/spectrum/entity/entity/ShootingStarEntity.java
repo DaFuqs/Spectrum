@@ -52,7 +52,7 @@ import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 import java.util.stream.Collectors;
 
 public class ShootingStarEntity extends Entity {

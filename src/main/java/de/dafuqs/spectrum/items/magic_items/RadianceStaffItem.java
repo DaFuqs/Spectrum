@@ -21,7 +21,6 @@ import net.minecraft.item.ItemUsage;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -82,11 +81,11 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		if(InkPowered.canUse()) {
-			tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip.ink"));
+			tooltip.add(Text.translatable("item.spectrum.light_staff.tooltip.ink"));
 		} else {
-			tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip"));
+			tooltip.add(Text.translatable("item.spectrum.light_staff.tooltip"));
 		}
-		tooltip.add(new TranslatableText("item.spectrum.light_staff.tooltip2"));
+		tooltip.add(Text.translatable("item.spectrum.light_staff.tooltip2"));
 	}
 	
 	public UseAction getUseAction(ItemStack stack) {

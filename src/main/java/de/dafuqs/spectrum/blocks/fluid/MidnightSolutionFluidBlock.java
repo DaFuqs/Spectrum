@@ -43,7 +43,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.Map;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class MidnightSolutionFluidBlock extends FluidBlock {
 	

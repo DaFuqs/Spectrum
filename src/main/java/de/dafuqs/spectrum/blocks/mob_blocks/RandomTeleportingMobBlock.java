@@ -11,14 +11,13 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class RandomTeleportingMobBlock extends MobBlock {
 	
@@ -74,7 +73,7 @@ public class RandomTeleportingMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.random_teleporting_mob_block.tooltip", horizontalRange));
+		tooltip.add(Text.translatable("block.spectrum.random_teleporting_mob_block.tooltip", horizontalRange));
 	}
 	
 	@Override

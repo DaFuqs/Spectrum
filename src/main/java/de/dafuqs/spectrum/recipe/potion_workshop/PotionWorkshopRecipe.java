@@ -13,7 +13,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -178,13 +178,13 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	}
 	
 	@Override
-	public TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.potion_workshop_recipe_unlocked.title");
+	public Text getSingleUnlockToastString() {
+		return Text.translatable("spectrum.toast.potion_workshop_recipe_unlocked.title");
 	}
 	
 	@Override
-	public TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.potion_workshop_recipes_unlocked.title");
+	public Text getMultipleUnlockToastString() {
+		return Text.translatable("spectrum.toast.potion_workshop_recipes_unlocked.title");
 	}
 	
 }

@@ -14,7 +14,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
@@ -25,7 +24,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public abstract class MobBlock extends Block {
 	
@@ -46,7 +45,7 @@ public abstract class MobBlock extends Block {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.mob_block.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("block.spectrum.mob_block.tooltip").formatted(Formatting.GRAY));
 	}
 	
 	@Override

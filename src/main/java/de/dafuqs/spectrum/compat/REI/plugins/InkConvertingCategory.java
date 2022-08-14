@@ -12,7 +12,6 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -31,7 +30,7 @@ public class InkConvertingCategory implements DisplayCategory<InkConvertingDispl
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("container.spectrum.rei.ink_converting.title");
+		return Text.translatable("container.spectrum.rei.ink_converting.title");
 	}
 	
 	
@@ -43,8 +42,8 @@ public class InkConvertingCategory implements DisplayCategory<InkConvertingDispl
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
 		if (!display.isUnlocked()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x + 8, startPoint.y + 38), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x + 8, startPoint.y + 48), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x + 8, startPoint.y + 38), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x + 8, startPoint.y + 48), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			// input slot
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 8, startPoint.y + 40)).markInput().entries(display.getInputEntries().get(0)));
@@ -53,8 +52,8 @@ public class InkConvertingCategory implements DisplayCategory<InkConvertingDispl
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 30, startPoint.y + 40)));
 			
 			// output amount & required time
-			TranslatableText colorText = new TranslatableText("container.spectrum.rei.ink_converting.color", display.color.getName());
-			TranslatableText amountText = new TranslatableText("container.spectrum.rei.ink_converting.amount", display.amount);
+			Text colorText = Text.translatable("container.spectrum.rei.ink_converting.color", display.color.getName());
+			Text amountText = Text.translatable("container.spectrum.rei.ink_converting.amount", display.amount);
 			widgets.add(Widgets.createLabel(new Point(startPoint.x + 58, startPoint.y + 40), colorText).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x + 58, startPoint.y + 50), amountText).leftAligned().color(0x3f3f3f).noShadow());
 		}

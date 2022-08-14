@@ -21,7 +21,7 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine {
 	

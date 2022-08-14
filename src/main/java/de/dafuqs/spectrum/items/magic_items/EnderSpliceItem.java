@@ -30,7 +30,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -209,7 +208,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		if (teleportTargetPos.isPresent()) {
 			String dimensionDisplayString = Support.getReadableDimensionString(teleportTargetPos.get().getLeft());
 			Vec3d pos = teleportTargetPos.get().getRight();
-			tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.bound_pos", (int) pos.x, (int) pos.y, (int) pos.z, dimensionDisplayString));
+			tooltip.add(Text.translatable("item.spectrum.ender_splice.tooltip.bound_pos", (int) pos.x, (int) pos.y, (int) pos.z, dimensionDisplayString));
 			return;
 		} else {
 			// If UUID stored => Teleport to player, if online
@@ -217,15 +216,15 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 			if (teleportTargetPlayerUUID.isPresent()) {
 				Optional<String> teleportTargetPlayerName = getTeleportTargetPlayerName(itemStack);
 				if (teleportTargetPlayerName.isPresent()) {
-					tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.bound_player", teleportTargetPlayerName.get()));
+					tooltip.add(Text.translatable("item.spectrum.ender_splice.tooltip.bound_player", teleportTargetPlayerName.get()));
 				} else {
-					tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.bound_player", "???"));
+					tooltip.add(Text.translatable("item.spectrum.ender_splice.tooltip.bound_player", "???"));
 				}
 				return;
 			}
 		}
 		
-		tooltip.add(new TranslatableText("item.spectrum.ender_splice.tooltip.unbound"));
+		tooltip.add(Text.translatable("item.spectrum.ender_splice.tooltip.unbound"));
 	}
 	
 	public Optional<Pair<String, Vec3d>> getTeleportTargetPos(@NotNull ItemStack itemStack) {

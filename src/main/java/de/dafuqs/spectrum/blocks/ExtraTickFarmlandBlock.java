@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class ExtraTickFarmlandBlock extends FarmlandBlock {
 	

@@ -16,7 +16,7 @@ import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -139,7 +139,7 @@ public class EnderHopperBlock extends BlockWithEntity {
 					player.incrementStat(Stats.OPEN_ENDERCHEST);
 					PiglinBrain.onGuardedBlockInteracted(player, true);
 				} else {
-					player.sendMessage(new TranslatableText("block.spectrum.ender_hopper_with_owner", enderHopperBlockEntity.getOwnerName()), false);
+					player.sendMessage(Text.translatable("block.spectrum.ender_hopper_with_owner", enderHopperBlockEntity.getOwnerName()), false);
 				}
 				
 				

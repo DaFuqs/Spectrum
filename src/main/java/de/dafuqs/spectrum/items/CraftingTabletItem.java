@@ -25,7 +25,6 @@ import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -38,7 +37,7 @@ import java.util.Optional;
 
 public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	
-	private static final Text TITLE = new TranslatableText("item.spectrum.crafting_tablet");
+	private static final Text TITLE = Text.translatable("item.spectrum.crafting_tablet");
 	
 	public CraftingTabletItem(Settings settings) {
 		super(settings);
@@ -121,14 +120,14 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		Recipe recipe = getStoredRecipe(world, itemStack);
 		if (recipe == null) {
-			tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.no_recipe").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.crafting_tablet.tooltip.no_recipe").formatted(Formatting.GRAY));
 		} else {
 			if (recipe instanceof PedestalCraftingRecipe) {
-				tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.pedestal_recipe").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.crafting_tablet.tooltip.pedestal_recipe").formatted(Formatting.GRAY));
 			} else {
-				tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.crafting_recipe").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.crafting_tablet.tooltip.crafting_recipe").formatted(Formatting.GRAY));
 			}
-			tooltip.add(new TranslatableText("item.spectrum.crafting_tablet.tooltip.shift_to_view_gui").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.crafting_tablet.tooltip.shift_to_view_gui").formatted(Formatting.GRAY));
 		}
 		
 		SpectrumBannerPatternItem.addBannerPatternProviderTooltip(tooltip);

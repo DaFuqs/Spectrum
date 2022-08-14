@@ -19,11 +19,12 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import net.minecraft.util.math.random.Random;
 
 import java.util.*;
 
@@ -127,7 +128,7 @@ public class CompactingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.compacting_chest");
+		return Text.translatable("block.spectrum.compacting_chest");
 	}
 	
 	public void readNbt(NbtCompound tag) {

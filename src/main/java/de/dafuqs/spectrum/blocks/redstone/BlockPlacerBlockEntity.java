@@ -7,7 +7,6 @@ import net.minecraft.block.entity.DispenserBlockEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 
 public class BlockPlacerBlockEntity extends DispenserBlockEntity {
@@ -17,7 +16,7 @@ public class BlockPlacerBlockEntity extends DispenserBlockEntity {
 	}
 	
 	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.block_placer");
+		return Text.translatable("block.spectrum.block_placer");
 	}
 	
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {

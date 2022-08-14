@@ -18,7 +18,12 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import net.minecraft.util.math.random.Random;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 public abstract class DecayBlock extends Block {
 	

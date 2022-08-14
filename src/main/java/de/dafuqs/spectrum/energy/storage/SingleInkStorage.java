@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.energy.color.InkColors;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -157,10 +156,10 @@ public class SingleInkStorage implements InkStorage {
 	
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
 		if(includeHeader) {
-			tooltip.add(new TranslatableText("item.spectrum.ink_flask.tooltip", getShortenedNumberString(this.maxEnergy)));
+			tooltip.add(Text.translatable("item.spectrum.ink_flask.tooltip", getShortenedNumberString(this.maxEnergy)));
 		}
 		if (this.storedEnergy > 0) {
-			tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + this.storedColor.toString().toLowerCase(Locale.ROOT), getShortenedNumberString(this.storedEnergy)));
+			tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + this.storedColor.toString().toLowerCase(Locale.ROOT), getShortenedNumberString(this.storedEnergy)));
 		}
 	}
 	

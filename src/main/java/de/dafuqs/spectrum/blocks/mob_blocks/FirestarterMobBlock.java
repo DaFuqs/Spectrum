@@ -17,7 +17,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -112,7 +111,7 @@ public class FirestarterMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.firestarter_mob_block.tooltip"));
+		tooltip.add(Text.translatable("block.spectrum.firestarter_mob_block.tooltip"));
 	}
 	
 }

@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -81,7 +80,7 @@ public class FreezingMobBlock extends MobBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
-		tooltip.add(new TranslatableText("block.spectrum.freezing_mob_block.tooltip"));
+		tooltip.add(Text.translatable("block.spectrum.freezing_mob_block.tooltip"));
 	}
 	
 }

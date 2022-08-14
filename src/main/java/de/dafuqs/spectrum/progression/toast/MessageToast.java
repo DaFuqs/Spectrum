@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
@@ -35,8 +34,8 @@ public class MessageToast implements Toast {
 	public MessageToast(ItemStack itemStack, String text) {
 		this.itemStack = itemStack;
 		this.soundEvent = SpectrumSoundEvents.NEW_REVELATION;
-		this.titleText = new TranslatableText("spectrum.toast.message." + text + ".title");
-		this.messageText = new TranslatableText("spectrum.toast.message." + text + ".text");
+		this.titleText = Text.translatable("spectrum.toast.message." + text + ".title");
+		this.messageText = Text.translatable("spectrum.toast.message." + text + ".text");
 		this.soundPlayed = false;
 	}
 	

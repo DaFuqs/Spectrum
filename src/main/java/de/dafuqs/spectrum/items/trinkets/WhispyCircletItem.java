@@ -12,13 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.util.math.random.Random;
 import java.util.*;
 
 public class WhispyCircletItem extends SpectrumTrinketItem {
@@ -80,9 +80,9 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip2").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.whispy_circlet.tooltip3").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.whispy_circlet.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.whispy_circlet.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.whispy_circlet.tooltip3").formatted(Formatting.GRAY));
 	}
 	
 	@Override

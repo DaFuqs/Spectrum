@@ -80,7 +80,7 @@ public class SpectrumItemPredicates {
 				
 				if (clientWorld == null) {
 					return 0.0F;
-				} else if (!clientWorld.getDimension().isNatural()) {
+				} else if (!clientWorld.getDimension().natural()) {
 					return 1.0F;
 				} else {
 					return clientWorld.getMoonPhase() / 8F;

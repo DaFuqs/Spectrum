@@ -8,7 +8,7 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 import java.util.Collection;
 
@@ -30,7 +30,7 @@ public class ShootingStarCommand {
 				ShootingStarEntity.spawnShootingStar((ServerWorld) entity.world, entity);
 			}
 		}
-		source.sendFeedback(new TranslatableText("commands.spectrum.spawn_shooting_star.success", amount), false);
+		source.sendFeedback(Text.translatable("commands.spectrum.spawn_shooting_star.success", amount), false);
 		return amount;
 	}
 	

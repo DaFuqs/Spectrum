@@ -18,8 +18,9 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import net.minecraft.util.math.random.Random;
 import java.util.stream.Collectors;
+import java.util.*;
 
 public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	

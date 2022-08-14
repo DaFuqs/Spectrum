@@ -8,7 +8,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -171,11 +170,11 @@ public class TotalCappedInkStorage implements InkStorage {
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
 		if(includeHeader) {
-			tooltip.add(new TranslatableText("item.spectrum.total_capped_simple_pigment_energy_storage.tooltip", getShortenedNumberString(maxEnergyTotal)));
+			tooltip.add(Text.translatable("item.spectrum.total_capped_simple_pigment_energy_storage.tooltip", getShortenedNumberString(maxEnergyTotal)));
 		}
 		for (Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {
 			if (color.getValue() > 0) {
-				tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.bullet." + color.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(color.getValue())));
+				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.getKey().toString().toLowerCase(Locale.ROOT), getShortenedNumberString(color.getValue())));
 			}
 		}
 	}

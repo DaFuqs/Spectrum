@@ -19,7 +19,7 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class DeeperDownPortalBlock extends EndPortalBlock {
 	

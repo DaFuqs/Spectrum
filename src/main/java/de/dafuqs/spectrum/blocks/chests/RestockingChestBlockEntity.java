@@ -16,7 +16,6 @@ import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -69,7 +68,7 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 	}
 	
 	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.restocking_chest");
+		return Text.translatable("block.spectrum.restocking_chest");
 	}
 	
 	@Override

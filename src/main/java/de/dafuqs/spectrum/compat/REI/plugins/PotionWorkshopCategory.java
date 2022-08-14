@@ -11,7 +11,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -33,8 +33,8 @@ public abstract class PotionWorkshopCategory implements DisplayCategory<PotionWo
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
 		if (!display.isUnlocked()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 5, startPoint.y + 23), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x - 5, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 5, startPoint.y + 23), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x - 5, startPoint.y + 33), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			// bubbles
 			widgets.add(Widgets.createTexturedWidget(BACKGROUND_TEXTURE, startPoint.x + 18, startPoint.y + 19, 197, 0, 10, 27));
@@ -54,7 +54,7 @@ public abstract class PotionWorkshopCategory implements DisplayCategory<PotionWo
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 19)).entries(result).markOutput());
 			
 			// description text
-			TranslatableText text = new TranslatableText("container.spectrum.rei.potion_workshop.crafting_time", (display.craftingTime / 20));
+			Text text = Text.translatable("container.spectrum.rei.potion_workshop.crafting_time", (display.craftingTime / 20));
 			widgets.add(Widgets.createLabel(new Point(startPoint.x + 40, startPoint.y + 54), text).leftAligned().color(0x3f3f3f).noShadow());
 		}
 		

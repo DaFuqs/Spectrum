@@ -30,7 +30,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -50,7 +49,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
+import net.minecraft.util.math.random.Random;
 
 public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkPowered {
 	
@@ -178,16 +177,16 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
 		if (efficiencyLevel == 0) {
 			if(InkPowered.canUse()) {
-				tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_ink"));
+				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_ink"));
 			} else {
-				tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip"));
+				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip"));
 			}
 		} else {
 			int chancePercent = (int) Math.round(2.0 / (2 + efficiencyLevel) * 100);
 			if(InkPowered.canUse()) {
-				tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_ink_and_chance", chancePercent));
+				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_ink_and_chance", chancePercent));
 			} else {
-				tooltip.add(new TranslatableText("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
+				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
 			}
 		}
 	}

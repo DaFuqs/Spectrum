@@ -13,10 +13,9 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 public class BismuthClusterBlock extends AmethystClusterBlock {
 	
@@ -70,6 +69,5 @@ public class BismuthClusterBlock extends AmethystClusterBlock {
 		}
 		return false;
 	}
-	
 	
 }

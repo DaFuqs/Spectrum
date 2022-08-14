@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
+import java.util.*;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
@@ -49,7 +50,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
@@ -61,7 +61,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 
-import java.util.*;
+import net.minecraft.util.math.random.Random;
 
 public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory {
 	
@@ -487,7 +487,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	@Override
 	public Text getContainerName() {
-		return new TranslatableText("block.spectrum.pedestal");
+		return Text.translatable("block.spectrum.pedestal");
 	}
 	
 	@Override

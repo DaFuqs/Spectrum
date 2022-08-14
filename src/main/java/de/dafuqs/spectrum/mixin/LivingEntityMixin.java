@@ -28,7 +28,6 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.packet.s2c.play.MobSpawnS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Pair;
@@ -65,21 +64,7 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow public abstract boolean blockedByShield(DamageSource source);
 	
-	@Shadow @Final private AttributeContainer attributes;
-	
-	@Shadow @Nullable private LivingEntity attacker;
-	
-	@Shadow public abstract void readCustomDataFromNbt(NbtCompound nbt);
-	
-	@Shadow public abstract Vec3d applyMovementInput(Vec3d movementInput, float slipperiness);
-	
-	@Shadow public abstract void readFromPacket(MobSpawnS2CPacket packet);
-	
 	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
-	
-	@Shadow public abstract boolean removeStatusEffect(StatusEffect type);
-	
-	@Shadow public abstract void setHealth(float health);
 	
 	@Shadow public abstract ItemStack getMainHandStack();
 

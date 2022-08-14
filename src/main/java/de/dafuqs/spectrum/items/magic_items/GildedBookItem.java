@@ -5,7 +5,6 @@ import net.minecraft.item.BookItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -25,9 +24,9 @@ public class GildedBookItem extends BookItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.gilded_book.tooltip.enchantability").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.gilded_book.tooltip.copy_enchantments").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.gilded_book.tooltip.copy_enchantments2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.gilded_book.tooltip.enchantability").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.gilded_book.tooltip.copy_enchantments").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.gilded_book.tooltip.copy_enchantments2").formatted(Formatting.GRAY));
 	}
 	
 }

@@ -16,7 +16,6 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,7 +34,7 @@ public class CrystallarieumCategory implements DisplayCategory<CrystallarieumDis
 	
 	@Override
 	public Text getTitle() {
-		return new TranslatableText("block.spectrum.crystallarieum");
+		return Text.translatable("block.spectrum.crystallarieum");
 	}
 	
 	@Override
@@ -51,8 +50,8 @@ public class CrystallarieumCategory implements DisplayCategory<CrystallarieumDis
 		widgets.add(Widgets.createRecipeBase(bounds));
 		
 		if (!display.isUnlocked()) {
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 33), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 43), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 33), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 43), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
 			// input
 			EntryIngredient input = display.getInputEntries().get(0);
@@ -74,10 +73,10 @@ public class CrystallarieumCategory implements DisplayCategory<CrystallarieumDis
 			}
 			
 			// catalysts
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 42), new TranslatableText("container.spectrum.rei.crystallarieum.catalyst")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 58), new TranslatableText("container.spectrum.rei.crystallarieum.accelerator")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 68), new TranslatableText("container.spectrum.rei.crystallarieum.ink_consumption")).leftAligned().color(0x3f3f3f).noShadow());
-			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 78), new TranslatableText("container.spectrum.rei.crystallarieum.used_up")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 42), Text.translatable("container.spectrum.rei.crystallarieum.catalyst")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 58), Text.translatable("container.spectrum.rei.crystallarieum.accelerator")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 68), Text.translatable("container.spectrum.rei.crystallarieum.ink_consumption")).leftAligned().color(0x3f3f3f).noShadow());
+			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 78), Text.translatable("container.spectrum.rei.crystallarieum.used_up")).leftAligned().color(0x3f3f3f).noShadow());
 			
 			int i = 0;
 			int startX = 46;
@@ -103,9 +102,9 @@ public class CrystallarieumCategory implements DisplayCategory<CrystallarieumDis
 			
 			// description texts
 			if (display.growsWithoutCatalyst) {
-				widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 90), new TranslatableText("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
+				widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 90), Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
 			} else {
-				widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 90), new TranslatableText("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_required", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
+				widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 90), Text.translatable("container.spectrum.rei.crystallarieum.crafting_time_per_stage_seconds_catalyst_required", display.secondsPerStage)).leftAligned().color(0x3f3f3f).noShadow());
 			}
 		}
 		return widgets;

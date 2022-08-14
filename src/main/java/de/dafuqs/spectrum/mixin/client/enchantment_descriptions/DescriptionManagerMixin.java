@@ -18,7 +18,7 @@ public class DescriptionManagerMixin {
 	private void spectrum$obfuscateEnchDescDescription(Enchantment ench, CallbackInfoReturnable<MutableText> cir) {
 		if(ench instanceof SpectrumEnchantment spectrumEnchantment) {
 			if(!spectrumEnchantment.canEntityUse(MinecraftClient.getInstance().player)) {
-				cir.setReturnValue(new LiteralText(spectrum$language.get(((TranslatableText) cir.getReturnValue()).getKey())).formatted(Formatting.OBFUSCATED).formatted(Formatting.DARK_GRAY));
+				cir.setReturnValue(Text.literal(spectrum$language.get(((TranslatableText) cir.getReturnValue()).getKey())).formatted(Formatting.OBFUSCATED).formatted(Formatting.DARK_GRAY));
 			}
 		}
 	}*/

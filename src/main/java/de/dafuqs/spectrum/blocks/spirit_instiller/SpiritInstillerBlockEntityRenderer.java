@@ -34,14 +34,14 @@ public class SpiritInstillerBlockEntityRenderer implements BlockEntityRenderer<S
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
 					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
 				}
-				case CLOCKWISE_180 -> { // perfect
-					matrixStack.translate(0.5, itemStackRenderHeight, 0.3);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
-				}
-				case COUNTERCLOCKWISE_90 -> {
+				case CLOCKWISE_180 -> {
 					matrixStack.translate(0.3, itemStackRenderHeight, 0.5);
 					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
 					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(270));
+				}
+				case COUNTERCLOCKWISE_90 -> {
+					matrixStack.translate(0.5, itemStackRenderHeight, 0.3);
+					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
 				}
 				case NONE -> {
 					matrixStack.translate(0.7, itemStackRenderHeight, 0.5);

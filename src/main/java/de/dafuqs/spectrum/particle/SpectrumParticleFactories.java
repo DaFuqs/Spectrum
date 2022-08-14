@@ -2,10 +2,7 @@ package de.dafuqs.spectrum.particle;
 
 import de.dafuqs.spectrum.particle.client.*;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.minecraft.client.particle.BlockLeakParticle;
-import net.minecraft.client.particle.BubblePopParticle;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.WaterSuspendParticle;
+import net.minecraft.client.particle.*;
 import net.minecraft.particle.DefaultParticleType;
 
 public class SpectrumParticleFactories {
@@ -140,6 +137,33 @@ public class SpectrumParticleFactories {
 		registerColoredRisingParticle(SpectrumParticleTypes.RED_SPARKLE_RISING, 0.95F, 0.0F, 0.0F);
 		registerColoredRisingParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, 0.97F, 0.97F, 0.97F);
 		registerColoredRisingParticle(SpectrumParticleTypes.YELLOW_SPARKLE_RISING, 0.93F, 0.93F, 0.0F);
+		
+		// Used in the item bowl
+		registerColoredExplosionParticle(SpectrumParticleTypes.BLACK_EXPLOSION, 0.1F, 0.1F, 0.1F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.BLUE_EXPLOSION, 0.05F, 0.011F, 0.95F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.BROWN_EXPLOSION, 0.31F, 0.16F, 0.05F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.CYAN_EXPLOSION, 0.0F, 1.0F, 1.0F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.GRAY_EXPLOSION, 0.3F, 0.3F, 0.3F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.GREEN_EXPLOSION, 0.14F, 0.24F, 0.0F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.LIGHT_BLUE_EXPLOSION, 0.0F, 0.75F, 0.95F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.LIGHT_GRAY_EXPLOSION, 0.68F, 0.68F, 0.68F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.LIME_EXPLOSION, 0.0F, 0.86F, 0.0F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.MAGENTA_EXPLOSION, 1.0F, 0.0F, 1.0F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.ORANGE_EXPLOSION, 0.93F, 0.39F, 0.0F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.PINK_EXPLOSION, 1.0F, 0.78F, 0.87F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.PURPLE_EXPLOSION, 0.43F, 0.0F, 0.68F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.RED_EXPLOSION, 0.95F, 0.0F, 0.0F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.WHITE_EXPLOSION, 0.97F, 0.97F, 0.97F);
+		registerColoredExplosionParticle(SpectrumParticleTypes.YELLOW_EXPLOSION, 0.93F, 0.93F, 0.0F);
+	}
+	
+	public static void registerColoredExplosionParticle(DefaultParticleType particleType, float red, float green, float blue) {
+		ParticleFactoryRegistry.getInstance().register(particleType, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			ExplosionLargeParticle.Factory factory = new ExplosionLargeParticle.Factory(provider);
+			Particle particle = factory.createParticle(particleType, world, x, y, z, velocityX, velocityY, velocityZ);
+			particle.setColor(red, green, blue);
+			return particle;
+		});
 	}
 	
 	public static void registerColoredCraftingParticle(DefaultParticleType particleType, float red, float green, float blue) {

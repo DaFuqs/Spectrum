@@ -123,6 +123,23 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType WHITE_SPARKLE_RISING;
 	public static DefaultParticleType YELLOW_SPARKLE_RISING;
 	
+	public static DefaultParticleType BLACK_EXPLOSION;
+	public static DefaultParticleType BLUE_EXPLOSION;
+	public static DefaultParticleType BROWN_EXPLOSION;
+	public static DefaultParticleType CYAN_EXPLOSION;
+	public static DefaultParticleType GRAY_EXPLOSION;
+	public static DefaultParticleType GREEN_EXPLOSION;
+	public static DefaultParticleType LIGHT_BLUE_EXPLOSION;
+	public static DefaultParticleType LIGHT_GRAY_EXPLOSION;
+	public static DefaultParticleType LIME_EXPLOSION;
+	public static DefaultParticleType MAGENTA_EXPLOSION;
+	public static DefaultParticleType ORANGE_EXPLOSION;
+	public static DefaultParticleType PINK_EXPLOSION;
+	public static DefaultParticleType PURPLE_EXPLOSION;
+	public static DefaultParticleType RED_EXPLOSION;
+	public static DefaultParticleType WHITE_EXPLOSION;
+	public static DefaultParticleType YELLOW_EXPLOSION;
+	
 	// Simple particles
 	public static DefaultParticleType register(String name, boolean alwaysShow) {
 		return Registry.register(Registry.PARTICLE_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), FabricParticleTypes.simple(alwaysShow));
@@ -245,6 +262,23 @@ public class SpectrumParticleTypes {
 		RED_SPARKLE_RISING = register("red_sparkle_rising", false);
 		WHITE_SPARKLE_RISING = register("white_sparkle_rising", false);
 		YELLOW_SPARKLE_RISING = register("yellow_sparkle_rising", false);
+		
+		BLACK_EXPLOSION = register("black_explosion", false);
+		BLUE_EXPLOSION = register("blue_explosion", false);
+		BROWN_EXPLOSION = register("brown_explosion", false);
+		CYAN_EXPLOSION = register("cyan_explosion", false);
+		GRAY_EXPLOSION = register("gray_explosion", false);
+		GREEN_EXPLOSION = register("green_explosion", false);
+		LIGHT_BLUE_EXPLOSION = register("light_blue_explosion", false);
+		LIGHT_GRAY_EXPLOSION = register("light_gray_explosion", false);
+		LIME_EXPLOSION = register("lime_explosion", false);
+		MAGENTA_EXPLOSION = register("magenta_explosion", false);
+		ORANGE_EXPLOSION = register("orange_explosion", false);
+		PINK_EXPLOSION = register("pink_explosion", false);
+		PURPLE_EXPLOSION = register("purple_explosion", false);
+		RED_EXPLOSION = register("red_explosion", false);
+		WHITE_EXPLOSION = register("white_explosion", false);
+		YELLOW_EXPLOSION = register("yellow_explosion", false);
 	}
 	
 	@NotNull
@@ -310,6 +344,28 @@ public class SpectrumParticleTypes {
 			case RED -> RED_SPARKLE_RISING;
 			case YELLOW -> YELLOW_SPARKLE_RISING;
 			default -> WHITE_SPARKLE_RISING;
+		};
+	}
+	
+	@NotNull
+	public static ParticleEffect getExplosionParticle(DyeColor dyeColor) {
+		return switch (dyeColor) {
+			case BLACK -> BLACK_EXPLOSION;
+			case BLUE -> BLUE_EXPLOSION;
+			case BROWN -> BROWN_EXPLOSION;
+			case CYAN -> CYAN_EXPLOSION;
+			case GRAY -> GRAY_EXPLOSION;
+			case GREEN -> GREEN_EXPLOSION;
+			case LIGHT_BLUE -> LIGHT_BLUE_EXPLOSION;
+			case LIGHT_GRAY -> LIGHT_GRAY_EXPLOSION;
+			case LIME -> LIME_EXPLOSION;
+			case MAGENTA -> MAGENTA_EXPLOSION;
+			case ORANGE -> ORANGE_EXPLOSION;
+			case PINK -> PINK_EXPLOSION;
+			case PURPLE -> PURPLE_EXPLOSION;
+			case RED -> RED_EXPLOSION;
+			case YELLOW -> YELLOW_EXPLOSION;
+			default -> WHITE_EXPLOSION;
 		};
 	}
 	

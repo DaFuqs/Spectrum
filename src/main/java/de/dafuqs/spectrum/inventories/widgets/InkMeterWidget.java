@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
+import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import de.dafuqs.spectrum.helpers.RenderHelper;
@@ -31,16 +32,16 @@ public class InkMeterWidget extends DrawableHelper implements Drawable, Element,
 	protected boolean hovered;
 	
 	protected Screen screen;
-	protected IndividualCappedInkStorage inkStorage;
+	protected InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity;
 	
-	public InkMeterWidget(int x, int y, int height, Screen screen, IndividualCappedInkStorage inkStorage) {
+	public InkMeterWidget(int x, int y, int height, Screen screen, InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity) {
 		this.x = x;
 		this.y = y;
-		this.width = inkStorage.getSupportedColors().size() * (WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS) - SPACE_BETWEEN_COLORS;
+		this.width = inkStorageBlockEntity.getEnergyStorage().getSupportedColors().size() * (WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS) - SPACE_BETWEEN_COLORS;
 		this.height = height;
 		
 		this.screen = screen;
-		this.inkStorage = inkStorage;
+		this.inkStorageBlockEntity = inkStorageBlockEntity;
 	}
 	
 	public boolean isMouseOver(double mouseX, double mouseY) {
@@ -64,7 +65,7 @@ public class InkMeterWidget extends DrawableHelper implements Drawable, Element,
 	
 	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
 		List<Text> tooltip = new ArrayList<>();
-		inkStorage.addTooltip(tooltip, false);
+		inkStorageBlockEntity.getEnergyStorage().addTooltip(tooltip, false);
 		screen.renderTooltip(matrices, tooltip, Optional.empty(), x, y);
 	}
 	
@@ -72,6 +73,7 @@ public class InkMeterWidget extends DrawableHelper implements Drawable, Element,
 		int startHeight = this.y + this.height;
 		int currentXOffset = 0;
 		
+		IndividualCappedInkStorage inkStorage = inkStorageBlockEntity.getEnergyStorage();
 		long total = inkStorage.getMaxPerColor();
 		for(InkColor inkColor : inkStorage.getSupportedColors()) {
 			long amount = inkStorage.getEnergy(inkColor);

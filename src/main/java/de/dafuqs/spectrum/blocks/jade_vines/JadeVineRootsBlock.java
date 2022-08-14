@@ -316,7 +316,7 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine {
 		int i = 0;
 		do {
 			if (world.getBlockState(blockPos.down(i + 1)).getBlock() instanceof JadeVineRootsBlock) {
-				i--;
+				i++;
 			} else {
 				break;
 			}

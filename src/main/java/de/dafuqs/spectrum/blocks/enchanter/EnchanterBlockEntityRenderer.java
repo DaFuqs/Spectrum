@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity> {
 	
 	protected static final int EXPERIENCE_SPRITE_BRIGHTNESS = 15728768; // max brightness
-	protected static final double ITEM_STACK_RENDER_HEIGHT = 0.65F;
+	protected static final double ITEM_STACK_RENDER_HEIGHT = 0.95F;
 	
 	protected static RenderLayer layer;
 	protected static Identifier texture;

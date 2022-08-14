@@ -92,7 +92,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		}
 		
 		// Add player
-		nbtCompound.putString("TargetPlayerName", player.getName().asString());
+		nbtCompound.putString("TargetPlayerName", player.getName().getString());
 		nbtCompound.putUuid("TargetPlayerUUID", player.getUuid());
 		itemStack.setNbt(nbtCompound);
 	}

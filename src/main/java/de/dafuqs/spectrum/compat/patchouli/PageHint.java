@@ -83,15 +83,15 @@ public class PageHint extends BookPage {
 		}
 		
 		// Show a new letter each tick
-		Text calculatedText = Text.literal(text.asString().substring(0, (int) revealProgress) + "$(obf)" + text.asString().substring((int) revealProgress));
+		Text calculatedText = Text.literal(text.getString().substring(0, (int) revealProgress) + "$(obf)" + text.getString().substring((int) revealProgress));
 		
 		long currentTime = MinecraftClient.getInstance().world.getTime();
 		if (currentTime != lastRevealTick) {
 			lastRevealTick = currentTime;
 			
 			revealProgress++;
-			revealProgress = Math.min(text.asString().length(), revealProgress);
-			if (text.asString().length() < revealProgress) {
+			revealProgress = Math.min(text.getString().length(), revealProgress);
+			if (text.getString().length() < revealProgress) {
 				revealProgress = 0;
 				return text;
 			}
@@ -112,7 +112,7 @@ public class PageHint extends BookPage {
 			PersistentData.save();
 			entry.markReadStateDirty();
 			
-			SpectrumClient.minecraftClient.getSoundManager().play(new HintRevelationSoundInstance(mc.player, rawText.asString().length()));
+			SpectrumClient.minecraftClient.getSoundManager().play(new HintRevelationSoundInstance(mc.player, rawText.getString().length()));
 			
 			SpectrumC2SPacketSender.sendGuidebookHintBoughtPaket(ingredient);
 			revealProgress = 1;

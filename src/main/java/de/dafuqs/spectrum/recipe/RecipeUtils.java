@@ -16,6 +16,7 @@ import net.minecraft.nbt.NbtHelper;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.JsonHelper;
+import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class RecipeUtils {
 	}
 	
 	public static BlockState blockStateFromString(String string) throws CommandSyntaxException {
-		return new BlockArgumentParser(new StringReader(string), true).parse(false).getBlockState();
+		return BlockArgumentParser.block(Registry.BLOCK, new StringReader(string), true).blockState();
 	}
 	
 	public static String blockStateToString(BlockState state) {

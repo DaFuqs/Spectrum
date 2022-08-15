@@ -248,8 +248,8 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	}
 	
 	@Override
-	public boolean canAcceptEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, Vec3d sourcePos) {
-		return event == SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN && !this.listenerPaused;
+	public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message event, Vec3d sourcePos) {
+		return event.getEvent() == SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN && !this.listenerPaused;
 	}
 	
 	@Override
@@ -316,7 +316,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		if (world instanceof ServerWorld) {
 			for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
 				if (world.getBlockState(currPos).isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-					this.blockPosEventTransferListener.acceptEvent(world, currPos, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, null, Vec3d.ofCenter(this.pos));
+					this.blockPosEventTransferListener.acceptEvent(world, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, Vec3d.ofCenter(this.pos));
 				}
 			}
 		}

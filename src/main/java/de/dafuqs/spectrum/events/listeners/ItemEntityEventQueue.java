@@ -31,8 +31,7 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 		}
 	}
 
-	@Override
-	public boolean listen(ServerWorld world, GameEvent.Message event, @Nullable Entity entity, BlockPos pos) {
+	public boolean listen(ServerWorld world, GameEvent.Message event, Vec3d pos) {
 		//TODO Need to implement this
 		return false;
 	}

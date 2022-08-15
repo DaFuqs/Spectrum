@@ -60,10 +60,10 @@
 
   "effect.spectrum.immunity": "免疫",
 
-  "item.spectrum.potion": "§2染§3§7色§f药水",
-  "item.spectrum.splash_potion": "喷溅型§2染§3§7色§f药水",
-  "item.spectrum.lingering_potion": "滞留型§2染§3§7色§f药水",
-  "item.spectrum.tipped_arrow": "§2染§3§7色§f之箭",
+  "item.spectrum.potion": "§2染§7色§f药水",
+  "item.spectrum.splash_potion": "喷溅型§2染§7色§f药水",
+  "item.spectrum.lingering_potion": "滞留型§2染§7色§f药水",
+  "item.spectrum.tipped_arrow": "§2染§7色§f之箭",
   "item.spectrum.potion.tooltip.unidentifiable": "§0漆黑一片，不可名状",
 
   "spectrum.tooltip.coming_soon": "§4生存模式中暂不可用",
@@ -1342,7 +1342,7 @@
   "item.spectrum.natures_staff": "自然法杖",
   "item.spectrum.natures_staff.tooltip": "§7使用§a植本质§7来种植所有类型的植物",
   "item.spectrum.natures_staff.tooltip_with_chance": "§7使用§a植本质§7来种植所有类型的植物（%d%%§7）",
-  "item.spectrum.natures_staff.tooltip_with_ink": "§7使用§a植本质§7墨水或者§a黄绿色墨水§7来种植所有类型的植物,
+  "item.spectrum.natures_staff.tooltip_with_ink": "§7使用§a植本质§7墨水或者§a黄绿色墨水§7来种植所有类型的植物",
   "item.spectrum.natures_staff.tooltip_with_ink_and_chance": "§7使用§a植本质§7或者§a黄绿色墨水§7来种植所有类型的植物（%d%%§7）",
   "item.spectrum.pedestal_tier_1_structure_placer": "光谱注魔基座放置器",
   "item.spectrum.pedestal_tier_2_structure_placer": "光谱注魔祭坛放置器",

@@ -57,8 +57,9 @@
     "trinkets": "*"
   },
   "suggests": {
-    "chalk": ">=2.0.0",
-    "colored_lights": ">=1.0.3",
+    "chalk": "*",
+    "chalk-colorful-addon": "*",
+    "colored_lights": "*",
     "paginatedadvancements": "*",
     "the_aether": "*",
     "limlib": "*",

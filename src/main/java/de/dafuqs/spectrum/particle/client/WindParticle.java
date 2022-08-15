@@ -29,7 +29,7 @@ public class WindParticle extends SpriteBillboardParticle {
 	public void tick() {
 		super.tick();
 		
-		Vec3d windStrength = wind.getWindStrength(world.getTime());
+		Vec3d windStrength = wind.getWindStrength(world.getTime(), world.random);
 		this.velocityX += windStrength.getX() * 0.004;
 		this.velocityY += windStrength.getY() * 0.001;
 		this.velocityZ += windStrength.getZ() * 0.004;

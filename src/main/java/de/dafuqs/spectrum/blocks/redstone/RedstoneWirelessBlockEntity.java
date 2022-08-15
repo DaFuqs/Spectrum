@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.BlockPositionSource;
 import net.minecraft.world.event.GameEvent;
@@ -42,7 +43,7 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 		if (isSender(world, pos)) {
 			if (blockEntity.currentSignal != blockEntity.cachedSignal) {
 				blockEntity.currentSignal = blockEntity.cachedSignal;
-				blockEntity.world.emitGameEvent(SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(state.get(RedstoneWirelessBlock.CHANNEL)).get(blockEntity.currentSignal), blockEntity.getPos());
+				blockEntity.world.emitGameEvent(null, SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(state.get(RedstoneWirelessBlock.CHANNEL)).get(blockEntity.currentSignal), blockEntity.getPos());
 			}
 		} else {
 			blockEntity.listener.tick(world);
@@ -77,8 +78,8 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 	}
 	
 	@Override
-	public boolean canAcceptEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos) {
-		if (event instanceof RedstoneTransferGameEvent redstoneTransferGameEvent) {
+	public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message message, Vec3d sourcePos) {
+		if (message.getEvent() instanceof RedstoneTransferGameEvent redstoneTransferGameEvent) {
 			return !isSender(this.world, this.pos) && redstoneTransferGameEvent.getDyeColor() == getChannel(this.world, this.pos);
 		}
 		return false;

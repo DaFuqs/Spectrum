@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.events.listeners;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -12,15 +13,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 public abstract class EventQueue<D> implements GameEventListener {
 	
 	protected final PositionSource positionSource;
 	protected final int range;
-	protected final EventQueue.Callback callback;
+	protected final EventQueue.Callback<D> callback;
 	private final Map<D, Integer> eventQueue;
 	
-	public EventQueue(PositionSource positionSource, int range, EventQueue.Callback listener) {
+	public EventQueue(PositionSource positionSource, int range, EventQueue.Callback<D> listener) {
 		this.positionSource = positionSource;
 		this.range = range;
 		this.callback = listener;
@@ -29,8 +31,7 @@ public abstract class EventQueue<D> implements GameEventListener {
 	
 	public void tick(World world) {
 		if (!eventQueue.isEmpty()) {
-			D[] keys = (D[]) eventQueue.keySet().toArray();
-			for (D key : keys) {
+			for (D key : eventQueue.keySet()) {
 				Integer tickCounter = eventQueue.get(key);
 				if (tickCounter >= 1) {
 					eventQueue.put(key, tickCounter - 1);
@@ -49,19 +50,33 @@ public abstract class EventQueue<D> implements GameEventListener {
 	public int getRange() {
 		return this.range;
 	}
-
 	
-	protected abstract void acceptEvent(World world, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos);
+	@Override
+	public boolean listen(ServerWorld world, GameEvent.Message event) {
+		Optional<Vec3d> positionSourcePosOptional = this.positionSource.getPos(world);
+		if (positionSourcePosOptional.isEmpty()) {
+			return false;
+		} else {
+			if (!this.callback.canAcceptEvent(world, this, event, positionSourcePosOptional.get())) {
+				return false;
+			} else {
+				this.acceptEvent(world, event, positionSourcePosOptional.get());
+				return true;
+			}
+		}
+	}
+	
+	protected abstract void acceptEvent(World world, GameEvent.Message event, Vec3d sourcePos);
 	
 	protected void schedule(D object, int delay) {
 		this.eventQueue.put(object, delay);
 	}
-
+	
 	public interface Callback<D> {
 		/**
 		 * Returns whether the callback wants to accept this event.
 		 */
-		boolean canAcceptEvent(World world, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity, BlockPos sourcePos);
+		boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message message, Vec3d sourcePos);
 		
 		/**
 		 * Accepts a game event after delay.

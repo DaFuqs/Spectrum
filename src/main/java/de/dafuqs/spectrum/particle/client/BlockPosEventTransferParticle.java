@@ -86,7 +86,7 @@ public class BlockPosEventTransferParticle extends SpriteBillboardParticle {
 	public void tick() {
 		super.tick();
 		Optional<Vec3d> optional = this.blockPosEventTransfer.getDestination().getPos(this.world);
-		if (!optional.isPresent()) {
+		if (optional.isEmpty()) {
 			this.markDead();
 		} else {
 			double d = (double) this.age / (double) this.maxAge;

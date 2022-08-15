@@ -86,17 +86,17 @@ public class WirelessRedstoneTransmissionParticle extends SpriteBillboardParticl
 	public void tick() {
 		super.tick();
 		Optional<Vec3d> optional = this.wirelessRedstoneTransmission.getDestination().getPos(this.world);
-		if (!optional.isPresent()) {
+		if (optional.isEmpty()) {
 			this.markDead();
 		} else {
 			double d = (double) this.age / (double) this.maxAge;
 			BlockPos blockPos = this.wirelessRedstoneTransmission.getOrigin();
 			Vec3d blockPos2 = optional.get();
-			this.x = MathHelper.lerp(d, (double) blockPos.getX() + 0.5D, (double) blockPos2.getX() + 0.5D);
-			this.y = MathHelper.lerp(d, (double) blockPos.getY() + 0.5D, (double) blockPos2.getY() + 0.5D);
-			this.z = MathHelper.lerp(d, (double) blockPos.getZ() + 0.5D, (double) blockPos2.getZ() + 0.5D);
+			this.x = MathHelper.lerp(d, (double) blockPos.getX() + 0.5D, blockPos2.getX() + 0.5D);
+			this.y = MathHelper.lerp(d, (double) blockPos.getY() + 0.5D, blockPos2.getY() + 0.5D);
+			this.z = MathHelper.lerp(d, (double) blockPos.getZ() + 0.5D, blockPos2.getZ() + 0.5D);
 			this.field_28248 = this.field_28250;
-			this.field_28250 = (float) MathHelper.atan2(this.x - (double) blockPos2.getX(), this.z - (double) blockPos2.getZ());
+			this.field_28250 = (float) MathHelper.atan2(this.x - blockPos2.getX(), this.z - blockPos2.getZ());
 		}
 	}
 	

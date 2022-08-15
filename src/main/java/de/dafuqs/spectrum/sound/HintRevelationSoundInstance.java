@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.sound.AbstractSoundInstance;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -18,7 +19,7 @@ public class HintRevelationSoundInstance extends AbstractSoundInstance implement
 	private int playtime;
 	
 	public HintRevelationSoundInstance(PlayerEntity player, int duration) {
-		super(SpectrumSoundEvents.TEXT_REVEALED, SoundCategory.PLAYERS, new Random());
+		super(SpectrumSoundEvents.TEXT_REVEALED, SoundCategory.PLAYERS, SoundInstance.createRandom());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 1.0F;

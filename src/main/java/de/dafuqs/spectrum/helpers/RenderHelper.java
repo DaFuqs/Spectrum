@@ -29,7 +29,8 @@ public class RenderHelper {
 		builder.vertex(matrix, p1x, p1y, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, p2x, p2y, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, p3x, p3y, 0F).color(red, green, blue, alpha).next();
-		BufferRenderer.drawWithShader(builder.end());
+		builder.end();
+		BufferRenderer.drawWithShader(builder.end()); // TODO: test
 		RenderSystem.enableTexture();
 		RenderSystem.disableBlend();
 	}
@@ -53,7 +54,8 @@ public class RenderHelper {
 		builder.vertex(matrix, x, y+height, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, x+width, y+height, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, x+width, y, 0F).color(red, green, blue, alpha).next();
-		BufferRenderer.drawWithShader(builder.end());
+		builder.end();
+		BufferRenderer.drawWithShader(builder.end()); // TODO: test
 		RenderSystem.enableTexture();
 		RenderSystem.disableBlend();
 	}

@@ -140,7 +140,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 							BlockState targetState = it.next();
 							world.setBlockState(topPos, targetState);
 							if (targetState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-								world.emitGameEvent(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, topPos, GameEvent.Emitter.of(blockState));
+								world.emitGameEvent(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, topPos, GameEvent.Emitter.of(world.getBlockState(topPos)));
 							}
 							
 							// if the stone on top can not grow any further: pause

@@ -37,7 +37,7 @@ public class JadeVineRootsBlockEntityRenderer implements BlockEntityRenderer<Jad
 						matrixStack,
 						vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(fenceBlockState)),
 						true,
-						new Random(),
+						entity.getWorld().random,
 						fenceBlockState.getRenderingSeed(entity.getPos()),
 						OverlayTexture.DEFAULT_UV
 				);

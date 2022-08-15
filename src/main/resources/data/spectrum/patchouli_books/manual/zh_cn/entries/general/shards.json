@@ -55,7 +55,7 @@
       "advancement": "spectrum:midgame/collect_moonstone_shard",
       "title": "月长石碎片",
       "item": "spectrum:moonstone_shard",
-      "text": "这清澈的白是仲夏月夜的白，恬淡平和却富有张力——睡眠中的猫咪安详宁静，却是机警地潜伏在梦中，作为猎人伺机而动，准备好醒来。$(br2)月长石蕴含着$(bold)$(c_white)纯粹的魔法$()。"
+      "text": "这清澈的白是仲夏月夜的白，恬淡平和却富有张力——睡眠中的猫咪安详宁静，却保持着猎人的机警潜伏在梦中，随时准备好醒来。$(br2)月长石蕴含着$(bold)$(c_white)纯粹的魔法$()。"
     },
     {
       "type": "patchouli:spotlight",

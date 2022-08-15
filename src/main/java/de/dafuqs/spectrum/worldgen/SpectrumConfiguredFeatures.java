@@ -16,6 +16,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
@@ -50,6 +51,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;
+import static de.dafuqs.spectrum.registries.SpectrumBiomeTags.*;
 
 public class SpectrumConfiguredFeatures {
 	
@@ -196,8 +198,8 @@ public class SpectrumConfiguredFeatures {
 				BiomePlacementModifier.of()
 		);
 		
-		Predicate<BiomeSelectionContext> treeBiomes = BiomeSelectors.foundInOverworld();
-		
+		Predicate<BiomeSelectionContext> treeBiomes = BiomeSelectors.tag(HAS_ANCIENT_RUINS_BIOMES);
+
 		BiomeModifications.addFeature(treeBiomes, GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
 	}
 	

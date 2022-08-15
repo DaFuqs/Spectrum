@@ -29,10 +29,6 @@
       "id": "#minecraft:is_mountain",
       "replace": "false"
     },
-    {
-      "id": "#minecraft:is_hills",
-      "replace": "false"
-    },
     "minecraft:desert",
     {
       "id": "#minecraft:is_savanna",

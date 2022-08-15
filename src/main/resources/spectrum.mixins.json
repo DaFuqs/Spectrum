@@ -65,8 +65,7 @@
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin",
     "client.accessors.BossBarHudAccessor",
-    "client.accessors.RenderLayerAccessor",
-    "client.enchantment_descriptions.DescriptionManagerMixin"
+    "client.accessors.RenderLayerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.client.enchantment_descriptions;
+/*package de.dafuqs.spectrum.mixin.client.enchantment_descriptions;
 
 import net.darkhax.enchdesc.DescriptionManager;
 import org.spongepowered.asm.mixin.Mixin;
@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Pseudo;
  * If Enchantment descriptions is installed:
  * Obfuscate descriptions for Enchantments that the user does not have discovered yet
  */
-@Pseudo
+/*@Pseudo
 @Mixin(value = DescriptionManager.class, remap = false)
 public class DescriptionManagerMixin {
 
@@ -22,5 +22,6 @@ public class DescriptionManagerMixin {
 			}
 		}
 	}*/
-	
+	/*
 }
+*/

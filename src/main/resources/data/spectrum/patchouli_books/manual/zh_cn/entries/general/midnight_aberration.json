@@ -1,7 +1,7 @@
 {
-  "name": "最佳拍档？",
+  "name": "完美的化合物？",
   "icon": "spectrum:midnight_aberration",
-  "sortnum": 12,
+  "sortnum": 13,
   "advancement": "spectrum:midgame/collect_neolith",
   "category": "spectrum:general_category",
   "turnin": "spectrum:midgame/create_midnight_aberration",
@@ -11,25 +11,25 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "上次实验的最新发现让你越来越求知若渴。试图榨取你的宝石中的所有能量。$(br2)黑曜能量粉是关键！一定是的！如果你把你收集到的所有石头和它结合起来，一定会创造出拥有不可思议力量的东西。只有你且只为你，颜料大师! "
+      "text": "你手头最新的研究成果令你不断寻求竭尽宝石晶之能量的绝妙方法。$(br2)对了！坚新石一定就是关键！如果你把所有不同的宝石晶和它结合在一起，就一定会创造出强大的，独属于你的大师级材料！"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/midnight_aberration",
-      "text": "融合所有这些神奇的能量一定会产生一种不可思议的能量。$(br2)需要白天和晴朗的天空。"
+      "text": "这么多能量聚合在一起，一定能产生一个强大的能量源泉的！$(br2)需在天晴的白天时进行"
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:midnight_aberration",
       "advancement": "spectrum:midgame/create_midnight_aberration",
-      "title": "午夜畸变",
-      "text": "$(italic)这种令人憎恶的宝石散发出一种怪异的光环。$()$(br2)它看起来是松散的连接。难怪它在你手里很快就会散架。太失败了。"
+      "title": "午夜像差",
+      "text": "$(italic)如此产物，仅余“亵渎”二字可言。$()$(br2)其松散的结构在你的手中仅仅须臾转瞬便垮塌破碎。真是彻头彻尾的失败。"
     },
     {
       "type": "patchouli:text",
       "advancement": "spectrum:midgame/create_midnight_aberration",
-      "text": "虽然随之而来的混乱$(italic)肯定$()不是你所渴望的结果，但结果仍然具有巨大的力量。$(br)事实上，如果不马上使用，它就会变成灰尘。$(br2)然后在这个过程中出现了带有腐蚀性的黑色液体。因为它的颜色，你把它命名为$(l:magical_blocks/midnight_solution)午夜溶液$(/l)。"
+      "text": "释出这般混沌$(italic)绝非$()你的本意，哪怕产物本身确实强大。$(br)也正是这种强大的能量使得产物在你的手中顷刻间便无法自持四散瓦解。$(br2)与此同时，制作过程中出现了一种侵蚀性的黑色液体，你称其为$(l:magical_blocks/midnight_solution)午夜溶液$(/l)。"
     }
   ]
 }

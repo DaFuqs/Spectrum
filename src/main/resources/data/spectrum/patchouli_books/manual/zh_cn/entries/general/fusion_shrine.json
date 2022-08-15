@@ -1,7 +1,7 @@
 {
-  "name": "融合神龛",
+  "name": "融合圣坛",
   "icon": "spectrum:fusion_shrine_basalt",
-  "sortnum": 9,
+  "sortnum": 10,
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "turnin": "spectrum:build_fusion_shrine",
   "category": "spectrum:general_category",
@@ -12,50 +12,50 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "为了制作 $(l:general/onyx_shards)黑色碎片$()，你发现了一种新的建筑.$(br2)你可以点击或者把物品和桶扔到上面。你甚至可以一次处理所有的融合材料，这使得融合比每次只使用一件物品更有效。"
+      "text": "为了创造$(l:general/onyx_shards)黑色的宝石晶$()，你构思了一个祭坛结构。$(br2)直接右击圣坛或者把物品扔上去都可以将物品放置在圣坛之上。圣坛也可以一次性处理一组物品，这样一来，融合也会更为高效。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
-      "text": "可以由玄武岩或方解石构成。$(br)需要聚焦结构和清晰的天空视野。 "
+      "text": "方解石或玄武岩皆可。$(br)需要露天的基座结构。"
     },
     {
       "type": "patchouli:multiblock",
-      "name": "神龛配方",
+      "name": "圣坛基座结构",
       "multiblock_id": "spectrum:fusion_shrine_structure",
       "enable_visualize": true,
-      "text": "像往常一样，你可以切换玄武岩与方解石，并选择你喜欢的$(l:decoration/gemstone_storage_blocks)宝石块$(/l)."
+      "text": "你可以随意选取方解石、玄武岩与$(l:decoration/gemstone_storage_blocks)宝石晶$(/l)的搭配。"
     },
     {
       "type": "patchouli:text",
-      "title": "方块清单",
-      "text": "$(li)1 融合神龛$(li)4 磨制宝石块$(li)4 錾制磨制块$(li)8 磨制柱子$(li)12 磨制台阶$(li)77 磨制块"
+      "title": "方块列表",
+      "text": "$(li)1个融合圣坛$(li)4个磨制宝石晶方块$(li)4个錾制磨制岩石方块$(li)8个磨制岩石柱$(li)12个磨制岩石台阶$(li)77个磨制岩石方块"
     },
     {
       "type": "patchouli:text",
       "title": "改变天气",
-      "text": "你为融合神龛设计了一个结构，将$(c_cyan)物质$()，$(c_magenta)时间$() 和 $(c_yellow)能量$()的魔法能量捆绑在一起、并将它们集中在一个单一的中心，即融合神殿本身。$(br2)这些强大的组合能量甚至有足够的力量来改变天气。"
+      "text": "你构思的圣坛结构可以结合$(c_cyan)物质$()，$(c_magenta)时间$()与$(c_yellow)能量$()并聚焦集中在圣坛上。$(br2)这种结合的能量强大到可以呼风唤雨。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "晴天",
       "recipe": "spectrum:fusion_shrine/weather/weather_clear",
-      "text": "$(italic)又是新的一天$(br)太阳当空照$(br)小鸟都在歌唱$(br)今天是你的忌日。"
+      "text": "$(italic)太阳当空照$(br)花儿对我笑$(br)小鸟说，早早早$(br)你为什么背着炸药包"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "雨天",
       "advancement": "spectrum:collect_mermaids_gem",
       "recipe": "spectrum:fusion_shrine/weather/weather_rain",
-      "text": "$(italic)咚咚咚$(br)是谁？$(br)天气预报$(br)预报什么？$(br)预报今晚会下雨。"
+      "text": "——五金店内——$(italic)$(br)“你带伞干什么？”$(br)“我买了锯子”$(br)“锯子和伞有啥关系？”$(br)“锯说等会儿要下雨。”"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "雷暴",
       "advancement": "spectrum:midgame/collect_lightning_stone",
       "recipe": "spectrum:fusion_shrine/weather/weather_thunder",
-      "text": "$(italic)雷神为什么要喝水?$(br2)因为他脾气暴躁（thorsty）"
+      "text": "$(italic)为什么表演都不带雷神？$(br2)一眼托儿。"
     }
   ]
 }

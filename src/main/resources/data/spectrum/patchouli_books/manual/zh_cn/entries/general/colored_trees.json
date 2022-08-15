@@ -1,7 +1,7 @@
 {
-  "name": "染色树",
+  "name": "彩色树",
   "icon": "spectrum:red_sapling",
-  "sortnum": 6,
+  "sortnum": 7,
   "advancement": "spectrum:collect_vegetal",
   "turnin": "spectrum:craft_colored_sapling",
   "category": "spectrum:general_category",
@@ -170,14 +170,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "染色树",
-      "text": "你需要一些有机的东西来混合你的颜料。在实验时，你看到树苗的根很容易吸收颜料的颜色，并生长出相应颜色的枝叶。宝石脉冲的能量已经穿过了枝干和几片叶子。$(br2)想想它们长成了会是什么样子！"
+      "title": "彩色树",
+      "text": "你需要有机的介质来混合颜料。你实验得到的树苗轻易地吸收了颜料的能量，生长出相应的色泽。树苗尚且稚嫩，但你已经感受到了宝石晶的能量在其枝桠与嫩叶之间的悄然闪动。$(br2)长大了是什么样呢？真令人期待啊。"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "染色树苗",
+      "title": "彩色树苗",
       "recipe": "spectrum:pedestal/tier1/saplings/red_sapling",
-      "text": "每个彩色树苗都需要一些不同的$(l:general/gemstone_powder)宝石矿粉末$()混合物，对应它们$(l:general/color_mixing)混合最终颜色$(/l)所需要的宝石矿粉末。"
+      "text": "不同的彩色树苗需要不同数量的$(l:general/gemstone_powder)宝石晶粉末$()搭配，才能调配出与之对应的$(l:general/color_mixing)颜色$(/l)。"
     },
     {
       "type": "patchouli:image",
@@ -186,14 +186,14 @@
       "images": [
         "spectrum:textures/gui/manual/colored_trees.png"
       ],
-      "text": "它们早就在你周围了！谁知道外面还有啥呢？"
+      "text": "原来它们本就随处可见！还有什么我没发现的秘密吗！"
     },
     {
       "type": "patchouli:crafting",
       "advancement": "spectrum:craft_colored_sapling",
-      "title": "染色原木",
+      "title": "彩色原木",
       "recipe": "spectrum:crafting_table/colored_wood/light_blue_planks",
-      "text": "就和普通的原木一样，你可以用染色原木来合成木板，楼梯，台阶，按钮，压力板，栅栏和栅栏门。"
+      "text": "和通常的原木一样，彩色原木也可以用于制作木板，楼梯，台阶，按钮，压力板，栅栏与栅栏门。"
     }
   ]
 }

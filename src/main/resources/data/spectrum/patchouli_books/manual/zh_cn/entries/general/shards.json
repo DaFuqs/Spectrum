@@ -1,7 +1,7 @@
 {
-  "name": "宝石矿碎片",
+  "name": "宝石晶碎片",
   "icon": "minecraft:amethyst_shard",
-  "sortnum": 1,
+  "sortnum": 2,
   "category": "spectrum:general_category",
   "turnin": "spectrum:collect_all_basic_shards",
   "extra_recipe_mappings": {
@@ -15,15 +15,15 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "开始探索光谱世界之前你需要先找到一些宝石矿碎片.$(br2)每种宝石矿都代表了一种颜色元素和一种自然力量。"
+      "text": "探寻《光谱世界》的第一步是获取宝石晶碎片。$(br2)每一种宝石晶碎片都对应着一种自然界的基本要素。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "topaz",
       "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
-      "title": "黄玉碎片",
+      "title": "托帕石碎片",
       "item": "spectrum:topaz_shard",
-      "text": "手握黄玉碎片，它比你想象的要重。乍一看很脆弱，但很快就能发现它是一种很坚固的材料，在现有的物质中，也许只有钻石能超过它。你可以在在陡峭的山顶或是高耸的山峰的晶洞中上找到黄玉.$(br)黄玉代表 $(bold)$(c_cyan)物质$()。"
+      "text": "托帕石在你的手中独有一份厚重感。其貌似脆弱，然而你仔细打量一番便发现其坚韧强硬远超绝大多数材料——可能仅次于钻石。托帕石晶洞仅在高山与峭壁之中形成。$(br)托帕石对应$(bold)$(c_cyan)物质$()。"
     },
     {
       "type": "patchouli:spotlight",
@@ -31,7 +31,7 @@
       "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
       "title": "紫水晶碎片",
       "item": "minecraft:amethyst_shard",
-      "text": "能在这种碎片上看到品红色的反射光。$(br)在晶洞中形成了亿万年的宝石矿，散发着令人畏惧的光芒。它是永恒的象征，存在于世界的最深层。$(br2)紫水晶代表 $(bold)$(c_purple)时间$()."
+      "text": "紫水晶中闪耀着品红色的光辉。$(br)其在晶洞中存在了千万年，象征着存续与威严。紫晶洞仅在世界深层生成。$(br2)紫水晶对应$(bold)$(c_purple)时间$()。"
     },
     {
       "type": "patchouli:spotlight",
@@ -39,7 +39,7 @@
       "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
       "title": "黄水晶碎片",
       "item": "spectrum:citrine_shard",
-      "text": "这种黄色的宝石矿可以在能够被太阳带去温暖的地表附近发现.$(br2)其明亮的黄色光泽散发纯净的$(bold)$(c_yellow)能量$()并使其摸起来很温暖"
+      "text": "阳光在地表消散，化作晶洞中的温度。$(br2)黄水晶亮黄色的表面散发出纯粹的$(bold)$(c_yellow)能量$()，触感温暖怡人。"
     },
     {
       "type": "patchouli:spotlight",
@@ -47,7 +47,7 @@
       "advancement": "spectrum:create_onyx_shard",
       "title": "缟玛瑙碎片",
       "item": "spectrum:onyx_shard",
-      "text": "缟玛瑙几乎是漆黑一片，它似乎甚至会把周围的光都吸收掉。$(br2)缟玛瑙是能量，物质，和时间的组合, 作为魔法工具和设施的$(bold)$(c_black)强化聚焦和催化剂$()。"
+      "text": "缟玛瑙近乎通体纯黑，黑暗得让人怀疑它是否在主动吸收四周的光芒。$(br2)缟玛瑙结合了能量、物质与时间的本质，得以成为魔法器具的$(bold)$(c_black)催化剂与聚焦中心$()。"
     },
     {
       "type": "patchouli:spotlight",
@@ -55,15 +55,15 @@
       "advancement": "spectrum:midgame/collect_moonstone_shard",
       "title": "月长石碎片",
       "item": "spectrum:moonstone_shard",
-      "text": "它那蓝白色的微光使你想起平静夏夜的月光。它散发出的宁静给人留下了一种平静而又重要的印象，就像一只沉睡的猫——灵魂的安抚剂，同时又是一个时刻警惕的捕食者。$(br2)月长石代表 $(bold)$(c_white)纯魔法$()."
+      "text": "这清澈的白是仲夏月夜的白，恬淡平和却富有张力——睡眠中的猫咪安详宁静，却是机警地潜伏在梦中，作为猎人伺机而动，准备好醒来。$(br2)月长石蕴含着$(bold)$(c_white)纯粹的魔法$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "spectral",
       "advancement": "spectrum:lategame/create_spectral_shard",
-      "title": "光谱碎片",
+      "title": "七彩碎片",
       "item": "spectrum:spectral_shard",
-      "text": "光谱碎片在彩虹的所有颜色中闪耀。"
+      "text": "七彩碎片闪耀着彩虹的七彩。"
     }
   ]
 }

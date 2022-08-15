@@ -1,7 +1,7 @@
 {
   "name": "制作缟玛瑙母岩",
   "icon": "spectrum:onyx_cluster",
-  "sortnum": 14,
+  "sortnum": 15,
   "advancement": "spectrum:progression/unlock_budding_onyx",
   "turnin": "spectrum:midgame/create_budding_onyx",
   "category": "spectrum:general_category",
@@ -19,13 +19,13 @@
     {
       "type": "patchouli:text",
       "title": "制作缟玛瑙母岩",
-      "text": "制作缟玛瑙有点傻，因为即便有$(l:magical_items/crescent_clock)新月钟$(/l)它也受到月相影响。$(br)使缟玛瑙像其他宝石一样可持续产生，能给你剩下很多时间。$(br2)$(italic)奇怪的是, 同样的方法对其他彩色宝石不起作用？"
+      "text": "缟玛瑙的制作步骤实在相当繁琐。合成还要看月相，你不得不用上$(l:magical_items/crescent_clock)月相时钟$(/l)。$(br)如果能有什么可再生的手段来获取缟玛瑙岂不是方便得多？$(br2)$(italic)奇怪的是，这道工序对其它种类的宝石晶似乎并不起效……"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "title": "灵魂灌注配方",
       "recipe": "spectrum:spirit_instiller/budding_onyx",
-      "text": "即使实现成本很高，但是制作可持续再生的缟玛瑙也是值得的。$(br)一次性多制作一些$(l:general/midnight_aberration)午夜畸变$(/l)，因为它们畸变的很快。"
+      "text": "虽然是一道昂贵的工序，但既然可再生了总是值得的。$(br)先提前合成好足量的$(l:general/midnight_aberration)午夜像差$(/l)吧，这些东西在你手上衰变得很快。"
     }
   ]
 }

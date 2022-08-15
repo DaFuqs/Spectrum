@@ -1,0 +1,30 @@
+{
+  "name": "画笔",
+  "advancement": "spectrum:place_pedestal",
+  "icon": "spectrum:paintbrush",
+  "category": "spectrum:general_category",
+  "sortnum": 3,
+  "turnin": "spectrum:craft_using_pedestal",
+  "extra_recipe_mappings": {
+    "spectrum:paintbrush": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "画笔",
+      "text": "$(italic)画笔$()是怎么一回事呢？$(br2)好问题啊，好问题，你暗自思忖着。你这一选择的直觉兴许来源于你面对这七彩斑斓的宝石晶时的各种创想和内心的触动吧。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "合成配方",
+      "recipe": "spectrum:crafting_table/paintbrush",
+      "text": "给$(l:general/pedestal)七彩基座$(/l)狠狠敲上那么一下就可以开始合成了。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "方块上色",
+      "advancement": "spectrum:collect_pigment",
+      "text": "$(l:general/pigment)颜料$()就是要拿来涂抹绘画的嘛！$(br)手持画笔的时候潜行即可打开颜色选择界面。只要对着方块轻轻一抹，$(l:general/pigment)颜料$()便会匀染其上，将其变成相应的上色版本。"
+    }
+  ]
+}

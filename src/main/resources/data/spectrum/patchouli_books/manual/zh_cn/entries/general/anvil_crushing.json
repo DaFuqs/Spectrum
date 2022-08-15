@@ -1,23 +1,23 @@
 {
-  "name": "物品分解",
+  "name": "物品粉碎",
   "icon": "minecraft:anvil",
-  "sortnum": 3,
+  "sortnum": 4,
   "advancement": "spectrum:place_pedestal",
   "category": "spectrum:general_category",
   "turnin": "spectrum:collect_gemstone_powder",
   "pages": [
     {
       "type": "patchouli:image",
-      "title": "物品分解",
+      "title": "物品粉碎",
       "images": [
         "spectrum:textures/gui/manual/anvil_crushing.png"
       ],
       "border": true,
-      "text": "$(italic)\"旧的不去新的不来\"      - 某人"
+      "text": "$(italic)“新生伊始$(br)源于毁灭”      ——某人"
     },
     {
       "type": "patchouli:text",
-      "text": "目前为止，你主要使用铁砧修理和升级工具。像铁砧这么重的东西一定有别的用途吧！所以！为啥不用它大力出奇迹直接把东西碾成粉末！比如敌人的头骨和物品啥的，是不是感觉贼棒。$(br2)你可以用物品分解把 $(l:general/shards)宝石矿碎片$() 分解成 $(l:general/gemstone_powder)粉末$()。$(br2)$(italic)提示：铁砧落得越远越好！"
+      "text": "铁砧除了修复升级工具之外还有什么更好的用途么？这么沉重的东西自然要拿来碾碎一些东西才行啊！例如，敌人的头骨……呃，或者物品！嗯，物品。$(br2)你可以用下落的铁砧粉碎$(l:general/shards)宝石晶$()，将其碎为$(l:general/gemstone_powder)粉末$()。$(br2)$(italic)小贴士：铁砧下落越远，力道越大，效果越好。"
     }
   ]
 }

@@ -1,7 +1,8 @@
 {
-  "name": "光谱碎片",
+  "name": "七彩碎片",
   "advancement": "spectrum:lategame/spectrum_lategame",
-  "sortnum": 15,
+  "sortnum": 16,
+  "secret": true,
   "icon": "spectrum:spectral_shard",
   "category": "spectrum:general_category",
   "turnin": "spectrum:lategame/create_spectral_shard",
@@ -13,26 +14,26 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "光谱碎片",
-      "text": "TODO"
+      "title": "七彩碎片",
+      "text": "未完成"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/spectral_shard",
-      "text": "TODO"
+      "text": "未完成"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:lategame/create_spectral_shard",
       "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_block",
-      "text": "$(italic)棒极了!$()"
+      "text": "$(italic)喵$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:lategame/create_spectral_shard",
       "recipe": "spectrum:pedestal/tier1/compacting/spectral_shard_storage_block",
-      "text": "$(italic)你是不是觉得下届合金信标有点过分？$()"
+      "text": "$(italic)下界合金信标那哪叫贵？$()"
     }
   ]
 }

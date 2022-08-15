@@ -1,7 +1,8 @@
 {
   "name": "基座月长石升级",
   "icon": "spectrum:pedestal_moonstone",
-  "sortnum": 13,
+  "sortnum": 15,
+  "secret": true,
   "advancement": "spectrum:lategame/spectrum_lategame",
   "category": "spectrum:general_category",
   "turnin": "spectrum:lategame/build_complex_pedestal_structure",
@@ -13,32 +14,32 @@
       "type": "spectrum:pedestal_crafting",
       "title": "月长石变种",
       "recipe": "spectrum:pedestal/tier3/pedestal_moonstone",
-      "text": "用你手机的$(l:general/shards#moonstone)月长石碎片$()升级你的$(l:general/pedestal)七彩基座$()。"
+      "text": "使用$(l:general/shards#moonstone)月长石碎片$()来升级你的$(l:general/pedestal)七彩基座$()。"
     },
     {
       "type": "patchouli:multiblock",
-      "name": "光谱宫殿",
+      "name": "注魔殿堂",
       "multiblock_id": "spectrum:pedestal_complex_structure_check",
       "enable_visualize": true,
-      "text": "可以互换玄武岩块与方解石或者把紫水晶变成其他类型的宝石矿。"
+      "text": "你可以任意选用方解石或玄武岩，并采用你喜欢的宝石晶方块。"
     },
     {
       "type": "patchouli:text",
-      "title": "检查单 (完成)",
-      "text": "$(li)1 七彩基座$(li)4 錾制缟玛瑙方块$(li)4 錾制缺口方块$(li)8 宝石灯$(li)4 錾制宝石方块$(li)12 磨制宝石方块$(li)16 CMY  錾制宝石方块$(li)28  錾制月长石方块$(li)36 磨制柱子$(li)52 磨制冠饰$(li)144 磨制方块"
+      "title": "方块列表（完整）",
+      "text": "$(li)1个七彩基座$(li)4个錾制缟玛瑙岩石方块$(li)4个无印磨制岩石方块$(li)8个宝石晶灯$(li)4个錾制宝石晶岩石方块$(li)12个磨制宝石晶方块$(li)16个錾制CMY宝石晶岩石方块$(li)28个錾制月长石岩石方块$(li)36个磨制岩石柱$(li)52个磨制饰纹岩石方块$(li)144个磨制岩石方块"
     },
     {
       "type": "patchouli:text",
-      "title": "检查单 (升级)",
-      "text": "$(li)4 錾制缟玛瑙方块$(li)4 磨制宝石方块$(li)28 錾制月长石方块$(li)36 磨制冠饰"
+      "title": "方块列表（升级）",
+      "text": "$(li)4錾制缟玛瑙岩石方块$(li)4个磨制宝石晶方块$(li)28个錾制月长石岩石方块$(li)36个磨制饰纹岩石方块"
     },
     {
       "type": "patchouli:image",
-      "title": "个性化！",
+      "title": "个性定制！",
       "images": [
         "spectrum:textures/gui/manual/spectrum_complex_customisation.png"
       ],
-      "text": "混合它们来制作自己的变种！"
+      "text": "随心搭配，自由设计！"
     }
   ]
 }

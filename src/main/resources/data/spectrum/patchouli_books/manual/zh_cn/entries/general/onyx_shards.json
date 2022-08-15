@@ -1,7 +1,7 @@
 {
   "name": "制作缟玛瑙碎片",
   "icon": "spectrum:onyx_shard",
-  "sortnum": 10,
+  "sortnum": 11,
   "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "category": "spectrum:general_category",
   "turnin": "spectrum:create_onyx_shard",
@@ -11,13 +11,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "“为了混合出棕色颜料，你需要使橘色颜料变暗一些。”$(br)你忽然想到。想想也是蛮符合逻辑的，你找到的三种宝石代表了颜色混合理论中的三种基本颜色。$(br)把三种颜色全部混合起来就可以制造出一种超级黑的碎片，看起来都有点不真实。"
+      "text": "想要制作棕色颜料的话，你得先让橙色变暗。$(br)而你突然悟了一件事情：三种宝石晶不正是光谱的三原色吗！$(br)将这三者混合到一起之后，你获得了某种……近乎超脱凡世的黑色。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/onyx_shard",
-      "text": "为了在$(l:general/fusion_shrine)融合神龛$()做出“最黑的黑”，晶体不能接受半点光照。所以新月的午夜是最好的时候，记得随身带个钟。"
+      "text": "既然要在$(l:general/fusion_shrine)融合圣坛$()上制作“最黑的黑色”，那么宝石晶所受的光照必须纯谐而无纷扰。那么，新月的月光应该不错了！记得戴上时钟。"
     }
   ]
 }

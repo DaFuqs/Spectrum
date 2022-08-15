@@ -1,7 +1,7 @@
 {
   "name": "基座缟玛瑙升级",
   "icon": "spectrum:pedestal_onyx",
-  "sortnum": 11,
+  "sortnum": 12,
   "advancement": "spectrum:create_onyx_shard",
   "category": "spectrum:general_category",
   "turnin": "spectrum:midgame/build_advanced_pedestal_structure",
@@ -13,32 +13,32 @@
       "type": "spectrum:pedestal_crafting",
       "title": "缟玛瑙变种",
       "recipe": "spectrum:pedestal/tier2/pedestal_onyx",
-      "text": "使用$(l:general/shards#onyx)缟玛瑙碎片$()来升级你的$(l:general/pedestal)七彩基座$()增加它魔法力量。"
+      "text": "使用$(l:general/shards#onyx)缟玛瑙碎片$()来升级你的$(l:general/pedestal)七彩基座$()。"
     },
     {
       "type": "patchouli:multiblock",
-      "name": "光谱神庙",
+      "name": "注魔祭坛",
       "multiblock_id": "spectrum:pedestal_advanced_structure_check",
       "enable_visualize": true,
-      "text": "可以互换玄武岩块与方解石或者把紫水晶变成其他类型的宝石矿。"
+      "text": "你可以任意选用方解石或玄武岩，并采用你喜欢的宝石晶方块。"
     },
     {
       "type": "patchouli:text",
-      "title": "检查单 (完整)",
-      "text": "$(li)1 七彩基座$(li)8 磨制宝石方块$(li)8 宝石灯$(li)4 錾制磨制方块$(li)16 錾制宝石方块$(li)16 磨制冠饰$(li)4 磨制缺口方块$(li)36 磨制柱子$(li)160 磨制方块"
+      "title": "方块列表（完整）",
+      "text": "$(li)1个七彩基座$(li)8个磨制宝石晶方块$(li)8个宝石晶灯$(li)4个錾制磨制岩石方块$(li)16个錾制宝石晶岩石方块$(li)16个磨制饰纹岩石方块$(li)4个无印磨制岩石方块$(li)36个磨制岩石柱$(li)160个磨制岩石方块"
     },
     {
       "type": "patchouli:text",
-      "title": "检查单 (升级)",
-      "text": "$(li)4 磨制宝石方块$(li)8 宝石灯$(li)16 錾制宝石方块$(li)16 磨制冠饰$(li)28 磨制柱子$(li)92 磨制方块"
+      "title": "方块列表（升级）",
+      "text": "$(li)4个磨制宝石晶方块$(li)8个宝石晶灯$(li)16个錾制宝石晶岩石方块$(li)16个磨制饰纹岩石方块$(li)28个磨制岩石柱$(li)92个磨制岩石方块"
     },
     {
       "type": "patchouli:image",
-      "title": "个性化！",
+      "title": "个性定制！",
       "images": [
         "spectrum:textures/gui/manual/spectrum_hall_customisation.png"
       ],
-      "text": "混合它们来制作自己的变种！"
+      "text": "随心搭配，自由设计！"
     }
   ]
 }

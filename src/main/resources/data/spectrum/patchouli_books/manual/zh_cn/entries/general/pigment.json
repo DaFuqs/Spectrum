@@ -1,7 +1,7 @@
 {
   "name": "颜料",
   "icon": "spectrum:magenta_pigment",
-  "sortnum": 7,
+  "sortnum": 8,
   "advancement": "spectrum:collect_pigment",
   "category": "spectrum:general_category",
   "turnin": "spectrum:collect_all_basic_pigments_besides_brown",
@@ -42,122 +42,144 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "终于！你可以从$(l:general/colored_trees)七彩树$()的树叶上收集纯色的颜料。$(br)用锄头可以很快的收集。$(br2)这些颜料由基本的元素组成：$(bold)$(c_magenta)时间$()、$(bold)$(c_yellow)能量$() 和 $(bold)$(c_cyan)物质$() 等，每个都代表了组成大自然的元素。"
+      "text": "终于！$(l:general/colored_trees)彩色树$()的树叶生产出了你梦寐以求的纯粹颜料！$(br)锄头采集也非常方便快捷。$(br)这些颜料纯粹由对应的$(bold)$(c_magenta)时间$()，$(bold)$(c_yellow)能量$()与$(bold)$(c_cyan)物质$()三大基本要素构成，仅仅看上去就充满了魔法的气息。$(br2)实在是魔幻得难以置信……是不是还$(l:general/color_mixing)缺了什么$(/l)？"
+    },
+    {
+      "type": "spectrum:checklist",
+      "checklist": {
+        "spectrum:hidden/collect_pigment/collect_black_pigment": "$(c_black)黑色",
+        "spectrum:hidden/collect_pigment/collect_blue_pigment": "$(c_blue)蓝色",
+        "spectrum:hidden/collect_pigment/collect_brown_pigment": "$(c_brown)棕色",
+        "spectrum:hidden/collect_pigment/collect_cyan_pigment": "$(c_cyan)青色",
+        "spectrum:hidden/collect_pigment/collect_gray_pigment": "$(c_gray)棕色",
+        "spectrum:hidden/collect_pigment/collect_green_pigment": "$(c_green)绿色",
+        "spectrum:hidden/collect_pigment/collect_light_blue_pigment": "$(c_light_blue)淡蓝色",
+        "spectrum:hidden/collect_pigment/collect_light_gray_pigment": "$(c_light_gray)淡灰色",
+        "spectrum:hidden/collect_pigment/collect_lime_pigment": "$(c_lime)黄绿色",
+        "spectrum:hidden/collect_pigment/collect_magenta_pigment": "$(c_magenta)品红色",
+        "spectrum:hidden/collect_pigment/collect_orange_pigment": "$(c_orange)橙色",
+        "spectrum:hidden/collect_pigment/collect_pink_pigment": "$(c_pink)粉色",
+        "spectrum:hidden/collect_pigment/collect_purple_pigment": "$(c_purple)紫色",
+        "spectrum:hidden/collect_pigment/collect_red_pigment": "$(c_red)红色",
+        "spectrum:hidden/collect_pigment/collect_white_pigment": "$(c_white)白色",
+        "spectrum:hidden/collect_pigment/collect_yellow_pigment": "$(c_yellow)黄色"
+      },
+      "text": "目测的整个列表？"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "black",
       "advancement": "spectrum:hidden/collect_pigment/collect_black_pigment",
       "item": "spectrum:black_pigment",
-      "text": "这应该是你经手过最黑的物质了。看起来有点不太真实。$(br2)$(c_black)黑色$()代表了虚无的三部分： $(italic)虚空$(), $(italic)力量$() 和 $(italic)神秘$()。"
+      "text": "你手中握着最为纯正，超凡脱俗的黑色。$(br2)$(c_black)黑色$()象征着了$(italic)虚无$()，$(italic)力量$()与$(italic)神秘$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "blue",
       "advancement": "spectrum:hidden/collect_pigment/collect_blue_pigment",
       "item": "spectrum:blue_pigment",
-      "text": "握在手中时带来了异样的安全感，但那自然是幻觉，它只是一种颜色罢了。但依然...$(br2)$(c_blue)蓝色$() 代表 $(italic)安定$() 和 $(italic)永恒$()。"
+      "text": "手握蓝色给你带来了一丝安心……开玩笑，这只是颜料而已啊！但是这份感觉……$(br2)$(c_blue)蓝色$() 象征着$(italic)安宁$()与$(italic)存续$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "brown",
       "advancement": "spectrum:hidden/collect_pigment/collect_brown_pigment",
       "item": "spectrum:brown_pigment",
-      "text": "这种深棕色使你渴望大自然。$(br2)$(c_brown)棕色$() 代表 $(italic)自然$() 和 $(italic)稳定$()。"
+      "text": "棕色，大自然母亲的颜色。$(br2)$(c_brown)棕色$()象征着$(italic)自然$()与$(italic)稳定$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "cyan",
       "advancement": "spectrum:hidden/collect_pigment/collect_cyan_pigment",
       "item": "spectrum:cyan_pigment",
-      "text": "它使你感受到好像坐在一座山顶，感受世界无边无际的巨大。$(br2)$(c_cyan)蓝绿色$() 代表 $(italic)物质$() 和 $(italic)完整$()。"
+      "text": "手握青色仿佛置身天穹，眺寰宇而渺四方。$(br2)$(c_cyan)青色$()象征着$(italic)物质$()与$(italic)完整$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "gray",
       "advancement": "spectrum:hidden/collect_pigment/collect_gray_pigment",
       "item": "spectrum:gray_pigment",
-      "text": "这颜色在你看来就好像浅灰色的哥哥打架没打过让揍了一顿。看到它就还挺难过的，但是不知道为啥.$(br2)$(c_gray)灰色$() 代表 $(italic)消逝$()。"
+      "text": "淡灰色的兄长，丧气而萎靡。不知为何，你看着这份颜色也会泛起忧郁。$(br2)$(c_gray)灰色$()象征着$(italic)倏逝$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "green",
       "advancement": "spectrum:hidden/collect_pigment/collect_green_pigment",
       "item": "spectrum:green_pigment",
-      "text": "这种颜料柔和的散发着其中的平和。$(br2)$(c_green)绿色$() 代表 $(italic)平衡$() 和 $(italic)融洽$()。"
+      "text": "这份颜料散发着和平的光芒。$(br2)$(c_green)绿色$()象征着$(italic)平衡$()与$(italic)和谐$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "light_blue",
       "advancement": "spectrum:hidden/collect_pigment/collect_light_blue_pigment",
       "item": "spectrum:light_blue_pigment",
-      "text": "看着这种颜色，你感受到了乐观，却伴随着离别的悲伤。$(br2)$(c_light_blue)淡蓝色$() 代表 $(italic)幸运$() 和 $(italic)平静$()。"
+      "text": "这份色泽，是乐观的色泽，也是离别的色泽。$(br2)$(c_light_blue)淡蓝色$()象征着$(italic)好运$()与$(italic)和平$()。"
     },
     {
       "type": "patchouli:spotlight",
-      "anchor": "light_gray",
+      "anchor": "black",
       "advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment",
       "item": "spectrum:light_gray_pigment",
-      "text": "你熟悉这种感觉，那是你静坐时看着眼前的风景，感受生命流逝却一切安好的感觉。$(br2)$(c_light_gray)淡灰色$() 代表 $(italic)改变$() 和 $(italic)安静$()。"
+      "text": "纵使世间万物如沧海桑田，过眼云烟之后便是物是人非，你手握这份颜色却感到莫名的祥和——一切都会好的。$(br2)$(c_light_gray)淡灰色$()象征着$(italic)变化$()与$(italic)宁静$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "lime",
       "advancement": "spectrum:hidden/collect_pigment/collect_lime_pigment",
       "item": "spectrum:lime_pigment",
-      "text": "多汁的酸橙（Lime）闻起来也像是温暖的春日早晨，又或许那只是你的想象？$(br2)$(c_lime)淡黄绿色（Lime）$() 代表 $(italic)快乐$() 和 $(italic)富饶$()。"
+      "text": "黄绿色，鲜艳欲滴，是春天早晨的朝气——着实令人畅想的春意啊。$(br2)$(c_lime)黄绿色$()象征着$(italic)快乐$()与$(italic)生机$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "magenta",
       "advancement": "spectrum:hidden/collect_pigment/collect_magenta_pigment",
       "item": "spectrum:magenta_pigment",
-      "text": "柔和的品红色会让你感到平静和满足，内心几乎毫无波澜。$(br2)$(c_magenta)品红色$() 代表 $(italic)时间$(), $(italic)善良$() 和 $(italic)容忍$()。"
+      "text": "品红色是安定与满足的颜色。$(br2)$(c_magenta)品红色$()象征着$(italic)时间$()，$(italic)和善$()与$(italic)包容$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "orange",
       "advancement": "spectrum:hidden/collect_pigment/collect_orange_pigment",
       "item": "spectrum:orange_pigment",
-      "text": "橘色使你想起了秋天，让你感受到坐在壁炉前的扶手椅上的那种舒适。$(br2)$(c_orange)橘色$() 代表 $(italic)温暖$() 和 $(italic)舒适$()。"
+      "text": "橙色是秋日里舒适的躺椅前温暖的壁炉。$(br2)$(c_orange)橙色$()象征着$(italic)温暖$()与$(italic)舒适$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "pink",
       "advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
       "item": "spectrum:pink_pigment",
-      "text": "这种明亮活泼、像是棉花糖一样的粉色使你忘记烦恼，笑意盈盈。$(br2)$(c_pink)粉色$() 代表 $(italic)健康$() 和 $(italic)欣赏$()。"
+      "text": "香香软软甜甜粉粉嫩嫩的粉色只想让你喊出“好耶”！$(br2)$(c_pink)粉色$()象征着$(italic)健康$()与$(italic)可爱$()！"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "purple",
       "advancement": "spectrum:hidden/collect_pigment/collect_purple_pigment",
       "item": "spectrum:purple_pigment",
-      "text": "这种颜色使你的思维灵活。它不仅使你求知若渴，更带给你创造性的想法。$(br2)$(c_purple)紫色$() 代表 $(italic)智慧iu$() 和 $(italic)创造力$()。"
+      "text": "让大脑全速运转的冲击性色彩。全力调动你的求知欲，还有最具创意的创想……$(br2)$(c_purple)紫色$()象征着$(italic)智慧$()与$(italic)创造力$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "red",
       "advancement": "spectrum:hidden/collect_pigment/collect_red_pigment",
       "item": "spectrum:red_pigment",
-      "text": "你感到对于创造美的冲动和渴望。$(br2)$(c_red)红色$() 代表 $(italic)热情$() 和 $(italic)意志力$()。"
+      "text": "红色盛情地激发着你对艺术和美学的欲望与追求。$(br2)$(c_red)红色$()象征着$(italic)激情$()与$(italic)意志力$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "white",
       "advancement": "spectrum:hidden/collect_pigment/collect_white_pigment",
       "item": "spectrum:white_pigment",
-      "text": "这种感觉很难一两句话就说清楚，这种颜料散发着不可言喻的奇妙。$(br2)$(c_white)白色$() 代表 $(italic)生命$()，$(italic)光$() 和 $(italic)纯净$()。"
+      "text": "明亮的真白，无暇而无言。$(br2)$(c_white)白色$()象征着$(italic)$(bold)生命$()$(), $(italic)光芒$()与$(italic)纯洁$()。"
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "yellow",
       "advancement": "spectrum:hidden/collect_pigment/collect_yellow_pigment",
       "item": "spectrum:yellow_pigment",
-      "text": "这种鲜艳的黄色几乎都充满了能量。$(br2)$(c_yellow)黄色$() 代表 $(italic)能量$() 和 $(italic)乐趣$()。"
+      "text": "黄色的能量呼之欲出。$(br2)$(c_yellow)黄色$()象征着$(italic)能量$()与$(italic)活跃$()。"
     },
     {
-      "title": "染色方块",
+      "title": "颜色方块",
       "type": "patchouli:crafting",
       "recipe": "spectrum:crafting_table/pigment_storage_blocks/magenta_block",
       "recipe2": "spectrum:crafting_table/pigment_storage_blocks/magenta_block_to_magenta_pigment"

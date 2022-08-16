@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.compat.liminal_library;
 
+import de.dafuqs.spectrum.deeper_down.DDDimension;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.ludocrypt.limlib.access.DimensionTypeAccess;
@@ -13,8 +14,10 @@ import java.util.Optional;
 public class LiminalDimensionReverb {
 	
 	public static void setReverbForClientDimension(ClientWorld clientWorld) {
-		LiminalEffects liminalEffects = new LiminalEffects(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.of(new ReverbSettings().setEnabled(true).setDecayTime(8).setDensity(0.5F)));
-		((DimensionTypeAccess) clientWorld.getDimension().effects()).setLiminalEffects(liminalEffects);
+		if(clientWorld.getDimension().effects().equals(DDDimension.DEEPER_DOWN_EFFECTS_ID)) {
+			LiminalEffects liminalEffects = new LiminalEffects(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.of(new ReverbSettings().setEnabled(true).setDecayTime(8).setDensity(0.5F)));
+			((DimensionTypeAccess)(Object) clientWorld.getDimension()).setLiminalEffects(liminalEffects);
+		}
 	}
 	
 }

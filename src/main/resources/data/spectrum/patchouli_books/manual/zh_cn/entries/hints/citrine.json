@@ -1,18 +1,18 @@
 {
-	"pages":[
-		{
-			"completion_advancement":"spectrum:hidden/collect_shards/collect_citrine_shard",
-			"cost":"spectrum:topaz_shard#16",
-			"text":"在地表附近通常会发现一种类型的晶洞。你可能会发现它最常暴露在湖泊或沟壑中。",
-			"type":"spectrum:hint",
-			"title":"在哪里可以找到"
-		}
-	],
-	"advancement":"spectrum:spectrum",
-	"read_by_default":true,
-	"name":"宝石",
-	"icon":"minecraft:writable_book",
-	"turnin":"spectrum:hidden/collect_shards/collect_citrine_shard",
-	"secret":true,
-	"category":"spectrum:hints_category"
+  "name": "一种宝石晶",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:spectrum",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:hidden/collect_shards/collect_citrine_shard",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "怎么找到",
+      "completion_advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
+      "cost": "spectrum:topaz_shard#16",
+      "text": "这些晶洞可以在接近地表的地层找到。在峡谷或湖泊中常常天然暴露。"
+    }
+  ]
 }

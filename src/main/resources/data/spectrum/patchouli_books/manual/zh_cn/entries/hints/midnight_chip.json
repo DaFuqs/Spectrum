@@ -1,0 +1,25 @@
+{
+  "name": "新的资源",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/create_midnight_aberration",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_midnight_chip",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "小贴士",
+      "completion_advancement": "spectrum:midgame/collect_midnight_chip",
+      "cost": "spectrum:neolith#8",
+      "text": "制作午夜像差的过程中生成的这种液体会伤害一切靠近之物。"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "具体措施",
+      "completion_advancement": "spectrum:midgame/collect_midnight_chip",
+      "cost": "spectrum:neolith#24",
+      "text": "午夜溶液与其接触的物品可能产生反应。附魔的物品可能会失去魔力、某些物品可能会被转化、而因浸泡而死的生物会掉落某种残片。"
+    }
+  ]
+}

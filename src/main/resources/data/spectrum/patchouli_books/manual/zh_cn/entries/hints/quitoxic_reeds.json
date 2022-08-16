@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"completion_advancement":"spectrum:collect_quitoxic_reeds",
-			"cost":"minecraft:clay_ball#16",
-			"text":"是时候在水面上探险了。参观沼泽！",
-			"type":"spectrum:hint",
-			"title":"在哪里可以找到"
-		},
-		{
-			"cost":"minecraft:clay_ball#48",
-			"text":"在沼泽地里，人们看到了长在粘土片上的奇怪植物。它们生长得更高，周围有更多的粘土，并在这个过程中消耗这些粘土。",
-			"type":"spectrum:hint",
-			"title":"简明说明"
-		}
-	],
-	"advancement":"spectrum:milestones/reveal_quitoxic_reeds",
-	"read_by_default":true,
-	"name":"新资源",
-	"icon":"minecraft:writable_book",
-	"turnin":"spectrum:collect_quitoxic_reeds",
-	"secret":true,
-	"category":"spectrum:hints_category"
+  "name": "新的资源",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_quitoxic_reeds",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:collect_quitoxic_reeds",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "怎么找到",
+      "completion_advancement": "spectrum:collect_quitoxic_reeds",
+      "cost": "minecraft:clay_ball#16",
+      "text": "冒险启程！进发——前往沼泽地！"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "具体措施",
+      "cost": "minecraft:clay_ball#48",
+      "text": "某种奇怪的植物在沼泽地的黏土堆上生长。它们会吸收附近的黏土块，从而长得更高。"
+    }
+  ]
 }

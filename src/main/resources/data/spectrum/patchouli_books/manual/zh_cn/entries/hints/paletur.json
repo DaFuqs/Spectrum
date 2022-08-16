@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"completion_advancement":"spectrum:lategame/collect_paletur",
-			"cost":"spectrum:moonstone_shard#8",
-			"text":"最后发现了一个新的绿松石矿。",
-			"type":"spectrum:hint",
-			"title":"在哪里可以找到"
-		},
-		{
-			"cost":"spectrum:moonstone_shard#32",
-			"text":"你现在能够感知到的矿石正在中心岛和末端的外部区域生成。抓住它，否则就太晚了！",
-			"type":"spectrum:hint",
-			"title":"简明说明"
-		}
-	],
-	"advancement":"spectrum:milestones/reveal_paletur",
-	"read_by_default":true,
-	"name":"一种新矿石",
-	"icon":"minecraft:writable_book",
-	"turnin":"spectrum:lategame/collect_paletur",
-	"secret":true,
-	"category":"spectrum:hints_category"
+  "name": "新的矿石",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_paletur",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/collect_paletur",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "怎么找到",
+      "completion_advancement": "spectrum:lategame/collect_paletur",
+      "cost": "spectrum:moonstone_shard#8",
+      "text": "你可以在末地找到这种水蓝色的新矿石。"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "具体措施",
+      "cost": "spectrum:moonstone_shard#32",
+      "text": "这种矿石在末地主岛与外围都会生成。到手的矿石可不能飞了，牢牢抓住它呀！"
+    }
+  ]
 }

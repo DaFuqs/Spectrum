@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"completion_advancement":"spectrum:midgame/collect_neolith",
-			"cost":"spectrum:scarlet_fragments#8",
-			"text":"就像褪色一样，他们更喜欢放在旁边的特定方块。不过，这次要强大得多。”确切地说，我讨厌挖掘这种“强大”。",
-			"type":"spectrum:hint",
-			"title":"小线索"
-		},
-		{
-			"cost":"spectrum:scarlet_fragments#24",
-			"text":"最喜欢的食物是黑曜石。不过，要提防他们的贪得无厌。如果有机会，他们会吃很多。。。",
-			"type":"spectrum:hint",
-			"title":"简明说明"
-		}
-	],
-	"advancement":"spectrum:midgame/craft_bottle_of_failing",
-	"read_by_default":true,
-	"name":"实验#2",
-	"icon":"minecraft:writable_book",
-	"turnin":"spectrum:midgame/collect_neolith",
-	"secret":true,
-	"category":"spectrum:hints_category"
+  "name": "实验#2",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/craft_bottle_of_failing",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/collect_neolith",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "一点线索",
+      "completion_advancement": "spectrum:midgame/collect_neolith",
+      "cost": "spectrum:scarlet_fragments#8",
+      "text": "和褪解微生物一样，它们只吃附近的东西。不过这次你需要一些相当坚硬的东西，“哎呀挖起来真难受啊”这样的坚硬，嗯。"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "具体措施",
+      "cost": "spectrum:scarlet_fragments#24",
+      "text": "具体地说：它们吃黑曜石。注意了，它们的饥饿永无止境。一旦找到机会，它们会吃很多很多的……小心点！"
+    }
+  ]
 }

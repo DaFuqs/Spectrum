@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"completion_advancement":"spectrum:collect_sparklestone",
-			"cost":"minecraft:copper_ingot#8",
-			"text":"在地表和地表以上的超世界中发现了一种新的矿石。",
-			"type":"spectrum:hint",
-			"title":"在哪里可以找到"
-		},
-		{
-			"cost":"minecraft:copper_ingot#24",
-			"text":"它在所有生物群落的中心和上层的超世界大静脉生成。通常你会发现它暴露在山里。",
-			"type":"spectrum:hint",
-			"title":"简明说明"
-		}
-	],
-	"advancement":"spectrum:milestones/reveal_sparklestone",
-	"read_by_default":true,
-	"name":"一种新矿石",
-	"icon":"minecraft:writable_book",
-	"turnin":"spectrum:collect_sparklestone",
-	"secret":true,
-	"category":"spectrum:hints_category"
+  "name": "新的矿石",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_sparklestone",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:collect_sparklestone",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "怎么找到",
+      "completion_advancement": "spectrum:collect_sparklestone",
+      "cost": "minecraft:copper_ingot#8",
+      "text": "你可以在主世界海平面以上找到这种新矿石。"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "具体措施",
+      "cost": "minecraft:copper_ingot#24",
+      "text": "这种矿石在主世界中层与上层大量生成，常常在山峦表面暴露。"
+    }
+  ]
 }

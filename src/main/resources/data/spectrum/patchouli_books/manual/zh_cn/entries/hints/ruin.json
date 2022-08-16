@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"completion_advancement":"spectrum:midgame/break_decayed_bedrock",
-			"cost":"spectrum:brown_pigment#8",
-			"text":"这种被称为毁灭的绝对侵略性变体能够消耗最具抵抗力的材料。即使是那些对你来说太难打破的。",
-			"type":"spectrum:hint",
-			"title":"小线索"
-		},
-		{
-			"cost":"spectrum:brown_pigment#24",
-			"text":"还有什么比牢不可破的基岩本身更具抵抗力？如果出了什么问题，最好有一个后备计划。",
-			"type":"spectrum:hint",
-			"title":"警告"
-		}
-	],
-	"advancement":"spectrum:midgame/craft_bottle_of_ruin",
-	"read_by_default":true,
-	"name":"实验#3",
-	"icon":"minecraft:writable_book",
-	"turnin":"spectrum:midgame/break_decayed_bedrock",
-	"secret":true,
-	"category":"spectrum:hints_category"
+  "name": "实验#3",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/craft_bottle_of_ruin",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:midgame/break_decayed_bedrock",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "一点线索",
+      "completion_advancement": "spectrum:midgame/break_decayed_bedrock",
+      "cost": "spectrum:brown_pigment#8",
+      "text": "坏灭微生物，顾名思义，能够消化无论多么强硬的材料，无论多么强硬……"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "警告",
+      "cost": "spectrum:brown_pigment#24",
+      "text": "还有比基岩更坚硬的材料吗？记住留好后手，别让场面失控。"
+    }
+  ]
 }

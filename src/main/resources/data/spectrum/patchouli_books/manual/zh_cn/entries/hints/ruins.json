@@ -1,26 +1,26 @@
 {
-	"pages":[
-		{
-			"completion_advancement":"spectrum:generate_ancient_ruins_loot",
-			"cost":"spectrum:refined_azurite#4",
-			"text":"在任何生物群落的超世界深处都隐藏着无法穿透的结构。它们似乎是用一块牢不可破的石头建造的。",
-			"type":"spectrum:hint",
-			"title":"在哪里可以找到"
-		},
-		{
-			"completion_advancement":"spectrum:generate_ancient_ruins_loot",
-			"cost":"spectrum:refined_azurite#12",
-			"advancement":"spectrum:find_ancient_ruins",
-			"text":"入口似乎被一个强大的力场堵住了。然而，无论是谁建造了这些建筑，都会给你留下线索！力场两侧的红心似乎表明你必须激活蔚蓝防御。",
-			"type":"spectrum:hint",
-			"title":"入口"
-		}
-	],
-	"advancement":"spectrum:midgame/get_azure_dike_charge",
-	"read_by_default":true,
-	"name":"结构",
-	"icon":"minecraft:writable_book",
-	"turnin":"spectrum:generate_ancient_ruins_loot",
-	"secret":true,
-	"category":"spectrum:hints_category"
+  "name": "新的生成结构",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:midgame/get_azure_dike_charge",
+  "secret": true,
+  "read_by_default": true,
+  "turnin": "spectrum:generate_ancient_ruins_loot",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "怎么找到",
+      "completion_advancement": "spectrum:generate_ancient_ruins_loot",
+      "cost": "spectrum:refined_azurite#4",
+      "text": "主世界中的地下存在某种不可破坏的建筑物。"
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "如何进入",
+      "advancement": "spectrum:find_ancient_ruins",
+      "completion_advancement": "spectrum:generate_ancient_ruins_loot",
+      "cost": "spectrum:refined_azurite#12",
+      "text": "入口似乎是被某种强大力场挡住了。不过建筑的主人留下了一点线索：蓝色的心说明你需要蔚蓝防御护符才能穿过。"
+    }
+  ]
 }

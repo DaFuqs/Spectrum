@@ -95,6 +95,7 @@ dependencies {
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
 
 	// https://github.com/emilyploszaj/trinkets
 	modImplementation "dev.emi:trinkets:${project.trinkets_version}"

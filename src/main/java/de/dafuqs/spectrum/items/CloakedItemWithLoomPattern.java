@@ -1,13 +1,14 @@
 package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
+import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tag.TagKey;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,16 +16,16 @@ import java.util.List;
 
 public class CloakedItemWithLoomPattern extends CloakedItem implements LoomPatternProvider {
 	
-	protected final LoomPattern loomPattern;
+	private final RegistryEntry<BannerPattern> patternItemTag;
 	
-	public CloakedItemWithLoomPattern(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem, LoomPattern loomPattern) {
+	public CloakedItemWithLoomPattern(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem, RegistryEntry<BannerPattern> patternItemTag) {
 		super(settings, cloakAdvancementIdentifier, cloakItem);
-		this.loomPattern = loomPattern;
+		this.patternItemTag = patternItemTag;
 	}
 	
 	@Override
-	public LoomPattern getPattern() {
-		return loomPattern;
+	public RegistryEntry<BannerPattern> getPattern() {
+		return patternItemTag;
 	}
 	
 	@Override

@@ -1,55 +1,69 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatterns;
+import net.minecraft.block.entity.BannerPattern;
+import net.minecraft.block.entity.BannerPatterns;
+import net.minecraft.screen.LoomScreenHandler;
+import net.minecraft.tag.BannerPatternTags;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.registry.RegistryKey;
 
 public class SpectrumBannerPatterns {
 	
-	public static LoomPattern SPECTRUM_LOGO;
-	public static LoomPattern AMETHYST_CLUSTER;
-	public static LoomPattern AMETHYST_SHARD;
-	public static LoomPattern CRAFTING_TABLET;
-	public static LoomPattern FOUR_LEAF_CLOVER;
-	public static LoomPattern INK_FLASK;
-	public static LoomPattern KNOWLEDGE_GEM;
-	public static LoomPattern MANUAL;
-	public static LoomPattern MULTITOOL;
-	public static LoomPattern NEOLITH;
-	public static LoomPattern PALETTE;
-	public static LoomPattern PIGMENT;
-	public static LoomPattern RAW_AZURITE;
-	public static LoomPattern SHIMMER;
-	public static LoomPattern VEGETAL;
-	public static LoomPattern BEDROCK_DUST;
-	public static LoomPattern SHIMMERSTONE;
-	public static LoomPattern JADE_VINE;
+	public static RegistryEntry<BannerPattern> SPECTRUM_LOGO;
+	public static RegistryEntry<BannerPattern> AMETHYST_CLUSTER;
+	public static RegistryEntry<BannerPattern> AMETHYST_SHARD;
+	public static RegistryEntry<BannerPattern> CRAFTING_TABLET;
+	public static RegistryEntry<BannerPattern> FOUR_LEAF_CLOVER;
+	public static RegistryEntry<BannerPattern> INK_FLASK;
+	public static RegistryEntry<BannerPattern> KNOWLEDGE_GEM;
+	public static RegistryEntry<BannerPattern> MANUAL;
+	public static RegistryEntry<BannerPattern> MULTITOOL;
+	public static RegistryEntry<BannerPattern> NEOLITH;
+	public static RegistryEntry<BannerPattern> PALETTE;
+	public static RegistryEntry<BannerPattern> PIGMENT;
+	public static RegistryEntry<BannerPattern> RAW_AZURITE;
+	public static RegistryEntry<BannerPattern> SHIMMER;
+	public static RegistryEntry<BannerPattern> VEGETAL;
+	public static RegistryEntry<BannerPattern> BEDROCK_DUST;
+	public static RegistryEntry<BannerPattern> SHIMMERSTONE;
+	public static RegistryEntry<BannerPattern> JADE_VINE;
 	
-	private static LoomPattern register(String id, LoomPattern loomPattern) {
-		return Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, id), loomPattern);
+	public static TagKey<BannerPattern> SPECTRUM_LOGO_TAG = of("pattern_item/logo");
+	public static TagKey<BannerPattern> AMETHYST_CLUSTER_TAG = of("pattern_item/amethyst_cluster");
+	public static TagKey<BannerPattern> AMETHYST_SHARD_TAG = of("pattern_item/amethyst_shard");
+	
+	private static TagKey<BannerPattern> of(String id) {
+		return TagKey.of(Registry.BANNER_PATTERN_KEY, new Identifier(id));
+	}
+	
+	private static RegistryEntry<BannerPattern> registerPattern(String id, String shortId) {
+		BannerPattern pattern = Registry.register(Registry.BANNER_PATTERN, new Identifier(SpectrumCommon.MOD_ID, id), new BannerPattern(SpectrumCommon.MOD_ID + "_" + shortId));
+		return Registry.BANNER_PATTERN.getEntry(Registry.BANNER_PATTERN.getKey(pattern).get()).get();
 	}
 	
 	public static void register() {
-		SPECTRUM_LOGO = register("logo", new LoomPattern(true));
-		AMETHYST_CLUSTER = register("amethyst_cluster", new LoomPattern(true));
-		AMETHYST_SHARD = register("amethyst_shard", new LoomPattern(true));
-		CRAFTING_TABLET = register("crafting_tablet", new LoomPattern(true));
-		FOUR_LEAF_CLOVER = register("four_leaf_clover", new LoomPattern(true));
-		INK_FLASK = register("ink_flask", new LoomPattern(true));
-		KNOWLEDGE_GEM = register("knowledge_gem", new LoomPattern(true));
-		MANUAL = register("manual", new LoomPattern(true));
-		MULTITOOL = register("multitool", new LoomPattern(true));
-		NEOLITH = register("neolith", new LoomPattern(true));
-		PALETTE = register("palette", new LoomPattern(true));
-		PIGMENT = register("pigment", new LoomPattern(true));
-		RAW_AZURITE = register("raw_azurite", new LoomPattern(true));
-		SHIMMER = register("shimmer", new LoomPattern(true));
-		VEGETAL = register("vegetal", new LoomPattern(true));
-		BEDROCK_DUST = register("bedrock_dust", new LoomPattern(true));
-		SHIMMERSTONE = register("shimmerstone", new LoomPattern(true));
-		JADE_VINE = register("jade_vine", new LoomPattern(true));
+		SPECTRUM_LOGO = registerPattern("logo", "l");
+		AMETHYST_CLUSTER = registerPattern("amethyst_cluster", "acl");
+		AMETHYST_SHARD = registerPattern("amethyst_shard", "as");
+		CRAFTING_TABLET = registerPattern("crafting_tablet", "ct");
+		FOUR_LEAF_CLOVER = registerPattern("four_leaf_clover", "flc");
+		INK_FLASK = registerPattern("ink_flask", "if");
+		KNOWLEDGE_GEM = registerPattern("knowledge_gem", "kg");
+		MANUAL = registerPattern("manual", "man");
+		MULTITOOL = registerPattern("multitool", "mul");
+		NEOLITH = registerPattern("neolith", "neo");
+		PALETTE = registerPattern("palette", "pql");
+		PIGMENT = registerPattern("pigment", "pg");
+		RAW_AZURITE = registerPattern("raw_azurite", "raz");
+		SHIMMER = registerPattern("shimmer", "sh");
+		VEGETAL = registerPattern("vegetal", "ve");
+		BEDROCK_DUST = registerPattern("bedrock_dust", "bd");
+		SHIMMERSTONE = registerPattern("shimmerstone", "sp");
+		JADE_VINE = registerPattern("jade_vine", "jv");
 	}
 	
 }

@@ -3,17 +3,18 @@ package de.dafuqs.spectrum.items.energy;
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
+import de.dafuqs.spectrum.items.LoomPatternProvider;
 import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -72,7 +73,7 @@ public class InkFlaskItem extends Item implements InkStorageItem<SingleInkStorag
 	}
 	
 	@Override
-	public LoomPattern getPattern() {
+	public RegistryEntry<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.INK_FLASK;
 	}
 	

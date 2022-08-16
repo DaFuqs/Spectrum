@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.items.LoomPatternProvider;
 import de.dafuqs.spectrum.items.Preenchanted;
 import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -13,6 +13,7 @@ import net.minecraft.item.*;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -69,7 +70,7 @@ public class MultiToolItem extends SpectrumPickaxeItem implements Preenchanted, 
 	}
 	
 	@Override
-	public LoomPattern getPattern() {
+	public RegistryEntry<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.MULTITOOL;
 	}
 	

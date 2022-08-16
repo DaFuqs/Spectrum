@@ -6,10 +6,9 @@ import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
 import de.dafuqs.spectrum.items.tooltip.CraftingTabletTooltipData;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
@@ -30,6 +29,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -145,7 +145,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	}
 	
 	@Override
-	public LoomPattern getPattern() {
+	public RegistryEntry<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.CRAFTING_TABLET;
 	}
 	

@@ -3,18 +3,19 @@ package de.dafuqs.spectrum.items.energy;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.storage.ArtistsPaletteInkStorage;
+import de.dafuqs.spectrum.items.LoomPatternProvider;
 import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -64,7 +65,7 @@ public class ArtistsPaletteItem extends SpectrumTrinketItem implements InkStorag
 	}
 	
 	@Override
-	public LoomPattern getPattern() {
+	public RegistryEntry<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.PALETTE;
 	}
 	

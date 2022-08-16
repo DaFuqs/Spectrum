@@ -2,11 +2,11 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.items.LoomPatternProvider;
 import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
+import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -25,6 +25,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 
@@ -190,7 +191,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	}
 	
 	@Override
-	public LoomPattern getPattern() {
+	public RegistryEntry<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.KNOWLEDGE_GEM;
 	}
 	

@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "plugin": "de.dafuqs.spectrum.mixin.Plugin",
   "mixins": [
+    "AbstractHorseEntityMixin",
     "AnvilBlockMixin",
     "BlockMixin",
     "BuddingAmethystBlockMixin",
@@ -20,7 +21,6 @@
     "FishingBobberEntityRendererMixin",
     "GeodesGenerateWithGemstoneOresMixin",
     "GlassBottleItemMixin",
-    "AbstractHorseEntityMixin",
     "InfestedBlockMixin",
     "ItemEntityMixin",
     "ItemFrameEntityMixin",
@@ -29,6 +29,8 @@
     "KilledByPlayerLootConditionMixin",
     "LightningEntityMixin",
     "LivingEntityMixin",
+    "LoomContainerPatternSlotMixin",
+    "LoomScreenHandlerMixin",
     "MiningToolItemMixin",
     "MobSpawnerBlockEntityMixin",
     "PiglinBrainMixin",
@@ -49,7 +51,7 @@
     "accessors.MooshroomEntityAccessor",
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
-    "accessors.SlimeEntityAccessor",
+    "accessors.SlimeEntityAccessor"
   ],
   "client": [
     "client.BlockOverlayRendererMixin",

@@ -3,13 +3,12 @@ package de.dafuqs.spectrum.items;
 import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
-import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementProgress;
 import net.minecraft.advancement.PlayerAdvancementTracker;
 import net.minecraft.advancement.criterion.CriterionConditions;
+import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -20,6 +19,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.PatchouliAPI;
@@ -95,7 +95,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	}
 	
 	@Override
-	public LoomPattern getPattern() {
+	public RegistryEntry<BannerPattern> getPattern() {
 		return SpectrumBannerPatterns.MANUAL;
 	}
 	

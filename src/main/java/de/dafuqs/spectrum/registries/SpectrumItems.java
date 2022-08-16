@@ -269,9 +269,9 @@ public class SpectrumItems {
 	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	// Banner Patterns
-	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");
-	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatterns.AMETHYST_SHARD, "item.minecraft.amethyst_shard");
-	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatterns.AMETHYST_CLUSTER, "block.minecraft.amethyst_cluster");
+	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, "item.spectrum.logo_banner_pattern.desc");
+	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, "item.minecraft.amethyst_shard");
+	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatterns.AMETHYST_SHARD_TAG, "block.minecraft.amethyst_cluster");
 	
 	// Magical Tools
 	public static final Item ENDER_BAG = new EnderBagItem(toolItemSettingsSingle);

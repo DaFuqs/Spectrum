@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"放置在$(l:resources/geodes)晶洞$(/l)中，自动采集完全生长的宝石簇。$(br2)通常情况下，当你不在时，你所有的其他构造甚至作物都会在时间上冻结，但即使在那时，这个构造似乎仍在继续工作。奇怪的",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/crystal_apothecary",
-			"text":"虽然它不如用稿子打碎集群那么有效，但它的易用性肯定会派上用场。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_crystal_apothecary",
-	"extra_recipe_mappings":{
-		"spectrum:crystal_apothecary":0
-	},
-	"name":"水晶药剂师",
-	"icon":"spectrum:crystal_apothecary",
-	"category":"spectrum:magic_category"
+  "name": "水晶收集器",
+  "advancement": "spectrum:progression/unlock_crystal_apothecary",
+  "icon": "spectrum:crystal_apothecary",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:crystal_apothecary": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "放在$(l:resources/geodes)晶洞$(/l)中即可自动采集生长成熟的宝石晶簇。$(br2)说回来，如果你远离其它的各种器械或者植物，它们似乎就像在时空中停止了一般不再正常运行了。但这个可以？奇怪。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/crystal_apothecary",
+      "text": "虽然生产效率上是不如直接用镐子去挖掘的，但简单易用就是王道！"
+    }
+  ]
 }

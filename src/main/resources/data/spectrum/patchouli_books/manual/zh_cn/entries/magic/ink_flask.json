@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"墨水瓶能够容纳相当数量的墨水，尽管只有一种颜色。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier2/ink_flask",
-			"text":"",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_ink_flask",
-	"extra_recipe_mappings":{
-		"spectrum:ink_flask":0
-	},
-	"name":"墨水瓶",
-	"icon":"spectrum:ink_flask",
-	"category":"spectrum:magic_category"
+  "name": "墨水瓶",
+  "advancement": "spectrum:progression/unlock_ink_flask",
+  "icon": "spectrum:ink_flask",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:ink_flask": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "墨水瓶可以大量存储一种墨水。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier2/ink_flask",
+      "text": ""
+    }
+  ]
 }

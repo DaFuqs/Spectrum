@@ -1,18 +1,19 @@
 {
-	"pages":[
-		{
-			"text":"用于将颜料能量从$(l:magic/inkwell)墨水池$(/l)输送到底座，为你的魔法装备提供能量。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/ink_duct",
-			"text":"",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_ink_duct",
-	"name":"油墨管道",
-	"icon":"spectrum:ink_duct",
-	"category":"spectrum:magic_category"
+  "name": "墨水导管",
+  "advancement": "spectrum:progression/unlock_ink_duct",
+  "secret": true,
+  "icon": "spectrum:ink_duct",
+  "category": "spectrum:magic_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "将颜料能量从$(l:magic/inkwell)墨水井$(/l)传输到你的各个魔法仪器上进行供能。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/ink_duct",
+      "text": ""
+    }
+  ]
 }

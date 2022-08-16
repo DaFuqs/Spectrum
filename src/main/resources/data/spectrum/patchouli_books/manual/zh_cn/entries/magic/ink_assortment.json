@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"这些小瓶子可以储存各种墨水，尽管只是少量墨水。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier2/ink_assortment",
-			"text":"",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_ink_assortment",
-	"extra_recipe_mappings":{
-		"spectrum:ink_assortment":0
-	},
-	"name":"油墨种类",
-	"icon":"spectrum:ink_assortment",
-	"category":"spectrum:magic_category"
+  "name": "墨水混合器",
+  "advancement": "spectrum:progression/unlock_ink_assortment",
+  "icon": "spectrum:ink_assortment",
+  "category": "spectrum:magic_category",
+  "extra_recipe_mappings": {
+    "spectrum:ink_assortment": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "这些小瓶可以少量存储多种墨水。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier2/ink_assortment",
+      "text": ""
+    }
+  ]
 }

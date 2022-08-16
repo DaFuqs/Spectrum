@@ -1,27 +1,49 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:ominous_sapling",
-			"text":"待办事项",
-			"type":"patchouli:spotlight"
-		},
-		{
-			"advancement":"spectrum:lategame/grow_ominous_sapling",
-			"text":"待办事项",
-			"type":"patchouli:text",
-			"title":"灵魂木"
-		}
-	],
-	"advancement":"spectrum:lategame/spectrum_lategame",
-	"extra_recipe_mappings":{
-		"spectrum:ominous_sapling":0,
-		"spectrum:spirit_sallow_heart":0,
-		"spectrum:spirit_sallow_roots":0,
-		"spectrum:spirit_sallow_log":0,
-		"spectrum:spirit_sallow_leaves":0
-	},
-	"name":"灵魂木",
-	"icon":"spectrum:ominous_sapling",
-	"category":"spectrum:magic_category",
-	"priority":true
+  "name": "灵魂木",
+  "advancement": "spectrum:lategame/spectrum_lategame",
+  "secret": true,
+  "icon": "spectrum:ominous_sapling",
+  "category": "spectrum:magic_category",
+  "priority": true,
+  "extra_recipe_mappings": {
+    "spectrum:ominous_sapling": 0,
+    "spectrum:spirit_sallow_roots": 0,
+    "spectrum:spirit_sallow_log": 0,
+    "spectrum:spirit_sallow_leaves": 0,
+    "spectrum:spirit_sallow_heart": 0,
+
+    "spectrum:vibrant_cyan_catkin": 0,
+    "spectrum:vibrant_magenta_catkin": 0,
+    "spectrum:vibrant_yellow_catkin": 0,
+    "spectrum:vibrant_black_catkin": 0,
+    "spectrum:vibrant_white_catkin": 0,
+    "spectrum:lucid_cyan_catkin": 0,
+    "spectrum:lucid_magenta_catkin": 0,
+    "spectrum:lucid_yellow_catkin": 0,
+    "spectrum:lucid_black_catkin": 0,
+    "spectrum:lucid_white_catkin": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:ominous_sapling",
+      "text": "未完成"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/grow_ominous_sapling",
+      "title": "灵魂木",
+      "text": "未完成"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:vibrant_cyan_catkin",
+      "text": "未完成"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "鲜活的柔荑花序",
+      "text": "未完成"
+    }
+  ]
 }

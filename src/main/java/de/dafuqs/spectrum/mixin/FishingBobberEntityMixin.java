@@ -15,9 +15,6 @@ public abstract class FishingBobberEntityMixin {
 	/**
 	 * The fishing bobber checks if the "owner" player still has a fishing rod in his hands
 	 * The fishing rod item is hardcoded => We have to add a check for the bedrock fishing rod
-	 *
-	 * @param playerEntity
-	 * @param callbackInfoReturnable
 	 */
 	@Inject(at = @At("HEAD"), method = "removeIfInvalid(Lnet/minecraft/entity/player/PlayerEntity;)Z", cancellable = true)
 	private void removeIfInvalid(PlayerEntity playerEntity, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {

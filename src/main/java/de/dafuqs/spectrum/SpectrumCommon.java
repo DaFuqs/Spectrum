@@ -192,7 +192,7 @@ public class SpectrumCommon implements ModInitializer {
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(ResonanceEnchantment.ResonanceDropsDataLoader.INSTANCE);
 		
 		logInfo("Registering MultiBlocks...");
-		SpectrumMultiblocks.register();
+		//SpectrumMultiblocks.register(); //TODO
 		logInfo("Registering Flammable Blocks...");
 		SpectrumFlammableBlocks.register();
 		logInfo("Registering Compostable Blocks...");

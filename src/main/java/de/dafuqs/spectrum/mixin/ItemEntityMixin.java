@@ -191,7 +191,7 @@ public abstract class ItemEntityMixin {
 		}
 	}
 	
-	@Inject(method = "Lnet/minecraft/entity/ItemEntity;isFireImmune()Z", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "isFireImmune()Z", at = @At("HEAD"), cancellable = true)
 	private void isFireProof(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
 		ItemStack itemStack = ((ItemEntity) (Object) this).getStack();
 		

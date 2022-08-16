@@ -25,8 +25,6 @@ public abstract class WitherEntityMixin {
 			if (cloversFavorLevel > 0) {
 				int additionalCount = (int) (cloversFavorLevel / 2.0F + ((WitherEntity) (Object) this).getWorld().random.nextFloat() * cloversFavorLevel);
 				itemEntity.getStack().setCount(itemEntity.getStack().getCount() + additionalCount);
-				
-				
 			}
 		}
 	}

@@ -230,15 +230,13 @@ public abstract class LivingEntityMixin {
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isDead()Z", ordinal = 1))
 	public void spectrum$TriggerArmorWithHitEffect(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		if (!((LivingEntity) (Object) this).world.isClient) {
-			if (((Object) this) instanceof MobEntity) {
-				MobEntity thisMobEntity = (MobEntity) (Object) this;
+			if (((Object) this) instanceof MobEntity thisMobEntity) {
 				for (ItemStack armorItemStack : thisMobEntity.getArmorItems()) {
 					if (armorItemStack.getItem() instanceof ArmorWithHitEffect) {
 						((ArmorWithHitEffect) armorItemStack.getItem()).onHit(armorItemStack, source, thisMobEntity, amount);
 					}
 				}
-			} else if (((Object) this) instanceof ServerPlayerEntity) {
-				ServerPlayerEntity thisPlayerEntity = (ServerPlayerEntity) (Object) this;
+			} else if (((Object) this) instanceof ServerPlayerEntity thisPlayerEntity) {
 				for (ItemStack armorItemStack : thisPlayerEntity.getArmorItems()) {
 					if (armorItemStack.getItem() instanceof ArmorWithHitEffect) {
 						((ArmorWithHitEffect) armorItemStack.getItem()).onHit(armorItemStack, source, thisPlayerEntity, amount);

@@ -26,22 +26,7 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
 	
 	@Shadow
 	@Final
-	Property selectedPattern;
-	@Shadow
-	@Final
-	Slot bannerSlot;
-	@Shadow
-	@Final
-	Slot dyeSlot;
-	@Shadow
-	@Final
 	private Slot patternSlot;
-	@Shadow
-	@Final
-	private Slot outputSlot;
-	
-	@Unique
-	private PlayerEntity player;
 	
 	private LoomScreenHandlerMixin() {
 		super(null, 0);

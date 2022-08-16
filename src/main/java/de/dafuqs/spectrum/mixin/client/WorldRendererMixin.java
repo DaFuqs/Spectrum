@@ -54,22 +54,14 @@ public abstract class WorldRendererMixin {
 	
 	@Shadow
 	private ClientWorld world;
+	
 	// if the mixin renders a bigger outline than the default 1:1. Cancels default outline
 	@Unique
 	private boolean renderedExtendedOutline = false;
 	
-	@Shadow
-	private static void drawShapeOutline(MatrixStack matrixStack, VertexConsumer vertexConsumer, VoxelShape voxelShape, double d, double e, double f, float g, float h, float i, float j) {
-	}
-	
-	@Shadow
-	public abstract void scheduleTerrainUpdate();
-	
-	@Shadow
-	public abstract void playSong(@Nullable SoundEvent song, BlockPos songPosition);
-	
-	@Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/util/math/Matrix4f;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/hit/HitResult;getType()Lnet/minecraft/util/hit/HitResult$Type;"), locals = LocalCapture.CAPTURE_FAILHARD)
-	private void renderExtendedBlockOutline(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci, Profiler profiler, boolean b, Vec3d vec3d, double d, double e, double f, Matrix4f matrix4f2, boolean b2, Frustum frustum2, float g, boolean b25, boolean b3, VertexConsumerProvider.Immediate immediate, HitResult hitResult2) {
+	//TODO
+	/*@Inject(method = "render(Lnet/minecraft/client/util/math/MatrixStack;FJZLnet/minecraft/client/render/Camera;Lnet/minecraft/client/render/GameRenderer;Lnet/minecraft/client/render/LightmapTextureManager;Lnet/minecraft/util/math/Matrix4f;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/util/hit/HitResult;getType()Lnet/minecraft/util/hit/HitResult$Type;"), locals = LocalCapture.PRINT)
+	private void renderExtendedBlockOutline(MatrixStack matrices, float tickDelta, long limitTime, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightmapTextureManager lightmapTextureManager, Matrix4f positionMatrix, CallbackInfo ci, Profiler profiler, boolean b, Vec3d vec3d, double d, double e, double f, Matrix4f matrix4f2, boolean b2, Frustum frustum2, float g, boolean b25, boolean b3, VertexConsumerProvider.Immediate immediate) {
 		renderedExtendedOutline = false;
 		HudRenderers.doNotRenderOverlay();
 		
@@ -91,7 +83,7 @@ public abstract class WorldRendererMixin {
 				}
 			}
 		}
-	}
+	}*/
 	
 	private boolean renderPlacementStaffOutline(MatrixStack matrices, Camera camera, double d, double e, double f, VertexConsumerProvider.Immediate immediate, @NotNull BlockHitResult hitResult) {
 		BlockPos lookingAtPos = hitResult.getBlockPos();
@@ -131,7 +123,7 @@ public abstract class WorldRendererMixin {
 						
 						HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
 						VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
-						drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						WorldRenderer.drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					}
 				}
@@ -178,7 +170,7 @@ public abstract class WorldRendererMixin {
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size(), false);
 						
 						VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
-						drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						WorldRenderer.drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					}
 				}

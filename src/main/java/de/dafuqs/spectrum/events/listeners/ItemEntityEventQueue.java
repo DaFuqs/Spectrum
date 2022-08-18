@@ -12,6 +12,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
 
+import javax.annotation.Nullable;
+
 public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventEntry> {
 	
 	public ItemEntityEventQueue(PositionSource positionSource, int range, Callback listener) {
@@ -28,7 +30,12 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new ItemTransfer(pos, this.positionSource, delay));
 		}
 	}
-	
+
+	public boolean listen(ServerWorld world, GameEvent.Message event, Vec3d pos) {
+		//TODO Need to implement this
+		return false;
+	}
+
 	public static class EventEntry {
 		public GameEvent gameEvent;
 		public ItemEntity itemEntity;

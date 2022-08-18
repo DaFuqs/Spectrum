@@ -131,11 +131,11 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 	}
 	
 	@Override
-	public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message message, Vec3d sourcePos) {
+	public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message event, Vec3d sourcePos) {
 		if (SpectrumChestBlock.isChestBlocked(world, this.pos)) {
 			return false;
 		}
-		Entity entity = message.getEmitter().sourceEntity();
+		Entity entity = event.getEmitter().sourceEntity();
 		if (entity instanceof ItemEntity) {
 			return true;
 		}

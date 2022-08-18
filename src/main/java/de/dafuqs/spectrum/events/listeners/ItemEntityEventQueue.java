@@ -31,11 +31,6 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 		}
 	}
 
-	public boolean listen(ServerWorld world, GameEvent.Message event, Vec3d pos) {
-		//TODO Need to implement this
-		return false;
-	}
-
 	public static class EventEntry {
 		public GameEvent gameEvent;
 		public ItemEntity itemEntity;

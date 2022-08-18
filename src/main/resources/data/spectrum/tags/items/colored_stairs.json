@@ -1,21 +1,21 @@
 {
   "replace": false,
   "values": [
-    "spectrum:black_plank_stairs",
-    "spectrum:blue_plank_stairs",
-    "spectrum:brown_plank_stairs",
-    "spectrum:cyan_plank_stairs",
-    "spectrum:gray_plank_stairs",
-    "spectrum:green_plank_stairs",
-    "spectrum:light_blue_plank_stairs",
-    "spectrum:light_gray_plank_stairs",
-    "spectrum:lime_plank_stairs",
-    "spectrum:magenta_plank_stairs",
-    "spectrum:orange_plank_stairs",
-    "spectrum:pink_plank_stairs",
-    "spectrum:purple_plank_stairs",
-    "spectrum:red_plank_stairs",
-    "spectrum:white_plank_stairs",
-    "spectrum:yellow_plank_stairs"
+    "spectrum:black_stairs",
+    "spectrum:blue_stairs",
+    "spectrum:brown_stairs",
+    "spectrum:cyan_stairs",
+    "spectrum:gray_stairs",
+    "spectrum:green_stairs",
+    "spectrum:light_blue_stairs",
+    "spectrum:light_gray_stairs",
+    "spectrum:lime_stairs",
+    "spectrum:magenta_stairs",
+    "spectrum:orange_stairs",
+    "spectrum:pink_stairs",
+    "spectrum:purple_stairs",
+    "spectrum:red_stairs",
+    "spectrum:white_stairs",
+    "spectrum:yellow_stairs"
   ]
 }

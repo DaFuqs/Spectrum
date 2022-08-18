@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:underground_structures",
+  "start_pool": "spectrum:ancient_ruins",
+  "step" : "underground_structures",
+  "size": 1,
+  "max_inclusive": {
+    "below_top": 30
+  },
+  "min_inclusive": {
+    "above_bottom": -32
+  },
+  "start_height": {
+    "absolute": 0
+  },
+  "max_distance_from_center": 80,
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "biomes": "#spectrum:has_structure/underground_structures",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "piece",
+      "spawns": []
+    }
+  }
+}

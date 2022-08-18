@@ -78,8 +78,8 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 	}
 	
 	@Override
-	public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message event, Vec3d sourcePos) {
-		if (event.getEvent() instanceof RedstoneTransferGameEvent redstoneTransferGameEvent) {
+	public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message message, Vec3d sourcePos) {
+		if (message.getEvent() instanceof RedstoneTransferGameEvent redstoneTransferGameEvent) {
 			return !isSender(this.world, this.pos) && redstoneTransferGameEvent.getDyeColor() == getChannel(this.world, this.pos);
 		}
 		return false;

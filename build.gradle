@@ -114,7 +114,7 @@ dependencies {
 	//modImplementation include("com.github.devs-immortal:Some-Assembly-Required:${project.sar_version}")
 	//modImplementation include("com.github.devs-immortal:Divine-Intervention:${project.divine_intervention_version}")
 	modImplementation include("io.github.ladysnake:satin:${project.satin_version}")
-	modImplementation("com.github.LudoCrypt:Liminal-Library:5.2.1")
+	modImplementation("com.github.LudoCrypt:Liminal-Library:${project.liminal_lib_version}")
 
 	// Soft dependencies:
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/

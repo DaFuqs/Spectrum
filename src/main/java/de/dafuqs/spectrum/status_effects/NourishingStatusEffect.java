@@ -24,7 +24,10 @@ public class NourishingStatusEffect extends StatusEffect {
 	
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
 		int i = 200 >> amplifier;
-		return duration % i == 0;
+		if(i > 0) {
+			return duration % i == 0;
+		}
+		return true;
 	}
 	
 }

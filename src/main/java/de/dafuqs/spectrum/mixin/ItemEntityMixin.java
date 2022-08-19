@@ -16,6 +16,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -97,7 +98,11 @@ public abstract class ItemEntityMixin {
 			autoCompactingInventory = new AutoCompactingInventory();
 		}
 		autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.OneXOne, thisItemStack);
-		Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = SpectrumCommon.minecraftServer.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
+		MinecraftServer server = world.getServer();
+		if(server == null) {
+			return;
+		}
+		Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = server.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
 		if (optionalAnvilCrushingRecipe.isPresent()) {
 			// Item can be crafted via anvil. Do anvil crafting
 			AnvilCrushingRecipe recipe = optionalAnvilCrushingRecipe.get();

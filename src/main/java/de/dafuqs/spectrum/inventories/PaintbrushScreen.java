@@ -15,7 +15,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import org.jetbrains.annotations.Nullable;
@@ -29,8 +28,8 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	public static final int TEXT_COLOR = 0xEEEEEE;
 	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/paintbrush.png");
 	
-	protected static final Text CONTROLS_TEXT_1 = new TranslatableText("item.spectrum.paintbrush.gui.controls1");
-	protected static final Text CONTROLS_TEXT_2 = new TranslatableText("item.spectrum.paintbrush.gui.controls2");
+	protected static final Text CONTROLS_TEXT_1 = Text.translatable("item.spectrum.paintbrush.gui.controls1");
+	protected static final Text CONTROLS_TEXT_2 = Text.translatable("item.spectrum.paintbrush.gui.controls2");
 	
 	public static final List<InkColor> MAIN_GRID = new ArrayList<>() {{
 		add(InkColors.MAGENTA);

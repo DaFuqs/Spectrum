@@ -74,7 +74,7 @@ public class SpectrumCommon implements ModInitializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
 	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
-	private static MinecraftServer minecraftServer;
+	public static MinecraftServer minecraftServer;
 	/**
 	 * Caches the luminance states from fluids as int
 	 * for blocks that react to the light level of fluids

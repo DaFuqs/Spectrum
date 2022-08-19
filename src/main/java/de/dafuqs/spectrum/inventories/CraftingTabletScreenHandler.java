@@ -180,7 +180,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 				inventory.setStack(13, ItemStack.EMPTY);
 				
 				ItemStack itemStack = ItemStack.EMPTY;
-				Optional<CraftingRecipe> optionalCraftingRecipe = world.getServer().getRecipeManager().getFirstMatch(RecipeType.CRAFTING, inventory, world);
+				Optional<CraftingRecipe> optionalCraftingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, inventory, world);
 				if (optionalCraftingRecipe.isPresent()) {
 					lockableCraftingResultSlot.unlock();
 					

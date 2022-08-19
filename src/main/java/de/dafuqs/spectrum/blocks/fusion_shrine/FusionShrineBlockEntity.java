@@ -291,8 +291,8 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() &&  world != null && world.getServer() != null) {
-				Optional<? extends Recipe> optionalRecipe = world.getServer().getRecipeManager().get(new Identifier(recipeString));
+			if (!recipeString.isEmpty() && world != null) {
+				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
 				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof FusionShrineRecipe optionalFusionRecipe) {
 					this.currentRecipe = optionalFusionRecipe;
 				}

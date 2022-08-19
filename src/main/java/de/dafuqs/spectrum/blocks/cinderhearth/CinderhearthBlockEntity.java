@@ -199,8 +199,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		}
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && world != null && world.getServer() != null) {
-				Optional<? extends Recipe> optionalRecipe = world.getServer().getRecipeManager().get(new Identifier(recipeString));
+			if (!recipeString.isEmpty() && world != null) {
+				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
 				this.currentRecipe = optionalRecipe.orElse(null);
 			} else {
 				this.currentRecipe = null;

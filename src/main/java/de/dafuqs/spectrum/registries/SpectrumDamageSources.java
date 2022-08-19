@@ -15,7 +15,7 @@ public class SpectrumDamageSources {
 	public static final DamageSource DIKE_GATE = new SpectrumDamageSource("spectrum_dike_gate").setNeutral().setUsesMagic();
 	
 	public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
-		return (new ProjectileDamageSource("arrow", projectile, attacker)).setProjectile(); // TODO
+		return (new ProjectileDamageSource("spectrum_ink_projectile", projectile, attacker)).setProjectile();
 	}
 	
 	public static class SpectrumDamageSource extends DamageSource {

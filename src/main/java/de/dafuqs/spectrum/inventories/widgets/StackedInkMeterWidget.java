@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
 import de.dafuqs.spectrum.energy.InkStorage;
+import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.RenderHelper;
 import de.dafuqs.spectrum.helpers.Support;
@@ -29,16 +30,16 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 	protected boolean hovered;
 	
 	protected Screen screen;
-	protected InkStorage inkStorage;
+	protected InkStorageBlockEntity blockEntity;
 	
-	public StackedInkMeterWidget(int x, int y, int width, int height, Screen screen, InkStorage inkStorage) {
+	public StackedInkMeterWidget(int x, int y, int width, int height, Screen screen, InkStorageBlockEntity blockEntity) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		
 		this.screen = screen;
-		this.inkStorage = inkStorage;
+		this.blockEntity = blockEntity;
 	}
 	
 	public boolean isMouseOver(double mouseX, double mouseY) {
@@ -61,15 +62,17 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 	}
 	
 	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
-		long currentTotal = this.inkStorage.getCurrentTotal();
+		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
+		long currentTotal = inkStorage.getCurrentTotal();
 		String readableCurrentTotalString = Support.getShortenedNumberString(currentTotal);
-		String percent = Support.getSensiblePercent(this.inkStorage.getCurrentTotal(), (this.inkStorage.getMaxTotal()));
+		String percent = Support.getSensiblePercent(inkStorage.getCurrentTotal(), (inkStorage.getMaxTotal()));
 		screen.renderTooltip(matrices,
 				List.of(Text.translatable("spectrum.tooltip.ink_powered.percent_filled", readableCurrentTotalString, percent)),
 				Optional.empty(), x, y);
 	}
 	
 	public void draw(MatrixStack matrices) {
+		InkStorage inkStorage = this.blockEntity.getEnergyStorage();
 		long currentTotal = inkStorage.getCurrentTotal();
 		
 		if (currentTotal > 0) {

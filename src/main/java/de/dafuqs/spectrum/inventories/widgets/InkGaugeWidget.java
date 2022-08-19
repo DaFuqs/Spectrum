@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
-import de.dafuqs.spectrum.energy.InkStorage;
+import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.RenderHelper;
 import net.fabricmc.api.EnvType;
@@ -31,16 +31,16 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	protected boolean hovered;
 	
 	protected Screen screen;
-	protected InkStorage inkStorage;
+	protected InkStorageBlockEntity blockEntity;
 	
-	public InkGaugeWidget(int x, int y, int width, int height, Screen screen, InkStorage inkStorage) {
+	public InkGaugeWidget(int x, int y, int width, int height, Screen screen, InkStorageBlockEntity blockEntity) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
 		
 		this.screen = screen;
-		this.inkStorage = inkStorage;
+		this.blockEntity = blockEntity;
 	}
 	
 	public boolean isMouseOver(double mouseX, double mouseY) {
@@ -65,7 +65,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	public void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
 		List<Text> tooltip = new ArrayList<>();
 		int padding = 0;
-		Map<InkColor, Long> energy = inkStorage.getEnergy();
+		Map<InkColor, Long> energy = blockEntity.getEnergyStorage().getEnergy();
 		for (Long color : energy.values()) {
 			padding = Math.max(padding, StringUtils.length(String.valueOf(color)));
 		}
@@ -86,7 +86,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 	
 	
 	public void draw(MatrixStack matrices) {
-		long totalInk = inkStorage.getCurrentTotal();
+		long totalInk = blockEntity.getEnergyStorage().getCurrentTotal();
 		
 		if (totalInk > 0) {
 			int centerX = x + width / 2;
@@ -94,7 +94,7 @@ public class InkGaugeWidget extends DrawableHelper implements Drawable, Element,
 			int radius = 22;
 			
 			double startRad = -0.5 * Math.PI;
-			for (Map.Entry<InkColor, Long> entry : inkStorage.getEnergy().entrySet()) {
+			for (Map.Entry<InkColor, Long> entry : blockEntity.getEnergyStorage().getEnergy().entrySet()) {
 				InkColor color = entry.getKey();
 				long currentInk = entry.getValue();
 				

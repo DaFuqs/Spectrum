@@ -33,7 +33,7 @@ public class SpectrumBannerPatterns {
 	public static RegistryEntry<BannerPattern> JADE_VINE;
 	
 	private static RegistryEntry<BannerPattern> registerPattern(String id, String shortId) {
-		BannerPattern pattern = Registry.register(Registry.BANNER_PATTERN, new Identifier(SpectrumCommon.MOD_ID, id), new BannerPattern(SpectrumCommon.MOD_ID + "_" + shortId));
+		BannerPattern pattern = Registry.register(Registry.BANNER_PATTERN, SpectrumCommon.locate(id), new BannerPattern(SpectrumCommon.MOD_ID + "_" + shortId));
 		return Registry.BANNER_PATTERN.getEntry(Registry.BANNER_PATTERN.getKey(pattern).get()).get();
 	}
 	

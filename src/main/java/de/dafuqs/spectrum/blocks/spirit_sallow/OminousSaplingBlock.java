@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;

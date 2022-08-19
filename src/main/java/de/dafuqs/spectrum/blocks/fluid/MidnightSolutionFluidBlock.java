@@ -113,7 +113,7 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 						livingEntity.dropStack(SpectrumItems.MIDNIGHT_CHIP.getDefaultStack());
 					}
 				}
-			} else if (entity instanceof ItemEntity itemEntity && itemEntity.age % 120 == 0 && !itemEntity.cannotPickup()) { // cannotPickup: looks nicer, also exploit protection
+			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
 				ItemStack itemStack = itemEntity.getStack();
 				
 				// if the item is enchanted: remove enchantments and spawn XP

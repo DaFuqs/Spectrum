@@ -129,7 +129,7 @@ public class SpectrumC2SPacketReceiver {
 				}
 				
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
-				for(ServerPlayerEntity serverPlayer : SpectrumCommon.minecraftServer.getPlayerManager().getPlayerList()) {
+				for(ServerPlayerEntity serverPlayer : server.getPlayerManager().getPlayerList()) {
 					if(serverPlayer.currentScreenHandler instanceof InkColorSelectedPacketReceiver receiver && receiver.getBlockEntity() != null && receiver.getBlockEntity() == inkColorSelectedPacketReceiver.getBlockEntity()) {
 						SpectrumS2CPacketSender.sendInkColorSelected(color, serverPlayer);
 					}

@@ -43,7 +43,7 @@ public class PaintBrushItem extends Item {
 	public static final Identifier UNLOCK_INK_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
 	
 	public static final int COOLDOWN_DURATION_TICKS = 10;
-	public static final int BLOCK_COLOR_COST = 10;
+	public static final int BLOCK_COLOR_COST = 25;
 	public static final int INK_FLING_COST = 100;
 	
 	public static final String COLOR_NBT_STRING = "Color";

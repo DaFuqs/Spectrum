@@ -14,8 +14,8 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import org.jetbrains.annotations.Nullable;
@@ -29,8 +29,8 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	public static final int TEXT_COLOR = 0xEEEEEE;
 	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/paintbrush.png");
 	
-	protected final Text note1 = new LiteralText("Movement Keys to move");
-	protected final Text note2 = new LiteralText("Drop/Inventory to select");
+	protected static final Text CONTROLS_TEXT_1 = new TranslatableText("item.spectrum.paintbrush.gui.controls1");
+	protected static final Text CONTROLS_TEXT_2 = new TranslatableText("item.spectrum.paintbrush.gui.controls2");
 	
 	public static final List<InkColor> MAIN_GRID = new ArrayList<>() {{
 		add(InkColors.MAGENTA);
@@ -88,8 +88,8 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
 		drawGrid(matrices, backgroundWidth / 2, backgroundHeight / 2, GRIDS.get(currentGrid));
 		
-		this.textRenderer.draw(matrices, note1, (backgroundWidth - textRenderer.getWidth(note1)) / 2, 202, TEXT_COLOR);
-		this.textRenderer.draw(matrices, note2, (backgroundWidth - textRenderer.getWidth(note2)) / 2, 212, TEXT_COLOR);
+		this.textRenderer.draw(matrices, CONTROLS_TEXT_1, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_1)) / 2, 202, TEXT_COLOR);
+		this.textRenderer.draw(matrices, CONTROLS_TEXT_2, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_2)) / 2, 212, TEXT_COLOR);
 	}
 	
 	protected void drawGrid(MatrixStack matrices, int startX, int startY, List<InkColor> grid) {

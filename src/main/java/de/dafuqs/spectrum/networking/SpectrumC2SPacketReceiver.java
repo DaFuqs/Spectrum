@@ -127,9 +127,11 @@ public class SpectrumC2SPacketReceiver {
 					color = null;
 				}
 				
+				// send the newly selected color to all players that have the same gui open
+				// this is minus the player that selected that entry (since they have that info already)
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
 				for(ServerPlayerEntity serverPlayer : server.getPlayerManager().getPlayerList()) {
-					if(serverPlayer.currentScreenHandler instanceof InkColorSelectedPacketReceiver receiver && receiver.getBlockEntity() != null && receiver.getBlockEntity() == inkColorSelectedPacketReceiver.getBlockEntity()) {
+					if(serverPlayer.currentScreenHandler instanceof InkColorSelectedPacketReceiver receiver && serverPlayer != player && receiver.getBlockEntity() != null && receiver.getBlockEntity() == inkColorSelectedPacketReceiver.getBlockEntity()) {
 						SpectrumS2CPacketSender.sendInkColorSelected(color, serverPlayer);
 					}
 				}

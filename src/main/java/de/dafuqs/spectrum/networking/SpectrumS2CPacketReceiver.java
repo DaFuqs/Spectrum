@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.helpers.ParticleHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.inventories.InkColorSelectedPacketReceiver;
 import de.dafuqs.spectrum.mixin.client.accessors.BossBarHudAccessor;
@@ -25,12 +26,16 @@ import de.dafuqs.spectrum.spells.InkSpellEffects;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
@@ -125,7 +130,7 @@ public class SpectrumS2CPacketReceiver {
 			if (particleType instanceof ParticleEffect particleEffect) {
 				client.execute(() -> {
 					// Everything in this lambda is running on the render thread
-					playParticleWithPatternAndVelocityClient(client.world, position, particleEffect, pattern, velocity);
+					ParticleHelper.playParticleWithPatternAndVelocityClient(client.world, position, particleEffect, pattern, velocity);
 				});
 			}
 		});
@@ -393,9 +398,8 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
-		// TODO: was does a ServerPlayNetworking receiver here??
-		ServerPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INK_COLOR_SELECTED, (server, player, handler, buf, responseSender) -> {
-			ScreenHandler screenHandler = player.currentScreenHandler;
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INK_COLOR_SELECTED, (client, handler, buf, responseSender) -> {
+			ScreenHandler screenHandler = MinecraftClient.getInstance().player.currentScreenHandler;
 			if(screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 				boolean isSelection = buf.readBoolean();
 				
@@ -422,12 +426,6 @@ public class SpectrumS2CPacketReceiver {
 				InkSpellEffects.getEffect(inkColor).playEffects(client.world, new Vec3d(posX, posY, posZ), potency);
 			});
 		});
-	}
-	
-	public static void playParticleWithPatternAndVelocityClient(World world, Vec3d position, ParticleEffect particleEffect, @NotNull ParticlePattern pattern, double velocity) {
-		for (Vec3d vec3d : pattern.getVectors()) {
-			world.addParticle(particleEffect, position.getX(), position.getY(), position.getZ(), vec3d.x * velocity, vec3d.y * velocity, vec3d.z * velocity);
-		}
 	}
 	
 }

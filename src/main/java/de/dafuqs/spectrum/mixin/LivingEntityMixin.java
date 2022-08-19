@@ -3,10 +3,14 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
+import de.dafuqs.spectrum.helpers.ParticleHelper;
 import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.tools.DreamflayerItem;
 import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.ParticlePattern;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
@@ -29,6 +33,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
@@ -96,14 +101,13 @@ public abstract class LivingEntityMixin {
 							
 							thisEntity.fallDistance = 0;
 							thisEntity.setVelocity(thisEntity.getVelocity().x, 0.5, thisEntity.getVelocity().z);
-							// TODO: fix. This breaks on dedicated server
-							/*if (thisEntity.world.isClient) { // it is split here so the particles spawn immediately, without network lag
-								SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.EIGHT, 0.4);
-								SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, ParticlePattern.EIGHT_OFFSET, 0.5);
+							if (thisEntity.world.isClient) { // it is split here so the particles spawn immediately, without network lag
+								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.EIGHT, 0.4);
+								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, ParticlePattern.EIGHT_OFFSET, 0.5);
 							} else if (thisEntity instanceof ServerPlayerEntity serverPlayerEntity) {
 								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.EIGHT, 0.4);
 								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, ParticlePattern.EIGHT_OFFSET, 0.5);
-							}*/
+							}
 							thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 						}
 					}

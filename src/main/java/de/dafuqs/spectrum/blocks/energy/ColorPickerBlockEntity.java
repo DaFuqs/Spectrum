@@ -34,7 +34,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -127,7 +126,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	@Override
 	protected Text getContainerName() {
-		return new TranslatableText("block.spectrum.color_picker");
+		return Text.translatable("block.spectrum.color_picker");
 	}
 	
 	@Override
@@ -217,7 +216,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 				inventory.get(INPUT_SLOT_ID).decrement(1);
 				this.inkStorage.addEnergy(color, amount);
 				
-				world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 2, 1.0F);
+				world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 1.0F);
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3d(pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5),
 						SpectrumParticleTypes.getFluidRisingParticle(color.getDyeColor()),

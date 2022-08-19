@@ -36,12 +36,11 @@ import java.util.Optional;
 
 public class PaintBrushItem extends Item {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_ID = SpectrumCommon.locate("progression/unlock_paintbrush");
 	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
-	public static final Identifier UNLOCK_PAINT_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
+	public static final Identifier UNLOCK_INK_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
 	
 	public static final int COOLDOWN_DURATION_TICKS = 10;
-	public static final int BLOCK_COLOR_COST = 10;
+	public static final int BLOCK_COLOR_COST = 25;
 	public static final int INK_FLING_COST = 100;
 	
 	public static final String COLOR_NBT_STRING = "Color";
@@ -60,15 +59,27 @@ public class PaintBrushItem extends Item {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		Optional<InkColor> color = getColor(stack);
-		color.ifPresent(inkColor -> tooltip.add(Text.translatable("spectrum.ink.color." + inkColor)));
-	}
+		if(color.isPresent()) {
+			tooltip.add(Text.translatable("spectrum.ink.color." + color.get()));
+		} else {
+			tooltip.add(Text.translatable("item.spectrum.paintbrush.tooltip.select_color"));
+		}
+		
+		tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.header").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.pedestal_triggering").formatted(Formatting.GRAY));
+		if(AdvancementHelper.hasAdvancementClient(UNLOCK_COLORING_ADVANCEMENT_ID)) {
+			tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.block_coloring").formatted(Formatting.GRAY));
+		}
+		if(AdvancementHelper.hasAdvancementClient(UNLOCK_INK_SLINGING_ADVANCEMENT_ID)) {
+			tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.ink_slinging").formatted(Formatting.GRAY));
+		}	}
 	
 	public static boolean canColor(PlayerEntity player) {
 		return AdvancementHelper.hasAdvancement(player, UNLOCK_COLORING_ADVANCEMENT_ID);
 	}
 	
-	public static boolean canPaintSling(PlayerEntity player) {
-		return AdvancementHelper.hasAdvancement(player, UNLOCK_PAINT_SLINGING_ADVANCEMENT_ID);
+	public static boolean canInkSling(PlayerEntity player) {
+		return AdvancementHelper.hasAdvancement(player, UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
 	}
 	
 	public NamedScreenHandlerFactory createScreenHandlerFactory(World world, ServerPlayerEntity serverPlayerEntity, ItemStack itemStack) {
@@ -143,7 +154,7 @@ public class PaintBrushItem extends Item {
 				}
 			}
 			return TypedActionResult.pass(user.getStackInHand(hand));
-		} else if(canPaintSling(user)){
+		} else if(canInkSling(user)){
 			Optional<InkColor> optionalInkColor = getColor(user.getStackInHand(hand));
 			if (optionalInkColor.isPresent()) {
 				

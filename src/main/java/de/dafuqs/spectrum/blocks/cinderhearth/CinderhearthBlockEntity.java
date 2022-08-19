@@ -246,6 +246,9 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
 				InkStorage itemStorage = inkStorageItem.getEnergyStorage(stack);
 				didSomething = InkStorage.transferInk(itemStorage, cinderhearthBlockEntity.inkStorage) != 0;
+				if (didSomething) {
+					inkStorageItem.setEnergyStorage(stack, itemStorage);
+				}
 			}
 			if (didSomething) {
 				cinderhearthBlockEntity.markDirty();

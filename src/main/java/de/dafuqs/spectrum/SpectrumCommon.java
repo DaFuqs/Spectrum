@@ -36,6 +36,7 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -243,9 +244,13 @@ public class SpectrumCommon implements ModInitializer {
 			return ActionResult.PASS;
 		});
 		
+		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
+			SpectrumCommon.logInfo("Fetching server instance...");
+			SpectrumCommon.minecraftServer = server;
+		});
+		
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
-			SpectrumCommon.minecraftServer = minecraftServer;
-			
+			SpectrumCommon.logInfo("Querying fluid luminance...");
 			for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
 				Block block = it.next();
 				if (block instanceof FluidBlock fluidBlock) {
@@ -253,6 +258,7 @@ public class SpectrumCommon implements ModInitializer {
 				}
 			}
 			
+			SpectrumCommon.logInfo("Injecting additional recipes...");
 			FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
 			injectEnchantmentUpgradeRecipes(minecraftServer);
 		});

@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "has_quitoxic_reeds": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }
+    },
+    "has_magenta_pigment": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_magenta_pigment" }
+    }
+  }
+}

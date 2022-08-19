@@ -123,7 +123,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 				} else {
 					// Nothing stored => Store current position
 					setTeleportTargetPos(itemStack, playerEntity.getEntityWorld(), playerEntity.getPos());
-					world.playSound(null, playerEntity.getBlockPos(), SpectrumSoundEvents.ENDER_SPLICE_BOUND, SoundCategory.PLAYERS, 1.0F, 1.0F); // TODO: test
+					world.playSound(null, playerEntity.getBlockPos(), SpectrumSoundEvents.ENDER_SPLICE_BOUND, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				}
 			}
 			playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -175,8 +175,8 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 			
 			// make sure the sound plays even when the player currently teleports
 			if (playerEntity instanceof ServerPlayerEntity) {
-				world.playSound(null, playerEntity.getBlockPos(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F); // TODO: test
-				world.playSound(null, playerEntity.getBlockPos(), SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F); // TODO: test
+				world.playSound(null, playerEntity.getBlockPos(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				world.playSound(null, playerEntity.getBlockPos(), SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			}
 		}
 	}

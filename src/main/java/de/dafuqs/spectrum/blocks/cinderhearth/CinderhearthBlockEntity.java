@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.cinderhearth;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.energy.InkStorage;

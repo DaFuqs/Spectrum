@@ -155,8 +155,8 @@
   "multiblock.spectrum.cinderhearth.structure": "Cinderhearth",
 
   "death.attack.spectrum_decay": "%s was eaten alive",
-  "death.attack.spectrum_ink_projectile": "%1$s taught %2$s the joy of painting",
-  "death.attack.spectrum_ink_projectile.item": "%1$s taught %2$s the joy of painting using %3$s",
+  "death.attack.spectrum_ink_projectile": "%2$s taught %1$s the joy of painting",
+  "death.attack.spectrum_ink_projectile.item": "%2$s taught %1$s the joy of painting using %3$s",
   "death.attack.spectrum_floatblock": "%s was smashed by a Floating Block",
   "death.attack.spectrum_shooting_star": "%s was smitten by a Shooting Star. Make a Wish!",
   "death.attack.spectrum_midnight_solution": "%s was lost in Translation",

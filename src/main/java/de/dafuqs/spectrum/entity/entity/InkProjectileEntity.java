@@ -109,7 +109,6 @@ public class InkProjectileEntity extends ProjectileEntity {
 		}
 	}
 	
-	// TODO
 	@Override
 	public void tick() {
 		super.tick();

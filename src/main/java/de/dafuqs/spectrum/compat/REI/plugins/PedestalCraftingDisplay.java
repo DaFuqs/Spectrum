@@ -14,18 +14,18 @@ import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
 	protected final EntryIngredient output;
 	protected final float experience;
 	protected final int craftingTime;
+	
+	protected final int width;
+	protected final int height;
 	
 	protected final Identifier requiredAdvancementIdentifier;
 	protected final PedestalRecipeTier pedestalRecipeTier;
@@ -42,73 +42,72 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();
 		
+		this.width = recipe.getWidth();
+		this.height = recipe.getHeight();
+		
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 		this.pedestalRecipeTier = recipe.getTier();
-		
-		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
-		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.CYAN, SpectrumItems.TOPAZ_POWDER);
-		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.MAGENTA, SpectrumItems.AMETHYST_POWDER);
-		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.YELLOW, SpectrumItems.CITRINE_POWDER);
-		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.BLACK, SpectrumItems.ONYX_POWDER);
-		addGemstonePowderCraftingInput(gemstonePowderInputs, BuiltinGemstoneColor.WHITE, SpectrumItems.MOONSTONE_POWDER);
 	}
 	
 	private static List<EntryIngredient> mapIngredients(PedestalCraftingRecipe recipe) {
 		int shownGemstoneSlotCount = recipe.getTier() == PedestalRecipeTier.COMPLEX ? 5 : recipe.getTier() == PedestalRecipeTier.ADVANCED ? 4 : 3;
-		List<EntryIngredient> list = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
-		while(list.size() < 9 + shownGemstoneSlotCount) {
+		
+		List<EntryIngredient> list = new ArrayList<>(9 + shownGemstoneSlotCount);
+		for (int i = 0; i < 9 + shownGemstoneSlotCount; i++) {
 			list.add(EntryIngredient.empty());
 		}
+		for (int i = 0; i < recipe.getIngredients().size(); i++) {
+			list.set(PedestalCraftingDisplaySerializer.getSlotWithSize(recipe.getWidth(), i), EntryIngredients.ofIngredient(recipe.getIngredients().get(i)));
+		}
+		
+		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
+		int firstGemstoneSlotId = 3*3;
+
+		int cyan = gemstonePowderInputs.get(BuiltinGemstoneColor.CYAN);
+		if(cyan > 0) {
+			list.set(firstGemstoneSlotId, EntryIngredients.of(SpectrumItems.TOPAZ_POWDER, cyan));
+		}
+		int magenta = gemstonePowderInputs.get(BuiltinGemstoneColor.MAGENTA);
+		if(magenta > 0) {
+			list.set(firstGemstoneSlotId+1, EntryIngredients.of(SpectrumItems.AMETHYST_POWDER, magenta));
+		}
+		int yellow = gemstonePowderInputs.get(BuiltinGemstoneColor.YELLOW);
+		if(yellow > 0) {
+			list.set(firstGemstoneSlotId+2, EntryIngredients.of(SpectrumItems.CITRINE_POWDER, yellow));
+		}
+		if(shownGemstoneSlotCount >= 4) {
+			int black = gemstonePowderInputs.get(BuiltinGemstoneColor.BLACK);
+			if(black > 0) {
+				list.set(firstGemstoneSlotId+3, EntryIngredients.of(SpectrumItems.ONYX_POWDER, black));
+			}
+			if(shownGemstoneSlotCount == 5) {
+				int white = gemstonePowderInputs.get(BuiltinGemstoneColor.WHITE);
+				if(white > 0) {
+					list.set(firstGemstoneSlotId+4, EntryIngredients.of(SpectrumItems.MOONSTONE_POWDER, white));
+				}
+			}
+		}
+		
 		return list;
 	}
 	
 	/**
 	 * When using Shift click on the plus button in the REI gui to autofill crafting grids & recipe favourites
 	 */
-	public PedestalCraftingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, String recipeTier) {
+	public PedestalCraftingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, int width, int height, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, String recipeTier) {
 		super(inputs, outputs);
 		
 		this.output = outputs.get(0);
 		this.experience = experience;
 		this.craftingTime = craftingTime;
 		
+		this.width = width;
+		this.height = height;
+		
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		this.pedestalRecipeTier = PedestalRecipeTier.valueOf(recipeTier.toUpperCase(Locale.ROOT));
 	}
-	
-	public static Serializer<PedestalCraftingDisplay> serializer() {
-		return BasicDisplay.Serializer.of((input, output, location, tag) -> {
-			float experience = tag.getFloat("Experience");
-			int craftingTime = tag.getInt("CraftingTime");
-			String recipeTier = tag.getString("RecipeTier");
-			Identifier requiredAdvancementIdentifier = Identifier.tryParse(tag.getString("Advancement"));
-			return PedestalCraftingDisplay.simple(input, output, experience, craftingTime, requiredAdvancementIdentifier, recipeTier);
-		}, (display, tag) -> {
-			tag.putFloat("Experience", display.experience);
-			tag.putInt("CraftingTime", display.craftingTime);
-			tag.putString("RecipeTier", display.pedestalRecipeTier.toString());
-			tag.putString("Advancement", display.requiredAdvancementIdentifier.toString());
-			tag.putInt("Width", display.getWidth());
-		});
-	}
-	
-	private static @NotNull PedestalCraftingDisplay simple(List<EntryIngredient> inputs, List<EntryIngredient> outputs, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, String recipeTier) {
-		return new PedestalCraftingDisplay(inputs, outputs, experience, craftingTime, requiredAdvancementIdentifier, recipeTier);
-	}
-	
-	private void addGemstonePowderCraftingInput(@NotNull HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs, BuiltinGemstoneColor gemstoneColor, Item item) {
-		if (gemstonePowderInputs.containsKey(gemstoneColor)) {
-			int amount = gemstonePowderInputs.get(gemstoneColor);
-			if (amount > 0) {
-				this.inputs.add(EntryIngredients.of(item, amount));
-			} else {
-				this.inputs.add(EntryIngredient.empty());
-			}
-		} else {
-			this.inputs.add(EntryIngredient.empty());
-		}
-	}
-	
+
 	@Override
 	public List<EntryIngredient> getInputEntries() {
 		if (this.isUnlocked()) {
@@ -133,7 +132,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	}
 	
 	public boolean isUnlocked() {
-		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier) && AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier) && AdvancementHelper.hasAdvancementClient(this.requiredAdvancementIdentifier);
 	}
 	
 	@Override

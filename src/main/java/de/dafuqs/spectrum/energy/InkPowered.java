@@ -30,11 +30,11 @@ public interface InkPowered {
 	Identifier REQUIRED_ADVANCEMENT = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_ink_use");
 	
 	@Environment(EnvType.CLIENT)
-	static boolean canUse() {
+	static boolean canUseClient() {
 		return canUse(MinecraftClient.getInstance().player);
 	}
 	
-	private static boolean canUse(PlayerEntity playerEntity) {
+	static boolean canUse(PlayerEntity playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, InkPowered.REQUIRED_ADVANCEMENT);
 	}
 	
@@ -49,7 +49,7 @@ public interface InkPowered {
 	 * These are added as the player facing tooltip
 	 **/
 	default void addInkPoweredTooltip(List<Text> tooltip) {
-		if(canUse()) {
+		if(canUseClient()) {
             if (getUsedColors().size() > 1) {
                 tooltip.add(new TranslatableText("spectrum.tooltip.ink_powered.prefix").formatted(Formatting.GRAY));
                 for (InkColor color : getUsedColors()) {

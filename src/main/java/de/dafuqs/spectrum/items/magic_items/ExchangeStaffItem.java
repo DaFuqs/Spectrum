@@ -123,9 +123,9 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 			exchangedForBlockItemCount = Math.min(1, exchangedForBlockItemCount);
 		} else {
 			if (!player.isCreative()) {
-				int inkForBlocksAvailableAmount = 1 + (int) InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK;
 				if (InkPowered.canUse(player)) {
-					exchangedForBlockItemCount = Math.min(exchangedForBlockItemCount, inkForBlocksAvailableAmount);
+					int inkLimit = (int) Math.ceil(InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK);
+					exchangedForBlockItemCount = Math.min(exchangedForBlockItemCount, inkLimit);
 				} else {
 					exchangedForBlockItemCount = 0;
 				}

@@ -63,25 +63,25 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
 		int firstGemstoneSlotId = 3*3;
 
-		int cyan = gemstonePowderInputs.get(BuiltinGemstoneColor.CYAN);
+		int cyan = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.CYAN, 0);
 		if(cyan > 0) {
 			list.set(firstGemstoneSlotId, EntryIngredients.of(SpectrumItems.TOPAZ_POWDER, cyan));
 		}
-		int magenta = gemstonePowderInputs.get(BuiltinGemstoneColor.MAGENTA);
+		int magenta = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.MAGENTA, 0);
 		if(magenta > 0) {
 			list.set(firstGemstoneSlotId+1, EntryIngredients.of(SpectrumItems.AMETHYST_POWDER, magenta));
 		}
-		int yellow = gemstonePowderInputs.get(BuiltinGemstoneColor.YELLOW);
+		int yellow = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.YELLOW, 0);
 		if(yellow > 0) {
 			list.set(firstGemstoneSlotId+2, EntryIngredients.of(SpectrumItems.CITRINE_POWDER, yellow));
 		}
 		if(shownGemstoneSlotCount >= 4) {
-			int black = gemstonePowderInputs.get(BuiltinGemstoneColor.BLACK);
+			int black = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.BLACK, 0);
 			if(black > 0) {
 				list.set(firstGemstoneSlotId+3, EntryIngredients.of(SpectrumItems.ONYX_POWDER, black));
 			}
 			if(shownGemstoneSlotCount == 5) {
-				int white = gemstonePowderInputs.get(BuiltinGemstoneColor.WHITE);
+				int white = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.WHITE, 0);
 				if(white > 0) {
 					list.set(firstGemstoneSlotId+4, EntryIngredients.of(SpectrumItems.MOONSTONE_POWDER, white));
 				}

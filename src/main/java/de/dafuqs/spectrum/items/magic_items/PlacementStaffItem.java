@@ -101,7 +101,8 @@ public class PlacementStaffItem extends BuildingStaffItem implements InkPowered 
 					count = inventoryItemAndCount.getC();
 					
 					if(InkPowered.canUse(player)) {
-						count = Math.min(count, 1 + (int) InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK);
+						int inkLimit = (int) Math.ceil(InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK);
+						count = Math.min(count, inkLimit);
 					} else {
 						count = 0;
 					}

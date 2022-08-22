@@ -53,7 +53,6 @@ public interface InkPowered {
                 tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.prefix").formatted(Formatting.GRAY));
                 for (InkColor color : getUsedColors()) {
                     tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.toString()));
-
                 }
             } else {
                 tooltip.add(Text.translatable("spectrum.tooltip.ink_powered." + getUsedColors().get(0).toString()).formatted(Formatting.GRAY));

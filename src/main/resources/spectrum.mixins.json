@@ -54,6 +54,7 @@
     "accessors.SlimeEntityAccessor"
   ],
   "client": [
+    "accessors.WorldRendererAccessor",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.ClientWorldReverbMixin",

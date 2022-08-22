@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.helpers.BuildingHelper;
 import de.dafuqs.spectrum.items.magic_items.BuildingStaffItem;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
 import de.dafuqs.spectrum.items.magic_items.PlacementStaffItem;
+import de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor;
 import de.dafuqs.spectrum.render.HudRenderers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -122,8 +123,7 @@ public abstract class WorldRendererMixin {
 						
 						HudRenderers.setItemStackToRender(new ItemStack(item), positions.size(), false);
 						VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
-						// TODO: these outlines are really funky right now
-						WorldRenderer.drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					}
 				}
@@ -169,8 +169,7 @@ public abstract class WorldRendererMixin {
 						
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), positions.size(), false);
 						VertexConsumer linesBuffer = immediate.getBuffer(RenderLayer.getLines());
-						// TODO: these outlines are really funky right now
-						WorldRenderer.drawShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
+						WorldRendererAccessor.invokeDrawCuboidShapeOutline(matrices, linesBuffer, shape, (double) lookingAtPos.getX() - d, (double) lookingAtPos.getY() - e, (double) lookingAtPos.getZ() - f, 0.0F, 0.0F, 0.0F, 0.4F);
 						return true;
 					}
 				}

@@ -1,21 +1,22 @@
 {
-	"pages":[
-		{
-			"text":"这个闪闪发光的铁环在你周围形成了一层空气保护膜。$(br)授予你$(c_green)4$()点$(c_blue)蔚蓝防御$()积分。$(br)使用这些保护膜，它不仅可以保护你免受敌人炮弹的袭击，甚至可以缓冲一次深度坠落。$(br)泡芙头箍还能防止农田被践踏。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/puff_circlet",
-			"text":"$(italic)骷髅在一个不可预见的时刻从背后袭击你的日子一去不复返了。",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_puff_circlet",
-	"extra_recipe_mappings":{
-		"spectrum:puff_circlet":0
-	},
-	"name":"泡芙头箍",
-	"icon":"spectrum:puff_circlet",
-	"category":"spectrum:magical_items_category"
+  "name": "Puff Circlet",
+  "advancement": "spectrum:progression/unlock_puff_circlet",
+  "secret": true,
+  "icon": "spectrum:puff_circlet",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:puff_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This glistening hoop creates a protective film of air around you.$(br)Grants you $(c_green)4$() points of $(c_blue)Azure Dike$(). $(br)Using those charges, it not only protects you from enemy projectiles, but can even cushion a deep fall.$(br)The Puff Circlet also prevents Farmland from being trampled."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/puff_circlet",
+      "text": "$(italic)Gone are the days when skeletons sniped you from behind in an unforeseen moment."
+    }
+  ]
 }

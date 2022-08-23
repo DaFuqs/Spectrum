@@ -1,0 +1,42 @@
+{
+  "name": "炼化炉",
+  "icon": "spectrum:cinderhearth",
+  "advancement": "spectrum:progression/unlock_cinderhearth",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:cinderhearth": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "特制高炉，独属于你的精尖设计。消耗$(c_orange)橙色墨水$()进行矿物等物品的烧炼。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/cinderhearth",
+      "text": "放置一个$(l:magical_items/knowledge_gem)知识宝石$()就可以自动收集烧炼时的经验了。"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "炼化炉结构",
+      "multiblock_id": "spectrum:cinderhearth_structure",
+      "enable_visualize": true,
+      "text": "使用$(l:magical_blocks/upgrades)升级$()来强化炼化炉的各项能力。放置在两个錾制岩石方块上即可。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "方块列表",
+      "text": "$(li)1个炼化炉$(li)23个磨制岩石方块$(li)6个磨制饰纹岩石方块$(li)5个玻璃类方块$(li)2个錾制岩石方块(li)6桶岩浆$(br2)$(italic)……呃，都有$(c_orange)墨水$()$(italic)了，原来还要岩浆的吗？应该不用，只是看上去好点吧。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "升级",
+      "text": "在$(thing)錾制岩石方块$()上放置的升级并不直接生效。你需要向炼化炉补充其它种类的墨水才能起效。升级等级越高，消耗的墨水越多。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)速度（$(c_magenta)品红色墨水$()）：$(br)加速烧炼速度$(br)$(li)产率（$(c_light_blue)淡蓝色墨水$()）：$(br)概率倍增大部分输出产物$(br)$(li)经验（$(c_purple)紫色墨水$()）：$(br)巨幅提升经验产出$(br)$(li)效率（$(c_black)黑色墨水$()）:$(br)大幅减少其它类型的墨水消耗，包括$(c_orange)橙色墨水$()"
+    }
+  ]
+}

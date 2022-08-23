@@ -1,26 +1,26 @@
 {
-	"pages":[
-		{
-			"border":true,
-			"images":[
-				"spectrum:textures/gui/manual/quitoxic_reed.png"
-			],
-			"text":"只生长在沼泽中，似乎吞食粘土作为一种营养物质。",
-			"type":"patchouli:image",
-			"title":"祛毒甘蔗"
-		},
-		{
-			"item":"spectrum:quitoxic_powder",
-			"text":"用铁砧将这种看起来像外星人的植物的茎压碎，可以从中提取出一种紫色的闪闪发光的粉末。$(br)当你用手指摩擦时，气味和稠度很不寻常。。。。$(br2)$(italic)等等，手指是什么？",
-			"type":"patchouli:spotlight"
-		}
-	],
-	"advancement":"spectrum:collect_quitoxic_reeds",
-	"extra_recipe_mappings":{
-		"spectrum:quitoxic_reeds":0,
-		"spectrum:quitoxic_powder":0
-	},
-	"name":"祛毒甘蔗",
-	"icon":"spectrum:quitoxic_reeds",
-	"category":"spectrum:resources_category"
+  "name": "Quitoxic Reeds",
+  "icon": "spectrum:quitoxic_reeds",
+  "advancement": "spectrum:collect_quitoxic_reeds",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:quitoxic_reeds": 0,
+    "spectrum:quitoxic_powder": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Quitoxic Reeds",
+      "images": [
+        "spectrum:textures/gui/manual/quitoxic_reed.png"
+      ],
+      "border": true,
+      "text": "Grows exclusively in Swamps and seems to devour Clay as a form of nutrient."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:quitoxic_powder",
+      "text": "A purple glittering powder can be extracted from the stems of the alien-looking plant by crushing it with an anvil.$(br)Smell and consistency are very unusual when rubbed between your fingers.$(br2)$(italic)...wait a moment, what are fingers?"
+    }
+  ]
 }

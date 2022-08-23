@@ -1,21 +1,22 @@
 {
-	"pages":[
-		{
-			"text":"作品很像$(l:magical_items/lesser_potion_pendant)它的弟弟$(/l)。$(br)相比之下，这个版本有三个房间，每个房间可以装满不同的药剂。由于单个腔室较小，因此只能支持高达I级的效果。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/greater_potion_pendant",
-			"text":"使用$(l:magical_blocks/potion_workshop)药水工场$(/l)将其装满药剂。$(br)对于每一种药剂，你的$(l:general/pigment_palette)颜料调色板$(/l)都会消耗掉特定的颜色能量。水平越高，成本越高。",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_greater_potion_pendant",
-	"extra_recipe_mappings":{
-		"spectrum:greater_potion_pendant":0
-	},
-	"name":"大魔药吊坠",
-	"icon":"spectrum:greater_potion_pendant",
-	"category":"spectrum:magical_items_category"
+  "name": "Greater Potion Pendant",
+  "advancement": "spectrum:progression/unlock_greater_potion_pendant",
+  "secret": true,
+  "icon": "spectrum:greater_potion_pendant",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:greater_potion_pendant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Works very similar to its $(l:magical_items/lesser_potion_pendant)little brother$(/l).$(br)In contrast this version has three chambers, each of which can be filled with a different potion. Since the individual chambers are smaller, it can only support Effects up to Level I."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/greater_potion_pendant",
+      "text": "Use the $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) to fill it with potions.$(br)For each Potion your $(l:general/pigment_palette)Pigment Palette$(/l) will use up specific color energy. The higher the level, the higher the cost."
+    }
+  ]
 }

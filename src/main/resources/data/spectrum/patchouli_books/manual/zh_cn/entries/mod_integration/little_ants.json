@@ -1,0 +1,26 @@
+{
+  "name": "Little Ants",
+  "icon": "ants:dirt_ant_nest",
+  "flag": "mod:ants",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:orange_dye",
+      "required_advancement": "spectrum:collect_pigment",
+      "text": "These industrious little buggers continuously collect leaves from trees.$(br)The results of their work are also reflected in their products: If you harvest a full anthill that collected leaves of colored trees with a shovel, you get dye."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:orange_pigment",
+      "required_advancement": "spectrum:collect_pigment",
+      "text": "Even better, if you bribe them with $(thing)Vegetal$(), you can even salvage pure pigment.$(br2)$(br2)Shoutout to @MastroCaleb for this great mod!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:jade_vine_petal_block",
+      "required_advancement": "spectrum:hidden/collect_jade_vine_petals",
+      "text": "The ants produce an almost silk-like material from $(thing)Jade Petals$()."
+    }
+  ]
+}

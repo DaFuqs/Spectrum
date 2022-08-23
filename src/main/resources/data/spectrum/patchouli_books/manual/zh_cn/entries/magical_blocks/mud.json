@@ -1,23 +1,23 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:mud_bucket",
-			"text":"$(italic)泥，这是泥。本身并不特别有趣。但实际情况是泥浆与水或熔岩的碰撞。这会分别产生土或粗土。",
-			"title":"泥",
-			"type":"patchouli:spotlight"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/mud_bucket",
-			"text":"虽然泥浴听起来很健康，但不建议这样做。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_mud_bucket",
-	"extra_recipe_mappings":{
-		"spectrum:mud_bucket":0
-	},
-	"name":"泥",
-	"icon":"spectrum:mud_bucket",
-	"category":"spectrum:magical_blocks_category"
+  "name": "Mud",
+  "advancement": "spectrum:progression/unlock_mud_bucket",
+  "icon": "spectrum:mud_bucket",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:mud_bucket": 0
+  },
+  "pages": [
+    {
+      "title": "Mud",
+      "type": "patchouli:spotlight",
+      "item": "spectrum:mud_bucket",
+      "text": "$(italic)Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the mud with water or lava. This creates dirt or coarse dirt, respectively."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier1/mud_bucket",
+      "text": "While a mud bath sounds like wellness it is not advised."
+    }
+  ]
 }

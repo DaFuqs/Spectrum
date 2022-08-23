@@ -1,0 +1,20 @@
+{
+  "name": "Tech Reborn",
+  "icon": "techreborn:grinder",
+  "flag": "mod:techreborn",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:amethyst_ore",
+      "advancement": "spectrum:spectrum",
+      "text": "Most of Spectrums Ores can be processed in the Grinder / Industrial Grinder to extract resources."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:amethyst_shard",
+      "advancement": "spectrum:spectrum",
+      "text": "Of course you can also grind down Shards, too!"
+    }
+  ]
+}

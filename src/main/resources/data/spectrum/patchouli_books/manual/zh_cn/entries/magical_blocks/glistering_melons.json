@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"item":"minecraft:glistering_melon_slice",
-			"text":"凭借宝石粉末固有的魔力，你已经成功地改变了幼苗。是什么阻止了你在其他植物上试验呢？$(br)当然，不是因为你贪婪或什么。",
-			"type":"patchouli:spotlight",
-			"title":"闪闪发光的瓜类植物"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/glistering_melon_seeds",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:collect_vegetal",
-	"extra_recipe_mappings":{
-		"spectrum:glistering_melon_seeds":0,
-		"minecraft:glistering_melon_slice":0,
-		"spectrum:glistering_melon":0
-	},
-	"name":"闪闪发光的西瓜",
-	"icon":"minecraft:glistering_melon_slice",
-	"category":"spectrum:magical_blocks_category"
+  "name": "闪烁的西瓜",
+  "advancement": "spectrum:collect_vegetal",
+  "icon": "minecraft:glistering_melon_slice",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "minecraft:glistering_melon_slice": 0,
+    "spectrum:glistering_melon": 0,
+    "spectrum:glistering_melon_seeds": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "闪烁的西瓜作物",
+      "item": "minecraft:glistering_melon_slice",
+      "text": "你成功地为种子赋予了宝石晶粉末的魔力，试试看别的作物怎么样呢？$(br)实验一下嘛！肯定不是贪心还是什么的！"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier1/glistering_melon_seeds"
+    }
+  ]
 }

@@ -1,23 +1,23 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:ender_hopper",
-			"text":"末影漏斗的设计在形式和功能上类似于普通的漏斗，它具有特殊的能力，可以将所有物品放在上面，并从库存中直接放入末影箱子。$(br2)末影漏斗仅在您在线时可用。",
-			"type":"patchouli:spotlight",
-			"title":"末影漏斗"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier2/ender_hopper",
-			"text":"",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_ender_blocks",
-	"extra_recipe_mappings":{
-		"spectrum:ender_hopper":1
-	},
-	"name":"末影漏斗",
-	"icon":"spectrum:ender_dropper",
-	"category":"spectrum:magical_blocks_category"
+  "name": "末影漏斗",
+  "advancement": "spectrum:progression/unlock_ender_blocks",
+  "icon": "spectrum:ender_dropper",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_hopper": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "末影漏斗",
+      "item": "spectrum:ender_hopper",
+      "text": "与普通漏斗的功能与形态相仿，但是它会将物品直接输入你的末影箱中。$(br2)末影漏斗仅在你在线的时候可用。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier2/ender_hopper",
+      "text": ""
+    }
+  ]
 }

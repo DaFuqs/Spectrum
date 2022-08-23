@@ -1,0 +1,27 @@
+{
+  "name": "Conjuring",
+  "icon": "conjuring:conjurer",
+  "flag": "mod:conjuring",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Resistance Potions",
+      "recipe": "spectrum:mod_integration/conjuring/potion_workshop_brewing/distilled_spirit_resistance",
+      "advancement": "spectrum:midgame/brew_powerful_potion_in_potion_workshop",
+      "text": "Distilled Spirits can be... $(br)umm.. distilled?$(br)$(italic)distilled further?$()$(br)into long lasting $(thing)Resistance$() Potions."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe": "spectrum:mod_integration/conjuring/spirit_instiller/lesser_conjuration_essence",
+      "advancement": "spectrum:midgame/build_spirit_instiller_structure",
+      "text": "You're not even sure yourself how you came up with this recipe anymore.$(br)Maybe you inhaled a little too much Quitoxic Powder when you combined various ingredients. But the result is interesting, no question."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "recipe": "spectrum:mod_integration/conjuring/spirit_instiller/mob_spawner",
+      "advancement": "spectrum:midgame/build_spirit_instiller_structure",
+      "text": "Combining everything you learned as a Spawner expert and Pigment Tinkerer gave you the ability to create $(thing)Mob Spawners$() yourself.$(br)You only need to assign a Creature to spawn using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
+    }
+  ]
+}

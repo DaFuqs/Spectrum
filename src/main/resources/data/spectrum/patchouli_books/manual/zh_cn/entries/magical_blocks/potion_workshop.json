@@ -1,18 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)与此同时，你们已经掌握了许多新材料。现在是时候仔细看看它们对你的药剂有什么影响了。$(br2)作为一名专家，你有根据地猜测：太棒了！",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/potion_workshop",
-			"text":"药水工场使用的不是烈焰粉，而是美人鱼宝石。主要优点是你不必在之前把瓶子装满水。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_potion_workshop",
-	"name":"药水工场",
-	"icon":"spectrum:potion_workshop",
-	"category":"spectrum:magical_blocks_category"
+  "name": "Potion Workshop",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:progression/unlock_potion_workshop",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:potion_workshop": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)In the meantime, you have come into possession of many new materials. It's time to take a close look at each of them to see what effect they have on your Potions.$(br2)Your educated guess, as an expert: Awesome!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/potion_workshop",
+      "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaids Gems. Main advantage is that you don't have to fill your bottles with water before."
+    }
+  ]
 }

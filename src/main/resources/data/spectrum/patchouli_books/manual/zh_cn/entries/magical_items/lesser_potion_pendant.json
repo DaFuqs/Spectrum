@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"药水很方便。然而，携带大约一半的库存是非常麻烦的。$(br)药剂挂件有一个小房间，里面可以装满药剂。$(br)只要你戴上它，你就会得到那种药剂的效果。由于没有摄入药剂，效果只能达到三级。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/lesser_potion_pendant",
-			"text":"使用$(l:magical_blocks/potion_workshop)药水工场$(/l)将其装满魔药，就像使用瓶子一样。",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_lesser_potion_pendant",
-	"extra_recipe_mappings":{
-		"spectrum:lesser_potion_pendant":0
-	},
-	"name":"小魔药吊坠",
-	"icon":"spectrum:lesser_potion_pendant",
-	"category":"spectrum:magical_items_category"
+  "name": "Lesser Potion Pendant",
+  "advancement": "spectrum:progression/unlock_lesser_potion_pendant",
+  "icon": "spectrum:lesser_potion_pendant",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:lesser_potion_pendant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Potions are handy. However, carrying around half an inventory of them is more than unwieldy.$(br)The Potion Pendant has a small chamber, which can be filled with a Potion. As long as you wear it, you get the effect of that Potion.$(br)Since the Potions are not ingested the Effects only reach up to Level III."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/lesser_potion_pendant",
+      "text": "Use the $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) to fill it with a Potion, exactly as if you were using a Bottle.$(br)To clear it's effect, put it in a crafting grid."
+    }
+  ]
 }

@@ -58,7 +58,7 @@
         "spectrum:hidden/collect_pigment/collect_lime_pigment": "$(c_lime)黄绿色",
         "spectrum:hidden/collect_pigment/collect_magenta_pigment": "$(c_magenta)品红色",
         "spectrum:hidden/collect_pigment/collect_orange_pigment": "$(c_orange)橙色",
-        "spectrum:hidden/collect_pigment/collect_pink_pigment": "$(c_pink)粉色",
+        "spectrum:hidden/collect_pigment/collect_pink_pigment": "$(c_pink)粉红色",
         "spectrum:hidden/collect_pigment/collect_purple_pigment": "$(c_purple)紫色",
         "spectrum:hidden/collect_pigment/collect_red_pigment": "$(c_red)红色",
         "spectrum:hidden/collect_pigment/collect_white_pigment": "$(c_white)白色",
@@ -148,7 +148,7 @@
       "anchor": "pink",
       "advancement": "spectrum:hidden/collect_pigment/collect_pink_pigment",
       "item": "spectrum:pink_pigment",
-      "text": "香香软软甜甜粉粉嫩嫩的粉色只想让你喊出“好耶”！$(br2)$(c_pink)粉色$()象征着$(italic)健康$()与$(italic)可爱$()！"
+      "text": "香香软软甜甜粉粉嫩嫩的粉红色只想让你喊出“好耶”！$(br2)$(c_pink)粉红色$()象征着$(italic)健康$()与$(italic)可爱$()！"
     },
     {
       "type": "patchouli:spotlight",

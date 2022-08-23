@@ -1,28 +1,28 @@
 {
-	"pages":[
-		{
-			"text":"在你的探险中，你被箭一次又一次地射中，如果敌人还没有消失在下一个角落的话，你只能惊恐地环顾四周，完全错过敌人。$(br2)当你被击中时，闪闪发光的大头针会发出魔法浪涌，穿过墙壁并附着到附近的生物上，这样你就可以轻松地追踪到它们。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/gleaming_pin",
-			"text":"$(br)$(italic)无法奔跑，无法隐藏",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		},
-		{
-			"item":"spectrum:gleaming_pin{Enchantments: [{id: \"spectrum:sniping\", lvl: 2s}]}",
-			"advancement":"spectrum:progression/enchantments/sniper",
-			"text":"附魔带狙击的闪耀别针允许浪涌穿透更多物质，进一步增加其射程。",
-			"type":"patchouli:spotlight",
-			"title":"狙击"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_gleaming_pin",
-	"extra_recipe_mappings":{
-		"spectrum:gleaming_pin":0
-	},
-	"name":"闪耀别针",
-	"icon":"spectrum:gleaming_pin",
-	"category":"spectrum:magical_items_category"
+  "name": "Gleaming Pin",
+  "advancement": "spectrum:progression/unlock_gleaming_pin",
+  "icon": "spectrum:gleaming_pin",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:gleaming_pin": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "During your explorations you were hit by arrows again and again, only to completely miss your enemy while looking around in panic - if it hasn't already disappeared behind the next corner already.$(br2)When you get hit, the Gleaming Pin emits a magic surge that passes through walls and attaches to nearby creatures so you can easily track them down."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/gleaming_pin",
+      "text": "$(br)$(italic)Can't run, can't hide"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/enchantments/sniper",
+      "title": "Sniping",
+      "item": "spectrum:gleaming_pin{Enchantments: [{id: \"spectrum:sniping\", lvl: 2s}]}",
+      "text": "Enchanting the Gleaming Pin with Sniping allows the surge to pierce even more matter, further increasing its range."
+    }
+  ]
 }

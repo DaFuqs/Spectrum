@@ -1,22 +1,22 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:mermaids_brush",
-			"text":"$(italic)这种不起眼的植物生长在海洋最深处，永远不受人类影响。$(br)它们长出一朵花，慢慢地长成花丝状的种子。$()$(br2)美人鱼刷可以用剪刀收割。",
-			"type":"patchouli:spotlight"
-		},
-		{
-			"item":"spectrum:mermaids_gem",
-			"text":"这些中空的种子长得很好，漂浮在海面上，被柔软的波浪带走。$(br2)显然，美人鱼宝石与水有很强的结合力。",
-			"type":"patchouli:spotlight"
-		}
-	],
-	"advancement":"spectrum:collect_mermaids_gem",
-	"extra_recipe_mappings":{
-		"spectrum:mermaids_gem":0,
-		"spectrum:mermaids_brush":0
-	},
-	"name":"美人鱼宝石",
-	"icon":"spectrum:mermaids_gem",
-	"category":"spectrum:resources_category"
+  "name": "Mermaids Gems",
+  "icon": "spectrum:mermaids_gem",
+  "advancement": "spectrum:collect_mermaids_gem",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:mermaids_gem": 0,
+    "spectrum:mermaids_brush": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:mermaids_brush",
+      "text": "$(italic)This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single blossom, which slowly develops into a filigree shaped seed.$()$(br2)Mermaids Brushes can be harvested using shears."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:mermaids_gem",
+      "text": "Fully grown, these hollow seeds float to the surface of the sea to be carried away by the soft waves.$(br2)Mermaids Gems have a strong bond with water - obviously."
+    }
+  ]
 }

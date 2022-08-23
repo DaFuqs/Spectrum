@@ -1,28 +1,28 @@
 {
-	"pages":[
-		{
-			"text":"利用$(c_brown)大自然$()和$(c_lime)繁殖力$()的神奇元素，你创造了这一天才。$(br)与你的新设备相比，施肥是一个笑话。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier2/natures_staff",
-			"text":"$(italic)指向你想看到的东西",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		},
-		{
-			"item":"spectrum:natures_staff{Enchantments: [{id: \"minecraft:efficiency\", lvl: 5s}]}",
-			"advancement":"spectrum:midgame/build_enchanting_structure",
-			"text":"使用注魔基座有效地对自然之杖进行$(l:enchanting/enchanting_items)附魔$(/l)可以降低$(l:creating_life/fading#vegetal)植物能量粉$(/l)在每一关卡中被消耗的几率。",
-			"type":"patchouli:spotlight",
-			"title":"附魔-效率"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_natures_staff",
-	"extra_recipe_mappings":{
-		"spectrum:natures_staff":0
-	},
-	"name":"自然之杖",
-	"icon":"spectrum:natures_staff",
-	"category":"spectrum:magical_items_category"
+  "name": "Nature's Staff",
+  "advancement": "spectrum:progression/unlock_natures_staff",
+  "icon": "spectrum:natures_staff",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:natures_staff": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Using the magic elements of $(c_brown)Nature$() and $(c_lime)Fertility$(), you have come up with this stroke of genius.$(br)Bonemeal is a joke when compared to your new gadget."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/natures_staff",
+      "text": "$(italic)Point at something you want to see blossom"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Enchanting - Efficiency",
+      "item": "spectrum:natures_staff{Enchantments: [{id: \"minecraft:efficiency\", lvl: 5s}]}",
+      "text": "Enchanting the Nature's Staff with Efficiency by using the $(l:enchanting/enchanting_items)Enchanter$(/l) decreases the chance of $(l:creating_life/fading#vegetal)Vegetal$(/l) to get consumed for each level."
+    }
+  ]
 }

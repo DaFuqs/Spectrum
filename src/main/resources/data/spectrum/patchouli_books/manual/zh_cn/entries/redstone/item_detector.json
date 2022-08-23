@@ -1,22 +1,22 @@
 {
-	"pages":[
-		{
-			"text":"物品检测器用于计算位于其10方块半径内地面上的物品。$(br)红石信号的强度取决于周围有多少物品。",
-			"type":"patchouli:text",
-			"title":"物品检测器"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/detectors/item_detector",
-			"text":"64个物品产生最大强度的信号。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/detectors/unlock_item_detector",
-	"extra_recipe_mappings":{
-		"spectrum:item_detector":0
-	},
-	"name":"物品检测器",
-	"icon":"spectrum:player_detector",
-	"category":"spectrum:redstone_category"
+  "name": "Item Detector",
+  "advancement": "spectrum:progression/detectors/unlock_item_detector",
+  "icon": "spectrum:player_detector",
+  "category": "spectrum:redstone_category",
+  "extra_recipe_mappings": {
+    "spectrum:item_detector": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Item Detector",
+      "text": "The Item Detector is used to count the items lying on the ground within a 10 block radius of it.$(br)The strength of the Redstone signal depends on how many items are lying around."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/detectors/item_detector",
+      "text": "64 items result in a signal with maximum strength."
+    }
+  ]
 }

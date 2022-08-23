@@ -1,0 +1,146 @@
+{
+  "name": "结晶室",
+  "icon": "spectrum:crystallarieum",
+  "secret": true,
+  "advancement": "spectrum:progression/unlock_crystallarieum",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:crystallarieum": 0,
+
+    "spectrum:small_coal_bud": 0,
+    "spectrum:large_coal_bud": 0,
+    "spectrum:coal_cluster": 0,
+    "spectrum:small_copper_bud": 0,
+    "spectrum:large_copper_bud": 0,
+    "spectrum:copper_cluster": 0,
+    "spectrum:small_diamond_bud": 0,
+    "spectrum:large_diamond_bud": 0,
+    "spectrum:diamond_cluster": 0,
+    "spectrum:small_emerald_bud": 0,
+    "spectrum:large_emerald_bud": 0,
+    "spectrum:emerald_cluster": 0,
+    "spectrum:small_glowstone_bud": 0,
+    "spectrum:large_glowstone_bud": 0,
+    "spectrum:glowstone_cluster": 0,
+    "spectrum:small_gold_bud": 0,
+    "spectrum:large_gold_bud": 0,
+    "spectrum:gold_cluster": 0,
+    "spectrum:small_iron_bud": 0,
+    "spectrum:large_iron_bud": 0,
+    "spectrum:iron_cluster": 0,
+    "spectrum:small_lapis_bud": 0,
+    "spectrum:large_lapis_bud": 0,
+    "spectrum:lapis_cluster": 0,
+    "spectrum:small_netherite_bud": 0,
+    "spectrum:large_netherite_bud": 0,
+    "spectrum:netherite_cluster": 0,
+    "spectrum:small_prismarine_bud": 0,
+    "spectrum:large_prismarine_bud": 0,
+    "spectrum:prismarine_cluster": 0,
+    "spectrum:small_quartz_bud": 0,
+    "spectrum:large_quartz_bud": 0,
+    "spectrum:quartz_cluster": 0,
+    "spectrum:small_redstone_bud": 0,
+    "spectrum:large_redstone_bud": 0,
+    "spectrum:redstone_cluster": 0,
+    "spectrum:small_certus_quartz_bud": 0,
+    "spectrum:large_certus_quartz_bud": 0,
+    "spectrum:certus_quartz_cluster": 0,
+    "spectrum:small_fluix_bud": 0,
+    "spectrum:large_fluix_bud": 0,
+    "spectrum:fluix_cluster": 0,
+    "spectrum:small_globette_bud": 0,
+    "spectrum:large_globette_bud": 0,
+    "spectrum:globette_cluster": 0,
+    "spectrum:small_globette_end_bud": 0,
+    "spectrum:large_globette_end_bud": 0,
+    "spectrum:globette_end_cluster": 0,
+    "spectrum:small_globette_nether_bud": 0,
+    "spectrum:large_globette_nether_bud": 0,
+    "spectrum:globette_nether_cluster": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "宝石晶母岩的存在启发了结晶室这一构思：由墨水驱动的魔法仪器，可以自动生长出其上方的矿物资源的结晶。$(br)虽然你无论怎么努力都没法长出$(l:general/shards)宝石晶碎片$(/l)，但能生长其它矿物结晶的d的话，应用前景也很广阔呢。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier4/crystallarieum",
+      "text": "结晶室内可以容纳一整组催化剂，可以用于催化结晶的生长。对于一部分结晶而言，催化甚至是必要的。"
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "铁结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/iron",
+      "text": "只要把未经加工的粗原料丢在上面，如$(thing)粗铁$()等，就可以生长这些资源了。你可以看到小小的铁晶芽逐渐生长。完全长大之后，就可以被安全地采集了。"
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "钻石结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/diamond",
+      "text": "具有晶体结构的方块，例如$(thing)钻石$()，也可以被相同的方式生长。虽然这些东西一般消耗更多墨水，但它们本身已有的晶体结构可以反复利用，重新生长——例如$(thing)钻石矿簇$()会产出$(thing)钻石$()。"
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "铜结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/copper",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "金结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/gold",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "下界合金结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/netherite",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "煤炭结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/coal",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "绿宝石结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/emerald",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "荧石结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/glowstone",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "青金石结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/lapis",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "海晶结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/prismarine_crystal",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "石英结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/quartz",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "红石结晶",
+      "recipe": "spectrum:crystallarieum/vanilla/redstone",
+      "text": ""
+    }
+  ]
+}

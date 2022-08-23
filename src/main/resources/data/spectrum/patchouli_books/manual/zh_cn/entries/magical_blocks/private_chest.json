@@ -1,27 +1,27 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:private_chest",
-			"text":"$(italic)一次又一次，你只是快速放下一个盒子来存放你的物品，一旦你回来，所有东西都被洗劫一空。$(br)为了解决这个问题，你开发了这个特殊的箱子，它可以解决这个问题，甚至可以帮助当场抓到小偷。",
-			"type":"patchouli:spotlight"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/private_chest",
-			"text":"心形箱只能通过放置器打开，并提供与两个正常箱子相同的空间。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		},
-		{
-			"text":"与陷阱箱类似，它也会输出红石信号。$(br)如果你作为主人打开它，信号强度将是充分的，如果一个陌生人想篡改你的财产，那么只有一半。",
-			"type":"patchouli:text",
-			"title":"红石组件"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_private_chest",
-	"extra_recipe_mappings":{
-		"spectrum:private_chest":0
-	},
-	"name":"心形箱子",
-	"icon":"spectrum:private_chest",
-	"category":"spectrum:magical_blocks_category"
+  "name": "Heartbound Chest",
+  "advancement": "spectrum:progression/unlock_private_chest",
+  "icon": "spectrum:private_chest",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:private_chest": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:private_chest",
+      "text": "$(italic)It happens again and again that you just quickly put down a box to store your belongings and as soon as you come back everything is looted.$(br)To solve this problem you have developed this special chest, which takes care of the problem and can even help to catch the thief in the act."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier1/private_chest",
+      "text": "The Heartbound Chest can only be opened by its placer and provides the same space as two normal chests."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Redstone Component",
+      "text": "Similar to a Trapped Chest it also outputs a redstone signal.$(br)If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+    }
+  ]
 }

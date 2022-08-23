@@ -1,38 +1,38 @@
 {
-	"pages":[
-		{
-			"text":"到目前为止，你能做的最结实的材料是下界合金。然而，修复下界合金护甲的缺点是比制造护甲本身更昂贵。此外，每次划伤都会导致防护性能下降。当护甲$(italic)不能$()被损坏时，所有这些问题就不那么严重了。$(br)$(italic)永不枯萎，石头开花。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_helmet",
-			"text":"基岩头盔配有$(bold)弹射物保护V$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_chestplate",
-			"text":"基岩胸板带有$(bold)保护V$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_leggings",
-			"text":"基岩护腿配有$(bold)爆炸保护V$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_boots",
-			"text":"基岩靴配有$(bold)火焰保护V$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_bedrock_tools",
-	"extra_recipe_mappings":{
-		"spectrum:bedrock_leggings":0,
-		"spectrum:bedrock_boots":0,
-		"spectrum:bedrock_chestplate":0,
-		"spectrum:bedrock_helmet":0
-	},
-	"name":"基岩护甲",
-	"icon":"spectrum:bedrock_chestplate",
-	"category":"spectrum:magical_items_category"
+  "name": "Bedrock Armor",
+  "advancement": "spectrum:progression/unlock_bedrock_tools",
+  "icon": "spectrum:bedrock_chestplate",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:bedrock_helmet": 0,
+    "spectrum:bedrock_chestplate": 0,
+    "spectrum:bedrock_leggings": 0,
+    "spectrum:bedrock_boots": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The strongest material you could make so far was Netherite. However, repairing Netherite armor had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is less problematic when the armor simply $(italic)cannot$() be damaged.$(br)$(italic)Never wilt, stone blossom."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_helmet",
+      "text": "The Bedrock Helmet comes with $(bold)Projectile Protection V$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_chestplate",
+      "text": "The Bedrock Chestplate comes with $(bold)Protection V$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_leggings",
+      "text": "The Bedrock Leggings come with $(bold)Blast Protection V$()."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_boots",
+      "text": "The Bedrock Boots come with $(bold)Fire Protection V$()."
+    }
+  ]
 }

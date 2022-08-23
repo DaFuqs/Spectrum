@@ -1,166 +1,166 @@
 {
-	"pages":[
-		{
-			"text":"使用美人鱼宝石作为基础，而不是烈焰粉的结果是更活跃的药剂。这不仅可以让你在魔药中添加新的一系列额外的魔法成分，还可以使用其中一些作为额外的试剂。这些试剂中的每一种都会修改药剂的结果属性。每个试剂在每个配方中只能使用一次。",
-			"type":"patchouli:text",
-			"title":"使用试剂"
-		},
-		{
-			"item":"minecraft:redstone",
-			"text":"双打持续时间",
-			"type":"patchouli:spotlight",
-			"title":"红石"
-		},
-		{
-			"item":"minecraft:glowstone_dust",
-			"text":"效力平稳增加",
-			"type":"patchouli:spotlight",
-			"title":"辉石"
-		},
-		{
-			"item":"minecraft:gunpowder",
-			"text":"创建飞溅药剂",
-			"type":"patchouli:spotlight",
-			"title":"火药"
-		},
-		{
-			"item":"minecraft:dragon_breath",
-			"advancement":"spectrum:hidden/collect_vanilla/collect_dragon_breath",
-			"text":"制造滞留药水-也需要火药，因为如果你提供箭而不是瓶子，$(br2)试剂允许你制造效果箭",
-			"type":"patchouli:spotlight",
-			"title":"龙息"
-		},
-		{
-			"item":"spectrum:topaz_powder",
-			"text":"使效果不显示任何粒子",
-			"type":"patchouli:spotlight",
-			"title":"黄玉"
-		},
-		{
-			"item":"spectrum:amethyst_powder",
-			"text":"为魔药持续时间增加一个短暂的固定加成",
-			"type":"patchouli:spotlight",
-			"title":"紫水晶"
-		},
-		{
-			"item":"spectrum:citrine_powder",
-			"text":"轻微的倍增效力加成",
-			"type":"patchouli:spotlight",
-			"title":"黄水晶"
-		},
-		{
-			"item":"spectrum:onyx_powder",
-			"text":"给药剂添加了一种非常奇怪的味道和气味，使其无法识别。$(br)也使其颜色完全为黑色。",
-			"type":"patchouli:spotlight",
-			"title":"玛瑙"
-		},
-		{
-			"item":"spectrum:moonstone_powder",
-			"advancement":"spectrum:midgame/collect_moonstone_shard",
-			"text":"将所有其他负面影响变为积极影响",
-			"type":"patchouli:spotlight",
-			"title":"月亮石"
-		},
-		{
-			"item":"spectrum:sparklestone_gem",
-			"text":"持续时间和效力的微小乘法加成",
-			"type":"patchouli:spotlight",
-			"title":"微光石"
-		},
-		{
-			"item":"spectrum:quitoxic_powder",
-			"advancement":"spectrum:collect_quitoxic_reeds",
-			"text":"将所有负面影响的效力增加2倍",
-			"type":"patchouli:spotlight",
-			"title":"祛毒粉末"
-		},
-		{
-			"item":"spectrum:scarlet_fragments",
-			"advancement":"spectrum:midgame/collect_scarlet",
-			"text":"所有效应效力的平加+1加成，代价是增加一个随机的负面效应",
-			"type":"patchouli:spotlight",
-			"title":"克里坦"
-		},
-		{
-			"item":"spectrum:paletur_fragments",
-			"advancement":"spectrum:lategame/collect_paletur",
-			"text":"添加随机的积极效果",
-			"type":"patchouli:spotlight",
-			"title":"调色板"
-		},
-		{
-			"item":"spectrum:stardust",
-			"advancement":"spectrum:hidden/collect_stardust",
-			"text":"$(italic)吸收之前酿造的最后一滴。$()$(br2)添加之前酿造的药剂的主要效果的机会很小",
-			"type":"patchouli:spotlight",
-			"title":"星尘"
-		},
-		{
-			"item":"spectrum:shooting_star",
-			"advancement":"spectrum:collect_shooting_star",
-			"text":"$(italic)类似于星尘，但更有效。$()$(br2)保证有机会添加先前酿造的药水的主要效果，药力略有下降",
-			"type":"patchouli:spotlight",
-			"title":"恒星碎片"
-		},
-		{
-			"item":"spectrum:lightning_stone",
-			"advancement":"spectrum:midgame/collect_lightning_stone",
-			"text":"在开始时增加药剂效力，但随着时间的推移会很快消失",
-			"type":"patchouli:spotlight",
-			"title":"风暴石"
-		},
-		{
-			"item":"spectrum:raw_azurite",
-			"advancement":"spectrum:midgame/collect_azurite",
-			"text":"消除滞留药水和尖箭的持续时间惩罚",
-			"type":"patchouli:spotlight",
-			"title":"蓝铜矿"
-		},
-		{
-			"item":"spectrum:four_leaf_clover",
-			"advancement":"spectrum:collect_four_leaf_clover",
-			"text":"为随机属性提供巨大的提升",
-			"type":"patchouli:spotlight",
-			"title":"三叶草"
-		},
-		{
-			"item":"spectrum:vegetal",
-			"advancement":"spectrum:collect_vegetal",
-			"text":"以药效为代价将药剂持续时间延长一倍",
-			"type":"patchouli:spotlight",
-			"title":"植物能量粉"
-		},
-		{
-			"item":"spectrum:neolith",
-			"advancement":"spectrum:midgame/collect_neolith",
-			"text":"提高产量，允许您酿造额外的药剂",
-			"type":"patchouli:spotlight",
-			"title":"黑曜能量粉"
-		},
-		{
-			"item":"spectrum:midnight_chip",
-			"advancement":"spectrum:midgame/collect_midnight Chip",
-			"text":"增加效力，增加30秒的持续时间，但大幅降低产量。",
-			"type":"patchouli:spotlight",
-			"title":"午夜片"
-		},
-		{
-			"item":"spectrum:moonstruck_nectar",
-			"advancement":"spectrum:hidden/harvest_moonstruck_nectar",
-			"text":"使药水更加顺滑，因此饮用速度更快。当每一秒都至关重要时，可能会派上用场。",
-			"type":"patchouli:spotlight",
-			"title":"月相花蜜"
-		},
-		{
-			"item":"spectrum:bedrock_dust",
-			"advancement":"spectrum:midgame/break_decayed_bedrock",
-			"text":"以持续时间为代价，使药剂效力加倍",
-			"type":"patchouli:spotlight",
-			"title":"基岩粉末"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_potion_workshop",
-	"name":"药剂效果：试剂",
-	"icon":"spectrum:potion_workshop",
-	"category":"spectrum:magical_blocks_category"
+  "name": "Potion Works.: Reagents",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:progression/unlock_potion_workshop",
+  "category": "spectrum:magical_blocks_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Using Reagents",
+      "text": "Using Mermaids Gems as a Base instead of Blaze Powder results in a much more reactive potion. Not only does this allow you to add your new range of additional magical ingredients to your Potions, but also use some of them as additional Reagent. Each of those Reagents modifies the resulting properties of your Potions. Each Reagent can only be used once per recipe."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Redstone",
+      "item": "minecraft:redstone",
+      "text": "Doubles Duration"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Glowstone",
+      "item": "minecraft:glowstone_dust",
+      "text": "Flat increase in Potency"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Gunpowder",
+      "item": "minecraft:gunpowder",
+      "text": "Creates Splash Potions"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Dragon's Breath",
+      "item": "minecraft:dragon_breath",
+      "advancement": "spectrum:hidden/collect_vanilla/collect_dragon_breath",
+      "text": "Creates Lingering Potions - also requires Gunpowder as reagent$(br2)Allows you to create Tipped Arrows, if you supply Arrows instead of Bottles"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Topaz",
+      "item": "spectrum:topaz_powder",
+      "text": "Makes Effects not show any particles"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Amethyst",
+      "item": "spectrum:amethyst_powder",
+      "text": "Adds a short flat bonus to the Potions Duration"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Citrine",
+      "item": "spectrum:citrine_powder",
+      "text": "Slight multiplicative Potency bonus"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Onyx",
+      "item": "spectrum:onyx_powder",
+      "text": "Adds a very weird taste and smell to the potion, making it unidentifiable.$(br)Also makes its color completely black."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Moonstone",
+      "item": "spectrum:moonstone_powder",
+      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "text": "Changes all otherwise negative Effects to their positive ones"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Shimmerstone",
+      "item": "spectrum:sparklestone_gem",
+      "text": "Tiny multiplicative bonus to both Duration and Potency"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Quitoxic Powder",
+      "item": "spectrum:quitoxic_powder",
+      "advancement": "spectrum:collect_quitoxic_reeds",
+      "text": "Greatly increases Potency of all negative Effects"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Stratine",
+      "item": "spectrum:scarlet_fragments",
+      "advancement": "spectrum:midgame/collect_scarlet",
+      "text": "Big flat bonus to Potency, at the cost of adding a random negative Effect"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Paltaeria",
+      "item": "spectrum:paletur_fragments",
+      "advancement": "spectrum:lategame/collect_paletur",
+      "text": "Adds a random positive Effect"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Stardust",
+      "item": "spectrum:stardust",
+      "advancement": "spectrum:hidden/collect_stardust",
+      "text": "$(italic)Absorbs the last drops of what remains of your previous brew.$()$(br2)Small chance to add the main Effect of the Potion that was brewed previously"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Star Fragment",
+      "item": "spectrum:shooting_star",
+      "advancement": "spectrum:collect_shooting_star",
+      "text": "$(italic)Similar to Stardust, but much more potent.$()$(br2)Guaranteed chance to add the main Effect of the Potion that was brewed previously, at slightly decreased Potency"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Storm Stone",
+      "item": "spectrum:lightning_stone",
+      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "text": "Increases the Potions Potency at the beginning, but wearing off fast over time"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Azurite",
+      "item": "spectrum:raw_azurite",
+      "advancement": "spectrum:midgame/collect_azurite",
+      "text": "Negates the duration penalty for Lingering Potions as well as for Tipped Arrows"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Four-Leaved Clover",
+      "item": "spectrum:four_leaf_clover",
+      "advancement": "spectrum:collect_four_leaf_clover",
+      "text": "Provides a huge boost to a random stat"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Vegetal",
+      "item": "spectrum:vegetal",
+      "advancement": "spectrum:collect_vegetal",
+      "text": "Doubles the potions Duration at the cost of Potency"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Neolith",
+      "item": "spectrum:neolith",
+      "advancement": "spectrum:midgame/collect_neolith",
+      "text": "Increases Yield, allowing you to brew an additional potion"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Midnight Chip",
+      "item": "spectrum:midnight_chip",
+      "advancement": "spectrum:midgame/collect_midnight Chip",
+      "text": "Increases Potency and adds 30 seconds to the Duration, but drastically lowers Yield"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Moonstruck Nectar",
+      "item": "spectrum:moonstruck_nectar",
+      "advancement": "spectrum:hidden/harvest_moonstruck_nectar",
+      "text": "Makes the Potion much more smooth, resulting in it being way faster to drink. Might come in handy when every second is crucial"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Bedrock Dust",
+      "item": "spectrum:bedrock_dust",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "text": "Doubles the Potions Potency, at the cost of Duration"
+    }
+  ]
 }

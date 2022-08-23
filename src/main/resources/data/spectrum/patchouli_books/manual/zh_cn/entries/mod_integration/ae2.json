@@ -1,0 +1,38 @@
+{
+  "name": "Applied Energistics",
+  "icon": "ae2:controller",
+  "flag": "mod:ae2",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "spectrum:anvil_crushing",
+      "advancement": "spectrum:place_pedestal",
+      "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
+      "text": "Lots of AE2's items can be crushed to dust using an anvil: Certus Quartz, Fluix, Skystone and Ender Pearls."
+    },
+    {
+      "type": "spectrum:anvil_crushing",
+      "advancement": "spectrum:place_pedestal",
+      "recipe": "spectrum:mod_integration/ae2/anvil_crushing/fluix_dust",
+      "text": "$(italic)Why use that old handcrank, when your anvil can do the job?"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "recipe": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal",
+      "text": "Desperately need $(thing)Charged Certus Quartz$()? Charge it up yourself, instead of relying on pure luck."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "recipe": "spectrum:mod_integration/ae2/fusion_shrine/fluix_dust",
+      "text": "...and then create $(thing)Fluix$() from it, if you get impatient."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "advancement": "spectrum:progression/unlock_crystallarieum",
+      "recipe": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal",
+      "text": "Being crystalline structures, $(thing)Certus Quartz$() and $(thing)Fluix Crystals$() can be grown in the Crystallarieum."
+    }
+  ]
+}

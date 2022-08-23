@@ -1,21 +1,22 @@
 {
-	"pages":[
-		{
-			"text":"玛瑙碎片的问题是，创建的条件非常严格。新月并不是每天都有的。每次你看着时钟，巧合的是，时间窗口已经过去了两分钟。$(br)打开大炮的时间：洋红的时间亲和力。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier4/celestial_pocketwatch",
-			"text":"$(italic)你的想法太棒了",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_celestial_pocketwatch",
-	"extra_recipe_mappings":{
-		"spectrum:celestial_pocketwatch":0
-	},
-	"name":"天体怀表",
-	"icon":"spectrum:celestial_pocketwatch",
-	"category":"spectrum:magical_items_category"
+  "name": "Celestial Pocketwatch",
+  "advancement": "spectrum:progression/unlock_celestial_pocketwatch",
+  "secret": true,
+  "icon": "spectrum:celestial_pocketwatch",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:celestial_pocketwatch": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The problem with Onyx Shards is that the creation is bound to very tight conditions. New moon is simply not every day. Every time you look at the clock, coincidentally, the time window has passed for two minutes.$(br)Time to unpack the big guns: Magenta's affinity for time."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/celestial_pocketwatch",
+      "text": "$(italic)What a stellar idea of yours"
+    }
+  ]
 }

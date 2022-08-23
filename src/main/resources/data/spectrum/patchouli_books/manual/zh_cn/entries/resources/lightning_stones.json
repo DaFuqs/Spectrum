@@ -1,22 +1,22 @@
 {
-	"pages":[
-		{
-			"text":"雷雨是大自然力量的有力标志。$(br)有了$(l:general/fusion_shrine)融合神殿$()，你甚至可以在制造一些强大资源时启动它们。$(br2)毫无疑问，我们在这里发现了一些与颜料的魔力有关的东西。",
-			"type":"patchouli:text",
-			"title":"雷暴"
-		},
-		{
-			"item":"spectrum:lightning_stone",
-			"text":"在被雷击的地面上，你发现这些石头由于固有的静电而在你的手上振动。$(br)在$(l:general/fusion_shrine)融合神殿$()中使用，你可以用它们召唤雷雨。$(br2)$(italic)由于其挥发性，它们对爆炸反应不太好。。。",
-			"type":"patchouli:spotlight",
-			"title":"风暴石"
-		}
-	],
-	"advancement":"spectrum:midgame/collect_lightning_stone",
-	"extra_recipe_mappings":{
-		"spectrum:lightning_stone":0
-	},
-	"name":"风暴石",
-	"icon":"spectrum:lightning_stone",
-	"category":"spectrum:resources_category"
+  "name": "Storm Stones",
+  "advancement": "spectrum:midgame/collect_lightning_stone",
+  "icon": "spectrum:lightning_stone",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:lightning_stone": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Thunderstorms",
+      "text": "Thunderstorms are a powerful sign of the forces of nature.$(br)Using the $(l:general/fusion_shrine)Fusion Shrine$() you did even start them when crafting some powerful resources.$(br2)There was no doubt coming across something here that had a connection to the magic of pigments."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Storm Stones",
+      "item": "spectrum:lightning_stone",
+      "text": "Dug into the ground by lightning strikes, you found these stones vibrating in your hand due to the inherent static.$(br)Used in the $(l:general/fusion_shrine)Fusion Shrine$(), you can use them to summon thunderstorms yourself.$(br2)$(italic)Because of their volatile nature they do not react too nicely to explosions..."
+    }
+  ]
 }

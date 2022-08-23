@@ -1,37 +1,37 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:amethyst_player_only_glass",
-			"text":"$(italic)很长一段时间以来，那些总是在晚上出现的令人讨厌的怪物不再是对你的威胁，如果有的话，它们只是一个资源供应商。但这并不能阻止他们进一步追求你。$(br)你花了比你愿意承认的更多的时间让那些讨厌的怪物远离你的基地。$()",
-			"type":"patchouli:spotlight",
-			"title":"半渗透玻璃"
-		},
-		{
-			"text":"$(italic)然后你记得你之前想到的宝石玻璃配方。$(br2)有了一点神奇的能量，它应该是没有问题的，使它不仅对你透明，而且还可以通过（不是对他们！）。$(br2)额外的好处：如果你让它看起来像普通的玻璃，你甚至可以欺骗你的竞争对手。$()",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/player_only_glass/amethyst_player_only_glass",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		},
-		{
-			"text":"半渗透玻璃有各种宝石颜色，常见的、有色的和发光的。$(br2)它看起来和它的$(l:decoration/gemstone_glass)普通对手$()一模一样，但有一个特殊的特性，玩家可以毫无问题地穿过它，而所有其他生物都会像飞离窗户一样从它身上弹起。",
-			"type":"patchouli:text"
-		}
-	],
-	"advancement":"spectrum:midgame/build_advanced_pedestal_structure",
-	"extra_recipe_mappings":{
-		"spectrum:amethyst_player_only_glass":0,
-		"spectrum:topaz_player_only_glass":0,
-		"spectrum:vanilla_player_only_glass":0,
-		"spectrum:glowing_player_only_glass":0,
-		"spectrum:citrine_player_only_glass":0,
-		"spectrum:tinted_player_only_glass":0,
-		"spectrum:moonstone_player_only_glass":0,
-		"spectrum:onyx_player_only_glass":0
-	},
-	"name":"半渗透玻璃",
-	"icon":"spectrum:amethyst_player_only_glass",
-	"category":"spectrum:magical_blocks_category"
+  "name": "Semi-permeable Glass",
+  "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+  "icon": "spectrum:amethyst_player_only_glass",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:vanilla_player_only_glass": 0,
+    "spectrum:tinted_player_only_glass": 0,
+    "spectrum:glowing_player_only_glass": 0,
+    "spectrum:topaz_player_only_glass": 0,
+    "spectrum:amethyst_player_only_glass": 0,
+    "spectrum:citrine_player_only_glass": 0,
+    "spectrum:onyx_player_only_glass": 0,
+    "spectrum:moonstone_player_only_glass": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Semi-permeable Glass",
+      "item": "spectrum:amethyst_player_only_glass",
+      "text": "$(italic)For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further.$(br)You spend more time keeping those pesky monsters out of your base than you care to admit.$()"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Then you remember the gemstone glass recipe you thought up earlier.$(br2)With a bit of magical energy, it should be no problem to make it not only transparent for you, but also passable (not for them!).$(br2)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition.$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/amethyst_player_only_glass"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Semi-permeable Glass comes in all gemstone colors, common, tinted and glowing variants.$(br2)It looks exactly like its $(l:decoration/gemstone_glass)mundane counterpart$(), but has the special property that players can pass through it without problems, while all other creatures will bounce off it like a fly off a window."
+    }
+  ]
 }

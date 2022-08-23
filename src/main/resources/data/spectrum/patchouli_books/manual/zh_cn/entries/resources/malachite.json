@@ -1,0 +1,32 @@
+{
+  "name": "Malachite",
+  "advancement": "spectrum:lategame/collect_malachite",
+  "secret": true,
+  "icon": "spectrum:malachite_cluster",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:malachite_ore": 0,
+    "spectrum:deepslate_malachite_ore": 0,
+    "spectrum:blackslag_malachite_ore": 0,
+    "spectrum:raw_malachite": 0,
+    "spectrum:malachite_block": 0,
+    "spectrum:small_malachite_bud": 0,
+    "spectrum:large_malachite_bud": 0,
+    "spectrum:malachite_cluster": 0,
+    "spectrum:malachite_crystal": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Malachite",
+      "text": "A pristine material, sparkling in a deep green hue. It seems to have strong magical properties, almost like a $(l:dimension/dimension)Deeper Down$() analog of $(l:resources/azurite)Azurite$().$(br)As another similarity to $(l:resources/azurite)Azurite$(), Malachite has to be refined, too. The small fragments you obtained by mining the ore must first grow into full, usable crystals."
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "advancement": "spectrum:progression/unlock_crystallarieum",
+      "title": "Refining Malachite",
+      "recipe": "spectrum:crystallarieum/malachite",
+      "text": "The Crystallarieum seems to be the only way for you to grow Malachite your short life's timeframe.$(br)The influence of $(item)Moonstone$() is required to create an environment for it to grow, mimicking the Deeper Down."
+    }
+  ]
+}

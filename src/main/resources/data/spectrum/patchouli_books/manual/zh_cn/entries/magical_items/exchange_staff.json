@@ -1,35 +1,43 @@
 {
-	"pages":[
-		{
-			"text":"对于那些不住在简单的鹅卵石房子里，或者根本没有围墙的人——当然，你不会觉得受到了接待——你已经想到了交换工作人员。$(br2)采矿刚刚变得更加有趣。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier4/exchange_staff",
-			"text":"蹲下单击以选择所有可用的位置modi。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		},
-		{
-			"item":"spectrum:exchange_staff{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
-			"advancement":"spectrum:midgame/build_enchanting_structure",
-			"text":"附魔通过使用$(l:enchanting/enchanting_items)注魔基座$(/l)与幸运交换物品，可以在交换时增加矿石掉落，类似于使用普通财富工具。",
-			"type":"patchouli:spotlight",
-			"title":"附魔-幸运"
-		},
-		{
-			"item":"spectrum:exchange_staff{Enchantments: [{id: \"spectrum:silk_touch\", lvl: 1s}]}",
-			"advancement":"spectrum:midgame/build_enchanting_structure",
-			"text":"附魔通过使用精准采集交换物品，$(l:enchanting/enchanting_items)注魔基座$(/l)将使其能够准确地交换方块，而不破坏更脆弱的方块，如玻璃或矿石。",
-			"type":"patchouli:spotlight",
-			"title":"精准采集"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_exchange_staff",
-	"extra_recipe_mappings":{
-		"spectrum:exchange_staff":0
-	},
-	"name":"交换物品",
-	"icon":"spectrum:exchange_staff",
-	"category":"spectrum:magical_items_category"
+  "name": "Exchanging Staff",
+  "advancement": "spectrum:progression/unlock_exchange_staff",
+  "secret": true,
+  "icon": "spectrum:exchange_staff",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:exchange_staff": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "For all those who don't live in a simple cobblestone house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff.$(br2)Mining has just gotten a whole bunch more fun."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/exchange_staff",
+      "text": "Crouch-Click to get a selection of all available placement modi."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Enchanting - Fortune",
+      "item": "spectrum:exchange_staff{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
+      "text": "Enchanting an Exchanging Staff with Fortune by using the $(l:enchanting/enchanting_items)Enchanter$(/l) allows it to multiply Ore drops when exchanging similar to using a common Fortune tool."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Silk Touch",
+      "item": "spectrum:exchange_staff{Enchantments: [{id: \"spectrum:silk_touch\", lvl: 1s}]}",
+      "text": "Enchanting an Exchanging Staff with Silk Touch by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like Glass or Ores."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:lategame/create_resonance_enchanted_book",
+      "title": "Resonance",
+      "item": "spectrum:exchange_staff{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "Enchanting an Exchanging Staff with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to harvest some special blocks as-is."
+    }
+  ]
 }

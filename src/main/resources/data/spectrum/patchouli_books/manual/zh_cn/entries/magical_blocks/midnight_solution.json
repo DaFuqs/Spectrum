@@ -1,49 +1,50 @@
 {
-	"pages":[
-		{
-			"text":"你第一次偶然发现这种奇怪的液体是你$(l:general/midnight_aberration)失败的聚变实验$()的直接结果。$(br)触摸它的生物似乎会耗尽它们的生命。最好不要自己陷入困境。$(br)！没有经历过这种残酷过程的生物似乎会丢弃物品，就好像它们被玩家杀死一样。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"spectrum:midnight_chip",
-			"advancement":"spectrum:midgame/collect_midnight_chip",
-			"text":"在这种充满活力的液体中死亡的生物会掉落一小块碎片，几乎像$(l:general/midnight_aberration)午夜畸变$(/l)，只是小了很多。锋利、凶狠。就好像是她心脏的那根刺最终导致了他们的死亡。",
-			"type":"patchouli:spotlight",
-			"title":"午夜片"
-		},
-		{
-			"advancement":"spectrum:midgame/collect_midnight_chip",
-			"recipe":"spectrum:potion_workshop_crafting/midnight_solution_bucket",
-			"text":"使用这种液体杀死生物所获得的额外掉落，你可以创造更多的滴水。如果你仔细想想的话，那真是太病态了。",
-			"type":"spectrum:potion_workshop_crafting",
-			"title":"午夜溶液桶"
-		},
-		{
-			"recipe":"spectrum:midnight_solution_converting/blackstone",
-			"text":"把一些物品扔进液体中似乎会把它们腐蚀到完全变成其他东西的程度。",
-			"type":"spectrum:midnight_solution_converting",
-			"title":"物品转换"
-		},
-		{
-			"text":"更重要的是，如果你把附魔物品扔进去，它们的特殊能力就会被剥夺。剩下的只是普通的物品和一堆经验。",
-			"type":"patchouli:text",
-			"title":"觉醒"
-		},
-		{
-			"item":"spectrum:black_materia",
-			"advancement":"spectrum:hidden/break_black_materia",
-			"text":"在午夜溶液池周围形成的一种看似无用的物质。",
-			"type":"patchouli:spotlight",
-			"title":"黑色材料"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_midnight_solution",
-	"extra_recipe_mappings":{
-		"spectrum:midnight_chip":0,
-		"spectrum:midnight_solution_bucket":0,
-		"spectrum:black_materia":0
-	},
-	"name":"午夜溶液",
-	"icon":"spectrum:midnight_solution_bucket",
-	"category":"spectrum:magical_blocks_category"
+  "name": "Midnight Solution",
+  "icon": "spectrum:midnight_solution_bucket",
+  "advancement": "spectrum:progression/unlock_midnight_solution",
+  "category": "spectrum:magical_blocks_category",
+  "turnin": "spectrum:midgame/collect_midnight_chip",
+  "extra_recipe_mappings": {
+    "spectrum:midnight_solution_bucket": 0,
+    "spectrum:midnight_chip": 0,
+    "spectrum:black_materia": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You first stumbled about this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$().$(br)Creatures that touch it seem to get their life drained out of them. Better not get caught in it yourself.$(br)! Creatures unalived by this cruel process seem to drop items as if they were killed by a player."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Midnight Chip",
+      "item": "spectrum:midnight_chip",
+      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "text": "Creatures that died in that feisty liquid drop a small splinter that almost resembles a $(l:general/midnight_aberration)Midnight Aberration$(/l), just way, way smaller. Sharp-Edged and vicious. Almost as if it was that splinter in her heart that finally caused their demise."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Midnight Solution Bucket",
+      "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
+      "advancement": "spectrum:midgame/collect_midnight_chip",
+      "text": "Using the exact drop that you got by killing creatures with that fluid you can create even more of it. Quite morbid, if you think about it."
+    },
+    {
+      "type": "spectrum:midnight_solution_converting",
+      "title": "Item Conversion",
+      "recipe": "spectrum:midnight_solution_converting/blackstone",
+      "text": "Throwing some items into the liquid seems to corrupt them up to a point they turn into something else entirely."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Disenchanting",
+      "text": "Even more, if you throw enchanted items into it, they will be stripped of their special abilities. All that's left is the ordinary item and a bunch of experience."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Black Materia",
+      "item": "spectrum:black_materia",
+      "advancement": "spectrum:hidden/break_black_materia",
+      "text": "A seemingly useless material that forms around pools of Midnight Solution."
+    }
+  ]
 }

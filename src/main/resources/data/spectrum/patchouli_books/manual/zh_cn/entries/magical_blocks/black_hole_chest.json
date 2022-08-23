@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)漏斗的问题是，一方面，它们不仅速度慢，而且由于其不存在范围，不适合大型农场。$(br2)只要涂一点蓝色颜料，板条箱周围大半径内的所有物品都可以很容易地安全携带。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/sucking_chest",
-			"text":"黑洞箱的半径为12个方块。您可以通过在顶部放置方块来禁用它们。它提供了过滤器来指定它应该接受哪些物品。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_sucking_chest",
-	"extra_recipe_mappings":{
-		"spectrum:sucking_chest":0
-	},
-	"name":"黑洞箱",
-	"icon":"spectrum:sucking_chest",
-	"category":"spectrum:magical_blocks_category"
+  "name": "黑洞箱",
+  "advancement": "spectrum:progression/unlock_sucking_chest",
+  "icon": "spectrum:sucking_chest",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:sucking_chest": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)普通漏斗的痛点相当实在：速度缓慢，范围狭小，极不适合大生产。$(br2)用上一点蓝色颜料的魔力的话，大范围内的许多物品都可以被安全地收入囊中了。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier3/sucking_chest",
+      "text": "黑洞箱的吸收半径是12格。用一格方块盖在箱子上即可停用箱子。箱子内附有过滤器，可以决定什么物品会被吸入箱子。"
+    }
+  ]
 }

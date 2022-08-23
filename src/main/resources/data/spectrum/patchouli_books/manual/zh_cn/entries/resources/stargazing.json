@@ -1,47 +1,47 @@
 {
-	"pages":[
-		{
-			"border":true,
-			"images":[
-				"spectrum:textures/gui/manual/stargazing.png"
-			],
-			"text":"$(italic)夜晚的宁静邀请你躺在草地上看星星。",
-			"type":"patchouli:image",
-			"title":"对着星星许愿"
-		},
-		{
-			"item":"spectrum:shooting_star_glistering",
-			"advancement":"spectrum:collect_shooting_star",
-			"text":"这些小流星是由迄今为止你还不知道的材料制成的。$(br2)你能从天上抓一个吗？$(br2)$(italic)提示：当使用望远镜或夜视仪时，流星更容易被发现。$()",
-			"type":"patchouli:spotlight",
-			"title":"流星"
-		},
-		{
-			"item":"spectrum:shooting_star",
-			"advancement":"spectrum:collect_shooting_star",
-			"text":"流星产生了宝贵的资源，包括这种罕见的恒星碎片、星尘和大量其他稀有材料。$(br2)蹲着捡起流星，然后用铁砧将其$(l:general/anvil_crushing)砸碎$(/l)，虽然会消耗其他材料，但会产生双倍的恒星碎片。",
-			"type":"patchouli:spotlight",
-			"title":"恒星碎片"
-		},
-		{
-			"item":"spectrum:stardust",
-			"advancement":"spectrum:collect_shooting_star",
-			"text":"一种来源不明的粉末，被星星的灵魂所祝福。$(br)熊害羞，但潜在的力量。",
-			"type":"patchouli:spotlight",
-			"title":"星尘"
-		}
-	],
-	"advancement":"spectrum:milestones/unlock_shooting_stars",
-	"extra_recipe_mappings":{
-		"spectrum:shooting_star_fiery":0,
-		"spectrum:shooting_star_colorful":0,
-		"spectrum:shooting_star_gemstone":0,
-		"spectrum:shooting_star_glistering":0,
-		"spectrum:shooting_star_pristine":0,
-		"spectrum:shooting_star":0,
-		"spectrum:stardust":0
-	},
-	"name":"凝视星空",
-	"icon":"minecraft:spyglass",
-	"category":"spectrum:resources_category"
+  "name": "Stargazing",
+  "advancement": "spectrum:milestones/unlock_shooting_stars",
+  "icon": "minecraft:spyglass",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:shooting_star": 0,
+    "spectrum:stardust": 0,
+    "spectrum:shooting_star_glistering": 0,
+    "spectrum:shooting_star_fiery": 0,
+    "spectrum:shooting_star_colorful": 0,
+    "spectrum:shooting_star_pristine": 0,
+    "spectrum:shooting_star_gemstone": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Wishing upon a Star",
+      "images": [
+        "spectrum:textures/gui/manual/stargazing.png"
+      ],
+      "border": true,
+      "text": "$(italic)The calmness of the night invites you to lie down in the grass and watch the stars."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_shooting_star",
+      "title": "Shooting Stars",
+      "item": "spectrum:shooting_star_glistering",
+      "text": "The small Shooting Stars are made of a material unknown to you thus far.$(br2)Can you catch one right off the sky?$(br2)$(italic)Tip: Shooting Stars are much easier to spot when using a Telescope or Night Vision.$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_shooting_star",
+      "title": "Star Fragments",
+      "item": "spectrum:shooting_star",
+      "text": "Shooting Stars yield precious resources, including this rare Star Fragment, Stardust and a whole lot of other rare materials.$(br2)Picking up a Shooting Star by crouching and $(l:general/anvil_crushing)smashing it via an Anvil$(/l) will yield double the Star Fragments, albeit at the cost of the other materials."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_shooting_star",
+      "title": "Stardust",
+      "item": "spectrum:stardust",
+      "text": "A powder of unknown origin blessed with the soul of the stars.$(br)Bears coy, yet latent power."
+    }
+  ]
 }

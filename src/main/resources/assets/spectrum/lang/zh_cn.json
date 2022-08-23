@@ -594,7 +594,7 @@
   "block.spectrum.redstone_calculator.mode.subtraction": "减法模式",
   "block.spectrum.redstone_calculator.mode.multiplication": "乘法模式",
   "block.spectrum.redstone_calculator.mode.division": "除法模式",
-  "block.spectrum.redstone_calculator.mode.modulo": "取余模式",
+  "block.spectrum.redstone_calculator.mode.modulo": "取模模式",
   "block.spectrum.redstone_calculator.mode.min": "最小值模式",
   "block.spectrum.redstone_calculator.mode.max": "最大值模式",
 
@@ -904,7 +904,7 @@
 
   "block.spectrum.glistering_melon": "闪烁的西瓜",
   "block.spectrum.glistering_melon_stem": "闪烁的西瓜茎",
-  "block.spectrum.attached_glistering_melon_stem": "结果的闪烁的西瓜种茎",
+  "block.spectrum.attached_glistering_melon_stem": "结果的闪烁的西瓜茎",
 
   "block.spectrum.spectral_shard_block": "七彩碎片块",
   "block.spectrum.small_citrine_bud": "小型黄水晶芽",
@@ -2101,7 +2101,7 @@
   "advancements.spectrum.kill_entity_with_jeopardant_and_half_a_heart.description": "佩戴孤勇戒指，在只剩半颗心时给予对方致命一击",
   "advancements.spectrum.get_azure_dike_charge.title": "力场充能",
   "advancements.spectrum.get_azure_dike_charge.description": "装备由蓝铜制作的装备来提升蔚蓝防御值",
-  "advancements.spectrum.high_ink_use.title": "付之东流",
+  "advancements.spectrum.high_ink_use.title": "大手笔",
   "advancements.spectrum.high_ink_use.description": "一次性用掉大量墨水",
   "advancements.spectrum.fill_pigment_palette.title": "灵感奔涌",
   "advancements.spectrum.fill_pigment_palette.description": "使用所有可用的墨水填充调色板",

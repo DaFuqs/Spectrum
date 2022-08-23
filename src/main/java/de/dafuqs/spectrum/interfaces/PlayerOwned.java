@@ -9,7 +9,7 @@ import java.util.UUID;
 public interface PlayerOwned {
 	
 	static PlayerEntity getPlayerEntityIfOnline(UUID ownerUUID) {
-		if (ownerUUID != null) {
+		if (ownerUUID != null || SpectrumCommon.minecraftServer == null) {
 			return SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
 		}
 		return null;

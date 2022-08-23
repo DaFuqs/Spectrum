@@ -187,7 +187,10 @@ public class Support {
 	}
 	
 	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, Identifier advancementIdentifier, String criterion) {
-		ServerAdvancementLoader sal = SpectrumCommon.minecraftServer.getAdvancementLoader();
+		if(serverPlayerEntity.getServer() == null) {
+			return;
+		}
+		ServerAdvancementLoader sal = serverPlayerEntity.getServer().getAdvancementLoader();
 		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
 		
 		Advancement advancement = sal.get(advancementIdentifier);

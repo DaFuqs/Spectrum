@@ -15,6 +15,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import org.jetbrains.annotations.Nullable;
@@ -25,8 +26,12 @@ import java.util.List;
 
 public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	
+	public static final int TEXT_COLOR = 0xEEEEEE;
 	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/paintbrush.png");
-
+	
+	protected static final Text CONTROLS_TEXT_1 = new TranslatableText("item.spectrum.paintbrush.gui.controls1");
+	protected static final Text CONTROLS_TEXT_2 = new TranslatableText("item.spectrum.paintbrush.gui.controls2");
+	
 	public static final List<InkColor> MAIN_GRID = new ArrayList<>() {{
 		add(InkColors.MAGENTA);
 		add(InkColors.CYAN);
@@ -82,6 +87,9 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
 		drawGrid(matrices, backgroundWidth / 2, backgroundHeight / 2, GRIDS.get(currentGrid));
+		
+		this.textRenderer.draw(matrices, CONTROLS_TEXT_1, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_1)) / 2, 202, TEXT_COLOR);
+		this.textRenderer.draw(matrices, CONTROLS_TEXT_2, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_2)) / 2, 212, TEXT_COLOR);
 	}
 	
 	protected void drawGrid(MatrixStack matrices, int startX, int startY, List<InkColor> grid) {
@@ -111,77 +119,153 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	}
 	
 	@Override
+	public boolean mouseClicked(double mouseX, double mouseY, int button) {
+		if(button == 1) {
+			// select
+			selectBack();
+		} else {
+			// back
+			int startX = backgroundWidth / 2;
+			int startY = backgroundHeight / 2;
+			
+			mouseX = mouseX - x;
+			mouseY = mouseY - y;
+			
+			int centerElementSize = currentGrid == 0 ? 5 : 14;
+			if(mouseX >= startX -centerElementSize && mouseX <= startX + centerElementSize && mouseY >= startY -centerElementSize && mouseY <= startY + centerElementSize) {
+				selectCenter();
+				return true;
+			}
+			
+			List<InkColor> grid = GRIDS.get(currentGrid);
+			Iterator<Pair<Integer, Integer>> iOffset = SQUARE_OFFSETS.iterator();
+			int offsetID = 0;
+			for (InkColor color : grid) {
+				Pair<Integer, Integer> offset = iOffset.next();
+				if (color != null) {
+					if(mouseX >= startX + offset.getLeft() && mouseX <= startX + offset.getLeft() + 32 && mouseY >= startY + offset.getRight() && mouseY <= startY + offset.getRight() + 32) {
+						switch (offsetID) {
+							case 0 -> {
+								selectLeft();
+								return true;
+							}
+							case 1 -> {
+								selectUp();
+								return true;
+							}
+							case 2 -> {
+								selectRight();
+								return true;
+							}
+							case 3 -> {
+								selectDown();
+								return true;
+							}
+						}
+					}
+				}
+				offsetID++;
+			}
+		}
+		
+		return super.mouseClicked(mouseX, mouseY, button);
+	}
+	
+	@Override
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
 		GameOptions options = MinecraftClient.getInstance().options;
 		if (options.leftKey.matchesKey(keyCode, scanCode)) {
-			if(currentGrid == 0) {
-				currentGrid = 1;
-				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
-			} else {
-				InkColor selectedColor = GRIDS.get(currentGrid).get(0);
-				if(selectedColor == null) {
-					currentGrid = 0;
-					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
-				} else {
-					chooseColor(selectedColor);
-				}
-			}
+			selectLeft();
 			return true;
 		} else if(options.forwardKey.matchesKey(keyCode, scanCode)) {
-			if(currentGrid == 0) {
-				currentGrid = 2;
-				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
-			} else {
-				InkColor selectedColor = GRIDS.get(currentGrid).get(1);
-				if(selectedColor == null) {
-					currentGrid = 0;
-					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
-				} else {
-					chooseColor(selectedColor);
-				}
-			}
+			selectUp();
 			return true;
 		} else if(options.rightKey.matchesKey(keyCode, scanCode)) {
-			if(currentGrid == 0) {
-				currentGrid = 3;
-				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
-			} else {
-				InkColor selectedColor = GRIDS.get(currentGrid).get(2);
-				if(selectedColor == null) {
-					currentGrid = 0;
-					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
-				} else {
-					chooseColor(selectedColor);
-				}
-			}
+			selectRight();
 			return true;
 		} else if(options.backKey.matchesKey(keyCode, scanCode)) {
-			if(currentGrid == 0) {
-				if(handler.hasAccessToWhites()) {
-					currentGrid = 4;
-					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
-				} else {
-					chooseColor(MAIN_GRID.get(3));
-				}
-			} else {
-				InkColor selectedColor = GRIDS.get(currentGrid).get(3);
-				if(selectedColor == null) {
-					currentGrid = 0;
-					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
-				} else {
-					chooseColor(selectedColor);
-				}
-			}
+			selectDown();
 			return true;
 		} else if(options.dropKey.matchesKey(keyCode, scanCode) || options.inventoryKey.matchesKey(keyCode, scanCode)) {
-			if(currentGrid == 0) {
-				chooseColor(null);
-			} else {
-				chooseColor(MAIN_GRID.get(currentGrid-1));
-			}
+			selectCenter();
 			return true;
 		}
 		return super.keyPressed(keyCode, scanCode, modifiers);
+	}
+	
+	private void selectCenter() {
+		if(currentGrid == 0) {
+			chooseColor(null);
+		} else {
+			chooseColor(MAIN_GRID.get(currentGrid-1));
+		}
+	}
+	
+	private void selectRight() {
+		if(currentGrid == 0) {
+			currentGrid = 3;
+			client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+		} else {
+			InkColor selectedColor = GRIDS.get(currentGrid).get(2);
+			if(selectedColor == null) {
+				selectBack();
+			} else {
+				chooseColor(selectedColor);
+			}
+		}
+	}
+	
+	private void selectUp() {
+		if(currentGrid == 0) {
+			currentGrid = 2;
+			client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+		} else {
+			InkColor selectedColor = GRIDS.get(currentGrid).get(1);
+			if(selectedColor == null) {
+				selectBack();
+			} else {
+				chooseColor(selectedColor);
+			}
+		}
+	}
+	
+	private void selectLeft() {
+		if(currentGrid == 0) {
+			currentGrid = 1;
+			client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+		} else {
+			InkColor selectedColor = GRIDS.get(currentGrid).get(0);
+			if(selectedColor == null) {
+				selectBack();
+			} else {
+				chooseColor(selectedColor);
+			}
+		}
+	}
+	
+	private void selectDown() {
+		if(currentGrid == 0) {
+			if(handler.hasAccessToWhites()) {
+				currentGrid = 4;
+				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+			} else {
+				chooseColor(MAIN_GRID.get(3));
+			}
+		} else {
+			InkColor selectedColor = GRIDS.get(currentGrid).get(3);
+			if(selectedColor == null) {
+				selectBack();
+			} else {
+				chooseColor(selectedColor);
+			}
+		}
+	}
+	
+	private void selectBack() {
+		if(currentGrid != 0) {
+			currentGrid = 0;
+			client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+		}
 	}
 	
 	private void chooseColor(@Nullable InkColor inkColor) {
@@ -189,11 +273,6 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.NEUTRAL, 0.6F, 1.0F, false);
 		client.player.closeHandledScreen();
 		
-	}
-	
-	@Override
-	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-		super.render(matrices, mouseX, mouseY, delta);
 	}
 	
 }

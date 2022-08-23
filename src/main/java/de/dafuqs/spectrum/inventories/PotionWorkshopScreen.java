@@ -35,7 +35,7 @@ public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHand
 	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
 		// draw "title" and "inventory" texts
-		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2; // 8;
+		int titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
 		int titleY = 6;
 		Text title = this.title;
 		int playerInventoryX = 8;

@@ -68,23 +68,22 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	}
 	
 	public static void tick(World world, BlockPos pos, BlockState state, ColorPickerBlockEntity blockEntity) {
-		if (!world.isClient && !blockEntity.paused) {
+		if (!world.isClient) {
 			blockEntity.inkDirty = false;
-			boolean didSomething;
-			
-			if (world.getTime() % TICKS_PER_CONVERSION == 0) {
-				didSomething = blockEntity.tryConvertPigmentToEnergy((ServerWorld) world);
-			} else {
-				didSomething = true;
-			}
-			didSomething = didSomething | blockEntity.tryFillInkContainer(); // that's an OR
-			
-			if (didSomething) {
-				blockEntity.updateInClientWorld();
-				blockEntity.setInkDirty();
-				blockEntity.markDirty();
-			} else {
-				blockEntity.paused = true;
+			if (!blockEntity.paused) {
+				boolean convertedPigment = false;
+				if (world.getTime() % TICKS_PER_CONVERSION == 0) {
+					convertedPigment = blockEntity.tryConvertPigmentToEnergy((ServerWorld) world);
+				}
+				boolean filledContainer = blockEntity.tryFillInkContainer(); // that's an OR
+				
+				if (convertedPigment || filledContainer) {
+					blockEntity.updateInClientWorld();
+					blockEntity.setInkDirty();
+					blockEntity.markDirty();
+				} else {
+					blockEntity.paused = true;
+				}
 			}
 		}
 	}

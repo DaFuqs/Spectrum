@@ -32,6 +32,7 @@ import static net.minecraft.world.gen.feature.OreConfiguredFeatures.STONE_ORE_RE
 
 public class DDDimension {
 	
+	public static final Identifier DEEPER_DOWN_EFFECTS_ID = SpectrumCommon.locate("deeper_down");
 	public static final Identifier DEEPER_DOWN_DIMENSION_ID = SpectrumCommon.locate("deeper_down_dimension");
 	public static final RegistryKey<World> DEEPER_DOWN_DIMENSION_KEY = RegistryKey.of(Registry.WORLD_KEY, DEEPER_DOWN_DIMENSION_ID);
 	

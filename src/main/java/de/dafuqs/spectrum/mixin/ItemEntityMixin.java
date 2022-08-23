@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.GravitableItem;
 import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
@@ -97,7 +96,7 @@ public abstract class ItemEntityMixin {
 			autoCompactingInventory = new AutoCompactingInventory();
 		}
 		autoCompactingInventory.setCompacting(AutoCompactingInventory.AutoCraftingMode.OneXOne, thisItemStack);
-		Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = SpectrumCommon.minecraftServer.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
+		Optional<AnvilCrushingRecipe> optionalAnvilCrushingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ANVIL_CRUSHING, autoCompactingInventory, world);
 		if (optionalAnvilCrushingRecipe.isPresent()) {
 			// Item can be crafted via anvil. Do anvil crafting
 			AnvilCrushingRecipe recipe = optionalAnvilCrushingRecipe.get();

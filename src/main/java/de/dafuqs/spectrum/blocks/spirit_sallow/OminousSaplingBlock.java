@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -52,8 +52,8 @@ public class OminousSaplingBlock extends PlantBlock implements BlockEntityProvid
 		OminousSaplingBlockEntity ominousSaplingBlockEntity = getBlockEntity(world, pos);
 		if (ominousSaplingBlockEntity != null) {
 			UUID ownerUUID = ominousSaplingBlockEntity.getOwnerUUID();
-			ServerPlayerEntity serverPlayerEntity = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
-			if (serverPlayerEntity != null) { // offline?
+			PlayerEntity playerEntity = PlayerOwned.getPlayerEntityIfOnline(ownerUUID);
+			if (playerEntity instanceof ServerPlayerEntity serverPlayerEntity) {
 				Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/grow_ominous_sapling", "grow");
 			}
 		}

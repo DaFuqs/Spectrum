@@ -34,10 +34,14 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	}
 	
 	public static void reprocessAdvancementUnlocks(ServerPlayerEntity serverPlayerEntity) {
+		if(serverPlayerEntity.getServer() == null) {
+			return;
+		}
+		
 		PlayerAdvancementTracker tracker = serverPlayerEntity.getAdvancementTracker();
 		
 		// "has advancement" criteria with nonexistent advancements
-		for (Advancement advancement : SpectrumCommon.minecraftServer.getAdvancementLoader().getAdvancements()) {
+		for (Advancement advancement : serverPlayerEntity.getServer().getAdvancementLoader().getAdvancements()) {
 			if (advancement.getId().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				AdvancementProgress hasAdvancement = tracker.getProgress(advancement);
 				if (!hasAdvancement.isDone()) {

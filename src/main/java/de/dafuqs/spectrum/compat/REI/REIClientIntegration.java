@@ -158,6 +158,8 @@ public class REIClientIntegration implements REIClientPlugin {
 		
 		registry.registerContainerClickArea(new Rectangle(35, 33, 22, 15), CinderhearthScreen.class, SpectrumPlugins.CINDERHEARTH);
 		registry.registerContainerClickArea(new Rectangle(35, 33, 22, 15), CinderhearthScreen.class, BuiltinPlugin.BLASTING);
+		
+		registry.registerDecider(REIOverlayDecider.INSTANCE);
 	}
 	
 }

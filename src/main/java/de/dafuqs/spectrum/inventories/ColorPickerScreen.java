@@ -37,8 +37,8 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		int startY = (this.height - this.backgroundHeight) / 2;
 		
 		this.colorSelectionWidget = new ColorSelectionWidget(startX + 113, startY + 55, startX + 139, startY + 25, this, this.handler.getBlockEntity());
-		this.inkGaugeWidget = new InkGaugeWidget(startX + 54, startY + 21, 42, 42, this, this.handler.getBlockEntity().getEnergyStorage());
-		this.inkMeterWidget = new StackedInkMeterWidget(startX + 100, startY + 21, 4, 40, this, this.handler.getBlockEntity().getEnergyStorage());
+		this.inkGaugeWidget = new InkGaugeWidget(startX + 54, startY + 21, 42, 42, this, this.handler.getBlockEntity());
+		this.inkMeterWidget = new StackedInkMeterWidget(startX + 100, startY + 21, 4, 40, this, this.handler.getBlockEntity());
 		
 		this.colorSelectionWidget.setChangedListener(this);
 		

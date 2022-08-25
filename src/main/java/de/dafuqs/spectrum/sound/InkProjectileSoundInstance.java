@@ -58,7 +58,7 @@ public class InkProjectileSoundInstance extends AbstractSoundInstance implements
 	public void tick() {
 		this.ticksPlayed++;
 		this.distance = MathHelper.clamp(this.distance + 0.001F, 0.0F, 1.0F);
-		this.volume = Math.max(0.0F, 1.0F - inkProjectile.getBlockPos().getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 96F);
+		this.volume = Math.max(0.0F, 1.0F - inkProjectile.getBlockPos().getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 64F);
 		
 		if (ticksPlayed > maxDurationTicks
 				|| !Objects.equals(this.worldKey, MinecraftClient.getInstance().world.getRegistryKey())

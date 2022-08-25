@@ -88,7 +88,11 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		
+		if (nbt.contains("OwnerUUID")) {
+			this.ownerUUID = nbt.getUuid("OwnerUUID");
+		} else {
+			this.ownerUUID = null;
+		}
 		if (nbt.contains("MemoryItem", NbtElement.COMPOUND_TYPE)) {
 			NbtCompound creatureSpawnCompound = nbt.getCompound("MemoryItem");
 			this.memoryItemStack = ItemStack.fromNbt(creatureSpawnCompound);
@@ -98,6 +102,9 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	@Override
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
+		if (this.ownerUUID != null) {
+			nbt.putUuid("OwnerUUID", this.ownerUUID);
+		}
 		if (this.memoryItemStack != null) {
 			NbtCompound creatureSpawnCompound = new NbtCompound();
 			memoryItemStack.writeNbt(creatureSpawnCompound);

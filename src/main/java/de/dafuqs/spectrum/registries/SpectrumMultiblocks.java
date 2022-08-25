@@ -179,7 +179,7 @@ public class SpectrumMultiblocks {
 		
 		String[][] withoutLavaStructure = {
 				{"C___C", "__H__", "_____", "_____" },
-				{"XcccX", "cG_Gc", "cGGGc", "_XXX_" },
+				{"Xc_cX", "cG_Gc", "cGGGc", "_XXX_" },
 				{"_XXX_", "X___X", "X___X", "_XXX_" },
 				{"_____", "_X0X_", "_XXX_", "_____" }
 		};
@@ -188,7 +188,7 @@ public class SpectrumMultiblocks {
 		String[][] structureUpgrades = {
 				{"U___U", "_____", "_____", "_____" },
 				{"C___C", "__H__", "_____", "_____" },
-				{"Xc cX", "cG_Gc", "cGGGc", "_XXX_" },
+				{"Xc_cX", "cG_Gc", "cGGGc", "_XXX_" },
 				{"_XXX_", "XLLLX", "XLLLX", "_XXX_" },
 				{"_____", "_X0X_", "_XXX_", "_____" }
 		};

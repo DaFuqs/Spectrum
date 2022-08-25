@@ -165,27 +165,38 @@ public class ShootingStarEntity extends Entity {
 		}
 	}
 	
+	@Override
 	public boolean collidesWith(Entity other) {
 		return canCollide(this, other);
 	}
 	
+	@Override
 	public boolean isCollidable() {
 		return true;
 	}
 	
+	@Override
+	public boolean canHit() {
+		return !this.isRemoved();
+	}
+	
+	@Override
 	public boolean isPushable() {
 		return true;
 	}
 	
+	@Override
 	protected Vec3d positionInPortal(Direction.Axis portalAxis, BlockLocating.Rectangle portalRect) {
 		return LivingEntity.positionInPortal(super.positionInPortal(portalAxis, portalRect));
 	}
 	
+	@Override
 	protected void initDataTracker() {
 		this.getDataTracker().startTracking(SHOOTING_STAR_TYPE, ShootingStarBlock.Type.COLORFUL.ordinal());
 		this.getDataTracker().startTracking(PLAYER_PLACED, false);
 	}
 	
+	@Override
 	public void tick() {
 		super.tick();
 		this.tickPortal();
@@ -239,7 +250,7 @@ public class ShootingStarEntity extends Entity {
 		collidingEntities.forEach(entity -> {
 			if (entity.getY() >= this.getBoundingBox().maxY) {
 				entity.fallDistance = 0F;
-				if (this.collides()) {
+				if (this.canHit()) {
 					entity.setPosition(entity.getPos().x, this.getBoundingBox().maxY, entity.getPos().z);
 				}
 				entity.move(MovementType.SHULKER_BOX, this.getVelocity());
@@ -254,7 +265,9 @@ public class ShootingStarEntity extends Entity {
 						playGroundParticles();
 					}
 				} else {
-					playFallingParticles();
+					if (world.random.nextBoolean()) {
+						playFallingParticles();
+					}
 				}
 			}
 		} else {
@@ -340,6 +353,7 @@ public class ShootingStarEntity extends Entity {
 		}
 	}
 	
+	@Override
 	public void pushAwayFrom(Entity entity) {
 		if (entity.getBoundingBox().minY <= this.getBoundingBox().minY) {
 			super.pushAwayFrom(entity);
@@ -348,10 +362,6 @@ public class ShootingStarEntity extends Entity {
 	
 	public Item asItem() {
 		return this.getShootingStarType().getBlock().asItem();
-	}
-	
-	public boolean collides() {
-		return !this.isRemoved();
 	}
 	
 	public void playGroundParticles() {
@@ -408,6 +418,7 @@ public class ShootingStarEntity extends Entity {
 				.build(LootContextTypes.ENTITY));
 	}
 	
+	@Override
 	public Text getName() {
 		Text text = this.getCustomName();
 		return (text != null ? text : asItem().getName());
@@ -449,7 +460,7 @@ public class ShootingStarEntity extends Entity {
 			collidingEntities.forEach(entity -> {
 				if (entity.getY() >= this.getBoundingBox().maxY) {
 					entity.fallDistance = 0F;
-					if (this.collides()) {
+					if (this.canHit()) {
 						entity.setPosition(entity.getPos().x, this.getBoundingBox().maxY, entity.getPos().z);
 					}
 					entity.move(MovementType.SHULKER_BOX, this.getVelocity());
@@ -501,6 +512,7 @@ public class ShootingStarEntity extends Entity {
 		this.getDataTracker().set(PLAYER_PLACED, playerPlaced);
 	}
 	
+	@Override
 	public void writeCustomDataToNbt(@NotNull NbtCompound tag) {
 		tag.putShort("Age", (short) this.age);
 		tag.putString("Type", this.getShootingStarType().getName());
@@ -508,6 +520,7 @@ public class ShootingStarEntity extends Entity {
 		tag.putBoolean("PlayerPlaced", this.dataTracker.get(PLAYER_PLACED));
 	}
 	
+	@Override
 	public void readCustomDataFromNbt(@NotNull NbtCompound tag) {
 		this.age = tag.getShort("Age");
 		if (tag.contains("LastCollisionCount", NbtElement.INT_TYPE)) {

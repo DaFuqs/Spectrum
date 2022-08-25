@@ -42,12 +42,17 @@ public class SpectrumMultiblocks {
 		MULTIBLOCKS.put(identifier, PatchouliAPI.get().registerMultiblock(identifier, multiblock));
 	}
 	
+	private static boolean registered = false;
+	
 	public static void register() {
-		registerPedestal();
-		registerFusionShrine();
-		registerEnchanter();
-		registerSpiritInstiller();
-		registerCinderhearth();
+		if(!registered) {
+			registerPedestal();
+			registerFusionShrine();
+			registerEnchanter();
+			registerSpiritInstiller();
+			registerCinderhearth();
+			registered = true;
+		}
 	}
 	
 	private static void registerFusionShrine() {

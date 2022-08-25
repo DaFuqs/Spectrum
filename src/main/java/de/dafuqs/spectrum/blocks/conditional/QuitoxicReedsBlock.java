@@ -26,6 +26,7 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.Util;
@@ -163,17 +164,16 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 			if (i < MAX_GROWTH_HEIGHT_WATER || (bottomLiquidCrystalLogged && i < MAX_GROWTH_HEIGHT_CRYSTAL)) {
 				int j = state.get(AGE);
 				if (j == 7) {
-					// consume 1 clay block close to the reed when growing.
-					// if the quitoxic reeds are growing in liquid crystal:
-					// consume 1/4 of clay
+					// consume 1 block close to the reed when growing.
+					// if the quitoxic reeds are growing in liquid crystal: 1/4 chance to consume
 					if (!bottomLiquidCrystalLogged || random.nextInt(4) == 0) {
-						// search for clay. 1 clay => 1 quitoxic reed
-						Optional<BlockPos> clayPos = searchClayPos(world, pos.down(i), Blocks.CLAY.getDefaultState(), random);
-						if (clayPos.isEmpty() || world.getBlockState(clayPos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
+						// search for block it could be planted on. 1 block => 1 quitoxic reed
+						Optional<BlockPos> plantablePos = searchPlantablePos(world, pos.down(i), SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE, random);
+						if (plantablePos.isEmpty() || world.getBlockState(plantablePos.get().up()).getBlock() instanceof QuitoxicReedsBlock) {
 							return;
 						}
-						world.setBlockState(clayPos.get(), Blocks.DIRT.getDefaultState(), 3);
-						world.playSound(null, clayPos.get(), SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						world.setBlockState(plantablePos.get(), Blocks.DIRT.getDefaultState(), 3);
+						world.playSound(null, plantablePos.get(), SoundEvents.BLOCK_GRAVEL_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 					}
 					
 					world.setBlockState(pos.up(), getStateForPos(world, pos.up()));
@@ -190,14 +190,14 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 		}
 	}
 	
-	private Optional<BlockPos> searchClayPos(World world, @NotNull BlockPos searchPos, BlockState searchBlockState, Random random) {
+	private Optional<BlockPos> searchPlantablePos(World world, @NotNull BlockPos searchPos, TagKey<Block> searchBlockState, Random random) {
 		List<Direction> directions = Util.copyShuffled(Direction.values(), random);
 		
 		int i = 0;
 		int range = 8;
 		BlockPos currentPos = new BlockPos(searchPos.getX(), searchPos.getY(), searchPos.getZ());
 		while (i < 6) {
-			if (range < 8 && world.getBlockState(currentPos.offset(directions.get(i))).equals(searchBlockState)) {
+			if (range < 8 && world.getBlockState(currentPos.offset(directions.get(i))).isIn(searchBlockState)) {
 				range++;
 				currentPos = currentPos.offset(directions.get(i));
 			} else {
@@ -233,7 +233,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	
 	/**
 	 * Can be placed in up to 2 blocks deep water / liquid crystal
-	 * growing on clay only
+	 * growing on SpectrumBlockTags.QUITOXIC_REEDS_PLANTABLE only
 	 */
 	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {

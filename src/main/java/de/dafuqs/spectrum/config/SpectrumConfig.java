@@ -52,7 +52,7 @@ public class SpectrumConfig implements ConfigData {
 	public float ShootingStarChance = 0.004F;
 	
 	public int MermaidsBrushChanceChunk = 16;
-	public int QuitoxicReedsCountPerChunk = 25;
+	public int QuitoxicReedsCountPerChunk = 15;
 	@Comment("The biomes where Quitoxic Reeds are growing (usually swamps)")
 	public List<String> QuitoxicReedsGenerationBiomes = new ArrayList<>();
 	

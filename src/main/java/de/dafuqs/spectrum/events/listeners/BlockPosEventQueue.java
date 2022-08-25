@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.events.listeners;
 
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.effect.BlockPosEventTransfer;
-import net.fabricmc.loader.impl.lib.sat4j.core.Vec;
-import net.minecraft.entity.Entity;
+import de.dafuqs.spectrum.particle.effect.SimpleTransmission;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -25,7 +23,7 @@ public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry
 			EventEntry eventEntry = new EventEntry(event.getEvent(), new BlockPos(emitterPos.x, emitterPos.y, emitterPos.z), MathHelper.floor(event.getEmitterPos().distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			SpectrumS2CPacketSender.sendBlockPosEventTransferPacket((ServerWorld) world, new BlockPosEventTransfer(emitterPos, this.positionSource, delay));
+			SpectrumS2CPacketSender.sendBlockPosEventTransferPacket((ServerWorld) world, new SimpleTransmission(emitterPos, this.positionSource, delay));
 		}
 	}
 	

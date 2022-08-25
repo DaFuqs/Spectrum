@@ -1,19 +1,15 @@
 package de.dafuqs.spectrum.events.listeners;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
 import net.minecraft.world.event.listener.GameEventListener;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 public abstract class EventQueue<D> implements GameEventListener {
 	
@@ -31,7 +27,8 @@ public abstract class EventQueue<D> implements GameEventListener {
 	
 	public void tick(World world) {
 		if (!eventQueue.isEmpty()) {
-			for (D key : eventQueue.keySet()) {
+			D[] keys = (D[]) eventQueue.keySet().toArray(); // protection from ConcurrentModificationExceptions
+			for (D key : keys) {
 				Integer tickCounter = eventQueue.get(key);
 				if (tickCounter >= 1) {
 					eventQueue.put(key, tickCounter - 1);

@@ -1,18 +1,14 @@
 package de.dafuqs.spectrum.events.listeners;
 
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.effect.ItemTransfer;
-import net.minecraft.entity.Entity;
+import de.dafuqs.spectrum.particle.effect.SimpleTransmission;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.PositionSource;
-
-import javax.annotation.Nullable;
 
 public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventEntry> {
 	
@@ -27,7 +23,7 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 			EventEntry eventEntry = new EventEntry(event.getEvent(), itemEntity, MathHelper.floor(pos.distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new ItemTransfer(pos, this.positionSource, delay));
+			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new SimpleTransmission(pos, this.positionSource, delay));
 		}
 	}
 

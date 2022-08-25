@@ -24,8 +24,8 @@ public class SpectrumGameEvents {
 		
 		for (DyeColor dyeColor : DyeColor.values()) {
 			List<RedstoneTransferGameEvent> list = new ArrayList<>();
-			for (int i = 0; i < 16; i++) {
-				list.add(Registry.register(Registry.GAME_EVENT, new Identifier(SpectrumCommon.MOD_ID, "wireless_redstone_signal_" + dyeColor.name().toLowerCase(Locale.ROOT) + "_" + i), new RedstoneTransferGameEvent("wireless_redstone_signal_" + dyeColor.name().toLowerCase(Locale.ROOT) + "_" + i, 16, dyeColor, i)));
+			for (int power = 0; power < 16; power++) {
+				list.add(Registry.register(Registry.GAME_EVENT, new Identifier(SpectrumCommon.MOD_ID, "wireless_redstone_signal_" + dyeColor.name().toLowerCase(Locale.ROOT) + "_" + power), new RedstoneTransferGameEvent("wireless_redstone_signal_" + dyeColor.name().toLowerCase(Locale.ROOT) + "_" + power, 16, dyeColor, power)));
 			}
 			WIRELESS_REDSTONE_SIGNALS.put(dyeColor, list);
 		}

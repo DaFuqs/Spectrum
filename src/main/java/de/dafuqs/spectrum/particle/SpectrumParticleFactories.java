@@ -22,32 +22,32 @@ public class SpectrumParticleFactories {
 			return particle;
 		});
 		
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.ITEM_TRANSFER, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			ItemTransferParticle particle = new ItemTransferParticle(world, parameters.getItemTransfer(), parameters.getItemTransfer().getArrivalInTicks());
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.ITEM_TRANSMISSION, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			TransmissionParticle particle = new TransmissionParticle(world, x, y, z, parameters.getDestination(), parameters.getArrivalInTicks());
 			particle.setSprite(provider);
 			return particle;
 		});
 		
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.EXPERIENCE_TRANSFER, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			ExperienceTransferParticle particle = new ExperienceTransferParticle(world, parameters.getExperienceTransfer(), parameters.getExperienceTransfer().getArrivalInTicks());
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.EXPERIENCE_TRANSMISSION, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			TransmissionParticle particle = new TransmissionParticle(world, x, y, z, parameters.getDestination(), parameters.getArrivalInTicks());
 			particle.setSprite(provider);
 			return particle;
 		});
 		
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.WIRELESS_REDSTONE_TRANSMISSION, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			WirelessRedstoneTransmissionParticle particle = new WirelessRedstoneTransmissionParticle(world, parameters.getWirelessRedstoneTransmission(), parameters.getWirelessRedstoneTransmission().getArrivalInTicks());
+			TransmissionParticle particle = new TransmissionParticle(world, x, y, z, parameters.getDestination(), parameters.getArrivalInTicks());
 			particle.setSprite(provider);
 			return particle;
 		});
 		
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.TRANSPHERE, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			TransphereParticle particle = new TransphereParticle(world, parameters.getTransphere(), parameters.getTransphere().getArrivalInTicks());
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.COLORED_TRANSMISSION, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			ColoredTransmissionParticle particle = new ColoredTransmissionParticle(world, x, y, z, parameters.getDestination(), parameters.getArrivalInTicks(), parameters.getDyeColor());
 			particle.setSprite(provider);
 			return particle;
 		});
 		
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.BLOCK_POS_EVENT_TRANSFER, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			BlockPosEventTransferParticle particle = new BlockPosEventTransferParticle(world, parameters.getBlockPosEvent(), parameters.getBlockPosEvent().getArrivalInTicks());
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.BLOCK_POS_EVENT_TRANSMISSION, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			TransmissionParticle particle = new TransmissionParticle(world, x, y, z, parameters.getDestination(), parameters.getArrivalInTicks());
 			particle.setSprite(provider);
 			return particle;
 		});

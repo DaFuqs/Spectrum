@@ -463,7 +463,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 				BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
 				BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 				if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-					itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, resultAmountAfterEfficiencyMod, false);
+					itemBowlBlockEntity.decrementBowlStack(new Vec3d(enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1.0, enchanterBlockEntity.pos.getZ() + 0.5), resultAmountAfterEfficiencyMod, false);
 					itemBowlBlockEntity.updateInClientWorld();
 				}
 			}
@@ -535,10 +535,10 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 			BlockEntity blockEntity = world.getBlockEntity(enchanterBlockEntity.pos.add(bowlOffset));
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				if (itemCountToConsumeAfterMod == 0) {
-					itemBowlBlockEntity.spawnOrbParticles(enchanterBlockEntity.pos);
+					itemBowlBlockEntity.spawnOrbParticles(new Vec3d(enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1.0, enchanterBlockEntity.pos.getZ() + 0.5));
 					consumedAmount += itemCountToConsume;
 				} else {
-					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, itemCountToConsumeAfterMod, true);
+					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(new Vec3d(enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1.0, enchanterBlockEntity.pos.getZ() + 0.5), itemCountToConsumeAfterMod, true);
 					consumedAmount += decrementedAmount;
 				}
 			}
@@ -740,7 +740,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 			BlockPos itemBowlPos = pos.add(getItemBowlPositionOffset(i, 0));
 			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				itemBowlBlockEntity.spawnOrbParticles(pos);
+				itemBowlBlockEntity.spawnOrbParticles(new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5));
 			}
 		}
 	}

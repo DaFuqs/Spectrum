@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.events.ExactPositionSource;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
@@ -102,7 +103,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		return this.inventory;
 	}
 	
-	public int decrementBowlStack(BlockPos particleTargetBlockPos, int amount, boolean doEffects) {
+	public int decrementBowlStack(Vec3d orbTargetPos, int amount, boolean doEffects) {
 		ItemStack storedStack = this.inventory.getStack(0);
 		if (storedStack.isEmpty()) {
 			return 0;
@@ -129,7 +130,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		
 		if (decrementAmount > 0) {
 			if (doEffects) {
-				spawnOrbParticles(particleTargetBlockPos);
+				spawnOrbParticles(orbTargetPos);
 			}
 			updateInClientWorld();
 			markDirty();
@@ -138,7 +139,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		return decrementAmount;
 	}
 	
-	public void spawnOrbParticles(BlockPos targetBlockPos) {
+	public void spawnOrbParticles(Vec3d orbTargetPos) {
 		ItemStack storedStack = this.getInventory().getStack(0);
 		if (!storedStack.isEmpty()) {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem(), DyeColor.PURPLE);
@@ -151,7 +152,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 							sparkleRisingParticleEffect, 50,
 							new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
 					
-					SpectrumS2CPacketSender.playTransphereParticle(serverWorld, new ColoredTransmission(new Vec3d(this.pos.getX(), this.pos.getY(), this.pos.getZ()), new ExactPositionSource(new Vec3d(targetBlockPos.getX() + 0.5, targetBlockPos.getY() + 1, targetBlockPos.getZ() + 0.5)), 20, optionalItemColor.get()));
+					SpectrumS2CPacketSender.playColorTransmission(serverWorld, new ColoredTransmission(new Vec3d(this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D), new ExactPositionSource(orbTargetPos), 20, optionalItemColor.get()));
 				} else if (this.world instanceof ClientWorld clientWorld) {
 					for (int i = 0; i < 50; i++) {
 						float randomOffsetX = pos.getX() + 0.3F + world.random.nextFloat() * 0.6F;
@@ -166,11 +167,11 @@ public class ItemBowlBlockEntity extends BlockEntity {
 								randomVelocityX, randomVelocityY, randomVelocityZ);
 					}
 					
-					ParticleEffect sphereParticleEffect = new ColoredTransmissionParticleEffect(new ExactPositionSource(new Vec3d(targetBlockPos.getX() + 0.5, targetBlockPos.getY() + 1, targetBlockPos.getZ() + 0.5)), 20, optionalItemColor.get());
-					clientWorld.addParticle(sphereParticleEffect, this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, (targetBlockPos.getX() - this.pos.getX()) * 0.045, 0, (targetBlockPos.getZ() - this.pos.getZ()) * 0.045);
+					ParticleEffect sphereParticleEffect = new ColoredTransmissionParticleEffect(new ExactPositionSource(orbTargetPos), 20, optionalItemColor.get());
+					clientWorld.addParticle(sphereParticleEffect, this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, (orbTargetPos.getX() - this.pos.getX()) * 0.045, 0, (orbTargetPos.getZ() - this.pos.getZ()) * 0.045);
 				}
 				
-				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 0.7F + this.world.random.nextFloat() * 0.6F);
+				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 0.7F + this.world.random.nextFloat() * 0.6F);
 			}
 		}
 	}

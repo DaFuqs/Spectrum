@@ -16,11 +16,11 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_EXACT_OFFSET_AND_VELOCITY_ID = SpectrumCommon.locate("play_particle_with_random_offset_and_velocity");
 	public static final Identifier PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID = SpectrumCommon.locate("play_particle_with_pattern_and_velocity");
 	public static final Identifier CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID = SpectrumCommon.locate("change_particle_spawner_settings_client");
-	public static final Identifier INITIATE_ITEM_TRANSFER = SpectrumCommon.locate("initiate_item_transfer");
-	public static final Identifier INITIATE_TRANSPHERE = SpectrumCommon.locate("initiate_transphere");
-	public static final Identifier INITIATE_EXPERIENCE_TRANSFER = SpectrumCommon.locate("initiate_experience_transfer");
-	public static final Identifier INITIATE_BLOCK_POS_EVENT_TRANSFER = SpectrumCommon.locate("block_pos_event_transfer");
-	public static final Identifier INITIATE_WIRELESS_REDSTONE_TRANSMISSION = SpectrumCommon.locate("initiate_wireless_redstone_transmission");
+	public static final Identifier ITEM_TRANSMISSION = SpectrumCommon.locate("initiate_item_transfer");
+	public static final Identifier COLOR_TRANSMISSION = SpectrumCommon.locate("initiate_transphere");
+	public static final Identifier EXPERIENCE_TRANSMISSION = SpectrumCommon.locate("initiate_experience_transfer");
+	public static final Identifier BLOCK_POS_EVENT_TRANSMISSION = SpectrumCommon.locate("block_pos_event_transfer");
+	public static final Identifier WIRELESS_REDSTONE_TRANSMISSION = SpectrumCommon.locate("initiate_wireless_redstone_transmission");
 	public static final Identifier PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = SpectrumCommon.locate("item_entity_absorbed");
 	public static final Identifier PLAY_EXPERIENCE_ORB_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID = SpectrumCommon.locate("experience_orb_entity_absorbed");
 	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = SpectrumCommon.locate("play_pedestal_crafting_sound_instance");

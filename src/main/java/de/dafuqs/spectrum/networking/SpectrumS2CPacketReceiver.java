@@ -263,7 +263,7 @@ public class SpectrumS2CPacketReceiver {
 			}
 		});
 		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_ITEM_TRANSFER, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.ITEM_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
@@ -271,7 +271,7 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_TRANSPHERE, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.COLOR_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			ColoredTransmission transmission = ColoredTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
@@ -279,7 +279,7 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_EXPERIENCE_TRANSFER, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.EXPERIENCE_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
@@ -287,7 +287,7 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_BLOCK_POS_EVENT_TRANSFER, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.BLOCK_POS_EVENT_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
@@ -295,7 +295,7 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_WIRELESS_REDSTONE_TRANSMISSION, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.WIRELESS_REDSTONE_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			WirelessRedstoneTransmission transmission = WirelessRedstoneTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread

@@ -23,7 +23,7 @@ public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry
 			EventEntry eventEntry = new EventEntry(event.getEvent(), new BlockPos(emitterPos.x, emitterPos.y, emitterPos.z), MathHelper.floor(event.getEmitterPos().distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			SpectrumS2CPacketSender.sendBlockPosEventTransferPacket((ServerWorld) world, new SimpleTransmission(emitterPos, this.positionSource, delay));
+			SpectrumS2CPacketSender.playBlockPosEventTransmission((ServerWorld) world, new SimpleTransmission(emitterPos, this.positionSource, delay));
 		}
 	}
 	

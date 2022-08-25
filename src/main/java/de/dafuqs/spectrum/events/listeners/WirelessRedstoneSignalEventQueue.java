@@ -23,7 +23,7 @@ public class WirelessRedstoneSignalEventQueue extends EventQueue<WirelessRedston
 			WirelessRedstoneSignalEventQueue.EventEntry eventEntry = new WirelessRedstoneSignalEventQueue.EventEntry(redstoneTransferEvent, MathHelper.floor(pos.distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			SpectrumS2CPacketSender.sendWirelessRedstonePacket((ServerWorld) world, new WirelessRedstoneTransmission(pos, this.positionSource, delay));
+			SpectrumS2CPacketSender.playWirelessRedstoneTransmission((ServerWorld) world, new WirelessRedstoneTransmission(pos, this.positionSource, delay));
 		}
 	}
 	

@@ -274,9 +274,9 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(ingredientStacks.get(0).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
 			if (decreasedAmountAfterEfficiencyMod > 0) {
 				if (ingredientStacks.get(0).test(leftBowl.getInventory().getStack(0))) {
-					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+					leftBowl.decrementBowlStack(new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5, spiritInstillerBlockEntity.pos.getY() + 1.0, spiritInstillerBlockEntity.pos.getZ() + 0.5), decreasedAmountAfterEfficiencyMod, true);
 				} else {
-					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+					rightBowl.decrementBowlStack(new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5, spiritInstillerBlockEntity.pos.getY() + 1.0, spiritInstillerBlockEntity.pos.getZ() + 0.5), decreasedAmountAfterEfficiencyMod, true);
 				}
 			}
 			
@@ -284,9 +284,9 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(ingredientStacks.get(1).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
 			if (decreasedAmountAfterEfficiencyMod > 0) {
 				if (ingredientStacks.get(1).test(leftBowl.getInventory().getStack(0))) {
-					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+					leftBowl.decrementBowlStack(new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5, spiritInstillerBlockEntity.pos.getY() + 1.0, spiritInstillerBlockEntity.pos.getZ() + 0.5), decreasedAmountAfterEfficiencyMod, true);
 				} else {
-					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+					rightBowl.decrementBowlStack(new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5, spiritInstillerBlockEntity.pos.getY() + 1.0, spiritInstillerBlockEntity.pos.getZ() + 0.5), decreasedAmountAfterEfficiencyMod, true);
 				}
 			}
 			
@@ -401,13 +401,13 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		BlockPos itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(false).up());
 		BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.spawnOrbParticles(pos);
+			itemBowlBlockEntity.spawnOrbParticles(new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5));
 		}
 		
 		itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(true).up());
 		blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.spawnOrbParticles(pos);
+			itemBowlBlockEntity.spawnOrbParticles(new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5));
 		}
 	}
 	

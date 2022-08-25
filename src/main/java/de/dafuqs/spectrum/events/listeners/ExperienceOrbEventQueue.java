@@ -23,7 +23,7 @@ public class ExperienceOrbEventQueue extends EventQueue<ExperienceOrbEventQueue.
 			EventEntry eventEntry = new EventEntry(event.getEvent(), experienceOrbEntity, MathHelper.floor(pos.distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			SpectrumS2CPacketSender.sendExperienceOrbTransferPacket((ServerWorld) world, new SimpleTransmission(pos, this.positionSource, delay));
+			SpectrumS2CPacketSender.playExperienceTransmission((ServerWorld) world, new SimpleTransmission(pos, this.positionSource, delay));
 		}
 	}
 	

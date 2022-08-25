@@ -319,6 +319,9 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		} else {
 			this.ownerUUID = null;
 		}
+		if (nbt.contains("MulitblockRotation")) {
+			this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MulitblockRotation").toUpperCase(Locale.ROOT));
+		}
 		
 		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
@@ -344,6 +347,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putBoolean("CanCraft", this.canCraft);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
+		nbt.putString("MulitblockRotation", this.multiblockRotation.asString());
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
 		}
@@ -397,13 +401,13 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		BlockPos itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(false).up());
 		BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.doEnchantingEffects(pos);
+			itemBowlBlockEntity.spawnOrbParticles(pos);
 		}
 		
 		itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(true).up());
 		blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.doEnchantingEffects(pos);
+			itemBowlBlockEntity.spawnOrbParticles(pos);
 		}
 	}
 	
@@ -461,6 +465,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		nbtCompound.put("inventory", this.inventory.toNbtList());
 		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
 		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
+		nbtCompound.putString("MulitblockRotation", this.multiblockRotation.asString());
 		if (this.currentRecipe != null && canCraft) {
 			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}

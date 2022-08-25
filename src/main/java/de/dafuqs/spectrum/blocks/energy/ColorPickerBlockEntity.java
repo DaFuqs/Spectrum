@@ -71,8 +71,11 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 			blockEntity.inkDirty = false;
 			if (!blockEntity.paused) {
 				boolean convertedPigment = false;
+				boolean shouldPause = true;
 				if (world.getTime() % TICKS_PER_CONVERSION == 0) {
 					convertedPigment = blockEntity.tryConvertPigmentToEnergy((ServerWorld) world);
+				} else {
+					shouldPause = false;
 				}
 				boolean filledContainer = blockEntity.tryFillInkContainer(); // that's an OR
 				
@@ -80,7 +83,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 					blockEntity.updateInClientWorld();
 					blockEntity.setInkDirty();
 					blockEntity.markDirty();
-				} else {
+				} else if(shouldPause) {
 					blockEntity.paused = true;
 				}
 			}
@@ -213,7 +216,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 				inventory.get(INPUT_SLOT_ID).decrement(1);
 				this.inkStorage.addEnergy(color, amount);
 				
-				world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume, 1.0F);
+				world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 2, 1.0F);
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3d(pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5),
 						SpectrumParticleTypes.getFluidRisingParticle(color.getDyeColor()),

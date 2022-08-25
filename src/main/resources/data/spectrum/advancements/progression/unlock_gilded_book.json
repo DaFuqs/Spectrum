@@ -13,7 +13,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "feature": "spectrum:ancient_ruins"
+                "structure": "spectrum:ancient_ruins"
               }
             }
           }

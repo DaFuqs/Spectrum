@@ -16,9 +16,17 @@
     "in_ancient_ruins": {
       "trigger": "minecraft:location",
       "conditions": {
-        "location": {
-          "feature": "spectrum:ancient_ruins"
-        }
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "spectrum:ancient_ruins"
+              }
+            }
+          }
+        ]
       }
     }
   }

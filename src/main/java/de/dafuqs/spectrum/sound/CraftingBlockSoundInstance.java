@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.AbstractSoundInstance;
+import net.minecraft.client.sound.MovingMinecartSoundInstance;
 import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.sound.SoundCategory;
@@ -45,7 +46,6 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		
 		this.repeat = true;
 		this.repeatDelay = 0;
-		this.volume = SpectrumCommon.CONFIG.BlockSoundVolume;
 	}
 	
 	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {

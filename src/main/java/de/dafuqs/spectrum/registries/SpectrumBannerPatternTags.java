@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.tag.TagKey;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumBannerPatternTags {

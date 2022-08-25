@@ -8,7 +8,6 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;

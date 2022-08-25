@@ -8,14 +8,12 @@ import net.minecraft.block.BuddingAmethystBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.util.math.random.Random;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
-import net.minecraft.util.math.random.Random;
 
 @Mixin(BuddingAmethystBlock.class)
 public class BuddingAmethystBlockMixin {

@@ -17,7 +17,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -44,13 +43,7 @@ import net.minecraft.world.event.BlockPositionSource;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.event.listener.GameEventListener;
 
-import net.minecraft.util.math.random.Random;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback {
 	

@@ -10,6 +10,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
@@ -45,8 +46,9 @@ public class SuckingChestBlock extends SpectrumChestBlock {
 		}
 	}
 	
+	@Override
 	@Nullable
-	public <T extends BlockEntity> GameEventListener getGameEventListener(World world, T blockEntity) {
+	public <T extends BlockEntity> GameEventListener getGameEventListener(ServerWorld world, T blockEntity) {
 		return blockEntity instanceof SuckingChestBlockEntity suckingChestBlockEntity ? suckingChestBlockEntity.getEventListener() : null;
 	}
 	

@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
@@ -101,8 +102,9 @@ public class CrystalApothecaryBlock extends BlockWithEntity {
 		return checkType(type, SpectrumBlockEntities.CRYSTAL_APOTHECARY, CrystalApothecaryBlockEntity::tick);
 	}
 	
+	@Override
 	@Nullable
-	public <T extends BlockEntity> GameEventListener getGameEventListener(World world, T blockEntity) {
+	public <T extends BlockEntity> GameEventListener getGameEventListener(ServerWorld world, T blockEntity) {
 		return blockEntity instanceof CrystalApothecaryBlockEntity crystalApothecaryBlockEntity ? crystalApothecaryBlockEntity.getEventListener() : null;
 	}
 	

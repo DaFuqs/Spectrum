@@ -10,8 +10,6 @@ import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.util.math.random.Random;
-
 import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;

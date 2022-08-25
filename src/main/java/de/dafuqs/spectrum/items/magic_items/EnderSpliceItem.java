@@ -23,7 +23,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.packet.s2c.play.PlaySoundIdS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;

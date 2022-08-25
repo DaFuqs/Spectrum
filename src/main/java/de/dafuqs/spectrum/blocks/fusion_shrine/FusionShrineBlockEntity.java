@@ -42,6 +42,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -49,7 +50,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.Optional;
-import net.minecraft.util.math.random.Random;
 import java.util.UUID;
 
 public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, Upgradeable {

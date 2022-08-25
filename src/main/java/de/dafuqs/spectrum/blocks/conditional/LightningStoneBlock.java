@@ -14,6 +14,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -24,7 +25,6 @@ import net.minecraft.world.explosion.Explosion;
 
 import java.util.Hashtable;
 import java.util.Map;
-import net.minecraft.util.math.random.Random;
 
 public class LightningStoneBlock extends Block implements RevelationAware {
 	

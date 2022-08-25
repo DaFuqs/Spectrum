@@ -20,11 +20,10 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-
-import net.minecraft.util.math.random.Random;
 
 public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 	

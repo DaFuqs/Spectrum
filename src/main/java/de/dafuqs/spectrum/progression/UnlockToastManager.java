@@ -22,7 +22,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import org.jetbrains.annotations.NotNull;
 
-import net.minecraft.util.math.random.Random;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)

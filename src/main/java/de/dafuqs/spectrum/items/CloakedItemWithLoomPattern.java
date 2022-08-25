@@ -5,7 +5,6 @@ import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tag.TagKey;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.RegistryEntry;

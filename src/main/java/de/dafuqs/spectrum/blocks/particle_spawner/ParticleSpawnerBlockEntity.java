@@ -25,13 +25,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.util.math.random.Random;
 
 public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
 	

@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.util.math.random.Random;
 import java.util.*;
 
 public class WhispyCircletItem extends SpectrumTrinketItem {

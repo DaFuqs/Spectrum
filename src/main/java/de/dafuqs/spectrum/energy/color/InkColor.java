@@ -5,8 +5,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3f;
 
-import net.minecraft.util.math.random.Random;
-
 import java.util.*;
 
 public abstract class InkColor {

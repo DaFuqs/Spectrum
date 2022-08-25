@@ -17,12 +17,12 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.util.math.random.Random;
 
 public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
 	

@@ -46,13 +46,13 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockLocating;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import net.minecraft.util.math.random.Random;
 import java.util.stream.Collectors;
 
 public class ShootingStarEntity extends Entity {

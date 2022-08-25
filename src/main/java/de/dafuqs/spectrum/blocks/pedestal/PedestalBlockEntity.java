@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import java.util.*;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
@@ -55,13 +54,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 
-import net.minecraft.util.math.random.Random;
+import java.util.*;
 
 public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory {
 	

@@ -1,10 +1,11 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
+import de.dafuqs.spectrum.events.ExactPositionSource;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.particle.effect.Transphere;
-import de.dafuqs.spectrum.particle.effect.TransphereParticleEffect;
+import de.dafuqs.spectrum.particle.effect.ColoredTransmission;
+import de.dafuqs.spectrum.particle.effect.ColoredTransmissionParticleEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
@@ -151,7 +152,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 							sparkleRisingParticleEffect, 50,
 							new Vec3d(0.4, 0.2, 0.4), new Vec3d(0.06, 0.16, 0.06));
 					
-					SpectrumS2CPacketSender.playTransphereParticle(serverWorld, new Transphere(this.pos, new BlockPositionSource(enchanterBlockPos), 20, optionalItemColor.get()));
+					SpectrumS2CPacketSender.playTransphereParticle(serverWorld, new ColoredTransmission(this.pos, new ExactPositionSource(new Vec3d(enchanterBlockPos.getX() + 0.5, enchanterBlockPos.getY() + 1, enchanterBlockPos.getZ() + 0.5)), 20, optionalItemColor.get()));
 				} else if (this.world instanceof ClientWorld clientWorld) {
 					for (int i = 0; i < 50; i++) {
 						float randomOffsetX = pos.getX() + 0.3F + world.random.nextFloat() * 0.6F;
@@ -166,8 +167,8 @@ public class ItemBowlBlockEntity extends BlockEntity {
 								randomVelocityX, randomVelocityY, randomVelocityZ);
 					}
 					
-					ParticleEffect sphereParticleEffect = new TransphereParticleEffect(new Transphere(this.pos, new BlockPositionSource(enchanterBlockPos), 20, optionalItemColor.get()));
-					clientWorld.addParticle(sphereParticleEffect, this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D, (enchanterBlockPos.getX() - this.pos.getX()) * 0.045, 0, (enchanterBlockPos.getZ() - this.pos.getZ()) * 0.045);
+					ParticleEffect sphereParticleEffect = new ColoredTransmissionParticleEffect(new ExactPositionSource(new Vec3d(enchanterBlockPos.getX() + 0.5, enchanterBlockPos.getY() + 1, enchanterBlockPos.getZ() + 0.5)), 20, optionalItemColor.get());
+					clientWorld.addParticle(sphereParticleEffect, this.pos.getX() + 0.5D, this.pos.getY() + 1.0D, this.pos.getZ() + 0.5D, (enchanterBlockPos.getX() - this.pos.getX()) * 0.045, 0, (enchanterBlockPos.getZ() - this.pos.getZ()) * 0.045);
 				}
 				
 				world.playSound(null, this.pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 0.7F + this.world.random.nextFloat() * 0.6F);

@@ -7,7 +7,9 @@ import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.particle.ParticlePattern;
-import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.particle.effect.ColoredTransmission;
+import de.dafuqs.spectrum.particle.effect.SimpleTransmission;
+import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -228,44 +230,44 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
-	public static void sendItemTransferPacket(ServerWorld world, @NotNull ItemTransfer itemTransfer) {
-		BlockPos blockPos = itemTransfer.getOrigin();
+	public static void sendItemTransferPacket(ServerWorld world, @NotNull SimpleTransmission transfer) {
+		BlockPos blockPos = new BlockPos(transfer.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
-		ItemTransfer.writeToBuf(buf, itemTransfer);
+		SimpleTransmission.writeToBuf(buf, transfer);
 		
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_ITEM_TRANSFER, buf);
 		}
 	}
 	
-	public static void playTransphereParticle(ServerWorld world, @NotNull Transphere transphere) {
-		BlockPos blockPos = transphere.getOrigin();
+	public static void playTransphereParticle(ServerWorld world, @NotNull ColoredTransmission transfer) {
+		BlockPos blockPos = new BlockPos(transfer.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
-		Transphere.writeToBuf(buf, transphere);
+		ColoredTransmission.writeToBuf(buf, transfer);
 		
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_TRANSPHERE, buf);
 		}
 	}
 	
-	public static void sendExperienceOrbTransferPacket(ServerWorld world, @NotNull ExperienceTransfer experienceTransfer) {
-		BlockPos blockPos = experienceTransfer.getOrigin();
+	public static void sendExperienceOrbTransferPacket(ServerWorld world, @NotNull SimpleTransmission transfer) {
+		BlockPos blockPos = new BlockPos(transfer.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
-		ExperienceTransfer.writeToBuf(buf, experienceTransfer);
+		SimpleTransmission.writeToBuf(buf, transfer);
 		
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_EXPERIENCE_TRANSFER, buf);
 		}
 	}
 	
-	public static void sendBlockPosEventTransferPacket(ServerWorld world, @NotNull BlockPosEventTransfer blockPosEventTransfer) {
-		BlockPos blockPos = blockPosEventTransfer.getOrigin();
+	public static void sendBlockPosEventTransferPacket(ServerWorld world, @NotNull SimpleTransmission transfer) {
+		BlockPos blockPos = new BlockPos(transfer.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
-		BlockPosEventTransfer.writeToBuf(buf, blockPosEventTransfer);
+		SimpleTransmission.writeToBuf(buf, transfer);
 		
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.INITIATE_BLOCK_POS_EVENT_TRANSFER, buf);
@@ -273,7 +275,7 @@ public class SpectrumS2CPacketSender {
 	}
 	
 	public static void sendWirelessRedstonePacket(ServerWorld world, @NotNull WirelessRedstoneTransmission wirelessRedstoneTransmission) {
-		BlockPos blockPos = wirelessRedstoneTransmission.getOrigin();
+		BlockPos blockPos = new BlockPos(wirelessRedstoneTransmission.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
 		WirelessRedstoneTransmission.writeToBuf(buf, wirelessRedstoneTransmission);

@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -48,7 +47,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Predicate;
 
 import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;
 

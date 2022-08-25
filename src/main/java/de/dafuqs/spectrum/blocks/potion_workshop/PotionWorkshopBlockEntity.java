@@ -41,13 +41,16 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.util.math.random.Random;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.UUID;
 
 public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, RecipeInputProvider, SidedInventory, PlayerOwned {
 	

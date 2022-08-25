@@ -24,12 +24,12 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import net.minecraft.util.math.random.Random;
 
 public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	

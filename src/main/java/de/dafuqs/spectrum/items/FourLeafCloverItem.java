@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 

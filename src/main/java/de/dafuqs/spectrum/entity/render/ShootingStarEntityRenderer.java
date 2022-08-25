@@ -18,8 +18,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import net.minecraft.util.math.random.Random;
-
 @Environment(EnvType.CLIENT)
 public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntity> {
 	

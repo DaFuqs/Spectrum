@@ -11,12 +11,11 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.LightType;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-
-import net.minecraft.util.math.random.Random;
 
 public interface JadeVine {
 	

@@ -20,10 +20,9 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.util.math.random.Random;
 
 public class FailingBlock extends DecayBlock {
 	

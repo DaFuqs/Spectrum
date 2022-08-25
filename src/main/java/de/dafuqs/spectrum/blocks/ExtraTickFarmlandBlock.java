@@ -3,10 +3,9 @@ package de.dafuqs.spectrum.blocks;
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.NotNull;
-
-import net.minecraft.util.math.random.Random;
 
 public class ExtraTickFarmlandBlock extends FarmlandBlock {
 	

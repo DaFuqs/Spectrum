@@ -6,9 +6,8 @@ import net.minecraft.block.LightBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
-
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.BlockView;
 
 public class DecayingLightBlock extends WandLightBlock {
 	

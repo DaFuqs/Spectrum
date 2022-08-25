@@ -6,7 +6,6 @@ import it.unimi.dsi.fastutil.ints.IntSortedSet;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.noise.SimplexNoiseSampler;
-import net.minecraft.util.math.random.LocalRandom;
 import net.minecraft.util.math.random.Random;
 
 public class WindStrength {

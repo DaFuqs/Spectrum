@@ -15,7 +15,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix3f;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3f;
-
 import net.minecraft.util.math.random.Random;
 
 public class InkProjectileEntityRenderer extends EntityRenderer<InkProjectileEntity> {

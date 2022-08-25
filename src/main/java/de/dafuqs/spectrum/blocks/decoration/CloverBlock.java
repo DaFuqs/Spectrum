@@ -1,14 +1,16 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.FernBlock;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-
-import net.minecraft.util.math.random.Random;
 
 public class CloverBlock extends FernBlock {
 	

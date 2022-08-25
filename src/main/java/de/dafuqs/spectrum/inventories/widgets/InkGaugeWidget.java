@@ -15,8 +15,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import org.apache.commons.lang3.StringUtils;
 
-import net.minecraft.util.math.random.Random;
-
 import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;

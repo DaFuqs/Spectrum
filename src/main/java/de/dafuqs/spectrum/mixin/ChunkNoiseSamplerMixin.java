@@ -1,19 +1,9 @@
 package de.dafuqs.spectrum.mixin;
 
-import com.google.common.collect.ImmutableList;
-import de.dafuqs.spectrum.deeper_down.DDOreVeinSampler;
-import net.minecraft.block.Blocks;
-import net.minecraft.world.gen.chunk.*;
+import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
 import net.minecraft.world.gen.densityfunction.DensityFunction;
-import net.minecraft.world.gen.densityfunction.DensityFunctionTypes;
-import net.minecraft.world.gen.noise.NoiseConfig;
-import net.minecraft.world.gen.noise.NoiseRouter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(ChunkNoiseSampler.class)
 public abstract class ChunkNoiseSamplerMixin {

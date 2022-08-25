@@ -16,11 +16,10 @@ import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.tag.FluidTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-
-import net.minecraft.util.math.random.Random;
 
 public class LiquidCrystalFluidBlock extends FluidBlock {
 	

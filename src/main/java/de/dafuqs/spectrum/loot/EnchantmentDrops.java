@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.loot;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.loot.conditions.*;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.entity.passive.AxolotlEntity;
 import net.minecraft.entity.passive.FoxEntity;

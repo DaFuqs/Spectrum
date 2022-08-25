@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.worldgen.features;
 
-import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -13,10 +12,8 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RandomBudsFeature extends Feature<RandomBudsFeaturesConfig> {
 	

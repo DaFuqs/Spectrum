@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.GeodeFeature;
 import net.minecraft.world.gen.feature.GeodeFeatureConfig;
@@ -14,8 +15,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.util.math.random.Random;
 
 @Mixin(GeodeFeature.class)
 public class GeodesGenerateWithGemstoneOresMixin {

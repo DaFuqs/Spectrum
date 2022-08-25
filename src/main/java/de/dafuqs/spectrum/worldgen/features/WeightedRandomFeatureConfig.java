@@ -3,11 +3,11 @@ package de.dafuqs.spectrum.worldgen.features;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.dynamic.Codecs;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
 import java.util.List;
-import net.minecraft.util.math.random.Random;
 
 public class WeightedRandomFeatureConfig implements FeatureConfig {
 	

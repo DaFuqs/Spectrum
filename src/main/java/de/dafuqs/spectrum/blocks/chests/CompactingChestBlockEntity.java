@@ -24,8 +24,6 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import net.minecraft.util.math.random.Random;
-
 import java.util.*;
 
 public class CompactingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory {

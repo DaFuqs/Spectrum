@@ -15,7 +15,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
-import org.objectweb.asm.commons.TableSwitchGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

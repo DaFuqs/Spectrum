@@ -31,6 +31,7 @@ import net.minecraft.util.Pair;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -40,9 +41,10 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.util.math.random.Random;
-
-import java.util.*;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterOrLiquidCrystalLogged {
 	

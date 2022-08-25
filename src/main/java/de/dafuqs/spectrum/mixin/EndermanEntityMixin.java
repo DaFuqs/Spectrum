@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,8 +14,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import net.minecraft.util.math.random.Random;
 
 @Mixin(EndermanEntity.class)
 public abstract class EndermanEntityMixin {

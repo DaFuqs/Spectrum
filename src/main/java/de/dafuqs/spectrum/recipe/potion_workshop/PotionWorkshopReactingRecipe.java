@@ -15,6 +15,7 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +23,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
-import net.minecraft.util.math.random.Random;
 
 public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, DescriptiveGatedRecipe {
 	

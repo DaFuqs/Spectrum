@@ -4,9 +4,8 @@ import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 
 public class SpiritSallowLeavesBlock extends LeavesBlock {
 	

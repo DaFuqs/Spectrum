@@ -26,16 +26,12 @@ import de.dafuqs.spectrum.spells.InkSpellEffects;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
-import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
@@ -48,14 +44,12 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
-import net.minecraft.util.math.random.Random;
 import java.util.UUID;
 
 @Environment(EnvType.CLIENT)
@@ -270,48 +264,43 @@ public class SpectrumS2CPacketReceiver {
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_ITEM_TRANSFER, (client, handler, buf, responseSender) -> {
-			ItemTransfer itemTransfer = ItemTransfer.readFromBuf(buf);
-			BlockPos blockPos = itemTransfer.getOrigin();
+			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.getInstance().player.world.addImportantParticle(new ItemTransferParticleEffect(itemTransfer), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				client.getInstance().player.world.addImportantParticle(new ItemTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
 			});
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_TRANSPHERE, (client, handler, buf, responseSender) -> {
-			Transphere transphere = Transphere.readFromBuf(buf);
-			BlockPos blockPos = transphere.getOrigin();
+			ColoredTransmission transmission = ColoredTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.getInstance().player.world.addImportantParticle(new TransphereParticleEffect(transphere), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				client.getInstance().player.world.addImportantParticle(new ColoredTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks(), transmission.getDyeColor()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
 			});
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_EXPERIENCE_TRANSFER, (client, handler, buf, responseSender) -> {
-			ExperienceTransfer experienceTransfer = ExperienceTransfer.readFromBuf(buf);
-			BlockPos blockPos = experienceTransfer.getOrigin();
+			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.getInstance().player.world.addImportantParticle(new ExperienceTransferParticleEffect(experienceTransfer), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				client.getInstance().player.world.addImportantParticle(new ExperienceTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
 			});
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_BLOCK_POS_EVENT_TRANSFER, (client, handler, buf, responseSender) -> {
-			BlockPosEventTransfer blockPosEventTransfer = BlockPosEventTransfer.readFromBuf(buf);
-			BlockPos blockPos = blockPosEventTransfer.getOrigin();
+			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.getInstance().player.world.addImportantParticle(new BlockPosEventTransferParticleEffect(blockPosEventTransfer), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+				client.getInstance().player.world.addImportantParticle(new BlockPosEventTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
 			});
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INITIATE_WIRELESS_REDSTONE_TRANSMISSION, (client, handler, buf, responseSender) -> {
-			WirelessRedstoneTransmission wirelessRedstoneTransmission = WirelessRedstoneTransmission.readFromBuf(buf);
-			BlockPos blockPos = wirelessRedstoneTransmission.getOrigin();
+			WirelessRedstoneTransmission transmission = WirelessRedstoneTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				for (int i = 0; i < 10; i++) {
-					client.getInstance().player.world.addImportantParticle(new WirelessRedstoneTransmissionParticleEffect(wirelessRedstoneTransmission), true, (double) blockPos.getX() + 0.5D, (double) blockPos.getY() + 0.5D, (double) blockPos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+					client.getInstance().player.world.addImportantParticle(new WirelessRedstoneTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
 				}
 			});
 		});

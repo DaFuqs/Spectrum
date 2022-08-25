@@ -25,6 +25,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.event.listener.GameEventListener;
@@ -32,7 +33,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
-import net.minecraft.util.math.random.Random;
 
 public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
 	
@@ -102,8 +102,8 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 		builder.add(FACING, POWERED, SENDER, CHANNEL);
 	}
 	
-	@Nullable
 	@Override
+	@Nullable
 	public <T extends BlockEntity> GameEventListener getGameEventListener(ServerWorld world, T blockEntity) {
 		return blockEntity instanceof RedstoneWirelessBlockEntity ? ((RedstoneWirelessBlockEntity) blockEntity).getEventListener() : null;
 	}

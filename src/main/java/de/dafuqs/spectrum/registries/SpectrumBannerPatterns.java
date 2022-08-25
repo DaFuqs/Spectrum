@@ -2,14 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.block.entity.BannerPatterns;
-import net.minecraft.screen.LoomScreenHandler;
-import net.minecraft.tag.BannerPatternTags;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
 
 public class SpectrumBannerPatterns {
 	

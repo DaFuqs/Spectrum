@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.energy.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
-import de.dafuqs.spectrum.items.magic_items.PaintBrushItem;
+import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
@@ -44,7 +44,7 @@ public class SpectrumItemPredicates {
 	
 	private static void registerColorPredicate(Item item) {
 		FabricModelPredicateProviderRegistry.register(item, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
-			Optional<InkColor> color = PaintBrushItem.getColor(itemStack);
+			Optional<InkColor> color = PaintbrushItem.getColor(itemStack);
 			if(color.isEmpty()) {
 				return 0.0F;
 			}

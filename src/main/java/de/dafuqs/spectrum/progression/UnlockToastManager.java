@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.items.magic_items.PaintBrushItem;
+import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
 import de.dafuqs.spectrum.progression.toast.MessageToast;
 import de.dafuqs.spectrum.progression.toast.UnlockedRecipeGroupToast;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
@@ -36,8 +36,8 @@ public class UnlockToastManager {
 		put(SpectrumCommon.locate("milestones/unlock_fourth_potion_workshop_reagent_slot"), new Pair<>(SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultStack(), "fourth_potion_reagent_unlocked"));
 		put(SpectrumCommon.locate("midgame/spectrum_midgame"), new Pair<>(SpectrumBlocks.PEDESTAL_ONYX.asItem().getDefaultStack(), "second_advancement_tree_unlocked"));
 		put(SpectrumCommon.locate("lategame/spectrum_lategame"), new Pair<>(SpectrumBlocks.PEDESTAL_MOONSTONE.asItem().getDefaultStack(), "third_advancement_tree_unlocked"));
-		put(PaintBrushItem.UNLOCK_COLORING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "block_coloring_unlocked"));
-		put(PaintBrushItem.UNLOCK_INK_SLINGING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "paint_flinging_unlocked"));
+		put(PaintbrushItem.UNLOCK_COLORING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "block_coloring_unlocked"));
+		put(PaintbrushItem.UNLOCK_INK_SLINGING_ADVANCEMENT_ID, new Pair<>(SpectrumItems.PAINTBRUSH.getDefaultStack(), "paint_flinging_unlocked"));
 	}};
 	
 	public static void registerGatedRecipe(RecipeType recipeType, GatedRecipe gatedRecipe) {

@@ -102,7 +102,7 @@ public class SpectrumItems {
 	
 	// Main items
 	public static final Item GUIDEBOOK = new GuidebookItem(toolItemSettingsSingle);
-	public static final Item PAINTBRUSH = new PaintBrushItem(toolItemSettingsSingle);
+	public static final Item PAINTBRUSH = new PaintbrushItem(toolItemSettingsSingle);
 	public static final Item CRAFTING_TABLET = new CraftingTabletItem(toolItemSettingsSingle);
 	
 	public static final Item PEDESTAL_TIER_1_STRUCTURE_PLACER = new StructurePlacerItem(toolItemSettingsSingle, SpectrumCommon.locate("pedestal_simple_structure_place"));

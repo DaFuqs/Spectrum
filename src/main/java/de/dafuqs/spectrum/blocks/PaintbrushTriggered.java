@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.items.magic_items.PaintBrushItem;
+import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +17,7 @@ public interface PaintbrushTriggered {
 	 * Use as first entry of onUse() for a block
 	 */
 	default ActionResult checkAndDoPaintbrushTrigger(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if(player.getStackInHand(hand).getItem() instanceof PaintBrushItem) {
+		if(player.getStackInHand(hand).getItem() instanceof PaintbrushItem) {
 			ActionResult actionResult = onPaintBrushTrigger(state, world, pos, player, hand, hit);
 			if(actionResult.isAccepted()) {
 				world.playSound(null, pos, SpectrumSoundEvents.PAINTBRUSH_TRIGGER, SoundCategory.PLAYERS, 1.0F, 1.0F);

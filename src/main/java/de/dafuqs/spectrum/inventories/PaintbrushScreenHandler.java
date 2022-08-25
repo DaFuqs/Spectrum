@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.items.magic_items.PaintBrushItem;
+import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -49,7 +49,7 @@ public class PaintbrushScreenHandler extends ScreenHandler implements InkColorSe
 	
 	@Override
 	public void onInkColorSelectedPacket(@Nullable InkColor inkColor) {
-		PaintBrushItem.setColor(paintBrushStack, inkColor);
+		PaintbrushItem.setColor(paintBrushStack, inkColor);
 	}
 	
 	@Override

@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class PaintBrushItem extends Item {
+public class PaintbrushItem extends Item {
 	
 	public static final Identifier UNLOCK_COLORING_ADVANCEMENT_ID = SpectrumCommon.locate("collect_pigment");
 	public static final Identifier UNLOCK_INK_SLINGING_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/fill_ink_container");
@@ -46,7 +46,7 @@ public class PaintBrushItem extends Item {
 	public static final String COLOR_NBT_STRING = "Color";
 	private static final Text GUI_TITLE = Text.translatable("item.spectrum.paintbrush");
 	
-	public PaintBrushItem(Settings settings) {
+	public PaintbrushItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -59,20 +59,27 @@ public class PaintBrushItem extends Item {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		Optional<InkColor> color = getColor(stack);
-		if(color.isPresent()) {
-			tooltip.add(Text.translatable("spectrum.ink.color." + color.get()));
-		} else {
-			tooltip.add(Text.translatable("item.spectrum.paintbrush.tooltip.select_color"));
+		
+		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(UNLOCK_COLORING_ADVANCEMENT_ID);
+		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
+		
+		if(unlockedColoring || unlockedSlinging) {
+			if (color.isPresent()) {
+				tooltip.add(Text.translatable("spectrum.ink.color." + color.get()));
+			} else {
+				tooltip.add(Text.translatable("item.spectrum.paintbrush.tooltip.select_color"));
+			}
 		}
 		
 		tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.header").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.pedestal_triggering").formatted(Formatting.GRAY));
-		if(AdvancementHelper.hasAdvancementClient(UNLOCK_COLORING_ADVANCEMENT_ID)) {
+		if(unlockedColoring) {
 			tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.block_coloring").formatted(Formatting.GRAY));
 		}
-		if(AdvancementHelper.hasAdvancementClient(UNLOCK_INK_SLINGING_ADVANCEMENT_ID)) {
+		if(unlockedSlinging) {
 			tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.ink_slinging").formatted(Formatting.GRAY));
-		}	}
+		}
+	}
 	
 	public static boolean canColor(PlayerEntity player) {
 		return AdvancementHelper.hasAdvancement(player, UNLOCK_COLORING_ADVANCEMENT_ID);

@@ -25,7 +25,7 @@ public class BuddingAmethystBlockMixin {
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci, Direction direction, BlockPos offsetPos, BlockState originalOffsetState, Block blockToGrow, BlockState blockStateToGrow) {
 		if (blockStateToGrow.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-			world.emitGameEvent(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, offsetPos, GameEvent.Emitter.of(world.getBlockState(pos)));
+			world.emitGameEvent(null, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, offsetPos);
 		}
 	}
 	

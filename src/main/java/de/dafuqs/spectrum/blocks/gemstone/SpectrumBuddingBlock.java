@@ -58,7 +58,7 @@ public class SpectrumBuddingBlock extends BuddingAmethystBlock {
 				BlockState blockState2 = (block.getDefaultState().with(AmethystClusterBlock.FACING, direction)).with(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getFluid() == Fluids.WATER);
 				world.setBlockState(blockPos, blockState2);
 				if (blockState2.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-					world.emitGameEvent(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, blockPos, GameEvent.Emitter.of(world.getBlockState(pos)));
+					world.emitGameEvent(null, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, blockPos);
 				}
 			}
 		}

@@ -43,7 +43,7 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 		if (isSender(world, pos)) {
 			if (blockEntity.currentSignal != blockEntity.cachedSignal) {
 				blockEntity.currentSignal = blockEntity.cachedSignal;
-				blockEntity.world.emitGameEvent(SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(state.get(RedstoneWirelessBlock.CHANNEL)).get(blockEntity.currentSignal), blockEntity.getPos(), GameEvent.Emitter.of(state));
+				blockEntity.world.emitGameEvent(null, SpectrumGameEvents.WIRELESS_REDSTONE_SIGNALS.get(state.get(RedstoneWirelessBlock.CHANNEL)).get(blockEntity.currentSignal), blockEntity.getPos());
 			}
 		} else {
 			blockEntity.listener.tick(world);

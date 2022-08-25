@@ -83,7 +83,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	public void tick() {
 		this.ticksPlayed++;
 		this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
-		this.volume = 0.8F - sourceBlockPos.getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 64F * SpectrumCommon.CONFIG.BlockSoundVolume;
+		this.volume = Math.max(0, SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 64F);
 		if (this.ticksPlayed == maxDurationTicks) {
 			this.volume /= 2; // ease out
 		}

@@ -208,6 +208,7 @@ public class SpectrumConfig implements ConfigData {
 		}
 		if (QuitoxicReedsGenerationBiomes.isEmpty()) {
 			QuitoxicReedsGenerationBiomes.add("minecraft:swamp");
+			QuitoxicReedsGenerationBiomes.add("minecraft:mangrove_swamp");
 			QuitoxicReedsGenerationBiomes.add("byg:bayou");
 			QuitoxicReedsGenerationBiomes.add("byg:cypress_swamplands");
 			QuitoxicReedsGenerationBiomes.add("terralith:orchid_swamp");

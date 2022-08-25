@@ -13,8 +13,8 @@ import java.util.Optional;
 public class ExactPositionSource implements PositionSource {
     
     public static final Codec<ExactPositionSource> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(Vec3d.CODEC.fieldOf("pos").forGetter((blockPositionSource) -> {
-            return blockPositionSource.pos;
+        return instance.group(Vec3d.CODEC.fieldOf("pos").forGetter((positionSource) -> {
+            return positionSource.pos;
         })).apply(instance, ExactPositionSource::new);
     });
     
@@ -29,7 +29,7 @@ public class ExactPositionSource implements PositionSource {
     }
 
     public PositionSourceType<?> getType() {
-        return PositionSourceType.BLOCK;
+        return SpectrumPositionSources.EXACT;
     }
 
     public static class Type implements PositionSourceType<ExactPositionSource> {
@@ -50,4 +50,5 @@ public class ExactPositionSource implements PositionSource {
             return ExactPositionSource.CODEC;
         }
     }
+    
 }

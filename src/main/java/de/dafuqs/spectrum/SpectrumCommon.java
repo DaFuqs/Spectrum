@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
+import de.dafuqs.spectrum.events.SpectrumPositionSources;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
@@ -197,6 +198,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumComposting.register();
 		logInfo("Registering Game Events...");
 		SpectrumGameEvents.register();
+		SpectrumPositionSources.register();
 		
 		logInfo("Registering Spell Effects...");
 		InkSpellEffects.register();

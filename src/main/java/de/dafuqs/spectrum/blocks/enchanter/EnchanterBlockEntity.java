@@ -535,7 +535,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 			BlockEntity blockEntity = world.getBlockEntity(enchanterBlockEntity.pos.add(bowlOffset));
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				if (itemCountToConsumeAfterMod == 0) {
-					itemBowlBlockEntity.doEnchantingEffects(enchanterBlockEntity.pos);
+					itemBowlBlockEntity.spawnOrbParticles(enchanterBlockEntity.pos);
 					consumedAmount += itemCountToConsume;
 				} else {
 					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, itemCountToConsumeAfterMod, true);
@@ -740,7 +740,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 			BlockPos itemBowlPos = pos.add(getItemBowlPositionOffset(i, 0));
 			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				itemBowlBlockEntity.doEnchantingEffects(pos);
+				itemBowlBlockEntity.spawnOrbParticles(pos);
 			}
 		}
 	}

@@ -46,7 +46,7 @@ public class CinderhearthRecipeSerializer implements RecipeSerializer<Cinderhear
 			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
 		} else {
 			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
-			requiredAdvancementIdentifier = de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
+			requiredAdvancementIdentifier = CinderhearthRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
 		}
 		
 		return this.recipeFactory.create(identifier, group, inputIngredient, time, experience, outputsWithChance, requiredAdvancementIdentifier);

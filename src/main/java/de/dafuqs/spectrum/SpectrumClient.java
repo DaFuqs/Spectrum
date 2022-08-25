@@ -49,7 +49,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
-		// IncubusShaders.enableBloom(); // nonononono. That completely breaks the world with immersive portals. (ㆆ_ㆆ)
+
 		logInfo("Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();
 		

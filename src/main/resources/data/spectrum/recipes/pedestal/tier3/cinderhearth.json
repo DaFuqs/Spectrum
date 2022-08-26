@@ -9,14 +9,11 @@
   "white": 0,
   "experience": 8.0,
   "pattern": [
-    "PPP",
+    " C ",
     "CGC",
     "BFB"
   ],
   "key": {
-    "P": {
-      "item": "spectrum:fiery_powder"
-    },
     "C": {
       "item": "spectrum:polished_calcite"
     },

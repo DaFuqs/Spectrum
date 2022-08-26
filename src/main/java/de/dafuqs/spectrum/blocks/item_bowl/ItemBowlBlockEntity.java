@@ -63,8 +63,8 @@ public class ItemBowlBlockEntity extends BlockEntity {
 				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(optionalItemColor.get());
 				
 				for (int i = 0; i < amount; i++) {
-					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
-					float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
+					float randomX = 0.1F + world.random.nextFloat() * 0.8F;
+					float randomZ = 0.1F + world.random.nextFloat() * 0.8F;
 					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 0.75, blockPos.getZ() + randomZ, 0.0D, 0.05D, 0.0D);
 				}
 			}

@@ -360,10 +360,10 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	private void doInstillerParticles(@NotNull World world) {
-		Random random = world.random;
 		Optional<DyeColor> stackColor = ItemColors.ITEM_COLORS.getMapping(this.inventory.getStack(0).getItem());
 		
 		if (stackColor.isPresent()) {
+			Random random = world.random;
 			ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(stackColor.get());
 			world.addParticle(particleEffect,
 					pos.getX() + 0.25 + random.nextDouble() * 0.5,

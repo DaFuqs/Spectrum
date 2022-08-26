@@ -350,12 +350,12 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		boolean valid = false;
-		ItemStack centerStackCopy = enchanterBlockEntity.inventory.get(0);
-		if (!centerStackCopy.isEmpty() && (centerStackCopy.getItem().isEnchantable(centerStackCopy) || SpectrumEnchantmentHelper.isEnchantableBook(centerStackCopy) || centerStackCopy.getItem() instanceof EnchanterEnchantable)) {
+		ItemStack centerStack = enchanterBlockEntity.inventory.get(0);
+		if (!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || SpectrumEnchantmentHelper.isEnchantableBook(centerStack) || centerStack.getItem() instanceof EnchanterEnchantable)) {
+			ItemStack centerStackCopy = centerStack.copy();
 			Map<Enchantment, Integer> highestEnchantmentLevels = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 			int requiredExperience = 0;
 			for (Enchantment enchantment : highestEnchantmentLevels.keySet()) {
-				
 				int enchantmentLevel = highestEnchantmentLevels.get(enchantment);
 				int currentRequired = getRequiredExperienceToEnchantWithEnchantment(centerStackCopy, enchantment, enchantmentLevel, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);
 				centerStackCopy = SpectrumEnchantmentHelper.addOrExchangeEnchantment(centerStackCopy, enchantment, enchantmentLevel, false, enchanterBlockEntity.canOwnerApplyConflictingEnchantments);

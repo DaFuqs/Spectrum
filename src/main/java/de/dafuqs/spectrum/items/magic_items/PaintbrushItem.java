@@ -63,7 +63,7 @@ public class PaintbrushItem extends Item {
 		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(UNLOCK_COLORING_ADVANCEMENT_ID);
 		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
 		
-		if(unlockedColoring || unlockedSlinging) {
+		if (unlockedColoring || unlockedSlinging) {
 			if (color.isPresent()) {
 				tooltip.add(Text.translatable("spectrum.ink.color." + color.get()));
 			} else {
@@ -73,10 +73,10 @@ public class PaintbrushItem extends Item {
 		
 		tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.header").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.pedestal_triggering").formatted(Formatting.GRAY));
-		if(unlockedColoring) {
+		if (unlockedColoring) {
 			tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.block_coloring").formatted(Formatting.GRAY));
 		}
-		if(unlockedSlinging) {
+		if (unlockedSlinging) {
 			tooltip.add(Text.translatable("item.spectrum.paintbrush.ability.ink_slinging").formatted(Formatting.GRAY));
 		}
 	}
@@ -148,6 +148,10 @@ public class PaintbrushItem extends Item {
 				context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			return true;
+		} else {
+			if (context.getWorld().isClient) {
+				context.getPlayer().playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			}
 		}
 		return false;
 	}
@@ -161,7 +165,7 @@ public class PaintbrushItem extends Item {
 				}
 			}
 			return TypedActionResult.pass(user.getStackInHand(hand));
-		} else if(canInkSling(user)){
+		} else if (canInkSling(user)) {
 			Optional<InkColor> optionalInkColor = getColor(user.getStackInHand(hand));
 			if (optionalInkColor.isPresent()) {
 				
@@ -180,8 +184,12 @@ public class PaintbrushItem extends Item {
 					}
 					
 					// cause the slightest bit of knockback
-					if(!user.isCreative()) {
+					if (!user.isCreative()) {
 						causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+					}
+				} else {
+					if (world.isClient) {
+						user.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 					}
 				}
 				

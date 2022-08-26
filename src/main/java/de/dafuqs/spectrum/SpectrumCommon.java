@@ -76,6 +76,7 @@ public class SpectrumCommon implements ModInitializer {
 	public static SpectrumConfig CONFIG;
 	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
 	public static MinecraftServer minecraftServer;
+	private static boolean serverLoadEventFired = false;
 	/**
 	 * Caches the luminance states from fluids as int
 	 * for blocks that react to the light level of fluids
@@ -252,19 +253,24 @@ public class SpectrumCommon implements ModInitializer {
 		});
 		
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
-			SpectrumCommon.minecraftServer = minecraftServer;
 			
-			SpectrumCommon.logInfo("Querying fluid luminance...");
-			for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
-				Block block = it.next();
-				if (block instanceof FluidBlock fluidBlock) {
-					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
+			if(!serverLoadEventFired) {
+				SpectrumCommon.minecraftServer = minecraftServer;
+				
+				SpectrumCommon.logInfo("Querying fluid luminance...");
+				for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
+					Block block = it.next();
+					if (block instanceof FluidBlock fluidBlock) {
+						fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
+					}
 				}
+				
+				SpectrumCommon.logInfo("Injecting additional recipes...");
+				FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
+				injectEnchantmentUpgradeRecipes(minecraftServer);
+				
+				serverLoadEventFired = true;
 			}
-			
-			SpectrumCommon.logInfo("Injecting additional recipes...");
-			FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
-			injectEnchantmentUpgradeRecipes(minecraftServer);
 		});
 		
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {

@@ -17,7 +17,6 @@ import net.minecraft.util.math.random.Random;
 public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private final PlayerEntity player;
-	private float distance = 0.0F;
 	private boolean done;
 	
 	public EnderSpliceChargingSoundInstance(PlayerEntity player) {
@@ -46,10 +45,9 @@ public class EnderSpliceChargingSoundInstance extends AbstractSoundInstance impl
 		if (player == null || player.getItemUseTimeLeft() <= 0 || player.getItemUseTime() > 47) {
 			this.setDone();
 		} else {
-			this.x = ((float) this.player.getX());
-			this.y = ((float) this.player.getY());
-			this.z = ((float) this.player.getZ());
-			this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
+			this.x = this.player.getX();
+			this.y = this.player.getY();
+			this.z = this.player.getZ();
 			
 			showParticles();
 		}

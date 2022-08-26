@@ -263,22 +263,22 @@ public class SpectrumParticleTypes {
 		WHITE_SPARKLE_RISING = register("white_sparkle_rising", false);
 		YELLOW_SPARKLE_RISING = register("yellow_sparkle_rising", false);
 		
-		BLACK_EXPLOSION = register("black_explosion", false);
-		BLUE_EXPLOSION = register("blue_explosion", false);
-		BROWN_EXPLOSION = register("brown_explosion", false);
-		CYAN_EXPLOSION = register("cyan_explosion", false);
-		GRAY_EXPLOSION = register("gray_explosion", false);
-		GREEN_EXPLOSION = register("green_explosion", false);
-		LIGHT_BLUE_EXPLOSION = register("light_blue_explosion", false);
-		LIGHT_GRAY_EXPLOSION = register("light_gray_explosion", false);
-		LIME_EXPLOSION = register("lime_explosion", false);
-		MAGENTA_EXPLOSION = register("magenta_explosion", false);
-		ORANGE_EXPLOSION = register("orange_explosion", false);
-		PINK_EXPLOSION = register("pink_explosion", false);
-		PURPLE_EXPLOSION = register("purple_explosion", false);
-		RED_EXPLOSION = register("red_explosion", false);
-		WHITE_EXPLOSION = register("white_explosion", false);
-		YELLOW_EXPLOSION = register("yellow_explosion", false);
+		BLACK_EXPLOSION = register("black_explosion", true);
+		BLUE_EXPLOSION = register("blue_explosion", true);
+		BROWN_EXPLOSION = register("brown_explosion", true);
+		CYAN_EXPLOSION = register("cyan_explosion", true);
+		GRAY_EXPLOSION = register("gray_explosion", true);
+		GREEN_EXPLOSION = register("green_explosion", true);
+		LIGHT_BLUE_EXPLOSION = register("light_blue_explosion", true);
+		LIGHT_GRAY_EXPLOSION = register("light_gray_explosion", true);
+		LIME_EXPLOSION = register("lime_explosion", true);
+		MAGENTA_EXPLOSION = register("magenta_explosion", true);
+		ORANGE_EXPLOSION = register("orange_explosion", true);
+		PINK_EXPLOSION = register("pink_explosion", true);
+		PURPLE_EXPLOSION = register("purple_explosion", true);
+		RED_EXPLOSION = register("red_explosion", true);
+		WHITE_EXPLOSION = register("white_explosion", true);
+		YELLOW_EXPLOSION = register("yellow_explosion", true);
 	}
 	
 	@NotNull

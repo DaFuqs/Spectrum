@@ -161,8 +161,8 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	
 	private void teleportPlayerToPos(World world, LivingEntity user, PlayerEntity playerEntity, World targetWorld, Vec3d targetPos, boolean hasResonance) {
 		boolean isSameWorld = isSameWorld(user.getEntityWorld(), targetWorld);
+		Vec3d currentPos = playerEntity.getPos();
 		if (hasResonance || isSameWorld) {
-			Vec3d currentPos = playerEntity.getPos();
 			world.playSound(playerEntity, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			
 			if (!isSameWorld) {
@@ -177,6 +177,9 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 				world.playSound(null, playerEntity.getBlockPos(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				world.playSound(null, playerEntity.getBlockPos(), SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			}
+		} else {
+			user.stopUsingItem();
+			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
 	}
 	

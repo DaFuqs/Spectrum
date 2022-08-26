@@ -152,6 +152,10 @@ public class PaintBrushItem extends Item {
 				context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			return true;
+		} else {
+			if (context.getWorld().isClient) {
+				context.getPlayer().playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			}
 		}
 		return false;
 	}
@@ -186,6 +190,10 @@ public class PaintBrushItem extends Item {
 					// cause the slightest bit of knockback
 					if(!user.isCreative()) {
 						causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+					}
+				} else {
+					if (world.isClient) {
+						user.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 					}
 				}
 				

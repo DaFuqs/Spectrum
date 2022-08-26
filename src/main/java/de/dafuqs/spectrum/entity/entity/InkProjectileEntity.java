@@ -57,7 +57,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 	public InkProjectileEntity(EntityType<InkProjectileEntity> type, World world) {
 		super(type, world);
 		if(world.isClient) {
-			InkProjectileSoundInstance.startSoundInstance(SpectrumSoundEvents.INK_PROJECTILE_LAUNCH, this);
+			InkProjectileSoundInstance.startSoundInstance(this);
 		}
 	}
 	
@@ -80,6 +80,10 @@ public class InkProjectileEntity extends ProjectileEntity {
 	
 	public int getColor() {
 		return this.dataTracker.get(COLOR);
+	}
+	
+	public DyeColor getDyeColor() {
+		return DyeColor.byId(this.dataTracker.get(COLOR));
 	}
 	
 	public void setColor(InkColor inkColor) {
@@ -287,7 +291,6 @@ public class InkProjectileEntity extends ProjectileEntity {
 			}
 			
 			damageAndKnockbackEntities(this.getOwner());
-			spawnImpactParticles(blockHitResult.getPos(), dyeColor);
 			
 			// TODO: uncomment this when all 16 ink effects are finished
 			// InkSpellEffect.trigger(InkColor.of(dyeColor), this.world, blockHitResult.getPos(), SPELL_POTENCY);
@@ -319,8 +322,6 @@ public class InkProjectileEntity extends ProjectileEntity {
 				entity.addVelocity(vec3d.x, 0.1D, vec3d.z);
 			}
 			
-			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
-			spawnImpactParticles(target.getPos(), dyeColor);
 			damageAndKnockbackEntities(this.getOwner());
 			
 			/*Iterator var3 = this.potion.getEffects().iterator();
@@ -342,21 +343,6 @@ public class InkProjectileEntity extends ProjectileEntity {
 		}
 		
 		this.discard();
-	}
-	
-	private void spawnImpactParticles(Vec3d targetPos, DyeColor dyeColor) {
-		SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) this.world, targetPos,
-				SpectrumParticleTypes.getExplosionParticle(dyeColor), 1,
-				Vec3d.ZERO,	Vec3d.ZERO
-		);
-		
-		for (int i = 0; i < 10; i++) {
-			SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) this.world, targetPos,
-					SpectrumParticleTypes.getCraftingParticle(dyeColor), 10,
-					Vec3d.ZERO,
-					new Vec3d(-this.getVelocity().x * 3, -this.getVelocity().y * 3, -this.getVelocity().z * 3)
-			);
-		}
 	}
 	
 	public void damageAndKnockbackEntities(Entity attacker) {

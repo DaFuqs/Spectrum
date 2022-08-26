@@ -20,7 +20,6 @@ import java.util.Random;
 public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private final long lastParticleTick;
-	private float distance = 0.0F;
 	private boolean done;
 	
 	public TakeOffBeltSoundInstance() {
@@ -61,7 +60,6 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 			this.x = ((float) player.getX());
 			this.y = ((float) player.getY());
 			this.z = ((float) player.getZ());
-			this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
 			
 			if (player.getWorld() != null && player.getWorld().getTime() < lastParticleTick) {
 				spawnParticles(player);

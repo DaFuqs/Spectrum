@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "simple",
+  "cyan": 2,
+  "magenta": 4,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    "PQP",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:smooth_basalt"
+    },
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
+    },
+    "P": {
+      "item": "minecraft:phantom_membrane"
+    }
+  },
+  "result": {
+    "item": "spectrum:oblivion_pickaxe",
+    "nbt": "{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/tools/unlock_oblivion_pickaxe"
+}

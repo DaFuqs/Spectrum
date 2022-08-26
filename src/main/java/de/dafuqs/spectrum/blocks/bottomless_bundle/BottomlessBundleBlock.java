@@ -104,7 +104,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	
 	@Override
 	public MutableText getName() {
-		return Text.translatable("item.spectrum.void_bundle");
+		return Text.translatable("item.spectrum.bottomless_bundle");
 	}
 	
 }

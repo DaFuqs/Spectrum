@@ -1,0 +1,29 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)你想展示你最珍贵的物品。到目前为止，您一直使用物品展示框。但是如果你没有看到画框，你的一些展览会看起来更好。$(br)小菜一碟，你只需要利用你宝石的光操纵特性。",
+			"type":"patchouli:text",
+			"title":"幻翼展示框"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/phantom_frame",
+			"text":"当您在其中显示一个物品时，幻翼展示框就会不可见。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座制作"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/glow_phantom_frame",
+			"text":"这一款还有另一个很好的触感：里面的物品在明亮的光线下闪闪发光，使它看起来更加壮观。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"辉光幻翼展示框"
+		}
+	],
+	"advancement":"spectrum:collect_sparklestone",
+	"extra_recipe_mappings":{
+		"spectrum:phantom_frame":0,
+		"spectrum:glow_phantom_frame":0
+	},
+	"name":"幻翼展示框",
+	"icon":"spectrum:phantom_frame",
+	"category":"spectrum:decoration_category"
+}

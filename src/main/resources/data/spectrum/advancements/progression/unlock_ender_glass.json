@@ -1,8 +1,8 @@
 {
   "criteria": {
-    "gotten_ender_treasure": {
+    "gotten_radiating_ender": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:get_ender_treasure" }
+      "conditions": { "advancement_identifier": "spectrum:get_radiating_ender" }
     },
     "amethyst_shard": {
       "trigger":"revelationary:advancement_gotten",

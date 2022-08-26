@@ -1,0 +1,25 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)你带着这种魔力的工具似乎能将它们挖掘的所有东西溶解在稀薄的空气中。分解成最细的沙子，被风吹走。然而，$(br2)就这一次而言，当你想把半座城市从粗糙的石头中敲出来时，它甚至可能派上用场。有些事情可能是诅咒和祝福同时发生。",
+			"type":"patchouli:text"
+		},
+		{
+			"item":"minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
+			"text":"摧毁所有断块的水滴。$(br2)最大级别：1$(br)适用于采矿工具。",
+			"type":"patchouli:spotlight",
+			"title":"特点"
+		},
+		{
+			"advancement":"spectrum:progression/enchantments/voiding",
+			"recipe":"spectrum:enchanter/spectrum_books/book_voiding",
+			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，为一本普通的书注入虚空诅咒。",
+			"type":"spectrum:enchanter_crafting",
+			"title":"注魔基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/tools/unlock_oblivion_pickaxe",
+	"name":"虚空诅咒",
+	"icon":"minecraft:wooden_pickaxe",
+	"category":"spectrum:enchanting_category"
+}

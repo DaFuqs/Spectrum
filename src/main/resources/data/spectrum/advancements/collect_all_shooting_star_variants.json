@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.collect_all_shooting_star_variants.description"
     }
   },
-  "parent": "spectrum:collect_shooting_star",
+  "parent": "spectrum:collect_star_fragment",
   "criteria": {
     "has_glistering_shooting_star": {
       "trigger":"minecraft:inventory_changed",

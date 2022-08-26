@@ -8,9 +8,9 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/enter_liquid_crystal" }
     },
-    "collected_scarlet": {
+    "collected_stratine": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_scarlet" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_stratine" }
     }
   }
 }

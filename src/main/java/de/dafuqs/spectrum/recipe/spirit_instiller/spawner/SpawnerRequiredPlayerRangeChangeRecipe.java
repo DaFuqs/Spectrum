@@ -21,7 +21,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	
 	@Override
 	public IngredientStack getIngredientStack() {
-		return IngredientStack.of(Ingredient.ofItems(SpectrumItems.SCARLET_GEM), 4);
+		return IngredientStack.of(Ingredient.ofItems(SpectrumItems.STRATINE_GEM), 4);
 	}
 	
 	@Override

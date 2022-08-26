@@ -107,7 +107,7 @@ public class ShootingStarEntity extends Entity {
 				long timeOfDay = serverWorld.getTimeOfDay() % 24000;
 				if (timeOfDay > 13000 && timeOfDay < 22000) { // 90 chances in a night
 					for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
-						if (!playerEntity.isSpectator() && AdvancementHelper.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
+						if (!playerEntity.isSpectator() && AdvancementHelper.hasAdvancement(playerEntity, SpectrumItems.STAR_FRAGMENT.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
 							// 1 % chance for each cycle to spawn a lot of shooting stars for the player
 							// making it an amazing display
 							if (serverWorld.getRandom().nextFloat() < 0.01) {
@@ -134,7 +134,7 @@ public class ShootingStarEntity extends Entity {
 	
 	// If the player explicitly searches for shooting stars give them a small boost :)
 	// That these things increase the visibility of shooting stars is explicitly stated
-	// in the manual, just not that these actually give a boost, too
+	// in the guidebook, just not that these actually give a boost, too
 	public static float getShootingStarChanceWithMultiplier(@NotNull PlayerEntity playerEntity) {
 		int multiplier = 1;
 		ItemStack handStack = playerEntity.getMainHandStack();
@@ -293,8 +293,8 @@ public class ShootingStarEntity extends Entity {
 						ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), shootingStarStack);
 						this.world.spawnEntity(itemEntity);
 					} else {
-						ItemStack shootingStarStack = SpectrumItems.SHOOTING_STAR.getDefaultStack();
-						ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), shootingStarStack);
+						ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultStack();
+						ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), starFragmentStack);
 						this.world.spawnEntity(itemEntity);
 					}
 					this.discard();
@@ -439,7 +439,7 @@ public class ShootingStarEntity extends Entity {
 				if (this.availableHits <= 0) {
 					SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) world, this.getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
 					
-					ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), SpectrumItems.SHOOTING_STAR.getDefaultStack());
+					ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), SpectrumItems.STAR_FRAGMENT.getDefaultStack());
 					itemEntity.addVelocity(0, 0.15, 0);
 					this.world.spawnEntity(itemEntity);
 					this.discard();
@@ -492,9 +492,9 @@ public class ShootingStarEntity extends Entity {
 		if (amount > 5 && (damageSource == DamageSource.ANVIL || damageSource == SpectrumDamageSources.FLOATBLOCK)) {
 			this.playHitParticles();
 			
-			ItemStack shootingStarStack = SpectrumItems.SHOOTING_STAR.getDefaultStack();
-			shootingStarStack.setCount(2);
-			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), shootingStarStack);
+			ItemStack starFragmentStack = SpectrumItems.STAR_FRAGMENT.getDefaultStack();
+			starFragmentStack.setCount(2);
+			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), starFragmentStack);
 			this.world.spawnEntity(itemEntity);
 			this.discard();
 			return true;

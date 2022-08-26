@@ -316,22 +316,22 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 		int storedAmount = getStoredAmount(stack);
 		if (storedAmount == 0) {
-			tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.empty").formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty").formatted(Formatting.GRAY));
 			if(locked) {
-				tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.locked").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.locked").formatted(Formatting.GRAY));
 			}
 		} else {
 			ItemStack firstStack = getFirstBundledStack(stack);
 			String totalStacks = Support.getShortenedNumberString(storedAmount / (float) firstStack.getMaxCount());
-			tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.count", storedAmount, getMaxStoredAmount(stack), totalStacks).formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count", storedAmount, getMaxStoredAmount(stack), totalStacks).formatted(Formatting.GRAY));
 			if(locked) {
-				tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.locked").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.locked").formatted(Formatting.GRAY));
 			} else {
-				tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
 			}
 		}
 		if (EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, stack) > 0) {
-			tooltip.add(Text.translatable("item.spectrum.void_bundle.tooltip.voiding"));
+			tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.voiding"));
 		}
 	}
 	

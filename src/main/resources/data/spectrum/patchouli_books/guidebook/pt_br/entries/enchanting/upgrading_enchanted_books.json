@@ -1,0 +1,22 @@
+{
+  "name": "Melhorando Livros",
+  "icon": "minecraft:enchanted_book",
+  "priority": true,
+  "sortnum": 3,
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)Encantamentos e sua Magia de Cor tem muito em comum. É por isso que você não ficou surpreso quando sua primeira tentativa de combinar Livros Encantados com $(l:general/pigment)Pigmento$(/l) foi um sucesso instantâneo.$()$(br2)Colocando um Livro Ecnantado no Encantador, rodeando com Pigmento apropriado e dano uma fonte constante de experiência aumenta o nível do seu livro."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/upgrading_enchanted_books.png"
+      ],
+      "border": true,
+      "text": "Só tente não interromper o processo, se não ele para completamente."
+    }
+  ]
+}

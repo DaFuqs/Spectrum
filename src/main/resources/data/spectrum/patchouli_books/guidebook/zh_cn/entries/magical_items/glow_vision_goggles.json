@@ -1,0 +1,22 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:glow_vision_goggles",
+			"text":"$(italic)夜光鱿鱼之所以如此特别，是因为它们在洞穴的黑暗中照亮了你的路。尽管它们很漂亮，但它们似乎过于频繁地被冲上岸，并在那里遭遇悲惨的结局。$(br)通过设计眼镜，你可以在洞穴的黑暗中继续引导你，以此来纪念他们笨拙的光辉遗产。",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/glow_vision_goggles",
+			"text":"如果你在一个黑暗的地区，有辉光油墨囊，辉光眼镜授予你夜视效果。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_glow_vision_goggles",
+	"extra_recipe_mappings":{
+		"spectrum:glow_vision_goggles":0
+	},
+	"name":"发光护目镜",
+	"icon":"spectrum:glow_vision_goggles",
+	"category":"spectrum:magical_items_category"
+}

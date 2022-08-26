@@ -1,0 +1,42 @@
+{
+  "parent": "spectrum:collect_quitoxic_reeds",
+  "display": {
+    "icon": {
+        "item": "spectrum:bottomless_bundle"
+    },
+    "title": {
+      "translate": "advancements.spectrum.fill_bottomless_bundle.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fill_bottomless_bundle.description"
+    }
+  },
+  "criteria": {
+    "fill": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:bottomless_bundle"
+            ],
+            "nbt": "{StoredStack:{Count:20000}}"
+          }
+        ],
+        "slots": {
+          "occupied": {
+            "min": 0,
+            "max": 50
+          }
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }
+    }
+  },
+  "rewards": {
+    "experience": 500
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "player_only_glass",
+  "time": 80,
+  "tier": "advanced",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 8,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "GPG",
+    "PSP",
+    "GPG"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:onyx_shard"
+    },
+    "P": {
+      "item": "spectrum:purple_pigment"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "spectrum:onyx_semi_permeable_glass",
+    "count": 6
+  },
+  "required_advancement": "spectrum:midgame/build_advanced_pedestal_structure"
+}

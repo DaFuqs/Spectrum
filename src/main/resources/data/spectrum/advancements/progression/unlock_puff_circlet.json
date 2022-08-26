@@ -1,8 +1,8 @@
 {
   "criteria": {
-    "collected_paletur_gem": {
+    "collected_paltaeria_gem": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_paletur_gem" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_paltaeria_gem" }
     },
     "created_refined_azurite": {
       "trigger":"revelationary:advancement_gotten",

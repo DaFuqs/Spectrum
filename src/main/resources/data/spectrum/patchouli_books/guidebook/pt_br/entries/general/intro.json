@@ -1,0 +1,32 @@
+{
+  "name": "Intro",
+  "icon": "spectrum:pedestal_basic_amethyst",
+  "category": "spectrum:general_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "Welcome to Spectrum!",
+      "images": [
+        "spectrum:textures/gui/guidebook/spectrum.png"
+      ],
+      "border": true,
+      "text": "Spectrum é um mod completo sobre magia e eexploração."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Spectrum ée baseado em mistura de cores no sistema subtrativo de cores (CMYK). Mistura subtrativa de cores pode ser familiar a você de pintar com aquarela ou imprimir.$(br2)As cores principais de Spectrum são representadas por pedras gemas, achadas em geodos espalhados pelo mundo, com a Ametista do vanilla representando a parte Magenta do espétro."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Sistema de Progressão",
+      "text": "Spectrum tem um sistema complexo de progressão onde você desbloqueia novas coisas ao progredir.$(br)Ao se aprofundar, você vai notar mudanças no mundo. Diferenças, que apenas você consegue notar.$(br2)Tudo que você aprender vai te trazer mais perto do seu destino final: Achar o que está esperando por você de baixo do chão impenetrável de Rocha-Mãe."
+    },
+    {
+      "type": "patchouli:link",
+      "text": "Sem ideia de como progredir? Dê uma olhada nos seus progressos. Eles vão te dar varias dicas da próxima coisa a fazer.$(br2)$(br)Spectrum ainda está em desenvolvimento pesado. Se você achar um bug ou tiver uma sugestão, visite o Discord do Spectrum ou reporte no Github.$(br2)Se Divirta!$(br)                - DaFuqs",
+      "url": "https://discord.com/invite/EXU9XFXT8a",
+      "link_text": "Discord do Spectrum"
+    }
+  ]
+}

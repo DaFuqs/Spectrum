@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:midgame/build_advanced_pedestal_structure",
+  "display": {
+    "icon": {
+      "item": "spectrum:topaz_semi_permeable_glass"
+    },
+    "title": {
+      "translate": "advancements.spectrum.get_semi_permeable_glass.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.get_semi_permeable_glass.description"
+    }
+  },
+  "criteria": {
+    "craft": {
+      "trigger":"spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "tag": "spectrum:player_only_glass" }] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
+    }
+  }
+}

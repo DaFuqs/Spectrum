@@ -150,22 +150,22 @@
       "spectrum:cracker8"
     ]
   },
-  "light_staff_charging": {
-    "subtitle": "spectrum.subtitles.light_staff_charging",
+  "radiance_staff_charging": {
+    "subtitle": "spectrum.subtitles.radiance_staff_charging",
     "sounds": [
-      "spectrum:light_staff_charging"
+      "spectrum:radiance_staff_charging"
     ]
   },
-  "light_staff_place": {
-    "subtitle": "spectrum.subtitles.light_staff_place",
+  "radiance_staff_place": {
+    "subtitle": "spectrum.subtitles.radiance_staff_place",
     "sounds": [
-      "spectrum:light_staff_place"
+      "spectrum:radiance_staff_place"
     ]
   },
-  "light_staff_break": {
-    "subtitle": "spectrum.subtitles.light_staff_break",
+  "radiance_staff_break": {
+    "subtitle": "spectrum.subtitles.radiance_staff_break",
     "sounds": [
-      "spectrum:light_staff_break"
+      "spectrum:radiance_staff_break"
     ]
   },
   "sucking_chest_open": {
@@ -310,10 +310,10 @@
       "spectrum:fusion_shrine_crafting_aborted"
     ]
   },
-  "exchange_staff_select": {
-    "subtitle": "spectrum.subtitles.exchange_staff.select",
+  "exchanging_staff_select": {
+    "subtitle": "spectrum.subtitles.exchanging_staff.select",
     "sounds": [
-      "spectrum:exchange_staff_select"
+      "spectrum:exchanging_staff_select"
     ]
   },
   "pedestal_crafting_finished_generic": {

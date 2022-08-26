@@ -4,7 +4,7 @@
     "item": "minecraft:nether_wart"
   },
   "ingredient2": {
-    "item": "spectrum:paletur_fragments"
+    "item": "spectrum:paltaeria_fragments"
   },
   "effect": "minecraft:levitation",
   "base_duration_ticks": 200,

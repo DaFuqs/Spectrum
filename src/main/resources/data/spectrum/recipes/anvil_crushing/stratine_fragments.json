@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:stratine_gem"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.5,
+  "result": {
+    "item": "spectrum:stratine_fragments",
+    "count": 8
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.glass.break"
+}

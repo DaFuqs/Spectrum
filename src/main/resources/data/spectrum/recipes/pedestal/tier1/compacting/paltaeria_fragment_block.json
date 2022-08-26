@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 80,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.0,
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:paltaeria_fragments"
+    }
+  },
+  "result": {
+    "item": "spectrum:paltaeria_fragment_block",
+    "count": 1
+  },
+  "required_advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
+  "disable_yield_upgrades": true
+}

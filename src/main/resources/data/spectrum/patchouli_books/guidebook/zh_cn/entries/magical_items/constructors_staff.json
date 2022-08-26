@@ -1,0 +1,21 @@
+{
+	"pages":[
+		{
+			"text":"你总是花很多时间放置方块。你几乎可以认为这是你存在的主要原因。放置许多类似的方块很乏味。$(br2)或者$(italic)更像是$()：很乏味。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier2/constructors_staff",
+			"text":"蹲下单击以选择所有可用的位置modi。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_constructors_staff",
+	"extra_recipe_mappings":{
+		"spectrum:constructors_staff":0
+	},
+	"name":"结构相关",
+	"icon":"spectrum:constructors_staff",
+	"category":"spectrum:magical_items_category"
+}

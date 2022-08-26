@@ -15,8 +15,8 @@ public abstract class TransparentBlockMixin {
 	
 	@Inject(method = "isSideInvisible", at = @At("HEAD"), cancellable = true)
 	public void dontRenderVanillaPlayerOnlyGlass(BlockState state, BlockState stateFrom, Direction direction, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-		if (this.equals(Blocks.GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.VANILLA_PLAYER_ONLY_GLASS) ||
-				this.equals(Blocks.TINTED_GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.TINTED_PLAYER_ONLY_GLASS)) {
+		if (this.equals(Blocks.GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.VANILLA_SEMI_PERMEABLE_GLASS) ||
+				this.equals(Blocks.TINTED_GLASS) && stateFrom.getBlock().equals(SpectrumBlocks.TINTED_SEMI_PERMEABLE_GLASS)) {
 			callbackInfoReturnable.setReturnValue(true);
 		}
 	}

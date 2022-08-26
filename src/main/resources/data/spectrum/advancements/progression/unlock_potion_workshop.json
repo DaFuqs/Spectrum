@@ -4,9 +4,9 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
     },
-    "collected_scarlet": {
+    "collected_stratine": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_scarlet" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_stratine" }
     },
     "collected_quitoxic_reeds": {
       "trigger":"revelationary:advancement_gotten",

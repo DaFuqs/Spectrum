@@ -24,7 +24,7 @@ public class InvisibleItemFrameEntity extends ItemFrameEntity {
 	}
 	
 	public InvisibleItemFrameEntity(World world, BlockPos pos, Direction facing) {
-		this(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, world, pos, facing);
+		this(SpectrumEntityTypes.PHANTOM_FRAME, world, pos, facing);
 	}
 	
 	public InvisibleItemFrameEntity(EntityType<? extends ItemFrameEntity> type, World world, BlockPos pos, Direction facing) {
@@ -52,7 +52,7 @@ public class InvisibleItemFrameEntity extends ItemFrameEntity {
 	
 	@Override
 	protected ItemStack getAsItemStack() {
-		return new ItemStack(SpectrumItems.INVISIBLE_ITEM_FRAME);
+		return new ItemStack(SpectrumItems.PHANTOM_FRAME);
 	}
 	
 	@Override

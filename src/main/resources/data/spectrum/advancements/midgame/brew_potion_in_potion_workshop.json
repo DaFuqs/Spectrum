@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_scarlet",
+  "parent": "spectrum:midgame/collect_stratine",
   "display": {
     "icon": {
       "item": "spectrum:potion_workshop"
@@ -26,7 +26,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_scarlet" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_stratine" }
     }
   }
 }

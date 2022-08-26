@@ -38,15 +38,15 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 	private final int AXOLOTL_HEALING = 2;
 	
 	public TidalCircletItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_tidal_circlet"));
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_weeping_circlet"));
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(Text.translatable("item.spectrum.tidal_circlet.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.tidal_circlet.tooltip2").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.tidal_circlet.tooltip3").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.weeping_circlet.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.weeping_circlet.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.weeping_circlet.tooltip3").formatted(Formatting.GRAY));
 	}
 	
 	@Override

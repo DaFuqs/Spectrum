@@ -1,0 +1,34 @@
+{
+  "name": "Spectrum Enchanting",
+  "icon": "spectrum:enchanter",
+  "priority": true,
+  "sortnum": 1,
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Spectrum Enchanting",
+      "text": "Using the Enchanter to enchant items is fairly easy:$(br)Place Enchanted Books, onto the $(l:decoration/item_bowl)Item Bowls$(/l) and the item you want to enchant on the Enchanter itself.$(br2)Unlike regular enchanting, this will not consume the books - but will require a far greater amount of experience instead."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/enchanting_items.png"
+      ],
+      "border": true,
+      "text": "Finally supply a steady stream of experience via $(l:magical_items/knowledge_gem)Knowledge Gem$(/l) and you are set."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:enchanted_book",
+      "title": "Copy Enchanted Books",
+      "text": "You can also use this mechanism to create new Enchanted Books. Just put the Enchanted Book(s) you want to copy in the $(l:decoration/item_bowl)Item Bowls$(/l) and a simple book onto the $(l:enchanting/enchanter)Enchanter$(/l).$(br2)Because of the mundane nature of the books this will require lots of experience, though."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Required Experience",
+      "text": "You estimate a value $(bold)between 50 and 200 experience in most cases per enchantment$().$(br)The rarer an enchantment is, the higher its level, the better the target item is at absorbing enchantments, and a few other factors affect this result.$(br)Interferences further increase this cost, such as enchantments that are not suitable for your target."
+    }
+  ]
+}

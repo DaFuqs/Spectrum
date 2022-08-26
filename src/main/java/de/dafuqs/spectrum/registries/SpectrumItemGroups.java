@@ -103,8 +103,8 @@ public class SpectrumItemGroups {
 				// Fully Enchanted Enchanter Enchantables
 				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.BOTTOMLESS_BUNDLE, Enchantments.POWER, SpectrumEnchantments.VOIDING));
 				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.ENDER_SPLICE, Enchantments.UNBREAKING, SpectrumEnchantments.RESONANCE));
-				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.EXCHANGE_STAFF, Enchantments.FORTUNE));
-				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.EXCHANGE_STAFF, Enchantments.SILK_TOUCH));
+				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.EXCHANGING_STAFF, Enchantments.FORTUNE));
+				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.EXCHANGING_STAFF, Enchantments.SILK_TOUCH));
 				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.KNOWLEDGE_GEM, Enchantments.EFFICIENCY, Enchantments.QUICK_CHARGE));
 				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.NATURES_STAFF, Enchantments.EFFICIENCY));
 				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.RADIANCE_STAFF, Enchantments.INFINITY));

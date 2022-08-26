@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:paltaeria_gem"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.5,
+  "result": {
+    "item": "spectrum:paltaeria_fragments",
+    "count": 8
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.glass.break"
+}

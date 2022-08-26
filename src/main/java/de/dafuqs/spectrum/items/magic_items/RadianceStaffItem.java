@@ -70,7 +70,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 			pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
 		}
 		SpectrumS2CPacketSender.sendLightCreatedParticle(world, targetPos);
-		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F - (float) iteration * 0.1F), pitch);
+		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F - (float) iteration * 0.1F), pitch);
 	}
 	
 	public static void playDenySound(World world, PlayerEntity playerEntity) {
@@ -81,11 +81,11 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		if(InkPowered.canUseClient()) {
-			tooltip.add(Text.translatable("item.spectrum.light_staff.tooltip.ink"));
+			tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip.ink"));
 		} else {
-			tooltip.add(Text.translatable("item.spectrum.light_staff.tooltip"));
+			tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip"));
 		}
-		tooltip.add(Text.translatable("item.spectrum.light_staff.tooltip2"));
+		tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip2"));
 	}
 	
 	public UseAction getUseAction(ItemStack stack) {
@@ -94,7 +94,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (!world.isClient) {
-			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.LIGHT_STAFF_CHARGING, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.RADIANCE_STAFF_CHARGING, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
 		return ItemUsage.consumeHeldItem(world, user, hand);
 	}

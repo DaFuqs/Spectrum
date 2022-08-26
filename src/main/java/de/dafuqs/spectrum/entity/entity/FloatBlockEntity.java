@@ -172,8 +172,8 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 		if (other instanceof BlockLikeEntity otherBlockLikeEntity) {
 			Block thisBlock = this.blockState.getBlock();
 			Block otherBlock = otherBlockLikeEntity.getBlockState().getBlock();
-			return thisBlock == SpectrumBlocks.PALETUR_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.SCARLET_FRAGMENT_BLOCK
-					|| thisBlock == SpectrumBlocks.SCARLET_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.PALETUR_FRAGMENT_BLOCK;
+			return thisBlock == SpectrumBlocks.PALETUR_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.STRATINE_FRAGMENT_BLOCK
+					|| thisBlock == SpectrumBlocks.STRATINE_FRAGMENT_BLOCK && otherBlock == SpectrumBlocks.PALETUR_FRAGMENT_BLOCK;
 		}
 		return false;
 	}

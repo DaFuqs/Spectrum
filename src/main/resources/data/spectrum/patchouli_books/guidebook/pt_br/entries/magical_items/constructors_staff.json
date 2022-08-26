@@ -1,0 +1,21 @@
+{
+  "name": "Constructors' Staff",
+  "advancement": "spectrum:progression/unlock_constructors_staff",
+  "icon": "spectrum:constructors_staff",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:constructors_staff": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You always spend a lot of time placing blocks. You could almost think that this is the main reason for your existence. Placing a lot of similar blocks is tedious.$(br2)Or more like: $(italic)Was$() tedious."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/constructors_staff",
+      "text": "Crouch-Click to get a selection of all available placement modi."
+    }
+  ]
+}

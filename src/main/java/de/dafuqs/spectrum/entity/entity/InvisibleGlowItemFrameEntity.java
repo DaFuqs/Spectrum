@@ -68,7 +68,7 @@ public class InvisibleGlowItemFrameEntity extends ItemFrameEntity {
 	
 	@Override
 	protected ItemStack getAsItemStack() {
-		return new ItemStack(SpectrumItems.INVISIBLE_ITEM_FRAME);
+		return new ItemStack(SpectrumItems.PHANTOM_FRAME);
 	}
 	
 	@Override

@@ -1,0 +1,30 @@
+{
+  "parent": "spectrum:lategame/collect_paletur",
+  "display": {
+    "icon": {
+      "item": "spectrum:exchanging_staff"
+    },
+    "title": {
+      "translate": "advancements.spectrum.enchant_exchanging_staff.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enchant_exchanging_staff.description"
+    }
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:enchanted_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:exchanging_staff"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paletur" }
+    }
+  }
+}

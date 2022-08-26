@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_paletur": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paletur" }
+    },
+    "has_paltaeria_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["spectrum:paltaeria_gem" ] }] }
+    }
+  }
+}

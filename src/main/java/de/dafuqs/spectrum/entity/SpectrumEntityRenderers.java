@@ -18,7 +18,7 @@ public class SpectrumEntityRenderers {
 	public static void registerClient() {
 		register(SpectrumEntityTypes.FLOAT_BLOCK, BlockLikeEntityRenderer::new);
 		register(SpectrumEntityTypes.SHOOTING_STAR, ShootingStarEntityRenderer::new);
-		register(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, InvisibleItemFrameEntityRenderer::new);
+		register(SpectrumEntityTypes.PHANTOM_FRAME, InvisibleItemFrameEntityRenderer::new);
 		register(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, InvisibleItemFrameEntityRenderer::new);
 		register(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE, FlyingItemEntityRenderer::new);
 		register(SpectrumEntityTypes.INK_PROJECTILE, InkProjectileEntityRenderer::new);

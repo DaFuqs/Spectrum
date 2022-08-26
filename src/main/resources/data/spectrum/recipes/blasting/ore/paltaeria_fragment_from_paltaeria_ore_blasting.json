@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:paltaeria_ore"
+  },
+  "result": "spectrum:paltaeria_fragments",
+  "experience": 0.2,
+  "cookingtime": 100
+}

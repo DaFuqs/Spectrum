@@ -1,0 +1,29 @@
+{
+  "name": "Molduras Phantom",
+  "icon": "spectrum:phantom_frame",
+  "advancement": "spectrum:collect_sparklestone",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:phantom_frame": 0,
+    "spectrum:glow_phantom_frame": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Phantom Frames",
+      "text": "$(italic)Você gostaria de mostrar seus preciosos bens. Até agora, você sempre usou molduras para isso. Mas algumas exibições seriam melhores se não desse para ver a moldura.$(br)Mel na chupeta, você se aproveitou das propriedades de manipulação de luz das suas gemas."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Receita de Pedestal",
+      "recipe": "spectrum:pedestal/tier1/phantom_frame",
+      "text": "A Moldura Phantom fica invisível assim que você coloca um item nela."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Molduras Phantom Brilhantes",
+      "recipe": "spectrum:pedestal/tier1/glow_phantom_frame",
+      "text": "Essa tem um outro detalhe: o item mostrado emana uma luz clara, fazendo ele parecer ainda mais imponente."
+    }
+  ]
+}

@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/collect_paletur",
   "display": {
     "icon": {
-      "item": "spectrum:paletur_fragment_block"
+      "item": "spectrum:paltaeria_fragment_block"
     },
     "frame": "challenge",
     "title": {

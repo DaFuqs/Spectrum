@@ -147,20 +147,20 @@ public class SpectrumItems {
 	
 	// Preenchanted tools
 	public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, multiToolItemSettings);
-	public static final Item SILKER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings) {
+	public static final Item TENDER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.SILK_TOUCH, 1);
 		}
 	};
-	public static final Item FORTUNE_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings) {
+	public static final Item LUCKY_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.FORTUNE, 3);
 		}
 	};
-	public static final Item LOOTING_FALCHION = new LootingFalchionItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 4, -2.2F, lowHealthToolItemSettings);
-	public static final Item VOIDING_PICKAXE = new VoidingPickaxeItem(SpectrumToolMaterials.ToolMaterial.VOIDING, 1, -2.8F, voidingToolItemSettings);
+	public static final Item RAZOR_FALCHION = new RazorFalchionItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 4, -2.2F, lowHealthToolItemSettings);
+	public static final Item OBLIVION_PICKAXE = new OblivionPickaxeItem(SpectrumToolMaterials.ToolMaterial.VOIDING, 1, -2.8F, voidingToolItemSettings);
 	public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, lowHealthToolItemSettings) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
@@ -215,10 +215,10 @@ public class SpectrumItems {
 	
 	// Armor
 	public static final ArmorMaterial EMERGENCY_ARMOR_MATERIAL = SpectrumArmorMaterials.EMERGENCY;
-	public static final Item EMERGENCY_HELMET = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.HEAD, gemstoneArmorItemSettings);
-	public static final Item EMERGENCY_CHESTPLATE = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.CHEST, gemstoneArmorItemSettings);
-	public static final Item EMERGENCY_LEGGINGS = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.LEGS, gemstoneArmorItemSettings);
-	public static final Item EMERGENCY_BOOTS = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.FEET, gemstoneArmorItemSettings);
+	public static final Item FETCHLING_HELMET = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.HEAD, gemstoneArmorItemSettings);
+	public static final Item FEROCIOUS_CHESTPLATE = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.CHEST, gemstoneArmorItemSettings);
+	public static final Item SYLPH_LEGGINGS = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.LEGS, gemstoneArmorItemSettings);
+	public static final Item OREAD_BOOTS = new GemstoneArmorItem(EMERGENCY_ARMOR_MATERIAL, EquipmentSlot.FEET, gemstoneArmorItemSettings);
 	
 	// Decay drops
 	public static final Item VEGETAL = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("craft_bottle_of_fading"), Items.GUNPOWDER, SpectrumBannerPatterns.VEGETAL);
@@ -250,15 +250,15 @@ public class SpectrumItems {
 	public static final CloakedItem SPARKLESTONE_GEM = new CloakedItemWithLoomPattern(resourcesItemSettings, ((RevelationAware) SpectrumBlocks.SPARKLESTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE, SpectrumBannerPatterns.SHIMMERSTONE);
 	public static final CloakedItem RAW_AZURITE = new CloakedItemWithLoomPattern(resourcesItemSettings, ((RevelationAware) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE, SpectrumBannerPatterns.RAW_AZURITE);
 	public static final CloakedItem REFINED_AZURITE = new CloakedItem(resourcesItemSettings, ((RevelationAware) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
-	public static final CloakedFloatItem SCARLET_FRAGMENTS = new CloakedFloatItem(resourcesItemSettingsFireproof, 1.003F, ((RevelationAware) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
-	public static final CloakedFloatItem SCARLET_GEM = new CloakedFloatItem(resourcesItemSettingsSixteenFireproof, 1.02F, ((RevelationAware) SpectrumBlocks.SCARLET_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
+	public static final CloakedFloatItem STRATINE_FRAGMENTS = new CloakedFloatItem(resourcesItemSettingsFireproof, 1.003F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
+	public static final CloakedFloatItem STRATINE_GEM = new CloakedFloatItem(resourcesItemSettingsSixteenFireproof, 1.02F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
 	public static final CloakedFloatItem PALETUR_FRAGMENTS = new CloakedFloatItem(resourcesItemSettings, 0.997F, ((RevelationAware) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedFloatItem PALETUR_GEM = new CloakedFloatItem(resourcesItemSettingsSixteen, 0.98F, ((RevelationAware) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	
 	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(resourcesItemSettings, ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final CloakedItem LIGHTNING_STONE = new CloakedItem(resourcesItemSettingsSixteen, ((RevelationAware) SpectrumBlocks.STUCK_LIGHTNING_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(resourcesItemSettingsSixteen, SpectrumCommon.locate("craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
-	public static final CloakedItem SHOOTING_STAR = new CloakedItem(resourcesItemSettingsSixteen, SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
+	public static final CloakedItem STAR_FRAGMENT = new CloakedItem(resourcesItemSettingsSixteen, SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
 	public static final CloakedItem STARDUST = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
 	
 	public static final Item HIBERNATING_JADE_VINE_SEEDS = new ItemWithTooltip(resourcesItemSettingsSixteen, "item.spectrum.hibernating_jade_vine_seeds.tooltip");
@@ -274,11 +274,11 @@ public class SpectrumItems {
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatternTags.AMETHYST_SHARD_TAG, "block.minecraft.amethyst_cluster");
 	
 	// Magical Tools
-	public static final Item ENDER_BAG = new EnderBagItem(toolItemSettingsSingle);
+	public static final Item BAG_OF_HOLDING = new EnderBagItem(toolItemSettingsSingle);
 	public static final Item RADIANCE_STAFF = new RadianceStaffItem(toolUncommonItemSettingsSingle);
 	public static final Item NATURES_STAFF = new NaturesStaffItem(toolUncommonItemSettingsSingle);
-	public static final Item PLACEMENT_STAFF = new PlacementStaffItem(toolUncommonItemSettingsSingle);
-	public static final Item EXCHANGE_STAFF = new ExchangeStaffItem(toolUncommonItemSettingsSingle);
+	public static final Item CONSTRUCTORS_STAFF = new PlacementStaffItem(toolUncommonItemSettingsSingle);
+	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(toolUncommonItemSettingsSingle);
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(toolUncommonItemSettings);
 	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(toolUncommonItemSettingsSixteen);
 	public static final Item END_PORTAL_CRACKER = new EndPortalCrackerItem(toolRareItemSettings);
@@ -306,7 +306,7 @@ public class SpectrumItems {
 	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, toolRareItemSettingsSingle, 265);
 	public static final Item SPAWNER = new SpectrumMobSpawnerItem(generalEpicItemSettingsSingle);
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, toolItemSettings);
-	public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, toolItemSettings);
+	public static final Item PHANTOM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, toolItemSettings);
 	public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, toolItemSettings);
 	
 	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(toolItemSettingsSingle);
@@ -343,7 +343,7 @@ public class SpectrumItems {
 	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 1, 2, SpectrumCommon.locate("progression/unlock_lesser_potion_pendant"));
 	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 3, 0, SpectrumCommon.locate("progression/unlock_greater_potion_pendant"));
 	public static final Item ASHEN_CIRCLET = new AshenCircletItem(toolUncommonItemSettingsSingleFireproof);
-	public static final Item TIDAL_CIRCLET = new TidalCircletItem(toolUncommonItemSettingsSingle);
+	public static final Item WEEPING_CIRCLET = new TidalCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item NEAT_RING = new NeatRingItem(toolRareItemSettingsSingle);
@@ -375,7 +375,7 @@ public class SpectrumItems {
 	}
 	
 	public static void register() {
-		register("manual", GUIDEBOOK, DyeColor.WHITE);
+		register("guidebook", GUIDEBOOK, DyeColor.WHITE);
 		register("paintbrush", PAINTBRUSH, DyeColor.WHITE);
 		
 		registerStructurePlacers();
@@ -393,13 +393,13 @@ public class SpectrumItems {
 		registerNativeClusters();
 		
 		register("crafting_tablet", CRAFTING_TABLET, DyeColor.LIGHT_GRAY);
-		register("void_bundle", BOTTOMLESS_BUNDLE, DyeColor.LIGHT_GRAY);
+		register("bottomless_bundle", BOTTOMLESS_BUNDLE, DyeColor.LIGHT_GRAY);
 		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME, DyeColor.GREEN);
 		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME, DyeColor.GREEN);
 		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
-		register("invisible_item_frame", INVISIBLE_ITEM_FRAME, DyeColor.YELLOW);
-		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME, DyeColor.YELLOW);
+		register("phantom_frame", PHANTOM_FRAME, DyeColor.YELLOW);
+		register("glow_phantom_frame", INVISIBLE_GLOW_ITEM_FRAME, DyeColor.YELLOW);
 		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);
 		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH, DyeColor.MAGENTA);
 		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
@@ -498,15 +498,15 @@ public class SpectrumItems {
 		register("sparklestone_gem", SPARKLESTONE_GEM, DyeColor.YELLOW);
 		register("raw_azurite", RAW_AZURITE, DyeColor.BLUE);
 		register("refined_azurite", REFINED_AZURITE, DyeColor.BLUE);
-		register("paletur_fragments", PALETUR_FRAGMENTS, DyeColor.LIGHT_BLUE);
-		register("paletur_gem", PALETUR_GEM, DyeColor.LIGHT_BLUE);
-		register("scarlet_fragments", SCARLET_FRAGMENTS, DyeColor.RED);
-		register("scarlet_gem", SCARLET_GEM, DyeColor.RED);
+		register("paltaeria_fragments", PALETUR_FRAGMENTS, DyeColor.LIGHT_BLUE);
+		register("paltaeria_gem", PALETUR_GEM, DyeColor.LIGHT_BLUE);
+		register("stratine_fragments", STRATINE_FRAGMENTS, DyeColor.RED);
+		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
 		
 		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);
 		register("mermaids_gem", MERMAIDS_GEM, DyeColor.LIGHT_BLUE);
 		register("lightning_stone", LIGHTNING_STONE, DyeColor.YELLOW);
-		register("shooting_star", SHOOTING_STAR, DyeColor.PURPLE);
+		register("star_fragment", STAR_FRAGMENT, DyeColor.PURPLE);
 		register("stardust", STARDUST, DyeColor.PURPLE);
 		
 		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_SEEDS, DyeColor.GRAY);
@@ -540,16 +540,16 @@ public class SpectrumItems {
 	
 	public static void registerPreEnchantedTools() {
 		register("multitool", MULTITOOL, DyeColor.BROWN);
-		register("silker_pickaxe", SILKER_PICKAXE, DyeColor.BLUE);
-		register("fortune_pickaxe", FORTUNE_PICKAXE, DyeColor.LIGHT_BLUE);
-		register("looting_falchion", LOOTING_FALCHION, DyeColor.RED);
-		register("voiding_pickaxe", VOIDING_PICKAXE, DyeColor.GRAY);
+		register("tender_pickaxe", TENDER_PICKAXE, DyeColor.BLUE);
+		register("lucky_pickaxe", LUCKY_PICKAXE, DyeColor.LIGHT_BLUE);
+		register("razor_falchion", RAZOR_FALCHION, DyeColor.RED);
+		register("oblivion_pickaxe", OBLIVION_PICKAXE, DyeColor.GRAY);
 		register("resonant_pickaxe", RESONANT_PICKAXE, DyeColor.WHITE);
 		
-		register("emergency_helmet", EMERGENCY_HELMET, DyeColor.BLUE);
-		register("emergency_chestplate", EMERGENCY_CHESTPLATE, DyeColor.BLUE);
-		register("emergency_leggings", EMERGENCY_LEGGINGS, DyeColor.BLUE);
-		register("emergency_boots", EMERGENCY_BOOTS, DyeColor.BLUE);
+		register("fetchling_helmet", FETCHLING_HELMET, DyeColor.BLUE);
+		register("ferocious_chestplate", FEROCIOUS_CHESTPLATE, DyeColor.BLUE);
+		register("sylph_leggings", SYLPH_LEGGINGS, DyeColor.BLUE);
+		register("oread_boots", OREAD_BOOTS, DyeColor.BLUE);
 		
 		register("bedrock_pickaxe", BEDROCK_PICKAXE, DyeColor.BLACK);
 		register("bedrock_axe", BEDROCK_AXE, DyeColor.BLACK);
@@ -570,11 +570,11 @@ public class SpectrumItems {
 	}
 	
 	public static void registerMagicalTools() {
-		register("ender_bag", ENDER_BAG, DyeColor.PURPLE);
-		register("light_staff", RADIANCE_STAFF, DyeColor.YELLOW);
+		register("bag_of_holding", BAG_OF_HOLDING, DyeColor.PURPLE);
+		register("radiance_staff", RADIANCE_STAFF, DyeColor.YELLOW);
 		register("natures_staff", NATURES_STAFF, DyeColor.LIME);
-		register("placement_staff", PLACEMENT_STAFF, DyeColor.LIGHT_GRAY);
-		register("exchange_staff", EXCHANGE_STAFF, DyeColor.LIGHT_GRAY);
+		register("constructors_staff", CONSTRUCTORS_STAFF, DyeColor.LIGHT_GRAY);
+		register("exchanging_staff", EXCHANGING_STAFF, DyeColor.LIGHT_GRAY);
 		register("block_flooder", BLOCK_FLOODER, DyeColor.LIGHT_GRAY);
 		register("ender_splice", ENDER_SPLICE, DyeColor.PURPLE);
 		register("end_portal_cracker", END_PORTAL_CRACKER, DyeColor.RED);
@@ -590,7 +590,7 @@ public class SpectrumItems {
 		register("fanciful_circlet", FANCIFUL_CIRCLET, DyeColor.GREEN);
 		register("fanciful_gloves", FANCIFUL_GLOVES, DyeColor.GREEN);
 		
-		register("glow_vision_helmet", GLOW_VISION_GOGGLES, DyeColor.WHITE);
+		register("glow_vision_goggles", GLOW_VISION_GOGGLES, DyeColor.WHITE);
 		register("jeopardant", JEOPARDANT, DyeColor.RED);
 		register("seven_league_boots", SEVEN_LEAGUE_BOOTS, DyeColor.PURPLE);
 		register("radiance_pin", RADIANCE_PIN, DyeColor.BLUE);
@@ -605,7 +605,7 @@ public class SpectrumItems {
 		register("lesser_potion_pendant", LESSER_POTION_PENDANT, DyeColor.PINK);
 		register("greater_potion_pendant", GREATER_POTION_PENDANT, DyeColor.PINK);
 		register("ashen_circlet", ASHEN_CIRCLET, DyeColor.ORANGE);
-		register("tidal_circlet", TIDAL_CIRCLET, DyeColor.LIGHT_BLUE);
+		register("weeping_circlet", WEEPING_CIRCLET, DyeColor.LIGHT_BLUE);
 		register("puff_circlet", PUFF_CIRCLET, DyeColor.WHITE);
 		register("whispy_circlet", WHISPY_CIRCLET, DyeColor.BROWN);
 		register("neat_ring", NEAT_RING, DyeColor.GREEN);

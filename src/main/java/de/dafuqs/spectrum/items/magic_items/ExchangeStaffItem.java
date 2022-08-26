@@ -183,12 +183,12 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);
-		tooltip.add(Text.translatable("item.spectrum.exchange_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.exchange_staff.tooltip.crouch").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.crouch").formatted(Formatting.GRAY));
 		
 		Optional<Block> optionalBlock = getBlockTarget(stack);
 		if (optionalBlock.isPresent()) {
-			tooltip.add(Text.translatable("item.spectrum.exchange_staff.tooltip.target", optionalBlock.get().getName()).formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("item.spectrum.exchanging_staff.tooltip.target", optionalBlock.get().getName()).formatted(Formatting.GRAY));
 		}
 	}
 	
@@ -207,7 +207,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 				if (context.getHand() == Hand.MAIN_HAND && player.isSneaking()) {
 					if (world instanceof ServerWorld serverWorld) {
 						storeBlockAsTarget(context.getStack(), targetBlock);
-						world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.EXCHANGE_STAFF_SELECT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+						world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.EXCHANGING_STAFF_SELECT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 						
 						Direction side = context.getSide();
 						Vec3d sourcePos = new Vec3d(context.getHitPos().getX() + side.getOffsetX() * 0.1, context.getHitPos().getY() + side.getOffsetY() * 0.1, context.getHitPos().getZ() + side.getOffsetZ() * 0.1);

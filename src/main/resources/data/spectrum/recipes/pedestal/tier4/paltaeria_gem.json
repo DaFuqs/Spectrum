@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 400,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 2,
+  "experience": 0.5,
+  "pattern": [
+    "###",
+    "#X#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:paltaeria_fragments"
+    },
+    "X": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "spectrum:paltaeria_gem",
+    "count": 1
+  },
+  "required_advancement": "spectrum:hidden/collect_paltaeria_gem",
+  "disable_yield_upgrades": true
+}

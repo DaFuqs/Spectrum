@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 600,
+  "tier": "basic",
+  "cyan": 8,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 2,
+  "pattern": [
+    "TMT",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:smooth_basalt"
+    },
+    "T": {
+      "item": "spectrum:topaz_shard"
+    },
+    "M": {
+      "item": "spectrum:mermaids_gem"
+    }
+  },
+  "result": {
+    "item": "spectrum:tender_pickaxe",
+    "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/tools/unlock_tender_pickaxe"
+}

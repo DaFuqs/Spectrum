@@ -1,0 +1,29 @@
+{
+  "name": "Phantom Frame",
+  "icon": "spectrum:phantom_frame",
+  "advancement": "spectrum:collect_sparklestone",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:phantom_frame": 0,
+    "spectrum:glow_phantom_frame": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Phantom Frames",
+      "text": "$(italic)You would like to display your most precious belongings. So far, you've always used item frames for that. But some of your exhibitions would look better if you didn't see the frame.$(br)Piece of cake, you just take advantage of the light manipulating properties of your gems."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Crafting",
+      "recipe": "spectrum:pedestal/tier1/phantom_frame",
+      "text": "The Phantom Frame becomes invisible as soon as you display an item in it."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Glow Phantom Frame",
+      "recipe": "spectrum:pedestal/tier1/glow_phantom_frame",
+      "text": "This one has another nice touch: the presented item in it shines in a bright light, making it look even more imposing."
+    }
+  ]
+}

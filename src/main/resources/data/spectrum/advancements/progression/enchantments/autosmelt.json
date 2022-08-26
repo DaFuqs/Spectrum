@@ -4,9 +4,9 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_enchanting_structure" }
     },
-    "collected_scarlet": {
+    "collected_stratine": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_scarlet_gem" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_stratine_gem" }
     }
   }
 }

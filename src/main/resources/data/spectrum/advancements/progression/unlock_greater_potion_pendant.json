@@ -4,9 +4,9 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop" }
     },
-    "collected_paletur_gem": {
+    "collected_paltaeria_gem": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_paletur_gem" }
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_paltaeria_gem" }
     }
   }
 }

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "particle": "spectrum:block/paltaeria_fragment_block_side",
+    "north": "spectrum:block/paltaeria_fragment_block_side",
+    "east": "spectrum:block/paltaeria_fragment_block_side",
+    "south": "spectrum:block/paltaeria_fragment_block_side",
+    "west": "spectrum:block/paltaeria_fragment_block_side",
+    "up": "spectrum:block/paltaeria_fragment_block_vertical",
+    "down": "spectrum:block/paltaeria_fragment_block_vertical"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:stratine_ore"
+  },
+  "result": "spectrum:stratine_fragments",
+  "experience": 0.2,
+  "cookingtime": 100
+}

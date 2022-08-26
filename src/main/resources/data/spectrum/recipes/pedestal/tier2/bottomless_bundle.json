@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 240,
+  "tier": "simple",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 8,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "QRQ",
+    "RQR",
+    "RRR"
+  ],
+  "key": {
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
+    },
+    "R": {
+      "item": "minecraft:rabbit_hide"
+    }
+  },
+  "result": {
+    "item": "spectrum:bottomless_bundle",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_bottomless_bundle"
+}

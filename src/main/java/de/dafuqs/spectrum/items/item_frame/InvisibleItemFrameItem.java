@@ -16,7 +16,7 @@ public class InvisibleItemFrameItem extends SpectrumItemFrameItem {
 	}
 	
 	public ItemFrameEntity getItemFrameEntity(World world, BlockPos blockPos, Direction direction) {
-		return new InvisibleItemFrameEntity(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, world, blockPos, direction);
+		return new InvisibleItemFrameEntity(SpectrumEntityTypes.PHANTOM_FRAME, world, blockPos, direction);
 	}
 	
 }

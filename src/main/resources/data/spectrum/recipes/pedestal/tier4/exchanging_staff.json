@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 1200,
+  "tier": "complex",
+  "cyan": 2,
+  "magenta": 4,
+  "yellow": 0,
+  "white": 4,
+  "black": 1,
+  "experience": 2.0,
+  "pattern": [
+    " PG",
+    " SP",
+    "S  "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "P": {
+      "item": "spectrum:light_gray_pigment"
+    },
+    "G": {
+      "item": "spectrum:paltaeria_gem"
+    }
+  },
+  "result": {
+    "item": "spectrum:exchanging_staff",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_exchanging_staff"
+}

@@ -1,0 +1,33 @@
+{
+  "display": {
+    "icon": {
+        "item": "spectrum:radiating_ender"
+    },
+    "title": {
+      "translate": "advancements.spectrum.get_radiating_ender.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.get_radiating_ender.description"
+    },
+    "hidden": true
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "gotten_radiating_ender": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:radiating_ender"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:spectrum" }
+    }
+  }
+}

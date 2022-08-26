@@ -5,10 +5,10 @@
     "spectrum:bedrock_chestplate",
     "spectrum:bedrock_leggings",
     "spectrum:bedrock_boots",
-    "spectrum:emergency_helmet",
-    "spectrum:emergency_chestplate",
-    "spectrum:emergency_leggings",
-    "spectrum:emergency_boots",
-    "spectrum:glow_vision_helmet"
+    "spectrum:fetchling_helmet",
+    "spectrum:ferocious_chestplate",
+    "spectrum:sylph_leggings",
+    "spectrum:oread_boots",
+    "spectrum:glow_vision_goggles"
   ]
 }

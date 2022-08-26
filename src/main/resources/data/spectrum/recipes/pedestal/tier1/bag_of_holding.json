@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 240,
+  "tier": "basic",
+  "magenta": 4,
+  "yellow": 0,
+  "cyan": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "OOO",
+    "TET",
+    "OOO"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:obsidian"
+    },
+    "E": {
+      "item": "minecraft:ender_eye"
+    },
+    "T": {
+      "item": "spectrum:radiating_ender"
+    }
+  },
+  "result": {
+    "item": "spectrum:bag_of_holding",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_bag_of_holding"
+}

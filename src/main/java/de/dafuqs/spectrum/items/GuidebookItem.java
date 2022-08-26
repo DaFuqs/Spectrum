@@ -91,11 +91,11 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	}
 	
 	private void openGuidebook(ServerPlayerEntity serverPlayerEntity) {
-		PatchouliAPI.get().openBookGUI(serverPlayerEntity, SpectrumCommon.locate("manual"));
+		PatchouliAPI.get().openBookGUI(serverPlayerEntity, SpectrumCommon.locate("guidebook"));
 	}
 	
 	private void openGuidebook(ServerPlayerEntity serverPlayerEntity, Identifier entry, int page) {
-		PatchouliAPI.get().openBookEntry(serverPlayerEntity, SpectrumCommon.locate("manual"), entry, page);
+		PatchouliAPI.get().openBookEntry(serverPlayerEntity, SpectrumCommon.locate("guidebook"), entry, page);
 	}
 	
 	@Override

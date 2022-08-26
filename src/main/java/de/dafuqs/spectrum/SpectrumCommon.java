@@ -225,7 +225,7 @@ public class SpectrumCommon implements ModInitializer {
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!world.isClient && !player.isSpectator()) {
 				ItemStack mainHandStack = player.getMainHandStack();
-				if (mainHandStack.isOf(SpectrumItems.EXCHANGE_STAFF)) {
+				if (mainHandStack.isOf(SpectrumItems.EXCHANGING_STAFF)) {
 					Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
 					blockTarget.ifPresent(block -> ExchangeStaffItem.exchange(world, pos, player, block, player.getMainHandStack(), true));
 					return ActionResult.CONSUME;

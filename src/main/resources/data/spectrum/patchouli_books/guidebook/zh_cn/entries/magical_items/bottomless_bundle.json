@@ -1,0 +1,49 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:bottomless_bundle",
+			"text":"$(italic)在你穿越地下的旅途中，你收集了大量相同的方块，你再也不需要这些方块了。但你认为它们太好了，不能扔掉。$(br2)是时候开发一种存储解决方案来解决您的小癖好了。$()",
+			"type":"patchouli:spotlight"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier2/bottomless_bundle",
+			"text":"“无底包”实际上可以存储无限数量的物品，但只有一种类型。$(br)右键单击库存中的堆栈或空格子以填充/清空它",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		},
+		{
+			"images":[
+				"spectrum:textures/gui/guidebook/bottomless_bundle_automation.png"
+			],
+			"text":"蹲下将其放下，使其能够自动填充/清空。",
+			"type":"patchouli:image",
+			"title":"自动化"
+		},
+		{
+			"text":"$(br)放置好的包裹将始终记住您最后放入的物品。$(br)即使它是空的，它也只会接受以前持有的新物品，这使得它也可以用作过滤器。$(br2)$(italic)注意：如果它是空的，它将接受第一个物品泵入它并锁定。$()",
+			"type":"patchouli:text",
+			"title":""
+		},
+		{
+			"item":"spectrum:bottomless_bundle{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
+			"advancement":"spectrum:midgame/build_enchanting_structure",
+			"text":"通过使用注魔基座给无底包裹$(l:enchanting/enchanting_items)附魔$(/l)力量，你可以将其容量增加十倍，每一级力量。$(br2)$(italic)你能用力量V附魔一个无底包裹吗？",
+			"type":"patchouli:spotlight",
+			"title":"附魔-力量"
+		},
+		{
+			"item":"spectrum:bottomless_bundle{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
+			"advancement":"spectrum:midgame/build_enchanting_structure",
+			"text":"使用$(l:enchanting/enchanting_items)注魔基座$(/l)对一个带有虚无诅咒的无底包裹进行附魔将导致所有会填满无底包裹的物品销毁。$(br2)$(italic)挖掘时，不再有无用的方块堵塞你的道路。",
+			"type":"patchouli:spotlight",
+			"title":"虚无诅咒"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_bottomless_bundle",
+	"extra_recipe_mappings":{
+		"spectrum:bottomless_bundle":0
+	},
+	"name":"无底包",
+	"icon":"spectrum:bottomless_bundle",
+	"category":"spectrum:magical_items_category"
+}

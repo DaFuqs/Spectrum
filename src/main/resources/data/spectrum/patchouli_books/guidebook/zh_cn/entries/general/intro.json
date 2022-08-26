@@ -1,0 +1,32 @@
+{
+  "name": "简介",
+  "icon": "spectrum:pedestal_basic_amethyst",
+  "category": "spectrum:general_category",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "title": "欢迎来到光谱世界！",
+      "images": [
+        "spectrum:textures/gui/guidebook/spectrum.png"
+      ],
+      "border": true,
+      "text": "光谱世界是全面包含多种功能，主打魔法和冒险的模组！"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "光谱世界是基于减色混合系统 (CMYK)。减色混合就有点像你画水彩画或是打印机的色彩混合。光谱世界中的基础颜色通过宝石矿获取，宝石矿可以在遍布世界的水晶洞穴中找到，比如香草紫水晶提供光谱世界中的紫色。"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "循序渐进的任务系统",
+      "text": "光谱世界带有一个循序渐进的任务系统，伴随着你的进展解锁新的事物。$(br)当你深入研究，就会发现世界的变化。只有你能感受到，$(br2)你学到的所有东西都带你走向最终目标：找出在不可到达的基岩层下，到底是什么在等待你。"
+    },
+    {
+      "type": "patchouli:link",
+      "text": "不知道如何开始？看看你的成就吧！成就会给予你诸多提示来引导你下一步该干什么。$(br2)$(br)光谱世界还在开发中。如果你遇到一些bug或是有些建议， 可以在光谱世界的Discord上联系我或者帖在GitHub上。$(br2)玩的开心！$(br)                - DaFuqs",
+      "url": "https://discord.com/invite/EXU9XFXT8a",
+      "link_text": "光谱世界Discord"
+    }
+  ]
+}

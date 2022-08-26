@@ -2,9 +2,9 @@
   "replace": false,
   "values": [
     "spectrum:bedrock_pickaxe",
-    "spectrum:silker_pickaxe",
-    "spectrum:fortune_pickaxe",
-    "spectrum:voiding_pickaxe",
+    "spectrum:tender_pickaxe",
+    "spectrum:lucky_pickaxe",
+    "spectrum:oblivion_pickaxe",
     "spectrum:resonant_pickaxe",
     "spectrum:multitool"
   ]

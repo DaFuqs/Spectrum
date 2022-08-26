@@ -4,9 +4,9 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:progression/unlock_ashen_circlet" }
     },
-    "unlocked_tidal_circlet": {
+    "unlocked_weeping_circlet": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:progression/unlock_tidal_circlet" }
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_weeping_circlet" }
     },
     "unlocked_puff_circlet": {
       "trigger":"revelationary:advancement_gotten",
@@ -20,7 +20,7 @@
   "requirements": [
     [
       "unlocked_ashen_circlet",
-      "unlocked_tidal_circlet",
+      "unlocked_weeping_circlet",
       "unlocked_puff_circlet",
       "unlocked_whispy_circlet"
     ]

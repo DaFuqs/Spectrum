@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "player_only_glass",
+  "time": 80,
+  "tier": "complex",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 8,
+  "experience": 1.0,
+  "pattern": [
+    "GPG",
+    "PSP",
+    "GPG"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:moonstone_shard"
+    },
+    "P": {
+      "item": "spectrum:purple_pigment"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "spectrum:moonstone_semi_permeable_glass",
+    "count": 6
+  },
+  "required_advancement": "spectrum:progression/unlock_moonstone_semi_permeable_glass"
+}

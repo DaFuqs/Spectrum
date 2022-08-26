@@ -72,8 +72,8 @@ public class PlacementStaffItem extends BuildingStaffItem implements InkPowered 
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		addInkPoweredTooltip(tooltip);
-		tooltip.add(Text.translatable("item.spectrum.placement_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.placement_staff.tooltip.crouch").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.range", getRange(MinecraftClient.getInstance().player)).formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.constructors_staff.tooltip.crouch").formatted(Formatting.GRAY));
 	}
 	
 	@Override

@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/collect_paletur",
   "display": {
     "icon": {
-      "item": "spectrum:paletur_gem"
+      "item": "spectrum:paltaeria_gem"
     },
     "frame": "challenge",
     "title": {

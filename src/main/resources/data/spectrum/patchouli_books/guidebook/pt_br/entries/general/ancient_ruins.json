@@ -1,0 +1,49 @@
+{
+  "name": "Ruínas Anciãs",
+  "icon": "spectrum:dike_chiseled_preservation_stone",
+  "advancement": "spectrum:find_ancient_ruins",
+  "sortnum": 16,
+  "turnin": "spectrum:generate_ancient_ruins_loot",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:preservation_stone": 0,
+    "spectrum:preservation_controller": 0,
+    "spectrum:dike_chiseled_preservation_stone": 0,
+    "spectrum:treasure_chest": 0,
+    "spectrum:preservation_glass": 0,
+    "spectrum:tinted_preservation_glass": 0,
+    "spectrum:dike_gate": 0,
+    "spectrum:dike_gate_fountain": 0,
+    "spectrum:courier_statue": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Ruínas Anciãs",
+      "item": "spectrum:dike_chiseled_preservation_stone",
+      "text": "No subterrânio você achou essa estrutura gigante, a entrada da qual parece estar protegida por uma forte, força mágica."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "A Entrada",
+      "images": [
+        "spectrum:textures/gui/guidebook/ancient_ruins.png"
+      ],
+      "border": true,
+      "text": "O que pode estar se escondendo de você atrás dessa barreira? Qual o significado desses glifos?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Mais do Digno",
+      "item": "spectrum:azure_dike_ring",
+      "advancement": "spectrum:enter_ancient_ruins",
+      "text": "Parece que usar equipamento de Dique Azul te permitiu entrar.$(br2)Até agora, você pensou estar sozinho no seu empenho com as gemas e os pigmentos. Pelo que parece você estava errado. $(italic)Muito, muito errado..."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Um Desafio?",
+      "advancement": "spectrum:generate_ancient_ruins_loot",
+      "text": "Quem quer que tenha construído essas estruturas, obviamente seguiram o mesmo caminho que você, mas eles estão kilómetro na sua frente, tecnologicamente.$(br2)De qualquer forma. Você aceita o desafio, claro. Você tem uma grande vantagem:$(br)$(italic)VOCÊ ainda está vivo."
+    }
+  ]
+}

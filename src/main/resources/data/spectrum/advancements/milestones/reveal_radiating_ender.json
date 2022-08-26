@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_radiating_ender": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:radiating_ender"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

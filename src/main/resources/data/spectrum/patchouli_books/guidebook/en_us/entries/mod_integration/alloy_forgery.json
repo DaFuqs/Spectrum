@@ -1,0 +1,26 @@
+{
+  "name": "Alloy Forgery",
+  "icon": "alloy_forgery:bricks_forge_controller",
+  "flag": "mod:alloy_forgery",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/unlock_lava_sponge",
+      "item": "spectrum:wet_lava_sponge",
+      "text": "A dripping $(item)Lava Sponge$() contains enough heat to fuel your $(thing)Alloy Forge$() for quite some time."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/collect_stratine",
+      "item": "spectrum:stratine_ore",
+      "text": "Using a high tier $(thing)Alloy Forge$() you can squeeze quite a bit more $(l:resources/stratine)Stratine$(/l) from the raw ore."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:paltaeria_ore",
+      "advancement": "spectrum:lategame/collect_paletur",
+      "text": "...same is true for $(l:resources/paletur)Paltaeria$(/l), of course."
+    }
+  ]
+}

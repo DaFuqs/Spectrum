@@ -1,0 +1,21 @@
+{
+	"pages":[
+		{
+			"text":"在紧急状态下，肾上腺素不一定是你静脉中唯一的血液。$(br)随着每一颗失去的心，这枚戒指上的$(l:resources/stratine)深红色宝石$()闪耀着越来越亮的光芒，以与你的竞速心脏相同的节奏跳动——给你一个指数级的伤害提升。",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:fusion_shrine/trinkets/jeopardant",
+			"text":"$(italic)告诉我你对你的处境有什么看法$(br)复杂、恶化",
+			"type":"spectrum:fusion_shrine_crafting",
+			"title":"融合配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_jeopardant",
+	"extra_recipe_mappings":{
+		"spectrum:jeopardant":0
+	},
+	"name":"孤勇戒指",
+	"icon":"spectrum:jeopardant",
+	"category":"spectrum:magical_items_category"
+}

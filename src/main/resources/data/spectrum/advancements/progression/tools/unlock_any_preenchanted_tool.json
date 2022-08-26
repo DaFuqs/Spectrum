@@ -1,23 +1,23 @@
 {
   "criteria": {
-    "unlocked_fortune_pickaxe": {
+    "unlocked_lucky_pickaxe": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:progression/tools/unlock_fortune_pickaxe" }
+      "conditions": { "advancement_identifier": "spectrum:progression/tools/unlock_lucky_pickaxe" }
     },
-    "unlocked_looting_falchion": {
+    "unlocked_razor_falchion": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:progression/tools/unlock_looting_falchion" }
+      "conditions": { "advancement_identifier": "spectrum:progression/tools/unlock_razor_falchion" }
     },
-    "unlocked_silker_pickaxe": {
+    "unlocked_tender_pickaxe": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:progression/tools/unlock_silker_pickaxe" }
+      "conditions": { "advancement_identifier": "spectrum:progression/tools/unlock_tender_pickaxe" }
     }
   },
   "requirements": [
     [
-      "unlocked_fortune_pickaxe",
-      "unlocked_looting_falchion",
-      "unlocked_silker_pickaxe"
+      "unlocked_lucky_pickaxe",
+      "unlocked_razor_falchion",
+      "unlocked_tender_pickaxe"
     ]
   ]
 }

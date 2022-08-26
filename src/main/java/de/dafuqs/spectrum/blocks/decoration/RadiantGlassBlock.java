@@ -17,7 +17,7 @@ public class RadiantGlassBlock extends GlassBlock {
 	
 	@Environment(EnvType.CLIENT)
 	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
-		if (stateFrom.isOf(this) || stateFrom.isOf(SpectrumBlocks.RADIANT_PLAYER_ONLY_GLASS)) {
+		if (stateFrom.isOf(this) || stateFrom.isOf(SpectrumBlocks.RADIANT_SEMI_PERMEABLE_GLASS)) {
 			return true;
 		}
 		return super.isSideInvisible(state, stateFrom, direction);

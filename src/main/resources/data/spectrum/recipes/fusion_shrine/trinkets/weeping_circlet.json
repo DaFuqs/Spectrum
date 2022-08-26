@@ -1,0 +1,33 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 600,
+  "experience": 2.0,
+  "fluid": "spectrum:liquid_crystal",
+  "ingredients": [
+    {
+      "item": "spectrum:fanciful_circlet"
+    },
+    {
+      "item": "minecraft:heart_of_the_sea"
+    },
+    {
+      "item": "spectrum:mermaids_gem"
+    },
+    {
+      "item": "minecraft:copper_ingot",
+      "count": 4
+    },
+    {
+      "item": "spectrum:light_blue_pigment",
+      "count": 16
+    }
+  ],
+  "result": {
+    "item": "spectrum:weeping_circlet"
+  },
+  "required_advancement": "spectrum:progression/unlock_weeping_circlet",
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Melhoria CMY de Pedestal",
+  "icon": "spectrum:pedestal_all_basic",
+  "sortnum": 8,
+  "advancement": "spectrum:progression/unlock_cmy_pedestal",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:build_basic_pedestal_structure",
+  "extra_recipe_mappings": {
+    "spectrum:pedestal_all_basic": 0
+  },
+  "pages": [
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Variante CMY",
+      "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
+      "text": "Aprimore seu $(l:general/pedestal)Pedestal de Pigmentos$() usando todos os fragmentos que você coletou na sua jornada."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Estrutura de Pedestal",
+      "text": "Para pode usar as abilidades aprimoradas do $(l:general/pedestal)Pedestal de Pigmentos$() você vai precisar de uma estrutura para focar energia de pedra gema.$(br2)Você chama de $(br)$(bold)Foco Spectrum$()."
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Foco Spectrum",
+      "multiblock_id": "spectrum:pedestal_simple_structure_check",
+      "enable_visualize": true,
+      "text": "Você pode trocar os blocos de basalto por calcita e escolher os blocos de pedra gema como quiser."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Lista Cheque de Blocos",
+      "text": "$(li)1 Pedestal de Pigmentos$(li)4 Blocos de Pedra Gema Polidos$(li)4 Blocos Polidos Talhados$(li)4 Blocos Polidos Entalhados$(li)8 Pilares Polidos$(li)68 Blocos Polidos"
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Personalize!",
+      "images": [
+        "spectrum:textures/gui/guidebook/spectrum_focus_customisation.png"
+      ],
+      "text": "Misture Basalto e Calcita para criar sua variaçã̀o pessoal!"
+    }
+  ]
+}

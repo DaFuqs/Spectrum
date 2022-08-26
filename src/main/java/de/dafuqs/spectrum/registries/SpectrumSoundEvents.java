@@ -56,7 +56,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent ENDER_SPLICE_CHARGES = register("ender_splice_charges");
 	public static final SoundEvent ENDER_SPLICE_BOUND = register("ender_splice_bound");
 	public static final SoundEvent NATURES_STAFF_USE = register("natures_staff_use");
-	public static final SoundEvent EXCHANGE_STAFF_SELECT = register("exchange_staff_select");
+	public static final SoundEvent EXCHANGING_STAFF_SELECT = register("exchanging_staff_select");
 	public static final SoundEvent RADIANCE_PIN_TRIGGER = register("radiance_pin_trigger");
 	public static final SoundEvent AIR_LAUNCH_BELT_CHARGING = register("air_launch_belt_charging");
 	public static final SoundEvent PUFF_CIRCLET_PFFT = register("puff_circlet");
@@ -69,9 +69,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent DREAMFLAYER_ACTIVATE = register("dreamflayer_activate");
 	public static final SoundEvent DREAMFLAYER_DEACTIVATE = register("dreamflayer_deactivate");
 	
-	public static final SoundEvent LIGHT_STAFF_CHARGING = register("light_staff_charging");
-	public static final SoundEvent LIGHT_STAFF_PLACE = register("light_staff_place");
-	public static final SoundEvent LIGHT_STAFF_BREAK = register("light_staff_break");
+	public static final SoundEvent RADIANCE_STAFF_CHARGING = register("radiance_staff_charging");
+	public static final SoundEvent RADIANCE_STAFF_PLACE = register("radiance_staff_place");
+	public static final SoundEvent RADIANCE_STAFF_BREAK = register("radiance_staff_break");
 	
 	public static final SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
 	public static final SoundEvent MUD_AMBIENT = register("mud_ambient");

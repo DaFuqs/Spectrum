@@ -31,7 +31,7 @@ public class SpectrumBlockSoundGroups {
 	public static final BlockSoundGroup LARGE_MOONSTONE_BUD = new BlockSoundGroup(1.0F, 1.0F, SpectrumSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_BREAK, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_STEP, SpectrumSoundEvents.BLOCK_LARGE_MOONSTONE_BUD_PLACE, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_FALL);
 	
 	public static final BlockSoundGroup SPECTRAL_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SpectrumSoundEvents.SPECTRAL_BLOCK_BREAK, SpectrumSoundEvents.SPECTRAL_BLOCK_STEP, SpectrumSoundEvents.SPECTRAL_BLOCK_PLACE, SpectrumSoundEvents.SPECTRAL_BLOCK_HIT, SpectrumSoundEvents.SPECTRAL_BLOCK_FALL);
-	public static final BlockSoundGroup WAND_LIGHT = new BlockSoundGroup(1.0F, 1.0F, SpectrumSoundEvents.LIGHT_STAFF_BREAK, SoundEvents.BLOCK_AMETHYST_CLUSTER_STEP, SpectrumSoundEvents.LIGHT_STAFF_PLACE, SpectrumSoundEvents.LIGHT_STAFF_BREAK, SpectrumSoundEvents.LIGHT_STAFF_BREAK);
+	public static final BlockSoundGroup WAND_LIGHT = new BlockSoundGroup(1.0F, 1.0F, SpectrumSoundEvents.RADIANCE_STAFF_BREAK, SoundEvents.BLOCK_AMETHYST_CLUSTER_STEP, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SpectrumSoundEvents.RADIANCE_STAFF_BREAK, SpectrumSoundEvents.RADIANCE_STAFF_BREAK);
 	
 	// MOB BLOCKS
 	public static final BlockSoundGroup AXOLOTL_MOB_BLOCK = new BlockSoundGroup(1.0F, 1.0F, SoundEvents.ENTITY_AXOLOTL_DEATH, SoundEvents.BLOCK_WOOL_STEP, SoundEvents.ENTITY_AXOLOTL_IDLE_AIR, SoundEvents.ENTITY_AXOLOTL_HURT, SoundEvents.ENTITY_AXOLOTL_IDLE_AIR);

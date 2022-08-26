@@ -1,0 +1,43 @@
+{
+  "name": "Exchanging Staff",
+  "advancement": "spectrum:progression/unlock_exchanging_staff",
+  "secret": true,
+  "icon": "spectrum:exchanging_staff",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:exchanging_staff": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "For all those who don't live in a simple cobblestone house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff.$(br2)Mining has just gotten a whole bunch more fun."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/exchanging_staff",
+      "text": "Crouch-Click to get a selection of all available placement modi."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Enchanting - Fortune",
+      "item": "spectrum:exchanging_staff{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
+      "text": "Enchanting an Exchanging Staff with Fortune by using the $(l:enchanting/enchanting_items)Enchanter$(/l) allows it to multiply Ore drops when exchanging similar to using a common Fortune tool."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/build_enchanting_structure",
+      "title": "Silk Touch",
+      "item": "spectrum:exchanging_staff{Enchantments: [{id: \"spectrum:silk_touch\", lvl: 1s}]}",
+      "text": "Enchanting an Exchanging Staff with Silk Touch by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like Glass or Ores."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:lategame/create_resonance_enchanted_book",
+      "title": "Resonance",
+      "item": "spectrum:exchanging_staff{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
+      "text": "Enchanting an Exchanging Staff with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to harvest some special blocks as-is."
+    }
+  ]
+}

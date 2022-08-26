@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:get_ender_treasure",
+  "parent": "spectrum:get_radiating_ender",
   "display": {
     "icon": {
       "item": "spectrum:ender_glass"
@@ -20,7 +20,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:get_ender_treasure" }
+      "conditions": { "advancement_identifier": "spectrum:get_radiating_ender" }
     }
   }
 }

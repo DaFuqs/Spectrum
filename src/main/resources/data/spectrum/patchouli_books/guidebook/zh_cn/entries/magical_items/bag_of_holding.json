@@ -1,0 +1,23 @@
+{
+	"pages":[
+		{
+			"item":"spectrum:bag_of_holding",
+			"text":"$(italic)放置一个末影箱子，打开它，然后用一把附魔镐挖掘它，这并不是你认为有趣的事情。$(br)这就是为什么你发明了这个东西。",
+			"type":"patchouli:spotlight",
+			"title":"提包"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/bag_of_holding",
+			"text":"只要打开它，你的末影箱子里的东西就在那里。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_bag_of_holding",
+	"extra_recipe_mappings":{
+		"spectrum:bag_of_holding":0
+	},
+	"name":"提包",
+	"icon":"spectrum:bag_of_holding",
+	"category":"spectrum:magical_items_category"
+}

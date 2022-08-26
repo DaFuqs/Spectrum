@@ -2,7 +2,7 @@
   "parent": "spectrum:collect_quitoxic_reeds",
   "display": {
     "icon": {
-      "item": "spectrum:voiding_pickaxe",
+      "item": "spectrum:oblivion_pickaxe",
       "nbt": "{Enchantments: [{id: \"minecraft:efficiency\", lvl: 1s}]}"
     },
     "title": {
@@ -17,7 +17,7 @@
       "trigger": "minecraft:item_durability_changed",
       "conditions": {
         "item": {
-          "items": [ "spectrum:voiding_pickaxe" ],
+          "items": [ "spectrum:oblivion_pickaxe" ],
           "enchantments": [ { "enchantment": "minecraft:efficiency" } ]
         }
       }

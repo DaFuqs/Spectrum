@@ -39,7 +39,7 @@ public class SpectrumBannerPatterns {
 		FOUR_LEAF_CLOVER = registerPattern("four_leaf_clover", "flc");
 		INK_FLASK = registerPattern("ink_flask", "if");
 		KNOWLEDGE_GEM = registerPattern("knowledge_gem", "kg");
-		MANUAL = registerPattern("manual", "man");
+		MANUAL = registerPattern("guidebook", "man");
 		MULTITOOL = registerPattern("multitool", "mul");
 		NEOLITH = registerPattern("neolith", "neo");
 		PALETTE = registerPattern("palette", "pql");

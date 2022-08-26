@@ -1,0 +1,9 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:stratine_fragments",
+  "modifiers": {
+    "flat_potency_bonus": 1.0,
+    "additional_random_negative_effect_count": 1.0
+  },
+  "required_advancement": "spectrum:midgame/collect_stratine"
+}

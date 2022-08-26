@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 80,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 2,
+  "white": 0,
+  "black": 0,
+  "experience": 0.5,
+  "pattern": [
+    "SSS",
+    "CLC",
+    "SFS"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "spectrum:sparklestone_gem"
+    },
+    "F": {
+      "item": "minecraft:phantom_membrane"
+    }
+  },
+  "result": {
+    "item": "spectrum:phantom_frame",
+    "count": 1
+  },
+  "required_advancement": "spectrum:collect_sparklestone"
+}

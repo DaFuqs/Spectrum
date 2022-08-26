@@ -198,7 +198,7 @@ public class SpectrumMultiblocks {
 	private static void registerPedestal() {
 		// since the structure is using rotation on blocks from a block tag
 		// (that's impossible to define via string) we have to split targets for
-		// check (if structure is built) and display (for auto building via debug item and manual)
+		// check (if structure is built) and display (for auto building via debug item and guidebook)
 		Object[] targetBlocksCheck = {
 				'X', "#spectrum:polished_base_blocks",
 				'T', "#spectrum:crest_base_blocks",

@@ -2,24 +2,24 @@
   "type": "alloy_forgery:forging",
   "inputs": [
     {
-      "item": "spectrum:paletur_ore"
+      "item": "spectrum:paltaeria_ore"
     }
   ],
   "output": {
-    "id": "spectrum:paletur_fragments",
+    "id": "spectrum:paltaeria_fragments",
     "count": 3
   },
   "overrides": {
     "2": {
-      "id": "spectrum:paletur_fragments",
+      "id": "spectrum:paltaeria_fragments",
       "count": 4
     },
     "3+": {
-      "id": "spectrum:paletur_fragments",
+      "id": "spectrum:paltaeria_fragments",
       "count": 5
     },
     "4+": {
-      "id": "spectrum:paletur_fragments",
+      "id": "spectrum:paltaeria_fragments",
       "count": 6
     }
   },

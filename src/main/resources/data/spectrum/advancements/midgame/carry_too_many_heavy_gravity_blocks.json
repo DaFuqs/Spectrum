@@ -1,8 +1,8 @@
 {
-  "parent": "spectrum:midgame/collect_scarlet",
+  "parent": "spectrum:midgame/collect_stratine",
   "display": {
     "icon": {
-      "item": "spectrum:scarlet_fragment_block"
+      "item": "spectrum:stratine_fragment_block"
     },
     "frame": "challenge",
     "title": {
@@ -19,7 +19,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_scarlet" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_stratine" }
     }
   },
   "rewards": {

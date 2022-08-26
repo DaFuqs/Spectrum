@@ -23,7 +23,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem {
 	public static ItemStack COST = new ItemStack(Items.GLOW_INK_SAC, 1);
 	
 	public GlowVisionGogglesItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_glow_vision_helmet"));
+		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_glow_vision_goggles"));
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		tooltip.add(Text.translatable("item.spectrum.glow_vision_helmet.tooltip"));
+		tooltip.add(Text.translatable("item.spectrum.glow_vision_goggles.tooltip"));
 	}
 	
 }

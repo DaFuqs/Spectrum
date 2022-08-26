@@ -76,13 +76,13 @@ public class SpectrumConfiguredFeatures {
 		BlockState deepslateSparklestoneOre = SpectrumBlocks.DEEPSLATE_SPARKLESTONE_ORE.getDefaultState();
 		BlockState azuriteOre = SpectrumBlocks.AZURITE_ORE.getDefaultState();
 		BlockState deepslateAzuriteOre = SpectrumBlocks.DEEPSLATE_AZURITE_ORE.getDefaultState();
-		BlockState scarletOre = SpectrumBlocks.SCARLET_ORE.getDefaultState();
+		BlockState stratineOre = SpectrumBlocks.STRATINE_ORE.getDefaultState();
 		BlockState paleturOre = SpectrumBlocks.PALETUR_ORE.getDefaultState();
 		
 		Identifier sparklestoneOreIdentifier = SpectrumCommon.locate("sparklestone_ore");
 		Identifier azuriteOreIdentifier = SpectrumCommon.locate("azurite_ore");
-		Identifier scarletOreIdentifier = SpectrumCommon.locate("scarlet_ore");
-		Identifier paleturOreIdentifier = SpectrumCommon.locate("paletur_ore");
+		Identifier stratineOreIdentifier = SpectrumCommon.locate("stratine_ore");
+		Identifier paleturOreIdentifier = SpectrumCommon.locate("paltaeria_ore");
 		
 		ImmutableList<OreFeatureConfig.Target> sparklestoneOreTargets = ImmutableList.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, sparklestoneOre), OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, deepslateSparklestoneOre));
 		ImmutableList<OreFeatureConfig.Target> azuriteOreTargets = ImmutableList.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, azuriteOre), OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, deepslateAzuriteOre));
@@ -106,9 +106,9 @@ public class SpectrumConfiguredFeatures {
 		);
 		
 		registerConfiguredAndPlacedFeature(
-				scarletOreIdentifier,
+				stratineOreIdentifier,
 				Feature.ORE,
-				new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, scarletOre, 6),
+				new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, stratineOre, 6),
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(64)), // min and max height
 				CountPlacementModifier.of(18), // number of veins per chunk
 				SquarePlacementModifier.of() // spread through the chunk
@@ -125,7 +125,7 @@ public class SpectrumConfiguredFeatures {
 		
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, sparklestoneOreIdentifier));
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, azuriteOreIdentifier));
-		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, scarletOreIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, stratineOreIdentifier));
 		BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, paleturOreIdentifier));
 	}
 	

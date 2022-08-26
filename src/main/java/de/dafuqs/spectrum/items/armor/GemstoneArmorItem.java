@@ -95,16 +95,16 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 	public void addTooltip(List<Text> tooltip, @NotNull EquipmentSlot equipmentSlot) {
 		switch (equipmentSlot) {
 			case HEAD -> {
-				tooltip.add(Text.translatable("item.spectrum.emergency_helmet.tooltip").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.fetchling_helmet.tooltip").formatted(Formatting.GRAY));
 			}
 			case CHEST -> {
-				tooltip.add(Text.translatable("item.spectrum.emergency_chestplate.tooltip").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.ferocious_chestplate.tooltip").formatted(Formatting.GRAY));
 			}
 			case LEGS -> {
-				tooltip.add(Text.translatable("item.spectrum.emergency_leggings.tooltip").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.sylph_leggings.tooltip").formatted(Formatting.GRAY));
 			}
 			case FEET -> {
-				tooltip.add(Text.translatable("item.spectrum.emergency_boots.tooltip").formatted(Formatting.GRAY));
+				tooltip.add(Text.translatable("item.spectrum.oread_boots.tooltip").formatted(Formatting.GRAY));
 			}
 		}
 	}

@@ -92,7 +92,8 @@ public class SpectrumConfiguredFeatures {
 				Feature.ORE,
 				new OreFeatureConfig(sparklestoneOreTargets, 8),
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.fixed(128)), // min and max height
-				CountPlacementModifier.of(9) // number of veins per chunk
+				CountPlacementModifier.of(9), // number of veins per chunk
+				SquarePlacementModifier.of() // spread through the chunk
 		);
 		
 		registerConfiguredAndPlacedFeature(
@@ -100,7 +101,8 @@ public class SpectrumConfiguredFeatures {
 				Feature.ORE,
 				new OreFeatureConfig(azuriteOreTargets, 5, 0.5F),
 				HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.aboveBottom(32)), // min and max height
-				CountPlacementModifier.of(6) // number of veins per chunk
+				CountPlacementModifier.of(6), // number of veins per chunk
+				SquarePlacementModifier.of() // spread through the chunk
 		);
 		
 		registerConfiguredAndPlacedFeature(
@@ -108,7 +110,8 @@ public class SpectrumConfiguredFeatures {
 				Feature.ORE,
 				new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, scarletOre, 6),
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(64)), // min and max height
-				CountPlacementModifier.of(18) // number of veins per chunk
+				CountPlacementModifier.of(18), // number of veins per chunk
+				SquarePlacementModifier.of() // spread through the chunk
 		);
 		
 		registerConfiguredAndPlacedFeature(
@@ -116,7 +119,8 @@ public class SpectrumConfiguredFeatures {
 				Feature.ORE,
 				new OreFeatureConfig(Rules.END_STONE, paleturOre, 4, 0.3F),
 				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), // min and max height
-				CountPlacementModifier.of(16) // number of veins per chunk
+				CountPlacementModifier.of(16), // number of veins per chunk
+				SquarePlacementModifier.of() // spread through the chunk
 		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, sparklestoneOreIdentifier));
@@ -192,7 +196,8 @@ public class SpectrumConfiguredFeatures {
 				new WeightedRandomFeaturePatchConfig(5, 4, 3, new WeightedRandomFeatureConfig(placedTreeFeatures, weightList)),
 				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.ColoredTreePatchChanceChunk), // every x chunks
 				HeightmapPlacementModifier.of(Heightmap.Type.WORLD_SURFACE_WG),
-				BiomePlacementModifier.of()
+				BiomePlacementModifier.of(),
+				SquarePlacementModifier.of()
 		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.excludeByKey(BiomeKeys.MUSHROOM_FIELDS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));

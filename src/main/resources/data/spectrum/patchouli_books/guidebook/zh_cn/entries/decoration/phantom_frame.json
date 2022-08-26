@@ -18,7 +18,7 @@
 			"title":"辉光幻翼展示框"
 		}
 	],
-	"advancement":"spectrum:collect_sparklestone",
+	"advancement":"spectrum:collect_shimmerstone",
 	"extra_recipe_mappings":{
 		"spectrum:phantom_frame":0,
 		"spectrum:glow_phantom_frame":0

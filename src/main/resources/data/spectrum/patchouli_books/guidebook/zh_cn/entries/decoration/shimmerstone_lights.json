@@ -1,0 +1,27 @@
+{
+	"pages":[
+		{
+			"text":"$(italic)在这个新世界的第一个夜晚，你用火把点燃了临时搭建的小屋。$(br)尽管如此，这也是一件事：原始。$(br2)为了摆脱黑暗，火炬照亮的过去，你设计了基于闪光石的灯具。$()",
+			"type":"patchouli:text"
+		},
+		{
+			"recipe":"spectrum:pedestal/tier1/shimmerstone_lights/basalt_shimmerstone_light",
+			"text":"您可以使用磨制玄武岩、磨制方解石、光滑石头、磨制深板岩、磨制闪长岩、磨制安山岩或磨制花岗岩作为基底。",
+			"type":"spectrum:pedestal_crafting",
+			"title":"基座配方"
+		}
+	],
+	"advancement":"spectrum:progression/unlock_shimmerstone_lights",
+	"extra_recipe_mappings":{
+		"spectrum:andesite_shimmerstone_light":0,
+		"spectrum:diorite_shimmerstone_light":0,
+		"spectrum:deepslate_shimmerstone_light":0,
+		"spectrum:granite_shimmerstone_light":0,
+		"spectrum:calcite_shimmerstone_light":0,
+		"spectrum:stone_shimmerstone_light":0,
+		"spectrum:basalt_shimmerstone_light":0
+	},
+	"name":"闪光石",
+	"icon":"spectrum:basalt_shimmerstone_light",
+	"category":"spectrum:decoration_category"
+}

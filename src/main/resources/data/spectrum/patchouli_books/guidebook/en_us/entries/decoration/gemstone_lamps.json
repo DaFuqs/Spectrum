@@ -1,7 +1,7 @@
 {
   "name": "Gemstone Lamps",
   "icon": "spectrum:citrine_basalt_lamp",
-  "advancement": "spectrum:collect_sparklestone",
+  "advancement": "spectrum:collect_shimmerstone",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:topaz_basalt_lamp": 0,

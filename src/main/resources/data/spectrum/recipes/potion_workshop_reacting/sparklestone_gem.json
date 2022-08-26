@@ -1,9 +1,0 @@
-{
-  "type": "spectrum:potion_workshop_reacting",
-  "item": "spectrum:sparklestone_gem",
-  "modifiers": {
-    "multiplicative_duration_modifier": 1.1,
-    "multiplicative_potency_modifier": 1.1
-  },
-  "required_advancement": "spectrum:collect_sparklestone"
-}

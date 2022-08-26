@@ -1,7 +1,7 @@
 {
   "name": "Phantom Frame",
   "icon": "spectrum:phantom_frame",
-  "advancement": "spectrum:collect_sparklestone",
+  "advancement": "spectrum:collect_shimmerstone",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:phantom_frame": 0,

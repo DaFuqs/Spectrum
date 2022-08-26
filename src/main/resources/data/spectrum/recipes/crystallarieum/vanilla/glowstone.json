@@ -15,7 +15,7 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "spectrum:sparklestone_gem"
+        "item": "spectrum:shimmerstone_gem"
       },
       "growth_acceleration_mod": 16.0,
       "ink_consumption_mod": 1.0,

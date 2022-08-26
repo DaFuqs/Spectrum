@@ -2,13 +2,13 @@
 	"pages":[
 		{
 			"completion_advancement":"spectrum:collect_star_fragment",
-			"cost":"spectrum:sparklestone_gem#8",
+			"cost":"spectrum:shimmerstone_gem#8",
 			"text":"流星只在晚上出现。准备一些东西，以便在黑暗中更好地看到他们，肯定会有很大帮助。它们会出现明显的粒子轨迹。",
 			"type":"spectrum:hint",
 			"title":"寻找什么"
 		},
 		{
-			"cost":"spectrum:sparklestone_gem#24",
+			"cost":"spectrum:shimmerstone_gem#24",
 			"text":"你看到流星的最好机会是用夜视仪和配备的望远镜搜索它。如果你看到一个坠落在地球上，试着追踪它的足迹，找出它降落的地方。它们像光束一样射出粒子。",
 			"type":"spectrum:hint",
 			"title":"简明说明"

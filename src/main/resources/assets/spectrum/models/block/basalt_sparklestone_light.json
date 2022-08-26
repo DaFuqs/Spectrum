@@ -1,8 +1,0 @@
-{
-  "parent": "spectrum:block/template_sparklestone_light",
-  "textures": {
-    "outer": "spectrum:block/polished_basalt",
-    "inner": "spectrum:block/sparklestone_light",
-    "particle": "spectrum:block/polished_basalt"
-  }
-}

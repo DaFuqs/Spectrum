@@ -4,9 +4,9 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:create_onyx_shard" }
     },
-    "collected_sparklestone_gem": {
+    "collected_shimmerstone_gem": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+      "conditions": { "advancement_identifier": "spectrum:collect_shimmerstone" }
     }
   }
 }

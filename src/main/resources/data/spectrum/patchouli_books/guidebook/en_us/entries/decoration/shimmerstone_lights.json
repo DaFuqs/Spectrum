@@ -1,0 +1,27 @@
+{
+  "name": "Shimmerstone Lights",
+  "icon": "spectrum:basalt_shimmerstone_light",
+  "advancement": "spectrum:progression/unlock_shimmerstone_lights",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:andesite_shimmerstone_light": 0,
+    "spectrum:basalt_shimmerstone_light": 0,
+    "spectrum:calcite_shimmerstone_light": 0,
+    "spectrum:deepslate_shimmerstone_light": 0,
+    "spectrum:diorite_shimmerstone_light": 0,
+    "spectrum:granite_shimmerstone_light": 0,
+    "spectrum:stone_shimmerstone_light": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)The first nights in this new world you lit your improvised hut with torches.$(br)As atmospheric as that was, it was also one thing: primitive.$(br2)To turn away from your dark, torch-lit past, you designed lamps based on Shimmerstone.$()"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/basalt_shimmerstone_light",
+      "text": "You can use Polished Basalt, Polished Calcite, Smooth Stone, Polished Deepslate, Polished Diorite, Polished Andesite or Polished Granite as a base."
+    }
+  ]
+}

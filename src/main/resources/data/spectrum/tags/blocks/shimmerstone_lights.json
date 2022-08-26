@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:basalt_shimmerstone_light",
+    "spectrum:calcite_shimmerstone_light",
+    "spectrum:stone_shimmerstone_light",
+    "spectrum:granite_shimmerstone_light",
+    "spectrum:diorite_shimmerstone_light",
+    "spectrum:andesite_shimmerstone_light",
+    "spectrum:deepslate_shimmerstone_light"
+  ]
+}

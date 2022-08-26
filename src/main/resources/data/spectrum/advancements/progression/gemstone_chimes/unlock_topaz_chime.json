@@ -4,9 +4,9 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
     },
-	"collected_sparklestone_gem": {
+	"collected_shimmerstone_gem": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+      "conditions": { "advancement_identifier": "spectrum:collect_shimmerstone" }
     },
 	"collected_gemstone_shard": {
       "trigger":"revelationary:advancement_gotten",

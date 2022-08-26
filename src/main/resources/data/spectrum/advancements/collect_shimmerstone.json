@@ -1,0 +1,40 @@
+{
+  "parent": "spectrum:craft_using_pedestal",
+  "display": {
+    "icon": {
+      "item": "spectrum:shimmerstone_gem"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_shimmerstone.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_shimmerstone.description"
+    }
+  },
+  "criteria": {
+    "has_shimmerstone_gem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:shimmerstone_gem" ]}] }
+    },
+    "has_shimmerstone_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:shimmerstone_ore" ]}] }
+    },
+    "has_deepslate_shimmerstone_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:deepslate_shimmerstone_ore" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
+    }
+  },
+  "requirements": [
+    [
+      "has_shimmerstone_gem",
+      "has_shimmerstone_ore",
+      "has_deepslate_shimmerstone_ore"
+    ],
+    [ "gotten_previous" ]
+  ]
+}

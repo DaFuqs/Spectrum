@@ -37,7 +37,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	private static final Identifier TEXTURE_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/particle_spawner_particles.png");
 	private static final int PARTICLES_PER_PAGE = 6;
 	private static final List<Identifier> AVAILABLE_PARTICLES = new ArrayList<>() {{
-		add(new Identifier(SpectrumCommon.MOD_ID, "particle/sparklestone_sparkle"));
+		add(new Identifier(SpectrumCommon.MOD_ID, "particle/shimmerstone_sparkle"));
 		add(new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star"));
 		add(new Identifier(SpectrumCommon.MOD_ID, "particle/liquid_crystal_sparkle"));
 		add(new Identifier(SpectrumCommon.MOD_ID, "particle/void_fog"));

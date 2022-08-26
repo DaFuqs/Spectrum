@@ -1,6 +1,6 @@
 {
   "name": "Vidro Radiante",
-  "advancement": "spectrum:collect_sparklestone",
+  "advancement": "spectrum:collect_shimmerstone",
   "icon": "spectrum:glowing_glass",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

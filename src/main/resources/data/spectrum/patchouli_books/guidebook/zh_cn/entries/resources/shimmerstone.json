@@ -1,25 +1,25 @@
 {
 	"pages":[
 		{
-			"item":"spectrum:sparklestone_gem",
+			"item":"spectrum:shimmerstone_gem",
 			"text":"一种黄色矿石，不仅能以光的形式释放能量，而且还能对其进行操纵。$(br2)闪光石被发现在接近海平面的高度。",
 			"type":"patchouli:spotlight",
 			"title":"微光石"
 		},
 		{
-			"recipe":"spectrum:crafting_table/storage_blocks/sparklestone_block",
+			"recipe":"spectrum:crafting_table/storage_blocks/shimmerstone_block",
 			"text":"整个方块的闪光石发出明亮的黄色颗粒。",
 			"type":"patchouli:crafting"
 		}
 	],
-	"advancement":"spectrum:collect_sparklestone",
+	"advancement":"spectrum:collect_shimmerstone",
 	"extra_recipe_mappings":{
-		"spectrum:deepslate_sparklestone_ore":0,
-		"spectrum:sparklestone_ore":0,
-		"spectrum:sparklestone_block":0,
-		"spectrum:sparklestone_gem":0
+		"spectrum:deepslate_shimmerstone_ore":0,
+		"spectrum:shimmerstone_ore":0,
+		"spectrum:shimmerstone_block":0,
+		"spectrum:shimmerstone_gem":0
 	},
 	"name":"微光石",
-	"icon":"spectrum:sparklestone_ore",
+	"icon":"spectrum:shimmerstone_ore",
 	"category":"spectrum:resources_category"
 }

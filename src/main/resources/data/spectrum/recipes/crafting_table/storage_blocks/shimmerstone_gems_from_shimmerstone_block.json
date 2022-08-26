@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "gem_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:shimmerstone_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:shimmerstone_gem",
+    "count": 9
+  }
+}

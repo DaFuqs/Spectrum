@@ -88,7 +88,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.SnowballEntity;
-import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -433,15 +432,15 @@ public class SpectrumBlocks {
 	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(FabricBlockSettings.of(Material.CARPET, MapColor.PALE_GREEN).strength(0.1F).nonOpaque().sounds(BlockSoundGroup.WOOL).luminance(3));
 	
 	// ORES
-	public static final Block SPARKLESTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_sparklestone"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_SPARKLESTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_sparklestone"), Blocks.DEEPSLATE.getDefaultState());
+	public static final Block SHIMMERSTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_SHIMMERSTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.DEEPSLATE.getDefaultState());
 	public static final Block AZURITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_ORE).requiresTool(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.STONE.getDefaultState());
 	public static final Block DEEPSLATE_AZURITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).requiresTool(), UniformIntProvider.create(4, 7), locate("milestones/reveal_azurite"), Blocks.DEEPSLATE.getDefaultState());
 	public static final Block PALETUR_ORE = new CloakedOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().requiresTool().strength(3.0F, 3.0F).sounds(BlockSoundGroup.NETHER_ORE), UniformIntProvider.create(2, 4), locate("milestones/reveal_paletur"), Blocks.END_STONE.getDefaultState());
 	public static final Block STRATINE_ORE = new CloakedOreBlock(FabricBlockSettings.of(Material.STONE, MapColor.PALE_YELLOW).requiresTool().strength(3.0F, 9.0F).requiresTool(), UniformIntProvider.create(3, 5), locate("milestones/reveal_stratine"), Blocks.NETHERRACK.getDefaultState());
-	public static final Block SPARKLESTONE_BLOCK = new SparklestoneBlock(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
+	public static final Block SHIMMERSTONE_BLOCK = new SparklestoneBlock(FabricBlockSettings.of(Material.GLASS, MapColor.YELLOW).strength(2.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> 15));
 	public static final Block AZURITE_BLOCK = new SpectrumFacingBlock(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
-	public static final FloatBlock PALETUR_FRAGMENT_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.2F);
+	public static final FloatBlock PALTAERIA_FRAGMENT_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.2F);
 	public static final FloatBlock STRATINE_FRAGMENT_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_RED).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), -0.2F);
 	public static final FloatBlock HOVER_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.DIAMOND_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.0F);
 	
@@ -452,7 +451,7 @@ public class SpectrumBlocks {
 	public static final Block BLACKSLAG_DIAMOND_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(3, 7));
 	public static final Block BLACKSLAG_REDSTONE_ORE = new RedstoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_REDSTONE_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
 	public static final Block BLACKSLAG_EMERALD_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_EMERALD_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
-	public static final Block BLACKSLAG_SPARKLESTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_SPARKLESTONE_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 4), locate("milestones/reveal_sparklestone"), BLACKSLAG.getDefaultState());
+	public static final Block BLACKSLAG_SHIMMERSTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_SHIMMERSTONE_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), BLACKSLAG.getDefaultState());
 	public static final Block BLACKSLAG_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_MALACHITE_ORE), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), BLACKSLAG.getDefaultState());
 	
 	// FUNCTIONAL BLOCKS
@@ -685,15 +684,15 @@ public class SpectrumBlocks {
 	public static final Block WHITE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.WHITE);
 	public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.YELLOW);
 	
-	// SPARKLESTONE LIGHTS
-	private static final FabricBlockSettings sparklestoneLightBlockSettings = FabricBlockSettings.of(Material.STONE).strength(1.0F, 1.0F).nonOpaque().luminance(15);
-	public static final Block BASALT_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
-	public static final Block CALCITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
-	public static final Block STONE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
-	public static final Block GRANITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
-	public static final Block DIORITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
-	public static final Block ANDESITE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
-	public static final Block DEEPSLATE_SPARKLESTONE_LIGHT = new SparklestoneLightBlock(sparklestoneLightBlockSettings);
+	// SHIMMERSTONE LIGHTS
+	private static final FabricBlockSettings shimmerstoneLightBlockSettings = FabricBlockSettings.of(Material.STONE).strength(1.0F, 1.0F).nonOpaque().luminance(15);
+	public static final Block BASALT_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block CALCITE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block STONE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block GRANITE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block DIORITE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block ANDESITE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block DEEPSLATE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
 	
 	// CRYSTALLARIEUM
 	public static final Block SMALL_COAL_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.COAL_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
@@ -1151,9 +1150,9 @@ public class SpectrumBlocks {
 	}
 	
 	private static void registerOreBlocks(FabricItemSettings fabricItemSettings, FabricItemSettings fabricItemSettingsFireProof) {
-		registerBlockWithItem("sparklestone_ore", SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("deepslate_sparklestone_ore", DEEPSLATE_SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("blackslag_sparklestone_ore", BLACKSLAG_SPARKLESTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("shimmerstone_ore", SHIMMERSTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("deepslate_shimmerstone_ore", DEEPSLATE_SHIMMERSTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("blackslag_shimmerstone_ore", BLACKSLAG_SHIMMERSTONE_ORE, fabricItemSettings, DyeColor.YELLOW);
 		
 		registerBlockWithItem("azurite_ore", AZURITE_ORE, fabricItemSettings, DyeColor.BLUE);
 		registerBlockWithItem("deepslate_azurite_ore", DEEPSLATE_AZURITE_ORE, fabricItemSettings, DyeColor.BLUE);
@@ -1195,9 +1194,9 @@ public class SpectrumBlocks {
 		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, decorationItemSettingsRare, DyeColor.WHITE);
 		
 		registerBlockWithItem("azurite_block", AZURITE_BLOCK, decorationItemSettings, DyeColor.BLUE);
-		registerBlockWithItem("sparklestone_block", SPARKLESTONE_BLOCK, decorationItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("shimmerstone_block", SHIMMERSTONE_BLOCK, decorationItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("stratine_fragment_block", STRATINE_FRAGMENT_BLOCK, new FloatBlockItem(STRATINE_FRAGMENT_BLOCK, fabricItemSettingsFireProof, 1.02F), DyeColor.RED);
-		registerBlockWithItem("paltaeria_fragment_block", PALETUR_FRAGMENT_BLOCK, new FloatBlockItem(PALETUR_FRAGMENT_BLOCK, fabricItemSettings, 0.98F), DyeColor.CYAN);
+		registerBlockWithItem("paltaeria_fragment_block", PALTAERIA_FRAGMENT_BLOCK, new FloatBlockItem(PALTAERIA_FRAGMENT_BLOCK, fabricItemSettings, 0.98F), DyeColor.CYAN);
 		registerBlockWithItem("hover_block", HOVER_BLOCK, new FloatBlockItem(HOVER_BLOCK, fabricItemSettings, 0.996F), DyeColor.GREEN);
 	}
 	
@@ -1516,13 +1515,13 @@ public class SpectrumBlocks {
 	}
 	
 	public static void registerSparklestoneLights(FabricItemSettings fabricItemSettings) {
-		registerBlockWithItem("basalt_sparklestone_light", BASALT_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("calcite_sparklestone_light", CALCITE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("stone_sparklestone_light", STONE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("granite_sparklestone_light", GRANITE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("diorite_sparklestone_light", DIORITE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("andesite_sparklestone_light", ANDESITE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
-		registerBlockWithItem("deepslate_sparklestone_light", DEEPSLATE_SPARKLESTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("basalt_shimmerstone_light", BASALT_SHIMMERSTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("calcite_shimmerstone_light", CALCITE_SHIMMERSTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("stone_shimmerstone_light", STONE_SHIMMERSTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("granite_shimmerstone_light", GRANITE_SHIMMERSTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("diorite_shimmerstone_light", DIORITE_SHIMMERSTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("andesite_shimmerstone_light", ANDESITE_SHIMMERSTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("deepslate_shimmerstone_light", DEEPSLATE_SHIMMERSTONE_LIGHT, fabricItemSettings, DyeColor.YELLOW);
 	}
 	
 	public static void registerShootingStarBlocks(FabricItemSettings fabricItemSettings) {

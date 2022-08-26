@@ -25,9 +25,9 @@ public class SpectrumParticleTypes {
 	public static ParticleType<BlockPosEventTransmissionParticleEffect> BLOCK_POS_EVENT_TRANSMISSION;
 	
 	public static DefaultParticleType SHOOTING_STAR; // Dummy entry to get the sprite registered
-	public static DefaultParticleType SPARKLESTONE_SPARKLE;
-	public static DefaultParticleType SPARKLESTONE_SPARKLE_SMALL;
-	public static DefaultParticleType SPARKLESTONE_SPARKLE_TINY;
+	public static DefaultParticleType SHIMMERSTONE_SPARKLE;
+	public static DefaultParticleType SHIMMERSTONE_SPARKLE_SMALL;
+	public static DefaultParticleType SHIMMERSTONE_SPARKLE_TINY;
 	public static DefaultParticleType VOID_FOG;
 	public static DefaultParticleType MUD_POP;
 	public static DefaultParticleType LIQUID_CRYSTAL_SPARKLE;
@@ -163,9 +163,9 @@ public class SpectrumParticleTypes {
 		COLORED_TRANSMISSION = register("transphere", ColoredTransmissionParticleEffect.FACTORY, (particleType) -> ColoredTransmissionParticleEffect.CODEC, false);
 		BLOCK_POS_EVENT_TRANSMISSION = register("block_pos_event_transfer", BlockPosEventTransmissionParticleEffect.FACTORY, (particleType) -> BlockPosEventTransmissionParticleEffect.CODEC, false);
 		
-		SPARKLESTONE_SPARKLE = register("sparklestone_sparkle", false);
-		SPARKLESTONE_SPARKLE_SMALL = register("sparklestone_sparkle_small", false);
-		SPARKLESTONE_SPARKLE_TINY = register("sparklestone_sparkle_tiny", false);
+		SHIMMERSTONE_SPARKLE = register("shimmerstone_sparkle", false);
+		SHIMMERSTONE_SPARKLE_SMALL = register("shimmerstone_sparkle_small", false);
+		SHIMMERSTONE_SPARKLE_TINY = register("shimmerstone_sparkle_tiny", false);
 		VOID_FOG = register("void_fog", false);
 		MUD_POP = register("mud_pop", false);
 		LIQUID_CRYSTAL_SPARKLE = register("liquid_crystal_sparkle", false);

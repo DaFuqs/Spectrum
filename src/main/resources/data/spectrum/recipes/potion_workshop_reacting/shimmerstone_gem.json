@@ -1,0 +1,9 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:shimmerstone_gem",
+  "modifiers": {
+    "multiplicative_duration_modifier": 1.1,
+    "multiplicative_potency_modifier": 1.1
+  },
+  "required_advancement": "spectrum:collect_shimmerstone"
+}

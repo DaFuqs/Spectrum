@@ -8,12 +8,12 @@
   },
   "ingredients": [
     {
-      "tag": "spectrum:sparklestone_ores"
+      "tag": "spectrum:shimmerstone_ores"
     }
   ],
   "results": [
     {
-      "item": "spectrum:sparklestone_gem",
+      "item": "spectrum:shimmerstone_gem",
       "count": 6
     }
   ],

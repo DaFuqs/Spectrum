@@ -4,7 +4,7 @@
     "item": "minecraft:nether_wart"
   },
   "ingredient2": {
-    "item": "spectrum:sparklestone_gem"
+    "item": "spectrum:shimmerstone_gem"
   },
   "effect": "minecraft:glowing",
   "base_duration_ticks": 1800,

@@ -68,7 +68,7 @@
     {
       "type": "patchouli:spotlight",
       "title": "Shimmerstone",
-      "item": "spectrum:sparklestone_gem",
+      "item": "spectrum:shimmerstone_gem",
       "text": "Tiny multiplicative bonus to both Duration and Potency"
     },
     {

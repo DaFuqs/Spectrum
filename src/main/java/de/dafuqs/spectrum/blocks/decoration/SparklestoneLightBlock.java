@@ -88,7 +88,7 @@ public class SparklestoneLightBlock extends Block {
 			double d = direction.getOffsetX() == 0 ? 0.3D + random.nextFloat() * 0.4F : direction.getOffsetX() == 1 ? 0.15 : 0.85;
 			double e = direction.getOffsetY() == 0 ? 0.3D + random.nextFloat() * 0.4F : direction.getOffsetY() == 1 ? 0.15 : 0.85;
 			double f = direction.getOffsetZ() == 0 ? 0.3D + random.nextFloat() * 0.4F : direction.getOffsetZ() == 1 ? 0.15 : 0.85;
-			world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0D, 0.02D, 0.0D);
+			world.addParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0D, 0.02D, 0.0D);
 		}
 	}
 	

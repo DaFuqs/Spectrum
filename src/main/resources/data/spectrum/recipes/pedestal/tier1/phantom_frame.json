@@ -21,7 +21,7 @@
       "item": "minecraft:stick"
     },
     "C": {
-      "item": "spectrum:sparklestone_gem"
+      "item": "spectrum:shimmerstone_gem"
     },
     "F": {
       "item": "minecraft:phantom_membrane"
@@ -31,5 +31,5 @@
     "item": "spectrum:phantom_frame",
     "count": 1
   },
-  "required_advancement": "spectrum:collect_sparklestone"
+  "required_advancement": "spectrum:collect_shimmerstone"
 }

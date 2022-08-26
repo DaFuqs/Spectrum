@@ -135,7 +135,7 @@ public class SpectrumS2CPacketReceiver {
 				Random random = client.world.random;
 				// Everything in this lambda is running on the render thread
 				for (int i = 0; i < 20; i++) {
-					client.getInstance().player.world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0.3 - random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6);
+					client.getInstance().player.world.addParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0.3 - random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6, 0.3 - random.nextFloat() * 0.6);
 				}
 			});
 		});
@@ -146,7 +146,7 @@ public class SpectrumS2CPacketReceiver {
 				Random random = client.world.random;
 				// Everything in this lambda is running on the render thread
 				for (int i = 0; i < 4; i++) {
-					client.getInstance().player.world.addParticle(SpectrumParticleTypes.SPARKLESTONE_SPARKLE, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0.1 - random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2);
+					client.getInstance().player.world.addParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, position.getX() + 0.5, position.getY() + 0.5, position.getZ() + 0.5, 0.1 - random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2);
 				}
 			});
 		});

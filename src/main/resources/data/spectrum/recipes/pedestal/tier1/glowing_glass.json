@@ -18,12 +18,12 @@
       "item": "minecraft:glass"
     },
     "S": {
-      "item": "spectrum:sparklestone_gem"
+      "item": "spectrum:shimmerstone_gem"
     }
   },
   "result": {
     "item": "spectrum:glowing_glass",
     "count": 2
   },
-  "required_advancement": "spectrum:collect_sparklestone"
+  "required_advancement": "spectrum:collect_shimmerstone"
 }

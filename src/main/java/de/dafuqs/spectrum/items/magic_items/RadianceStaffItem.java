@@ -40,7 +40,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	public static int MAX_REACH_STEPS = 8;
 	public static int MIN_LIGHT_LEVEL = 10;
 	
-	public static ItemStack COST = new ItemStack(SpectrumItems.SPARKLESTONE_GEM, 1);
+	public static ItemStack COST = new ItemStack(SpectrumItems.SHIMMERSTONE_GEM, 1);
 	
 	public RadianceStaffItem(Settings settings) {
 		super(settings);

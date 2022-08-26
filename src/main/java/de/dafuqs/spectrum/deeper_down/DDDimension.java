@@ -68,11 +68,11 @@ public class DDDimension {
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(64), YOffset.belowTop(256)),
 				CountPlacementModifier.of(40));
 		
-		registerAndAddOreFeature("dd_sparklestone_ore",
+		registerAndAddOreFeature("dd_shimmerstone_ore",
 				new OreFeatureConfig(ImmutableList.of(
-						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, SpectrumBlocks.SPARKLESTONE_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_SPARKLESTONE_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_SPARKLESTONE_ORE.getDefaultState())
+						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, SpectrumBlocks.SHIMMERSTONE_ORE.getDefaultState()),
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_SHIMMERSTONE_ORE.getDefaultState()),
+						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_SHIMMERSTONE_ORE.getDefaultState())
 				), 7),
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(16), YOffset.belowTop(128)),
 				CountPlacementModifier.of(24));

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "spectrum:shimmerstone_ores"
+  },
+  "result": "spectrum:shimmerstone_gem",
+  "experience": 0.1,
+  "cookingtime": 100
+}

@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_shimmerstone": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_shimmerstone" }
+    },
+    "collected_citrine_shard": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_citrine_shard" }
+    }
+  }
+}

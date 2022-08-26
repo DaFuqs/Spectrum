@@ -13,7 +13,7 @@
 			"title":"基座配方"
 		}
 	],
-	"advancement":"spectrum:collect_sparklestone",
+	"advancement":"spectrum:collect_shimmerstone",
 	"extra_recipe_mappings":{
 		"spectrum:amethyst_calcite_lamp":0,
 		"spectrum:citrine_calcite_lamp":0,

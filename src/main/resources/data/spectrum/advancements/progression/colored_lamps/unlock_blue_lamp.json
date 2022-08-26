@@ -1,8 +1,8 @@
 {
   "criteria": {
-    "has_sparklestone_gem": {
+    "has_shimmerstone_gem": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+      "conditions": { "advancement_identifier": "spectrum:collect_shimmerstone" }
     },
     "has_citrine_shard": {
       "trigger":"revelationary:advancement_gotten",

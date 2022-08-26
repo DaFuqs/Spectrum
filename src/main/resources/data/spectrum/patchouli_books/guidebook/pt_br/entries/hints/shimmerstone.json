@@ -2,15 +2,15 @@
   "name": "A new Ore",
   "category": "spectrum:hints_category",
   "icon": "minecraft:writable_book",
-  "advancement": "spectrum:milestones/reveal_sparklestone",
+  "advancement": "spectrum:milestones/reveal_shimmerstone",
   "secret": true,
   "read_by_default": true,
-  "turnin": "spectrum:collect_sparklestone",
+  "turnin": "spectrum:collect_shimmerstone",
   "pages": [
     {
       "type": "spectrum:hint",
       "title": "Where to find",
-      "completion_advancement": "spectrum:collect_sparklestone",
+      "completion_advancement": "spectrum:collect_shimmerstone",
       "cost": "minecraft:copper_ingot#8",
       "text": "There is a new Ore to be found in the Overworld at and above surface level."
     },

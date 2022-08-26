@@ -2,13 +2,13 @@
 	"pages":[
 		{
 			"completion_advancement":"spectrum:collect_vegetal",
-			"cost":"spectrum:sparklestone_gem#16",
+			"cost":"spectrum:shimmerstone_gem#16",
 			"text":"消逝作为一种弱小的生物体，只能处理放置在其旁边的有机块，同时也需要相当长的时间。",
 			"type":"spectrum:hint",
 			"title":"小线索"
 		},
 		{
-			"cost":"spectrum:sparklestone_gem#48",
+			"cost":"spectrum:shimmerstone_gem#48",
 			"text":"将叶子、南瓜或西瓜等有机块放在旁边，等待片刻。一段时间后，方块将被消耗并替换为外观不同的变体。分解那些转换的块以获取新资源。",
 			"type":"spectrum:hint",
 			"title":"简明说明"

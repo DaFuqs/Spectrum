@@ -247,7 +247,7 @@ public class SpectrumItems {
 	public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, toolItemSettingsSixteen);
 	
 	// Resources
-	public static final CloakedItem SPARKLESTONE_GEM = new CloakedItemWithLoomPattern(resourcesItemSettings, ((RevelationAware) SpectrumBlocks.SPARKLESTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE, SpectrumBannerPatterns.SHIMMERSTONE);
+	public static final CloakedItem SHIMMERSTONE_GEM = new CloakedItemWithLoomPattern(resourcesItemSettings, ((RevelationAware) SpectrumBlocks.SHIMMERSTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE, SpectrumBannerPatterns.SHIMMERSTONE);
 	public static final CloakedItem RAW_AZURITE = new CloakedItemWithLoomPattern(resourcesItemSettings, ((RevelationAware) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE, SpectrumBannerPatterns.RAW_AZURITE);
 	public static final CloakedItem REFINED_AZURITE = new CloakedItem(resourcesItemSettings, ((RevelationAware) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
 	public static final CloakedFloatItem STRATINE_FRAGMENTS = new CloakedFloatItem(resourcesItemSettingsFireproof, 1.003F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
@@ -495,7 +495,7 @@ public class SpectrumItems {
 	}
 	
 	public static void registerResources() {
-		register("sparklestone_gem", SPARKLESTONE_GEM, DyeColor.YELLOW);
+		register("shimmerstone_gem", SHIMMERSTONE_GEM, DyeColor.YELLOW);
 		register("raw_azurite", RAW_AZURITE, DyeColor.BLUE);
 		register("refined_azurite", REFINED_AZURITE, DyeColor.BLUE);
 		register("paltaeria_fragments", PALETUR_FRAGMENTS, DyeColor.LIGHT_BLUE);

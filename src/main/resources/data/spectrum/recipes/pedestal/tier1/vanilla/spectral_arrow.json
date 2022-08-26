@@ -18,12 +18,12 @@
       "item": "minecraft:arrow"
     },
     "S": {
-      "item": "spectrum:sparklestone_gem"
+      "item": "spectrum:shimmerstone_gem"
     }
   },
   "result": {
     "item": "minecraft:spectral_arrow",
     "count": 2
   },
-  "required_advancement": "spectrum:collect_sparklestone"
+  "required_advancement": "spectrum:collect_shimmerstone"
 }

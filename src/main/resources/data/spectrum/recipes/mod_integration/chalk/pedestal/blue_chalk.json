@@ -31,7 +31,7 @@
     {
       "condition": "fabric:all_mods_loaded",
       "values": [
-        "chalk"
+        "chalk-colorful-addon"
       ]
     }
   ]

@@ -35,10 +35,11 @@ public class TakeOffBeltSoundInstance extends AbstractSoundInstance implements T
 		this.z = player.getZ();
 	}
 	
+	@Environment(EnvType.CLIENT)
 	public static void startSoundInstance() {
 		TakeOffBeltSoundInstance soundInstance = new TakeOffBeltSoundInstance();
-		if (!SpectrumClient.minecraftClient.getSoundManager().isPlaying(soundInstance)) {
-			SpectrumClient.minecraftClient.getSoundManager().play(soundInstance);
+		if (!MinecraftClient.getInstance().getSoundManager().isPlaying(soundInstance)) {
+			MinecraftClient.getInstance().getSoundManager().play(soundInstance);
 		}
 	}
 	

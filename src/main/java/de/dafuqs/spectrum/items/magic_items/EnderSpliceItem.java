@@ -189,7 +189,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	
 	@Environment(EnvType.CLIENT)
 	public void startSoundInstance(PlayerEntity user) {
-		SpectrumClient.minecraftClient.getSoundManager().play(new EnderSpliceChargingSoundInstance(user));
+		MinecraftClient.getInstance().getSoundManager().play(new EnderSpliceChargingSoundInstance(user));
 	}
 	
 	public int getMaxUseTime(ItemStack stack) {

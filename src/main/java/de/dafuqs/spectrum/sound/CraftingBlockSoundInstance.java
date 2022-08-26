@@ -48,12 +48,13 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		this.repeatDelay = 0;
 	}
 	
+	@Environment(EnvType.CLIENT)
 	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
 		stopPlayingOnPos(sourceBlockPos);
 		
 		CraftingBlockSoundInstance newInstance = new CraftingBlockSoundInstance(soundEvent, MinecraftClient.getInstance().world.getRegistryKey(), sourceBlockPos, sourceBlock, maxDurationTicks);
 		playingSoundInstances.add(newInstance);
-		SpectrumClient.minecraftClient.getSoundManager().play(newInstance);
+		MinecraftClient.getInstance().getSoundManager().play(newInstance);
 	}
 	
 	// if there is already a sound instance playing at given pos: cancel it

@@ -201,7 +201,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 	
 	@Environment(EnvType.CLIENT)
 	public void startSoundInstance(PlayerEntity user) {
-		SpectrumClient.minecraftClient.getSoundManager().play(new NaturesStaffUseSoundInstance(user));
+		MinecraftClient.getInstance().getSoundManager().play(new NaturesStaffUseSoundInstance(user));
 	}
 	
 	public UseAction getUseAction(ItemStack stack) {

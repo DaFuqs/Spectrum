@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.sound.HintRevelationSoundInstance;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.resource.language.I18n;
@@ -104,6 +105,7 @@ public class PageHint extends BookPage {
 		return new Identifier(entry.getId().getNamespace(), entry.getId().getPath() + "_" + this.pageNum);
 	}
 	
+	@Environment(EnvType.CLIENT)
 	protected void paymentButtonClicked(ButtonWidget button) {
 		if (MinecraftClient.getInstance().player.isCreative() || InventoryHelper.hasInInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory())) {
 			// mark as complete in book data
@@ -112,7 +114,7 @@ public class PageHint extends BookPage {
 			PersistentData.save();
 			entry.markReadStateDirty();
 			
-			SpectrumClient.minecraftClient.getSoundManager().play(new HintRevelationSoundInstance(mc.player, rawText.getString().length()));
+			MinecraftClient.getInstance().getSoundManager().play(new HintRevelationSoundInstance(mc.player, rawText.getString().length()));
 			
 			SpectrumC2SPacketSender.sendGuidebookHintBoughtPaket(ingredient);
 			revealProgress = 1;

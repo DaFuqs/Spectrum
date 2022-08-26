@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.sound;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.entity.entity.InkProjectileEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -39,9 +38,10 @@ public class InkProjectileSoundInstance extends AbstractSoundInstance implements
 		this.volume = 1.0F;
 	}
 	
+	@Environment(EnvType.CLIENT)
 	public static void startSoundInstance(SoundEvent soundEvent, InkProjectileEntity inkProjectile) {
 		InkProjectileSoundInstance newInstance = new InkProjectileSoundInstance(soundEvent, MinecraftClient.getInstance().world.getRegistryKey(), inkProjectile);
-		SpectrumClient.minecraftClient.getSoundManager().play(newInstance);
+		MinecraftClient.getInstance().getSoundManager().play(newInstance);
 	}
 	
 	@Override

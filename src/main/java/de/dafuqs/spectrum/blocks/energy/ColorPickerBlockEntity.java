@@ -34,6 +34,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -126,7 +127,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	
 	@Override
 	protected Text getContainerName() {
-		return Text.translatable("block.spectrum.color_picker");
+		return new TranslatableText("block.spectrum.color_picker");
 	}
 	
 	@Override

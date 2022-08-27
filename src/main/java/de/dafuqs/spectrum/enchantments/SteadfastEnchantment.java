@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.enchantments;
 
+import dev.emi.trinkets.api.Trinket;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
@@ -35,7 +36,7 @@ public class SteadfastEnchantment extends SpectrumEnchantment {
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
 		Item item = stack.getItem();
-		return this.type.isAcceptableItem(item) || item instanceof ToolItem || item instanceof Vanishable;
+		return this.type.isAcceptableItem(item) || item instanceof ToolItem || item instanceof Vanishable || item instanceof Trinket;
 	}
 	
 }

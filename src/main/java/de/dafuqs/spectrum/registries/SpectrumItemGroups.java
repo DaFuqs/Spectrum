@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
+import io.wispforest.owo.Owo;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
@@ -133,7 +134,7 @@ public class SpectrumItemGroups {
 				
 				// all memories that have spirit instiller recipes
 				Item memoryItem = SpectrumBlocks.MEMORY.asItem();
-				for (ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
+				for (ISpiritInstillerRecipe recipe : Owo.currentServer().getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
 					if (recipe.getOutput().isOf(memoryItem)) {
 						stacks.add(recipe.getOutput());
 					}

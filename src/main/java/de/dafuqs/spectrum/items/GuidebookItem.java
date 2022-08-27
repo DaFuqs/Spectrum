@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items;
 import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
+import io.wispforest.owo.Owo;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementCriterion;
 import net.minecraft.advancement.AdvancementProgress;
@@ -49,7 +50,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 						CriterionConditions conditions = criterionEntry.getValue().getConditions();
 						if (conditions != null && conditions.getId().equals(AdvancementGottenCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
 							Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
-							Advancement advancementCriterionAdvancement = SpectrumCommon.minecraftServer.getAdvancementLoader().get(advancementIdentifier);
+							Advancement advancementCriterionAdvancement = Owo.currentServer().getAdvancementLoader().get(advancementIdentifier);
 							if (advancementCriterionAdvancement != null) {
 								AdvancementProgress hasAdvancementCriterionAdvancement = tracker.getProgress(advancementCriterionAdvancement);
 								if (hasAdvancementCriterionAdvancement.isDone()) {

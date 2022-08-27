@@ -57,6 +57,7 @@
     "accessors.WorldRendererAccessor",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
+    "client.ClientPlayNetworkHandlerMixin",
     "client.ClientWorldReverbMixin",
     "client.DimensionTypeMixin",
     "client.HeadFeatureRendererMixin",

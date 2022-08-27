@@ -21,10 +21,7 @@ public final class Plugin implements IMixinConfigPlugin {
 	
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-		if (mixinClassName.equals("de.dafuqs.spectrum.mixin.client.enchantment_descriptions.DescriptionManagerMixin")) {
-			return false;
-			//return FabricLoader.getInstance().isModLoaded("enchdesc");
-		} else if (mixinClassName.equals("de.dafuqs.spectrum.mixin.client.ClientWorldReverbMixin")) {
+		if (mixinClassName.equals("de.dafuqs.spectrum.mixin.client.ClientWorldReverbMixin")) {
 			return FabricLoader.getInstance().isModLoaded("limlib");
 		} else {
 			return true;

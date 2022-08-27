@@ -9,11 +9,10 @@ import java.util.UUID;
 public interface PlayerOwned {
 	
 	static PlayerEntity getPlayerEntityIfOnline(UUID ownerUUID) {
-		// TODO - If the UUID passed is null, and the server isn't there, will this not just crash?
-		if (ownerUUID != null || Owo.currentServer() == null) {
-			return Owo.currentServer().getPlayerManager().getPlayer(ownerUUID);
+		if (ownerUUID == null || Owo.currentServer() == null) {
+			return null;
 		}
-		return null;
+		return Owo.currentServer().getPlayerManager().getPlayer(ownerUUID);
 	}
 	
 	UUID getOwnerUUID();

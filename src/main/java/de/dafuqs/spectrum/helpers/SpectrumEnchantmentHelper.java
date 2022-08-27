@@ -24,7 +24,11 @@ public class SpectrumEnchantmentHelper {
 	
 	
 	public static ItemStack addOrExchangeEnchantment(ItemStack itemStack, Enchantment enchantment, int level, boolean forceEvenIfNotApplicable, boolean allowEnchantmentConflicts) {
-		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
+		// if not forced check if the stack already has enchantments
+		// that conflict with the new one
+		if (!allowEnchantmentConflicts && hasEnchantmentThatConflictsWith(itemStack, enchantment)) {
+			return itemStack;
+		}
 		
 		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
 			// all fine, nothing more to check here. Enchant away!
@@ -32,19 +36,15 @@ public class SpectrumEnchantmentHelper {
 			ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, itemStack.getCount());
 			enchantedBookStack.setNbt(itemStack.getNbt());
 			itemStack = enchantedBookStack;
-		} else if (itemStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable) {
-			if (!enchanterEnchantable.canAcceptEnchantment(enchantment)) {
-				return itemStack;
-			}
-		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(itemStack)) {
-			// item can not be enchanted with this enchantment
-			return itemStack;
 		}
 		
-		// if not forced check if the stack already has enchantments
-		// that conflict with the new one
-		if (!allowEnchantmentConflicts && hasEnchantmentThatConflictsWith(itemStack, enchantment)) {
-			return itemStack;
+		if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(itemStack)) {
+			if (itemStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) {
+				// EnchanterEnchantable explicitly states this enchantment is acceptable
+			} else {
+				// item can not be enchanted with this enchantment
+				return itemStack;
+			}
 		}
 		
 		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
@@ -58,6 +58,7 @@ public class SpectrumEnchantmentHelper {
 			nbtCompound.put(nbtString, new NbtList());
 		}
 		
+		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
 		NbtList nbtList = nbtCompound.getList(nbtString, 10);
 		for (int i = 0; i < nbtList.size(); i++) {
 			NbtCompound enchantmentCompound = nbtList.getCompound(i);

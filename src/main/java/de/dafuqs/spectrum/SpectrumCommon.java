@@ -33,9 +33,11 @@ import de.dafuqs.spectrum.spells.InkSpellEffects;
 import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
 import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
 import de.dafuqs.spectrum.worldgen.structure_features.SpectrumStructureFeatures;
+import io.wispforest.owo.Owo;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
@@ -243,19 +245,18 @@ public class SpectrumCommon implements ModInitializer {
 			}
 			return ActionResult.PASS;
 		});
-		
+
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
-			SpectrumCommon.logInfo("Fetching server instance...");
-			SpectrumCommon.minecraftServer = server;
-			
 			logInfo("Registering MultiBlocks...");
 			SpectrumMultiblocks.register();
 		});
-		
+
+
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
 			
 			if(!serverLoadEventFired) {
-				SpectrumCommon.minecraftServer = minecraftServer;
+				SpectrumCommon.logInfo("Fetching server instance...");
+				SpectrumCommon.minecraftServer = Owo.currentServer();
 				
 				SpectrumCommon.logInfo("Querying fluid luminance...");
 				for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {

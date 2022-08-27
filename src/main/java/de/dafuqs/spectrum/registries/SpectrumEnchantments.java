@@ -22,7 +22,7 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment TIGHT_GRIP = new TightGripEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("progression/enchantments/tight_grip"), EquipmentSlot.MAINHAND); // Increases attack speed
 	public static final SpectrumEnchantment DISARMING = new DisarmingEnchantment(Enchantment.Rarity.VERY_RARE, SpectrumCommon.locate("progression/enchantments/disarming"), EquipmentSlot.MAINHAND); // Drops mob equipment on hit (and players, but way less often)
 	public static final SpectrumEnchantment SNIPER = new SniperEnchantment(Enchantment.Rarity.VERY_RARE, SpectrumCommon.locate("progression/enchantments/sniper"), EquipmentSlot.MAINHAND); // Increases projectile speed => increased damage + range
-	public static final SpectrumEnchantment STEADFAST = new DamageProofEnchantment(Enchantment.Rarity.COMMON, SpectrumCommon.locate("progression/enchantments/steadfast"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
+	public static final SpectrumEnchantment STEADFAST = new SteadfastEnchantment(Enchantment.Rarity.COMMON, SpectrumCommon.locate("progression/enchantments/steadfast"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 	public static final SpectrumEnchantment INDESTRUCTIBLE = new IndestructibleEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("progression/enchantments/indestructible"), EquipmentSlot.MAINHAND); // Make tools not use up durability
 	
 	public static void register() {

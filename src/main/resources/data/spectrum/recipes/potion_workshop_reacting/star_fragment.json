@@ -5,5 +5,5 @@
     "chance_to_add_last_effect": 1.0,
     "last_effect_potency_modifier": 0.75
   },
-  "required_advancement": "spectrum:collect_shooting_star"
+  "required_advancement": "spectrum:collect_star_fragment"
 }

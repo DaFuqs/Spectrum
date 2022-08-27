@@ -19,7 +19,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_shooting_star" }
+      "conditions": { "advancement_identifier": "spectrum:collect_star_fragment" }
     }
   },
   "rewards": {

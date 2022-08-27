@@ -77,7 +77,6 @@ public class SpectrumCommon implements ModInitializer {
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
 	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
-	public static MinecraftServer minecraftServer;
 	private static boolean serverLoadEventFired = false;
 	/**
 	 * Caches the luminance states from fluids as int
@@ -255,9 +254,6 @@ public class SpectrumCommon implements ModInitializer {
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
 			
 			if(!serverLoadEventFired) {
-				SpectrumCommon.logInfo("Fetching server instance...");
-				SpectrumCommon.minecraftServer = Owo.currentServer();
-				
 				SpectrumCommon.logInfo("Querying fluid luminance...");
 				for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
 					Block block = it.next();
@@ -296,9 +292,9 @@ public class SpectrumCommon implements ModInitializer {
 			public void reload(ResourceManager manager) {
 				CompactingChestBlockEntity.clearCache();
 				
-				if (minecraftServer != null) {
-					injectEnchantmentUpgradeRecipes(minecraftServer);
-					FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
+				if (Owo.currentServer() != null) {
+					injectEnchantmentUpgradeRecipes(Owo.currentServer());
+					FirestarterMobBlock.addBlockSmeltingRecipes(Owo.currentServer().getRecipeManager());
 				}
 			}
 			

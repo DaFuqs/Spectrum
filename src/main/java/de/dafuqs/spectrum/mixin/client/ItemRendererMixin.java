@@ -1,30 +1,50 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.mixin.client.accessors.BakedOverrideAccessor;
+import de.dafuqs.spectrum.mixin.client.accessors.ModelOverrideListAccessor;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.client.SpectrumItemPredicates;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.item.ItemModels;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
+import net.minecraft.client.render.model.json.ModelOverrideList;
 import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.checkerframework.checker.units.qual.A;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(ItemRenderer.class)
+@Mixin(value = ItemRenderer.class)
 public class ItemRendererMixin {
-	
+
+	//@Shadow @Final private ItemModels models;
+
 	@Inject(at = @At("HEAD"), method = "renderItem(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;Lnet/minecraft/world/World;III)V")
 	private void spectrum$storeItemRenderMode1(LivingEntity entity, ItemStack item, ModelTransformation.Mode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, World world, int light, int overlay, int seed, CallbackInfo ci) {
 		SpectrumItemPredicates.currentItemRenderMode = renderMode;
 	}
 	
-	@Inject(at = @At("HEAD"), method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V")
+	@Inject(at = @At(value = "HEAD"), method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V")
 	private void spectrum$storeItemRenderMode2(ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
 		SpectrumItemPredicates.currentItemRenderMode = renderMode;
+		//boolean renderingGui = renderMode == ModelTransformation.Mode.GUI || renderMode == ModelTransformation.Mode.GROUND || renderMode == ModelTransformation.Mode.FIXED;
+		//if(stack.isOf(SpectrumItems.DREAMFLAYER)) {
+		//	model = this.models.getModelManager().getModel(new ModelIdentifier("spectrum:dreamflayer#inventory"));
+		//	var overrides = ((ModelOverrideListAccessor) model.getOverrides()).getOverrides();
+		//	model = ((BakedOverrideAccessor) overrides[1]).getModel();
+		//}
 	}
 	
 }

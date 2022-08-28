@@ -69,7 +69,9 @@
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin",
     "client.accessors.BossBarHudAccessor",
-    "client.accessors.RenderLayerAccessor"
+    "client.accessors.RenderLayerAccessor",
+    "client.accessors.ModelOverrideListAccessor",
+    "client.accessors.BakedOverrideAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

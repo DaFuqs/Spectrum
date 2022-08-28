@@ -615,6 +615,9 @@ public class SpectrumItems {
 		register("mud_bucket", MUD_BUCKET, DyeColor.BROWN);
 		register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET, DyeColor.GRAY);
 	}
+
+	public static void registerItemLookups() {
+	}
 	
 	public static void registerFuelRegistry() {
 		FuelRegistry.INSTANCE.add(SpectrumBlocks.WET_LAVA_SPONGE.asItem(), 12800);

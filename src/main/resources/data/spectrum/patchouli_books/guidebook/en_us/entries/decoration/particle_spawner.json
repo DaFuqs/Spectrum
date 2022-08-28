@@ -10,13 +10,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)The Shooting Star you picked up left a fantastic shower of particles on their way to the ground. You created the Particle Spawner to replicate this spectacle - and lots of others - yourself.$()$(br2)A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal structure? The Particle Spawner got you covered."
+      "text": "$(italic)The Shooting Star you picked up left a fantastic shower of particles on their way to the ground. You created the Particle Spawner to replicate this spectacle - and lots of others - yourself.$()$(br2)A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal? The Particle Spawner got you covered."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/particle_spawner",
-      "text": "In the the particle spawners GUI you are able to configure the spawned particles to your liking. Apply redstone to start the fantastic display."
+      "text": "In the Particle Spawner's GUI you are able to configure the particles to your liking. Apply redstone to start the fantastic display."
     }
   ]
 }

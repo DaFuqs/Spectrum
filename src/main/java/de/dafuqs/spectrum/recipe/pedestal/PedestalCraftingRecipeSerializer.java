@@ -96,8 +96,8 @@ public class PedestalCraftingRecipeSerializer implements RecipeSerializer<Pedest
 		packetByteBuf.writeItemStack(pedestalRecipe.output);
 		
 		packetByteBuf.writeInt(pedestalRecipe.tier.ordinal());
-		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.MAGENTA));
 		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.CYAN));
+		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.MAGENTA));
 		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.YELLOW));
 		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.BLACK));
 		packetByteBuf.writeInt(pedestalRecipe.getGemstonePowderAmount(BuiltinGemstoneColor.WHITE));
@@ -124,8 +124,8 @@ public class PedestalCraftingRecipeSerializer implements RecipeSerializer<Pedest
 		
 		PedestalRecipeTier tier = PedestalRecipeTier.values()[packetByteBuf.readInt()];
 		
-		int magenta = packetByteBuf.readInt();
 		int cyan = packetByteBuf.readInt();
+		int magenta = packetByteBuf.readInt();
 		int yellow = packetByteBuf.readInt();
 		int black = packetByteBuf.readInt();
 		int white = packetByteBuf.readInt();
@@ -138,11 +138,11 @@ public class PedestalCraftingRecipeSerializer implements RecipeSerializer<Pedest
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
 		
 		HashMap<BuiltinGemstoneColor, Integer> gemInputs = new HashMap<>();
-		if (magenta > 0) {
-			gemInputs.put(BuiltinGemstoneColor.MAGENTA, magenta);
-		}
 		if (cyan > 0) {
 			gemInputs.put(BuiltinGemstoneColor.CYAN, cyan);
+		}
+		if (magenta > 0) {
+			gemInputs.put(BuiltinGemstoneColor.MAGENTA, magenta);
 		}
 		if (yellow > 0) {
 			gemInputs.put(BuiltinGemstoneColor.YELLOW, yellow);

@@ -217,7 +217,9 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 				inventory.get(INPUT_SLOT_ID).decrement(1);
 				this.inkStorage.addEnergy(color, amount);
 				
-				world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 2, 1.0F);
+				if(SpectrumCommon.CONFIG.BlockSoundVolume > 0) {
+					world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 2, 1.0F);
+				}
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world,
 						new Vec3d(pos.getX() + 0.5, pos.getY() + 0.7, pos.getZ() + 0.5),
 						SpectrumParticleTypes.getFluidRisingParticle(color.getDyeColor()),

@@ -35,7 +35,7 @@ public class WandLightBlock extends LightBlock {
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
 		if (world.isClient && MinecraftClient.getInstance().player.getMainHandStack().isOf(SpectrumItems.RADIANCE_STAFF)) {
-			world.addParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
+			world.addImportantParticle(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, (double) pos.getX() + 0.2 + random.nextFloat() * 0.6, (double) pos.getY() + 0.1 + random.nextFloat() * 0.6, (double) pos.getZ() + 0.2 + random.nextFloat() * 0.6, 0.0D, 0.03D, 0.0D);
 		}
 	}
 	

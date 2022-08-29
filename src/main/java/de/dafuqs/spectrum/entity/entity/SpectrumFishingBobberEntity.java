@@ -95,8 +95,8 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		this(entityType, world, 0, 0);
 	}
 	
-	public SpectrumFishingBobberEntity(PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel) {
-		this(SpectrumEntityTypes.BEDROCK_FISHING_BOBBER, world, luckOfTheSeaLevel, lureLevel);
+	public SpectrumFishingBobberEntity(EntityType entityType, PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel) {
+		this(entityType, world, luckOfTheSeaLevel, lureLevel);
 		this.setOwner(thrower);
 		float f = thrower.getPitch();
 		float g = thrower.getYaw();
@@ -179,6 +179,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				if (this.hookedEntity != null) {
 					this.setVelocity(Vec3d.ZERO);
 					this.state = State.HOOKED_IN_ENTITY;
+					onHookedEntity(hookedEntity);
 					return;
 				}
 				
@@ -194,6 +195,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 					if (this.hookedEntity != null) {
 						if (!this.hookedEntity.isRemoved() && this.hookedEntity.world.getRegistryKey() == this.world.getRegistryKey()) {
 							this.setPosition(this.hookedEntity.getX(), this.hookedEntity.getBodyY(0.8D), this.hookedEntity.getZ());
+							hookedEntityTick(this.hookedEntity);
 						} else {
 							this.updateHookedEntityId(null);
 							this.state = State.FLYING;
@@ -248,6 +250,9 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		}
 	}
 	
+	protected void onHookedEntity(Entity hookedEntity) { }
+	protected void hookedEntityTick(Entity hookedEntity) { }
+	
 	public ItemStack getFishingRod(PlayerEntity player) {
 		ItemStack itemStack = player.getMainHandStack();
 		if(itemStack.getItem() instanceof SpectrumFishingRodItem) {
@@ -280,7 +285,8 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	public void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
 		if (!this.world.isClient) {
-			this.updateHookedEntityId(entityHitResult.getEntity());
+			Entity hookedEntity = entityHitResult.getEntity();
+			this.updateHookedEntityId(hookedEntity);
 		}
 	}
 	

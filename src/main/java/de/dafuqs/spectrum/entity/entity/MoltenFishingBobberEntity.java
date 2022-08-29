@@ -1,7 +1,12 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.tag.FluidTags;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
@@ -15,7 +20,22 @@ public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
 	}
 	
 	public MoltenFishingBobberEntity(PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel) {
-		super(thrower, world, luckOfTheSeaLevel, lureLevel);
+		super(SpectrumEntityTypes.MOLTEN_FISHING_BOBBER, thrower, world, luckOfTheSeaLevel, lureLevel);
+	}
+	
+	@Override
+	public void hookedEntityTick(Entity hookedEntity) {
+		hookedEntity.setOnFireFor(2);
+	}
+	
+	@Override
+	public boolean doesRenderOnFire() {
+		return true;
+		/*if(this.world == null) {
+			return true;
+		}
+		FluidState fluidState = this.world.getFluidState(this.getBlockPos());
+		return fluidState.isEmpty() || fluidState.isIn(FluidTags.LAVA);*/
 	}
 	
 }

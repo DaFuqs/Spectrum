@@ -67,6 +67,7 @@ public class SpectrumItems {
 	// WORLDGEN TAB
 	public static FabricItemSettings worldgenItemSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2);
 	public static FabricItemSettings worldgenItemSettingsFireproof = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).fireproof();
+	public static FabricItemSettings worldgenItemSettingsUncommon = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.UNCOMMON);
 	public static FabricItemSettings worldgenItemSettingsRare = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(2).rarity(Rarity.RARE);
 	
 	// RESOURCES TAB
@@ -216,16 +217,16 @@ public class SpectrumItems {
 	// Decay drops
 	public static final Item VEGETAL = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("craft_bottle_of_fading"), Items.GUNPOWDER, SpectrumBannerPatterns.VEGETAL);
 	public static final Item NEOLITH = new CloakedItemWithLoomPattern(resourcesUncommonItemSettings, SpectrumCommon.locate("midgame/craft_bottle_of_failing"), Items.GUNPOWDER, SpectrumBannerPatterns.NEOLITH);
-	public static final Item BEDROCK_DUST = new CloakedItemWithLoomPattern(resourcesRareItemSettings, SpectrumCommon.locate("midgame/break_decayed_bedrock"), Items.GUNPOWDER, SpectrumBannerPatterns.BEDROCK_DUST);
+	public static final Item BEDROCK_DUST = new CloakedItemWithLoomPattern(resourcesUncommonItemSettings, SpectrumCommon.locate("midgame/break_decayed_bedrock"), Items.GUNPOWDER, SpectrumBannerPatterns.BEDROCK_DUST);
 	
-	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
-	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), Items.GRAY_DYE);
+	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(resourcesUncommonItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
+	public static final Item MIDNIGHT_CHIP = new CloakedItem(resourcesUncommonItemSettings, SpectrumCommon.locate("midgame/create_midnight_aberration"), Items.GRAY_DYE);
 	
-	public static final Item BISMUTH_FLAKE = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
-	public static final Item BISMUTH_CRYSTAL = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
+	public static final Item BISMUTH_FLAKE = new CloakedItem(resourcesUncommonItemSettings, SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
+	public static final Item BISMUTH_CRYSTAL = new CloakedItem(resourcesUncommonItemSettings, SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
 	
-	public static final Item RAW_MALACHITE = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
-	public static final Item MALACHITE_CRYSTAL = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
+	public static final Item RAW_MALACHITE = new CloakedItem(resourcesUncommonItemSettings, SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
+	public static final Item MALACHITE_CRYSTAL = new CloakedItem(resourcesUncommonItemSettings, SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
 	
 	// Fluid Buckets
 	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(1).recipeRemainder(Items.BUCKET));

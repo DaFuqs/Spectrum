@@ -192,6 +192,8 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Data Loaders...");
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(ResonanceEnchantment.ResonanceDropsDataLoader.INSTANCE);
 		
+		logInfo("Registering MultiBlocks...");
+		SpectrumMultiblocks.register();
 		logInfo("Registering Flammable Blocks...");
 		SpectrumFlammableBlocks.register();
 		logInfo("Registering Compostable Blocks...");
@@ -245,16 +247,11 @@ public class SpectrumCommon implements ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
 			SpectrumCommon.logInfo("Fetching server instance...");
 			SpectrumCommon.minecraftServer = server;
-			
-			logInfo("Registering MultiBlocks...");
-			SpectrumMultiblocks.register();
 		});
 		
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
-			
+			SpectrumCommon.minecraftServer = minecraftServer;
 			if(!serverLoadEventFired) {
-				SpectrumCommon.minecraftServer = minecraftServer;
-				
 				SpectrumCommon.logInfo("Querying fluid luminance...");
 				for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
 					Block block = it.next();

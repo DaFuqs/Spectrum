@@ -6,7 +6,7 @@
   ],
   "textures": {
     "0": "spectrum:block/jade_vine_plant_petals",
-    "particle": "spectrum:block/jade_vine_plant_petals"
+    "particle": "spectrum:block/jade_vine_plant_breaking"
   },
   "elements": [
     {

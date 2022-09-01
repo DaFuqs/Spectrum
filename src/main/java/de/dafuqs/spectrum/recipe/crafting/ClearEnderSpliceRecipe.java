@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
-import de.dafuqs.spectrum.energy.InkStorageItem;
+import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;
@@ -9,37 +9,41 @@ import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class ClearInkRecipe extends SpecialCraftingRecipe {
+public class ClearEnderSpliceRecipe extends SpecialCraftingRecipe {
 	
-	public static final RecipeSerializer<ClearInkRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearInkRecipe::new);
+	public static final RecipeSerializer<ClearEnderSpliceRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearEnderSpliceRecipe::new);
 	
-	public ClearInkRecipe(Identifier identifier) {
+	public ClearEnderSpliceRecipe(Identifier identifier) {
 		super(identifier);
 	}
 	
 	public boolean matches(CraftingInventory craftingInventory, World world) {
-		boolean inkStorageItemFound = false;
+		boolean enderSpliceFound = false;
 		
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			ItemStack itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty()) {
-				if(itemStack.getItem() instanceof InkStorageItem) {
-					inkStorageItemFound = true;
+				if(itemStack.getItem() instanceof EnderSpliceItem) {
+					if(EnderSpliceItem.hasTeleportTarget(itemStack)) {
+						enderSpliceFound = true;
+					} else {
+						return false;
+					}
 				} else {
 					return false;
 				}
 			}
 		}
 		
-		return inkStorageItemFound;
+		return enderSpliceFound;
 	}
 	
 	public ItemStack craft(CraftingInventory craftingInventory) {
 		ItemStack itemStack;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			itemStack = craftingInventory.getStack(j).copy();
-			if (!itemStack.isEmpty() && itemStack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
-				inkStorageItem.clearEnergyStorage(itemStack);
+			if (!itemStack.isEmpty() && itemStack.getItem() instanceof EnderSpliceItem) {
+				EnderSpliceItem.clearTeleportTarget(itemStack);
 				return itemStack;
 			}
 		}

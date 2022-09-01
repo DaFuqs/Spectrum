@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
-import de.dafuqs.spectrum.energy.InkStorageItem;
+import de.dafuqs.spectrum.interfaces.PotionFillable;
+import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;
@@ -9,37 +10,41 @@ import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-public class ClearInkRecipe extends SpecialCraftingRecipe {
+public class ClearPotionFillableRecipe extends SpecialCraftingRecipe {
 	
-	public static final RecipeSerializer<ClearInkRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearInkRecipe::new);
+	public static final RecipeSerializer<ClearPotionFillableRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ClearPotionFillableRecipe::new);
 	
-	public ClearInkRecipe(Identifier identifier) {
+	public ClearPotionFillableRecipe(Identifier identifier) {
 		super(identifier);
 	}
 	
 	public boolean matches(CraftingInventory craftingInventory, World world) {
-		boolean inkStorageItemFound = false;
+		boolean potionFillableFound = false;
 		
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			ItemStack itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty()) {
-				if(itemStack.getItem() instanceof InkStorageItem) {
-					inkStorageItemFound = true;
+				if(itemStack.getItem() instanceof PotionFillable potionFillable) {
+					if(potionFillable.isAtLeastPartiallyFilled(itemStack)) {
+						potionFillableFound = true;
+					} else {
+						return false;
+					}
 				} else {
 					return false;
 				}
 			}
 		}
 		
-		return inkStorageItemFound;
+		return potionFillableFound;
 	}
 	
 	public ItemStack craft(CraftingInventory craftingInventory) {
 		ItemStack itemStack;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			itemStack = craftingInventory.getStack(j).copy();
-			if (!itemStack.isEmpty() && itemStack.getItem() instanceof InkStorageItem<?> inkStorageItem) {
-				inkStorageItem.clearEnergyStorage(itemStack);
+			if (!itemStack.isEmpty() && itemStack.getItem() instanceof PotionFillable potionFillable) {
+				potionFillable.removeEffects(itemStack);
 				return itemStack;
 			}
 		}

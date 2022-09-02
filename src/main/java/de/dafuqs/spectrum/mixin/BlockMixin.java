@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
 import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
@@ -15,13 +16,19 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -29,17 +36,20 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-@Mixin(Block.class)
+// increased priority, cause https://github.com/Luligabi1/Incantationem/blob/b87d864cba60601c78c70c9999b6df37cce9fd03/src/main/java/me/luligabi/incantationem/mixin/BlockMixin.java#L60 would cancel the spectrum$getDroppedStacks call
+// the use of @ModifyReturnValue ensues both end up compatible as soon as both mods use it
+@Mixin(value = Block.class, priority = 999)
 public abstract class BlockMixin {
 	
 	PlayerEntity spectrum$breakingPlayer;
 	
-	@Inject(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"), cancellable = true)
-	private static void spectrum$getDroppedStacks(BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfoReturnable<List<ItemStack>> cir) {
-		List<ItemStack> droppedStacks = cir.getReturnValue();
+	@ModifyReturnValue(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"))
+	private static List<ItemStack> spectrum$getDroppedStacks(List<ItemStack> original, BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack) {
+		List<ItemStack> droppedStacks = original;
 		Map<Enchantment, Integer> enchantmentMap = EnchantmentHelper.get(stack);
 		
 		// Voiding curse: no drops
@@ -88,7 +98,7 @@ public abstract class BlockMixin {
 			}
 		}
 		
-		cir.setReturnValue(droppedStacks);
+		return droppedStacks;
 	}
 	
 	@Inject(method = "afterBreak", at = @At("HEAD"))

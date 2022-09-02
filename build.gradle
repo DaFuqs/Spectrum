@@ -78,11 +78,12 @@ dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// dependencies
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	// mine
 	modImplementation "com.github.DaFuqs:Revelationary:${project.revelationary_version}"
+	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
+	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"){
 		exclude(group: "net.fabricmc.fabric-api")
@@ -107,7 +108,6 @@ dependencies {
 	// https://github.com/TheEpicBlock/banner-plus-plus
 	modImplementation include("io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2")
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
-	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:2.1.1")
 	modImplementation include("com.github.DaFuqs:Incubus-Core:${project.incubus_core_version}")

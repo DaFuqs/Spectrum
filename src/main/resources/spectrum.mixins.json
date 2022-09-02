@@ -6,7 +6,6 @@
   "mixins": [
     "AnvilBlockMixin",
     "BlockMixin",
-    "BowItemMixin",
     "BuddingAmethystBlockMixin",
     "ChunkNoiseSamplerMixin",
     "ColoredLeavesBlockMixin",
@@ -55,13 +54,11 @@
     "accessors.StructureFeatureAccessor"
   ],
   "client": [
-    "client.AbstractClientPlayerEntityMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.ClientWorldReverbMixin",
     "client.DimensionTypeMixin",
     "client.HeadFeatureRendererMixin",
-    "client.HeldItemRendererMixin",
     "client.InGameHudMixin",
     "client.ItemFrameEntityRendererMixin",
     "client.ItemRendererMixin",

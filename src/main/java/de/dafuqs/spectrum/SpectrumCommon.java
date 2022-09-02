@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum;
 
 import com.google.common.collect.ImmutableMap;
+import de.dafuqs.arrowhead.api.CrossbowShootingCallback;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
@@ -44,6 +45,8 @@ import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
@@ -54,6 +57,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;

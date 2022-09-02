@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.arrowhead.api.ArrowheadCrossbow;
 import de.dafuqs.spectrum.items.Preenchanted;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -10,7 +11,7 @@ import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Map;
 
-public class BedrockCrossbowItem extends SpectrumCrossbowItem implements Preenchanted {
+public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted, ArrowheadCrossbow {
 	
 	public BedrockCrossbowItem(Settings settings) {
 		super(settings);
@@ -43,10 +44,12 @@ public class BedrockCrossbowItem extends SpectrumCrossbowItem implements Preench
 		return true;
 	}
 	
+	@Override
 	public float getProjectileVelocityModifier() {
-		return 5.0F;
+		return 1.5F;
 	}
 	
+	@Override
 	public float getPullTimeModifier() {
 		return 3.0F;
 	}

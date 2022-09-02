@@ -10,11 +10,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,7 +50,7 @@ public class DecayAwayBlock extends Block {
 			BlockState currentBlockState = world.getBlockState(targetBlockPos);
 			
 			if (currentBlockState.isIn(SpectrumBlockTags.DECAY_AWAY_CURABLES)) {
-				world.setBlockState(targetBlockPos, getTargetState(currentBlockState));
+				world.setBlockState(targetBlockPos, getTargetStateForCurable(currentBlockState));
 				world.createAndScheduleBlockTick(targetBlockPos, state.getBlock(), 8);
 			}
 		}
@@ -56,10 +58,10 @@ public class DecayAwayBlock extends Block {
 		// and turn this to the leftover block state
 		BlockState currentState = world.getBlockState(pos);
 		TargetConversion targetConversion = currentState.get(TARGET_CONVERSION);
-		world.setBlockState(pos, targetConversion.getTargetState(), 3);
+		world.setBlockState(pos, targetConversion.getTargetState(world), 3);
 	}
 	
-	public BlockState getTargetState(BlockState blockState) {
+	public BlockState getTargetStateForCurable(BlockState blockState) {
 		if (blockState.getBlock() instanceof DecayBlock) {
 			if (blockState.isOf(SpectrumBlocks.RUIN)) {
 				if (blockState.get(TerrorBlock.DECAY_STATE) == TerrorBlock.DecayConversion.BEDROCK) {
@@ -98,7 +100,16 @@ public class DecayAwayBlock extends Block {
 			return this.name;
 		}
 		
-		public BlockState getTargetState() {
+		public BlockState getTargetState(World world) {
+			if(this == DEFAULT) {
+				Identifier identifier = world.getDimension().getEffects();
+				if (DimensionType.THE_NETHER_ID.equals(identifier)) {
+					return Blocks.NETHERRACK.getDefaultState();
+				} else if (DimensionType.THE_END_ID.equals(identifier)) {
+					return Blocks.END_STONE.getDefaultState();
+				}
+				return Blocks.DIRT.getDefaultState();
+			}
 			return this.targetState;
 		}
 	}

@@ -24,7 +24,7 @@ import java.util.List;
 
 public class CrystallarieumCategory implements DisplayCategory<CrystallarieumDisplay> {
 	
-	public final static Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/crystallarieum.png");
+	public final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
 	private static final EntryIngredient CRYSTALLARIEUM = EntryIngredients.of(SpectrumBlocks.CRYSTALLARIEUM);
 	
 	@Override

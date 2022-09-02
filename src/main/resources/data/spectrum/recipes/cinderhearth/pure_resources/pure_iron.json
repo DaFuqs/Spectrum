@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:pure_iron"
+  },
+  "results": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 2
+    }
+  ],
+  "experience": 0.5,
+  "time": 200,
+  "required_advancement": "spectrum:lategame/collect_native_resource"
+}

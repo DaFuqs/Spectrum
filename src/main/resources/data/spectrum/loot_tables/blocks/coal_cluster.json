@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_coal",
+          "name": "spectrum:pure_coal",
           "functions": [
             {
               "function": "minecraft:set_count",

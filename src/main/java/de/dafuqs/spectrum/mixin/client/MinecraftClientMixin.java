@@ -5,6 +5,8 @@ import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.mixin.client.accessors.BossBarHudAccessor;
 import de.dafuqs.spectrum.registries.SpectrumMusicType;
 import de.dafuqs.spectrum.render.bossbar.SpectrumClientBossBar;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Map;
 import java.util.UUID;
 
+@Environment(EnvType.CLIENT)
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin {
 	

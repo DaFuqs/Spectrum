@@ -42,7 +42,7 @@ public class BedrockArmorModel {
 
         var body = root.addChild("body", ModelPartBuilder.create(), ModelTransform.NONE);
 
-        var armorBody = body.addChild(
+        body.addChild(
                 "armor_body",
                 ModelPartBuilder.create()
                         .uv(31, 33)
@@ -50,22 +50,6 @@ public class BedrockArmorModel {
                         .uv(36, 20)
                         .cuboid(-5.0F, 0.0F, -3.0F, 10.0F, 10.0F, 3.0F),
                 ModelTransform.NONE
-        );
-
-        armorBody.addChild(
-                "cock_bone",
-                ModelPartBuilder.create()
-                        .uv(62, 55)
-                        .cuboid(-3.5F, 0.0F, 0.0F, 7.0F, 14.0F, 0.0F),
-                ModelTransform.pivot(0.0F, 8.0F, -2.85F)
-        );
-
-        armorBody.addChild(
-                "cape_bone",
-                ModelPartBuilder.create()
-                        .uv(0, 38)
-                        .cuboid(-5.5F, 0.0F, -0.05F, 11.0F, 23.0F, 0.0F),
-                ModelTransform.pivot(0.0F, 0.5F, 2.9F)
         );
 
         var rightArm = root.addChild(

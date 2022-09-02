@@ -1,0 +1,16 @@
+{
+  "fluid": {
+    "tag": "spectrum:liquid_crystal"
+  },
+  "chance": 0.05,
+  "entities": [
+    {
+      "id": "minecraft:salmon",
+      "weight": 10
+    },
+    {
+      "id": "minecraft:glow_squid",
+      "weight": 1
+    }
+  ]
+}

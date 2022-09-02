@@ -4,11 +4,13 @@
     "spectrum:preservation_stone",
     "spectrum:preservation_bricks",
     "spectrum:shimmering_preservation_bricks",
+    "spectrum:powder_chiseled_preservation_stone",
     "spectrum:dike_chiseled_preservation_stone",
     "spectrum:preservation_glass",
     "spectrum:dike_gate",
     "spectrum:courier_statue",
     "spectrum:treasure_chest",
-    "spectrum:dike_gate_fountain"
+    "spectrum:dike_gate_fountain",
+    "spectrum:preservation_roundel"
   ]
 }

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.LoreHelper;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -31,9 +32,8 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	public static final int SECOND_INPUT_SLOT_INDEX = 1;
 	public static final int OUTPUT_SLOT_INDEX = 2;
 	private static final int PLAYER_INVENTORY_START_INDEX = 3;
-	private static final int field_30817 = 30;
-	private static final int field_30818 = 30;
 	private static final int PLAYER_INVENTORY_END_INDEX = 39;
+	
 	protected final CraftingResultInventory output = new CraftingResultInventory();
 	protected final ScreenHandlerContext context;	protected final Inventory input = new SimpleInventory(2) {
 		public void markDirty() {
@@ -114,19 +114,19 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 			ItemStack itemStack2 = slot.getStack();
 			itemStack = itemStack2.copy();
 			if (index == 2) {
-				if (!this.insertItem(itemStack2, 3, 39, true)) {
+				if (!this.insertItem(itemStack2, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, true)) {
 					return ItemStack.EMPTY;
 				}
 				
 				slot.onQuickTransfer(itemStack2, itemStack);
 			} else if (index != 0 && index != 1) {
-				if (index >= 3 && index < 39) {
+				if (index >= PLAYER_INVENTORY_START_INDEX && index < PLAYER_INVENTORY_END_INDEX) {
 					int i = 0;
 					if (!this.insertItem(itemStack2, i, 2, false)) {
 						return ItemStack.EMPTY;
 					}
 				}
-			} else if (!this.insertItem(itemStack2, 3, 39, false)) {
+			} else if (!this.insertItem(itemStack2, PLAYER_INVENTORY_START_INDEX, PLAYER_INVENTORY_END_INDEX, false)) {
 				return ItemStack.EMPTY;
 			}
 			
@@ -276,7 +276,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 							bl3 = true;
 						} else {
 							bl2 = true;
-							if (newEnchantmentLevel > enchantment.getMaxLevel()) {
+							if (!SpectrumCommon.CONFIG.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel && newEnchantmentLevel > enchantment.getMaxLevel()) {
 								newEnchantmentLevel = enchantment.getMaxLevel();
 							}
 							

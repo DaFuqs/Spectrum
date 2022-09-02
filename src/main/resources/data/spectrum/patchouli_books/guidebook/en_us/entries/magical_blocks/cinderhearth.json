@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A state-of-your-art Blast Furnace, which consumes $(c_orange)Orange Ink$() to smelt ores ahd the like."
+      "text": "A state-of-your-art Blast Furnace, which consumes $(c_orange)Orange Ink$() to smelt ores and the like."
     },
     {
       "type": "spectrum:pedestal_crafting",

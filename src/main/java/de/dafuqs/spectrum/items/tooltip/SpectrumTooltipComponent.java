@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpectrumTooltipComponent implements TooltipComponent {
 	
-	public static final Identifier TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/spectrum_tooltips.png");
+	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/container/spectrum_tooltips.png");
 	
 	@Override
 	public int getHeight() {

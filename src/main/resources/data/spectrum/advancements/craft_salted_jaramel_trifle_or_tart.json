@@ -1,0 +1,27 @@
+{
+  "parent": "spectrum:collect_amaranth_bushel",
+  "display": {
+    "icon": {
+      "item": "spectrum:salted_jaramel_trifle"
+    },
+    "title": {
+      "translate": "advancements.spectrum.craft_salted_jaramel_trifle_or_tart.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.craft_salted_jaramel_trifle_or_tart.description"
+    }
+  },
+  "criteria": {
+    "hatch_egg_laying_wooly_pig": {
+      "trigger":"spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ 
+	    "spectrum:salted_jaramel_trifle", 
+	    "spectrum:salted_jaramel_tart"
+	  ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth_bushel" }
+    }
+  }
+}

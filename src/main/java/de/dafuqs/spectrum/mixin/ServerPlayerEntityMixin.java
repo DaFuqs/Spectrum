@@ -1,15 +1,16 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.cca.HardcoreDeathComponent;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.enchantments.TreasureHunterEnchantment;
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.items.trinkets.GleamingPinItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -17,7 +18,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -35,9 +35,19 @@ public abstract class ServerPlayerEntityMixin {
 	@Shadow
 	public abstract ServerWorld getWorld();
 	
+	@Shadow public abstract void playerTick();
+	
 	@Inject(at = @At("HEAD"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
 	protected void spectrum$dropPlayerHeadWithTreasureHunt(DamageSource source, CallbackInfo ci) {
 		TreasureHunterEnchantment.doTreasureHunterForPlayer((ServerPlayerEntity) (Object) this, source);
+	}
+	
+	@Inject(at = @At("TAIL"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
+	protected void spectrum$onDeath(DamageSource source, CallbackInfo ci) {
+		ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
+		if(player.getWorld().getLevelProperties().isHardcore() || HardcoreDeathComponent.isInHardcore(player)) {
+			HardcoreDeathComponent.addHardcoreDeath(player.getGameProfile());
+		}
 	}
 	
 	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)
@@ -52,7 +62,6 @@ public abstract class ServerPlayerEntityMixin {
 				if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), thisEntity.world) == 0) {
 					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), thisEntity);
 				}
-				cir.setReturnValue(false);
 			}
 		} else if (source.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
 			cir.setReturnValue(false);
@@ -67,15 +76,15 @@ public abstract class ServerPlayerEntityMixin {
 				if (source.getAttacker() instanceof LivingEntity livingSource) {
 					ServerPlayerEntity thisPlayer = (ServerPlayerEntity) (Object) this;
 					
-					int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
+					int disarmingLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack(), livingSource);
 					if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelPlayers) {
 						DisarmingEnchantment.disarmPlayer(thisPlayer);
 					}
 					
-					World world = thisPlayer.getWorld();
+					ServerWorld world = thisPlayer.getWorld();
 					Optional<ItemStack> gleamingPinStack = SpectrumTrinketItem.getFirstEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN);
 					if (gleamingPinStack.isPresent() && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
-						GleamingPinItem.doGleamingPinEffect(thisPlayer, (ServerWorld) world, gleamingPinStack.get());
+						GleamingPinItem.doGleamingPinEffect(thisPlayer, world, gleamingPinStack.get());
 						this.spectrum$lastGleamingPinTriggerTick = world.getTime();
 					}
 				}

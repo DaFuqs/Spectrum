@@ -13,7 +13,6 @@ import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem {
 	public static ItemStack COST = new ItemStack(Items.GLOW_INK_SAC, 1);
 	
 	public GlowVisionGogglesItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_glow_vision_goggles"));
+		super(settings, SpectrumCommon.locate("progression/unlock_glow_vision_goggles"));
 	}
 	
 	@Override

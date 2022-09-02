@@ -1,6 +1,5 @@
 {
   "name": "Paintbrush",
-  "advancement": "spectrum:place_pedestal",
   "icon": "spectrum:paintbrush",
   "category": "spectrum:general_category",
   "sortnum": 3,

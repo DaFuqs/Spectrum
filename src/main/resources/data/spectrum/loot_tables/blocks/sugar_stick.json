@@ -1,0 +1,67 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:sugar_stick",
+              "functions": [
+                {
+                  "function": "minecraft:copy_state",
+                  "block": "spectrum:sugar_stick",
+                  "properties": [
+                    "age"
+                  ]
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "spectrum:sugar_stick",
+                  "properties": {
+                    "age": {
+                      "min": 1
+                    }
+                  }
+                },
+                {
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:rock_candy",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "spectrum:sugar_stick",
+                  "properties": {
+                    "age": 2
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:sugar_stick"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

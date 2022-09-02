@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_emerald",
+          "name": "spectrum:pure_emerald",
           "functions": [
             {
               "function": "minecraft:set_count",

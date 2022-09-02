@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
@@ -93,6 +92,40 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		// Add player
 		nbtCompound.putString("TargetPlayerName", player.getName().getString());
 		nbtCompound.putUuid("TargetPlayerUUID", player.getUuid());
+		itemStack.setNbt(nbtCompound);
+	}
+	
+	public static boolean hasTeleportTarget(ItemStack itemStack) {
+		NbtCompound nbtCompound = itemStack.getNbt();
+		if(nbtCompound == null) {
+			return false;
+		}
+		
+		return nbtCompound.contains("PosX") || nbtCompound.contains("TargetPlayerName");
+	}
+	
+	public static void clearTeleportTarget(ItemStack itemStack) {
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+		
+		if (nbtCompound.contains("PosX")) {
+			nbtCompound.remove("PosX");
+		}
+		if (nbtCompound.contains("PosY")) {
+			nbtCompound.remove("PosY");
+		}
+		if (nbtCompound.contains("PosZ")) {
+			nbtCompound.remove("PosZ");
+		}
+		if (nbtCompound.contains("Dimension")) {
+			nbtCompound.remove("Dimension");
+		}
+		if (nbtCompound.contains("TargetPlayerName")) {
+			nbtCompound.remove("TargetPlayerName");
+		}
+		if (nbtCompound.contains("TargetPlayerUUID")) {
+			nbtCompound.remove("TargetPlayerUUID");
+		}
+		
 		itemStack.setNbt(nbtCompound);
 	}
 	

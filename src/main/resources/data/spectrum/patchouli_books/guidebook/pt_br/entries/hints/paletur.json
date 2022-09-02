@@ -2,15 +2,15 @@
   "name": "A new Ore",
   "category": "spectrum:hints_category",
   "icon": "minecraft:writable_book",
-  "advancement": "spectrum:milestones/reveal_paletur",
+  "advancement": "spectrum:milestones/reveal_paltaeria",
   "secret": true,
   "read_by_default": true,
-  "turnin": "spectrum:lategame/collect_paletur",
+  "turnin": "spectrum:lategame/collect_paltaeria",
   "pages": [
     {
       "type": "spectrum:hint",
       "title": "Where to find",
-      "completion_advancement": "spectrum:lategame/collect_paletur",
+      "completion_advancement": "spectrum:lategame/collect_paltaeria",
       "cost": "spectrum:moonstone_shard#8",
       "text": "There is a new turquoise ore found in the End."
     },

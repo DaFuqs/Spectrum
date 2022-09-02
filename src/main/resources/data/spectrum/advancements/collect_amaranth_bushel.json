@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:collect_amaranth",
+  "display": {
+    "icon": {
+      "item": "spectrum:amaranth_bushel"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_amaranth_bushel.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_amaranth_bushel.description"
+    }
+  },
+  "criteria": {
+    "has_amaranth_bushel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:amaranth_bushel" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth" }
+    }
+  }
+}

@@ -13,7 +13,7 @@
     "item": "minecraft:cocoa_beans"
   },
   "ingredient3": {
-    "item": "minecraft:milk_bucket"
+    "tag": "c:milk"
   },
   "result": {
     "item": "spectrum:restoration_tea",

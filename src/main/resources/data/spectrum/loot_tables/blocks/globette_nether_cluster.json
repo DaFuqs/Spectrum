@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_globette_nether",
+          "name": "spectrum:pure_globette_nether",
           "functions": [
             {
               "function": "minecraft:set_count",

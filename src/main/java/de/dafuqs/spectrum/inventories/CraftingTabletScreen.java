@@ -11,10 +11,10 @@ import net.minecraft.util.Identifier;
 
 public class CraftingTabletScreen extends HandledScreen<CraftingTabletScreenHandler> {
 	
-	public static final Identifier BACKGROUND1 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/crafting_tablet1.png");
-	public static final Identifier BACKGROUND2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/crafting_tablet2.png");
-	public static final Identifier BACKGROUND3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/crafting_tablet3.png");
-	public static final Identifier BACKGROUND4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/crafting_tablet4.png");
+	public static final Identifier BACKGROUND1 = SpectrumCommon.locate("textures/gui/container/crafting_tablet1.png");
+	public static final Identifier BACKGROUND2 = SpectrumCommon.locate("textures/gui/container/crafting_tablet2.png");
+	public static final Identifier BACKGROUND3 = SpectrumCommon.locate("textures/gui/container/crafting_tablet3.png");
+	public static final Identifier BACKGROUND4 = SpectrumCommon.locate("textures/gui/container/crafting_tablet4.png");
 	
 	public static Identifier BACKGROUND = BACKGROUND1;
 	

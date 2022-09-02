@@ -10,7 +10,7 @@
   "experience": 2.0,
   "pattern": [
     "FSF",
-    "QBQ",
+    "PBP",
     "FSF"
   ],
   "key": {
@@ -20,8 +20,8 @@
     "F": {
       "item": "minecraft:fermented_spider_eye"
     },
-    "Q": {
-      "item": "spectrum:quitoxic_powder"
+    "P": {
+      "item": "minecraft:prismarine_crystals"
     },
     "B": {
       "item": "minecraft:experience_bottle"

@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 400,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:resonant_lily"
+  },
+  "ingredient2": {
+    "item": "spectrum:blood_orchid_petal"
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal",
+	"count": 8
+  },
+  "result": {
+    "item": "spectrum:blood_orchid"
+  },
+  "required_advancement": "spectrum:progression/unlock_blood_orchid"
+}

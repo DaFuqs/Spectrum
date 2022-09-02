@@ -1,7 +1,7 @@
 {
   "type": "spectrum:pedestal",
   "time": 3600,
-  "tier": "advanced",
+  "tier": "complex",
   "cyan": 0,
   "magenta": 0,
   "yellow": 0,
@@ -31,5 +31,5 @@
     "item": "spectrum:upgrade_yield",
     "count": 1
   },
-  "required_advancement": "spectrum:lategame/collect_paletur"
+  "required_advancement": "spectrum:lategame/collect_paltaeria"
 }

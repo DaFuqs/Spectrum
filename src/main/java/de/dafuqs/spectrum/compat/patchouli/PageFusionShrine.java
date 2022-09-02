@@ -19,7 +19,7 @@ import java.util.List;
 
 public class PageFusionShrine extends PageDoubleRecipeRegistry<FusionShrineRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/fusion_shrine.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/fusion_shrine.png");
 	
 	public PageFusionShrine() {
 		super(SpectrumRecipeTypes.FUSION_SHRINE);

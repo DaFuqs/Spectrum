@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/build_cinderhearth_structure",
   "display": {
     "icon": {
-      "item": "spectrum:native_iron"
+      "item": "minecraft:diamond"
     },
     "hidden": true,
     "title": {

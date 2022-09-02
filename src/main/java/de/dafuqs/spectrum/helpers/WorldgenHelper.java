@@ -16,7 +16,7 @@ import java.util.List;
 public class WorldgenHelper {
 	
 	public static <C extends FeatureConfig, F extends Feature<C>> F registerFeature(String name, F feature) {
-		return Registry.register(Registry.FEATURE, new Identifier(SpectrumCommon.MOD_ID, name), feature);
+		return Registry.register(Registry.FEATURE, SpectrumCommon.locate(name), feature);
 	}
 	
 	public static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> registerConfiguredFeature(Identifier identifier, F feature, FC featureConfig) {

@@ -34,8 +34,8 @@ public class SpectrumRenderLayers {
 	 */
 	public static class DeeperDownPortalRenderLayer extends RenderLayer {
 		
-		public static final Identifier OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/entity/portal/deeper_down_portal_overlay.png");
-		public static final Identifier PORTAL_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/entity/portal/deeper_down_portal.png");
+		public static final Identifier OVERLAY_TEXTURE = SpectrumCommon.locate("textures/entity/portal/deeper_down_portal_overlay.png");
+		public static final Identifier PORTAL_TEXTURE = SpectrumCommon.locate("textures/entity/portal/deeper_down_portal.png");
 		
 		public DeeperDownPortalRenderLayer(String name, VertexFormat vertexFormat, VertexFormat.DrawMode drawMode, int expectedBufferSize, boolean hasCrumbling, boolean translucent, Runnable startAction, Runnable endAction) {
 			super(name, vertexFormat, drawMode, expectedBufferSize, hasCrumbling, translucent, startAction, endAction);

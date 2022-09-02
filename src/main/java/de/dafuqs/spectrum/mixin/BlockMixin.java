@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import de.dafuqs.spectrum.data_loaders.ResonanceDropsDataLoader;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
+import de.dafuqs.spectrum.enchantments.FoundryEnchantment;
 import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
@@ -26,20 +28,21 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Mixin(Block.class)
+// increased priority, cause https://github.com/Luligabi1/Incantationem/blob/b87d864cba60601c78c70c9999b6df37cce9fd03/src/main/java/me/luligabi/incantationem/mixin/BlockMixin.java#L60 would cancel the spectrum$getDroppedStacks call
+// the use of @ModifyReturnValue ensues both end up compatible as soon as both mods use it
+@Mixin(value = Block.class, priority = 999)
 public abstract class BlockMixin {
 	
 	PlayerEntity spectrum$breakingPlayer;
 	
-	@Inject(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"), cancellable = true)
-	private static void spectrum$getDroppedStacks(BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack, CallbackInfoReturnable<List<ItemStack>> cir) {
-		List<ItemStack> droppedStacks = cir.getReturnValue();
+	@ModifyReturnValue(method = "getDroppedStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("RETURN"))
+	private static List<ItemStack> spectrum$getDroppedStacks(List<ItemStack> original, BlockState state, ServerWorld world, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack stack) {
+		List<ItemStack> droppedStacks = original;
 		Map<Enchantment, Integer> enchantmentMap = EnchantmentHelper.get(stack);
 		
 		// Voiding curse: no drops
@@ -56,13 +59,13 @@ public abstract class BlockMixin {
 			// Resonance enchant: grant different drops for some items
 			if(enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
 				for(int i = 0; i < droppedStacks.size(); i++) {
-					droppedStacks.set(i, ResonanceEnchantment.applyResonance(droppedStacks.get(i)));
+					droppedStacks.set(i, ResonanceDropsDataLoader.applyResonance(droppedStacks.get(i)));
 				}
 			}
 			
 			// Foundry enchant: try smelting recipe for each stack
 			if (enchantmentMap.containsKey(SpectrumEnchantments.FOUNDRY) && SpectrumEnchantments.FOUNDRY.canEntityUse(entity)) {
-				droppedStacks = AutoSmeltEnchantment.applyAutoSmelt(world, droppedStacks);
+				droppedStacks = FoundryEnchantment.applyAutoSmelt(world, droppedStacks);
 			}
 			
 			// Inventory Insertion enchant? Add it to players inventory if there is room
@@ -88,12 +91,7 @@ public abstract class BlockMixin {
 			}
 		}
 		
-		cir.setReturnValue(droppedStacks);
-	}
-	
-	@Inject(method = "afterBreak", at = @At("HEAD"))
-	private void spectrum$saveBreakingPlayerReference(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack, CallbackInfo ci) {
-		spectrum$breakingPlayer = player;
+		return droppedStacks;
 	}
 	
 	@ModifyArg(method = "dropExperience", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
@@ -103,6 +101,7 @@ public abstract class BlockMixin {
 	
 	@Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
 	public void spectrum$afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, CallbackInfo callbackInfo) {
+		spectrum$breakingPlayer = player;
 		if (ResonanceEnchantment.checkResonanceForSpawnerMining(world, pos, state, blockEntity, stack) && SpectrumEnchantments.RESONANCE.canEntityUse(player)) {
 			callbackInfo.cancel();
 		}

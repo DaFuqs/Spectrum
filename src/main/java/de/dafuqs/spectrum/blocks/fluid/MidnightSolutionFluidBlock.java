@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.blocks.BlackMateriaBlock;
+import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
-import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
+import de.dafuqs.spectrum.recipe.fluid_converting.MidnightSolutionConvertingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
@@ -15,7 +15,6 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -29,10 +28,12 @@ import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -42,30 +43,25 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
 import java.util.Map;
 
-public class MidnightSolutionFluidBlock extends FluidBlock {
+public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	
 	public static final BlockState SPREAD_BLOCKSTATE = SpectrumBlocks.BLACK_MATERIA.getDefaultState().with(BlackMateriaBlock.AGE, 0);
 	private static final int EXPERIENCE_DISENCHANT_RETURN_DIV = 3;
-	private static AutoCraftingInventory AUTO_INVENTORY;
 	
 	public MidnightSolutionFluidBlock(FlowableFluid fluid, Settings settings) {
 		super(fluid, settings);
 	}
 	
-	public static void spawnItemStackAsEntitySplitViaMaxCount(World world, Vec3d vec3d, ItemStack itemStack, int amount) {
-		while (amount > 0) {
-			int currentAmount = Math.min(amount, itemStack.getMaxCount());
-			
-			ItemStack resultStack = itemStack.copy();
-			resultStack.setCount(currentAmount);
-			ItemEntity itemEntity = new ItemEntity(world, vec3d.x, vec3d.y, vec3d.z, resultStack);
-			world.spawnEntity(itemEntity);
-			
-			amount -= currentAmount;
-		}
+	@Override
+	public DefaultParticleType getSplashParticle() {
+		return SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH;
+	}
+	
+	@Override
+	public Pair<DefaultParticleType, DefaultParticleType> getFishingParticles() {
+		return new Pair<>(SpectrumParticleTypes.GRAY_SPARKLE_RISING, SpectrumParticleTypes.MIDNIGHT_SOLUTION_FISHING);
 	}
 	
 	public static boolean tryConvertNeighbor(@NotNull World world, BlockPos pos, BlockPos fromPos) {
@@ -142,23 +138,15 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 				// do not try to search conversion recipes for items that are recipe outputs already
 				// => better performance
 				if (!MidnightSolutionConvertingRecipe.isExistingOutputItem(itemStack)) {
-					MidnightSolutionConvertingRecipe recipe = getConversionRecipeFor(world, itemStack);
+					MidnightSolutionConvertingRecipe recipe = getConversionRecipeFor(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, world, itemStack);
 					if (recipe != null) {
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-						spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount());
+						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount(), Vec3d.ZERO);
 						itemEntity.discard();
 					}
 				}
 			}
 		}
-	}
-	
-	public MidnightSolutionConvertingRecipe getConversionRecipeFor(@NotNull World world, ItemStack itemStack) {
-		if (AUTO_INVENTORY == null) {
-			AUTO_INVENTORY = new AutoCraftingInventory(1, 1);
-		}
-		AUTO_INVENTORY.setInputInventory(Collections.singletonList(itemStack));
-		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE, AUTO_INVENTORY, world).orElse(null);
 	}
 	
 	@Override

@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 
 public class GraceProvider implements ItemComponentInitializer {
 
-    public static final ComponentKey<CrystalGraceEffectHolder> CRYSTAL_GRACE_EFFECT_HOLDER = ComponentRegistry.getOrCreate(new Identifier(SpectrumCommon.MOD_ID, "crystal_grace_effect_holder"), CrystalGraceEffectHolder.class); // See the "Registering your component" section
+    public static final ComponentKey<CrystalGraceEffectHolder> CRYSTAL_GRACE_EFFECT_HOLDER = ComponentRegistry.getOrCreate(SpectrumCommon.locate("crystal_grace_effect_holder"), CrystalGraceEffectHolder.class); // See the "Registering your component" section
 
     @Override
     public void registerItemComponentFactories(ItemComponentFactoryRegistry registry) {

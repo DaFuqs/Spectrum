@@ -1,46 +1,50 @@
 package de.dafuqs.spectrum.recipe.pedestal;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
+import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
+import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.id.incubus_core.recipe.IngredientStack;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import oshi.util.tuples.Triplet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
+public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	
-	protected final Identifier id;
-	protected final String group;
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
+	
 	protected final int width;
 	protected final int height;
 	
 	protected final PedestalRecipeTier tier;
-	protected final DefaultedList<Ingredient> craftingInputs;
-	protected final HashMap<BuiltinGemstoneColor, Integer> gemstoneDustInputs;
+	protected final DefaultedList<IngredientStack> craftingInputs;
+	protected final HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs;
 	protected final ItemStack output;
 	protected final float experience;
 	protected final int craftingTime;
@@ -52,26 +56,23 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	// - Yield upgrades disabled (item multiplication)
 	protected final boolean noBenefitsFromYieldUpgrades;
 	
-	protected final Identifier requiredAdvancementIdentifier;
-	
-	public PedestalCraftingRecipe(Identifier id, String group, PedestalRecipeTier tier, int width, int height,
-	                              DefaultedList<Ingredient> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemstoneDustInputs, ItemStack output,
-	                              float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier) {
-		this.id = id;
-		this.group = group;
+	public PedestalCraftingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
+	                              PedestalRecipeTier tier, int width, int height, DefaultedList<IngredientStack> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
+	                              float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades) {
+		super(id, group, secret, requiredAdvancementIdentifier);
+		
 		this.tier = tier;
 		this.width = width;
 		this.height = height;
 		this.craftingInputs = craftingInputs;
-		this.gemstoneDustInputs = gemstoneDustInputs;
+		this.gemstonePowderInputs = gemstonePowderInputs;
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
 		this.skipRecipeRemainders = skipRecipeRemainders;
 		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		
-		registerInToastManager(SpectrumRecipeTypes.PEDESTAL, this);
+		registerInToastManager(getType(), this);
 	}
 	
 	/**
@@ -93,11 +94,11 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 			return false;
 		}
 		
-		int topazPowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.CYAN);
-		int amethystPowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.MAGENTA);
-		int citrinePowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.YELLOW);
-		int onyxPowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.BLACK);
-		int moonstonePowderAmount = this.gemstoneDustInputs.get(BuiltinGemstoneColor.WHITE);
+		int topazPowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.CYAN, 0);
+		int amethystPowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.MAGENTA, 0);
+		int citrinePowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.YELLOW, 0);
+		int onyxPowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.BLACK, 0);
+		int moonstonePowderAmount = this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.WHITE, 0);
 		
 		return ((topazPowderAmount == 0 || isStackAtLeast(inv.getStack(9), SpectrumItems.TOPAZ_POWDER, topazPowderAmount))
 				&& (amethystPowderAmount == 0 || isStackAtLeast(inv.getStack(10), SpectrumItems.AMETHYST_POWDER, amethystPowderAmount))
@@ -126,7 +127,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 			for (int j = 0; j < 3; ++j) {
 				int k = i - offsetX;
 				int l = j - offsetY;
-				Ingredient ingredient = Ingredient.EMPTY;
+				IngredientStack ingredient = IngredientStack.EMPTY;
 				if (k >= 0 && l >= 0 && k < this.width && l < this.height) {
 					if (flipped) {
 						ingredient = this.craftingInputs.get(this.width - k - 1 + l * this.width);
@@ -144,26 +145,95 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 		return true;
 	}
 	
-	@Override
-	public boolean equals(Object object) {
-		if (object instanceof PedestalCraftingRecipe) {
-			return ((PedestalCraftingRecipe) object).getId().equals(this.getId());
-		}
-		return false;
-	}
-	
 	private boolean isStackAtLeast(ItemStack sourceItemStack, Item item, int amount) {
 		return sourceItemStack.getItem().equals(item) && sourceItemStack.getCount() >= amount;
 	}
 	
+	@Deprecated
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
+		var defList = DefaultedList.<Ingredient>of();
+		craftingInputs.stream().map(IngredientStack::getIngredient).forEach(defList::add);
+		return defList;
+	}
+	
+	public DefaultedList<IngredientStack> getIngredientStacks() {
 		return craftingInputs;
+	}
+	
+	// Triplet<XOffset, YOffset, Flipped>
+	public Triplet<Integer, Integer, Boolean> getRecipeOrientation(Inventory inv) {
+		for (int i = 0; i <= 3 - this.width; ++i) {
+			for (int j = 0; j <= 3 - this.height; ++j) {
+				if (this.matchesPattern(inv, i, j, true)) {
+					return new Triplet<>(i, j, true);
+				}
+				if (this.matchesPattern(inv, i, j, false)) {
+					return new Triplet<>(i, j, false);
+				}
+			}
+		}
+		return null;
 	}
 	
 	@Override
 	public ItemStack craft(Inventory inv) {
-		return this.output.copy();
+		if (inv instanceof PedestalBlockEntity pedestal) {
+			Triplet<Integer, Integer, Boolean> orientation = getRecipeOrientation(inv);
+			if(orientation == null) {
+				return ItemStack.EMPTY;
+			}
+			
+			for(int x = 0; x < this.width; x++) {
+				for(int y = 0; y < this.height; y++) {
+					int ingredientStackId = orientation.getC() ? ((this.width - 1) - x) + this.width * y : x + this.width * y;
+					int invStackId = (x + orientation.getA()) + 3 * (y + orientation.getB());
+					
+					IngredientStack ingredientStackAtPos = this.craftingInputs.get(ingredientStackId);
+					ItemStack invStack = inv.getStack(invStackId);
+					if(!ingredientStackAtPos.test(invStack)) {
+						SpectrumCommon.logError("Looks like DaFuqs fucked up Spectrums Pedestal recipe matching. Go open up a report with the recipe that was crafted and an image of the pedestals contents, please! :)");
+					}
+					
+					if (!invStack.isEmpty()) {
+						Item recipeReminderItem = this.skipRecipeRemainders() ? null : invStack.getItem().getRecipeRemainder();
+						if (recipeReminderItem == null) {
+							invStack.decrement(ingredientStackAtPos.getCount());
+						} else {
+							if (pedestal.getStack(invStackId).getCount() == ingredientStackAtPos.getCount()) {
+								ItemStack remainderStack = recipeReminderItem.getDefaultStack();
+								remainderStack.setCount(ingredientStackAtPos.getCount());
+								pedestal.setStack(invStackId, remainderStack);
+							} else {
+								pedestal.getStack(invStackId).decrement(ingredientStackAtPos.getCount());
+								
+								ItemStack remainderStack = recipeReminderItem.getDefaultStack();
+								ItemEntity itemEntity = new ItemEntity(pedestal.getWorld(), pedestal.getPos().getX() + 0.5, pedestal.getPos().getY() + 1, pedestal.getPos().getZ() + 0.5, remainderStack);
+								itemEntity.addVelocity(0, 0.05, 0);
+								pedestal.getWorld().spawnEntity(itemEntity);
+							}
+						}
+					}
+					
+				}
+			}
+			
+			// -X for all the pigment inputs
+			for (BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
+				double efficiencyModifier = pedestal.getUpgradeValue(Upgradeable.UpgradeType.EFFICIENCY);
+				int gemstonePowderAmount = this.getGemstonePowderAmount(gemstoneColor);
+				int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, pedestal.getWorld().random);
+				pedestal.getStack(PedestalBlockEntity.getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmountAfterMod);
+			}
+			
+			ItemStack recipeOutput = this.output.copy();
+			PlayerEntity player = pedestal.getOwnerIfOnline();
+			if (player != null) {
+				recipeOutput.onCraft(pedestal.getWorld(), player, recipeOutput.getCount());
+			}
+			return recipeOutput;
+		}
+		return ItemStack.EMPTY;
 	}
 	
 	public PedestalRecipeTier getTier() {
@@ -186,16 +256,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
-	@Override
-	public Identifier getId() {
-		return this.id;
-	}
-	
-	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.PEDESTAL_RECIPE_SERIALIZER;
 	}
@@ -206,7 +266,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	public int getGemstonePowderAmount(GemstoneColor gemstoneColor) {
-		return gemstoneDustInputs.getOrDefault(gemstoneColor, 0);
+		return gemstonePowderInputs.getOrDefault(gemstoneColor, 0);
 	}
 	
 	public int getCraftingTime() {
@@ -218,7 +278,7 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	public HashMap<BuiltinGemstoneColor, Integer> getGemstonePowderInputs() {
-		return this.gemstoneDustInputs;
+		return this.gemstonePowderInputs;
 	}
 	
 	public int getWidth() {
@@ -238,19 +298,19 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	public SoundEvent getSoundEvent(Random random) {
 		List<SoundEvent> choices = new ArrayList<>();
 		
-		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.MAGENTA); i++) {
+		for (int i = 0; i < this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.MAGENTA, 0); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_AMETHYST);
 		}
-		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.YELLOW); i++) {
+		for (int i = 0; i < this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.YELLOW, 0); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_CITRINE);
 		}
-		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.CYAN); i++) {
+		for (int i = 0; i < this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.CYAN, 0); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_TOPAZ);
 		}
-		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.BLACK); i++) {
+		for (int i = 0; i < this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.BLACK, 0); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_ONYX);
 		}
-		for (int i = 0; i < this.gemstoneDustInputs.get(BuiltinGemstoneColor.WHITE); i++) {
+		for (int i = 0; i < this.gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.WHITE, 0); i++) {
 			choices.add(SpectrumSoundEvents.PEDESTAL_CRAFTING_FINISHED_MOONSTONE);
 		}
 		
@@ -272,22 +332,18 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return UNLOCK_IDENTIFIER;
+	}
+	
+	@Override
 	public boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return PedestalRecipeTier.hasUnlockedRequiredTier(playerEntity, this.tier) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
 	}
 	
-	/**
-	 * The advancement the player has to have to let the recipe be craftable in the pedestal
-	 *
-	 * @return The advancement identifier.
-	 */
-	public Identifier getRequiredAdvancementIdentifier() {
-		return requiredAdvancementIdentifier;
-	}
-	
 	@Override
-	public String getGroup() {
-		return this.group;
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.PEDESTAL_RECIPE_ID;
 	}
 	
 	public boolean areYieldUpgradesDisabled() {
@@ -296,16 +352,6 @@ public class PedestalCraftingRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	public boolean skipRecipeRemainders() {
 		return this.skipRecipeRemainders;
-	}
-	
-	@Override
-	public Text getSingleUnlockToastString() {
-		return Text.translatable("spectrum.toast.pedestal_recipe_unlocked.title");
-	}
-	
-	@Override
-	public Text getMultipleUnlockToastString() {
-		return Text.translatable("spectrum.toast.pedestal_recipes_unlocked.title");
 	}
 	
 }

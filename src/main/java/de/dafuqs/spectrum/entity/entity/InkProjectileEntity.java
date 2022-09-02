@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.helpers.BlockVariantHelper;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
@@ -28,7 +28,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.hit.BlockHitResult;
@@ -218,7 +217,11 @@ public class InkProjectileEntity extends ProjectileEntity {
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		super.onEntityHit(entityHitResult);
+		
 		Entity entity = entityHitResult.getEntity();
+		
+		ColorHelper.tryColorEntity(null, entity, getDyeColor());
+		
 		float velocity = (float)this.getVelocity().length();
 		int damage = MathHelper.ceil(MathHelper.clamp((double)velocity * DAMAGE_PER_POTENCY * SPELL_POTENCY, 0.0D, 2.147483647E9D));
 		
@@ -289,7 +292,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 				}
 			}
 			
-			damageAndKnockbackEntities(this.getOwner());
+			affectEntitiesInRange(this.getOwner());
 			
 			// TODO: uncomment this when all 16 ink effects are finished
 			// InkSpellEffect.trigger(InkColor.of(dyeColor), this.world, blockHitResult.getPos(), SPELL_POTENCY);
@@ -321,7 +324,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 				entity.addVelocity(vec3d.x, 0.1D, vec3d.z);
 			}
 			
-			damageAndKnockbackEntities(this.getOwner());
+			affectEntitiesInRange(this.getOwner());
 			
 			/*Iterator var3 = this.potion.getEffects().iterator();
 			
@@ -344,7 +347,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 		this.discard();
 	}
 	
-	public void damageAndKnockbackEntities(Entity attacker) {
+	public void affectEntitiesInRange(Entity attacker) {
 		this.world.emitGameEvent(this, GameEvent.PROJECTILE_LAND, new BlockPos(this.getPos().x, this.getPos().y, this.getPos().z));
 		
 		double posX = this.getPos().x;
@@ -362,6 +365,8 @@ public class InkProjectileEntity extends ProjectileEntity {
 		Vec3d vec3d = new Vec3d(posX, posY, posZ);
 		
 		for (Entity entity : list) {
+			ColorHelper.tryColorEntity(null, entity, getDyeColor());
+			
 			if (!entity.isImmuneToExplosion()) {
 				double w = Math.sqrt(entity.squaredDistanceTo(vec3d)) / (double) q;
 				if (w <= 1.0D) {

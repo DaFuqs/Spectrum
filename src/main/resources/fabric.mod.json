@@ -32,7 +32,9 @@
       "de.dafuqs.spectrum.compat.REI.REIClientIntegration"
     ],
     "cardinal-components": [
-      "de.dafuqs.spectrum.azure_dike.AzureDikeProvider"
+      "de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider",
+      "de.dafuqs.spectrum.cca.HardcoreDeathComponent",
+      "de.dafuqs.spectrum.cca.LastKillComponent"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
@@ -42,7 +44,8 @@
   "custom": {
     "cardinal-components": [
       "spectrum:azure_dike",
-      "spectrum:crystal_grace_effect_holder"
+      "spectrum:hardcore_deaths",
+      "spectrum:last_kill"
     ]
   },
   "depends": {
@@ -51,6 +54,7 @@
     "minecraft": ">=1.19.2",
     "java": ">=17",
     "revelationary": "*",
+    "arrowhead": "*",
     "cloth-config": "*",
     "patchouli": "*",
     "owo": "*",
@@ -61,7 +65,7 @@
     "chalk-colorful-addon": "*",
     "colored_lights": "*",
     "paginatedadvancements": "*",
-    "the_aether": "*",
+    "paradise_lost": "*",
     "limlib": "*",
     "ants": "*",
     "bettercombat": "*",

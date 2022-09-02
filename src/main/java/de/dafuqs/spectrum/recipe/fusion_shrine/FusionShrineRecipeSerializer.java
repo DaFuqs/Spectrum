@@ -3,14 +3,14 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
+import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
+import net.id.incubus_core.json.RecipeParser;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShrineRecipe> {
+public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<FusionShrineRecipe> {
 	
 	public final FusionShrineRecipeSerializer.RecipeFactory<FusionShrineRecipe> recipeFactory;
 	
@@ -28,12 +28,19 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 		this.recipeFactory = recipeFactory;
 	}
 	
+	public interface RecipeFactory<FusionShrineRecipe> {
+		FusionShrineRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades,
+		                          List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);
+	}
+	
 	@Override
 	public FusionShrineRecipe read(Identifier identifier, JsonObject jsonObject) {
-		String group = JsonHelper.getString(jsonObject, "group", "");
+		String group = readGroup(jsonObject);
+		boolean secret = readSecret(jsonObject);
+		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
 		
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
-		List<IngredientStack> craftingInputs = RecipeUtils.ingredientStacksFromJson(ingredientArray, ingredientArray.size());
+		List<IngredientStack> craftingInputs = RecipeParser.ingredientStacksFromJson(ingredientArray, ingredientArray.size());
 		
 		Fluid fluid = Fluids.EMPTY;
 		if (JsonHelper.hasString(jsonObject, "fluid")) {
@@ -56,14 +63,6 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 		boolean noBenefitsFromYieldUpgrades = false;
 		if (JsonHelper.hasPrimitive(jsonObject, "disable_yield_upgrades")) {
 			noBenefitsFromYieldUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
-		}
-		
-		Identifier requiredAdvancementIdentifier;
-		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
-			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
-		} else {
-			// No unlock advancement set. Will be set to the unlock advancement of the block itself
-			requiredAdvancementIdentifier = FusionShrineBlock.UNLOCK_IDENTIFIER;
 		}
 		
 		List<FusionShrineRecipeWorldCondition> worldConditions = new ArrayList<>();
@@ -102,41 +101,42 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 			description = null;
 		}
 		
-		return this.recipeFactory.create(identifier, group, craftingInputs, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, craftingInputs, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 	
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, FusionShrineRecipe fusionShrineRecipe) {
-		packetByteBuf.writeString(fusionShrineRecipe.group);
+	public void write(PacketByteBuf packetByteBuf, FusionShrineRecipe recipe) {
+		packetByteBuf.writeString(recipe.group);
+		packetByteBuf.writeBoolean(recipe.secret);
+		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
-		packetByteBuf.writeShort(fusionShrineRecipe.craftingInputs.size());
-		for (IngredientStack ingredientStack : fusionShrineRecipe.craftingInputs) {
+		packetByteBuf.writeShort(recipe.craftingInputs.size());
+		for (IngredientStack ingredientStack : recipe.craftingInputs) {
 			ingredientStack.write(packetByteBuf);
 		}
 		
-		packetByteBuf.writeIdentifier(Registry.FLUID.getId(fusionShrineRecipe.fluidInput));
-		packetByteBuf.writeItemStack(fusionShrineRecipe.output);
-		packetByteBuf.writeFloat(fusionShrineRecipe.experience);
-		packetByteBuf.writeInt(fusionShrineRecipe.craftingTime);
-		packetByteBuf.writeBoolean(fusionShrineRecipe.noBenefitsFromYieldUpgrades);
-		packetByteBuf.writeIdentifier(fusionShrineRecipe.requiredAdvancementIdentifier);
+		packetByteBuf.writeIdentifier(Registry.FLUID.getId(recipe.fluidInput));
+		packetByteBuf.writeItemStack(recipe.output);
+		packetByteBuf.writeFloat(recipe.experience);
+		packetByteBuf.writeInt(recipe.craftingTime);
+		packetByteBuf.writeBoolean(recipe.noBenefitsFromYieldUpgrades);
 		
-		packetByteBuf.writeShort(fusionShrineRecipe.worldConditions.size());
-		for (FusionShrineRecipeWorldCondition worldCondition : fusionShrineRecipe.worldConditions) {
+		packetByteBuf.writeShort(recipe.worldConditions.size());
+		for (FusionShrineRecipeWorldCondition worldCondition : recipe.worldConditions) {
 			packetByteBuf.writeInt(worldCondition.ordinal());
 		}
 		
-		packetByteBuf.writeInt(fusionShrineRecipe.startWorldEffect.ordinal());
-		packetByteBuf.writeInt(fusionShrineRecipe.duringWorldEffects.size());
-		for (FusionShrineRecipeWorldEffect effect : fusionShrineRecipe.duringWorldEffects) {
+		packetByteBuf.writeInt(recipe.startWorldEffect.ordinal());
+		packetByteBuf.writeInt(recipe.duringWorldEffects.size());
+		for (FusionShrineRecipeWorldEffect effect : recipe.duringWorldEffects) {
 			packetByteBuf.writeInt(effect.ordinal());
 		}
-		packetByteBuf.writeInt(fusionShrineRecipe.finishWorldEffect.ordinal());
-		if (fusionShrineRecipe.getDescription().isEmpty()) {
+		packetByteBuf.writeInt(recipe.finishWorldEffect.ordinal());
+		if (recipe.getDescription().isEmpty()) {
 			packetByteBuf.writeText(Text.literal(""));
 		} else {
-			packetByteBuf.writeText(fusionShrineRecipe.getDescription().get());
+			packetByteBuf.writeText(recipe.getDescription().get());
 		}
 	}
 	
@@ -144,6 +144,9 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 	@Override
 	public FusionShrineRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
+		boolean secret = packetByteBuf.readBoolean();
+		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
+		
 		short craftingInputCount = packetByteBuf.readShort();
 		List<IngredientStack> ingredients = IngredientStack.decodeByteBuf(packetByteBuf, craftingInputCount);
 		
@@ -152,7 +155,6 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 		float experience = packetByteBuf.readFloat();
 		int craftingTime = packetByteBuf.readInt();
 		boolean noBenefitsFromYieldUpgrades = packetByteBuf.readBoolean();
-		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
 		
 		short worldConditionCount = packetByteBuf.readShort();
 		List<FusionShrineRecipeWorldCondition> worldConditions = new ArrayList<>();
@@ -170,12 +172,7 @@ public class FusionShrineRecipeSerializer implements RecipeSerializer<FusionShri
 		
 		Text description = packetByteBuf.readText();
 		
-		return this.recipeFactory.create(identifier, group, ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, requiredAdvancementIdentifier, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
-	}
-	
-	public interface RecipeFactory<FusionShrineRecipe> {
-		FusionShrineRecipe create(Identifier id, String group, List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier,
-		                          List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 	
 }

@@ -10,7 +10,6 @@ import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -24,7 +23,7 @@ public class PigmentItem extends CloakedItem implements LoomPatternProvider {
 	protected final DyeColor color;
 	
 	public PigmentItem(Settings settings, DyeColor color) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "craft_colored_sapling"), DyeItem.byColor(color));
+		super(settings, SpectrumCommon.locate("craft_colored_sapling"), DyeItem.byColor(color));
 		this.color = color;
 		PIGMENTS.put(color, this);
 	}

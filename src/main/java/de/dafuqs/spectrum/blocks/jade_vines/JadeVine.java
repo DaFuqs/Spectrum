@@ -24,8 +24,8 @@ public interface JadeVine {
 	VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	VoxelShape TIP_SHAPE = Block.createCuboidShape(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	
-	Identifier PETAL_HARVESTING_LOOT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "dynamic/jade_vine_petal_harvesting");
-	Identifier NECTAR_HARVESTING_LOOT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "dynamic/jade_vine_nectar_harvesting");
+	Identifier PETAL_HARVESTING_LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/jade_vine_petal_harvesting");
+	Identifier NECTAR_HARVESTING_LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/jade_vine_nectar_harvesting");
 	
 	static void spawnBloomParticlesClient(World world, BlockPos blockPos) {
 		spawnParticlesClient(world, blockPos, SpectrumParticleTypes.JADE_VINES_BLOOM);
@@ -58,7 +58,7 @@ public interface JadeVine {
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, Vec3d.ofCenter(blockPos), SpectrumParticleTypes.JADE_VINES, amount, new Vec3d(0.6, 0.6, 0.6), new Vec3d(0.12, 0.12, 0.12));
 	}
 	
-	static boolean doesDie(@NotNull World world, @NotNull BlockPos blockPos) {
+	static boolean isExposedToSunlight(@NotNull World world, @NotNull BlockPos blockPos) {
 		return world.getLightLevel(LightType.SKY, blockPos) > 8 && TimeHelper.isBrightSunlight(world);
 	}
 	

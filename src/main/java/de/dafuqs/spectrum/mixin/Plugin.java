@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -12,6 +13,7 @@ public final class Plugin implements IMixinConfigPlugin {
 	
 	@Override
 	public void onLoad(String mixinPackage) {
+		MixinExtrasBootstrap.init();
 	}
 	
 	@Override
@@ -21,9 +23,8 @@ public final class Plugin implements IMixinConfigPlugin {
 	
 	@Override
 	public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-		if (mixinClassName.equals("de.dafuqs.spectrum.mixin.client.enchantment_descriptions.DescriptionManagerMixin")) {
-			return false;
-			//return FabricLoader.getInstance().isModLoaded("enchdesc");
+		if (mixinClassName.equals("de.dafuqs.spectrum.mixin.ColoredLeavesBlockMixin")) {
+			return FabricLoader.getInstance().isModLoaded("botania");
 		} else if (mixinClassName.equals("de.dafuqs.spectrum.mixin.client.ClientWorldReverbMixin")) {
 			return FabricLoader.getInstance().isModLoaded("limlib");
 		} else {

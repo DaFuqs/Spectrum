@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:incandescent_amalgam"
+    },
+    "title": {
+      "translate": "advancements.spectrum.survive_drinking_incandescent_amalgam.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.survive_drinking_incandescent_amalgam.description"
+    }
+  },
+  "parent": "spectrum:tap_pure_alcohol",
+  "criteria": {
+    "survived_drinking_incandescent_amalgam": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:tap_pure_alcohol" }
+    }
+  }
+}

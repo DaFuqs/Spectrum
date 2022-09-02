@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_purple_pigment": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_purple_pigment" }
+    },
+    "collected_phantom_membrane": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_phantom_membrane" }
+    }
+  }
+}

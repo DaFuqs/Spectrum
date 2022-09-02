@@ -1,20 +1,17 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
+import net.id.incubus_core.recipe.matchbook.Matchbook;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -22,27 +19,15 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.List;
 import java.util.Map;
 
-public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
+public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_spawner_manipulation");
-	public final Identifier identifier;
-	
-	public SpawnerChangeRecipe(Identifier identifier) {
-		super();
-		this.identifier = identifier;
-		registerInToastManager(SpectrumRecipeTypes.SPIRIT_INSTILLING, this);
-	}
-	
-	@Override
-	public ItemStack getOutput() {
-		return SpectrumItems.SPAWNER.getDefaultStack();
+	public SpawnerChangeRecipe(Identifier identifier, IngredientStack ingredient) {
+		super(identifier, "spawner_manipulation", false, SpectrumCommon.locate("milestones/unlock_spawner_manipulation"), IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SPAWNERS)), ingredient, IngredientStack.of(Ingredient.ofItems(SpectrumItems.VEGETAL), Matchbook.empty(), null, 4), SpectrumItems.SPAWNER.getDefaultStack(), 0, 200, true);
 	}
 	
 	@Override
@@ -56,8 +41,8 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 				World world = spiritInstillerBlockEntity.getWorld();
 				BlockPos pos = spiritInstillerBlockEntity.getPos();
 				
-				ItemStack firstBowlStack = leftBowl.getInventory().getStack(0);
-				ItemStack secondBowlStack = rightBowl.getInventory().getStack(0);
+				ItemStack firstBowlStack = leftBowl.getStack(0);
+				ItemStack secondBowlStack = rightBowl.getStack(0);
 				
 				NbtCompound spawnerNbt = spiritInstillerBlockEntity.getStack(0).getOrCreateNbt();
 				NbtCompound blockEntityTag;
@@ -88,60 +73,12 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 					}
 					
 					// Run Advancement trigger
-					ISpiritInstillerRecipe.grantPlayerSpiritInstillingAdvancementCriterion(spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
+					grantPlayerSpiritInstillingAdvancementCriterion(spiritInstillerBlockEntity.getOwnerUUID(), resultStack, awardedExperience);
 				}
 			}
 		}
 		
 		return resultStack;
-	}
-	
-	@Override
-	public Identifier getId() {
-		return this.identifier;
-	}
-	
-	@Override
-	public List<IngredientStack> getIngredientStacks() { // 0: instiller stack; 1-2: item bowl stacks
-		DefaultedList<IngredientStack> defaultedList = DefaultedList.of();
-		defaultedList.add(IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SPAWNERS)));
-		defaultedList.add(getIngredientStack());
-		defaultedList.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.VEGETAL), 4));
-		return defaultedList;
-	}
-	
-	@Override
-	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
-		for (IngredientStack ingredientStack : getIngredientStacks()) {
-			defaultedList.add(ingredientStack.getIngredient());
-		}
-		return defaultedList;
-	}
-	
-	@Override
-	public float getExperience() {
-		return 0;
-	}
-	
-	@Override
-	public int getCraftingTime() {
-		return 200;
-	}
-	
-	@Override
-	public Identifier getRequiredAdvancementIdentifier() {
-		return UNLOCK_IDENTIFIER;
-	}
-	
-	@Override
-	public boolean areYieldAndEfficiencyUpgradesDisabled() {
-		return true;
-	}
-	
-	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, SpiritInstillerRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_IDENTIFIER);
 	}
 	
 	@Override
@@ -154,16 +91,9 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 	}
 	
 	// Overwrite these
-	
-	public abstract IngredientStack getIngredientStack();
-	
+	@Override public abstract RecipeSerializer<?> getSerializer();
 	public abstract boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack);
-	
 	public abstract NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack secondBowlStack, ItemStack centerStack);
-	
-	@Override
-	public abstract RecipeSerializer<?> getSerializer();
-	
 	public abstract Text getOutputLoreText();
 	
 }

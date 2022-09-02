@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:cocoa_beans",
+      "count": 4
+    },
+    {
+      "tag": "c:milk",
+      "count": 1
+    },
+    {
+      "item": "minecraft:sweet_berries",
+      "count": 2
+    }
+  ],
+  "min_fermentation_time_hours": 4,
+  "result": {
+    "item": "spectrum:fresh_chocolate",
+    "count": 8
+  }
+}

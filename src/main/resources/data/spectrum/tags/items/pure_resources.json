@@ -1,0 +1,23 @@
+{
+  "values": [
+    "spectrum:pure_coal",
+    "spectrum:pure_iron",
+    "spectrum:pure_gold",
+    "spectrum:pure_diamond",
+    "spectrum:pure_emerald",
+    "spectrum:pure_redstone",
+    "spectrum:pure_lapis",
+    "spectrum:pure_copper",
+    "spectrum:pure_quartz",
+    "spectrum:pure_netherite",
+    "spectrum:pure_glowstone",
+    "spectrum:pure_prismarine",
+
+    "spectrum:pure_certus_quartz",
+    "spectrum:pure_fluix",
+
+    "spectrum:pure_globette",
+    "spectrum:pure_globette_nether",
+    "spectrum:pure_globette_end"
+  ]
+}

@@ -26,14 +26,14 @@ public interface InkPowered {
 	/**
 	 * The advancement the player needs to have in order to use ink powered tools
 	 */
-	Identifier REQUIRED_ADVANCEMENT = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_ink_use");
+	Identifier REQUIRED_ADVANCEMENT = SpectrumCommon.locate("milestones/unlock_ink_use");
 	
 	@Environment(EnvType.CLIENT)
 	static boolean canUseClient() {
-		return canUseClient(MinecraftClient.getInstance().player);
+		return canUse(MinecraftClient.getInstance().player);
 	}
 	
-	static boolean canUseClient(PlayerEntity playerEntity) {
+	static boolean canUse(PlayerEntity playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, InkPowered.REQUIRED_ADVANCEMENT);
 	}
 	
@@ -47,6 +47,7 @@ public interface InkPowered {
 	 * The colors that the object requires for working.
 	 * These are added as the player facing tooltip
 	 **/
+	@Environment(EnvType.CLIENT)
 	default void addInkPoweredTooltip(List<Text> tooltip) {
 		if(canUseClient()) {
             if (getUsedColors().size() > 1) {
@@ -121,7 +122,7 @@ public interface InkPowered {
 		if(player.isCreative()) {
 			return true;
 		}
-		if(!canUseClient(player)) {
+		if(!canUse(player)) {
 			return false;
 		}
 		
@@ -160,7 +161,7 @@ public interface InkPowered {
 		if(player.isCreative()) {
 			return Long.MAX_VALUE;
 		}
-		if(!canUseClient(player)) {
+		if(!canUse(player)) {
 			return 0;
 		}
 		
@@ -187,7 +188,7 @@ public interface InkPowered {
 	}
 	
 	static boolean hasAvailableInk(PlayerEntity player, InkColor color, long amount) {
-		if(!canUseClient(player)) {
+		if(!canUse(player)) {
 			return false;
 		}
 		

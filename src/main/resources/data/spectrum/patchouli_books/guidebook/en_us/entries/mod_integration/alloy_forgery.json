@@ -19,8 +19,8 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:paltaeria_ore",
-      "advancement": "spectrum:lategame/collect_paletur",
-      "text": "...same is true for $(l:resources/paletur)Paltaeria$(/l), of course."
+      "advancement": "spectrum:lategame/collect_paltaeria",
+      "text": "...same is true for $(l:resources/paltaeria)Paltaeria$(/l), of course."
     }
   ]
 }

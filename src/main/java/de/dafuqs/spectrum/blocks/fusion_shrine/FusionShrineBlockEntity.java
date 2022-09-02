@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
+import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
+import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
@@ -14,25 +15,15 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeInputProvider;
-import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -52,10 +43,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputProvider, PlayerOwned, Upgradeable {
+public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, Upgradeable {
 	
-	protected int INVENTORY_SIZE = 7;
-	protected SimpleInventory inventory;
+	protected static final int INVENTORY_SIZE = 7;
+	
 	protected @NotNull Fluid storedFluid;
 	private UUID ownerUUID;
 	private Map<Upgradeable.UpgradeType, Float> upgrades;
@@ -66,16 +57,14 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	private boolean inventoryChanged = true;
 	
 	public FusionShrineBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.FUSION_SHRINE, pos, state);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		super(SpectrumBlockEntities.FUSION_SHRINE, pos, state, INVENTORY_SIZE);
 		this.storedFluid = Fluids.EMPTY;
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, FusionShrineBlockEntity fusionShrineBlockEntity) {
-		Inventory inventory = fusionShrineBlockEntity.getInventory();
-		if (!inventory.isEmpty()) {
-			int randomSlot = world.getRandom().nextInt(inventory.size());
-			ItemStack randomStack = inventory.getStack(randomSlot);
+		if (!fusionShrineBlockEntity.isEmpty()) {
+			int randomSlot = world.getRandom().nextInt(fusionShrineBlockEntity.size());
+			ItemStack randomStack = fusionShrineBlockEntity.getStack(randomSlot);
 			if (!randomStack.isEmpty()) {
 				Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(randomStack.getItem());
 				if (optionalItemColor.isPresent()) {
@@ -123,7 +112,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 					fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(fusionShrineBlockEntity.currentRecipe.getCraftingTime() / fusionShrineBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
 				}
 				
-				fusionShrineBlockEntity.updateInClientWorld();
+				fusionShrineBlockEntity.updateInClientWorld(world, blockPos);
 			}
 			
 			fusionShrineBlockEntity.inventoryChanged = false;
@@ -175,12 +164,11 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	@Nullable
 	private static FusionShrineRecipe calculateRecipe(@NotNull World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
 		if (fusionShrineBlockEntity.currentRecipe != null) {
-			if (fusionShrineBlockEntity.currentRecipe.matches(fusionShrineBlockEntity.inventory, world)) {
+			if (fusionShrineBlockEntity.currentRecipe.matches(fusionShrineBlockEntity, world)) {
 				return fusionShrineBlockEntity.currentRecipe;
 			}
 		}
-		
-		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FUSION_SHRINE, fusionShrineBlockEntity.inventory, world).orElse(null);
+		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.FUSION_SHRINE, fusionShrineBlockEntity, world).orElse(null);
 	}
 	
 	// calculate the max amount of items that will be crafted
@@ -189,62 +177,15 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	// at once, since we can not rely on positions in a grid like vanilla does
 	// in its crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
-		if (!recipe.getOutput().isEmpty()) {
-			int maxAmount = recipe.getOutput().getMaxCount();
-			for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
-				for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-					if (ingredientStack.test(currentStack)) {
-						int ingredientStackAmount = ingredientStack.getCount();
-						maxAmount = Math.min(maxAmount, currentStack.getCount() / ingredientStackAmount);
-						break;
-					}
-				}
-			}
-			
-			double efficiencyModifier = fusionShrineBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
-			if (maxAmount > 0) {
-				for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
-					for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
-						ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-						if (ingredientStack.test(currentStack)) {
-							int reducedAmount = maxAmount * ingredientStack.getCount();
-							int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
-							if (currentStack.getCount() - reducedAmountAfterMod < 1) {
-								fusionShrineBlockEntity.inventory.setStack(i, ItemStack.EMPTY);
-							} else {
-								currentStack.decrement(reducedAmountAfterMod);
-							}
-							break;
-						}
-					}
-				}
-				
-				fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
-				spawnCraftingResultAndXP(world, fusionShrineBlockEntity, recipe, maxAmount); // spawn results
-				scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
-				
-				SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
-				fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
-			}
-		} else {
-			for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
-				double efficiencyModifier = fusionShrineBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
-				
-				for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-					if (ingredientStack.test(currentStack)) {
-						int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
-						currentStack.decrement(reducedAmountAfterMod);
-						break;
-					}
-				}
-			}
-			
-			fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
-			scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
-			fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
-		}
+		recipe.craft(world, fusionShrineBlockEntity);
+		scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
+		
+		SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
+		fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
+	}
+	
+	public Map<UpgradeType, Float> getUpgrades() {
+		return this.upgrades;
 	}
 	
 	public static void spawnCraftingResultAndXP(World world, FusionShrineBlockEntity blockEntity, FusionShrineRecipe recipe, int amount) {
@@ -252,17 +193,12 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		double yieldModifier = recipe.areYieldUpgradesDisabled() ? 1.0 : blockEntity.upgrades.get(UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
 		
-		EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos.up(2), recipe.getOutput(), resultAmountAfterMod);
+		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos.up(2), recipe.getOutput(), resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
 		
 		int spawnedXPAmount = 0;
 		if (recipe.getExperience() > 0) {
-			double experienceModifier = blockEntity.upgrades.get(UpgradeType.EXPERIENCE);
-			float recipeExperienceBeforeMod = recipe.getExperience() * amount;
-			spawnedXPAmount = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
-			if (spawnedXPAmount > 0) {
-				ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, spawnedXPAmount);
-				world.spawnEntity(experienceOrbEntity);
-			}
+			spawnedXPAmount = Support.getIntFromDecimalWithChance(recipe.getExperience() * amount * blockEntity.upgrades.get(UpgradeType.EXPERIENCE), world.random);
+			MultiblockCrafter.spawnExperience(world, blockEntity.pos, spawnedXPAmount);
 		}
 		
 		//only triggered on server side. Therefore, has to be sent to client via S2C packet
@@ -270,15 +206,13 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	}
 	
 	public static void scatterContents(World world, BlockPos pos, FusionShrineBlockEntity blockEntity) {
-		ItemScatterer.spawn(world, pos, blockEntity.inventory);
+		ItemScatterer.spawn(world, pos, blockEntity.getItems());
 		world.updateComparators(pos, world.getBlockState(pos).getBlock());
 	}
 	
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
 		this.storedFluid = Registry.FLUID.get(Identifier.tryParse(nbt.getString("fluid")));
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
@@ -307,7 +241,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		nbt.put("inventory", this.inventory.toNbtList());
 		nbt.putString("fluid", Registry.FLUID.getId(this.storedFluid).toString());
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
@@ -320,12 +253,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
-	}
-	
-	@Nullable
-	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
 	}
 	
 	public void playSound(SoundEvent soundEvent, float volume) {
@@ -347,8 +274,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	public void setFluid(@NotNull Fluid fluid) {
 		this.storedFluid = fluid;
 		setLightForFluid(world, pos, fluid);
-		this.markDirty();
-		updateInClientWorld();
+		inventoryChanged();
 	}
 	
 	public void setLightForFluid(World world, BlockPos blockPos, Fluid fluid) {
@@ -356,23 +282,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 			int light = SpectrumCommon.fluidLuminance.get(fluid);
 			world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, light), 3);
 		}
-	}
-	
-	// Called when the chunk is first loaded to initialize this be
-	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = new NbtCompound();
-		this.writeNbt(nbtCompound);
-		return nbtCompound;
-	}
-	
-	public Inventory getInventory() {
-		return this.inventory;
-	}
-	
-	// RECIPE INPUT PROVIDER
-	@Override
-	public void provideRecipeInputs(RecipeMatcher finder) {
-	
 	}
 	
 	// PLAYER OWNED
@@ -388,11 +297,6 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		this.ownerUUID = playerEntity.getUuid();
 	}
 	
-	// update block entity on client side
-	public void updateInClientWorld() {
-		((ServerWorld) world).getChunkManager().markForUpdate(pos);
-	}
-	
 	// UPGRADEABLE
 	public void resetUpgrades() {
 		this.upgrades = null;
@@ -404,14 +308,15 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		this.markDirty();
 	}
 	
+	@Override
+	public float getUpgradeValue(UpgradeType upgradeType) {
+		return this.upgrades.get(upgradeType);
+	}
+	
 	public void inventoryChanged() {
-		this.markDirty();
-		this.inventory.markDirty();
+		super.inventoryChanged();
 		this.inventoryChanged = true;
 		this.craftingTime = 0;
-		if (!world.isClient) {
-			updateInClientWorld();
-		}
 	}
 	
 }

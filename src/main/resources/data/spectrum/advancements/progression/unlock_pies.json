@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_pigment.": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
+    },
+    "collected_amaranth_bushel": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth_bushel" }
+    }
+  }
+}

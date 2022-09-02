@@ -1,0 +1,20 @@
+{
+  "fluid": {
+    "tag": "spectrum:mud"
+  },
+  "chance": 0.05,
+  "entities": [
+    {
+      "id": "minecraft:tadpole",
+      "weight": 20
+    },
+    {
+      "id": "minecraft:frog",
+      "weight": 5
+    },
+    {
+      "id": "minecraft:drowned",
+      "weight": 1
+    }
+  ]
+}

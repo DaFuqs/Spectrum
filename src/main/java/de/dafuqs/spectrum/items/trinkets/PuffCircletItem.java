@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,7 +15,7 @@ public class PuffCircletItem extends AzureDikeTrinketItem {
 	public static final float FALL_DAMAGE_NEGATING_COST = 2;
 	
 	public PuffCircletItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ashen_circlet"));
+		super(settings, SpectrumCommon.locate("progression/unlock_ashen_circlet"));
 	}
 	
 	@Override

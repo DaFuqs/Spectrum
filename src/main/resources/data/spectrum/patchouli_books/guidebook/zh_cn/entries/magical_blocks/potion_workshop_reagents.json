@@ -83,7 +83,7 @@
 		},
 		{
 			"item":"spectrum:paltaeria_fragments",
-			"advancement":"spectrum:lategame/collect_paletur",
+			"advancement":"spectrum:lategame/collect_paltaeria",
 			"text":"添加随机的积极效果",
 			"type":"patchouli:spotlight",
 			"title":"调色板"

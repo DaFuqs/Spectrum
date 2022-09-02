@@ -45,7 +45,7 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Levitation",
-      "advancement": "spectrum:lategame/collect_paletur",
+      "advancement": "spectrum:lategame/collect_paltaeria",
       "recipe": "spectrum:potion_workshop_brewing/levitation",
       "text": ""
     },

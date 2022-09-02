@@ -6,10 +6,10 @@ import de.dafuqs.spectrum.enums.GemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import org.jetbrains.annotations.Contract;
@@ -19,10 +19,10 @@ import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraftingRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE1 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/pedestal_crafting1.png");
-	private static final Identifier BACKGROUND_TEXTURE2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/pedestal_crafting2.png");
-	private static final Identifier BACKGROUND_TEXTURE3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/pedestal_crafting3.png");
-	private static final Identifier BACKGROUND_TEXTURE4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/pedestal_crafting4.png");
+	private static final Identifier BACKGROUND_TEXTURE1 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting1.png");
+	private static final Identifier BACKGROUND_TEXTURE2 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting2.png");
+	private static final Identifier BACKGROUND_TEXTURE3 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting3.png");
+	private static final Identifier BACKGROUND_TEXTURE4 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting4.png");
 	
 	public PagePedestalCrafting() {
 		super(SpectrumRecipeTypes.PEDESTAL);
@@ -58,11 +58,10 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 			}
 		}
 		
-		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
+		DefaultedList<IngredientStack> ingredients = recipe.getIngredientStacks();
 		int wrap = recipe.getWidth();
-		
 		for (int i = 0; i < ingredients.size(); i++) {
-			parent.renderIngredient(ms, recipeX + (i % wrap) * 19 + 3, recipeY + (i / wrap) * 19 + 3, mouseX, mouseY, ingredients.get(i));
+			PatchouliHelper.renderIngredientStack(parent, ms,recipeX + (i % wrap) * 19 + 3, recipeY + (i / wrap) * 19 + 3, mouseX, mouseY, ingredients.get(i));
 		}
 	}
 	

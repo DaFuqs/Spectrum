@@ -25,10 +25,10 @@
       "item": "spectrum:orange_pigment"
     },
     {
-      "item": "spectrum:stratine_gem"
+      "item": "minecraft:lava_bucket"
     },
     {
-      "item": "minecraft:lava_bucket"
+      "item": "spectrum:stratine_gem"
     }
   ],
   "result": {

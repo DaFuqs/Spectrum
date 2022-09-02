@@ -26,9 +26,9 @@
     {
       "type": "patchouli:spotlight",
       "title": "Native Resources",
-      "item": "spectrum:native_iron",
-      "advancement": "spectrum:lategame/collect_native_resource",
-      "text": "Breaking Ores with Resonance directly drops $(l:resources/native_resources)Native Resources$()."
+      "item": "spectrum:pure_iron",
+      "advancement": "spectrum:lategame/collect_pure_resource",
+      "text": "Breaking Ores with Resonance directly drops $(l:resources/pure_resources)Native Resources$()."
     },
     {
       "type": "patchouli:spotlight",

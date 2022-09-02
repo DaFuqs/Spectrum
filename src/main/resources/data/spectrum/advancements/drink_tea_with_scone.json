@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:scone"
+    },
+    "title": {
+      "translate": "advancements.spectrum.drink_tea_with_scone.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.drink_tea_with_scone.description"
+    }
+  },
+  "parent": "spectrum:collect_amaranth_bushel",
+  "criteria": {
+    "drank_any_tea_with_scone": {
+      "trigger": "spectrum:consumed_tea_with_scone",
+      "conditions": { }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth_bushel" }
+    }
+  }
+}

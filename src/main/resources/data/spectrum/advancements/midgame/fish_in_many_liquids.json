@@ -1,0 +1,61 @@
+{
+  "parent": "spectrum:midgame/break_decayed_bedrock",
+  "display": {
+    "icon": {
+        "item": "spectrum:bedrock_fishing_rod"
+    },
+    "frame": "goal",
+    "title": {
+      "translate": "advancements.spectrum.fish_in_many_liquids.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fish_in_many_liquids.description"
+    }
+  },
+  "criteria": {
+    "fished_in_water": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "fluid": {
+          "tag": "minecraft:water"
+        }
+      }
+    },
+    "fished_in_lava": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "fluid": {
+          "tag": "minecraft:lava"
+        }
+      }
+    },
+    "fished_in_mud": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "fluid": {
+          "tag": "spectrum:mud"
+        }
+      }
+    },
+    "fished_in_liquid_crystal": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "fluid": {
+          "tag": "spectrum:liquid_crystal"
+        }
+      }
+    },
+    "fished_in_midnight_solution": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "fluid": {
+          "tag": "spectrum:midnight_solution"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
+    }
+  }
+}

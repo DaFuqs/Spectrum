@@ -42,6 +42,13 @@
       "title": "Stardust",
       "item": "spectrum:stardust",
       "text": "A powder of unknown origin blessed with the soul of the stars.$(br)Bears coy, yet latent power."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:collect_all_shooting_star_variants",
+      "title": "Star Hardening",
+      "recipe": "spectrum:fusion_shrine/shooting_star_hardening",
+      "text": "Now that you've collected all the variations, it's finally time to unwind! Hardened with a Diamond the Stars do not break anymore when hit.$(br2)$(italic)Fancy a Starball tournament with your friends?"
     }
   ]
 }

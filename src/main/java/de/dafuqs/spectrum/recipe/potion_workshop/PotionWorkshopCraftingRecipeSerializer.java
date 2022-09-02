@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
 import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
+import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
-public class PotionWorkshopCraftingRecipeSerializer implements RecipeSerializer<PotionWorkshopCraftingRecipe> {
+public class PotionWorkshopCraftingRecipeSerializer implements GatedRecipeSerializer<PotionWorkshopCraftingRecipe> {
 	
 	public final PotionWorkshopCraftingRecipeSerializer.RecipeFactory<PotionWorkshopCraftingRecipe> recipeFactory;
 	
@@ -18,9 +17,15 @@ public class PotionWorkshopCraftingRecipeSerializer implements RecipeSerializer<
 		this.recipeFactory = recipeFactory;
 	}
 	
+	public interface RecipeFactory<PotionWorkshopCraftingRecipe> {
+		PotionWorkshopCraftingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color);
+	}
+	
 	@Override
 	public PotionWorkshopCraftingRecipe read(Identifier identifier, JsonObject jsonObject) {
-		String group = JsonHelper.getString(jsonObject, "group", "");
+		String group = readGroup(jsonObject);
+		boolean secret = readSecret(jsonObject);
+		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
 		
 		Ingredient baseIngredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "base_ingredient"));
 		Ingredient ingredient1 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
@@ -43,35 +48,32 @@ public class PotionWorkshopCraftingRecipeSerializer implements RecipeSerializer<
 		boolean consumeBaseIngredient = JsonHelper.getBoolean(jsonObject, "use_up_base_ingredient", true);
 		ItemStack output = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
-		Identifier requiredAdvancementIdentifier;
-		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
-			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
-		} else {
-			// Potion Workshop Recipe has no unlock advancement set. Will be set to the unlock advancement of the Potion Workshop itself
-			requiredAdvancementIdentifier = PotionWorkshopBlock.UNLOCK_IDENTIFIER;
-		}
-		
-		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, requiredExperience, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, baseIngredient, consumeBaseIngredient, requiredExperience, ingredient1, ingredient2, ingredient3, output, craftingTime, color);
 	}
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, PotionWorkshopCraftingRecipe potionWorkshopCraftingRecipe) {
-		packetByteBuf.writeString(potionWorkshopCraftingRecipe.group);
-		potionWorkshopCraftingRecipe.baseIngredient.write(packetByteBuf);
-		packetByteBuf.writeBoolean(potionWorkshopCraftingRecipe.consumeBaseIngredient);
-		packetByteBuf.writeInt(potionWorkshopCraftingRecipe.requiredExperience);
-		potionWorkshopCraftingRecipe.ingredient1.write(packetByteBuf);
-		potionWorkshopCraftingRecipe.ingredient2.write(packetByteBuf);
-		potionWorkshopCraftingRecipe.ingredient3.write(packetByteBuf);
-		packetByteBuf.writeItemStack(potionWorkshopCraftingRecipe.output);
-		packetByteBuf.writeInt(potionWorkshopCraftingRecipe.craftingTime);
-		packetByteBuf.writeInt(potionWorkshopCraftingRecipe.color);
-		packetByteBuf.writeIdentifier(potionWorkshopCraftingRecipe.requiredAdvancementIdentifier);
+	public void write(PacketByteBuf packetByteBuf, PotionWorkshopCraftingRecipe recipe) {
+		packetByteBuf.writeString(recipe.group);
+		packetByteBuf.writeBoolean(recipe.secret);
+		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
+		
+		recipe.baseIngredient.write(packetByteBuf);
+		packetByteBuf.writeBoolean(recipe.consumeBaseIngredient);
+		packetByteBuf.writeInt(recipe.requiredExperience);
+		recipe.ingredient1.write(packetByteBuf);
+		recipe.ingredient2.write(packetByteBuf);
+		recipe.ingredient3.write(packetByteBuf);
+		packetByteBuf.writeItemStack(recipe.output);
+		packetByteBuf.writeInt(recipe.craftingTime);
+		packetByteBuf.writeInt(recipe.color);
 	}
 	
 	@Override
 	public PotionWorkshopCraftingRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
+		boolean secret = packetByteBuf.readBoolean();
+		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
+		
 		Ingredient baseIngredient = Ingredient.fromPacket(packetByteBuf);
 		boolean consumeBaseIngredient = packetByteBuf.readBoolean();
 		int requiredExperience = packetByteBuf.readInt();
@@ -81,12 +83,7 @@ public class PotionWorkshopCraftingRecipeSerializer implements RecipeSerializer<
 		ItemStack output = packetByteBuf.readItemStack();
 		int craftingTime = packetByteBuf.readInt();
 		int color = packetByteBuf.readInt();
-		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		return this.recipeFactory.create(identifier, group, baseIngredient, consumeBaseIngredient, requiredExperience, ingredient1, ingredient2, ingredient3, output, craftingTime, color, requiredAdvancementIdentifier);
-	}
-	
-	public interface RecipeFactory<PotionWorkshopCraftingRecipe> {
-		PotionWorkshopCraftingRecipe create(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color, Identifier requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, baseIngredient, consumeBaseIngredient, requiredExperience, ingredient1, ingredient2, ingredient3, output, craftingTime, color);
 	}
 	
 }

@@ -56,7 +56,6 @@ public abstract class LightningEntityMixin {
 				world.setBlockState(aboveGroundBlockPos, placementBlockState);
 			}
 		}
-		
 	}
 	
 }

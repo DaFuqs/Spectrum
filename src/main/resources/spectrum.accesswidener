@@ -3,5 +3,12 @@ accessWidener	v1	named
 accessible  class   net/minecraft/client/render/RenderLayer$MultiPhase
 accessible  class   net/minecraft/client/render/RenderLayer$MultiPhaseParameters
 accessible  class   net/minecraft/client/render/model/json/ModelOverrideList$BakedOverride
+accessible  class   net/minecraft/loot/function/ApplyBonusLootFunction$Formula
+
+accessible  method   net/minecraft/client/particle/BlockLeakParticle$Dripping   <init>  (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;Lnet/minecraft/particle/ParticleEffect;)V
+accessible  method   net/minecraft/client/particle/BlockLeakParticle$ContinuousFalling  <init>  (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;Lnet/minecraft/particle/ParticleEffect;)V
+accessible  method   net/minecraft/client/particle/BlockLeakParticle$Landing    <init>  (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/fluid/Fluid;)V
 
 extendable method net/minecraft/entity/projectile/ProjectileEntity <init> (Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V
+accessible method net/minecraft/entity/projectile/FishingBobberEntity <init> (Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;II)V
+accessible method net/minecraft/advancement/criterion/AbstractCriterion trigger (Lnet/minecraft/server/network/ServerPlayerEntity;Ljava/util/function/Predicate;)V

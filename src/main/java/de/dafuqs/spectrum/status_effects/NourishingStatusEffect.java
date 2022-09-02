@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.status_effects;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class NourishingStatusEffect extends StatusEffect {
+public class NourishingStatusEffect extends SpectrumStatusEffect {
 	
 	public NourishingStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);

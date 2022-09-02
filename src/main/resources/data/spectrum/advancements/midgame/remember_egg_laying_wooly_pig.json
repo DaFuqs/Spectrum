@@ -1,0 +1,28 @@
+{
+  "parent": "spectrum:midgame/manifest_memory",
+  "display": {
+    "icon": {
+      "item": "spectrum:egg_laying_wooly_pig_head"
+    },
+    "title": {
+      "translate": "advancements.spectrum.remember_egg_laying_wooly_pig.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.remember_egg_laying_wooly_pig.description"
+    }
+  },
+  "criteria": {
+    "hatch_egg_laying_wooly_pig": {
+      "trigger": "spectrum:memory_manifesting",
+      "conditions": {
+        "manifested_entity": {
+		  "type": "spectrum:egg_laying_wooly_pig"
+		}
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/manifest_memory" }
+    }
+  }
+}

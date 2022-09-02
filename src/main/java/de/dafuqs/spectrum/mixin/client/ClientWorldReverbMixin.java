@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.liminal_library.LiminalDimensionReverb;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.render.WorldRenderer;
@@ -15,8 +17,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.Supplier;
 
+@Environment(EnvType.CLIENT)
 @Mixin(ClientWorld.class)
-public class ClientWorldReverbMixin {
+public abstract class ClientWorldReverbMixin {
 	
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void spectrum$init(ClientPlayNetworkHandler netHandler, ClientWorld.Properties properties, RegistryKey registryRef, RegistryEntry registryEntry, int loadDistance, int simulationDistance, Supplier profiler, WorldRenderer worldRenderer, boolean debugWorld, long seed, CallbackInfo ci) {

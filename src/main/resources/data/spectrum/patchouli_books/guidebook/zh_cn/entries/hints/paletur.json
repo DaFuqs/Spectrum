@@ -1,7 +1,7 @@
 {
 	"pages":[
 		{
-			"completion_advancement":"spectrum:lategame/collect_paletur",
+			"completion_advancement":"spectrum:lategame/collect_paltaeria",
 			"cost":"spectrum:moonstone_shard#8",
 			"text":"最后发现了一个新的绿松石矿。",
 			"type":"spectrum:hint",
@@ -14,11 +14,11 @@
 			"title":"简明说明"
 		}
 	],
-	"advancement":"spectrum:milestones/reveal_paletur",
+	"advancement":"spectrum:milestones/reveal_paltaeria",
 	"read_by_default":true,
 	"name":"一种新矿石",
 	"icon":"minecraft:writable_book",
-	"turnin":"spectrum:lategame/collect_paletur",
+	"turnin":"spectrum:lategame/collect_paltaeria",
 	"secret":true,
 	"category":"spectrum:hints_category"
 }

@@ -33,34 +33,11 @@ public interface ExperienceStorageItem {
 	 * @return The overflow amount that could not be stored
 	 */
 	static int addStoredExperience(ItemStack itemStack, float amount, Random random) {
-		if (amount > 0 && itemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
-			int maxStorage = experienceStorageItem.getMaxStoredExperience(itemStack);
-			
+		if (amount > 0) {
 			int intAmount = Support.getIntFromDecimalWithChance(amount, random);
-			
-			NbtCompound nbtCompound = itemStack.getOrCreateNbt();
-			if (!nbtCompound.contains("stored_experience", NbtElement.INT_TYPE)) {
-				nbtCompound.putInt("stored_experience", intAmount);
-				itemStack.setNbt(nbtCompound);
-				return 0;
-			} else {
-				int existingStoredExperience = nbtCompound.getInt("stored_experience");
-				int experienceOverflow = maxStorage - intAmount - existingStoredExperience;
-				
-				if (experienceOverflow < 0) {
-					nbtCompound.putInt("stored_experience", maxStorage);
-					itemStack.setNbt(nbtCompound);
-					return -experienceOverflow;
-				} else {
-					nbtCompound.putInt("stored_experience", existingStoredExperience + intAmount);
-					itemStack.setNbt(nbtCompound);
-					return 0;
-				}
-			}
-		} else {
-			SpectrumCommon.logError("Tried to add stored Experience to a non-ExperienceStorageItem item: " + itemStack.getItem().getName().getString());
-			return 0;
+			return addStoredExperience(itemStack, intAmount);
 		}
+		return 0;
 	}
 	
 	/**
@@ -72,7 +49,11 @@ public interface ExperienceStorageItem {
 	 * @return The overflow amount that could not be stored
 	 */
 	static int addStoredExperience(ItemStack itemStack, int amount) {
-		if (amount > 0 && itemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
+		if(amount <= 0) {
+			return 0;
+		}
+		
+		if (itemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			int maxStorage = experienceStorageItem.getMaxStoredExperience(itemStack);
 			
 			NbtCompound nbtCompound = itemStack.getOrCreateNbt();
@@ -94,10 +75,11 @@ public interface ExperienceStorageItem {
 					return 0;
 				}
 			}
-		} else {
-			SpectrumCommon.logError("Tried to add stored Experience to a non-ExperienceStorageItem item: " + itemStack.getItem().getName().getString());
-			return 0;
+		} else if(!itemStack.isEmpty()) {
+			SpectrumCommon.logError("Tried to add stored Experience to a non-ExperienceStorageItem item: " + itemStack.getItem().getName().asString());
 		}
+		
+		return 0;
 	}
 	
 	/**
@@ -124,7 +106,7 @@ public interface ExperienceStorageItem {
 				}
 			}
 		} else {
-			SpectrumCommon.logError("Tried to remove stored Experience from a non-ExperienceStorageItem: " + itemStack.getItem().getName().getString());
+			SpectrumCommon.logError("Tried to remove stored Experience from a non-ExperienceStorageItem: " + itemStack.getItem().getName().asString());
 			return false;
 		}
 	}

@@ -65,7 +65,7 @@ public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, F
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_mermaids_brush");
+		return SpectrumCommon.locate("milestones/reveal_mermaids_brush");
 	}
 	
 	@Override

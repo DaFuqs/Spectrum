@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.BlockState;
@@ -19,14 +20,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MiningToolItem.class)
-public class MiningToolItemMixin {
+public abstract class MiningToolItemMixin {
 	
 	@Inject(at = @At("HEAD"), method = "postMine(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/LivingEntity;)Z")
 	public void countInertiaBlocks(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner, CallbackInfoReturnable<Boolean> cir) {
 		if (stack != null) { // thank you, gobber
 			long inertiaAmount = 0;
 			
-			if (SpectrumEnchantments.INERTIA.canEntityUse(miner) && EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack) > 0) {
+			if (SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.INERTIA, stack, miner) > 0) {
 				NbtCompound compound = stack.getOrCreateNbt();
 				Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
 				if (compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {

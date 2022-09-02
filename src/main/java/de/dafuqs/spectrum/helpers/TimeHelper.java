@@ -5,6 +5,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class TimeHelper {
 	
+	public static long EPOCH_DAY_MILLIS = 86400000;
+	
 	public static TimeOfDay getTimeOfDay(@NotNull World world) {
 		return getTimeOfDay(world.getTimeOfDay());
 	}
@@ -50,6 +52,10 @@ public class TimeHelper {
 		public boolean isDay() {
 			return this == DAY || this == NOON;
 		}
+	}
+	
+	public static float minecraftDaysFromSeconds(long seconds) {
+		return seconds / 1200F;
 	}
 	
 }

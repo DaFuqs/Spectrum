@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:pure_globette"
+  },
+  "results": [
+    {
+      "item": "gobber2:gobber2_globette",
+      "count": 4
+    },
+    {
+      "item": "gobber2:gobber2_globette",
+      "count": 2,
+      "chance": 0.5
+    }
+  ],
+  "experience": 0.5,
+  "time": 200,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "gobber2"
+      ]
+    }
+  ]
+}

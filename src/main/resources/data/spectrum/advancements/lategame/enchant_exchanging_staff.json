@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/collect_paletur",
+  "parent": "spectrum:lategame/collect_paltaeria",
   "display": {
     "icon": {
       "item": "spectrum:exchanging_staff"
@@ -24,7 +24,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paletur" }
+      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paltaeria" }
     }
   }
 }

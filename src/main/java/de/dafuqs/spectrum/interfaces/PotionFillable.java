@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.interfaces;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtil;
+import net.minecraft.potion.Potions;
 
 import java.util.List;
 
@@ -38,6 +39,14 @@ public interface PotionFillable {
 	
 	default boolean isFull(ItemStack itemStack) {
 		return PotionUtil.getCustomPotionEffects(itemStack).size() >= maxEffectCount();
+	}
+	
+	default boolean isAtLeastPartiallyFilled(ItemStack itemStack) {
+		return PotionUtil.getCustomPotionEffects(itemStack).size() > 0;
+	}
+	
+	default void removeEffects(ItemStack itemStack) {
+		PotionUtil.setPotion(itemStack, Potions.EMPTY);
 	}
 	
 }

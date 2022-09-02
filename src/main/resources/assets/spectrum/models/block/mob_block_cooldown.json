@@ -7,7 +7,7 @@
   ],
   "textures": {
     "0": "spectrum:block/mob_block",
-    "particle": "spectrum:block/mob_block"
+    "particle": "spectrum:block/mob_block_breaking"
   },
   "elements": [
     {

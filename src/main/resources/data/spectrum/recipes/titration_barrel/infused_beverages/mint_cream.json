@@ -1,0 +1,119 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:potato",
+      "count": 6
+    },
+    {
+      "item": "spectrum:mermaids_gem",
+      "count": 2
+    },
+    {
+      "item": "spectrum:four_leaf_clover",
+      "count": 1
+    },
+    {
+      "item": "minecraft:sugar",
+      "count": 4
+    },
+    {
+      "item": "minecraft:snowball",
+      "count": 4
+    }
+  ],
+  "min_fermentation_time_hours": 24,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.25,
+    "effects": [
+      {
+        "id": "spectrum:another_roll",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 20,
+            "potency": 1
+          },
+          {
+            "min_alc": 25,
+            "potency": 2
+          },
+          {
+            "min_alc": 30,
+            "potency": 3
+          }
+        ]
+      },
+      {
+        "id": "minecraft:speed",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 25,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 25,
+            "min_thickness": 2.0,
+            "potency": 1
+          },
+          {
+            "min_alc": 25,
+            "min_thickness": 2.5,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:luck",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 28
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:blindness",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 30
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"mint_cream\", Color: 2752440 }"
+  },
+  "required_advancement": "spectrum:progression/unlock_mint_beverages"
+}

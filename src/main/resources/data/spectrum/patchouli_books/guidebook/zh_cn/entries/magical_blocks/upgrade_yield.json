@@ -18,7 +18,7 @@
 			"title":"第2层"
 		}
 	],
-	"advancement":"spectrum:lategame/collect_paletur",
+	"advancement":"spectrum:lategame/collect_paltaeria",
 	"extra_recipe_mappings":{
 		"spectrum:upgrade_yield":0,
 		"spectrum:upgrade_yield2":0

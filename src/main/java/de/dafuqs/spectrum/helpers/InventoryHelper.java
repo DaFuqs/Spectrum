@@ -26,8 +26,20 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class InventoryHelper {
+	
+	public static int getItemCountInInventory(Inventory inventory, Item item) {
+		int count = 0;
+		for(int i = 0; i < inventory.size(); i++) {
+			ItemStack stack = inventory.getStack(i);
+			if (stack.isOf(item)) {
+				count += stack.getCount();
+			}
+		}
+		return count;
+	}
 	
 	public static boolean removeFromInventoryWithRemainders(@NotNull PlayerEntity playerEntity, @NotNull ItemStack stackToRemove) {
 		if (playerEntity.isCreative()) {
@@ -68,18 +80,6 @@ public class InventoryHelper {
 		}
 	}
 	
-	public static Pair<Integer, List<ItemStack>> getStackCountInInventory(ItemStack itemStack, List<ItemStack> inventory) {
-		List<ItemStack> foundStacks = new ArrayList<>();
-		int count = 0;
-		for (ItemStack inventoryStack : inventory) {
-			if (inventoryStack.isItemEqual(itemStack)) {
-				foundStacks.add(inventoryStack);
-				count += inventoryStack.getCount();
-			}
-		}
-		return new Pair(count, foundStacks);
-	}
-	
 	public static boolean isItemCountInInventory(List<ItemStack> inventory, ItemVariant itemVariant, int maxSearchAmount) {
 		int count = 0;
 		for (ItemStack inventoryStack : inventory) {
@@ -106,28 +106,6 @@ public class InventoryHelper {
 			}
 		}
 		return new Pair<>(count, foundStacks);
-	}
-	
-	public static boolean isIngredientCountInInventory(Ingredient ingredient, List<ItemStack> inventory, int maxSearchAmount) {
-		int count = 0;
-		for (ItemStack inventoryStack : inventory) {
-			if (ingredient.test(inventoryStack)) {
-				count += inventoryStack.getCount();
-				if (count >= maxSearchAmount) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
-	public static boolean existsStackInInventory(ItemStack itemStack, List<ItemStack> inventory) {
-		for (ItemStack inventoryStack : inventory) {
-			if (inventoryStack.isItemEqual(itemStack)) {
-				return true;
-			}
-		}
-		return false;
 	}
 	
 	/**
@@ -164,6 +142,7 @@ public class InventoryHelper {
 		if (existingStack.isEmpty()) {
 			if (addingStack.getCount() > addingStack.getMaxCount()) {
 				int amount = Math.min(addingStack.getMaxCount(), addingStack.getCount());
+				amount = Math.min(amount, inventory.getMaxCountPerStack());
 				ItemStack newStack = addingStack.copy();
 				newStack.setCount(amount);
 				addingStack.decrement(amount);
@@ -379,24 +358,14 @@ public class InventoryHelper {
 			if (removeItemStack.isItemEqual(currentStack)) {
 				Item remainder = currentStack.getItem().getRecipeRemainder();
 				
-				int currentStackCount = currentStack.getCount();
-				if (currentStackCount >= removeItemStackCount) {
-					currentStack.decrement(removeItemStackCount);
-					
-					if(remainder != null && remainder != Items.AIR) {
-						ItemStack remainderStack = remainder.getDefaultStack();
-						remainderStack.setCount(removeItemStackCount);
-						remainders.add(remainderStack);
-					}
-					break;
-				} else {
-					removeItemStackCount -= currentStackCount;
-					
-					if(remainder != null && remainder != Items.AIR) {
-						ItemStack remainderStack = remainder.getDefaultStack();
-						remainderStack.setCount(currentStackCount);
-						remainders.add(remainderStack);
-					}
+				int amountAbleToDecrement = Math.min(currentStack.getCount(), removeItemStackCount);
+				currentStack.decrement(amountAbleToDecrement);
+				removeItemStackCount -= amountAbleToDecrement;
+				
+				if(remainder != null && remainder != Items.AIR) {
+					ItemStack remainderStack = remainder.getDefaultStack();
+					remainderStack.setCount(amountAbleToDecrement);
+					remainders.add(remainderStack);
 				}
 			}
 			if (removeItemStackCount == 0) {
@@ -440,6 +409,70 @@ public class InventoryHelper {
 		}
 		
 		return inventory;
+	}
+	
+	public static Optional<ItemStack> extractLastStack(Inventory inventory) {
+		ItemStack currentStack;
+		for (int i = inventory.size() - 1; i >= 0; i--) {
+			currentStack = inventory.getStack(i);
+			if (!currentStack.isEmpty()) {
+				inventory.setStack(i, ItemStack.EMPTY);
+				return Optional.of(currentStack);
+			}
+		}
+		return Optional.empty();
+	}
+	
+	public static ItemStack addToInventoryUpToSingleStackWithMaxTotalCount(ItemStack itemStack, Inventory inventory, int maxTotalCount) {
+		// check if a stack that can be combined is in the inventory already
+		int itemCount = 0;
+		int firstEmptySlot = -1;
+		ItemStack matchingStack = null;
+		for (int i = 0; i < inventory.size(); i++) {
+			ItemStack slotStack = inventory.getStack(i);
+			
+			if (slotStack.isEmpty()) {
+				if(firstEmptySlot == -1) {
+					firstEmptySlot = i;
+				}
+			} else {
+				itemCount += slotStack.getCount();
+				if(ItemStack.canCombine(itemStack, slotStack)) {
+					matchingStack = slotStack;
+				}
+			}
+		}
+		
+		int storageLeft = maxTotalCount - itemCount;
+		if(storageLeft <= 0) {
+			return itemStack;
+		}
+		
+		if(matchingStack != null) {
+			int addedCount = Math.min(matchingStack.getMaxCount() - matchingStack.getCount(), itemStack.getCount());
+			addedCount = Math.min(storageLeft, addedCount);
+			if (addedCount > 0) {
+				matchingStack.setCount(matchingStack.getCount() + addedCount);
+				itemStack.decrement(addedCount);
+			}
+			return itemStack;
+		}
+		
+		if(firstEmptySlot == -1) {
+			return itemStack;
+		}
+		
+		inventory.setStack(firstEmptySlot, itemStack.split(storageLeft));
+		return itemStack;
+	}
+	
+	public static int countItemsInInventory(Inventory inventory) {
+		int contentCount = 0;
+		for(int i = 0; i < inventory.size(); i++) {
+			ItemStack stack = inventory.getStack(i);
+			contentCount += stack.getCount();
+		}
+		return contentCount;
 	}
 	
 }

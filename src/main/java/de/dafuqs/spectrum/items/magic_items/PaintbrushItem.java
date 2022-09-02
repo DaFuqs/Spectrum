@@ -6,14 +6,16 @@ import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.entity.entity.InkProjectileEntity;
 import de.dafuqs.spectrum.helpers.BlockVariantHelper;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.PaintbrushScreenHandler;
 import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -50,16 +52,12 @@ public class PaintbrushItem extends Item {
 		super(settings);
 	}
 	
-	@Override
-	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-		super.inventoryTick(stack, world, entity, slot, selected);
-	}
-	
+	@Environment(EnvType.CLIENT)
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		Optional<InkColor> color = getColor(stack);
 		
+		Optional<InkColor> color = getColor(stack);
 		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(UNLOCK_COLORING_ADVANCEMENT_ID);
 		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
 		
@@ -132,9 +130,7 @@ public class PaintbrushItem extends Item {
 		InkColor inkColor = optionalInkColor.get();
 		DyeColor dyeColor = inkColor.getDyeColor();
 		
-		if (context.getPlayer().isCreative()
-				|| InkPowered.tryDrainEnergy(context.getPlayer(), inkColor, BLOCK_COLOR_COST)
-				|| InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), PigmentItem.byColor(dyeColor).getDefaultStack())) {
+		if (payBlockColorCost(context.getPlayer(), inkColor)) {
 			
 			// TODO: Use Jellos API to support all of jellos block colors
 			// https://modrinth.com/mod/jello
@@ -154,6 +150,12 @@ public class PaintbrushItem extends Item {
 			}
 		}
 		return false;
+	}
+	
+	private boolean payBlockColorCost(PlayerEntity player, InkColor inkColor) {
+		return player.isCreative()
+				|| InkPowered.tryDrainEnergy(player, inkColor, BLOCK_COLOR_COST)
+				|| InventoryHelper.removeFromInventoryWithRemainders(player, PigmentItem.byColor(inkColor.getDyeColor()).getDefaultStack());
 	}
 	
 	@Override
@@ -208,6 +210,15 @@ public class PaintbrushItem extends Item {
 	
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
+		if(canColor(user)) {
+			Optional<InkColor> color = getColor(stack);
+			if(color.isPresent() && payBlockColorCost(user, color.get())) {
+				boolean colored = ColorHelper.tryColorEntity(user, entity, color.get().getDyeColor());
+				if(colored) {
+					return ActionResult.success(user.world.isClient);
+				}
+			}
+		}
 		return super.useOnEntity(stack, user, entity, hand);
 	}
 	

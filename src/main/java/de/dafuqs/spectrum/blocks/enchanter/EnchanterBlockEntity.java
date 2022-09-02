@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.blocks.enchanter;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
+import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
@@ -28,10 +30,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.BookItem;
 import net.minecraft.item.EnchantedBookItem;
@@ -49,7 +48,6 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -61,7 +59,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class EnchanterBlockEntity extends BlockEntity implements Inventory, PlayerOwned, Upgradeable {
+public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter {
 	
 	public static final List<Vec3i> itemBowlOffsets = new ArrayList<>() {{
 		add(new Vec3i(5, 0, -3));
@@ -75,14 +73,12 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	}};
 	
 	public static final int REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT = 4;
-	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter");
-	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter");
+	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_conflicted_enchanting_with_enchanter");
+	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_overenchanting_with_enchanter");
 	
-	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem;
+	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem
 	
 	protected UUID ownerUUID;
-	protected DefaultedList<ItemStack> inventory;
-	
 	protected boolean canOwnerApplyConflictingEnchantments;
 	protected boolean canOwnerOverenchant;
 	
@@ -104,8 +100,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	private Direction itemFacing; // for rendering the item on the enchanter only
 	
 	public EnchanterBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.ENCHANTER, pos, state);
-		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		super(SpectrumBlockEntities.ENCHANTER, pos, state, INVENTORY_SIZE);
 		this.virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		this.currentItemProcessingTime = -1;
 	}
@@ -314,7 +309,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	
 	public static void enchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack centerStack = enchanterBlockEntity.getStack(0);
-		ItemStack centerStackCopy = enchanterBlockEntity.getStack(0).copy();
+		ItemStack centerStackCopy = centerStack.copy();
 		Map<Enchantment, Integer> highestEnchantments = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 		
 		for (Enchantment enchantment : highestEnchantments.keySet()) {
@@ -323,7 +318,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 		
 		if (centerStack.getCount() > 1) {
 			centerStackCopy.setCount(1);
-			spawnOutputAsItemEntity(enchanterBlockEntity.world, enchanterBlockEntity, centerStackCopy);
+			MultiblockCrafter.spawnOutputAsItemEntity(enchanterBlockEntity.world, enchanterBlockEntity.pos, centerStackCopy);
 			centerStack.decrement(1);
 		} else {
 			enchanterBlockEntity.setStack(0, centerStackCopy);
@@ -351,7 +346,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	
 	public static int getRequiredExperienceToEnchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		boolean valid = false;
-		ItemStack centerStack = enchanterBlockEntity.inventory.get(0);
+		ItemStack centerStack = enchanterBlockEntity.getStack(0);
 		if (!centerStack.isEmpty() && (centerStack.getItem().isEnchantable(centerStack) || SpectrumEnchantmentHelper.isEnchantableBook(centerStack) || centerStack.getItem() instanceof EnchanterEnchantable)) {
 			ItemStack centerStackCopy = centerStack.copy();
 			Map<Enchantment, Integer> highestEnchantmentLevels = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
@@ -463,8 +458,8 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 				BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
 				BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 				if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-					itemBowlBlockEntity.decrementBowlStack(new Vec3d(enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1.0, enchanterBlockEntity.pos.getZ() + 0.5), resultAmountAfterEfficiencyMod, false);
-					itemBowlBlockEntity.updateInClientWorld();
+					itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, resultAmountAfterEfficiencyMod, false);
+					itemBowlBlockEntity.updateInClientWorld(world, itemBowlPos);
 				}
 			}
 		}
@@ -481,7 +476,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 		
 		if (existingCenterStack.getCount() > 1) {
 			existingCenterStack.decrement(1);
-			spawnItemStackAsEntitySplitViaMaxCount(world, enchanterBlockEntity.pos, resultStack, resultStack.getCount());
+			MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, enchanterBlockEntity.pos, resultStack, resultStack.getCount(), MultiblockCrafter.RECIPE_STACK_VELOCITY);
 		} else {
 			enchanterBlockEntity.setStack(0, resultStack);
 		}
@@ -494,26 +489,6 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.ENCHANTER_CRAFTING.trigger(serverPlayerEntity, resultStack, enchanterRecipe.getRequiredExperience());
 		}
-	}
-	
-	public static void spawnItemStackAsEntitySplitViaMaxCount(World world, BlockPos blockPos, ItemStack itemStack, int amount) {
-		while (amount > 0) {
-			int currentAmount = Math.min(amount, itemStack.getMaxCount());
-			
-			ItemStack resultStack = itemStack.copy();
-			resultStack.setCount(currentAmount);
-			ItemEntity itemEntity = new ItemEntity(world, blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, resultStack);
-			itemEntity.setVelocity(0, 0.3, 0);
-			world.spawnEntity(itemEntity);
-			
-			amount -= currentAmount;
-		}
-	}
-	
-	public static void spawnOutputAsItemEntity(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, ItemStack outputItemStack) {
-		ItemEntity itemEntity = new ItemEntity(world, enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1, enchanterBlockEntity.pos.getZ() + 0.5, outputItemStack);
-		itemEntity.addVelocity(0, 0.1, 0);
-		world.spawnEntity(itemEntity);
 	}
 	
 	public static int tickEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe, int itemsToConsumeLeft) {
@@ -535,10 +510,13 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 			BlockEntity blockEntity = world.getBlockEntity(enchanterBlockEntity.pos.add(bowlOffset));
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				if (itemCountToConsumeAfterMod == 0) {
+					// TODO: resolve
 					itemBowlBlockEntity.spawnOrbParticles(new Vec3d(enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1.0, enchanterBlockEntity.pos.getZ() + 0.5));
+					//itemBowlBlockEntity.spawnSphereParticlesTo(enchanterBlockEntity.pos);
 					consumedAmount += itemCountToConsume;
 				} else {
 					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(new Vec3d(enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1.0, enchanterBlockEntity.pos.getZ() + 0.5), itemCountToConsumeAfterMod, true);
+					//int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, itemCountToConsumeAfterMod, true);
 					consumedAmount += decrementedAmount;
 				}
 			}
@@ -649,9 +627,6 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 		this.craftingTimeTotal = nbt.getInt("crafting_time_total");
 		this.currentItemProcessingTime = nbt.getInt("current_item_processing_time");
 		
-		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-		Inventories.readNbt(nbt, this.inventory);
-		
 		this.inventoryChanged = nbt.getBoolean("inventory_changed");
 		this.canOwnerApplyConflictingEnchantments = nbt.getBoolean("owner_can_apply_conflicting_enchantments");
 		this.canOwnerOverenchant = nbt.getBoolean("owner_can_overenchant");
@@ -688,8 +663,6 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 		nbt.putInt("crafting_time", this.craftingTime);
 		nbt.putInt("crafting_time_total", this.craftingTimeTotal);
 		nbt.putInt("current_item_processing_time", this.currentItemProcessingTime);
-		
-		Inventories.writeNbt(nbt, this.inventory);
 		nbt.putInt("virtual_recipe_orientation", this.virtualInventoryRecipeOrientation);
 		nbt.putBoolean("inventory_changed", this.inventoryChanged);
 		nbt.putBoolean("owner_can_apply_conflicting_enchantments", this.canOwnerApplyConflictingEnchantments);
@@ -707,13 +680,6 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
-	}
-	
-	// Called when the chunk is first loaded to initialize this be
-	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = new NbtCompound();
-		this.writeNbt(nbtCompound);
-		return nbtCompound;
 	}
 	
 	@Nullable
@@ -783,17 +749,18 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 		virtualInventoryIncludingBowlStacks.setStack(8, getItemBowlStack(this.world, pos.add(-3, 0, -5)));
 		virtualInventoryIncludingBowlStacks.setStack(9, getItemBowlStack(this.world, pos.add(3, 0, -5)));
 		
+		virtualInventoryIncludingBowlStacks.markDirty();
+		inventoryChanged = true;
 		currentItemProcessingTime = -1;
 		
+		super.inventoryChanged();
 		this.markDirty();
-		this.virtualInventoryIncludingBowlStacks.markDirty();
-		this.inventoryChanged = true;
 	}
 	
 	public ItemStack getItemBowlStack(World world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			return itemBowlBlockEntity.getInventory().getStack(0);
+			return itemBowlBlockEntity.getStack(0);
 		} else {
 			return ItemStack.EMPTY;
 		}
@@ -831,66 +798,8 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	}
 	
 	@Override
-	public int size() {
-		return INVENTORY_SIZE;
-	}
-	
-	@Override
-	public boolean isEmpty() {
-		Iterator<ItemStack> var1 = this.inventory.iterator();
-		
-		ItemStack itemStack;
-		do {
-			if (!var1.hasNext()) {
-				return true;
-			}
-			
-			itemStack = var1.next();
-		} while (itemStack.isEmpty());
-		
-		return false;
-	}
-	
-	@Override
-	public ItemStack getStack(int slot) {
-		return this.inventory.get(slot);
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot, int amount) {
-		ItemStack removedStack = Inventories.splitStack(this.inventory, slot, amount);
-		this.inventoryChanged = true;
-		this.markDirty();
-		return removedStack;
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot) {
-		ItemStack removedStack = Inventories.removeStack(this.inventory, slot);
-		this.inventoryChanged = true;
-		this.markDirty();
-		return removedStack;
-	}
-	
-	@Override
-	public void setStack(int slot, @NotNull ItemStack stack) {
-		this.inventory.set(slot, stack);
-		this.inventoryChanged = true;
-		this.markDirty();
-	}
-	
-	@Override
-	public boolean canPlayerUse(PlayerEntity player) {
-		if (this.world.getBlockEntity(this.pos) != this) {
-			return false;
-		} else {
-			return player.squaredDistanceTo((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
-		}
-	}
-	
-	@Override
-	public void clear() {
-		this.inventory.clear();
+	public float getUpgradeValue(Upgradeable.UpgradeType upgradeType) {
+		return this.upgrades.get(upgradeType);
 	}
 	
 }

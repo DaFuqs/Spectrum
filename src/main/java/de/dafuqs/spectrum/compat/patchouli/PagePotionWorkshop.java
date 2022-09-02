@@ -16,7 +16,7 @@ import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 public abstract class PagePotionWorkshop extends PageDoubleRecipeRegistry<PotionWorkshopRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/potion_workshop.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/potion_workshop.png");
 	
 	public PagePotionWorkshop(RecipeType recipeType) {
 		super(recipeType);

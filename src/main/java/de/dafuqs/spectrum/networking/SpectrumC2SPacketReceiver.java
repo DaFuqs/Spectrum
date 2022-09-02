@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
 import de.dafuqs.spectrum.inventories.InkColorSelectedPacketReceiver;
 import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -100,6 +101,12 @@ public class SpectrumC2SPacketReceiver {
 			player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		});
 		
+		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.CONFIRMATION_BUTTON_PRESSED, (server, player, handler, buf, responseSender) -> {
+			String confirmationString = buf.readString();
+			SpectrumAdvancementCriteria.CONFIRMATION_BUTTON_PRESSED.trigger(player, confirmationString);
+			player.getWorld().playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+		});
+		
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.BIND_ENDER_SPLICE_TO_PLAYER, (server, player, handler, buf, responseSender) -> {
 			int entityId = buf.readInt();
 			Entity entity = player.getWorld().getEntityById(entityId);
@@ -131,7 +138,7 @@ public class SpectrumC2SPacketReceiver {
 				// this is minus the player that selected that entry (since they have that info already)
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
 				for(ServerPlayerEntity serverPlayer : server.getPlayerManager().getPlayerList()) {
-					if(serverPlayer.currentScreenHandler instanceof InkColorSelectedPacketReceiver receiver && serverPlayer != player && receiver.getBlockEntity() != null && receiver.getBlockEntity() == inkColorSelectedPacketReceiver.getBlockEntity()) {
+					if(serverPlayer.currentScreenHandler instanceof InkColorSelectedPacketReceiver receiver && receiver.getBlockEntity() != null && receiver.getBlockEntity() == inkColorSelectedPacketReceiver.getBlockEntity()) {
 						SpectrumS2CPacketSender.sendInkColorSelected(color, serverPlayer);
 					}
 				}

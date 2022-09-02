@@ -19,6 +19,12 @@ public class SpectrumC2SPacketSender {
 		ClientPlayNetworking.send(SpectrumC2SPackets.GUIDEBOOK_HINT_BOUGHT, packetByteBuf);
 	}
 	
+	public static void sendConfirmationButtonPressedPaket(String queryToTrigger) {
+		PacketByteBuf packetByteBuf = PacketByteBufs.create();
+		packetByteBuf.writeString(queryToTrigger);
+		ClientPlayNetworking.send(SpectrumC2SPackets.CONFIRMATION_BUTTON_PRESSED, packetByteBuf);
+	}
+	
 	public static void sendBindEnderSpliceToPlayer(PlayerEntity playerEntity) {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
 		packetByteBuf.writeInt(playerEntity.getId());

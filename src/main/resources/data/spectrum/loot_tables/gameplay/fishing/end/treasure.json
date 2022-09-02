@@ -1,0 +1,48 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "weight": 5,
+          "name": "minecraft:ender_pearl"
+        },
+        {
+          "type": "item",
+          "weight": 5,
+          "name": "minecraft:ender_eye"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:end_crystal"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:shulker_shell"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:shulker_box"
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:book",
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "levels": {
+                "min": 20,
+                "max": 30
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

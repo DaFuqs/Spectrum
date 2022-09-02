@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "spectrum:item/lesser_potion_pendant_base",
     "layer1": "spectrum:item/lesser_potion_pendant_overlay"

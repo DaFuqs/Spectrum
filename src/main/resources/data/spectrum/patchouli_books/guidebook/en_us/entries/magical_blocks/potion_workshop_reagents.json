@@ -89,7 +89,7 @@
       "type": "patchouli:spotlight",
       "title": "Paltaeria",
       "item": "spectrum:paltaeria_fragments",
-      "advancement": "spectrum:lategame/collect_paletur",
+      "advancement": "spectrum:lategame/collect_paltaeria",
       "text": "Adds a random positive Effect"
     },
     {

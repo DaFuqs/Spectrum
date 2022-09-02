@@ -1,0 +1,26 @@
+{
+  "parent": "spectrum:collect_sparklestone",
+  "display": {
+    "icon": {
+        "item": "spectrum:present"
+    },
+    "title": {
+      "translate": "advancements.spectrum.gift_or_open_present.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.gift_or_open_present.description"
+    }
+  },
+  "criteria": {
+    "gifted_or_opened_present": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+    }
+  },
+  "rewards": {
+    "experience": 500
+  }
+}

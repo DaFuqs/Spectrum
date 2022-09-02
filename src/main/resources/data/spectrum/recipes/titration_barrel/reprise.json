@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:chorus_fruit",
+      "count": 4
+    },
+    {
+      "item": "spectrum:blizzard_powder",
+      "count": 4
+    }
+  ],
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "min_fermentation_time_hours": 4,
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.5
+  },
+  "result": {
+    "item": "spectrum:reprise",
+    "count": 2
+  },
+  "required_advancement": "spectrum:progression/unlock_reprise"
+}

@@ -1,0 +1,108 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:enchanted_golden_apple",
+      "count": 4
+    }
+  ],
+  "min_fermentation_time_hours": 72,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.075,
+    "effects": [
+      {
+        "id": "minecraft:absorption",
+        "base_duration": 3600,
+        "potency": [
+          {
+            "potency": 2
+          },
+          {
+            "min_alc": 80,
+            "potency": 3
+          },
+          {
+            "min_alc": 85,
+            "potency": 4
+          },
+          {
+            "min_alc": 90,
+            "potency": 5
+          },
+          {
+            "min_alc": 95,
+            "potency": 6
+          }
+        ]
+      },
+      {
+        "id": "minecraft:regeneration",
+        "base_duration": 400,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 50,
+            "potency": 1
+          },
+          {
+            "min_alc": 60,
+            "potency": 2
+          },
+          {
+            "min_alc": 70,
+            "potency": 3
+          },
+          {
+            "min_alc": 80,
+            "potency": 4
+          },
+          {
+            "min_alc": 90,
+            "potency": 5
+          }
+        ]
+      },
+      {
+        "id": "minecraft:fire_resistance",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "minecraft:resistance",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 75,
+            "potency": 1
+          },
+          {
+            "min_alc": 85,
+            "potency": 2
+          },
+          {
+            "min_alc": 95,
+            "potency": 3
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"enchanted_apple_cider\", Color: 16745539 }"
+  },
+  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+}

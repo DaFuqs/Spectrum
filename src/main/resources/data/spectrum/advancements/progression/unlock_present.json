@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_sparklestone": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+    },
+    "collected_topaz": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard" }
+    },
+    "collected_amethyst": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard" }
+    }
+  }
+}

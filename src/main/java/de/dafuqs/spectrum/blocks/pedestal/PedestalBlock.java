@@ -46,7 +46,7 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock, PaintbrushTriggered {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "place_pedestal");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
 	public static final BooleanProperty POWERED = BooleanProperty.of("powered");
 	private static final VoxelShape SHAPE;
 	private final PedestalVariant variant;

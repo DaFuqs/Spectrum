@@ -1,13 +1,14 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
+import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.item.BookItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.enchantment.EnchantmentLevelEntry;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
@@ -36,9 +37,7 @@ public class SpectrumEnchantmentHelper {
 			ItemStack enchantedBookStack = new ItemStack(Items.ENCHANTED_BOOK, itemStack.getCount());
 			enchantedBookStack.setNbt(itemStack.getNbt());
 			itemStack = enchantedBookStack;
-		}
-		
-		if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(itemStack)) {
+		} else if (!forceEvenIfNotApplicable && !enchantment.isAcceptableItem(itemStack)) {
 			if (itemStack.getItem() instanceof EnchanterEnchantable enchanterEnchantable && enchanterEnchantable.canAcceptEnchantment(enchantment)) {
 				// EnchanterEnchantable explicitly states this enchantment is acceptable
 			} else {
@@ -49,7 +48,7 @@ public class SpectrumEnchantmentHelper {
 		
 		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
 		String nbtString;
-		if (itemStack.isOf(Items.ENCHANTED_BOOK)) {
+		if (itemStack.isOf(Items.ENCHANTED_BOOK) || itemStack.isOf(SpectrumItems.ENCHANTMENT_CANVAS)) {
 			nbtString = "StoredEnchantments";
 		} else {
 			nbtString = "Enchantments";
@@ -73,6 +72,16 @@ public class SpectrumEnchantmentHelper {
 		itemStack.setNbt(nbtCompound);
 		
 		return itemStack;
+	}
+	
+	public static void setStoredEnchantments(Map<Enchantment, Integer> enchantments, ItemStack stack) {
+		stack.removeSubNbt("StoredEnchantments"); // clear existing enchantments
+		for (Map.Entry<Enchantment, Integer> enchantmentIntegerEntry : enchantments.entrySet()) {
+			Enchantment enchantment = enchantmentIntegerEntry.getKey();
+			if (enchantment != null) {
+				EnchantedBookItem.addEnchantment(stack, new EnchantmentLevelEntry(enchantment, enchantmentIntegerEntry.getValue()));
+			}
+		}
 	}
 	
 	/**
@@ -184,6 +193,14 @@ public class SpectrumEnchantmentHelper {
 			itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);
 		}
 		return itemStack;
+	}
+	
+	public static int getUsableLevel(SpectrumEnchantment enchantment, ItemStack itemStack, Entity entity) {
+		int level = EnchantmentHelper.getLevel(enchantment, itemStack);
+		if(level > 0 && !enchantment.canEntityUse(entity)) {
+			level = 0;
+		}
+		return level;
 	}
 	
 }

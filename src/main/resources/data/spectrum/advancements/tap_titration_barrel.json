@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:titration_barrel"
+    },
+    "title": {
+      "translate": "advancements.spectrum.tap_titration_barrel.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.tap_titration_barrel.description"
+    }
+  },
+  "parent": "spectrum:collect_pigment",
+  "criteria": {
+    "tapped_titration_barrel": {
+      "trigger": "spectrum:titration_barrel_tapping",
+      "ingredient_count": {
+        "min": 1
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
+    }
+  }
+}

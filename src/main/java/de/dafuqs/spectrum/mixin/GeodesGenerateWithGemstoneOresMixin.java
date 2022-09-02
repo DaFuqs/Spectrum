@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(GeodeFeature.class)
-public class GeodesGenerateWithGemstoneOresMixin {
+public abstract class GeodesGenerateWithGemstoneOresMixin {
 	
 	@Inject(at = @At("TAIL"), method = "generate(Lnet/minecraft/world/gen/feature/util/FeatureContext;)Z")
 	public void generate(FeatureContext<GeodeFeatureConfig> context, CallbackInfoReturnable<Boolean> cir) {

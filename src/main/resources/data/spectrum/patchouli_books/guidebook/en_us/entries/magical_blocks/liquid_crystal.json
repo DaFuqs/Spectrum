@@ -40,9 +40,10 @@
       "text": "As Water tried to flow to a full block of Liquid Crystal the crystal turned solid.$(br)Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal"
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "spectrum:liquid_crystal_converting",
       "advancement": "spectrum:midgame/collect_resonant_lily",
-      "item": "spectrum:resonant_lily",
+      "anchor": "resonant_lily",
+      "recipe": "spectrum:liquid_crystal_converting/resonant_lily",
       "text": "This is an interesting one. The roots of flowers absorb this magical liquid, turning into elusive plants. But even then the cannot withstand the raw energy of the liquid, making them pop."
     }
   ]

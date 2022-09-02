@@ -1,55 +1,41 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
+import de.dafuqs.spectrum.compat.REI.GatedSpectrumDisplay;
+import de.dafuqs.spectrum.compat.REI.REIHelper;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
-import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.Identifier;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
-public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
+public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	
-	protected final EntryIngredient output;
+	protected final PedestalRecipeTier pedestalRecipeTier;
+	protected final int width;
+	protected final int height;
 	protected final float experience;
 	protected final int craftingTime;
 	
-	protected final int width;
-	protected final int height;
-	
-	protected final Identifier requiredAdvancementIdentifier;
-	protected final PedestalRecipeTier pedestalRecipeTier;
-	
 	/**
 	 * When using the REI recipe functionality
-	 *
 	 * @param recipe The recipe
 	 */
 	public PedestalCraftingDisplay(PedestalCraftingRecipe recipe) {
-		super(mapIngredients(recipe), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
-		
-		this.output = EntryIngredients.of(recipe.getOutput());
-		this.experience = recipe.getExperience();
-		this.craftingTime = recipe.getCraftingTime();
-		
+		super(recipe, mapIngredients(recipe), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
+		this.pedestalRecipeTier = recipe.getTier();
 		this.width = recipe.getWidth();
 		this.height = recipe.getHeight();
-		
-		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
-		this.pedestalRecipeTier = recipe.getTier();
+		this.experience = recipe.getExperience();
+		this.craftingTime = recipe.getCraftingTime();
 	}
 	
 	private static List<EntryIngredient> mapIngredients(PedestalCraftingRecipe recipe) {
@@ -59,32 +45,32 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		for (int i = 0; i < 9 + shownGemstoneSlotCount; i++) {
 			list.add(EntryIngredient.empty());
 		}
-		for (int i = 0; i < recipe.getIngredients().size(); i++) {
-			list.set(PedestalCraftingDisplaySerializer.getSlotWithSize(recipe.getWidth(), i), EntryIngredients.ofIngredient(recipe.getIngredients().get(i)));
+		for (int i = 0; i < recipe.getIngredientStacks().size(); i++) {
+			list.set(getSlotWithSize(recipe.getWidth(), i), REIHelper.ofIngredientStack(recipe.getIngredientStacks().get(i)));
 		}
 		
 		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
 		int firstGemstoneSlotId = 3*3;
 
-		int cyan = gemstonePowderInputs.get(BuiltinGemstoneColor.CYAN);
+		int cyan = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.CYAN, 0);
 		if(cyan > 0) {
 			list.set(firstGemstoneSlotId, EntryIngredients.of(SpectrumItems.TOPAZ_POWDER, cyan));
 		}
-		int magenta = gemstonePowderInputs.get(BuiltinGemstoneColor.MAGENTA);
+		int magenta = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.MAGENTA, 0);
 		if(magenta > 0) {
 			list.set(firstGemstoneSlotId+1, EntryIngredients.of(SpectrumItems.AMETHYST_POWDER, magenta));
 		}
-		int yellow = gemstonePowderInputs.get(BuiltinGemstoneColor.YELLOW);
+		int yellow = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.YELLOW, 0);
 		if(yellow > 0) {
 			list.set(firstGemstoneSlotId+2, EntryIngredients.of(SpectrumItems.CITRINE_POWDER, yellow));
 		}
 		if(shownGemstoneSlotCount >= 4) {
-			int black = gemstonePowderInputs.get(BuiltinGemstoneColor.BLACK);
+			int black = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.BLACK, 0);
 			if(black > 0) {
 				list.set(firstGemstoneSlotId+3, EntryIngredients.of(SpectrumItems.ONYX_POWDER, black));
 			}
 			if(shownGemstoneSlotCount == 5) {
-				int white = gemstonePowderInputs.get(BuiltinGemstoneColor.WHITE);
+				int white = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.WHITE, 0);
 				if(white > 0) {
 					list.set(firstGemstoneSlotId+4, EntryIngredients.of(SpectrumItems.MOONSTONE_POWDER, white));
 				}
@@ -94,40 +80,23 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		return list;
 	}
 	
+	public static int getSlotWithSize(int recipeWidth, int index) {
+		int x = index % recipeWidth;
+		int y = (index - x) / recipeWidth;
+		return 3 * y + x;
+	}
+	
 	/**
 	 * When using Shift click on the plus button in the REI gui to autofill crafting grids & recipe favourites
 	 */
-	public PedestalCraftingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, int width, int height, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, String recipeTier) {
-		super(inputs, outputs);
-		
-		this.output = outputs.get(0);
-		this.experience = experience;
-		this.craftingTime = craftingTime;
-		
+	/*public PedestalCraftingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, int width, int height, float experience, int craftingTime, Identifier requiredAdvancementIdentifier, String recipeTier, boolean secret) {
+		super(requiredAdvancementIdentifier, secret, inputs, outputs);
+		this.pedestalRecipeTier = PedestalRecipeTier.valueOf(recipeTier.toUpperCase(Locale.ROOT));
 		this.width = width;
 		this.height = height;
-		
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
-		this.pedestalRecipeTier = PedestalRecipeTier.valueOf(recipeTier.toUpperCase(Locale.ROOT));
-	}
-
-	@Override
-	public List<EntryIngredient> getInputEntries() {
-		if (this.isUnlocked()) {
-			return inputs;
-		} else {
-			return new ArrayList<>();
-		}
-	}
-	
-	@Override
-	public List<EntryIngredient> getOutputEntries() {
-		if (this.isUnlocked() || SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
-			return outputs;
-		} else {
-			return new ArrayList<>();
-		}
-	}
+		this.experience = experience;
+		this.craftingTime = craftingTime;
+	}*/
 	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
@@ -135,22 +104,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	}
 	
 	public boolean isUnlocked() {
-		return FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER || isUnlockedClient();
-	}
-	
-	@Environment(EnvType.CLIENT)
-	public boolean isUnlockedClient() {
-		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier) && AdvancementHelper.hasAdvancementClient(this.requiredAdvancementIdentifier);
-	}
-	
-	@Override
-	public int getWidth() {
-		return 3;
-	}
-	
-	@Override
-	public int getHeight() {
-		return 3;
+		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier) && super.isUnlocked();
 	}
 	
 	public PedestalRecipeTier getTier() {

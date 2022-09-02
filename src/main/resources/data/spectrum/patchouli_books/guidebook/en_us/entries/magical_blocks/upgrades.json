@@ -75,7 +75,7 @@
 
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:lategame/collect_paletur",
+      "advancement": "spectrum:lategame/collect_paltaeria",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/upgrade_yield",
       "text": "This is an interesting one. Although the chance is very small, you can increase the # of your crafting outputs.$(br)$(italic)More bang for your buck!"

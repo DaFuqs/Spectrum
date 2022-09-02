@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class PotionWorkshopBlock extends BlockWithEntity {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_workshop");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_potion_workshop");
 	
 	public static final BooleanProperty HAS_CONTENT = BooleanProperty.of("has_content");
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);

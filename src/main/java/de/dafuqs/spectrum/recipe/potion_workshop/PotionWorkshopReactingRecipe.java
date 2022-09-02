@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.recipe.DescriptiveGatedRecipe;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.text.Text;
@@ -19,31 +17,25 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, DescriptiveGatedRecipe {
+public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements DescriptiveGatedRecipe {
 	
 	protected static final HashMap<Item, List<PotionMod>> reagents = new HashMap<>();
 	
-	protected final Identifier id;
 	protected final Item item;
 	protected final List<PotionMod> modifiers;
 	
-	@Nullable
-	protected final Identifier requiredAdvancementIdentifier;
-	
-	public PotionWorkshopReactingRecipe(Identifier id, Item item, List<PotionMod> modifiers, @Nullable Identifier requiredAdvancementIdentifier) {
-		this.id = id;
+	public PotionWorkshopReactingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Item item, List<PotionMod> modifiers) {
+		super(id, group, secret, requiredAdvancementIdentifier);
 		this.item = item;
 		this.modifiers = modifiers;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		
 		reagents.put(item, modifiers);
 		
-		registerInToastManager(SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, this);
+		registerInToastManager(getType(), this);
 	}
 	
 	public boolean matches(@NotNull Inventory inv, World world) {
@@ -65,17 +57,9 @@ public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, Descript
 		return item.getDefaultStack();
 	}
 	
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
 	@Override
 	public ItemStack createIcon() {
 		return SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultStack();
-	}
-	
-	public Identifier getId() {
-		return this.id;
 	}
 	
 	public RecipeSerializer<?> getSerializer() {
@@ -94,31 +78,8 @@ public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, Descript
 	}
 	
 	@Override
-	public boolean equals(Object object) {
-		if (object instanceof PotionWorkshopReactingRecipe) {
-			return ((PotionWorkshopReactingRecipe) object).getId().equals(this.getId());
-		}
-		return false;
-	}
-	
-	@Nullable
-	public Identifier getRequiredAdvancementIdentifier() {
-		return this.requiredAdvancementIdentifier;
-	}
-	
-	@Override
-	public Text getSingleUnlockToastString() {
-		return Text.translatable("spectrum.toast.potion_reagent_unlocked.title");
-	}
-	
-	@Override
-	public Text getMultipleUnlockToastString() {
-		return Text.translatable("spectrum.toast.potion_reagents_unlocked.title");
-	}
-	
-	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, PotionWorkshopRecipe.UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return PotionWorkshopRecipe.UNLOCK_IDENTIFIER;
 	}
 	
 	public static boolean isReagent(Item item) {
@@ -144,6 +105,11 @@ public class PotionWorkshopReactingRecipe implements Recipe<Inventory>, Descript
 			}
 		}
 		return potionMod;
+	}
+	
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.POTION_WORKSHOP_REACTING_ID;
 	}
 	
 }

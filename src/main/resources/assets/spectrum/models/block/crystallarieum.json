@@ -5,7 +5,7 @@
 		"0": "spectrum:block/crystallarieum",
 		"1": "spectrum:block/liquid_crystal_still",
 		"2": "spectrum:block/crystallarieum_overlay",
-		"particle": "spectrum:block/crystallarieum"
+		"particle": "spectrum:block/crystallarieum_breaking"
 	},
 	"elements": [
 		{

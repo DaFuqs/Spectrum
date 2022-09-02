@@ -29,7 +29,7 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_colored_saplings");
+		return SpectrumCommon.locate("milestones/reveal_colored_saplings");
 	}
 	
 	@Override

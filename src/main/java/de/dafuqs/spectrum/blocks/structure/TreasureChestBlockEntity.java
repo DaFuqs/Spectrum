@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.loot.LootTable;
@@ -39,10 +38,6 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	private final List<UUID> playersThatOpenedAlready = new ArrayList<>();
 	private Identifier requiredAdvancementIdentifierToOpen;
 	private Vec3i controllerOffset;
-	
-	public TreasureChestBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState state) {
-		super(blockEntityType, pos, state);
-	}
 	
 	public TreasureChestBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.TREASURE_CHEST, pos, state);

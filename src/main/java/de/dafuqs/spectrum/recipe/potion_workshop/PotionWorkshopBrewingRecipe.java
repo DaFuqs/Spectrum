@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumPotions;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
@@ -53,8 +54,12 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	protected ItemStack cachedOutput;
 	
-	public PotionWorkshopBrewingRecipe(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, Identifier requiredAdvancementIdentifier) {
-		super(id, group, craftingTime, color, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
+	public PotionWorkshopBrewingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
+	                                   int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect,
+	                                   int baseDurationTicks, float potencyModifier, int color,
+	                                   boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes) {
+		
+		super(id, group, secret, requiredAdvancementIdentifier, craftingTime, color, ingredient1, ingredient2, ingredient3);
 		this.statusEffect = statusEffect;
 		this.baseDurationTicks = baseDurationTicks;
 		this.potencyModifier = potencyModifier;
@@ -75,8 +80,6 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 				availableNegativeEffectPotencyMods.add(potencyModifier);
 			}
 		}
-		
-		registerInToastManager(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, this);
 	}
 	
 	@Override
@@ -150,12 +153,6 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	public ItemStack brewRandomPotion(PotionMod potionMod, StatusEffect lastBrewedStatusEffect, Random random) {
 		List<StatusEffectInstance> effects = new ArrayList<>();
 		
-		if (potionMod.makeSplashing && potionMod.makeLingering) {
-			float typeDurationMod = potionMod.negateDecreasingDuration ? 1.0F : 0.25F;
-			potionMod.flatDurationBonusTicks *= typeDurationMod;
-			potionMod.multiplicativeDurationModifier *= typeDurationMod;
-		}
-		
 		addMainEffect(potionMod, random, effects);
 		addRandomAdditionalEffects(potionMod, random, effects);
 		
@@ -185,18 +182,10 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		if (effects.size() == 0) {
 			PotionUtil.setPotion(itemStack, Potions.THICK);
 		} else {
+			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
 			PotionUtil.setCustomPotionEffects(itemStack, effects);
 		}
 		
-		if (potionMod.makeSplashing) {
-			if (potionMod.makeLingering) {
-				itemStack.setCustomName(Text.translatable("item.spectrum.lingering_potion"));
-			} else {
-				itemStack.setCustomName(Text.translatable("item.spectrum.splash_potion"));
-			}
-		} else {
-			itemStack.setCustomName(Text.translatable("item.spectrum.potion"));
-		}
 		if (potionMod.fastDrinkable) {
 			NbtCompound compound = itemStack.getOrCreateNbt();
 			compound.putBoolean("SpectrumFastDrinkable", true);
@@ -227,6 +216,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		if (effects.size() == 0) {
 			PotionUtil.setPotion(itemStack, Potions.THICK);
 		} else {
+			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
 			PotionUtil.setCustomPotionEffects(itemStack, effects);
 		}
 		
@@ -431,6 +421,11 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	public StatusEffect getStatusEffect() {
 		return this.statusEffect;
+	}
+	
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.POTION_WORKSHOP_BREWING_ID;
 	}
 	
 }

@@ -10,6 +10,16 @@ import java.util.List;
 @Config(name = "Spectrum")
 public class SpectrumConfig implements ConfigData {
 	
+	@Comment("The duration in milliseconds ingame recipe/unlock popups stay on the screen")
+	public long ToastTimeMilliseconds = 7500;
+	
+	@Comment("""
+			The vanilla anvil caps enchantment levels at the max level for the enchantment
+			So enchanted books that exceed the enchantments natural max level get capped
+			If true the bedrock anvil will not cap the enchantments level to it's natural max level
+            """)
+	public boolean BedrockAnvilCanExceedMaxVanillaEnchantmentLevel = false;
+	
 	@Comment("""
 			The heights where citrine and topaz geodes will spawn
 			By default citrine will generate slightly below sea level (y=32-60)
@@ -52,9 +62,7 @@ public class SpectrumConfig implements ConfigData {
 	public float ShootingStarChance = 0.004F;
 	
 	public int MermaidsBrushChanceChunk = 16;
-	public int QuitoxicReedsCountPerChunk = 15;
-	@Comment("The biomes where Quitoxic Reeds are growing (usually swamps)")
-	public List<String> QuitoxicReedsGenerationBiomes = new ArrayList<>();
+	public int QuitoxicReedsCountPerChunk = 25;
 	
 	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
 	public int VanillaRecipeCraftingTimeTicks = 40;
@@ -97,6 +105,7 @@ public class SpectrumConfig implements ConfigData {
 	public boolean TightGripEnchantmentEnabled = true;
 	public boolean SteadfastEnchantmentEnabled = true;
 	public boolean IndestructibleEnchantmentEnabled = true;
+	public boolean BigCatchEnchantmentEnabled = true;
 	
 	@Comment("The max levels for all Enchantments")
 	public int TreasureHunterMaxLevel = 3;
@@ -106,6 +115,7 @@ public class SpectrumConfig implements ConfigData {
 	public int InertiaMaxLevel = 3;
 	public int CloversFavorMaxLevel = 3;
 	public int TightGripMaxLevel = 2;
+	public int BigCatchMaxLevel = 3;
 	
 	@Comment("Exuberance increases experience gained when killing mobs. With 25% bonus XP and 5 levels this would mean 2,25x XP on max level")
 	public int ExuberanceMaxLevel = 5;
@@ -147,6 +157,9 @@ public class SpectrumConfig implements ConfigData {
 	public float BedrockArmorToughness = 4.0F;
 	public float BedrockArmorKnockbackResistance = 0.4F;
 	
+	public int MaxLevelForEffectsInLesserPotionPendant = 3;
+	public int MaxLevelForEffectsInGreaterPotionPendant = 1;
+	
 	@Comment("By Default, Roughly Enough Items will show a 'recipe not unlocked yet' screen for not yet unlocked recipes. Setting this value to false will instead not show this screen, showing no recipes whatsoever, until unlocked")
 	public boolean REIListsRecipesAsNotUnlocked = true;
 	
@@ -164,19 +177,19 @@ public class SpectrumConfig implements ConfigData {
 		if (VanillaRecipeCraftingTimeTicks <= 0) {
 			VanillaRecipeCraftingTimeTicks = 40;
 		}
-		if (FadingDecayTickRate <= 0) {
+		if (FadingDecayTickRate <= 0.1) {
 			FadingDecayTickRate = 1.0F;
 		}
-		if (FailingDecayTickRate <= 0) {
+		if (FailingDecayTickRate <= 0.1) {
 			FadingDecayTickRate = 1.0F;
 		}
-		if (RuinDecayTickRate <= 0) {
+		if (RuinDecayTickRate <= 0.1) {
 			RuinDecayTickRate = 1.0F;
 		}
-		if (ShootingStarChance <= 0) {
+		if (ShootingStarChance <= 0.001) {
 			ShootingStarChance = 0.01F;
 		}
-		if (LightningStonesChance <= 0) {
+		if (LightningStonesChance <= 0.03) {
 			ShootingStarChance = 0.3F;
 		}
 		if (EndermanHoldingEnderTreasureChance <= 0) {
@@ -197,6 +210,9 @@ public class SpectrumConfig implements ConfigData {
 		if (FirstStrikeDamagePerLevel <= 0) {
 			FirstStrikeDamagePerLevel = 3.0F;
 		}
+		if (BigCatchMaxLevel <= 0) {
+			BigCatchMaxLevel = 3;
+		}
 		
 		if (ShootingStarWorlds.isEmpty()) {
 			ShootingStarWorlds.add("minecraft:overworld");
@@ -205,14 +221,6 @@ public class SpectrumConfig implements ConfigData {
 		if (LightningStonesWorlds.isEmpty()) {
 			LightningStonesWorlds.add("minecraft:overworld");
 			LightningStonesWorlds.add("starry_sky:starry_sky");
-		}
-		if (QuitoxicReedsGenerationBiomes.isEmpty()) {
-			QuitoxicReedsGenerationBiomes.add("minecraft:swamp");
-			QuitoxicReedsGenerationBiomes.add("minecraft:mangrove_swamp");
-			QuitoxicReedsGenerationBiomes.add("byg:bayou");
-			QuitoxicReedsGenerationBiomes.add("byg:cypress_swamplands");
-			QuitoxicReedsGenerationBiomes.add("terralith:orchid_swamp");
-			QuitoxicReedsGenerationBiomes.add("terralith:ice_marsh");
 		}
 	}
 	

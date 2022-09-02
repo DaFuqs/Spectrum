@@ -48,7 +48,7 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 	}
 	
 	public boolean fits(int width, int height) {
-		return width * height >= 2;
+		return width * height >= 1;
 	}
 	
 	public RecipeSerializer<?> getSerializer() {

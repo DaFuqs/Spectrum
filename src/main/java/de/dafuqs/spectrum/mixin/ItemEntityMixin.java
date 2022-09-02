@@ -3,15 +3,17 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.GravitableItem;
 import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
+import de.dafuqs.spectrum.items.DamageAwareItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItemStackDamageImmunities;
-import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ExperienceOrbEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,8 +23,6 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.explosion.Explosion;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -42,6 +42,10 @@ public abstract class ItemEntityMixin {
 	
 	@Shadow
 	public abstract void setNeverDespawn();
+	
+	@Shadow private int itemAge;
+	
+	@Shadow public abstract boolean damage(DamageSource source, float amount);
 	
 	@Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;DDD)V")
 	public void ItemEntity(World world, double x, double y, double z, ItemStack stack, double velocityX, double velocityY, double velocityZ, CallbackInfo ci) {
@@ -81,8 +85,8 @@ public abstract class ItemEntityMixin {
 			callbackInfoReturnable.setReturnValue(true);
 		}
 		
-		if (amount > 1 && source.isExplosive() && this.getStack().isOf(SpectrumItems.LIGHTNING_STONE)) {
-			doLightningExplosion();
+		if (amount > 1 && this.getStack().getItem() instanceof DamageAwareItem damageAwareItem) {
+			damageAwareItem.onItemEntityDamaged(source, amount, (ItemEntity) (Object) this);
 		}
 		
 	}
@@ -144,39 +148,6 @@ public abstract class ItemEntityMixin {
 			}
 		}
 	}
-	
-	private void doLightningExplosion() {
-		ItemEntity thisEntity = (ItemEntity) (Object) this;
-		ItemStack thisItemStack = thisEntity.getStack();
-		World world = thisEntity.getEntityWorld();
-		
-		BlockPos blockPos = thisEntity.getBlockPos();
-		Vec3d pos = thisEntity.getPos();
-		int count = thisItemStack.getCount();
-		
-		// remove it before dealing damage, otherwise it would cause a stack overflow
-		thisEntity.remove(Entity.RemovalReason.KILLED);
-		
-		// strike lightning...
-		if (world.isSkyVisible(thisEntity.getBlockPos())) {
-			LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
-			if (lightningEntity != null) {
-				lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(blockPos));
-				world.spawnEntity(lightningEntity);
-			}
-		}
-		
-		// ...and boom!
-		float powerMod = 1.0F;
-		Biome biomeAtPos = world.getBiome(blockPos).value();
-		if (!biomeAtPos.isHot(blockPos) && !biomeAtPos.isCold(blockPos)) {
-			// there is no rain/thunder in deserts or snowy biomes
-			powerMod = world.isThundering() ? 1.5F : world.isRaining() ? 1.25F : 1.0F;
-		}
-		
-		world.createExplosion(thisEntity, pos.getX(), pos.getY(), pos.getZ(), count * powerMod, Explosion.DestructionType.BREAK);
-	}
-	
 	
 	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
 	private void isDamageProof(DamageSource source, float amount, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {

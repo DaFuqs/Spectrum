@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "built_enchanting_structure": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_enchanting_structure" }
+    },
+    "collected_mermaids_gem": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
+    },
+    "collected_heart_of_the_sea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["minecraft:heart_of_the_sea"] }] }
+    }
+  }
+}

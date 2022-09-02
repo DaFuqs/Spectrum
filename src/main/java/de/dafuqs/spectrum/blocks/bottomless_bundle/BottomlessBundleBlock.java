@@ -82,7 +82,6 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 		return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
 	}
 	
-	// for automatic destruction, like pistons
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {

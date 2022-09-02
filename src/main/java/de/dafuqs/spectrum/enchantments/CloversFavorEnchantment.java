@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.enchantments;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -17,8 +17,8 @@ public class CloversFavorEnchantment extends SpectrumEnchantment {
 	}
 	
 	public static float rollChance(float baseChance, Entity entity) {
-		if (entity instanceof LivingEntity && SpectrumEnchantments.CLOVERS_FAVOR.canEntityUse(entity)) {
-			int rareLootLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.CLOVERS_FAVOR, ((LivingEntity) entity).getMainHandStack());
+		if(entity instanceof LivingEntity livingEntity) {
+			int rareLootLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.CLOVERS_FAVOR, livingEntity.getMainHandStack(), entity);
 			if (rareLootLevel > 0) {
 				return baseChance * (float) rareLootLevel * rareLootLevel;
 			}

@@ -216,6 +216,11 @@
       "spectrum:sunsette_darker_than_hell"
     ]
   },
+  "spectrum.music.divinity": {
+    "sounds": [
+      "spectrum:proper_motions_everreflective"
+    ]
+  },
   "dimension_ambient": {
     "subtitle": "spectrum.subtitles.dimension_ambient",
     "sounds": [

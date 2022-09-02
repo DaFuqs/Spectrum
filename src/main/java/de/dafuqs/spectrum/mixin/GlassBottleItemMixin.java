@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -40,15 +39,15 @@ public abstract class GlassBottleItemMixin {
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	public void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult> cir, List list, ItemStack handStack, HitResult areaEffectCloudEntity, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
-		if (blockState.isOf(SpectrumBlocks.FADING) && AdvancementHelper.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_fading"))) {
+		if (blockState.isOf(SpectrumBlocks.FADING) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_fading"))) {
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FADING.getDefaultStack()), world.isClient()));
-		} else if (blockState.isOf(SpectrumBlocks.FAILING) && AdvancementHelper.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_failing"))) {
+		} else if (blockState.isOf(SpectrumBlocks.FAILING) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_failing"))) {
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FAILING.getDefaultStack()), world.isClient()));
-		} else if (blockState.isOf(SpectrumBlocks.RUIN) && AdvancementHelper.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_ruin"))) {
+		} else if (blockState.isOf(SpectrumBlocks.RUIN) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_ruin"))) {
 			if (blockState.get(RuinBlock.DECAY_STATE) == RuinBlock.DecayConversion.BEDROCK) {
 				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
 			} else {
@@ -56,7 +55,7 @@ public abstract class GlassBottleItemMixin {
 			}
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_RUIN.getDefaultStack()), world.isClient()));
-		} else if (blockState.isOf(SpectrumBlocks.TERROR) && AdvancementHelper.hasAdvancement(user, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_bottle_of_terror"))) {
+		} else if (blockState.isOf(SpectrumBlocks.TERROR) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_terror"))) {
 			if (blockState.get(TerrorBlock.DECAY_STATE) == TerrorBlock.DecayConversion.BEDROCK) {
 				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
 			} else {

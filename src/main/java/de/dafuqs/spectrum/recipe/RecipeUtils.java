@@ -1,25 +1,19 @@
 package de.dafuqs.spectrum.recipe;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.command.argument.BlockArgumentParser;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class RecipeUtils {
 	
@@ -49,27 +43,6 @@ public class RecipeUtils {
 				return stack;
 			}
 		}
-	}
-	
-	public static List<IngredientStack> ingredientStacksFromJson(JsonArray array, int size) {
-		List<IngredientStack> ingredients = new ArrayList<>(size);
-		int dif = size - array.size();
-		for (int i = 0; i < array.size() && i < size; i++) {
-			JsonObject object = array.get(i).getAsJsonObject();
-			ingredients.add(ingredientStackFromJson(object));
-		}
-		if (dif > 0) {
-			for (int i = 0; i < dif; i++) {
-				ingredients.add(IngredientStack.EMPTY);
-			}
-		}
-		return ingredients;
-	}
-	
-	public static IngredientStack ingredientStackFromJson(JsonObject json) {
-		Ingredient ingredient = Ingredient.fromJson(json);
-		int count = json.has("count") ? json.get("count").getAsInt() : 1;
-		return IngredientStack.of(ingredient, count);
 	}
 	
 	public static BlockState blockStateFromString(String string) throws CommandSyntaxException {

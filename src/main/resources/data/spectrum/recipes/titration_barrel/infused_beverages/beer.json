@@ -1,0 +1,101 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat",
+      "count": 6
+    }
+  ],
+  "min_fermentation_time_hours": 4,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 1.25,
+    "effects": [
+      {
+        "id": "minecraft:haste",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 5,
+            "potency": 1
+          },
+          {
+            "min_alc": 8,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "spectrum:nourishing",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 3,
+            "potency": 0
+          },
+          {
+            "min_alc": 6,
+            "potency": 1
+          }
+        ]
+      },
+      {
+        "id": "minecraft:saturation",
+        "base_duration": 120,
+        "potency": [
+          {
+            "min_alc": 7
+          },
+          {
+            "min_alc": 14,
+            "potency": 1
+          },
+          {
+            "min_alc": 21,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "spectrum:stiffness",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 9
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"beer\", Color: 16762703 }"
+  },
+  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+}

@@ -1,23 +1,32 @@
 package de.dafuqs.spectrum.registries.client;
 
+import de.dafuqs.spectrum.blocks.present.PresentBlock;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
+import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.energy.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
+import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;
 
+import java.util.Locale;
 import java.util.Optional;
 
 // Vanilla models see: ModelPredicateProviderRegistry
@@ -28,18 +37,22 @@ public class SpectrumItemPredicates {
 	public static void registerClient() {
 		registerBowPredicates(SpectrumItems.BEDROCK_BOW);
 		registerCrossbowPredicates(SpectrumItems.BEDROCK_CROSSBOW);
-		registerFishingRodPredicates(SpectrumItems.BEDROCK_FISHING_ROD);
-		registerEnderSplicePredicates();
+		registerSpectrumFishingRodItemPredicates(SpectrumItems.LAGOON_ROD);
+		registerSpectrumFishingRodItemPredicates(SpectrumItems.MOLTEN_ROD);
+		registerSpectrumFishingRodItemPredicates(SpectrumItems.BEDROCK_FISHING_ROD);
+		registerEnderSplicePredicates(SpectrumItems.ENDER_SPLICE);
 		registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF);
 		registerAnimatedWandPredicates(SpectrumItems.RADIANCE_STAFF);
-		registerKnowledgeDropPredicates();
-		registerAshenCircletPredicates();
+		registerKnowledgeDropPredicates(SpectrumItems.KNOWLEDGE_GEM);
+		registerAshenCircletPredicates(SpectrumItems.ASHEN_CIRCLET);
 		registerColorPredicate(SpectrumItems.PAINTBRUSH);
-		registerInkColorPredicate();
-		registerInkFillStateItemPredicate();
-		registerMoonPhasePredicates();
-		registerDreamFlayerPredicates();
-		registerBottomlessBundlePredicates();
+		registerInkColorPredicate(SpectrumItems.INK_FLASK);
+		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
+		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
+		registerDreamFlayerPredicates(SpectrumItems.DREAMFLAYER);
+		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
+		registerEnchantmentCanvasPrediates(SpectrumItems.ENCHANTMENT_CANVAS);
+		registerPresentPredicates(SpectrumBlocks.PRESENT.asItem());
 	}
 	
 	private static void registerColorPredicate(Item item) {
@@ -52,8 +65,19 @@ public class SpectrumItemPredicates {
 		});
 	}
 	
-	private static void registerBottomlessBundlePredicates() {
-		ModelPredicateProviderRegistry.register(SpectrumItems.BOTTOMLESS_BUNDLE, new Identifier("locked"), (itemStack, clientWorld, livingEntity, i) -> {
+	private static void registerPresentPredicates(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("variant"), (itemStack, clientWorld, livingEntity, i) -> {
+			NbtCompound compound = itemStack.getNbt();
+			if(compound == null || !compound.contains("Variant", NbtElement.STRING_TYPE))
+				return 0.0F;
+			
+			PresentBlock.Variant variant = PresentBlock.Variant.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
+			return variant.ordinal() / 10F;
+		});
+	}
+	
+	private static void registerBottomlessBundlePredicates(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("locked"), (itemStack, clientWorld, livingEntity, i) -> {
 			NbtCompound compound = itemStack.getNbt();
 			if(compound == null)
 				return 0.0F;
@@ -68,8 +92,8 @@ public class SpectrumItemPredicates {
 		
 	}
 	
-	private static void registerMoonPhasePredicates() {
-		ModelPredicateProviderRegistry.register(SpectrumItems.CRESCENT_CLOCK, new Identifier("phase"), (itemStack, clientWorld, livingEntity, i) -> {
+	private static void registerMoonPhasePredicates(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("phase"), (itemStack, clientWorld, livingEntity, i) -> {
 			Entity entity = livingEntity != null ? livingEntity : itemStack.getHolder();
 			if (entity == null) {
 				return 0.0F;
@@ -89,11 +113,11 @@ public class SpectrumItemPredicates {
 		});
 	}
 	
-	private static void registerDreamFlayerPredicates() {
-
-		ModelPredicateProviderRegistry.register(SpectrumItems.DREAMFLAYER, new Identifier("in_inventory"), (itemStack, world, livingEntity, i) -> isRenderingGui() ? 1.0F : 0.0F);
-
-		ModelPredicateProviderRegistry.register(SpectrumItems.DREAMFLAYER, new Identifier(ActivatableItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
+	private static void registerDreamFlayerPredicates(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("in_inventory"), (itemStack, world, livingEntity, i) -> {
+			return currentItemRenderMode == ModelTransformation.Mode.GUI ? 1.0F : 0.0F;
+		});
+		ModelPredicateProviderRegistry.register(item, new Identifier(ActivatableItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
 			if(ActivatableItem.isActivated(itemStack)) {
 				return 1.0F;
 			} else {
@@ -135,24 +159,23 @@ public class SpectrumItemPredicates {
 		);
 	}
 	
-	private static void registerFishingRodPredicates(FishingRodItem fishingRodItem) {
+	private static void registerSpectrumFishingRodItemPredicates(SpectrumFishingRodItem fishingRodItem) {
 		ModelPredicateProviderRegistry.register(fishingRodItem, new Identifier("cast"), (itemStack, clientWorld, livingEntity, i) -> {
 			if (livingEntity == null) {
 				return 0.0F;
 			} else {
-				boolean bl = livingEntity.getMainHandStack() == itemStack;
-				boolean bl2 = livingEntity.getOffHandStack() == itemStack;
-				if (livingEntity.getMainHandStack().getItem() instanceof FishingRodItem) {
-					bl2 = false;
+				boolean isInMainHand = livingEntity.getMainHandStack() == itemStack;
+				boolean isInOffhand = livingEntity.getOffHandStack() == itemStack;
+				if (livingEntity.getMainHandStack().getItem() instanceof SpectrumFishingRodItem) {
+					isInOffhand = false;
 				}
-				
-				return (bl || bl2) && livingEntity instanceof PlayerEntity && ((PlayerEntity) livingEntity).fishHook != null ? 1.0F : 0.0F;
+				return (isInMainHand || isInOffhand) && livingEntity instanceof PlayerEntity && ((PlayerEntityAccessor) livingEntity).getSpectrumBobber() != null ? 1.0F : 0.0F;
 			}
 		});
 	}
 	
-	private static void registerEnderSplicePredicates() {
-		ModelPredicateProviderRegistry.register(SpectrumItems.ENDER_SPLICE, new Identifier("bound"), (itemStack, clientWorld, livingEntity, i) -> {
+	private static void registerEnderSplicePredicates(EnderSpliceItem enderSpliceItem) {
+		ModelPredicateProviderRegistry.register(enderSpliceItem, new Identifier("bound"), (itemStack, clientWorld, livingEntity, i) -> {
 			NbtCompound compoundTag = itemStack.getNbt();
 			if (compoundTag != null && (compoundTag.contains("PosX") || compoundTag.contains("TargetPlayerUUID"))) {
 				return 1.0F;
@@ -162,8 +185,8 @@ public class SpectrumItemPredicates {
 		});
 	}
 	
-	private static void registerAshenCircletPredicates() {
-		ModelPredicateProviderRegistry.register(SpectrumItems.ASHEN_CIRCLET, new Identifier("cooldown"), (itemStack, clientWorld, livingEntity, i) -> {
+	private static void registerAshenCircletPredicates(Item ashenCircletItem) {
+		ModelPredicateProviderRegistry.register(ashenCircletItem, new Identifier("cooldown"), (itemStack, clientWorld, livingEntity, i) -> {
 			if (livingEntity != null && AshenCircletItem.getCooldownTicks(itemStack, livingEntity.world) == 0) {
 				return 0.0F;
 			} else {
@@ -188,7 +211,7 @@ public class SpectrumItemPredicates {
 		});
 	}
 	
-	private static void registerInkColorPredicate() {
+	private static void registerInkColorPredicate(InkFlaskItem item) {
 		ModelPredicateProviderRegistry.register(SpectrumItems.INK_FLASK, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
 			SingleInkStorage storage = SpectrumItems.INK_FLASK.getEnergyStorage(itemStack);
 			InkColor color = storage.getStoredColor();
@@ -196,7 +219,7 @@ public class SpectrumItemPredicates {
 		});
 	}
 	
-	private static void registerInkFillStateItemPredicate() {
+	private static void registerInkFillStateItemPredicate(InkFlaskItem item) {
 		ModelPredicateProviderRegistry.register(SpectrumItems.INK_FLASK, new Identifier("fill_state"), (itemStack, world, livingEntity, i) -> {
 			SingleInkStorage storage = SpectrumItems.INK_FLASK.getEnergyStorage(itemStack);
 			long current = storage.getCurrentTotal();
@@ -208,12 +231,15 @@ public class SpectrumItemPredicates {
 			}
 		});
 	}
-
-	private static boolean isRenderingGui() {
-		return currentItemRenderMode == ModelTransformation.Mode.GUI
-				|| currentItemRenderMode == ModelTransformation.Mode.GROUND
-				|| currentItemRenderMode == ModelTransformation.Mode.FIXED
-				|| currentItemRenderMode == ModelTransformation.Mode.NONE;
+	
+	private static void registerEnchantmentCanvasPrediates(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("bound"), (itemStack, world, livingEntity, i) -> {
+			NbtCompound nbt = itemStack.getNbt();
+			if(nbt != null && nbt.contains("BoundItem", NbtElement.STRING_TYPE)) {
+				return 1;
+			}
+			return 0;
+		});
 	}
-
+	
 }

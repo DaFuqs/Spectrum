@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_amaranth": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth" }
+    },
+    "collected_blood_orchid_petal": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_blood_orchid_petal" }
+    }
+  }
+}

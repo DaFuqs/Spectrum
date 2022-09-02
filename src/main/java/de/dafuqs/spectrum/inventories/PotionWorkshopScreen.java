@@ -15,8 +15,8 @@ import java.awt.*;
 
 public class PotionWorkshopScreen extends HandledScreen<PotionWorkshopScreenHandler> {
 	
-	public static final Identifier BACKGROUND_3_SLOTS = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/potion_workshop_3_slots.png");
-	public static final Identifier BACKGROUND_4_SLOTS = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/potion_workshop_4_slots.png");
+	public static final Identifier BACKGROUND_3_SLOTS = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
+	public static final Identifier BACKGROUND_4_SLOTS = SpectrumCommon.locate("textures/gui/container/potion_workshop_4_slots.png");
 	private static final int[] BUBBLE_PROGRESS = new int[]{0, 4, 8, 11, 13, 17, 20, 24, 26, 30, 33, 36, 41};
 	
 	private final Identifier background;

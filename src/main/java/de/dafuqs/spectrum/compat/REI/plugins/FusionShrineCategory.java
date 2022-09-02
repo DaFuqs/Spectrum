@@ -49,31 +49,31 @@ public class FusionShrineCategory implements DisplayCategory<FusionShrineDisplay
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 33), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 43), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
-			List<EntryIngredient> output = display.getOutputEntries();
-			
-			// input slots
-			int ingredientSize = display.craftingInputs.size();
-			int startX = Math.max(-10, 10 - ingredientSize * 10);
-			for (int i = 0; i < ingredientSize; i++) {
-				EntryIngredient currentIngredient = display.craftingInputs.get(i);
-				widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + i * 20, startPoint.y + 9)).markInput().entries(currentIngredient));
-			}
+			List<EntryIngredient> inputs = display.getInputEntries();
 			
 			// shrine + fluid
-			if (!display.fluidInput.equals(EntryIngredients.of(Fluids.EMPTY))) {
+			if (!inputs.get(0).equals(EntryIngredients.of(Fluids.EMPTY))) {
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + 10, startPoint.y + 35)).entries(FUSION_SHRINE_BASALT).disableBackground());
-				widgets.add(Widgets.createSlot(new Point(startPoint.x + 30, startPoint.y + 35)).markInput().entries(display.fluidInput));
+				widgets.add(Widgets.createSlot(new Point(startPoint.x + 30, startPoint.y + 35)).markInput().entries(inputs.get(0)));
 			} else {
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 35)).entries(FUSION_SHRINE_BASALT).disableBackground());
+			}
+			
+			// input slots
+			int ingredientSize = inputs.size() - 1;
+			int startX = Math.max(-10, 10 - ingredientSize * 10);
+			for (int i = 0; i < ingredientSize; i++) {
+				EntryIngredient currentIngredient = inputs.get(i+1);
+				widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + i * 20, startPoint.y + 9)).markInput().entries(currentIngredient));
 			}
 			
 			// output arrow and slot
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 35)));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 35)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 35)).markOutput().disableBackground().entries(output.get(0)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 35)).markOutput().disableBackground().entries(display.getOutputEntries().get(0)));
 			
 			if (display.getDescription().isPresent()) {
-				Text description = (Text) display.getDescription().get();
+				Text description = display.getDescription().get();
 				widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 65), description).leftAligned().color(0x3f3f3f).noShadow());
 			}
 			

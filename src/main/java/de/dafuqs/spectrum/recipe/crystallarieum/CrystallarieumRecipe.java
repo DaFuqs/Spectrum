@@ -1,20 +1,16 @@
 package de.dafuqs.spectrum.recipe.crystallarieum;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -25,12 +21,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
+public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_crystallarieum");
-	
-	protected final Identifier id;
-	protected final String group;
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_crystallarieum");
 	
 	protected final Ingredient inputIngredient;
 	protected final List<BlockState> growthStages;
@@ -40,15 +33,12 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final boolean growsWithoutCatalyst;
 	protected final List<CrystallarieumCatalyst> catalysts;
 	
-	@Nullable
-	protected final Identifier requiredAdvancementIdentifier;
-	
 	protected final static Map<Ingredient, CrystallarieumRecipe> ingredientMap = new HashMap<>();
 	protected final static Map<BlockState, CrystallarieumRecipe> stateMap = new HashMap<>();
 	
-	public CrystallarieumRecipe(Identifier id, String group, Ingredient inputIngredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, @Nullable Identifier requiredAdvancementIdentifier) {
-		this.id = id;
-		this.group = group;
+	public CrystallarieumRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts) {
+		super(id, group, secret, requiredAdvancementIdentifier);
+		
 		this.inputIngredient = inputIngredient;
 		this.growthStages = growthStages;
 		this.secondsPerGrowthStage = secondsPerGrowthStage;
@@ -56,12 +46,13 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.inkPerSecond = inkPerSecond;
 		this.growsWithoutCatalyst = growsWithoutCatalyst;
 		this.catalysts = catalysts;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		
 		ingredientMap.put(inputIngredient, this);
 		for(BlockState growthStage : growthStages) {
 			stateMap.put(growthStage, this);
 		}
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	@Nullable
@@ -106,23 +97,8 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
-	@Override
-	public String getGroup() {
-		return this.group;
-	}
-	
-	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.CRYSTALLARIEUM);
-	}
-	
-	@Override
-	public Identifier getId() {
-		return this.id;
 	}
 	
 	@Override
@@ -136,39 +112,20 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return UNLOCK_IDENTIFIER;
+	}
+	
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.CRYSTALLARIEUM_ID;
+	}
+	
+	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
 		defaultedList.add(this.inputIngredient);
 		return defaultedList;
-	}
-	
-	@Override
-	public boolean equals(Object object) {
-		if (object instanceof CrystallarieumRecipe crystallarieumRecipe) {
-			return crystallarieumRecipe.getId().equals(this.getId());
-		}
-		return false;
-	}
-	
-	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
-	}
-	
-	@Nullable
-	@Override
-	public Identifier getRequiredAdvancementIdentifier() {
-		return this.requiredAdvancementIdentifier;
-	}
-	
-	@Override
-	public Text getSingleUnlockToastString() {
-		return Text.translatable("spectrum.toast.crystallarieum_recipe_unlocked.title");
-	}
-	
-	@Override
-	public Text getMultipleUnlockToastString() {
-		return Text.translatable("spectrum.toast.crystallarieum_recipes_unlocked.title");
 	}
 	
 	public Ingredient getIngredientStack() {
@@ -207,4 +164,5 @@ public class CrystallarieumRecipe implements Recipe<Inventory>, GatedRecipe {
 	public List<CrystallarieumCatalyst> getCatalysts() {
 		return this.catalysts;
 	}
+	
 }

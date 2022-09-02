@@ -1,35 +1,20 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
+import de.dafuqs.spectrum.compat.REI.GatedSpectrumDisplay;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
+import de.dafuqs.spectrum.recipe.fluid_converting.MidnightSolutionConvertingRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.util.Identifier;
 
 import java.util.Collections;
-import java.util.List;
 
-public class MidnightSolutionConvertingDisplay extends BasicDisplay implements GatedRecipeDisplay {
+public class MidnightSolutionConvertingDisplay extends GatedSpectrumDisplay {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration");
-	
-	public <T extends Recipe<?>> MidnightSolutionConvertingDisplay(MidnightSolutionConvertingRecipe recipe) {
-		this(Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
-	}
-	
-	public MidnightSolutionConvertingDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
-		super(inputs, outputs);
-	}
-	
-	public static Serializer<MidnightSolutionConvertingDisplay> serializer() {
-		return Serializer.ofSimpleRecipeLess(MidnightSolutionConvertingDisplay::new);
+	public MidnightSolutionConvertingDisplay(MidnightSolutionConvertingRecipe recipe) {
+		super(recipe, Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), recipe.getOutput());
 	}
 	
 	public final EntryIngredient getIn() {
@@ -46,7 +31,7 @@ public class MidnightSolutionConvertingDisplay extends BasicDisplay implements G
 	}
 	
 	public boolean isUnlocked() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, MidnightSolutionConvertingRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	
 }

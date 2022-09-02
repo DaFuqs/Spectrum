@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:titration_barrel"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.tap_aged_air.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.tap_aged_air.description"
+    }
+  },
+  "parent": "spectrum:tap_titration_barrel",
+  "criteria": {
+    "tapped_titration_barrel": {
+      "trigger": "spectrum:titration_barrel_tapping",
+      "conditions": {
+        "ingredient_count": {
+          "max": 0
+        },
+        "age_ingame_days": {
+          "min": 64
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_pigment"
+      }
+    }
+  }
+}

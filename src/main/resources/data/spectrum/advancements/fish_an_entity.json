@@ -1,0 +1,27 @@
+{
+  "parent": "spectrum:collect_mermaids_gem",
+  "display": {
+    "icon": {
+        "item": "spectrum:lagoon_rod"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.fish_an_entity.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fish_an_entity.description"
+    }
+  },
+  "criteria": {
+    "fished_an_entity": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "fished_entity": { }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
+    }
+  }
+}

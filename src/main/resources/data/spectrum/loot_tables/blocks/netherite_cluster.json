@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_netherite",
+          "name": "spectrum:pure_netherite",
           "functions": [
             {
               "function": "minecraft:set_count",

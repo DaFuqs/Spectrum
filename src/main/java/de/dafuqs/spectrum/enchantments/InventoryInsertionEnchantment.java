@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.enchantments;
 
+import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
@@ -35,7 +36,7 @@ public class InventoryInsertionEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || stack.getItem() instanceof ShearsItem;
+		return super.isAcceptableItem(stack) || stack.getItem() instanceof ShearsItem || stack.getItem() instanceof SpectrumFishingRodItem;
 	}
 	
 }

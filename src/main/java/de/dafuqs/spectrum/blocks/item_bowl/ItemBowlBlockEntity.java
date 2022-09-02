@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.item_bowl;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
 import de.dafuqs.spectrum.events.ExactPositionSource;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
@@ -10,19 +11,11 @@ import de.dafuqs.spectrum.particle.effect.ColoredTransmissionParticleEffect;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -31,22 +24,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class ItemBowlBlockEntity extends BlockEntity {
+public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 	
-	protected int INVENTORY_SIZE = 1;
-	protected SimpleInventory inventory;
+	protected static final int INVENTORY_SIZE = 1;
 	
 	public ItemBowlBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.ITEM_BOWL, pos, state);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		super(SpectrumBlockEntities.ITEM_BOWL, pos, state, INVENTORY_SIZE);
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, ItemBowlBlockEntity itemBowlBlockEntity) {
-		ItemStack storedStack = itemBowlBlockEntity.getInventory().getStack(0);
+		ItemStack storedStack = itemBowlBlockEntity.getStack(0);
 		if (!storedStack.isEmpty()) {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem());
 			if (optionalItemColor.isPresent()) {
@@ -71,40 +61,8 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		}
 	}
 	
-	public void readNbt(NbtCompound nbt) {
-		super.readNbt(nbt);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
-	}
-	
-	public void writeNbt(NbtCompound nbt) {
-		super.writeNbt(nbt);
-		nbt.put("inventory", this.inventory.toNbtList());
-	}
-	
-	// Called when the chunk is first loaded to initialize this be
-	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = new NbtCompound();
-		this.writeNbt(nbtCompound);
-		return nbtCompound;
-	}
-	
-	@Nullable
-	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
-	}
-	
-	public void updateInClientWorld() {
-		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
-	}
-	
-	public Inventory getInventory() {
-		return this.inventory;
-	}
-	
-	public int decrementBowlStack(Vec3d orbTargetPos, int amount, boolean doEffects) {
-		ItemStack storedStack = this.inventory.getStack(0);
+	public int decrementBowlStack(BlockPos particleTargetBlockPos, int amount, boolean doEffects) {
+		ItemStack storedStack = this.getStack(0);
 		if (storedStack.isEmpty()) {
 			return 0;
 		}
@@ -113,9 +71,9 @@ public class ItemBowlBlockEntity extends BlockEntity {
 		Item recipeRemainderItem = storedStack.getItem().getRecipeRemainder();
 		if (recipeRemainderItem != null) {
 			if (storedStack.getCount() == 1) {
-				inventory.setStack(0, recipeRemainderItem.getDefaultStack());
+				setStack(0, recipeRemainderItem.getDefaultStack());
 			} else {
-				inventory.getStack(0).decrement(decrementAmount);
+				getStack(0).decrement(decrementAmount);
 				
 				ItemStack remainderStack = recipeRemainderItem.getDefaultStack();
 				remainderStack.setCount(decrementAmount);
@@ -125,14 +83,14 @@ public class ItemBowlBlockEntity extends BlockEntity {
 				world.spawnEntity(itemEntity);
 			}
 		} else {
-			inventory.getStack(0).decrement(decrementAmount);
+			getStack(0).decrement(decrementAmount);
 		}
 		
 		if (decrementAmount > 0) {
 			if (doEffects) {
 				spawnOrbParticles(orbTargetPos);
 			}
-			updateInClientWorld();
+			updateInClientWorld(world, pos);
 			markDirty();
 		}
 		
@@ -140,7 +98,7 @@ public class ItemBowlBlockEntity extends BlockEntity {
 	}
 	
 	public void spawnOrbParticles(Vec3d orbTargetPos) {
-		ItemStack storedStack = this.getInventory().getStack(0);
+		ItemStack storedStack = this.getStack(0);
 		if (!storedStack.isEmpty()) {
 			Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(storedStack.getItem(), DyeColor.PURPLE);
 			if (optionalItemColor.isPresent()) {

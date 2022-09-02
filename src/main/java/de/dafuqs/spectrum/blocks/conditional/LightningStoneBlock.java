@@ -63,7 +63,7 @@ public class LightningStoneBlock extends Block implements RevelationAware {
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_lightning_stones");
+		return SpectrumCommon.locate("milestones/reveal_lightning_stones");
 	}
 	
 	@Deprecated

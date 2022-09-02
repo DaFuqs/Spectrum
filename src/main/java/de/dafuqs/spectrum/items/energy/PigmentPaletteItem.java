@@ -14,7 +14,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -26,7 +25,7 @@ public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorag
 	private final long maxEnergyPerColor;
 	
 	public PigmentPaletteItem(Settings settings, long maxEnergyPerColor) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_pigment_palette"));
+		super(settings, SpectrumCommon.locate("progression/unlock_pigment_palette"));
 		this.maxEnergyPerColor = maxEnergyPerColor;
 	}
 	

@@ -6,7 +6,7 @@ $lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "gr
 $ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
 $upgrades = @("upgrade_speed", "upgrade_speed2", "upgrade_speed3", "upgrade_efficiency", "upgrade_efficiency2", "upgrade_yield", "upgrade_yield2", "upgrade_experience", "upgrade_experience2")
 
-$new = @("blackslag_emerald_ore")
+$new = @("native_coal_block","native_iron_block","native_gold_block","native_diamond_block","native_emerald_block","native_redstone_block","native_lapis_block","native_copper_block","native_quartz_block","native_netherite_block","native_glowstone_block","native_prismarine_block","native_certus_quartz_block","native_fluix_block","native_globette_block","native_globette_nether_block","native_globette_end_block")
 
 enum BlockType {
     Default

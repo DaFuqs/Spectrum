@@ -4,9 +4,9 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/collect_bismuth_crystal" }
     },
-    "collected_paletur": {
+    "collected_paltaeria": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paletur" }
+      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paltaeria" }
     }
   }
 }

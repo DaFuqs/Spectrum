@@ -23,7 +23,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -39,7 +38,7 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 	private static final HashMap<LivingEntity, Long> sneakingTimes = new HashMap<>();
 	
 	public TakeOffBeltItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_take_off_belt"));
+		super(settings, SpectrumCommon.locate("progression/unlock_take_off_belt"));
 	}
 	
 	public static int getJumpBoostAmplifier(int sneakTime, int powerEnchantmentLevel) {

@@ -1,54 +1,44 @@
 package de.dafuqs.spectrum.recipe.enchantment_upgrade;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe {
-	
-	protected final Identifier id;
+public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe {
 	
 	protected final Enchantment enchantment;
 	protected final int enchantmentDestinationLevel;
 	protected final int requiredExperience;
 	protected final Item requiredItem;
 	protected final int requiredItemCount;
-	@Nullable
-	protected final Identifier requiredAdvancementIdentifier;
 	
 	protected final DefaultedList<Ingredient> inputs;
 	protected final ItemStack output;
 	
-	public EnchantmentUpgradeRecipe(Identifier id, Enchantment enchantment, int enchantmentDestinationLevel, int requiredExperience, Item requiredItem, int requiredItemCount, @Nullable Identifier requiredAdvancementIdentifier) {
-		this.id = id;
+	public EnchantmentUpgradeRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Enchantment enchantment, int enchantmentDestinationLevel, int requiredExperience, Item requiredItem, int requiredItemCount) {
+		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.enchantment = enchantment;
 		this.enchantmentDestinationLevel = enchantmentDestinationLevel;
 		this.requiredExperience = requiredExperience;
 		this.requiredItem = requiredItem;
 		this.requiredItemCount = requiredItemCount;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		
 		DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
 		
@@ -61,14 +51,6 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 		ItemStack outputStack = new ItemStack(Items.ENCHANTED_BOOK);
 		outputStack.addEnchantment(enchantment, enchantmentDestinationLevel);
 		this.output = outputStack;
-	}
-	
-	@Override
-	public boolean equals(Object object) {
-		if (object instanceof EnchantmentUpgradeRecipe) {
-			return ((EnchantmentUpgradeRecipe) object).getId().equals(this.getId());
-		}
-		return false;
 	}
 	
 	@Override
@@ -121,18 +103,9 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 		return output;
 	}
 	
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
 	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.ENCHANTER);
-	}
-	
-	@Override
-	public Identifier getId() {
-		return this.id;
 	}
 	
 	@Override
@@ -146,22 +119,22 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 	}
 	
 	@Override
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return EnchanterRecipe.UNLOCK_IDENTIFIER;
+	}
+	
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.ENCHANTMENT_UPGRADE_ID;
+	}
+	
+	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		return inputs;
 	}
 	
 	public int getRequiredExperience() {
 		return requiredExperience;
-	}
-	
-	/**
-	 * The advancement the player has to have to let the recipe be craftable in the pedestal
-	 *
-	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
-	 */
-	@Nullable
-	public Identifier getRequiredAdvancementIdentifier() {
-		return requiredAdvancementIdentifier;
 	}
 	
 	public Item getRequiredItem() {
@@ -182,21 +155,6 @@ public class EnchantmentUpgradeRecipe implements Recipe<Inventory>, GatedRecipe 
 	
 	public boolean requiresUnlockedOverEnchanting() {
 		return this.enchantmentDestinationLevel > this.enchantment.getMaxLevel();
-	}
-	
-	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, EnchanterRecipe.UNLOCK_ENCHANTING_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
-	}
-	
-	@Override
-	public Text getSingleUnlockToastString() {
-		return Text.translatable("spectrum.toast.enchanter_recipe_unlocked.title");
-	}
-	
-	@Override
-	public Text getMultipleUnlockToastString() {
-		return Text.translatable("spectrum.toast.enchanter_recipes_unlocked.title");
 	}
 	
 }

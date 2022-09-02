@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "age=0,liquidcrystallogged=false": {
+      "model": "spectrum:block/onyx_sugar_stick0"
+    },
+    "age=1,liquidcrystallogged=false": {
+      "model": "spectrum:block/onyx_sugar_stick1"
+    },
+    "age=2,liquidcrystallogged=false": {
+      "model": "spectrum:block/onyx_sugar_stick2"
+    },
+    "age=0,liquidcrystallogged=true": {
+      "model": "spectrum:block/onyx_sugar_stick0"
+    },
+    "age=1,liquidcrystallogged=true": {
+      "model": "spectrum:block/onyx_sugar_stick1"
+    },
+    "age=2,liquidcrystallogged=true": {
+      "model": "spectrum:block/onyx_sugar_stick2"
+    }
+  }
+}

@@ -8,7 +8,6 @@ import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class NaturesStaffUseSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {

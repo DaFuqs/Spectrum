@@ -6,7 +6,9 @@
   "mixins": [
     "AbstractHorseEntityMixin",
     "AnvilBlockMixin",
+    "ApplyBonusLootFunctionMixin",
     "BlockMixin",
+    "BrewingRecipeRegistryMixin",
     "BuddingAmethystBlockMixin",
     "ChunkNoiseSamplerMixin",
     "CropBlockMixin",
@@ -14,11 +16,11 @@
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "EntityApplyFluidsMixin",
+    "EntityMixin",
     "EntityTypeMixin",
     "FarmlandBlockMixin",
     "FirstStrikeEnchantmentMixin",
-    "FishingBobberEntityMixin",
-    "FishingBobberEntityRendererMixin",
+    "FishingHookPredicateMixin",
     "GeodesGenerateWithGemstoneOresMixin",
     "GlassBottleItemMixin",
     "InfestedBlockMixin",
@@ -42,6 +44,7 @@
     "RandomChanceWithLootingLootConditionMixin",
     "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
+    "ServerPlayerInteractionManagerMixin",
     "ServerWorldMixin",
     "WitherEntityMixin",
     "accessors.FluidBlockAccessor",
@@ -51,7 +54,9 @@
     "accessors.MooshroomEntityAccessor",
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
-    "accessors.SlimeEntityAccessor"
+    "accessors.ShulkerEntityAccessor",
+    "accessors.SlimeEntityAccessor",
+    "accessors.StructureFeatureAccessor"
   ],
   "client": [
     "accessors.WorldRendererAccessor",
@@ -59,7 +64,9 @@
     "client.BuiltinModelItemRendererMixin",
     "client.ClientPlayNetworkHandlerMixin",
     "client.ClientWorldReverbMixin",
+    "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
+    "client.ElytraFeatureRendererMixin",
     "client.HeadFeatureRendererMixin",
     "client.InGameHudMixin",
     "client.ItemFrameEntityRendererMixin",
@@ -68,10 +75,10 @@
     "client.PotionItemClientMixin",
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin",
+    "client.accessors.BakedOverrideAccessor",
     "client.accessors.BossBarHudAccessor",
-    "client.accessors.RenderLayerAccessor",
     "client.accessors.ModelOverrideListAccessor",
-    "client.accessors.BakedOverrideAccessor"
+    "client.accessors.RenderLayerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

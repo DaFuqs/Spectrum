@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.interfaces;
 
-import io.wispforest.owo.Owo;
+import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.entity.player.PlayerEntity;
 import org.jetbrains.annotations.Nullable;
 
@@ -9,10 +9,10 @@ import java.util.UUID;
 public interface PlayerOwned {
 	
 	static PlayerEntity getPlayerEntityIfOnline(UUID ownerUUID) {
-		if (ownerUUID == null || Owo.currentServer() == null) {
-			return null;
+		if (ownerUUID != null && SpectrumCommon.minecraftServer != null) {
+			return SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
 		}
-		return Owo.currentServer().getPlayerManager().getPlayer(ownerUUID);
+		return null;
 	}
 	
 	UUID getOwnerUUID();
@@ -31,7 +31,7 @@ public interface PlayerOwned {
 	default PlayerEntity getOwnerIfOnline() {
 		UUID ownerUUID = this.getOwnerUUID();
 		if (ownerUUID != null) {
-			return Owo.currentServer().getPlayerManager().getPlayer(ownerUUID);
+			return SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(ownerUUID);
 		}
 		return null;
 	}

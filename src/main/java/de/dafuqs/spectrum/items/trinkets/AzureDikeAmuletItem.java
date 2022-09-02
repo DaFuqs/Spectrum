@@ -10,7 +10,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,7 +18,7 @@ import java.util.List;
 public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem {
 	
 	public AzureDikeAmuletItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_shieldgrasp_amulet"), InkColors.BLUE, 100L * (long) Math.pow(8, 18)); // 20 extra hearts (pretty much unobtainable)
+		super(settings, SpectrumCommon.locate("progression/unlock_shieldgrasp_amulet"), InkColors.BLUE, 100L * (long) Math.pow(8, 18)); // 20 extra hearts (pretty much unobtainable)
 	}
 	
 	@Environment(EnvType.CLIENT)

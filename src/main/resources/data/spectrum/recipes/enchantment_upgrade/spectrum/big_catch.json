@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "enchantment": "spectrum:big_catch",
+  "levels": [
+    {
+      "experience": 200,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 400,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 128
+    }
+  ],
+  "required_advancement": "spectrum:progression/enchantments/big_catch",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:big_catch"
+      ]
+    }
+  ]
+}

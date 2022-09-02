@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.LingeringPotionItem;
@@ -16,8 +18,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 @Mixin({PotionItem.class, LingeringPotionItem.class, TippedArrowItem.class})
-public class PotionItemClientMixin {
+public abstract class PotionItemClientMixin {
 	
 	@Inject(method = "appendTooltip(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Ljava/util/List;Lnet/minecraft/client/item/TooltipContext;)V", at = @At("HEAD"), cancellable = true)
 	private void spectrum$makePotionUnidentifiable(ItemStack stack, World world, List<Text> tooltip, TooltipContext context, CallbackInfo ci) {

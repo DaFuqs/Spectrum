@@ -1,0 +1,37 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 2400,
+  "experience": 16.0,
+  "fluid": "spectrum:midnight_solution",
+  "ingredients": [
+    {
+      "item": "spectrum:cow_head"
+    },
+    {
+      "tag": "spectrum:mob_heads/sheep_heads"
+    },
+    {
+      "item": "spectrum:pig_head"
+    },
+    {
+      "item": "spectrum:chicken_head"
+    },
+    {
+      "item": "spectrum:vegetal",
+      "count": 16
+    }
+  ],
+  "result": {
+    "item": "spectrum:egg_laying_wooly_pig_head"
+  },
+  "required_advancement": "spectrum:progression/unlock_egg_laying_wooly_pig_head",
+  "world_conditions": [ ],
+  "start_crafting_effect": "single_visual_explosion_on_shrine",
+  "during_crafting_effects": [
+    "nothing",
+    "visual_explosions_on_shrine",
+    "nothing"
+  ],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine",
+  "description": "spectrum.recipe.fusion_shrine.explanation.egg_laying_wooly_pig_head"
+}

@@ -62,7 +62,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		availableParticleEffects.add(ParticleTypes.FLAME);
 		availableParticleEffects.add(ParticleTypes.BUBBLE);
 		
-		this.particleSpriteIdentifier = new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star");
+		this.particleSpriteIdentifier = SpectrumCommon.locate("particle/shooting_star");
 		this.particlesPerSecond = 10.0F;
 		this.particleSourcePosition = new Vec3f(0, 1, 0);
 		this.particleSourcePositionVariance = new Vec3f(0.5F, 0, 0.5F);

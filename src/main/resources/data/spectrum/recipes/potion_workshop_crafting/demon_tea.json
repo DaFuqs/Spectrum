@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "color": 10027008,
+  "ingredient1": {
+    "item": "spectrum:jade_vine_petals"
+  },
+  "ingredient2": {
+    "item": "spectrum:bloodboil_syrup"
+  },
+  "result": {
+    "item": "spectrum:demon_tea"
+  },
+  "required_advancement": "spectrum:progression/unlock_demon_tea"
+}

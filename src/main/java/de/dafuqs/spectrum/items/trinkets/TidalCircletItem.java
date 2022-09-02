@@ -18,7 +18,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -38,7 +37,7 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 	private final int AXOLOTL_HEALING = 2;
 	
 	public TidalCircletItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_weeping_circlet"));
+		super(settings, SpectrumCommon.locate(SpectrumCommon.MOD_ID, "progression/unlock_weeping_circlet"));
 	}
 	
 	@Override

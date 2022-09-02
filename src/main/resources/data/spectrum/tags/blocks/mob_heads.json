@@ -1,5 +1,6 @@
 {
   "values": [
+    "spectrum:egg_laying_wooly_pig_head",
     "spectrum:axolotl_blue_head",
     "spectrum:axolotl_brown_head",
     "spectrum:axolotl_cyan_head",
@@ -101,6 +102,8 @@
     "spectrum:zoglin_head",
     "spectrum:zombie_villager_head",
     "spectrum:zombified_piglin_head",
+
+    "spectrum:egg_laying_wooly_pig_wall_head",
     "spectrum:axolotl_blue_wall_head",
     "spectrum:axolotl_brown_wall_head",
     "spectrum:axolotl_cyan_wall_head",

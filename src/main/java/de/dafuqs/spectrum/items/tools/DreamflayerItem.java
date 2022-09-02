@@ -8,6 +8,8 @@ import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
@@ -152,6 +154,7 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 		return List.of(USED_COLOR);
 	}
 	
+	@Environment(EnvType.CLIENT)
 	@Override
 	public void addInkPoweredTooltip(List<Text> tooltip) {
 		InkPowered.super.addInkPoweredTooltip(tooltip);

@@ -46,10 +46,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	
 	public CrackedEndPortalFrameBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState(((
-				this.stateManager.getDefaultState())
-				.with(FACING_VERTICAL, false))
-				.with(EYE_TYPE, EndPortalFrameEye.NONE));
+		this.setDefaultState(this.stateManager.getDefaultState().with(FACING_VERTICAL, false).with(EYE_TYPE, EndPortalFrameEye.NONE));
 	}
 	
 	public static void checkAndFillEndPortal(World world, BlockPos blockPos) {

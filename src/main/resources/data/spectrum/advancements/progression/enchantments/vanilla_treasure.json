@@ -8,9 +8,9 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:hidden/collect_pigment/collect_light_gray_pigment" }
     },
-    "collected_paletur": {
+    "collected_paltaeria": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paletur" }
+      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paltaeria" }
     }
   }
 }

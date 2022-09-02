@@ -12,13 +12,12 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
 public class SuckingChestBlockEntityRenderer<SuckingChestBlockEntity extends SpectrumChestBlockEntity> implements BlockEntityRenderer<SuckingChestBlockEntity> {
 	
-	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "block/black_block"));
+	private static final SpriteIdentifier spriteIdentifier = new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, SpectrumCommon.locate("block/black_block"));
 	private final ModelPart root;
 	
 	public SuckingChestBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {

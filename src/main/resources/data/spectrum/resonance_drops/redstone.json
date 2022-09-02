@@ -1,4 +1,4 @@
 {
   "input": "minecraft:redstone",
-  "output": "spectrum:native_redstone"
+  "output": "spectrum:pure_redstone"
 }

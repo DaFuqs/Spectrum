@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
 import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColor;

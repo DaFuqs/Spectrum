@@ -180,7 +180,6 @@ public class SpectrumItems {
 	//public static OwoItemSettings graceSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.RARE).maxCount(1).fireproof();
 	//public static final CrystalGraceItem WHITE_CRYSTAL_GRACE = new CrystalGraceItem(ColorPool.WHITE, graceSettings, "ooooo go stick my dick in Azzy's ass oooo");
 	
-	
 	// Bedrock Armor
 	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.HEAD, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(-1)) {
 		@Override

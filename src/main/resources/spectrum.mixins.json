@@ -50,7 +50,8 @@
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
     "accessors.SlimeEntityAccessor",
-    "accessors.StructureFeatureAccessor"
+    "accessors.StructureFeatureAccessor",
+    "ColoredLeavesBlockMixin"
   ],
   "client": [
     "client.BlockOverlayRendererMixin",
@@ -66,7 +67,7 @@
     "client.TransparentBlockMixin",
     "client.WorldRendererMixin",
     "client.accessors.BossBarHudAccessor",
-    "client.accessors.RenderLayerAccessor",
+    "client.accessors.RenderLayerAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -8,6 +8,7 @@
     "BlockMixin",
     "BuddingAmethystBlockMixin",
     "ChunkNoiseSamplerMixin",
+    "ColoredLeavesBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
     "EnderEyeItemMixin",
@@ -50,15 +51,16 @@
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
     "accessors.SlimeEntityAccessor",
-    "accessors.StructureFeatureAccessor",
-    "ColoredLeavesBlockMixin"
+    "accessors.StructureFeatureAccessor"
   ],
   "client": [
+    "client.AbstractClientPlayerEntityMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.ClientWorldReverbMixin",
     "client.DimensionTypeMixin",
     "client.HeadFeatureRendererMixin",
+    "client.HeldItemRendererMixin",
     "client.InGameHudMixin",
     "client.ItemFrameEntityRendererMixin",
     "client.ItemRendererMixin",

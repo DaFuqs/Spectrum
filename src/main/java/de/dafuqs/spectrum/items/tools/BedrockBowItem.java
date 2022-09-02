@@ -10,7 +10,7 @@ import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Map;
 
-public class BedrockBowItem extends BowItem implements Preenchanted {
+public class BedrockBowItem extends SpectrumBowItem implements Preenchanted {
 	
 	public BedrockBowItem(Settings settings) {
 		super(settings);
@@ -41,6 +41,10 @@ public class BedrockBowItem extends BowItem implements Preenchanted {
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
+	}
+	
+	public float getZoom() {
+		return 20F;
 	}
 	
 }

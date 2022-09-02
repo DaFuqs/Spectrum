@@ -3,6 +3,8 @@ package de.dafuqs.spectrum.mixin.client;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumWallSkullBlock;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -19,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+@Environment(EnvType.CLIENT)
 @Mixin(BuiltinModelItemRenderer.class)
 public class BuiltinModelItemRendererMixin {
 	

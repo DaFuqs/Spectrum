@@ -1,12 +1,15 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.SpectrumClient;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+@Environment(EnvType.CLIENT)
 @Mixin(DimensionType.class)
 public class DimensionTypeMixin {
 	

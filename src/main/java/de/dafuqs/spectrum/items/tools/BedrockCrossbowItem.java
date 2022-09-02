@@ -54,4 +54,9 @@ public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted, A
 		return 3.0F;
 	}
 	
+	@Override
+	public float getDivergenceMod() {
+		return 0.8F;
+	}
+	
 }

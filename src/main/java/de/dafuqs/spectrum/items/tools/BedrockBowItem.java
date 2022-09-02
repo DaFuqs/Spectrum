@@ -55,7 +55,7 @@ public class BedrockBowItem extends BowItem implements Preenchanted, ArrowheadBo
 	}
 	
 	@Override
-	public float getDivergence() {
+	public float getDivergenceMod() {
 		return 0.8F;
 	}
 	

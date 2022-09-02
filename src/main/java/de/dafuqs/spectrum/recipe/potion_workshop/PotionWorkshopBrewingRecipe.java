@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumPotions;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
@@ -185,6 +186,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		if (effects.size() == 0) {
 			PotionUtil.setPotion(itemStack, Potions.THICK);
 		} else {
+			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
 			PotionUtil.setCustomPotionEffects(itemStack, effects);
 		}
 		
@@ -227,6 +229,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		if (effects.size() == 0) {
 			PotionUtil.setPotion(itemStack, Potions.THICK);
 		} else {
+			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
 			PotionUtil.setCustomPotionEffects(itemStack, effects);
 		}
 		

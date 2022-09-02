@@ -141,6 +141,7 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Blocks...");
 		SpectrumBlocks.register();
 		logInfo("Registering Items...");
+		SpectrumPotions.register();
 		SpectrumItems.register();
 		//logInfo("Registering SAR Components...");
 		//SpectrumComponents.register();

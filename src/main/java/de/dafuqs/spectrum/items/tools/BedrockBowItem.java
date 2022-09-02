@@ -47,4 +47,9 @@ public class BedrockBowItem extends SpectrumBowItem implements Preenchanted {
 		return 20F;
 	}
 	
+	@Override
+	public int getMaxUseTime(ItemStack stack) {
+		return super.getMaxUseTime(stack);
+	}
+	
 }

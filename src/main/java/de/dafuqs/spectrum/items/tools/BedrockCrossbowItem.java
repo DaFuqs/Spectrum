@@ -43,4 +43,12 @@ public class BedrockCrossbowItem extends SpectrumCrossbowItem implements Preench
 		return true;
 	}
 	
+	public float getProjectileVelocityModifier() {
+		return 5.0F;
+	}
+	
+	public float getPullTimeModifier() {
+		return 3.0F;
+	}
+	
 }

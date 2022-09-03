@@ -13,7 +13,6 @@ import net.minecraft.util.math.MathHelper;
 public class NaturesStaffUseSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private final PlayerEntity player;
-	private float distance = 0.0F;
 	private boolean done;
 	
 	public NaturesStaffUseSoundInstance(PlayerEntity player) {
@@ -45,7 +44,6 @@ public class NaturesStaffUseSoundInstance extends AbstractSoundInstance implemen
 			this.x = ((float) this.player.getX());
 			this.y = ((float) this.player.getY());
 			this.z = ((float) this.player.getZ());
-			this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
 		}
 	}
 	

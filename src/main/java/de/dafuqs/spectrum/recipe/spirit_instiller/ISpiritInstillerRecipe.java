@@ -89,7 +89,7 @@ public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	default String getGroup() {
-		return null;
+		return "";
 	}
 	
 	float getExperience();

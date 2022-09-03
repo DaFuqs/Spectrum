@@ -37,20 +37,4 @@ public class CloakedItem extends Item implements RevelationAware {
 		return new Pair<>(this, cloakItem);
 	}
 	
-	@Override
-	public void onUncloak() {
-		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
-			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(false);
-			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(false);
-		}
-	}
-	
-	@Override
-	public void onCloak() {
-		if (SpectrumColorProviders.coloredLeavesBlockColorProvider != null && SpectrumColorProviders.coloredLeavesItemColorProvider != null) {
-			SpectrumColorProviders.coloredLeavesBlockColorProvider.setShouldApply(true);
-			SpectrumColorProviders.coloredLeavesItemColorProvider.setShouldApply(true);
-		}
-	}
-	
 }

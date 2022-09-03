@@ -136,6 +136,10 @@ public class UnlockToastManager {
 			
 			for (GatedRecipe recipe : unlockedRecipes) {
 				if (!recipe.getOutput().isEmpty()) { // weather recipes
+					if(recipe.getGroup() == null) {
+						SpectrumCommon.logWarning("Found a recipe with null group: " + recipe.getId().toString() + " Please report this. If you are Dafuqs and you are reading this: you messed up big time.");
+					}
+					
 					if (recipe.getGroup().isEmpty()) {
 						ItemStack displayStack = recipe.getOutput().copy();
 						displayStack.setCount(1);

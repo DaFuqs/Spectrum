@@ -21,6 +21,12 @@
       "text": "You may not have created such lives as you initially imagined, but you still created something clearly powerful. Guess that counts?"
     },
     {
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "A Friendly Reminder",
+      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you WILL regret it.$(br2)Luckily you already invented a $(l:creating_life/decay_away)suitable counteragent$(/l)."
+    },
+    {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
       "title": "Bedrock Dust",
@@ -28,10 +34,18 @@
       "text": "Even Bedrock was not strong enough to withstand your newly created \"life\".  It broke through the Bedrock like dandelions through concrete."
     },
     {
-      "type": "patchouli:text",
+      "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
-      "title": "A Friendly Reminder",
-      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you WILL regret it.$(br2)Luckily you already invented a $(l:creating_life/decay_away)suitable counteragent$(/l)."
+      "title": "Bedrock Blocks",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_storage_block",
+      "text": "The chunks of Bedrock are so sturdy, that a normal Crafting Table can't handle it. But using your $(l:general/pedestal)Pigment Pedestal$(/l) handles it no problem."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "Converting back",
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_storage_block_uncrafting",
+      "text": "These seem so sturdy, not even a Wither may be able to break them.$(br2)Of course you are also able to convert it back again."
     }
   ]
 }

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.arrowhead.api.ArrowheadBow;
 import de.dafuqs.spectrum.items.Preenchanted;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -10,7 +11,7 @@ import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Map;
 
-public class BedrockBowItem extends BowItem implements Preenchanted {
+public class BedrockBowItem extends BowItem implements Preenchanted, ArrowheadBow {
 	
 	public BedrockBowItem(Settings settings) {
 		super(settings);
@@ -41,6 +42,21 @@ public class BedrockBowItem extends BowItem implements Preenchanted {
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
+	}
+	
+	@Override
+	public float getZoom() {
+		return 30F;
+	}
+	
+	@Override
+	public float getProjectileVelocityModifier() {
+		return 1.3F;
+	}
+	
+	@Override
+	public float getDivergenceMod() {
+		return 0.8F;
 	}
 	
 }

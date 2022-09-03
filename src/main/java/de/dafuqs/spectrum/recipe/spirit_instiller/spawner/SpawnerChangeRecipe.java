@@ -102,6 +102,11 @@ public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 	}
 	
 	@Override
+	public String getGroup() {
+		return "spawner_manipulation";
+	}
+	
+	@Override
 	public List<IngredientStack> getIngredientStacks() { // 0: instiller stack; 1-2: item bowl stacks
 		DefaultedList<IngredientStack> defaultedList = DefaultedList.of();
 		defaultedList.add(IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SPAWNERS)));

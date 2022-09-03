@@ -1,6 +1,7 @@
 {
   "parent": "spectrum:block/base_fusion_shrine",
   "textures": {
-    "shrine": "spectrum:block/fusion_shrine_calcite"
+    "shrine": "spectrum:block/fusion_shrine_calcite",
+    "particle": "spectrum:block/fusion_shrine_calcite_breaking"
   }
 }

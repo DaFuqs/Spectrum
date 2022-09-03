@@ -43,7 +43,10 @@
     "cardinal-components": [
       "spectrum:azure_dike",
       "spectrum:crystal_grace_effect_holder"
-    ]
+    ],
+    "loom:injected_interfaces": {
+      "de/dafuqs/spectrum/blocks/conditional/ColoredLeavesBlock": ["vazkii/botania/api/block/IHornHarvestable"]
+    }
   },
   "depends": {
     "fabricloader": ">=0.13.3",

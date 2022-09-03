@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "collected_blazing_crystal": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_blazing_crystal" }
+    },
+    "collected_frostbite_crystal": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_frostbite_crystal" }
+    }
+  },
+  "requirements": [
+    [
+      "collected_blazing_crystal",
+      "collected_frostbite_crystal"
+    ]
+  ]
+}

@@ -1,8 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.crafting.ClearInkRecipe;
-import de.dafuqs.spectrum.recipe.crafting.RepairAnythingRecipe;
+import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
@@ -18,6 +17,9 @@ public class SpectrumCustomRecipeSerializers {
 		// Crafting
 		register(RepairAnythingRecipe.SERIALIZER, "repair_anything");
 		register(ClearInkRecipe.SERIALIZER, "clear_ink");
+		register(ClearEnderSpliceRecipe.SERIALIZER, "clear_ender_splice");
+		register(ClearPotionFillableRecipe.SERIALIZER, "clear_potion_fillable");
+		register(ClearCraftingTabletRecipe.SERIALIZER, "clear_crafting_tablet");
 		
 		// Spirit Instiller
 		register(SpawnerCreatureChangeRecipe.SERIALIZER, "spirit_instiller_spawner_creature_change");
@@ -25,7 +27,6 @@ public class SpectrumCustomRecipeSerializers {
 		register(SpawnerRequiredPlayerRangeChangeRecipe.SERIALIZER, "spirit_instiller_spawner_spawner_player_range_change");
 		register(SpawnerSpawnCountChangeRecipe.SERIALIZER, "spirit_instiller_spawner_spawn_count_change");
 		register(SpawnerSpawnDelayChangeRecipe.SERIALIZER, "spirit_instiller_spawner_spawn_delay_change");
-		
 	}
 	
 }

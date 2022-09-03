@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.mixin.client;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.LingeringPotionItem;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
+@Environment(EnvType.CLIENT)
 @Mixin({PotionItem.class, LingeringPotionItem.class, TippedArrowItem.class})
 public class PotionItemClientMixin {
 	

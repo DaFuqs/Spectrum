@@ -8,5 +8,11 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:progression/unlock_spirit_instiller" }
     }
-  }
+  },
+  "requirements": [
+    [
+      "unlocked_enchanter",
+      "unlocked_spirit_instiller"
+    ]
+  ]
 }

@@ -8,6 +8,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.sound.AbstractSoundInstance;
+import net.minecraft.client.sound.MovingMinecartSoundInstance;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -31,7 +33,6 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	int maxDurationTicks;
 	
 	private int ticksPlayed = 0;
-	private float distance = 0.0F;
 	private boolean done;
 	
 	protected CraftingBlockSoundInstance(SoundEvent soundEvent, RegistryKey<World> worldKey, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
@@ -44,7 +45,6 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 		
 		this.repeat = true;
 		this.repeatDelay = 0;
-		this.volume = SpectrumCommon.CONFIG.BlockSoundVolume;
 	}
 	
 	public static void startSoundInstance(SoundEvent soundEvent, BlockPos sourceBlockPos, Block sourceBlock, int maxDurationTicks) {
@@ -81,8 +81,7 @@ public class CraftingBlockSoundInstance extends AbstractSoundInstance implements
 	@Override
 	public void tick() {
 		this.ticksPlayed++;
-		this.distance = MathHelper.clamp(this.distance + 0.0025F, 0.0F, 1.0F);
-		this.volume = Math.max(0.0F, 0.5F - sourceBlockPos.getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 128F);
+		this.volume = Math.max(0, SpectrumCommon.CONFIG.BlockSoundVolume - sourceBlockPos.getManhattanDistance(MinecraftClient.getInstance().player.getBlockPos()) / 64F);
 		if (this.ticksPlayed == maxDurationTicks) {
 			this.volume /= 2; // ease out
 		}

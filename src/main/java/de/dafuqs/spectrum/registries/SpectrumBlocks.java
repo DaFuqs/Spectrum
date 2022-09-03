@@ -1161,17 +1161,17 @@ public class SpectrumBlocks {
 		registerBlockWithItem("scarlet_ore", SCARLET_ORE, new FloatBlockItem(SCARLET_ORE, fabricItemSettingsFireProof, 1.01F), DyeColor.RED);
 		registerBlockWithItem("paletur_ore", PALETUR_ORE, new FloatBlockItem(PALETUR_ORE, fabricItemSettings, 0.99F), DyeColor.CYAN);
 		
-		registerBlockWithItem("small_bismuth_bud", SMALL_BISMUTH_BUD, new AliasedBlockItem(SMALL_BISMUTH_BUD, worldgenItemSettings), DyeColor.CYAN);
-		registerBlockWithItem("large_bismuth_bud", LARGE_BISMUTH_BUD, worldgenItemSettings, DyeColor.CYAN);
-		registerBlockWithItem("bismuth_cluster", BISMUTH_CLUSTER, worldgenItemSettings, DyeColor.CYAN);
-		registerBlockWithItem("bismuth_block", BISMUTH_BLOCK, decorationItemSettingsUncommon, DyeColor.CYAN);
+		registerBlockWithItem("small_bismuth_bud", SMALL_BISMUTH_BUD, worldgenItemSettingsUncommon, DyeColor.CYAN);
+		registerBlockWithItem("large_bismuth_bud", LARGE_BISMUTH_BUD, worldgenItemSettingsUncommon, DyeColor.CYAN);
+		registerBlockWithItem("bismuth_cluster", BISMUTH_CLUSTER, worldgenItemSettingsUncommon, DyeColor.CYAN);
+		registerBlockWithItem("bismuth_block", BISMUTH_BLOCK, worldgenItemSettingsUncommon, DyeColor.CYAN);
 		
-		registerBlockWithItem("malachite_ore", MALACHITE_ORE, worldgenItemSettings, DyeColor.GREEN);
-		registerBlockWithItem("deepslate_malachite_ore", DEEPSLATE_MALACHITE_ORE, worldgenItemSettings, DyeColor.GREEN);
-		registerBlockWithItem("blackslag_malachite_ore", BLACKSLAG_MALACHITE_ORE, fabricItemSettings, DyeColor.GREEN);
-		registerBlockWithItem("small_malachite_bud", SMALL_MALACHITE_BUD, worldgenItemSettings, DyeColor.GREEN);
-		registerBlockWithItem("large_malachite_bud", LARGE_MALACHITE_BUD, worldgenItemSettings, DyeColor.GREEN);
-		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, worldgenItemSettings, DyeColor.GREEN);
+		registerBlockWithItem("malachite_ore", MALACHITE_ORE, worldgenItemSettingsUncommon, DyeColor.GREEN);
+		registerBlockWithItem("deepslate_malachite_ore", DEEPSLATE_MALACHITE_ORE, worldgenItemSettingsUncommon, DyeColor.GREEN);
+		registerBlockWithItem("blackslag_malachite_ore", BLACKSLAG_MALACHITE_ORE, worldgenItemSettingsUncommon, DyeColor.GREEN);
+		registerBlockWithItem("small_malachite_bud", SMALL_MALACHITE_BUD, worldgenItemSettingsUncommon, DyeColor.GREEN);
+		registerBlockWithItem("large_malachite_bud", LARGE_MALACHITE_BUD, worldgenItemSettingsUncommon, DyeColor.GREEN);
+		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, worldgenItemSettingsUncommon, DyeColor.GREEN);
 		registerBlockWithItem("malachite_block", MALACHITE_BLOCK, decorationItemSettingsUncommon, DyeColor.GREEN);
 		
 		registerBlockWithItem("blackslag_coal_ore", BLACKSLAG_COAL_ORE, fabricItemSettings, DyeColor.BLACK);
@@ -1189,7 +1189,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("citrine_storage_block", CITRINE_STORAGE_BLOCK, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("onyx_storage_block", ONYX_STORAGE_BLOCK, fabricItemSettings, DyeColor.BLACK);
 		registerBlockWithItem("moonstone_storage_block", MOONSTONE_STORAGE_BLOCK, fabricItemSettings, DyeColor.WHITE);
-		registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, fabricItemSettings, DyeColor.WHITE);
+		registerBlockWithItem("spectral_shard_storage_block", SPECTRAL_SHARD_STORAGE_BLOCK, decorationItemSettingsRare, DyeColor.WHITE);
 		
 		registerBlockWithItem("bedrock_storage_block", BEDROCK_STORAGE_BLOCK, decorationItemSettingsUncommon, DyeColor.BLACK);
 		registerBlockWithItem("spectral_shard_block", SPECTRAL_SHARD_BLOCK, decorationItemSettingsRare, DyeColor.WHITE);

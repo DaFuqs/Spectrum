@@ -27,13 +27,6 @@ public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE, 1677721600); // 5 blocks of extra reach
 	}
 	
-	public static double roundHalf(double number) {
-		double diff = number - (int) number;
-		if (diff < 0.25) return (int) number;
-		else if (diff < 0.75) return (int) number + 0.5;
-		else return (int) number + 1;
-	}
-	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		tooltip.add(new TranslatableText("item.spectrum.gloves_of_dawns_grasp.tooltip").formatted(Formatting.GRAY));
@@ -61,6 +54,10 @@ public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 		} else {
 			return 1 + roundHalf(Math.log(storedInk / 100) / Math.log(64));
 		}
+	}
+	
+	public static double roundHalf(double number) {
+		return ((int) (number * 2)) / 2D;
 	}
 	
 }

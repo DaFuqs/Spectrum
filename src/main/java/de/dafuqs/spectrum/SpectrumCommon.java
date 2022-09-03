@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum;
 
 import com.google.common.collect.ImmutableMap;
+import de.dafuqs.arrowhead.api.CrossbowShootingCallback;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
@@ -44,6 +45,8 @@ import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.FluidBlock;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
@@ -54,6 +57,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -75,6 +79,7 @@ public class SpectrumCommon implements ModInitializer {
 	public static SpectrumConfig CONFIG;
 	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
 	public static MinecraftServer minecraftServer;
+	private static boolean serverLoadEventFired = false;
 	/**
 	 * Caches the luminance states from fluids as int
 	 * for blocks that react to the light level of fluids
@@ -136,6 +141,7 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Blocks...");
 		SpectrumBlocks.register();
 		logInfo("Registering Items...");
+		SpectrumPotions.register();
 		SpectrumItems.register();
 		//logInfo("Registering SAR Components...");
 		//SpectrumComponents.register();
@@ -249,17 +255,22 @@ public class SpectrumCommon implements ModInitializer {
 		});
 		
 		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
-			SpectrumCommon.logInfo("Querying fluid luminance...");
-			for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
-				Block block = it.next();
-				if (block instanceof FluidBlock fluidBlock) {
-					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
+			SpectrumCommon.minecraftServer = minecraftServer;
+			if(!serverLoadEventFired) {
+				SpectrumCommon.logInfo("Querying fluid luminance...");
+				for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
+					Block block = it.next();
+					if (block instanceof FluidBlock fluidBlock) {
+						fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
+					}
 				}
+				
+				SpectrumCommon.logInfo("Injecting additional recipes...");
+				FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
+				injectEnchantmentUpgradeRecipes(minecraftServer);
+				
+				serverLoadEventFired = true;
 			}
-			
-			SpectrumCommon.logInfo("Injecting additional recipes...");
-			FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
-			injectEnchantmentUpgradeRecipes(minecraftServer);
 		});
 		
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {

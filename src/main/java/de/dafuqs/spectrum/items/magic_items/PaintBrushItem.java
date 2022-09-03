@@ -62,19 +62,25 @@ public class PaintBrushItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
+		
 		Optional<InkColor> color = getColor(stack);
-		if(color.isPresent()) {
-			tooltip.add(new TranslatableText("spectrum.ink.color." + color.get()));
-		} else {
-			tooltip.add(new TranslatableText("item.spectrum.paintbrush.tooltip.select_color"));
+		boolean unlockedColoring = AdvancementHelper.hasAdvancementClient(UNLOCK_COLORING_ADVANCEMENT_ID);
+		boolean unlockedSlinging = AdvancementHelper.hasAdvancementClient(UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
+		
+		if(unlockedColoring || unlockedSlinging) {
+			if (color.isPresent()) {
+				tooltip.add(new TranslatableText("spectrum.ink.color." + color.get()));
+			} else {
+				tooltip.add(new TranslatableText("item.spectrum.paintbrush.tooltip.select_color"));
+			}
 		}
 		
 		tooltip.add(new TranslatableText("item.spectrum.paintbrush.ability.header").formatted(Formatting.GRAY));
 		tooltip.add(new TranslatableText("item.spectrum.paintbrush.ability.pedestal_triggering").formatted(Formatting.GRAY));
-		if(AdvancementHelper.hasAdvancementClient(UNLOCK_COLORING_ADVANCEMENT_ID)) {
+		if(unlockedColoring) {
 			tooltip.add(new TranslatableText("item.spectrum.paintbrush.ability.block_coloring").formatted(Formatting.GRAY));
 		}
-		if(AdvancementHelper.hasAdvancementClient(UNLOCK_INK_SLINGING_ADVANCEMENT_ID)) {
+		if(unlockedSlinging) {
 			tooltip.add(new TranslatableText("item.spectrum.paintbrush.ability.ink_slinging").formatted(Formatting.GRAY));
 		}
 	}
@@ -146,6 +152,10 @@ public class PaintBrushItem extends Item {
 				context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			return true;
+		} else {
+			if (context.getWorld().isClient) {
+				context.getPlayer().playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			}
 		}
 		return false;
 	}
@@ -180,6 +190,10 @@ public class PaintBrushItem extends Item {
 					// cause the slightest bit of knockback
 					if(!user.isCreative()) {
 						causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);
+					}
+				} else {
+					if (world.isClient) {
+						user.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 					}
 				}
 				

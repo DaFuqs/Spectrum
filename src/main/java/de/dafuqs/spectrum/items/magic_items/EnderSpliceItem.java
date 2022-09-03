@@ -98,6 +98,40 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		itemStack.setNbt(nbtCompound);
 	}
 	
+	public static boolean hasTeleportTarget(ItemStack itemStack) {
+		NbtCompound nbtCompound = itemStack.getNbt();
+		if(nbtCompound == null) {
+			return false;
+		}
+		
+		return nbtCompound.contains("PosX") || nbtCompound.contains("TargetPlayerName");
+	}
+	
+	public static void clearTeleportTarget(ItemStack itemStack) {
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+		
+		if (nbtCompound.contains("PosX")) {
+			nbtCompound.remove("PosX");
+		}
+		if (nbtCompound.contains("PosY")) {
+			nbtCompound.remove("PosY");
+		}
+		if (nbtCompound.contains("PosZ")) {
+			nbtCompound.remove("PosZ");
+		}
+		if (nbtCompound.contains("Dimension")) {
+			nbtCompound.remove("Dimension");
+		}
+		if (nbtCompound.contains("TargetPlayerName")) {
+			nbtCompound.remove("TargetPlayerName");
+		}
+		if (nbtCompound.contains("TargetPlayerUUID")) {
+			nbtCompound.remove("TargetPlayerUUID");
+		}
+		
+		itemStack.setNbt(nbtCompound);
+	}
+	
 	@Override
 	public ItemStack finishUsing(ItemStack itemStack, World world, LivingEntity user) {
 		if (world.isClient) {
@@ -163,8 +197,8 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	
 	private void teleportPlayerToPos(World world, LivingEntity user, PlayerEntity playerEntity, World targetWorld, Vec3d targetPos, boolean hasResonance) {
 		boolean isSameWorld = isSameWorld(user.getEntityWorld(), targetWorld);
+		Vec3d currentPos = playerEntity.getPos();
 		if (hasResonance || isSameWorld) {
-			Vec3d currentPos = playerEntity.getPos();
 			world.playSound(playerEntity, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SpectrumSoundEvents.PLAYER_TELEPORTS, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			
 			if (!isSameWorld) {
@@ -179,6 +213,9 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 				((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.PLAYER_TELEPORTS.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
 				((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SoundEvents.BLOCK_GLASS_BREAK.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
 			}
+		} else {
+			user.stopUsingItem();
+			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		}
 	}
 	

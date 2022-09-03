@@ -48,6 +48,7 @@ public interface InkPowered {
 	 * The colors that the object requires for working.
 	 * These are added as the player facing tooltip
 	 **/
+	@Environment(EnvType.CLIENT)
 	default void addInkPoweredTooltip(List<Text> tooltip) {
 		if(canUseClient()) {
             if (getUsedColors().size() > 1) {

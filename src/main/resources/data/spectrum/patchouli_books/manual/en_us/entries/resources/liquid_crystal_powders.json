@@ -1,6 +1,6 @@
 {
-  "name": "Liquid Crystal Powders",
-  "advancement": "spectrum:guidebook/unlock_crystal_powders_guidebook_entry",
+  "name": "Crystallized Blocks / Powders",
+  "advancement": "spectrum:hidden/collect_any_crystallized_block",
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {

@@ -52,6 +52,7 @@
   "recipeGroup.spectrum.boss_memories": "Boss Memories",
   "recipeGroup.spectrum.restoration_tea": "Restoration Tea",
   "recipeGroup.spectrum.mob_blocks": "Idols",
+  "recipeGroup.spectrum.spawner_manipulation": "Spawner Manipulation",
 
   "recipeGroup.spectrum.botania_mushrooms": "Colored Mushrooms",
   "recipeGroup.spectrum.botania_glimmering_flowers": "Glimmering Flowers",
@@ -2183,6 +2184,7 @@
   "block.minecraft.polished_basalt": "Basalt Pillar",
 
   "______vanilla_additions" : "Additions:",
+  "potion.potency.6": "VI",
   "potion.potency.7": "VII",
   "potion.potency.8": "VIII",
   "potion.potency.9": "IX",

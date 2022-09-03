@@ -1,5 +1,5 @@
 {
-  "name": "Universe Spyhole",
+  "name": "全视透镜",
   "advancement": "spectrum:progression/unlock_universe_spyhole",
   "icon": "spectrum:universe_spyhole",
   "category": "spectrum:magical_blocks_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This strange blocks lets you vision penetrate ground and rock. Placed directly on a wall or on the ground, it allows you to glimpse the other side.$(br2)$(italic)The creations that Ender Treasure allows you to create with its strange properties never cease to amaze you."
+      "text": "这个神奇的方块可以让你眼穿大地，目透岩石。只要放置在墙边或者地上，你就可以通过透镜洞察对侧的一切。$(br2)$(italic)末影辐光制品的奇妙性质真是令你大开眼界。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/universe_spyhole",
-      "text": "$(italic)I see what you did there"
+      "text": "$(italic)看看你的"
     }
   ]
 }

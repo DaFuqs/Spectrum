@@ -1,5 +1,5 @@
 {
-  "name": "Heartbound Chest",
+  "name": "心灵结印箱",
   "advancement": "spectrum:progression/unlock_private_chest",
   "icon": "spectrum:private_chest",
   "category": "spectrum:magical_blocks_category",
@@ -10,18 +10,18 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:private_chest",
-      "text": "$(italic)It happens again and again that you just quickly put down a box to store your belongings and as soon as you come back everything is looted.$(br)To solve this problem you have developed this special chest, which takes care of the problem and can even help to catch the thief in the act."
+      "text": "$(italic)你草草放下箱子点掇行囊身家，溜达回来却发现箱子被洗劫一空。这种事情实在过分常见。$(br)为此，你设计了一款特别的箱子。不仅防盗，还能辅助你把贼人抓个现行！"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier1/private_chest",
-      "text": "The Heartbound Chest can only be opened by its placer and provides the same space as two normal chests."
+      "text": "心灵结印箱仅能被放置者打开，且提供两个普通箱子的容量。"
     },
     {
       "type": "patchouli:text",
-      "title": "Redstone Component",
-      "text": "Similar to a Trapped Chest it also outputs a redstone signal.$(br)If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+      "title": "红石元件",
+      "text": "类似陷阱箱，心灵结印箱也会输出红石信号。$(br)由主人打开会输出强度为15的信号，但由别人打开只会输出强度为7的信号。"
     }
   ]
 }

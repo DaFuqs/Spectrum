@@ -1,5 +1,5 @@
 {
-  "name": "Structure Upgrades",
+  "name": "基座增益器",
   "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
   "icon": "spectrum:upgrade_speed",
   "category": "spectrum:magical_blocks_category",
@@ -17,114 +17,114 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Pigment Pedestal and Fusion Shrine have already proven their worth. But there is still plenty of room for improvement. That's why you created these upgrades. Each one improves the properties of your structures in a different way, depending on what's most important to you personally.$(br)Additional ones of the same type have a decreased effect."
+      "text": "七彩基座和融合圣坛虽然各显神通，但都仍有相当大的改进空间。为此，你设计了这些增益器。每种增益器各为结构本身的某项功能提供特化加成，选取哪种悉听尊便。$(br)同类增益器效果叠加，但加成递减。"
     },
 
 
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
-      "title": "Pedestal Recipe",
+      "title": "合成加速器",
       "recipe": "spectrum:pedestal/tier3/upgrade_speed",
-      "text": "The crafting time of the $(l:general/pedestal)Pigment Pedestal$(/l) increases a lot when using complex components. This will help you bring back the times to an acceptable level."
+      "text": "处理复杂原料时，$(l:general/pedestal)七彩基座$(/l)的合成用时会变得相当长久。合成加速器能把耗时压入可以接受的时长内。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/unlock_upgrade_speed2",
-      "title": "Tier 2",
+      "title": "II级升级",
       "recipe": "spectrum:pedestal/tier3/upgrade_speed2",
-      "text": "The Pedestal Accelerator T2 improves all aspects of the previous variant. Making your crafting even more rapid."
+      "text": "II级合成加速器是前者的全面升级，助你更快速地合成物品。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/unlock_upgrade_speed3",
-      "title": "Tier 3",
+      "title": "III级升级",
       "recipe": "spectrum:pedestal/tier4/upgrade_speed3",
-      "text": "Tier 3 leaves nothing to be desired - at least in terms of crafting speed."
+      "text": "III级升级，无忧无虑——至少在合成速率上确实不会再有什么顾虑了。"
     },
 
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/unlock_upgrade_experience",
-      "title": "Knowledge Focus",
+      "title": "知识汇集器",
       "recipe": "spectrum:pedestal/tier3/upgrade_experience",
-      "text": "For the most part the experience $(l:general/pedestal)Pigment Pedestal$(/l) crafting rewards is pretty much negligible. But using this Focus you could dramatically increase the amount gained."
+      "text": "$(l:general/pedestal)七彩基座$(/l)合成生产的经验经常只够塞牙缝。知识汇集器能够可观地提高经验产量。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/unlock_upgrade_experience2",
-      "title": "Tier 2",
+      "title": "II级升级",
       "recipe": "spectrum:pedestal/tier3/upgrade_experience2",
-      "text": "This improved Knowledge Focus increases the generated XP even more."
+      "text": "升级版知识汇集器还能再进一步提高产量。"
     },
 
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:midgame/create_refined_azurite",
-      "title": "Pedestal Recipe",
+      "title": "反应催化器",
       "recipe": "spectrum:pedestal/tier3/upgrade_efficiency",
-      "text": "The $(l:general/pedestal)Pigment Pedestal$(/l) devours vast amounts of Gemstone Powder.$(br)Now you should be able to cushion the consumption of your structures a little."
+      "text": "$(l:general/pedestal)七彩基座$(/l)对宝石晶粉末的消耗可谓狮子大开口。$(br)现在总算能节流了，能省一点是一点。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/unlock_upgrade_efficiency2",
-      "title": "Tier 2",
+      "title": "II级升级",
       "recipe": "spectrum:pedestal/tier4/upgrade_efficiency2",
-      "text": "This 'upgrade of the upgrade' further reduces the consumption of input materials."
+      "text": "这款“升级的增益”还能再多精省一点资源。"
     },
 
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:lategame/collect_paletur",
-      "title": "Pedestal Recipe",
+      "title": "转化率提升器",
       "recipe": "spectrum:pedestal/tier4/upgrade_yield",
-      "text": "This is an interesting one. Although the chance is very small, you can increase the # of your crafting outputs.$(br)$(italic)More bang for your buck!"
+      "text": "这个有意思。你有几率获得更多的合成产物，虽然概率很小。$(br)$(italic)物美价廉，单车变摩托啦！"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/unlock_upgrade_yield2",
-      "title": "Tier 2",
+      "title": "II级升级",
       "recipe": "spectrum:pedestal/tier4/upgrade_yield2",
-      "text": "This upgraded version is much more potent, allowing you to get even more output for your crafting."
+      "text": "升级版则是更为强劲，你可能获得更多产物。"
     },
 
     {
       "type": "patchouli:multiblock",
-      "name": "Pedestal Placement",
+      "name": "七彩基座升级放置位",
       "multiblock_id": "spectrum:pedestal_structure_with_upgrades",
       "enable_visualize": false,
-      "text": "4 upgrade slots"
+      "text": "共有4个升级位"
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Fusion Shrine Placement",
+      "name": "融合圣坛升级放置位",
       "multiblock_id": "spectrum:fusion_shrine_structure_with_upgrades",
       "enable_visualize": false,
-      "text": "4 upgrade slots"
+      "text": "共有4个升级位"
     },
     {
       "type": "patchouli:multiblock",
       "advancement": "spectrum:midgame/enter_liquid_crystal",
-      "name": "Enchanter Placement",
+      "name": "附魔基座升级放置位",
       "multiblock_id": "spectrum:enchanter_structure_with_upgrades",
       "enable_visualize": false,
-      "text": "4 upgrade slots"
+      "text": "共有4个升级位"
     },
     {
       "type": "patchouli:multiblock",
       "advancement": "spectrum:progression/unlock_cinderhearth",
-      "name": "Cinderhearth Placement",
+      "name": "炼化炉升级放置位",
       "multiblock_id": "spectrum:cinderhearth_structure_with_upgrades",
       "enable_visualize": false,
-      "text": "2 upgrade slots"
+      "text": "共有2个升级位"
     },
     {
       "type": "patchouli:multiblock",
       "advancement": "spectrum:progression/unlock_spirit_instiller",
-      "name": "Spirit Instiller Placement",
+      "name": "灵魂灌注台升级放置位",
       "multiblock_id": "spectrum:spirit_instiller_structure_with_upgrades",
       "enable_visualize": false,
-      "text": "2 upgrade slots"
+      "text": "共有2个升级位"
     }
   ]
 }

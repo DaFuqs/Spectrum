@@ -1,166 +1,166 @@
 {
-  "name": "Potion Works.: Reagents",
+  "name": "药水工作站：炼材",
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:progression/unlock_potion_workshop",
   "category": "spectrum:magical_blocks_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Using Reagents",
-      "text": "Using Mermaids Gems as a Base instead of Blaze Powder results in a much more reactive potion. Not only does this allow you to add your new range of additional magical ingredients to your Potions, but also use some of them as additional Reagent. Each of those Reagents modifies the resulting properties of your Potions. Each Reagent can only be used once per recipe."
+      "title": "使用炼材",
+      "text": "相比由烈焰粉炼制而成的药水，使用美人鱼宝石炼制的药水反应更为剧烈：你不仅可以添加各种各样的新型魔法材料，还能够使用特别的药水炼材作为反应剂。每一种炼材都会改变药水本身的性质，且各只能使用一次。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Redstone",
+      "title": "红石粉",
       "item": "minecraft:redstone",
-      "text": "Doubles Duration"
+      "text": "效果持续时间加倍。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Glowstone",
+      "title": "荧石粉",
       "item": "minecraft:glowstone_dust",
-      "text": "Flat increase in Potency"
+      "text": "提升效果强度。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Gunpowder",
+      "title": "火药",
       "item": "minecraft:gunpowder",
-      "text": "Creates Splash Potions"
+      "text": "制作喷溅型药水。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Dragon's Breath",
+      "title": "龙息",
       "item": "minecraft:dragon_breath",
       "advancement": "spectrum:hidden/collect_vanilla/collect_dragon_breath",
-      "text": "Creates Lingering Potions - also requires Gunpowder as reagent$(br2)Allows you to create Tipped Arrows, if you supply Arrows instead of Bottles"
+      "text": "合成滞留型药水 - 同时需要火药作为炼材。$(br2)将玻璃瓶替换为箭能够制作药箭。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Topaz",
+      "title": "托帕石粉末",
       "item": "spectrum:topaz_powder",
-      "text": "Makes Effects not show any particles"
+      "text": "移除效果粒子。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Amethyst",
+      "title": "紫水晶粉末",
       "item": "spectrum:amethyst_powder",
-      "text": "Adds a short flat bonus to the Potions Duration"
+      "text": "小幅加长效果持续时间。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Citrine",
+      "title": "黄水晶粉末",
       "item": "spectrum:citrine_powder",
-      "text": "Slight multiplicative Potency bonus"
+      "text": "小幅倍增效果强度。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Onyx",
+      "title": "缟玛瑙粉末",
       "item": "spectrum:onyx_powder",
-      "text": "Adds a very weird taste and smell to the potion, making it unidentifiable.$(br)Also makes its color completely black."
+      "text": "为药水增添某种奇怪的味道和气味，使其无法被辨认。$(br)并将其完全变为黑色。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Moonstone",
+      "title": "月长石粉末",
       "item": "spectrum:moonstone_powder",
       "advancement": "spectrum:midgame/collect_moonstone_shard",
-      "text": "Changes all otherwise negative Effects to their positive ones"
+      "text": "将所有负面效果转换为对应的正面效果。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Shimmerstone",
+      "title": "微光石",
       "item": "spectrum:sparklestone_gem",
-      "text": "Tiny multiplicative bonus to both Duration and Potency"
+      "text": "略微倍增效果持续时间和效果强度。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Quitoxic Powder",
+      "title": "奇毒粉末",
       "item": "spectrum:quitoxic_powder",
       "advancement": "spectrum:collect_quitoxic_reeds",
-      "text": "Greatly increases Potency of all negative Effects"
+      "text": "巨幅提升所有负面效果的效果强度。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Stratine",
+      "title": "绯红碎片",
       "item": "spectrum:scarlet_fragments",
       "advancement": "spectrum:midgame/collect_scarlet",
-      "text": "Big flat bonus to Potency, at the cost of adding a random negative Effect"
+      "text": "大幅提升效果强度，但添加一个随机的负面效果。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Paltaeria",
+      "title": "苍绿碎片",
       "item": "spectrum:paletur_fragments",
       "advancement": "spectrum:lategame/collect_paletur",
-      "text": "Adds a random positive Effect"
+      "text": "添加一个随机的正面效果。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Stardust",
+      "title": "星尘",
       "item": "spectrum:stardust",
       "advancement": "spectrum:hidden/collect_stardust",
-      "text": "$(italic)Absorbs the last drops of what remains of your previous brew.$()$(br2)Small chance to add the main Effect of the Potion that was brewed previously"
+      "text": "$(italic)把先前炼制过的药水所残留的每一滴都吸得干干净净。$()$(br2)小概率为药水添加先前炼制过的药水的主要效果。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Star Fragment",
+      "title": "流星碎片",
       "item": "spectrum:shooting_star",
       "advancement": "spectrum:collect_shooting_star",
-      "text": "$(italic)Similar to Stardust, but much more potent.$()$(br2)Guaranteed chance to add the main Effect of the Potion that was brewed previously, at slightly decreased Potency"
+      "text": "$(italic)类似星尘，但效果更强。$()$(br2)为药水添加先前炼制过的药水的主要效果，添加的效果强度小幅下降。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Storm Stone",
+      "title": "风暴之石",
       "item": "spectrum:lightning_stone",
       "advancement": "spectrum:midgame/collect_lightning_stone",
-      "text": "Increases the Potions Potency at the beginning, but wearing off fast over time"
+      "text": "提升一开始的效果强度，但随着时间的推移，效果强度将迅速减弱。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Azurite",
+      "title": "粗石青",
       "item": "spectrum:raw_azurite",
       "advancement": "spectrum:midgame/collect_azurite",
-      "text": "Negates the duration penalty for Lingering Potions as well as for Tipped Arrows"
+      "text": "移除滞留药水和药水箭的持续时间惩罚。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Four-Leaved Clover",
+      "title": "四叶草",
       "item": "spectrum:four_leaf_clover",
       "advancement": "spectrum:collect_four_leaf_clover",
-      "text": "Provides a huge boost to a random stat"
+      "text": "为随机一个效果提供巨大增幅。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Vegetal",
+      "title": "植本质",
       "item": "spectrum:vegetal",
       "advancement": "spectrum:collect_vegetal",
-      "text": "Doubles the potions Duration at the cost of Potency"
+      "text": "以降低效果强度为代价使效果持续时间加倍。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Neolith",
+      "title": "坚新石",
       "item": "spectrum:neolith",
       "advancement": "spectrum:midgame/collect_neolith",
-      "text": "Increases Yield, allowing you to brew an additional potion"
+      "text": "增加产量，允许你多炼制一瓶药水。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Midnight Chip",
+      "title": "午夜残片",
       "item": "spectrum:midnight_chip",
       "advancement": "spectrum:midgame/collect_midnight Chip",
-      "text": "Increases Potency and adds 30 seconds to the Duration, but drastically lowers Yield"
+      "text": "提升效果强度并延长效果持续时间30秒，但大幅降低药水产量。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Moonstruck Nectar",
+      "title": "望舒琼浆",
       "item": "spectrum:moonstruck_nectar",
       "advancement": "spectrum:hidden/harvest_moonstruck_nectar",
-      "text": "Makes the Potion much more smooth, resulting in it being way faster to drink. Might come in handy when every second is crucial"
+      "text": "使药水更加醇和，从而加快饮用速度。争分夺秒的时候兴许大有用处。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Bedrock Dust",
+      "title": "基岩粉",
       "item": "spectrum:bedrock_dust",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
-      "text": "Doubles the Potions Potency, at the cost of Duration"
+      "text": "效果强度加倍，但减少持续时间。"
     }
   ]
 }

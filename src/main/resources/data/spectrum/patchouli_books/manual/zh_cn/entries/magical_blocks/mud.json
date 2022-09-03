@@ -1,5 +1,5 @@
 {
-  "name": "Mud",
+  "name": "泥浆",
   "advancement": "spectrum:progression/unlock_mud_bucket",
   "icon": "spectrum:mud_bucket",
   "category": "spectrum:magical_blocks_category",
@@ -8,16 +8,16 @@
   },
   "pages": [
     {
-      "title": "Mud",
+      "title": "泥浆",
       "type": "patchouli:spotlight",
       "item": "spectrum:mud_bucket",
-      "text": "$(italic)Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the mud with water or lava. This creates dirt or coarse dirt, respectively."
+      "text": "$(italic)泥浆。泥，浆。没什么特别好玩的地方。但实用的是它与水或熔岩碰撞后生成的产物。分别是土和砂土。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier1/mud_bucket",
-      "text": "While a mud bath sounds like wellness it is not advised."
+      "text": "泥浆浴虽然听上去很舒服但还是不要尝试的比较好哦！"
     }
   ]
 }

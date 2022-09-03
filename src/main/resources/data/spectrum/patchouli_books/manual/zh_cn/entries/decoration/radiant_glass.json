@@ -11,13 +11,13 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:glowing_glass",
       "title": "发光玻璃",
-      "text": "$(italic)有没有什么更有效的办法来照明住宅和建筑物呢？$(br2)把火花石的独特性质和玻璃结合在一起应该是一个不错的主意！$()"
+      "text": "$(italic)有没有什么更有效的办法来照明住宅和建筑物呢？$(br2)把微光石的独特性质和玻璃结合在一起应该是一个不错的主意！$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier1/glowing_glass",
-      "text": "发光玻璃，顾名思义，就是遮光玻璃的对立面。将火花石融入玻璃之中，玻璃本身就能自然发光。"
+      "text": "发光玻璃，顾名思义，就是遮光玻璃的对立面。将微光石融入玻璃之中，玻璃本身就能自然发光。"
     }
   ]
 }

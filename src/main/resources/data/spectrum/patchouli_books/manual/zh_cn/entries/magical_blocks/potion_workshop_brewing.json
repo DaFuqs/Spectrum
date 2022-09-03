@@ -1,5 +1,5 @@
 {
-  "name": "Potion Works.: Brewing",
+  "name": "药水工作站：炼药",
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:progression/unlock_potion_workshop",
   "category": "spectrum:magical_blocks_category",
@@ -9,67 +9,67 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Brewing Potions",
-      "text": "Since the Potion Workshop is basically an upgraded Brewing Stand, you are able to create all the Potion variants that were available to you before, too.$(br)In addition, the possibility to use magic items as ingredients opens new doors for you.$(br2)Some of them are easier or harder to get enhanced effects from."
+      "title": "药水炼制",
+      "text": "药水工作站毕竟就一升级版炼药台，之前能够炼制的药水你现在也能炼制。$(br)但各种各样的魔法药材为你打开了新世界的大门。$(br2)利用每种材料获取增益的难度各异。"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Vanilla Potion Variants",
+      "title": "原版药水",
       "recipe": "spectrum:potion_workshop_brewing/fire_resistance",
-      "text": "The process of creating Potions with the same effects that you could use before use the same ingredients. Unlike using the Brewing Stand, you can use $(l:magical_blocks/potion_workshop_reagents)Reagents$(/l) to enhance their effects even further."
+      "text": "先前在炼药台中可供使用的材料同样可以在工作站中使用以炼制相同的药水。但和炼药台不同的是，药水工作站中可以添加$(l:magical_blocks/potion_workshop_reagents)药水炼材$(/l)以获取更强大的增益。"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Absorption",
+      "title": "伤害吸收",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "recipe": "spectrum:potion_workshop_brewing/absorption",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Glowing",
+      "title": "发光",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "recipe": "spectrum:potion_workshop_brewing/glowing",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Haste",
+      "title": "急迫",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "recipe": "spectrum:potion_workshop_brewing/haste",
-      "text": "Adding a Fermented Spider Eye will change the Effect to $(bold)Mining Fatigue$() instead."
+      "text": "加入一个发酵蛛眼即可将效果转变为$(bold)挖掘疲劳$()。"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Saturation",
+      "title": "饱和",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "recipe": "spectrum:potion_workshop_brewing/saturation",
-      "text": "Adding a Fermented Spider Eye will change the Effect to $(bold)Hunger$() instead."
+      "text": "加入一个发酵蛛眼即可将效果转变为$(bold)饥饿$()。"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Levitation",
+      "title": "飘浮",
       "advancement": "spectrum:progression/potions/unlock_levitation_potion",
       "recipe": "spectrum:potion_workshop_brewing/levitation",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Luck",
+      "title": "幸运",
       "advancement": "spectrum:progression/potions/unlock_luck_potion",
       "recipe": "spectrum:potion_workshop_brewing/luck",
-      "text": "Adding a Fermented Spider Eye will change the Effect to $(bold)Bad Luck$() instead."
+      "text": "加入一个发酵蛛眼即可将效果转变为$(bold)霉运$()。"
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Resistance",
+      "title": "抗性提升",
       "advancement": "spectrum:progression/potions/unlock_resistance_potion",
       "recipe": "spectrum:potion_workshop_brewing/resistance",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Wither",
+      "title": "凋零",
       "advancement": "spectrum:progression/potions/unlock_wither_potion",
       "recipe": "spectrum:potion_workshop_brewing/wither",
       "text": ""

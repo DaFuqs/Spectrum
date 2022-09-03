@@ -1,5 +1,5 @@
 {
-  "name": "Potion Workshop",
+  "name": "药水工作站",
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:progression/unlock_potion_workshop",
   "category": "spectrum:magical_blocks_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)In the meantime, you have come into possession of many new materials. It's time to take a close look at each of them to see what effect they have on your Potions.$(br2)Your educated guess, as an expert: Awesome!"
+      "text": "$(italic)探险期间，你手上已经增添了许多新的资源和材料。是时候研习一下各种材料在药水炼制过程中的功效了。$(br2)见多识广的你一定猜到了一点：会很棒！"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/potion_workshop",
-      "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaids Gems. Main advantage is that you don't have to fill your bottles with water before."
+      "text": "药水工作站由美人鱼宝石驱动，而非烈焰粉。好就好在你不需要提前给瓶子装水了。"
     }
   ]
 }

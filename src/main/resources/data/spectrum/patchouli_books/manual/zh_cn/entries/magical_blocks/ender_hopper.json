@@ -11,7 +11,7 @@
       "type": "patchouli:spotlight",
       "title": "末影漏斗",
       "item": "spectrum:ender_hopper",
-      "text": "与普通漏斗的功能与形态相仿，但是它会将物品直接输入你的末影箱中。$(br2)末影漏斗仅在你在线的时候可用。"
+      "text": "与普通漏斗的功能形态相仿，但是它会将物品直接输入你的末影箱中。$(br2)末影漏斗仅在你在线的时候可用。"
     },
     {
       "type": "spectrum:pedestal_crafting",

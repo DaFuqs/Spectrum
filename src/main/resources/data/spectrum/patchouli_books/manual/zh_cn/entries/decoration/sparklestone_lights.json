@@ -1,5 +1,5 @@
 {
-  "name": "火花石灯",
+  "name": "微光石灯",
   "icon": "spectrum:basalt_sparklestone_light",
   "advancement": "spectrum:progression/unlock_sparklestone_lights",
   "category": "spectrum:decoration_category",
@@ -15,13 +15,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)还记得初来乍到之时用火把照明的漫漫长夜吗？$(br)虽然气氛很足，但火把确实也很——原始。$(br2)既然黑暗已成过往，那自然要用火花石的光芒去迎接当下。$()"
+      "text": "$(italic)还记得初来乍到之时用火把照明的漫漫长夜吗？$(br)虽然气氛很足，但火把确实也很——原始。$(br2)既然黑暗已成过往，那自然要用微光石的光芒去迎接当下。$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier1/sparklestone_lights/basalt_sparklestone_light",
-      "text": "磨制玄武岩、磨制方解石、平滑石头、磨制深板岩、磨制闪长岩、磨制安山岩和磨制花岗岩都可以用于合成火花石灯。"
+      "text": "磨制玄武岩、磨制方解石、平滑石头、磨制深板岩、磨制闪长岩、磨制安山岩和磨制花岗岩都可以用于合成微光石灯。"
     }
   ]
 }

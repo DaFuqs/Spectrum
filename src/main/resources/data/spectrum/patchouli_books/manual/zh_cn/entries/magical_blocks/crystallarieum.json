@@ -62,13 +62,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "宝石晶母岩的存在启发了结晶室这一构思：由墨水驱动的魔法仪器，可以自动生长出其上方的矿物资源的结晶。$(br)虽然你无论怎么努力都没法长出$(l:general/shards)宝石晶碎片$(/l)，但能生长其它矿物结晶的d的话，应用前景也很广阔呢。"
+      "text": "宝石晶母岩启发了结晶室这一创想：由墨水驱动的魔法仪器，可以自动生长出其上方的矿物资源的结晶。$(br)虽然你无论怎么努力都没法长出$(l:general/shards)宝石晶碎片$(/l)，但能生长其它矿物结晶的话，应用前景也很广阔呢。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier4/crystallarieum",
-      "text": "结晶室内可以容纳一整组催化剂，可以用于催化结晶的生长。对于一部分结晶而言，催化甚至是必要的。"
+      "text": "结晶室内可以容纳一整组催化剂，可以用于催化结晶的生长。对于某些结晶过程而言，催化甚至是必要的。"
     },
     {
       "type": "spectrum:crystallarieum_growing",
@@ -80,7 +80,7 @@
       "type": "spectrum:crystallarieum_growing",
       "title": "钻石结晶",
       "recipe": "spectrum:crystallarieum/vanilla/diamond",
-      "text": "具有晶体结构的方块，例如$(thing)钻石$()，也可以被相同的方式生长。虽然这些东西一般消耗更多墨水，但它们本身已有的晶体结构可以反复利用，重新生长——例如$(thing)钻石矿簇$()会产出$(thing)钻石$()。"
+      "text": "具有晶体结构的方块，例如$(thing)钻石$()，也可以被相同的方式生长。虽然这些晶体一般消耗更多墨水，但它们本身已有的晶体结构可以反复利用，重新生长——例如$(thing)钻石矿簇$()会产出$(thing)钻石$()。"
     },
     {
       "type": "spectrum:crystallarieum_growing",

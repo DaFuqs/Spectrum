@@ -1,5 +1,5 @@
 {
-  "name": "Idols",
+  "name": "魔盒",
   "advancement": "spectrum:progression/unlock_mob_blocks",
   "icon": "spectrum:fox_mob_block",
   "category": "spectrum:magical_blocks_category",
@@ -51,223 +51,223 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Idols",
-      "text": "Manifestations of a creature in block form.$(br)Using them, walking on them, or hitting them with a projectile triggers an action that is specifically associated with that creature."
+      "title": "魔盒",
+      "text": "方块形式的具现化生物。$(br)使用魔盒、在魔盒上走动、或者用弹射物击中它们都会触发与生物相关的特殊效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/axolotl_mob_block",
-      "text": "Gives a short burst of Regeneration."
+      "text": "给予短暂的生命恢复效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/bat_mob_block",
-      "text": "Echolocates creatures in a 8 blocks radius around it."
+      "text": "高亮显示半径8格范围内的生物。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/bee_mob_block",
-      "text": "Fertilizes plants next to it."
+      "text": "为周围的植物施肥。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/blaze_mob_block",
-      "text": "Sets the creature that triggered it and blocks next to it on fire.$(br)Also converts some blocks next to it to their scorched variants (Smelting Ore Blocks, Netherrack to Magma Blocks, ...)"
+      "text": "点燃方块的四周并融化四周的冰块。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/cat_mob_block",
-      "text": "Negates all fall damage when landed upon. Can also temporarily reset your fall."
+      "text": "落在其上方时免除所有摔落伤害，也可以中断你的下落过程。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/chicken_mob_block",
-      "text": "Gives a short burst of Slow Falling."
+      "text": "给予短暂的缓降效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/cow_mob_block",
-      "text": "Milks all Cows, Goats and Mooshrooms in a 6 block radius."
+      "text": "为半径6格范围内的牛、山羊与哞菇挤奶。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/creeper_mob_block",
-      "text": "Causes a small explosion."
+      "text": "引发小型爆炸。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/ender_dragon_mob_block",
-      "text": "Shoots a Dragon Projectile."
+      "text": "发射一枚末影龙火球。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/enderman_mob_block",
-      "text": "Teleports to a random position in a 16 block radius."
+      "text": "将你传送到半径16格内的随机方块上。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/endermite_mob_block",
-      "text": "Teleports to another Jagged Idol in a straight line on the side that was hit (up to 16 blocks away)."
+      "text": "将你传送到面朝方位的直线上最多16格外的超传魔盒上。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/evoker_mob_block",
-      "text": "Summons a Vex."
+      "text": "生成一只恼鬼。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/fish_mob_block",
-      "text": "Gives a short burst of Water Breathing."
+      "text": "给予短暂的水下呼吸效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/fox_mob_block",
-      "text": "Gives a short burst of Haste."
+      "text": "给予短暂的急迫效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/ghast_mob_block",
-      "text": "Shoots a Fireball"
+      "text": "发射一枚火球。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/glow_squid_mob_block",
-      "text": "Gives a short burst of Glowing."
+      "text": "给予短暂的发光效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/goat_mob_block",
-      "text": "Causes knockback."
+      "text": "造成击退。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/guardian_mob_block",
-      "text": "Gives a short burst Mining Fatigue."
+      "text": "给予短暂的挖掘疲劳效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/horse_mob_block",
-      "text": "Gives a short burst of Strength."
+      "text": "给予短暂的力量效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/illusioner_mob_block",
-      "text": "Gives a short burst of Invisibility."
+      "text": "给予短暂的隐身效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/ocelot_mob_block",
-      "text": "Gives a short burst of Night Vision."
+      "text": "给予短暂的夜视效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/parrot_mob_block",
-      "text": "Gives a short burst of Absorption."
+      "text": "给予短暂的伤害吸收效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/phantom_mob_block",
-      "text": "Causes Insomnia.$(br)When in open sky, a player will immediately get haunted by a Phantom."
+      "text": "造成失眠。$(br)在露天环境下会立刻生成幻翼。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/pig_mob_block",
-      "text": "Feeds animals in a 6 block radius if food is lying around."
+      "text": "使用地上的食物喂养半径6格内的动物。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/piglin_mob_block",
-      "text": "Trades Gold Ingots with you."
+      "text": "使用金锭交互即可进行交易。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/polar_bear_mob_block",
-      "text": "Freezes blocks around it (Water to Ice, Lava to Obsidian, ...)."
+      "text": "冻结周围的方块（如：水冻成冰，熔岩冻结成黑曜石等）。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/pufferfish_mob_block",
-      "text": "Gives a short burst of Nausea."
+      "text": "给予短暂的反胃效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/rabbit_mob_block",
-      "text": "Gives a short burst of Jump Boost."
+      "text": "给予短暂的跳跃提升效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/sheep_mob_block",
-      "text": "Shears Creatures in a 6 block radius."
+      "text": "为半径6格范围内的生物剪毛。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/shulker_mob_block",
-      "text": "Gives a short burst of Levitation."
+      "text": "给予短暂的飘浮效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/silverfish_mob_block",
-      "text": "Invades blocks next to it with Silverfish."
+      "text": "为周围的方块注入蠹虫。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/skeleton_mob_block",
-      "text": "Shoots an Arrow."
+      "text": "发射一根箭。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/slime_mob_block",
-      "text": "Increases the size of Slimes in a 6 block radius."
+      "text": "使半径6格内的史莱姆膨胀变大。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/snow_golem_mob_block",
-      "text": "Shoots a Snowball."
+      "text": "发射一枚雪球。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/spider_mob_block",
-      "text": "Gives a short burst of Poison."
+      "text": "给予短暂的中毒效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/squid_mob_block",
-      "text": "Gives a short burst of Blindness."
+      "text": "给予短暂的失明效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/stray_mob_block",
-      "text": "Gives a short burst of Hunger."
+      "text": "给予短暂的缓慢效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/strider_mob_block",
-      "text": "Gives a short burst of Fire Resistance."
+      "text": "给予短暂的防火效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/turtle_mob_block",
-      "text": "Gives a short burst of Resistance."
+      "text": "给予短暂的抗性提升效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/witch_mob_block",
-      "text": "Gives a short burst of Weakness."
+      "text": "给予短暂的虚弱效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/wither_mob_block",
-      "text": "Creates a huge explosion."
+      "text": "造成大型爆炸。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/wither_skeleton_mob_block",
-      "text": "Gives a short burst of Wither."
+      "text": "给予短暂的凋零效果。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/mob_blocks/zombie_mob_block",
-      "text": "Gives a short burst of Hunger."
+      "text": "给予短暂的饥饿效果。"
     }
   ]
 }

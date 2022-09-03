@@ -20,7 +20,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:citrine_basalt_lamp",
       "title": "宝石晶灯",
-      "text": "$(italic)初次驻足于晶洞之间的你注意到了交织的微光。现在，你学到了许多，知道了火花石能够放大这份微光，制作亮丽的宝石晶灯。$()"
+      "text": "$(italic)初次驻足于晶洞之间的你注意到了交织的微光。现在，你学到了许多，知道了微光石能够放大这份微光，制作亮丽的宝石晶灯。$()"
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -1,5 +1,5 @@
 {
-  "name": "Potion Works.: Crafting",
+  "name": "药水工作站：合成",
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:progression/unlock_potion_workshop",
   "category": "spectrum:magical_blocks_category",
@@ -14,57 +14,57 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Workshop Crafting",
-      "text": "As the name implies the Potion Workshops main focus is the creation of powerful Potions.$(br)But you found great utility creating other things, too. With the help of the filigree and granular adjustable switches and valves you could also recreate the creation of Mud and Liquid Crystal here - way more efficient than before.$(br)$()All these recipes do not use $(l:magical_blocks/potion_workshop_reagents)Reagents$(/l)."
+      "title": "工作站合成",
+      "text": "药水工作站的主要功能正如其名：制作强大的药剂。$(br)但你也发现了其它的用途。加上几个可控微调开关和阀门还有这里那里的精雕细琢，你成功复现了泥浆和液体水晶的制作过程——甚至比原先更为高效。$(br)$()以下配方全部不使用$(l:magical_blocks/potion_workshop_reagents)药水炼材$(/l)。"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Water",
+      "title": "水",
       "recipe": "spectrum:potion_workshop_crafting/water_bucket",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Lava",
+      "title": "熔岩",
       "recipe": "spectrum:potion_workshop_crafting/lava_bucket",
-      "text": "The $(l:magical_blocks/lava_sponge)Lava Sponge$(/l) will not get used up, allowing you to create large amounts of Lava quickly."
+      "text": "$(l:magical_blocks/lava_sponge)熔岩海绵$(/l)不会被消耗，因而允许你快速制作大量熔岩。"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Mud",
+      "title": "泥浆",
       "recipe": "spectrum:potion_workshop_crafting/mud_bucket",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Liquid Crystal",
+      "title": "液体水晶",
       "recipe": "spectrum:potion_workshop_crafting/liquid_crystal_bucket",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Midnight Solution",
+      "title": "午夜溶液",
       "advancement": "spectrum:midgame/collect_midnight_chip",
       "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Liquefying Honey",
+      "title": "蜂蜜液化",
       "recipe": "spectrum:potion_workshop_crafting/honey_bottle",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Powdering Snow",
+      "title": "细雪",
       "recipe": "spectrum:potion_workshop_crafting/powder_snow_bucket",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Bottles o' Enchanting",
+      "title": "附魔之瓶",
       "recipe": "spectrum:potion_workshop_crafting/experience_bottle",
-      "text": "Will consume 10 XP from the Knowledge Gem"
+      "text": "会消耗知识宝石中的10点经验。"
     }
   ]
 }

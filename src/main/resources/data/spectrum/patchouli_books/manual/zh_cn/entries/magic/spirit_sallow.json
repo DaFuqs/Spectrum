@@ -1,5 +1,5 @@
 {
-  "name": "灵魂木",
+  "name": "魂灵柳",
   "advancement": "spectrum:lategame/spectrum_lategame",
   "secret": true,
   "icon": "spectrum:ominous_sapling",
@@ -32,7 +32,7 @@
     {
       "type": "patchouli:text",
       "advancement": "spectrum:lategame/grow_ominous_sapling",
-      "title": "灵魂木",
+      "title": "魂灵柳",
       "text": "未完成"
     },
     {

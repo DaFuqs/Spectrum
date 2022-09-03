@@ -1,5 +1,5 @@
 {
-  "name": "重击增强",
+  "name": "暴击增强",
   "icon": "minecraft:iron_sword",
   "advancement": "spectrum:progression/enchantments/improved_critical",
   "flag": "spectrum:enchantment_exists_spectrum_improved_critical",
@@ -19,13 +19,13 @@
       "type": "spectrum:enchanter_crafting",
       "title": "附魔配方",
       "recipe": "spectrum:enchanter/spectrum_books/book_improved_critical",
-      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入重击增强附魔。"
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入暴击增强附魔。"
     },
     {
       "type": "spectrum:enchanter_upgrading",
       "title": "升级附魔",
       "recipe": "spectrum:enchantment_upgrade/spectrum/improved_critical_level_2",
-      "text": "将重击增强附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
+      "text": "将暴击增强附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
     }
   ]
 }

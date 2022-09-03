@@ -1,5 +1,5 @@
 {
-  "name": "Liquid Crystal",
+  "name": "液体水晶",
   "advancement": "spectrum:progression/unlock_liquid_crystal_bucket",
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:magical_blocks_category",
@@ -14,36 +14,36 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:liquid_crystal_bucket",
-      "text": "$(italic)The pure energy of gemstones in their liquid form. It is said to have a healing effect."
+      "text": "$(italic)宝石晶纯正能量的液态形式。似乎有治疗的功效。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/liquid_crystal_bucket",
-      "text": "Combining it with various other liquids results in all kinds of weird looking materials to form. Best to try it in the nether, too!"
+      "text": "和其它各种液体交互生成的材料可谓千奇百怪。在下界试试看应该也不错！"
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:clay",
-      "text": "Letting Liquid Crystal collide with Mud created Clay! Surely there are more combinations to discover!$(br2)$(italic)Thomas had never seen such unbalance before.$()"
+      "text": "液体水晶与泥浆交互生成了黏土块！还有别的组合搭配吗？$(br2)$(italic)我怀疑你在搞不平衡，但我没有证据。$()"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_blazing_crystal",
       "item": "spectrum:blazing_crystal",
-      "text": "Letting a full block of Liquid Crystal absorb the immense heat of Lava resulted in this.$(br)Almost feels like a Magma Block, albeit way hotter."
+      "text": "完整的一格液体水晶在吸收了熔岩的巨大热量之后形成了这个东西。$(br)有点像岩浆块，但滚烫得多。你称之为炽热水晶。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_frostbite_crystal",
       "item": "spectrum:frostbite_crystal",
-      "text": "As Water tried to flow to a full block of Liquid Crystal the crystal turned solid.$(br)Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal"
+      "text": "液体水晶被水流流过之后就凝固了。$(br)只需轻轻触碰，你就感受到了凛冽而刺骨的严寒。你称之为霜冻水晶。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/collect_resonant_lily",
       "item": "spectrum:resonant_lily",
-      "text": "This is an interesting one. The roots of flowers absorb this magical liquid, turning into elusive plants. But even then the cannot withstand the raw energy of the liquid, making them pop."
+      "text": "这个有点意思。花朵的根基吸收了这些液体魔法，化作了谜样的植物。然而这些植物无法承受住这等纯粹的能量，因此就自然掉落了。"
     }
   ]
 }

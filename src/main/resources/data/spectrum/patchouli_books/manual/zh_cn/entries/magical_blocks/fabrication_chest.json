@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:restocking_chest",
-      "text": "$(italic)七彩基座真是个精妙的自动化合成工具。但每一种类的物品合成都要独一个自动化机构那也太麻烦了吧……$(br2)嗯哼，应该有个更好的办法才是。"
+      "text": "$(italic)七彩基座真是个精妙的自动化合成工具。但对每一种类的物品都各要设计一个合成机构那也太麻烦了吧……$(br2)嗯哼，应该有个更好的办法才是。"
     },
     {
       "type": "spectrum:pedestal_crafting",

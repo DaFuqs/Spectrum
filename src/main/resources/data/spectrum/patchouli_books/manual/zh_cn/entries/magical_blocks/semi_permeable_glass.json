@@ -1,5 +1,5 @@
 {
-  "name": "Semi-permeable Glass",
+  "name": "半穿透玻璃",
   "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
   "icon": "spectrum:amethyst_player_only_glass",
   "category": "spectrum:magical_blocks_category",
@@ -16,13 +16,13 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "title": "Semi-permeable Glass",
+      "title": "半穿透玻璃",
       "item": "spectrum:amethyst_player_only_glass",
-      "text": "$(italic)For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further.$(br)You spend more time keeping those pesky monsters out of your base than you care to admit.$()"
+      "text": "$(italic)夜幕降临，怪物现形。然而这些可怖而凶恶的威胁对现如今的你不过是微不足道的资源而已。即便如此，它们仍然不会放过任何一次烦扰你的机会。$(br)在家还要反复驱逐怪物，实在令你不胜其烦。$()"
     },
     {
       "type": "patchouli:text",
-      "text": "$(italic)Then you remember the gemstone glass recipe you thought up earlier.$(br2)With a bit of magical energy, it should be no problem to make it not only transparent for you, but also passable (not for them!).$(br2)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition.$()"
+      "text": "$(italic)对了！原本不是有一个宝石晶玻璃的配方吗！$(br2)只要再加上一点魔法，这样制成的玻璃就允许由你（仅有你！）穿过。$(br2)小贴士：如果把它做成普通玻璃的模样，兴许还能唬住你的对手！$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -31,7 +31,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Semi-permeable Glass comes in all gemstone colors, common, tinted and glowing variants.$(br2)It looks exactly like its $(l:decoration/gemstone_glass)mundane counterpart$(), but has the special property that players can pass through it without problems, while all other creatures will bounce off it like a fly off a window."
+      "text": "半穿透玻璃存在多种款式：宝石晶款式，通常款式，遮光及发光款式。$(br2)它们和$(l:decoration/gemstone_glass)普通的宝石晶玻璃$()形态相同，但玩家可以穿透并通过这些玻璃，而其它生物会像苍蝇一样被弹开。"
     }
   ]
 }

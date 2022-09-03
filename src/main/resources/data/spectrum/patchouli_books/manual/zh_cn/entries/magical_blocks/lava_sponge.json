@@ -11,18 +11,18 @@
     {
       "type": "patchouli:text",
       "title": "熔岩海绵",
-      "text": "$(italic)手持湿漉漉的海绵的时候，你想着熔岩是不是也有类似的用具。everyn though you haven't stumbled across one yet, that hasn't stopped you from inventing one, of course.$(br2)This should make navigation in the depths of the world and beyond that hellish portal much easier."
+      "text": "$(italic)手持湿漉漉的海绵，你开始畅想有没有类似的、针对熔岩的用具。虽然找不到这种东西，这也拦不住你，自己发明一个便是。$(br2)这下，在世界深处或者传送门的另一边探险可就方便多啦！"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier1/lava_sponge",
-      "text": "...or so you thought, until you realized that the lava-soaked sponge also has an $(italic)unfortunate$() side effect.$(br)You should have guessed."
+      "text": "——理想很丰满，然而吸满了熔岩的海绵有着相当$(italic)不堪$()的副作用。$(br)早知如此……"
     },
     {
       "type": "patchouli:text",
-      "title": "Furnace Fuel",
-      "text": "The 熔岩海绵 can be used as highly efficient fuel in the furnace, drying it in the process."
+      "title": "熔炉燃料",
+      "text": "熔岩海绵是一种高效的熔炉燃料，使用后就会重新变得干燥。"
     }
   ]
 }

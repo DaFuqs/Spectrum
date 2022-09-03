@@ -1,5 +1,5 @@
 {
-  "name": "快手",
+  "name": "利落把柄",
   "icon": "minecraft:iron_sword",
   "advancement": "spectrum:progression/enchantments/tight_grip",
   "flag": "spectrum:enchantment_exists_spectrum_tight_grip",
@@ -19,13 +19,13 @@
       "type": "spectrum:enchanter_crafting",
       "title": "附魔配方",
       "recipe": "spectrum:enchanter/spectrum_books/book_tight_grip",
-      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入快手附魔。"
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入利落把柄附魔。"
     },
     {
       "type": "spectrum:enchanter_upgrading",
       "title": "升级附魔",
       "recipe": "spectrum:enchantment_upgrade/spectrum/tight_grip_level_2",
-      "text": "将快手附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
+      "text": "将利落把柄附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "四叶草的恩惠",
+  "name": "四叶草的眷佑",
   "icon": "minecraft:iron_sword",
   "advancement": "spectrum:progression/enchantments/clovers_favor",
   "flag": "spectrum:enchantment_exists_spectrum_clovers_favor",
@@ -19,13 +19,13 @@
       "type": "spectrum:enchanter_crafting",
       "title": "附魔配方",
       "recipe": "spectrum:enchanter/spectrum_books/book_clovers_favor",
-      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入四叶草的恩惠附魔。"
+      "text": "你可以将所需材料及颜料放入附魔基座周围的物品底座中，为普通的书本注入四叶草的眷佑附魔。"
     },
     {
       "type": "spectrum:enchanter_upgrading",
       "title": "升级附魔",
       "recipe": "spectrum:enchantment_upgrade/spectrum/clovers_favor_level_2",
-      "text": "将四叶草的恩惠附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
+      "text": "将四叶草的眷佑附魔从1级升级至2级的花销并不高昂。$(br)但随着等级逐级递增，所消耗的颜料和经验也会快速增加。"
     }
   ]
 }

@@ -37,6 +37,13 @@
       "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_pendant",
       "advancement": "spectrum:progression/unlock_fanciful_pendant",
       "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Fanciful Gloves",
+      "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_gloves",
+      "advancement": "spectrum:progression/unlock_fanciful_gloves",
+      "text": ""
     }
   ]
 }

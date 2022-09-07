@@ -2179,6 +2179,8 @@
   "advancements.spectrum.collect_native_resource.description": "Collect a Native Resource Cluster. These are much more pure than your basic ore scraps",
   "advancements.spectrum.kill_entity_with_ink_projectile.title": "Painbrush",
   "advancements.spectrum.kill_entity_with_ink_projectile.description": "Kill a creature by Flinging Ink using your Paintbrush",
+  "advancements.spectrum.collect_all_mob_heads.title": "Innumerable trophies",
+  "advancements.spectrum.collect_all_mob_heads.description": "Collect each individual Mob Head & Skull. I really hope you have a big enough showroom.",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

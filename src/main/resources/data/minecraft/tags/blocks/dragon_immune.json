@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#spectrum:unbreakable_structure_blocks",
     "spectrum:bedrock_storage_block",
     "spectrum:cracked_end_portal_frame",
     "spectrum:deeper_down_portal"

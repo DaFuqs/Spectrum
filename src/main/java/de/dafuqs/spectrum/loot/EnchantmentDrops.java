@@ -169,56 +169,50 @@ public class EnchantmentDrops {
 		Item dropItem = treasureHunterDropDefinition.skullItem;
 		float chance = treasureHunterDropDefinition.treasureHunterMultiplier;
 		
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, dropItem).build())
-				.withEntry(ItemEntry.builder(dropItem).build());
-		return poolBuilder.build();
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, dropItem).build())
+				.with(ItemEntry.builder(dropItem).build()).build();
 	}
 	
 	private static LootPool getFoxLootPool(FoxEntity.Type foxType, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(FoxTypeLootCondition.builder(foxType).build())
-				.withEntry(ItemEntry.builder(item).build());
-		return poolBuilder.build();
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(FoxTypeLootCondition.builder(foxType).build())
+				.with(ItemEntry.builder(item).build()).build();
 	}
 	
 	private static LootPool getMooshroomLootPool(MooshroomEntity.Type mooshroomType, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(MooshroomTypeLootCondition.builder(mooshroomType).build())
-				.withEntry(ItemEntry.builder(item).build());
-		return poolBuilder.build();
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(MooshroomTypeLootCondition.builder(mooshroomType).build())
+				.with(ItemEntry.builder(item).build()).build();
 	}
 	
 	private static LootPool getShulkerLootPool(DyeColor dyeColor, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(ShulkerColorLootCondition.builder(dyeColor).build())
-				.withEntry(ItemEntry.builder(item).build());
-		return poolBuilder.build();
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(ShulkerColorLootCondition.builder(dyeColor).build())
+				.with(ItemEntry.builder(item).build()).build();
 	}
 	
 	private static LootPool getAxolotlLootPool(AxolotlEntity.Variant variant, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(AxolotlVariantLootCondition.builder(variant).build())
-				.withEntry(ItemEntry.builder(item).build());
-		return poolBuilder.build();
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(AxolotlVariantLootCondition.builder(variant).build())
+				.with(ItemEntry.builder(item).build()).build();
 	}
 	
 	private static LootPool getParrotLootPool(int variant, Item item, float chance) {
-		FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
+		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
-				.withCondition(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.withCondition(ParrotVariantLootCondition.builder(variant).build())
-				.withEntry(ItemEntry.builder(item).build());
-		return poolBuilder.build();
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(ParrotVariantLootCondition.builder(variant).build())
+				.with(ItemEntry.builder(item).build()).build();
 	}
 	
 	private static class TreasureHunterDropDefinition {

@@ -164,19 +164,19 @@ public class SpectrumConfig implements ConfigData {
 		if (VanillaRecipeCraftingTimeTicks <= 0) {
 			VanillaRecipeCraftingTimeTicks = 40;
 		}
-		if (FadingDecayTickRate <= 0) {
+		if (FadingDecayTickRate <= 0.1) {
 			FadingDecayTickRate = 1.0F;
 		}
-		if (FailingDecayTickRate <= 0) {
+		if (FailingDecayTickRate <= 0.1) {
 			FadingDecayTickRate = 1.0F;
 		}
-		if (RuinDecayTickRate <= 0) {
+		if (RuinDecayTickRate <= 0.1) {
 			RuinDecayTickRate = 1.0F;
 		}
-		if (ShootingStarChance <= 0) {
+		if (ShootingStarChance <= 0.001) {
 			ShootingStarChance = 0.01F;
 		}
-		if (LightningStonesChance <= 0) {
+		if (LightningStonesChance <= 0.03) {
 			ShootingStarChance = 0.3F;
 		}
 		if (EndermanHoldingEnderTreasureChance <= 0) {

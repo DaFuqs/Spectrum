@@ -63,7 +63,6 @@ public class ProgressionSanityCommand {
 		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/build_cinderhearth_structure_without_lava"));
 	}};
 	
-	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		dispatcher.register((CommandManager.literal("spectrum_test_progression_sanity").requires((source) -> {
 			return source.hasPermissionLevel(2);

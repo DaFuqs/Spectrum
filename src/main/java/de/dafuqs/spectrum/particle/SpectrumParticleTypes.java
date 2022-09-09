@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -37,6 +38,11 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType DECAY_PLACE;
 	public static DefaultParticleType JADE_VINES;
 	public static DefaultParticleType JADE_VINES_BLOOM;
+	
+	public static DefaultParticleType LAVA_FISHING;
+	public static DefaultParticleType MUD_FISHING;
+	public static DefaultParticleType LIQUID_CRYSTAL_FISHING;
+	public static DefaultParticleType MIDNIGHT_SOLUTION_FISHING;
 	
 	public static DefaultParticleType BLACK_FALLING_SPORE_BLOSSOM;
 	public static DefaultParticleType BLUE_FALLING_SPORE_BLOSSOM;
@@ -177,6 +183,10 @@ public class SpectrumParticleTypes {
 		JADE_VINES = register("jade_vines", false);
 		JADE_VINES_BLOOM = register("jade_vines_bloom", false);
 		
+		LAVA_FISHING = register("lava_fishing", false);
+		MUD_FISHING = register("mud_fishing", false);
+		LIQUID_CRYSTAL_FISHING = register("liquid_crystal_fishing", false);
+		MIDNIGHT_SOLUTION_FISHING = register("midnight_solution_fishing", false);
 		
 		BLACK_FALLING_SPORE_BLOSSOM = register("black_falling_spore_blossom", false);
 		BLUE_FALLING_SPORE_BLOSSOM = register("blue_falling_spore_blossom", false);

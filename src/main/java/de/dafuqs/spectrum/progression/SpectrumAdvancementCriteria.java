@@ -30,6 +30,7 @@ public class SpectrumAdvancementCriteria {
 	public static CrystallarieumGrownCriterion CRYSTALLARIEUM_GROWING;
 	public static CinderhearthSmeltingCriterion CINDERHEARTH_SMELTING;
 	public static InkProjectileKillingCriterion KILLED_BY_INK_PROJECTILE;
+	public static SpectrumFishingRodHookedCriterion FISHING_ROD_HOOKED;
 	
 	public static void register() {
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
@@ -57,6 +58,7 @@ public class SpectrumAdvancementCriteria {
 		CRYSTALLARIEUM_GROWING = CriteriaAccessor.callRegister(new CrystallarieumGrownCriterion());
 		CINDERHEARTH_SMELTING = CriteriaAccessor.callRegister(new CinderhearthSmeltingCriterion());
 		KILLED_BY_INK_PROJECTILE = CriteriaAccessor.callRegister(new InkProjectileKillingCriterion());
+		FISHING_ROD_HOOKED = CriteriaAccessor.callRegister(new SpectrumFishingRodHookedCriterion());
 	}
 	
 }

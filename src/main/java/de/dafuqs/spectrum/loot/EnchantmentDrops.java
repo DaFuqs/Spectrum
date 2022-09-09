@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.loot;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.loot.conditions.*;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -7,6 +8,7 @@ import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.loot.v2.LootTableSource;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.passive.AxolotlEntity;
 import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.MooshroomEntity;
@@ -16,6 +18,7 @@ import net.minecraft.loot.LootManager;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.DyeColor;
@@ -153,6 +156,11 @@ public class EnchantmentDrops {
 				tableBuilder.pool(getParrotLootPool(2, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GREEN).asItem(), 0.01F));
 				tableBuilder.pool(getParrotLootPool(3, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_CYAN).asItem(), 0.01F));
 				tableBuilder.pool(getParrotLootPool(4, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GRAY).asItem(), 0.01F));
+			} else if(FabricLoader.getInstance().isModLoaded("gofish")) {
+				if (id.equals(SpectrumCommon.locate("gameplay/fishing/lava/fishing"))) {
+					// TODO
+					//tableBuilder.pool(new LootPool.Builder().with(new LootPoolEntry.Builder()...build()).build());
+				}
 			}
 		});
 	}

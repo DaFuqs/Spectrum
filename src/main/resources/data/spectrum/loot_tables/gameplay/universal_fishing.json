@@ -6,8 +6,37 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:loot_table",
-          "name": "minecraft:gameplay/fishing",
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:loot_table",
+              "name": "spectrum:gameplay/fishing/deeper_down/fishing",
+              "conditions": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "dimension": "spectrum:deeper_down_dimension"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:loot_table",
+              "name": "spectrum:gameplay/fishing/end/fishing",
+              "conditions": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "dimension": "minecraft:the_end"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:loot_table",
+              "name": "minecraft:gameplay/fishing"
+            }
+          ],
           "conditions": [
             {
               "condition": "minecraft:entity_properties",

@@ -2,25 +2,26 @@ package de.dafuqs.spectrum.loot;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
+import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
 import de.dafuqs.spectrum.loot.conditions.*;
+import de.dafuqs.spectrum.mixin.FishingHookPredicateMixin;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.loot.v2.LootTableSource;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.passive.AxolotlEntity;
 import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.loot.LootManager;
 import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.EntityPropertiesLootCondition;
+import net.minecraft.loot.condition.LootCondition;
+import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.loot.entry.LootTableEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.resource.ResourceManager;
+import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.predicate.entity.FishingHookPredicate;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
@@ -156,10 +157,24 @@ public class EnchantmentDrops {
 				tableBuilder.pool(getParrotLootPool(2, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GREEN).asItem(), 0.01F));
 				tableBuilder.pool(getParrotLootPool(3, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_CYAN).asItem(), 0.01F));
 				tableBuilder.pool(getParrotLootPool(4, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GRAY).asItem(), 0.01F));
-			} else if(FabricLoader.getInstance().isModLoaded("gofish")) {
-				if (id.equals(SpectrumCommon.locate("gameplay/fishing/lava/fishing"))) {
-					// TODO
-					//tableBuilder.pool(new LootPool.Builder().with(new LootPoolEntry.Builder()...build()).build());
+			} else if(FabricLoader.getInstance().isModLoaded(GoFishCompat.MOD_ID)) {
+				//Go-Fish compat: fishing of crates & go-fish fishies
+				if(id.equals(SpectrumCommon.locate("gameplay/fishing/lava/fishing"))) {
+					tableBuilder.pool(new LootPool.Builder()
+							.with(LootTableEntry.builder(GoFishCompat.NETHER_FISH_LOOT_TABLE_ID).weight(80).quality(-1).build())
+							.build());
+					tableBuilder.pool(new LootPool.Builder()
+							.with(LootTableEntry.builder(GoFishCompat.NETHER_CRATES_LOOT_TABLE_ID).weight(5).quality(2).build())
+							.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().fishHook(FishingHookPredicate.of(true)).build()).build())
+							.build());
+				} else if (id.equals(SpectrumCommon.locate("gameplay/fishing/end/fishing"))) {
+					tableBuilder.pool(new LootPool.Builder()
+							.with(LootTableEntry.builder(GoFishCompat.END_FISH_LOOT_TABLE_ID).weight(90).quality(-1).build())
+							.build());
+					tableBuilder.pool(new LootPool.Builder()
+							.with(LootTableEntry.builder(GoFishCompat.END_CRATES_LOOT_TABLE_ID).weight(5).quality(2).build())
+							.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().fishHook(FishingHookPredicate.of(true)).build()).build())
+							.build());
 				}
 			}
 		});

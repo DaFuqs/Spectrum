@@ -21,14 +21,12 @@ import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.LootTables;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
@@ -214,7 +212,7 @@ public class SpectrumFishingBobberEntity extends ProjectileEntity {
 					if (this.hookCountdown <= 0 && this.fishTravelCountdown <= 0) {
 						this.inTheOpen = true;
 					} else {
-						this.inTheOpen = this.inTheOpen && this.outOfOpenFluidTicks < 10 && this.isOpenOrFluidAround(blockPos);
+						this.inTheOpen = this.inTheOpen && this.outOfOpenFluidTicks < 10 && this.isInTheOpen(blockPos);
 					}
 					
 					if (bl) {
@@ -388,7 +386,7 @@ public class SpectrumFishingBobberEntity extends ProjectileEntity {
 		
 	}
 	
-	public boolean isOpenOrFluidAround(BlockPos pos) {
+	public boolean isInTheOpen(BlockPos pos) {
 		PositionType positionType = PositionType.INVALID;
 		
 		for(int i = -1; i <= 2; ++i) {

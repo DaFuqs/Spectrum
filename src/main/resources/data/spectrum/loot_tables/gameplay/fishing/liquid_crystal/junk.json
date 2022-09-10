@@ -26,7 +26,12 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:redstone_dust"
+          "name": "minecraft:redstone"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 1,
+          "name": "minecraft:glowstone"
         },
         {
           "type": "minecraft:item",
@@ -36,8 +41,8 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 3,
-                "max": 5
+                "min": 2,
+                "max": 4
               }
             }
           ]

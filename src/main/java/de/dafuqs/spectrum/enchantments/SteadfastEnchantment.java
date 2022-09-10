@@ -4,7 +4,10 @@ import dev.emi.trinkets.api.Trinket;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolItem;
+import net.minecraft.item.Vanishable;
 import net.minecraft.util.Identifier;
 
 public class SteadfastEnchantment extends SpectrumEnchantment {

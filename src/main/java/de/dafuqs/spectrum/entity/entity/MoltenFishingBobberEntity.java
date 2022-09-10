@@ -4,9 +4,6 @@ import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.tag.FluidTags;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
@@ -31,6 +28,7 @@ public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
 	@Override
 	public boolean doesRenderOnFire() {
 		return true;
+		// no, always on is more fun
 		/*if(this.world == null) {
 			return true;
 		}

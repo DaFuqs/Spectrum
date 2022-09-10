@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.entity.entity.MoltenFishingBobberEntity;
-import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;

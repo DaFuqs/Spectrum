@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
 import de.dafuqs.spectrum.interfaces.PotionFillable;
-import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;

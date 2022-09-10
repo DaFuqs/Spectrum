@@ -4,7 +4,6 @@ import com.mojang.logging.LogUtils;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;

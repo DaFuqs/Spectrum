@@ -40,7 +40,7 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 	}
 	
 	@NotNull
-	public static List<ItemStack> applyAutoSmelt(ServerWorld world, List<ItemStack> originalStacks) {
+	public static List<ItemStack> applyAutoSmelt(World world, List<ItemStack> originalStacks) {
 		List<ItemStack> returnItemStacks = new ArrayList<>();
 		
 		for (ItemStack is : originalStacks) {

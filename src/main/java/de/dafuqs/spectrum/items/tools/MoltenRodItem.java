@@ -12,15 +12,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FlamingRodItem extends SpectrumFishingRodItem {
+public class MoltenRodItem extends SpectrumFishingRodItem {
 	
-	public FlamingRodItem(Settings settings) {
+	public MoltenRodItem(Settings settings) {
 		super(settings);
 	}
 	
 	@Override
 	public boolean canFishIn(FluidState fluidState) {
-		return fluidState.isIn(SpectrumFluidTags.FLAMING_ROD_FISHABLE_IN);
+		return fluidState.isIn(SpectrumFluidTags.MOLTEN_ROD_FISHABLE_IN);
 	}
 	
 	@Override
@@ -31,8 +31,8 @@ public class FlamingRodItem extends SpectrumFishingRodItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(new TranslatableText("item.spectrum.flaming_rod.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.flaming_rod.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.molten_rod.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.molten_rod.tooltip2").formatted(Formatting.GRAY));
 	}
 	
 }

@@ -30,7 +30,7 @@ public class SpectrumItemPredicates {
 	public static void registerClient() {
 		registerBowPredicates(SpectrumItems.BEDROCK_BOW);
 		registerCrossbowPredicates(SpectrumItems.BEDROCK_CROSSBOW);
-		registerSpectrumFishingRodPredicates(SpectrumItems.FLAMING_ROD);
+		registerSpectrumFishingRodPredicates(SpectrumItems.MOLTEN_ROD);
 		registerSpectrumFishingRodPredicates(SpectrumItems.BEDROCK_FISHING_ROD);
 		registerEnderSplicePredicates(SpectrumItems.ENDER_SPLICE);
 		registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF);

@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 800,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 2,
+  "yellow": 4,
+  "white": 0,
+  "black": 0,
+  "experience": 4,
+  "pattern": [
+    " PB",
+    "PBS",
+    "B S"
+  ],
+  "key": {
+    "P": {
+      "item": "spectrum:orange_pigment"
+    },
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "spectrum:molten_rod",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_molten_rod"
+}

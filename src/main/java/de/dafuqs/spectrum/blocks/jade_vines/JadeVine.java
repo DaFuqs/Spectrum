@@ -25,8 +25,8 @@ public interface JadeVine {
 	VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	VoxelShape TIP_SHAPE = Block.createCuboidShape(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	
-	Identifier PETAL_HARVESTING_LOOT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "dynamic/jade_vine_petal_harvesting");
-	Identifier NECTAR_HARVESTING_LOOT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "dynamic/jade_vine_nectar_harvesting");
+	Identifier PETAL_HARVESTING_LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/jade_vine_petal_harvesting");
+	Identifier NECTAR_HARVESTING_LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/jade_vine_nectar_harvesting");
 	
 	static void spawnBloomParticlesClient(World world, BlockPos blockPos) {
 		spawnParticlesClient(world, blockPos, SpectrumParticleTypes.JADE_VINES_BLOOM);

@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "spectrum:gameplay/fishing/mud/junk",
+          "weight": 10,
+          "quality": -2
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "spectrum:gameplay/fishing/mud/treasure",
+          "weight": 5,
+          "quality": 2,
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "predicate": {
+                "fishing_hook": {
+                  "in_open_water": true
+                }
+              },
+              "entity": "this"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "spectrum:gameplay/fishing/mud/fish",
+          "weight": 80,
+          "quality": -1
+        }
+      ]
+    }
+  ]
+}

@@ -20,6 +20,8 @@ public class SpectrumEntityTypes {
 	public static EntityType<InvisibleGlowItemFrameEntity> INVISIBLE_GLOW_ITEM_FRAME;
 	public static EntityType<? extends ThrownItemEntity> BLOCK_FLOODER_PROJECTILE;
 	public static EntityType<InkProjectileEntity> INK_PROJECTILE;
+	public static EntityType MOLTEN_FISHING_BOBBER;
+	public static EntityType BEDROCK_FISHING_BOBBER;
 	
 	public static void register() {
 		LIVING_MARKER = register("living_marker", 0, 2147483647, false, EntityDimensions.changing(0F, 0F), true, LivingMarkerEntity::new);
@@ -29,6 +31,8 @@ public class SpectrumEntityTypes {
 		INVISIBLE_GLOW_ITEM_FRAME = register("invisible_glow_item_frame", 10, 2147483647, false, EntityDimensions.changing(0.5F, 0.5F), false, InvisibleGlowItemFrameEntity::new);
 		BLOCK_FLOODER_PROJECTILE = register("block_flooder_projectile", 4, 10, true, EntityDimensions.changing(0.25F, 0.25F), true, BlockFlooderProjectile::new);
 		INK_PROJECTILE = register("ink_projectile", 4, 10, true, EntityDimensions.changing(0.3F, 0.3F), true, InkProjectileEntity::new);
+		MOLTEN_FISHING_BOBBER = register("molten_fishing_bobber", EntityType.Builder.create(MoltenFishingBobberEntity::new, SpawnGroup.MISC).disableSaving().disableSummon().makeFireImmune().setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(5));
+		BEDROCK_FISHING_BOBBER = register("bedrock_fishing_bobber", EntityType.Builder.create(BedrockFishingBobberEntity::new, SpawnGroup.MISC).disableSaving().disableSummon().makeFireImmune().setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(5));
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, int trackingDistance, int updateIntervalTicks, boolean alwaysUpdateVelocity, EntityDimensions size, boolean fireImmune, EntityType.EntityFactory<X> factory) {
@@ -37,6 +41,10 @@ public class SpectrumEntityTypes {
 			builder.fireImmune();
 		}
 		return Registry.register(Registry.ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), builder.build());
+	}
+	
+	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> type) {
+		return Registry.register(Registry.ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), type.build(name));
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, SpawnGroup category, EntityDimensions size, EntityType.EntityFactory<X> factory) {

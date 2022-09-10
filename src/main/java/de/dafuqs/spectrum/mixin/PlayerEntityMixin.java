@@ -5,8 +5,10 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import de.dafuqs.spectrum.enchantments.ImprovedCriticalEnchantment;
+import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
 import de.dafuqs.spectrum.items.trinkets.AttackRingItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
+import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -27,7 +29,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.ArrayList;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin {
+public class PlayerEntityMixin implements PlayerEntityAccessor {
+	
+	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getAttributeValue(Lnet/minecraft/entity/attribute/EntityAttribute;)D"))
 	protected void spectrum$calculateModifiers(Entity target, CallbackInfo ci) {
@@ -62,6 +66,16 @@ public abstract class PlayerEntityMixin {
 		if (!cir.getReturnValue() && damageSource.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
 			cir.setReturnValue(true);
 		}
+	}
+	
+	@Override
+	public void setSpectrumBobber(SpectrumFishingBobberEntity bobber) {
+		this.spectrum$fishingBobber = bobber;
+	}
+	
+	@Override
+	public SpectrumFishingBobberEntity getSpectrumBobber() {
+		return this.spectrum$fishingBobber;
 	}
 	
 	/*

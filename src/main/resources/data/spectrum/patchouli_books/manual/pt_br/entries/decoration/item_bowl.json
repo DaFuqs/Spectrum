@@ -1,6 +1,6 @@
 {
   "name": "Tijelas de Item",
-  "advancement": "spectrum:midgame/enter_liquid_crystal",
+  "advancement": "spectrum:progression/unlock_item_bowl",
   "icon": "spectrum:item_bowl_basalt",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

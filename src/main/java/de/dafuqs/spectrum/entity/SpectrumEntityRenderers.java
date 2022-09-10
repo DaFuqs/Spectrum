@@ -1,8 +1,6 @@
 package de.dafuqs.spectrum.entity;
 
-import de.dafuqs.spectrum.entity.render.InkProjectileEntityRenderer;
-import de.dafuqs.spectrum.entity.render.InvisibleItemFrameEntityRenderer;
-import de.dafuqs.spectrum.entity.render.ShootingStarEntityRenderer;
+import de.dafuqs.spectrum.entity.render.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
@@ -22,6 +20,8 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, InvisibleItemFrameEntityRenderer::new);
 		register(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE, FlyingItemEntityRenderer::new);
 		register(SpectrumEntityTypes.INK_PROJECTILE, InkProjectileEntityRenderer::new);
+		register(SpectrumEntityTypes.MOLTEN_FISHING_BOBBER, MoltenFishingBobberEntityRenderer::new);
+		register(SpectrumEntityTypes.BEDROCK_FISHING_BOBBER, BedrockFishingBobberEntityRenderer::new);
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {

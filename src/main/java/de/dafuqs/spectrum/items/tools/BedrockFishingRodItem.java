@@ -1,16 +1,31 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.entity.entity.BedrockFishingBobberEntity;
+import de.dafuqs.spectrum.entity.entity.MoltenFishingBobberEntity;
 import de.dafuqs.spectrum.items.Preenchanted;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumFluidTags;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.FishingRodItem;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tag.FluidTags;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Map;
 
-public class BedrockFishingRodItem extends FishingRodItem implements Preenchanted {
+public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Preenchanted {
 	
 	public BedrockFishingRodItem(Settings settings) {
 		super(settings);
@@ -41,6 +56,22 @@ public class BedrockFishingRodItem extends FishingRodItem implements Preenchante
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
+	}
+	
+	@Override
+	public boolean canFishIn(FluidState fluidState) {
+		return fluidState.isIn(SpectrumFluidTags.BEDROCK_ROD_FISHABLE_IN);
+	}
+	
+	@Override
+	public void spawnBobber(PlayerEntity user, World world, int luckOfTheSea, int lure) {
+		world.spawnEntity(new BedrockFishingBobberEntity(user, world, luckOfTheSea, lure));
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(new TranslatableText("item.spectrum.bedrock_fishing_rod.tooltip").formatted(Formatting.GRAY));
 	}
 	
 }

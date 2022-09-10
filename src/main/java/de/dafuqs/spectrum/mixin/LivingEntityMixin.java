@@ -65,21 +65,7 @@ public abstract class LivingEntityMixin {
 	
 	@Shadow public abstract boolean blockedByShield(DamageSource source);
 	
-	@Shadow @Final private AttributeContainer attributes;
-	
-	@Shadow @Nullable private LivingEntity attacker;
-	
-	@Shadow public abstract void readCustomDataFromNbt(NbtCompound nbt);
-	
-	@Shadow public abstract Vec3d applyMovementInput(Vec3d movementInput, float slipperiness);
-	
-	@Shadow public abstract void readFromPacket(MobSpawnS2CPacket packet);
-	
 	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
-	
-	@Shadow public abstract boolean removeStatusEffect(StatusEffect type);
-	
-	@Shadow public abstract void setHealth(float health);
 	
 	@Shadow public abstract ItemStack getMainHandStack();
 

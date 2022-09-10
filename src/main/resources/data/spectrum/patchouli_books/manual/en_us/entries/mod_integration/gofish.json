@@ -1,0 +1,21 @@
+{
+  "name": "Go Fish",
+  "icon": "gofish:starry_salmon",
+  "flag": "mod:go-fish",
+  "advancement": "spectrum:progression/unlock_molten_rod",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Lava Fishing",
+      "item": "spectrum:molten_rod",
+      "text": "Your magical fishing rods are able to fish lava and end dwelling fish, like the special Go Fish fishing rods.$(br)Crates can also be fished, as long as you are in the open."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Other Features",
+      "item": "minecraft:enchanted_book{Stored_Enchantments: [{id: \"gofish:deepfry\", lvl: 1s}]}",
+      "text": "While the Deepfry Enchantment cooks fish as usual, lures have no effect. But you are sure you will find a way to enhance your rod later."
+    }
+  ]
+}

@@ -25,6 +25,8 @@ public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer
 	
 	@Override
 	public void render(SpectrumFishingBobberEntity bobber, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+		super.render(bobber, f, g, matrixStack, vertexConsumerProvider, i);
+		
 		PlayerEntity playerEntity = bobber.getPlayerOwner();
 		if (playerEntity != null) {
 			matrixStack.push();

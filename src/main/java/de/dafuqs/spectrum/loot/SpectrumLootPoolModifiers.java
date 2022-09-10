@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
 import de.dafuqs.spectrum.loot.conditions.*;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.passive.AxolotlEntity;
 import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.MooshroomEntity;
@@ -25,7 +24,6 @@ import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
 
 public class SpectrumLootPoolModifiers {
 	

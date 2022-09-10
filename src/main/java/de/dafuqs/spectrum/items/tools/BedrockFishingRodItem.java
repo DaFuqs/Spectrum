@@ -1,12 +1,8 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.entity.entity.BedrockFishingBobberEntity;
-import de.dafuqs.spectrum.entity.entity.MoltenFishingBobberEntity;
 import de.dafuqs.spectrum.items.Preenchanted;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -14,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tag.FluidTags;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;

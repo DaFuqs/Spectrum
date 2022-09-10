@@ -1,11 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
-import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;

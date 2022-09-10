@@ -1,7 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.entity.entity.MoltenFishingBobberEntity;
+import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -18,6 +21,7 @@ public class MoltenRodItem extends SpectrumFishingRodItem {
 		super(settings);
 	}
 	
+
 	@Override
 	public boolean canFishIn(FluidState fluidState) {
 		return fluidState.isIn(SpectrumFluidTags.MOLTEN_ROD_FISHABLE_IN);
@@ -26,6 +30,11 @@ public class MoltenRodItem extends SpectrumFishingRodItem {
 	@Override
 	public boolean shouldAutosmelt(ItemStack itemStack) {
 		return true;
+	}
+	
+	@Override
+	public void spawnBobber(PlayerEntity user, World world, int luckOfTheSea, int lure) {
+		world.spawnEntity(new MoltenFishingBobberEntity(user, world, luckOfTheSea, lure));
 	}
 	
 	@Override

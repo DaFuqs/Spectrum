@@ -20,7 +20,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-public class SpectrumFishingRodItem extends FishingRodItem {
+public abstract class SpectrumFishingRodItem extends FishingRodItem {
 	
 	public SpectrumFishingRodItem(Settings settings) {
 		super(settings);
@@ -46,7 +46,7 @@ public class SpectrumFishingRodItem extends FishingRodItem {
 			if (!world.isClient) {
 				i = EnchantmentHelper.getLure(itemStack);
 				int j = EnchantmentHelper.getLuckOfTheSea(itemStack);
-				world.spawnEntity(new SpectrumFishingBobberEntity(user, world, j, i));
+				spawnBobber(user, world, j, i);
 			}
 			
 			user.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -55,6 +55,8 @@ public class SpectrumFishingRodItem extends FishingRodItem {
 		
 		return TypedActionResult.success(itemStack, world.isClient());
 	}
+	
+	public abstract void spawnBobber(PlayerEntity user, World world, int luckOfTheSea, int lure);
 	
 	public boolean canFishIn(FluidState fluidState) {
 		return fluidState.isIn(FluidTags.WATER);

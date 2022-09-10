@@ -50,7 +50,7 @@ import java.util.*;
 // yeah, this pretty much is a full reimplementation. Sadge
 // I wanted to use more of FishingBobberEntity for mod compat,
 // but most methods are either private or are tricky to extend
-public class SpectrumFishingBobberEntity extends ProjectileEntity {
+public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	private static final Logger field_36336 = LogUtils.getLogger();
 	private final Random velocityRandom;

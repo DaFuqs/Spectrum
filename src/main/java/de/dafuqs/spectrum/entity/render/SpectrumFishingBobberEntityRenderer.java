@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
 import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import net.minecraft.client.MinecraftClient;
@@ -13,23 +12,16 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.Arm;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
 
-public class SpectrumFishingBobberEntityRenderer extends EntityRenderer<SpectrumFishingBobberEntity> {
-	
-	private static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/fishing_hook.png");
-	private static final RenderLayer LAYER = RenderLayer.getEntityCutout(TEXTURE);
+public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer<SpectrumFishingBobberEntity> {
 	
 	public SpectrumFishingBobberEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);
 	}
 	
-	public Identifier getTexture(SpectrumFishingBobberEntity fishingBobberEntity) {
-		return TEXTURE;
-	}
+	public abstract RenderLayer getLayer();
 	
 	@Override
 	public void render(SpectrumFishingBobberEntity bobber, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
@@ -43,7 +35,7 @@ public class SpectrumFishingBobberEntityRenderer extends EntityRenderer<Spectrum
 			MatrixStack.Entry entry = matrixStack.peek();
 			Matrix4f matrix4f = entry.getPositionMatrix();
 			Matrix3f matrix3f = entry.getNormalMatrix();
-			VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(LAYER);
+			VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(getLayer());
 			vertex(vertexConsumer, matrix4f, matrix3f, i, 0.0F, 0, 0, 1);
 			vertex(vertexConsumer, matrix4f, matrix3f, i, 1.0F, 0, 1, 1);
 			vertex(vertexConsumer, matrix4f, matrix3f, i, 1.0F, 1, 1, 0);

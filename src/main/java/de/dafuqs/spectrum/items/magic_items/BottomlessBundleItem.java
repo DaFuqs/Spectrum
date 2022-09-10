@@ -116,6 +116,14 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 	}
 	
+	public static boolean isLocked(ItemStack itemStack) {
+		NbtCompound compound = itemStack.getNbt();
+		if (compound != null) {
+			return compound.getBoolean("Locked");
+		}
+		return false;
+	}
+	
 	public static ItemStack getFirstBundledStack(ItemStack voidBundleStack) {
 		NbtCompound nbtCompound = voidBundleStack.getNbt();
 		if (nbtCompound == null) {
@@ -310,10 +318,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	}
 	
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-		boolean locked = false;
-		if(stack.getNbt() != null && stack.getNbt().contains("Locked")) {
-			locked = true;
-		}
+		boolean locked = isLocked(stack);
 		int storedAmount = getStoredAmount(stack);
 		if (storedAmount == 0) {
 			tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty").formatted(Formatting.GRAY));
@@ -434,6 +439,10 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	
 	@Override
 	public int acceptItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept, PlayerEntity playerEntity) {
+		if(isLocked(inventoryInsertionAcceptorStack)) {
+			return itemStackToAccept.getCount();
+		}
+		
 		int storedAmount = getStoredAmount(inventoryInsertionAcceptorStack);
 		return bundleStack(inventoryInsertionAcceptorStack, itemStackToAccept, itemStackToAccept.getCount() + storedAmount);
 	}

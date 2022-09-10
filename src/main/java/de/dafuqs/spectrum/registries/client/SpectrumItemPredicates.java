@@ -2,11 +2,13 @@ package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
+import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.energy.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.items.magic_items.PaintBrushItem;
+import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
@@ -28,7 +30,8 @@ public class SpectrumItemPredicates {
 	public static void registerClient() {
 		registerBowPredicates(SpectrumItems.BEDROCK_BOW);
 		registerCrossbowPredicates(SpectrumItems.BEDROCK_CROSSBOW);
-		registerFishingRodPredicates(SpectrumItems.BEDROCK_FISHING_ROD);
+		registerSpectrumFishingRodPredicates(SpectrumItems.FLAMING_ROD);
+		registerSpectrumFishingRodPredicates(SpectrumItems.BEDROCK_FISHING_ROD);
 		registerEnderSplicePredicates(SpectrumItems.ENDER_SPLICE);
 		registerAnimatedWandPredicates(SpectrumItems.NATURES_STAFF);
 		registerAnimatedWandPredicates(SpectrumItems.RADIANCE_STAFF);
@@ -135,18 +138,17 @@ public class SpectrumItemPredicates {
 		});
 	}
 	
-	private static void registerFishingRodPredicates(FishingRodItem fishingRodItem) {
-		FabricModelPredicateProviderRegistry.register(fishingRodItem, new Identifier("cast"), (itemStack, clientWorld, livingEntity, i) -> {
+	private static void registerSpectrumFishingRodPredicates(SpectrumFishingRodItem fishingRod) {
+		FabricModelPredicateProviderRegistry.register(fishingRod, new Identifier("cast"), (itemStack, clientWorld, livingEntity, i) -> {
 			if (livingEntity == null) {
 				return 0.0F;
 			} else {
 				boolean bl = livingEntity.getMainHandStack() == itemStack;
 				boolean bl2 = livingEntity.getOffHandStack() == itemStack;
-				if (livingEntity.getMainHandStack().getItem() instanceof FishingRodItem) {
+				if (livingEntity.getMainHandStack().getItem() instanceof SpectrumFishingRodItem) {
 					bl2 = false;
 				}
-				
-				return (bl || bl2) && livingEntity instanceof PlayerEntity && ((PlayerEntity) livingEntity).fishHook != null ? 1.0F : 0.0F;
+				return (bl || bl2) && livingEntity instanceof PlayerEntity && ((PlayerEntityAccessor) livingEntity).getSpectrumBobber() != null ? 1.0F : 0.0F;
 			}
 		});
 	}

@@ -161,8 +161,9 @@ public class SpectrumItems {
 			return Map.of(SpectrumEnchantments.RESONANCE, 1);
 		}
 	};
-	
-	// Bedrock Tools
+	public static final SpectrumFishingRodItem FLAMING_ROD = new FlamingRodItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxDamage(256));
+		
+		// Bedrock Tools
 	public static final SpectrumToolMaterials.ToolMaterial BEDROCK_MATERIAL = SpectrumToolMaterials.ToolMaterial.BEDROCK;
 	public static final ToolItem BEDROCK_PICKAXE = new BedrockPickaxeItem(BEDROCK_MATERIAL, 1, -2.8F, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	public static final ToolItem BEDROCK_AXE = new BedrockAxeItem(BEDROCK_MATERIAL, 5, -3.0F, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
@@ -172,7 +173,7 @@ public class SpectrumItems {
 	public static final BedrockBowItem BEDROCK_BOW = new BedrockBowItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	public static final BedrockCrossbowItem BEDROCK_CROSSBOW = new BedrockCrossbowItem(new OwoItemSettings().rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
-	public static final FishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final SpectrumFishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	
 	public static final SwordItem DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(1));
 
@@ -538,6 +539,7 @@ public class SpectrumItems {
 		register("looting_falchion", LOOTING_FALCHION, DyeColor.RED);
 		register("voiding_pickaxe", VOIDING_PICKAXE, DyeColor.GRAY);
 		register("resonant_pickaxe", RESONANT_PICKAXE, DyeColor.WHITE);
+		register("flaming_rod", FLAMING_ROD, DyeColor.ORANGE);
 		
 		register("emergency_helmet", EMERGENCY_HELMET, DyeColor.BLUE);
 		register("emergency_chestplate", EMERGENCY_CHESTPLATE, DyeColor.BLUE);

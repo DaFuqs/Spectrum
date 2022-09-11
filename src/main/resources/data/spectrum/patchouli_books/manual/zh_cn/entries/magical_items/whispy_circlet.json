@@ -10,7 +10,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/whispy_circlet",
       "text": "$(italic)The pleasures of a good night's sleep"
     }

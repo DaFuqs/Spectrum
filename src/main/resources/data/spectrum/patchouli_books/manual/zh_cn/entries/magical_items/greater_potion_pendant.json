@@ -1,5 +1,5 @@
 {
-  "name": "Greater Potion Pendant",
+  "name": "大型药水吊坠",
   "advancement": "spectrum:progression/unlock_greater_potion_pendant",
   "secret": true,
   "icon": "spectrum:greater_potion_pendant",
@@ -10,13 +10,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Works very similar to its $(l:magical_items/lesser_potion_pendant)little brother$(/l).$(br)In contrast this version has three chambers, each of which can be filled with a different potion. Since the individual chambers are smaller, it can only support Effects up to Level I."
+      "text": "在功能上，它与它的$(l:magical_items/lesser_potion_pendant)小弟$(/l)相似。$(br)其具有三个分立的药液仓，各可以填充一种药水效果。然而，每一分立的药液仓容积较小，仅能容纳效果强度为I级的药水。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/greater_potion_pendant",
-      "text": "Use the $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) to fill it with potions.$(br)For each Potion your $(l:general/pigment_palette)Pigment Palette$(/l) will use up specific color energy. The higher the level, the higher the cost."
+      "text": "使用$(l:magical_blocks/potion_workshop)药水工作站$(/l)来灌注药水。$(br)每一种药水都会消耗你$(l:general/pigment_palette)调色板$(/l)中对应颜色的墨水。等级越高，消耗也越快。"
     }
   ]
 }

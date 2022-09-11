@@ -1,5 +1,5 @@
 {
-  "name": "Nature's Staff",
+  "name": "自然法杖",
   "advancement": "spectrum:progression/unlock_natures_staff",
   "icon": "spectrum:natures_staff",
   "category": "spectrum:magical_items_category",
@@ -9,20 +9,20 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Using the magic elements of $(c_brown)Nature$() and $(c_lime)Fertility$(), you have come up with this stroke of genius.$(br)Bonemeal is a joke when compared to your new gadget."
+      "text": "你突然迸发了天才的灵感，结合了$(c_brown)自然$()与$(c_lime)生机$()之力。$(br)骨粉在你的新工具面前简直就是笑话。"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier2/natures_staff",
-      "text": "$(italic)Point at something you want to see blossom"
+      "text": "$(italic)随心所指之处，花朵自然绽放"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/build_enchanting_structure",
-      "title": "Enchanting - Efficiency",
+      "title": "效率魔咒",
       "item": "spectrum:natures_staff{Enchantments: [{id: \"minecraft:efficiency\", lvl: 5s}]}",
-      "text": "Enchanting the Nature's Staff with Efficiency by using the $(l:enchanting/enchanting_items)Enchanter$(/l) decreases the chance of $(l:creating_life/fading#vegetal)Vegetal$(/l) to get consumed for each level."
+      "text": "使用$(l:enchanting/enchanting_items)附魔基座$(/l)可为法杖注入效率魔咒，每一级魔咒都将进一步降低$(l:creating_life/fading#vegetal)植本质$(/l)被消耗的几率。"
     }
   ]
 }

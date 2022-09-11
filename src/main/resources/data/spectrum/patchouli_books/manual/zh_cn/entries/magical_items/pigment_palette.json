@@ -1,5 +1,5 @@
 {
-  "name": "Pigment Palette",
+  "name": "调色板",
   "advancement": "spectrum:progression/unlock_pigment_palette",
   "icon": "spectrum:pigment_palette",
   "category": "spectrum:magical_items_category",
@@ -9,15 +9,15 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Maintaining your magical equipment has become a task in itself. Carrying around all the types of pigment you need is also a major space hog in your inventory.$(br)Now that you're familiar with Pigment, you see no reason to lug it around like you did in the Middle Ages. You've accumulated so much knowledge, survived so many hardships and misfortunes!"
+      "text": "保养魔法装备也成了一件苦差事。颜料塞满背包也不是个头。$(br)既然你已经这么熟悉颜料的特质，像中世纪人一样背着颜料到处跑岂不是有失颜面？毕竟是见多识广，身经百战了！"
     },
     {
       "type": "patchouli:text",
-      "text": "It's time for a new creation: the Pigment Palette. Now you are a true Artist of Color.$(br)The Pigment Palette is capable of absorbing, compressing and storing the elemental magics of $(l:general/pigment)Pigments$(/l). The Pigment Palette, as a single piece of equipment, is able to supply all your magical devices and equipment with suitable pigment.$(br2)Only drawback: deprived of their mundane form, there is no way to transform pigments back into physical form."
+      "text": "该打造全新发明了：调色板。这才叫七彩艺术家！$(br)调色板能够吸收、压缩并存储$(l:general/pigment)颜料$(/l)的魔法要素，且能为你的各色魔法装备与器件补充合适的颜料。$(br2)唯一缺点：被吸收的颜料失去了实形，无法再重新变回颜料。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/pigment_palette",
       "text": ""
     }

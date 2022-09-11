@@ -16,7 +16,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "具体措施",
+      "title": "简要说明",
       "cost": "spectrum:sparklestone_gem#24",
       "text": "使用望远镜与夜视药水能够更好地察觉它们的存在。如果你看到一个流星直冲地面，你可以顺着轨迹前往落点。流星的粒子效果如同光束一般，非常显眼。"
     }

@@ -16,7 +16,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "具体措施",
+      "title": "简要说明",
       "cost": "minecraft:clay_ball#48",
       "text": "某种奇怪的植物在沼泽地的黏土堆上生长。它们会吸收附近的黏土块，从而长得更高。"
     }

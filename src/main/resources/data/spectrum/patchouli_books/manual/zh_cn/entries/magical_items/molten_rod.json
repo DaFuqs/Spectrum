@@ -1,0 +1,21 @@
+{
+  "name": "熔融钓竿",
+  "advancement": "spectrum:progression/unlock_molten_rod",
+  "secret": true,
+  "icon": "spectrum:molten_rod",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:molten_rod": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "温暖的橙色可以发挥出数不胜数的特性，例如你手上的这样奇妙发明。$(br)与普通的钓鱼竿不同，它不仅能在熔岩中钓鱼，也能在各种各样的其它液体中钓鱼。浮出液面的到底会是什么呢——？"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/molten_rod",
+      "text": "$(italic)小心，烫！$()$(br)炽热的鱼钩可不仅是灼伤手指那么简单的哦……"
+    }
+  ]
+}

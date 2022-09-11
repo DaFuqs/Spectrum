@@ -14,7 +14,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/puff_circlet",
       "text": "$(italic)Gone are the days when skeletons sniped you from behind in an unforeseen moment."
     }

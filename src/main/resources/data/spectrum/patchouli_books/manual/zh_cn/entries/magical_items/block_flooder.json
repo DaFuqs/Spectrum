@@ -1,5 +1,5 @@
 {
-  "name": "Block Flooder",
+  "name": "方块填充器",
   "advancement": "spectrum:progression/unlock_block_flooder",
   "icon": "spectrum:block_flooder",
   "category": "spectrum:magical_items_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Like a caveman, you've always run around manually illuminating, or closing unsightly looking cave exits in your immediate vicinity. To relieve you of this work you took the self-replicating abilities of $(l:creating_life/fading)Fading$(/l) as an inspiration to develop the Block Flooder.$(br)Thrown into a cave entrance, pond or ravine, they are filled - in 5% of the cases the result even looks acceptable!"
+      "text": "四处手动照明点灯，封闭洞窟出入口的你好像一个原始人。为了减少负担，你想到了$(l:creating_life/fading)褪解微生物$(/l)的增殖特性，借此发明了方块填充器。$(br)扔进洞口、池塘、峡谷，它们就被塞满啦——甚至有5%的几率看起来像那么回事！"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier2/block_flooder",
-      "text": "To fill the gaps it pulls matching blocks directly from your inventory. If you don't have any matching blocks it will fall back to Cobblestone."
+      "text": "方块填充器会从你的物品栏中拉取方块来填充缝隙。如果你没有相应的方块了，它会试图用圆石代替。"
     }
   ]
 }

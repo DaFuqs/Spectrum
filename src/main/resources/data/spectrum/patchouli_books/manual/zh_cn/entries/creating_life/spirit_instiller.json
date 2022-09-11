@@ -15,7 +15,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/spirit_instiller",
-      "text": "灵魂灌注台也需要基座结构。对着已放置的灵魂灌注台右击来旋转投影。"
+      "text": "灵魂灌注台也需要基座结构才能正常运作。对着已放置的灵魂灌注台右击来旋转投影。"
     },
     {
       "type": "patchouli:multiblock",

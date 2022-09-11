@@ -1,5 +1,5 @@
 {
-  "name": "Knowledge Gem",
+  "name": "知识宝石",
   "advancement": "spectrum:progression/unlock_knowledge_gem",
   "icon": "spectrum:knowledge_gem{stored_experience:500}",
   "category": "spectrum:magical_items_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Whenever you pick up one of those little green orbs that appear whenever you kill an enemy, you get smarter - supposedly.$(br2)However, the inevitable death by clumsiness means that you always lose this experience quickly. Crystallized and safely stored in your chests, however, they will be as safe as can be.$()"
+      "text": "$(italic)杀死敌人掉落的翠绿色的球似乎有启智的功效。$(br2)然而，粗心大意笨手笨脚的死亡在所难免，而这些经验却就这么丢失了。把这种经验用结晶的方式存储起来塞进箱子里，总比带在身上要安全得多了。$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/knowledge_gem",
-      "text": "A Gem can hold up to 10.000 experience. $(l:enchanting/enchanting_items)Enchanting$() it with $(thing)Efficiency$() increases that limit, $(thing)Quick Charge$() boosts the pushing/pulling of XP."
+      "text": "一个宝石可以存储最多10000点经验。使用$(l:enchanting/enchanting_items)附魔基座$()注入$(thing)效率$()魔咒即可提升这个上限。$(thing)快速装填$()魔咒则能加快经验的传输速率，使得存储和提取更为方便。"
     }
   ]
 }

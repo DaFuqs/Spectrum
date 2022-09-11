@@ -16,7 +16,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "具体措施",
+      "title": "简要说明",
       "cost": "minecraft:quartz#48",
       "text": "下界所有生物群系的低层都会生成这种矿石，位于熔岩海以下。"
     }

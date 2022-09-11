@@ -1,5 +1,5 @@
 {
-  "name": "Jeopardant",
+  "name": "孤勇戒指",
   "advancement": "spectrum:progression/unlock_jeopardant",
   "icon": "spectrum:jeopardant",
   "category": "spectrum:magical_items_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Adrenaline does not have to be the only thing racing through your veins in state of emergency.$(br)With every heart lost, the $(l:resources/scarlet)Stratine Gem$() in this ring shines brighter and brighter, pulsating in the same rhythm as your racing heart - granting you an exponential damage boost."
+      "text": "紧要关头时流经血管的可以不止肾上腺素。$(br)你所失去的每一颗心都会让戒指之间的$(l:resources/scarlet)绯红宝石$()闪烁得更加耀眼逼人。绯红的光芒随心搏动，越发疾速的心跳即是越发致命的反击——你的伤害输出随血量递减呈指数递增。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/jeopardant",
-      "text": "$(italic)Tell me what you think about your situation$(br)Complication, aggravation"
+      "text": "$(italic)此情此景你何以响应？$(br)神不定，心不停，唯以命搏命，以命敌命"
     }
   ]
 }

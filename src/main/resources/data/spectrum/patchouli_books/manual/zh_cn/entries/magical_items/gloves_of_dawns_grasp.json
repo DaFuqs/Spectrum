@@ -1,5 +1,5 @@
 {
-  "name": "Gloves of Dawn's Grasp",
+  "name": "黎明之握的手套",
   "advancement": "spectrum:progression/unlock_gloves_of_dawns_grasp",
   "icon": "spectrum:gloves_of_dawns_grasp",
   "category": "spectrum:magical_items_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "When you asked your neighbor what this \"gobber\" was that they were always talking about, the only answer you got was that this godlike material was out of reach for you little artist.$(br)Before they could explain to you that \"out of reach\" was not to be taken literally, you had already designed these gloves. Oops."
+      "text": "你曾问过邻居关于那种什么“戈伯”材料的事情：“哎呀，你个破画画的懂什么！这种顶天材料你能摸得到吗！”$(br)顶天？摸到？是字面意义吗？——他们还没来得及解释，你就为此设计好一双手套了。哎呀！"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/gloves_of_dawns_grasp",
-      "text": "Oh, well, now that you've thought them up, you're gonna use them!$(br2)Infuse them with $(l:magic/ink)Light Blue Ink$(/l) to increase the additional reach provided."
+      "text": "嘛，设计都设计好了，将就着用咯。$(br2)注入$(l:magic/ink)淡蓝色墨水$(/l)即可进一步提升攻击距离上限。"
     }
   ]
 }

@@ -21,7 +21,7 @@
       "type": "patchouli:spotlight",
       "title": "远古遗迹",
       "item": "spectrum:dike_chiseled_preservation_stone",
-      "text": "你发现了一个埋藏在地底的巨大遗迹，入口被强大的魔法力场所守护……"
+      "text": "你发现了某个埋藏在地底的巨大遗迹，入口被强大的魔法力场所守护……"
     },
     {
       "type": "patchouli:image",
@@ -37,13 +37,13 @@
       "title": "适格之人",
       "item": "spectrum:azure_dike_ring",
       "advancement": "spectrum:enter_ancient_ruins",
-      "text": "蔚蓝装备似乎就是准入许可。$(br2)你一度认为仅有你孤身一人独自钻研颜色与宝石晶的魔法内涵。看来，你的推测不对。$(italic)甚至于错的离谱……"
+      "text": "蔚蓝装备似乎就是准入许可。$(br2)你一度认为，仅有你孤身一人独自钻研色彩与宝石晶内涵的魔法力量。看来，这个推测不对。$(italic)甚至于错得离谱……"
     },
     {
       "type": "patchouli:text",
       "title": "挑战？",
       "advancement": "spectrum:generate_ancient_ruins_loot",
-      "text": "建造这些建筑的人手段和你很相似，然而技术上要更高明，高明得多了。$(br2)但无论怎么样，这个挑战还是欣然接受吧，毕竟——$(br)$(italic)活人才有机会说话。"
+      "text": "这些建筑的建造思路和手法与你的相当相似，然而技术上要更高明，甚至于高明得多了。$(br2)但无论怎么样，还是欣然接受这个挑战吧，毕竟——$(br)$(italic)你才有大把大把的时间。"
     }
   ]
 }

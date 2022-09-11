@@ -1,5 +1,5 @@
 {
-  "name": "Gemstone Armor",
+  "name": "宝石晶盔甲",
   "advancement": "spectrum:progression/unlock_gemstone_armor_category",
   "icon": "spectrum:emergency_chestplate",
   "category": "spectrum:magical_items_category",
@@ -12,41 +12,41 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You had more than enough time to develop your own individual fighting style.$(br)To best support this style, you've designed a range of matching gear out of interesting materials.$(br2)Disadvantage: The shards used in the production are kind of brittle. Therefore, this equipment has a comparatively low durability."
+      "text": "你已经养成了一套独特的战斗方式。$(br)为了完美地支撑这种战斗方式，你用一些有趣的材料设计了一套装备。$(br2)缺点：实战表现里，这些宝石晶有点脆。因此，这些装备的耐久度相当的低。"
     },
     {
       "type": "spectrum:checklist",
       "checklist": {
-        "spectrum:hidden/collect_vanilla/collect_ender_eye": "Helmet: When nothingness meets hell",
-        "spectrum:hidden/collect_vanilla/collect_nautilus_shell": "Chestplate: The golden Ratio",
-        "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "Leggings: The source of nightmares",
-        "spectrum:hidden/collect_vanilla/collect_ghast_tear": "Boots: Mourning of the Nether"
+        "spectrum:hidden/collect_vanilla/collect_ender_eye": "头盔：终焉的圆珠与炼狱的炽炎，交汇融合的洞见之眼",
+        "spectrum:hidden/collect_vanilla/collect_nautilus_shell": "胸甲：黄金的比例，深海的螺旋",
+        "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "护腿：失眠的化形，梦魇的真身",
+        "spectrum:hidden/collect_vanilla/collect_ghast_tear": "靴子：下界的哀愁，飘浮的怨泣"
       },
-      "text": "They can be repaired in Anvils by using $(l:general/shards)Gemstone Shards$().$(br2)To take advantage of their unique abilities you will need some special materials:"
+      "text": "使用$(l:general/shards)宝石晶碎片$()即可修复这些盔甲。$(br2)为了高效利用它们的特性，你需要准备如下材料："
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_vanilla/collect_ender_eye",
       "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_helmet",
-      "text": "Gives attackers Weakness and Slowness when they hit you, letting you slip through their claws like a shadow."
+      "text": "受击时给予攻击者虚弱和缓慢效果，在它们的爪牙面前消失得无影无踪吧。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_vanilla/collect_nautilus_shell",
       "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_chestplate",
-      "text": "Grants Absorption and Resistance when you get hit, making you a massive wall for a short duration."
+      "text": "受击时给予自身伤害吸收和抗性提升效果，短暂的赋予你铜墙铁壁。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_vanilla/collect_phantom_membrane",
       "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_leggings",
-      "text": "Gives you a short burst of Regeneration on hit, making you get right back up after each hit."
+      "text": "受击时给予自身生命恢复效果，受伤了也能快速回归战斗。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_vanilla/collect_ghast_tear",
       "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_boots",
-      "text": "Gives a short burst of Speed and Invisibility when you get hit, giving you an opportunity to retreat. Perfect for ranged combat."
+      "text": "受击时给予自身速度和隐身效果，时时给予你撤退的良机。远程战斗必备。"
     }
   ]
 }

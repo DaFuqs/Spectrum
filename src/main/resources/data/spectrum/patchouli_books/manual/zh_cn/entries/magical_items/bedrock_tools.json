@@ -1,5 +1,5 @@
 {
-  "name": "Bedrock Tools",
+  "name": "基岩工具",
   "advancement": "spectrum:progression/unlock_bedrock_tools",
   "icon": "spectrum:bedrock_pickaxe",
   "category": "spectrum:magical_items_category",
@@ -17,47 +17,47 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Whenever you enter a new world, you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of Mending. All this, just so you don't have to fix your tools.$(br)That's both less exciting and species-appropriate. Now that you can process Bedrock, you have a much more convenient solution, anyways."
+      "text": "你进入新世界的第一件事情，就是聚集村民，吸引僵尸，感染治愈，反复操作直到经验修补出货为止。没头没脑焦头烂额地刷上那么三五天，难道只是为了日后不用亲自动手修复工具而已？$(br)不单无聊，还有种族迫害之嫌。现在，你既然能处理基岩，也就一样能给出更合适更方便的解决方案，是不是？"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_pickaxe",
-      "text": "The Bedrock Pickaxe comes with $(bold)Silk Touch$()."
+      "text": "基岩镐自带$(bold)精准采集$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_axe",
-      "text": "The Bedrock Axe comes with $(bold)Efficiency VI$()."
+      "text": "基岩斧自带$(bold)效率VI$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shovel",
-      "text": "The Bedrock Shovel comes with $(bold)Efficiency VI$()."
+      "text": "基岩锹自带$(bold)效率VI$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_sword",
-      "text": "The Bedrock Sword comes with $(bold)Sharpness VI$()."
+      "text": "基岩剑自带$(bold)锋利VI$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_hoe",
-      "text": "The Bedrock Hoe comes with $(bold)Fortune IV$()."
+      "text": "基岩锄自带$(bold)时运IV$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_bow",
-      "text": "The Bedrock Bow comes with $(bold)Power VI$()."
+      "text": "基岩弓自带$(bold)力量VI$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shears",
-      "text": "The Bedrock Shears come with $(bold)Silk Touch$()."
+      "text": "基岩剪刀自带$(bold)精准采集$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_fishing_rod",
-      "text": "The Bedrock Fishing Rod comes with $(bold)Luck of the Sea IV$()."
+      "text": "基岩钓鱼竿自带$(bold)海之眷顾IV$()。"
     }
   ]
 }

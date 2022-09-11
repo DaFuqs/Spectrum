@@ -1,5 +1,5 @@
 {
-  "name": "Gleaming Pin",
+  "name": "闪耀胸针",
   "advancement": "spectrum:progression/unlock_gleaming_pin",
   "icon": "spectrum:gleaming_pin",
   "category": "spectrum:magical_items_category",
@@ -9,20 +9,20 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "During your explorations you were hit by arrows again and again, only to completely miss your enemy while looking around in panic - if it hasn't already disappeared behind the next corner already.$(br2)When you get hit, the Gleaming Pin emits a magic surge that passes through walls and attaches to nearby creatures so you can easily track them down."
+      "text": "探索的途中你总会被箭矢偷袭一次又一次，慌张之中连忙打探四周也已经捕捉不到敌人的残影。$(br2)戴上闪耀胸针，它就会在你受击时向四周发送一道穿透性的魔法脉冲，以此助力你追踪附近的敌人。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/gleaming_pin",
-      "text": "$(br)$(italic)Can't run, can't hide"
+      "text": "$(br)$(italic)乖乖现形，别想逃"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:progression/enchantments/sniper",
-      "title": "Sniping",
+      "title": "狙击魔咒",
       "item": "spectrum:gleaming_pin{Enchantments: [{id: \"spectrum:sniping\", lvl: 2s}]}",
-      "text": "Enchanting the Gleaming Pin with Sniping allows the surge to pierce even more matter, further increasing its range."
+      "text": "为闪耀胸针附魔狙击魔咒即可加强魔法脉冲的穿透性，进一步提升探测范围。"
     }
   ]
 }

@@ -15,7 +15,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "探寻《光谱世界》的第一步是获取宝石晶碎片。$(br2)每一种宝石晶碎片都对应着一种自然界的基本要素。"
+      "text": "探寻《光谱世界》的第一步是获取宝石晶碎片。$(br2)每一种宝石晶都对应着一种自然界的基本要素。"
     },
     {
       "type": "patchouli:spotlight",
@@ -23,7 +23,7 @@
       "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
       "title": "托帕石碎片",
       "item": "spectrum:topaz_shard",
-      "text": "托帕石在你的手中独有一份厚重感。其貌似脆弱，然而你仔细打量一番便发现其坚韧强硬远超绝大多数材料——可能仅次于钻石。托帕石晶洞仅在高山与峭壁之中形成。$(br)托帕石对应$(bold)$(c_cyan)物质$()。"
+      "text": "托帕石在你的手中有一份独特的厚重。其貌似脆弱，然而仔细打量一番便能发现其坚韧强硬远超绝大多数材料——可能仅次于钻石。托帕石晶洞仅在高山与峭壁之中形成。$(br)托帕石对应$(bold)$(c_cyan)物质$()。"
     },
     {
       "type": "patchouli:spotlight",
@@ -47,7 +47,7 @@
       "advancement": "spectrum:create_onyx_shard",
       "title": "缟玛瑙碎片",
       "item": "spectrum:onyx_shard",
-      "text": "缟玛瑙近乎通体纯黑，黑暗得让人怀疑它是否在主动吸收四周的光芒。$(br2)缟玛瑙结合了能量、物质与时间的本质，得以成为魔法器具的$(bold)$(c_black)催化剂与聚焦中心$()。"
+      "text": "缟玛瑙近乎通体纯黑，黑暗得让人怀疑它是否在主动吸收四周的光芒。$(br2)缟玛瑙结合了能量、物质与时间的本质，得以成为魔法器具的$(bold)$(c_black)催化物与聚焦点$()。"
     },
     {
       "type": "patchouli:spotlight",
@@ -55,7 +55,7 @@
       "advancement": "spectrum:midgame/collect_moonstone_shard",
       "title": "月长石碎片",
       "item": "spectrum:moonstone_shard",
-      "text": "这清澈的白是仲夏月夜的白，恬淡平和却富有张力——睡眠中的猫咪安详宁静，却保持着猎人的机警潜伏在梦中，随时准备好醒来。$(br2)月长石蕴含着$(bold)$(c_white)纯粹的魔法$()。"
+      "text": "这清澈的白是仲夏月夜的白，恬淡平和却富有张力——安眠的猫咪安详宁静，却保持着猎人的机警潜伏在梦中，随时准备好醒来。$(br2)月长石蕴含着$(bold)$(c_white)纯粹的魔法$()。"
     },
     {
       "type": "patchouli:spotlight",

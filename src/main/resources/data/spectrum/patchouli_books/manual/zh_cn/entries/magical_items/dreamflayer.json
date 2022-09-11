@@ -1,5 +1,5 @@
 {
-  "name": "Dreamflayer",
+  "name": "离梦利刃",
   "advancement": "spectrum:progression/unlock_dreamflayer",
   "secret": true,
   "icon": "spectrum:dreamflayer",
@@ -10,12 +10,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A truly exceptional weapon, it embodies the definition of \"offense is the best defense.\"$(br)The Dreamflayer is in its nature to balance power:$(br)The more armored your opponent is compared to you, the more damage you do."
+      "text": "论外级武器。“进攻就是最好的防御”的完美诠释。$(br)离梦利刃天然赐予你力量的平衡：$(br)对方的盔甲值相比于你越多，你造成的伤害就越高。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/dreamflayer",
-      "text": "$(italic)If you ever needed a reason to go full nudist, here it is$()$(br2)$(k:sneak) + $(k:use) to empower it, making it consume $(c_red)Red Ink$() at an alarming rate, allowing it to slice even though the most sturdy of armors."
+      "text": "$(italic)想化身裸装近战大神？用$()$(br2)$(k:sneak)+$(k:use)键即可将其充能，期间会快速消耗大量$(c_red)红色墨水$()墨水。区区削铁如泥破甲如风，不过如此！"
     }
   ]
 }

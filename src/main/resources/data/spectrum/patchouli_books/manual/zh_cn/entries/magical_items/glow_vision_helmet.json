@@ -1,5 +1,5 @@
 {
-  "name": "Glow Vision Goggles",
+  "name": "夜视眼镜",
   "advancement": "spectrum:progression/unlock_glow_vision_helmet",
   "icon": "spectrum:glow_vision_helmet",
   "category": "spectrum:magical_items_category",
@@ -10,13 +10,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:glow_vision_helmet",
-      "text": "$(italic)What makes Glow Squids so special is them lighting your way in the darkness of the caves. As beautiful as they are, they seem to wash ashore far too often and meet their sad end there.$(br)You honor their clumsy glowing legacy by designing glasses that can continue guiding you in the darkness of the caves."
+      "text": "$(italic)发光鱿鱼的特别之处在于它们会为黑暗中的你点明洞窟探险的路途。可惜，这种美丽的生物常因搁浅而遭遇不幸。$(br)为了纪念，你设计了这套眼镜，让这份独特的荧光继续发亮吧，指引不灭，光明不息。"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier1/glow_vision_helmet",
-      "text": "If you are in a dark area and have Glow Ink Sacs on you, the Glow Vision Goggles grant you the Night Vision effect."
+      "text": "夜视眼镜会在阴暗处消耗发光墨囊，赋予你夜视效果。"
     }
   ]
 }

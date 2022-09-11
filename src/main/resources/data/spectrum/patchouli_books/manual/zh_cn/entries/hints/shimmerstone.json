@@ -16,7 +16,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "具体措施",
+      "title": "简要说明",
       "cost": "minecraft:copper_ingot#24",
       "text": "这种矿石在主世界中层与上层大量生成，常常在山峦表面暴露。"
     }

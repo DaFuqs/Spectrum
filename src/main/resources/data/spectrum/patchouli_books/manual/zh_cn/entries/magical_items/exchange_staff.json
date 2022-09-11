@@ -1,5 +1,5 @@
 {
-  "name": "Exchanging Staff",
+  "name": "方块替换魔杖",
   "advancement": "spectrum:progression/unlock_exchange_staff",
   "secret": true,
   "icon": "spectrum:exchange_staff",
@@ -10,34 +10,34 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "For all those who don't live in a simple cobblestone house, or don't have walls at all - of course you don't feel addressed - you have thought up the Exchanging Staff.$(br2)Mining has just gotten a whole bunch more fun."
+      "text": "只要不是住在火柴盒里的——或者连家都没有的——应该都想过方块替换魔杖的点子。$(br2)挖矿旅程又变得妙趣横生了起来。"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier4/exchange_staff",
-      "text": "Crouch-Click to get a selection of all available placement modi."
+      "text": "潜行右击即可选择可用的放置模式。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/build_enchanting_structure",
-      "title": "Enchanting - Fortune",
+      "title": "时运魔咒",
       "item": "spectrum:exchange_staff{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
-      "text": "Enchanting an Exchanging Staff with Fortune by using the $(l:enchanting/enchanting_items)Enchanter$(/l) allows it to multiply Ore drops when exchanging similar to using a common Fortune tool."
+      "text": "使用$(l:enchanting/enchanting_items)附魔基座$(/l)为魔杖注入时运魔咒即可在转换矿石的时候掉落更多矿物，类似通常的时运魔咒。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/build_enchanting_structure",
-      "title": "Silk Touch",
+      "title": "精准采集魔咒",
       "item": "spectrum:exchange_staff{Enchantments: [{id: \"spectrum:silk_touch\", lvl: 1s}]}",
-      "text": "Enchanting an Exchanging Staff with Silk Touch by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to exchange blocks exactly how they appear in the world, without breaking the more fragile blocks, like Glass or Ores."
+      "text": "使用$(l:enchanting/enchanting_items)附魔基座$(/l)为魔杖注入精准采集魔咒即可完全一对一地进行方块的替换，而不会破坏诸如玻璃和矿石这样的方块。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:lategame/create_resonance_enchanted_book",
-      "title": "Resonance",
+      "title": "共振魔咒",
       "item": "spectrum:exchange_staff{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
-      "text": "Enchanting an Exchanging Staff with Resonance by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will give it the power to harvest some special blocks as-is."
+      "text": "使用$(l:enchanting/enchanting_items)附魔基座$(/l)为魔杖注入共振魔咒即可完整地采集某些特别的方块。"
     }
   ]
 }

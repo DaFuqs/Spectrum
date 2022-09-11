@@ -1,5 +1,5 @@
 {
-  "name": "Preenchanted Tools",
+  "name": "自带附魔工具",
   "advancement": "spectrum:progression/tools/unlock_any_preenchanted_tool",
   "icon": "spectrum:fortune_pickaxe",
   "category": "spectrum:magical_items_category",
@@ -13,46 +13,46 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "That stupid obsidian desk is very stubborn when it comes to giving you the enchantments you seek.$(br)Besides, you'd either have to slaughter a whole herd of cows or rob the books of a dozen villages (no wonder the inhabitants there are so dumb and all too happy to be eaten by zombies)."
+      "text": "愚钝的黑曜石台子真是死活吐不出什么好附魔。$(br)此外，你还要养牛宰牛获取皮革，或者把村庄的书架洗劫一空才有书够用（怪不得村民总喜欢蠢蠢地送命呢）。"
     },
     {
       "type": "patchouli:text",
-      "text": "The advantage of knowing exactly what you want gives you the ability to shape your tools so that they inherently possess those qualities. The magic of colors makes it possible.$(br)Unfortunately, these features make these tools very fragile for the most part."
+      "text": "既然你很清楚你的需求，再借助一点色彩的魔力，你就自然可以打造能直接满足需求的工具。$(br)可惜的是，这样制作而成的工具大多相当不耐用。"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "轻柔之镐",
       "advancement": "spectrum:progression/tools/unlock_silker_pickaxe",
       "recipe": "spectrum:pedestal/tier1/tools/silker_pickaxe",
-      "text": "The ends of this pickaxe are studded with Topaz to cut even the most delicate material from stone.$(br)The Tender Pickaxe comes pre-enchanted with $(c_cyan)$(bold)Silk Touch$()."
+      "text": "这个镐子的镐头由托帕石装点而成，可以轻柔地采集最为脆弱的矿物。$(br)轻柔之镐自带$(c_cyan)$(bold)精准采集$()。"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "幸运之镐",
       "advancement": "spectrum:progression/tools/unlock_fortune_pickaxe",
       "recipe": "spectrum:pedestal/tier1/tools/fortune_pickaxe",
-      "text": "Infused with the power of $(c_yellow)energy$(), it allows you to carve out every last bit of ore from every vein. The Lucky Pickaxe comes pre-enchanted with $(c_yellow)$(bold)Fortune III$()."
+      "text": "镐头被注入了$(c_yellow)能量$()的活力，能轻易地矿物的每一分精华都开采殆尽。幸运之镐自带$(c_yellow)$(bold)时运III$()。"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "抢夺利器",
       "advancement": "spectrum:progression/tools/unlock_looting_falchion",
       "recipe": "spectrum:pedestal/tier1/tools/looting_falchion",
-      "text": "The short, razor-sharp blade makes this item a deadly weapon - but at the cost of durability.$(br)The Razor Falchion comes pre-enchanted with $(c_magenta)$(bold)Looting III$()."
+      "text": "锋锐的短刃可谓刀刀入魂，可惜的是这等利器并不耐久。$(br)抢夺利器自带$(c_magenta)$(bold)抢夺III$()。"
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "净除之镐",
       "advancement": "spectrum:progression/tools/unlock_voiding_pickaxe",
       "recipe": "spectrum:pedestal/tier2/voiding_pickaxe",
-      "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all mined blocks $(l:enchanting/curse_of_the_void)are destroyed$()."
+      "text": "工具中的异类，挖掘速度与耐久都相当杰出。但是，被挖掘的方块$(l:enchanting/curse_of_the_void)会被直接销毁$()。"
     },
     {
       "type": "patchouli:text",
-      "title": "Resonant Pickaxe",
+      "title": "共鸣之镐",
       "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
-      "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br)The Resonant Pickaxe comes pre-enchanted with $(l:enchanting/resonance)Resonance$(/l)."
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier4/resonant_pickaxe",
-      "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe"
+      "text": "这把蔚蓝的镐子自然地与周围产生共鸣。这样一来，哪怕是必受蛮力摧毁的事物，也能被采集下来了。$(br)共鸣之镐自带$(l:enchanting/resonance)共振$(/l)。"
     }
   ]
 }

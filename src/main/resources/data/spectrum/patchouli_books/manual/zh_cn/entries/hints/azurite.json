@@ -12,11 +12,11 @@
       "title": "怎么找到",
       "completion_advancement": "spectrum:midgame/collect_azurite",
       "cost": "spectrum:neolith#8",
-      "text": "你可以在所有的生物群系找到这种新矿石。"
+      "text": "你可以在主世界的所有的生物群系找到这种新矿石。"
     },
     {
       "type": "spectrum:hint",
-      "title": "具体措施",
+      "title": "简要说明",
       "cost": "spectrum:neolith#24",
       "text": "这种深蓝色矿石在只在地下深处少量生成。"
     }

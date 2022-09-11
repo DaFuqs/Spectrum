@@ -35,7 +35,7 @@
     {
       "type": "patchouli:text",
       "title": "改变天气",
-      "text": "你构思的圣坛结构可以结合$(c_cyan)物质$()，$(c_magenta)时间$()与$(c_yellow)能量$()并聚焦集中在圣坛上。$(br2)这种结合的能量强大到可以呼风唤雨。"
+      "text": "你构思的圣坛结构可以结合$(c_cyan)物质$()、$(c_magenta)时间$()与$(c_yellow)能量$()并聚焦集中在圣坛上。$(br2)这种结合的能量强大到可以呼风唤雨。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -48,7 +48,7 @@
       "title": "雨天",
       "advancement": "spectrum:collect_mermaids_gem",
       "recipe": "spectrum:fusion_shrine/weather/weather_rain",
-      "text": "——五金店内——$(italic)$(br)“你带伞干什么？”$(br)“我买了锯子”$(br)“锯子和伞有啥关系？”$(br)“锯说等会儿要下雨。”"
+      "text": "$(italic)$(br)“你为什么带伞？”$(br)“等会要下雨。”$(br)“你的根据是什么？”$(br)“我确实有根锯，我那根锯子在家里。”"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

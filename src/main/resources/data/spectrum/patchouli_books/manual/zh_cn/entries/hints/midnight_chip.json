@@ -16,10 +16,10 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "具体措施",
+      "title": "简要说明",
       "completion_advancement": "spectrum:midgame/collect_midnight_chip",
       "cost": "spectrum:neolith#24",
-      "text": "午夜溶液与其接触的物品可能产生反应。附魔的物品可能会失去魔力、某些物品可能会被转化、而因浸泡而死的生物会掉落某种残片。"
+      "text": "午夜溶液与其接触的物品可能产生反应。附魔的物品会失去魔力、某些物品可能会被转化、而因浸泡而死的生物会掉落某种残片。"
     }
   ]
 }

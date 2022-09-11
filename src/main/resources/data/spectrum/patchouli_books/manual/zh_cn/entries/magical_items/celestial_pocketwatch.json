@@ -1,5 +1,5 @@
 {
-  "name": "Celestial Pocketwatch",
+  "name": "天体怀表",
   "advancement": "spectrum:progression/unlock_celestial_pocketwatch",
   "secret": true,
   "icon": "spectrum:celestial_pocketwatch",
@@ -10,13 +10,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The problem with Onyx Shards is that the creation is bound to very tight conditions. New moon is simply not every day. Every time you look at the clock, coincidentally, the time window has passed for two minutes.$(br)Time to unpack the big guns: Magenta's affinity for time."
+      "text": "合成缟玛瑙所需要的天象要求还是太严苛了，新月可不是天天见的。每次你掐表等待午夜的时候，一个不小心就超过两分钟了。$(br)祭出大杀器：品红色操控时间的特色！"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier4/celestial_pocketwatch",
-      "text": "$(italic)What a stellar idea of yours"
+      "text": "$(italic)这点子还挺星！"
     }
   ]
 }

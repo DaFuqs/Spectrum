@@ -42,7 +42,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "终于！$(l:general/colored_trees)彩色树$()的树叶生产出了你梦寐以求的纯粹颜料！$(br)锄头采集也非常方便快捷。$(br)这些颜料纯粹由对应的$(bold)$(c_magenta)时间$()，$(bold)$(c_yellow)能量$()与$(bold)$(c_cyan)物质$()三大基本要素构成，仅仅看上去就充满了魔法的气息。$(br2)实在是魔幻得难以置信……是不是还$(l:general/color_mixing)缺了什么$(/l)？"
+      "text": "终于！$(l:general/colored_trees)彩色树$()的树叶生产出了你梦寐以求的纯粹颜料！$(br)锄头采集也非常方便快捷。$(br)这些颜料纯粹由对应的$(bold)$(c_magenta)时间$()、$(bold)$(c_yellow)能量$()与$(bold)$(c_cyan)物质$()三大基本要素构成，单是看上去就充满了魔法的气息。$(br2)实在是魔幻得难以置信……是不是还$(l:general/color_mixing)缺了什么$(/l)？"
     },
     {
       "type": "spectrum:checklist",
@@ -120,7 +120,7 @@
       "anchor": "black",
       "advancement": "spectrum:hidden/collect_pigment/collect_light_gray_pigment",
       "item": "spectrum:light_gray_pigment",
-      "text": "纵使世间万物如沧海桑田，过眼云烟之后便是物是人非，你手握这份颜色却感到莫名的祥和——一切都会好的。$(br2)$(c_light_gray)淡灰色$()象征着$(italic)变化$()与$(italic)宁静$()。"
+      "text": "纵使世间万物如沧海桑田，过眼云烟之后便物是人非，你手握这份颜色却感到莫名的祥和——一切都会好的。$(br2)$(c_light_gray)淡灰色$()象征着$(italic)变化$()与$(italic)宁静$()。"
     },
     {
       "type": "patchouli:spotlight",

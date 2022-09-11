@@ -13,11 +13,11 @@
         "spectrum:textures/gui/manual/anvil_crushing.png"
       ],
       "border": true,
-      "text": "$(italic)“新生伊始$(br)源于毁灭”      ——某人"
+      "text": "$(italic)“不破不立$(br)有破才有立”      ——某人"
     },
     {
       "type": "patchouli:text",
-      "text": "铁砧除了修复升级工具之外还有什么更好的用途么？这么沉重的东西自然要拿来碾碎一些东西才行啊！例如，敌人的头骨……呃，或者物品！嗯，物品。$(br2)你可以用下落的铁砧粉碎$(l:general/shards)宝石晶$()，将其碎为$(l:general/gemstone_powder)粉末$()。$(br2)$(italic)小贴士：铁砧下落越远，力道越大，效果越好。"
+      "text": "铁砧除了修复、升级工具之外还有什么更合适的用途么？这东西这么沉重，自然要拿来砸碎什么东西才行啊！例如，敌人的头骨……呃，或者物品！嗯，物品。$(br2)你可以用下落的铁砧粉碎$(l:general/shards)宝石晶$()，将其碎为$(l:general/gemstone_powder)粉末$()。$(br2)$(italic)小贴士：铁砧下落越远，力道越大，效果越好。"
     }
   ]
 }

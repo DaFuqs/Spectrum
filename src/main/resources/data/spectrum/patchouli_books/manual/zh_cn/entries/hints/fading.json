@@ -16,7 +16,7 @@
     },
     {
       "type": "spectrum:hint",
-      "title": "具体措施",
+      "title": "简要说明",
       "cost": "spectrum:sparklestone_gem#48",
       "text": "将南瓜，西瓜，树叶这样的有机物放在旁边稍作等待，这些方块就会被微生物寄生吞噬，外表上产生变化。采集这些方块即可获得新资源。"
     }

@@ -1,5 +1,5 @@
 {
-  "name": "Bedrock Armor",
+  "name": "基岩盔甲",
   "advancement": "spectrum:progression/unlock_bedrock_tools",
   "icon": "spectrum:bedrock_chestplate",
   "category": "spectrum:magical_items_category",
@@ -12,27 +12,27 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The strongest material you could make so far was Netherite. However, repairing Netherite armor had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is less problematic when the armor simply $(italic)cannot$() be damaged.$(br)$(italic)Never wilt, stone blossom."
+      "text": "你手头最强韧的材料就是下界合金了。然而，修复下界合金盔甲不仅比盔甲本身还贵，盔甲的损耗也会削弱其保护功能。但只要盔甲$(italic)不会$()受损，这些问题就迎刃而解了！$(br)$(italic)华自磐石生，岁月不蚀，风雨不倾。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_helmet",
-      "text": "The Bedrock Helmet comes with $(bold)Projectile Protection V$()."
+      "text": "基岩头盔自带$(bold)弹射物保护V$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_chestplate",
-      "text": "The Bedrock Chestplate comes with $(bold)Protection V$()."
+      "text": "基岩胸甲自带$(bold)保护V$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_leggings",
-      "text": "The Bedrock Leggings come with $(bold)Blast Protection V$()."
+      "text": "基岩护腿自带$(bold)爆炸保护V$()。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/bedrock/bedrock_boots",
-      "text": "The Bedrock Boots come with $(bold)Fire Protection V$()."
+      "text": "基岩靴子自带$(bold)火焰保护V$()。"
     }
   ]
 }

@@ -13,7 +13,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "CMY变种",
       "recipe": "spectrum:pedestal/tier1/pedestal_all_basic",
-      "text": "使用宝石晶碎片来升级你的$(l:general/pedestal)七彩基座$()。"
+      "text": "使用收集得到的宝石晶碎片来升级你的$(l:general/pedestal)七彩基座$()。"
     },
     {
       "type": "patchouli:text",

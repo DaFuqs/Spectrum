@@ -13,7 +13,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/tidal_circlet",
       "text": "$(italic)Have you ever wanted to live underwater? No?$(br)Whatever, now you can.$(br)Time to build an underwater base!"
     }

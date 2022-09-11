@@ -14,7 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier2/void_bundle",
       "text": "The Bottomless Bundle stores a virtually unlimited number of items, but of only one type.$(br)Right click it on stacks or empty slots in your inventory to fill/empty it"
     },

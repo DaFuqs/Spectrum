@@ -1,5 +1,5 @@
 {
-  "name": "End Portal Relocation",
+  "name": "末地传送门迁移",
   "advancement": "spectrum:progression/unlock_end_portal_cracker",
   "secret": true,
   "icon": "minecraft:end_portal_frame",
@@ -11,26 +11,26 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Every time you want to enter the realm of the Endermen you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.$(br2)Well, almost. You haven't yet figured out how to create such portals yourself, but pack them up and take them home? No problem."
+      "text": "$(italic)每次你想进入末影人的领域，你就得跑遍大半个世界。论能力，现在的你肯定是强过那些开辟末地传送门的家伙的……$(br2)嘛，差不多吧？虽然你不知道怎么新建末地传送门，但打包带走还是小事一桩啦。"
     },
     {
       "type": "patchouli:image",
-      "title": "End Portal Relocation",
+      "title": "末地传送门迁移",
       "images": [
         "spectrum:textures/gui/manual/end_portal.png"
       ],
       "border": true,
-      "text": "The end portal, like found in strongholds."
+      "text": "末地传送门，要塞里的那种。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "item": "spectrum:end_portal_cracker",
-      "text": "These modified Eye of Ender harbor extremely destructive potential. They need to be, to be able to manipulate the extremely robust portal frame.$(br)When used in an End Portal base, you should keep your distance quickly."
+      "text": "魔改的末影之眼，破坏力不俗。毕竟，要操纵如此顽健的末地传送门框架，怎么不能用上一点蛮力呢？$(br)放入末地传送门框架之后，请一定要退远一点。"
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Reconstructed End Portal",
+      "name": "重建的末地传送门",
       "multiblock": {
         "pattern": [
           [
@@ -54,7 +54,7 @@
         ],
         "symmetrical": false
       },
-      "text": "You just put the portal back together the way it was initially, add Ender Pearls, done!"
+      "text": "你只要把传送门框架拼回一起，插上末影之眼，完事！"
     }
   ]
 }

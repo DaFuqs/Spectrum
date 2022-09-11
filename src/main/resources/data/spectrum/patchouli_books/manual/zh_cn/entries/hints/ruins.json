@@ -20,7 +20,7 @@
       "advancement": "spectrum:find_ancient_ruins",
       "completion_advancement": "spectrum:generate_ancient_ruins_loot",
       "cost": "spectrum:refined_azurite#12",
-      "text": "入口似乎是被某种强大力场挡住了。不过建筑的主人留下了一点线索：蓝色的心说明你需要蔚蓝防御护符才能穿过。"
+      "text": "入口似乎是被某种强大力场挡住了。不过建筑的主人留下了一点线索：蓝色的心说明你需要蔚蓝护盾装备才能穿过。"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Multitool",
+  "name": "多功能工具",
   "advancement": "spectrum:build_basic_pedestal_structure",
   "icon": "spectrum:multitool",
   "category": "spectrum:magical_items_category",
@@ -10,13 +10,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:multitool",
-      "text": "Whenever you leave your home, you carry half a tool shed with you. Given the tons of stone you can carry around with you, that is no even worth mentioning, though. Nevertheless, a universal tool that combines the abilities of a pickaxe, axe, shovel and hoe would suit you.$()$(br)"
+      "text": "出门冒险的时候，你总要带上一大包工具，虽然相比身上大把大把的石头是不值一提。无论如何，一种结合了镐、斧、锹和锄的功能的通用工具确实适合你。$()$(br)"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier2/multitool",
-      "text": "It's not as efficient in the individual tasks, but it is much better than having to change tools every three seconds."
+      "text": "多功能工具仅仅只是结合多方面的功能，性能上并没有比单项的工具要来得优越，但总比每三秒钟都换一个工具要来得好。"
     }
   ]
 }

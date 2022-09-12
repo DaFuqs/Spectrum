@@ -13,6 +13,9 @@ import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Identifier;
 
@@ -132,6 +135,11 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	}
 	
 	public boolean isUnlocked() {
+		return FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER || isUnlockedClient();
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public boolean isUnlockedClient() {
 		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier) && AdvancementHelper.hasAdvancementClient(this.requiredAdvancementIdentifier);
 	}
 	

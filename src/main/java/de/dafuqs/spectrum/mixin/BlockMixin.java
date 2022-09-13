@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import de.dafuqs.spectrum.data_loaders.ResonanceDropsDataLoader;
 import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
 import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
@@ -58,7 +59,7 @@ public abstract class BlockMixin {
 			// Resonance enchant: grant different drops for some items
 			if(enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
 				for(int i = 0; i < droppedStacks.size(); i++) {
-					droppedStacks.set(i, ResonanceEnchantment.applyResonance(droppedStacks.get(i)));
+					droppedStacks.set(i, ResonanceDropsDataLoader.applyResonance(droppedStacks.get(i)));
 				}
 			}
 			

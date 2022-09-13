@@ -1,0 +1,32 @@
+{
+  "fluid": {
+    "tag": "spectrum:midnight_solution"
+  },
+  "chance": 0.4,
+  "entities": [
+    {
+      "id": "minecraft:skeleton",
+      "weight": 5
+    },
+    {
+      "id": "minecraft:drowned",
+      "weight": 5
+    },
+    {
+      "id": "minecraft:pufferfish",
+      "weight": 5
+    },
+    {
+      "id": "minecraft:creeper",
+      "weight": 5
+    },
+    {
+      "id": "minecraft:wither_skeleton",
+      "weight": 2
+    },
+    {
+      "id": "minecraft:zombie_horse",
+      "weight": 1
+    }
+  ]
+}

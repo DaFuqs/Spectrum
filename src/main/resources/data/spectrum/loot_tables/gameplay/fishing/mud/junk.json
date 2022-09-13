@@ -35,7 +35,7 @@
         {
           "type": "minecraft:item",
           "weight": 1,
-          "name": "minecraft:lead"
+          "name": "minecraft:moss_block"
         },
         {
           "type": "minecraft:item",

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.entity.entity;
 
 import com.mojang.logging.LogUtils;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader;
 import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
@@ -16,6 +17,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -446,39 +448,8 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				this.world.sendEntityStatus(this, (byte)31);
 				i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
 			} else if (this.hookCountdown > 0) {
-				
-				LootContext.Builder builder = (new LootContext.Builder((ServerWorld)this.world)).parameter(LootContextParameters.ORIGIN, this.getPos()).parameter(LootContextParameters.TOOL, usedItem).parameter(LootContextParameters.THIS_ENTITY, this).random(this.random).luck((float)this.luckOfTheSeaLevel + playerEntity.getLuck());
-				LootTable lootTable = this.world.getServer().getLootManager().getTable(LOOT_IDENTIFIER);
-				List<ItemStack> list = lootTable.generateLoot(builder.build(LootContextTypes.FISHING));
-				SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, list);
-				
-				ItemStack fishingRod = getFishingRod(playerEntity);
-				boolean autoSmelt = ((SpectrumFishingRodItem) fishingRod.getItem()).shouldAutosmelt(fishingRod);
-				float exuberanceMod = ExuberanceEnchantment.getExuberanceMod(playerEntity);
-				
-				for (ItemStack itemStack : list) {
-					if (itemStack.isIn(ItemTags.FISHES)) {
-						playerEntity.increaseStat(Stats.FISH_CAUGHT, 1);
-					}
-				}
-				
-				if(autoSmelt) {
-					list = AutoSmeltEnchantment.applyAutoSmelt(world, list);
-				}
-				
-				for (ItemStack itemStack : list) {
-					ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
-					double d = playerEntity.getX() - this.getX();
-					double e = playerEntity.getY() - this.getY();
-					double f = playerEntity.getZ() - this.getZ();
-					double g = 0.1D;
-					itemEntity.setVelocity(d * g, e * g + Math.sqrt(Math.sqrt(d * d + e * e + f * f)) * 0.08D, f * g);
-					itemEntity.setInvulnerable(true); // so it does not burn when lava fishing
-					this.world.spawnEntity(itemEntity);
-					int experienceAmount = this.random.nextInt((int) (6 * exuberanceMod) + 1);
-					if(experienceAmount > 0) {
-						playerEntity.world.spawnEntity(new ExperienceOrbEntity(playerEntity.world, playerEntity.getX(), playerEntity.getY() + 0.5D, playerEntity.getZ() + 0.5D, experienceAmount));
-					}
+				if(!tryCatchEntity(usedItem, playerEntity, (ServerWorld) this.world, this.getBlockPos())) {
+					catchLoot(usedItem, playerEntity);
 				}
 				
 				i = 1;
@@ -492,6 +463,68 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			return i;
 		} else {
 			return 0;
+		}
+	}
+	
+	private boolean tryCatchEntity(ItemStack usedItem, PlayerEntity playerEntity, ServerWorld world, BlockPos blockPos) {
+		Optional<EntityType> catchedEntityType = EntityFishingDataLoader.tryCatchEntity(world, blockPos);
+		if(catchedEntityType.isPresent()) {
+			Entity entity = catchedEntityType.get().spawn(world, null, null, playerEntity, blockPos, SpawnReason.TRIGGERED, false, false);
+			if(entity != null) {
+				double xDif = playerEntity.getX() - this.getX();
+				double yDif = playerEntity.getY() - this.getY();
+				double zDif = playerEntity.getZ() - this.getZ();
+				double velocityMod = 0.15D;
+				entity.setVelocity(xDif * velocityMod, yDif * velocityMod + Math.sqrt(Math.sqrt(xDif * xDif + yDif * yDif + zDif * zDif)) * 0.08D, zDif * velocityMod);
+				
+				if(usedItem.getItem() instanceof SpectrumFishingRodItem spectrumFishingRod) {
+					if(spectrumFishingRod.shouldAutosmelt(usedItem)) {
+						entity.setOnFireFor(4);
+					}
+				}
+				if (entity instanceof MobEntity mobEntity) {
+					mobEntity.playAmbientSound();
+					mobEntity.playSpawnEffects();
+				}
+			}
+			return entity != null;
+		}
+		return false;
+	}
+	
+	protected void catchLoot(ItemStack usedItem, PlayerEntity playerEntity) {
+		LootContext.Builder builder = (new LootContext.Builder((ServerWorld)this.world)).parameter(LootContextParameters.ORIGIN, this.getPos()).parameter(LootContextParameters.TOOL, usedItem).parameter(LootContextParameters.THIS_ENTITY, this).random(this.random).luck((float)this.luckOfTheSeaLevel + playerEntity.getLuck());
+		LootTable lootTable = this.world.getServer().getLootManager().getTable(LOOT_IDENTIFIER);
+		List<ItemStack> list = lootTable.generateLoot(builder.build(LootContextTypes.FISHING));
+		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, list);
+		
+		ItemStack fishingRod = getFishingRod(playerEntity);
+		boolean autoSmelt = ((SpectrumFishingRodItem) fishingRod.getItem()).shouldAutosmelt(fishingRod);
+		float exuberanceMod = ExuberanceEnchantment.getExuberanceMod(playerEntity);
+		
+		for (ItemStack itemStack : list) {
+			if (itemStack.isIn(ItemTags.FISHES)) {
+				playerEntity.increaseStat(Stats.FISH_CAUGHT, 1);
+			}
+		}
+		
+		if(autoSmelt) {
+			list = AutoSmeltEnchantment.applyAutoSmelt(world, list);
+		}
+		
+		for (ItemStack itemStack : list) {
+			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
+			double d = playerEntity.getX() - this.getX();
+			double e = playerEntity.getY() - this.getY();
+			double f = playerEntity.getZ() - this.getZ();
+			double g = 0.1D;
+			itemEntity.setVelocity(d * g, e * g + Math.sqrt(Math.sqrt(d * d + e * e + f * f)) * 0.08D, f * g);
+			itemEntity.setInvulnerable(true); // so it does not burn when lava fishing
+			this.world.spawnEntity(itemEntity);
+			int experienceAmount = this.random.nextInt((int) (6 * exuberanceMod) + 1);
+			if(experienceAmount > 0) {
+				playerEntity.world.spawnEntity(new ExperienceOrbEntity(playerEntity.world, playerEntity.getX(), playerEntity.getY() + 0.5D, playerEntity.getZ() + 0.5D, experienceAmount));
+			}
 		}
 	}
 	

@@ -46,6 +46,7 @@ public class PrintConfigCommand {
 		if(!SpectrumCommon.CONFIG.TightGripEnchantmentEnabled) { disabledEnchantments += "Tight Grip "; }
 		if(!SpectrumCommon.CONFIG.SteadfastEnchantmentEnabled) { disabledEnchantments += "Steadfast "; }
 		if(!SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled) { disabledEnchantments += "Indestructible "; }
+		if(!SpectrumCommon.CONFIG.BigCatchEnchantmentEnabled) { disabledEnchantments += "BigCatch "; }
 		if(disabledEnchantments.length() > 0) {
 			send(source, "Disabled Enchantments: " + disabledEnchantments);
 		} else {
@@ -62,6 +63,7 @@ public class PrintConfigCommand {
 		if(SpectrumCommon.CONFIG.TightGripMaxLevel != 2) { anyEnchantmentSettingsChanged = true; send(source, "Enchantment settings changed: TightGrip MaxLevel " + SpectrumCommon.CONFIG.TightGripMaxLevel); }
 		if(SpectrumCommon.CONFIG.ExuberanceMaxLevel != 5) { anyEnchantmentSettingsChanged = true; send(source, "Enchantment settings changed: Exuberance MaxLevel " + SpectrumCommon.CONFIG.ExuberanceMaxLevel); }
 		if(SpectrumCommon.CONFIG.TreasureHunterMaxLevel != 3) { anyEnchantmentSettingsChanged = true; send(source, "Enchantment settings changed: TreasureHunterMaxLevel " + SpectrumCommon.CONFIG.TreasureHunterMaxLevel); }
+		if(SpectrumCommon.CONFIG.BigCatchMaxLevel != 3) { anyEnchantmentSettingsChanged = true; send(source, "Enchantment settings changed: BigCatchMaxLevel " + SpectrumCommon.CONFIG.BigCatchMaxLevel); }
 		if(!anyEnchantmentSettingsChanged) {
 			send(source, "Enchantment settings changed: none");
 		}

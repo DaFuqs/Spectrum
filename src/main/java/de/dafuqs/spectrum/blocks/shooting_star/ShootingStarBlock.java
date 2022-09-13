@@ -259,7 +259,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 			
 			ShootingStarEntity shootingStarEntity = new ShootingStarEntity(world, d, e + 0.05, f);
 			ShootingStarBlock.Type type = ((ShootingStarItem) stack.getItem()).getType();
-			shootingStarEntity.setShootingStarType(type, true);
+			shootingStarEntity.setShootingStarType(type, true, ShootingStarItem.isHardened(stack));
 			shootingStarEntity.setAvailableHits(ShootingStarItem.getRemainingHits(stack));
 			shootingStarEntity.setYaw(direction.asRotation());
 			shootingStarEntity.addVelocity(direction.getOffsetX() * 0.4, direction.getOffsetY() * 0.4, direction.getOffsetZ() * 0.4);

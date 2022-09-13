@@ -463,11 +463,11 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			int i = 0;
 			if (this.hookedEntity != null) {
 				this.pullHookedEntity(this.hookedEntity);
-				SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, Collections.emptyList());
+				SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity)playerEntity, usedItem, this, null, Collections.emptyList());
 				this.world.sendEntityStatus(this, (byte)31);
 				i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
 			} else if (this.hookCountdown > 0) {
-				if(!tryCatchEntity(playerEntity, (ServerWorld) this.world, this.getBlockPos())) {
+				if(!tryCatchEntity(usedItem, playerEntity, (ServerWorld) this.world, this.getBlockPos())) {
 					catchLoot(usedItem, playerEntity);
 				}
 				
@@ -485,7 +485,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		}
 	}
 	
-	private boolean tryCatchEntity(PlayerEntity playerEntity, ServerWorld world, BlockPos blockPos) {
+	private boolean tryCatchEntity(ItemStack usedItem, PlayerEntity playerEntity, ServerWorld world, BlockPos blockPos) {
 		Optional<EntityType> catchedEntityType = EntityFishingDataLoader.tryCatchEntity(world, blockPos, this.bigCatchLevel);
 		if(catchedEntityType.isPresent()) {
 			Entity entity = catchedEntityType.get().spawn(world, null, null, playerEntity, blockPos, SpawnReason.TRIGGERED, false, false);
@@ -504,6 +504,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 					mobEntity.playAmbientSound();
 					mobEntity.playSpawnEffects();
 				}
+				SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, entity, List.of());
 			}
 			return entity != null;
 		}
@@ -514,7 +515,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		LootContext.Builder builder = (new LootContext.Builder((ServerWorld)this.world)).parameter(LootContextParameters.ORIGIN, this.getPos()).parameter(LootContextParameters.TOOL, usedItem).parameter(LootContextParameters.THIS_ENTITY, this).random(this.random).luck((float)this.luckOfTheSeaLevel + playerEntity.getLuck());
 		LootTable lootTable = this.world.getServer().getLootManager().getTable(LOOT_IDENTIFIER);
 		List<ItemStack> list = lootTable.generateLoot(builder.build(LootContextTypes.FISHING));
-		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, list);
+		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, null, list);
 		
 		for (ItemStack itemStack : list) {
 			if (itemStack.isIn(ItemTags.FISHES)) {

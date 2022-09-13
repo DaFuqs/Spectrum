@@ -31,7 +31,7 @@ import java.util.Map;
 
 public abstract class SpawnerChangeRecipe implements ISpiritInstillerRecipe {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_spawner_manipulation");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_spawner_manipulation");
 	public final Identifier identifier;
 	
 	public SpawnerChangeRecipe(Identifier identifier) {

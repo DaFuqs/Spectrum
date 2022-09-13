@@ -10,11 +10,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Orange, which represents warmth, can be used to do the most interesting things. Like your invention here.$(br)Unlike a normal fishing rod, this piece can fish not only in lava, but also all sorts of other liquids. I wonder what you can bring to the surface?"
+      "text": "Orange, which represents warmth, can be used to do the most interesting things. Like your invention here.$(br2)Unlike a normal fishing rod, this piece can fish not only in lava, but also all sorts of other liquids. I wonder what you can bring to the surface?"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier1/molten_rod",
+      "recipe": "spectrum:pedestal/tier1/tools/molten_rod",
       "text": "$(italic)Caution, hot!$()$(br)With this flaming fishing hook you can not only burn your fingers..."
     }
   ]

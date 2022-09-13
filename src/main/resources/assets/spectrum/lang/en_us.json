@@ -293,6 +293,8 @@
   "enchantment.spectrum.steadfast.desc": "When on the ground, immune to most forms of damage, despawning and the void",
   "enchantment.spectrum.indestructible": "Indestructible",
   "enchantment.spectrum.indestructible.desc": "Makes the tool fully unbreakable",
+  "enchantment.spectrum.big_catch": "Big Catch",
+  "enchantment.spectrum.big_catch.desc": "Higher chance to reel in living creatures",
 
   "spectrum.subtitles.paintbrush_trigger": "Paintbrush activation",
   "spectrum.subtitles.paintbrush_paint": "Paintbrush paints",

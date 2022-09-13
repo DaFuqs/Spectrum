@@ -97,6 +97,7 @@ public class SpectrumConfig implements ConfigData {
 	public boolean TightGripEnchantmentEnabled = true;
 	public boolean SteadfastEnchantmentEnabled = true;
 	public boolean IndestructibleEnchantmentEnabled = true;
+	public boolean BigCatchEnchantmentEnabled = true;
 	
 	@Comment("The max levels for all Enchantments")
 	public int TreasureHunterMaxLevel = 3;
@@ -106,6 +107,7 @@ public class SpectrumConfig implements ConfigData {
 	public int InertiaMaxLevel = 3;
 	public int CloversFavorMaxLevel = 3;
 	public int TightGripMaxLevel = 2;
+	public int BigCatchMaxLevel = 3;
 	
 	@Comment("Exuberance increases experience gained when killing mobs. With 25% bonus XP and 5 levels this would mean 2,25x XP on max level")
 	public int ExuberanceMaxLevel = 5;
@@ -196,6 +198,9 @@ public class SpectrumConfig implements ConfigData {
 		}
 		if (FirstStrikeDamagePerLevel <= 0) {
 			FirstStrikeDamagePerLevel = 3.0F;
+		}
+		if (BigCatchMaxLevel <= 0) {
+			BigCatchMaxLevel = 3;
 		}
 		
 		if (ShootingStarWorlds.isEmpty()) {

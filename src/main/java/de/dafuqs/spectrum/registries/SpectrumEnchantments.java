@@ -24,6 +24,7 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment SNIPER = new SniperEnchantment(Enchantment.Rarity.VERY_RARE, SpectrumCommon.locate("progression/enchantments/sniper"), EquipmentSlot.MAINHAND); // Increases projectile speed => increased damage + range
 	public static final SpectrumEnchantment STEADFAST = new SteadfastEnchantment(Enchantment.Rarity.COMMON, SpectrumCommon.locate("progression/enchantments/steadfast"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 	public static final SpectrumEnchantment INDESTRUCTIBLE = new IndestructibleEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("progression/enchantments/indestructible"), EquipmentSlot.MAINHAND); // Make tools not use up durability
+	public static final SpectrumEnchantment BIG_CATCH = new BigCatchEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("progression/enchantments/big_catch"), EquipmentSlot.MAINHAND); // Increase the chance to reel in entities instead of fishing loot
 	
 	public static void register() {
 		Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("resonance"), RESONANCE);
@@ -70,6 +71,9 @@ public class SpectrumEnchantments {
 		}
 		if (SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled) {
 			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("indestructible"), INDESTRUCTIBLE);
+		}
+		if (SpectrumCommon.CONFIG.BigCatchEnchantmentEnabled) {
+			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("big_catch"), BIG_CATCH);
 		}
 	}
 	

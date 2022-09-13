@@ -1,22 +1,26 @@
 package de.dafuqs.spectrum.enchantments;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
 import net.minecraft.util.Identifier;
 
-public class InventoryInsertionEnchantment extends SpectrumEnchantment {
+public class BigCatchEnchantment extends SpectrumEnchantment {
 	
-	public InventoryInsertionEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
-		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
+	public BigCatchEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.FISHING_ROD, slotTypes, unlockAdvancementIdentifier);
 	}
 	
 	@Override
 	public int getMinPower(int level) {
-		return 15;
+		return 20;
 	}
 	
 	@Override
@@ -26,7 +30,7 @@ public class InventoryInsertionEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public int getMaxLevel() {
-		return 1;
+		return SpectrumCommon.CONFIG.BigCatchMaxLevel;
 	}
 	
 	@Override
@@ -36,7 +40,8 @@ public class InventoryInsertionEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || stack.getItem() instanceof ShearsItem || stack.getItem() instanceof SpectrumFishingRodItem;
+		return super.isAcceptableItem(stack) && stack.getItem() instanceof SpectrumFishingRodItem;
 	}
+	
 	
 }

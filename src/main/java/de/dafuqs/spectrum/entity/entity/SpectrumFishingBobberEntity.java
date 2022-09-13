@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader;
 import de.dafuqs.spectrum.enchantments.FoundryEnchantment;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -72,6 +73,8 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	protected final int luckOfTheSeaLevel;
 	protected final int lureLevel;
 	protected final int exuberanceLevel;
+	protected final int bigCatchLevel;
+	protected final boolean inventoryInsertion;
 	
 	public static final Identifier LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/universal_fishing");
 	
@@ -84,7 +87,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		put(SpectrumBlocks.MIDNIGHT_SOLUTION, new Pair<>(SpectrumParticleTypes.GRAY_SPARKLE_RISING, SpectrumParticleTypes.MIDNIGHT_SOLUTION_FISHING));
 	}};
 	
-	public SpectrumFishingBobberEntity(EntityType type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, boolean ablaze) {
+	public SpectrumFishingBobberEntity(EntityType type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean ablaze) {
 		super(type, world);
 		this.velocityRandom = new Random();
 		this.inTheOpen = true;
@@ -93,15 +96,17 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		this.luckOfTheSeaLevel = Math.max(0, luckOfTheSeaLevel);
 		this.lureLevel = Math.max(0, lureLevel);
 		this.exuberanceLevel = Math.max(0, exuberanceLevel);
+		this.bigCatchLevel = Math.max(0, bigCatchLevel);
+		this.inventoryInsertion = inventoryInsertion;
 		this.getDataTracker().set(ABLAZE, ablaze);
 	}
 	
 	public SpectrumFishingBobberEntity(EntityType entityType, World world) {
-		this(entityType, world, 0, 0, 0, false);
+		this(entityType, world, 0, 0, 0, 0, false, false);
 	}
 	
-	public SpectrumFishingBobberEntity(EntityType entityType, PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, boolean ablaze) {
-		this(entityType, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, ablaze);
+	public SpectrumFishingBobberEntity(EntityType entityType, PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean ablaze) {
+		this(entityType, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, ablaze);
 		this.setOwner(thrower);
 		float f = thrower.getPitch();
 		float g = thrower.getYaw();
@@ -462,7 +467,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				this.world.sendEntityStatus(this, (byte)31);
 				i = this.hookedEntity instanceof ItemEntity ? 3 : 5;
 			} else if (this.hookCountdown > 0) {
-				if(!tryCatchEntity(usedItem, playerEntity, (ServerWorld) this.world, this.getBlockPos())) {
+				if(!tryCatchEntity(playerEntity, (ServerWorld) this.world, this.getBlockPos())) {
 					catchLoot(usedItem, playerEntity);
 				}
 				
@@ -480,8 +485,8 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		}
 	}
 	
-	private boolean tryCatchEntity(ItemStack usedItem, PlayerEntity playerEntity, ServerWorld world, BlockPos blockPos) {
-		Optional<EntityType> catchedEntityType = EntityFishingDataLoader.tryCatchEntity(world, blockPos);
+	private boolean tryCatchEntity(PlayerEntity playerEntity, ServerWorld world, BlockPos blockPos) {
+		Optional<EntityType> catchedEntityType = EntityFishingDataLoader.tryCatchEntity(world, blockPos, this.bigCatchLevel);
 		if(catchedEntityType.isPresent()) {
 			Entity entity = catchedEntityType.get().spawn(world, null, null, playerEntity, blockPos, SpawnReason.TRIGGERED, false, false);
 			if(entity != null) {
@@ -521,22 +526,28 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			list = FoundryEnchantment.applyAutoSmelt(world, list);
 		}
 		
+		float exuberanceMod = ExuberanceEnchantment.getExuberanceMod(this.exuberanceLevel);
 		for (ItemStack itemStack : list) {
-			// item
-			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
-			double d = playerEntity.getX() - this.getX();
-			double e = playerEntity.getY() - this.getY();
-			double f = playerEntity.getZ() - this.getZ();
-			double g = 0.1D;
-			itemEntity.setVelocity(d * g, e * g + Math.sqrt(Math.sqrt(d * d + e * e + f * f)) * 0.08D, f * g);
-			itemEntity.setInvulnerable(true); // so it does not burn when lava fishing
-			this.world.spawnEntity(itemEntity);
-			
-			// experience
-			float exuberanceMod = ExuberanceEnchantment.getExuberanceMod(this.exuberanceLevel);
 			int experienceAmount = this.random.nextInt((int) (6 * exuberanceMod) + 1);
-			if(experienceAmount > 0) {
-				playerEntity.world.spawnEntity(new ExperienceOrbEntity(playerEntity.world, playerEntity.getX(), playerEntity.getY() + 0.5D, playerEntity.getZ() + 0.5D, experienceAmount));
+			
+			if(this.inventoryInsertion) {
+				Support.givePlayer(playerEntity, itemStack);
+				playerEntity.addExperience(experienceAmount);
+			} else {
+				// item
+				ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
+				double d = playerEntity.getX() - this.getX();
+				double e = playerEntity.getY() - this.getY();
+				double f = playerEntity.getZ() - this.getZ();
+				double g = 0.1D;
+				itemEntity.setVelocity(d * g, e * g + Math.sqrt(Math.sqrt(d * d + e * e + f * f)) * 0.08D, f * g);
+				itemEntity.setInvulnerable(true); // so it does not burn when lava fishing
+				this.world.spawnEntity(itemEntity);
+				
+				// experience
+				if(experienceAmount > 0) {
+					playerEntity.world.spawnEntity(new ExperienceOrbEntity(playerEntity.world, playerEntity.getX(), playerEntity.getY() + 0.5D, playerEntity.getZ() + 0.5D, experienceAmount));
+				}
 			}
 		}
 	}

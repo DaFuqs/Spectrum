@@ -72,10 +72,10 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
         return SpectrumCommon.locate(ID);
     }
     
-    public static Optional<EntityType> tryCatchEntity(ServerWorld world, BlockPos pos) {
+    public static Optional<EntityType> tryCatchEntity(ServerWorld world, BlockPos pos, int bigCatchLevel) {
         for(EntityFishingEntry entry : ENTITY_FISHING_ENTRIES) {
             if(entry.fluidPredicate.test(world, pos)) {
-                if(world.random.nextFloat() < entry.entityChance) {
+                if(world.random.nextFloat() < entry.entityChance * bigCatchLevel) {
                     Optional<Weighted.Present<EntityType>> x = entry.weightedEntityTypes.getOrEmpty(world.random);
                     if(x.isPresent()) {
                         return Optional.of(x.get().getData());

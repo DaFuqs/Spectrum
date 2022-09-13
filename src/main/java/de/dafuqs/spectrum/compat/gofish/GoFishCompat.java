@@ -30,11 +30,16 @@ public class GoFishCompat {
 		
 		Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
 		for(Enchantment enchantment : enchantments.keySet()) {
-			if(EnchantmentHelper.getEnchantmentId(enchantment).equals(DEEPFRY_ENCHANTMENT_ID)) {
+			if(isDeepfry(enchantment)) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public static boolean isDeepfry(Enchantment enchantment) {
+		Identifier id = EnchantmentHelper.getEnchantmentId(enchantment);
+		return id != null && id.equals(GoFishCompat.DEEPFRY_ENCHANTMENT_ID);
 	}
 	
 }

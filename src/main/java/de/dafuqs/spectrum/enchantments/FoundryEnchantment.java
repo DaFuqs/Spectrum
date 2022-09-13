@@ -1,9 +1,16 @@
 package de.dafuqs.spectrum.enchantments;
 
+import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
+import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
+import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
+import de.dafuqs.spectrum.items.tools.MoltenRodItem;
+import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -19,11 +26,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutoSmeltEnchantment extends SpectrumEnchantment {
+public class FoundryEnchantment extends SpectrumEnchantment {
 	
 	private static final AutoSmeltInventory autoSmeltInventory = new AutoSmeltInventory();
 	
-	public AutoSmeltEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
+	public FoundryEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
 	}
 	
@@ -43,7 +50,7 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 		List<ItemStack> returnItemStacks = new ArrayList<>();
 		
 		for (ItemStack is : originalStacks) {
-			ItemStack smeltedStack = AutoSmeltEnchantment.getAutoSmeltedItemStack(is, world);
+			ItemStack smeltedStack = FoundryEnchantment.getAutoSmeltedItemStack(is, world);
 			if (smeltedStack == null) {
 				returnItemStacks.add(is);
 			} else {
@@ -76,7 +83,17 @@ public class AutoSmeltEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != SpectrumEnchantments.RESONANCE;
+		return super.canAccept(other) && other != Enchantments.SILK_TOUCH && other != SpectrumEnchantments.RESONANCE && !GoFishCompat.isDeepfry(other);
+	}
+	
+	@Override
+	public boolean canEntityUse(Entity entity) {
+		return super.canEntityUse(entity) || (entity instanceof PlayerEntity playerEntity && AdvancementHelper.hasAdvancement(playerEntity, MoltenRodItem.UNLOCK_IDENTIFIER));
+	}
+	
+	@Override
+	public boolean isAcceptableItem(ItemStack stack) {
+		return super.isAcceptableItem(stack) || stack.getItem() instanceof SpectrumFishingRodItem;
 	}
 	
 	public static class AutoSmeltInventory implements Inventory, RecipeInputProvider {

@@ -10,7 +10,7 @@ public class SpectrumEnchantments {
 	
 	public static final SpectrumEnchantment RESONANCE = new ResonanceEnchantment(Enchantment.Rarity.VERY_RARE, SpectrumCommon.locate("progression/enchantments/resonance"), EquipmentSlot.MAINHAND); // Silk Touch, just for different blocks
 	public static final SpectrumEnchantment PEST_CONTROL = new PestControlEnchantment(Enchantment.Rarity.VERY_RARE, SpectrumCommon.locate("progression/enchantments/pest_control"), EquipmentSlot.MAINHAND); // Kills silverfish when mining infested blocks
-	public static final SpectrumEnchantment FOUNDRY = new AutoSmeltEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("progression/enchantments/autosmelt"), EquipmentSlot.MAINHAND); // applies smelting recipe before dropping items after mining
+	public static final SpectrumEnchantment FOUNDRY = new FoundryEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("progression/enchantments/autosmelt"), EquipmentSlot.MAINHAND); // applies smelting recipe before dropping items after mining
 	public static final SpectrumEnchantment INVENTORY_INSERTION = new InventoryInsertionEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("progression/enchantments/inventory_insertion"), EquipmentSlot.MAINHAND); // don't drop items into the world, add to inv instead
 	public static final SpectrumEnchantment VOIDING = new VoidingEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("spectrum"), EquipmentSlot.MAINHAND); // Voids all items mined
 	public static final SpectrumEnchantment EXUBERANCE = new ExuberanceEnchantment(Enchantment.Rarity.UNCOMMON, SpectrumCommon.locate("progression/enchantments/exuberance"), EquipmentSlot.MAINHAND); // Drops more XP on kill

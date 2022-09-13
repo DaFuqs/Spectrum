@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
+import de.dafuqs.spectrum.entity.entity.BedrockFishingBobberEntity;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
+import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -25,12 +27,12 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
-		int i;
+
 		PlayerEntityAccessor playerEntityAccessor = ((PlayerEntityAccessor) user);
 		if (playerEntityAccessor.getSpectrumBobber() != null) {
 			if (!world.isClient) {
-				i = playerEntityAccessor.getSpectrumBobber().use(itemStack);
-				itemStack.damage(i, user, (p) -> {
+				int damage = playerEntityAccessor.getSpectrumBobber().use(itemStack);
+				itemStack.damage(damage, user, (p) -> {
 					p.sendToolBreakStatus(hand);
 				});
 			}
@@ -40,9 +42,11 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 		} else {
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
 			if (!world.isClient) {
-				i = EnchantmentHelper.getLure(itemStack);
-				int j = EnchantmentHelper.getLuckOfTheSea(itemStack);
-				spawnBobber(user, world, j, i);
+				int luckOfTheSeaLevel = EnchantmentHelper.getLuckOfTheSea(itemStack);
+				int lureLevel = EnchantmentHelper.getLure(itemStack);
+				int exuberanceLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.EXUBERANCE, itemStack);
+				boolean foundry = EnchantmentHelper.getLevel(SpectrumEnchantments.FOUNDRY, itemStack) > 0;
+				spawnBobber(user, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, foundry);
 			}
 			
 			user.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -52,14 +56,14 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 		return TypedActionResult.success(itemStack, world.isClient());
 	}
 	
-	public abstract void spawnBobber(PlayerEntity user, World world, int luckOfTheSea, int lure);
+	public abstract void spawnBobber(PlayerEntity user, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, boolean foundry);
 	
 	public boolean canFishIn(FluidState fluidState) {
 		return fluidState.isIn(FluidTags.WATER);
 	}
 	
 	public boolean shouldAutosmelt(ItemStack itemStack) {
-		return GoFishCompat.hasDeepfry(itemStack);
+		return EnchantmentHelper.getLevel(SpectrumEnchantments.FOUNDRY, itemStack) > 0 || GoFishCompat.hasDeepfry(itemStack);
 	}
 	
 }

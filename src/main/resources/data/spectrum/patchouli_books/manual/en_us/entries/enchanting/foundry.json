@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "Characteristics",
       "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:autosmelt\", lvl: 1s}]}",
-      "text": "Automatically smelts broken blocks.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Silk Touch and Resonance."
+      "text": "Automatically smelts broken blocks. Used on a Fishing Rod sets its hook on fire.$(br2)Max Level: 1$(br)Applicable to mining tools and Spectrum Fishing Rods.$(br)Mutually exclusive with Silk Touch and Resonance."
     },
     {
       "type": "spectrum:enchanter_crafting",

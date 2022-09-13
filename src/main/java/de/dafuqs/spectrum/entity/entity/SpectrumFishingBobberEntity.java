@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import com.mojang.logging.LogUtils;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader;
-import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
+import de.dafuqs.spectrum.enchantments.FoundryEnchantment;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
@@ -53,23 +53,25 @@ import java.util.*;
 // but most methods are either private or are tricky to extend
 public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
-	private static final Logger field_36336 = LogUtils.getLogger();
+	private static final Logger LOGGER = LogUtils.getLogger();
+	private static final TrackedData<Integer> HOOK_ENTITY_ID = DataTracker.registerData(SpectrumFishingBobberEntity.class, TrackedDataHandlerRegistry.INTEGER);
+	private static final TrackedData<Boolean> CAUGHT_FISH = DataTracker.registerData(SpectrumFishingBobberEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+	private static final TrackedData<Boolean> ABLAZE = DataTracker.registerData(SpectrumFishingBobberEntity.class, TrackedDataHandlerRegistry.BOOLEAN); // needs to be synced to the client, so it can render on fire
+	
 	private final Random velocityRandom;
 	private boolean caughtFish;
 	private int outOfOpenFluidTicks;
-	private static final TrackedData<Integer> HOOK_ENTITY_ID = DataTracker.registerData(SpectrumFishingBobberEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	private static final TrackedData<Boolean> CAUGHT_FISH = DataTracker.registerData(SpectrumFishingBobberEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private int removalTimer;
 	private int hookCountdown;
 	private int waitCountdown;
 	private int fishTravelCountdown;
 	private float fishAngle;
 	private boolean inTheOpen;
-	@Nullable
-	private Entity hookedEntity;
+	private @Nullable Entity hookedEntity;
 	private SpectrumFishingBobberEntity.State state;
-	private final int luckOfTheSeaLevel;
-	private final int lureLevel;
+	protected final int luckOfTheSeaLevel;
+	protected final int lureLevel;
+	protected final int exuberanceLevel;
 	
 	public static final Identifier LOOT_IDENTIFIER = SpectrumCommon.locate("gameplay/universal_fishing");
 	
@@ -82,7 +84,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		put(SpectrumBlocks.MIDNIGHT_SOLUTION, new Pair<>(SpectrumParticleTypes.GRAY_SPARKLE_RISING, SpectrumParticleTypes.MIDNIGHT_SOLUTION_FISHING));
 	}};
 	
-	public SpectrumFishingBobberEntity(EntityType type, World world, int luckOfTheSeaLevel, int lureLevel) {
+	public SpectrumFishingBobberEntity(EntityType type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, boolean ablaze) {
 		super(type, world);
 		this.velocityRandom = new Random();
 		this.inTheOpen = true;
@@ -90,14 +92,16 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		this.ignoreCameraFrustum = true;
 		this.luckOfTheSeaLevel = Math.max(0, luckOfTheSeaLevel);
 		this.lureLevel = Math.max(0, lureLevel);
+		this.exuberanceLevel = Math.max(0, exuberanceLevel);
+		this.getDataTracker().set(ABLAZE, ablaze);
 	}
 	
 	public SpectrumFishingBobberEntity(EntityType entityType, World world) {
-		this(entityType, world, 0, 0);
+		this(entityType, world, 0, 0, 0, false);
 	}
 	
-	public SpectrumFishingBobberEntity(EntityType entityType, PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel) {
-		this(entityType, world, luckOfTheSeaLevel, lureLevel);
+	public SpectrumFishingBobberEntity(EntityType entityType, PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, boolean ablaze) {
+		this(entityType, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, ablaze);
 		this.setOwner(thrower);
 		float f = thrower.getPitch();
 		float g = thrower.getYaw();
@@ -119,6 +123,15 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		this.prevPitch = this.getPitch();
 	}
 	
+	public boolean isAblaze() {
+		return this.getDataTracker().get(ABLAZE);
+	}
+	
+	@Override
+	public boolean doesRenderOnFire() {
+		return isAblaze();
+	}
+	
 	public Pair<DefaultParticleType, DefaultParticleType> getParticles(BlockState blockState) {
 		return FISHING_PARTICLES.getOrDefault(blockState.getBlock(), null);
 	}
@@ -127,6 +140,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	protected void initDataTracker() {
 		this.getDataTracker().startTracking(HOOK_ENTITY_ID, 0);
 		this.getDataTracker().startTracking(CAUGHT_FISH, false);
+		this.getDataTracker().startTracking(ABLAZE, false);
 	}
 	
 	@Override
@@ -477,11 +491,10 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				double velocityMod = 0.15D;
 				entity.setVelocity(xDif * velocityMod, yDif * velocityMod + Math.sqrt(Math.sqrt(xDif * xDif + yDif * yDif + zDif * zDif)) * 0.08D, zDif * velocityMod);
 				
-				if(usedItem.getItem() instanceof SpectrumFishingRodItem spectrumFishingRod) {
-					if(spectrumFishingRod.shouldAutosmelt(usedItem)) {
-						entity.setOnFireFor(4);
-					}
+				if(isAblaze()) {
+					entity.setOnFireFor(4);
 				}
+				
 				if (entity instanceof MobEntity mobEntity) {
 					mobEntity.playAmbientSound();
 					mobEntity.playSpawnEffects();
@@ -498,21 +511,18 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		List<ItemStack> list = lootTable.generateLoot(builder.build(LootContextTypes.FISHING));
 		SpectrumAdvancementCriteria.FISHING_ROD_HOOKED.trigger((ServerPlayerEntity) playerEntity, usedItem, this, list);
 		
-		ItemStack fishingRod = getFishingRod(playerEntity);
-		boolean autoSmelt = ((SpectrumFishingRodItem) fishingRod.getItem()).shouldAutosmelt(fishingRod);
-		float exuberanceMod = ExuberanceEnchantment.getExuberanceMod(playerEntity);
-		
 		for (ItemStack itemStack : list) {
 			if (itemStack.isIn(ItemTags.FISHES)) {
 				playerEntity.increaseStat(Stats.FISH_CAUGHT, 1);
 			}
 		}
 		
-		if(autoSmelt) {
-			list = AutoSmeltEnchantment.applyAutoSmelt(world, list);
+		if(isAblaze()) {
+			list = FoundryEnchantment.applyAutoSmelt(world, list);
 		}
 		
 		for (ItemStack itemStack : list) {
+			// item
 			ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), itemStack);
 			double d = playerEntity.getX() - this.getX();
 			double e = playerEntity.getY() - this.getY();
@@ -521,6 +531,9 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			itemEntity.setVelocity(d * g, e * g + Math.sqrt(Math.sqrt(d * d + e * e + f * f)) * 0.08D, f * g);
 			itemEntity.setInvulnerable(true); // so it does not burn when lava fishing
 			this.world.spawnEntity(itemEntity);
+			
+			// experience
+			float exuberanceMod = ExuberanceEnchantment.getExuberanceMod(this.exuberanceLevel);
 			int experienceAmount = this.random.nextInt((int) (6 * exuberanceMod) + 1);
 			if(experienceAmount > 0) {
 				playerEntity.world.spawnEntity(new ExperienceOrbEntity(playerEntity.world, playerEntity.getX(), playerEntity.getY() + 0.5D, playerEntity.getZ() + 0.5D, experienceAmount));
@@ -585,7 +598,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		super.onSpawnPacket(packet);
 		if (this.getPlayerOwner() == null) {
 			int i = packet.getEntityData();
-			field_36336.error("Failed to recreate fishing hook on client. {} (id: {}) is not a valid owner.", this.world.getEntityById(i), i);
+			LOGGER.error("Failed to recreate fishing hook on client. {} (id: {}) is not a valid owner.", this.world.getEntityById(i), i);
 			this.kill();
 		}
 		

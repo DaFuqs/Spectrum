@@ -1,12 +1,18 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
+import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
+import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -17,6 +23,7 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -122,7 +129,7 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inv) {
-		return null;
+		return ItemStack.EMPTY;
 	}
 	
 	@Override
@@ -259,6 +266,58 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	@Override
 	public TranslatableText getMultipleUnlockToastString() {
 		return new TranslatableText("spectrum.toast.fusion_shrine_recipes_unlocked.title");
+	}
+	
+	public void craft(World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
+		int maxAmount = 1;
+		if (!getOutput().isEmpty()) {
+			maxAmount = getOutput().getMaxCount();
+			for (IngredientStack ingredientStack : getIngredientStacks()) {
+				for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
+					ItemStack currentStack = fusionShrineBlockEntity.getInventory().getStack(i);
+					if (ingredientStack.test(currentStack)) {
+						int ingredientStackAmount = ingredientStack.getCount();
+						maxAmount = Math.min(maxAmount, currentStack.getCount() / ingredientStackAmount);
+						break;
+					}
+				}
+			}
+			
+			double efficiencyModifier = fusionShrineBlockEntity.getUpgrades().get(Upgradeable.UpgradeType.EFFICIENCY);
+			if (maxAmount > 0) {
+				for (IngredientStack ingredientStack : getIngredientStacks()) {
+					for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
+						ItemStack currentStack = fusionShrineBlockEntity.getInventory().getStack(i);
+						if (ingredientStack.test(currentStack)) {
+							int reducedAmount = maxAmount * ingredientStack.getCount();
+							int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
+							if (currentStack.getCount() - reducedAmountAfterMod < 1) {
+								fusionShrineBlockEntity.getInventory().setStack(i, ItemStack.EMPTY);
+							} else {
+								currentStack.decrement(reducedAmountAfterMod);
+							}
+							break;
+						}
+					}
+				}
+			}
+		} else {
+			for (IngredientStack ingredientStack : getIngredientStacks()) {
+				double efficiencyModifier = fusionShrineBlockEntity.getUpgrades().get(Upgradeable.UpgradeType.EFFICIENCY);
+				
+				for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
+					ItemStack currentStack = fusionShrineBlockEntity.getInventory().getStack(i);
+					if (ingredientStack.test(currentStack)) {
+						int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
+						currentStack.decrement(reducedAmountAfterMod);
+						break;
+					}
+				}
+			}
+		}
+		
+		fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
+		FusionShrineBlockEntity.spawnCraftingResultAndXP(world, fusionShrineBlockEntity, this, maxAmount); // spawn results
 	}
 	
 }

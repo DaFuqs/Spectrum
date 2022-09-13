@@ -258,6 +258,7 @@
   "spectrum.recipe.fusion_shrine.explanation.weather_rain": "Summons Rain",
   "spectrum.recipe.fusion_shrine.explanation.weather_thunder": "Summons a Thunderstorm",
   "spectrum.recipe.fusion_shrine.explanation.dreamflayer": "Midnight on a full moon",
+  "spectrum.recipe.fusion_shrine.explanation.shooting_star_hardening": "Protects the Star from breaking",
 
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
 
@@ -906,6 +907,7 @@
   "block.spectrum.shooting_star_colorful": "Colorful Shooting Star",
   "block.spectrum.shooting_star_pristine": "Pristine Shooting Star",
   "block.spectrum.shooting_star_gemstone": "Gemstone Shooting Star",
+  "item.spectrum.shooting_star.tooltip.hardened": "Hardened - will not break",
 
   "block.spectrum.glistering_melon": "Glistering Melon",
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",

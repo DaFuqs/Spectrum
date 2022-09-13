@@ -189,62 +189,15 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 	// at once, since we can not rely on positions in a grid like vanilla does
 	// in its crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
-		if (!recipe.getOutput().isEmpty()) {
-			int maxAmount = recipe.getOutput().getMaxCount();
-			for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
-				for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-					if (ingredientStack.test(currentStack)) {
-						int ingredientStackAmount = ingredientStack.getCount();
-						maxAmount = Math.min(maxAmount, currentStack.getCount() / ingredientStackAmount);
-						break;
-					}
-				}
-			}
-			
-			double efficiencyModifier = fusionShrineBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
-			if (maxAmount > 0) {
-				for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
-					for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
-						ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-						if (ingredientStack.test(currentStack)) {
-							int reducedAmount = maxAmount * ingredientStack.getCount();
-							int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
-							if (currentStack.getCount() - reducedAmountAfterMod < 1) {
-								fusionShrineBlockEntity.inventory.setStack(i, ItemStack.EMPTY);
-							} else {
-								currentStack.decrement(reducedAmountAfterMod);
-							}
-							break;
-						}
-					}
-				}
-				
-				fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
-				spawnCraftingResultAndXP(world, fusionShrineBlockEntity, recipe, maxAmount); // spawn results
-				scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
-				
-				SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
-				fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
-			}
-		} else {
-			for (IngredientStack ingredientStack : recipe.getIngredientStacks()) {
-				double efficiencyModifier = fusionShrineBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
-				
-				for (int i = 0; i < fusionShrineBlockEntity.INVENTORY_SIZE; i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.inventory.getStack(i);
-					if (ingredientStack.test(currentStack)) {
-						int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
-						currentStack.decrement(reducedAmountAfterMod);
-						break;
-					}
-				}
-			}
-			
-			fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
-			scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
-			fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
-		}
+		recipe.craft(world, fusionShrineBlockEntity);
+		scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
+		
+		SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
+		fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
+	}
+	
+	public Map<UpgradeType, Float> getUpgrades() {
+		return this.upgrades;
 	}
 	
 	public static void spawnCraftingResultAndXP(World world, FusionShrineBlockEntity blockEntity, FusionShrineRecipe recipe, int amount) {

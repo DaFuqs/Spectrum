@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.crafting.*;
+import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.ShootingStarHardeningRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
@@ -20,6 +21,9 @@ public class SpectrumCustomRecipeSerializers {
 		register(ClearEnderSpliceRecipe.SERIALIZER, "clear_ender_splice");
 		register(ClearPotionFillableRecipe.SERIALIZER, "clear_potion_fillable");
 		register(ClearCraftingTabletRecipe.SERIALIZER, "clear_crafting_tablet");
+		
+		// Fusion Shrine
+		register(ShootingStarHardeningRecipe.SERIALIZER, "shooting_star_hardening");
 		
 		// Spirit Instiller
 		register(SpawnerCreatureChangeRecipe.SERIALIZER, "spirit_instiller_spawner_creature_change");

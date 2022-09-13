@@ -24,9 +24,9 @@
     },
     {
       "type": "patchouli:link",
-      "text": "No idea on how to progress? Take a look at this book or your advancements. These give a lot of hints on what to do next.$(br)$(br)Spectrum is still in heavy development. If you find a bug or have a suggestion, visit me in Spectrums Discord or report them on GitHub.$(br2)Have fun!        - DaFuqs",
+      "text": "No idea on how to progress? Take a look at this book or your advancements. These give a lot of hints on what to do next. Press the bottom center arrow to get started!$(br2)Spectrum is still in development. If you find a bug or have a suggestion, visit Spectrum's Discord or report them on GitHub.$(br)Have fun!        - DaFuqs",
       "url": "https://discord.com/invite/EXU9XFXT8a",
-      "link_text": "Spectrums Discord"
+      "link_text": "Spectrum's Discord"
     }
   ]
 }

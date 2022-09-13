@@ -1,0 +1,28 @@
+{
+  "parent": "spectrum:collect_pigment",
+  "display": {
+    "icon": {
+        "item": "spectrum:molten_rod"
+    },
+    "title": {
+      "translate": "advancements.spectrum.fish_in_lava.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fish_in_lava.description"
+    }
+  },
+  "criteria": {
+    "fished_in_lava": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "fluid": {
+          "tag": "minecraft:lava"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
+    }
+  }
+}

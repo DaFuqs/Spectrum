@@ -1,0 +1,26 @@
+{
+  "parent": "spectrum:collect_pigment",
+  "display": {
+    "icon": {
+        "item": "spectrum:molten_rod"
+    },
+    "title": {
+      "translate": "advancements.spectrum.fish_an_entity.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fish_an_entity.description"
+    }
+  },
+  "criteria": {
+    "fished_an_entity": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "fished_entity": { }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
+    }
+  }
+}

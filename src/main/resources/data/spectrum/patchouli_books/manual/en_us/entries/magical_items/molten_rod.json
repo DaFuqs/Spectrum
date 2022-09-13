@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Orange, which represents warmth, can be used to do the most interesting things. Like your invention here.$(br2)Unlike a normal fishing rod, this piece can fish not only in lava, but also all sorts of other liquids. I wonder what you can bring to the surface?"
+      "text": "Orange, which represents warmth, can be used to do the most interesting things. Like your invention here.$(br2)Unlike a normal fishing rod, this piece is much more sturdy and can fish where a common rod fails. I wonder what you can bring to the surface?"
     },
     {
       "type": "spectrum:pedestal_crafting",

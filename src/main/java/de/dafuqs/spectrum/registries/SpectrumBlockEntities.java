@@ -31,6 +31,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlockEntity;
+import de.dafuqs.spectrum.blocks.present.PresentBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.BlockPlacerBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.PlayerDetectorBlockEntity;
 import de.dafuqs.spectrum.blocks.redstone.RedstoneCalculatorBlockEntity;
@@ -97,6 +98,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<SpiritInstillerBlockEntity> SPIRIT_INSTILLER;
 	public static BlockEntityType<MemoryBlockEntity> MEMORY;
 	public static BlockEntityType<JadeVineRootsBlockEntity> JADE_VINE_ROOTS;
+	public static BlockEntityType<PresentBlockEntity> PRESENT;
 	
 	public static BlockEntityType<PastelNetworkConnectionNode> CONNECTION_NODE;
 	public static BlockEntityType<PastelNetworkProviderNodeBlockEntity> PROVIDER_NODE;
@@ -142,6 +144,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		CRYSTAL_APOTHECARY = register("crystal_apothecary", CrystalApothecaryBlockEntity::new, SpectrumBlocks.CRYSTAL_APOTHECARY);
 		COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
 		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
+		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = register("connection_node", PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE);

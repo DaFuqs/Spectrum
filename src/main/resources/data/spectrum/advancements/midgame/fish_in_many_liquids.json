@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:break_decayed_bedrock",
+  "parent": "spectrum:midgame/break_decayed_bedrock",
   "display": {
     "icon": {
         "item": "spectrum:bedrock_fishing_rod"
@@ -55,7 +55,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:break_decayed_bedrock" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
     }
   }
 }

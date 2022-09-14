@@ -58,6 +58,8 @@ import de.dafuqs.spectrum.blocks.pedestal.BuiltinPedestalVariant;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlock;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
 import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
+import de.dafuqs.spectrum.blocks.present.PresentBlock;
+import de.dafuqs.spectrum.blocks.present.PresentItem;
 import de.dafuqs.spectrum.blocks.redstone.*;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
@@ -268,8 +270,8 @@ public class SpectrumBlocks {
 	public static final Block GLISTERING_MELON_STEM = new GlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.copyOf(Blocks.MELON_STEM));
 	public static final Block ATTACHED_GLISTERING_MELON_STEM = new AttachedGlisteringStemBlock((GourdBlock) GLISTERING_MELON, () -> SpectrumItems.GLISTERING_MELON_SEEDS, FabricBlockSettings.copyOf(Blocks.ATTACHED_MELON_STEM));
 	
-	// SAPLING
 	public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).ticksRandomly());
+	public static final Block PRESENT = new PresentBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
 	
 	// TECHNICAL WITHOUT CORRESPONDING ITEMS
 	public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.of(Material.STONE));
@@ -1106,6 +1108,7 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, fabricItemSettings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, fabricItemSettings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1)), DyeColor.LIGHT_GRAY);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings fabricItemSettings) {

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.enchantments;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -19,10 +20,14 @@ public class ExuberanceEnchantment extends SpectrumEnchantment {
 	public static float getExuberanceMod(PlayerEntity breakingPlayer) {
 		if (breakingPlayer != null && EnchantmentHelper.getLevel(SpectrumEnchantments.EXUBERANCE, breakingPlayer.getMainHandStack()) > 0) {
 			int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, breakingPlayer);
-			return 1.0F + exuberanceLevel * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
+			return getExuberanceMod(exuberanceLevel);
 		} else {
 			return 1.0F;
 		}
+	}
+	
+	public static float getExuberanceMod(int level) {
+		return 1.0F + level * SpectrumCommon.CONFIG.ExuberanceBonusExperiencePercentPerLevel;
 	}
 	
 	@Override
@@ -47,7 +52,7 @@ public class ExuberanceEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || EnchantmentTarget.DIGGER.isAcceptableItem(stack.getItem());
+		return super.isAcceptableItem(stack) || EnchantmentTarget.DIGGER.isAcceptableItem(stack.getItem()) || stack.getItem() instanceof SpectrumFishingRodItem;
 	}
 	
 }

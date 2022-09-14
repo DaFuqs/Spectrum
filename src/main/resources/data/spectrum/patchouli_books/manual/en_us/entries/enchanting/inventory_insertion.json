@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "Characteristics",
       "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}",
-      "text": "Puts broken blocks directly into your inventory instead of dropping them onto the ground.$(br2)Max Level: 1$(br)Applicable to mining tools."
+      "text": "Puts broken blocks directly into your inventory instead of dropping them onto the ground.$(br2)Max Level: 1$(br)Applicable to mining tools, Shears and Spectrum's Fishing Rods."
     },
     {
       "type": "spectrum:enchanter_crafting",

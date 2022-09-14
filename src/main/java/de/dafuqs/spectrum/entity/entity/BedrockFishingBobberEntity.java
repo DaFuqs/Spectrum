@@ -7,16 +7,16 @@ import net.minecraft.world.World;
 
 public class BedrockFishingBobberEntity extends SpectrumFishingBobberEntity {
 	
-	public BedrockFishingBobberEntity(EntityType type, World world, int luckOfTheSeaLevel, int lureLevel) {
-		super(type, world, luckOfTheSeaLevel, lureLevel);
+	public BedrockFishingBobberEntity(EntityType type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean foundry) {
+		super(type, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry);
 	}
 	
 	public BedrockFishingBobberEntity(EntityType entityType, World world) {
 		super(entityType, world);
 	}
 	
-	public BedrockFishingBobberEntity(PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel) {
-		super(SpectrumEntityTypes.BEDROCK_FISHING_BOBBER, thrower, world, luckOfTheSeaLevel, lureLevel);
+	public BedrockFishingBobberEntity(PlayerEntity thrower, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean foundry) {
+		super(SpectrumEntityTypes.BEDROCK_FISHING_BOBBER, thrower, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry);
 	}
 	
 	

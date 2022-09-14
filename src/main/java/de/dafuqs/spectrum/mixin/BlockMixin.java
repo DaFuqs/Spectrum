@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import de.dafuqs.spectrum.enchantments.AutoSmeltEnchantment;
+import de.dafuqs.spectrum.data_loaders.ResonanceDropsDataLoader;
+import de.dafuqs.spectrum.enchantments.FoundryEnchantment;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
 import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
@@ -58,13 +59,13 @@ public abstract class BlockMixin {
 			// Resonance enchant: grant different drops for some items
 			if(enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
 				for(int i = 0; i < droppedStacks.size(); i++) {
-					droppedStacks.set(i, ResonanceEnchantment.applyResonance(droppedStacks.get(i)));
+					droppedStacks.set(i, ResonanceDropsDataLoader.applyResonance(droppedStacks.get(i)));
 				}
 			}
 			
 			// Foundry enchant: try smelting recipe for each stack
 			if (enchantmentMap.containsKey(SpectrumEnchantments.FOUNDRY) && SpectrumEnchantments.FOUNDRY.canEntityUse(entity)) {
-				droppedStacks = AutoSmeltEnchantment.applyAutoSmelt(world, droppedStacks);
+				droppedStacks = FoundryEnchantment.applyAutoSmelt(world, droppedStacks);
 			}
 			
 			// Inventory Insertion enchant? Add it to players inventory if there is room

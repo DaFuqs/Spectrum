@@ -1,0 +1,31 @@
+{
+  "parent": "spectrum:fish_in_lava",
+  "display": {
+    "icon": {
+        "item": "spectrum:molten_rod"
+    },
+    "title": {
+      "translate": "advancements.spectrum.hook_entity_with_molten_rod.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.hook_entity_with_molten_rod.description"
+    }
+  },
+  "criteria": {
+    "hooked_entity_with_molten_rod": {
+      "trigger": "spectrum:fishing_rod_hooked",
+      "conditions": {
+        "rod": {
+          "items": [
+            "spectrum:molten_rod"
+          ]
+        },
+        "hooked_entity": { }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
+    }
+  }
+}

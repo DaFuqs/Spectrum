@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "Characteristics",
       "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
-      "text": "Increases dropped XP for mob kills.$(br2)Max Level: 5$(br)Applicable to melee weapons and mining tools."
+      "text": "Increases dropped XP for mob kills.$(br2)Max Level: 5$(br)Applicable to melee weapons, mining tools and Spectrum's Fishing Rods."
     },
     {
       "type": "spectrum:enchanter_crafting",

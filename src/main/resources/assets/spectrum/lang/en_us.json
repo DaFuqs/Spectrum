@@ -258,6 +258,7 @@
   "spectrum.recipe.fusion_shrine.explanation.weather_rain": "Summons Rain",
   "spectrum.recipe.fusion_shrine.explanation.weather_thunder": "Summons a Thunderstorm",
   "spectrum.recipe.fusion_shrine.explanation.dreamflayer": "Midnight on a full moon",
+  "spectrum.recipe.fusion_shrine.explanation.shooting_star_hardening": "Protects the Star from breaking",
 
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
 
@@ -293,6 +294,8 @@
   "enchantment.spectrum.steadfast.desc": "When on the ground, immune to most forms of damage, despawning and the void",
   "enchantment.spectrum.indestructible": "Indestructible",
   "enchantment.spectrum.indestructible.desc": "Makes the tool fully unbreakable",
+  "enchantment.spectrum.big_catch": "Big Catch",
+  "enchantment.spectrum.big_catch.desc": "Higher chance to reel in living creatures",
 
   "spectrum.subtitles.paintbrush_trigger": "Paintbrush activation",
   "spectrum.subtitles.paintbrush_paint": "Paintbrush paints",
@@ -904,6 +907,7 @@
   "block.spectrum.shooting_star_colorful": "Colorful Shooting Star",
   "block.spectrum.shooting_star_pristine": "Pristine Shooting Star",
   "block.spectrum.shooting_star_gemstone": "Gemstone Shooting Star",
+  "item.spectrum.shooting_star.tooltip.hardened": "Hardened - will not break",
 
   "block.spectrum.glistering_melon": "Glistering Melon",
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",
@@ -2184,7 +2188,15 @@
   "advancements.spectrum.kill_entity_with_ink_projectile.title": "Painbrush",
   "advancements.spectrum.kill_entity_with_ink_projectile.description": "Kill a creature by Flinging Ink using your Paintbrush",
   "advancements.spectrum.collect_all_mob_heads.title": "Innumerable trophies",
-  "advancements.spectrum.collect_all_mob_heads.description": "Collect each individual Mob Head & Skull. I really hope you have a big enough showroom.",
+  "advancements.spectrum.collect_all_mob_heads.description": "Collect each individual Mob Head & Skull. I really hope you have a big enough showroom",
+  "advancements.spectrum.fish_in_lava.title": "Burning Desires",
+  "advancements.spectrum.fish_in_lava.description": "I wonder...",
+  "advancements.spectrum.hook_entity_with_molten_rod.title": "Lead into Fire",
+  "advancements.spectrum.hook_entity_with_molten_rod.description": "Give a man a fish and he will eat for a day. Give him a Molten Rod, and he will set the world on fire",
+  "advancements.spectrum.fish_an_entity.title": "So long, and thanks for what now",
+  "advancements.spectrum.fish_an_entity.description": "Reel in a big catch",
+  "advancements.spectrum.fish_in_many_liquids.title": "I just like to fish",
+  "advancements.spectrum.fish_in_many_liquids.description": "Fish in as many liquids as possible",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

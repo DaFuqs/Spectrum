@@ -59,8 +59,8 @@ public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Pre
 	}
 	
 	@Override
-	public void spawnBobber(PlayerEntity user, World world, int luckOfTheSea, int lure) {
-		world.spawnEntity(new BedrockFishingBobberEntity(user, world, luckOfTheSea, lure));
+	public void spawnBobber(PlayerEntity user, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean foundry) {
+		world.spawnEntity(new BedrockFishingBobberEntity(user, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry));
 	}
 	
 	@Override

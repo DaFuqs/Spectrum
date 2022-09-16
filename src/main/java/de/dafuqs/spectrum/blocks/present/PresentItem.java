@@ -184,11 +184,12 @@ public class PresentItem extends BlockItem {
 	}
 	
 	public Optional<TooltipData> getTooltipData(ItemStack stack) {
-		DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(MAX_STORAGE_STACKS, ItemStack.EMPTY);
-		Stream<ItemStack> bundledStacks = getBundledStacks(stack);
-		int s = 0;
-		bundledStacks.forEachOrdered(e -> defaultedList.set(s, e));
-		return Optional.of(new PresentTooltipData(defaultedList));
+		List<ItemStack> list = new ArrayList<>(MAX_STORAGE_STACKS);
+		getBundledStacks(stack).forEachOrdered(s -> list.add(s));
+		while(list.size() < MAX_STORAGE_STACKS) {
+			list.add(ItemStack.EMPTY);
+		}
+		return Optional.of(new PresentTooltipData(list));
 	}
 	
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {

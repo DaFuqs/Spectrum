@@ -2,21 +2,25 @@ package de.dafuqs.spectrum.blocks.present;
 
 import de.dafuqs.spectrum.items.tooltip.PresentTooltipData;
 import net.minecraft.block.Block;
-import net.minecraft.client.item.BundleTooltipData;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.*;
+import net.minecraft.util.ClickType;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -115,6 +119,7 @@ public class PresentItem extends BlockItem {
 			if (!bundleCompound.contains(ITEMS_KEY)) {
 				bundleCompound.put(ITEMS_KEY, new NbtList());
 			}
+			
 			NbtList nbtList = bundleCompound.getList(ITEMS_KEY, 10);
 			
 			int originalCount = stackToBundle.getCount();

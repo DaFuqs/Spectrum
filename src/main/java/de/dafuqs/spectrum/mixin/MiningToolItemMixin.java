@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.BlockState;
@@ -26,7 +27,7 @@ public class MiningToolItemMixin {
 		if (stack != null) { // thank you, gobber
 			long inertiaAmount = 0;
 			
-			if (SpectrumEnchantments.INERTIA.canEntityUse(miner) && EnchantmentHelper.getLevel(SpectrumEnchantments.INERTIA, stack) > 0) {
+			if (SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.INERTIA, stack, miner) > 0) {
 				NbtCompound compound = stack.getOrCreateNbt();
 				Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
 				if (compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {

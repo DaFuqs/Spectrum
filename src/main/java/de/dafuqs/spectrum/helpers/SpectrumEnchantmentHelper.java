@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
+import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.BookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -184,6 +186,14 @@ public class SpectrumEnchantmentHelper {
 			itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);
 		}
 		return itemStack;
+	}
+	
+	public static int getUsableLevel(SpectrumEnchantment enchantment, ItemStack itemStack, Entity entity) {
+		int level = EnchantmentHelper.getLevel(enchantment, itemStack);
+		if(level > 0 && !enchantment.canEntityUse(entity)) {
+			level = 0;
+		}
+		return level;
 	}
 	
 }

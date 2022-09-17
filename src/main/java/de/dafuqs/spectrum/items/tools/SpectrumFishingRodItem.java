@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
 import de.dafuqs.spectrum.entity.entity.BedrockFishingBobberEntity;
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -44,10 +45,10 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 			if (!world.isClient) {
 				int luckOfTheSeaLevel = EnchantmentHelper.getLuckOfTheSea(itemStack);
 				int lureLevel = EnchantmentHelper.getLure(itemStack);
-				int exuberanceLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.EXUBERANCE, itemStack);
-				int bigCatchLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.BIG_CATCH, itemStack);
-				boolean inventoryInsertion = EnchantmentHelper.getLevel(SpectrumEnchantments.INVENTORY_INSERTION, itemStack) > 0;
-				boolean foundry = EnchantmentHelper.getLevel(SpectrumEnchantments.FOUNDRY, itemStack) > 0;
+				int exuberanceLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.EXUBERANCE, itemStack, user);
+				int bigCatchLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.BIG_CATCH, itemStack, user);
+				boolean inventoryInsertion = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.INVENTORY_INSERTION, itemStack, user) > 0;
+				boolean foundry = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.FOUNDRY, itemStack, user) > 0;
 				spawnBobber(user, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry);
 			}
 			

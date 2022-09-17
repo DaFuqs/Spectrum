@@ -97,7 +97,7 @@ public class SpectrumS2CPacketSender {
 	}
 	
 	/**
-	 * Play anvil crafting particle effect
+	 * Play particle effect
 	 *
 	 * @param world          the world of the pedestal
 	 * @param position       the pos of the particles
@@ -105,6 +105,17 @@ public class SpectrumS2CPacketSender {
 	 */
 	public static void playParticleWithExactOffsetAndVelocity(ServerWorld world, Vec3d position, @NotNull ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
 		playParticleWithExactOffsetAndVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect.getType()), amount, randomOffset, randomVelocity);
+	}
+	
+	/**
+	 * Play particle effect
+	 *
+	 * @param world          the world of the pedestal
+	 * @param position       the pos of the particles
+	 * @param particleEffect The particle effect to play
+	 */
+	public static void playParticleWithExactOffsetAndVelocity(ServerWorld world, Vec3d position, @NotNull ParticleEffect particleEffect, int amount) {
+		playParticleWithExactOffsetAndVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect.getType()), amount, Vec3d.ZERO, Vec3d.ZERO);
 	}
 	
 	/**
@@ -445,4 +456,18 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
+	public static void playPresentOpeningParticles(ServerWorld serverWorld, BlockPos pos, Map<DyeColor, Integer> colors) {
+		PacketByteBuf packetByteBuf = PacketByteBufs.create();
+		packetByteBuf.writeBlockPos(pos);
+		packetByteBuf.writeInt(colors.size());
+		for(Map.Entry<DyeColor, Integer> color : colors.entrySet()) {
+			packetByteBuf.writeByte(color.getKey().getId());
+			packetByteBuf.writeByte(color.getValue());
+		}
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, new BlockPos(pos))) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PRESENT_OPENING_PARTICLES, packetByteBuf);
+		}
+	}
 }

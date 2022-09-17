@@ -23,7 +23,7 @@ public class ClearEnderSpliceRecipe extends SpecialCraftingRecipe {
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			ItemStack itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty()) {
-				if(itemStack.getItem() instanceof EnderSpliceItem) {
+				if(!enderSpliceFound && itemStack.getItem() instanceof EnderSpliceItem) {
 					if(EnderSpliceItem.hasTeleportTarget(itemStack)) {
 						enderSpliceFound = true;
 					} else {

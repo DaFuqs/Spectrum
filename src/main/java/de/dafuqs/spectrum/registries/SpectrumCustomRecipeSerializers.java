@@ -21,6 +21,7 @@ public class SpectrumCustomRecipeSerializers {
 		register(ClearEnderSpliceRecipe.SERIALIZER, "clear_ender_splice");
 		register(ClearPotionFillableRecipe.SERIALIZER, "clear_potion_fillable");
 		register(ClearCraftingTabletRecipe.SERIALIZER, "clear_crafting_tablet");
+		register(WrapPresentRecipe.SERIALIZER, "wrap_present");
 		
 		// Fusion Shrine
 		register(ShootingStarHardeningRecipe.SERIALIZER, "shooting_star_hardening");

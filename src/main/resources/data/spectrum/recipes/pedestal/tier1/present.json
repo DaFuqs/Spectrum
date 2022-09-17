@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 200,
+  "tier": "basic",
+  "cyan": 1,
+  "magenta": 0,
+  "yellow": 1,
+  "white": 0,
+  "black": 0,
+  "experience": 1.0,
+  "pattern": [
+    "SSS",
+    "PGP",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:paper"
+    },
+    "S": {
+      "item": "spectrum:sparklestone_gem"
+    },
+    "G": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "result": {
+    "item": "spectrum:present",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_present"
+}

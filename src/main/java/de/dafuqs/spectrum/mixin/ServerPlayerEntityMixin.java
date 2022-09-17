@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.enchantments.TreasureHunterEnchantment;
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.items.trinkets.GleamingPinItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
@@ -67,15 +68,15 @@ public abstract class ServerPlayerEntityMixin {
 				if (source.getAttacker() instanceof LivingEntity livingSource) {
 					ServerPlayerEntity thisPlayer = (ServerPlayerEntity) (Object) this;
 					
-					int disarmingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack());
+					int disarmingLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.DISARMING, livingSource.getMainHandStack(), livingSource);
 					if (disarmingLevel > 0 && Math.random() < disarmingLevel * SpectrumCommon.CONFIG.DisarmingChancePerLevelPlayers) {
 						DisarmingEnchantment.disarmPlayer(thisPlayer);
 					}
 					
-					World world = thisPlayer.getWorld();
+					ServerWorld world = thisPlayer.getWorld();
 					Optional<ItemStack> gleamingPinStack = SpectrumTrinketItem.getFirstEquipped(thisPlayer, SpectrumItems.GLEAMING_PIN);
 					if (gleamingPinStack.isPresent() && world.getTime() - this.spectrum$lastGleamingPinTriggerTick > GleamingPinItem.COOLDOWN_TICKS) {
-						GleamingPinItem.doGleamingPinEffect(thisPlayer, (ServerWorld) world, gleamingPinStack.get());
+						GleamingPinItem.doGleamingPinEffect(thisPlayer, world, gleamingPinStack.get());
 						this.spectrum$lastGleamingPinTriggerTick = world.getTime();
 					}
 				}

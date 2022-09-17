@@ -2,15 +2,19 @@ package de.dafuqs.spectrum.blocks.present;
 
 import de.dafuqs.spectrum.items.tooltip.PresentTooltipData;
 import net.minecraft.block.Block;
-import net.minecraft.client.item.BundleTooltipData;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.item.TooltipData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
-import net.minecraft.item.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundEvents;
@@ -21,10 +25,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class PresentItem extends BlockItem {
@@ -37,9 +38,77 @@ public class PresentItem extends BlockItem {
 		super(block, settings);
 	}
 	
+	@Override
+	protected boolean canPlace(ItemPlacementContext context, BlockState state) {
+		return isWrapped(context.getStack()) && super.canPlace(context, state);
+	}
+	
 	public static boolean isWrapped(ItemStack itemStack) {
-		NbtCompound compound = itemStack.getNbt();
+		return isWrapped(itemStack.getNbt());
+	}
+	
+	public static boolean isWrapped(NbtCompound compound) {
 		return compound != null && compound.getBoolean("Wrapped");
+	}
+	
+	public void setWrapper(ItemStack itemStack, String giver) {
+		NbtCompound compound = itemStack.getOrCreateNbt();
+		setWrapper(compound, giver);
+		itemStack.setNbt(compound);
+	}
+	
+	public static void setWrapper(NbtCompound compound, String giver) {
+		compound.putString("Giver", giver);
+	}
+	
+	public static Optional<String> getWrapper(ItemStack itemStack) {
+		return getWrapper(itemStack.getNbt());
+	}
+	
+	public static Optional<String> getWrapper(NbtCompound compound) {
+		if(compound != null && compound.contains("Giver", NbtElement.STRING_TYPE)) {
+			return Optional.of(compound.getString("Giver"));
+		}
+		return Optional.empty();
+	}
+	
+	public static Map<DyeColor, Integer> getColors(ItemStack itemStack) {
+		return getColors(itemStack.getNbt());
+	}
+	
+	public static Map<DyeColor, Integer> getColors(NbtCompound compound) {
+		Map<DyeColor, Integer> colors = new HashMap<>();
+		if(compound != null && compound.contains("Colors", NbtElement.LIST_TYPE)) {
+			for(NbtElement e : compound.getList("Colors", NbtElement.COMPOUND_TYPE)) {
+				NbtCompound c = (NbtCompound) e;
+				colors.put(DyeColor.valueOf(c.getString("Color").toUpperCase(Locale.ROOT)), c.getInt("Amount"));
+			}
+		}
+		return colors;
+	}
+	
+	public static void wrap(ItemStack itemStack, Map<DyeColor, Integer> colors) {
+		NbtCompound compound = itemStack.getOrCreateNbt();
+		setWrapped(compound);
+		setColors(compound, colors);
+		itemStack.setNbt(compound);
+	}
+	
+	public static void setWrapped(NbtCompound compound) {
+		compound.putBoolean("Wrapped", true);
+	}
+	
+	public static void setColors(NbtCompound compound, Map<DyeColor, Integer> colors) {
+		if(!colors.isEmpty()) {
+			NbtList colorList = new NbtList();
+			for(Map.Entry<DyeColor, Integer> colorEntry : colors.entrySet()) {
+				NbtCompound colorCompound = new NbtCompound();
+				colorCompound.putString("Color", colorEntry.getKey().getName());
+				colorCompound.putInt("Amount", colorEntry.getValue());
+				colorList.add(colorCompound);
+			}
+			compound.put("Colors", colorList);
+		}
 	}
 	
 	public boolean onStackClicked(ItemStack present, Slot slot, ClickType clickType, PlayerEntity player) {
@@ -89,6 +158,14 @@ public class PresentItem extends BlockItem {
 		}
 	}
 	
+	@Override
+	public void onCraft(ItemStack stack, World world, PlayerEntity player) {
+		super.onCraft(stack, world, player);
+		if(player != null) {
+			setWrapper(stack, player.getEntityName());
+		}
+	}
+	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
 		if(isWrapped(itemStack)) {
@@ -102,7 +179,7 @@ public class PresentItem extends BlockItem {
 	}
 	
 	public int getItemBarStep(ItemStack stack) {
-		return Math.min(1 + 12 * (((int) getBundledStacks(stack).count()) / MAX_STORAGE_STACKS), 13);
+		return Math.min(1 + (int) (12 * (getBundledStacks(stack).count() / (float) MAX_STORAGE_STACKS)), 13);
 	}
 	
 	public int getItemBarColor(ItemStack stack) {
@@ -115,6 +192,7 @@ public class PresentItem extends BlockItem {
 			if (!bundleCompound.contains(ITEMS_KEY)) {
 				bundleCompound.put(ITEMS_KEY, new NbtList());
 			}
+			
 			NbtList nbtList = bundleCompound.getList(ITEMS_KEY, 10);
 			
 			int originalCount = stackToBundle.getCount();
@@ -171,8 +249,11 @@ public class PresentItem extends BlockItem {
 		}
 	}
 	
-	private static Stream<ItemStack> getBundledStacks(ItemStack stack) {
-		NbtCompound nbtCompound = stack.getNbt();
+	public static Stream<ItemStack> getBundledStacks(ItemStack stack) {
+		return getBundledStacks(stack.getNbt());
+	}
+	
+	public static Stream<ItemStack> getBundledStacks(NbtCompound nbtCompound) {
 		if (nbtCompound == null) {
 			return Stream.empty();
 		} else {
@@ -184,18 +265,42 @@ public class PresentItem extends BlockItem {
 	}
 	
 	public Optional<TooltipData> getTooltipData(ItemStack stack) {
-		DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(MAX_STORAGE_STACKS, ItemStack.EMPTY);
-		Stream<ItemStack> bundledStacks = getBundledStacks(stack);
-		int s = 0;
-		bundledStacks.forEachOrdered(e -> defaultedList.set(s, e));
-		return Optional.of(new PresentTooltipData(defaultedList));
+		boolean wrapped = isWrapped(stack);
+		if(wrapped) {
+			return Optional.empty();
+		}
+		
+		List<ItemStack> list = new ArrayList<>(MAX_STORAGE_STACKS);
+		getBundledStacks(stack).forEachOrdered(s -> list.add(s));
+		while (list.size() < MAX_STORAGE_STACKS) {
+			list.add(ItemStack.EMPTY);
+		}
+		return Optional.of(new PresentTooltipData(list));
 	}
 	
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-		DefaultedList<ItemStack> defaultedList = DefaultedList.of();
-		Stream<ItemStack> bundledStacks = getBundledStacks(stack);
-		bundledStacks.forEach(defaultedList::add);
-		tooltip.add((new TranslatableText("item.minecraft.bundle.fullness", defaultedList.size(), MAX_STORAGE_STACKS)).formatted(Formatting.GRAY));
+		boolean wrapped = isWrapped(stack);
+		if(wrapped) {
+			Optional<String> giver = getWrapper(stack);
+			if(giver.isPresent()) {
+				tooltip.add((new TranslatableText("block.spectrum.present.tooltip.wrapped.giver", giver.get()).formatted(Formatting.GRAY)));
+			} else {
+				tooltip.add((new TranslatableText("block.spectrum.present.tooltip.wrapped").formatted(Formatting.GRAY)));
+			}
+		} else {
+			tooltip.add((new TranslatableText("block.spectrum.present.tooltip.description").formatted(Formatting.GRAY)));
+			tooltip.add((new TranslatableText("block.spectrum.present.tooltip.description2").formatted(Formatting.GRAY)));
+			
+			DefaultedList<ItemStack> defaultedList = DefaultedList.of();
+			Stream<ItemStack> bundledStacks = getBundledStacks(stack);
+			bundledStacks.forEach(defaultedList::add);
+			tooltip.add((new TranslatableText("item.minecraft.bundle.fullness", defaultedList.size(), MAX_STORAGE_STACKS)).formatted(Formatting.GRAY));
+		}
+	}
+	
+	@Override
+	public boolean canBeNested() {
+		return false;
 	}
 	
 	public void onItemEntityDestroyed(ItemEntity entity) {

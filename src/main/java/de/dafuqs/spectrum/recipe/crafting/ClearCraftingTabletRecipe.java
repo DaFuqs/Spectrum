@@ -24,7 +24,7 @@ public class ClearCraftingTabletRecipe extends SpecialCraftingRecipe {
 			ItemStack itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty()) {
 				if(itemStack.getItem() instanceof CraftingTabletItem) {
-					if(CraftingTabletItem.getStoredRecipe(world, itemStack) != null) {
+					if(!craftingTabletWithStoredRecipeFound && CraftingTabletItem.getStoredRecipe(world, itemStack) != null) {
 						craftingTabletWithStoredRecipeFound = true;
 					} else {
 						return false;

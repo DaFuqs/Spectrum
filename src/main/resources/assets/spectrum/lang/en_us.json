@@ -1934,7 +1934,10 @@
   "block.spectrum.creative_particle_spawner.tooltip": "Unbreakable - does not require Redstone",
   "block.spectrum.cracked_end_portal_frame": "Cracked End Portal Frame",
   "block.spectrum.present": "Present",
-  "block.spectrum.present.tooltip.from_player": "Present from %s (sneak-use to open)",
+  "block.spectrum.present.tooltip.description": "Click it on items to add them to the Present",
+  "block.spectrum.present.tooltip.description2": "Then put it in a crafting grid and add Pigment to wrap",
+  "block.spectrum.present.tooltip.wrapped": "Wrapped (place and sneak-use to open)",
+  "block.spectrum.present.tooltip.wrapped.giver": "Wrapped by %s (place and sneak-use to open)",
 
   "advancements.spectrum.break_decayed_bedrock.title": "Groundbreaking",
   "advancements.spectrum.break_decayed_bedrock.description": "Break Decayed Bedrock using a Netherite Pickaxe",

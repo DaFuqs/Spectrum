@@ -6,6 +6,7 @@ import com.google.common.collect.Multimaps;
 import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import de.dafuqs.spectrum.enchantments.ImprovedCriticalEnchantment;
 import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.items.trinkets.AttackRingItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
@@ -46,7 +47,7 @@ public class PlayerEntityMixin implements PlayerEntityAccessor {
 			}
 			map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, jeopardantModifier);
 			
-			int improvedCriticalLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.IMPROVED_CRITICAL, thisPlayerEntity.getMainHandStack());
+			int improvedCriticalLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.IMPROVED_CRITICAL, thisPlayerEntity.getMainHandStack(), thisPlayerEntity);
 			EntityAttributeModifier improvedCriticalModifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:improved_critical", ImprovedCriticalEnchantment.getCritMultiplier(improvedCriticalLevel), EntityAttributeModifier.Operation.ADDITION);
 			map.put(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, improvedCriticalModifier);
 			

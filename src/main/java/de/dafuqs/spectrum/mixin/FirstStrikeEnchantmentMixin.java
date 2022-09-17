@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
@@ -21,8 +22,8 @@ public class FirstStrikeEnchantmentMixin {
 		if (source.getAttacker() instanceof LivingEntity livingAttacker) {
 			if (amount != 0F && target.getHealth() == target.getMaxHealth()) {
 				ItemStack mainHandStack = livingAttacker.getMainHandStack();
-				int level = EnchantmentHelper.getLevel(SpectrumEnchantments.FIRST_STRIKE, mainHandStack);
-				if (level > 0 && SpectrumEnchantments.FIRST_STRIKE.canEntityUse(livingAttacker)) {
+				int level = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.FIRST_STRIKE, mainHandStack, livingAttacker);
+				if(level > 0) {
 					float additionalDamage = getAdditionalFirstStrikeEnchantmentDamage(level);
 					amount += additionalDamage;
 				}

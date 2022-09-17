@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -21,7 +22,7 @@ public abstract class WitherEntityMixin {
 	private void spawnEntity(DamageSource source, int lootingMultiplier, boolean allowDrops, CallbackInfo ci, ItemEntity itemEntity) {
 		Entity attackerEntity = source.getAttacker();
 		if (attackerEntity instanceof LivingEntity livingAttacker) {
-			int cloversFavorLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.CLOVERS_FAVOR, livingAttacker.getMainHandStack());
+			int cloversFavorLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.CLOVERS_FAVOR, livingAttacker.getMainHandStack(), livingAttacker);
 			if (cloversFavorLevel > 0) {
 				int additionalCount = (int) (cloversFavorLevel / 2.0F + ((WitherEntity) (Object) this).getWorld().random.nextFloat() * cloversFavorLevel);
 				itemEntity.getStack().setCount(itemEntity.getStack().getCount() + additionalCount);

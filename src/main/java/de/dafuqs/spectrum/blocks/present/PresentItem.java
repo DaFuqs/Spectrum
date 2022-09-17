@@ -254,8 +254,8 @@ public class PresentItem extends BlockItem {
 				tooltip.add((new TranslatableText("block.spectrum.present.tooltip.wrapped").formatted(Formatting.GRAY)));
 			}
 		} else {
-			tooltip.add((new TranslatableText("block.spectrum.present.tooltip.wrapped.description").formatted(Formatting.GRAY)));
-			tooltip.add((new TranslatableText("block.spectrum.present.tooltip.wrapped.description2").formatted(Formatting.GRAY)));
+			tooltip.add((new TranslatableText("block.spectrum.present.tooltip.description").formatted(Formatting.GRAY)));
+			tooltip.add((new TranslatableText("block.spectrum.present.tooltip.description2").formatted(Formatting.GRAY)));
 			
 			DefaultedList<ItemStack> defaultedList = DefaultedList.of();
 			Stream<ItemStack> bundledStacks = getBundledStacks(stack);

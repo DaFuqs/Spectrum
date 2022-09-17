@@ -135,10 +135,10 @@ public class PresentBlock extends BlockWithEntity {
 	public static void spawnParticles(ClientWorld world, BlockPos pos, Map<DyeColor, Integer> colors) {
 		if(colors.isEmpty()) {
 			DyeColor randomColor = DyeColor.byId(world.random.nextInt(DyeColor.values().length));
-			spawnParticles(world, pos, randomColor, 10);
+			spawnParticles(world, pos, randomColor, 12);
 		} else {
 			for (Map.Entry<DyeColor, Integer> color : colors.entrySet()) {
-				spawnParticles(world, pos, color.getKey(), color.getValue() * 5);
+				spawnParticles(world, pos, color.getKey(), color.getValue() * 8);
 			}
 		}
 	}

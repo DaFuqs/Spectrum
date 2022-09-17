@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
@@ -25,6 +24,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -39,7 +39,7 @@ public class PresentBlock extends BlockWithEntity {
 	
 	public static final int TICKS_PER_OPENING_STEP = 20;
 	public static final int OPENING_STEPS = 6;
-	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star");
+	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = SpectrumCommon.locate("particle/shooting_star");
 	
 	public static final BooleanProperty OPENING = BooleanProperty.of("opening");
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
@@ -135,10 +135,10 @@ public class PresentBlock extends BlockWithEntity {
 	public static void spawnParticles(ClientWorld world, BlockPos pos, Map<DyeColor, Integer> colors) {
 		if(colors.isEmpty()) {
 			DyeColor randomColor = DyeColor.byId(world.random.nextInt(DyeColor.values().length));
-			spawnParticles(world, pos, randomColor, 12);
+			spawnParticles(world, pos, randomColor, 15);
 		} else {
 			for (Map.Entry<DyeColor, Integer> color : colors.entrySet()) {
-				spawnParticles(world, pos, color.getKey(), color.getValue() * 8);
+				spawnParticles(world, pos, color.getKey(), color.getValue() * 10);
 			}
 		}
 	}
@@ -148,6 +148,7 @@ public class PresentBlock extends BlockWithEntity {
 		double posY = pos.getY() + 0.25;
 		double posZ = pos.getZ() + 0.5;
 		Random random = world.random;
+		Vec3f colorVec = ColorHelper.getVec(color);
 		for (int i = 0; i < amount; i++) {
 			double randX = 0.35 - random.nextFloat() * 0.7;
 			double randY = random.nextFloat() * 0.7;
@@ -155,7 +156,7 @@ public class PresentBlock extends BlockWithEntity {
 			float randomScale = 0.5F + random.nextFloat();
 			int randomLifetime = 20 + random.nextInt(20);
 			
-			ParticleEffect particleEffect = new ParticleSpawnerParticleEffect(PARTICLE_SPRITE_IDENTIFIER, 0.98F, ColorHelper.getVec(color), randomScale, randomLifetime, true, false);
+			ParticleEffect particleEffect = new ParticleSpawnerParticleEffect(PARTICLE_SPRITE_IDENTIFIER, 0.98F, colorVec, randomScale, randomLifetime, true, false);
 			world.addParticle(particleEffect, posX, posY, posZ, randX, randY, randZ);
 		}
 	}

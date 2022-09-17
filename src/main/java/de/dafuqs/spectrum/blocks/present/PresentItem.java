@@ -81,7 +81,7 @@ public class PresentItem extends BlockItem {
 		if(compound != null && compound.contains("Colors", NbtElement.LIST_TYPE)) {
 			for(NbtElement e : compound.getList("Colors", NbtElement.COMPOUND_TYPE)) {
 				NbtCompound c = (NbtCompound) e;
-				colors.put(DyeColor.valueOf(c.getString("Color")), c.getInt("Amount"));
+				colors.put(DyeColor.valueOf(c.getString("Color").toUpperCase(Locale.ROOT)), c.getInt("Amount"));
 			}
 		}
 		return colors;
@@ -104,7 +104,7 @@ public class PresentItem extends BlockItem {
 			for(Map.Entry<DyeColor, Integer> colorEntry : colors.entrySet()) {
 				NbtCompound colorCompound = new NbtCompound();
 				colorCompound.putString("Color", colorEntry.getKey().getName());
-				colorCompound.putString("Amount", String.valueOf(colorEntry.getValue()));
+				colorCompound.putInt("Amount", colorEntry.getValue());
 				colorList.add(colorCompound);
 			}
 			compound.put("Colors", colorList);

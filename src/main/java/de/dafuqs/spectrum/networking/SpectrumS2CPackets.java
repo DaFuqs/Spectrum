@@ -32,5 +32,5 @@ public class SpectrumS2CPackets {
 	public static final Identifier UPDATE_BLOCK_ENTITY_INK = SpectrumCommon.locate("update_block_entity_ink");
 	public static final Identifier INK_COLOR_SELECTED = SpectrumCommon.locate("ink_color_select");
 	public static final Identifier PLAY_INK_EFFECT_PARTICLES = SpectrumCommon.locate("play_ink_effect_particles");
-	
+	public static final Identifier PLAY_PRESENT_OPENING_PARTICLES = SpectrumCommon.locate("play_present_opening_particles");
 }

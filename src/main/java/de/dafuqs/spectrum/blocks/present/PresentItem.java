@@ -24,7 +24,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -45,28 +44,61 @@ public class PresentItem extends BlockItem {
 	}
 	
 	public static boolean isWrapped(ItemStack itemStack) {
-		NbtCompound compound = itemStack.getNbt();
+		return isWrapped(itemStack.getNbt());
+	}
+	
+	public static boolean isWrapped(NbtCompound compound) {
 		return compound != null && compound.getBoolean("Wrapped");
 	}
 	
 	public void setWrapper(ItemStack itemStack, String giver) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
-		compound.putString("Giver", giver);
+		setWrapper(compound, giver);
 		itemStack.setNbt(compound);
 	}
 	
+	public static void setWrapper(NbtCompound compound, String giver) {
+		compound.putString("Giver", giver);
+	}
+	
 	public static Optional<String> getWrapper(ItemStack itemStack) {
-		NbtCompound compound = itemStack.getNbt();
+		return getWrapper(itemStack.getNbt());
+	}
+	
+	public static Optional<String> getWrapper(NbtCompound compound) {
 		if(compound != null && compound.contains("Giver", NbtElement.STRING_TYPE)) {
 			return Optional.of(compound.getString("Giver"));
 		}
 		return Optional.empty();
 	}
 	
+	public static Map<DyeColor, Integer> getColors(ItemStack itemStack) {
+		return getColors(itemStack.getNbt());
+	}
+	
+	public static Map<DyeColor, Integer> getColors(NbtCompound compound) {
+		Map<DyeColor, Integer> colors = new HashMap<>();
+		if(compound != null && compound.contains("Colors", NbtElement.LIST_TYPE)) {
+			for(NbtElement e : compound.getList("Colors", NbtElement.COMPOUND_TYPE)) {
+				NbtCompound c = (NbtCompound) e;
+				colors.put(DyeColor.valueOf(c.getString("Color")), c.getInt("Amount"));
+			}
+		}
+		return colors;
+	}
+	
 	public static void wrap(ItemStack itemStack, Map<DyeColor, Integer> colors) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
+		setWrapped(compound);
+		setColors(compound, colors);
+		itemStack.setNbt(compound);
+	}
+	
+	public static void setWrapped(NbtCompound compound) {
 		compound.putBoolean("Wrapped", true);
-		
+	}
+	
+	public static void setColors(NbtCompound compound, Map<DyeColor, Integer> colors) {
 		if(!colors.isEmpty()) {
 			NbtList colorList = new NbtList();
 			for(Map.Entry<DyeColor, Integer> colorEntry : colors.entrySet()) {
@@ -77,7 +109,6 @@ public class PresentItem extends BlockItem {
 			}
 			compound.put("Colors", colorList);
 		}
-		itemStack.setNbt(compound);
 	}
 	
 	public boolean onStackClicked(ItemStack present, Slot slot, ClickType clickType, PlayerEntity player) {
@@ -218,8 +249,11 @@ public class PresentItem extends BlockItem {
 		}
 	}
 	
-	private static Stream<ItemStack> getBundledStacks(ItemStack stack) {
-		NbtCompound nbtCompound = stack.getNbt();
+	public static Stream<ItemStack> getBundledStacks(ItemStack stack) {
+		return getBundledStacks(stack.getNbt());
+	}
+	
+	public static Stream<ItemStack> getBundledStacks(NbtCompound nbtCompound) {
 		if (nbtCompound == null) {
 			return Stream.empty();
 		} else {

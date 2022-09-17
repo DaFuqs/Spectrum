@@ -179,7 +179,7 @@ public class PresentItem extends BlockItem {
 	}
 	
 	public int getItemBarStep(ItemStack stack) {
-		return Math.min(1 + 12 * (((int) getBundledStacks(stack).count()) / MAX_STORAGE_STACKS), 13);
+		return Math.min(1 + (int) (12 * (getBundledStacks(stack).count() / (float) MAX_STORAGE_STACKS)), 13);
 	}
 	
 	public int getItemBarColor(ItemStack stack) {
@@ -296,6 +296,11 @@ public class PresentItem extends BlockItem {
 			bundledStacks.forEach(defaultedList::add);
 			tooltip.add((new TranslatableText("item.minecraft.bundle.fullness", defaultedList.size(), MAX_STORAGE_STACKS)).formatted(Formatting.GRAY));
 		}
+	}
+	
+	@Override
+	public boolean canBeNested() {
+		return false;
 	}
 	
 	public void onItemEntityDestroyed(ItemEntity entity) {

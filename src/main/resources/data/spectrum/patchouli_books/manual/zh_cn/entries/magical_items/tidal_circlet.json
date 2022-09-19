@@ -1,5 +1,5 @@
 {
-  "name": "Weeping Circlet",
+  "name": "啜泣头箍",
   "advancement": "spectrum:progression/unlock_tidal_circlet",
   "icon": "spectrum:tidal_circlet",
   "category": "spectrum:magical_items_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "These hostile underwater temples are a hell to maneuver. Luckily, in your search for treasure you stumbled upon a Heart of The Sea.$(br)This circlet allows you to live and mine under water as if it were the most natural thing ever. You swim and mine faster, require no air and are able to see better.$(br)It also heals your little close by Axolotl friends ♥"
+      "text": "在水下这些神殿一样的危险建筑里探险真教人叫苦连天。还好，你幸运地在海底的宝藏之中找到了海洋之心。$(br)戴上头箍，你在水下作业就有如在地面上一般自然。头箍提升游泳和挖掘速度，且让你不再窒息，视线也更加清晰。$(br)还能帮你治愈周边的美西螈伙伴哦~♥"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/tidal_circlet",
-      "text": "$(italic)Have you ever wanted to live underwater? No?$(br)Whatever, now you can.$(br)Time to build an underwater base!"
+      "text": "$(italic)想过在海底安居吗？……没想过？$(br)算了，无论想没想过，现在可以了。$(br)搞一个水下基地吧！"
     }
   ]
 }

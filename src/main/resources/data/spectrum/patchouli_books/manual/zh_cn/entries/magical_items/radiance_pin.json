@@ -1,5 +1,5 @@
 {
-  "name": "Radiance Pin",
+  "name": "辐芒胸针",
   "advancement": "spectrum:progression/unlock_radiance_pin",
   "icon": "spectrum:radiance_pin",
   "category": "spectrum:magical_items_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You didn't randomly choose the name of the Radiance Pin to resemble the $(l:magical_items/radiance_staff)Radiance Staff$(/l).$(br)If you are in a dark area, the pin automatically creates an invisible light on you. Unlike the lights of the $(l:magical_items/radiance_staff)Radiance Staff$(/l), however, they slowly become fainter and fainter until they eventually dissipate completely."
+      "text": "和$(l:magical_items/radiance_staff)辐芒法杖$(/l)一样的名字可不是白叫的。$(br)胸针会为身处黑暗之中的你点亮隐形的光源。然而，和$(l:magical_items/radiance_staff)辐芒法杖$(/l)不同的是，这道光芒会越发微弱，直至消散。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/radiance_pin",
-      "text": "Fantastic to see the paths you've already taken in your cave explorations."
+      "text": "洞窟探险所经之路，点明再看是否也别有一番趣味呢？"
     }
   ]
 }

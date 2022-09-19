@@ -1,18 +1,18 @@
 {
-  "name": "Whispy Circlet",
+  "name": "舒缓头箍",
   "icon": "spectrum:whispy_circlet",
   "advancement": "spectrum:progression/unlock_whispy_circlet",
   "category": "spectrum:magical_items_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Not just the bags under your eyes that are evidence of your lack of sleep. There are those creatures that come haunt you straight out of your missed nightmares when you don't regularly lie down to sleep - almost like they feel cheated.$(br)This here is the manifestation of relaxation, no sleep necessary. After just a few minutes of wear, you feel physically and mentally refreshed."
+      "text": "缺乏睡眠的后果不止眼袋，还有这些萦绕在你头顶的生物——缺乏睡眠而错过的梦魇化作了实体，梦里不见抬头见！$(br)那么这个头箍就是身心放松的实体具现了。无需睡眠，只需穿戴几分钟，身心之疲惫自然一扫而空。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/whispy_circlet",
-      "text": "$(italic)The pleasures of a good night's sleep"
+      "text": "$(italic)顿觉清爽，有如一夜安眠"
     }
   ]
 }

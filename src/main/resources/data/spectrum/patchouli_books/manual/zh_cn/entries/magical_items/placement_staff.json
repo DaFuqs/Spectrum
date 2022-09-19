@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "放置方块又累又花时间，你曾一度怀疑它是不是占据了你生命的全部——$(br2)嗯，$(italic)曾一度$()，现在不用怀疑了。"
+      "text": "放置方块又累又花时间，你曾一度怀疑它是不是占据了你生命的全部——$(br2)嗯，$(italic)曾一度$()，现在可以放下怀疑了。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier2/placement_staff",
-      "text": "Crouch-Click to get a selection of all available placement modi."
+      "text": "潜行右击即可选择可用的放置模式。"
     }
   ]
 }

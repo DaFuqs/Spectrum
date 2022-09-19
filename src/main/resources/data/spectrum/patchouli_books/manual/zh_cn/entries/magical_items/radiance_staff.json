@@ -1,5 +1,5 @@
 {
-  "name": "Radiance Staff",
+  "name": "辐芒法杖",
   "advancement": "spectrum:progression/unlock_light_staff",
   "icon": "spectrum:light_staff",
   "category": "spectrum:magical_items_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Torches have one crucial weakness: you can only place them when you're already standing in the dark. In contrast the Radiance Staff can place lights far away and in the air, illuminating large caverns at a distance.$(br)As a final goodie, these lights are invisible, making them great for illuminating your structures atmospherically."
+      "text": "火把的一个缺点关键而致命：你得身处黑暗之中才能放下火把。但辐芒法杖就不一样了：它可以远程放置光源，甚至可以将光源放置在空中。这样一来，你哪怕站得远远的也能点亮洞窟了。$(br)啊，最后一个优点：这些光源都是隐形的。你可以在不影响装饰氛围的情况下照明你的建筑物了。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier2/light_staff",
-      "text": "Right click placed lights with the staff to adjust the emitted light level.$(br)They can even be summoned under water."
+      "text": "右击放置的光源以调节亮度。$(br)光源可在水下放置。"
     }
   ]
 }

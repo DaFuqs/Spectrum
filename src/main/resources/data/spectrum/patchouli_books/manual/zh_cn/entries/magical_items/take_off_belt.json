@@ -1,5 +1,5 @@
 {
-  "name": "Take-Off Belt",
+  "name": "弹射腰带",
   "advancement": "spectrum:progression/unlock_take_off_belt",
   "icon": "spectrum:take_off_belt",
   "category": "spectrum:magical_items_category",
@@ -9,27 +9,27 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Climbing mountains or misshapen caves is always very time-consuming. If you don't see an option to scramble up over misshapen ledges, you have no choice but to carve a path into the rock.$(br)Using your new Take-Off Belt you are able to put great vertical distances behind you, saving time and sparing your beautiful nature from destruction."
+      "text": "攀山越岭也相当耗时。如果越野攀岩不是你的长项，那你只能开山凿岩，直接洞穿过去咯。$(br)弹射腰带能带你弹射起飞，跃过高山，这样一来就不用再对美丽的大自然景观痛下狠手了。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/take_off_belt",
-      "text": "Sneak to charge a high jump, getting more powerful the longer you charge$(br2)$(italic)Although the name implies, please don't take it off."
+      "text": "潜行充能，充能越久，弹射越高。$(br2)$(italic)虽然名叫弹射腰带，但请不要弹射腰带本身。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:progression/enchantments/vanilla_projectile",
-      "title": "Power",
+      "title": "力量魔咒",
       "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
-      "text": "The Power enchantment increases the jump height even further."
+      "text": "力量魔咒可以进一步提升弹射高度。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:progression/enchantments/vanilla_quitoxic",
-      "title": "Feather Falling",
+      "title": "摔落保护魔咒",
       "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:feather_falling\", lvl: 4s}]}",
-      "text": "Feather Falling will grant you a short slow fall effect, allowing you to better navigate to where you want to land. A high level of Feather Falling may be a very viable way to safely descend down those cliffs again, actually."
+      "text": "摔落保护魔咒会给予你短暂的缓降效果，方便你落脚。魔咒等级高一点的话，下山也不难啦。"
     }
   ]
 }

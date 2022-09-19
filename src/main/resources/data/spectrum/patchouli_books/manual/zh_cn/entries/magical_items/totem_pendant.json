@@ -1,5 +1,5 @@
 {
-  "name": "Totem Pendant",
+  "name": "图腾吊坠",
   "advancement": "spectrum:progression/unlock_totem_pendant",
   "icon": "spectrum:totem_pendant",
   "category": "spectrum:magical_items_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Totems of Undying, while having a powerful effect, have the significant disadvantage that you always have to hold them in your hand.$(br)Using the protective powers of $(l:general/pigment#blue)Blue Pigment$(/l) as a focus you can keep its life-saving effect active, even when worn around the neck."
+      "text": "不死图腾的起死回生之力强大又方便，然而一定要拿在手上才能生效这点实在太不方便了。$(br)将$(l:general/pigment#blue)蓝色颜料$(/l)的保护性质集中聚焦，你就可以持续受到起死回生之力的庇佑了，哪怕戴在脖子上。"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方",
       "recipe": "spectrum:fusion_shrine/trinkets/totem_pendant",
-      "text": "One-time protection from death. After it is triggered, crumbles into dust."
+      "text": "一次性免死。生效后自毁。"
     }
   ]
 }

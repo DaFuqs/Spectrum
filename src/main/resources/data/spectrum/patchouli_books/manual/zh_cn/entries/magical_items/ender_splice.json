@@ -10,13 +10,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:ender_splice",
-      "text": "$(italic)末影人最有趣的地方，毫无疑问就是它们的传送能力。你对这份能力的复现也相当成功！但是，若要指定传送目的地，你需要首先在目的地截取一份当地的快照。$(br)末影人不用这么做呀，为什么？"
+      "text": "$(italic)末影人最有趣的地方，毫无疑问，就是它们的传送能力。你对这份能力的复现也相当成功！但是，若要指定传送目的地，你需要首先在目的地截取一份当地的快照。$(br)末影人不用这么做呀，为什么？"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/ender_splice",
-      "text": "末影连弦的的一个缺点就是它无法进行跨维度传送，它只能在同一个维度进行传送。"
+      "text": "末影连弦的的一个缺点就是它无法进行跨维度传送，它只能在单个维度内进行传送。"
     },
     {
       "type": "patchouli:text",

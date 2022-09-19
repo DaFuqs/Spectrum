@@ -1,5 +1,5 @@
 {
-  "name": "Bottomless Bundle",
+  "name": "无底袋",
   "advancement": "spectrum:progression/unlock_void_bundle",
   "icon": "spectrum:void_bundle",
   "category": "spectrum:magical_items_category",
@@ -10,40 +10,40 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:void_bundle",
-      "text": "$(italic)On your journeys through the underground you collect a whole lot of identical blocks, which you will never need again. But they are too good to throw away, you think.$(br2)Time to develop a storage solution that takes care of your little homemade problem.$()"
+      "text": "$(italic)你在地底探险的时候总会收集到各种一模一样的方块，估计是用都不会再用的那种。但用之无谓，弃之可惜啊。$(br2)是时候解决一下这个小小的仓鼠毛病了。$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier2/void_bundle",
-      "text": "The Bottomless Bundle stores a virtually unlimited number of items, but of only one type.$(br)Right click it on stacks or empty slots in your inventory to fill/empty it"
+      "text": "无底袋可以存储几近无限的物品，虽然只能存一种。$(br)对着物品栏中的物品或空白格子右击即可填充/取出物品。"
     },
     {
       "type": "patchouli:image",
-      "title": "Automation",
+      "title": "自动化",
       "images": [
         "spectrum:textures/gui/manual/bottomless_bundle_automation.png"
       ],
-      "text": "Crouching places it down, making it able to be automatically filled / emptied."
+      "text": "潜行右击将其放置，即可自动化填充/取出操作。"
     },
     {
       "type": "patchouli:text",
       "title": "",
-      "text": "$(br)A placed Bundle will always remember the last item you put into it.$(br)Even if it is emptied it will only accept new items that it was holding before, making it also usable as a filter.$(br2)$(italic)Note: If it was placed empty it will accept the first item pumped into it and get locked to that.$()"
+      "text": "$(br)被放置的无底袋会始终记得你最后塞入的物品。$(br)哪怕袋子已经被净空，其也只会接受原本容纳的物品，故可以作为过滤器使用。$(br2)$(italic)注意：如果放置下来的时候本就是空的，它会记住被塞入的第一个物品。$()"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/build_enchanting_structure",
-      "title": "Enchanting - Power",
+      "title": "力量魔咒",
       "item": "spectrum:void_bundle{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
-      "text": "Enchanting a Bottomless Bundle with Power by using the $(l:enchanting/enchanting_items)Enchanter$(/l) you can increase its capacity tenfold for each level of Power.$(br2)$(italic)Are you able to fill a Bottomless Bundle with Power V?"
+      "text": "使用$(l:enchanting/enchanting_items)附魔基座$(/l)为无底袋注入力量魔咒后，就可以对袋子进行扩容，扩容量逐级递增。$(br2)$(italic)你能填满力量V无底袋么？"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/build_enchanting_structure",
-      "title": "Curse of the Void",
+      "title": "虚空诅咒",
       "item": "spectrum:void_bundle{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
-      "text": "Enchanting a Bottomless Bundle with Curse of the Void by using the $(l:enchanting/enchanting_items)Enchanter$(/l) will result in voiding all items that would overfill the Bottomless Bundle.$(br2)$(italic)No more useless blocks cluttering your path when mining."
+      "text": "使用$(l:enchanting/enchanting_items)附魔基座$(/l)为无底袋注入虚空诅咒后，袋子即会吸收销毁多余的物品。$(br2)$(italic)挖矿的时候再也没有堆在地上的垃圾方块啦！"
     }
   ]
 }

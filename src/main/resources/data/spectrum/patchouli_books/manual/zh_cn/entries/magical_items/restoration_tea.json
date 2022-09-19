@@ -1,5 +1,5 @@
 {
-  "name": "Restoration Tea",
+  "name": "恢复之茶",
   "advancement": "spectrum:progression/unlock_restoration_tea",
   "icon": "spectrum:restoration_tea",
   "category": "spectrum:magical_items_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Is there anything cozier than sitting by your homemade fireplace on a rainy evening, sipping a cup of tea?$(br)Surely: killing a boss beforehand.$(br)This tea, brewed from the petals of $(l:resources/jade_vines)Jade Vines$(/l) is both good for relaxing and protecting you from the deadly effect of the Wither. $(italic)Convenient$()."
+      "text": "窗外是雨天傍晚，而你坐在壁炉前轻松饮茶的感觉靓唔靓啊？$(br)休憩之间饮个茶先啦！$(br)小酌一杯由$(l:resources/jade_vines)玉藤花瓣$(/l)泡制而成的好茶，不仅能好好放松身心，还能免受凋零效果的毒害。$(italic)饮完好茶还能直面凋灵，这可真是方便啊$()。"
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Workshop Recipe",
+      "title": "工作站配方",
       "recipe": "spectrum:potion_workshop_crafting/restoration_tea",
-      "text": "$(italic)Don't even think about drinking that with milk!"
+      "text": "$(italic)想啥呢，加奶还能喝？"
     }
   ]
 }

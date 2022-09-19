@@ -31,7 +31,7 @@
       "title": "幸运之镐",
       "advancement": "spectrum:progression/tools/unlock_fortune_pickaxe",
       "recipe": "spectrum:pedestal/tier1/tools/fortune_pickaxe",
-      "text": "镐头被注入了$(c_yellow)能量$()的活力，能轻易地矿物的每一分精华都开采殆尽。幸运之镐自带$(c_yellow)$(bold)时运III$()。"
+      "text": "镐头被注入了$(c_yellow)能量$()的活力，能轻易地将矿物的每一分精华都开采殆尽。幸运之镐自带$(c_yellow)$(bold)时运III$()。"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -52,7 +52,7 @@
       "title": "共鸣之镐",
       "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
       "recipe": "spectrum:pedestal/tier4/resonant_pickaxe",
-      "text": "这把蔚蓝的镐子自然地与周围产生共鸣。这样一来，哪怕是必受蛮力摧毁的事物，也能被采集下来了。$(br)共鸣之镐自带$(l:enchanting/resonance)共振$(/l)。"
+      "text": "这把蔚蓝的镐子能自然地与周围产生共鸣。这样一来，哪怕是必遭蛮力摧毁的事物，也能被采集下来了。$(br)共鸣之镐自带$(l:enchanting/resonance)共振$(/l)。"
     }
   ]
 }

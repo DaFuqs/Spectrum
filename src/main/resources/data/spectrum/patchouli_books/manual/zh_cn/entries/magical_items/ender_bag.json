@@ -17,7 +17,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "基座配方",
       "recipe": "spectrum:pedestal/tier1/ender_bag",
-      "text": "便携式末影箱，点开即用。"
+      "text": "便携式末影箱，开袋即用。"
     }
   ]
 }

@@ -15,7 +15,7 @@
       "title": "华美石戒指",
       "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_stone_ring",
       "advancement": "spectrum:progression/unlock_fanciful_stone_ring",
-      "text": "These basic accessories are used as a base for more advanced Trinkets. All final Trinkets are created in the $(l:general/fusion_shrine)Fusion Shrine$()."
+      "text": "基础饰品是制作高级饰品的材料。可用的成品饰品都须经由$(l:general/fusion_shrine)融合圣坛$()制作。"
     },
     {
       "type": "spectrum:pedestal_crafting",

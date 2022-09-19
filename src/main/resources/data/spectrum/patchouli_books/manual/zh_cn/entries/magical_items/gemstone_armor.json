@@ -12,7 +12,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "你已经养成了一套独特的战斗方式。$(br)为了完美地支撑这种战斗方式，你用一些有趣的材料设计了一套装备。$(br2)缺点：实战表现里，这些宝石晶有点脆。因此，这些装备的耐久度相当的低。"
+      "text": "你已经养成了一套独特的战斗方式。$(br)为了完美地支援这种战斗方式，你用一些有趣的材料设计了一套装备。$(br2)缺点：实战表现里，这些宝石晶有点脆。因此，这些装备的耐久度相当的低。"
     },
     {
       "type": "spectrum:checklist",
@@ -46,7 +46,7 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_vanilla/collect_ghast_tear",
       "recipe": "spectrum:pedestal/tier2/emergency_armor/emergency_boots",
-      "text": "受击时给予自身速度和隐身效果，时时给予你撤退的良机。远程战斗必备。"
+      "text": "受击时给予自身速度和隐身效果，时时都是撤退的良机。远程战斗必备。"
     }
   ]
 }

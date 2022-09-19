@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "将$(l:resources/azurite)石青$(/l)与$(l:general/pigment#blue)蓝色颜料$(/l)的保护性质相结合的创想点燃了你的兴趣。这种材料的周围有一种透明的力场，你费了好些力气才摸着它。$(br2)$(italic)有点东西哈……"
+      "text": "将$(l:resources/azurite)石青$(/l)与$(l:general/pigment#blue)蓝色颜料$(/l)的保护性质相结合的创想点燃了你的兴趣。这种材料的周围有一种透明的力场，你费了好些力气才摸着它。$(br2)$(italic)还算有点东西……"
     },
     {
       "type": "patchouli:text",
@@ -37,7 +37,7 @@
       "title": "坚盾护符",
       "advancement": "spectrum:progression/unlock_shieldgrasp_amulet",
       "recipe": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet",
-      "text": "为护符注入$(l:magic/ink)蓝色墨水$(/l)即可提升$(c_blue)蔚蓝护盾值$()上限。$(br)初始消耗的能量不多，但注入墨水越多，消耗的能量也会越多，并呈指数增长。"
+      "text": "为护符注入$(l:magic/ink)蓝色墨水$(/l)即可提升$(c_blue)蔚蓝护盾值$()上限。$(br)一开始并不会特别消耗能量，但注入墨水越多，消耗的能量也会越多，并呈指数增长。"
     }
   ]
 }

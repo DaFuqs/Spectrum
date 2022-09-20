@@ -1,5 +1,5 @@
 {
-  "name": "Go Fish",
+  "name": "一起钓鱼吧！",
   "icon": "gofish:starry_salmon",
   "flag": "mod:go-fish",
   "advancement": "spectrum:progression/unlock_molten_rod",
@@ -7,15 +7,15 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "title": "Lava Fishing",
+      "title": "熔岩钓鱼",
       "item": "spectrum:molten_rod",
-      "text": "Your magical fishing rods are able to fish lava and end dwelling fish, like the special Go Fish fishing rods.$(br)Crates can also be fished, as long as you are in the open."
+      "text": "你的魔法钓竿似乎能钓起熔岩中的鱼类，和“一起钓鱼吧！”的钓竿类似。$(br)只要液体区域开阔，你仍然可以钓上盲盒。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Other Features",
+      "title": "其它功能",
       "item": "minecraft:enchanted_book{Stored_Enchantments: [{id: \"gofish:deepfry\", lvl: 1s}]}",
-      "text": "While the Deepfry Enchantment cooks fish as usual, lures have no effect. But you are sure you will find a way to enhance your rod later."
+      "text": "深度烧烤魔咒能够照常运作，但鱼饵不能。不过你相当肯定会有更好的升级方案。$(br)深度烧烤魔咒与自动烧烤不兼容。"
     }
   ]
 }

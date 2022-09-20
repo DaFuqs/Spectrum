@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "性质",
       "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:exuberance\", lvl: 5s}]}",
-      "text": "增加击杀掉落的经验。$(br2)附魔等级上限：5$(br)适用于近战武器与采掘工具。"
+      "text": "增加掉落的经验。$(br2)附魔等级上限：5$(br)适用于近战武器、采掘工具及光谱钓竿。"
     },
     {
       "type": "spectrum:enchanter_crafting",

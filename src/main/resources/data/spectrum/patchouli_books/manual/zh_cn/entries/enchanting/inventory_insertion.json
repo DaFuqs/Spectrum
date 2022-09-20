@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "性质",
       "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}",
-      "text": "将破坏的方块自动吸纳到物品栏中而不落地。$(br2)附魔等级上限：1$(br)适用于采掘工具。"
+      "text": "将被破坏的方块自动吸纳到物品栏中而不落地。$(br2)附魔等级上限：1$(br)适用于采掘工具及光谱钓竿。"
     },
     {
       "type": "spectrum:enchanter_crafting",

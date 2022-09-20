@@ -1,0 +1,21 @@
+{
+  "name": "礼物",
+  "advancement": "spectrum:progression/unlock_present",
+  "icon": "spectrum:present",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:present": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "朋友，在你身处险境的时候伸出援手的自然就是朋友。给点友谊的回报怎么样？一点点$(l:resources/sparklestone)微光石$(/l)就可以让礼物盒子绽放出最绚烂的花火啦！$(br2)在物品栏中选中后，将其对着其它物品点击，即可将其添加入礼包之中。在合成栏中使用一个或多个$(l:general/pigment)颜料$()封装打包后，就能赋予其粒子花火的效果了。"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方",
+      "recipe": "spectrum:pedestal/tier1/present",
+      "text": "把它送给朋友，给他们一个惊喜吧！（当然，送礼给自己也不是不行）"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "name": "Bismuth",
+  "name": "铋",
   "advancement": "spectrum:midgame/collect_bismuth",
   "secret": true,
   "icon": "spectrum:bismuth_flake",
@@ -15,15 +15,15 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Bismuth",
-      "text": "A metal that shimmers in all the colors of the rainbow.$(br)The small seedlings you collected are far too small to be used for any meaningful purpose. The shimmering metal seems to grow larger very slowly by absorbing the energy of other metallic blocks in it's vicinity."
+      "title": "铋",
+      "text": "虹色的金属。$(br)你手头的晶片太小，用处不大，但这种金属似乎能靠吸收周围金属的能量，缓慢成长。"
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "advancement": "spectrum:progression/unlock_crystallarieum",
-      "title": "Growing Bismuth",
+      "title": "铋晶生长",
       "recipe": "spectrum:crystallarieum/bismuth",
-      "text": "Instead of providing whole metal blocks, the $(l:magical_blocks/crystallarieum)Crystallarieum$(), too, provides a controlled substrate and also finer and more efficient way to provide nutrients."
+      "text": "与其供给大量的金属方块，不如使用$(l:magical_blocks/crystallarieum)结晶室$()提供的更为可控，高效且细致的培养基来培养铋金属吧。"
     }
   ]
 }

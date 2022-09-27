@@ -1,5 +1,5 @@
 {
-  "name": "Little Ants",
+  "name": "小小蚂蚁",
   "icon": "ants:dirt_ant_nest",
   "flag": "mod:ants",
   "category": "spectrum:mod_integration_category",
@@ -8,19 +8,19 @@
       "type": "patchouli:spotlight",
       "item": "minecraft:orange_dye",
       "required_advancement": "spectrum:collect_pigment",
-      "text": "These industrious little buggers continuously collect leaves from trees.$(br)The results of their work are also reflected in their products: If you harvest a full anthill that collected leaves of colored trees with a shovel, you get dye."
+      "text": "这些勤劳的小虫子们常常从树上获取树叶。$(br)它们的工作也反映在它们的成果之中：如果你用锹采收一个采集了彩色树叶的蚁窝，你会获得染料。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:orange_pigment",
       "required_advancement": "spectrum:collect_pigment",
-      "text": "Even better, if you bribe them with $(thing)Vegetal$(), you can even salvage pure pigment.$(br2)$(br2)Shoutout to @MastroCaleb for this great mod!"
+      "text": "还有呢！如果你用$(thing)植本质$()贿赂一下它们，你就能采集到纯粹的颜料了。$(br2)$(br2)感谢@MastroCaleb的伟大奉献！"
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:jade_vine_petal_block",
       "required_advancement": "spectrum:hidden/collect_jade_vine_petals",
-      "text": "The ants produce an almost silk-like material from $(thing)Jade Petals$()."
+      "text": "蚂蚁们会里用$(thing)玉藤花瓣$()生产某种类似丝绸的东西。"
     }
   ]
 }

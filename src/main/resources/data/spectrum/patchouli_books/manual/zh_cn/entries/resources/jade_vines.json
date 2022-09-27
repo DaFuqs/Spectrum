@@ -1,10 +1,10 @@
 {
-  "name": "Jade Vines",
+  "name": "玉藤",
   "advancement": "spectrum:hidden/collect_hibernating_jade_vine_seeds",
   "icon": "spectrum:hibernating_jade_vine_seeds",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
-    "spectrum:hibernating_jade_vine_seeds": 0,
+    "spectrum:hibernating_jade_vine_seeds": 0,	
     "spectrum:germinated_jade_vine_seeds": 0,
     "spectrum:jade_vine_petals": 0,
     "spectrum:moonstruck_nectar": 0,
@@ -13,37 +13,37 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "title": "Jade Vines",
+      "title": "玉藤种子",
       "item": "spectrum:hibernating_jade_vine_seeds",
-      "text": "The remaining energy of this plant from aeons ago is barely still perceptible. So light and vulnerable that you think any wrong move could breathe the last bit of life out of your fragile bulb.$(br2)$(italic)Will the history of this plant remain elusive to you forever?"
+      "text": "你手中的种子沉眠了无数个纪元，能被感知的能量已经所剩无几。这气息如此的轻柔而脆弱，你害怕稍有的闪失便会夺走它残余的生命力。$(br2)$(italic)难道这植物的故事永远只能是个谜吗？"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "title": "Germinating",
+      "title": "复苏玉藤",
       "advancement": "spectrum:midgame/build_spirit_instiller_structure",
       "recipe": "spectrum:spirit_instiller/germinated_jade_vine_seeds",
-      "text": "Once almost a lost cause you now have an ace up your sleeve:$(br)With the help of the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l) you are sure that you can breathe life back into the little bulb."
+      "text": "一场差点无可挽回的事故给了你一张王牌：$(br)有了$(l:creating_life/spirit_instiller)灵魂灌注器$(/l)，你一定能让种子重焕生机！"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Planting & Growing",
+      "title": "玉藤种植",
       "item": "spectrum:germinated_jade_vine_seeds",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "Palid, fragile but beautiful hanging plants, twining down wooden fences.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed directly to sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the way more soft, indirect light of the moon."
+      "text": "脆弱而美丽的垂挂植物自栅栏蜿蜒而下。$(br)$(c_red)自古沉睡至今，习惯了黑暗的玉藤经过阳光暴晒就会立即枯萎。$(br)$(c_lime)它仅能靠沐浴在夜里轻柔的月光下生长，且每夜只生长一个阶段。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Jade Jelly",
+      "title": "玉藤果冻",
       "item": "spectrum:jade_jelly",
       "advancement": "spectrum:hidden/collect_jade_jelly",
-      "text": "When you accidentally put one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with a new Bulb, but also this gel-like jelly.$(br)$(italic)Unexpectedly tasty$()."
+      "text": "暴露在阳光下的玉藤果真凋零了。但凋落的枝叶中不仅藏着新种子，还有这个凝胶果冻。$(br)$(italic)意料之外的美味啊$()。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Petals",
+      "title": "玉藤花瓣",
       "item": "spectrum:jade_vine_petals",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "Shiny petals can be plucked carefully when partly grown.$(br)These Petals can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Rarely, when searching the petals, another Bulb can be found."
+      "text": "玉藤仍在生长的时候，偶有花瓣闪耀在枝叶之间，可以被小心地裁剪采集。$(br)花瓣可以用于$(l:decoration/jade_vine_petal_blocks)装点$()。$(br)Rarely, when searching the petals, another Bulb can be found."
     },
     {
       "type": "patchouli:spotlight",

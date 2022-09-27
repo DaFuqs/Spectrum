@@ -1,5 +1,5 @@
 {
-  "name": "Storage Node",
+  "name": "存储节点",
   "icon": "spectrum:provider_node",
   "secret": true,
   "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
@@ -7,14 +7,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Storage Node",
-      "text": "The Storage Node, while nothing spectacular itself, will show their greatest use in combination with $(l:pastel_network/pusher_node)Pusher Nodes$(/l) (Will push items to it) and $(l:pastel_network/puller_node)Puller Nodes$(/l) (pull items from it."
+      "title": "存储节点",
+      "text": "存储节点看似平平无奇，但与其它节点搭配则会发挥出神奇的功效。其可以从$(l:pastel_network/pusher_node)输送节点$(/l)接收物品，或向$(l:pastel_network/puller_node)接收节点$(/l)推送物品。"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/pastel_network/storage_node",
-      "text": "Right click it to open its item filter. This filters allows you to specify which items the Storage Node will be able to receive & provide. Otherwise it will act as a general storage for all types of items."
+      "text": "使用即可打开其物品过滤器。过滤器可以指定存储节点能够接收或推送的物品。若不进行调整，存储节点则会作为一般的容器。"
     }
   ]
 }

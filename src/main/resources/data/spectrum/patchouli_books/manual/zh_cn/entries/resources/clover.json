@@ -1,5 +1,5 @@
 {
-  "name": "Clover",
+  "name": "三叶草",
   "advancement": "spectrum:hidden/collect_clover",
   "icon": "spectrum:four_leaf_clover",
   "category": "spectrum:resources_category",
@@ -10,15 +10,15 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-      "title": "Clover",
+      "title": "三叶草",
       "item": "spectrum:clover",
-      "text": "Growing in Plains and other green biomes that are sprouting with life grow these juicy green clovers.$(br2)$(italic)Is today your lucky day?$()"
+      "text": "鲜艳欲滴的车轴草在生机勃勃的平原和绿意盎然的生物群系中里随处可见。$(br2)$(italic)今天走运吗~？$()"
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:four_leaf_clover",
       "advancement": "spectrum:collect_four_leaf_clover",
-      "text": "Indeed it is!$(br)You are sure this tiny sign of luck could come in handy."
+      "text": "真的走运诶！$(br)你手中幸运的象征一定能有派上用场的一天！"
     }
   ]
 }

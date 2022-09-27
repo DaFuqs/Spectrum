@@ -1,5 +1,5 @@
 {
-  "name": "Geodes",
+  "name": "宝石晶洞",
   "advancement": "spectrum:spectrum",
   "icon": "minecraft:amethyst_cluster",
   "category": "spectrum:resources_category",
@@ -40,20 +40,20 @@
   "pages": [
     {
       "type": "patchouli:image",
-      "title": "Gemstone Geodes",
+      "title": "宝石晶洞",
       "images": [
         "spectrum:textures/gui/manual/geode.png"
       ],
       "border": true,
-      "text": "Geodes form in places where magical energy is so abundant, it physically crystallizes."
+      "text": "魔法能量丰富而密集，凝聚成了实在的晶体，便形成了晶洞。"
     },
     {
       "type": "patchouli:text",
-      "text": "$(br)Breaking Clusters gets you Gemstone Shards, which seem to inherit lots of the original magical properties.$(br)Each type of gemstone seems to represent a different type of fundamental property.$(br2)Different heights promote formation of certain types. To find them all, it makes sense to search in different places."
+      "text": "$(br)采掘宝石晶簇即可获得宝石晶碎片，其中保留着原先蕴含的丰富的魔法能量。$(br)每一种宝石晶似乎各代表一种基本的魔法要素。$(br2)不同的地形高度下会形成不同的宝石晶，若要找齐，还是探索世界为妙。"
     },
     {
       "type": "patchouli:multiblock",
-      "name": "A Geode",
+      "name": "晶洞图示",
       "enable_visualize": false,
       "multiblock": {
         "pattern": [
@@ -281,42 +281,42 @@
         },
         "symmetrical": false
       },
-      "text": "The precious gemstones are protected by layers of Basalt and Calcite."
+      "text": "珍贵的宝石晶由一层层的玄武岩和方解石保护着。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:spectrum",
-      "title": "Gemstone Ores",
+      "title": "宝石晶矿",
       "item": "spectrum:amethyst_ore",
-      "text": "Now that you are paying attention, you noticed small inclusions of gems in the rock all over the place.$(br)If you see such an ore a geode is surely not far!$(br2)While not renewable like Gemstone Clusters, Gemstone Ore provides a lot of Shards, especially when broken with a Fortune-Tool."
+      "text": "现在的你开始注意起了周围的景观，很快便发现原来不少岩石之中就镶嵌着宝石晶。$(br)如果发现了这种矿石，四周肯定会有晶洞！$(br2)虽然没有晶簇那么可再生，但矿石可以产出很多宝石晶碎片，尤其是在时运附魔加持的情况下。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
-      "title": "Topaz Geodes",
+      "title": "托帕石晶洞",
       "item": "spectrum:topaz_block",
-      "text": "Topaz geodes are gigantic in contrast to the others, fitting for their element of matter. However, for this they are found exclusively far above the ground in mountains or massive hills."
+      "text": "托帕石晶洞比其它晶洞要庞大许多，不愧是代表着“物质”的晶石。但为此，托帕石晶洞只能在山崖与丘陵等高地才能找到。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard",
-      "title": "Amethyst Geodes",
+      "title": "紫水晶晶洞",
       "item": "minecraft:amethyst_block",
-      "text": "As elements of time, Amethyst Geodes tend to maintain their existence in the lowest layers of the world, quietly sealed off from all other happenings in the world.$(br)Leisurely and yet imposing."
+      "text": "紫水晶作为“时间”的代表，晶洞深居地底，与世隔绝，在时间的长流之中栖息。$(br)安然而威严。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_shards/collect_citrine_shard",
-      "title": "Citrine Geodes",
+      "title": "黄水晶晶洞",
       "item": "spectrum:citrine_block",
-      "text": "Geodes with Citrine are found in the middle layers of the world, sometimes even accessible from the surface. These geodes are small, but harbor tremendous energy, so they are cracked especially often."
+      "text": "黄水晶晶洞存在于世界的中部，甚至可能暴露在地表。这些晶洞虽小，却蕴含着巨大的能量，以至于经常出现裂缝。"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/collect_moonstone_shard",
-      "title": "Moonstone Geodes",
+      "title": "月长石晶洞",
       "item": "spectrum:moonstone_block",
-      "text": "In the $(l:dimension/dimension)Deeper Down$() you stumbled upon Moonstone Geodes!$(br)You always suspected that there would be another variant and here you are. Those often majestic geodes shine in the brightest of whites, almost blinding, when only accustomed to the darkness of the Deeper Down."
+      "text": "在$(l:dimension/dimension)渊深领域$()之中，你发现了月长石的晶洞！$(br)你总是怀疑有一种前所未见的宝石晶存在，而这晶洞就是证明。这份绚烂夺目、璀璨的真白，只在最深最黑的深渊中绽放。"
     }
   ]
 }

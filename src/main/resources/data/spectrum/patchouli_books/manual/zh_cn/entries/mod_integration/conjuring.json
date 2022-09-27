@@ -6,22 +6,22 @@
   "pages": [
     {
       "type": "spectrum:potion_workshop_brewing",
-      "title": "Resistance Potions",
+      "title": "抗性提升药水",
       "recipe": "spectrum:mod_integration/conjuring/potion_workshop_brewing/distilled_spirit_resistance",
       "advancement": "spectrum:midgame/brew_powerful_potion_in_potion_workshop",
-      "text": "Distilled Spirits can be... $(br)umm.. distilled?$(br)$(italic)distilled further?$()$(br)into long lasting $(thing)Resistance$() Potions."
+      "text": "蒸馏酒精可以$(br)呃…被蒸馏？$(br)$(italic)再被蒸馏？$()$(br)为长效$(thing)抗性提升药水$()。"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "recipe": "spectrum:mod_integration/conjuring/spirit_instiller/lesser_conjuration_essence",
       "advancement": "spectrum:midgame/build_spirit_instiller_structure",
-      "text": "You're not even sure yourself how you came up with this recipe anymore.$(br)Maybe you inhaled a little too much Quitoxic Powder when you combined various ingredients. But the result is interesting, no question."
+      "text": "你甚至想不起来这个配方的灵感是哪来的。$(br)可能是奇毒粉末吸多了？但毫无疑问，产物很有趣。"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "recipe": "spectrum:mod_integration/conjuring/spirit_instiller/mob_spawner",
       "advancement": "spectrum:midgame/build_spirit_instiller_structure",
-      "text": "Combining everything you learned as a Spawner expert and Pigment Tinkerer gave you the ability to create $(thing)Mob Spawners$() yourself.$(br)You only need to assign a Creature to spawn using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
+      "text": "身兼刷怪笼专家和色彩大师二职的你获得了直接制作$(thing)刷怪笼$()的知识。$(br)你只需在$(l:creating_life/spirit_instiller)灵魂灌注器$(/l)里绑定生物，刷怪笼就完成了。"
     }
   ]
 }

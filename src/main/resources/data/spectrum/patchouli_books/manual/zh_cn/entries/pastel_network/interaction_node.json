@@ -1,5 +1,5 @@
 {
-  "name": "Interaction Node",
+  "name": "交互节点",
   "icon": "spectrum:provider_node",
   "secret": true,
   "advancement": "spectrum:progression/pastel_network/__unlock_interaction_node",
@@ -7,14 +7,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Interaction Node",
-      "text": "TODO. Getting close to it will present you a list of all items stored in its connected network. Just reach for it and it will be pulled out from the network for you, automatically."
+      "title": "交互节点",
+      "text": "未完成。靠近后，节点会罗列出网络中存储的所有物品。只要用手轻触物品，它就会被从网络中自动取出。"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/pastel_network/interaction_node",
-      "text": "TODO"
+      "text": "未完成"
     }
   ]
 }

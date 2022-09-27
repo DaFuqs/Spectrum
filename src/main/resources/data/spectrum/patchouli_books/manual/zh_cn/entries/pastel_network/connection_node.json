@@ -1,5 +1,5 @@
 {
-  "name": "Connection Node",
+  "name": "连接节点",
   "icon": "spectrum:provider_node",
   "secret": true,
   "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
@@ -7,14 +7,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Connection Node",
-      "text": "As the most basic of Nodes the Connection Node does not have any use by itself.$(br)They are very small and solely act as a cheap and unobtrusive way to expand the range of your network."
+      "title": "连接节点",
+      "text": "作为节点中最基本的一种，连接节点不具备任何特别的功效。$(br)它们外形小巧，仅仅作为连接与扩展绘彩联络的便捷方式而存在。"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/pastel_network/connection_node",
-      "text": "As all other Nodes, the Connection Node has a range of 16 Blocks."
+      "text": "连接节点的连接距离为16格，与其它类型的节点相同。"
     }
   ]
 }

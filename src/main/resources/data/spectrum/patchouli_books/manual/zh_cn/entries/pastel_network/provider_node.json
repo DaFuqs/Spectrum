@@ -1,5 +1,5 @@
 {
-  "name": "Provider Node",
+  "name": "提供节点",
   "icon": "spectrum:provider_node",
   "secret": true,
   "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
@@ -7,12 +7,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Provider Node",
-      "text": "Passively offers all items in the connected inventory to it's connected $(l:pastel_network/pastel_network)Pastel Network$(/l). Items will not be pushed to other nodes, but can be requested, for example by $(l:pastel_network/puller_node)Puller Nodes$(/l)."
+      "title": "提供节点",
+      "text": "按需地向连接到$(l:pastel_network/pastel_network)绘彩联络$(/l)的容器提供物品。物品不会被自动推送到节点，但可以由$(l:pastel_network/puller_node)接收节点s$(/l)等请求提取。"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:pedestal/tier3/pastel_network/provider_node",
       "text": ""
     }

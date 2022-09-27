@@ -1,5 +1,5 @@
 {
-  "name": "Chalk",
+  "name": "粉笔",
   "icon": "chalk:chalk",
   "flag": "mod:chalk",
   "category": "spectrum:mod_integration_category",
@@ -7,16 +7,16 @@
     {
       "type": "spectrum:pedestal_crafting",
       "required_advancement": "spectrum:collect_pigment",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:mod_integration/chalk/pedestal/orange_chalk",
-      "text": "The little pieces of chalk you colored before with plain dye always didn't last long. By using pigments instead, the $(thing)Chalk$() provides you with a never-ending supply."
+      "text": "用染料制作的粉笔实在用不长。使用颜料的话，就可以将$(thing)粉笔$()变得永久耐用啦。"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "required_advancement": "spectrum:collect_pigment",
-      "title": "Pedestal Recipe",
+      "title": "基座配方",
       "recipe": "spectrum:mod_integration/chalk/pedestal/pink_glow_chalk",
-      "text": "Of course you are able to create unbreakable $(thing)Glow Chalk$(), too."
+      "text": "当然，不可破坏的$(thing)荧光粉笔$()也可以做。"
     }
   ]
 }

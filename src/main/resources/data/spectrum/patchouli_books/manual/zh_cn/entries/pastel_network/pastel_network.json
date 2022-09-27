@@ -1,5 +1,5 @@
 {
-  "name": "The Pastel Network",
+  "name": "绘彩联络",
   "icon": "spectrum:provider_node",
   "secret": true,
   "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
@@ -9,8 +9,8 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Pastel Network",
-      "text": "$(italic)Logistics is a complicated thing.$(br)Your primitive ways of item transport like hopper arrays do not compare to the Pastel Network - that is what you called clusters of Azurite-based Nodes. Each Node with its own special features. Placed in close proximity, nodes will connect wirelessly to one another and form an item transfer network."
+      "title": "绘彩联络",
+      "text": "$(italic)物流是一门复杂的学问。$(br)诸如漏斗之类的原始运输方式在效率上可根本比不上“绘彩联络”——你是这么称呼那些石青节点网络的。每一种节点都具备独特的性质。只要近距离放置节点，它们就会无线地链接在一起，形成物流网络。"
     },
     {
       "type": "patchouli:image",
@@ -19,13 +19,13 @@
         "spectrum:textures/gui/manual/pastel_network.png"
       ],
       "border": true,
-      "text": "All Nodes have a range of 16 blocks and need to have line of sight to one another."
+      "text": "每一种节点的连接距离皆为16格，且节点之间不能被方块阻隔。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Dyeing Nodes",
+      "title": "节点染色",
       "item": "spectrum:purple_pigment",
-      "text": "You can use $(l:general/pigment)Pigment$(/l) on Pastel Network Nodes to dye them.$(br2)Each node can only transfer items to nodes of the same color and colors it composites into, but not the other way around (Cyan nodes can transfer to Blue ones, but not Blue nodes to Cyan)."
+      "text": "你可以对绘彩联络的节点使用$(l:general/pigment)颜料$(/l)进行染色。$(br2)染色的节点只能向与其对应的纯色节点或合成色节点传输物品，而不能反之（如蓝色节点之间可以相互传输，而蓝色节点可以向淡蓝色节点传输，但不能反之）。"
     },
     {
       "type": "patchouli:image",
@@ -38,21 +38,21 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Colored Nodes",
+      "title": "已染色的节点",
       "item": "spectrum:red_pigment",
-      "text": "Using Pigment you can very finely adjust which Nodes can interact with others, allowing you to build complex transfer chains.$(br2)The default $(bold)White$() nodes, lacking all forms of color are only able to connect to other white nodes."
+      "text": "如前文所述，节点可以通过颜料染色来微调节点间交互，以创建更为复杂的物流链。$(br2)但默认的$(bold)白色$()节点由于缺乏色彩，只能与白色节点互联。"
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Spectral Colored Nodes",
+      "title": "七彩染色节点",
       "item": "spectrum:spectral_shard",
-      "text": "$(bold)Black$() in contrast, as the combination of all Pigment Colors, is able to interact with all other Nodes, including other black ones.$(br2)Nodes colored with spectral pigment are able to interact with all nodes, regardless of their color."
+      "text": "$(bold)黑色$()作为所有颜色的总和，可以与所有颜色的节点，包括黑色节点之间交互。$(br2)使用七彩颜料染色的节点可以忽略其它节点的颜色并与之交互。"
     },
     {
       "type": "patchouli:spotlight",
       "title": "",
       "item": "spectrum:purple_pigment",
-      "text": "Using a $(l:resources/mermaids_brush)Mermaids Gem$(/l) on a node will change it to a Fluid Node.$(br)It will behave very similar than before - but will be able to wirelessly tranfer liquid instead of items."
+      "text": "使用$(l:resources/mermaids_brush)美人鱼宝石$(/l)即可将节点转化为液体节点。$(br)顾名思义，液体节点专用于无线传输液体。"
     }
   ]
 }

@@ -20,6 +20,7 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, InvisibleItemFrameEntityRenderer::new);
 		register(SpectrumEntityTypes.BLOCK_FLOODER_PROJECTILE, FlyingItemEntityRenderer::new);
 		register(SpectrumEntityTypes.INK_PROJECTILE, InkProjectileEntityRenderer::new);
+		register(SpectrumEntityTypes.LAGOON_FISHING_BOBBER, LagoonFishingBobberEntityRenderer::new);
 		register(SpectrumEntityTypes.MOLTEN_FISHING_BOBBER, MoltenFishingBobberEntityRenderer::new);
 		register(SpectrumEntityTypes.BEDROCK_FISHING_BOBBER, BedrockFishingBobberEntityRenderer::new);
 	}

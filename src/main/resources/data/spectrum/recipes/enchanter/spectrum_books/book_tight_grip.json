@@ -13,10 +13,10 @@
       "item": "spectrum:yellow_pigment"
     },
     {
-      "item": "spectrum:neolith"
+      "item": "minecraft:string"
     },
     {
-      "item": "minecraft:string"
+      "item": "spectrum:neolith"
     },
     {
       "item": "spectrum:yellow_pigment"
@@ -25,10 +25,10 @@
       "item": "spectrum:yellow_pigment"
     },
     {
-      "item": "spectrum:neolith"
+      "item": "minecraft:string"
     },
     {
-      "item": "minecraft:string"
+      "item": "spectrum:neolith"
     }
   ],
   "result": {

@@ -16,19 +16,19 @@
       "item": "minecraft:chorus_flower"
     },
     {
-      "item": "minecraft:end_stone"
-    },
-    {
-      "item": "spectrum:black_pigment"
-    },
-    {
-      "item": "spectrum:black_pigment"
-    },
-    {
       "item": "minecraft:ender_pearl"
     },
     {
+      "item": "spectrum:black_pigment"
+    },
+    {
+      "item": "spectrum:black_pigment"
+    },
+    {
       "item": "minecraft:chorus_flower"
+    },
+    {
+      "item": "minecraft:ender_pearl"
     }
   ],
   "result": {

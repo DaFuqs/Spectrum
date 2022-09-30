@@ -29,7 +29,7 @@ public class EnchanterDisplay implements SimpleGridMenuDisplay, GatedRecipeDispl
 	
 	public EnchanterDisplay(@NotNull EnchanterRecipe recipe) {
 		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
-		this.inputs.add(EntryIngredients.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience())));
+		this.inputs.add(EntryIngredients.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true)));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.requiredExperience = recipe.getRequiredExperience();
 		this.craftingTime = recipe.getCraftingTime();

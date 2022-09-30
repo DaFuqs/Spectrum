@@ -45,11 +45,13 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 		this.maxStorageBase = maxStorageBase;
 	}
 	
-	public static ItemStack getKnowledgeDropStackWithXP(int experience) {
+	public static ItemStack getKnowledgeDropStackWithXP(int experience, boolean noStoreTooltip) {
 		ItemStack stack = new ItemStack(SpectrumItems.KNOWLEDGE_GEM);
 		NbtCompound compound = new NbtCompound();
 		compound.putInt("stored_experience", experience);
-		compound.putBoolean("do_not_display_store_tooltip", true);
+		if(noStoreTooltip) {
+			compound.putBoolean("do_not_display_store_tooltip", true);
+		}
 		stack.setNbt(compound);
 		return stack;
 	}

@@ -379,24 +379,14 @@ public class InventoryHelper {
 			if (removeItemStack.isItemEqual(currentStack)) {
 				Item remainder = currentStack.getItem().getRecipeRemainder();
 				
-				int currentStackCount = currentStack.getCount();
-				if (currentStackCount >= removeItemStackCount) {
-					currentStack.decrement(removeItemStackCount);
-					
-					if(remainder != null && remainder != Items.AIR) {
-						ItemStack remainderStack = remainder.getDefaultStack();
-						remainderStack.setCount(removeItemStackCount);
-						remainders.add(remainderStack);
-					}
-					break;
-				} else {
-					removeItemStackCount -= currentStackCount;
-					
-					if(remainder != null && remainder != Items.AIR) {
-						ItemStack remainderStack = remainder.getDefaultStack();
-						remainderStack.setCount(currentStackCount);
-						remainders.add(remainderStack);
-					}
+				int amountAbleToDecrement = Math.min(currentStack.getCount(), removeItemStackCount);
+				currentStack.decrement(amountAbleToDecrement);
+				removeItemStackCount -= amountAbleToDecrement;
+				
+				if(remainder != null && remainder != Items.AIR) {
+					ItemStack remainderStack = remainder.getDefaultStack();
+					remainderStack.setCount(amountAbleToDecrement);
+					remainders.add(remainderStack);
 				}
 			}
 			if (removeItemStackCount == 0) {

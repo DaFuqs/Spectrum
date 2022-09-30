@@ -184,15 +184,6 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			PotionUtil.setCustomPotionEffects(itemStack, effects);
 		}
 		
-		if (potionMod.makeSplashing) {
-			if (potionMod.makeLingering) {
-				itemStack.setCustomName(new TranslatableText("item.spectrum.lingering_potion"));
-			} else {
-				itemStack.setCustomName(new TranslatableText("item.spectrum.splash_potion"));
-			}
-		} else {
-			itemStack.setCustomName(new TranslatableText("item.spectrum.potion"));
-		}
 		if (potionMod.fastDrinkable) {
 			NbtCompound compound = itemStack.getOrCreateNbt();
 			compound.putBoolean("SpectrumFastDrinkable", true);
@@ -227,7 +218,6 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			PotionUtil.setCustomPotionEffects(itemStack, effects);
 		}
 		
-		itemStack.setCustomName(new TranslatableText("item.spectrum.tipped_arrow"));
 		setColor(itemStack, potionMod, effects);
 		
 		return itemStack;

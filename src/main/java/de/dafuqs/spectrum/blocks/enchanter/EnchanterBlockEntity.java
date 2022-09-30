@@ -313,7 +313,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	
 	public static void enchantCenterItem(@NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		ItemStack centerStack = enchanterBlockEntity.getStack(0);
-		ItemStack centerStackCopy = enchanterBlockEntity.getStack(0).copy();
+		ItemStack centerStackCopy = centerStack.copy();
 		Map<Enchantment, Integer> highestEnchantments = getHighestEnchantmentsInItemBowls(enchanterBlockEntity);
 		
 		for (Enchantment enchantment : highestEnchantments.keySet()) {

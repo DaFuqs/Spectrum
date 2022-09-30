@@ -151,12 +151,6 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	public ItemStack brewRandomPotion(PotionMod potionMod, StatusEffect lastBrewedStatusEffect, Random random) {
 		List<StatusEffectInstance> effects = new ArrayList<>();
 		
-		if (potionMod.makeSplashing && potionMod.makeLingering) {
-			float typeDurationMod = potionMod.negateDecreasingDuration ? 1.0F : 0.25F;
-			potionMod.flatDurationBonusTicks *= typeDurationMod;
-			potionMod.multiplicativeDurationModifier *= typeDurationMod;
-		}
-		
 		addMainEffect(potionMod, random, effects);
 		addRandomAdditionalEffects(potionMod, random, effects);
 		

@@ -89,13 +89,17 @@ public class ColorHelper {
 	
 	public static boolean tryColorEntity(PlayerEntity user, Entity entity, DyeColor dyeColor) {
 		if(entity instanceof SheepEntity sheepEntity && sheepEntity.isAlive() && !sheepEntity.isSheared()) {
-			sheepEntity.world.playSoundFromEntity(user, sheepEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			sheepEntity.setColor(dyeColor);
-			return true;
+			if(sheepEntity.getColor() != dyeColor) {
+				sheepEntity.world.playSoundFromEntity(user, sheepEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				sheepEntity.setColor(dyeColor);
+				return true;
+			}
 		} else if(entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive()) {
-			shulkerEntity.world.playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			((ShulkerEntityAccessor) shulkerEntity).invokeSetColor(dyeColor);
-			return true;
+			if(shulkerEntity.getColor() != dyeColor) {
+				shulkerEntity.world.playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+				((ShulkerEntityAccessor) shulkerEntity).invokeSetColor(dyeColor);
+				return true;
+			}
 		}
 		return false;
 	}

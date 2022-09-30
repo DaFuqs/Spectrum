@@ -1,9 +1,16 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.items.PigmentItem;
+import de.dafuqs.spectrum.mixin.accessors.ShulkerEntityAccessor;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.mob.ShulkerEntity;
+import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Vec3f;
 import org.jetbrains.annotations.Contract;
@@ -78,6 +85,19 @@ public class ColorHelper {
 			}
 		}
 		return Optional.empty();
+	}
+	
+	public static boolean tryColorEntity(PlayerEntity user, Entity entity, DyeColor dyeColor) {
+		if(entity instanceof SheepEntity sheepEntity && sheepEntity.isAlive() && !sheepEntity.isSheared()) {
+			sheepEntity.world.playSoundFromEntity(user, sheepEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			sheepEntity.setColor(dyeColor);
+			return true;
+		} else if(entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive()) {
+			shulkerEntity.world.playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			((ShulkerEntityAccessor) shulkerEntity).invokeSetColor(dyeColor);
+			return true;
+		}
+		return false;
 	}
 	
 }

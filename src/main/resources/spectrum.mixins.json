@@ -50,6 +50,7 @@
     "accessors.MooshroomEntityAccessor",
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
+    "accessors.ShulkerEntityAccessor",
     "accessors.SlimeEntityAccessor",
     "accessors.StructureFeatureAccessor"
   ],

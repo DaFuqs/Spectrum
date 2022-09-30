@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
-import de.dafuqs.spectrum.entity.entity.BedrockFishingBobberEntity;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
@@ -48,7 +47,7 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 				int exuberanceLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.EXUBERANCE, itemStack, user);
 				int bigCatchLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.BIG_CATCH, itemStack, user);
 				boolean inventoryInsertion = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.INVENTORY_INSERTION, itemStack, user) > 0;
-				boolean foundry = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.FOUNDRY, itemStack, user) > 0;
+				boolean foundry = shouldAutosmelt(itemStack, user);
 				spawnBobber(user, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry);
 			}
 			
@@ -65,8 +64,8 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 		return fluidState.isIn(FluidTags.WATER);
 	}
 	
-	public boolean shouldAutosmelt(ItemStack itemStack) {
-		return EnchantmentHelper.getLevel(SpectrumEnchantments.FOUNDRY, itemStack) > 0 || GoFishCompat.hasDeepfry(itemStack);
+	public boolean shouldAutosmelt(ItemStack itemStack, PlayerEntity user) {
+		return SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.FOUNDRY, itemStack, user) > 0 || GoFishCompat.hasDeepfry(itemStack);
 	}
 	
 }

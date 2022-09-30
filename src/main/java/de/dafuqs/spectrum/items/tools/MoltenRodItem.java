@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class MoltenRodItem extends SpectrumFishingRodItem implements Preenchanted {
+public class MoltenRodItem extends SpectrumFishingRodItem {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_molten_rod");
 	
@@ -41,7 +41,7 @@ public class MoltenRodItem extends SpectrumFishingRodItem implements Preenchante
 	
 	@Override
 	public void spawnBobber(PlayerEntity user, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean foundry) {
-		world.spawnEntity(new MoltenFishingBobberEntity(user, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry));
+		world.spawnEntity(new MoltenFishingBobberEntity(user, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion));
 	}
 	
 	@Override
@@ -50,21 +50,5 @@ public class MoltenRodItem extends SpectrumFishingRodItem implements Preenchante
 		tooltip.add(new TranslatableText("item.spectrum.molten_rod.tooltip").formatted(Formatting.GRAY));
 		tooltip.add(new TranslatableText("item.spectrum.molten_rod.tooltip2").formatted(Formatting.GRAY));
 	}
-	
-	public Map<Enchantment, Integer> getDefaultEnchantments() {
-		return Map.of(SpectrumEnchantments.FOUNDRY, 1);
-	}
-	
-	@Override
-	public ItemStack getDefaultStack() {
-		return getDefaultEnchantedStack(this);
-	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
-	}
-	
+
 }

@@ -18,6 +18,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
@@ -51,23 +52,24 @@ public class PresentItem extends BlockItem {
 		return compound != null && compound.getBoolean("Wrapped");
 	}
 	
-	public void setWrapper(ItemStack itemStack, String giver) {
+	public void setWrapper(ItemStack itemStack, PlayerEntity giver) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
-		setWrapper(compound, giver);
+		setWrapper(compound, giver.getUuid(), giver.getName().getString());
 		itemStack.setNbt(compound);
 	}
 	
-	public static void setWrapper(NbtCompound compound, String giver) {
-		compound.putString("Giver", giver);
+	public static void setWrapper(NbtCompound compound, UUID uuid, String name) {
+		compound.putUuid("GiverUUID", uuid);
+		compound.putString("Giver", name);
 	}
 	
-	public static Optional<String> getWrapper(ItemStack itemStack) {
+	public static Optional<Pair<UUID, String>> getWrapper(ItemStack itemStack) {
 		return getWrapper(itemStack.getNbt());
 	}
 	
-	public static Optional<String> getWrapper(NbtCompound compound) {
-		if(compound != null && compound.contains("Giver", NbtElement.STRING_TYPE)) {
-			return Optional.of(compound.getString("Giver"));
+	public static Optional<Pair<UUID, String>> getWrapper(NbtCompound compound) {
+		if(compound != null && compound.contains("GiverUUID") && compound.contains("Giver", NbtElement.STRING_TYPE)) {
+			return Optional.of(new Pair<>(compound.getUuid("GiverUUID"), compound.getString("Giver")));
 		}
 		return Optional.empty();
 	}
@@ -162,7 +164,7 @@ public class PresentItem extends BlockItem {
 	public void onCraft(ItemStack stack, World world, PlayerEntity player) {
 		super.onCraft(stack, world, player);
 		if(player != null) {
-			setWrapper(stack, player.getEntityName());
+			setWrapper(stack, player);
 		}
 	}
 	
@@ -281,9 +283,12 @@ public class PresentItem extends BlockItem {
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		boolean wrapped = isWrapped(stack);
 		if(wrapped) {
-			Optional<String> giver = getWrapper(stack);
+			Optional<Pair<UUID, String>> giver = getWrapper(stack);
 			if(giver.isPresent()) {
-				tooltip.add((new TranslatableText("block.spectrum.present.tooltip.wrapped.giver", giver.get()).formatted(Formatting.GRAY)));
+				tooltip.add((new TranslatableText("block.spectrum.present.tooltip.wrapped.giver", giver.get().getRight()).formatted(Formatting.GRAY)));
+				if(context.isAdvanced()) {
+					tooltip.add((new LiteralText("UUID: " + giver.get().getLeft().toString()).formatted(Formatting.GRAY)));
+				}
 			} else {
 				tooltip.add((new TranslatableText("block.spectrum.present.tooltip.wrapped").formatted(Formatting.GRAY)));
 			}

@@ -81,18 +81,20 @@ public class PresentBlock extends BlockWithEntity {
 			if (world.isClient) {
 				return ActionResult.SUCCESS;
 			} else {
-				if (player.isSneaking()) {
-					state = state.with(OPENING, true);
-					world.setBlockState(pos, state, 3);
-					world.createAndScheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
-				} else {
-					BlockEntity blockEntity = world.getBlockEntity(pos);
-					if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
-						if (presentBlockEntity.wrapper.isPresent()) {
-							player.sendMessage(new TranslatableText("block.spectrum.present.tooltip.wrapped_placed.giver", presentBlockEntity.wrapper.get()), false);
+				BlockEntity blockEntity = world.getBlockEntity(pos);
+				if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
+					if (player.isSneaking()) {
+						presentBlockEntity.setOpenerUUID(player);
+						state = state.with(OPENING, true);
+						world.setBlockState(pos, state, 3);
+						world.createAndScheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
+					} else {
+						if (presentBlockEntity.getOwnerName() != null) {
+							player.sendMessage(new TranslatableText("block.spectrum.present.tooltip.wrapped_placed.giver", presentBlockEntity.getOwnerName()), false);
 						} else {
 							player.sendMessage(new TranslatableText("block.spectrum.present.tooltip.wrapped_placed"), false);
 						}
+						
 					}
 				}
 				return ActionResult.CONSUME;
@@ -112,7 +114,8 @@ public class PresentBlock extends BlockWithEntity {
 						Vec3d posVec = new Vec3d(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
 						world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.BLOCK_SAND_PLACE, SoundCategory.BLOCKS, 0.7F + openingTick * 0.1F, 1.0F);
 						spawnParticles(world, pos, presentBlockEntity.colors);
-						if(presentBlockEntity.stacks.isEmpty()) {
+						presentBlockEntity.triggerAdvancement();
+						if (presentBlockEntity.stacks.isEmpty()) {
 							SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity(world, posVec, ParticleTypes.SMOKE, 5);
 						} else {
 							SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity(world, posVec, ParticleTypes.EXPLOSION, 1);
@@ -129,11 +132,11 @@ public class PresentBlock extends BlockWithEntity {
 	}
 	
 	public static void spawnParticles(ServerWorld world, BlockPos pos, Map<DyeColor, Integer> colors) {
-		SpectrumS2CPacketSender.playPresentOpeningParticles( world, pos, colors);
+		SpectrumS2CPacketSender.playPresentOpeningParticles(world, pos, colors);
 	}
 	
 	public static void spawnParticles(ClientWorld world, BlockPos pos, Map<DyeColor, Integer> colors) {
-		if(colors.isEmpty()) {
+		if (colors.isEmpty()) {
 			DyeColor randomColor = DyeColor.byId(world.random.nextInt(DyeColor.values().length));
 			spawnParticles(world, pos, randomColor, 15);
 		} else {
@@ -177,5 +180,6 @@ public class PresentBlock extends BlockWithEntity {
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
+	
 	
 }

@@ -52,15 +52,15 @@ public class PresentItem extends BlockItem {
 		return compound != null && compound.getBoolean("Wrapped");
 	}
 	
-	public void setWrapper(ItemStack itemStack, PlayerEntity giver) {
-		NbtCompound compound = itemStack.getOrCreateNbt();
-		setWrapper(compound, giver.getUuid(), giver.getName().getString());
-		itemStack.setNbt(compound);
+	public static void setWrapper(ItemStack itemStack, PlayerEntity giver) {
+		setWrapper(itemStack, giver.getUuid(), giver.getName().getString());
 	}
 	
-	public static void setWrapper(NbtCompound compound, UUID uuid, String name) {
+	public static void setWrapper(ItemStack itemStack, UUID uuid, String name) {
+		NbtCompound compound = itemStack.getOrCreateNbt();
 		compound.putUuid("GiverUUID", uuid);
 		compound.putString("Giver", name);
+		itemStack.setNbt(compound);
 	}
 	
 	public static Optional<Pair<UUID, String>> getWrapper(ItemStack itemStack) {

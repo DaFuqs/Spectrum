@@ -3,7 +3,10 @@ package de.dafuqs.spectrum.blocks.present;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
+import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,7 +19,6 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.*;
 
@@ -37,13 +39,13 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	
 	public void setDataFromPresentStack(ItemStack stack) {
 		List<ItemStack> s = PresentItem.getBundledStacks(stack).toList();
-		for(int i = 0; i < PresentItem.MAX_STORAGE_STACKS && i < s.size(); i++) {
+		for (int i = 0; i < PresentItem.MAX_STORAGE_STACKS && i < s.size(); i++) {
 			this.stacks.set(i, s.get(i));
 		}
 		this.colors = PresentItem.getColors(stack);
 		
 		Optional<Pair<UUID, String>> wrapper = PresentItem.getWrapper(stack);
-		if(wrapper.isPresent()) {
+		if (wrapper.isPresent()) {
 			this.ownerUUID = wrapper.get().getLeft();
 			this.ownerName = wrapper.get().getRight();
 		}
@@ -52,17 +54,17 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	
 	public void triggerAdvancement() {
 		UUID openerUUID = getOpenerUUID();
-		if(openerUUID != null) {
+		if (openerUUID != null) {
 			PlayerEntity opener = PlayerOwned.getPlayerEntityIfOnline(openerUUID);
-			if(opener != null) {
+			if (opener != null) {
 				Support.grantAdvancementCriterion((ServerPlayerEntity) opener, "gift_or_open_present", "gifted_or_opened_present");
 			}
 		}
 		
 		UUID wrapperUUID = getOwnerUUID();
-		if(wrapperUUID != null) {
+		if (wrapperUUID != null) {
 			PlayerEntity wrapper = PlayerOwned.getPlayerEntityIfOnline(wrapperUUID);
-			if(wrapper != null) {
+			if (wrapper != null) {
 				Support.grantAdvancementCriterion((ServerPlayerEntity) wrapper, "gift_or_open_present", "gifted_or_opened_present");
 			}
 		}
@@ -88,7 +90,7 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		} else {
 			this.openerUUID = null;
 		}
-		if(nbt.contains("OpeningTick", NbtElement.INT_TYPE)) {
+		if (nbt.contains("OpeningTick", NbtElement.INT_TYPE)) {
 			this.openingTicks = nbt.getInt("OpeningTick");
 		}
 	}
@@ -96,8 +98,12 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	@Override
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		if(!this.stacks.isEmpty()) { Inventories.writeNbt(nbt, this.stacks); }
-		if(!this.colors.isEmpty()) { PresentItem.setColors(nbt, this.colors); }
+		if (!this.stacks.isEmpty()) {
+			Inventories.writeNbt(nbt, this.stacks);
+		}
+		if (!this.colors.isEmpty()) {
+			PresentItem.setColors(nbt, this.colors);
+		}
 		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
 		}
@@ -107,7 +113,9 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		if (this.openerUUID != null) {
 			nbt.putUuid("OpenerUUID", this.openerUUID);
 		}
-		if(this.openingTicks > 0) { nbt.putInt("OpeningTick", this.openingTicks); }
+		if (this.openingTicks > 0) {
+			nbt.putInt("OpeningTick", this.openingTicks);
+		}
 	}
 	
 	public int openingTick() {
@@ -140,5 +148,13 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		return this.openerUUID;
 	}
 	
+	public ItemStack retrievePresent() {
+		ItemStack stack = SpectrumBlocks.PRESENT.asItem().getDefaultStack();
+		PresentItem.wrap(stack, this.colors);
+		if (this.ownerUUID != null && this.ownerName != null) {
+			PresentItem.setWrapper(stack, this.ownerUUID, this.ownerName);
+		}
+		return stack;
+	}
 	
 }

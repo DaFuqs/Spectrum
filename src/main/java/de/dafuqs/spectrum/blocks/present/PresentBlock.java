@@ -1,9 +1,12 @@
 package de.dafuqs.spectrum.blocks.present;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
@@ -11,6 +14,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
@@ -32,6 +37,7 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -100,7 +106,15 @@ public class PresentBlock extends BlockWithEntity {
 				return ActionResult.CONSUME;
 			}
 		}
-		
+	}
+	
+	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
+		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
+		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
+			return List.of(presentBlockEntity.retrievePresent());
+		} else {
+			return super.getDroppedStacks(state, builder);
+		}
 	}
 	
 	@Override

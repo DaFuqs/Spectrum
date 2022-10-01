@@ -2093,6 +2093,8 @@
   "advancements.spectrum.create_refined_azurite.description": "Refine Azurite into ingot form",
   "advancements.spectrum.fill_knowledge_gem.title": "I dumped CHA instead",
   "advancements.spectrum.fill_knowledge_gem.description": "Fill a Knowledge Gem with 10.000 Experience",
+  "advancements.spectrum.fill_knowledge_gem_for_real_this_time.title": "Vast Intelligence",
+  "advancements.spectrum.fill_knowledge_gem_for_real_this_time.description": "Fill a fully enchanted Knowledge Gem with an uncountable amount of Experience",
   "advancements.spectrum.enchant_exchange_staff.title": "More than a Building Tool",
   "advancements.spectrum.enchant_exchange_staff.description": "Create and enchant an Exchanging Staff",
   "advancements.spectrum.get_tool_with_inertia_500_blocks_broken.title": "The fastest Pick in the West",

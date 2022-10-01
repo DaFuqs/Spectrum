@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "placed_pedestal": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:place_pedestal" }
+    },
+    "collected_topaz": {
+        "trigger":"revelationary:advancement_gotten",
+        "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_topaz_shard" }
+    },
+    "collected_mermaids_gem": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
+    }
+  }
+}

@@ -1,9 +1,10 @@
 {
-  "parent": "spectrum:collect_pigment",
+  "parent": "spectrum:collect_mermaids_gem",
   "display": {
     "icon": {
-        "item": "spectrum:molten_rod"
+        "item": "spectrum:lagoon_rod"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.fish_an_entity.title"
     },
@@ -20,7 +21,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
+      "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
     }
   }
 }

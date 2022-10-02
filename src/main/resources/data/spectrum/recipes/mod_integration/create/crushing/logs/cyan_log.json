@@ -1,0 +1,29 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "spectrum:cyan_log"
+    }
+  ],
+  "results": [
+    {
+      "item": "spectrum:cyan_pigment",
+      "count": 2,
+      "chance": 1.0
+    },
+    {
+      "item": "spectrum:cyan_pigment",
+      "count": 1,
+      "chance": 0.5
+    }
+  ],
+  "processingTime": 450,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ]
+}

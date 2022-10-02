@@ -1,8 +1,11 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.conditional;
 
-import de.dafuqs.spectrum.items.conditional.CloakedItem;
+import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
+import de.dafuqs.spectrum.items.conditional.CloakedBlockItem;
+import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatternProvider;
+import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,19 +16,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class CloakedItemWithLoomPattern extends CloakedItem implements LoomPatternProvider {
+public class FourLeafCloverItem extends CloakedBlockItem implements LoomPatternProvider {
 	
-	protected final LoomPattern loomPattern;
-	
-	public CloakedItemWithLoomPattern(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem, LoomPattern loomPattern) {
-		super(settings, cloakAdvancementIdentifier, cloakItem);
-		this.loomPattern = loomPattern;
+	public FourLeafCloverItem(Block block, Item.Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {
+		super(block, settings, cloakAdvancementIdentifier, cloakItem);
 	}
 	
 	@Override
 	public LoomPattern getPattern() {
-		return loomPattern;
+		return SpectrumBannerPatterns.FOUR_LEAF_CLOVER;
 	}
+	
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {

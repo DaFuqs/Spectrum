@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items;
+package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import net.minecraft.client.item.TooltipContext;

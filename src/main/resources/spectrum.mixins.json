@@ -5,11 +5,11 @@
   "plugin": "de.dafuqs.spectrum.mixin.Plugin",
   "mixins": [
     "AnvilBlockMixin",
+    "ApplyBonusLootFunctionMixin",
     "BlockMixin",
     "BrewingRecipeRegistryMixin",
     "BuddingAmethystBlockMixin",
     "ChunkNoiseSamplerMixin",
-    "ColoredLeavesBlockMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
     "EnderEyeItemMixin",

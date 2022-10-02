@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin;
+/*package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.blocks.conditional.ColoredLeavesBlock;
@@ -56,3 +56,4 @@ public abstract class ColoredLeavesBlockMixin implements IHornHarvestable {
 	}
 	
 }
+*/

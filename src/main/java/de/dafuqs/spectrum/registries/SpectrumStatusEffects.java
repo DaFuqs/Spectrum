@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.status_effects.AnotherDrawStatusEffect;
 import de.dafuqs.spectrum.status_effects.ImmunityStatusEffect;
 import de.dafuqs.spectrum.status_effects.NourishingStatusEffect;
 import net.minecraft.entity.effect.StatusEffect;
@@ -23,6 +24,10 @@ public class SpectrumStatusEffects {
 	 * Like Saturation, but not OP
 	 */
 	public static StatusEffect NOURISHING;
+	/**
+	 * Like Saturation, but not OP
+	 */
+	public static StatusEffect ANOTHER_DRAW;
 	/**
 	 * Ouch.
 	 */
@@ -50,7 +55,8 @@ public class SpectrumStatusEffects {
 	
 	public static void register() {
 		IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5));
-		NOURISHING = registerStatusEffect("nourishing", new NourishingStatusEffect(StatusEffectCategory.BENEFICIAL, 16262179));
+		NOURISHING = registerStatusEffect("nourishing", new NourishingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2324f8));
+		ANOTHER_DRAW = registerStatusEffect("another_draw", new AnotherDrawStatusEffect(StatusEffectCategory.BENEFICIAL, 0xa1ce00));
 		//MILLENIA_DISEASE = registerStatusEffect("millenia_disease", new MilleniaDiseaseStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222).addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, MilleniaDiseaseStatusEffect.ATTRIBUTE_UUID_STRING, -0.05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 		
 		UNCURABLE = getReference("uncurable");

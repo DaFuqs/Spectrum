@@ -69,13 +69,14 @@ import de.dafuqs.spectrum.blocks.structure.DikeGateBlock;
 import de.dafuqs.spectrum.blocks.structure.PreservationControllerBlock;
 import de.dafuqs.spectrum.blocks.structure.StatueBlock;
 import de.dafuqs.spectrum.blocks.structure.TreasureChestBlock;
+import de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockItem;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.entity.entity.LivingMarkerEntity;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.items.FourLeafCloverItem;
+import de.dafuqs.spectrum.items.conditional.FourLeafCloverItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.color.ItemColors;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -272,6 +273,7 @@ public class SpectrumBlocks {
 	
 	public static final Block OMINOUS_SAPLING = new OminousSaplingBlock(FabricBlockSettings.copyOf(Blocks.OAK_SAPLING).ticksRandomly());
 	public static final Block PRESENT = new PresentBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
+	public static final Block TITRATION_BARREL = new TitrationBarrelBlock(FabricBlockSettings.copyOf(Blocks.OAK_PLANKS));
 	
 	// TECHNICAL WITHOUT CORRESPONDING ITEMS
 	public static final Block BLOCK_FLOODER = new BlockFlooderBlock(FabricBlockSettings.of(Material.STONE));
@@ -1109,6 +1111,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("ethereal_platform", ETHEREAL_PLATFORM, fabricItemSettings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("universe_spyhole", UNIVERSE_SPYHOLE, fabricItemSettings, DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("present", PRESENT, new PresentItem(PRESENT, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).maxCount(1)), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("titration_barrel", TITRATION_BARREL, new FabricItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL), DyeColor.MAGENTA);
 	}
 	
 	private static void registerPigmentStorageBlocks(FabricItemSettings fabricItemSettings) {

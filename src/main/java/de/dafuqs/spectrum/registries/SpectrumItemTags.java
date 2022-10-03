@@ -9,6 +9,7 @@ import net.minecraft.util.registry.Registry;
 public class SpectrumItemTags {
 	
 	public static TagKey<Item> COLORED_SAPLINGS = getReference("colored_saplings");
+	public static TagKey<Item> COLORED_PLANKS = getReference("colored_planks");
 	public static TagKey<Item> GEMSTONE_SHARDS = getReference("gemstone_shards");
 	public static TagKey<Item> GEMSTONE_BUDS = getReference("gemstone_buds");
 	public static TagKey<Item> GEMSTONE_CLUSTERS = getReference("gemstone_clusters");

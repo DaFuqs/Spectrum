@@ -17,6 +17,7 @@ import net.minecraft.item.Items;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Pair;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
@@ -26,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class InventoryHelper {
 	
@@ -157,6 +159,35 @@ public class InventoryHelper {
 			}
 		}
 		return itemStack;
+	}
+	
+	public static ItemStack smartAddToInventory(ItemStack itemStack, DefaultedList<ItemStack> inventory) {
+		for (int i = 0; i < inventory.size(); i++) {
+			itemStack = setOrCombineStack(inventory, i, itemStack);
+			if (itemStack.isEmpty()) {
+				break;
+			}
+		}
+		return itemStack;
+	}
+	
+	public static ItemStack setOrCombineStack(DefaultedList<ItemStack> inventory, int slot, ItemStack addingStack) {
+		ItemStack existingStack = inventory.get(slot);
+		if (existingStack.isEmpty()) {
+			if (addingStack.getCount() > addingStack.getMaxCount()) {
+				int amount = Math.min(addingStack.getMaxCount(), addingStack.getCount());
+				ItemStack newStack = addingStack.copy();
+				newStack.setCount(amount);
+				addingStack.decrement(amount);
+				inventory.set(slot, newStack);
+			} else {
+				inventory.set(slot, addingStack);
+				return ItemStack.EMPTY;
+			}
+		} else {
+			combineStacks(existingStack, addingStack);
+		}
+		return addingStack;
 	}
 	
 	public static ItemStack setOrCombineStack(Inventory inventory, int slot, ItemStack addingStack) {
@@ -430,6 +461,18 @@ public class InventoryHelper {
 		}
 		
 		return inventory;
+	}
+	
+	public static Optional<ItemStack> extractLastStack(DefaultedList<ItemStack> inventory) {
+		ItemStack currentStack;
+		for (int i = inventory.size() - 1; i >= 0; i--) {
+			currentStack = inventory.get(i);
+			if (!currentStack.isEmpty()) {
+				inventory.set(i, ItemStack.EMPTY);
+				return Optional.of(currentStack);
+			}
+		}
+		return Optional.empty();
 	}
 	
 }

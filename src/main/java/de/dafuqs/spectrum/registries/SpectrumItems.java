@@ -12,7 +12,11 @@ import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
 import de.dafuqs.spectrum.items.conditional.CloakedGemstoneColorItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
+import de.dafuqs.spectrum.items.conditional.CloakedItemWithLoomPattern;
 import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.items.food.JadeWineItem;
+import de.dafuqs.spectrum.items.food.MoonstruckNectarItem;
+import de.dafuqs.spectrum.items.food.SuspiciousBrewItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
@@ -262,6 +266,10 @@ public class SpectrumItems {
 	public static final CloakedItem MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(MoonstruckNectarItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
 	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(JadeJellyItem.FOOD_COMPONENT));
 	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
+	
+	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item JADE_WINE = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item PURE_ALCOHOL = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");
@@ -578,6 +586,10 @@ public class SpectrumItems {
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
 		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
+		
+		register("suspicious_brew", SUSPICIOUS_BREW, DyeColor.LIME);
+		register("jade_wine", JADE_WINE, DyeColor.LIME);
+		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
 	}
 	
 	public static void registerTrinkets() {

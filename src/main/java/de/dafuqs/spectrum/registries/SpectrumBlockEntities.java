@@ -42,6 +42,7 @@ import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntityRend
 import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
 import de.dafuqs.spectrum.blocks.structure.PreservationControllerBlockEntity;
 import de.dafuqs.spectrum.blocks.structure.TreasureChestBlockEntity;
+import de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockEntity;
@@ -99,6 +100,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<MemoryBlockEntity> MEMORY;
 	public static BlockEntityType<JadeVineRootsBlockEntity> JADE_VINE_ROOTS;
 	public static BlockEntityType<PresentBlockEntity> PRESENT;
+	public static BlockEntityType<TitrationBarrelBlockEntity> TITRATION_BARREL;
 	
 	public static BlockEntityType<PastelNetworkConnectionNode> CONNECTION_NODE;
 	public static BlockEntityType<PastelNetworkProviderNodeBlockEntity> PROVIDER_NODE;
@@ -145,6 +147,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
 		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
 		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
+		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = register("connection_node", PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE);

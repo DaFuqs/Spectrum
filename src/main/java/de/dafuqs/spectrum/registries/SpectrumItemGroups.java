@@ -78,7 +78,7 @@ public class SpectrumItemGroups {
 			
 			if (this.getSelectedTab() == ITEM_GROUP_BLOCKS.getTab(3)) {
 				// fully filled Knowledge Gem
-				stacks.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(10000));
+				stacks.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(10000, false));
 				stacks.add(SpectrumItems.MIDNIGHT_ABERRATION.getStableStack());
 				
 				for (InkColor color : InkColor.all()) {

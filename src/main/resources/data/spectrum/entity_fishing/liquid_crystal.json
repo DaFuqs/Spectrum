@@ -5,6 +5,10 @@
   "chance": 0.02,
   "entities": [
     {
+      "id": "minecraft:salmon",
+      "weight": 10
+    },
+    {
       "id": "minecraft:glow_squid",
       "weight": 1
     }

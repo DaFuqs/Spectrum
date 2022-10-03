@@ -64,6 +64,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	public static final int FIRST_INGREDIENT_SLOT = 2;
 	public static final int FIRST_REAGENT_SLOT = 5;
 	public static final int FIRST_INVENTORY_SLOT = 9;
+	public static final int[] REGENT_SLOTS = new int[]{5, 6, 7, 8};
 	protected static final int BASE_POTION_COUNT_ON_BREWING = 3;
 	protected static final int BASE_ARROW_COUNT_ON_BREWING = 12;
 	protected final PropertyDelegate propertyDelegate;
@@ -219,7 +220,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	
 	private static boolean isBrewingRecipeApplicable(PotionWorkshopBrewingRecipe recipe, ItemStack baseIngredient, PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		if (hasUniqueReagents(potionWorkshopBlockEntity)) {
-			if (recipe.getOutput().isOf(Items.TIPPED_ARROW)) { // arrows require lingering potions as base
+			if (baseIngredient.isOf(Items.ARROW)) { // arrows require lingering potions as base
 				if (recipe.isApplicableToTippedArrows()) {
 					PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 					return potionMod.makeSplashing && potionMod.makeLingering;
@@ -341,7 +342,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	
 	private static PotionMod getPotionModFromReagents(PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
 		PotionMod potionMod = new PotionMod();
-		for (int i : new int[]{5, 6, 7, 8}) {
+		for (int i : REGENT_SLOTS) {
 			ItemStack itemStack = potionWorkshopBlockEntity.getStack(i);
 			if (!itemStack.isEmpty() && PotionWorkshopReactingRecipe.isReagent(itemStack.getItem())) {
 				potionMod = PotionWorkshopReactingRecipe.modify(itemStack.getItem(), potionMod, potionWorkshopBlockEntity.world.random);

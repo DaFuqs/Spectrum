@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
-import de.dafuqs.spectrum.entity.entity.BedrockFishingBobberEntity;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -14,10 +14,16 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public abstract class SpectrumFishingRodItem extends FishingRodItem {
 	
@@ -48,7 +54,7 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 				int exuberanceLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.EXUBERANCE, itemStack, user);
 				int bigCatchLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.BIG_CATCH, itemStack, user);
 				boolean inventoryInsertion = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.INVENTORY_INSERTION, itemStack, user) > 0;
-				boolean foundry = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.FOUNDRY, itemStack, user) > 0;
+				boolean foundry = shouldAutosmelt(itemStack, user);
 				spawnBobber(user, world, luckOfTheSeaLevel, lureLevel, exuberanceLevel, bigCatchLevel, inventoryInsertion, foundry);
 			}
 			
@@ -65,8 +71,14 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 		return fluidState.isIn(FluidTags.WATER);
 	}
 	
-	public boolean shouldAutosmelt(ItemStack itemStack) {
-		return EnchantmentHelper.getLevel(SpectrumEnchantments.FOUNDRY, itemStack) > 0 || GoFishCompat.hasDeepfry(itemStack);
+	public boolean shouldAutosmelt(ItemStack itemStack, PlayerEntity user) {
+		return SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.FOUNDRY, itemStack, user) > 0 || GoFishCompat.hasDeepfry(itemStack);
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(new TranslatableText("item.spectrum.spectrum_fishing_rods.tooltip").formatted(Formatting.GRAY));
 	}
 	
 }

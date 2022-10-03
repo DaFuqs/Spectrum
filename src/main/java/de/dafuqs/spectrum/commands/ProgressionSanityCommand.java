@@ -56,10 +56,11 @@ import java.util.Map;
 public class ProgressionSanityCommand {
 	
 	private static final List<Identifier> advancementGatingWarningWhitelist = new ArrayList<>() {{
+		add(new Identifier(SpectrumCommon.MOD_ID, "find_ancient_ruins"));
+		add(new Identifier(SpectrumCommon.MOD_ID, "hook_entity_with_molten_rod"));
 		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/take_off_belt_overcharged"));
 		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_blacklisted_memory_fail"));
 		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_blacklisted_memory_success"));
-		add(new Identifier(SpectrumCommon.MOD_ID, "find_ancient_ruins"));
 		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/build_cinderhearth_structure_without_lava"));
 	}};
 	

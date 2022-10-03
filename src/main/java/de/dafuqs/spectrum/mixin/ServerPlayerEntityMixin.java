@@ -53,7 +53,6 @@ public abstract class ServerPlayerEntityMixin {
 				if (AshenCircletItem.getCooldownTicks(ashenCircletStack.get(), thisEntity.world) == 0) {
 					AshenCircletItem.grantFireResistance(ashenCircletStack.get(), thisEntity);
 				}
-				cir.setReturnValue(false);
 			}
 		} else if (source.isFire() && SpectrumTrinketItem.hasEquipped((PlayerEntity) (Object) this, SpectrumItems.ASHEN_CIRCLET)) {
 			cir.setReturnValue(false);

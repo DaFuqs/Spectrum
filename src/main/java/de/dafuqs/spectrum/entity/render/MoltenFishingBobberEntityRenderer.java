@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 
 public class MoltenFishingBobberEntityRenderer extends SpectrumFishingBobberEntityRenderer {
 	
-	protected Identifier TEXTURE = SpectrumCommon.locate("textures/entity/molten_fishing_hook.png");
+	protected Identifier TEXTURE = SpectrumCommon.locate("textures/entity/fishing_hooks/molten_fishing_hook.png");
 	protected RenderLayer LAYER = RenderLayer.getEntityCutout(TEXTURE);
 	
 	public MoltenFishingBobberEntityRenderer(EntityRendererFactory.Context context) {
@@ -20,7 +20,7 @@ public class MoltenFishingBobberEntityRenderer extends SpectrumFishingBobberEnti
 		return TEXTURE;
 	}
 	
-	public RenderLayer getLayer() {
+	public RenderLayer getLayer(SpectrumFishingBobberEntity bobber) {
 		return LAYER;
 	}
 	

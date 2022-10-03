@@ -11,6 +11,7 @@ public class SpectrumFluidTags {
 	public static TagKey<Fluid> SWIMMABLE_FLUID = register("swimmable_fluid");
 	public static TagKey<Fluid> MIDNIGHT_SOLUTION_CONVERTED = register("midnight_solution_converted");
 	
+	public static TagKey<Fluid> LAGOON_ROD_FISHABLE_IN = register("lagoon_rod_fishable_in");
 	public static TagKey<Fluid> MOLTEN_ROD_FISHABLE_IN = register("molten_rod_fishable_in");
 	public static TagKey<Fluid> BEDROCK_ROD_FISHABLE_IN = register("bedrock_rod_fishable_in");
 	

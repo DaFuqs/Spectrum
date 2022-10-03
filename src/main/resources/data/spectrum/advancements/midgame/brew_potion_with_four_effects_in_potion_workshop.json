@@ -1,0 +1,36 @@
+{
+  "parent": "spectrum:midgame/brew_potion_in_potion_workshop",
+  "display": {
+    "icon": {
+      "item": "minecraft:potion"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.brew_potion_with_four_effects_in_potion_workshop.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.brew_potion_with_four_effects_in_potion_workshop.description"
+    }
+  },
+  "criteria": {
+    "brewed_potion_with_four_effects_in_potion_workshop": {
+      "trigger":"spectrum:potion_workshop_brewing",
+      "conditions": {
+        "item": {
+          "items": [
+            "minecraft:potion",
+            "minecraft:splash_potion",
+            "minecraft:lingering_potion"
+          ]
+        },
+		"unique_effect_count": {
+		  "min": 4
+		}
+	  }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop" }
+    }
+  }
+}

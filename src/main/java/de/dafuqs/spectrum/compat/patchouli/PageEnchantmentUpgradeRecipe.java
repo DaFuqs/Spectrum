@@ -72,7 +72,7 @@ public class PageEnchantmentUpgradeRecipe extends PageDoubleRecipeRegistry<Encha
 		parent.renderIngredient(ms, ingredientX + 28, ingredientY + 28, mouseX, mouseY, ingredients.get(0));
 		
 		// Knowledge Gem and Enchanter
-		ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience());
+		ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true);
 		parent.renderItemStack(ms, recipeX + 81, recipeY + 9, mouseX, mouseY, knowledgeDropStackWithXP);
 		parent.renderItemStack(ms, recipeX + 81, recipeY + 46, mouseX, mouseY, SpectrumBlocks.ENCHANTER.asItem().getDefaultStack());
 		

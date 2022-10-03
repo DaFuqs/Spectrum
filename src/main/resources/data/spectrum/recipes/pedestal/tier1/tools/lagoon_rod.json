@@ -1,0 +1,31 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 180,
+  "tier": "basic",
+  "cyan": 1,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.5,
+  "pattern": [
+    "  B",
+    " BS",
+    "B M"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:smooth_basalt"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "M": {
+      "item": "spectrum:mermaids_gem"
+    }
+  },
+  "result": {
+    "item": "spectrum:lagoon_rod"
+  },
+  "required_advancement": "spectrum:progression/unlock_lagoon_rod"
+}

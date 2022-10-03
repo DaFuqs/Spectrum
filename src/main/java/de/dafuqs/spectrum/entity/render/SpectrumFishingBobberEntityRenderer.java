@@ -21,7 +21,7 @@ public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer
 		super(context);
 	}
 	
-	public abstract RenderLayer getLayer();
+	public abstract RenderLayer getLayer(SpectrumFishingBobberEntity bobber);
 	
 	@Override
 	public void render(SpectrumFishingBobberEntity bobber, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
@@ -37,7 +37,7 @@ public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer
 			MatrixStack.Entry entry = matrixStack.peek();
 			Matrix4f matrix4f = entry.getPositionMatrix();
 			Matrix3f matrix3f = entry.getNormalMatrix();
-			VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(getLayer());
+			VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(getLayer(bobber));
 			vertex(vertexConsumer, matrix4f, matrix3f, i, 0.0F, 0, 0, 1);
 			vertex(vertexConsumer, matrix4f, matrix3f, i, 1.0F, 0, 1, 1);
 			vertex(vertexConsumer, matrix4f, matrix3f, i, 1.0F, 1, 1, 0);

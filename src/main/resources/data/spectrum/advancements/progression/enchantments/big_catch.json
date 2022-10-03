@@ -6,7 +6,7 @@
     },
     "collected_mermaids_gem": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_mermaids_gem" }
+      "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
     },
     "collected_heart_of_the_sea": {
       "trigger": "minecraft:inventory_changed",

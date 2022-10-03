@@ -161,6 +161,7 @@ public class SpectrumItems {
 			return Map.of(SpectrumEnchantments.RESONANCE, 1);
 		}
 	};
+	public static final SpectrumFishingRodItem LAGOON_ROD = new LagoonRodItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxDamage(256));
 	public static final SpectrumFishingRodItem MOLTEN_ROD = new MoltenRodItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxDamage(256));
 		
 		// Bedrock Tools
@@ -539,6 +540,7 @@ public class SpectrumItems {
 		register("looting_falchion", LOOTING_FALCHION, DyeColor.RED);
 		register("voiding_pickaxe", VOIDING_PICKAXE, DyeColor.GRAY);
 		register("resonant_pickaxe", RESONANT_PICKAXE, DyeColor.WHITE);
+		register("lagoon_rod", LAGOON_ROD, DyeColor.LIGHT_BLUE);
 		register("molten_rod", MOLTEN_ROD, DyeColor.ORANGE);
 		
 		register("emergency_helmet", EMERGENCY_HELMET, DyeColor.BLUE);

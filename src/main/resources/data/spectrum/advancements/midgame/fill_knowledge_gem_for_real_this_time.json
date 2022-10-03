@@ -1,0 +1,45 @@
+{
+  "parent": "spectrum:midgame/fill_knowledge_gem",
+  "display": {
+    "icon": {
+      "item": "spectrum:knowledge_gem",
+      "nbt": "{stored_experience:10000}"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.fill_knowledge_gem_for_real_this_time.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.fill_knowledge_gem_for_real_this_time.description"
+    }
+  },
+  "criteria": {
+    "fill": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:knowledge_gem"
+            ],
+            "nbt": "{stored_experience:1000000000}"
+          }
+        ],
+        "slots": {
+          "occupied": {
+            "min": 0,
+            "max": 50
+          }
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/fill_knowledge_gem" }
+    }
+  },
+  "rewards": {
+    "experience": 1
+  }
+}

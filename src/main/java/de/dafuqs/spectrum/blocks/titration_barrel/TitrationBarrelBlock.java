@@ -91,7 +91,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 										}
 									}
 								} else {
-									ItemStack leftoverStack = InventoryHelper.smartAddToInventory(handStack.copy(), barrelEntity.getContent());
+									ItemStack leftoverStack = InventoryHelper.smartAddToInventory(handStack.copy(), barrelEntity.getContent(), null);
 									if (leftoverStack.isEmpty()) {
 										player.setStackInHand(hand, ItemStack.EMPTY);
 										world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);

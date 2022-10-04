@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:chorus_fruit",
+      "count": 4
+    }
+  ],
+  "min_time_days": 2,
+  "fermentation_data": {
+    "fermentation_speed_mod": 1.0
+  },
+  "result": {
+    "item": "spectrum:reprise"
+  }
+}

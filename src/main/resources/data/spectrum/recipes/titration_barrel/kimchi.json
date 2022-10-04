@@ -1,0 +1,13 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:beetroot",
+      "count": 4
+    }
+  ],
+  "min_time_days": 2,
+  "result": {
+    "item": "spectrum:kimchi"
+  }
+}

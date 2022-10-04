@@ -14,9 +14,7 @@ import de.dafuqs.spectrum.items.conditional.CloakedGemstoneColorItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItemWithLoomPattern;
 import de.dafuqs.spectrum.items.energy.*;
-import de.dafuqs.spectrum.items.food.JadeWineItem;
-import de.dafuqs.spectrum.items.food.MoonstruckNectarItem;
-import de.dafuqs.spectrum.items.food.SuspiciousBrewItem;
+import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
@@ -263,13 +261,17 @@ public class SpectrumItems {
 	public static final Item HIBERNATING_JADE_VINE_SEEDS = new ItemWithTooltip(resourcesItemSettingsSixteen, "item.spectrum.hibernating_jade_vine_seeds.tooltip");
 	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
-	public static final CloakedItem MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(MoonstruckNectarItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE);
+	
+	// Food
+	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(MoonstruckNectarItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(JadeJellyItem.FOOD_COMPONENT));
 	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
-	
-	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item JADE_WINE = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item PURE_ALCOHOL = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item BEVERAGE = new SuspiciousBrewItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(DefaultBeverageItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item KIMCHI = new KimchiItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(KimchiItem.FOOD_COMPONENT));
+	public static final Item REPRISE = new RepriseItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(DefaultBeverageItem.FOOD_COMPONENT));
+	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(JadeJellyItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item JADE_WINE = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(JadeWineItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item PURE_ALCOHOL = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(JadeWineItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");
@@ -585,6 +587,10 @@ public class SpectrumItems {
 		register("end_portal_cracker", END_PORTAL_CRACKER, DyeColor.RED);
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
+		register("beverage", BEVERAGE, DyeColor.PINK);
+		register("kimchi", KIMCHI, DyeColor.PINK);
+		register("reprise", REPRISE, DyeColor.PINK);
+		
 		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
 		
 		register("suspicious_brew", SUSPICIOUS_BREW, DyeColor.LIME);

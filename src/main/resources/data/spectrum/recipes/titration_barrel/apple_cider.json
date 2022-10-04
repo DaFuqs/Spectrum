@@ -1,0 +1,69 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+  {
+    "item": "minecraft:apple",
+    "count": 4
+  }
+],
+  "min_time_days": 2,
+  "fermentation_data": {
+    "fermentation_speed_mod": 1.0,
+    "effects": [
+      {
+        "id": "minecraft:speed",
+        "potency": [
+          {
+            "min_alc": 1,
+            "min_thickness": 1,
+            "potency": 0
+          },
+          {
+            "min_alc": 3,
+            "min_thickness": 1,
+            "potency": 1
+          },
+          {
+            "min_alc": 5,
+            "min_thickness": 1,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:strength",
+        "potency": [
+          {
+            "min_alc": 3,
+            "min_thickness": 1,
+            "potency": 0
+          },
+          {
+            "min_alc": 5,
+            "min_thickness": 1,
+            "potency": 1
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+        "potency": [
+          {
+            "min_alc": 5,
+            "min_thickness": 1,
+            "potency": 0
+          },
+          {
+            "min_alc": 5,
+            "min_thickness": 2,
+            "potency": 2
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:beverage",
+    "nbt": "{Variant: \"apple_cider\", Color: 8543530 }"
+  }
+}

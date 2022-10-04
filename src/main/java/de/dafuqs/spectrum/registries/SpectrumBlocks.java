@@ -470,6 +470,7 @@ public class SpectrumBlocks {
 	public static final Block RESONANT_LILY = new FlowerBlock(StatusEffects.INSTANT_HEALTH, 5, FabricBlockSettings.copyOf(Blocks.POPPY));
 	public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).ticksRandomly());
 	public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(FabricBlockSettings.of(Material.REPLACEABLE_UNDERWATER_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.WET_GRASS).ticksRandomly().luminance(value -> 3));
+	public static final Block AMARANTH = new AmaranthBlock(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
 	public static final Block ENDER_TREASURE = new EnderTreasureBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
 	public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL_FRAME));
 	public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE));
@@ -987,6 +988,7 @@ public class SpectrumBlocks {
 		// Worldgen
 		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, worldgenItemSettings, DyeColor.PURPLE);
 		registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, worldgenItemSettings, DyeColor.LIGHT_BLUE);
+		registerBlockWithItem("amaranth", AMARANTH, worldgenItemSettings, DyeColor.RED);
 		registerBlockWithItem("ender_treasure", ENDER_TREASURE, worldgenItemSettings, DyeColor.PURPLE);
 		
 		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, generalItemSettings, DyeColor.BLACK);

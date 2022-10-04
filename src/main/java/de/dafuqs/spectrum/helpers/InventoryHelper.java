@@ -475,4 +475,16 @@ public class InventoryHelper {
 		return Optional.empty();
 	}
 	
+	public static Optional<ItemStack> extractLastStack(Inventory inventory) {
+		ItemStack currentStack;
+		for (int i = inventory.size() - 1; i >= 0; i--) {
+			currentStack = inventory.getStack(i);
+			if (!currentStack.isEmpty()) {
+				inventory.setStack(i, ItemStack.EMPTY);
+				return Optional.of(currentStack);
+			}
+		}
+		return Optional.empty();
+	}
+	
 }

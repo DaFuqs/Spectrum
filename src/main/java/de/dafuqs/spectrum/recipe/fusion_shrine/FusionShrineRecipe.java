@@ -4,11 +4,9 @@ import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
@@ -23,7 +21,6 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -95,7 +92,10 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	 */
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		List<IngredientStack> ingredientStacks = this.getIngredientStacks();
+		return matchIngredientStacksExclusively(inv, getIngredientStacks());
+	}
+	
+	public static boolean matchIngredientStacksExclusively(Inventory inv, List<IngredientStack> ingredientStacks) {
 		if (inv.size() < ingredientStacks.size()) {
 			return false;
 		}

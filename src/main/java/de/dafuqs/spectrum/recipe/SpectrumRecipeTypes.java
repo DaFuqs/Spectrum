@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipeSerializer;
 import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
@@ -23,6 +24,8 @@ import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipeSerializer;
+import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
+import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipeSerializer;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
@@ -57,6 +60,8 @@ public class SpectrumRecipeTypes {
 	public static RecipeType<CrystallarieumRecipe> CRYSTALLARIEUM;
 	public static RecipeSerializer<CinderhearthRecipe> CINDERHEARTH_RECIPE_SERIALIZER;
 	public static RecipeType<CinderhearthRecipe> CINDERHEARTH;
+	public static RecipeSerializer<TitrationBarrelRecipe> TITRATION_BARREL_RECIPE_SERIALIZER;
+	public static RecipeType<TitrationBarrelRecipe> TITRATION_BARREL;
 	
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
 		return Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), serializer);
@@ -168,6 +173,14 @@ public class SpectrumRecipeTypes {
 			@Override
 			public String toString() {
 				return "spectrum:cinderhearth";
+			}
+		});
+		
+		TITRATION_BARREL_RECIPE_SERIALIZER = registerSerializer("titration_barrel", new TitrationBarrelRecipeSerializer(TitrationBarrelRecipe::new));
+		TITRATION_BARREL = registerRecipeType("titration_barrel", new RecipeType<TitrationBarrelRecipe>() {
+			@Override
+			public String toString() {
+				return "spectrum:titration_barrel";
 			}
 		});
 		

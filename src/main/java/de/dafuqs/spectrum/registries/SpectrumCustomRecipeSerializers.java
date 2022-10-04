@@ -4,6 +4,8 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.ShootingStarHardeningRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.JadeWineRecipe;
+import de.dafuqs.spectrum.recipe.titration_barrel.SuspiciousBrewRecipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -32,6 +34,10 @@ public class SpectrumCustomRecipeSerializers {
 		register(SpawnerRequiredPlayerRangeChangeRecipe.SERIALIZER, "spirit_instiller_spawner_spawner_player_range_change");
 		register(SpawnerSpawnCountChangeRecipe.SERIALIZER, "spirit_instiller_spawner_spawn_count_change");
 		register(SpawnerSpawnDelayChangeRecipe.SERIALIZER, "spirit_instiller_spawner_spawn_delay_change");
+		
+		// Titration Barrel
+		register(JadeWineRecipe.SERIALIZER, "titration_barrel_jade_wine");
+		register(SuspiciousBrewRecipe.SERIALIZER, "titration_barrel_suspicious_brew");
 	}
 	
 }

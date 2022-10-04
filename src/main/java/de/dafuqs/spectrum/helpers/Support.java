@@ -283,4 +283,8 @@ public class Support {
 		return Optional.empty();
 	}
 	
+	public static double logBase(double base, double logNumber) {
+		return Math.log(logNumber) / Math.log(base);
+	}
+	
 }

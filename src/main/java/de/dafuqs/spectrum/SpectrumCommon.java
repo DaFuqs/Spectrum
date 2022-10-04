@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum;
 
 import com.google.common.collect.ImmutableMap;
-import de.dafuqs.revelationary.RevelationDataLoader;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
@@ -9,7 +8,6 @@ import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader;
 import de.dafuqs.spectrum.data_loaders.ResonanceDropsDataLoader;
 import de.dafuqs.spectrum.deeper_down.DDDimension;
-import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;

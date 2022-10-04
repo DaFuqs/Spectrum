@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipeSerializer;
 import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;

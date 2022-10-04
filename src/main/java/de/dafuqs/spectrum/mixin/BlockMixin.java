@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import de.dafuqs.spectrum.data_loaders.ResonanceDropsDataLoader;
-import de.dafuqs.spectrum.enchantments.FoundryEnchantment;
 import de.dafuqs.spectrum.enchantments.ExuberanceEnchantment;
+import de.dafuqs.spectrum.enchantments.FoundryEnchantment;
 import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;

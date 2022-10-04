@@ -2,8 +2,6 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlock;
-import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlock;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.item.ItemStack;

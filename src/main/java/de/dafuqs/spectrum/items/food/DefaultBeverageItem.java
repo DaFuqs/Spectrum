@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.item.*;
+import net.minecraft.item.FoodComponent;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;

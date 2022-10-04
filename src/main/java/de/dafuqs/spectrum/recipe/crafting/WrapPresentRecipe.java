@@ -1,22 +1,17 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
 import de.dafuqs.spectrum.blocks.present.PresentItem;
-import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.items.PigmentItem;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.screen.CraftingScreenHandler;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class WrapPresentRecipe extends SpecialCraftingRecipe {

@@ -57,8 +57,10 @@
   "client": [
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
+    "client.CapeFeatureRendererMixin",
     "client.ClientWorldReverbMixin",
     "client.DimensionTypeMixin",
+    "client.ElytraFeatureRendererMixin",
     "client.HeadFeatureRendererMixin",
     "client.InGameHudMixin",
     "client.ItemFrameEntityRendererMixin",

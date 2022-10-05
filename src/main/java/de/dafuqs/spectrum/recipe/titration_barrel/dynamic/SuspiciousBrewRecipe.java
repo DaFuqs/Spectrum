@@ -1,6 +1,9 @@
-package de.dafuqs.spectrum.recipe.titration_barrel;
+package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
+import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.Block;
@@ -26,7 +29,7 @@ import java.util.Optional;
 public class SuspiciousBrewRecipe implements ITitrationBarrelRecipe {
 	
 	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SuspiciousBrewRecipe::new);
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_spawner_manipulation");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_suspicious_brew");
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
 	}};
@@ -35,6 +38,7 @@ public class SuspiciousBrewRecipe implements ITitrationBarrelRecipe {
 	
 	public SuspiciousBrewRecipe(Identifier identifier) {
 		this.identifier = identifier;
+		registerInToastManager(SpectrumRecipeTypes.TITRATION_BARREL, this);
 	}
 	
 	private Optional<Pair<StatusEffect, Integer>> getStewEffectFrom(ItemStack stack) {
@@ -59,6 +63,16 @@ public class SuspiciousBrewRecipe implements ITitrationBarrelRecipe {
 	@Override
 	public List<IngredientStack> getIngredientStacks() {
 		return INGREDIENT_STACKS;
+	}
+	
+	@Override
+	public int getMinFermentationTimeHours() {
+		return 4;
+	}
+	
+	@Override
+	public TitrationBarrelRecipe.FermentationData getFermentationData() {
+		return new TitrationBarrelRecipe.FermentationData(1.0F, List.of());
 	}
 	
 	// every real-life day the effect gets a potency of + 1, but duration get's a 25 % hit

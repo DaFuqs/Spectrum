@@ -90,4 +90,8 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	List<IngredientStack> getIngredientStacks();
 	
+	int getMinFermentationTimeHours();
+	
+	TitrationBarrelRecipe.FermentationData getFermentationData();
+	
 }

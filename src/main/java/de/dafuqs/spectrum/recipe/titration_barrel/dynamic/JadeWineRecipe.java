@@ -1,11 +1,13 @@
-package de.dafuqs.spectrum.recipe.titration_barrel;
+package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.items.food.JadeWineItem;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
+import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -21,7 +23,7 @@ import java.util.List;
 public class JadeWineRecipe implements ITitrationBarrelRecipe {
 	
 	public static final RecipeSerializer<JadeWineRecipe> SERIALIZER = new SpecialRecipeSerializer<>(JadeWineRecipe::new);
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_spawner_manipulation");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_jade_wine");
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)));
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADE_VINE_PETALS)));
@@ -31,6 +33,7 @@ public class JadeWineRecipe implements ITitrationBarrelRecipe {
 	
 	public JadeWineRecipe(Identifier identifier) {
 		this.identifier = identifier;
+		registerInToastManager(SpectrumRecipeTypes.TITRATION_BARREL, this);
 	}
 	
 	@Override
@@ -44,9 +47,8 @@ public class JadeWineRecipe implements ITitrationBarrelRecipe {
 		double bloominess = getBloominess(bulbCount, petalCount);
 		double thickness = getThickness(bulbCount, petalCount, waterBuckets);
 		double alcPercent = getAlcPercent(secondsFermented, downfall, bloominess, thickness);
-		List<StatusEffectInstance> statusEffects = new ArrayList<>();
 		
-		ItemStack stack = new JadeWineItem.JadeWineBeverageProperties(secondsFermented, (float) alcPercent, (float) thickness, statusEffects, (float) bloominess, sweetened).getStack();
+		ItemStack stack = new JadeWineItem.JadeWineBeverageProperties(secondsFermented, (int) alcPercent, (float) thickness, (float) bloominess, sweetened).getStack();
 		stack.setCount(yield);
 		
 		return stack;
@@ -91,6 +93,16 @@ public class JadeWineRecipe implements ITitrationBarrelRecipe {
 	}
 	
 	@Override
+	public int getMinFermentationTimeHours() {
+		return 24;
+	}
+	
+	@Override
+	public TitrationBarrelRecipe.FermentationData getFermentationData() {
+		return new TitrationBarrelRecipe.FermentationData(1.0F, List.of());
+	}
+	
+	@Override
 	public boolean matches(Inventory inventory, World world) {
 		boolean bulbsFound = false;
 		
@@ -113,7 +125,7 @@ public class JadeWineRecipe implements ITitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack getOutput() {
-		return null;
+		return SpectrumItems.JADE_WINE.getDefaultStack();
 	}
 	
 	@Override

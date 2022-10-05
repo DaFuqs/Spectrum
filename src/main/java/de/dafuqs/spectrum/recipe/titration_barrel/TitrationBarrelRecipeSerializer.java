@@ -28,11 +28,11 @@ public class TitrationBarrelRecipeSerializer implements RecipeSerializer<Titrati
 		List<IngredientStack> ingredients = RecipeUtils.ingredientStacksFromJson(ingredientArray, ingredientArray.size());
 		
 		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
-		int minTimeDays = JsonHelper.getInt(jsonObject, "min_time_days", 200);
+		int minTimeDays = JsonHelper.getInt(jsonObject, "min_fermentation_time_hours", 24);
 		
 		TitrationBarrelRecipe.FermentationData fermentationData = null;
 		if(JsonHelper.hasJsonObject(jsonObject, "fermentation_data")) {
-			TitrationBarrelRecipe.FermentationData.fromJson(JsonHelper.getObject(jsonObject, "fermentation_data"));
+			fermentationData = TitrationBarrelRecipe.FermentationData.fromJson(JsonHelper.getObject(jsonObject, "fermentation_data"));
 		}
 		
 		Identifier requiredAdvancementIdentifier;
@@ -54,7 +54,7 @@ public class TitrationBarrelRecipeSerializer implements RecipeSerializer<Titrati
 			ingredientStack.write(packetByteBuf);
 		}
 		packetByteBuf.writeItemStack(titrationBarrelRecipe.outputItemStack);
-		packetByteBuf.writeInt(titrationBarrelRecipe.minTimeDays);
+		packetByteBuf.writeInt(titrationBarrelRecipe.minFermentationTimeHours);
 		
 		titrationBarrelRecipe.fermentationData.write(packetByteBuf);
 		

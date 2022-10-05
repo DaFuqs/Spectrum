@@ -2,15 +2,22 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.items.food.BeverageItem;
+import de.dafuqs.spectrum.items.food.InfusedBeverageItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
@@ -22,13 +29,16 @@ import java.util.List;
 
 public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	
+	public static final float SOLID_TO_WATER_RATIO = 4F;
+	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
+	
 	protected final Identifier id;
 	protected final String group;
 	
 	protected final List<IngredientStack> inputStacks;
 	protected final ItemStack outputItemStack;
 	
-	protected final int minTimeDays;
+	protected final int minFermentationTimeHours;
 	protected final FermentationData fermentationData;
 	
 	protected final Identifier requiredAdvancementIdentifier;
@@ -86,7 +96,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 			return new StatusEffectEntry(statusEffect, potencyEntries);
 		}
 	}
-	public record FermentationData(float fermentationSpeedMod, List<StatusEffectEntry> statusEffectEntries) {
+	public record FermentationData(double fermentationSpeedMod, List<StatusEffectEntry> statusEffectEntries) {
 		public static FermentationData fromJson(JsonObject jsonObject) {
 			float fermentationSpeedMod = JsonHelper.getFloat(jsonObject, "fermentation_speed_mod", 1.0F);
 			List<StatusEffectEntry> statusEffectEntries = new ArrayList<>();
@@ -101,7 +111,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		}
 		
 		public void write(PacketByteBuf packetByteBuf) {
-			packetByteBuf.writeFloat(this.fermentationSpeedMod);
+			packetByteBuf.writeDouble(this.fermentationSpeedMod);
 			packetByteBuf.writeInt(this.statusEffectEntries.size());
 			for(StatusEffectEntry statusEffectEntry : this.statusEffectEntries) {
 				statusEffectEntry.write(packetByteBuf);
@@ -109,7 +119,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		}
 		
 		public static FermentationData read(PacketByteBuf packetByteBuf) {
-			float fermentationSpeedMod = packetByteBuf.readFloat();
+			double fermentationSpeedMod = packetByteBuf.readDouble();
 			int statusEffectEntryCount = packetByteBuf.readInt();
 			List<StatusEffectEntry> statusEffectEntries = new ArrayList<>(statusEffectEntryCount);
 			for(int i = 0; i < statusEffectEntryCount; i++) {
@@ -119,12 +129,12 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		}
 	}
 	
-	public TitrationBarrelRecipe(Identifier id, String group, List<IngredientStack> inputStacks, ItemStack outputItemStack, int minTimeDays, FermentationData fermentationData, Identifier requiredAdvancementIdentifier) {
+	public TitrationBarrelRecipe(Identifier id, String group, List<IngredientStack> inputStacks, ItemStack outputItemStack, int minFermentationTimeHours, FermentationData fermentationData, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
 		
 		this.inputStacks = inputStacks;
-		this.minTimeDays = minTimeDays;
+		this.minFermentationTimeHours = minFermentationTimeHours;
 		this.outputItemStack = outputItemStack;
 		this.fermentationData = fermentationData;
 		
@@ -143,15 +153,30 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		return FusionShrineRecipe.matchIngredientStacksExclusively(inventory, getIngredientStacks());
 	}
 	
-	// should not be used. Instead use getIngredientStacks(), which includes item counts
+	// should not be used. Instead, use getIngredientStacks(), which includes item counts
 	@Override
 	@Deprecated
 	public DefaultedList<Ingredient> getIngredients() {
 		return IngredientStack.listIngredients(this.inputStacks);
 	}
 	
+	@Override
+	public String getGroup() {
+		return this.group;
+	}
+	
 	public List<IngredientStack> getIngredientStacks() {
 		return this.inputStacks;
+	}
+	
+	@Override
+	public int getMinFermentationTimeHours() {
+		return this.minFermentationTimeHours;
+	}
+	
+	@Override
+	public FermentationData getFermentationData() {
+		return this.fermentationData;
 	}
 	
 	@Override
@@ -161,12 +186,65 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack getOutput() {
-		return outputItemStack;
+		return tapWith(1.0F, this.minFermentationTimeHours * 60 * 60, 1.0F, 1.0F);
 	}
 	
 	@Override
 	public ItemStack tap(DefaultedList<ItemStack> content, int waterBuckets, long secondsFermented, float downfall, float temperature) {
-		return null; // TODO
+		int contentCount = 0;
+		for (ItemStack stack : content) {
+			contentCount += stack.getCount();
+		}
+		float thickness = (contentCount / SOLID_TO_WATER_RATIO) / waterBuckets;
+		return tapWith(thickness, secondsFermented, downfall, temperature);
+	}
+	
+	public ItemStack tapWith(float thickness, long secondsFermented, float downfall, float temperature) {
+		if(secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
+			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
+		}
+		
+		ItemStack stack = this.outputItemStack.copy();
+		
+		if(this.fermentationData != null) {
+			float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
+			double alcPercent = Support.logBase(1.08D, thickness * ageIngameDays * this.fermentationData.fermentationSpeedMod * (0.5D + downfall / 2D));
+			
+			BeverageItem.BeverageProperties properties;
+			if(stack.getItem() instanceof BeverageItem beverageItem) {
+				properties = beverageItem.getBeverageProperties(stack);
+			} else {
+				// if it's not a set beverage (custom recipe) assume VariantBeverage to add that tag
+				properties = InfusedBeverageItem.VariantBeverageProperties.getFromStack(stack);
+			}
+			
+			if(properties instanceof InfusedBeverageItem.VariantBeverageProperties variantBeverageProperties) {
+				List<StatusEffectInstance> effects = new ArrayList<>();
+				
+				for(StatusEffectEntry entry : this.fermentationData.statusEffectEntries) {
+					int potency = 0;
+					for(StatusEffectPotencyEntry potencyEntry : entry.potencyEntries) {
+						if(thickness >= potencyEntry.minThickness && alcPercent >= potencyEntry.minAlcPercent) {
+							potency = potencyEntry.potency;
+						}
+					}
+					if(potency > 0) {
+						// TODO: values for duration. the current value is a placeholder
+						int durationTicks = (int) (20 * 60 * thickness);
+						effects.add(new StatusEffectInstance(entry.statusEffect, durationTicks, potency));
+					}
+				}
+				
+				variantBeverageProperties.statusEffects = effects;
+			}
+			
+			properties.alcPercent = (int) alcPercent;
+			properties.ageDays = (long) ageIngameDays;
+			properties.thickness = thickness;
+			return properties.getStack(stack);
+		}
+		
+		return outputItemStack;
 	}
 	
 	@Override
@@ -185,6 +263,26 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 			return titrationBarrelRecipe.getId().equals(this.getId());
 		}
 		return false;
+	}
+	
+	// sadly we cannot use text.append() here, since patchouli does not support it
+	// but it might be easier for translations either way
+	public static MutableText getDurationText(int minFermentationTimeHours, TitrationBarrelRecipe.FermentationData fermentationData) {
+		MutableText text;
+		if(fermentationData == null) {
+			if (minFermentationTimeHours > 72) {
+				text = new TranslatableText("container.spectrum.rei.titration_barrel.time_days", Support.getWithOneDecimalAfterComma(minFermentationTimeHours  / 24F));
+			} else {
+				text = new TranslatableText("container.spectrum.rei.titration_barrel.time_hours", minFermentationTimeHours);
+			}
+		} else {
+			if (minFermentationTimeHours > 72) {
+				text = new TranslatableText("container.spectrum.rei.titration_barrel.at_least_time_days", Support.getWithOneDecimalAfterComma(minFermentationTimeHours  / 24F));
+			} else {
+				text = new TranslatableText("container.spectrum.rei.titration_barrel.at_least_time_hours", minFermentationTimeHours);
+			}
+		}
+		return text;
 	}
 	
 }

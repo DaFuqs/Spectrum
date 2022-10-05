@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.progression;
 
+import de.dafuqs.spectrum.SpectrumClient;
 import de.dafuqs.spectrum.progression.advancement.*;
 import net.fabricmc.fabric.mixin.object.builder.CriteriaAccessor;
 
@@ -32,6 +33,7 @@ public class SpectrumAdvancementCriteria {
 	public static InkProjectileKillingCriterion KILLED_BY_INK_PROJECTILE;
 	public static SpectrumFishingRodHookedCriterion FISHING_ROD_HOOKED;
 	public static TitrationBarrelTappingCriterion TITRATION_BARREL_TAPPING;
+	public static ConfirmationButtonPressedCriterion CONFIRMATION_BUTTON_PRESSED;
 	
 	public static void register() {
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
@@ -61,6 +63,7 @@ public class SpectrumAdvancementCriteria {
 		KILLED_BY_INK_PROJECTILE = CriteriaAccessor.callRegister(new InkProjectileKillingCriterion());
 		FISHING_ROD_HOOKED = CriteriaAccessor.callRegister(new SpectrumFishingRodHookedCriterion());
 		TITRATION_BARREL_TAPPING = CriteriaAccessor.callRegister(new TitrationBarrelTappingCriterion());
+		CONFIRMATION_BUTTON_PRESSED = CriteriaAccessor.callRegister(new ConfirmationButtonPressedCriterion());
 	}
 	
 }

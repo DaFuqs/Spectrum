@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_pigment": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
+    },
+    "collected_amethyst": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_shards/collect_amethyst_shard" }
+    }
+  }
+}

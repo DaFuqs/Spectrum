@@ -1,12 +1,13 @@
 {
   "type": "spectrum:titration_barrel",
+  "group": "infused_beverage",
   "ingredients": [
-  {
-    "item": "minecraft:apple",
-    "count": 4
-  }
-],
-  "min_time_days": 2,
+    {
+      "item": "minecraft:enchanted_golden_apple",
+      "count": 4
+    }
+  ],
+  "min_fermentation_time_hours": 2,
   "fermentation_data": {
     "fermentation_speed_mod": 1.0,
     "effects": [
@@ -63,7 +64,8 @@
     ]
   },
   "result": {
-    "item": "spectrum:beverage",
-    "nbt": "{Variant: \"apple_cider\", Color: 8543530 }"
-  }
+    "item": "spectrum:infused_beverage",
+    "nbt": "{Variant: \"enchanted_apple_cider\", Color: 8543530 }"
+  },
+  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

@@ -2,12 +2,21 @@
   "type": "spectrum:titration_barrel",
   "ingredients": [
     {
-      "item": "minecraft:beetroot",
+      "tag": "c:vegetables",
+      "count": 4
+    },
+    {
+      "tag": "c:vegetables",
+      "count": 4
+    },
+    {
+      "tag": "c:vegetables",
       "count": 4
     }
   ],
-  "min_time_days": 2,
+  "min_fermentation_time_hours": 4,
   "result": {
-    "item": "spectrum:kimchi"
+    "item": "spectrum:kimchi",
+    "count": 8
   }
 }

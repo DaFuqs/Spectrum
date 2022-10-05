@@ -18,9 +18,11 @@ public class PatchouliPages {
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "midnight_solution_converting"), PageMidnightSolutionConverting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "crystallarieum_growing"), PageCrystallarieumGrowing.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "cinderhearth_smelting"), PageCinderhearthSmelting.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "titration_barrel_fermenting"), PageTitrationBarrelFermenting.class);
 		
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "hint"), PageHint.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "checklist"), PageChecklist.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(SpectrumCommon.MOD_ID, "confirmation_button"), PageConfirmationButton.class);
 	}
 	
 }

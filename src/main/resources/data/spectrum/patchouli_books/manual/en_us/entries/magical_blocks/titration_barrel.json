@@ -1,0 +1,28 @@
+{
+  "name": "Titration Barrel",
+  "icon": "spectrum:titration_barrel",
+  "advancement": "spectrum:progression/unlock_titration_barrel",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:titration_barrel": 0,
+    "spectrum:kimchi": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The idea of fermenting food and $(l:magical_items/infused_beverages)drinks$(/l) in $(l:general/colored_trees#colored_wood)Colored Wood$(/l) was not far away. Over time, the properties of the wood influences and affects the contents.$(br2)The results are sometimes more, sometimes less delicious, but always interesting. (On the other hand, the last could of course also be due to your cooking skills)"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/titration_barrel",
+      "text": "$(italic)When you blink and it felt like the world stopped existing? Each time that happens, the barrel fermentation process seems to have advanced."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Kimchi",
+      "recipe": "spectrum:titration_barrel/kimchi",
+      "text": "Made from 3 different kinds of vegetable, Kimchi is a hearty dish, best served as a side."
+    }
+  ]
+}

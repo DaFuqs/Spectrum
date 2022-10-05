@@ -1,0 +1,77 @@
+{
+  "name": "Infused Beverages",
+  "icon": "spectrum:infused_beverage",
+  "advancement": "spectrum:progression/unlock_titration_barrel",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:infused_beverage": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Over time, the properties of the wood influence and affect the contents. The more time you give the process, the stronger the changes will be."
+    },
+    {
+      "type": "spectrum:confirmation_button",
+      "title": "Safety Question",
+      "checked_advancement": "spectrum:milestones/confirmed_drinking_age",
+      "button_text": "I confirm",
+      "button_text_confirmed": "Confirmed ✔",
+      "confirmation": "confirm_drinking_age",
+      "text": "The $(thing)Titration Barrel$() is capable of brewing alcoholic drinks. If you are old enough to consume alcohol in your country, you can press the button below to unlock these recipes.$(br)If not don't worry - you won't miss anything important."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Malt Beer",
+      "recipe": "spectrum:titration_barrel/infused_beverages/malt_beer",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Apple Cider",
+      "recipe": "spectrum:titration_barrel/infused_beverages/apple_cider",
+      "text": "dfds fsf sdf dsfdsf dfdsfdsf sdfdsfdsffs dff ds fsdf sdf"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Golden Ciders",
+      "recipe": "spectrum:titration_barrel/infused_beverages/golden_apple_cider",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/enchanted_apple_cider",
+      "text": "1"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Berry Cider",
+      "recipe": "spectrum:titration_barrel/infused_beverages/berry_cider",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/glow_berry_cider",
+      "text": "2"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Berry Liquor",
+      "recipe": "spectrum:titration_barrel/infused_beverages/berry_liquor",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/glow_berry_liquor",
+      "text": "3"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Beer & Mead",
+      "recipe": "spectrum:titration_barrel/infused_beverages/beer",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/mead",
+      "text": "4"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Vodka",
+      "recipe": "spectrum:titration_barrel/infused_beverages/vodka",
+      "recipe2": "spectrum:titration_barrel/infused_beverages/poisonous_vodka",
+      "text": "5"
+    }
+  ]
+}

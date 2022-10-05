@@ -1,0 +1,21 @@
+{
+  "name": "Reprise",
+  "advancement": "spectrum:progression/unlock_reprise",
+  "icon": "spectrum:reprise",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:reprise": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Titration Recipe",
+      "recipe": "spectrum:titration_barrel/reprise",
+      "text": "TODO"
+    }
+  ]
+}

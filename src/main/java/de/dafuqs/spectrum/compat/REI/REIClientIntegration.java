@@ -22,6 +22,8 @@ import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReactingRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
+import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
+import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import dev.architectury.event.EventResult;
@@ -58,6 +60,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.add(new InkConvertingCategory());
 		registry.add(new CrystallarieumCategory());
 		registry.add(new CinderhearthCategory());
+		registry.add(new TitrationBarrelCategory());
 		
 		registry.addWorkstations(BuiltinPlugin.CRAFTING, EntryStacks.of(SpectrumItems.CRAFTING_TABLET));
 		
@@ -91,6 +94,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		
 		registry.addWorkstations(BuiltinPlugin.BLASTING, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstations(SpectrumPlugins.CINDERHEARTH, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
+		registry.addWorkstations(SpectrumPlugins.TITRATION_BARREL, EntryStacks.of(SpectrumBlocks.TITRATION_BARREL));
 		
 		// For item crushing and others are in-world recipes there is no gui to fill
 		// therefore the plus button is obsolete
@@ -123,6 +127,7 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.registerRecipeFiller(PotionWorkshopReactingRecipe.class, SpectrumRecipeTypes.POTION_WORKSHOP_REACTING, PotionWorkshopReactingDisplay::new);
 		registry.registerRecipeFiller(CrystallarieumRecipe.class, SpectrumRecipeTypes.CRYSTALLARIEUM, CrystallarieumDisplay::new);
 		registry.registerRecipeFiller(CinderhearthRecipe.class, SpectrumRecipeTypes.CINDERHEARTH, CinderhearthDisplay::new);
+		registry.registerRecipeFiller(ITitrationBarrelRecipe.class, SpectrumRecipeTypes.TITRATION_BARREL, TitrationBarrelDisplay::new);
 		
 		NaturesStaffItem.BLOCK_CONVERSIONS.forEach((key, value) -> registry.add(new NaturesStaffConversionsDisplay(EntryStacks.of(key), EntryStacks.of(value.getBlock()))));
 		FreezingMobBlock.FREEZING_STATE_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key.getBlock()), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));

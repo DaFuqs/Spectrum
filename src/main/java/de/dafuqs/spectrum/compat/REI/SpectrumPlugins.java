@@ -23,5 +23,6 @@ public class SpectrumPlugins {
 	public static final CategoryIdentifier<InkConvertingDisplay> INK_CONVERTING = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "ink_converting"));
 	public static final CategoryIdentifier<CrystallarieumDisplay> CRYSTALLARIEUM = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "crystallarieum"));
 	public static final CategoryIdentifier<CrystallarieumDisplay> CINDERHEARTH = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "cinderhearth"));
+	public static final CategoryIdentifier<TitrationBarrelDisplay> TITRATION_BARREL = CategoryIdentifier.of(new Identifier(SpectrumCommon.MOD_ID, "titration_barrel"));
 	
 }

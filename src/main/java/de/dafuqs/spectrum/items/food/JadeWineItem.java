@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -15,13 +14,21 @@ public class JadeWineItem extends BeverageItem {
 	
 	public static final FoodComponent FOOD_COMPONENT = new FoodComponent.Builder().hunger(2).saturationModifier(0.4F).snack().build();
 	
+	public JadeWineItem(Settings settings) {
+		super(settings);
+	}
+	
+	public BeverageProperties getBeverageProperties(ItemStack itemStack) {
+		return JadeWineBeverageProperties.getFromStack(itemStack);
+	}
+	
 	public static class JadeWineBeverageProperties extends BeverageProperties {
 		
 		public final float bloominess;
 		public final boolean sweetened;
 		
-		public JadeWineBeverageProperties(long ageDays, float alcPercent, float thickness, List<StatusEffectInstance> statusEffects, float bloominess, boolean sweetened) {
-			super(ageDays, alcPercent, thickness, statusEffects);
+		public JadeWineBeverageProperties(long ageDays, int alcPercent, float thickness, float bloominess, boolean sweetened) {
+			super(ageDays, alcPercent, thickness);
 			this.bloominess = bloominess;
 			this.sweetened = sweetened;
 		}
@@ -64,14 +71,6 @@ public class JadeWineItem extends BeverageItem {
 			return super.getStack(SpectrumItems.JADE_WINE.getDefaultStack());
 		}
 		
-	}
-	
-	public JadeWineItem(Settings settings) {
-		super(settings);
-	}
-	
-	public BeverageProperties getBeverageProperties(ItemStack itemStack) {
-		return JadeWineBeverageProperties.getFromStack(itemStack);
 	}
 	
 }

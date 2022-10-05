@@ -79,10 +79,15 @@ public class Support {
 	}};
 	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "lategame/finish_progression");
 	private static final DecimalFormat df = new DecimalFormat("0.00");
+	private static final DecimalFormat df1 = new DecimalFormat("0.0");
 	private static final DecimalFormat df2 = new DecimalFormat("0");
 
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
 		return blockState.streamTags().filter(tags::contains).findFirst();
+	}
+	
+	public static String getWithOneDecimalAfterComma(float number) {
+		return df1.format(number);
 	}
 	
 	public static String getShortenedNumberString(double number) {

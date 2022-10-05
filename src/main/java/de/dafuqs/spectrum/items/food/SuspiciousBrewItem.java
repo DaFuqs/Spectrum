@@ -12,7 +12,7 @@ public class SuspiciousBrewItem extends BeverageItem {
 	}
 	
 	public BeverageProperties getBeverageProperties(ItemStack itemStack) {
-		return DefaultBeverageItem.DefaultBeverageProperties.getFromStack(itemStack);
+		return BeverageItem.BeverageProperties.getFromStack(itemStack);
 	}
 	
 }

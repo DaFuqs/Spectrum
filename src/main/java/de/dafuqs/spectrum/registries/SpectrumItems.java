@@ -266,12 +266,12 @@ public class SpectrumItems {
 	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(MoonstruckNectarItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(JadeJellyItem.FOOD_COMPONENT));
 	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item BEVERAGE = new SuspiciousBrewItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(DefaultBeverageItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(InfusedBeverageItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item KIMCHI = new KimchiItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(KimchiItem.FOOD_COMPONENT));
-	public static final Item REPRISE = new RepriseItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(DefaultBeverageItem.FOOD_COMPONENT));
+	public static final Item REPRISE = new RepriseItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(InfusedBeverageItem.FOOD_COMPONENT));
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(JadeJellyItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_WINE = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(JadeWineItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item PURE_ALCOHOL = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(JadeWineItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item PURE_ALCOHOL = new PureAlcoholItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(PureAlcoholItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");
@@ -586,16 +586,15 @@ public class SpectrumItems {
 		register("ender_splice", ENDER_SPLICE, DyeColor.PURPLE);
 		register("end_portal_cracker", END_PORTAL_CRACKER, DyeColor.RED);
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
+		
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
-		register("beverage", BEVERAGE, DyeColor.PINK);
+		register("infused_beverage", INFUSED_BEVERAGE, DyeColor.PINK);
 		register("kimchi", KIMCHI, DyeColor.PINK);
 		register("reprise", REPRISE, DyeColor.PINK);
-		
-		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
-		
 		register("suspicious_brew", SUSPICIOUS_BREW, DyeColor.LIME);
-		register("jade_wine", JADE_WINE, DyeColor.LIME);
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
+		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
+		register("jade_wine", JADE_WINE, DyeColor.LIME);
 	}
 	
 	public static void registerTrinkets() {

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.items.food;
 
-import com.google.common.collect.Lists;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -11,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
@@ -28,69 +26,14 @@ import java.util.List;
 
 public abstract class BeverageItem extends Item {
 	
-	// wrapper for beverage itemstack nbt
-	// individual for each beverage
-	public abstract static class BeverageProperties {
-		
-		public long ageDays = 0;
-		public float alcPercent = 0;
-		public float thickness = 0;
-		public List<StatusEffectInstance> statusEffects;
-		
-		public BeverageProperties(long ageDays, float alcPercent, float thickness, List<StatusEffectInstance> statusEffects) {
-			this.ageDays = ageDays;
-			this.alcPercent = alcPercent;
-			this.thickness = thickness;
-			this.statusEffects = statusEffects;
-		}
-		
-		public BeverageProperties(NbtCompound nbtCompound) {
-			this.statusEffects = Lists.newArrayList();
-			if (nbtCompound != null) {
-				this.ageDays = nbtCompound.contains("AgeDays") ? nbtCompound.getLong("AgeDays") : 0;
-				this.alcPercent = nbtCompound.contains("AlcPercent") ? nbtCompound.getFloat("AlcPercent") : 0;
-				this.thickness = nbtCompound.contains("Thickness") ? nbtCompound.getFloat("Thickness") : 0;
-				PotionUtil.getCustomPotionEffects(nbtCompound, statusEffects);
-			}
-		}
-		
-		public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
-			tooltip.add(new TranslatableText("item.spectrum.beverage.tooltip.alc_percent", alcPercent).formatted(Formatting.GRAY));
-			tooltip.add(new TranslatableText("item.spectrum.beverage.tooltip.age_days", ageDays).formatted(Formatting.GRAY));
-			PotionUtil.buildTooltip(itemStack, tooltip, 1.0F);
-		}
-		
-		protected NbtCompound toNbt(NbtCompound nbtCompound) {
-			nbtCompound.putLong("AgeDays", this.ageDays);
-			nbtCompound.putFloat("AlcPercent", this.alcPercent);
-			nbtCompound.putFloat("Thickness", this.thickness);
-			
-			NbtList nbtList = nbtCompound.getList("CustomPotionEffects", 9);
-			for (StatusEffectInstance statusEffectInstance : this.statusEffects) {
-				nbtList.add(statusEffectInstance.writeNbt(new NbtCompound()));
-			}
-			nbtCompound.put("CustomPotionEffects", nbtList);
-			
-			return nbtCompound;
-		}
-		
-		protected ItemStack getStack(ItemStack itemStack) {
-			NbtCompound compound = itemStack.getOrCreateNbt();
-			toNbt(compound);
-			itemStack.setNbt(compound);
-			return itemStack;
-		}
-		
-	}
-	
 	public BeverageItem(Settings settings) {
 		super(settings);
 	}
 	
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
+		PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
 		if (playerEntity instanceof ServerPlayerEntity) {
-			Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity)playerEntity, stack);
+			Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity) playerEntity, stack);
 		}
 		
 		if (!world.isClient) {
@@ -139,6 +82,53 @@ public abstract class BeverageItem extends Item {
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
 		getBeverageProperties(itemStack).addTooltip(itemStack, tooltip);
+	}
+	
+	// wrapper for beverage itemstack nbt
+	// individual for each beverage
+	public static class BeverageProperties {
+		
+		public long ageDays = 0;
+		public int alcPercent = 0;
+		public float thickness = 0;
+		
+		public BeverageProperties(long ageDays, int alcPercent, float thickness) {
+			this.ageDays = ageDays;
+			this.alcPercent = alcPercent;
+			this.thickness = thickness;
+		}
+		
+		public BeverageProperties(NbtCompound nbtCompound) {
+			if (nbtCompound != null) {
+				this.ageDays = nbtCompound.contains("AgeDays") ? nbtCompound.getLong("AgeDays") : 0;
+				this.alcPercent = nbtCompound.contains("AlcPercent") ? nbtCompound.getInt("AlcPercent") : 0;
+				this.thickness = nbtCompound.contains("Thickness") ? nbtCompound.getFloat("Thickness") : 0;
+			}
+		}
+		
+		public static BeverageProperties getFromStack(ItemStack itemStack) {
+			NbtCompound nbtCompound = itemStack.getNbt();
+			return new BeverageProperties(nbtCompound);
+		}
+		
+		public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
+			tooltip.add(new TranslatableText("item.spectrum.infused_beverage.tooltip.age", ageDays, alcPercent).formatted(Formatting.GRAY));
+		}
+		
+		protected NbtCompound toNbt(NbtCompound nbtCompound) {
+			nbtCompound.putLong("AgeDays", this.ageDays);
+			nbtCompound.putInt("AlcPercent", this.alcPercent);
+			nbtCompound.putFloat("Thickness", this.thickness);
+			return nbtCompound;
+		}
+		
+		public ItemStack getStack(ItemStack itemStack) {
+			NbtCompound compound = itemStack.getOrCreateNbt();
+			toNbt(compound);
+			itemStack.setNbt(compound);
+			return itemStack;
+		}
+		
 	}
 	
 }

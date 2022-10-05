@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.items.food.BeverageItem;
 import de.dafuqs.spectrum.items.food.InfusedBeverageItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -31,6 +32,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	
 	public static final float SOLID_TO_WATER_RATIO = 4F;
 	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
+	public static final ItemStack PURE_ALCOHOL_STACK = SpectrumItems.PURE_ALCOHOL.getDefaultStack();
 	
 	protected final Identifier id;
 	protected final String group;
@@ -209,6 +211,10 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		if(this.fermentationData != null) {
 			float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
 			double alcPercent = Support.logBase(1.08D, thickness * ageIngameDays * this.fermentationData.fermentationSpeedMod * (0.5D + downfall / 2D));
+			
+			if(alcPercent >= 100) {
+				return PURE_ALCOHOL_STACK;
+			}
 			
 			BeverageItem.BeverageProperties properties;
 			if(stack.getItem() instanceof BeverageItem beverageItem) {

@@ -77,6 +77,9 @@ public class TitrationBarrelCategory implements DisplayCategory<TitrationBarrelD
 			// output arrow and slot
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 10)).animationDurationTicks(display.minFermentationTimeHours * 20));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 10)));
+			if(!display.tappingIngredient.isEmpty()) {
+				widgets.add(Widgets.createSlot(new Point(startPoint.x + 60, startPoint.y + 20)).markInput().entries(display.tappingIngredient));
+			}
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 10)).markOutput().disableBackground().entries(output.get(0)));
 			
 			// duration text

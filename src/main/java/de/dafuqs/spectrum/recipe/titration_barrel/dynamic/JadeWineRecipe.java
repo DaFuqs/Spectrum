@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
@@ -24,6 +25,7 @@ public class JadeWineRecipe implements ITitrationBarrelRecipe {
 	
 	public static final RecipeSerializer<JadeWineRecipe> SERIALIZER = new SpecialRecipeSerializer<>(JadeWineRecipe::new);
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_jade_wine");
+	public static final Ingredient TAPPING_STACK = Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack());
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)));
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADE_VINE_PETALS)));
@@ -34,6 +36,11 @@ public class JadeWineRecipe implements ITitrationBarrelRecipe {
 	public JadeWineRecipe(Identifier identifier) {
 		this.identifier = identifier;
 		registerInToastManager(SpectrumRecipeTypes.TITRATION_BARREL, this);
+	}
+	
+	@Override
+	public Ingredient getTappingIngredient() {
+		return TAPPING_STACK;
 	}
 	
 	@Override

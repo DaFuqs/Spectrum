@@ -75,7 +75,11 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		}
 		
 		// the titration barrel
-		parent.renderItemStack(ms, recipeX + 54, recipeY + 21, mouseX, mouseY, recipe.createIcon());
+		if(recipe.getTappingIngredient().isEmpty()) {
+			parent.renderItemStack(ms, recipeX + 54, recipeY + 21, mouseX, mouseY, recipe.createIcon());
+		} else {
+			parent.renderIngredient(ms, recipeX + 54, recipeY + 21, mouseX, mouseY, recipe.getTappingIngredient());
+		}
 		
 		// the output
 		parent.renderItemStack(ms, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput());

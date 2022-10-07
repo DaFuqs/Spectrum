@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.text.TranslatableText;
@@ -31,6 +32,8 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	double BOTTLES_PER_BUCKET_OF_WATER = 3D;
 	
 	ItemStack tap(DefaultedList<ItemStack> content, int waterBuckets, long secondsFermented, float downfall, float temperature);
+	
+	Ingredient getTappingIngredient();
 	
 	// the amount of bottles able to get out of a single barrel
 	static int getYieldBottles(int waterCount, long secondsFermented, float temperature) {
@@ -93,5 +96,7 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	int getMinFermentationTimeHours();
 	
 	TitrationBarrelRecipe.FermentationData getFermentationData();
+	
+	
 	
 }

@@ -13,6 +13,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
@@ -29,6 +30,7 @@ import java.util.Optional;
 public class SuspiciousBrewRecipe implements ITitrationBarrelRecipe {
 	
 	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SuspiciousBrewRecipe::new);
+	public static final Ingredient TAPPING_STACK = Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack());
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_suspicious_brew");
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
@@ -58,6 +60,11 @@ public class SuspiciousBrewRecipe implements ITitrationBarrelRecipe {
 		ItemStack stack = getBrew(content, waterBuckets, secondsFermented, downfall);
 		stack.setCount(yield);
 		return stack;
+	}
+	
+	@Override
+	public Ingredient getTappingIngredient() {
+		return TAPPING_STACK;
 	}
 	
 	@Override

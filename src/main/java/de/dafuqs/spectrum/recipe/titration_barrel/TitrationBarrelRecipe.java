@@ -12,6 +12,7 @@ import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
@@ -39,6 +40,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	
 	protected final List<IngredientStack> inputStacks;
 	protected final ItemStack outputItemStack;
+	protected final Ingredient tappingIngredient;
 	
 	protected final int minFermentationTimeHours;
 	protected final FermentationData fermentationData;
@@ -46,22 +48,25 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	protected final Identifier requiredAdvancementIdentifier;
 	
 	// data holders
-	public record StatusEffectPotencyEntry(int minAlcPercent, int minThickness, int potency) {
+	public record StatusEffectPotencyEntry(int minAlcPercent, int minThickness, int durationTicks, int potency) {
+		
 		public static StatusEffectPotencyEntry fromJson(JsonObject jsonObject) {
 			int minAlcPercent = JsonHelper.getInt(jsonObject, "min_alc", 0);
 			int minThickness = JsonHelper.getInt(jsonObject, "min_thickness", 0);
 			int potency = JsonHelper.getInt(jsonObject, "potency", 0);
-			return new StatusEffectPotencyEntry(minAlcPercent, minThickness, potency);
+			int durationTicks = JsonHelper.getInt(jsonObject, "duration", 1200);
+			return new StatusEffectPotencyEntry(minAlcPercent, minThickness, durationTicks, potency);
 		}
 		
 		public void write(PacketByteBuf packetByteBuf) {
 			packetByteBuf.writeInt(this.minAlcPercent);
 			packetByteBuf.writeInt(this.minThickness);
+			packetByteBuf.writeInt(this.durationTicks);
 			packetByteBuf.writeInt(this.potency);
 		}
 		
 		public static StatusEffectPotencyEntry read(PacketByteBuf packetByteBuf) {
-			return new StatusEffectPotencyEntry(packetByteBuf.readInt(), packetByteBuf.readInt(), packetByteBuf.readInt());
+			return new StatusEffectPotencyEntry(packetByteBuf.readInt(), packetByteBuf.readInt(), packetByteBuf.readInt(), packetByteBuf.readInt());
 		}
 	}
 	public record StatusEffectEntry(StatusEffect statusEffect, List<StatusEffectPotencyEntry> potencyEntries) {
@@ -131,13 +136,14 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		}
 	}
 	
-	public TitrationBarrelRecipe(Identifier id, String group, List<IngredientStack> inputStacks, ItemStack outputItemStack, int minFermentationTimeHours, FermentationData fermentationData, Identifier requiredAdvancementIdentifier) {
+	public TitrationBarrelRecipe(Identifier id, String group, List<IngredientStack> inputStacks, ItemStack outputItemStack, Ingredient tappingIngredient, int minFermentationTimeHours, FermentationData fermentationData, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
 		
 		this.inputStacks = inputStacks;
 		this.minFermentationTimeHours = minFermentationTimeHours;
 		this.outputItemStack = outputItemStack;
+		this.tappingIngredient = tappingIngredient;
 		this.fermentationData = fermentationData;
 		
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
@@ -171,6 +177,10 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		return this.inputStacks;
 	}
 	
+	public Ingredient getTappingIngredient() {
+		return tappingIngredient;
+	}
+	
 	@Override
 	public int getMinFermentationTimeHours() {
 		return this.minFermentationTimeHours;
@@ -180,6 +190,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	public FermentationData getFermentationData() {
 		return this.fermentationData;
 	}
+	
 	
 	@Override
 	public ItemStack craft(Inventory inventory) {
@@ -211,6 +222,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		if(this.fermentationData != null) {
 			float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
 			double alcPercent = Support.logBase(1.08D, thickness * ageIngameDays * this.fermentationData.fermentationSpeedMod * (0.5D + downfall / 2D));
+			alcPercent = Math.max(0, alcPercent);
 			
 			if(alcPercent >= 100) {
 				return PURE_ALCOHOL_STACK;
@@ -225,19 +237,21 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 			}
 			
 			if(properties instanceof InfusedBeverageItem.VariantBeverageProperties variantBeverageProperties) {
+				float durationDivisor = 0.5F + thickness / 2F;
+				
 				List<StatusEffectInstance> effects = new ArrayList<>();
 				
 				for(StatusEffectEntry entry : this.fermentationData.statusEffectEntries) {
 					int potency = 0;
+					int durationTicks = 0;
 					for(StatusEffectPotencyEntry potencyEntry : entry.potencyEntries) {
 						if(thickness >= potencyEntry.minThickness && alcPercent >= potencyEntry.minAlcPercent) {
 							potency = potencyEntry.potency;
+							durationTicks = potencyEntry.durationTicks;
 						}
 					}
 					if(potency > 0) {
-						// TODO: values for duration. the current value is a placeholder
-						int durationTicks = (int) (20 * 60 * thickness);
-						effects.add(new StatusEffectInstance(entry.statusEffect, durationTicks, potency));
+						effects.add(new StatusEffectInstance(entry.statusEffect, (int) (durationTicks / durationDivisor), potency));
 					}
 				}
 				

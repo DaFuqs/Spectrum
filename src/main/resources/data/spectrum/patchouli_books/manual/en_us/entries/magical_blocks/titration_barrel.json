@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The idea of fermenting food and $(l:magical_items/infused_beverages)drinks$(/l) in $(l:general/colored_trees#colored_wood)Colored Wood$(/l) was not far away. Over time, the properties of the wood influences and affects the contents.$(br2)The results are sometimes more, sometimes less delicious, but always interesting. (On the other hand, the last could of course also be due to your cooking skills)"
+      "text": "The idea of fermenting $(l:magical_blocks/titration_barrel#kimchi)food$(/l) and $(l:magical_items/infused_beverages)drinks$(/l) in $(l:general/colored_trees#colored_wood)Colored Wood$(/l) was not far away. Over time, the properties of the wood influences contents.$(br2)The results are sometimes more, sometimes less delicious, but always interesting. (On the other hand, the last could of course also be due to your cooking skills)Holds up to a stack of items."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -19,10 +19,24 @@
       "text": "$(italic)When you blink and it felt like the world stopped existing? Each time that happens, the barrel fermentation process seems to have advanced."
     },
     {
+      "type": "patchouli:text",
+      "title": "The Art of Brewing",
+      "text": "Fermentation is a very natural thing. But sadly, like most natural things, things take time and care. And since it's not a fully controlled environment there are a lot of variables to it.$(br)$(li)Time: Time, of course, being the most important ingredient. While some beverages only seeming to get more intense after more time, others go bad eventually"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)Temperature: The hotter it is, the more of your precious content simply evaporates over time, called the Angel's Share$(br)$(li)Humidity: The more humid the air, the more water evaporates in comparison to alcohol, making the drink stronger"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)Water share: The ratio of ingredients to water is a fine balance, but one to be played with. Less water makes the drinks stronger (more powerful effects), while more water gives more yield, of course, as well as allowing the magical wood to better evolve, making effects last longer. $(br2)1 Bucket for 4 items feels like a good starting point."
+    },
+    {
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Kimchi",
+      "anchor": "kimchi",
       "recipe": "spectrum:titration_barrel/kimchi",
-      "text": "Made from 3 different kinds of vegetable, Kimchi is a hearty dish, best served as a side."
+      "text": "Made from 3 kinds of vegetable, Kimchi is a hearty dish, best served as a side."
     }
   ]
 }

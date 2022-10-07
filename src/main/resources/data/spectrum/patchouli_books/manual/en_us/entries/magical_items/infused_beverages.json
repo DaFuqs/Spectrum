@@ -24,14 +24,28 @@
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Malt Beer",
       "recipe": "spectrum:titration_barrel/infused_beverages/malt_beer",
-      "text": "TODO"
+      "text": "Malt beer is both filling and tastes both sweet and savory. What a nice combination."
+    },
+	{
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Beer",
+      "recipe": "spectrum:titration_barrel/infused_beverages/beer",
+      "text": ""
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:milestones/confirmed_drinking_age",
+      "title": "Mead",
+      "recipe1": "spectrum:titration_barrel/infused_beverages/mead",
+      "text": ""
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "advancement": "spectrum:milestones/confirmed_drinking_age",
       "title": "Apple Cider",
       "recipe": "spectrum:titration_barrel/infused_beverages/apple_cider",
-      "text": "dfds fsf sdf dsfdsf dfdsfdsf sdfdsfdsffs dff ds fsdf sdf"
+      "text": "Fermented apples, usually sweet and sparkly, with a slight note of sour - if you do not forget to tap it soon enough."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -39,7 +53,7 @@
       "title": "Golden Ciders",
       "recipe": "spectrum:titration_barrel/infused_beverages/golden_apple_cider",
       "recipe2": "spectrum:titration_barrel/infused_beverages/enchanted_apple_cider",
-      "text": "1"
+      "text": "Way more sweet and potent than their common counterpart. While these take longer to ferment, they won't go bad over time. You are sure they will taste glorious."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -47,7 +61,7 @@
       "title": "Berry Cider",
       "recipe": "spectrum:titration_barrel/infused_beverages/berry_cider",
       "recipe2": "spectrum:titration_barrel/infused_beverages/glow_berry_cider",
-      "text": "2"
+      "text": "A much more fruity cider than from apples. The glowy variant seems to ferment a bit quicker, but also... makes you glow. Hmm."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -55,15 +69,7 @@
       "title": "Berry Liquor",
       "recipe": "spectrum:titration_barrel/infused_beverages/berry_liquor",
       "recipe2": "spectrum:titration_barrel/infused_beverages/glow_berry_liquor",
-      "text": "3"
-    },
-    {
-      "type": "spectrum:titration_barrel_fermenting",
-      "advancement": "spectrum:milestones/confirmed_drinking_age",
-      "title": "Beer & Mead",
-      "recipe": "spectrum:titration_barrel/infused_beverages/beer",
-      "recipe2": "spectrum:titration_barrel/infused_beverages/mead",
-      "text": "4"
+      "text": "Berries can also be used for liquor. Way more viscous and sweet and stronger, but takes longer to ferment."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -71,7 +77,7 @@
       "title": "Vodka",
       "recipe": "spectrum:titration_barrel/infused_beverages/vodka",
       "recipe2": "spectrum:titration_barrel/infused_beverages/poisonous_vodka",
-      "text": "5"
+      "text": "Does only get stronger with age. Just one question: How deadly do you want it?"
     }
   ]
 }

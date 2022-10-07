@@ -3,6 +3,10 @@
     "unlocked_titration_barrel": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:progression/unlock_titration_barrel" }
+    },
+    "confirmed_drinking_age": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:milestones/confirmed_drinking_age" }
     }
   }
 }

@@ -273,6 +273,9 @@ public class SpectrumItems {
 	public static final Item JADE_WINE = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(JadeWineItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item PURE_ALCOHOL = new PureAlcoholItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(PureAlcoholItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	
+	public static final Item STAR_CANDY = new StarCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.COMMON).maxCount(16).food(StarCandyItem.FOOD_COMPONENT));
+	public static final Item ENCHANTED_STAR_CANDY = new EnchantedStarCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(16).food(EnchantedStarCandyItem.FOOD_COMPONENT));
+	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatterns.AMETHYST_SHARD, "item.minecraft.amethyst_shard");
@@ -595,6 +598,8 @@ public class SpectrumItems {
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
 		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
 		register("jade_wine", JADE_WINE, DyeColor.LIME);
+		register("star_candy", STAR_CANDY, DyeColor.PINK);
+		register("enchanted_star_candy", ENCHANTED_STAR_CANDY, DyeColor.PINK);
 	}
 	
 	public static void registerTrinkets() {

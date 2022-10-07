@@ -4,16 +4,21 @@
   "ingredients": [
     {
       "item": "minecraft:potato",
-      "count": 3
+      "count": 2
     },
     {
       "item": "minecraft:poisonous_potato",
-      "count": 1
+      "count": 2
     }
   ],
-  "min_fermentation_time_hours": 2,
+  "min_fermentation_time_hours": 48,
+  "tapping_ingredient": [
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
   "fermentation_data": {
-    "fermentation_speed_mod": 1.0,
+    "fermentation_speed_mod": 0.1,
     "effects": [
       {
         "id": "minecraft:speed",
@@ -51,16 +56,59 @@
         ]
       },
       {
-        "id": "minecraft:nausea",
+        "id": "minecraft:fire_resistance",
+		"base_duration": 2400,
         "potency": [
           {
             "min_alc": 5,
             "min_thickness": 1,
             "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "minecraft:poison",
+        "base_duration": 2400,
+        "potency": [
+          {
+            "min_alc": 5,
+            "min_thickness": 1,
+            "potency": 2
           },
           {
             "min_alc": 5,
             "min_thickness": 2,
+            "potency": 3
+          },
+          {
+            "min_alc": 5,
+            "min_thickness": 2,
+            "potency": 4
+          },
+          {
+            "min_alc": 5,
+            "min_thickness": 2,
+            "potency": 5
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+		"base_duration": 1200,
+        "potency": [
+          {
+            "min_alc": 50,
+            "min_thickness": 0.5,
+            "potency": 0
+          },
+          {
+            "min_alc": 55,
+            "min_thickness": 1,
+            "potency": 1
+          },
+          {
+            "min_alc": 60,
+            "min_thickness": 1.5,
             "potency": 2
           }
         ]
@@ -69,7 +117,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "nbt": "{Variant: \"vodka\", Color: 8543530 }"
+    "nbt": "{Variant: \"vodka\", Color: 15465466 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

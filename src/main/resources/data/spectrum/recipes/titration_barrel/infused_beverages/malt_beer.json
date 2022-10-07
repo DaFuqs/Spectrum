@@ -11,64 +11,27 @@
       "count": 2
     }
   ],
-  "min_fermentation_time_hours": 2,
+  "min_fermentation_time_hours": 24,
+  "tapping_ingredient": [
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
   "fermentation_data": {
-    "fermentation_speed_mod": 1.0,
+    "fermentation_speed_mod": 0.025,
     "effects": [
       {
-        "id": "minecraft:speed",
-        "potency": [
-          {
-            "min_alc": 1,
-            "min_thickness": 1,
-            "potency": 0
-          },
-          {
-            "min_alc": 3,
-            "min_thickness": 1,
-            "potency": 1
-          },
-          {
-            "min_alc": 5,
-            "min_thickness": 1,
-            "potency": 2
-          }
-        ]
+        "id": "minecraft:haste",
+		"base_duration": 1200
       },
       {
-        "id": "minecraft:strength",
-        "potency": [
-          {
-            "min_alc": 3,
-            "min_thickness": 1,
-            "potency": 0
-          },
-          {
-            "min_alc": 5,
-            "min_thickness": 1,
-            "potency": 1
-          }
-        ]
-      },
-      {
-        "id": "minecraft:nausea",
-        "potency": [
-          {
-            "min_alc": 5,
-            "min_thickness": 1,
-            "potency": 0
-          },
-          {
-            "min_alc": 5,
-            "min_thickness": 2,
-            "potency": 2
-          }
-        ]
+        "id": "minecraft:saturation",
+		"base_duration": 20
       }
     ]
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "nbt": "{Variant: \"malt_beer\", Color: 8543530 }"
+    "nbt": "{Variant: \"malt_beer\", Color: 5318176 }"
   }
 }

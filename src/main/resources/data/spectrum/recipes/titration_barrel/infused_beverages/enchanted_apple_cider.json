@@ -7,20 +7,62 @@
       "count": 4
     }
   ],
-  "min_fermentation_time_hours": 2,
+  "min_fermentation_time_hours": 72,
+  "tapping_ingredient": [
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
   "fermentation_data": {
-    "fermentation_speed_mod": 1.0,
+    "fermentation_speed_mod": 0.05,
     "effects": [
       {
-        "id": "minecraft:speed",
+        "id": "minecraft:absorption",
+		"base_duration": 2400,
         "potency": [
           {
             "min_alc": 1,
             "min_thickness": 1,
-            "potency": 0
+            "potency": 3
           },
           {
             "min_alc": 3,
+            "min_thickness": 1,
+            "potency": 4
+          },
+          {
+            "min_alc": 5,
+            "min_thickness": 1,
+            "potency": 5
+          },
+          {
+            "min_alc": 5,
+            "min_thickness": 1,
+            "potency": 6
+          },
+          {
+            "min_alc": 5,
+            "min_thickness": 1,
+            "potency": 7
+          },
+          {
+            "min_alc": 5,
+            "min_thickness": 1,
+            "potency": 8
+          }
+        ]
+      },
+      {
+        "id": "minecraft:regeneration",
+		"base_duration": 400,
+        "potency": [
+          {
+            "min_alc": 3,
+            "min_thickness": 1,
+            "potency": 0
+          },
+          {
+            "min_alc": 5,
             "min_thickness": 1,
             "potency": 1
           },
@@ -28,26 +70,28 @@
             "min_alc": 5,
             "min_thickness": 1,
             "potency": 2
-          }
-        ]
-      },
-      {
-        "id": "minecraft:strength",
-        "potency": [
-          {
-            "min_alc": 3,
-            "min_thickness": 1,
-            "potency": 0
           },
           {
             "min_alc": 5,
             "min_thickness": 1,
-            "potency": 1
+            "potency": 3
           }
         ]
       },
       {
-        "id": "minecraft:nausea",
+        "id": "minecraft:fire_resistance",
+		"base_duration": 6000,
+        "potency": [
+          {
+            "min_alc": 5,
+            "min_thickness": 1,
+            "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "minecraft:resistance",
+		"base_duration": 6000,
         "potency": [
           {
             "min_alc": 5,
@@ -57,7 +101,7 @@
           {
             "min_alc": 5,
             "min_thickness": 2,
-            "potency": 2
+            "potency": 1
           }
         ]
       }
@@ -65,7 +109,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "nbt": "{Variant: \"enchanted_apple_cider\", Color: 8543530 }"
+    "nbt": "{Variant: \"enchanted_apple_cider\", Color: 14793216 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

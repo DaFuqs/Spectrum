@@ -14,53 +14,110 @@
     }
   ],
   "fermentation_data": {
-    "fermentation_speed_mod": 0.1,
+    "fermentation_speed_mod": 0.12,
     "effects": [
       {
         "id": "minecraft:speed",
-        "base_duration": 2400,
+        "base_duration": 800,
         "potency": [
           {
-            "min_alc": 1,
-            "min_thickness": 1,
             "potency": 0
           },
           {
-            "min_alc": 3,
-            "min_thickness": 1,
+            "min_alc": 35,
             "potency": 1
           },
           {
-            "min_alc": 5,
-            "min_thickness": 1,
+            "min_alc": 45,
             "potency": 2
+          },
+          {
+            "min_alc": 55,
+            "potency": 3
+          },
+          {
+            "min_alc": 65,
+            "potency": 4
+          },
+          {
+            "min_alc": 75,
+            "potency": 5
+          },
+          {
+            "min_alc": 85,
+            "potency": 5
+          },
+          {
+            "min_alc": 95,
+            "potency": 5
           }
         ]
       },
       {
         "id": "minecraft:strength",
-        "base_duration": 2400,
+        "base_duration": 800,
         "potency": [
           {
-            "min_alc": 3,
+            "min_alc": 40,
             "min_thickness": 1,
             "potency": 0
           },
           {
-            "min_alc": 5,
+            "min_alc": 50,
             "min_thickness": 1,
             "potency": 1
+          },
+          {
+            "min_alc": 60,
+            "min_thickness": 1,
+            "potency": 2
+          },
+          {
+            "min_alc": 70,
+            "min_thickness": 1,
+            "potency": 3
+          },
+          {
+            "min_alc": 80,
+            "min_thickness": 1,
+            "potency": 4
+          },
+          {
+            "min_alc": 90,
+            "min_thickness": 1,
+            "potency": 5
           }
         ]
       },
       {
         "id": "minecraft:fire_resistance",
-		"base_duration": 2400,
+		"base_duration": 1600,
         "potency": [
           {
-            "min_alc": 5,
-            "min_thickness": 1,
-            "potency": 0
+            "min_thickness": 1.5
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+		"base_duration": 1600,
+        "potency": [
+          {
+            "min_thickness": 0.75
+          },
+          {
+            "min_alc": 65,
+            "min_thickness": 0.75,
+			"potency": 1
+          },
+        ]
+      },
+      {
+        "id": "minecraft:blindness",
+		"base_duration": 1600,
+        "potency": [
+          {
+            "min_thickness": 3.5
           }
         ]
       }

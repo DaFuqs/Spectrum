@@ -18,7 +18,7 @@
     }
   ],
   "fermentation_data": {
-    "fermentation_speed_mod": 0.025,
+    "fermentation_speed_mod": 0.0,
     "effects": [
       {
         "id": "minecraft:haste",

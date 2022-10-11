@@ -1294,7 +1294,7 @@
   "block.spectrum.explosion_mob_block.tooltip": "§7Causes a %d block large explosion",
   "block.spectrum.fall_damage_negating_mob_block.tooltip": "§7Negates all fall damage when landing on it",
   "block.spectrum.fall_damage_negating_mob_block.tooltip2": "§7Will also temporarily hold a fall",
-  "block.spectrum.firestarter_mob_block.tooltip": "§7Starts fire & smelts ice",
+  "block.spectrum.firestarter_mob_block.tooltip": "§7Starts fire & melts ice",
   "block.spectrum.freezing_mob_block.tooltip": "§7Freezes blocks around it",
   "block.spectrum.insomnia_mob_block.tooltip": "§7Causes Insomnia",
   "block.spectrum.knockback_mob_block.tooltip": "§7Causes knockback",

@@ -14,36 +14,34 @@
     }
   ],
   "fermentation_data": {
-    "fermentation_speed_mod": 0.05,
+    "fermentation_speed_mod": 0.4,
     "effects": [
       {
         "id": "minecraft:speed",
 		"base_duration": 800,
         "potency": [
           {
-            "min_alc": 1,
-            "min_thickness": 1,
-            "potency": 0
+            "min_thickness": 0.25
           },
           {
-            "min_alc": 3,
-            "min_thickness": 1,
+            "min_alc": 12,
             "potency": 1
           },
           {
-            "min_alc": 5,
-            "min_thickness": 1,
+            "min_alc": 15,
             "potency": 2
           },
           {
-            "min_alc": 5,
-            "min_thickness": 1,
+            "min_alc": 18,
             "potency": 3
           },
           {
-            "min_alc": 5,
-            "min_thickness": 1,
+            "min_alc": 21,
             "potency": 4
+          },
+          {
+            "min_alc": 24,
+            "potency": 5
           }
         ]
       },
@@ -53,7 +51,12 @@
         "potency": [
           {
             "min_alc": 3,
-            "min_thickness": 1,
+            "min_thickness": 0.75,
+            "potency": 0
+          },
+          {
+            "min_alc": 20,
+            "min_thickness": 0.75,
             "potency": 0
           }
         ]
@@ -63,8 +66,8 @@
 		"base_duration": 2400,
         "potency": [
           {
-            "min_alc": 5,
-            "min_thickness": 1,
+            "min_alc": 15,
+            "min_thickness": 1.0,
             "potency": 0
           }
         ]
@@ -74,19 +77,19 @@
 		"base_duration": 1200,
         "potency": [
           {
-            "min_alc": 5,
+            "min_alc": 20,
             "min_thickness": 1,
             "potency": 0
           },
           {
-            "min_alc": 5,
-            "min_thickness": 2,
-            "potency": 1
+            "min_alc": 15,
+            "min_thickness": 1.5,
+            "potency": 0
           },
           {
-            "min_alc": 5,
-            "min_thickness": 2,
-            "potency": 2
+            "min_alc": 20,
+            "min_thickness": 1.5,
+            "potency": 1
           }
         ]
       }

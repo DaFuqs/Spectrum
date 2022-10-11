@@ -14,41 +14,26 @@
     }
   ],
   "fermentation_data": {
-    "fermentation_speed_mod": 0.05,
+    "fermentation_speed_mod": 0.08,
     "effects": [
       {
         "id": "minecraft:absorption",
 		"base_duration": 2400,
         "potency": [
           {
-            "min_alc": 1,
-            "min_thickness": 1,
+            "potency": 2
+          },
+          {
+            "min_alc": 70,
             "potency": 3
           },
           {
-            "min_alc": 3,
-            "min_thickness": 1,
+            "min_alc": 80,
             "potency": 4
           },
           {
-            "min_alc": 5,
-            "min_thickness": 1,
+            "min_alc": 90,
             "potency": 5
-          },
-          {
-            "min_alc": 5,
-            "min_thickness": 1,
-            "potency": 6
-          },
-          {
-            "min_alc": 5,
-            "min_thickness": 1,
-            "potency": 7
-          },
-          {
-            "min_alc": 5,
-            "min_thickness": 1,
-            "potency": 8
           }
         ]
       },
@@ -57,23 +42,33 @@
 		"base_duration": 400,
         "potency": [
           {
-            "min_alc": 3,
-            "min_thickness": 1,
             "potency": 0
           },
           {
-            "min_alc": 5,
-            "min_thickness": 1,
+            "min_alc": 50,
+            "min_thickness": 0.5,
             "potency": 1
           },
           {
-            "min_alc": 5,
-            "min_thickness": 1,
+            "min_alc": 60,
+            "min_thickness": 0.5,
             "potency": 2
           },
           {
-            "min_alc": 5,
-            "min_thickness": 1,
+            "min_alc": 70,
+            "min_thickness": 0.5,
+            "potency": 3
+          }
+        ],
+          {
+            "min_alc": 80,
+            "min_thickness": 0.5,
+            "potency": 3
+          }
+        ],
+          {
+            "min_alc": 90,
+            "min_thickness": 0.5,
             "potency": 3
           }
         ]
@@ -83,8 +78,6 @@
 		"base_duration": 6000,
         "potency": [
           {
-            "min_alc": 5,
-            "min_thickness": 1,
             "potency": 0
           }
         ]
@@ -94,14 +87,19 @@
 		"base_duration": 6000,
         "potency": [
           {
-            "min_alc": 5,
-            "min_thickness": 1,
             "potency": 0
           },
           {
-            "min_alc": 5,
-            "min_thickness": 2,
+            "min_alc": 75,
             "potency": 1
+          },
+          {
+            "min_alc": 85,
+            "potency": 2
+          },
+          {
+            "min_alc": 95,
+            "potency": 3
           }
         ]
       }

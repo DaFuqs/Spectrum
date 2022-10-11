@@ -221,7 +221,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		
 		if(this.fermentationData != null) {
 			float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
-			double alcPercent = Support.logBase(1.08D, thickness * ageIngameDays * this.fermentationData.fermentationSpeedMod * (0.5D + downfall / 2D));
+			double alcPercent = Support.logBase(this.fermentationData.fermentationSpeedMod, ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D));
 			alcPercent = Math.max(0, alcPercent);
 			
 			if(alcPercent >= 100) {

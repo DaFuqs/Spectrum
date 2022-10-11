@@ -58,14 +58,12 @@
             "min_alc": 70,
             "min_thickness": 0.5,
             "potency": 3
-          }
-        ],
+          },
           {
             "min_alc": 80,
             "min_thickness": 0.5,
             "potency": 3
-          }
-        ],
+          },
           {
             "min_alc": 90,
             "min_thickness": 0.5,

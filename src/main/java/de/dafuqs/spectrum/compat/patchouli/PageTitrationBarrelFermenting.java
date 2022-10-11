@@ -74,11 +74,11 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 			PatchouliHelper.renderIngredientStack(parent, ms, startX + xOffset, startY + yOffset, mouseX, mouseY, currentIngredient);
 		}
 		
-		// the titration barrel
+		// the titration barrel / tapping ingredient
 		if(recipe.getTappingIngredient().isEmpty()) {
-			parent.renderItemStack(ms, recipeX + 54, recipeY + 21, mouseX, mouseY, recipe.createIcon());
+			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.createIcon());
 		} else {
-			parent.renderIngredient(ms, recipeX + 54, recipeY + 21, mouseX, mouseY, recipe.getTappingIngredient());
+			parent.renderIngredient(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.getTappingIngredient());
 		}
 		
 		// the output

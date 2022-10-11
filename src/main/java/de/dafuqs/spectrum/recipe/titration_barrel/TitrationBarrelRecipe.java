@@ -48,31 +48,31 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	protected final Identifier requiredAdvancementIdentifier;
 	
 	// data holders
-	public record StatusEffectPotencyEntry(int minAlcPercent, int minThickness, int durationTicks, int potency) {
+	public record StatusEffectPotencyEntry(int minAlcPercent, int minThickness, int potency) {
 		
 		public static StatusEffectPotencyEntry fromJson(JsonObject jsonObject) {
 			int minAlcPercent = JsonHelper.getInt(jsonObject, "min_alc", 0);
 			int minThickness = JsonHelper.getInt(jsonObject, "min_thickness", 0);
 			int potency = JsonHelper.getInt(jsonObject, "potency", 0);
-			int durationTicks = JsonHelper.getInt(jsonObject, "duration", 1200);
-			return new StatusEffectPotencyEntry(minAlcPercent, minThickness, durationTicks, potency);
+			return new StatusEffectPotencyEntry(minAlcPercent, minThickness, potency);
 		}
 		
 		public void write(PacketByteBuf packetByteBuf) {
 			packetByteBuf.writeInt(this.minAlcPercent);
 			packetByteBuf.writeInt(this.minThickness);
-			packetByteBuf.writeInt(this.durationTicks);
 			packetByteBuf.writeInt(this.potency);
 		}
 		
 		public static StatusEffectPotencyEntry read(PacketByteBuf packetByteBuf) {
-			return new StatusEffectPotencyEntry(packetByteBuf.readInt(), packetByteBuf.readInt(), packetByteBuf.readInt(), packetByteBuf.readInt());
+			return new StatusEffectPotencyEntry(packetByteBuf.readInt(), packetByteBuf.readInt(), packetByteBuf.readInt());
 		}
 	}
-	public record StatusEffectEntry(StatusEffect statusEffect, List<StatusEffectPotencyEntry> potencyEntries) {
+	public record StatusEffectEntry(StatusEffect statusEffect, int baseDuration, List<StatusEffectPotencyEntry> potencyEntries) {
 		public static StatusEffectEntry fromJson(JsonObject jsonObject) {
 			Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "id"));
 			StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+			int baseDuration = JsonHelper.getInt(jsonObject, "base_duration", 1200);
+			
 			List<StatusEffectPotencyEntry> potencyEntries = new ArrayList<>();
 			if(JsonHelper.hasArray(jsonObject, "potency")) {
 				JsonArray potencyArray = JsonHelper.getArray(jsonObject, "potency");
@@ -80,12 +80,15 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 					JsonObject object = potencyArray.get(i).getAsJsonObject();
 					potencyEntries.add(StatusEffectPotencyEntry.fromJson(object));
 				}
+			} else {
+				potencyEntries.add(new StatusEffectPotencyEntry(0, 0, 0));
 			}
-			return new StatusEffectEntry(statusEffect, potencyEntries);
+			return new StatusEffectEntry(statusEffect, baseDuration, potencyEntries);
 		}
 		
 		public void write(PacketByteBuf packetByteBuf) {
 			packetByteBuf.writeString(this.statusEffect.toString());
+			packetByteBuf.writeInt(baseDuration);
 			packetByteBuf.writeInt(this.potencyEntries.size());
 			for(StatusEffectPotencyEntry potencyEntry : this.potencyEntries) {
 				potencyEntry.write(packetByteBuf);
@@ -95,12 +98,13 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		public static StatusEffectEntry read(PacketByteBuf packetByteBuf) {
 			Identifier statusEffectIdentifier = Identifier.tryParse(packetByteBuf.readString());
 			StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+			int baseDuration = packetByteBuf.readInt();
 			int potencyEntryCount = packetByteBuf.readInt();
 			List<StatusEffectPotencyEntry> potencyEntries = new ArrayList<>(potencyEntryCount);
 			for(int i = 0; i < potencyEntryCount; i++) {
 				potencyEntries.add(StatusEffectPotencyEntry.read(packetByteBuf));
 			}
-			return new StatusEffectEntry(statusEffect, potencyEntries);
+			return new StatusEffectEntry(statusEffect, baseDuration, potencyEntries);
 		}
 	}
 	public record FermentationData(double fermentationSpeedMod, List<StatusEffectEntry> statusEffectEntries) {
@@ -199,7 +203,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack getOutput() {
-		return tapWith(1.0F, this.minFermentationTimeHours * 60 * 60, 1.0F, 1.0F);
+		return tapWith(1.0F, this.minFermentationTimeHours * 60 * 60, 0.8F, 0.4F); // downfall & temperature are for plains
 	}
 	
 	@Override
@@ -221,8 +225,11 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		
 		if(this.fermentationData != null) {
 			float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
-			double alcPercent = Support.logBase(this.fermentationData.fermentationSpeedMod, ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D));
-			alcPercent = Math.max(0, alcPercent);
+			double alcPercent = 0;
+			if(this.fermentationData.fermentationSpeedMod > 0) {
+				alcPercent = Support.logBase(1 + this.fermentationData.fermentationSpeedMod, ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D));
+				alcPercent = Math.max(0, alcPercent);
+			}
 			
 			if(alcPercent >= 100) {
 				return PURE_ALCOHOL_STACK;
@@ -242,15 +249,14 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 				List<StatusEffectInstance> effects = new ArrayList<>();
 				
 				for(StatusEffectEntry entry : this.fermentationData.statusEffectEntries) {
-					int potency = 0;
-					int durationTicks = 0;
+					int potency = -1;
+					int durationTicks = entry.baseDuration;
 					for(StatusEffectPotencyEntry potencyEntry : entry.potencyEntries) {
 						if(thickness >= potencyEntry.minThickness && alcPercent >= potencyEntry.minAlcPercent) {
 							potency = potencyEntry.potency;
-							durationTicks = potencyEntry.durationTicks;
 						}
 					}
-					if(potency > 0) {
+					if(potency > -1) {
 						effects.add(new StatusEffectInstance(entry.statusEffect, (int) (durationTicks / durationDivisor), potency));
 					}
 				}

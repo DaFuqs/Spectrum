@@ -12,11 +12,9 @@
     }
   ],
   "min_fermentation_time_hours": 24,
-  "tapping_ingredient": [
-    {
-      "item": "minecraft:glass_bottle"
-    }
-  ],
+  "tapping_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
   "fermentation_data": {
     "fermentation_speed_mod": 0.0,
     "effects": [
@@ -26,7 +24,7 @@
       },
       {
         "id": "minecraft:saturation",
-		"base_duration": 20
+		"base_duration": 120
       }
     ]
   },

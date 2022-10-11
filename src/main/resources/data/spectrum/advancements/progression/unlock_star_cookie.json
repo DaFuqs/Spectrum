@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "has_amaranth_grains": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth" }
+    },
+    "has_stardust": {
+      "trigger":"revelationary:advancement_gotten",
+        "conditions": { "advancement_identifier": "spectrum:hidden/collect_stardust" }
+    }
+  }
+}

@@ -1925,6 +1925,10 @@
   "item.spectrum.jade_jelly": "Jade Jelly",
   "item.spectrum.jade_jelly.tooltip": "Nutritious, as well as tasty",
 
+  "item.spectrum.star_cookie": "Star Cookie",
+  "item.spectrum.star_cookie.tooltip": "Cures a single negative status effect",
+  "item.spectrum.enchanted_star_cookie": "Enchanted Star Cookie",
+  "item.spectrum.enchanted_star_cookie.tooltip": "Cures all negative status effects",
   "item.spectrum.suspicious_brew": "Suspicious Brew",
   "item.spectrum.suspicious_brew.tooltip": "What might be mixed together here?",
   "item.spectrum.jade_wine": "Jade Wine",
@@ -2257,6 +2261,8 @@
   "advancements.spectrum.fish_an_entity.description": "Reel in a big catch",
   "advancements.spectrum.fish_in_many_liquids.title": "I just like to fish",
   "advancements.spectrum.fish_in_many_liquids.description": "Fish in as many liquids as possible",
+  "advancements.spectrum.collect_amaranth.title": "Seed of Life",
+  "advancements.spectrum.collect_amaranth.description": "Find Amaranth Grains",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

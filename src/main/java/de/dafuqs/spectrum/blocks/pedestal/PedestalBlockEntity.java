@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
 import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
 import de.dafuqs.spectrum.items.CraftingTabletItem;
@@ -41,6 +42,7 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.*;
+import net.minecraft.screen.CraftingScreenHandler;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -408,6 +410,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 			
 			ItemStack recipeOutput = recipe.getOutput();
+			PlayerEntity playerEntity = PlayerOwned.getPlayerEntityIfOnline(pedestalBlockEntity.ownerUUID);
+			recipeOutput.getItem().onCraft(recipeOutput, pedestalBlockEntity.world, playerEntity);
 			
 			// if it was a recipe to upgrade the pedestal itself
 			// => upgrade
@@ -672,6 +676,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 			
 			ItemStack recipeOutput = recipe.getOutput();
+			PlayerEntity playerEntity = PlayerOwned.getPlayerEntityIfOnline(this.ownerUUID);
+			recipeOutput.getItem().onCraft(recipeOutput, world, playerEntity);
+			
 			ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
 			if (existingOutput.isEmpty()) {
 				defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());

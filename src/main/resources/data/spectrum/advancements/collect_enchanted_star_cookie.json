@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:enchanted_star_cookie"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.collect_enchanted_star_cookie.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_enchanted_star_cookie.description"
+    }
+  },
+  "parent": "spectrum:spectrum",
+  "criteria": {
+    "has_enchanted_star_cookie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:enchanted_star_cookie" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:spectrum" }
+    }
+  }
+}

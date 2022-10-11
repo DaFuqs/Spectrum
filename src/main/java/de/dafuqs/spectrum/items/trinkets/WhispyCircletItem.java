@@ -30,6 +30,28 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet"));
 	}
 	
+	public static void removeSingleHarmfulStatusEffects(@NotNull LivingEntity entity, World world) {
+		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
+		if(currentEffects.size() == 0) {
+			return;
+		}
+		
+		List<StatusEffectInstance> negativeEffects = new ArrayList<>();
+		for(StatusEffectInstance statusEffectInstance : currentEffects) {
+			StatusEffect effect = statusEffectInstance.getEffectType();
+			if(effect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffects.isUncurable(effect)) {
+				negativeEffects.add(statusEffectInstance);
+			}
+		}
+		
+		if(negativeEffects.size() == 0) {
+			return;
+		}
+		
+		int randomIndex = world.random.nextInt(negativeEffects.size());
+		entity.removeStatusEffect(negativeEffects.get(randomIndex).getEffectType());
+	}
+	
 	public static void removeNegativeStatusEffects(@NotNull LivingEntity entity) {
 		Set<StatusEffect> effectsToRemove = new HashSet<>();
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();

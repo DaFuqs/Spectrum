@@ -273,8 +273,8 @@ public class SpectrumItems {
 	public static final Item JADE_WINE = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(JadeWineItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item PURE_ALCOHOL = new PureAlcoholItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(PureAlcoholItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
 	
-	public static final Item STAR_CANDY = new StarCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.COMMON).maxCount(16).food(StarCandyItem.FOOD_COMPONENT));
-	public static final Item ENCHANTED_STAR_CANDY = new EnchantedStarCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(16).food(EnchantedStarCandyItem.FOOD_COMPONENT));
+	public static final Item STAR_COOKIE = new StarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.COMMON).maxCount(16).food(StarCookieItem.FOOD_COMPONENT));
+	public static final Item ENCHANTED_STAR_COOKIE = new EnchantedStarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(16).food(EnchantedStarCookieItem.FOOD_COMPONENT));
 	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");
@@ -314,6 +314,7 @@ public class SpectrumItems {
 	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, toolRareItemSettingsSingle);
 	public static final Item SPAWNER = new SpectrumMobSpawnerItem(generalEpicItemSettingsSingle);
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, toolItemSettings);
+	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, toolItemSettings);
 	public static final Item INVISIBLE_ITEM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.INVISIBLE_ITEM_FRAME, toolItemSettings);
 	public static final Item INVISIBLE_GLOW_ITEM_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, toolItemSettings);
 	
@@ -406,6 +407,7 @@ public class SpectrumItems {
 		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME, DyeColor.GREEN);
 		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
+		register("amaranth_grains", AMARANTH_GRAINS, DyeColor.LIME);
 		register("invisible_item_frame", INVISIBLE_ITEM_FRAME, DyeColor.YELLOW);
 		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME, DyeColor.YELLOW);
 		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);
@@ -598,8 +600,8 @@ public class SpectrumItems {
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
 		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
 		register("jade_wine", JADE_WINE, DyeColor.LIME);
-		register("star_candy", STAR_CANDY, DyeColor.PINK);
-		register("enchanted_star_candy", ENCHANTED_STAR_CANDY, DyeColor.PINK);
+		register("star_cookie", STAR_COOKIE, DyeColor.PINK);
+		register("enchanted_star_cookie", ENCHANTED_STAR_COOKIE, DyeColor.PINK);
 	}
 	
 	public static void registerTrinkets() {

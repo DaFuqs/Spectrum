@@ -1,0 +1,29 @@
+{
+  "name": "Star Cookies",
+  "advancement": "spectrum:progression/unlock_star_cookie",
+  "icon": "spectrum:star_cookie",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:star_cookie": 0,
+    "spectrum:enchanted_star_cookie": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Star Candy",
+      "text": "It seems those shooting stars have more secrets than you previously thought, and weird ones at that.$(br)When you first came across this confection in the heart of a star, you had no idea what it was. Its properties were entirely different to that of any other fragment of the fallen star, and finding what exactly it was useful for turned out to be pretty difficult - that is, until for some reason you decided to lick it.$(br)It was... sweet?! And oddly refreshing, the magic made your tongue tingle, and as the heaven-sent candy dissolved in your mouth a moonstruck wind blew through you. You felt an odd lot healthier afterwards..."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier2/star_cookie",
+      "text": "Upon closer inspection, it seems that the hard, golden flesh of the candies has some purple speckles, shimmering like star shards. Perhaps that is the source of their restorative properties; indeed, touching those star-laden streaks gives you much the same tingle as when you ate the whole thing.$(br)You are left to wonder if it is possible to find a fully purple one.$(br)$(italic)Fat chance..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_enchanted_star_cookie",
+      "item": "spectrum:enchanted_star_cookie",
+      "text": ""
+    }
+  ]
+}

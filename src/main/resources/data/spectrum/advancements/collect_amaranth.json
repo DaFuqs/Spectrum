@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:collect_all_basic_pigments",
+  "parent": "spectrum:collect_vegetal",
   "display": {
     "icon": {
       "item": "spectrum:amaranth_grains"
@@ -19,7 +19,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_all_basic_pigments" }
+      "conditions": { "advancement_identifier": "spectrum:collect_vegetal" }
     }
   }
 }

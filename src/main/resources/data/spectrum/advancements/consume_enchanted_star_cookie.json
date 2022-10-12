@@ -1,0 +1,25 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:enchanted_star_cookie"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.consume_enchanted_star_cookie.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.consume_enchanted_star_cookie.description"
+    }
+  },
+  "parent": "spectrum:collect_amaranth",
+  "criteria": {
+    "consumed_enchanted_star_cookie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "items": [{ "items": [ "spectrum:enchanted_star_cookie" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth" }
+    }
+  }
+}

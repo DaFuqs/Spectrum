@@ -46,26 +46,16 @@ public class PedestalCraftingRecipeSerializer implements RecipeSerializer<Pedest
 		}
 		
 		HashMap<BuiltinGemstoneColor, Integer> gemInputs = new HashMap<>();
-		if (JsonHelper.hasPrimitive(jsonObject, "cyan")) {
-			int amount = JsonHelper.getInt(jsonObject, "cyan", 0);
-			gemInputs.put(BuiltinGemstoneColor.CYAN, amount);
-		}
-		if (JsonHelper.hasPrimitive(jsonObject, "magenta")) {
-			int amount = JsonHelper.getInt(jsonObject, "magenta", 0);
-			gemInputs.put(BuiltinGemstoneColor.MAGENTA, amount);
-		}
-		if (JsonHelper.hasPrimitive(jsonObject, "yellow")) {
-			int amount = JsonHelper.getInt(jsonObject, "yellow", 0);
-			gemInputs.put(BuiltinGemstoneColor.YELLOW, amount);
-		}
-		if (JsonHelper.hasPrimitive(jsonObject, "white")) {
-			int amount = JsonHelper.getInt(jsonObject, "white", 0);
-			gemInputs.put(BuiltinGemstoneColor.WHITE, amount);
-		}
-		if (JsonHelper.hasPrimitive(jsonObject, "black")) {
-			int amount = JsonHelper.getInt(jsonObject, "black", 0);
-			gemInputs.put(BuiltinGemstoneColor.BLACK, amount);
-		}
+		int amount = JsonHelper.getInt(jsonObject, "cyan", 0);
+		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.CYAN, amount); }
+		amount = JsonHelper.getInt(jsonObject, "magenta", 0);
+		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.MAGENTA, amount); }
+		amount = JsonHelper.getInt(jsonObject, "yellow", 0);
+		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.YELLOW, amount); }
+		amount = JsonHelper.getInt(jsonObject, "black", 0);
+		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.BLACK, amount); }
+		amount = JsonHelper.getInt(jsonObject, "white", 0);
+		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.WHITE, amount); }
 		
 		boolean skipRecipeRemainders = false;
 		if (JsonHelper.hasBoolean(jsonObject, "skip_recipe_remainders")) {

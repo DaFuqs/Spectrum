@@ -23,16 +23,12 @@ public class StarCookieRecipe extends PedestalCraftingRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_star_cookie");
 	public static final float ENCHANTED_STAR_COOKIE_CHANCE = 0.001F;
-	public static final HashMap<BuiltinGemstoneColor, Integer> GEMSTONE_DUST_INPUTS = new HashMap<>() {{
-		put(BuiltinGemstoneColor.CYAN, 0);
-		put(BuiltinGemstoneColor.MAGENTA, 0);
+	public static final HashMap<BuiltinGemstoneColor, Integer> GEMSTONE_POWDER_INPUTS = new HashMap<>() {{
 		put(BuiltinGemstoneColor.YELLOW, 1);
-		put(BuiltinGemstoneColor.BLACK, 0);
-		put(BuiltinGemstoneColor.WHITE, 0);
 	}};
 	
 	public StarCookieRecipe(Identifier id) {
-		super(id, "", PedestalRecipeTier.SIMPLE, 3, 3, generateInputs(), GEMSTONE_DUST_INPUTS, SpectrumItems.STAR_COOKIE.getDefaultStack(), 1.0F, 20, false, false, UNLOCK_IDENTIFIER);
+		super(id, "", PedestalRecipeTier.SIMPLE, 3, 3, generateInputs(), GEMSTONE_POWDER_INPUTS, SpectrumItems.STAR_COOKIE.getDefaultStack(), 1.0F, 20, false, false, UNLOCK_IDENTIFIER);
 	}
 	
 	@Override

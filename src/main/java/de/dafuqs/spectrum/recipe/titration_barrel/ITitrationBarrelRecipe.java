@@ -62,6 +62,11 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
+	default boolean isIgnoredInRecipeBook() {
+		return true;
+	}
+	
+	@Override
 	default boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER);
 	}

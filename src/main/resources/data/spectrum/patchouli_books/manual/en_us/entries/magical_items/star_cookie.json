@@ -10,8 +10,8 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Star Candy",
-      "text": "It seems those shooting stars have more secrets than you previously thought, and weird ones at that.$(br)When you first came across this confection in the heart of a star, you had no idea what it was. Its properties were entirely different to that of any other fragment of the fallen star, and finding what exactly it was useful for turned out to be pretty difficult - that is, until for some reason you decided to lick it.$(br)It was... sweet?! And oddly refreshing, the magic made your tongue tingle, and as the heaven-sent candy dissolved in your mouth a moonstruck wind blew through you. You felt an odd lot healthier afterwards..."
+      "title": "Star Cookies",
+      "text": "It seems those (l:resources/stargazing)Shooting Stars$(/l) have more secrets than you previously thought, and weird ones at that.$(br)When you first came across this confection in the heart of a star, you had no idea what it was. Its properties were entirely different to that of any other fragment of the fallen star, and finding what exactly it was useful for turned out to be pretty difficult - that is, until for some reason you decided to lick it.$(br)It was... sweet?! And oddly refreshing, the magic made your tongue tingle, and as the heaven-sent candy dissolved in your mouth a moonstruck wind blew through you. You felt an odd lot healthier afterwards..."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:collect_enchanted_star_cookie",
+      "advancement": "spectrum:hidden/collect_enchanted_star_cookie",
       "item": "spectrum:enchanted_star_cookie",
       "text": ""
     }

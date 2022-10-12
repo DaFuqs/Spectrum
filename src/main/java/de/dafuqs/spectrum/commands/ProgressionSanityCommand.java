@@ -19,6 +19,7 @@ import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReactingRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
+import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.minecraft.advancement.Advancement;
@@ -134,14 +135,14 @@ public class ProgressionSanityCommand {
 			   To exclude those recipes in these warnings there is a boolean flag in the recipe jsons
 			 */
 			if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
-				if (pedestalRecipe.getGemstonePowderInputs().get(BuiltinGemstoneColor.BLACK) > 0) {
+				if (pedestalRecipe.getGemstonePowderInputs().getOrDefault(BuiltinGemstoneColor.BLACK, 0) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
 				}
-				if (pedestalRecipe.getGemstonePowderInputs().get(BuiltinGemstoneColor.WHITE) > 0) {
+				if (pedestalRecipe.getGemstonePowderInputs().getOrDefault(BuiltinGemstoneColor.WHITE, 0) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			} else if (pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
-				if (pedestalRecipe.getGemstonePowderInputs().get(BuiltinGemstoneColor.WHITE) > 0) {
+				if (pedestalRecipe.getGemstonePowderInputs().getOrDefault(BuiltinGemstoneColor.WHITE, 0) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
 			}
@@ -236,6 +237,13 @@ public class ProgressionSanityCommand {
 			Item outputItem = enchantmentUpgradeRecipe.getOutput().getItem();
 			if (ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
 				SpectrumCommon.logWarning("[SANITY: Enchantment Upgrade Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + enchantmentUpgradeRecipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+			}
+		}
+		
+		// Impossible to unlock titration barrel recipes
+		for (ITitrationBarrelRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
+			if (!doesAdvancementExist(advancementLoader, recipe.getRequiredAdvancementIdentifier())) {
+				SpectrumCommon.logWarning("[SANITY: Titration Barrel Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 		}
 		

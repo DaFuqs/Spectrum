@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:amaranth_bushel"
+  },
+  "crushedItemsPerPointOfDamage": 2,
+  "experience": 0.25,
+  "result": {
+    "item": "spectrum:amaranth_grains",
+    "count": 2
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.moss.break"
+}

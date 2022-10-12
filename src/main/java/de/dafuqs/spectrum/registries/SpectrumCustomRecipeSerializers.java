@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.crafting.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.ShootingStarHardeningRecipe;
+import de.dafuqs.spectrum.recipe.pedestal.dynamic.StarCookieRecipe;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.JadeWineRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.SuspiciousBrewRecipe;
@@ -24,6 +25,9 @@ public class SpectrumCustomRecipeSerializers {
 		register(ClearPotionFillableRecipe.SERIALIZER, "clear_potion_fillable");
 		register(ClearCraftingTabletRecipe.SERIALIZER, "clear_crafting_tablet");
 		register(WrapPresentRecipe.SERIALIZER, "wrap_present");
+		
+		// Pedestal
+		register(StarCookieRecipe.SERIALIZER, "pedestal_star_cookie");
 		
 		// Fusion Shrine
 		register(ShootingStarHardeningRecipe.SERIALIZER, "shooting_star_hardening");

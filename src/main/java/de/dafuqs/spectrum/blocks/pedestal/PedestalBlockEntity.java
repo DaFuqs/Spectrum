@@ -409,9 +409,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				pedestalBlockEntity.inventory.get(getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmountAfterMod);
 			}
 			
-			ItemStack recipeOutput = recipe.getOutput();
-			PlayerEntity playerEntity = PlayerOwned.getPlayerEntityIfOnline(pedestalBlockEntity.ownerUUID);
-			recipeOutput.getItem().onCraft(recipeOutput, pedestalBlockEntity.world, playerEntity);
+			ItemStack recipeOutput = recipe.craft(pedestalBlockEntity);
 			
 			// if it was a recipe to upgrade the pedestal itself
 			// => upgrade
@@ -433,9 +431,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				// Not an upgrade recipe => Add output to output slot
 				ItemStack existingOutput = inventory.get(OUTPUT_SLOT_ID);
 				if (existingOutput.isEmpty()) {
-					ItemStack resultStack = recipeOutput.copy();
-					resultStack.setCount(Math.min(existingOutput.getMaxCount(), resultAmountAfterMod));
-					inventory.set(OUTPUT_SLOT_ID, resultStack);
+					recipeOutput.setCount(Math.min(existingOutput.getMaxCount(), resultAmountAfterMod));
+					inventory.set(OUTPUT_SLOT_ID, recipeOutput);
 				} else {
 					// protection against stacks > max stack size
 					int finalAmount = Math.min(existingOutput.getMaxCount(), existingOutput.getCount() + resultAmountAfterMod);
@@ -676,9 +673,6 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 			
 			ItemStack recipeOutput = recipe.getOutput();
-			PlayerEntity playerEntity = PlayerOwned.getPlayerEntityIfOnline(this.ownerUUID);
-			recipeOutput.getItem().onCraft(recipeOutput, world, playerEntity);
-			
 			ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
 			if (existingOutput.isEmpty()) {
 				defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());

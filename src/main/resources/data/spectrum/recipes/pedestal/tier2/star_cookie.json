@@ -1,29 +1,3 @@
 {
-  "type": "spectrum:pedestal",
-  "time": 40,
-  "tier": "simple",
-  "cyan": 0,
-  "magenta": 1,
-  "yellow": 1,
-  "white": 0,
-  "black": 0,
-  "experience": 1.0,
-  "pattern": [
-    "AAA",
-    "SSS",
-    "AAA"
-  ],
-  "key": {
-    "A": {
-      "item": "spectrum:amaranth_grains"
-    },
-    "S": {
-      "item": "spectrum:stardust"
-    }
-  },
-  "result": {
-    "item": "spectrum:star_cookie",
-    "count": 4
-  },
-  "required_advancement": "spectrum:progression/unlock_star_cookie"
+  "type": "spectrum:pedestal_star_cookie"
 }

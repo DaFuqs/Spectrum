@@ -568,6 +568,11 @@
   "block.spectrum.wet_lava_sponge": "Wet Lava Sponge",
   "item.spectrum.wet_lava_sponge.tooltip": "§e⚠ Caution: Hot surface ⚠",
 
+  "item.spectrum.amaranth_grains": "Amaranth Grains",
+  "block.spectrum.amaranth": "Amaranth",
+  "block.spectrum.amaranth_bushel": "Amaranth Bushel",
+  "block.spectrum.potted_amaranth_bushel": "Potted Amaranth Bushel",
+
   "block.spectrum.amethyst_decostone": "Amethyst Decostone",
   "block.spectrum.topaz_decostone": "Topaz Decostone",
   "block.spectrum.citrine_decostone": "Citrine Decostone",
@@ -2251,7 +2256,7 @@
   "advancements.spectrum.collect_native_resource.description": "Collect a Native Resource Cluster. These are much more pure than your basic ore scraps",
   "advancements.spectrum.kill_entity_with_ink_projectile.title": "Painbrush",
   "advancements.spectrum.kill_entity_with_ink_projectile.description": "Kill a creature by Flinging Ink using your Paintbrush",
-  "advancements.spectrum.collect_all_mob_heads.title": "Innumerable trophies",
+  "advancements.spectrum.collect_all_mob_heads.title": "Innumerable Trophies",
   "advancements.spectrum.collect_all_mob_heads.description": "Collect each individual Mob Head & Skull. I really hope you have a big enough showroom",
   "advancements.spectrum.fish_in_lava.title": "Burning Desires",
   "advancements.spectrum.fish_in_lava.description": "I wonder...",
@@ -2261,8 +2266,10 @@
   "advancements.spectrum.fish_an_entity.description": "Reel in a big catch",
   "advancements.spectrum.fish_in_many_liquids.title": "I just like to fish",
   "advancements.spectrum.fish_in_many_liquids.description": "Fish in as many liquids as possible",
-  "advancements.spectrum.collect_amaranth.title": "Seed of Life",
+  "advancements.spectrum.collect_amaranth.title": "Scarlet Dreams",
   "advancements.spectrum.collect_amaranth.description": "Find Amaranth Grains",
+  "advancements.spectrum.consume_enchanted_star_cookie.title": "5 Star Menu",
+  "advancements.spectrum.consume_enchanted_star_cookie.description": "Get a hold of and eat an Enchanted Star Cookie",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

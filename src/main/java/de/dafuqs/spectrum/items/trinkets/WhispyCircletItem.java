@@ -23,8 +23,8 @@ import java.util.*;
 
 public class WhispyCircletItem extends SpectrumTrinketItem {
 	
-	private final int TRIGGER_EVERY_X_TICKS = 100;
-	private final int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
+	private final static int TRIGGER_EVERY_X_TICKS = 100;
+	private final static int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
 	
 	public WhispyCircletItem(Settings settings) {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet"));

@@ -25,7 +25,9 @@ public class StarCookieItem extends Item {
 	
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		ItemStack itemStack = super.finishUsing(stack, world, user);
-		WhispyCircletItem.removeSingleHarmfulStatusEffects(user, world);
+		if(!world.isClient) {
+			WhispyCircletItem.removeSingleHarmfulStatusEffects(user, world);
+		}
 		return itemStack;
 	}
 	

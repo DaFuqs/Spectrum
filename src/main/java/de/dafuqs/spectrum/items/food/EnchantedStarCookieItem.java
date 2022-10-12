@@ -31,8 +31,11 @@ public class EnchantedStarCookieItem extends Item {
 	}
 	
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		WhispyCircletItem.removeNegativeStatusEffects(user);
-		return stack;
+		ItemStack itemStack = super.finishUsing(stack, world, user);
+		if(!world.isClient) {
+			WhispyCircletItem.removeNegativeStatusEffects(user);
+		}
+		return itemStack;
 	}
 	
 	@Override

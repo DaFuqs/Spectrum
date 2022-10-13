@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.items.food.JadeWineItem;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.items.beverages.JadeWineItem;
 import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -21,47 +21,54 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JadeWineRecipe implements ITitrationBarrelRecipe {
+public class JadeWineRecipe extends TitrationBarrelRecipe {
 	
 	public static final RecipeSerializer<JadeWineRecipe> SERIALIZER = new SpecialRecipeSerializer<>(JadeWineRecipe::new);
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_jade_wine");
-	public static final Ingredient TAPPING_STACK = Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack());
+	
+	public static final int MIN_FERMENTATION_TIME_HOURS = 24;
+	public static final ItemStack OUTPUT_STACK = SpectrumItems.JADE_WINE.getDefaultStack();
+	public static final Ingredient TAPPING_INGREDIENT = Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack());
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)));
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADE_VINE_PETALS)));
 	}};
 	
-	public final Identifier identifier;
-	
 	public JadeWineRecipe(Identifier identifier) {
-		this.identifier = identifier;
-		registerInToastManager(SpectrumRecipeTypes.TITRATION_BARREL, this);
+		super(identifier, "", INGREDIENT_STACKS, OUTPUT_STACK, TAPPING_INGREDIENT, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.08F, List.of()), UNLOCK_IDENTIFIER);
 	}
 	
 	@Override
-	public Ingredient getTappingIngredient() {
-		return TAPPING_STACK;
+	public ItemStack getOutput() {
+		return tapWith(1, 1, false, 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.8F, 0.4F); // downfall & temperature are for plains
 	}
 	
 	@Override
 	public ItemStack tap(DefaultedList<ItemStack> content, int waterBuckets, long secondsFermented, float downfall, float temperature) {
-		int bulbCount = ITitrationBarrelRecipe.getCountInInventory(content, SpectrumItems.GERMINATED_JADE_VINE_SEEDS);
-		int petalCount = ITitrationBarrelRecipe.getCountInInventory(content, SpectrumItems.JADE_VINE_PETALS);
-		boolean sweetened = ITitrationBarrelRecipe.getCountInInventory(content, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
+		int bulbCount = InventoryHelper.getItemCountInList(content, SpectrumItems.GERMINATED_JADE_VINE_SEEDS);
+		int petalCount = InventoryHelper.getItemCountInList(content, SpectrumItems.JADE_VINE_PETALS);
+		boolean nectar = InventoryHelper.getItemCountInList(content, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
 		
-		int yield = ITitrationBarrelRecipe.getYieldBottles(waterBuckets, secondsFermented, temperature);
-		
-		double bloominess = getBloominess(bulbCount, petalCount);
-		double thickness = getThickness(bulbCount, petalCount, waterBuckets);
-		double alcPercent = getAlcPercent(secondsFermented, downfall, bloominess, thickness);
-		
-		ItemStack stack = new JadeWineItem.JadeWineBeverageProperties(secondsFermented, (int) alcPercent, (float) thickness, (float) bloominess, sweetened).getStack();
-		stack.setCount(yield);
-		
-		return stack;
+		float thickness = getThickness(bulbCount, petalCount, waterBuckets);
+		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall, temperature);
 	}
 	
-	// bloominess reduces the possibility of negative effects to trigger (better on the tounge)
+	public ItemStack tapWith(int bulbCount, int petalCount, boolean nectar, float thickness, long secondsFermented, float downfall, float temperature) {
+		if(secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
+			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
+		}
+		
+		double bloominess = getBloominess(bulbCount, petalCount);
+		double alcPercent = getAlcPercentWithBloominess(secondsFermented, downfall, bloominess, thickness);
+		if(alcPercent >= 100) {
+			return PURE_ALCOHOL_STACK;
+		} else {
+			float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
+			return new JadeWineItem.JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar).getStack();
+		}
+	}
+	
+	// bloominess reduces the possibility of negative effects to trigger (better on the tongue)
 	// but also reduces the potency of positive effects a bit
 	protected static double getBloominess(int bulbCount, int petalCount) {
 		if(bulbCount == 0) {
@@ -73,11 +80,11 @@ public class JadeWineRecipe implements ITitrationBarrelRecipe {
 	// the amount of solid to liquid
 	// adding more water will increase the amount of bottles the player can harvest from the barrel
 	// but too much water will - who would have thought - water it down
-	protected static double getThickness(int bulbCount, int petalCount, int waterCount) {
+	protected float getThickness(int bulbCount, int petalCount, int waterCount) {
 		if(waterCount == 0) {
 			return 0;
 		}
-		return (double) waterCount / (bulbCount + petalCount / 8F);
+		return waterCount / (bulbCount + petalCount / 8F);
 	}
 	
 	// the alc % determines the power of effects when drunk
@@ -85,28 +92,9 @@ public class JadeWineRecipe implements ITitrationBarrelRecipe {
 	//
 	// another detail: the more rainy the weather (downfall) the more water evaporates
 	// in contrast to alcohol, making the drink stronger / weaker in return
-	protected static double getAlcPercent(long secondsFermented, float downfall, double bloominess, double thickness) {
+	private static double getAlcPercentWithBloominess(long secondsFermented, float downfall, double bloominess, double thickness) {
 		float minecraftDaysFermented = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
 		return Support.logBase(1.08, thickness * minecraftDaysFermented * (0.5D + downfall / 2)) - bloominess;
-	}
-	
-	@Override
-	public Identifier getRequiredAdvancementIdentifier() {
-		return UNLOCK_IDENTIFIER;
-	}
-	
-	public List<IngredientStack> getIngredientStacks() {
-		return INGREDIENT_STACKS;
-	}
-	
-	@Override
-	public int getMinFermentationTimeHours() {
-		return 24;
-	}
-	
-	@Override
-	public TitrationBarrelRecipe.FermentationData getFermentationData() {
-		return new TitrationBarrelRecipe.FermentationData(1.0F, List.of());
 	}
 	
 	@Override
@@ -123,21 +111,6 @@ public class JadeWineRecipe implements ITitrationBarrelRecipe {
 		}
 		
 		return bulbsFound;
-	}
-	
-	@Override
-	public ItemStack craft(Inventory inventory) {
-		return ItemStack.EMPTY;
-	}
-	
-	@Override
-	public ItemStack getOutput() {
-		return SpectrumItems.JADE_WINE.getDefaultStack();
-	}
-	
-	@Override
-	public Identifier getId() {
-		return identifier;
 	}
 	
 	@Override

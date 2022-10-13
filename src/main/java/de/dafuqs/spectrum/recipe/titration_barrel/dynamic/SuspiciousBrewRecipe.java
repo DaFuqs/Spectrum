@@ -1,7 +1,8 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.items.beverages.InfusedBeverageItem;
+import de.dafuqs.spectrum.items.beverages.properties.StatusEffectBeverageProperties;
 import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -9,6 +10,7 @@ import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -19,30 +21,71 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-public class SuspiciousBrewRecipe implements ITitrationBarrelRecipe {
+public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
 	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SuspiciousBrewRecipe::new);
-	public static final Ingredient TAPPING_STACK = Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack());
+	public static final Ingredient TAPPING_INGREDIENT = Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack());
+	public static final int MIN_FERMENTATION_TIME_HOURS = 4;
+	public static final ItemStack OUTPUT_STACK = SpectrumItems.SUSPICIOUS_BREW.getDefaultStack();
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_suspicious_brew");
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
 	}};
 	
-	public final Identifier identifier;
-	
 	public SuspiciousBrewRecipe(Identifier identifier) {
-		this.identifier = identifier;
-		registerInToastManager(SpectrumRecipeTypes.TITRATION_BARREL, this);
+		super(identifier, "", INGREDIENT_STACKS, OUTPUT_STACK, TAPPING_INGREDIENT, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.35F, List.of()), UNLOCK_IDENTIFIER);
 	}
 	
+	@Override
+	public ItemStack getOutput() {
+		ItemStack flowerStack = Items.DANDELION.getDefaultStack();
+		flowerStack.setCount(4);
+		return tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.8F, 0.4F); // downfall & temperature are for plains
+	}
+	
+	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall, float temperature) {
+		if(secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
+			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
+		}
+		
+		float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
+		double alcPercent = getAlcPercent(thickness, downfall, ageIngameDays);
+		if(alcPercent >= 100) {
+			return PURE_ALCOHOL_STACK;
+		} else {
+			// add up all stew effects from the input stacks
+			Map<StatusEffect, Integer> stewEffects = new HashMap<>();
+			for(ItemStack stack : stacks) {
+				Optional<Pair<StatusEffect, Integer>> stewEffect = getStewEffectFrom(stack);
+				if(stewEffect.isPresent()) {
+					StatusEffect effect = stewEffect.get().getLeft();
+					int duration = stewEffect.get().getRight() * stack.getCount();
+					if(stewEffects.containsKey(effect)) {
+						stewEffects.put(effect, stewEffects.get(effect) + duration);
+					} else {
+						stewEffects.put(effect, duration);
+					}
+				}
+			}
+			
+			// all 5 % alc the potency is increased by 1, but duration is decreased
+			int potencyMod = (int) (alcPercent / 5D);
+			List<StatusEffectInstance> finalStatusEffects = new ArrayList<>();
+			for(Map.Entry<StatusEffect, Integer> entry : stewEffects.entrySet()) {
+				int duration = Math.max(80, entry.getValue() / potencyMod);
+				finalStatusEffects.add(new StatusEffectInstance(entry.getKey(), duration, potencyMod));
+			}
+			
+			return new StatusEffectBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, finalStatusEffects).getStack(OUTPUT_STACK);
+		}
+	}
+	
+	// taken from SuspiciousStewItem
 	private Optional<Pair<StatusEffect, Integer>> getStewEffectFrom(ItemStack stack) {
 		Item item = stack.getItem();
 		if (item instanceof BlockItem blockItem) {
@@ -52,46 +95,6 @@ public class SuspiciousBrewRecipe implements ITitrationBarrelRecipe {
 			}
 		}
 		return Optional.empty();
-	}
-	
-	@Override
-	public ItemStack tap(DefaultedList<ItemStack> content, int waterBuckets, long secondsFermented, float downfall, float temperature) {
-		int yield = ITitrationBarrelRecipe.getYieldBottles(waterBuckets, secondsFermented, temperature);
-		ItemStack stack = getBrew(content, waterBuckets, secondsFermented, downfall);
-		stack.setCount(yield);
-		return stack;
-	}
-	
-	@Override
-	public Ingredient getTappingIngredient() {
-		return TAPPING_STACK;
-	}
-	
-	@Override
-	public List<IngredientStack> getIngredientStacks() {
-		return INGREDIENT_STACKS;
-	}
-	
-	@Override
-	public int getMinFermentationTimeHours() {
-		return 4;
-	}
-	
-	@Override
-	public TitrationBarrelRecipe.FermentationData getFermentationData() {
-		return new TitrationBarrelRecipe.FermentationData(1.0F, List.of());
-	}
-	
-	// every real-life day the effect gets a potency of + 1, but duration get's a 25 % hit
-	protected static ItemStack getBrew(DefaultedList<ItemStack> content, int waterBuckets, long ticksFermented, float downfall) {
-		ItemStack stack = SpectrumItems.SUSPICIOUS_BREW.getDefaultStack();
-		//TODO brew effects
-		return stack;
-	}
-	
-	@Override
-	public Identifier getRequiredAdvancementIdentifier() {
-		return UNLOCK_IDENTIFIER;
 	}
 	
 	@Override
@@ -109,16 +112,6 @@ public class SuspiciousBrewRecipe implements ITitrationBarrelRecipe {
 	@Override
 	public ItemStack craft(Inventory inventory) {
 		return ItemStack.EMPTY;
-	}
-	
-	@Override
-	public ItemStack getOutput() {
-		return SpectrumItems.SUSPICIOUS_BREW.getDefaultStack();
-	}
-	
-	@Override
-	public Identifier getId() {
-		return identifier;
 	}
 	
 	@Override

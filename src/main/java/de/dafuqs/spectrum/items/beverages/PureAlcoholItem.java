@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum.items.food;
+package de.dafuqs.spectrum.items.beverages;
 
+import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
@@ -21,7 +22,7 @@ public class PureAlcoholItem extends BeverageItem {
 	
 	@Override
 	public BeverageProperties getBeverageProperties(ItemStack itemStack) {
-		return BeverageItem.BeverageProperties.getFromStack(itemStack);
+		return BeverageProperties.getFromStack(itemStack);
 	}
 	
 	@Override

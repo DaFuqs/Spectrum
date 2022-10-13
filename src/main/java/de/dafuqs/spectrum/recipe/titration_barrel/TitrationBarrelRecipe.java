@@ -3,8 +3,9 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.items.food.BeverageItem;
-import de.dafuqs.spectrum.items.food.InfusedBeverageItem;
+import de.dafuqs.spectrum.items.beverages.BeverageItem;
+import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
+import de.dafuqs.spectrum.items.beverages.properties.VariantBeverageProperties;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -12,7 +13,6 @@ import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
@@ -212,11 +212,11 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		for (ItemStack stack : content) {
 			contentCount += stack.getCount();
 		}
-		float thickness = (contentCount / SOLID_TO_WATER_RATIO) / waterBuckets;
+		float thickness = getThickness(waterBuckets, contentCount);
 		return tapWith(thickness, secondsFermented, downfall, temperature);
 	}
 	
-	public ItemStack tapWith(float thickness, long secondsFermented, float downfall, float temperature) {
+	private ItemStack tapWith(float thickness, long secondsFermented, float downfall, float temperature) {
 		if(secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
 			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
 		}
@@ -227,7 +227,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 			float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
 			double alcPercent = 0;
 			if(this.fermentationData.fermentationSpeedMod > 0) {
-				alcPercent = Support.logBase(1 + this.fermentationData.fermentationSpeedMod, ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D));
+				alcPercent = getAlcPercent(thickness, downfall, ageIngameDays);
 				alcPercent = Math.max(0, alcPercent);
 			}
 			
@@ -235,15 +235,15 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 				return PURE_ALCOHOL_STACK;
 			}
 			
-			BeverageItem.BeverageProperties properties;
+			BeverageProperties properties;
 			if(stack.getItem() instanceof BeverageItem beverageItem) {
 				properties = beverageItem.getBeverageProperties(stack);
 			} else {
 				// if it's not a set beverage (custom recipe) assume VariantBeverage to add that tag
-				properties = InfusedBeverageItem.VariantBeverageProperties.getFromStack(stack);
+				properties = VariantBeverageProperties.getFromStack(stack);
 			}
 			
-			if(properties instanceof InfusedBeverageItem.VariantBeverageProperties variantBeverageProperties) {
+			if(properties instanceof VariantBeverageProperties variantBeverageProperties) {
 				float durationDivisor = 0.5F + thickness / 2F;
 				
 				List<StatusEffectInstance> effects = new ArrayList<>();
@@ -271,6 +271,14 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		}
 		
 		return outputItemStack;
+	}
+	
+	protected double getAlcPercent(float thickness, float downfall, float ageIngameDays) {
+		return Support.logBase(1 + this.fermentationData.fermentationSpeedMod, ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D));
+	}
+	
+	protected float getThickness(int waterBuckets, int contentCount) {
+		return (contentCount / SOLID_TO_WATER_RATIO) / waterBuckets;
 	}
 	
 	@Override

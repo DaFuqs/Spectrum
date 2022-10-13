@@ -47,16 +47,6 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 		return Math.max(0.1, temperature) * minecraftDaysFromSeconds(secondsFermented) / 8;
 	}
 	
-	static int getCountInInventory(List<ItemStack> inventory, Item item) {
-		int count = 0;
-		for (ItemStack stack : inventory) {
-			if (stack.isOf(item)) {
-				count += stack.getCount();
-			}
-		}
-		return count;
-	}
-	
 	static float minecraftDaysFromSeconds(long seconds) {
 		return seconds / 1200F;
 	}

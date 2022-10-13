@@ -31,6 +31,16 @@ import java.util.Optional;
 
 public class InventoryHelper {
 	
+	public static int getItemCountInList(List<ItemStack> inventory, Item item) {
+		int count = 0;
+		for (ItemStack stack : inventory) {
+			if (stack.isOf(item)) {
+				count += stack.getCount();
+			}
+		}
+		return count;
+	}
+	
 	public static boolean removeFromInventoryWithRemainders(@NotNull PlayerEntity playerEntity, @NotNull ItemStack stackToRemove) {
 		if (playerEntity.isCreative()) {
 			return true;

@@ -1,5 +1,7 @@
-package de.dafuqs.spectrum.items.food;
+package de.dafuqs.spectrum.items.beverages;
 
+import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
+import de.dafuqs.spectrum.items.beverages.properties.StatusEffectBeverageProperties;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 
@@ -12,7 +14,7 @@ public class SuspiciousBrewItem extends BeverageItem {
 	}
 	
 	public BeverageProperties getBeverageProperties(ItemStack itemStack) {
-		return BeverageItem.BeverageProperties.getFromStack(itemStack);
+		return StatusEffectBeverageProperties.getFromStack(itemStack);
 	}
 	
 }

@@ -1,5 +1,6 @@
-package de.dafuqs.spectrum.items.food;
+package de.dafuqs.spectrum.items.beverages;
 
+import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;

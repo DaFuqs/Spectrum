@@ -59,11 +59,11 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 		}
 		
 		double bloominess = getBloominess(bulbCount, petalCount);
-		double alcPercent = getAlcPercentWithBloominess(secondsFermented, downfall, bloominess, thickness);
+		float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
+		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
 		if(alcPercent >= 100) {
 			return PURE_ALCOHOL_STACK;
 		} else {
-			float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
 			return new JadeWineItem.JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar).getStack();
 		}
 	}
@@ -92,9 +92,8 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	//
 	// another detail: the more rainy the weather (downfall) the more water evaporates
 	// in contrast to alcohol, making the drink stronger / weaker in return
-	private static double getAlcPercentWithBloominess(long secondsFermented, float downfall, double bloominess, double thickness) {
-		float minecraftDaysFermented = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
-		return Support.logBase(1.08, thickness * minecraftDaysFermented * (0.5D + downfall / 2)) - bloominess;
+	private double getAlcPercentWithBloominess(float ageIngameDays, float downfall, double bloominess, double thickness) {
+		return Support.logBase(1 + this.fermentationData.fermentationSpeedMod(), ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D)) - bloominess;
 	}
 	
 	@Override

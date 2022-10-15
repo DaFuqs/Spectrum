@@ -173,7 +173,7 @@
   "death.attack.spectrum_floatblock": "%s was smashed by a Floating Block",
   "death.attack.spectrum_shooting_star": "%s was smitten by a Shooting Star. Make a Wish!",
   "death.attack.spectrum_midnight_solution": "%s was lost in Translation",
-  "death.attack.spectrum_dike_gate": "%s did not understand that he was not invited",
+  "death.attack.spectrum_dike_gate": "%s was not invited, but understood too late",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",

@@ -12,6 +12,7 @@ import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -31,14 +32,14 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;
 	public static final ItemStack OUTPUT_STACK = SpectrumItems.JADE_WINE.getDefaultStack();
-	public static final Ingredient TAPPING_INGREDIENT = Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack());
+	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)));
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADE_VINE_PETALS)));
 	}};
 	
 	public JadeWineRecipe(Identifier identifier) {
-		super(identifier, "", INGREDIENT_STACKS, OUTPUT_STACK, TAPPING_INGREDIENT, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.08F, List.of()), UNLOCK_IDENTIFIER);
+		super(identifier, "", INGREDIENT_STACKS, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.08F, List.of()), UNLOCK_IDENTIFIER);
 	}
 	
 	@Override
@@ -122,6 +123,9 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 		
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
+			if(stack.isEmpty()) {
+				continue;
+			}
 			if(stack.isOf(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)) {
 				bulbsFound = true;
 			} else if(!stack.isOf(SpectrumItems.JADE_VINE_PETALS) && !stack.isOf(SpectrumItems.MOONSTRUCK_NECTAR)) {

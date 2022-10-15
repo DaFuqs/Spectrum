@@ -8,15 +8,13 @@
     }
   ],
   "min_fermentation_time_hours": 24,
-  "tapping_ingredient": {
-    "item": "minecraft:glass_bottle"
-  },
+  "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
     "fermentation_speed_mod": 2.0,
     "effects": [
       {
         "id": "minecraft:haste",
-		"base_duration": 1200,
+        "base_duration": 1200,
         "potency": [
           {
             "min_thickness": 0.25
@@ -33,7 +31,7 @@
       },
       {
         "id": "minecraft:saturation",
-		"base_duration": 20,
+        "base_duration": 20,
         "potency": [
           {
             "min_alc": 3,
@@ -54,7 +52,7 @@
       },
       {
         "id": "minecraft:nausea",
-		"base_duration": 600,
+        "base_duration": 600,
         "potency": [
           {
             "min_alc": 7
@@ -71,7 +69,7 @@
       },
       {
         "id": "minecraft:blindness",
-		"base_duration": 600,
+        "base_duration": 600,
         "potency": [
           {
             "min_thickness": 2

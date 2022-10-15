@@ -6,16 +6,17 @@ import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import dev.architectury.fluid.FluidStack;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 
 import java.util.List;
 
@@ -33,11 +34,11 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature);
 	
-	Ingredient getTappingIngredient();
+	Item getTappingItem();
 	
 	// the amount of bottles able to get out of a single barrel
 	static int getYieldBottles(int waterCount, long secondsFermented, float temperature) {
-		return (int) Math.ceil(BOTTLES_PER_BUCKET_OF_WATER * waterCount * (1F - getAngelsSharePercent(secondsFermented, temperature) / 100F));
+		return (int) Math.ceil(BOTTLES_PER_BUCKET_OF_WATER * (waterCount / FluidStack.bucketAmount()) * (1F - getAngelsSharePercent(secondsFermented, temperature) / 100F));
 	}
 	
 	// the amount of fluid that evaporated while fermenting

@@ -28,7 +28,7 @@ import java.util.*;
 public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
 	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SuspiciousBrewRecipe::new);
-	public static final Ingredient TAPPING_INGREDIENT = Ingredient.ofStacks(Items.GLASS_BOTTLE.getDefaultStack());
+	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final int MIN_FERMENTATION_TIME_HOURS = 4;
 	public static final ItemStack OUTPUT_STACK = SpectrumItems.SUSPICIOUS_BREW.getDefaultStack();
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_suspicious_brew");
@@ -37,7 +37,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public SuspiciousBrewRecipe(Identifier identifier) {
-		super(identifier, "", INGREDIENT_STACKS, OUTPUT_STACK, TAPPING_INGREDIENT, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.35F, List.of()), UNLOCK_IDENTIFIER);
+		super(identifier, "", INGREDIENT_STACKS, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.35F, List.of()), UNLOCK_IDENTIFIER);
 	}
 	
 	@Override
@@ -115,7 +115,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	public boolean matches(Inventory inventory, World world) {
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
-			if(!stack.isIn(ItemTags.SMALL_FLOWERS)) {
+			if(!stack.isEmpty() && !stack.isIn(ItemTags.SMALL_FLOWERS)) {
 				return false;
 			}
 		}

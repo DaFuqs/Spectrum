@@ -6,6 +6,7 @@
       "count": 4
     }
   ],
+  "tapping_item": "minecraft:glass_bottle",
   "min_fermentation_time_hours": 4,
   "fermentation_data": {
     "fermentation_speed_mod": 1.0

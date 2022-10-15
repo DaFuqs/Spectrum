@@ -8,10 +8,8 @@
     }
   ],
   "min_fermentation_time_hours": 12,
-  "tapping_ingredient": {
-    "item": "minecraft:glass_bottle"
-  },
-"fermentation_data": {
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
     "fermentation_speed_mod": 1,
     "effects": [
       {
@@ -68,12 +66,12 @@
           }
         ]
       },
-	  {
-	    "id": "minecraft:glowing"
-	  },
+      {
+        "id": "minecraft:glowing"
+      },
       {
         "id": "minecraft:nausea",
-		"base_duration": 1800,
+        "base_duration": 1800,
         "potency": [
           {
             "min_alc": 6

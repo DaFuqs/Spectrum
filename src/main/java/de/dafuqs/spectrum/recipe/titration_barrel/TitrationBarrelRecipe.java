@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.items.beverages.BeverageItem;
@@ -14,6 +15,7 @@ import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
@@ -41,7 +43,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	
 	protected final List<IngredientStack> inputStacks;
 	protected final ItemStack outputItemStack;
-	protected final Ingredient tappingIngredient;
+	protected final Item tappingItem;
 	
 	protected final int minFermentationTimeHours;
 	protected final FermentationData fermentationData;
@@ -141,14 +143,14 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		}
 	}
 	
-	public TitrationBarrelRecipe(Identifier id, String group, List<IngredientStack> inputStacks, ItemStack outputItemStack, Ingredient tappingIngredient, int minFermentationTimeHours, FermentationData fermentationData, Identifier requiredAdvancementIdentifier) {
+	public TitrationBarrelRecipe(Identifier id, String group, List<IngredientStack> inputStacks, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData, Identifier requiredAdvancementIdentifier) {
 		this.id = id;
 		this.group = group;
 		
 		this.inputStacks = inputStacks;
 		this.minFermentationTimeHours = minFermentationTimeHours;
 		this.outputItemStack = outputItemStack;
-		this.tappingIngredient = tappingIngredient;
+		this.tappingItem = tappingItem;
 		this.fermentationData = fermentationData;
 		
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
@@ -182,8 +184,8 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		return this.inputStacks;
 	}
 	
-	public Ingredient getTappingIngredient() {
-		return tappingIngredient;
+	public Item getTappingItem() {
+		return tappingItem;
 	}
 	
 	@Override
@@ -209,11 +211,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature) {
-		int contentCount = 0;
-		for(int i = 0; i < inventory.size(); i++) {
-			ItemStack stack = inventory.getStack(i);
-			contentCount += stack.getCount();
-		}
+		int contentCount = InventoryHelper.countItemsInInventory(inventory);
 		float thickness = getThickness(waterBuckets, contentCount);
 		return tapWith(thickness, secondsFermented, downfall, temperature);
 	}

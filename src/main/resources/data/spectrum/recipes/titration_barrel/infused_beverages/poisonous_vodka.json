@@ -12,9 +12,7 @@
     }
   ],
   "min_fermentation_time_hours": 48,
-  "tapping_ingredient": {
-    "item": "minecraft:glass_bottle"
-  },
+  "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
     "fermentation_speed_mod": 0.1,
     "effects": [
@@ -93,7 +91,7 @@
       },
       {
         "id": "minecraft:fire_resistance",
-		"base_duration": 1600,
+        "base_duration": 1600,
         "potency": [
           {
             "min_thickness": 1.5
@@ -102,40 +100,40 @@
       },
       {
         "id": "minecraft:poison",
-		"base_duration": 1600,
+        "base_duration": 1600,
         "potency": [
           {
             "potency": 1
           },
           {
             "min_alc": 40,
-			"potency": 2
+            "potency": 2
           },
           {
             "min_alc": 50,
-			"potency": 3
+            "potency": 3
           },
           {
             "min_alc": 60,
-			"potency": 4
+            "potency": 4
           },
           {
             "min_alc": 70,
-			"potency": 5
+            "potency": 5
           },
           {
             "min_alc": 80,
-			"potency": 6
+            "potency": 6
           },
           {
             "min_alc": 90,
-			"potency": 7
+            "potency": 7
           }
         ]
       },
       {
         "id": "minecraft:nausea",
-		"base_duration": 1600,
+        "base_duration": 1600,
         "potency": [
           {
             "min_thickness": 0.75
@@ -143,13 +141,13 @@
           {
             "min_alc": 65,
             "min_thickness": 0.75,
-			"potency": 1
+            "potency": 1
           }
         ]
       },
       {
         "id": "minecraft:blindness",
-		"base_duration": 1600,
+        "base_duration": 1600,
         "potency": [
           {
             "min_thickness": 3.5

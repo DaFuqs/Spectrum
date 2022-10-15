@@ -13,7 +13,10 @@
   "parent": "spectrum:collect_pigment",
   "criteria": {
     "tapped_titration_barrel": {
-      "trigger": "spectrum:titration_barrel_tapping"
+      "trigger": "spectrum:titration_barrel_tapping",
+      "ingredient_count": {
+        "min": 1
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

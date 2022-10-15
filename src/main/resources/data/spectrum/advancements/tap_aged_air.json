@@ -16,10 +16,8 @@
     "tapped_titration_barrel": {
       "trigger": "spectrum:titration_barrel_tapping",
       "conditions": {
-        "item": {
-          "items": [
-
-          ]
+        "ingredient_count": {
+          "max": 0
         },
         "age_ingame_days": {
           "min": 64
@@ -29,7 +27,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/tap_titration_barrel"
+        "advancement_identifier": "spectrum:collect_pigment"
       }
     }
   }

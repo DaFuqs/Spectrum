@@ -16,16 +16,18 @@
     "tapped_fermentation_barrel": {
       "trigger": "spectrum:titration_barrel_tapping",
       "conditions": {
-        "item": {
-          "items": [
-            "spectrum:pure_alcohol"
-          ]
-        }
+        "items": [
+          {
+            "items": [
+              "spectrum:pure_alcohol"
+            ]
+          }
+        ]
       }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/tap_titration_barrel" }
+      "conditions": { "advancement_identifier": "spectrum:tap_titration_barrel" }
     }
   }
 }

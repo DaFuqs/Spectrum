@@ -2,13 +2,13 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
@@ -31,7 +31,7 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	double BOTTLES_PER_BUCKET_OF_WATER = 3D;
 	
-	ItemStack tap(DefaultedList<ItemStack> content, int waterBuckets, long secondsFermented, float downfall, float temperature);
+	ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature);
 	
 	Ingredient getTappingIngredient();
 	
@@ -44,11 +44,7 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	// the higher the temperature in the biome is, the more evaporates
 	// making colder biomes more desirable
 	static double getAngelsSharePercent(long secondsFermented, float temperature) {
-		return Math.max(0.1, temperature) * minecraftDaysFromSeconds(secondsFermented) / 8;
-	}
-	
-	static float minecraftDaysFromSeconds(long seconds) {
-		return seconds / 1200F;
+		return Math.max(0.1, temperature) * TimeHelper.minecraftDaysFromSeconds(secondsFermented) / 8;
 	}
 	
 	@Override

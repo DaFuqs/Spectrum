@@ -3,11 +3,14 @@ package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.items.beverages.JadeWineItem;
-import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.id.incubus_core.recipe.IngredientStack;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -44,10 +47,10 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	}
 	
 	@Override
-	public ItemStack tap(DefaultedList<ItemStack> content, int waterBuckets, long secondsFermented, float downfall, float temperature) {
-		int bulbCount = InventoryHelper.getItemCountInList(content, SpectrumItems.GERMINATED_JADE_VINE_SEEDS);
-		int petalCount = InventoryHelper.getItemCountInList(content, SpectrumItems.JADE_VINE_PETALS);
-		boolean nectar = InventoryHelper.getItemCountInList(content, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
+	public ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature) {
+		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GERMINATED_JADE_VINE_SEEDS);
+		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADE_VINE_PETALS);
+		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
 		
 		float thickness = getThickness(bulbCount, petalCount, waterBuckets);
 		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall, temperature);
@@ -59,12 +62,29 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 		}
 		
 		double bloominess = getBloominess(bulbCount, petalCount);
-		float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
+		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
 		if(alcPercent >= 100) {
 			return PURE_ALCOHOL_STACK;
 		} else {
-			return new JadeWineItem.JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar).getStack();
+			List<StatusEffectInstance> effects = new ArrayList<>();
+			
+			int effectDuration = 1500;
+			if(alcPercent >= 80) { effects.add(new StatusEffectInstance(StatusEffects.RESISTANCE, effectDuration)); effectDuration *= 2; }
+			if(alcPercent >= 60) { effects.add(new StatusEffectInstance(StatusEffects.HASTE, effectDuration)); effectDuration *= 2; }
+			if(alcPercent >= 40) { effects.add(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, effectDuration)); effectDuration *= 2; }
+			if(alcPercent >= 20) { effects.add(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, effectDuration)); effectDuration *= 2; }
+			if(nectar) { effects.add(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, effectDuration)); }
+			
+			int nectarMod = nectar ? 3 : 1;
+			effectDuration = 1500;
+			int alcAfterBloominess = (int) (alcPercent / (nectarMod + bloominess ));
+			if(alcAfterBloominess >= 40) { effects.add(new StatusEffectInstance(StatusEffects.BLINDNESS, effectDuration)); effectDuration *= 2; }
+			if(alcAfterBloominess >= 30) { effects.add(new StatusEffectInstance(StatusEffects.POISON, effectDuration)); effectDuration *= 2; }
+			if(alcAfterBloominess >= 20) { effects.add(new StatusEffectInstance(StatusEffects.NAUSEA, effectDuration)); effectDuration *= 2; }
+			if(alcAfterBloominess >= 10) { effects.add(new StatusEffectInstance(StatusEffects.WEAKNESS, effectDuration)); }
+			
+			return new JadeWineItem.JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack();
 		}
 	}
 	

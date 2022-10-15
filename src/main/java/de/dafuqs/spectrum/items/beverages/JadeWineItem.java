@@ -1,13 +1,17 @@
 package de.dafuqs.spectrum.items.beverages;
 
 import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
+import de.dafuqs.spectrum.items.beverages.properties.StatusEffectBeverageProperties;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -19,17 +23,24 @@ public class JadeWineItem extends BeverageItem {
 		super(settings);
 	}
 	
+	@Override
+	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+		JadeWineBeverageProperties properties = JadeWineBeverageProperties.getFromStack(stack);
+		
+		return super.finishUsing(stack, world, user);
+	}
+	
 	public BeverageProperties getBeverageProperties(ItemStack itemStack) {
 		return JadeWineBeverageProperties.getFromStack(itemStack);
 	}
 	
-	public static class JadeWineBeverageProperties extends BeverageProperties {
+	public static class JadeWineBeverageProperties extends StatusEffectBeverageProperties {
 		
 		public final float bloominess;
 		public final boolean sweetened;
 		
-		public JadeWineBeverageProperties(long ageDays, int alcPercent, float thickness, float bloominess, boolean sweetened) {
-			super(ageDays, alcPercent, thickness);
+		public JadeWineBeverageProperties(long ageDays, int alcPercent, float thickness, float bloominess, boolean sweetened, List<StatusEffectInstance> statusEffects) {
+			super(ageDays, alcPercent, thickness, statusEffects);
 			this.bloominess = bloominess;
 			this.sweetened = sweetened;
 		}
@@ -40,7 +51,7 @@ public class JadeWineItem extends BeverageItem {
 			this.sweetened = sweetened;
 		}
 		
-		public static BeverageProperties getFromStack(ItemStack itemStack) {
+		public static JadeWineBeverageProperties getFromStack(ItemStack itemStack) {
 			float bloominess = 0;
 			boolean sweetened = false;
 			

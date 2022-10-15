@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.items.beverages.InfusedBeverageItem;
+import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.items.beverages.properties.StatusEffectBeverageProperties;
-import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
@@ -48,12 +47,27 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		return tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.8F, 0.4F); // downfall & temperature are for plains
 	}
 	
+	@Override
+	public ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature) {
+		List<ItemStack> stacks = new ArrayList<>();
+		int itemCount = 0;
+		for(int i = 0; i < inventory.size(); i++) {
+			ItemStack stack = inventory.getStack(i);
+			if(!stack.isEmpty()) {
+				stacks.add(stack);
+				itemCount += stack.getCount();
+			}
+		}
+		float thickness = getThickness(waterBuckets, itemCount);
+		return tapWith(stacks, thickness, secondsFermented, downfall, temperature);
+	}
+	
 	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall, float temperature) {
 		if(secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
 			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
 		}
 		
-		float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
+		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = getAlcPercent(thickness, downfall, ageIngameDays);
 		if(alcPercent >= 100) {
 			return PURE_ALCOHOL_STACK;

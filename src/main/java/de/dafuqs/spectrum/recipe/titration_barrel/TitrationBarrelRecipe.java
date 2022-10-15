@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.items.beverages.BeverageItem;
 import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
 import de.dafuqs.spectrum.items.beverages.properties.VariantBeverageProperties;
@@ -207,9 +208,10 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	}
 	
 	@Override
-	public ItemStack tap(DefaultedList<ItemStack> content, int waterBuckets, long secondsFermented, float downfall, float temperature) {
+	public ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature) {
 		int contentCount = 0;
-		for (ItemStack stack : content) {
+		for(int i = 0; i < inventory.size(); i++) {
+			ItemStack stack = inventory.getStack(i);
 			contentCount += stack.getCount();
 		}
 		float thickness = getThickness(waterBuckets, contentCount);
@@ -224,7 +226,7 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		ItemStack stack = this.outputItemStack.copy();
 		
 		if(this.fermentationData != null) {
-			float ageIngameDays = ITitrationBarrelRecipe.minecraftDaysFromSeconds(secondsFermented);
+			float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 			double alcPercent = 0;
 			if(this.fermentationData.fermentationSpeedMod > 0) {
 				alcPercent = getAlcPercent(thickness, downfall, ageIngameDays);

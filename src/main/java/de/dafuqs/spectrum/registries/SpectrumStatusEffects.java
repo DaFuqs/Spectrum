@@ -25,9 +25,9 @@ public class SpectrumStatusEffects {
 	 */
 	public static StatusEffect NOURISHING;
 	/**
-	 * Like Saturation, but not OP
+	 * Rerolls loot table entry counts based on chance (like with fortune/looting) and takes the best one
 	 */
-	public static StatusEffect ANOTHER_DRAW;
+	public static StatusEffect ANOTHER_ROLL;
 	/**
 	 * Ouch.
 	 */
@@ -56,7 +56,7 @@ public class SpectrumStatusEffects {
 	public static void register() {
 		IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5));
 		NOURISHING = registerStatusEffect("nourishing", new NourishingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2324f8));
-		ANOTHER_DRAW = registerStatusEffect("another_draw", new AnotherDrawStatusEffect(StatusEffectCategory.BENEFICIAL, 0xa1ce00));
+		ANOTHER_ROLL = registerStatusEffect("another_roll", new AnotherDrawStatusEffect(StatusEffectCategory.BENEFICIAL, 0xa1ce00));
 		//MILLENIA_DISEASE = registerStatusEffect("millenia_disease", new MilleniaDiseaseStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222).addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, MilleniaDiseaseStatusEffect.ATTRIBUTE_UUID_STRING, -0.05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 		
 		UNCURABLE = getReference("uncurable");

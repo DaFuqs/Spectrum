@@ -1,0 +1,21 @@
+{
+  "name": "Lucky Roll",
+  "advancement": "spectrum:progression/unlock_lucky_roll",
+  "icon": "spectrum:lucky_roll",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:lucky_roll": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Are you going to become a pastry chef after all, in addition to your main job as an artist? These don't even look that bad (and surprisingly, they taste good too).$(br)Composed of amaranth, sugar, milk, and a four-leaf clover, it has a very special effect when eaten: you could notice that you had a little more yield when handling tools with Fortune, Looting and other random-based things."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/lucky_roll",
+      "text": "$(italic)Lucky Roll, get it???"
+    }
+  ]
+}

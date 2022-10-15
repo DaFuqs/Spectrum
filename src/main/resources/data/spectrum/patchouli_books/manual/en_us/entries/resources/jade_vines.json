@@ -39,6 +39,13 @@
       "text": "When you accidentally put one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with a new Bulb, but also this gel-like jelly.$(br)$(italic)Unexpectedly tasty$()."
     },
     {
+      "type": "spectrum:cinderhearth_smelting",
+      "title": "Jaramel",
+      "item": "spectrum:jaramel",
+      "advancement": "spectrum:cinderhearth/jaramel",
+      "text": "If the Jade Jelly is heated blazingly fast and then cooled down again, the result is a very viscous but sugar-sweet mass.$(br)$(italic)Fancy a sugar rush?"
+    },
+    {
       "type": "patchouli:spotlight",
       "title": "Petals",
       "item": "spectrum:jade_vine_petals",

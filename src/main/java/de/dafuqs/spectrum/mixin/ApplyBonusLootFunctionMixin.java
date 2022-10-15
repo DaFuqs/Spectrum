@@ -31,7 +31,7 @@ public class ApplyBonusLootFunctionMixin {
 		if (itemStack != null && entity instanceof LivingEntity livingEntity) {
 			int enchantmentLevel = EnchantmentHelper.getLevel(this.enchantment, itemStack);
 			if(enchantmentLevel > 0) {
-				StatusEffectInstance effect = livingEntity.getStatusEffect(SpectrumStatusEffects.ANOTHER_DRAW);
+				StatusEffectInstance effect = livingEntity.getStatusEffect(SpectrumStatusEffects.ANOTHER_ROLL);
 				if(effect != null) {
 					int rollCount = effect.getAmplifier() + 1;
 					int highestRoll = oldValue;

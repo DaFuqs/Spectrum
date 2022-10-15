@@ -14,6 +14,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/tools/lagoon_rod",
       "text": "$(italic)I wonder what you can bring to the surface?"
     }

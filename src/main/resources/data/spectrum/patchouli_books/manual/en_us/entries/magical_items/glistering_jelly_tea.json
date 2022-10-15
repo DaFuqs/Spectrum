@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Jade Vine is known for it's regenerative properties, as well as Glistering Melons.$(br)As it happens, mixed together unfolds exquisitely harmonious, sweet taste."
+      "text": "The Jade Vine is known for it's regenerative properties, as well as Glistering Melons.As it happens, mixed together unfolds exquisitely harmonious, sweet taste.$(br2)Temporarily grants you a small health boost."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

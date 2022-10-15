@@ -31,14 +31,14 @@
       "advancement": "spectrum:milestones/confirmed_drinking_age",
       "title": "Beer",
       "recipe": "spectrum:titration_barrel/infused_beverages/beer",
-      "text": ""
+      "text": "An all time favorite. Additionally to Haste it can also grant a bit of Saturation, depending on the duration it fermented. Just... don't brew it too long or it will shift and taste awful."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "advancement": "spectrum:milestones/confirmed_drinking_age",
       "title": "Mead",
-      "recipe1": "spectrum:titration_barrel/infused_beverages/mead",
-      "text": ""
+      "recipe": "spectrum:titration_barrel/infused_beverages/mead",
+      "text": "The large amount of sugar in honey is perfect for fermentation. The result is a strong, although still sweet drink."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -53,7 +53,7 @@
       "title": "Golden Ciders",
       "recipe": "spectrum:titration_barrel/infused_beverages/golden_apple_cider",
       "recipe2": "spectrum:titration_barrel/infused_beverages/enchanted_apple_cider",
-      "text": "Way more sweet and potent than their common counterpart. While these take longer to ferment, they won't go bad over time. You are sure they will taste glorious."
+      "text": "Way more potent than their common counterpart. Won't go bad over time and taste glorious for sure."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

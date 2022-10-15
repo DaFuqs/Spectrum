@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Since the Jade Vines are notorious for it's restorative properties, no wonder these effects translate perfectly when distilled and fermented.$(br)And in contrast to the overpowering bitterness of the bulbs themselves, fermenting them with a good share of petals brings out a much more sweet and slightly sour taste instead, complimented with earthy undertones - almost resembling wine, but in trademark jade color."
+      "text": "Since the Jade Vines are notorious for restorative properties, no wonder these translate perfectly when fermented.$(br)In contrast to the slight bitterness of the bulbs, adding a good share of petals brings out a more bloomy, sweet and slightly sour taste instead, complimented with earthy undertones - almost resembling wine, in trademark jade color."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Titration Recipe",
       "recipe": "spectrum:titration_barrel/special/jade_wine",
-      "text": "The longer the fermentation goes on, the stronger the taste gets, albeit you will have to pay a small Angel's Share"
+      "text": "1 Bulb, 3 Petals and 1 Bucket of Water feel like a good starting point.$(br2)The longer the fermentation goes on, the stronger the taste gets, albeit you will have to pay the small Angel's Share"
     }
   ]
 }

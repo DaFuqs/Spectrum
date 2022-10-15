@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. A little $(l:resources/sparklestone)Shimmerstone$(/l) allows you to explode the package in a shower of particles.$(br2)Select it and click with on other items to add them to the Present. Seal it in a Crafting Grid using one or more $(l:general/pigment)Pigments$() for the particle shower."
+      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. A little $(l:resources/sparklestone)Shimmerstone$(/l) allows you to explode the package in a shower of particles.$(br)Select it and click with on other items to add them to the Present. Seal it in a Crafting Grid using one or more $(l:general/pigment)Pigments$() for the particle shower."
     },
     {
       "type": "spectrum:pedestal_crafting",

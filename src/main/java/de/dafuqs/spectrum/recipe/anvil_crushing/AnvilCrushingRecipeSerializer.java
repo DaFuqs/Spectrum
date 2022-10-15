@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.anvil_crushing;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -37,7 +38,13 @@ public class AnvilCrushingRecipeSerializer implements RecipeSerializer<AnvilCrus
 		String soundEventString = JsonHelper.getString(jsonObject, "soundEventIdentifier");
 		Identifier soundEventIdentifier = new Identifier(soundEventString);
 		
-		return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier);
+		Identifier requiredAdvancementIdentifier = null;
+		if(JsonHelper.hasString(jsonObject, "required_advancement")) {
+			String requiredAdvancementString = JsonHelper.getString(jsonObject, "required_advancement");
+			requiredAdvancementIdentifier = new Identifier(requiredAdvancementString);
+		}
+		
+		return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier, requiredAdvancementIdentifier);
 	}
 	
 	@Override
@@ -49,6 +56,7 @@ public class AnvilCrushingRecipeSerializer implements RecipeSerializer<AnvilCrus
 		packetByteBuf.writeIdentifier(anvilCrushingRecipe.particleEffect);
 		packetByteBuf.writeInt(anvilCrushingRecipe.particleCount);
 		packetByteBuf.writeIdentifier(anvilCrushingRecipe.soundEvent);
+		GatedRecipe.writeNullableIdentifier(packetByteBuf, anvilCrushingRecipe.requiredAdvancementIdentifier);
 	}
 	
 	@Override
@@ -60,12 +68,13 @@ public class AnvilCrushingRecipeSerializer implements RecipeSerializer<AnvilCrus
 		Identifier particleEffectIdentifier = packetByteBuf.readIdentifier();
 		int particleCount = packetByteBuf.readInt();
 		Identifier soundEventIdentifier = packetByteBuf.readIdentifier();
-		return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier);
+		Identifier requiredAdvancementIdentifier = GatedRecipe.readNullableIdentifier(packetByteBuf);
+		return this.recipeFactory.create(identifier, ingredient, outputItemStack, crushedItemsPerPointOfDamage, experience, particleEffectIdentifier, particleCount, soundEventIdentifier, requiredAdvancementIdentifier);
 	}
 	
 	
 	public interface RecipeFactory<AnvilCrushingRecipe> {
-		AnvilCrushingRecipe create(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier);
+		AnvilCrushingRecipe create(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier, Identifier requiredAdvancementIdentifier);
 	}
 	
 }

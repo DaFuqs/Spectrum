@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -94,13 +95,11 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 										}
 									}
 								} else {
-									ItemStack leftoverStack = InventoryHelper.smartAddToInventory(handStack.copy(), barrelEntity.getContent(), null);
-									if (leftoverStack.isEmpty()) {
-										player.setStackInHand(hand, ItemStack.EMPTY);
+									if(InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, barrelEntity.getContent(), TitrationBarrelBlockEntity.MAX_ITEM_COUNT)) {
 										world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-									}
-									if(barrelState == BarrelState.EMPTY) {
-										world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.FILLED));
+										if(barrelState == BarrelState.EMPTY) {
+											world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.FILLED));
+										}
 									}
 								}
 							}
@@ -110,8 +109,12 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 						// player is able to query the days the barrel already ferments
 						// or open it with a shift-click
 						if(player.isSneaking()) {
-							tapBarrel(world, pos, state, barrelEntity);
+							unsealBarrel(world, pos, state, barrelEntity);
 						} else {
+							if(player.isCreative() && player.getMainHandStack().isOf(SpectrumItems.PAINTBRUSH)) {
+								player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.debug_added_day"), false);
+								barrelEntity.addDayOfSealTime();
+							}
 							player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.days_of_sealing_before_opened", barrelEntity.getSealMinecraftDays()), false);
 						}
 					}
@@ -120,7 +123,10 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 						// reverting it to the empty state again
 						ItemStack handStack = player.getStackInHand(hand);
 						if(handStack.isOf(Items.GLASS_BOTTLE)) {
-							harvest(world, pos, state, barrelEntity, player);
+							ItemStack harvestedStack = barrelEntity.tryHarvest(world, pos, state, player.getMainHandStack(), player);
+							if(!harvestedStack.isEmpty()) {
+								Support.givePlayer(player, harvestedStack);
+							}
 						} else {
 							player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", barrelEntity.getSealMinecraftDays(), barrelEntity.getExtractableBottleCount(world, pos)), false);
 						}
@@ -148,20 +154,9 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 		barrelEntity.seal();
 	}
 	
-	private void tapBarrel(World world, BlockPos pos, BlockState state, TitrationBarrelBlockEntity barrelEntity) {
+	private void unsealBarrel(World world, BlockPos pos, BlockState state, TitrationBarrelBlockEntity barrelEntity) {
 		world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.TAPPED));
 		barrelEntity.tap();
-	}
-	
-	private void harvest(World world, BlockPos pos, BlockState state, TitrationBarrelBlockEntity barrelEntity, PlayerEntity player) {
-		ItemStack harvestedStack = SpectrumItems.PURE_ALCOHOL.getDefaultStack(); // TODO
-		int daysSealed = barrelEntity.getSealMinecraftDays();
-		if(barrelEntity.isEmpty(world, pos)) {
-			world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.EMPTY));
-			barrelEntity.reset();
-		}
-		
-		SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed);
 	}
 	
 	@Override

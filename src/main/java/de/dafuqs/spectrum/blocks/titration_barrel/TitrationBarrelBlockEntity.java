@@ -1,23 +1,35 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
+import de.dafuqs.spectrum.helpers.TimeHelper;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import dev.architectury.fluid.FluidStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Date;
+import java.util.Optional;
+
+import static de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlock.BARREL_STATE;
 
 public class TitrationBarrelBlockEntity extends BlockEntity {
 	
 	protected static final int CONTENT_SIZE = 5;
+	public static final int MAX_ITEM_COUNT = 64;
 	protected SimpleInventory content = new SimpleInventory(CONTENT_SIZE);
 	
 	protected static final long MAX_WATER = FluidStack.bucketAmount() * 10;
@@ -123,4 +135,34 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		return 0;
 	}
 	
+	public void addDayOfSealTime() {
+		this.sealTime -= TimeHelper.EPOCH_DAY_MILLIS;
+		this.markDirty();
+	}
+	
+	public ItemStack tryHarvest(World world, BlockPos blockPos, BlockState blockState, ItemStack harvestingStack, @Nullable PlayerEntity player) {
+		ItemStack harvestedStack = ItemStack.EMPTY;
+		
+		//TODO: harvest
+		Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, this.content, world);
+		if(recipe.isPresent()) {
+			long secondsFermented = this.tapTime - this.sealTime / 1000;
+			Biome biome = world.getBiome(blockPos).value();
+			harvestedStack = recipe.get().tap(this.content, (int) (waterAmount / FluidStack.bucketAmount()), secondsFermented, biome.getDownfall(), biome.getTemperature());
+		}
+		
+		if(player != null) {
+			int daysSealed = getSealMinecraftDays();
+			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed);
+		}
+		
+		this.extractedBottles += 1;
+		if(isEmpty(world, pos)) {
+			world.setBlockState(pos, blockState.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
+			reset();
+		}
+		this.markDirty();
+		
+		return harvestedStack;
+	}
 }

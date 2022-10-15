@@ -18,7 +18,7 @@ import java.util.List;
 
 public class TitrationBarrelTappingCriterion extends AbstractCriterion<TitrationBarrelTappingCriterion.Conditions> {
 	
-	static final Identifier ID = SpectrumCommon.locate("tapped_titration_barrel");
+	static final Identifier ID = SpectrumCommon.locate("titration_barrel_tapping");
 	
 	public static TitrationBarrelTappingCriterion.Conditions create(ItemPredicate[] item, NumberRange.IntRange ingameDaysAgeRange) {
 		return new TitrationBarrelTappingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, ingameDaysAgeRange);

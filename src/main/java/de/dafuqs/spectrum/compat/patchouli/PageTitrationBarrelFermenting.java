@@ -25,7 +25,8 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/titration_barrel.png");
 	private static final IngredientStack WATER_BUCKET = IngredientStack.of(Ingredient.ofStacks(Items.WATER_BUCKET.getDefaultStack()));
 	
-	private static BookTextRenderer textRenderer;
+	private transient BookTextRenderer textRenderer;
+	private transient BookTextRenderer textRenderer2;
 	
 	public PageTitrationBarrelFermenting() {
 		super(SpectrumRecipeTypes.TITRATION_BARREL);
@@ -44,7 +45,7 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 	protected void drawRecipe(MatrixStack ms, @NotNull ITitrationBarrelRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
-		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);
+		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 100, 32, 128, 256);
 		
 		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
@@ -68,7 +69,7 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		}
 		
 		// the titration barrel / tapping ingredient
-		if(recipe.getTappingItem() != Items.AIR) {
+		if(recipe.getTappingItem() == Items.AIR) {
 			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.createIcon());
 		} else {
 			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.getTappingItem().getDefaultStack());
@@ -78,11 +79,19 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		parent.renderItemStack(ms, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput());
 		
 		// the duration
-		if(textRenderer == null) {
-			MutableText text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());
-			textRenderer = new BookTextRenderer(parent, text, 0, recipeY + 42);
+		if(second) {
+			if(textRenderer2 == null) {
+				MutableText text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());
+				textRenderer2 = new BookTextRenderer(parent, text, 0, recipeY + 40);
+			}
+			textRenderer2.render(ms, mouseX, mouseY);
+		} else {
+			if(textRenderer == null) {
+				MutableText text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());
+				textRenderer = new BookTextRenderer(parent, text, 0, recipeY + 40);
+			}
+			textRenderer.render(ms, mouseX, mouseY);
 		}
-		textRenderer.render(ms, mouseX, mouseY);
 	}
 	
 	@Override

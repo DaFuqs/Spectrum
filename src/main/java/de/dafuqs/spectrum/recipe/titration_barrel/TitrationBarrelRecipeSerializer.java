@@ -35,7 +35,7 @@ public class TitrationBarrelRecipeSerializer implements RecipeSerializer<Titrati
 		int minTimeDays = JsonHelper.getInt(jsonObject, "min_fermentation_time_hours", 24);
 		
 		Item tappingItem = Items.AIR;
-		if(JsonHelper.hasJsonObject(jsonObject, "tapping_item")) {
+		if(JsonHelper.hasString(jsonObject, "tapping_item")) {
 			tappingItem = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "tapping_item")));
 		}
 		

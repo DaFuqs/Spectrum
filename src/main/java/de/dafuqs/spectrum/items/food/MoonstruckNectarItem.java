@@ -16,8 +16,6 @@ import java.util.List;
 
 public class MoonstruckNectarItem extends Item {
 	
-	public static final FoodComponent FOOD_COMPONENT = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 2), 1.0F).build();
-	
 	public MoonstruckNectarItem(Settings settings) {
 		super(settings);
 	}

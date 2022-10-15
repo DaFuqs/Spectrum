@@ -15,10 +15,6 @@ import java.util.List;
 
 public class StarCookieItem extends Item {
 	
-	public static final FoodComponent FOOD_COMPONENT = new FoodComponent.Builder()
-			.hunger(3).saturationModifier(0.25F)
-			.alwaysEdible().snack().build();
-	
 	public StarCookieItem(Settings settings) {
 		super(settings);
 	}

@@ -7,8 +7,6 @@ import net.minecraft.item.ItemStack;
 
 public class InfusedBeverageItem extends BeverageItem {
 	
-	public static final FoodComponent FOOD_COMPONENT = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).snack().build();
-	
 	public InfusedBeverageItem(Settings settings) {
 		super(settings);
 	}

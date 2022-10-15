@@ -15,8 +15,6 @@ import java.util.List;
 
 public class JadeJellyItem extends Item {
 	
-	public static final FoodComponent FOOD_COMPONENT = new FoodComponent.Builder().hunger(4).saturationModifier(0.75F).statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 2), 0.2F).snack().build();
-	
 	public JadeJellyItem(Settings settings) {
 		super(settings);
 	}

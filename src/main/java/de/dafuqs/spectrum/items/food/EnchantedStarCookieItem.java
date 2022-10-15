@@ -16,12 +16,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class EnchantedStarCookieItem extends Item {
-	
-	public static final FoodComponent FOOD_COMPONENT = new FoodComponent.Builder()
-			.hunger(20).saturationModifier(0.25F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 20), 1.0F)
-			.alwaysEdible().snack().build();
-	
+
 	public EnchantedStarCookieItem(Settings settings) {
 		super(settings);
 	}

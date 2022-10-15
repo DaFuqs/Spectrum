@@ -28,8 +28,6 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
@@ -266,26 +264,22 @@ public class SpectrumItems {
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
 	
 	// Food & drinks
-	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(MoonstruckNectarItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(JadeJellyItem.FOOD_COMPONENT));
-	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item KIMCHI = new KimchiItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(KimchiItem.FOOD_COMPONENT));
-	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(InfusedBeverageItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item REPRISE = new RepriseItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(InfusedBeverageItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SuspiciousBrewItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item JADE_WINE = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(JadeWineItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item PURE_ALCOHOL = new PureAlcoholItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(PureAlcoholItem.FOOD_COMPONENT).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(SpectrumFoodComponents.JADE_JELLY));
+	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(SpectrumFoodComponents.RESTORATION_TEA).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item KIMCHI = new KimchiItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.KIMCHI));
+	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.INFUSED_BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item REPRISE = new RepriseItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.INFUSED_BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.SUSPICIOUS_BREW).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item JADE_WINE = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(SpectrumFoodComponents.JADE_WINE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item PURE_ALCOHOL = new PureAlcoholItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	
-	public static final Item STAR_COOKIE = new StarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.COMMON).maxCount(16).food(StarCookieItem.FOOD_COMPONENT));
-	public static final Item ENCHANTED_STAR_COOKIE = new EnchantedStarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(16).food(EnchantedStarCookieItem.FOOD_COMPONENT));
+	public static final Item STAR_COOKIE = new StarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.COMMON).maxCount(16).food(SpectrumFoodComponents.STAR_COOKIE));
+	public static final Item ENCHANTED_STAR_COOKIE = new EnchantedStarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(16).food(SpectrumFoodComponents.ENCHANTED_STAR_COOKIE));
 	
-	private static final FoodComponent JARAMEL_FOOD_COMPONENT = new FoodComponent.Builder().hunger(1).saturationModifier(0.25F).snack()
-			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 600, 2), 1.0F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 600, 1), 1.0F).build();
-	public static final Item JARAMEL = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(JARAMEL_FOOD_COMPONENT));
-	private static final FoodComponent LUCKY_ROLL_FOOD_COMPONENT = new FoodComponent.Builder().hunger(4).saturationModifier(0.25F)
-			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.ANOTHER_ROLL, 1200), 1.0F).build();
-	public static final Item LUCKY_ROLL = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(LUCKY_ROLL_FOOD_COMPONENT));
+	public static final Item JARAMEL = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.JARAMEL));
+	public static final Item LUCKY_ROLL = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.LUCKY_ROLL));
+	public static final Item GLISTERING_JELLY_TEA = new GlisteringJellyTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");
@@ -615,6 +609,7 @@ public class SpectrumItems {
 		register("enchanted_star_cookie", ENCHANTED_STAR_COOKIE, DyeColor.PINK);
 		register("jaramel", JARAMEL, DyeColor.PINK);
 		register("lucky_roll", LUCKY_ROLL, DyeColor.PINK);
+		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
 	}
 	
 	public static void registerTrinkets() {

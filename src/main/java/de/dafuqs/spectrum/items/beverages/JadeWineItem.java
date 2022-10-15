@@ -17,8 +17,6 @@ import java.util.List;
 
 public class JadeWineItem extends BeverageItem {
 	
-	public static final FoodComponent FOOD_COMPONENT = new FoodComponent.Builder().hunger(2).saturationModifier(0.4F).snack().build();
-	
 	public JadeWineItem(Settings settings) {
 		super(settings);
 	}

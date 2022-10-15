@@ -7,8 +7,6 @@ import net.minecraft.item.ItemStack;
 
 public class SuspiciousBrewItem extends BeverageItem {
 	
-	public static final FoodComponent FOOD_COMPONENT = new FoodComponent.Builder().hunger(2).saturationModifier(0.4F).snack().build();
-	
 	public SuspiciousBrewItem(Settings settings) {
 		super(settings);
 	}

@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The idea of fermenting $(l:magical_blocks/titration_barrel#kimchi)food$(/l) and $(l:magical_items/infused_beverages)drinks$(/l) in $(l:general/colored_trees#colored_wood)Colored Wood$(/l) was not far away. Over time, the properties of the wood influences contents.$(br2)The results are sometimes more, sometimes less delicious, but always interesting. (On the other hand, the last could of course also be due to your cooking skills)Holds up to a stack of items."
+      "text": "The idea of fermenting $(l:magical_blocks/titration_barrel#kimchi)food$(/l) and $(l:magical_items/infused_beverages)drinks$(/l) in $(l:general/colored_trees#colored_wood)Colored Wood$(/l) was not far away. Over time, the properties of the wood influences contents.$(br2)The results are sometimes more, sometimes less delicious, but always interesting. (On the other hand, the last could of course also be due to your cooking skills)Holds up to a stack of items and 8 buckets of water."
     },
     {
       "type": "spectrum:pedestal_crafting",

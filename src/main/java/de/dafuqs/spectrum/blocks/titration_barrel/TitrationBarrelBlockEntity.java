@@ -38,7 +38,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	public static final int MAX_ITEM_COUNT = 64;
 	protected SimpleInventory inventory = new SimpleInventory(CONTENT_SIZE);
 	
-	protected static final long MAX_WATER = FluidStack.bucketAmount() * 10;
+	protected static final long MAX_WATER = FluidStack.bucketAmount() * 8;
 	protected int waterAmount = 0;
 	
 	// Times in milliseconds using the Date class

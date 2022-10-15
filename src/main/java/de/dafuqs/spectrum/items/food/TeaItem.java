@@ -1,11 +1,9 @@
-package de.dafuqs.spectrum.items.magic_items;
+package de.dafuqs.spectrum.items.food;
 
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,12 +23,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class RestorationTeaItem extends Item {
+public class TeaItem extends Item {
 	
-	private static final int MAX_USE_TIME = 40;
-	private static final int EFFECT_DURATION_TICKS = 1200;
-	
-	public RestorationTeaItem(Settings settings) {
+	public TeaItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -40,10 +35,6 @@ public class RestorationTeaItem extends Item {
 		if (user instanceof ServerPlayerEntity serverPlayerEntity) {
 			Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
 			serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-		}
-		
-		if (!world.isClient) {
-			user.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, EFFECT_DURATION_TICKS, 0, true, true));
 		}
 		
 		stack.decrement(1);
@@ -59,7 +50,7 @@ public class RestorationTeaItem extends Item {
 	}
 	
 	public int getMaxUseTime(ItemStack stack) {
-		return MAX_USE_TIME;
+		return 40;
 	}
 	
 	public UseAction getUseAction(ItemStack stack) {
@@ -81,9 +72,6 @@ public class RestorationTeaItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		
-		tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip"));
-		tooltip.add(new TranslatableText("item.spectrum.restoration_tea.tooltip2"));
 		
 		NbtCompound nbtCompound = itemStack.getNbt();
 		if (nbtCompound != null && nbtCompound.contains("Milk")) {

@@ -6,10 +6,10 @@
         "advancement_identifier": "spectrum:progression/unlock_potion_workshop"
       }
     },
-    "collected_jade_vine_petals": {
+    "collected_jade_jelly": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_jade_vine_petals"
+        "advancement_identifier": "spectrum:hidden/collect_jade_jelly"
       }
     }
   }

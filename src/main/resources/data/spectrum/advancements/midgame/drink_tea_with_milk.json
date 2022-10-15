@@ -6,10 +6,10 @@
     },
 	"hidden": true,
     "title": {
-      "translate": "advancements.spectrum.drink_restoration_tea_with_milk.title"
+      "translate": "advancements.spectrum.drink_tea_with_milk.title"
     },                                          
     "description": {                            
-      "translate": "advancements.spectrum.drink_restoration_tea_with_milk.description"
+      "translate": "advancements.spectrum.drink_tea_with_milk.description"
     }
   },
   "criteria": {
@@ -18,7 +18,8 @@
       "conditions": {
         "item": {
           "items": [
-            "spectrum:restoration_tea"
+            "spectrum:restoration_tea",
+            "spectrum:glistering_jelly_tea"
           ],
           "nbt": "{Milk:1b}"
         }

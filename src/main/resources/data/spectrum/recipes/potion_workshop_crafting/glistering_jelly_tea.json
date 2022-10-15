@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "group": "glistering_jelly_tea",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "color": 13803816,
+  "ingredient1": {
+    "item": "spectrum:jade_jelly"
+  },
+  "ingredient2": {
+    "item": "minecraft:glistering_melon_slice"
+  },
+  "result": {
+    "item": "spectrum:glistering_jelly_tea",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_glistering_jelly_tea"
+}

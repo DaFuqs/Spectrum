@@ -21,13 +21,6 @@ public class JadeWineItem extends BeverageItem {
 		super(settings);
 	}
 	
-	@Override
-	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		JadeWineBeverageProperties properties = JadeWineBeverageProperties.getFromStack(stack);
-		
-		return super.finishUsing(stack, world, user);
-	}
-	
 	public BeverageProperties getBeverageProperties(ItemStack itemStack) {
 		return JadeWineBeverageProperties.getFromStack(itemStack);
 	}

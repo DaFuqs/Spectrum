@@ -12,6 +12,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -36,7 +37,7 @@ public class RepriseItem extends BeverageItem {
 		public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
 			super.addTooltip(itemStack, tooltip);
 			int teleportRange = getTeleportRange(itemStack);
-			tooltip.add(new TranslatableText("item.spectrum.reprise.tooltip.teleport", teleportRange));
+			tooltip.add(new TranslatableText("item.spectrum.reprise.tooltip.teleport", teleportRange).formatted(Formatting.GRAY));
 		}
 		
 	}

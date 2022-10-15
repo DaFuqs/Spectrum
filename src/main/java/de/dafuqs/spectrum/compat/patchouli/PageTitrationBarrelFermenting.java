@@ -3,22 +3,15 @@ package de.dafuqs.spectrum.compat.patchouli;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
-import me.shedaniel.math.Point;
-import me.shedaniel.rei.api.client.gui.widgets.Widgets;
-import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.text.MutableText;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 import vazkii.patchouli.client.book.gui.BookTextRenderer;
@@ -75,10 +68,10 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		}
 		
 		// the titration barrel / tapping ingredient
-		if(recipe.getTappingIngredient().isEmpty()) {
+		if(recipe.getTappingItem() != Items.AIR) {
 			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.createIcon());
 		} else {
-			parent.renderIngredient(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.getTappingIngredient());
+			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.getTappingItem().getDefaultStack());
 		}
 		
 		// the output

@@ -1,21 +1,27 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
+import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import dev.architectury.fluid.FluidStack;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -30,7 +36,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	
 	protected static final int CONTENT_SIZE = 5;
 	public static final int MAX_ITEM_COUNT = 64;
-	protected SimpleInventory content = new SimpleInventory(CONTENT_SIZE);
+	protected SimpleInventory inventory = new SimpleInventory(CONTENT_SIZE);
 	
 	protected static final long MAX_WATER = FluidStack.bucketAmount() * 10;
 	protected int waterAmount = 0;
@@ -48,7 +54,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		nbt.put("Inventory", this.content.toNbtList());
+		nbt.put("Inventory", this.inventory.toNbtList());
 		nbt.putLong("SealTime", this.sealTime);
 		nbt.putLong("TapTime", this.tapTime);
 		nbt.putInt("WaterAmount", this.waterAmount);
@@ -58,9 +64,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		
-		this.content = new SimpleInventory(CONTENT_SIZE);
+		this.inventory = new SimpleInventory(CONTENT_SIZE);
 		if(nbt.contains("Inventory", NbtElement.LIST_TYPE)) {
-			this.content.readNbtList(nbt.getList("Inventory", NbtElement.COMPOUND_TYPE));
+			this.inventory.readNbtList(nbt.getList("Inventory", NbtElement.COMPOUND_TYPE));
 		}
 		
 		this.sealTime = nbt.contains("SealTime", NbtElement.LONG_TYPE) ? nbt.getLong("SealTime") : -1;
@@ -69,8 +75,8 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		this.extractedBottles = nbt.contains("ExtractedBottles", NbtElement.INT_TYPE) ? nbt.getInt("ExtractedBottles") : 0;
 	}
 	
-	public Inventory getContent() {
-		return content;
+	public Inventory getInventory() {
+		return inventory;
 	}
 	
 	public boolean addWaterBucket() {
@@ -85,8 +91,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	public void seal() {
 		this.sealTime = new Date().getTime();
 		markDirty();
-		
-		world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, this.content, world);
+		world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, this.inventory, world);
 	}
 	
 	public void tap() {
@@ -94,10 +99,14 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		markDirty();
 	}
 	
-	public void reset() {
+	public void reset(World world, BlockPos blockPos, BlockState state) {
 		this.sealTime = -1;
 		this.tapTime = -1;
 		this.extractedBottles = 0;
+		this.inventory.clear();
+		
+		world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
+		world.playSound(null, blockPos, SoundEvents.BLOCK_BARREL_OPEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
 	}
 	
 	public long getSealMilliseconds() {
@@ -122,14 +131,18 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		return (int) getSealMilliseconds() / 1000 / 60 / 20;
 	}
 	
-	public boolean isEmpty(World world, BlockPos pos) {
-		return getExtractableBottleCount(world, pos) <= this.extractedBottles;
+	public boolean isEmpty(float localTemperature) {
+		return getExtractableBottleCount(localTemperature) <= this.extractedBottles;
 	}
 	
-	public int getExtractableBottleCount(World world, BlockPos pos) {
+	public int getExtractableBottleCount(World world, BlockPos blockPos) {
+		Biome biome = world.getBiome(blockPos).value();
+		return getExtractableBottleCount(biome.getTemperature());
+	}
+	
+	public int getExtractableBottleCount(float localTemperature) {
 		long sealSeconds = getSealSeconds();
 		if(sealSeconds > 0) {
-			float localTemperature = world.getBiome(pos).value().getTemperature();
 			return ITitrationBarrelRecipe.getYieldBottles(this.waterAmount, sealSeconds, localTemperature);
 		}
 		return 0;
@@ -142,25 +155,46 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	
 	public ItemStack tryHarvest(World world, BlockPos blockPos, BlockState blockState, ItemStack harvestingStack, @Nullable PlayerEntity player) {
 		ItemStack harvestedStack = ItemStack.EMPTY;
+		Biome biome = world.getBiome(blockPos).value();
 		
-		//TODO: harvest
-		Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, this.content, world);
-		if(recipe.isPresent()) {
-			long secondsFermented = this.tapTime - this.sealTime / 1000;
-			Biome biome = world.getBiome(blockPos).value();
-			harvestedStack = recipe.get().tap(this.content, (int) (waterAmount / FluidStack.bucketAmount()), secondsFermented, biome.getDownfall(), biome.getTemperature());
+		if(this.waterAmount == 0) {
+			if(player != null) {
+				player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.missing_water_when_tapping"), false);
+			}
+		} else {
+			Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, this.inventory, world);
+			if (recipe.isPresent()) {
+				Item tappingItem = recipe.get().getTappingItem();
+				if (tappingItem != Items.AIR) {
+					if (harvestingStack.isOf(tappingItem)) {
+						harvestingStack.decrement(1);
+					} else {
+						if (player != null) {
+							player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName()), false);
+						}
+						return ItemStack.EMPTY;
+					}
+				}
+				
+				long secondsFermented = (this.tapTime - this.sealTime) / 1000;
+				harvestedStack = recipe.get().tap(this.inventory, (int) (waterAmount / FluidStack.bucketAmount()), secondsFermented, biome.getDownfall(), biome.getTemperature());
+			} else {
+				player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), false);
+			}
+			
+			this.extractedBottles += 1;
 		}
 		
 		if(player != null) {
 			int daysSealed = getSealMinecraftDays();
-			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed);
+			int inventoryCount = InventoryHelper.countItemsInInventory(this.inventory);
+			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed, inventoryCount);
 		}
 		
-		this.extractedBottles += 1;
-		if(isEmpty(world, pos)) {
-			world.setBlockState(pos, blockState.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
-			reset();
+		if(isEmpty(biome.getTemperature())) {
+			reset(world, blockPos, blockState);
 		}
+
 		this.markDirty();
 		
 		return harvestedStack;

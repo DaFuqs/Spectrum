@@ -33,7 +33,7 @@ public class TitrationBarrelDisplay implements SimpleGridMenuDisplay, GatedRecip
 	public TitrationBarrelDisplay(@NotNull ITitrationBarrelRecipe recipe) {
 		this.ingredients = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		this.output = EntryIngredients.of(recipe.getOutput());
-		this.tappingIngredient = EntryIngredients.ofIngredient(recipe.getTappingIngredient());
+		this.tappingIngredient = EntryIngredients.of(recipe.getTappingItem().getDefaultStack());
 		
 		this.minFermentationTimeHours = recipe.getMinFermentationTimeHours();
 		this.fermentationData = recipe.getFermentationData();

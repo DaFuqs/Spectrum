@@ -508,7 +508,7 @@ public class InventoryHelper {
 		return Optional.empty();
 	}
 	
-	public static boolean addToInventoryUpToSingleStackWithMaxTotalCount(ItemStack itemStack, Inventory inventory, int maxTotalCount) {
+	public static ItemStack addToInventoryUpToSingleStackWithMaxTotalCount(ItemStack itemStack, Inventory inventory, int maxTotalCount) {
 		// check if a stack that can be combined is in the inventory already
 		int itemCount = 0;
 		int firstEmptySlot = -1;
@@ -530,7 +530,7 @@ public class InventoryHelper {
 		
 		int storageLeft = maxTotalCount - itemCount;
 		if(storageLeft <= 0) {
-			return false;
+			return itemStack;
 		}
 		
 		if(matchingStack != null) {
@@ -539,19 +539,25 @@ public class InventoryHelper {
 			if (addedCount > 0) {
 				matchingStack.setCount(matchingStack.getCount() + addedCount);
 				itemStack.decrement(addedCount);
-				return true;
-			} else {
-				return false;
 			}
+			return itemStack;
 		}
 		
 		if(firstEmptySlot == -1) {
-			return false;
+			return itemStack;
 		}
 		
-		inventory.setStack(firstEmptySlot, itemStack);
-		
-		return true;
+		inventory.setStack(firstEmptySlot, itemStack.split(storageLeft));
+		return itemStack;
+	}
+	
+	public static int countItemsInInventory(Inventory inventory) {
+		int contentCount = 0;
+		for(int i = 0; i < inventory.size(); i++) {
+			ItemStack stack = inventory.getStack(i);
+			contentCount += stack.getCount();
+		}
+		return contentCount;
 	}
 	
 }

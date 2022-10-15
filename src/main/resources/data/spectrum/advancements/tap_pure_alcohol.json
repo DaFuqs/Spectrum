@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:pure_alcohol"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.tap_pure_alcohol.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.tap_pure_alcohol.description"
+    }
+  },
+  "parent": "spectrum:tap_titration_barrel",
+  "criteria": {
+    "tapped_fermentation_barrel": {
+      "trigger": "spectrum:titration_barrel_tapping",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:pure_alcohol"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/tap_titration_barrel" }
+    }
+  }
+}

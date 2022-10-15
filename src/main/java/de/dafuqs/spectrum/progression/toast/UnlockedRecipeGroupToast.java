@@ -88,6 +88,7 @@ public class UnlockedRecipeGroupToast implements Toast {
 		manager.getClient().textRenderer.draw(matrices, title, 30.0F, 7.0F, 3289650); // => #323232: dark gray
 		manager.getClient().textRenderer.draw(matrices, text, 30.0F, 18.0F, 0);
 		
+		long toastTimeMilliseconds = SpectrumCommon.CONFIG.ToastTimeMilliseconds;
 		if (!this.soundPlayed && startTime > 0L) {
 			this.soundPlayed = true;
 			if (this.soundEvent != null) {
@@ -95,11 +96,11 @@ public class UnlockedRecipeGroupToast implements Toast {
 			}
 		}
 		
-		int itemStackIndex = (int) (startTime / Math.max(1, 5000 / this.itemStacks.size()) % this.itemStacks.size());
+		int itemStackIndex = (int) (startTime / Math.max(1, toastTimeMilliseconds / this.itemStacks.size()) % this.itemStacks.size());
 		ItemStack currentItemStack = itemStacks.get(itemStackIndex);
 		manager.getClient().getItemRenderer().renderInGui(currentItemStack, 8, 8);
 		
-		return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
+		return startTime >= toastTimeMilliseconds ? Visibility.HIDE : Visibility.SHOW;
 	}
 	
 }

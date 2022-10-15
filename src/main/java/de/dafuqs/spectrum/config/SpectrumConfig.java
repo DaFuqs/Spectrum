@@ -10,6 +10,9 @@ import java.util.List;
 @Config(name = "Spectrum")
 public class SpectrumConfig implements ConfigData {
 	
+	@Comment("The duration in milliseconds ingame recipe/unlock popups stay on the screen")
+	public long ToastTimeMilliseconds = 7500;
+	
 	@Comment("""
 			The heights where citrine and topaz geodes will spawn
 			By default citrine will generate slightly below sea level (y=32-60)
@@ -217,6 +220,7 @@ public class SpectrumConfig implements ConfigData {
 			QuitoxicReedsGenerationBiomes.add("byg:cypress_swamplands");
 			QuitoxicReedsGenerationBiomes.add("terralith:orchid_swamp");
 			QuitoxicReedsGenerationBiomes.add("terralith:ice_marsh");
+			QuitoxicReedsGenerationBiomes.add("wildbackport:mangrove_swamp");
 		}
 	}
 	

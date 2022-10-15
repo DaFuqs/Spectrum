@@ -41,6 +41,17 @@ public class InventoryHelper {
 		return count;
 	}
 	
+	public static int getItemCountInInventory(Inventory inventory, Item item) {
+		int count = 0;
+		for(int i = 0; i < inventory.size(); i++) {
+			ItemStack stack = inventory.getStack(i);
+			if (stack.isOf(item)) {
+				count += stack.getCount();
+			}
+		}
+		return count;
+	}
+	
 	public static boolean removeFromInventoryWithRemainders(@NotNull PlayerEntity playerEntity, @NotNull ItemStack stackToRemove) {
 		if (playerEntity.isCreative()) {
 			return true;
@@ -495,6 +506,52 @@ public class InventoryHelper {
 			}
 		}
 		return Optional.empty();
+	}
+	
+	public static boolean addToInventoryUpToSingleStackWithMaxTotalCount(ItemStack itemStack, Inventory inventory, int maxTotalCount) {
+		// check if a stack that can be combined is in the inventory already
+		int itemCount = 0;
+		int firstEmptySlot = -1;
+		ItemStack matchingStack = null;
+		for (int i = 0; i < inventory.size(); i++) {
+			ItemStack slotStack = inventory.getStack(i);
+			
+			if (slotStack.isEmpty()) {
+				if(firstEmptySlot == -1) {
+					firstEmptySlot = i;
+				}
+			} else {
+				itemCount += slotStack.getCount();
+				if(ItemStack.canCombine(itemStack, slotStack)) {
+					matchingStack = slotStack;
+				}
+			}
+		}
+		
+		int storageLeft = maxTotalCount - itemCount;
+		if(storageLeft <= 0) {
+			return false;
+		}
+		
+		if(matchingStack != null) {
+			int addedCount = Math.min(matchingStack.getMaxCount() - matchingStack.getCount(), itemStack.getCount());
+			addedCount = Math.min(storageLeft, addedCount);
+			if (addedCount > 0) {
+				matchingStack.setCount(matchingStack.getCount() + addedCount);
+				itemStack.decrement(addedCount);
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		if(firstEmptySlot == -1) {
+			return false;
+		}
+		
+		inventory.setStack(firstEmptySlot, itemStack);
+		
+		return true;
 	}
 	
 }

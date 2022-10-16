@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "spectrum:block/amethyst_rock_candy_stick0"
+    },
+    "age=1": {
+      "model": "spectrum:block/amethyst_rock_candy_stick1"
+    },
+    "age=2": {
+      "model": "spectrum:block/amethyst_rock_candy_stick2"
+    },
+    "age=3": {
+      "model": "spectrum:block/amethyst_rock_candy_stick3"
+    }
+  }
+}

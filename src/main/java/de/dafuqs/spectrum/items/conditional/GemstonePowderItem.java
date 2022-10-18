@@ -4,13 +4,17 @@ import de.dafuqs.spectrum.enums.GemstoneColor;
 import net.minecraft.item.DyeItem;
 import net.minecraft.util.Identifier;
 
-public class CloakedGemstoneColorItem extends CloakedItem {
+public class GemstonePowderItem extends CloakedItem {
 	
-	GemstoneColor gemstoneColor;
+	protected final GemstoneColor gemstoneColor;
 	
-	public CloakedGemstoneColorItem(Settings settings, Identifier cloakAdvancementIdentifier, GemstoneColor gemstoneColor) {
+	public GemstonePowderItem(Settings settings, Identifier cloakAdvancementIdentifier, GemstoneColor gemstoneColor) {
 		super(settings, cloakAdvancementIdentifier, DyeItem.byColor(gemstoneColor.getDyeColor()));
 		this.gemstoneColor = gemstoneColor;
+	}
+	
+	public GemstoneColor getGemstoneColor() {
+		return gemstoneColor;
 	}
 	
 }

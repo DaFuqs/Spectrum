@@ -18,6 +18,7 @@ public class PottedAmaranthBushelBlock extends FlowerPotBlock implements Revelat
 	
 	public PottedAmaranthBushelBlock(Block content, Settings settings) {
 		super(content, settings);
+		RevelationAware.register(this);
 	}
 	
 	@Override

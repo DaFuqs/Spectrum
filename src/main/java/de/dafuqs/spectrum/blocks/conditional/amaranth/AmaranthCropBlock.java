@@ -25,6 +25,7 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 	
 	public AmaranthCropBlock(Settings settings) {
 		super(settings, LAST_SINGLE_BLOCK_AGE);
+		RevelationAware.register(this);
 	}
 	
 	public int getMaxAge() {

@@ -22,6 +22,7 @@ public class AmaranthBushelBlock extends Block implements RevelationAware {
 	
 	public AmaranthBushelBlock(Settings settings) {
 		super(settings);
+		RevelationAware.register(this);
 	}
 	
 	@Override

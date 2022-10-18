@@ -5,17 +5,19 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.gravity.CloakedFloatItem;
 import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeJellyItem;
+import de.dafuqs.spectrum.blocks.rock_candy.RockCandy;
+import de.dafuqs.spectrum.blocks.rock_candy.RockCandyItem;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
+import de.dafuqs.spectrum.items.beverages.*;
 import de.dafuqs.spectrum.items.conditional.CloakedGemstoneColorItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItemWithLoomPattern;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
-import de.dafuqs.spectrum.items.beverages.*;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
@@ -280,6 +282,13 @@ public class SpectrumItems {
 	public static final Item JARAMEL = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.JARAMEL));
 	public static final Item LUCKY_ROLL = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.LUCKY_ROLL));
 	public static final Item GLISTERING_JELLY_TEA = new GlisteringJellyTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE));
+	
+	public static final Item ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.NONE);
+	public static final Item TOPAZ_ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ);
+	public static final Item AMETHYST_ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandy.RockCandyVariant.AMETHYST);
+	public static final Item CITRINE_ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandy.RockCandyVariant.CITRINE);
+	public static final Item ONYX_ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.ONYX_ROCK_CANDY), RockCandy.RockCandyVariant.ONYX);
+	public static final Item MOONSTONE_ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.MOONSTONE_ROCK_CANDY), RockCandy.RockCandyVariant.MOONSTONE);
 	
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(toolRareItemSettingsSingle, SpectrumBannerPatterns.SPECTRUM_LOGO, "item.spectrum.logo_banner_pattern.desc");
@@ -610,6 +619,13 @@ public class SpectrumItems {
 		register("jaramel", JARAMEL, DyeColor.PINK);
 		register("lucky_roll", LUCKY_ROLL, DyeColor.PINK);
 		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
+		
+		register("glistering_jelly_tea", ROCK_CANDY, DyeColor.PINK);
+		register("glistering_jelly_tea", TOPAZ_ROCK_CANDY, DyeColor.CYAN);
+		register("glistering_jelly_tea", AMETHYST_ROCK_CANDY, DyeColor.MAGENTA);
+		register("glistering_jelly_tea", CITRINE_ROCK_CANDY, DyeColor.YELLOW);
+		register("glistering_jelly_tea", ONYX_ROCK_CANDY, DyeColor.BLACK);
+		register("glistering_jelly_tea", MOONSTONE_ROCK_CANDY, DyeColor.WHITE);
 	}
 	
 	public static void registerTrinkets() {

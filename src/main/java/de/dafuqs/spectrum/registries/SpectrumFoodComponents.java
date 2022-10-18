@@ -48,4 +48,11 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent KIMCHI = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	
+	public static final FoodComponent ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent TOPAZ_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent AMETHYST_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent CITRINE_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent ONYX_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent MOONSTONE_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	
 }

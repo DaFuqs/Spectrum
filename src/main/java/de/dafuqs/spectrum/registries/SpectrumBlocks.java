@@ -64,6 +64,8 @@ import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
 import de.dafuqs.spectrum.blocks.present.PresentBlock;
 import de.dafuqs.spectrum.blocks.present.PresentItem;
 import de.dafuqs.spectrum.blocks.redstone.*;
+import de.dafuqs.spectrum.blocks.rock_candy.RockCandy;
+import de.dafuqs.spectrum.blocks.rock_candy.SugarStickBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlock;
@@ -236,6 +238,7 @@ public class SpectrumBlocks {
 	public static final Block CITRINE_BASALT_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
 	public static final Block ONYX_BASALT_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
 	public static final Block MOONSTONE_BASALT_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
+	
 	// GLASS
 	public static final Block TOPAZ_GLASS = new GemstoneGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS), BuiltinGemstoneColor.CYAN);
 	public static final Block AMETHYST_GLASS = new GemstoneGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS), BuiltinGemstoneColor.MAGENTA);
@@ -299,6 +302,14 @@ public class SpectrumBlocks {
 	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, AbstractBlock.Settings.of(LIQUID_CRYSTAL_MATERIAL).noCollision().strength(100.0F).dropsNothing().luminance((state) -> 8));
 	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, AbstractBlock.Settings.of(MUD_MATERIAL).noCollision().strength(100.0F).dropsNothing());
 	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, AbstractBlock.Settings.of(MIDNIGHT_SOLUTION_MATERIAL).noCollision().strength(100.0F).dropsNothing());
+	
+	// ROCK CANDY
+	public static final Block SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.NONE);
+	public static final Block TOPAZ_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_TOPAZ_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.TOPAZ);
+	public static final Block AMETHYST_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.AMETHYST);
+	public static final Block CITRINE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_CITRINE_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.CITRINE);
+	public static final Block ONYX_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_ONYX_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.ONYX);
+	public static final Block MOONSTONE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_MOONSTONE_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.MOONSTONE);
 	
 	// PASTEL NETWORK
 	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.connection_node.tooltip");
@@ -971,6 +982,7 @@ public class SpectrumBlocks {
 		registerMobHeads(mobHeadItemSettings);
 		registerCrystallarieumGrowingBlocks(resourcesItemSettings);
 		registerJadeVineBlocks(decorationItemSettings);
+		registerSugarSticks();
 		
 		// Decay
 		registerBlock("fading", FADING);
@@ -1654,6 +1666,15 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("jade_vine_petal_block", JADE_VINE_PETAL_BLOCK, fabricItemSettings, DyeColor.LIME);
 		registerBlockWithItem("jade_vine_petal_carpet", JADE_VINE_PETAL_CARPET, fabricItemSettings, DyeColor.LIME);
+	}
+	
+	private static void registerSugarSticks() {
+		registerBlock("sugar_stick", SUGAR_STICK);
+		registerBlock("topaz_sugar_stick", TOPAZ_SUGAR_STICK);
+		registerBlock("amethyst_sugar_stick", AMETHYST_SUGAR_STICK);
+		registerBlock("citrine_sugar_stick", CITRINE_SUGAR_STICK);
+		registerBlock("onyx_sugar_stick", ONYX_SUGAR_STICK);
+		registerBlock("moonstone_sugar_stick", MOONSTONE_SUGAR_STICK);
 	}
 	
 	private static void registerMobBlocks(FabricItemSettings fabricItemSettings) {

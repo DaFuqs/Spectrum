@@ -1,11 +1,16 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.status_effects.AnotherDrawStatusEffect;
-import de.dafuqs.spectrum.status_effects.ImmunityStatusEffect;
-import de.dafuqs.spectrum.status_effects.NourishingStatusEffect;
+import de.dafuqs.spectrum.status_effects.*;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -29,41 +34,49 @@ public class SpectrumStatusEffects {
 	 */
 	public static StatusEffect ANOTHER_ROLL;
 	/**
+	 * Stops natural regeneration
+	 */
+	public static StatusEffect SCARRED;
+	/**
+	 * Adds gravity to the entity (flying mobs fall)
+	 * Also prevents running
+	 */
+	public static StatusEffect DENSITY;
+	/**
+	 * Increases attack speed
+	 */
+	public static StatusEffect SWIFTNESS;
+	/**
+	 * Decreases attack speed
+	 */
+	public static StatusEffect STIFFNESS;
+	/**
 	 * Ouch.
 	 */
-	//public static StatusEffect MILLENIA_DISEASE;
-	
-	public static TagKey<StatusEffect> UNCURABLE;
+	public static StatusEffect MILLENIA_DISEASE;
+	/**
+	 * Gives loads of buffs, but the player will be handled as if they were playing hardcore
+	 */
+	public static StatusEffect DIVINITY;
 	
 	private static StatusEffect registerStatusEffect(String id, StatusEffect entry) {
 		return Registry.register(Registry.STATUS_EFFECT, new Identifier(SpectrumCommon.MOD_ID, id), entry);
 	}
 	
-	private static TagKey<StatusEffect> getReference(String id) {
-		return TagKey.of(Registry.MOB_EFFECT_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
-	}
-	
-	public static boolean isIn(TagKey<StatusEffect> tag, StatusEffect effect) {
-		int id = Registry.STATUS_EFFECT.getRawId(effect);
-		Optional<RegistryEntry<StatusEffect>> entry = Registry.STATUS_EFFECT.getEntry(id);
-		if (entry.isEmpty()) {
-			return false;
-		} else {
-			return entry.get().isIn(tag);
-		}
-	}
-	
 	public static void register() {
 		IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5));
 		NOURISHING = registerStatusEffect("nourishing", new NourishingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2324f8));
-		ANOTHER_ROLL = registerStatusEffect("another_roll", new AnotherDrawStatusEffect(StatusEffectCategory.BENEFICIAL, 0xa1ce00));
-		//MILLENIA_DISEASE = registerStatusEffect("millenia_disease", new MilleniaDiseaseStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222).addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, MilleniaDiseaseStatusEffect.ATTRIBUTE_UUID_STRING, -0.05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-		
-		UNCURABLE = getReference("uncurable");
-	}
-	
-	public static boolean isUncurable(StatusEffect statusEffect) {
-		return isIn(SpectrumStatusEffects.UNCURABLE, statusEffect);
+		ANOTHER_ROLL = registerStatusEffect("another_roll", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xa1ce00));
+		SCARRED = registerStatusEffect("scarred", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x5b1d1d));
+		DENSITY = registerStatusEffect("density", new DensityStatusEffect(StatusEffectCategory.HARMFUL, 0x08082a));
+		SWIFTNESS = registerStatusEffect("swiftness", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffe566).addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "3c2c6c5e-0a9f-4a0a-8ded-314ae028a753", 2 * 0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+		STIFFNESS = registerStatusEffect("stiffness", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x7e7549)).addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "91e58b5a-d8d9-4037-a520-18c3d7230502", 2 * -0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+		MILLENIA_DISEASE = registerStatusEffect("millenia_disease", new MilleniaDiseaseStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222).addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, MilleniaDiseaseStatusEffect.ATTRIBUTE_UUID_STRING, -0.5, EntityAttributeModifier.Operation.ADDITION));
+		DIVINITY = registerStatusEffect("divinity", new DivinityStatusEffect(StatusEffectCategory.BENEFICIAL, 0xdff9fc)
+				.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "2a0a2299-1387-47eb-a120-58bc70a739d8", 0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
+				.addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, "b8b33b2c-1804-4ec6-9430-7d1a85f9b13b", 0.20000000298023224D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
+				.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, "b03b6e37-1dc5-4a93-bbae-0ea96c5bd8f8", 3.0D, EntityAttributeModifier.Operation.ADDITION)
+				.addAttributeModifier(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, "9812c88f-dc8e-47d1-a092-38339da9891e", 5.0D, EntityAttributeModifier.Operation.ADDITION));
 	}
 	
 }

@@ -93,7 +93,6 @@ public class SpectrumParticleFactories {
 		registerColoredSporeBlossomParticles(SpectrumParticleTypes.WHITE_FALLING_SPORE_BLOSSOM, SpectrumParticleTypes.WHITE_SPORE_BLOSSOM_AIR, 0.97F, 0.97F, 0.97F);
 		registerColoredSporeBlossomParticles(SpectrumParticleTypes.YELLOW_FALLING_SPORE_BLOSSOM, SpectrumParticleTypes.YELLOW_SPORE_BLOSSOM_AIR, 0.93F, 0.93F, 0.0F);
 		
-		// Used for Pigment Pedestal crafting
 		registerColoredCraftingParticle(SpectrumParticleTypes.BLACK_CRAFTING, 0.1F, 0.1F, 0.1F);
 		registerColoredCraftingParticle(SpectrumParticleTypes.BLUE_CRAFTING, 0.05F, 0.011F, 0.95F);
 		registerColoredCraftingParticle(SpectrumParticleTypes.BROWN_CRAFTING, 0.31F, 0.16F, 0.05F);
@@ -111,7 +110,6 @@ public class SpectrumParticleFactories {
 		registerColoredCraftingParticle(SpectrumParticleTypes.WHITE_CRAFTING, 0.97F, 0.97F, 0.97F);
 		registerColoredCraftingParticle(SpectrumParticleTypes.YELLOW_CRAFTING, 0.93F, 0.93F, 0.0F);
 		
-		// Used in the fusion shrine fluid animation while crafting
 		registerColoredRisingParticle(SpectrumParticleTypes.BLACK_FLUID_RISING, 0.1F, 0.1F, 0.1F);
 		registerColoredRisingParticle(SpectrumParticleTypes.BLUE_FLUID_RISING, 0.05F, 0.011F, 0.95F);
 		registerColoredRisingParticle(SpectrumParticleTypes.BROWN_FLUID_RISING, 0.31F, 0.16F, 0.05F);
@@ -129,7 +127,6 @@ public class SpectrumParticleFactories {
 		registerColoredRisingParticle(SpectrumParticleTypes.WHITE_FLUID_RISING, 0.97F, 0.97F, 0.97F);
 		registerColoredRisingParticle(SpectrumParticleTypes.YELLOW_FLUID_RISING, 0.93F, 0.93F, 0.0F);
 		
-		// Used in the item bowl
 		registerColoredRisingParticle(SpectrumParticleTypes.BLACK_SPARKLE_RISING, 0.1F, 0.1F, 0.1F);
 		registerColoredRisingParticle(SpectrumParticleTypes.BLUE_SPARKLE_RISING, 0.05F, 0.011F, 0.95F);
 		registerColoredRisingParticle(SpectrumParticleTypes.BROWN_SPARKLE_RISING, 0.31F, 0.16F, 0.05F);
@@ -147,7 +144,6 @@ public class SpectrumParticleFactories {
 		registerColoredRisingParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, 0.97F, 0.97F, 0.97F);
 		registerColoredRisingParticle(SpectrumParticleTypes.YELLOW_SPARKLE_RISING, 0.93F, 0.93F, 0.0F);
 		
-		// Used in the item bowl
 		registerColoredExplosionParticle(SpectrumParticleTypes.BLACK_EXPLOSION, 0.1F, 0.1F, 0.1F);
 		registerColoredExplosionParticle(SpectrumParticleTypes.BLUE_EXPLOSION, 0.05F, 0.011F, 0.95F);
 		registerColoredExplosionParticle(SpectrumParticleTypes.BROWN_EXPLOSION, 0.31F, 0.16F, 0.05F);

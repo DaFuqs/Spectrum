@@ -13,7 +13,7 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
 import de.dafuqs.spectrum.items.beverages.*;
-import de.dafuqs.spectrum.items.conditional.CloakedGemstoneColorItem;
+import de.dafuqs.spectrum.items.conditional.GemstonePowderItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItemWithLoomPattern;
 import de.dafuqs.spectrum.items.energy.*;
@@ -120,11 +120,11 @@ public class SpectrumItems {
 	public static final Item SPECTRAL_SHARD = new CloakedItem(resourcesRareItemSettings, SpectrumCommon.locate("lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
 	
 	private static final Identifier GEMSTONE_POWDER_CLOAK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
-	public static final Item TOPAZ_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.CYAN);
-	public static final Item AMETHYST_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.MAGENTA);
-	public static final Item CITRINE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.YELLOW);
-	public static final Item ONYX_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, SpectrumCommon.locate("create_onyx_shard"), BuiltinGemstoneColor.BLACK);
-	public static final Item MOONSTONE_POWDER = new CloakedGemstoneColorItem(resourcesItemSettings, SpectrumCommon.locate("midgame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
+	public static final Item TOPAZ_POWDER = new GemstonePowderItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.CYAN);
+	public static final Item AMETHYST_POWDER = new GemstonePowderItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.MAGENTA);
+	public static final Item CITRINE_POWDER = new GemstonePowderItem(resourcesItemSettings, GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.YELLOW);
+	public static final Item ONYX_POWDER = new GemstonePowderItem(resourcesItemSettings, SpectrumCommon.locate("create_onyx_shard"), BuiltinGemstoneColor.BLACK);
+	public static final Item MOONSTONE_POWDER = new GemstonePowderItem(resourcesItemSettings, SpectrumCommon.locate("midgame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
 	
 	// Pigment
 	public static final Item BLACK_PIGMENT = new PigmentItem(resourcesItemSettings, DyeColor.BLACK);
@@ -620,12 +620,12 @@ public class SpectrumItems {
 		register("lucky_roll", LUCKY_ROLL, DyeColor.PINK);
 		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
 		
-		register("glistering_jelly_tea", ROCK_CANDY, DyeColor.PINK);
-		register("glistering_jelly_tea", TOPAZ_ROCK_CANDY, DyeColor.CYAN);
-		register("glistering_jelly_tea", AMETHYST_ROCK_CANDY, DyeColor.MAGENTA);
-		register("glistering_jelly_tea", CITRINE_ROCK_CANDY, DyeColor.YELLOW);
-		register("glistering_jelly_tea", ONYX_ROCK_CANDY, DyeColor.BLACK);
-		register("glistering_jelly_tea", MOONSTONE_ROCK_CANDY, DyeColor.WHITE);
+		register("rock_candy", ROCK_CANDY, DyeColor.PINK);
+		register("topaz_rock_candy", TOPAZ_ROCK_CANDY, DyeColor.CYAN);
+		register("amethyst_rock_candy", AMETHYST_ROCK_CANDY, DyeColor.MAGENTA);
+		register("citrine_rock_candy", CITRINE_ROCK_CANDY, DyeColor.YELLOW);
+		register("onyx_rock_candy", ONYX_ROCK_CANDY, DyeColor.BLACK);
+		register("moonstone_rock_candy", MOONSTONE_ROCK_CANDY, DyeColor.WHITE);
 	}
 	
 	public static void registerTrinkets() {

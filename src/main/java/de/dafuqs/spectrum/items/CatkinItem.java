@@ -2,12 +2,12 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.items.conditional.CloakedGemstoneColorItem;
+import de.dafuqs.spectrum.items.conditional.GemstonePowderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
-public class CatkinItem extends CloakedGemstoneColorItem {
+public class CatkinItem extends GemstonePowderItem {
 	
 	protected boolean lucid;
 	

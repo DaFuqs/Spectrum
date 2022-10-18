@@ -7,13 +7,12 @@ import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.tools.DreamflayerItem;
 import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
+import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
+import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -247,7 +246,7 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"), cancellable = true)
 	public void spectrum$canHaveStatusEffect(StatusEffectInstance statusEffectInstance, CallbackInfoReturnable<Boolean> cir) {
-		if (cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && !SpectrumStatusEffects.isUncurable(statusEffectInstance.getEffectType())) {
+		if (cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && !SpectrumStatusEffectTags.isUncurable(statusEffectInstance.getEffectType())) {
 			cir.setReturnValue(false);
 		}
 	}

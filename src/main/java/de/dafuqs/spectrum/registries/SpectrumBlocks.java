@@ -102,6 +102,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.property.Properties;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Rarity;
@@ -304,12 +305,12 @@ public class SpectrumBlocks {
 	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, AbstractBlock.Settings.of(MIDNIGHT_SOLUTION_MATERIAL).noCollision().strength(100.0F).dropsNothing());
 	
 	// ROCK CANDY
-	public static final Block SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.NONE);
-	public static final Block TOPAZ_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_TOPAZ_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.TOPAZ);
-	public static final Block AMETHYST_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.AMETHYST);
-	public static final Block CITRINE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_CITRINE_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.CITRINE);
-	public static final Block ONYX_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_ONYX_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.ONYX);
-	public static final Block MOONSTONE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_MOONSTONE_BUD).hardness(1.0F).luminance((state) -> 8).ticksRandomly(), RockCandy.RockCandyVariant.MOONSTONE);
+	public static final Block SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.NONE);
+	public static final Block TOPAZ_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_TOPAZ_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.TOPAZ);
+	public static final Block AMETHYST_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.AMETHYST);
+	public static final Block CITRINE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_CITRINE_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.CITRINE);
+	public static final Block ONYX_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_ONYX_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.ONYX);
+	public static final Block MOONSTONE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_MOONSTONE_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.MOONSTONE);
 	
 	// PASTEL NETWORK
 	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.connection_node.tooltip");
@@ -982,7 +983,7 @@ public class SpectrumBlocks {
 		registerMobHeads(mobHeadItemSettings);
 		registerCrystallarieumGrowingBlocks(resourcesItemSettings);
 		registerJadeVineBlocks(decorationItemSettings);
-		registerSugarSticks();
+		registerSugarSticks(generalItemSettings);
 		
 		// Decay
 		registerBlock("fading", FADING);
@@ -1009,7 +1010,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("ender_treasure", ENDER_TREASURE, worldgenItemSettings, DyeColor.PURPLE);
 		
 		registerBlock("amaranth", AMARANTH);
-		registerBlockWithItem("amaranth_bushel", AMARANTH_BUSHEL, worldgenItemSettings, DyeColor.RED);
+		registerBlockWithItem("amaranth_bushel", AMARANTH_BUSHEL, resourcesItemSettings, DyeColor.RED);
 		registerBlock("potted_amaranth_bushel", POTTED_AMARANTH_BUSHEL);
 		
 		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, generalItemSettings, DyeColor.BLACK);
@@ -1642,7 +1643,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("deepslate_citrine_ore", DEEPSLATE_CITRINE_ORE, fabricItemSettings, DyeColor.YELLOW);
 		registerBlockWithItem("deepslate_onyx_ore", DEEPSLATE_ONYX_ORE, fabricItemSettings, DyeColor.BLACK);
 		registerBlockWithItem("deepslate_moonstone_ore", DEEPSLATE_MOONSTONE_ORE, fabricItemSettings, DyeColor.WHITE);
-		
 	}
 	
 	private static void registerStructureBlocks(FabricItemSettings fabricItemSettings) {
@@ -1668,13 +1668,13 @@ public class SpectrumBlocks {
 		registerBlockWithItem("jade_vine_petal_carpet", JADE_VINE_PETAL_CARPET, fabricItemSettings, DyeColor.LIME);
 	}
 	
-	private static void registerSugarSticks() {
-		registerBlock("sugar_stick", SUGAR_STICK);
-		registerBlock("topaz_sugar_stick", TOPAZ_SUGAR_STICK);
-		registerBlock("amethyst_sugar_stick", AMETHYST_SUGAR_STICK);
-		registerBlock("citrine_sugar_stick", CITRINE_SUGAR_STICK);
-		registerBlock("onyx_sugar_stick", ONYX_SUGAR_STICK);
-		registerBlock("moonstone_sugar_stick", MOONSTONE_SUGAR_STICK);
+	private static void registerSugarSticks(FabricItemSettings fabricItemSettings) {
+		registerBlockWithItem("sugar_stick", SUGAR_STICK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("topaz_sugar_stick", TOPAZ_SUGAR_STICK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("amethyst_sugar_stick", AMETHYST_SUGAR_STICK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("citrine_sugar_stick", CITRINE_SUGAR_STICK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("onyx_sugar_stick", ONYX_SUGAR_STICK, fabricItemSettings, DyeColor.PINK);
+		registerBlockWithItem("moonstone_sugar_stick", MOONSTONE_SUGAR_STICK, fabricItemSettings, DyeColor.PINK);
 	}
 	
 	private static void registerMobBlocks(FabricItemSettings fabricItemSettings) {

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffectTags;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
@@ -30,7 +31,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet"));
 	}
 	
-	public static void removeSingleHarmfulStatusEffects(@NotNull LivingEntity entity, World world) {
+	public static void removeSingleHarmfulStatusEffect(@NotNull LivingEntity entity) {
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
 		if(currentEffects.size() == 0) {
 			return;
@@ -39,7 +40,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		List<StatusEffectInstance> negativeEffects = new ArrayList<>();
 		for(StatusEffectInstance statusEffectInstance : currentEffects) {
 			StatusEffect effect = statusEffectInstance.getEffectType();
-			if(effect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffects.isUncurable(effect)) {
+			if(effect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(effect)) {
 				negativeEffects.add(statusEffectInstance);
 			}
 		}
@@ -48,7 +49,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 			return;
 		}
 		
-		int randomIndex = world.random.nextInt(negativeEffects.size());
+		int randomIndex = entity.world.random.nextInt(negativeEffects.size());
 		entity.removeStatusEffect(negativeEffects.get(randomIndex).getEffectType());
 	}
 	
@@ -92,7 +93,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	}
 	
 	public static boolean affects(StatusEffect statusEffect) {
-		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffects.isUncurable(statusEffect);
+		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(statusEffect);
 	}
 	
 	public static void preventPhantomSpawns(@NotNull ServerPlayerEntity serverPlayerEntity) {

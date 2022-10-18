@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -76,6 +77,14 @@ public class PlayerEntityMixin implements PlayerEntityAccessor {
 	@Override
 	public SpectrumFishingBobberEntity getSpectrumBobber() {
 		return this.spectrum$fishingBobber;
+	}
+	
+	@Inject(at = @At("HEAD"), method = "canFoodHeal()Z")
+	public void canFoodHeal(CallbackInfoReturnable<Boolean> cir) {
+		PlayerEntity player = (PlayerEntity) (Object) this;
+		if(player.hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
+			cir.setReturnValue(false);
+		}
 	}
 	
 	/*

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.food;
 import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -22,7 +21,7 @@ public class StarCookieItem extends Item {
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		ItemStack itemStack = super.finishUsing(stack, world, user);
 		if(!world.isClient) {
-			WhispyCircletItem.removeSingleHarmfulStatusEffects(user, world);
+			WhispyCircletItem.removeSingleHarmfulStatusEffect(user);
 		}
 		return itemStack;
 	}

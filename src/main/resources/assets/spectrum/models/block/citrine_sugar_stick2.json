@@ -1,0 +1,8 @@
+{
+	"parent": "spectrum:block/template_sugar_stick2",
+	"textures": {
+		"0": "spectrum:block/citrine_glass",
+		"1": "minecraft:block/oak_planks",
+		"particle": "spectrum:block/citrine_glass"
+	}
+}

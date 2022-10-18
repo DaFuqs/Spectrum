@@ -61,7 +61,13 @@
   "recipeGroup.spectrum.chalk_glow_chalk": "Unbr. Glow Chalk",
 
   "effect.spectrum.immunity": "Immunity",
-  "effect.spectrum.another_foll": "Another Roll",
+  "effect.spectrum.another_roll": "Another Roll",
+  "effect.spectrum.scarred": "Scarred",
+  "effect.spectrum.density": "Density",
+  "effect.spectrum.swiftness": "Swiftness",
+  "effect.spectrum.stiffness": "Stiffness",
+  "effect.spectrum.millenia_disease": "Millenia Disease",
+  "effect.spectrum.divinity": "Divinity",
 
   "__legacy: remove in 1.19": "",
   "item.spectrum.potion": "§2P§3i§cg§6m§be§en§dt§f Potion",
@@ -1399,6 +1405,21 @@
   "item.spectrum.paletur_fragments": "Paltaeria Fragments",
   "item.spectrum.paletur_gem": "Paltaeria Gem",
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
+
+  "block.spectrum.sugar_stick": "Sugar Stick",
+  "block.spectrum.sugar_stick.tooltip.medium": "Halfway grown",
+  "block.spectrum.sugar_stick.tooltip.large": "Fully grown",
+  "block.spectrum.topaz_sugar_stick": "Topaz Sugar Stick",
+  "block.spectrum.amethyst_sugar_stick": "Amethyst Sugar Stick",
+  "block.spectrum.citrine_sugar_stick": "Citrine Sugar Stick",
+  "block.spectrum.onyx_sugar_stick": "Onyx Sugar Stick",
+  "block.spectrum.moonstone_sugar_stick": "Moonstone Sugar Stick",
+  "item.spectrum.rock_candy": "Rock Candy",
+  "item.spectrum.topaz_rock_candy": "Topaz Rock Candy",
+  "item.spectrum.amethyst_rock_candy": "Amethyst Rock Candy",
+  "item.spectrum.citrine_rock_candy": "Citrine Rock Candy",
+  "item.spectrum.onyx_rock_candy": "Onyx Rock Candy",
+  "item.spectrum.moonstone_rock_candy": "Moonstone Rock Candy",
 
   "item.spectrum.white_crystal_grace": "Moony Crystal",
 

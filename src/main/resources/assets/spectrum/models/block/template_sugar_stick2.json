@@ -1,9 +1,5 @@
 {
 	"credit": "Made with Blockbench",
-	"textures": {
-		"0": "spectrum:block/amethyst_glass",
-		"particle": "spectrum:block/amethyst_glass"
-	},
 	"elements": [
 		{
 			"from": [7, 3, 7],
@@ -83,12 +79,12 @@
 			"to": [9, 16, 9],
 			"color": 2,
 			"faces": {
-				"north": {"uv": [0, 0, 1, 13], "texture": "#missing"},
-				"east": {"uv": [0, 0, 1, 13], "texture": "#missing"},
-				"south": {"uv": [0, 0, 1, 13], "texture": "#missing"},
-				"west": {"uv": [0, 0, 1, 13], "texture": "#missing"},
-				"up": {"uv": [0, 0, 1, 1], "texture": "#missing"},
-				"down": {"uv": [0, 0, 1, 1], "texture": "#missing"}
+				"north": {"uv": [0, 0, 1, 13], "texture": "#1"},
+				"east": {"uv": [0, 0, 1, 13], "texture": "#1"},
+				"south": {"uv": [0, 0, 1, 13], "texture": "#1"},
+				"west": {"uv": [0, 0, 1, 13], "texture": "#1"},
+				"up": {"uv": [0, 0, 1, 1], "texture": "#1"},
+				"down": {"uv": [0, 0, 1, 1], "texture": "#1"}
 			}
 		}
 	]

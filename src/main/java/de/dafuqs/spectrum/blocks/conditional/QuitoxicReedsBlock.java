@@ -77,10 +77,6 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 		return new Pair<>(this.asItem(), Blocks.SUGAR_CANE.asItem());
 	}
 	
-	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-		super.afterBreak(world, player, pos, state, blockEntity, stack);
-	}
-	
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (!state.canPlaceAt(world, pos)) {
 			world.breakBlock(pos, true);

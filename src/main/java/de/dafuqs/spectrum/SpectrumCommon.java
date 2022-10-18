@@ -169,6 +169,7 @@ public class SpectrumCommon implements ModInitializer {
 		// Status Effects
 		logInfo("Registering Status Effects...");
 		SpectrumStatusEffects.register();
+		SpectrumStatusEffectTags.register();
 		
 		// Default enchantments for some items
 		logInfo("Registering Default Item Stack Damage Immunities...");

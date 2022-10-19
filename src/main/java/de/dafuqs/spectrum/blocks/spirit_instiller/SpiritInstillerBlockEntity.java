@@ -262,7 +262,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		BlockEntity rightBowlBlockEntity = spiritInstillerBlockEntity.world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true));
 		if (leftBowlBlockEntity instanceof ItemBowlBlockEntity leftBowl && rightBowlBlockEntity instanceof ItemBowlBlockEntity rightBowl) {
 			// center ingredient
-			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.getIngredientStacks().get(2).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.getIngredientStacks().get(ISpiritInstillerRecipe.CENTER_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
 			if (decreasedAmountAfterEfficiencyMod > 0) {
 				spiritInstillerBlockEntity.inventory.getStack(0).decrement(decreasedAmountAfterEfficiencyMod);
 			}
@@ -270,22 +270,22 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			List<IngredientStack> ingredientStacks = recipe.getIngredientStacks();
 			
 			// first side ingredient
-			decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(ingredientStacks.get(0).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
-			if (decreasedAmountAfterEfficiencyMod > 0) {
-				if (ingredientStacks.get(0).test(leftBowl.getInventory().getStack(0))) {
-					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
-				} else {
-					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+			int amountAfterEfficiencyModFirst = Support.getIntFromDecimalWithChance(ingredientStacks.get(ISpiritInstillerRecipe.FIRST_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			int amountAfterEfficiencyModSecond = Support.getIntFromDecimalWithChance(ingredientStacks.get(ISpiritInstillerRecipe.SECOND_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			boolean leftIsFirstIngredient = ingredientStacks.get(ISpiritInstillerRecipe.FIRST_INGREDIENT).test(leftBowl.getInventory().getStack(0));
+			if (leftIsFirstIngredient) {
+				if (amountAfterEfficiencyModFirst > 0) {
+					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModFirst, true);
 				}
-			}
-			
-			// second side ingredient
-			decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(ingredientStacks.get(1).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
-			if (decreasedAmountAfterEfficiencyMod > 0) {
-				if (ingredientStacks.get(1).test(leftBowl.getInventory().getStack(0))) {
-					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
-				} else {
-					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+				if (amountAfterEfficiencyModSecond > 0) {
+					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModSecond, true);
+				}
+			} else {
+				if (amountAfterEfficiencyModFirst > 0) {
+					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModFirst, true);
+				}
+				if (amountAfterEfficiencyModSecond > 0) {
+					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModSecond, true);
 				}
 			}
 			

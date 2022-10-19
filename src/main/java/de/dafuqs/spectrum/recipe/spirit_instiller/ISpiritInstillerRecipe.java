@@ -24,6 +24,10 @@ import java.util.UUID;
 
 public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 	
+	public static final int CENTER_INGREDIENT = 0;
+	public static final int FIRST_INGREDIENT = 1;
+	public static final int SECOND_INGREDIENT = 2;
+	
 	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
 	
 	static void grantPlayerSpiritInstillingAdvancementCriterion(UUID playerUUID, ItemStack resultStack, int experience) {
@@ -63,11 +67,11 @@ public interface ISpiritInstillerRecipe extends Recipe<Inventory>, GatedRecipe {
 	default boolean matches(Inventory inv, World world) {
 		List<IngredientStack> ingredientStacks = getIngredientStacks();
 		if (inv.size() > 2) {
-			if (ingredientStacks.get(0).test(inv.getStack(0))) {
-				if (ingredientStacks.get(1).test(inv.getStack(1))) {
-					return ingredientStacks.get(2).test(inv.getStack(2));
-				} else if (ingredientStacks.get(1).test(inv.getStack(2))) {
-					return ingredientStacks.get(2).test(inv.getStack(1));
+			if (ingredientStacks.get(CENTER_INGREDIENT).test(inv.getStack(0))) {
+				if (ingredientStacks.get(FIRST_INGREDIENT).test(inv.getStack(1))) {
+					return ingredientStacks.get(SECOND_INGREDIENT).test(inv.getStack(2));
+				} else if (ingredientStacks.get(FIRST_INGREDIENT).test(inv.getStack(2))) {
+					return ingredientStacks.get(SECOND_INGREDIENT).test(inv.getStack(1));
 				}
 			}
 		}

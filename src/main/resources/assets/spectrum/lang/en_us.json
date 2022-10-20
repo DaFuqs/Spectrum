@@ -186,6 +186,13 @@
   "entity.spectrum.invisible_item_frame": "Phantom Frame",
   "entity.spectrum.invisible_glow_item_frame": "Glow Phantom Frame",
   "entity.spectrum.shooting_star": "Shooting Star",
+  "entity.spectrum.lagoon_fishing_bobber": "Lagoon Fishing Bobber",
+  "entity.spectrum.molten_fishing_bobber": "Molten Fishing Bobber",
+  "entity.spectrum.bedrock_fishing_bobber": "Bedrock Fishing Bobber",
+  "entity.spectrum.ink_projectile": "Ink Projectile",
+  "entity.spectrum.living_marker": "Marker",
+  "entity.spectrum.egg_laying_wooly_pig": "Egg Laying Wooly Pig",
+
 
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",
   "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",

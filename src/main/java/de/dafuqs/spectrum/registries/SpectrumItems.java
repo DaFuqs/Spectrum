@@ -265,6 +265,8 @@ public class SpectrumItems {
 	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(resourcesItemSettingsSixteen, SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
 	
+	public static final Item BLOOD_ORCHID_PETAL = new Item(resourcesItemSettings);
+	
 	// Food & drinks
 	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(SpectrumFoodComponents.JADE_JELLY));
@@ -532,6 +534,7 @@ public class SpectrumItems {
 		register("lightning_stone", LIGHTNING_STONE, DyeColor.YELLOW);
 		register("shooting_star", SHOOTING_STAR, DyeColor.PURPLE);
 		register("stardust", STARDUST, DyeColor.PURPLE);
+		register("blood_orchid_petal", BLOOD_ORCHID_PETAL, DyeColor.RED);
 		
 		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_SEEDS, DyeColor.GRAY);
 		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS, DyeColor.LIME);

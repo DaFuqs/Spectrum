@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "color": 9568256,
+  "ingredient1": {
+    "item": "spectrum:blood_orchid_petal"
+  },
+  "ingredient2": {
+    "item": "spectrum:quitoxic_powder"
+  },
+  "ingredient3": {
+    "item": "minecraft:sugar"
+  },
+  "result": {
+    "item": "spectrum:bloodboil_syrup",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/collect_blood_orchid_petal"
+}

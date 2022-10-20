@@ -1,0 +1,23 @@
+{
+  "parent": "spectrum:midgame/collect_blood_orchid_petal",
+  "display": {
+    "icon": {
+      "item": "spectrum:blood_orchid_petal"
+    },
+    "title": {
+      "translate": "advancements.spectrum.pluck_blood_orchid_petal.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.pluck_blood_orchid_petal.description"
+    }
+  },
+  "criteria": {
+    "plucked_blood_orchid": {
+      "trigger": "spectrum:blood_orchid_plucked"
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_blood_orchid_petal" }
+    }
+  }
+}

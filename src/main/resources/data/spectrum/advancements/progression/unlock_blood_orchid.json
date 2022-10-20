@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_resonant_lily": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_resonant_lily" }
+    },
+    "collected_blood_orchid_petal": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_blood_orchid_petal" }
+    },
+    "unlocked_spirit_instiller": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_spirit_instiller_structure" }
+    }
+  }
+}

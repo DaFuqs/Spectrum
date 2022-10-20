@@ -15,59 +15,59 @@
   "criteria": {
     "jaramel_tart": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:jaramel_tart" ] } }
+      "conditions": { "item": { "items": [ "spectrum:jaramel_tart" ] } }
     },
     "salted_jaramel_tart": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:salted_jaramel_tart" ] } }
+      "conditions": { "item": { "items": [ "spectrum:salted_jaramel_tart" ] } }
     },
     "ashen_tart": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:ashen_tart" ] } }
+      "conditions": { "item": { "items": [ "spectrum:ashen_tart" ] } }
     },
     "weeping_tart": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:weeping_tart" ] } }
+      "conditions": { "item": { "items": [ "spectrum:weeping_tart" ] } }
     },
     "whispy_tart": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:whispy_tart" ] } }
+      "conditions": { "item": { "items": [ "spectrum:whispy_tart" ] } }
     },
     "puff_tart": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:puff_tart" ] } }
+      "conditions": { "item": { "items": [ "spectrum:puff_tart" ] } }
     },
     "jaramel_trifle": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:jaramel_trifle" ] } }
+      "conditions": { "item": { "items": [ "spectrum:jaramel_trifle" ] } }
     },
     "salted_jaramel_trifle": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:salted_jaramel_trifle" ] } }
+      "conditions": { "item": { "items": [ "spectrum:salted_jaramel_trifle" ] } }
     },
     "monster_trifle": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:monster_trifle" ] } }
+      "conditions": { "item": { "items": [ "spectrum:monster_trifle" ] } }
     },
     "demon_trifle": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:demon_trifle" ] } }
+      "conditions": { "item": { "items": [ "spectrum:demon_trifle" ] } }
     },
     "honey_pastry": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:honey_pastry" ] } }
+      "conditions": { "item": { "items": [ "spectrum:honey_pastry" ] } }
     },
     "lucky_roll": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:lucky_roll" ] } }
+      "conditions": { "item": { "items": [ "spectrum:lucky_roll" ] } }
     },
     "star_cookie": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:star_cookie" ] } }
+      "conditions": { "item": { "items": [ "spectrum:star_cookie" ] } }
     },
     "enchanted_star_cookie": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "minecraft:enchanted_star_cookie" ] } }
+      "conditions": { "item": { "items": [ "spectrum:enchanted_star_cookie" ] } }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

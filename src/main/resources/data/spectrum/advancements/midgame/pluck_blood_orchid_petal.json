@@ -13,7 +13,7 @@
   },
   "criteria": {
     "plucked_blood_orchid": {
-      "trigger": "spectrum:blood_orchid_plucked"
+      "trigger": "spectrum:blood_orchid_plucking"
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

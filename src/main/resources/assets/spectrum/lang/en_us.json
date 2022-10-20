@@ -1406,6 +1406,24 @@
   "item.spectrum.paletur_gem": "Paltaeria Gem",
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
 
+  "item.spectrum.honey_pastry": "Honey Pastry",
+
+  "item.spectrum.jaramel_trifle": "Jaramel Trifle",
+  "item.spectrum.salted_jaramel_trifle": "Salted Jaramel Trifle",
+  "item.spectrum.monster_trifle": "Monster Trifle",
+  "item.spectrum.demon_trifle": "Demon Trifle",
+
+  "item.spectrum.jaramel_tart": "Jaramel Tart",
+  "item.spectrum.salted_jaramel_tart": "Salted Jaramel Tart",
+  "item.spectrum.ashen_tart": "Ashen Tart",
+  "item.spectrum.weeping_tart": "Weeping Tart",
+  "item.spectrum.whispy_tart": "Whispy Tart",
+  "item.spectrum.puff_tart": "Puff Tart",
+
+  "block.spectrum.blood_orchid": "Blood Orchid",
+  "item.spectrum.blood_orchid_petal": "Blood Orchid Petal",
+  "item.spectrum.bloodboil_syrup": "Bloodboil Syrup",
+
   "block.spectrum.sugar_stick": "Sugar Stick",
   "block.spectrum.sugar_stick.tooltip.medium": "Halfway grown",
   "block.spectrum.sugar_stick.tooltip.large": "Fully grown",

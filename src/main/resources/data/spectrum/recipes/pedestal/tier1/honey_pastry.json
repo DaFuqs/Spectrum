@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 1.0,
+  "pattern": [
+    "HHH",
+    "AEA",
+    "AAA"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:honey_bottle"
+    },
+    "A": {
+      "item": "spectrum:amaranth_grains"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    }
+  },
+  "result": {
+    "item": "spectrum:honey_pastry",
+    "count": 1
+  },
+  "required_advancement": "spectrum:collect_amaranth_bushel"
+}

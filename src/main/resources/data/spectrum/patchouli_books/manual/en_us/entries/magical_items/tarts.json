@@ -1,0 +1,58 @@
+{
+  "name": "Tarts",
+  "icon": "spectrum:ashen_tart",
+  "advancement": "spectrum:progression/unlock_tarts",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:jaramel_tart": 0,
+    "spectrum:salted_jaramel_tart": 0,
+    "spectrum:ashen_tart": 0,
+    "spectrum:weeping_tart": 0,
+    "spectrum:whispy_tart": 0,
+    "spectrum:puff_tart": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Tarts",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/food/jaramel_tart",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "advancement": "spectrum:midgame/craft_salted_jaramel_trifle_or_tart",
+      "recipe": "spectrum:pedestal/tier3/food/salted_jaramel_tart",
+      "text": "Unlocks when adding a Ghast Tear in the empty slot of the recipe."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/food/ashen_tart",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/food/weeping_tart",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/food/whispy_tart",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/food/puff_tart",
+      "text": ""
+    }
+  ]
+}

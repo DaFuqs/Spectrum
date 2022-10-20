@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
+import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 
 public class SpectrumFoodComponents {
 	
@@ -48,11 +50,26 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent KIMCHI = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	
+	// TODO: Finish components starting form here
 	public static final FoodComponent ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	public static final FoodComponent TOPAZ_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	public static final FoodComponent AMETHYST_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	public static final FoodComponent CITRINE_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	public static final FoodComponent ONYX_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	public static final FoodComponent MOONSTONE_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	
+	public static final FoodComponent HONEY_PASTRY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+
+	public static final FoodComponent JARAMEL_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent SALTED_JARAMEL_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent ASHEN_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent WEEPING_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent WHISPY_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent PUFF_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	
+	public static final FoodComponent JARAMEL_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent SALTED_JARAMEL_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent MONSTER_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent DEMON_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	
 }

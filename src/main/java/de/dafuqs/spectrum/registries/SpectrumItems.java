@@ -282,7 +282,22 @@ public class SpectrumItems {
 	public static final Item STAR_COOKIE = new StarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.COMMON).maxCount(16).food(SpectrumFoodComponents.STAR_COOKIE));
 	public static final Item ENCHANTED_STAR_COOKIE = new EnchantedStarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(16).food(SpectrumFoodComponents.ENCHANTED_STAR_COOKIE));
 	
+
 	public static final Item JARAMEL = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.JARAMEL));
+	
+	public static final Item JARAMEL_TART = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.JARAMEL_TART));
+	public static final Item SALTED_JARAMEL_TART = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.SALTED_JARAMEL_TART));
+	public static final Item ASHEN_TART = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.ASHEN_TART));
+	public static final Item WEEPING_TART = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.WEEPING_TART));
+	public static final Item WHISPY_TART = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.WHISPY_TART));
+	public static final Item PUFF_TART = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.PUFF_TART));
+	
+	public static final Item JARAMEL_TRIFLE = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.JARAMEL_TRIFLE));
+	public static final Item SALTED_JARAMEL_TRIFLE = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.SALTED_JARAMEL_TRIFLE));
+	public static final Item MONSTER_TRIFLE = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.MONSTER_TRIFLE));
+	public static final Item DEMON_TRIFLE = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.DEMON_TRIFLE));
+	
+	public static final Item HONEY_PASTRY = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.HONEY_PASTRY));
 	public static final Item LUCKY_ROLL = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.LUCKY_ROLL));
 	public static final Item GLISTERING_JELLY_TEA = new GlisteringJellyTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE));
 	
@@ -622,6 +637,20 @@ public class SpectrumItems {
 		register("star_cookie", STAR_COOKIE, DyeColor.PINK);
 		register("enchanted_star_cookie", ENCHANTED_STAR_COOKIE, DyeColor.PINK);
 		register("jaramel", JARAMEL, DyeColor.PINK);
+		
+		register("jaramel_tart", JARAMEL_TART, DyeColor.PINK);
+		register("salted_jaramel_tart", SALTED_JARAMEL_TART, DyeColor.PINK);
+		register("ashen_tart", ASHEN_TART, DyeColor.PINK);
+		register("weeping_tart", WEEPING_TART, DyeColor.PINK);
+		register("whispy_tart", WHISPY_TART, DyeColor.PINK);
+		register("puff_tart", PUFF_TART, DyeColor.PINK);
+		
+		register("jaramel_trifle", JARAMEL_TRIFLE, DyeColor.PINK);
+		register("salted_jaramel_trifle", SALTED_JARAMEL_TRIFLE, DyeColor.PINK);
+		register("monster_trifle", MONSTER_TRIFLE, DyeColor.PINK);
+		register("demon_trifle", DEMON_TRIFLE, DyeColor.PINK);
+		
+		register("honey_pastry", HONEY_PASTRY, DyeColor.PINK);
 		register("lucky_roll", LUCKY_ROLL, DyeColor.PINK);
 		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
 		

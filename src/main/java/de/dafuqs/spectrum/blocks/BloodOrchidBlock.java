@@ -1,12 +1,14 @@
 package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -54,6 +56,9 @@ public class BloodOrchidBlock extends FlowerBlock {
 				world.setBlockState(pos, state.with(AGE, age - 1));
 				Support.givePlayer(player, SpectrumItems.BLOOD_ORCHID_PETAL.getDefaultStack());
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
+				if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+					SpectrumAdvancementCriteria.BLOOD_ORCHID_PLUCKING.trigger(serverPlayerEntity);
+				}
 				return ActionResult.CONSUME;
 			}
 		}

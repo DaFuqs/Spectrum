@@ -34,6 +34,7 @@ public class SpectrumAdvancementCriteria {
 	public static SpectrumFishingRodHookedCriterion FISHING_ROD_HOOKED;
 	public static TitrationBarrelTappingCriterion TITRATION_BARREL_TAPPING;
 	public static ConfirmationButtonPressedCriterion CONFIRMATION_BUTTON_PRESSED;
+	public static BloodOrchidPluckingCriterion BLOOD_ORCHID_PLUCKING;
 	
 	public static void register() {
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
@@ -64,6 +65,7 @@ public class SpectrumAdvancementCriteria {
 		FISHING_ROD_HOOKED = CriteriaAccessor.callRegister(new SpectrumFishingRodHookedCriterion());
 		TITRATION_BARREL_TAPPING = CriteriaAccessor.callRegister(new TitrationBarrelTappingCriterion());
 		CONFIRMATION_BUTTON_PRESSED = CriteriaAccessor.callRegister(new ConfirmationButtonPressedCriterion());
+		BLOOD_ORCHID_PLUCKING = CriteriaAccessor.callRegister(new BloodOrchidPluckingCriterion());
 	}
 	
 }

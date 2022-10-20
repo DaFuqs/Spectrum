@@ -1,0 +1,79 @@
+{
+  "parent": "spectrum:midgame/plant_jade_vines",
+  "display": {
+    "icon": {
+      "item": "spectrum:demon_trifle"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.eat_each_pastry.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.eat_each_pastry.description"
+    }
+  },
+  "criteria": {
+    "jaramel_tart": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:jaramel_tart" ] } }
+    },
+    "salted_jaramel_tart": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:salted_jaramel_tart" ] } }
+    },
+    "ashen_tart": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:ashen_tart" ] } }
+    },
+    "weeping_tart": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:weeping_tart" ] } }
+    },
+    "whispy_tart": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:whispy_tart" ] } }
+    },
+    "puff_tart": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:puff_tart" ] } }
+    },
+    "jaramel_trifle": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:jaramel_trifle" ] } }
+    },
+    "salted_jaramel_trifle": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:salted_jaramel_trifle" ] } }
+    },
+    "monster_trifle": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:monster_trifle" ] } }
+    },
+    "demon_trifle": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:demon_trifle" ] } }
+    },
+    "honey_pastry": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:honey_pastry" ] } }
+    },
+    "lucky_roll": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:lucky_roll" ] } }
+    },
+    "star_cookie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:star_cookie" ] } }
+    },
+    "enchanted_star_cookie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": { "item": { "items": [ "minecraft:enchanted_star_cookie" ] } }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/plant_jade_vines"
+      }
+    }
+  }
+}

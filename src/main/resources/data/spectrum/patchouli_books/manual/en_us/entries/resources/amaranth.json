@@ -5,7 +5,8 @@
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:amaranth_grains": 0,
-    "spectrum:amaranth_bushel": 0
+    "spectrum:amaranth_bushel": 0,
+    "spectrum:honey_pastry": 0
   },
   "pages": [
     {
@@ -15,9 +16,16 @@
     },
     {
       "type": "spectrum:anvil_crushing",
-      "advancement": "spectrum:milestones/reveal_amaranth",
+      "advancement": "spectrum:collect_amaranth_bushel",
       "recipe": "spectrum:anvil_crushing/amaranth_grains",
-      "text": "You never have seen anything like it. Such an intense red. So expressive!$(br)These grown Bushels can be crushed to get more grains.$(br2)The Bushels can also be planted decoratively and in a flower pot."
+      "text": "You never have seen anything like it. Such an intense red. So expressive!$(br)These Bushels can be crushed to get more grains.$(br2)They can also be planted decoratively on grass or in a flower pot."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:collect_amaranth_bushel",
+	  "title": "Honey Pastry",
+      "recipe": "spectrum:pedestal/tier1/honey_pastry",
+      "text": "The taste of amaranth is as different from wheat as its appearance. In your mind sprouted completely new ideas, like this deliciousness here."
     }
   ]
 }

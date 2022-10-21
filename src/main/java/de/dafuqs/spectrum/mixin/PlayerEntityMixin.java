@@ -79,33 +79,12 @@ public class PlayerEntityMixin implements PlayerEntityAccessor {
 		return this.spectrum$fishingBobber;
 	}
 	
-	@Inject(at = @At("HEAD"), method = "canFoodHeal()Z")
+	@Inject(at = @At("HEAD"), method = "canFoodHeal()Z", cancellable = true)
 	public void canFoodHeal(CallbackInfoReturnable<Boolean> cir) {
 		PlayerEntity player = (PlayerEntity) (Object) this;
 		if(player.hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
 			cir.setReturnValue(false);
 		}
 	}
-	
-	/*
-	public float getBlockBreakingSpeed(BlockState block) {
-
-	}
-	
-	public void slowMovement(BlockState state, Vec3d multiplier) {
-
-	}
-	
-	public void addExhaustion(float exhaustion) {
-
-	}
-	
-	public boolean isPushedByFluids() {
-
-	}
-	
-	public void setFireTicks(int ticks) {
-	
-	}*/
 	
 }

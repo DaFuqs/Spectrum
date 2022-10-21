@@ -251,4 +251,11 @@ public abstract class LivingEntityMixin {
 		}
 	}
 	
+	@Inject(method = "setSprinting(Z)V", at = @At("HEAD"), cancellable = true)
+	public void setSprinting(boolean sprinting, CallbackInfo ci) {
+		if(sprinting && ((LivingEntity) (Object) this).hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
+			ci.cancel();
+		}
+	}
+	
 }

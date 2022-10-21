@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.status_effects;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
+import java.util.Iterator;
+import java.util.Map;
 import java.util.UUID;
 
 public class MilleniaDiseaseStatusEffect extends SpectrumStatusEffect {
@@ -20,28 +19,23 @@ public class MilleniaDiseaseStatusEffect extends SpectrumStatusEffect {
 	
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		if(!entity.world.isClient) {
-			EntityAttributeInstance instance = entity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
-			if (instance != null) {
-				EntityAttributeModifier currentMod = instance.getModifier(ATTRIBUTE_UUID);
-				if (currentMod != null) {
-					instance.removeModifier(currentMod);
-					EntityAttributeModifier newModifier = new EntityAttributeModifier(UUID.fromString(ATTRIBUTE_UUID_STRING), this::getTranslationKey, currentMod.getValue() - 0.05, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-					instance.addPersistentModifier(newModifier);
-					instance.getValue();
+		EntityAttributeInstance instance = entity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
+		if (instance != null) {
+			EntityAttributeModifier currentMod = instance.getModifier(ATTRIBUTE_UUID);
+			if (currentMod != null) {
+				instance.removeModifier(currentMod);
+				EntityAttributeModifier newModifier = new EntityAttributeModifier(UUID.fromString(ATTRIBUTE_UUID_STRING), this::getTranslationKey, currentMod.getValue() - 1, EntityAttributeModifier.Operation.ADDITION);
+				instance.addPersistentModifier(newModifier);
+				instance.getValue(); // recalculate final value
+				if(entity.getHealth() > entity.getMaxHealth()) {
+					entity.setHealth(entity.getMaxHealth());
 				}
 			}
 		}
 	}
-	
 	@Override
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
-		return duration % Math.max(1, 20 - amplifier * 2) == 0;
-	}
-	
-	@Override
-	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
-		super.onRemoved(entity, attributes, amplifier);
+		return duration % Math.max(1, 40 - amplifier * 2) == 0;
 	}
 	
 }

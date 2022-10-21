@@ -3,11 +3,12 @@ package de.dafuqs.spectrum.status_effects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class DensityStatusEffect extends SpectrumStatusEffect {
 	
-	public static final float GRAVITY_PER_LEVEL = 1.02F;
+	public static final float GRAVITY_PER_LEVEL = -0.02F;
 	
 	public DensityStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);
@@ -30,11 +31,7 @@ public class DensityStatusEffect extends SpectrumStatusEffect {
 				// do not affect those
 			} else {
 				entity.addVelocity(0, additionalYVelocity, 0);
-				
-				// if falling very slowly => no fall damage
-				if (additionalYVelocity > 0 && entity.getVelocity().y > -0.4) {
-					entity.fallDistance = 0;
-				}
+				// maybe add fall distance, when not touching the ground?
 			}
 		}
 	}

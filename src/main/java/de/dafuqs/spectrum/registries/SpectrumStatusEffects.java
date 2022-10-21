@@ -35,11 +35,12 @@ public class SpectrumStatusEffects {
 	public static StatusEffect ANOTHER_ROLL;
 	/**
 	 * Stops natural regeneration
+	 * and prevents sprinting
 	 */
 	public static StatusEffect SCARRED;
 	/**
-	 * Adds gravity to the entity (flying mobs fall)
-	 * Also prevents running
+	 * Adds gravity to the entity
+	 * flying mobs will fall and be nearly unable to fall (phantom, ghast)
 	 */
 	public static StatusEffect DENSITY;
 	/**
@@ -67,11 +68,11 @@ public class SpectrumStatusEffects {
 		IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5));
 		NOURISHING = registerStatusEffect("nourishing", new NourishingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2324f8));
 		ANOTHER_ROLL = registerStatusEffect("another_roll", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xa1ce00));
-		SCARRED = registerStatusEffect("scarred", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x5b1d1d));
+		SCARRED = registerStatusEffect("scarred", new ScarredStatusEffect(StatusEffectCategory.HARMFUL, 0x5b1d1d));
 		DENSITY = registerStatusEffect("density", new DensityStatusEffect(StatusEffectCategory.HARMFUL, 0x08082a));
 		SWIFTNESS = registerStatusEffect("swiftness", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffe566).addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "3c2c6c5e-0a9f-4a0a-8ded-314ae028a753", 2 * 0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
 		STIFFNESS = registerStatusEffect("stiffness", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x7e7549)).addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "91e58b5a-d8d9-4037-a520-18c3d7230502", 2 * -0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-		MILLENIA_DISEASE = registerStatusEffect("millenia_disease", new MilleniaDiseaseStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222).addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, MilleniaDiseaseStatusEffect.ATTRIBUTE_UUID_STRING, -0.5, EntityAttributeModifier.Operation.ADDITION));
+		MILLENIA_DISEASE = registerStatusEffect("millenia_disease", new MilleniaDiseaseStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222).addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, MilleniaDiseaseStatusEffect.ATTRIBUTE_UUID_STRING, -1.0, EntityAttributeModifier.Operation.ADDITION));
 		DIVINITY = registerStatusEffect("divinity", new DivinityStatusEffect(StatusEffectCategory.BENEFICIAL, 0xdff9fc)
 				.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "2a0a2299-1387-47eb-a120-58bc70a739d8", 0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
 				.addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, "b8b33b2c-1804-4ec6-9430-7d1a85f9b13b", 0.20000000298023224D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)

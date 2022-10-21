@@ -1,6 +1,6 @@
 {
   "type": "spectrum:titration_barrel",
-  "group": "infused_beverage",
+  "group": "infused_beverages",
   "ingredients": [
     {
       "item": "minecraft:enchanted_golden_apple",

@@ -1,0 +1,31 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "simple",
+  "cyan": 8,
+  "magenta": 2,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "PBP",
+    "BAB",
+    "PBP"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "B": {
+      "item": "minecraft:bamboo"
+    },
+    "P": {
+      "item": "spectrum:purple_pigment"
+    }
+  },
+  "result": {
+    "item": "spectrum:enchantment_canvas"
+  },
+  "required_advancement": "spectrum:progression/unlock_enchantment_canvas"
+}

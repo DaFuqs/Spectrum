@@ -29,7 +29,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.DyeColor;
@@ -356,6 +355,7 @@ public class SpectrumItems {
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(toolUncommonItemSettingsSingle, 10000);
 	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(toolUncommonItemSettingsSingle);
 	public static final Item GILDED_BOOK = new GildedBookItem(toolUncommonItemSettingsSingle);
+	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(toolUncommonItemSettings);
 	
 	// Trinkets
 	public static final Item FANCIFUL_BELT = new Item(toolUncommonItemSettingsSixteen);
@@ -447,6 +447,7 @@ public class SpectrumItems {
 		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);
 		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH, DyeColor.MAGENTA);
 		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
+		register("enchantment_canvas", ENCHANTMENT_CANVAS, DyeColor.PURPLE);
 		
 		register("egg_laying_wooly_pig_spawn_egg", EGG_LAYING_WOOLY_PIG_SPAWN_EGG, DyeColor.WHITE);
 	}

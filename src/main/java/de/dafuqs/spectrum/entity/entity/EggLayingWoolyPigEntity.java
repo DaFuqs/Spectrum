@@ -16,7 +16,6 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.*;
@@ -45,8 +44,10 @@ import java.util.stream.Collectors;
 
 public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
+	private static final Ingredient FOOD = Ingredient.ofItems(SpectrumBlocks.AMARANTH_BUSHEL.asItem());
+	
 	private static final int MAX_GRASS_TIMER = 40;
-	private static final TrackedData<Byte> COLOR = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BYTE);
+	private static final TrackedData<Byte> COLOR_AND_SHEARED = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BYTE);
 	private static final Map<DyeColor, float[]> COLORS = Maps.newEnumMap((Map)Arrays.stream(DyeColor.values()).collect(Collectors.toMap((dyeColor) -> dyeColor, EggLayingWoolyPigEntity::getDyedColor)));
 	private static final Map<DyeColor, ItemConvertible> DROPS = Util.make(Maps.newEnumMap(DyeColor.class), (map) -> {
 		map.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
@@ -85,11 +86,11 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 			ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, Items.MILK_BUCKET.getDefaultStack());
 			player.setStackInHand(hand, itemStack2);
 			return ActionResult.success(this.world.isClient);
-		} else if (itemStack.isOf(Items.SHEARS)) {
+		} else if (itemStack.getItem() instanceof ShearsItem) {
 			if (!this.world.isClient && this.isShearable()) {
 				this.sheared(SoundCategory.PLAYERS);
 				this.emitGameEvent(GameEvent.SHEAR, player);
-				itemStack.damage(1, player, (p) -> { p.sendToolBreakStatus(hand); });
+				itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
 				return ActionResult.SUCCESS;
 			} else {
 				return ActionResult.CONSUME;
@@ -103,12 +104,16 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.20000000298023224D);
 	}
 	
+	public boolean isBreedingItem(ItemStack stack) {
+		return FOOD.test(stack);
+	}
+	
 	protected void initGoals() {
 		this.eatGrassGoal = new EatGrassGoal(this);
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.25D));
 		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
-		this.goalSelector.add(3, new TemptGoal(this, 1.1D, Ingredient.ofItems(SpectrumBlocks.AMARANTH_BUSHEL.asItem()), false));
+		this.goalSelector.add(3, new TemptGoal(this, 1.1D, FOOD, false));
 		this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.add(5, this.eatGrassGoal);
 		this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
@@ -116,26 +121,102 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		this.goalSelector.add(8, new LookAroundGoal(this));
 	}
 	
-	public static float[] getRgbColor(DyeColor dyeColor) {
-		return COLORS.get(dyeColor);
-	}
-	
-	private static float[] getDyedColor(DyeColor color) {
-		if (color == DyeColor.WHITE) {
-			return new float[]{0.9019608F, 0.9019608F, 0.9019608F};
-		} else {
-			float[] fs = color.getColorComponents();
-			float f = 0.75F;
-			return new float[]{fs[0] * 0.75F, fs[1] * 0.75F, fs[2] * 0.75F};
-		}
-	}
-	
+	@Override
 	public void handleStatus(byte status) {
 		if (status == 10) {
 			this.eatGrassTimer = MAX_GRASS_TIMER;
 		} else {
 			super.handleStatus(status);
 		}
+	}
+	
+	@Override
+	protected void mobTick() {
+		this.eatGrassTimer = this.eatGrassGoal.getTimer();
+		super.mobTick();
+	}
+	
+	@Override
+	public void tickMovement() {
+		if (this.world.isClient) {
+			this.eatGrassTimer = Math.max(0, this.eatGrassTimer - 1);
+		}
+		
+		if (!this.world.isClient && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
+			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			this.dropItem(Items.EGG);
+			this.eggLayTime = this.random.nextInt(6000) + 6000;
+		}
+		
+		super.tickMovement();
+	}
+	
+	@Override
+	protected void initDataTracker() {
+		super.initDataTracker();
+		this.dataTracker.startTracking(COLOR_AND_SHEARED, (byte)0);
+	}
+	
+	@Nullable
+	@Override
+	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+		EggLayingWoolyPigEntity e1 = (EggLayingWoolyPigEntity) entity;
+		EggLayingWoolyPigEntity e2 = (EggLayingWoolyPigEntity) SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
+		if(e2 != null) {
+			e2.setColor(this.getChildColor(this, e1));
+		}
+		return e2;
+	}
+	
+	@Override
+	public void writeCustomDataToNbt(NbtCompound nbt) {
+		super.writeCustomDataToNbt(nbt);
+		nbt.putBoolean("Sheared", this.isSheared());
+		nbt.putByte("Color", (byte)this.getColor().getId());
+		nbt.putInt("EggLayTime", this.eggLayTime);
+	}
+	
+	@Override
+	public void readCustomDataFromNbt(NbtCompound nbt) {
+		super.readCustomDataFromNbt(nbt);
+		this.setSheared(nbt.getBoolean("Sheared"));
+		this.setColor(DyeColor.byId(nbt.getByte("Color")));
+		if (nbt.contains("EggLayTime")) {
+			this.eggLayTime = nbt.getInt("EggLayTime");
+		}
+	}
+	
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return SoundEvents.ENTITY_PIG_AMBIENT;
+	}
+	
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return SoundEvents.ENTITY_PIG_HURT;
+	}
+	
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.ENTITY_PIG_DEATH;
+	}
+	
+	@Override
+	protected void playStepSound(BlockPos pos, BlockState state) {
+		this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
+	}
+	
+	@Override
+	public void onEatingGrass() {
+		this.setSheared(false);
+		if (this.isBaby()) {
+			this.growUp(60);
+		}
+	}
+	
+	@Override
+	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
+		return 0.95F * dimensions.height;
 	}
 	
 	public float getNeckAngle(float delta) {
@@ -157,39 +238,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		}
 	}
 	
-	protected void mobTick() {
-		this.eatGrassTimer = this.eatGrassGoal.getTimer();
-		super.mobTick();
-	}
-	
-	public void tickMovement() {
-		if (this.world.isClient) {
-			this.eatGrassTimer = Math.max(0, this.eatGrassTimer - 1);
-		}
-		
-		if (!this.world.isClient && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
-			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-			this.dropItem(Items.EGG);
-			this.eggLayTime = this.random.nextInt(6000) + 6000;
-		}
-		
-		super.tickMovement();
-	}
-	
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(COLOR, (byte)0);
-	}
-	
-	@Nullable
-	@Override
-	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		EggLayingWoolyPigEntity e1 = (EggLayingWoolyPigEntity) entity;
-		EggLayingWoolyPigEntity e2 = (EggLayingWoolyPigEntity) SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
-		e2.setColor(this.getChildColor(this, e1));
-		return e2;
-	}
-	
+	// SHEARING
 	@Override
 	public void sheared(SoundCategory shearedSoundCategory) {
 		this.world.playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
@@ -208,71 +257,46 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		return this.isAlive() && !this.isSheared() && !this.isBaby();
 	}
 	
-	public void writeCustomDataToNbt(NbtCompound nbt) {
-		super.writeCustomDataToNbt(nbt);
-		nbt.putBoolean("Sheared", this.isSheared());
-		nbt.putByte("Color", (byte)this.getColor().getId());
-		nbt.putInt("EggLayTime", this.eggLayTime);
-	}
-	
-	public void readCustomDataFromNbt(NbtCompound nbt) {
-		super.readCustomDataFromNbt(nbt);
-		this.setSheared(nbt.getBoolean("Sheared"));
-		this.setColor(DyeColor.byId(nbt.getByte("Color")));
-		if (nbt.contains("EggLayTime")) {
-			this.eggLayTime = nbt.getInt("EggLayTime");
-		}
-	}
-	
-	
-	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_PIG_AMBIENT;
-	}
-	
-	protected SoundEvent getHurtSound(DamageSource source) {
-		return SoundEvents.ENTITY_PIG_HURT;
-	}
-	
-	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_PIG_DEATH;
-	}
-	
-	protected void playStepSound(BlockPos pos, BlockState state) {
-		this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
-	}
-	
-	public DyeColor getColor() {
-		return DyeColor.byId(this.dataTracker.get(COLOR) & 15);
-	}
-	
-	public void setColor(DyeColor color) {
-		byte b = this.dataTracker.get(COLOR);
-		this.dataTracker.set(COLOR, (byte)(b & 240 | color.getId() & 15));
-	}
-	
 	public boolean isSheared() {
-		return (this.dataTracker.get(COLOR) & 16) != 0;
+		return (this.dataTracker.get(COLOR_AND_SHEARED) & 16) != 0;
 	}
 	
 	public void setSheared(boolean sheared) {
-		byte b = this.dataTracker.get(COLOR);
+		byte color = this.dataTracker.get(COLOR_AND_SHEARED);
 		if (sheared) {
-			this.dataTracker.set(COLOR, (byte)(b | 16));
+			this.dataTracker.set(COLOR_AND_SHEARED, (byte)(color | 16));
 		} else {
-			this.dataTracker.set(COLOR, (byte)(b & -17));
+			this.dataTracker.set(COLOR_AND_SHEARED, (byte)(color & -17));
 		}
 	}
 	
-	public void onEatingGrass() {
-		this.setSheared(false);
-		if (this.isBaby()) {
-			this.growUp(60);
+	// COLORING
+	public static float[] getRgbColor(DyeColor dyeColor) {
+		return COLORS.get(dyeColor);
+	}
+	
+	private static float[] getDyedColor(DyeColor color) {
+		if (color == DyeColor.WHITE) {
+			return new float[]{0.9019608F, 0.9019608F, 0.9019608F};
+		} else {
+			float[] fs = color.getColorComponents();
+			float f = 0.75F;
+			return new float[]{fs[0] * f, fs[1] * f, fs[2] * f};
 		}
+	}
+	
+	public DyeColor getColor() {
+		return DyeColor.byId(this.dataTracker.get(COLOR_AND_SHEARED) & 15);
+	}
+	
+	public void setColor(DyeColor color) {
+		byte b = this.dataTracker.get(COLOR_AND_SHEARED);
+		this.dataTracker.set(COLOR_AND_SHEARED, (byte)(b & 240 | color.getId() & 15));
 	}
 	
 	private DyeColor getChildColor(AnimalEntity firstParent, AnimalEntity secondParent) {
-		DyeColor dyeColor = ((SheepEntity)firstParent).getColor();
-		DyeColor dyeColor2 = ((SheepEntity)secondParent).getColor();
+		DyeColor dyeColor = ((EggLayingWoolyPigEntity)firstParent).getColor();
+		DyeColor dyeColor2 = ((EggLayingWoolyPigEntity)secondParent).getColor();
 		CraftingInventory craftingInventory = createDyeMixingCraftingInventory(dyeColor, dyeColor2);
 		Optional<Item> optionalItem = this.world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, this.world).map((recipe) -> recipe.craft(craftingInventory)).map(ItemStack::getItem);
 		
@@ -291,10 +315,6 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		craftingInventory.setStack(0, new ItemStack(DyeItem.byColor(firstColor)));
 		craftingInventory.setStack(1, new ItemStack(DyeItem.byColor(secondColor)));
 		return craftingInventory;
-	}
-	
-	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
-		return 0.95F * dimensions.height;
 	}
 	
 }

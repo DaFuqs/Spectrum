@@ -193,6 +193,7 @@
   "entity.spectrum.living_marker": "Marker",
   "entity.spectrum.egg_laying_wooly_pig": "Egg Laying Wooly Pig",
 
+  "item.spectrum.egg_laying_wooly_pig_spawn_egg": "Egg Laying Wooly Pig Spawn Egg",
 
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",
   "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",
@@ -284,6 +285,7 @@
   "spectrum.recipe.fusion_shrine.explanation.weather_thunder": "Summons a Thunderstorm",
   "spectrum.recipe.fusion_shrine.explanation.dreamflayer": "Midnight on a full moon",
   "spectrum.recipe.fusion_shrine.explanation.shooting_star_hardening": "Protects the Star from breaking",
+  "spectrum.recipe.fusion_shrine.explanation.egg_laying_wooly_pig_head": "",
 
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
 
@@ -1187,6 +1189,7 @@
   "block.spectrum.zoglin_head": "Zoglin Head",
   "block.spectrum.zombie_villager_head": "Zombie Villager Head",
   "block.spectrum.zombified_piglin_head": "Zombified Piglin Head",
+  "block.spectrum.egg_laying_wooly_pig_head": "Egg Laying Wooly Pig Head",
 
   "block.spectrum.axolotl_mob_block": "Covert Idol",
   "block.spectrum.bat_mob_block": "Swift Idol",
@@ -2348,6 +2351,10 @@
   "advancements.spectrum.craft_salted_jaramel_trifle_or_tart.description": "Bake with the tears of your enemies",
   "advancements.spectrum.eat_each_pastry.title": "Color Connosseur",
   "advancements.spectrum.eat_each_pastry.description": "Craft and eat all pastries there are",
+  "advancements.spectrum.collect_blood_orchid_petal.title": "TODO",
+  "advancements.spectrum.collect_blood_orchid_petal.description": "TODO",
+  "advancements.spectrum.remember_egg_laying_wooly_pig.title": "Once only a Tale",
+  "advancements.spectrum.remember_egg_laying_wooly_pig.description": "Hatch the Memory of a Egg Laying Wooly Pig",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

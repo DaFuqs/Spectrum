@@ -1,0 +1,22 @@
+{
+  "name": "Egg Laying Wooly Pigs",
+  "icon": "spectrum:egg_laying_wooly_pig_head",
+  "advancement": "spectrum:progression/unlock_egg_laying_wooly_pig_head",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {
+    "spectrum:egg_laying_wooly_pig_head": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Egg Laying Wooly Pig",
+      "text": "Your whole \"creating life\" thing has worked rather mixed so far. But slowly you feel you are able to move something.$(br)Creating life from nothing is a difficult thing, but combining existing knowledge? You feel a bit like Frankenstein himself. Is that a good thing? Bad? You are not sure at all."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/egg_laying_wooly_pig_head",
+      "text": "What would your creation like to eat? It's relevant, for... $(l:creating_life/memories)reasons$()."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "group": "memories",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:egg_laying_wooly_pig_head"
+  },
+  "ingredient2": {
+    "item": "spectrum:amaranth_bushel"
+  },
+  "center_ingredient": {
+    "tag": "spectrum:memory_bonding_agents",
+    "count": 4
+  },
+  "result": {
+    "item": "spectrum:memory",
+    "nbt": "{EntityTag: {id: \"spectrum:egg_laying_wooly_pig\"}, TicksToManifest: 40}"
+  },
+  "required_advancement": "spectrum:progression/unlock_egg_laying_wooly_pig_head"
+}

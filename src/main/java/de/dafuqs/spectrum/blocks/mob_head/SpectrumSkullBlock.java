@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
+import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.block.BlockState;
@@ -170,7 +171,9 @@ public class SpectrumSkullBlock extends SkullBlock {
 		WOLF(EntityType.WOLF),
 		ZOGLIN(EntityType.ZOGLIN),
 		ZOMBIE_VILLAGER(EntityType.ZOMBIE_VILLAGER),
-		ZOMBIFIED_PIGLIN(EntityType.ZOMBIFIED_PIGLIN);
+		ZOMBIFIED_PIGLIN(EntityType.ZOMBIFIED_PIGLIN),
+		
+		EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG);
 		
 		public final EntityType entityType;
 		

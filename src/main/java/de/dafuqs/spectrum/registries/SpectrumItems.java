@@ -29,6 +29,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.DyeColor;
@@ -313,6 +314,8 @@ public class SpectrumItems {
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatterns.AMETHYST_SHARD, "item.minecraft.amethyst_shard");
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(toolItemSettingsSingle, SpectrumBannerPatterns.AMETHYST_CLUSTER, "block.minecraft.amethyst_cluster");
 	
+	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 44975, 7969893, (new Item.Settings()).group(ItemGroup.MISC)); // TODO: colors
+	
 	// Magical Tools
 	public static final Item ENDER_BAG = new EnderBagItem(toolItemSettingsSingle);
 	public static final Item RADIANCE_STAFF = new RadianceStaffItem(toolUncommonItemSettingsSingle);
@@ -445,6 +448,8 @@ public class SpectrumItems {
 		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);
 		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH, DyeColor.MAGENTA);
 		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
+		
+		register("egg_laying_wooly_pig_spawn_egg", EGG_LAYING_WOOLY_PIG_SPAWN_EGG, DyeColor.WHITE);
 	}
 	
 	public static void registerNativeClusters() {
@@ -611,7 +616,7 @@ public class SpectrumItems {
 		register("bedrock_chestplate", BEDROCK_CHESTPLATE, DyeColor.BLACK);
 		register("bedrock_leggings", BEDROCK_LEGGINGS, DyeColor.BLACK);
 		register("bedrock_boots", BEDROCK_BOOTS, DyeColor.BLACK);
-		
+
 		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
 	}
 	

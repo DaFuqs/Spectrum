@@ -152,6 +152,9 @@ public class SpectrumConfig implements ConfigData {
 	public float BedrockArmorToughness = 4.0F;
 	public float BedrockArmorKnockbackResistance = 0.4F;
 	
+	public int MaxLevelForEffectsInLesserPotionPendant = 3;
+	public int MaxLevelForEffectsInGreaterPotionPendant = 1;
+	
 	@Comment("By Default, Roughly Enough Items will show a 'recipe not unlocked yet' screen for not yet unlocked recipes. Setting this value to false will instead not show this screen, showing no recipes whatsoever, until unlocked")
 	public boolean REIListsRecipesAsNotUnlocked = true;
 	

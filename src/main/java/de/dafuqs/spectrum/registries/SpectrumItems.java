@@ -383,8 +383,8 @@ public class SpectrumItems {
 	public static final CreativeInkAssortmentItem CREATIVE_INK_ASSORTMENT = new CreativeInkAssortmentItem(toolEpicItemSettingsSingle);
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(toolUncommonItemSettingsSingle);
-	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 1, 2, SpectrumCommon.locate("progression/unlock_lesser_potion_pendant"));
-	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 3, 0, SpectrumCommon.locate("progression/unlock_greater_potion_pendant"));
+	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 1, SpectrumCommon.CONFIG.MaxLevelForEffectsInLesserPotionPendant - 1, SpectrumCommon.locate("progression/unlock_lesser_potion_pendant"));
+	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(toolUncommonItemSettingsSingle, 3, SpectrumCommon.CONFIG.MaxLevelForEffectsInGreaterPotionPendant - 1, SpectrumCommon.locate("progression/unlock_greater_potion_pendant"));
 	public static final Item ASHEN_CIRCLET = new AshenCircletItem(toolUncommonItemSettingsSingleFireproof);
 	public static final Item TIDAL_CIRCLET = new TidalCircletItem(toolUncommonItemSettingsSingle);
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(toolUncommonItemSettingsSingle);

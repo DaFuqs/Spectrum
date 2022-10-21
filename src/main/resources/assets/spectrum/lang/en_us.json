@@ -457,6 +457,9 @@
   "text.autoconfig.Spectrum.option.BedrockArmorToughness": "Bedrock Armor Armor Toughness",
   "text.autoconfig.Spectrum.option.BedrockArmorKnockbackResistance": "Bedrock Armor Knockback Resistance",
 
+  "text.autoconfig.Spectrum.option.MaxLevelForEffectsInLesserPotionPendant": "Max Level for Status Effects in Lesser Potion Pendant",
+  "text.autoconfig.Spectrum.option.MaxLevelForEffectsInGreaterPotionPendant": "Max Level for Status Effects in Greater Potion Pendant",
+
   "text.autoconfig.Spectrum.option.AutoSmeltEnchantmentEnabled": "Enchantment Autosmelt available",
   "text.autoconfig.Spectrum.option.ExuberanceEnchantmentEnabled": "Enchantment Exuberance available",
   "text.autoconfig.Spectrum.option.InventoryInsertionEnchantmentEnabled": "Enchantment Inventory Insertion available",

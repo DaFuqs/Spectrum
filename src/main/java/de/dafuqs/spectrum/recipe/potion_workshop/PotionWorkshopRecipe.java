@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -25,6 +26,7 @@ import java.util.List;
 public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	public static final Identifier UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_potion_workshop");
+	public static final int[] INGREDIENT_SLOTS = new int[]{2, 3, 4};
 	
 	protected final Identifier id;
 	protected final String group;
@@ -69,49 +71,65 @@ public abstract class PotionWorkshopRecipe implements Recipe<Inventory>, GatedRe
 	
 	public boolean matches(@NotNull Inventory inv, World world) {
 		if (inv.size() > 4 && inv.getStack(0).isOf(SpectrumItems.MERMAIDS_GEM) && isValidBaseIngredient(inv.getStack(1))) {
-			// check reagents
+			
 			if (usesReagents()) {
-				// check if all items in reagent slots are actually reagents
-				for (int i : new int[]{5, 6, 7, 8}) {
-					ItemStack itemStack = inv.getStack(i);
-					if (!itemStack.isEmpty() && !PotionWorkshopReactingRecipe.isReagent(itemStack.getItem())) {
-						return false;
-					}
-				}
+				if (!areStacksInReagentSlotsAllReagents(inv)) return false;
 			} else {
-				// check if all reagent slots are empty
-				for (int i : new int[]{5, 6, 7, 8}) {
-					ItemStack itemStack = inv.getStack(i);
-					if (!itemStack.isEmpty()) {
-						return false;
-					}
-				}
+				if (!areReagentSlotsEmpty(inv)) return false;
 			}
 			
 			// check ingredients
-			int inputStackCount = 0;
-			List<Ingredient> ingredients = this.getOtherIngredients();
-			for (int i : new int[]{2, 3, 4}) {
-				ItemStack itemStack = inv.getStack(i);
-				if (!itemStack.isEmpty()) {
-					inputStackCount++;
-					boolean found = false;
-					for (Ingredient ingredient : ingredients) {
-						if (ingredient.test(inv.getStack(i))) {
-							found = true;
-							break;
-						}
-					}
-					if (!found) {
-						return false;
-					}
-				}
-			}
-			
-			return inputStackCount == ingredients.size(); // no ingredients in unused slots
+			return matchIngredientStacksExclusively(inv, getOtherIngredients());
 		} else {
 			return false;
 		}
+	}
+	
+	private boolean areStacksInReagentSlotsAllReagents(@NotNull Inventory inv) {
+		for (int i : new int[]{5, 6, 7, 8}) {
+			ItemStack itemStack = inv.getStack(i);
+			if (!itemStack.isEmpty() && !PotionWorkshopReactingRecipe.isReagent(itemStack.getItem())) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean areReagentSlotsEmpty(@NotNull Inventory inv) {
+		for (int i : new int[]{5, 6, 7, 8}) {
+			ItemStack itemStack = inv.getStack(i);
+			if (!itemStack.isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private static boolean matchIngredientStacksExclusively(Inventory inv, List<Ingredient> ingredients) {
+		int inputStackCount = 0;
+		for (int slot : INGREDIENT_SLOTS) {
+			if (!inv.getStack(slot).isEmpty()) {
+				inputStackCount++;
+			}
+		}
+		if (inputStackCount != ingredients.size()) {
+			return false;
+		}
+		
+		for (Ingredient ingredient : ingredients) {
+			boolean found = false;
+			for (int slot : INGREDIENT_SLOTS) {
+				if (ingredient.test(inv.getStack(slot))) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 	
 	public abstract boolean isValidBaseIngredient(ItemStack itemStack);

@@ -123,7 +123,7 @@ dependencies {
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/
 	modCompileOnly("net.darkhax.enchdesc:EnchantmentDescriptions-Common-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
 	// Additional features when botania is present
-	modImplementation "vazkii.botania:Botania:${project.botania_version}"
+	// modImplementation "vazkii.botania:Botania:${project.botania_version}"
 
 	// includes the textures in the "programmer art" folder in the programmer art texture pack
 	modImplementation "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"

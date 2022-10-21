@@ -114,7 +114,6 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		for (IngredientStack ingredientStack : ingredientStacks) {
 			boolean found = false;
 			for (int i = 0; i < inv.size(); i++) {
-				inputStackCount++;
 				if (ingredientStack.test(inv.getStack(i))) {
 					found = true;
 					break;

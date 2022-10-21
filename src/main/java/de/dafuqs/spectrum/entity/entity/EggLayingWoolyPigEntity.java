@@ -15,19 +15,15 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -44,7 +40,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -74,9 +69,51 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
 	private int eatGrassTimer;
 	private EatGrassGoal eatGrassGoal;
+	public int eggLayTime;
 	
 	public EggLayingWoolyPigEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
+		this.eggLayTime = this.random.nextInt(12000) + 12000;
+	}
+	
+	
+	public ActionResult interactMob(PlayerEntity player, Hand hand) {
+		ItemStack itemStack = player.getStackInHand(hand);
+		
+		if (itemStack.isOf(Items.BUCKET) && !this.isBaby()) {
+			player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
+			ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, Items.MILK_BUCKET.getDefaultStack());
+			player.setStackInHand(hand, itemStack2);
+			return ActionResult.success(this.world.isClient);
+		} else if (itemStack.isOf(Items.SHEARS)) {
+			if (!this.world.isClient && this.isShearable()) {
+				this.sheared(SoundCategory.PLAYERS);
+				this.emitGameEvent(GameEvent.SHEAR, player);
+				itemStack.damage(1, player, (p) -> { p.sendToolBreakStatus(hand); });
+				return ActionResult.SUCCESS;
+			} else {
+				return ActionResult.CONSUME;
+			}
+		} else {
+			return super.interactMob(player, hand);
+		}
+	}
+	
+	public static DefaultAttributeContainer.Builder createEggLayingWoolyPigAttributes() {
+		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.20000000298023224D);
+	}
+	
+	protected void initGoals() {
+		this.eatGrassGoal = new EatGrassGoal(this);
+		this.goalSelector.add(0, new SwimGoal(this));
+		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.25D));
+		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
+		this.goalSelector.add(3, new TemptGoal(this, 1.1D, Ingredient.ofItems(SpectrumBlocks.AMARANTH_BUSHEL.asItem()), false));
+		this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
+		this.goalSelector.add(5, this.eatGrassGoal);
+		this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
+		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.add(8, new LookAroundGoal(this));
 	}
 	
 	public static float[] getRgbColor(DyeColor dyeColor) {
@@ -91,19 +128,6 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 			float f = 0.75F;
 			return new float[]{fs[0] * 0.75F, fs[1] * 0.75F, fs[2] * 0.75F};
 		}
-	}
-	
-	protected void initGoals() {
-		this.eatGrassGoal = new EatGrassGoal(this);
-		this.goalSelector.add(0, new SwimGoal(this));
-		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.25D));
-		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
-		this.goalSelector.add(3, new TemptGoal(this, 1.1D, Ingredient.ofItems(SpectrumBlocks.AMARANTH_BUSHEL.asItem()), false));
-		this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.add(5, this.eatGrassGoal);
-		this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
-		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.add(8, new LookAroundGoal(this));
 	}
 	
 	public void handleStatus(byte status) {
@@ -133,22 +157,6 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		}
 	}
 	
-	public ActionResult interactMob(PlayerEntity player, Hand hand) {
-		ItemStack itemStack = player.getStackInHand(hand);
-		if (itemStack.isOf(Items.SHEARS)) {
-			if (!this.world.isClient && this.isShearable()) {
-				this.sheared(SoundCategory.PLAYERS);
-				this.emitGameEvent(GameEvent.SHEAR, player);
-				itemStack.damage(1, player, (p) -> { p.sendToolBreakStatus(hand); });
-				return ActionResult.SUCCESS;
-			} else {
-				return ActionResult.CONSUME;
-			}
-		} else {
-			return super.interactMob(player, hand);
-		}
-	}
-	
 	protected void mobTick() {
 		this.eatGrassTimer = this.eatGrassGoal.getTimer();
 		super.mobTick();
@@ -159,11 +167,13 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 			this.eatGrassTimer = Math.max(0, this.eatGrassTimer - 1);
 		}
 		
+		if (!this.world.isClient && this.isAlive() && !this.isBaby() && --this.eggLayTime <= 0) {
+			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			this.dropItem(Items.EGG);
+			this.eggLayTime = this.random.nextInt(6000) + 6000;
+		}
+		
 		super.tickMovement();
-	}
-	
-	public static DefaultAttributeContainer.Builder createEggLayingWoolyPigAttributes() {
-		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.23000000417232513D);
 	}
 	
 	protected void initDataTracker() {
@@ -202,12 +212,16 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		super.writeCustomDataToNbt(nbt);
 		nbt.putBoolean("Sheared", this.isSheared());
 		nbt.putByte("Color", (byte)this.getColor().getId());
+		nbt.putInt("EggLayTime", this.eggLayTime);
 	}
 	
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.setSheared(nbt.getBoolean("Sheared"));
 		this.setColor(DyeColor.byId(nbt.getByte("Color")));
+		if (nbt.contains("EggLayTime")) {
+			this.eggLayTime = nbt.getInt("EggLayTime");
+		}
 	}
 	
 	

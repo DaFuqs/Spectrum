@@ -221,6 +221,17 @@ public class SpectrumConfig implements ConfigData {
 			QuitoxicReedsGenerationBiomes.add("terralith:orchid_swamp");
 			QuitoxicReedsGenerationBiomes.add("terralith:ice_marsh");
 			QuitoxicReedsGenerationBiomes.add("wildbackport:mangrove_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:ancient_mossy_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:ancient_oak_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:autumnal_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:bamboo_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:bamboo_jungle_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:birch_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:dripleaf_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:old_growth_taiga_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:phantasmal_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:waterlily_swamp");
+			QuitoxicReedsGenerationBiomes.add("wythers:bayou");
 		}
 	}
 	

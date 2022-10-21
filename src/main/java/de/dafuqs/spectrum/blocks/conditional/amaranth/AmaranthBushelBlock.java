@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
 import de.dafuqs.revelationary.api.revelations.RevelationAware;
+import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PlantBlock;
@@ -34,6 +35,22 @@ public class AmaranthBushelBlock extends PlantBlock implements RevelationAware {
 	@Override
 	public @Nullable Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.FERN.asItem());
+	}
+	
+	@Override
+	public void onUncloak() {
+		if (SpectrumColorProviders.amaranthBushelBlockColorProvider != null && SpectrumColorProviders.amaranthBushelItemColorProvider != null) {
+			SpectrumColorProviders.amaranthBushelBlockColorProvider.setShouldApply(false);
+			SpectrumColorProviders.amaranthBushelItemColorProvider.setShouldApply(false);
+		}
+	}
+	
+	@Override
+	public void onCloak() {
+		if (SpectrumColorProviders.amaranthBushelBlockColorProvider != null && SpectrumColorProviders.amaranthBushelItemColorProvider != null) {
+			SpectrumColorProviders.amaranthBushelBlockColorProvider.setShouldApply(true);
+			SpectrumColorProviders.amaranthBushelItemColorProvider.setShouldApply(true);
+		}
 	}
 	
 }

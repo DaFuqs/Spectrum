@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.conditional.amaranth;
 import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import net.id.incubus_core.block.TallCropBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -62,6 +63,22 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 	@Override
 	public @Nullable Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.LARGE_FERN.asItem());
+	}
+	
+	@Override
+	public void onUncloak() {
+		if (SpectrumColorProviders.amaranthCropBlockColorProvider != null && SpectrumColorProviders.amaranthCropItemColorProvider != null) {
+			SpectrumColorProviders.amaranthCropBlockColorProvider.setShouldApply(false);
+			SpectrumColorProviders.amaranthCropItemColorProvider.setShouldApply(false);
+		}
+	}
+	
+	@Override
+	public void onCloak() {
+		if (SpectrumColorProviders.amaranthCropBlockColorProvider != null && SpectrumColorProviders.amaranthCropItemColorProvider != null) {
+			SpectrumColorProviders.amaranthCropBlockColorProvider.setShouldApply(true);
+			SpectrumColorProviders.amaranthCropItemColorProvider.setShouldApply(true);
+		}
 	}
 	
 }

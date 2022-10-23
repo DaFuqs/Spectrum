@@ -66,7 +66,12 @@ public class TitrationBarrelRecipeSerializer implements RecipeSerializer<Titrati
 		packetByteBuf.writeString(Registry.ITEM.getId(titrationBarrelRecipe.tappingItem).toString());
 		packetByteBuf.writeInt(titrationBarrelRecipe.minFermentationTimeHours);
 		
-		titrationBarrelRecipe.fermentationData.write(packetByteBuf);
+		if(titrationBarrelRecipe.fermentationData == null) {
+			packetByteBuf.writeBoolean(false);
+		} else {
+			packetByteBuf.writeBoolean(true);
+			titrationBarrelRecipe.fermentationData.write(packetByteBuf);
+		}
 		
 		packetByteBuf.writeIdentifier(titrationBarrelRecipe.requiredAdvancementIdentifier);
 	}
@@ -80,7 +85,10 @@ public class TitrationBarrelRecipeSerializer implements RecipeSerializer<Titrati
 		Item tappingItem = Registry.ITEM.get(Identifier.tryParse(packetByteBuf.readString()));
 		int minTimeDays = packetByteBuf.readInt();
 		
-		TitrationBarrelRecipe.FermentationData fermentationData = TitrationBarrelRecipe.FermentationData.read(packetByteBuf);
+		TitrationBarrelRecipe.FermentationData fermentationData = null;
+		if(packetByteBuf.readBoolean()) {
+			fermentationData = TitrationBarrelRecipe.FermentationData.read(packetByteBuf);
+		}
 		
 		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
 		

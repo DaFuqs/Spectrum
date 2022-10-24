@@ -3,10 +3,12 @@ package de.dafuqs.spectrum.particle;
 import com.mojang.serialization.Codec;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.particle.effect.*;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -23,6 +25,8 @@ public class SpectrumParticleTypes {
 	public static ParticleType<WirelessRedstoneTransmissionParticleEffect> WIRELESS_REDSTONE_TRANSMISSION;
 	public static ParticleType<TransphereParticleEffect> TRANSPHERE;
 	public static ParticleType<BlockPosEventTransferParticleEffect> BLOCK_POS_EVENT_TRANSFER;
+	
+	public static DefaultParticleType DIVINITY;
 	
 	public static DefaultParticleType SHOOTING_STAR; // Dummy entry to get the sprite registered
 	public static DefaultParticleType SPARKLESTONE_SPARKLE;
@@ -178,6 +182,7 @@ public class SpectrumParticleTypes {
 		GREEN_BUBBLE_POP = register("green_bubble_pop", false);
 		SPIRIT_SALLOW = register("spirit_sallow", false);
 		DECAY_PLACE = register("decay_place", false);
+		DIVINITY = register("divinity", false);
 		SHOOTING_STAR = register("shooting_star", false);
 		JADE_VINES = register("jade_vines", false);
 		JADE_VINES_BLOOM = register("jade_vines_bloom", false);

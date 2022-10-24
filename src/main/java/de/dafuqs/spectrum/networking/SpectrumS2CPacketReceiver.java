@@ -18,9 +18,11 @@ import de.dafuqs.spectrum.mixin.client.accessors.BossBarHudAccessor;
 import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.render.bossbar.SpectrumClientBossBar;
 import de.dafuqs.spectrum.sound.CraftingBlockSoundInstance;
+import de.dafuqs.spectrum.sound.DivinitySoundInstance;
 import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
 import de.dafuqs.spectrum.spells.InkSpellEffects;
 import net.fabricmc.api.EnvType;
@@ -32,6 +34,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
@@ -439,6 +442,22 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				PresentBlock.spawnParticles(MinecraftClient.getInstance().world, pos, colors);
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_ASCENSION_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> {
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				MinecraftClient.getInstance().world.playSound(MinecraftClient.getInstance().player.getBlockPos(), SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.PLAYERS, 1.0F, 1.0F, false); // TODO: change sound
+				SpectrumClient.minecraftClient.getSoundManager().play(new DivinitySoundInstance());
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> {
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				client.particleManager.addEmitter(MinecraftClient.getInstance().player, SpectrumParticleTypes.DIVINITY, 30);
+				MinecraftClient.getInstance().gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
 			});
 		});
 	}

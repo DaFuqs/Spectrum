@@ -470,4 +470,15 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PRESENT_OPENING_PARTICLES, packetByteBuf);
 		}
 	}
+	
+	public static void playAscensionAppliedEffects(ServerPlayerEntity player) {
+		ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ASCENSION_APPLIED_EFFECTS, PacketByteBufs.create());
+	}
+	
+	public static void playDivinityAppliedEffects(ServerPlayerEntity player) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeInt(player.getId());
+		ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, buf);
+	}
+	
 }

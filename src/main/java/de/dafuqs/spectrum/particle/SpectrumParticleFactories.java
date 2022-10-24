@@ -6,6 +6,7 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.particle.*;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.server.world.ServerWorld;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumParticleFactories {
@@ -54,6 +55,8 @@ public class SpectrumParticleFactories {
 			particle.setSprite(provider);
 			return particle;
 		});
+		
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DIVINITY, HardcoreParticle.Factory::new);
 		
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SHOOTING_STAR, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SPARKLESTONE_SPARKLE, LitParticle.Factory::new);

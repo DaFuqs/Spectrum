@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.cca.HardcoreDeathComponent;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.enchantments.TreasureHunterEnchantment;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
@@ -10,6 +11,7 @@ import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -34,9 +36,19 @@ public abstract class ServerPlayerEntityMixin {
 	@Shadow
 	public abstract ServerWorld getWorld();
 	
+	@Shadow public abstract void playerTick();
+	
 	@Inject(at = @At("HEAD"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
 	protected void spectrum$dropPlayerHeadWithTreasureHunt(DamageSource source, CallbackInfo ci) {
 		TreasureHunterEnchantment.doTreasureHunterForPlayer((ServerPlayerEntity) (Object) this, source);
+	}
+	
+	@Inject(at = @At("TAIL"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
+	protected void spectrum$onDeath(DamageSource source, CallbackInfo ci) {
+		ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
+		if(player.getWorld().getLevelProperties().isHardcore() || HardcoreDeathComponent.isInHardcore(player)) {
+			HardcoreDeathComponent.addHardcoreDeath(player.getUuid());
+		}
 	}
 	
 	@Inject(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", cancellable = true)

@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.status_effects.AscensionStatusEffect;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -50,6 +51,12 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent KIMCHI = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
 	
+	public static final FoodComponent FREIGEIST = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.ASCENSION, AscensionStatusEffect.MUSIC_DURATION_TICKS), 1.0F).build();
+	
+	public static final FoodComponent DIVINATION_HEART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, 600), 1.0F).build();
+	
 	// TODO: Finish components starting form here
 	public static final FoodComponent ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	public static final FoodComponent TOPAZ_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
@@ -71,5 +78,5 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent SALTED_JARAMEL_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	public static final FoodComponent MONSTER_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	public static final FoodComponent DEMON_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	
+
 }

@@ -120,6 +120,9 @@ public class SpectrumCommon implements ModInitializer {
 		ColorRegistry.registerColorRegistries();
 		
 		// Register ALL the stuff
+		logInfo("Registering Status Effects...");
+		SpectrumStatusEffects.register();
+		SpectrumStatusEffectTags.register();
 		logInfo("Registering Advancement Criteria...");
 		SpectrumAdvancementCriteria.register();
 		logInfo("Registering Particle Types...");
@@ -166,10 +169,6 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register();
 		
-		// Status Effects
-		logInfo("Registering Status Effects...");
-		SpectrumStatusEffects.register();
-		SpectrumStatusEffectTags.register();
 		
 		// Default enchantments for some items
 		logInfo("Registering Default Item Stack Damage Immunities...");

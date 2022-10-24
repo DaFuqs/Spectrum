@@ -32,7 +32,8 @@
       "de.dafuqs.spectrum.compat.REI.REIClientIntegration"
     ],
     "cardinal-components": [
-      "de.dafuqs.spectrum.azure_dike.AzureDikeProvider"
+      "de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider",
+      "de.dafuqs.spectrum.cca.HardcoreDeathComponent"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
@@ -42,11 +43,9 @@
   "custom": {
     "cardinal-components": [
       "spectrum:azure_dike",
-      "spectrum:crystal_grace_effect_holder"
-    ],
-    "loom:injected_interfaces": {
-      "de/dafuqs/spectrum/blocks/conditional/ColoredLeavesBlock": ["vazkii/botania/api/block/IHornHarvestable"]
-    }
+      "spectrum:crystal_grace_effect_holder",
+      "spectrum:hardcore_deaths"
+    ]
   },
   "depends": {
     "fabricloader": ">=0.13.3",

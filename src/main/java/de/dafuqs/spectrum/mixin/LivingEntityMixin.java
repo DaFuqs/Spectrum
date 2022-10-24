@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
+import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
 import de.dafuqs.spectrum.items.ActivatableItem;
@@ -11,8 +11,6 @@ import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
-import net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;

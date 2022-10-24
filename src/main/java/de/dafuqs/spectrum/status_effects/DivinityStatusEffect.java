@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.status_effects;
 
-import com.mojang.authlib.GameProfile;
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.BannedPlayerEntry;
-import net.minecraft.server.BannedPlayerList;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 
 public class DivinityStatusEffect extends SpectrumStatusEffect {
 	
@@ -22,18 +22,18 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 		if (entity.getHealth() < entity.getMaxHealth()) {
 			entity.heal(amplifier / 2F);
 		}
-		if(entity instanceof PlayerEntity playerEntity) {
+		if (entity instanceof PlayerEntity playerEntity) {
 			playerEntity.getHungerManager().add(1, 0.25F);
 		}
 		if (!entity.world.isClient) {
-				WhispyCircletItem.removeSingleHarmfulStatusEffect(entity);
+			WhispyCircletItem.removeSingleHarmfulStatusEffect(entity);
 		}
 	}
 	
 	@Override
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
 		int i = 80 >> amplifier;
-		if(i > 0) {
+		if (i > 0) {
 			return duration % i == 0;
 		}
 		return true;
@@ -42,26 +42,9 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onApplied(entity, attributes, amplifier);
-		entity.playSound(SpectrumSoundEvents.ENCHANTER_DING, 1.0F, 1.0F); // TODO: test & customize
-	}
-	
-	public static final String HARDCORE_DEATH_REASON = "Death in Hardcore";
-	
-	public static boolean hasHardcorePlayerDeath(GameProfile gameProfile) {
-		BannedPlayerList userBanList = SpectrumCommon.minecraftServer.getPlayerManager().getUserBanList();
-		return userBanList.contains(gameProfile);
-	}
-	
-	public static boolean unbanDeadHardcorePlayer(GameProfile gameProfile) {
-		BannedPlayerList userBanList = SpectrumCommon.minecraftServer.getPlayerManager().getUserBanList();
-		if(userBanList.contains(gameProfile)) {
-			BannedPlayerEntry entry = userBanList.get(gameProfile);
-			if(entry != null && entry.getReason().equals(HARDCORE_DEATH_REASON)) {
-				userBanList.remove(gameProfile);
-				return true;
-			}
+		if(entity instanceof ServerPlayerEntity player) {
+			SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
 		}
-		return false;
 	}
 	
 }

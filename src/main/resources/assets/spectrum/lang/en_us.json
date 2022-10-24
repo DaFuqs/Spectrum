@@ -67,6 +67,7 @@
   "effect.spectrum.swiftness": "Swiftness",
   "effect.spectrum.stiffness": "Stiffness",
   "effect.spectrum.millenia_disease": "Millenia Disease",
+  "effect.spectrum.ascension": "Ascension",
   "effect.spectrum.divinity": "Divinity",
 
   "__legacy: remove in 1.19": "",
@@ -2017,6 +2018,9 @@
   "item.spectrum.infused_beverage.tooltip.variant.mead": "Mead",
   "item.spectrum.infused_beverage.tooltip.variant.poisonous_vodka": "Vodka",
   "item.spectrum.infused_beverage.tooltip.variant.vodka": "Vodka",
+
+  "item.spectrum.freigeist": "Freigeist",
+  "item.spectrum.divination_heart": "Divination Heart",
 
   "item.spectrum.crescent_clock": "Crescent Clock",
   "item.spectrum.gilded_book": "Gilded Book",

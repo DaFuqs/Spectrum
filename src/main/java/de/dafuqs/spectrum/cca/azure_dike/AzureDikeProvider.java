@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.azure_dike;
+package de.dafuqs.spectrum.cca.azure_dike;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;

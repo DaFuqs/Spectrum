@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.azure_dike.AzureDikeComponent;
-import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
-import de.dafuqs.spectrum.azure_dike.DefaultAzureDikeComponent;
+import de.dafuqs.spectrum.cca.azure_dike.AzureDikeComponent;
+import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
+import de.dafuqs.spectrum.cca.azure_dike.DefaultAzureDikeComponent;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;

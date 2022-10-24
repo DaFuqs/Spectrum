@@ -107,6 +107,7 @@ dependencies {
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cca_version}"
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cca_version}"
 	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-item:${cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-level:${cca_version}"
 
 	// https://github.com/TheEpicBlock/banner-plus-plus
 	modImplementation include("io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2")

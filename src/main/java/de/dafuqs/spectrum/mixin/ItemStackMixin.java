@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.mixin.accessors.ItemAccessor;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EquipmentSlot;
@@ -49,13 +50,6 @@ public abstract class ItemStackMixin {
 			if (slotWithOnClickAction.onClicked((ItemStack) (Object) this, clickType, player)) {
 				cir.setReturnValue(true);
 			}
-		}
-	}
-	
-	@Inject(at = @At("HEAD"), method = "postMine(Lnet/minecraft/world/World;Lnet/minecraft/block/BlockState;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/PlayerEntity;)V")
-	public void spectrum$postMine(World world, BlockState state, BlockPos pos, PlayerEntity miner, CallbackInfo ci) {
-		if (miner instanceof ServerPlayerEntity serverPlayerEntity) {
-			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
 		}
 	}
 	

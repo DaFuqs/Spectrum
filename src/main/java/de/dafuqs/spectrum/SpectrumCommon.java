@@ -40,6 +40,7 @@ import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.block.Block;
@@ -242,6 +243,10 @@ public class SpectrumCommon implements ModInitializer {
 				}
 			}
 			return ActionResult.PASS;
+		});
+		
+		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
+			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger((ServerPlayerEntity) player, state);
 		});
 		
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {

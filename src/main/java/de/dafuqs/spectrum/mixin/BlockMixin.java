@@ -94,11 +94,6 @@ public abstract class BlockMixin {
 		return droppedStacks;
 	}
 	
-	@Inject(method = "afterBreak", at = @At("HEAD"))
-	private void spectrum$saveBreakingPlayerReference(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack, CallbackInfo ci) {
-		spectrum$breakingPlayer = player;
-	}
-	
 	@ModifyArg(method = "dropExperience", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	private int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * ExuberanceEnchantment.getExuberanceMod(spectrum$breakingPlayer));
@@ -106,6 +101,7 @@ public abstract class BlockMixin {
 	
 	@Inject(method = "afterBreak", at = @At("HEAD"), cancellable = true)
 	public void spectrum$afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack, CallbackInfo callbackInfo) {
+		spectrum$breakingPlayer = player;
 		if (ResonanceEnchantment.checkResonanceForSpawnerMining(world, pos, state, blockEntity, stack) && SpectrumEnchantments.RESONANCE.canEntityUse(player)) {
 			callbackInfo.cancel();
 		}

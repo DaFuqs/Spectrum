@@ -5,7 +5,7 @@
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:amaranth_grains": 0,
-    "spectrum:amaranth_bushel": 0
+    "spectrum:amaranth_bushel": 0,
     "spectrum:honey_pastry": 0
   },
   "pages": [

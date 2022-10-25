@@ -133,15 +133,20 @@ public class REIClientIntegration implements REIClientPlugin {
 		FreezingMobBlock.FREEZING_MAP.forEach((key, value) -> registry.add(new FreezingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
 		FirestarterMobBlock.BURNING_MAP.forEach((key, value) -> registry.add(new HeatingDisplay(BlockToBlockWithChanceDisplay.blockToEntryStack(key), BlockToBlockWithChanceDisplay.blockToEntryStack(value.getLeft().getBlock()), value.getRight())));
 		
-		if (!SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked) {
+		
+		registry.registerVisibilityPredicate((category, display) -> {
 			// do not list recipes in REI at all, until they are unlocked
-			registry.registerVisibilityPredicate((category, display) -> {
-				if (display instanceof GatedRecipeDisplay gatedRecipeDisplay && !gatedRecipeDisplay.isUnlocked()) {
+			// secret recipes are never shown
+			if (display instanceof GatedRecipeDisplay gatedRecipeDisplay) {
+				if (gatedRecipeDisplay.isSecret()) {
 					return EventResult.interruptFalse();
 				}
-				return EventResult.pass();
-			});
-		}
+				if (!SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked && !gatedRecipeDisplay.isUnlocked()) {
+					return EventResult.interruptFalse();
+				}
+			}
+			return EventResult.pass();
+		});
 		
 	}
 	

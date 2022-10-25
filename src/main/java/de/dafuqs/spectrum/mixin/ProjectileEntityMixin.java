@@ -6,11 +6,13 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
@@ -41,32 +43,45 @@ public abstract class ProjectileEntityMixin {
 		if (!thisEntity.getWorld().isClient) {
 			Entity entity = entityHitResult.getEntity();
 			if (entity instanceof LivingEntity livingEntity) {
-				Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(livingEntity);
-				if (component.isPresent()) {
-					List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.PUFF_CIRCLET);
-					if (!equipped.isEmpty()) {
-						int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
-						if (charges > 0) {
-							AzureDikeProvider.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
-							
-							this.setVelocity(0, 0, 0, 0, 0);
-							
-							SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
-									SpectrumParticleTypes.WHITE_CRAFTING, 6,
-									new Vec3d(0, 0, 0),
-									new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
-							SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
-									SpectrumParticleTypes.BLUE_CRAFTING, 6,
-									new Vec3d(0, 0, 0),
-									new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
-							
-							thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-							ci.cancel();
+				boolean protect = false;
+				
+				StatusEffectInstance reboundInstance = livingEntity.getStatusEffect(SpectrumStatusEffects.PROJECTILE_REBOUND);
+				if(reboundInstance != null && entity.world.getRandom().nextFloat() < 0.2 * reboundInstance.getAmplifier()) {
+					protect = true;
+				} else {
+					Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(livingEntity);
+					if (component.isPresent()) {
+						List<Pair<SlotReference, ItemStack>> equipped = component.get().getEquipped(SpectrumItems.PUFF_CIRCLET);
+						if (!equipped.isEmpty()) {
+							int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
+							if (charges > 0) {
+								AzureDikeProvider.absorbDamage(livingEntity, PuffCircletItem.PROJECTILE_DEFLECTION_COST);
+								protect = true;
+							}
 						}
 					}
 				}
+				
+				if(protect) {
+					this.setVelocity(0, 0, 0, 0, 0);
+					
+					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
+							SpectrumParticleTypes.WHITE_CRAFTING, 6,
+							new Vec3d(0, 0, 0),
+							new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
+					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
+							SpectrumParticleTypes.BLUE_CRAFTING, 6,
+							new Vec3d(0, 0, 0),
+							new Vec3d(thisEntity.getX() - livingEntity.getPos().x, thisEntity.getY() - livingEntity.getPos().y, thisEntity.getZ() - livingEntity.getPos().z));
+					
+					thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
+					ci.cancel();
+				}
+				
 			}
 		}
 	}
+	
+	
 	
 }

@@ -9,7 +9,7 @@
   "white": 0,
   "experience": 1.0,
   "pattern": [
-    "S S",
+    "J J",
     "EME",
     "AAA"
   ],
@@ -23,8 +23,8 @@
     "E": {
       "item": "minecraft:egg"
     },
-    "S": {
-      "item": "minecraft:sugar"
+    "M": {
+      "item": "minecraft:milk_bucket"
     }
   },
   "result": {

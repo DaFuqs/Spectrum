@@ -55,26 +55,64 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent DIVINATION_HEART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, 600), 1.0F).build();
 	
-	// TODO: Finish components starting form here
-	public static final FoodComponent ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent TOPAZ_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent AMETHYST_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent CITRINE_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent ONYX_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent MOONSTONE_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 20 * 15, 4), 1.0F)
+			.snack().build();
+	public static final FoodComponent TOPAZ_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 20 * 15), 1.0F)
+			.snack().build();
+	public static final FoodComponent AMETHYST_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 20 * 15, 4), 1.0F)
+			.snack().build();
+	public static final FoodComponent CITRINE_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 20 * 15, 2), 1.0F)
+			.snack().build();
+	public static final FoodComponent ONYX_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 20 * 15, 1), 1.0F)
+			.snack().build();
+	public static final FoodComponent MOONSTONE_ROCK_CANDY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, 20 * 15), 1.0F)
+			.snack().build();
+	
+	public static final FoodComponent BLOODBOIL_SYRUP = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 400), 1.0F)
+			.build();
 	
 	public static final FoodComponent HONEY_PASTRY = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-
-	public static final FoodComponent JARAMEL_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent SALTED_JARAMEL_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent ASHEN_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent WEEPING_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent WHISPY_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent PUFF_TART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
 	
-	public static final FoodComponent JARAMEL_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent SALTED_JARAMEL_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent MONSTER_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
-	public static final FoodComponent DEMON_TRIFLE = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).build();
+	public static final FoodComponent JARAMEL_TART = new FoodComponent.Builder().hunger(8).saturationModifier(0.2F).build();
+	public static final FoodComponent SALTED_JARAMEL_TART = new FoodComponent.Builder().hunger(8).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 40), 1.0F)
+			.build();
+	public static final FoodComponent ASHEN_TART = new FoodComponent.Builder().hunger(8).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.BLAZING, 20 * 15), 1.0F)
+			.build();
+	public static final FoodComponent WEEPING_TART = new FoodComponent.Builder().hunger(8).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 20 * 15), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, 20 * 30), 1.0F)
+			.build();
+	public static final FoodComponent WHISPY_TART = new FoodComponent.Builder().hunger(8).saturationModifier(0.2F)
+			.build();
+	public static final FoodComponent PUFF_TART = new FoodComponent.Builder().hunger(8).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.PROJECTILE_REBOUND, 20 * 15), 1.0F)
+			.build();
+	
+	public static final FoodComponent JARAMEL_TRIFLE = new FoodComponent.Builder().hunger(10).saturationModifier(0.2F).build();
+	public static final FoodComponent SALTED_JARAMEL_TRIFLE = new FoodComponent.Builder().hunger(10).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 40), 1.0F)
+			.build();
+	public static final FoodComponent MONSTER_TRIFLE = new FoodComponent.Builder().hunger(10).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 1200), 0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 1200), 0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 1200), 0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 1200), 0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 1200), 0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 1200), 0.2F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 1200), 0.2F)
+			.build();
+	public static final FoodComponent DEMON_TRIFLE = new FoodComponent.Builder().hunger(10).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 1200), 1.0F / 3.0F)
+			.build();
 
 }

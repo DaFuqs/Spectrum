@@ -69,6 +69,9 @@
   "effect.spectrum.millenia_disease": "Millenia Disease",
   "effect.spectrum.ascension": "Ascension",
   "effect.spectrum.divinity": "Divinity",
+  "effect.spectrum.frenzy": "Frenzy",
+  "effect.spectrum.blazing": "Blazing",
+  "effect.spectrum.projectile_rebound": "Projectile Rebound",
 
   "__legacy: remove in 1.19": "",
   "item.spectrum.potion": "§2P§3i§cg§6m§be§en§dt§f Potion",

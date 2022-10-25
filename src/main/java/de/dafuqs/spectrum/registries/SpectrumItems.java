@@ -266,7 +266,7 @@ public class SpectrumItems {
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(resourcesItemSettings, SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
 	
 	public static final Item BLOOD_ORCHID_PETAL = new Item(resourcesItemSettings);
-	public static final Item BLOODBOIL_SYRUP = new Item(resourcesItemSettingsSixteen);
+	public static final Item BLOODBOIL_SYRUP = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).maxCount(16).food(SpectrumFoodComponents.BLOODBOIL_SYRUP).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	// Food & drinks
 	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3).rarity(Rarity.UNCOMMON).maxCount(16).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).recipeRemainder(Items.GLASS_BOTTLE));

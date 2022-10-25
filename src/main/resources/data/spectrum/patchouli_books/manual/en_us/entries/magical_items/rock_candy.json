@@ -21,19 +21,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A stick with sugaron it.$(br2)...wait wait wait, there's more to it!$(br)If you place this stick so that its underside is immersed in $(l:magical_items/liquid_crystal)Liquid Crystal$(/l), you just have to slowly dissolve more sugar in the liquid until the stick turns into a sweet-crunchy candy stick."
+      "text": "A stick with sugar on it.$(br2)...wait wait wait, there's more to it!$(br)If you place this stick so that its underside is immersed in $(l:magical_items/liquid_crystal)Liquid Crystal$(/l), you just have to slowly dissolve more sugar in the liquid until the stick turns into a sweet-crunchy candy stick."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/food/sugar_stick",
-      "text": "$(italic)You might even have more options than just plain Sugar? Liquid crystal and all that..."
-    },
-    {
-      "type": "patchouli:text",
-      "title": "Rock Candy Decoration",
-      "advancement": "spectrum:hidden/collect_rock_candy",
-      "text": "You can harvest grown Sugar Sticks with $(thing)Silk Touch$() to make them keep their grown size.$(br2)You can then use those grown sticks as fancy lights, or just for storage. The bigger they have grown they more light they give up."
+      "text": "$(italic)You might even be able to add more stuff than just plain Sugar when immersed? Liquid crystal and all that..."
     },
     {
       "type": "patchouli:spotlight",
@@ -41,6 +35,12 @@
       "title": "Gemstone Rock Candy",
       "advancement": "spectrum:midgame/collect_gemstone_rock_candy",
       "text": "A little $(l:general/gemstone_powder)Gemstone Powder$(/l) in addition to the Sugar dissolved in the liquid allows the Rock Candy to take on the gemstone typical color.$(br2)You always wanted to know what gemstones taste like. This one seems like a healthier option than snorting it up your nose."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "As Decoration",
+      "advancement": "spectrum:hidden/collect_rock_candy",
+      "text": "You can harvest grown Sugar Sticks with $(thing)Silk Touch$() to keep their grown size.$(br2)You can then use those grown sticks as fancy lights, or just for storage. The bigger they have grown they more light they give up."
     }
   ]
 }

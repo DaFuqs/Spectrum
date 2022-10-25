@@ -15,7 +15,7 @@
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Titration Recipe",
       "recipe": "spectrum:titration_barrel/special/jade_wine",
-      "text": "1 Bulb, 3 Petals and 1 Bucket of Water feel like a good starting point.$(br2)The longer the fermentation goes on, the stronger the taste gets, albeit you will have to pay the small Angel's Share"
+      "text": "1 Bulb and 3 Petals for the Bucket of Water feel like a good starting point.$(br2)The longer the fermentation goes on, the stronger the taste gets, albeit you will have to pay the small Angel's Share"
     }
   ]
 }

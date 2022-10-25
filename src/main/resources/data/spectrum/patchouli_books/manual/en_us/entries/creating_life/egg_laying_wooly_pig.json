@@ -10,7 +10,7 @@
     {
       "type": "patchouli:text",
       "title": "Egg Laying Wooly Pig",
-      "text": "Your whole \"creating life\" thing has worked rather mixed so far. But slowly you feel you are able to move something.$(br)Creating life from nothing is a difficult thing, but combining existing knowledge? You feel a bit like Frankenstein himself. Is that a good thing? Bad? You are not sure at all."
+      "text": "Your whole \"creating life\" thing has worked rather mixed so far. But slowly you feel you are able to move something.$(br2)Creating life from nothing is a difficult thing, but combining existing knowledge? You feel a bit like Frankenstein himself.$(br)$(italic)Is that a good thing? Bad? You are not sure at all."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

@@ -11,10 +11,14 @@
   },
   "pages": [
     {
+      "type": "patchouli:text",
+      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings very intense, mostly $(thing)offensive$() ones.$(br)Made from $(l:resources/jade_vines#jaramel)Jaramel$(/l), $(thing)Gelatin$() & $(l:resources/amaranth)Amaranth$(/l). Even the rudimentary one tastes great!"
+    },
+    {
       "type": "spectrum:pedestal_crafting",
       "title": "Jaramel Trifle",
       "recipe": "spectrum:pedestal/tier3/food/jaramel_trifle",
-      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings very intense, mostly $(thing)offensive$() ones. Made from $(l:resources/jade_vines#jaramel)Jaramel$(/l), $(thing)Milk$() & $(l:resources/amaranth)Amaranth$(/l). Even the rudimentary one tastes great! The only thing that would make it more delicious would be the tears of your enemies."
+      "text": "The classic. The only thing that would make this one more delicious would be the tears of your enemies."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -30,7 +34,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/food/tachycardia_trifle",
-      "text": "Chance to put you into $(thing)'Frenzy'$(): damage, attack speed, knockback resistance are buffed the more you kill. But if you do not score a kill in 20 seconds you get negative effects. Stacking $(thing)Frenzy$() increases it's potency instead."
+      "text": "May to put you into $(thing)Frenzy$().$(br)damage, attack speed, knockback resistance are buffed the more you kill. But if you do not regularly score a kill you get negative ones."
     }
   ]
 }

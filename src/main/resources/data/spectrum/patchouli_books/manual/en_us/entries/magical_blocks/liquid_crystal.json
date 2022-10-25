@@ -42,6 +42,7 @@
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:midgame/collect_resonant_lily",
+      "anchor": "resonant_lily",
       "item": "spectrum:resonant_lily",
       "text": "This is an interesting one. The roots of flowers absorb this magical liquid, turning into elusive plants. But even then the cannot withstand the raw energy of the liquid, making them pop."
     }

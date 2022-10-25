@@ -11,22 +11,22 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
-	  "item": "spectrum:blood_orchid_petal"
+	  "item": "spectrum:blood_orchid_petal",
       "title": "Blood Orchid Petals",
-      "text": "These leaves seem to belong to a flower you don't know. Did it once bloom here, was it once grown by those who came before you and built these structures you found? Perhaps they are a souvenir from a world you yourself have never entered? Yet it looks like it was plucked just 5 minutes ago.$(br)You feel something whenever you touch the petal. Restlessness."
+      "text": "These leaves seem to belong to a flower you don't know. Did it once bloom here, was it once grown by those who came before you? Perhaps a souvenir from a world you yourself have never entered? Yet it looks like it was plucked just 5 minutes ago.$(br)You feel something whenever you touch the petal: restlessness."
     },
     {
       "type": "spectrum:potion_workshop_crafting",
       "title": "Workshop Recipe",
       "recipe": "spectrum:potion_workshop_crafting/bloodboil_syrup",
-      "text": "With the help of $(l:magical_blocks/potion_workshop)Potion Workshop$(/l) and $(l:resources/quitoxic_reeds#quitoxic_powder)Quitoxic Powder$(/l), aroma and active ingredients can be extracted from a single petal into a thick Solution. While it almost smells like Rose Water, it's effect when drunk is definitely... $(italic)a little more effervescent$()."
+      "text": "It's active ingredients can be extracted from a petal into a thick solution. While it almost smells like Rose Water, it's effect when drunk is definitely... $(italic)a little more effervescent$()."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "advancement": "spectrum:progression/unlock_blood_orchid",
       "title": "Blood Orchid Plants",
       "recipe": "spectrum:spirit_instiller/blood_orchid",
-      "text": "Creates a plant from a single petal which new petals can be plucked of"
+      "text": "$(l:magical_blocks/liquid_crystal#resonant_lily)Resonant Lilies$(/l)! Truly an elusive flower - and seemingly related to Blood Orchids. Though the Blood Orchids energy very quickly takes over.$(br)Whelp, worst thing that can happen is you ending up with a true plant that you can pluck additional petals of."
     }
   ]
 }

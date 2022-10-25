@@ -36,7 +36,7 @@
       "title": "Native Resources",
       "recipe": "spectrum:blasting/native_resources/native_iron",
       "recipe2": "spectrum:blasting/native_resources/native_gold",
-      "text": "Growing materials in the $(l:magical_blocks/crystallarieum)Crystallarieum$(/l) yields this much purer variant than plain $(thing)Raw Ore$().$(br)Blasting it gets you the plain variant."
+      "text": "Growing materials in the $(l:magical_blocks/crystallarieum)Crystallarieum$(/l) yields this much purer variant than plain $(thing)Raw Ore$().$(br)Blasting them gets you the plain variant."
     },
     {
       "type": "spectrum:cinderhearth_smelting",

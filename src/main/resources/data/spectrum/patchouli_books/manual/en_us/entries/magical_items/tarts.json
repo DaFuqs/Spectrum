@@ -13,10 +13,14 @@
   },
   "pages": [
     {
+      "type": "patchouli:text",
+      "text": "Even though you are not the most proficient chef, even this rudimentary one tastes great! $(br)You can garnish it with different toppings to grant you $(thing)defensive abilities$() for a short duration."
+    },
+    {
       "type": "spectrum:pedestal_crafting",
       "title": "Jaramel Tart",
       "recipe": "spectrum:pedestal/tier3/food/jaramel_tart",
-      "text": "Even though you are not the most proficient chef, even this rudimentary one tastes great! The only thing that would make them more delicious would be the tears of your enemies.$(br)You can garnish it with different toppings to grant you $(thing)defensive abilities$() for a short duration."
+      "text": "The classic. The only thing that would make this one more delicious would be the tears of your enemies."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -42,7 +46,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/food/puff_tart",
-      "text": "Gives you a small chance for projectiles simply deflecting off of you."
+      "text": "Small chance for projectiles to simply deflect off of you."
     }
   ]
 }

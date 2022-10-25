@@ -14,7 +14,9 @@
     "spectrum:tinted_preservation_glass": 0,
     "spectrum:dike_gate": 0,
     "spectrum:dike_gate_fountain": 0,
-    "spectrum:courier_statue": 0
+    "spectrum:courier_statue": 0,
+    "spectrum:preservation_bricks": 0,
+    "spectrum:shimmering_preservation_bricks": 0
   },
   "pages": [
     {

@@ -62,7 +62,9 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, "9812c88f-dc8e-47d1-a092-38339da9891e", 5.0D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(AdditionalEntityAttributes.WATER_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.25D, EntityAttributeModifier.Operation.ADDITION));
 	/**
-	 * Killing mobs grants buffs, while not killing grants debuffs
+	 * damage, attack speed, knockback resistance are buffed the more the player kills.
+	 * But if they do not score a kill in 20 seconds they get negative effects.
+	 * Stacking $(thing)Frenzy$() (applying the effect while they already have it) increases these effects amplitude
 	 */
 	public static final StatusEffect FRENZY = registerStatusEffect("frenzy", new SpectrumStatusEffect(StatusEffectCategory.NEUTRAL, 0x990000)); // TODO
 	/**

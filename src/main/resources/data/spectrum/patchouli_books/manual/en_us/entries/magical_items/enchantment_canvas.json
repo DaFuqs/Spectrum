@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Your new pickaxe, which was sinfully expensive to enchant? Almost broken and each additional broken block hurts your nerves more than the tool itself.$(br)May the tool not be able to be rescued, at least the Enchantments will! This canvas can not only capture color: Used on a tool, the enchantments are exchanged. You can then put them on a new item of the same type. Or just to swap incompatible enchantments."
+      "text": "Your pickaxe, which was sinfully expensive to enchant? Almost broken and each additional broken block hurts your nerves more than the tool itself.$(br)May the tool not be able to be rescued, at least the Enchantments will! This canvas can not only capture color: Used on a tool, the enchantments are exchanged."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/enchantment_canvas",
-      "text": "Once used, an image of the item you used it on will be drawn on the canvas, never be removed again."
+      "text": "Once used, an image of the item you used it on will be drawn on the canvas, never be removed again, binding it to this type of item."
     }
   ]
 }

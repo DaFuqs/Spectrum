@@ -23,7 +23,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:collect_amaranth_bushel",
-	  "title": "Honey Pastry"
+	  "title": "Honey Pastry",
       "recipe": "spectrum:pedestal/tier1/honey_pastry",
       "text": "The taste of Amaranth is as different from Wheat as its appearance. In your mind sprouted completely new ideas, like this deliciousness here."
     }

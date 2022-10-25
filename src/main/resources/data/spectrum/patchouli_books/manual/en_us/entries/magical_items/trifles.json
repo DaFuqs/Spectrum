@@ -7,7 +7,7 @@
     "spectrum:jaramel_trifle": 0,
     "spectrum:salted_jaramel_trifle": 0,
     "spectrum:monster_trifle": 0,
-    "spectrum:demon_trifle": 0
+    "spectrum:tachycardia_trifle": 0
   },
   "pages": [
     {
@@ -25,7 +25,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/food/monster_trifle",
-      "text": "Gives a random effect of three, refreshes them if eaten while still active."
+      "text": "Gives out effects at random. Fancy a gamble?"
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -33,5 +33,4 @@
       "text": "Chance to put you into $(thing)'Frenzy'$(): damage, attack speed, knockback resistance are buffed the more you kill. But if you do not score a kill in 20 seconds you get negative effects. Stacking $(thing)Frenzy$() increases it's potency instead."
     }
   ]
-}
 }

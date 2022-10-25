@@ -2,11 +2,8 @@ package de.dafuqs.spectrum.blocks.rock_candy;
 
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.items.conditional.GemstonePowderItem;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.minecraft.item.Item;
-import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.StringIdentifiable;
 

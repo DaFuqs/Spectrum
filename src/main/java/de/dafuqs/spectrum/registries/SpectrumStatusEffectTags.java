@@ -1,12 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.status_effects.*;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

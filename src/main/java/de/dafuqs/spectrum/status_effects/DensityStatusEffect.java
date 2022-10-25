@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.status_effects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.mob.GhastEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class DensityStatusEffect extends SpectrumStatusEffect {

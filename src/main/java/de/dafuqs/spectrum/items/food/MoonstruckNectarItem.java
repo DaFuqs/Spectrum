@@ -1,9 +1,6 @@
 package de.dafuqs.spectrum.items.food;
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;

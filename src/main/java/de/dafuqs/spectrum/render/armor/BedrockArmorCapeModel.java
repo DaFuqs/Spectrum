@@ -1,6 +1,9 @@
 package de.dafuqs.spectrum.render.armor;
 
-import net.minecraft.client.model.*;
+import net.minecraft.client.model.ModelData;
+import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.ModelPartBuilder;
+import net.minecraft.client.model.ModelTransform;
 
 public class BedrockArmorCapeModel {
     public static final ModelPart CAPE_MODEL = createCape();

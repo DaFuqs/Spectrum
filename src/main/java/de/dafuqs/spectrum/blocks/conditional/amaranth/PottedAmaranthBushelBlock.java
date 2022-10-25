@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
 import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

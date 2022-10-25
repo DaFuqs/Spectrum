@@ -1,9 +1,6 @@
 package de.dafuqs.spectrum.items.beverages;
 
 import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;

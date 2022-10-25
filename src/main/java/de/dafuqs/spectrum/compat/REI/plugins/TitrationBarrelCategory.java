@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 
 import com.google.common.collect.Lists;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import me.shedaniel.math.Point;

@@ -3,15 +3,12 @@ package de.dafuqs.spectrum.items.beverages;
 import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
 import de.dafuqs.spectrum.items.beverages.properties.StatusEffectBeverageProperties;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
 
 import java.util.List;
 

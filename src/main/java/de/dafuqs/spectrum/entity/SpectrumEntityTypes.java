@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
-import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -23,7 +22,7 @@ public class SpectrumEntityTypes {
 	public static EntityType MOLTEN_FISHING_BOBBER;
 	public static EntityType BEDROCK_FISHING_BOBBER;
 	public static EntityType<? extends ItemEntity> FIREPROOF_ITEM;
-	public static EntityType EGG_LAYING_WOOLY_PIG = register("egg_laying_wooly_pig", EntityType.Builder.create(EggLayingWoolyPigEntity::new, SpawnGroup.CREATURE).setDimensions(0.9F, 1.3F).maxTrackingRange(10));
+	public static EntityType<EggLayingWoolyPigEntity> EGG_LAYING_WOOLY_PIG = register("egg_laying_wooly_pig", EntityType.Builder.create(EggLayingWoolyPigEntity::new, SpawnGroup.CREATURE).setDimensions(0.9F, 1.3F).maxTrackingRange(10));
 	
 	public static void register() {
 		LIVING_MARKER = register("living_marker", 0, 2147483647, false, EntityDimensions.changing(0F, 0F), true, LivingMarkerEntity::new);

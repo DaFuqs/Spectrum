@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.status_effects;
 
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.attribute.EntityAttributeInstance;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
-import java.util.Iterator;
-import java.util.Map;
 import java.util.UUID;
 
 public class MilleniaDiseaseStatusEffect extends SpectrumStatusEffect {

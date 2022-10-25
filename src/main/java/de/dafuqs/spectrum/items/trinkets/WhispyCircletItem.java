@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffectTags;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;

@@ -5,7 +5,7 @@
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:amaranth_grains": 0,
-    "spectrum:amaranth_bushel": 0,
+    "spectrum:amaranth_bushel": 0
     "spectrum:honey_pastry": 0
   },
   "pages": [
@@ -23,9 +23,9 @@
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:collect_amaranth_bushel",
-	  "title": "Honey Pastry",
+	  "title": "Honey Pastry"
       "recipe": "spectrum:pedestal/tier1/honey_pastry",
-      "text": "The taste of amaranth is as different from wheat as its appearance. In your mind sprouted completely new ideas, like this deliciousness here."
+      "text": "The taste of Amaranth is as different from Wheat as its appearance. In your mind sprouted completely new ideas, like this deliciousness here."
     }
   ]
 }

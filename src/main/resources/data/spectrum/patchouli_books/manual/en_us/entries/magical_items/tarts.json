@@ -2,7 +2,7 @@
   "name": "Tarts",
   "icon": "spectrum:ashen_tart",
   "advancement": "spectrum:progression/unlock_tarts",
-  "category": "spectrum:creating_life_category",
+  "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:jaramel_tart": 0,
     "spectrum:salted_jaramel_tart": 0,
@@ -13,46 +13,36 @@
   },
   "pages": [
     {
-      "type": "patchouli:text",
-      "title": "Tarts",
-      "text": ""
-    },
-    {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "Jaramel Tart",
       "recipe": "spectrum:pedestal/tier3/food/jaramel_tart",
-      "text": ""
+      "text": "Even though you are not the most proficient chef, even this rudimentary one tastes great! The only thing that would make them more delicious would be the tears of your enemies.$(br)You can garnish it with different toppings to grant you $(thing)defensive abilities$() for a short duration."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
       "advancement": "spectrum:midgame/craft_salted_jaramel_trifle_or_tart",
       "recipe": "spectrum:pedestal/tier3/food/salted_jaramel_tart",
-      "text": "Unlocks when adding a Ghast Tear in the empty slot of the recipe."
+      "text": "$(italic)Extra Salty"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/food/ashen_tart",
-      "text": ""
+      "text": "Makes you able to see & swim in lava as were it water.$(br2)Does NOT, however, make you Fire immune."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/food/weeping_tart",
-      "text": ""
+      "text": "Makes you able to swim at light speed and greatly increases your underwater mining rate."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/food/whispy_tart",
-      "text": ""
+      "text": "Makes you feel well rested, like after a good nights sleep. Scares away creatures of nightmares."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/food/puff_tart",
-      "text": ""
+      "text": "Gives you a small chance for projectiles simply deflecting off of you."
     }
   ]
 }

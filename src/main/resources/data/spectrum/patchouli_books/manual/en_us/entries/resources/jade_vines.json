@@ -34,6 +34,7 @@
     {
       "type": "patchouli:spotlight",
       "title": "Jade Jelly",
+	  "anchor": "jade_jelly",
       "item": "spectrum:jade_jelly",
       "advancement": "spectrum:hidden/collect_jade_jelly",
       "text": "When you accidentally put one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with a new Bulb, but also this gel-like jelly.$(br)$(italic)Unexpectedly tasty$()."
@@ -41,6 +42,7 @@
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Jaramel",
+	  "anchor": "jaramel",
       "item": "spectrum:jaramel",
       "advancement": "spectrum:cinderhearth/jaramel",
       "text": "If the Jade Jelly is heated blazingly fast and then cooled down again, the result is a very viscous but sugar-sweet mass.$(br)$(italic)Fancy a sugar rush?"
@@ -48,6 +50,7 @@
     {
       "type": "patchouli:spotlight",
       "title": "Petals",
+	  "anchor": "petals",
       "item": "spectrum:jade_vine_petals",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
       "text": "Shiny petals can be plucked carefully when partly grown.$(br)These Petals can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Rarely, when searching the petals, another Bulb can be found."
@@ -55,6 +58,7 @@
     {
       "type": "patchouli:spotlight",
       "title": "Moonstruck Nectar",
+	  "anchor": "nevtar",
       "item": "spectrum:moonstruck_nectar",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
       "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)$(italic)Bears great restorative properties:$(li)can be drunk for healing$(li)able to repair any damaged item$()."

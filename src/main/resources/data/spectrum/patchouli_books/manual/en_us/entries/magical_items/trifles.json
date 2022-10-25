@@ -2,7 +2,7 @@
   "name": "Trifles",
   "icon": "spectrum:jaramel_trifle",
   "advancement": "spectrum:progression/unlock_trifles",
-  "category": "spectrum:creating_life_category",
+  "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:jaramel_trifle": 0,
     "spectrum:salted_jaramel_trifle": 0,
@@ -11,34 +11,27 @@
   },
   "pages": [
     {
-      "type": "patchouli:text",
-      "title": "Trifles",
-      "text": ""
-    },
-    {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
+      "title": "Jaramel Trifle",
       "recipe": "spectrum:pedestal/tier3/food/jaramel_trifle",
-      "text": "Honey pastry made from jaramel, milk & amaranth. Tastes great! The only thing that would make it more delicious would be the tears of your enemies."
+      "text": "Sweet delicacies, guaranteed to not only give you a sugar rush - depending on the toppings very intense, mostly $(thing)offensive$() ones. Made from $(l:resources/jade_vines#jaramel)Jaramel$(/l), $(thing)Milk$() & $(l:resources/amaranth)Amaranth$(/l). Even the rudimentary one tastes great! The only thing that would make it more delicious would be the tears of your enemies."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
       "advancement": "spectrum:midgame/craft_salted_jaramel_trifle_or_tart",
       "recipe": "spectrum:pedestal/tier3/food/salted_jaramel_trifle",
-      "text": "Unlocks when adding a Ghast Tear in the one empty slot of the recipe."
+      "text": "$(italic)Extra Salty"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/food/monster_trifle",
-      "text": "Gives a random effect of three, refreshes then if eaten while still active."
+      "text": "Gives a random effect of three, refreshes them if eaten while still active."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/food/demon_trifle",
-      "text": "Gives 'Frenzy' status effect. (boosts damage, attack speed, knockback resistance & DR the more the player kills; not killing gives negative effects : Weakness, Slowness, Wither up to instant damage; the higher the level of frenzy, the faster the effects scale)"
+      "recipe": "spectrum:pedestal/tier3/food/tachycardia_trifle",
+      "text": "Chance to put you into $(thing)'Frenzy'$(): damage, attack speed, knockback resistance are buffed the more you kill. But if you do not score a kill in 20 seconds you get negative effects. Stacking $(thing)Frenzy$() increases it's potency instead."
     }
   ]
+}
 }

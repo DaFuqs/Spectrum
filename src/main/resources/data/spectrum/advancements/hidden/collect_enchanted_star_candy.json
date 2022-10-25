@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "unlocked_star_candy": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_star_candy" }
+    },
+    "collected_enchanted_star_candy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": ["spectrum:enchanted_star_candy" ] }] }
+    }
+  }
+}

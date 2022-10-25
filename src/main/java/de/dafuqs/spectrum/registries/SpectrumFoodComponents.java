@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.status_effects.AscensionStatusEffect;
-import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
 
 public class SpectrumFoodComponents {
 	
@@ -15,10 +13,10 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent JADE_JELLY = new FoodComponent.Builder().hunger(4).saturationModifier(0.75F).snack()
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 2), 0.2F).build();
 	
-	public static final FoodComponent STAR_COOKIE = new FoodComponent.Builder()
+	public static final FoodComponent STAR_CANDY = new FoodComponent.Builder()
 			.hunger(3).saturationModifier(0.25F).alwaysEdible().snack().build();
 	
-	public static final FoodComponent ENCHANTED_STAR_COOKIE = new FoodComponent.Builder()
+	public static final FoodComponent ENCHANTED_STAR_CANDY = new FoodComponent.Builder()
 			.hunger(20).saturationModifier(1.0F).alwaysEdible().snack()
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 20), 1.0F).build();
 	

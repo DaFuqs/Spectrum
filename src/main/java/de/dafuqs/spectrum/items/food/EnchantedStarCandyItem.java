@@ -12,16 +12,20 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class StarCookieItem extends Item {
-	
-	public StarCookieItem(Settings settings) {
+public class EnchantedStarCandyItem extends Item {
+
+	public EnchantedStarCandyItem(Settings settings) {
 		super(settings);
+	}
+	
+	public boolean hasGlint(ItemStack stack) {
+		return true;
 	}
 	
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		ItemStack itemStack = super.finishUsing(stack, world, user);
 		if(!world.isClient) {
-			WhispyCircletItem.removeSingleHarmfulStatusEffect(user);
+			WhispyCircletItem.removeNegativeStatusEffects(user);
 		}
 		return itemStack;
 	}
@@ -29,7 +33,7 @@ public class StarCookieItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		tooltip.add(new TranslatableText("item.spectrum.star_cookie.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.enchanted_star_candy.tooltip").formatted(Formatting.GRAY));
 	}
 	
 }

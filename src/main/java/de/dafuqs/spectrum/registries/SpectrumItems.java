@@ -279,8 +279,8 @@ public class SpectrumItems {
 	public static final Item JADE_WINE = new JadeWineItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(SpectrumFoodComponents.JADE_WINE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item PURE_ALCOHOL = new PureAlcoholItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
 	
-	public static final Item STAR_COOKIE = new StarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.COMMON).maxCount(16).food(SpectrumFoodComponents.STAR_COOKIE));
-	public static final Item ENCHANTED_STAR_COOKIE = new EnchantedStarCookieItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(16).food(SpectrumFoodComponents.ENCHANTED_STAR_COOKIE));
+	public static final Item STAR_CANDY = new StarCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.COMMON).maxCount(16).food(SpectrumFoodComponents.STAR_CANDY));
+	public static final Item ENCHANTED_STAR_CANDY = new EnchantedStarCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.RARE).maxCount(16).food(SpectrumFoodComponents.ENCHANTED_STAR_CANDY));
 	
 	public static final Item JARAMEL = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.JARAMEL));
 	
@@ -301,7 +301,7 @@ public class SpectrumItems {
 	public static final Item GLISTERING_JELLY_TEA = new GlisteringJellyTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	public static final Item FREIGEIST = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item DIVINATION_HEART = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.DIVINATION_HEART));
+	public static final Item DIVINATION_HEART = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.DIVINATION_HEART));
 	
 	public static final Item ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.NONE);
 	public static final Item TOPAZ_ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ);
@@ -642,8 +642,8 @@ public class SpectrumItems {
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
 		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
 		register("jade_wine", JADE_WINE, DyeColor.LIME);
-		register("star_cookie", STAR_COOKIE, DyeColor.PINK);
-		register("enchanted_star_cookie", ENCHANTED_STAR_COOKIE, DyeColor.PINK);
+		register("star_candy", STAR_CANDY, DyeColor.PINK);
+		register("enchanted_star_candy", ENCHANTED_STAR_CANDY, DyeColor.PINK);
 		register("jaramel", JARAMEL, DyeColor.PINK);
 		
 		register("jaramel_tart", JARAMEL_TART, DyeColor.PINK);

@@ -61,13 +61,13 @@
       "trigger": "minecraft:consume_item",
       "conditions": { "item": { "items": [ "spectrum:lucky_roll" ] } }
     },
-    "star_cookie": {
+    "star_candy": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:star_cookie" ] } }
+      "conditions": { "item": { "items": [ "spectrum:star_candy" ] } }
     },
-    "enchanted_star_cookie": {
+    "enchanted_star_candy": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:enchanted_star_cookie" ] } }
+      "conditions": { "item": { "items": [ "spectrum:enchanted_star_candy" ] } }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

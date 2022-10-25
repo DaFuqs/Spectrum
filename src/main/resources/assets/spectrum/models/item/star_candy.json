@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/enchanted_star_cookie"
+    "layer0": "spectrum:item/star_candy"
   }
 }

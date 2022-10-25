@@ -14,11 +14,10 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 2), 0.2F).build();
 	
 	public static final FoodComponent STAR_CANDY = new FoodComponent.Builder()
-			.hunger(3).saturationModifier(0.25F).alwaysEdible().snack().build();
+			.hunger(3).saturationModifier(0.25F).snack().build();
 	
 	public static final FoodComponent ENCHANTED_STAR_CANDY = new FoodComponent.Builder()
-			.hunger(20).saturationModifier(1.0F).alwaysEdible().snack()
-			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 20), 1.0F).build();
+			.hunger(20).saturationModifier(1.0F).snack().build();
 	
 	public static final FoodComponent JARAMEL = new FoodComponent.Builder().hunger(1).saturationModifier(0.25F).snack()
 			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 600, 2), 1.0F)

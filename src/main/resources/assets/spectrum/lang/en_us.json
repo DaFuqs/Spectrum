@@ -1428,7 +1428,7 @@
   "item.spectrum.jaramel_trifle": "Jaramel Trifle",
   "item.spectrum.salted_jaramel_trifle": "Salted Jaramel Trifle",
   "item.spectrum.monster_trifle": "Monster Trifle",
-  "item.spectrum.demon_trifle": "Demon Trifle",
+  "item.spectrum.tachycardia_trifle": "Tachycardia Trifle",
 
   "item.spectrum.jaramel_tart": "Jaramel Tart",
   "item.spectrum.salted_jaramel_tart": "Salted Jaramel Tart",
@@ -1997,6 +1997,7 @@
   "item.spectrum.star_candy.tooltip": "Cures a single negative status effect",
   "item.spectrum.enchanted_star_candy": "Enchanted Star Candy",
   "item.spectrum.enchanted_star_candy.tooltip": "Cures all negative status effects",
+  "item.spectrum.enchanted_star_candy.tooltip2": "Fully heals & fills hunger",
   "item.spectrum.suspicious_brew": "Suspicious Brew",
   "item.spectrum.suspicious_brew.tooltip": "What might be mixed together here?",
   "item.spectrum.jade_wine": "Jade Wine",

@@ -2018,8 +2018,10 @@
   "item.spectrum.infused_beverage.tooltip.variant.mead": "Mead",
   "item.spectrum.infused_beverage.tooltip.variant.poisonous_vodka": "Vodka",
   "item.spectrum.infused_beverage.tooltip.variant.vodka": "Vodka",
+  "item.spectrum.infused_beverage.tooltip.variant.sake": "Sake",
 
   "item.spectrum.freigeist": "Freigeist",
+  "item.spectrum.freigeist.tooltip": "§e⚠§r You wish you were an Angel?",
   "item.spectrum.divination_heart": "Divination Heart",
 
   "item.spectrum.crescent_clock": "Crescent Clock",

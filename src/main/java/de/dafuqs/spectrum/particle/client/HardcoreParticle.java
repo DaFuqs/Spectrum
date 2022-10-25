@@ -21,7 +21,7 @@ public class HardcoreParticle extends AnimatedParticle {
         if (this.random.nextInt(4) == 0) {
             this.setColor(0.0F, 0.0F,0.0F);
         } else {
-            this.setColor(0.8F + this.random.nextFloat() * 0.2F, this.random.nextFloat() * 0.3F, this.random.nextFloat() * 0.2F);
+            this.setColor(0.2F + this.random.nextFloat() * 0.5F, this.random.nextFloat() * 0.2F, this.random.nextFloat() * 0.2F);
         }
 
     }

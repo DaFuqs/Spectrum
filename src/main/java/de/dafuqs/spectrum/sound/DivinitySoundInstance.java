@@ -25,6 +25,7 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 		this.repeatDelay = 0;
 		this.volume = 0.8F;
 		instances++;
+		MinecraftClient.getInstance().getSoundManager().stopSounds(null, SoundCategory.MUSIC);
 	}
 	
 	@Override

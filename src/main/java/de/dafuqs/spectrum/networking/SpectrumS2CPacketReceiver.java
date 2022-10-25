@@ -34,6 +34,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ItemStackParticleEffect;
@@ -448,7 +449,7 @@ public class SpectrumS2CPacketReceiver {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_ASCENSION_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				MinecraftClient.getInstance().world.playSound(MinecraftClient.getInstance().player.getBlockPos(), SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.PLAYERS, 1.0F, 1.0F, false); // TODO: change sound
+				MinecraftClient.getInstance().world.playSound(MinecraftClient.getInstance().player.getBlockPos(), SpectrumSoundEvents.FADING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
 				SpectrumClient.minecraftClient.getSoundManager().play(new DivinitySoundInstance());
 			});
 		});
@@ -456,8 +457,13 @@ public class SpectrumS2CPacketReceiver {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.particleManager.addEmitter(MinecraftClient.getInstance().player, SpectrumParticleTypes.DIVINITY, 30);
+				ClientPlayerEntity player = MinecraftClient.getInstance().player;
+				client.particleManager.addEmitter(player, SpectrumParticleTypes.DIVINITY, 30);
 				MinecraftClient.getInstance().gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
+				MinecraftClient.getInstance().world.playSound(player.getBlockPos(), SpectrumSoundEvents.FAILING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+				
+				SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
+				SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
 			});
 		});
 	}

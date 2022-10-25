@@ -26,7 +26,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/sugar_stick",
+      "recipe": "spectrum:pedestal/tier3/food/sugar_stick",
       "text": "$(italic)You might even have more options than just plain Sugar? Liquid crystal and all that..."
     },
     {

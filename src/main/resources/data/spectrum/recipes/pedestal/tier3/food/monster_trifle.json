@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 160,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 2,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "JQJ",
+    "BEB",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:amaranth_grains"
+    },
+    "J": {
+      "item": "spectrum:jaramel"
+    },
+    "B": {
+      "item": "minecraft:bone_meal"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "Q": {
+      "item": "spectrum:quitoxic_powder"
+    }
+  },
+  "result": {
+    "item": "spectrum:monster_trifle",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_trifles"
+}

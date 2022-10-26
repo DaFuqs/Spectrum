@@ -35,7 +35,7 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 	@Override
 	public ItemStack craft(Inventory inv) {
 		if(RANDOM.nextFloat() < ENCHANTED_STAR_CANDY_CHANCE) {
-			return SpectrumItems.ENCHANTED_STAR_CANDY.getDefaultStack();
+			return SpectrumItems.PURPLE_STAR_CANDY.getDefaultStack();
 		} else {
 			return this.output.copy();
 		}

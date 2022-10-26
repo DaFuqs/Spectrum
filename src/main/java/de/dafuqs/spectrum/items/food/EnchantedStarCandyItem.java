@@ -19,10 +19,6 @@ public class EnchantedStarCandyItem extends Item {
 		super(settings);
 	}
 	
-	public boolean hasGlint(ItemStack stack) {
-		return true;
-	}
-	
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		ItemStack itemStack = super.finishUsing(stack, world, user);
 		

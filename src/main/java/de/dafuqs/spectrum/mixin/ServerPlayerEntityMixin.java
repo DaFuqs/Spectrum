@@ -46,7 +46,7 @@ public abstract class ServerPlayerEntityMixin {
 	protected void spectrum$onDeath(DamageSource source, CallbackInfo ci) {
 		ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
 		if(player.getWorld().getLevelProperties().isHardcore() || HardcoreDeathComponent.isInHardcore(player)) {
-			HardcoreDeathComponent.addHardcoreDeath(player.getUuid());
+			HardcoreDeathComponent.addHardcoreDeath(player.getGameProfile());
 		}
 	}
 	

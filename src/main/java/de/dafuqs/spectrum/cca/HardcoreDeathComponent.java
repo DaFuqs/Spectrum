@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.cca;
 
+import com.mojang.authlib.GameProfile;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import dev.onyxstudios.cca.api.v3.component.Component;
@@ -52,7 +53,23 @@ public class HardcoreDeathComponent implements Component, LevelComponentInitiali
 		}
 	}
 	
-	public static void addHardcoreDeath(UUID uuid) {
+	public static boolean isInHardcore(PlayerEntity player) {
+		return player.hasStatusEffect(SpectrumStatusEffects.DIVINITY);
+	}
+	
+	public static void addHardcoreDeath(GameProfile profile) {
+		addHardcoreDeath(profile.getId());
+	}
+	
+	public static void removeHardcoreDeath(GameProfile profile) {
+		removeHardcoreDeath(profile.getId());
+	}
+	
+	public static boolean hasHardcoreDeath(GameProfile profile) {
+		return hasHardcoreDeath(profile.getId());
+	}
+	
+	protected static void addHardcoreDeath(UUID uuid) {
 		if(!playersThatDiedInHardcore.contains(uuid)) {
 			playersThatDiedInHardcore.add(uuid);
 			HardcoreDeathComponent.HARDCORE_DEATHS_COMPONENT.sync(SpectrumCommon.minecraftServer);
@@ -60,17 +77,13 @@ public class HardcoreDeathComponent implements Component, LevelComponentInitiali
 		SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(uuid).changeGameMode(GameMode.SPECTATOR);
 	}
 	
-	public static boolean hasHardcoreDeath(UUID uuid) {
+	protected static boolean hasHardcoreDeath(UUID uuid) {
 		return playersThatDiedInHardcore.contains(uuid);
 	}
 	
-	public static void removeHardcoreDeath(UUID uuid) {
+	protected static void removeHardcoreDeath(UUID uuid) {
 		playersThatDiedInHardcore.remove(uuid);
 		HardcoreDeathComponent.HARDCORE_DEATHS_COMPONENT.sync(SpectrumCommon.minecraftServer);
-	}
-
-	public static boolean isInHardcore(PlayerEntity player) {
-		return player.hasStatusEffect(SpectrumStatusEffects.DIVINITY);
 	}
 	
 	@Override

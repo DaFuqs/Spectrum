@@ -348,6 +348,7 @@ public class SpectrumItems {
 	// Misc
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, toolRareItemSettingsSingle);
 	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, toolRareItemSettingsSingle);
+	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, toolRareItemSettingsSingle);
 	public static final Item SPAWNER = new SpectrumMobSpawnerItem(generalEpicItemSettingsSingle);
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, toolItemSettings);
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, toolItemSettings);
@@ -442,6 +443,7 @@ public class SpectrumItems {
 		register("void_bundle", BOTTOMLESS_BUNDLE, DyeColor.LIGHT_GRAY);
 		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME, DyeColor.GREEN);
 		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME, DyeColor.GREEN);
+		register("music_disc_everreflective", MUSIC_DISC_EVERREFLECTIVE, DyeColor.GREEN);
 		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
 		register("amaranth_grains", AMARANTH_GRAINS, DyeColor.LIME);

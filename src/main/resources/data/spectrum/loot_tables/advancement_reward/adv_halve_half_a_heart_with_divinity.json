@@ -1,0 +1,14 @@
+{
+  "type": "advancement_reward",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:music_disc_everreflective"
+        }
+      ]
+    }
+  ]
+}

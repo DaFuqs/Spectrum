@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -19,16 +20,20 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		if(entity.world.isClient && entity.world.getTime() % 4 == 0) {
-			SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.EIGHT, 0.2);
+		if (entity instanceof PlayerEntity player) {
+			if(!player.world.isClient) {
+				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayerEntity) player);
+			}
+			player.getHungerManager().add(1, 0.25F);
 		}
 		if (entity.getHealth() < entity.getMaxHealth()) {
 			entity.heal(amplifier / 2F);
 		}
-		if (entity instanceof PlayerEntity playerEntity) {
-			playerEntity.getHungerManager().add(1, 0.25F);
-		}
-		if (!entity.world.isClient) {
+		if (entity.world.isClient) {
+			if (entity.world.getTime() % 4 == 0) {
+				SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.EIGHT, 0.2);
+			}
+		} else {
 			WhispyCircletItem.removeSingleHarmfulStatusEffect(entity);
 		}
 	}

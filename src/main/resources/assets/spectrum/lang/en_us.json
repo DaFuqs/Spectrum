@@ -1360,6 +1360,8 @@
   "item.spectrum.music_disc_spectrum_theme.desc": "Spectrum Theme",
   "item.spectrum.music_disc_dimension_theme": "Music Disc",
   "item.spectrum.music_disc_dimension_theme.desc": "Deeper Down Theme: Radiarc - Irrelevance Fading",
+  "item.spectrum.music_disc_everreflective": "Music Disc",
+  "item.spectrum.music_disc_everreflective.desc": "Proper Motions - Everreflective",
   "item.spectrum.invisible_item_frame": "Phantom Frame",
   "item.spectrum.invisible_glow_item_frame": "Glow Phantom Frame",
   "item.spectrum.ender_bag": "Bag of Holding",
@@ -2372,6 +2374,8 @@
   "advancements.spectrum.collect_blood_orchid_petal.description": "TODO",
   "advancements.spectrum.remember_egg_laying_wooly_pig.title": "Once only a Tale",
   "advancements.spectrum.remember_egg_laying_wooly_pig.description": "Hatch the Memory of a Egg Laying Wooly Pig",
+  "advancements.spectrum.have_half_a_heart_with_divinity.title": "Dangerously close with Gods",
+  "advancements.spectrum.have_half_a_heart_with_divinity.description": "Drink Freigeist and reach only half a heart",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

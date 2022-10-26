@@ -1,0 +1,37 @@
+{
+  "parent": "spectrum:midgame/collect_mob_head_using_treasure_hunter",
+  "display": {
+    "icon": {
+      "item": "spectrum:freigeist"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.have_half_a_heart_with_divinity.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.have_half_a_heart_with_divinity.description"
+    }
+  },
+  "criteria": {
+    "have_half_a_heart_with_divinity_active": {
+      "trigger": "spectrum:divinity_tick",
+      "conditions": {
+        "health": {
+          "min": 0.0,
+          "max": 0.9
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_mob_head_using_treasure_hunter"
+      }
+    }
+  },
+  "rewards": {
+    "loot": [
+      "spectrum:advancement_reward/adv_have_half_a_heart_with_divinity"
+    ]
+  }
+}

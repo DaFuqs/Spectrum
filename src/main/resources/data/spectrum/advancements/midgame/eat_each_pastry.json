@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/plant_jade_vines",
   "display": {
     "icon": {
-      "item": "spectrum:tachycardia_trifle"
+      "item": "spectrum:demon_trifle"
     },
     "hidden": true,
     "title": {
@@ -49,9 +49,9 @@
       "trigger": "minecraft:consume_item",
       "conditions": { "item": { "items": [ "spectrum:monster_trifle" ] } }
     },
-    "tachycardia_trifle": {
+    "demon_trifle": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:tachycardia_trifle" ] } }
+      "conditions": { "item": { "items": [ "spectrum:demon_trifle" ] } }
     },
     "honey_pastry": {
       "trigger": "minecraft:consume_item",

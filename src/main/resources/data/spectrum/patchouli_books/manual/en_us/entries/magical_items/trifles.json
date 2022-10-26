@@ -7,7 +7,7 @@
     "spectrum:jaramel_trifle": 0,
     "spectrum:salted_jaramel_trifle": 0,
     "spectrum:monster_trifle": 0,
-    "spectrum:tachycardia_trifle": 0
+    "spectrum:demon_trifle": 0
   },
   "pages": [
     {
@@ -33,7 +33,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/tachycardia_trifle",
+      "recipe": "spectrum:pedestal/tier3/food/demon_trifle",
       "text": "May to put you into $(thing)Frenzy$().$(br)damage, attack speed, knockback resistance are buffed the more you kill. But if you do not regularly score a kill you get negative ones."
     }
   ]

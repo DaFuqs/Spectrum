@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "native_ore_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:native_certus_quartz_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:native_certus_quartz",
+    "count": 9
+  }
+}

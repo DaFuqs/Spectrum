@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "native_ore_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:native_prismarine_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:native_prismarine",
+    "count": 9
+  }
+}

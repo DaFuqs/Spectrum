@@ -767,6 +767,26 @@ public class SpectrumBlocks {
 	public static final Block LARGE_GLOBETTE_END_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_END_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);
 	public static final Block GLOBETTE_END_CLUSTER = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_GLOBETTE_END_BUD), CrystallarieumGrowableBlock.GrowthStage.CLUSTER);
 	
+	public static final Block NATIVE_COAL_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.COAL_BLOCK));
+	public static final Block NATIVE_IRON_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK));
+	public static final Block NATIVE_GOLD_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.GOLD_BLOCK));
+	public static final Block NATIVE_DIAMOND_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
+	public static final Block NATIVE_EMERALD_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
+	public static final Block NATIVE_REDSTONE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.REDSTONE_BLOCK));
+	public static final Block NATIVE_LAPIS_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.LAPIS_BLOCK));
+	public static final Block NATIVE_COPPER_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.COPPER_BLOCK));
+	public static final Block NATIVE_QUARTZ_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
+	public static final Block NATIVE_NETHERITE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.NETHERITE_BLOCK));
+	public static final Block NATIVE_GLOWSTONE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
+	public static final Block NATIVE_PRISMARINE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.PRISMARINE));
+	
+	public static final Block NATIVE_CERTUS_QUARTZ_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(0.3F).sounds(BlockSoundGroup.GLASS));
+	public static final Block NATIVE_FLUIX_BLOCK = new Block(FabricBlockSettings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(0.3F).sounds(BlockSoundGroup.GLASS));
+	
+	public static final Block NATIVE_GLOBETTE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
+	public static final Block NATIVE_GLOBETTE_NETHER_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
+	public static final Block NATIVE_GLOBETTE_END_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
+	
 	// STRUCTURE BLOCKS
 	private static final FabricBlockSettings preservationBlockSettings = FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(SpectrumBlocks::never);
 	
@@ -983,6 +1003,7 @@ public class SpectrumBlocks {
 		registerMobBlocks(mobBlockItemSettings);
 		registerMobHeads(mobHeadItemSettings);
 		registerCrystallarieumGrowingBlocks(resourcesItemSettings);
+		registerNativeOreBlocks(resourcesItemSettings);
 		registerJadeVineBlocks(decorationItemSettings);
 		registerSugarSticks(generalItemSettings);
 		
@@ -1677,6 +1698,29 @@ public class SpectrumBlocks {
 		registerBlockWithItem("citrine_sugar_stick", CITRINE_SUGAR_STICK, fabricItemSettings, DyeColor.PINK);
 		registerBlockWithItem("onyx_sugar_stick", ONYX_SUGAR_STICK, fabricItemSettings, DyeColor.PINK);
 		registerBlockWithItem("moonstone_sugar_stick", MOONSTONE_SUGAR_STICK, fabricItemSettings, DyeColor.PINK);
+	}
+	
+	private static void registerNativeOreBlocks(FabricItemSettings fabricItemSettings) {
+		registerBlockWithItem("native_coal_block", NATIVE_COAL_BLOCK, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("native_iron_block", NATIVE_IRON_BLOCK, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("native_gold_block", NATIVE_GOLD_BLOCK, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("native_diamond_block", NATIVE_DIAMOND_BLOCK, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("native_emerald_block", NATIVE_EMERALD_BLOCK, fabricItemSettings, DyeColor.CYAN);
+		registerBlockWithItem("native_redstone_block", NATIVE_REDSTONE_BLOCK, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("native_lapis_block", NATIVE_LAPIS_BLOCK, fabricItemSettings, DyeColor.PURPLE);
+		registerBlockWithItem("native_copper_block", NATIVE_COPPER_BLOCK, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("native_quartz_block", NATIVE_QUARTZ_BLOCK, fabricItemSettings, DyeColor.BROWN);
+		registerBlockWithItem("native_netherite_block", NATIVE_NETHERITE_BLOCK, fabricItemSettings, DyeColor.BROWN);
+		
+		registerBlockWithItem("native_glowstone_block", NATIVE_GLOWSTONE_BLOCK, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("native_prismarine_block", NATIVE_PRISMARINE_BLOCK, fabricItemSettings, DyeColor.CYAN);
+		
+		registerBlockWithItem("native_certus_quartz_block", NATIVE_CERTUS_QUARTZ_BLOCK, fabricItemSettings, DyeColor.YELLOW);
+		registerBlockWithItem("native_fluix_block", NATIVE_FLUIX_BLOCK, fabricItemSettings, DyeColor.YELLOW);
+		
+		registerBlockWithItem("native_globette_block", NATIVE_GLOBETTE_BLOCK, fabricItemSettings, DyeColor.BLUE);
+		registerBlockWithItem("native_globette_nether_block", NATIVE_GLOBETTE_NETHER_BLOCK, fabricItemSettings, DyeColor.RED);
+		registerBlockWithItem("native_globette_end_block", NATIVE_GLOBETTE_END_BLOCK, fabricItemSettings, DyeColor.GREEN);
 	}
 	
 	private static void registerMobBlocks(FabricItemSettings fabricItemSettings) {

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "native_ore_storage",
+  "pattern": [
+    "GGG",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "spectrum:native_coal"
+    }
+  },
+  "result": {
+    "item": "spectrum:native_coal_block",
+    "count": 1
+  }
+}

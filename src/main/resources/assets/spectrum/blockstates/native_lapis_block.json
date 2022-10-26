@@ -1,0 +1,7 @@
+{
+	"variants": {
+		"": {
+			"model": "spectrum:block/native_lapis_block"
+		}
+	}
+}

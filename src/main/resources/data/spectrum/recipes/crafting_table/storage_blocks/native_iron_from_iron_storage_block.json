@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "native_ore_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:native_iron_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:native_iron",
+    "count": 9
+  }
+}

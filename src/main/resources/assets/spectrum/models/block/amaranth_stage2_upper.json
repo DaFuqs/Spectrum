@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "spectrum:block/amaranth_stage0_lower"
+    "cross": "spectrum:block/amaranth_stage2_upper"
   }
 }

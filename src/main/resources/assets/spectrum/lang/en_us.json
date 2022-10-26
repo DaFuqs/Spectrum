@@ -67,11 +67,7 @@
   "effect.spectrum.swiftness": "Swiftness",
   "effect.spectrum.stiffness": "Stiffness",
   "effect.spectrum.millenia_disease": "Millenia Disease",
-  "effect.spectrum.ascension": "Ascension",
   "effect.spectrum.divinity": "Divinity",
-  "effect.spectrum.frenzy": "Frenzy",
-  "effect.spectrum.blazing": "Blazing",
-  "effect.spectrum.projectile_rebound": "Projectile Rebound",
 
   "__legacy: remove in 1.19": "",
   "item.spectrum.potion": "§2P§3i§cg§6m§be§en§dt§f Potion",
@@ -1447,7 +1443,7 @@
   "item.spectrum.jaramel_trifle": "Jaramel Trifle",
   "item.spectrum.salted_jaramel_trifle": "Salted Jaramel Trifle",
   "item.spectrum.monster_trifle": "Monster Trifle",
-  "item.spectrum.tachycardia_trifle": "Tachycardia Trifle",
+  "item.spectrum.demon_trifle": "Demon Trifle",
 
   "item.spectrum.jaramel_tart": "Jaramel Tart",
   "item.spectrum.salted_jaramel_tart": "Salted Jaramel Tart",
@@ -2014,7 +2010,7 @@
 
   "item.spectrum.star_candy": "Star Candy",
   "item.spectrum.star_candy.tooltip": "Cures a single negative status effect",
-  "item.spectrum.enchanted_star_candy": "Enchanted Star Candy",
+  "item.spectrum.purple_star_candy": "Star Candy",
   "item.spectrum.enchanted_star_candy.tooltip": "Cures all negative status effects",
   "item.spectrum.enchanted_star_candy.tooltip2": "Fully heals & fills hunger",
   "item.spectrum.suspicious_brew": "Suspicious Brew",
@@ -2041,11 +2037,6 @@
   "item.spectrum.infused_beverage.tooltip.variant.mead": "Mead",
   "item.spectrum.infused_beverage.tooltip.variant.poisonous_vodka": "Vodka",
   "item.spectrum.infused_beverage.tooltip.variant.vodka": "Vodka",
-  "item.spectrum.infused_beverage.tooltip.variant.sake": "Sake",
-
-  "item.spectrum.freigeist": "Freigeist",
-  "item.spectrum.freigeist.tooltip": "§4♥§r You wish you were an Angel? §4♡§r",
-  "item.spectrum.divination_heart": "Divination Heart",
 
   "item.spectrum.crescent_clock": "Crescent Clock",
   "item.spectrum.gilded_book": "Gilded Book",
@@ -2369,8 +2360,8 @@
   "advancements.spectrum.collect_amaranth.description": "Find Amaranth Grains",
   "advancements.spectrum.collect_amaranth_bushel.title": "Vibrancy",
   "advancements.spectrum.collect_amaranth_bushel.description": "Grow Amaranth to completion and harvest it",
-  "advancements.spectrum.consume_enchanted_star_candy.title": "1 Star Menu",
-  "advancements.spectrum.consume_enchanted_star_candy.description": "Get a hold of and eat an Enchanted Star Candy",
+  "advancements.spectrum.consume_enchanted_star_cookie.title": "5 Star Menu",
+  "advancements.spectrum.consume_enchanted_star_cookie.description": "Get a hold of and eat an Enchanted Star Cookie",
   "advancements.spectrum.tap_titration_barrel.title": "Cracking open a Cold One",
   "advancements.spectrum.tap_titration_barrel.description": "Open up a Titration Barrel and tap yourself to a refreshing (or not so refreshing) drink",
   "advancements.spectrum.drink_jade_wine.title": "Ancient Booze",

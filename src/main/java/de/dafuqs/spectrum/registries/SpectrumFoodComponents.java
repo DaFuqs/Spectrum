@@ -16,7 +16,7 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent STAR_CANDY = new FoodComponent.Builder()
 			.hunger(3).saturationModifier(0.25F).snack().build();
 	
-	public static final FoodComponent ENCHANTED_STAR_CANDY = new FoodComponent.Builder()
+	public static final FoodComponent PURPLE_STAR_CANDY = new FoodComponent.Builder()
 			.hunger(20).saturationModifier(1.0F).snack().build();
 	
 	public static final FoodComponent JARAMEL = new FoodComponent.Builder().hunger(1).saturationModifier(0.25F).snack()
@@ -110,7 +110,7 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 0.2F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 1200), 0.2F)
 			.build();
-	public static final FoodComponent TACHYCARDIA_TRIFLE = new FoodComponent.Builder().hunger(10).saturationModifier(0.2F)
+	public static final FoodComponent DEMON_TRIFLE = new FoodComponent.Builder().hunger(10).saturationModifier(0.2F)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 1200), 1.0F / 3.0F)
 			.build();
 

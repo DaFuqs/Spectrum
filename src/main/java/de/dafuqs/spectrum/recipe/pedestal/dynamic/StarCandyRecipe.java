@@ -23,7 +23,7 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 	public static final Random RANDOM = new Random();
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_star_candy");
-	public static final float ENCHANTED_STAR_CANDY_CHANCE = 0.001F;
+	public static final float PURPLE_STAR_CANDY_CHANCE = 0.001F;
 	public static final HashMap<BuiltinGemstoneColor, Integer> GEMSTONE_POWDER_INPUTS = new HashMap<>() {{
 		put(BuiltinGemstoneColor.YELLOW, 1);
 	}};
@@ -34,7 +34,7 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 	
 	@Override
 	public ItemStack craft(Inventory inv) {
-		if(RANDOM.nextFloat() < ENCHANTED_STAR_CANDY_CHANCE) {
+		if(RANDOM.nextFloat() < PURPLE_STAR_CANDY_CHANCE) {
 			return SpectrumItems.PURPLE_STAR_CANDY.getDefaultStack();
 		} else {
 			return this.output.copy();

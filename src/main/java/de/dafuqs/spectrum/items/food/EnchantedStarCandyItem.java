@@ -35,8 +35,8 @@ public class EnchantedStarCandyItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		tooltip.add(new TranslatableText("item.spectrum.enchanted_star_candy.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.enchanted_star_candy.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.purple_star_candy.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.purple_star_candy.tooltip2").formatted(Formatting.GRAY));
 	}
 	
 }

@@ -65,9 +65,9 @@
       "trigger": "minecraft:consume_item",
       "conditions": { "item": { "items": [ "spectrum:star_candy" ] } }
     },
-    "enchanted_star_candy": {
+    "purple_star_candy": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "item": { "items": [ "spectrum:enchanted_star_candy" ] } }
+      "conditions": { "item": { "items": [ "spectrum:purple_star_candy" ] } }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",

@@ -5,7 +5,7 @@
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:star_candy": 0,
-    "spectrum:enchanted_star_candy": 0
+    "spectrum:purple_star_candy": 0
   },
   "pages": [
     {
@@ -20,8 +20,8 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:hidden/collect_enchanted_star_candy",
-      "item": "spectrum:enchanted_star_candy",
+      "advancement": "spectrum:hidden/collect_purple_star_candy",
+      "item": "spectrum:purple_star_candy",
       "text": "Now THAT's a tasty one!$(br)Even just touching those star-laden streaks gives you much the same tingle as when you ate the whole thing."
     }
   ]

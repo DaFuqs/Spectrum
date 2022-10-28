@@ -12,12 +12,13 @@
   },
   "parent": "spectrum:midgame/collect_blood_orchid_petal",
   "criteria": {
-    "minecraft:blaze": {
+    "killed_entity_with_frenzy3": {
       "trigger": "minecraft:player_killed_entity",
       "conditions": {
         "player": [
           {
             "condition": "minecraft:entity_properties",
+            "entity": "this",
             "predicate": {
               "effects": {
                 "spectrum:frenzy": {

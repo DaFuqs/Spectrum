@@ -1,0 +1,39 @@
+{
+  "name": "Incandescent Amalgam",
+  "advancement": "spectrum:progression/unlock_jade_wine",
+  "icon": "spectrum:incandescent_amalgam",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:incandescent_amalgam": 2,
+    "spectrum:incandescent_amalgam_hidden": 3,
+    "spectrum:fast_pure_alc": 4
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The sun on the palm of your hand sounded far better in theory. $(br2)Now that it sits there... well, it burns. The simple fact that it exists is almost a miracle - really, it should have exploded in the barrel - an unstable, simmering amalgam of ethanol blended with a cocktail of accelerants that hates existing."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A single wrong move could easily cause it to detonate, taking everything nearby with it including yourself. And yet, for all those reasons and yet more, the soft, warm glow of the gel elicits endless curiosity, all things are drawn to the flame. There is no question that what is effectively a high yield magical explosive bears endless potential. All you need is a little care, a small mountain of it, and a hint of reckless abandon."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Titration Recipe",
+      "recipe": "spectrum:titration_barrel/incandescent_amalgam",
+      "text": "$(o)my very own sun...$()$(br2)The longer the synthesis goes on, the higher the yield... you really can't blame the angels for not wanting a cut of this."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Titration Recipe",
+      "recipe": "spectrum:titration_barrel/incandescent_amalgam_hidden",
+      "text": "$(o)...so grossly incandescent!$()$(br2)"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Titration Recipe",
+      "recipe": "spectrum:titration_barrel/fast_pure_alcohol",
+      "text": "$(o)the pristine burn of the amalgam makes it uniquely suited for pure alcohol distillation"
+    }
+  ]
+}

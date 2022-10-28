@@ -184,6 +184,8 @@
   "death.attack.spectrum_shooting_star": "%s was smitten by a Shooting Star. Make a Wish!",
   "death.attack.spectrum_midnight_solution": "%s was lost in Translation",
   "death.attack.spectrum_dike_gate": "%s was not invited, but understood too late",
+  "death.attack.spectrum_incandescence": "§6%s §6became §e grossly incandescent",
+  "death.attack.spectrum_incandescence.player": "§6%1$s §6witnessed %2&s §6become a star and drew too close - §emore kindling for the flame!",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",
@@ -2046,6 +2048,9 @@
   "item.spectrum.freigeist": "Freigeist",
   "item.spectrum.freigeist.tooltip": "§4♥§r You wish you were an Angel? §4♡§r",
   "item.spectrum.divination_heart": "Divination Heart",
+
+  "item.spectrum.incandescent_amalgam": "§eIncandescent Amalgam",
+  "item.spectrum.incandescent_amalgam.tooltip": "§6⚠ WARNING ⚠ High yield magical explosive, handle with care!",
 
   "item.spectrum.crescent_clock": "Crescent Clock",
   "item.spectrum.gilded_book": "Gilded Book",

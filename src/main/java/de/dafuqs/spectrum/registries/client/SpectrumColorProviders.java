@@ -50,6 +50,7 @@ public class SpectrumColorProviders {
 		registerMemories();
 		registerPotionPentants();
 		registerInkFlask();
+		registerBrewColors();
 	}
 	
 	private static void registerColoredLeaves() {
@@ -98,7 +99,7 @@ public class SpectrumColorProviders {
 			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
 		}
 	}
-	
+
 	private static void registerInkFlask() {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
@@ -148,6 +149,20 @@ public class SpectrumColorProviders {
 		}, SpectrumBlocks.MEMORY);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MemoryItem.getEggColor(stack.getNbt(), tintIndex), SpectrumBlocks.MEMORY.asItem());
 	}
+
+	public static void registerBrewColors() {
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
+
+			if (tintIndex == 0) {
+
+				// Daf plz
+				return 0xff85f9;
+
+			}
+			return -1;
+
+		}, SpectrumItems.INFUSED_BEVERAGE);
+	}
 	
 	public static int potionColor(ItemStack stack, int tintIndex) {
 		if (tintIndex == 1) {
@@ -163,4 +178,5 @@ public class SpectrumColorProviders {
 		}
 		return -1;
 	}
+
 }

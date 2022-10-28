@@ -50,6 +50,8 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent FREIGEIST = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.ASCENSION, AscensionStatusEffect.MUSIC_INTRO_TICKS), 1.0F).build();
+
+	public static final FoodComponent INCANDESCENT_AMALGAM = new FoodComponent.Builder().hunger(1).saturationModifier(1F).alwaysEdible().snack().build();
 	
 	public static final FoodComponent DIVINATION_HEART = new FoodComponent.Builder().hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, 600), 1.0F).build();

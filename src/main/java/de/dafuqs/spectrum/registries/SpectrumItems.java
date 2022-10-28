@@ -302,7 +302,9 @@ public class SpectrumItems {
 	
 	public static final Item FREIGEIST = new ItemWithTooltip(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE), "item.spectrum.freigeist.tooltip");
 	public static final Item DIVINATION_HEART = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.DIVINATION_HEART));
-	
+
+	public static final Item INCANDESCENT_AMALGAM = new IncandescentAmalgamItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM), "item.spectrum.incandescent_amalgam.tooltip");
+
 	public static final Item ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.NONE);
 	public static final Item TOPAZ_ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ);
 	public static final Item AMETHYST_ROCK_CANDY = new RockCandyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandy.RockCandyVariant.AMETHYST);
@@ -666,6 +668,8 @@ public class SpectrumItems {
 		
 		register("freigeist", FREIGEIST, DyeColor.RED);
 		register("divination_heart", DIVINATION_HEART, DyeColor.RED);
+
+		register("incandescent_amalgam", INCANDESCENT_AMALGAM, DyeColor.YELLOW);
 		
 		register("rock_candy", ROCK_CANDY, DyeColor.PINK);
 		register("topaz_rock_candy", TOPAZ_ROCK_CANDY, DyeColor.CYAN);

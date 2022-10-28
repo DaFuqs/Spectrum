@@ -49,4 +49,9 @@ public class MidnightSolutionConvertingDisplay extends BasicDisplay implements G
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
 	}
 	
+	@Override
+	public boolean isSecret() {
+		return false;
+	}
+	
 }

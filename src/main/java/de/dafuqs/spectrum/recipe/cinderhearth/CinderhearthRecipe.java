@@ -1,51 +1,40 @@
 package de.dafuqs.spectrum.recipe.cinderhearth;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
+public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_cinderhearth");
-	
-	protected final Identifier id;
-	protected final String group;
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_cinderhearth");
 	
 	protected final Ingredient inputIngredient;
 	protected final int time;
 	protected final float experience;
-	
 	protected final List<Pair<ItemStack, Float>> outputsWithChance;
-	protected final Identifier requiredAdvancementIdentifier;
 
-	public CinderhearthRecipe(Identifier id, String group, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance, Identifier requiredAdvancementIdentifier) {
-		this.id = id;
-		this.group = group;
+	public CinderhearthRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance) {
+		super(id, group, secret, requiredAdvancementIdentifier);
+
 		this.inputIngredient = inputIngredient;
 		this.time = time;
 		this.experience = experience;
 		this.outputsWithChance = outputsWithChance;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 	}
 	
 	@Override
@@ -69,23 +58,8 @@ public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
-	@Override
-	public String getGroup() {
-		return this.group;
-	}
-	
-	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.CINDERHEARTH);
-	}
-	
-	@Override
-	public Identifier getId() {
-		return this.id;
 	}
 	
 	@Override
@@ -99,39 +73,20 @@ public class CinderhearthRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return UNLOCK_IDENTIFIER;
+	}
+	
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.CINDERHEARTH_ID;
+	}
+	
+	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
 		defaultedList.add(this.inputIngredient);
 		return defaultedList;
-	}
-	
-	@Override
-	public boolean equals(Object object) {
-		if (object instanceof CinderhearthRecipe cinderhearthRecipe) {
-			return cinderhearthRecipe.getId().equals(this.getId());
-		}
-		return false;
-	}
-	
-	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
-	}
-	
-	@Nullable
-	@Override
-	public Identifier getRequiredAdvancementIdentifier() {
-		return this.requiredAdvancementIdentifier;
-	}
-	
-	@Override
-	public TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.cinderhearth_recipe_unlocked.title");
-	}
-	
-	@Override
-	public TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.cinderhearth_recipes_unlocked.title");
 	}
 	
 	public float getExperience() {

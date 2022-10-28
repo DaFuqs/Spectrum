@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
@@ -39,7 +38,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 	public PedestalCraftingDisplay(PedestalCraftingRecipe recipe) {
 		super(mapIngredients(recipe), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		
-		this.secret = recipe.getOutput().isIn(SpectrumItemTags.HAS_HIDDEN_RECIPE);
+		this.secret = recipe.isSecret();
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();

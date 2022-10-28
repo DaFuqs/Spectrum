@@ -27,17 +27,17 @@ import org.jetbrains.annotations.Nullable;
 public abstract class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	
 	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_spawner_manipulation");
 	
-	// Identifier id, String group, IngredientStack centerIngredient, IngredientStack bowlIngredient1, IngredientStack bowlIngredient2, ItemStack outputItemStack, int craftingTime, float experience, boolean noBenefitsFromYieldAndEfficiencyUpgrades, Identifier requiredAdvancementIdentifier)
 	public HardcorePlayerRevivalRecipe(Identifier identifier) {
-		super(identifier, "", IngredientStack.of(Ingredient.ofItems(Blocks.PLAYER_HEAD.asItem())), IngredientStack.of(Ingredient.ofItems(Items.NETHER_STAR)), IngredientStack.of(Ingredient.ofItems(Items.ENCHANTED_GOLDEN_APPLE)), ItemStack.EMPTY, 2400, 100, true, UNLOCK_IDENTIFIER);
+		super(identifier, "", false, SpectrumCommon.locate("milestones/unlock_spawner_manipulation"),
+				IngredientStack.of(Ingredient.ofItems(Blocks.PLAYER_HEAD.asItem())), IngredientStack.of(Ingredient.ofItems(Items.NETHER_STAR)), IngredientStack.of(Ingredient.ofItems(Items.ENCHANTED_GOLDEN_APPLE)),
+				ItemStack.EMPTY, 2400, 100, true);
 	}
 	
 	@Override
 	public ItemStack craft(Inventory inv) {
 		if (inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-			GameProfile gameProfile = getSkullOwner(inv.getStack(ISpiritInstillerRecipe.CENTER_INGREDIENT));
+			GameProfile gameProfile = getSkullOwner(inv.getStack(SpiritInstillerRecipe.CENTER_INGREDIENT));
 			if(gameProfile != null) {
 				ServerPlayerEntity revivedPlayer = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(gameProfile.getName());
 				if(revivedPlayer != null) {

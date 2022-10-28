@@ -16,12 +16,7 @@ public class SpawnerMaxNearbyEntitiesChangeRecipe extends SpawnerChangeRecipe {
 	public static final RecipeSerializer<SpawnerMaxNearbyEntitiesChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerMaxNearbyEntitiesChangeRecipe::new);
 	
 	public SpawnerMaxNearbyEntitiesChangeRecipe(Identifier identifier) {
-		super(identifier);
-	}
-	
-	@Override
-	public IngredientStack getIngredientStack() {
-		return IngredientStack.of(Ingredient.ofItems(SpectrumItems.MERMAIDS_GEM), 4);
+		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.MERMAIDS_GEM), 4));
 	}
 	
 	@Override

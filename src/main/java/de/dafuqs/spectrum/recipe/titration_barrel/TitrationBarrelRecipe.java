@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.items.beverages.BeverageItem;
 import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
 import de.dafuqs.spectrum.items.beverages.properties.VariantBeverageProperties;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -32,14 +33,11 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
+public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitrationBarrelRecipe {
 	
 	public static final float SOLID_TO_WATER_RATIO = 4F;
 	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
 	public static final ItemStack PURE_ALCOHOL_STACK = SpectrumItems.PURE_ALCOHOL.getDefaultStack();
-	
-	protected final Identifier id;
-	protected final String group;
 	
 	protected final List<IngredientStack> inputStacks;
 	protected final ItemStack outputItemStack;
@@ -47,8 +45,6 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	
 	protected final int minFermentationTimeHours;
 	protected final FermentationData fermentationData;
-	
-	protected final Identifier requiredAdvancementIdentifier;
 	
 	// data holders
 	public record StatusEffectPotencyEntry(int minAlcPercent, int minThickness, int potency) {
@@ -143,24 +139,14 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 		}
 	}
 	
-	public TitrationBarrelRecipe(Identifier id, String group, List<IngredientStack> inputStacks, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData, Identifier requiredAdvancementIdentifier) {
-		this.id = id;
-		this.group = group;
+	public TitrationBarrelRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> inputStacks, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
+		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.inputStacks = inputStacks;
 		this.minFermentationTimeHours = minFermentationTimeHours;
 		this.outputItemStack = outputItemStack;
 		this.tappingItem = tappingItem;
 		this.fermentationData = fermentationData;
-		
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
-		
-		registerInToastManager(SpectrumRecipeTypes.TITRATION_BARREL, this);
-	}
-	
-	@Override
-	public Identifier getRequiredAdvancementIdentifier() {
-		return requiredAdvancementIdentifier;
 	}
 	
 	@Override
@@ -173,11 +159,6 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	@Deprecated
 	public DefaultedList<Ingredient> getIngredients() {
 		return IngredientStack.listIngredients(this.inputStacks);
-	}
-	
-	@Override
-	public String getGroup() {
-		return this.group;
 	}
 	
 	public List<IngredientStack> getIngredientStacks() {
@@ -282,21 +263,8 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 	}
 	
 	@Override
-	public Identifier getId() {
-		return this.id;
-	}
-	
-	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.TITRATION_BARREL_RECIPE_SERIALIZER;
-	}
-	
-	@Override
-	public boolean equals(Object object) {
-		if (object instanceof TitrationBarrelRecipe titrationBarrelRecipe) {
-			return titrationBarrelRecipe.getId().equals(this.getId());
-		}
-		return false;
 	}
 	
 	// sadly we cannot use text.append() here, since patchouli does not support it
@@ -317,6 +285,16 @@ public class TitrationBarrelRecipe implements ITitrationBarrelRecipe {
 			}
 		}
 		return text;
+	}
+	
+	@Override
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return ITitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
+	}
+	
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.TITRATION_BARREL_ID;
 	}
 	
 }

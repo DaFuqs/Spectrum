@@ -16,12 +16,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	public static final RecipeSerializer<SpawnerRequiredPlayerRangeChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerRequiredPlayerRangeChangeRecipe::new);
 	
 	public SpawnerRequiredPlayerRangeChangeRecipe(Identifier identifier) {
-		super(identifier);
-	}
-	
-	@Override
-	public IngredientStack getIngredientStack() {
-		return IngredientStack.of(Ingredient.ofItems(SpectrumItems.SCARLET_GEM), 4);
+		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.SCARLET_GEM), 4));
 	}
 	
 	@Override

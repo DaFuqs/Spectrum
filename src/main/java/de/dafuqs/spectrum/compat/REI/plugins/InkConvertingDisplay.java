@@ -17,6 +17,7 @@ import java.util.List;
 
 public class InkConvertingDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
+	protected boolean secret;
 	protected final InkColor color;
 	protected final long amount;
 	
@@ -25,6 +26,7 @@ public class InkConvertingDisplay extends BasicDisplay implements GatedRecipeDis
 	
 	public InkConvertingDisplay(@NotNull InkConvertingRecipe recipe) {
 		super(EntryIngredients.ofIngredients(recipe.getIngredients()), List.of());
+		this.secret = recipe.isSecret();
 		this.color = recipe.getInkColor();
 		this.amount = recipe.getInkAmount();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
@@ -36,7 +38,12 @@ public class InkConvertingDisplay extends BasicDisplay implements GatedRecipeDis
 	}
 	
 	public boolean isUnlocked() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, InkConvertingRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER) && AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, InkConvertingRecipe.UNLOCK_IDENTIFIER) && AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return secret;
 	}
 	
 }

@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 public class FusionShrineDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
+	protected boolean secret;
 	protected final EntryIngredient fluidInput;
 	protected final List<EntryIngredient> craftingInputs;
 	protected final List<EntryIngredient> allInputs;
@@ -34,6 +35,7 @@ public class FusionShrineDisplay implements SimpleGridMenuDisplay, GatedRecipeDi
 	protected final Optional<Text> description;
 	
 	public FusionShrineDisplay(@NotNull FusionShrineRecipe recipe) {
+		this.secret = recipe.isSecret();
 		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
@@ -87,5 +89,9 @@ public class FusionShrineDisplay implements SimpleGridMenuDisplay, GatedRecipeDi
 		return this.description;
 	}
 	
+	@Override
+	public boolean isSecret() {
+		return secret;
+	}
 	
 }

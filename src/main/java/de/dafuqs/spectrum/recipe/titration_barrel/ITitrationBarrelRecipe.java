@@ -14,7 +14,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 import java.util.List;
@@ -27,9 +26,9 @@ import java.util.List;
  */
 public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
-	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_titration_barrel");
+	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("progression/unlock_titration_barrel");
+	int BOTTLES_PER_BUCKET_OF_WATER = 3;
 	
-	double BOTTLES_PER_BUCKET_OF_WATER = 3D;
 	
 	ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature);
 	
@@ -48,23 +47,8 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	default boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
-	@Override
 	default boolean canPlayerCraft(PlayerEntity playerEntity) {
 		return AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER);
-	}
-	
-	@Override
-	default TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.titration_barrel_recipe_unlocked.title");
-	}
-	
-	@Override
-	default TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.titration_barrel_recipes_unlocked.title");
 	}
 	
 	@Override

@@ -29,7 +29,7 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 	}};
 	
 	public StarCandyRecipe(Identifier id) {
-		super(id, "", PedestalRecipeTier.SIMPLE, 3, 3, generateInputs(), GEMSTONE_POWDER_INPUTS, SpectrumItems.STAR_CANDY.getDefaultStack(), 1.0F, 20, false, false, UNLOCK_IDENTIFIER);
+		super(id, "", false, UNLOCK_IDENTIFIER, PedestalRecipeTier.SIMPLE, 3, 3, generateInputs(), GEMSTONE_POWDER_INPUTS, SpectrumItems.STAR_CANDY.getDefaultStack(), 1.0F, 20, false, false);
 	}
 	
 	@Override

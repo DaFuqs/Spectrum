@@ -18,7 +18,7 @@ import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopBrewingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopCraftingRecipe;
 import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReactingRecipe;
-import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
+import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
@@ -198,7 +198,7 @@ public class ProgressionSanityCommand {
 		}
 		
 		// Impossible to unlock spirit instiller recipes
-		for (ISpiritInstillerRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
+		for (SpiritInstillerRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
 			if (!doesAdvancementExist(advancementLoader, recipe.getRequiredAdvancementIdentifier())) {
 				SpectrumCommon.logWarning("[SANITY: Spirit Instiller Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}

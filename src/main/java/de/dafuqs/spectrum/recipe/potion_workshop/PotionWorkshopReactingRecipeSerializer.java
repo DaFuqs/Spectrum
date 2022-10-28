@@ -3,10 +3,9 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlock;
+import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import net.minecraft.item.Item;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
@@ -18,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public class PotionWorkshopReactingRecipeSerializer implements RecipeSerializer<PotionWorkshopReactingRecipe> {
+public class PotionWorkshopReactingRecipeSerializer implements GatedRecipeSerializer<PotionWorkshopReactingRecipe> {
 	
 	public final PotionWorkshopReactingRecipeSerializer.RecipeFactory<PotionWorkshopReactingRecipe> recipeFactory;
 	
@@ -26,11 +25,19 @@ public class PotionWorkshopReactingRecipeSerializer implements RecipeSerializer<
 		this.recipeFactory = recipeFactory;
 	}
 	
+	public interface RecipeFactory<PotionWorkshopReactingRecipe> {
+		PotionWorkshopReactingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Item item, List<PotionMod> mods);
+	}
+	
 	@Override
 	public PotionWorkshopReactingRecipe read(Identifier identifier, JsonObject jsonObject) {
 		if (!jsonObject.has("modifiers")) {
 			throw new JsonParseException("An ingredient entry is either a tag or an item, not both");
 		}
+		
+		String group = readGroup(jsonObject);
+		boolean secret = readSecret(jsonObject);
+		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
 		
 		Item item = ShapedRecipe.getItem(jsonObject);
 		List<PotionMod> mods;
@@ -43,30 +50,29 @@ public class PotionWorkshopReactingRecipeSerializer implements RecipeSerializer<
 			mods = Collections.singletonList(PotionMod.fromJson(modifiers));
 		}
 		
-		Identifier requiredAdvancementIdentifier;
-		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
-			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
-		} else {
-			// No unlock advancement set. Will be set to the unlock advancement of the block itself
-			requiredAdvancementIdentifier = PotionWorkshopBlock.UNLOCK_IDENTIFIER;
-		}
-		
-		return this.recipeFactory.create(identifier, item, mods, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, item, mods);
 	}
 	
 	@Override
 	public void write(PacketByteBuf packetByteBuf, PotionWorkshopReactingRecipe recipe) {
+		packetByteBuf.writeString(recipe.group);
+		packetByteBuf.writeBoolean(recipe.secret);
+		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
+		
 		packetByteBuf.writeIdentifier(Registry.ITEM.getId(recipe.item));
 		
 		packetByteBuf.writeInt(recipe.modifiers.size());
 		for(PotionMod mod : recipe.modifiers) {
 			mod.write(packetByteBuf);
 		}
-		packetByteBuf.writeIdentifier(recipe.requiredAdvancementIdentifier);
 	}
 	
 	@Override
 	public PotionWorkshopReactingRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
+		String group = packetByteBuf.readString();
+		boolean secret = packetByteBuf.readBoolean();
+		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
+		
 		Item item = Registry.ITEM.get(packetByteBuf.readIdentifier());
 		
 		List<PotionMod> mods = new ArrayList<>();
@@ -74,13 +80,8 @@ public class PotionWorkshopReactingRecipeSerializer implements RecipeSerializer<
 		for(int i = 0; i < modCount; i++) {
 			mods.add(PotionMod.fromPacket(packetByteBuf));
 		}
-		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
 		
-		return this.recipeFactory.create(identifier, item, mods, requiredAdvancementIdentifier);
-	}
-	
-	public interface RecipeFactory<PotionWorkshopReactingRecipe> {
-		PotionWorkshopReactingRecipe create(Identifier id, Item item, List<PotionMod> mods, Identifier requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, item, mods);
 	}
 	
 }

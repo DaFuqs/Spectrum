@@ -16,12 +16,7 @@ public class SpawnerSpawnDelayChangeRecipe extends SpawnerChangeRecipe {
 	public static final RecipeSerializer<SpawnerSpawnDelayChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerSpawnDelayChangeRecipe::new);
 	
 	public SpawnerSpawnDelayChangeRecipe(Identifier identifier) {
-		super(identifier);
-	}
-	
-	@Override
-	public IngredientStack getIngredientStack() {
-		return IngredientStack.of(Ingredient.ofItems(SpectrumItems.MIDNIGHT_CHIP), 4);
+		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.MIDNIGHT_CHIP), 4));
 	}
 	
 	@Override

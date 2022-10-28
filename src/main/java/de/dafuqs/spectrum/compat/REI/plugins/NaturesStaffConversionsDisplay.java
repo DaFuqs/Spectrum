@@ -49,4 +49,10 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
 	}
+	
+	@Override
+	public boolean isSecret() {
+		return false;
+	}
+	
 }

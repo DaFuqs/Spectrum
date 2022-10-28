@@ -21,6 +21,7 @@ import java.util.List;
 public class BlockToBlockWithChanceDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
 	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_mob_blocks");
+	protected boolean secret;
 	public final float chance;
 	
 	public BlockToBlockWithChanceDisplay(EntryStack<?> in, EntryStack<?> out, float chance) {
@@ -60,6 +61,11 @@ public class BlockToBlockWithChanceDisplay extends BasicDisplay implements Gated
 	
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return false;
 	}
 	
 }

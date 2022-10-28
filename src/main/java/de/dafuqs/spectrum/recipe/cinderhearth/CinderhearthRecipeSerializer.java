@@ -2,20 +2,19 @@ package de.dafuqs.spectrum.recipe.cinderhearth;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.Pair;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CinderhearthRecipeSerializer implements RecipeSerializer<CinderhearthRecipe> {
+public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<CinderhearthRecipe> {
 	
 	public final RecipeFactory<CinderhearthRecipe> recipeFactory;
 	
@@ -23,9 +22,16 @@ public class CinderhearthRecipeSerializer implements RecipeSerializer<Cinderhear
 		this.recipeFactory = recipeFactory;
 	}
 	
+	public interface RecipeFactory<CinderhearthRecipe> {
+		CinderhearthRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance);
+	}
+	
 	@Override
 	public CinderhearthRecipe read(Identifier identifier, JsonObject jsonObject) {
-		String group = JsonHelper.getString(jsonObject, "group", "");
+		String group = readGroup(jsonObject);
+		boolean secret = readSecret(jsonObject);
+		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
+		
 		Ingredient inputIngredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient"));
 		int time = JsonHelper.getInt(jsonObject, "time");
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
@@ -41,20 +47,15 @@ public class CinderhearthRecipeSerializer implements RecipeSerializer<Cinderhear
 			outputsWithChance.add(new Pair<>(outputStack, outputChance));
 		}
 		
-		Identifier requiredAdvancementIdentifier;
-		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
-			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
-		} else {
-			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
-			requiredAdvancementIdentifier = de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
-		}
-		
-		return this.recipeFactory.create(identifier, group, inputIngredient, time, experience, outputsWithChance, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, inputIngredient, time, experience, outputsWithChance);
 	}
 	
 	@Override
 	public void write(PacketByteBuf packetByteBuf, CinderhearthRecipe recipe) {
 		packetByteBuf.writeString(recipe.group);
+		packetByteBuf.writeBoolean(recipe.secret);
+		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
+		
 		recipe.inputIngredient.write(packetByteBuf);
 		packetByteBuf.writeInt(recipe.time);
 		packetByteBuf.writeFloat(recipe.experience);
@@ -71,6 +72,9 @@ public class CinderhearthRecipeSerializer implements RecipeSerializer<Cinderhear
 	@Override
 	public CinderhearthRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
+		boolean secret = packetByteBuf.readBoolean();
+		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
+		
 		Ingredient inputIngredient = Ingredient.fromPacket(packetByteBuf);
 		int time = packetByteBuf.readInt();
 		float experience = packetByteBuf.readFloat();
@@ -81,13 +85,7 @@ public class CinderhearthRecipeSerializer implements RecipeSerializer<Cinderhear
 			outputsWithChance.add(new Pair<>(packetByteBuf.readItemStack(), packetByteBuf.readFloat()));
 		}
 		
-		@Nullable Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		
-		return this.recipeFactory.create(identifier, group, inputIngredient, time, experience, outputsWithChance, requiredAdvancementIdentifier);
-	}
-	
-	public interface RecipeFactory<CinderhearthRecipe> {
-		CinderhearthRecipe create(Identifier id, String group, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance, Identifier requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, inputIngredient, time, experience, outputsWithChance);
 	}
 	
 }

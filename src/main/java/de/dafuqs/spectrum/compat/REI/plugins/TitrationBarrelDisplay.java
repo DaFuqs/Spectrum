@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 public class TitrationBarrelDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
+	protected boolean secret;
 	protected final List<EntryIngredient> ingredients;
 	protected final EntryIngredient tappingIngredient;
 	protected final EntryIngredient output;
@@ -31,6 +32,7 @@ public class TitrationBarrelDisplay implements SimpleGridMenuDisplay, GatedRecip
 	protected final TitrationBarrelRecipe.FermentationData fermentationData;
 	
 	public TitrationBarrelDisplay(@NotNull ITitrationBarrelRecipe recipe) {
+		this.secret = recipe.isSecret();
 		this.ingredients = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.tappingIngredient = EntryIngredients.of(recipe.getTappingItem().getDefaultStack());
@@ -77,6 +79,11 @@ public class TitrationBarrelDisplay implements SimpleGridMenuDisplay, GatedRecip
 	@Override
 	public int getHeight() {
 		return 3;
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return secret;
 	}
 	
 }

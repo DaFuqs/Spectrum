@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 public class EnchanterDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
+	protected boolean secret;
 	protected final List<EntryIngredient> inputs; // first input is the center, all others around clockwise
 	protected final EntryIngredient output;
 	protected final int requiredExperience;
@@ -28,6 +29,7 @@ public class EnchanterDisplay implements SimpleGridMenuDisplay, GatedRecipeDispl
 	protected final Identifier requiredAdvancementIdentifier;
 	
 	public EnchanterDisplay(@NotNull EnchanterRecipe recipe) {
+		this.secret = recipe.isSecret();
 		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
 		this.inputs.add(EntryIngredients.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true)));
 		this.output = EntryIngredients.of(recipe.getOutput());
@@ -71,6 +73,11 @@ public class EnchanterDisplay implements SimpleGridMenuDisplay, GatedRecipeDispl
 	@Override
 	public int getHeight() {
 		return 3;
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return secret;
 	}
 	
 }

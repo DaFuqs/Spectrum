@@ -23,6 +23,7 @@ import java.util.List;
 
 public class EnchantmentUpgradeDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
+	protected boolean secret;
 	protected final Enchantment enchantment;
 	protected final int enchantmentDestinationLevel;
 	
@@ -35,6 +36,7 @@ public class EnchantmentUpgradeDisplay implements SimpleGridMenuDisplay, GatedRe
 	protected final EntryIngredient output;
 	
 	public EnchantmentUpgradeDisplay(@NotNull EnchantmentUpgradeRecipe recipe) {
+		this.secret = recipe.isSecret();
 		this.enchantment = recipe.getEnchantment();
 		this.enchantmentDestinationLevel = recipe.getEnchantmentDestinationLevel();
 		
@@ -96,6 +98,11 @@ public class EnchantmentUpgradeDisplay implements SimpleGridMenuDisplay, GatedRe
 	@Override
 	public int getHeight() {
 		return 3;
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return secret;
 	}
 	
 }

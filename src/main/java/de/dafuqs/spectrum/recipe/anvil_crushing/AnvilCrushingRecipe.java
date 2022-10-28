@@ -1,27 +1,21 @@
 package de.dafuqs.spectrum.recipe.anvil_crushing;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
-public class AnvilCrushingRecipe implements Recipe<Inventory>, GatedRecipe {
+public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	
-	protected final Identifier id;
 	protected final Ingredient inputIngredient;
 	protected final ItemStack outputItemStack;
 	protected final float crushedItemsPerPointOfDamage;
@@ -30,11 +24,12 @@ public class AnvilCrushingRecipe implements Recipe<Inventory>, GatedRecipe {
 	protected final int particleCount;
 	protected final Identifier soundEvent;
 	
-	@Nullable
-	protected final Identifier requiredAdvancementIdentifier;
-	
-	public AnvilCrushingRecipe(Identifier id, Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage, float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier, Identifier requiredAdvancementIdentifier) {
-		this.id = id;
+	public AnvilCrushingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
+	                           Ingredient inputIngredient, ItemStack outputItemStack, float crushedItemsPerPointOfDamage,
+	                           float experience, Identifier particleEffectIdentifier, int particleCount, Identifier soundEventIdentifier) {
+		
+		super(id, group, secret, requiredAdvancementIdentifier);
+		
 		this.inputIngredient = inputIngredient;
 		this.outputItemStack = outputItemStack;
 		this.crushedItemsPerPointOfDamage = crushedItemsPerPointOfDamage;
@@ -42,7 +37,6 @@ public class AnvilCrushingRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.particleEffect = particleEffectIdentifier;
 		this.particleCount = particleCount;
 		this.soundEvent = soundEventIdentifier;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 	}
 	
 	@Override
@@ -66,18 +60,8 @@ public class AnvilCrushingRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
-	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(Blocks.ANVIL);
-	}
-	
-	@Override
-	public Identifier getId() {
-		return this.id;
 	}
 	
 	@Override
@@ -91,18 +75,15 @@ public class AnvilCrushingRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.ANVIL_CRUSHING_ID;
+	}
+	
+	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		DefaultedList<Ingredient> defaultedList = DefaultedList.of();
 		defaultedList.add(this.inputIngredient);
 		return defaultedList;
-	}
-	
-	@Override
-	public boolean equals(Object object) {
-		if (object instanceof AnvilCrushingRecipe anvilCrushingRecipe) {
-			return anvilCrushingRecipe.getId().equals(this.getId());
-		}
-		return false;
 	}
 	
 	public float getCrushedItemsPerPointOfDamage() {
@@ -126,24 +107,8 @@ public class AnvilCrushingRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
-	}
-	
-	@Nullable
-	@Override
-	public Identifier getRequiredAdvancementIdentifier() {
-		return this.requiredAdvancementIdentifier;
-	}
-	
-	@Override
-	public TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.anvil_crushing_recipe_unlocked.title");
-	}
-	
-	@Override
-	public TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.anvil_crushing_recipes_unlocked.title");
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return null; //TODO
 	}
 	
 }

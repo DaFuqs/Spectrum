@@ -1,24 +1,21 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
@@ -28,10 +25,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
+public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	
-	protected final Identifier id;
-	protected final String group;
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("build_fusion_shrine");
 	
 	protected final List<IngredientStack> craftingInputs;
 	protected final Fluid fluidInput;
@@ -53,14 +49,12 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	@NotNull
 	protected final FusionShrineRecipeWorldEffect finishWorldEffect;
 	@Nullable
-	protected final Identifier requiredAdvancementIdentifier;
-	@Nullable
 	protected final Text description;
 	
-	public FusionShrineRecipe(Identifier id, String group, List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier,
+	public FusionShrineRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
+	                          List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades,
 	                          List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
-		this.id = id;
-		this.group = group;
+		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.craftingInputs = craftingInputs;
 		this.fluidInput = fluidInput;
@@ -73,18 +67,7 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.startWorldEffect = startWorldEffect;
 		this.duringWorldEffects = duringWorldEffects;
 		this.finishWorldEffect = finishWorldEffect;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		this.description = description;
-		
-		registerInToastManager(SpectrumRecipeTypes.FUSION_SHRINE, this);
-	}
-	
-	@Override
-	public boolean equals(Object object) {
-		if (object instanceof FusionShrineRecipe) {
-			return ((FusionShrineRecipe) object).getId().equals(this.getId());
-		}
-		return false;
 	}
 	
 	/**
@@ -141,18 +124,9 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		return output;
 	}
 	
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
 	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT);
-	}
-	
-	@Override
-	public Identifier getId() {
-		return this.id;
 	}
 	
 	@Override
@@ -178,16 +152,6 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	public float getExperience() {
 		return experience;
-	}
-	
-	/**
-	 * The advancement the player has to have to let the recipe be craftable
-	 *
-	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
-	 */
-	@Nullable
-	public Identifier getRequiredAdvancementIdentifier() {
-		return requiredAdvancementIdentifier;
 	}
 	
 	/**
@@ -253,18 +217,13 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return UNLOCK_IDENTIFIER;
 	}
 	
 	@Override
-	public TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.fusion_shrine_recipe_unlocked.title");
-	}
-	
-	@Override
-	public TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.fusion_shrine_recipes_unlocked.title");
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.FUSION_SHRINE_ID;
 	}
 	
 	public void craft(World world, FusionShrineBlockEntity fusionShrineBlockEntity) {

@@ -3,13 +3,10 @@ package de.dafuqs.spectrum.items.food;
 import de.dafuqs.spectrum.items.ItemWithTooltip;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.EntityExplosionBehavior;
 import net.minecraft.world.explosion.Explosion;
-import net.minecraft.world.explosion.ExplosionBehavior;
 
 public class IncandescentAmalgamItem extends ItemWithTooltip {
 

@@ -21,14 +21,14 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	protected final int requiredExperience;
 	protected final ItemStack output;
 	
-	public PotionWorkshopCraftingRecipe(Identifier id, String group, Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color, Identifier requiredAdvancementIdentifier) {
-		super(id, group, craftingTime, color, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
+	public PotionWorkshopCraftingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
+	                                    Ingredient baseIngredient, boolean consumeBaseIngredient, int requiredExperience, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, ItemStack output, int craftingTime, int color) {
+		
+		super(id, group, secret, requiredAdvancementIdentifier, craftingTime, color, ingredient1, ingredient2, ingredient3);
 		this.output = output;
 		this.baseIngredient = baseIngredient;
 		this.requiredExperience = requiredExperience;
 		this.consumeBaseIngredient = consumeBaseIngredient;
-		
-		registerInToastManager(SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING, this);
 	}
 	
 	public Ingredient getBaseIngredient() {
@@ -110,6 +110,11 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 	@Override
 	public int getMinOutputCount(ItemStack itemStack) {
 		return 1;
+	}
+	
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.POTION_WORKSHOP_CRAFTING_ID;
 	}
 	
 }

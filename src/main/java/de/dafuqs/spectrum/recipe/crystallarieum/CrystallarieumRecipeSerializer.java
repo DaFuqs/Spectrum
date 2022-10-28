@@ -5,19 +5,18 @@ import com.google.gson.JsonObject;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CrystallarieumRecipeSerializer implements RecipeSerializer<CrystallarieumRecipe> {
+public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<CrystallarieumRecipe> {
 	
 	public final CrystallarieumRecipeSerializer.RecipeFactory<CrystallarieumRecipe> recipeFactory;
 	
@@ -25,9 +24,16 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 		this.recipeFactory = recipeFactory;
 	}
 	
+	public interface RecipeFactory<CrystallarieumRecipe> {
+		CrystallarieumRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts);
+	}
+	
 	@Override
 	public CrystallarieumRecipe read(Identifier identifier, JsonObject jsonObject) {
-		String group = JsonHelper.getString(jsonObject, "group", "");
+		String group = readGroup(jsonObject);
+		boolean secret = readSecret(jsonObject);
+		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
+		
 		Ingredient inputIngredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "ingredient"));
 		
 		List<BlockState> growthStages = new ArrayList<>();
@@ -51,20 +57,16 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 		for (int i = 0; i < catalystArray.size(); i++) {
 			catalysts.add(CrystallarieumCatalyst.fromJson(catalystArray.get(i).getAsJsonObject()));
 		}
-		Identifier requiredAdvancementIdentifier;
-		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
-			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
-		} else {
-			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
-			requiredAdvancementIdentifier = CrystallarieumRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
-		}
 		
-		return this.recipeFactory.create(identifier, group, inputIngredient, growthStages, secondsPerGrowthStage, inkColor, inkPerSecond, growsWithoutCatalyst, catalysts, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, inputIngredient, growthStages, secondsPerGrowthStage, inkColor, inkPerSecond, growsWithoutCatalyst, catalysts);
 	}
 	
 	@Override
 	public void write(PacketByteBuf packetByteBuf, CrystallarieumRecipe recipe) {
 		packetByteBuf.writeString(recipe.group);
+		packetByteBuf.writeBoolean(recipe.secret);
+		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
+		
 		recipe.inputIngredient.write(packetByteBuf);
 		packetByteBuf.writeInt(recipe.growthStages.size());
 		for(BlockState state : recipe.growthStages) {
@@ -78,12 +80,14 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 		for(CrystallarieumCatalyst catalyst : recipe.catalysts) {
 			catalyst.write(packetByteBuf);
 		}
-		packetByteBuf.writeIdentifier(recipe.requiredAdvancementIdentifier);
 	}
 	
 	@Override
 	public CrystallarieumRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
+		boolean secret = packetByteBuf.readBoolean();
+		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
+		
 		Ingredient inputIngredient = Ingredient.fromPacket(packetByteBuf);
 		List<BlockState> growthStages = new ArrayList<>();
 		int count = packetByteBuf.readInt();
@@ -107,13 +111,7 @@ public class CrystallarieumRecipeSerializer implements RecipeSerializer<Crystall
 			catalysts.add(CrystallarieumCatalyst.fromPacket(packetByteBuf));
 		}
 		
-		@Nullable Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		
-		return this.recipeFactory.create(identifier, group, inputIngredient, growthStages, secondsPerGrowthStage, inkColor, inkPerSecond, growthWithoutCatalyst, catalysts, requiredAdvancementIdentifier);
-	}
-	
-	public interface RecipeFactory<CrystallarieumRecipe> {
-		CrystallarieumRecipe create(Identifier id, String group, Ingredient inputIngredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, @Nullable Identifier requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, inputIngredient, growthStages, secondsPerGrowthStage, inkColor, inkPerSecond, growthWithoutCatalyst, catalysts);
 	}
 	
 }

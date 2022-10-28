@@ -16,12 +16,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	public static final RecipeSerializer<SpawnerSpawnCountChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerSpawnCountChangeRecipe::new);
 	
 	public SpawnerSpawnCountChangeRecipe(Identifier identifier) {
-		super(identifier);
-	}
-	
-	@Override
-	public IngredientStack getIngredientStack() {
-		return IngredientStack.of(Ingredient.ofItems(SpectrumItems.NEOLITH), 4);
+		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.NEOLITH), 4));
 	}
 	
 	@Override

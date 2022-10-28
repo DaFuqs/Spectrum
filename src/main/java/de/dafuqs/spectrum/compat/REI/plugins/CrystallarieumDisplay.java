@@ -22,6 +22,7 @@ import java.util.List;
 
 public class CrystallarieumDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
+	protected boolean secret;
 	protected final List<EntryIngredient> growthStages;
 	protected final List<CrystallarieumCatalyst> catalysts;
 	protected final InkColor inkColor;
@@ -32,6 +33,7 @@ public class CrystallarieumDisplay extends BasicDisplay implements GatedRecipeDi
 	public CrystallarieumDisplay(@NotNull CrystallarieumRecipe recipe) {
 		super(Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredientStack())), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		
+		this.secret = recipe.isSecret();
 		this.growthStages = new ArrayList<>();
 		for(BlockState state : recipe.getGrowthStages()) {
 			growthStages.add(EntryIngredients.of(state.getBlock().asItem()));
@@ -68,6 +70,11 @@ public class CrystallarieumDisplay extends BasicDisplay implements GatedRecipeDi
 	
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return secret;
 	}
 	
 }

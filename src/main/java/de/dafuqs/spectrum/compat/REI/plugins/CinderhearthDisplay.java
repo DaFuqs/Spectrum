@@ -22,12 +22,14 @@ import java.util.List;
 public class CinderhearthDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
 	protected final Identifier requiredAdvancementIdentifier;
+	protected boolean secret;
 	protected final float experience;
 	protected final int craftingTime;
 	protected final List<Pair<ItemStack, Float>> outputsWithChance;
 	
 	public CinderhearthDisplay(@NotNull CinderhearthRecipe recipe) {
 		super(Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), List.of(EntryIngredients.ofItemStacks(recipe.getPossibleOutputs())));
+		this.secret = recipe.isSecret();
 		this.requiredAdvancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 		this.outputsWithChance = recipe.getOutputsWithChance();
 		this.experience = recipe.getExperience();
@@ -59,6 +61,11 @@ public class CinderhearthDisplay extends BasicDisplay implements GatedRecipeDisp
 	
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return secret;
 	}
 	
 }

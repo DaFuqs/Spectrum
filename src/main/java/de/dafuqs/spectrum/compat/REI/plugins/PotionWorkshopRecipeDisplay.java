@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
+	protected boolean secret;
 	protected final List<EntryIngredient> craftingInputs;
 	protected final EntryIngredient output;
 	protected final int craftingTime;
@@ -32,6 +33,7 @@ public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implement
 	public PotionWorkshopRecipeDisplay(PotionWorkshopRecipe recipe) {
 		super(recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new)), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		
+		this.secret = recipe.isSecret();
 		this.potionWorkshopRecipe = recipe;
 		this.craftingInputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).collect(Collectors.toCollection(ArrayList::new));
 		this.output = EntryIngredients.of(recipe.getOutput());
@@ -101,6 +103,11 @@ public abstract class PotionWorkshopRecipeDisplay extends BasicDisplay implement
 	@Override
 	public int getHeight() {
 		return 3;
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return secret;
 	}
 	
 }

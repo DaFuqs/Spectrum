@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 public abstract class GatedItemInformationDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
+	protected boolean secret;
 	protected final List<EntryIngredient> input;
 	protected final Identifier requiredAdvancementIdentifier;
 	protected final Item item;
@@ -55,6 +56,11 @@ public abstract class GatedItemInformationDisplay extends BasicDisplay implement
 		} else {
 			return FabricLoader.getInstance().getEnvironmentType() == EnvType.SERVER || isUnlockedClient();
 		}
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return secret;
 	}
 	
 	@Environment(EnvType.CLIENT)

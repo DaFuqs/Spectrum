@@ -1,12 +1,13 @@
 package de.dafuqs.spectrum.recipe.midnight_solution_converting;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
@@ -17,14 +18,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
+public class MidnightSolutionConvertingRecipe extends GatedSpectrumRecipe {
+	
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/create_midnight_aberration");
 	
 	private static final List<Item> outputItems = new ArrayList<>();
 	protected final Identifier id;
 	protected final Ingredient inputIngredient;
 	protected final ItemStack outputItemStack;
 	
-	public MidnightSolutionConvertingRecipe(Identifier id, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
+	public MidnightSolutionConvertingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {
+		super(id, group, secret, requiredAdvancementIdentifier);
 		this.id = id;
 		this.inputIngredient = inputIngredient;
 		this.outputItemStack = outputItemStack;
@@ -57,18 +61,8 @@ public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
 	}
 	
 	@Override
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
-	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
-	}
-	
-	@Override
-	public Identifier getId() {
-		return this.id;
 	}
 	
 	@Override
@@ -89,11 +83,12 @@ public class MidnightSolutionConvertingRecipe implements Recipe<Inventory> {
 	}
 	
 	@Override
-	public boolean equals(Object object) {
-		if (object instanceof MidnightSolutionConvertingRecipe) {
-			return ((MidnightSolutionConvertingRecipe) object).getId().equals(this.getId());
-		}
-		return false;
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return UNLOCK_IDENTIFIER;
 	}
 	
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_ID;
+	}
 }

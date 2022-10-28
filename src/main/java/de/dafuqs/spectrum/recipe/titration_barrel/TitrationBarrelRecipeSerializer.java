@@ -2,20 +2,20 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 
-public class TitrationBarrelRecipeSerializer implements RecipeSerializer<TitrationBarrelRecipe> {
+public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<TitrationBarrelRecipe> {
 	
 	public final TitrationBarrelRecipeSerializer.RecipeFactory<TitrationBarrelRecipe> recipeFactory;
 	
@@ -23,9 +23,15 @@ public class TitrationBarrelRecipeSerializer implements RecipeSerializer<Titrati
 		this.recipeFactory = recipeFactory;
 	}
 	
+	public interface RecipeFactory<TitrationBarrelRecipe> {
+		TitrationBarrelRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> ingredients, ItemStack outputItemStack, Item tappingItem, int minTimeDays, de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe.FermentationData fermentationData);
+	}
+	
 	@Override
 	public TitrationBarrelRecipe read(Identifier identifier, JsonObject jsonObject) {
-		String group = JsonHelper.getString(jsonObject, "group", "");
+		String group = readGroup(jsonObject);
+		boolean secret = readSecret(jsonObject);
+		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
 		
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
 		List<IngredientStack> ingredients = RecipeUtils.ingredientStacksFromJson(ingredientArray, ingredientArray.size());
@@ -43,41 +49,38 @@ public class TitrationBarrelRecipeSerializer implements RecipeSerializer<Titrati
 			fermentationData = TitrationBarrelRecipe.FermentationData.fromJson(JsonHelper.getObject(jsonObject, "fermentation_data"));
 		}
 		
-		Identifier requiredAdvancementIdentifier;
-		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
-			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
-		} else {
-			// No unlock advancement set. Will be set to the unlock advancement of the block itself
-			requiredAdvancementIdentifier = TitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER;
-		}
-		
-		return this.recipeFactory.create(identifier, group, ingredients, outputItemStack, tappingItem, minTimeDays, fermentationData, requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, outputItemStack, tappingItem, minTimeDays, fermentationData);
 	}
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, TitrationBarrelRecipe titrationBarrelRecipe) {
-		packetByteBuf.writeString(titrationBarrelRecipe.group);
-		packetByteBuf.writeShort(titrationBarrelRecipe.inputStacks.size());
-		for (IngredientStack ingredientStack : titrationBarrelRecipe.inputStacks) {
+	public void write(PacketByteBuf packetByteBuf, TitrationBarrelRecipe recipe) {
+		packetByteBuf.writeString(recipe.group);
+		packetByteBuf.writeBoolean(recipe.secret);
+		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
+		
+		packetByteBuf.writeShort(recipe.inputStacks.size());
+		for (IngredientStack ingredientStack : recipe.inputStacks) {
 			ingredientStack.write(packetByteBuf);
 		}
-		packetByteBuf.writeItemStack(titrationBarrelRecipe.outputItemStack);
-		packetByteBuf.writeString(Registry.ITEM.getId(titrationBarrelRecipe.tappingItem).toString());
-		packetByteBuf.writeInt(titrationBarrelRecipe.minFermentationTimeHours);
+		packetByteBuf.writeItemStack(recipe.outputItemStack);
+		packetByteBuf.writeString(Registry.ITEM.getId(recipe.tappingItem).toString());
+		packetByteBuf.writeInt(recipe.minFermentationTimeHours);
 		
-		if(titrationBarrelRecipe.fermentationData == null) {
+		if(recipe.fermentationData == null) {
 			packetByteBuf.writeBoolean(false);
 		} else {
 			packetByteBuf.writeBoolean(true);
-			titrationBarrelRecipe.fermentationData.write(packetByteBuf);
+			recipe.fermentationData.write(packetByteBuf);
 		}
 		
-		packetByteBuf.writeIdentifier(titrationBarrelRecipe.requiredAdvancementIdentifier);
 	}
 	
 	@Override
 	public TitrationBarrelRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
+		boolean secret = packetByteBuf.readBoolean();
+		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
+		
 		short craftingInputCount = packetByteBuf.readShort();
 		List<IngredientStack> ingredients = IngredientStack.decodeByteBuf(packetByteBuf, craftingInputCount);
 		ItemStack outputItemStack = packetByteBuf.readItemStack();
@@ -89,13 +92,7 @@ public class TitrationBarrelRecipeSerializer implements RecipeSerializer<Titrati
 			fermentationData = TitrationBarrelRecipe.FermentationData.read(packetByteBuf);
 		}
 		
-		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
-		
-		return this.recipeFactory.create(identifier, group, ingredients, outputItemStack, tappingItem, minTimeDays, fermentationData, requiredAdvancementIdentifier);
-	}
-	
-	public interface RecipeFactory<TitrationBarrelRecipe> {
-		TitrationBarrelRecipe create(Identifier id, String group, List<IngredientStack> ingredients, ItemStack outputItemStack, Item tappingItem, int minTimeDays, de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe.FermentationData fermentationData, Identifier requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, outputItemStack, tappingItem, minTimeDays, fermentationData);
 	}
 	
 }

@@ -8,7 +8,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 
-import static de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe.UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER;
+import static de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe.UNLOCK_IDENTIFIER;
 
 public class PotionWorkshopReactingDisplay extends GatedItemInformationDisplay {
 	
@@ -18,7 +18,7 @@ public class PotionWorkshopReactingDisplay extends GatedItemInformationDisplay {
 	
 	@Environment(EnvType.CLIENT)
 	public boolean isUnlockedClient() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_POTION_WORKSHOP_ADVANCEMENT_IDENTIFIER) && super.isUnlockedClient();
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_IDENTIFIER) && super.isUnlockedClient();
 	}
 	
 	@Override

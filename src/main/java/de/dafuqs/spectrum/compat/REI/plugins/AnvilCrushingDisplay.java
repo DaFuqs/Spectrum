@@ -16,6 +16,7 @@ import java.util.List;
 
 public class AnvilCrushingDisplay implements Display, GatedRecipeDisplay {
 	
+	protected boolean secret;
 	public final float experience;
 	public final float crushedItemsPerPointOfDamage;
 	private final List<EntryIngredient> inputs;
@@ -23,6 +24,7 @@ public class AnvilCrushingDisplay implements Display, GatedRecipeDisplay {
 	protected final Identifier requiredAdvancementIdentifier;
 	
 	public AnvilCrushingDisplay(AnvilCrushingRecipe recipe) {
+		this.secret = recipe.isSecret();
 		this.inputs = recipe.getIngredients().stream().map(EntryIngredients::ofIngredient).toList();
 		this.output = EntryIngredients.of(recipe.getOutput());
 		
@@ -49,6 +51,11 @@ public class AnvilCrushingDisplay implements Display, GatedRecipeDisplay {
 	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, this.requiredAdvancementIdentifier);
+	}
+	
+	@Override
+	public boolean isSecret() {
+		return secret;
 	}
 	
 }

@@ -23,6 +23,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
@@ -50,12 +51,13 @@ import java.util.Map;
 public class ProgressionSanityCommand {
 	
 	private static final List<Identifier> advancementGatingWarningWhitelist = new ArrayList<>() {{
-		add(new Identifier(SpectrumCommon.MOD_ID, "find_ancient_ruins"));
-		add(new Identifier(SpectrumCommon.MOD_ID, "hook_entity_with_molten_rod"));
-		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/take_off_belt_overcharged"));
-		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_blacklisted_memory_fail"));
-		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/craft_blacklisted_memory_success"));
-		add(new Identifier(SpectrumCommon.MOD_ID, "midgame/build_cinderhearth_structure_without_lava"));
+		add(SpectrumCommon.locate("find_ancient_ruins"));
+		add(SpectrumCommon.locate("hook_entity_with_molten_rod"));
+		add(SpectrumCommon.locate("midgame/take_off_belt_overcharged"));
+		add(SpectrumCommon.locate("midgame/craft_blacklisted_memory_fail"));
+		add(SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"));
+		add(SpectrumCommon.locate("midgame/build_cinderhearth_structure_without_lava"));
+		add(SpectrumCommon.locate("tap_aged_air"));
 	}};
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -74,6 +76,12 @@ public class ProgressionSanityCommand {
 			RegistryKey<Block> registryKey = entry.getKey();
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				BlockState blockState = entry.getValue().getDefaultState();
+				
+				// unbreakable and break-instantly blocks do not need to have an entry
+				if(blockState.getBlock().getHardness() <= 0) {
+					continue;
+				}
+				
 				if (!blockState.isIn(BlockTags.PICKAXE_MINEABLE)
 						&& !blockState.isIn(BlockTags.AXE_MINEABLE)
 						&& !blockState.isIn(BlockTags.SHOVEL_MINEABLE)
@@ -280,7 +288,7 @@ public class ProgressionSanityCommand {
 				}
 			}
 			Item outputItem = recipe.getOutput().getItem();
-			if (ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
+			if (outputItem != null && outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
 				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}

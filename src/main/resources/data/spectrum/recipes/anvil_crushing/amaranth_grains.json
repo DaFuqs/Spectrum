@@ -12,5 +12,5 @@
   "particleEffectIdentifier": "enchanted_hit",
   "particleCount": 10,
   "soundEventIdentifier": "block.moss.break",
-  "required_advancement": "spectrum:lategame/asdsd"
+  "required_advancement": "spectrum:collect_amaranth_bushel"
 }

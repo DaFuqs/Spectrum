@@ -19,5 +19,5 @@
   "result": {
     "item": "minecraft:bread"
   },
-  "required_advancement": "spectrum:progression/collect_amaranth"
+  "required_advancement": "spectrum:collect_amaranth_bushel"
 }

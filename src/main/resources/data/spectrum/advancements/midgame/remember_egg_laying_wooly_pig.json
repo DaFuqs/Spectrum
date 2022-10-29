@@ -22,7 +22,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/build_spirit_instiller_structure" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/manifest_memory" }
     }
   }
 }

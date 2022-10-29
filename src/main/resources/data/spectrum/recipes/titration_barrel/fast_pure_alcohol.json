@@ -22,5 +22,5 @@
   "result": {
     "item": "spectrum:pure_alcohol"
   },
-  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+  "required_advancement": "spectrum:progression/unlock_incandescent_amalgam"
 }

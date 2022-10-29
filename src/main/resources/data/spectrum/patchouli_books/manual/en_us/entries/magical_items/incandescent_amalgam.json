@@ -1,12 +1,10 @@
 {
   "name": "Incandescent Amalgam",
-  "advancement": "spectrum:progression/unlock_jade_wine",
+  "advancement": "spectrum:progression/unlock_incancescent_amalgam",
   "icon": "spectrum:incandescent_amalgam",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:incandescent_amalgam": 2,
-    "spectrum:incandescent_amalgam_hidden": 3,
-    "spectrum:fast_pure_alc": 4
+    "spectrum:incandescent_amalgam": 0
   },
   "pages": [
     {

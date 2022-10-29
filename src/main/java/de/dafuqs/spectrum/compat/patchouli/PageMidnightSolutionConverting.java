@@ -19,7 +19,7 @@ public class PageMidnightSolutionConverting extends PageDoubleRecipeRegistry<Mid
 	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/midnight_solution.png");
 	
 	public PageMidnightSolutionConverting() {
-		super(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE);
+		super(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING);
 	}
 	
 	@Override

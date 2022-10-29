@@ -65,8 +65,8 @@ public class SpectrumRecipeTypes {
 	public static RecipeType<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING;
 	
 	public static final String MIDNIGHT_SOLUTION_CONVERTING_ID = "midnight_solution_converting";
-	public static RecipeSerializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_RECIPE_SERIALIZER;
-	public static RecipeType<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_RECIPE;
+	public static RecipeSerializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER;
+	public static RecipeType<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING;
 	
 	public static final String SPIRIT_INSTILLING_ID = "spirit_instiller";
 	public static RecipeSerializer<SpiritInstillerRecipe> SPIRIT_INSTILLING_SERIALIZER;
@@ -126,8 +126,8 @@ public class SpectrumRecipeTypes {
 		POTION_WORKSHOP_REACTING_SERIALIZER = registerSerializer(POTION_WORKSHOP_REACTING_ID, new PotionWorkshopReactingRecipeSerializer(PotionWorkshopReactingRecipe::new));
 		POTION_WORKSHOP_REACTING = registerRecipeType(POTION_WORKSHOP_REACTING_ID);
 		
-		MIDNIGHT_SOLUTION_CONVERTING_RECIPE_SERIALIZER = registerSerializer(MIDNIGHT_SOLUTION_CONVERTING_ID, new MidnightSolutionConvertingRecipeSerializer(MidnightSolutionConvertingRecipe::new));
-		MIDNIGHT_SOLUTION_CONVERTING_RECIPE = registerRecipeType(MIDNIGHT_SOLUTION_CONVERTING_ID);
+		MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER = registerSerializer(MIDNIGHT_SOLUTION_CONVERTING_ID, new MidnightSolutionConvertingRecipeSerializer(MidnightSolutionConvertingRecipe::new));
+		MIDNIGHT_SOLUTION_CONVERTING = registerRecipeType(MIDNIGHT_SOLUTION_CONVERTING_ID);
 		
 		SPIRIT_INSTILLING_SERIALIZER = registerSerializer(SPIRIT_INSTILLING_ID, new SpiritInstillerRecipeSerializer(SpiritInstillerRecipe::new));
 		SPIRIT_INSTILLING = registerRecipeType(SPIRIT_INSTILLING_ID);

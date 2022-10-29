@@ -158,7 +158,7 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 			AUTO_INVENTORY = new AutoCraftingInventory(1, 1);
 		}
 		AUTO_INVENTORY.setInputInventory(Collections.singletonList(itemStack));
-		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE, AUTO_INVENTORY, world).orElse(null);
+		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, AUTO_INVENTORY, world).orElse(null);
 	}
 	
 	@Override

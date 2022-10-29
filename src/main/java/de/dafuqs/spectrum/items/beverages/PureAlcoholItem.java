@@ -13,7 +13,9 @@ public class PureAlcoholItem extends BeverageItem {
 	
 	@Override
 	public BeverageProperties getBeverageProperties(ItemStack itemStack) {
-		return BeverageProperties.getFromStack(itemStack);
+		BeverageProperties beverageProperties = BeverageProperties.getFromStack(itemStack);
+		beverageProperties.alcPercent = 100;
+		return beverageProperties;
 	}
 	
 	@Override

@@ -67,12 +67,12 @@ public class MidnightSolutionConvertingRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public RecipeSerializer<?> getSerializer() {
-		return SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE_SERIALIZER;
+		return SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER;
 	}
 	
 	@Override
 	public RecipeType<?> getType() {
-		return SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING_RECIPE;
+		return SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING;
 	}
 	
 	@Override

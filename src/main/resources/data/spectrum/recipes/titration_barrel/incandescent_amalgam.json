@@ -19,7 +19,7 @@
       "count": 16
     }
   ],
-  "min_fermentation_time_hours": 1,
+  "min_fermentation_time_hours": 24,
   "fermentation_data": {
     "fermentation_speed_mod": 1.0
   },

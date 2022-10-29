@@ -1,5 +1,6 @@
 {
   "type": "spectrum:pedestal",
+  "secret": true,
   "time": 160,
   "tier": "simple",
   "cyan": 0,

@@ -23,7 +23,6 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> SPAWNERS = getReference("spawners");
 	public static final TagKey<Item> INDESTRUCTIBLE_BLACKLISTED = getReference("indestructible_blacklisted");
 	public static final TagKey<Item> NO_CINDERHEARTH_DOUBLING = getReference("no_cinderhearth_doubling");
-	public static final TagKey<Item> HAS_HIDDEN_RECIPE = getReference("has_hidden_recipe");
 	
 	private static TagKey<Item> getReference(String id) {
 		return TagKey.of(Registry.ITEM_KEY, SpectrumCommon.locate(id));

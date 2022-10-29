@@ -59,6 +59,8 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 		this.craftingTime = craftingTime;
 		this.experience = experience;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	@Override

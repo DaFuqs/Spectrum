@@ -35,6 +35,8 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 		this.time = time;
 		this.experience = experience;
 		this.outputsWithChance = outputsWithChance;
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	@Override

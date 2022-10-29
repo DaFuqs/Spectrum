@@ -33,6 +33,8 @@ public class EnchanterRecipe extends GatedSpectrumRecipe {
 		this.requiredExperience = requiredExperience;
 		this.craftingTime = craftingTime;
 		this.noBenefitsFromYieldAndEfficiencyUpgrades = noBenefitsFromYieldAndEfficiencyUpgrades;
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	@Override

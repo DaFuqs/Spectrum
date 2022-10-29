@@ -39,6 +39,8 @@ public abstract class PotionWorkshopRecipe extends GatedSpectrumRecipe {
 		this.ingredient1 = ingredient1;
 		this.ingredient2 = ingredient2;
 		this.ingredient3 = ingredient3;
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	public List<Ingredient> getOtherIngredients() {

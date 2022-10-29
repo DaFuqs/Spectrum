@@ -51,6 +51,8 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 		for(BlockState growthStage : growthStages) {
 			stateMap.put(growthStage, this);
 		}
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	@Nullable

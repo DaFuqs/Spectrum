@@ -147,6 +147,8 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		this.outputItemStack = outputItemStack;
 		this.tappingItem = tappingItem;
 		this.fermentationData = fermentationData;
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	@Override

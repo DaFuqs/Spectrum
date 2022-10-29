@@ -20,8 +20,6 @@ public abstract class GatedSpectrumRecipe implements Recipe<Inventory>, GatedRec
 		this.group = group;
 		this.secret = secret;
 		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
-		
-		registerInToastManager(getType(), this);
 	}
 	
 	@Override

@@ -68,6 +68,8 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		this.duringWorldEffects = duringWorldEffects;
 		this.finishWorldEffect = finishWorldEffect;
 		this.description = description;
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	/**

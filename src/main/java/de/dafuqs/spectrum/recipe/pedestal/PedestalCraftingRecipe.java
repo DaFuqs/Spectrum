@@ -66,6 +66,8 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 		this.craftingTime = craftingTime;
 		this.skipRecipeRemainders = skipRecipeRemainders;
 		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	/**

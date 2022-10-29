@@ -40,6 +40,8 @@ public class InkConvertingRecipe extends GatedSpectrumRecipe {
 				INPUT_ITEMS.add(item);
 			}
 		}
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	public static boolean isInput(Item item) {

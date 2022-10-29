@@ -34,6 +34,8 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 		this.modifiers = modifiers;
 		
 		reagents.put(item, modifiers);
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	public boolean matches(@NotNull Inventory inv, World world) {

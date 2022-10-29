@@ -71,4 +71,17 @@ public abstract class GatedSpectrumRecipe implements Recipe<Inventory>, GatedRec
 		return true;
 	}
 	
+	@Override
+	public boolean equals(Object object) {
+		if (object instanceof GatedSpectrumRecipe) {
+			return ((GatedSpectrumRecipe) object).getId().equals(this.getId());
+		}
+		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getId().toString();
+	}
+	
 }

@@ -23,7 +23,7 @@ import java.util.List;
 
 public class EnchanterCategory implements DisplayCategory<EnchanterDisplay> {
 	
-	public final static Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/enchanter.png");
+	public final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/enchanter.png");
 	public static final EntryIngredient ENCHANTER = EntryIngredients.of(SpectrumBlocks.ENCHANTER);
 	
 	@Override

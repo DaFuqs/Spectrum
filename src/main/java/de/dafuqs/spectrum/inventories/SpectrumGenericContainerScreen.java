@@ -14,9 +14,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class SpectrumGenericContainerScreen extends HandledScreen<GenericSpectrumContainerScreenHandler> {
 	
-	private static final Identifier TIER_1_TEXTURE_6x9 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_54_tier_1.png");
-	private static final Identifier TIER_2_TEXTURE_6x9 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_54_tier_2.png");
-	private static final Identifier TIER_3_TEXTURE_6x9 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_54_tier_3.png");
+	private static final Identifier TIER_1_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_1.png");
+	private static final Identifier TIER_2_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_2.png");
+	private static final Identifier TIER_3_TEXTURE_6x9 = SpectrumCommon.locate("textures/gui/container/generic_54_tier_3.png");
 	
 	private final int rows;
 	private final ProgressionStage tier;

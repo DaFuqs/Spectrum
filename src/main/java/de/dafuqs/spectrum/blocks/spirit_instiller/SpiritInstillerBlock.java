@@ -31,7 +31,7 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 public class SpiritInstillerBlock extends BlockWithEntity {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_spirit_instiller_structure");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 	
 	public SpiritInstillerBlock(Settings settings) {

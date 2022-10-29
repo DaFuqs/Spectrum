@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.tag.TagKey;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 
@@ -14,7 +13,7 @@ public class SpectrumStatusEffectTags {
 	public static TagKey<StatusEffect> UNCURABLE;
 	
 	private static TagKey<StatusEffect> getReference(String id) {
-		return TagKey.of(Registry.MOB_EFFECT_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
+		return TagKey.of(Registry.MOB_EFFECT_KEY, SpectrumCommon.locate(id));
 	}
 	
 	public static void register() {

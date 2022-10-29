@@ -30,7 +30,7 @@ import java.util.Map;
 @Environment(EnvType.CLIENT)
 public class UnlockedRecipeGroupToast implements Toast {
 	
-	private final Identifier TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/toasts.png");
+	private final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/toasts.png");
 	private final Text title;
 	private final Text text;
 	private final List<ItemStack> itemStacks;

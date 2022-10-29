@@ -29,7 +29,7 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_colored_trees");
+		return SpectrumCommon.locate("milestones/reveal_colored_trees");
 	}
 	
 	@Override

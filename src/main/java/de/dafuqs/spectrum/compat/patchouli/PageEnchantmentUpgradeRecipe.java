@@ -21,7 +21,7 @@ import java.util.List;
 
 public class PageEnchantmentUpgradeRecipe extends PageDoubleRecipeRegistry<EnchantmentUpgradeRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/enchanter_crafting.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/enchanter_crafting.png");
 	
 	public PageEnchantmentUpgradeRecipe() {
 		super(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE);

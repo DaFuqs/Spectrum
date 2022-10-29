@@ -27,7 +27,7 @@ public interface InkPowered {
 	/**
 	 * The advancement the player needs to have in order to use ink powered tools
 	 */
-	Identifier REQUIRED_ADVANCEMENT = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_ink_use");
+	Identifier REQUIRED_ADVANCEMENT = SpectrumCommon.locate("milestones/unlock_ink_use");
 	
 	@Environment(EnvType.CLIENT)
 	static boolean canUseClient() {

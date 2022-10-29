@@ -27,7 +27,7 @@ import java.util.List;
 public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	
 	public static final int TEXT_COLOR = 0xEEEEEE;
-	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/paintbrush.png");
+	public static final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/paintbrush.png");
 	
 	protected static final Text CONTROLS_TEXT_1 = new TranslatableText("item.spectrum.paintbrush.gui.controls1");
 	protected static final Text CONTROLS_TEXT_2 = new TranslatableText("item.spectrum.paintbrush.gui.controls2");

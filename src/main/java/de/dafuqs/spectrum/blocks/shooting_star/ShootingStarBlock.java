@@ -101,7 +101,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 		PRISTINE("pristine"),
 		GEMSTONE("gemstone");
 		
-		public static final Identifier BOUNCE_LOOT_TABLE = new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_bounce");
+		public static final Identifier BOUNCE_LOOT_TABLE = SpectrumCommon.locate("entity/shooting_star/shooting_star_bounce");
 		
 		private final String name;
 		
@@ -154,19 +154,19 @@ public class ShootingStarBlock extends BlockWithEntity {
 		public static @NotNull Identifier getLootTableIdentifier(@NotNull Type type) {
 			switch (type) {
 				case FIERY -> {
-					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_fiery");
+					return SpectrumCommon.locate("entity/shooting_star/shooting_star_fiery");
 				}
 				case COLORFUL -> {
-					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_colorful");
+					return SpectrumCommon.locate("entity/shooting_star/shooting_star_colorful");
 				}
 				case GEMSTONE -> {
-					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_gemstone");
+					return SpectrumCommon.locate("entity/shooting_star/shooting_star_gemstone");
 				}
 				case PRISTINE -> {
-					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_pristine");
+					return SpectrumCommon.locate("entity/shooting_star/shooting_star_pristine");
 				}
 				default -> {
-					return new Identifier(SpectrumCommon.MOD_ID, "entity/shooting_star/shooting_star_glistering");
+					return SpectrumCommon.locate("entity/shooting_star/shooting_star_glistering");
 				}
 			}
 		}

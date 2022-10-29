@@ -23,7 +23,7 @@ import java.util.List;
 
 public class AnvilCrushingCategory implements DisplayCategory<AnvilCrushingDisplay> {
 	
-	private final static Identifier WALL_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/anvil_crushing.png");
+	private final static Identifier WALL_TEXTURE = SpectrumCommon.locate("textures/gui/container/anvil_crushing.png");
 	private final static EntryIngredient ANVIL = EntryIngredients.of(Items.ANVIL);
 	
 	@Override

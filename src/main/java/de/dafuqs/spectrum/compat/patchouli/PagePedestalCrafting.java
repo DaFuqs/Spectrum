@@ -19,10 +19,10 @@ import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraftingRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE1 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/pedestal_crafting1.png");
-	private static final Identifier BACKGROUND_TEXTURE2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/pedestal_crafting2.png");
-	private static final Identifier BACKGROUND_TEXTURE3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/pedestal_crafting3.png");
-	private static final Identifier BACKGROUND_TEXTURE4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/pedestal_crafting4.png");
+	private static final Identifier BACKGROUND_TEXTURE1 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting1.png");
+	private static final Identifier BACKGROUND_TEXTURE2 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting2.png");
+	private static final Identifier BACKGROUND_TEXTURE3 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting3.png");
+	private static final Identifier BACKGROUND_TEXTURE4 = SpectrumCommon.locate("textures/gui/patchouli/pedestal_crafting4.png");
 	
 	public PagePedestalCrafting() {
 		super(SpectrumRecipeTypes.PEDESTAL);

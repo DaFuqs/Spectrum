@@ -57,7 +57,7 @@ import java.util.stream.Collectors;
 
 public class ShootingStarEntity extends Entity {
 	
-	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star");
+	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = SpectrumCommon.locate("particle/shooting_star");
 	
 	private static final TrackedData<Integer> SHOOTING_STAR_TYPE = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Boolean> PLAYER_PLACED = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.BOOLEAN);

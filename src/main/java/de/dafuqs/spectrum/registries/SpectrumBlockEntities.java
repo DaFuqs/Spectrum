@@ -54,7 +54,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -111,7 +110,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
 	
 	private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
-		return Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
+		return Registry.register(Registry.BLOCK_ENTITY_TYPE, SpectrumCommon.locate(id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
 	}
 	
 	public static void register() {

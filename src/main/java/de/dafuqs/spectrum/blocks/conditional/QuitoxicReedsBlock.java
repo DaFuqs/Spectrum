@@ -56,7 +56,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_quitoxic_reeds");
+		return SpectrumCommon.locate("milestones/reveal_quitoxic_reeds");
 	}
 	
 	@Override

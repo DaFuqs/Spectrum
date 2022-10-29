@@ -57,7 +57,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 	}
 	
 	public static RenderLayer getRenderLayer(SkullBlock.SkullType type) {
-		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, "textures/entity/mob_head/" + type.toString().toLowerCase(Locale.ROOT) + ".png");
+		Identifier identifier = SpectrumCommon.locate("textures/entity/mob_head/" + type.toString().toLowerCase(Locale.ROOT) + ".png");
 		RenderLayer renderLayer = RenderLayer.getEntityCutoutNoCullZOffset(identifier);
 		if (renderLayer == null) {
 			return RenderLayer.getEntityCutoutNoCullZOffset(new Identifier("textures/entity/zombie/zombie.png"));

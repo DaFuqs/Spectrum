@@ -16,7 +16,7 @@ public class PotionWorkshopBrewingCategory extends PotionWorkshopCategory {
 	
 	@Override
 	public Identifier getIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "potion_workshop_brewing");
+		return SpectrumCommon.locate("potion_workshop_brewing");
 	}
 	
 	@Override

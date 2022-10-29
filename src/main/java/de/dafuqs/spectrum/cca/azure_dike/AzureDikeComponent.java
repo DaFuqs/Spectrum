@@ -7,7 +7,7 @@ import net.minecraft.util.Identifier;
 
 public interface AzureDikeComponent extends Component, ServerTickingComponent {
 	
-	Identifier AZURE_DIKE_BAR_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/azure_dike_overlay.png");
+	Identifier AZURE_DIKE_BAR_TEXTURE = SpectrumCommon.locate("textures/gui/azure_dike_overlay.png");
 	
 	int getProtection();
 	

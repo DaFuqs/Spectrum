@@ -18,7 +18,7 @@ import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/enchanter_crafting.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/enchanter_crafting.png");
 	
 	public PageEnchanterRecipe() {
 		super(SpectrumRecipeTypes.ENCHANTER);

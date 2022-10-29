@@ -74,8 +74,8 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	}};
 	
 	public static final int REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT = 4;
-	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_conflicted_enchanting_with_enchanter");
-	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_overenchanting_with_enchanter");
+	public static final Identifier APPLY_CONFLICTING_ENCHANTMENTS_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_conflicted_enchanting_with_enchanter");
+	public static final Identifier OVERENCHANTING_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_overenchanting_with_enchanter");
 	
 	public static final int INVENTORY_SIZE = 2; // 0: any itemstack, 1: Knowledge Gem;
 	

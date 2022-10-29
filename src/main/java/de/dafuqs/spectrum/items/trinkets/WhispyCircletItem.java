@@ -14,7 +14,6 @@ import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -27,7 +26,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	private final static int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
 	
 	public WhispyCircletItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet"));
+		super(settings, SpectrumCommon.locate("progression/unlock_whispy_circlet"));
 	}
 	
 	public static void removeSingleHarmfulStatusEffect(@NotNull LivingEntity entity) {

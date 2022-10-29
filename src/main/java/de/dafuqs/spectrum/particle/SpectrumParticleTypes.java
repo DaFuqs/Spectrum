@@ -8,7 +8,6 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.NotNull;
 
@@ -149,12 +148,12 @@ public class SpectrumParticleTypes {
 	
 	// Simple particles
 	public static DefaultParticleType register(String name, boolean alwaysShow) {
-		return Registry.register(Registry.PARTICLE_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), FabricParticleTypes.simple(alwaysShow));
+		return Registry.register(Registry.PARTICLE_TYPE, SpectrumCommon.locate(name), FabricParticleTypes.simple(alwaysShow));
 	}
 	
 	// complex particles
 	private static <T extends ParticleEffect> ParticleType<T> register(String name, ParticleEffect.Factory<T> factory, final Function<ParticleType<T>, Codec<T>> function, boolean alwaysShow) {
-		return Registry.register(Registry.PARTICLE_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), new ParticleType<T>(alwaysShow, factory) {
+		return Registry.register(Registry.PARTICLE_TYPE, SpectrumCommon.locate(name), new ParticleType<T>(alwaysShow, factory) {
 			public Codec<T> getCodec() {
 				return function.apply(this);
 			}

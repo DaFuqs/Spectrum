@@ -164,7 +164,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SPECTRAL_BLOCK_CHIME = register("block.spectral_block.chime");
 	
 	private static SoundEvent register(String id) {
-		Identifier identifier = new Identifier(SpectrumCommon.MOD_ID, id);
+		Identifier identifier = SpectrumCommon.locate(id);
 		return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));
 	}
 	

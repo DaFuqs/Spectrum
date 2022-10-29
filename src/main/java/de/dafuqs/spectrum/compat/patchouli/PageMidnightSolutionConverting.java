@@ -16,7 +16,7 @@ import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 public class PageMidnightSolutionConverting extends PageDoubleRecipeRegistry<MidnightSolutionConvertingRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/midnight_solution.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/midnight_solution.png");
 	
 	public PageMidnightSolutionConverting() {
 		super(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING);

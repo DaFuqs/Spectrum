@@ -18,7 +18,7 @@ import java.util.List;
 
 public class PageSpiritInstillerCrafting extends PageDoubleRecipeRegistry<SpiritInstillerRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/spirit_instiller.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/spirit_instiller.png");
 	private static final ItemStack ITEM_BOWL_STACK = SpectrumBlocks.ITEM_BOWL_CALCITE.asItem().getDefaultStack();
 	
 	public PageSpiritInstillerCrafting() {

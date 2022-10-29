@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +23,7 @@ import java.util.UUID;
 public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 	
 	public ExtraReachGlovesItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE, 1677721600); // 5 blocks of extra reach
+		super(settings, SpectrumCommon.locate("progression/unlock_gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE, 1677721600); // 5 blocks of extra reach
 	}
 	
 	@Override

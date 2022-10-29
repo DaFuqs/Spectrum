@@ -16,7 +16,6 @@ import net.minecraft.nbt.NbtHelper;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.GameMode;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,7 +25,7 @@ import java.util.UUID;
 
 public class HardcoreDeathComponent implements Component, LevelComponentInitializer, AutoSyncedComponent {
 	
-	public static final ComponentKey<HardcoreDeathComponent> HARDCORE_DEATHS_COMPONENT = ComponentRegistry.getOrCreate(new Identifier(SpectrumCommon.MOD_ID, "hardcore_deaths"), HardcoreDeathComponent.class);
+	public static final ComponentKey<HardcoreDeathComponent> HARDCORE_DEATHS_COMPONENT = ComponentRegistry.getOrCreate(SpectrumCommon.locate("hardcore_deaths"), HardcoreDeathComponent.class);
 	
 	private final static List<UUID> playersThatDiedInHardcore = new ArrayList<>();
 	

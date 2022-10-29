@@ -57,7 +57,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	// 5-8: reagents
 	// 9-20: 12 inventory slots
 	public static final int INVENTORY_SIZE = 22;
-	public static final Identifier FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_fourth_potion_workshop_reagent_slot");
+	public static final Identifier FOURTH_BREWING_SLOT_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/unlock_fourth_potion_workshop_reagent_slot");
 	
 	public static final int MERMAIDS_GEM_INPUT_SLOT_ID = 0;
 	public static final int BASE_INPUT_SLOT_ID = 1;

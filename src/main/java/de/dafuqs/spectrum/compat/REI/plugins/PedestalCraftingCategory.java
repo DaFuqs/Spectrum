@@ -31,7 +31,7 @@ public class PedestalCraftingCategory implements DisplayCategory<PedestalCraftin
 	
 	@Override
 	public Identifier getIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "pedestal_crafting");
+		return SpectrumCommon.locate("pedestal_crafting");
 	}
 	
 	@Override

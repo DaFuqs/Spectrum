@@ -9,13 +9,12 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.JadeWineRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.SuspiciousBrewRecipe;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumCustomRecipeSerializers {
 	
 	private static void register(RecipeSerializer recipeSerializer, String id) {
-		Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(SpectrumCommon.MOD_ID, id), recipeSerializer);
+		Registry.register(Registry.RECIPE_SERIALIZER, SpectrumCommon.locate(id), recipeSerializer);
 	}
 	
 	public static void registerRecipeSerializers() {

@@ -7,7 +7,6 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumStatusEffects {
@@ -80,7 +79,7 @@ public class SpectrumStatusEffects {
 	
 	
 	private static StatusEffect registerStatusEffect(String id, StatusEffect entry) {
-		return Registry.register(Registry.STATUS_EFFECT, new Identifier(SpectrumCommon.MOD_ID, id), entry);
+		return Registry.register(Registry.STATUS_EFFECT, SpectrumCommon.locate(id), entry);
 	}
 	
 	public static void register() {

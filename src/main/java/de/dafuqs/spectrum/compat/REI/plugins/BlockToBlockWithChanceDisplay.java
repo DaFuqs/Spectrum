@@ -20,7 +20,7 @@ import java.util.List;
 
 public class BlockToBlockWithChanceDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_mob_blocks");
+	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("progression/unlock_mob_blocks");
 	protected boolean secret;
 	public final float chance;
 	

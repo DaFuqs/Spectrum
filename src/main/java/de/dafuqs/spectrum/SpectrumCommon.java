@@ -289,7 +289,7 @@ public class SpectrumCommon implements ModInitializer {
 		
 		logInfo("Registering RecipeCache reload listener");
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final Identifier id = new Identifier(SpectrumCommon.MOD_ID, "compacting_cache_clearer");
+			private final Identifier id = SpectrumCommon.locate("compacting_cache_clearer");
 			
 			@Override
 			public void reload(ResourceManager manager) {

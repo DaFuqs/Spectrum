@@ -18,7 +18,7 @@ import java.util.List;
 
 public class NaturesStaffConversionsDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_natures_staff");
+	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("progression/unlock_natures_staff");
 	
 	public NaturesStaffConversionsDisplay(EntryStack<?> in, EntryStack<?> out) {
 		this(Collections.singletonList(EntryIngredient.of(in)), Collections.singletonList(EntryIngredient.of(out)));

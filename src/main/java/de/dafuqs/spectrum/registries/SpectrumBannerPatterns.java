@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPattern;
 import io.github.fablabsmc.fablabs.api.bannerpattern.v1.LoomPatterns;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumBannerPatterns {
@@ -28,7 +27,7 @@ public class SpectrumBannerPatterns {
 	public static LoomPattern JADE_VINE;
 	
 	private static LoomPattern register(String id, LoomPattern loomPattern) {
-		return Registry.register(LoomPatterns.REGISTRY, new Identifier(SpectrumCommon.MOD_ID, id), loomPattern);
+		return Registry.register(LoomPatterns.REGISTRY, SpectrumCommon.locate(id), loomPattern);
 	}
 	
 	public static void register() {

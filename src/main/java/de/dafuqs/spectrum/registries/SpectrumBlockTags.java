@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.Block;
 import net.minecraft.tag.TagKey;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumBlockTags {
@@ -50,7 +49,7 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> SPAWNERS = getReference("spawners");
 	
 	private static TagKey<Block> getReference(String id) {
-		return TagKey.of(Registry.BLOCK_KEY, new Identifier(SpectrumCommon.MOD_ID, id));
+		return TagKey.of(Registry.BLOCK_KEY, SpectrumCommon.locate(id));
 	}
 	
 }

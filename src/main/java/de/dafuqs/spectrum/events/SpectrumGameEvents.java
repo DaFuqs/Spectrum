@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.events;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.event.GameEvent;
 
@@ -25,7 +24,7 @@ public class SpectrumGameEvents {
 		for (DyeColor dyeColor : DyeColor.values()) {
 			List<RedstoneTransferGameEvent> list = new ArrayList<>();
 			for (int i = 0; i < 16; i++) {
-				list.add(Registry.register(Registry.GAME_EVENT, new Identifier(SpectrumCommon.MOD_ID, "wireless_redstone_signal_" + dyeColor.name().toLowerCase(Locale.ROOT) + "_" + i), new RedstoneTransferGameEvent("wireless_redstone_signal_" + dyeColor.name().toLowerCase(Locale.ROOT) + "_" + i, 16, dyeColor, i)));
+				list.add(Registry.register(Registry.GAME_EVENT, SpectrumCommon.locate("wireless_redstone_signal_" + dyeColor.name().toLowerCase(Locale.ROOT) + "_" + i), new RedstoneTransferGameEvent("wireless_redstone_signal_" + dyeColor.name().toLowerCase(Locale.ROOT) + "_" + i, 16, dyeColor, i)));
 			}
 			WIRELESS_REDSTONE_SIGNALS.put(dyeColor, list);
 		}
@@ -36,7 +35,7 @@ public class SpectrumGameEvents {
 	}
 	
 	private static GameEvent register(String id, int range) {
-		return Registry.register(Registry.GAME_EVENT, new Identifier(SpectrumCommon.MOD_ID, id), new GameEvent(id, range));
+		return Registry.register(Registry.GAME_EVENT, SpectrumCommon.locate(id), new GameEvent(id, range));
 	}
 	
 }

@@ -22,7 +22,7 @@ import java.util.List;
 
 public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITitrationBarrelRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/titration_barrel.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/titration_barrel.png");
 	private static final IngredientStack WATER_BUCKET = IngredientStack.of(Ingredient.ofStacks(Items.WATER_BUCKET.getDefaultStack()));
 	
 	private transient BookTextRenderer textRenderer;

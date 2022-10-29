@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class RestockingChestScreen extends HandledScreen<RestockingChestScreenHandler> {
 	
-	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/restocking_chest.png");
+	public static final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/container/restocking_chest.png");
 	
 	public RestockingChestScreen(RestockingChestScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);

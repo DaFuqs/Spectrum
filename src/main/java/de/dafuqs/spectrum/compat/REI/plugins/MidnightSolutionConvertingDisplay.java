@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MidnightSolutionConvertingDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/create_midnight_aberration");
+	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("midgame/create_midnight_aberration");
 	
 	public <T extends Recipe<?>> MidnightSolutionConvertingDisplay(MidnightSolutionConvertingRecipe recipe) {
 		this(Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));

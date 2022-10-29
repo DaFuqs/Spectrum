@@ -29,7 +29,7 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 public class EnchanterBlock extends BlockWithEntity {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "midgame/build_enchanting_structure");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_enchanting_structure");
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 11.0D, 14.0D);
 	

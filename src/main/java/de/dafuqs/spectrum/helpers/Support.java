@@ -77,7 +77,7 @@ public class Support {
 		add(new Vec3d(0.7D, 0, -0.7D));
 		add(new Vec3d(0.75D, 0, -0.5D));
 	}};
-	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "lategame/finish_progression");
+	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/finish_progression");
 	private static final DecimalFormat df = new DecimalFormat("0.00");
 	private static final DecimalFormat df1 = new DecimalFormat("0.0");
 	private static final DecimalFormat df2 = new DecimalFormat("0");
@@ -209,7 +209,7 @@ public class Support {
 	}
 	
 	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
-		grantAdvancementCriterion(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, advancementString), criterion);
+		grantAdvancementCriterion(serverPlayerEntity, SpectrumCommon.locate(advancementString), criterion);
 	}
 	
 	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {

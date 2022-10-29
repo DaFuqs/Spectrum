@@ -24,7 +24,7 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public class RevelationToast implements Toast {
 	
-	private final Identifier TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/toasts.png");
+	private final Identifier TEXTURE = SpectrumCommon.locate("textures/gui/toasts.png");
 	private final ItemStack itemStack;
 	private final SoundEvent soundEvent;
 	private boolean soundPlayed;

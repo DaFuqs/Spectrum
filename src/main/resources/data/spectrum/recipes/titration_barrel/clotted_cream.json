@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket",
+      "count": 1
+    },
+    {
+      "item": "minecraft:sugar",
+      "count": 4
+    }
+  ],
+  "min_fermentation_time_hours": 2,
+  "result": {
+    "item": "spectrum:clotted_cream",
+    "count": 8
+  }
+}

@@ -273,6 +273,8 @@ public class SpectrumItems {
 	public static final Item JADE_JELLY = new JadeJellyItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(64).rarity(Rarity.UNCOMMON).food(SpectrumFoodComponents.JADE_JELLY));
 	public static final Item RESTORATION_TEA = new RestorationTeaItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).rarity(Rarity.UNCOMMON).maxCount(16).food(SpectrumFoodComponents.RESTORATION_TEA).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item KIMCHI = new KimchiItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.KIMCHI));
+	public static final Item CLOTTED_CREAM = new ClottedCreamItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.CLOTTED_CREAM), "item.spectrum.clotted_cream.tooltip");
+	public static final Item FRESH_CHOCOLATE = new Item(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.FRESH_CHOCOLATE));
 	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.INFUSED_BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item REPRISE = new RepriseItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).maxCount(16).food(SpectrumFoodComponents.INFUSED_BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(1).food(SpectrumFoodComponents.SUSPICIOUS_BREW).recipeRemainder(Items.GLASS_BOTTLE));
@@ -641,6 +643,8 @@ public class SpectrumItems {
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
 		register("infused_beverage", INFUSED_BEVERAGE, DyeColor.PINK);
 		register("kimchi", KIMCHI, DyeColor.PINK);
+		register("clotted_cream", CLOTTED_CREAM, DyeColor.PINK);
+		register("fresh_chocolate", FRESH_CHOCOLATE, DyeColor.PINK);
 		register("reprise", REPRISE, DyeColor.PINK);
 		register("suspicious_brew", SUSPICIOUS_BREW, DyeColor.LIME);
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);

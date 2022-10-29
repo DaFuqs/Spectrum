@@ -64,9 +64,13 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 30, 2), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 60, 2), 1.0F)
 			.build();
-	
+
 	public static final FoodComponent KIMCHI = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
-	
+
+	public static final FoodComponent CLOTTED_CREAM = new FoodComponent.Builder().alwaysEdible().build();
+
+	public static final FoodComponent FRESH_CHOCOLATE = new FoodComponent.Builder().snack().hunger(3).saturationModifier(1.667F).build();
+
 	public static final FoodComponent FREIGEIST = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.ASCENSION, AscensionStatusEffect.MUSIC_INTRO_TICKS), 1.0F)

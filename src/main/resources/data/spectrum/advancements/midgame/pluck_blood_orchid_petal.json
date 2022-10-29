@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/collect_blood_orchid_petal",
   "display": {
     "icon": {
-      "item": "spectrum:blood_orchid_petal"
+      "item": "spectrum:blood_orchid"
     },
     "title": {
       "translate": "advancements.spectrum.pluck_blood_orchid_petal.title"

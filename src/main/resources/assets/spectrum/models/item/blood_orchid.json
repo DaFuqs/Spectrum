@@ -1,3 +1,6 @@
 {
-  "parent": "spectrum:block/blood_orchid0"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:block/blood_orchid5"
+  }
 }

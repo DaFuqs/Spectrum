@@ -24,6 +24,12 @@
     "age=7,half=lower": {
       "model": "spectrum:block/amaranth_stage4_lower"
     },
+    "age=0,half=upper": {
+      "model": "spectrum:block/amaranth_stage2_upper"
+    },
+    "age=1,half=upper": {
+      "model": "spectrum:block/amaranth_stage2_upper"
+    },
     "age=2,half=upper": {
       "model": "spectrum:block/amaranth_stage2_upper"
     },

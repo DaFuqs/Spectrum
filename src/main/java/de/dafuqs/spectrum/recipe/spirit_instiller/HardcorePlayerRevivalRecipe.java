@@ -4,7 +4,6 @@ import com.mojang.authlib.GameProfile;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.cca.HardcoreDeathComponent;
-import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.SpawnerCreatureChangeRecipe;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.Blocks;
@@ -18,20 +17,21 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
+public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	
-	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
+	public static final RecipeSerializer<HardcorePlayerRevivalRecipe> SERIALIZER = new SpecialRecipeSerializer<>(HardcorePlayerRevivalRecipe::new);
 	
 	public HardcorePlayerRevivalRecipe(Identifier identifier) {
-		super(identifier, "", false, SpectrumCommon.locate("milestones/unlock_spawner_manipulation"),
+		super(identifier, "", false, null,
 				IngredientStack.of(Ingredient.ofItems(Blocks.PLAYER_HEAD.asItem())), IngredientStack.of(Ingredient.ofItems(Items.NETHER_STAR)), IngredientStack.of(Ingredient.ofItems(Items.ENCHANTED_GOLDEN_APPLE)),
-				ItemStack.EMPTY, 2400, 100, true);
+				ItemStack.EMPTY, 1200, 100, true);
 	}
 	
 	@Override
@@ -43,7 +43,25 @@ public abstract class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe 
 				if(revivedPlayer != null) {
 					HardcoreDeathComponent.removeHardcoreDeath(gameProfile);
 					revivedPlayer.changeGameMode(SpectrumCommon.minecraftServer.getDefaultGameMode());
-					FabricDimensions.teleport(revivedPlayer, (ServerWorld) spiritInstillerBlockEntity.getWorld(), new TeleportTarget(Vec3d.ofCenter(spiritInstillerBlockEntity.getPos().up()), new Vec3d(0, 0, 0), revivedPlayer.getYaw(), revivedPlayer.getPitch()));
+					
+					BlockRotation blockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
+					float yaw = 0.0F;
+					switch (blockRotation) {
+						case NONE -> {
+							yaw = -90.0F;
+						}
+						case CLOCKWISE_90 -> {
+							yaw = 0.0F;
+						}
+						case CLOCKWISE_180 -> {
+							yaw = 900.0F;
+						}
+						case COUNTERCLOCKWISE_90 -> {
+							yaw = 180.0F;
+						}
+					}
+					
+					FabricDimensions.teleport(revivedPlayer, (ServerWorld) spiritInstillerBlockEntity.getWorld(), new TeleportTarget(Vec3d.ofCenter(spiritInstillerBlockEntity.getPos().up()), new Vec3d(0, 0, 0), yaw, revivedPlayer.getPitch()));
 				}
 			}
 		}
@@ -57,7 +75,10 @@ public abstract class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe 
 			if(gameProfile == null) {
 				return false;
 			}
-			return HardcoreDeathComponent.hasHardcoreDeath(gameProfile);
+			
+			ServerPlayerEntity playerToRevive = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(gameProfile.getId());
+			playerToRevive = playerToRevive != null ? playerToRevive : SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(gameProfile.getName());
+			return playerToRevive != null && HardcoreDeathComponent.hasHardcoreDeath(gameProfile);
 		}
 		return false;
 	}

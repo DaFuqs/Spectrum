@@ -41,6 +41,7 @@
     "RandomChanceWithLootingLootConditionMixin",
     "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
+    "ServerPlayerInteractionManagerMixin",
     "ServerWorldMixin",
     "WitherEntityMixin",
     "accessors.FluidBlockAccessor",

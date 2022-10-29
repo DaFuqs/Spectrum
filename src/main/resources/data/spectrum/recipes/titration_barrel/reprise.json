@@ -4,6 +4,10 @@
     {
       "item": "minecraft:chorus_fruit",
       "count": 4
+    },
+    {
+      "item": "spectrum:blizzard_powder",
+      "count": 4
     }
   ],
   "tapping_item": "minecraft:glass_bottle",

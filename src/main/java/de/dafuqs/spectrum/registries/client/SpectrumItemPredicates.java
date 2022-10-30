@@ -21,6 +21,7 @@ import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;
 
 import java.util.Optional;
@@ -47,6 +48,7 @@ public class SpectrumItemPredicates {
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerDreamFlayerPredicates(SpectrumItems.DREAMFLAYER);
 		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
+		registerEnchantmentCanvasPrediates(SpectrumItems.ENCHANTMENT_CANVAS);
 	}
 	
 	private static void registerColorPredicate(Item item) {
@@ -72,7 +74,6 @@ public class SpectrumItemPredicates {
 				return 0.0F;
 			return compound.contains("StoredStack") ? 1.0F : 0.0F;
 		});
-		
 	}
 	
 	private static void registerMoonPhasePredicates(Item item) {
@@ -212,6 +213,16 @@ public class SpectrumItemPredicates {
 				long max = storage.getMaxTotal();
 				return (float) Math.max(0.01, (double) current / (double) max);
 			}
+		});
+	}
+	
+	private static void registerEnchantmentCanvasPrediates(Item item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("bound"), (itemStack, world, livingEntity, i) -> {
+			NbtCompound nbt = itemStack.getNbt();
+			if(nbt != null && nbt.contains("BoundItem", NbtElement.STRING_TYPE)) {
+				return 1;
+			}
+			return 0;
 		});
 	}
 	

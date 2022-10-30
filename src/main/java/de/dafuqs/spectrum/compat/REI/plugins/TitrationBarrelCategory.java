@@ -24,7 +24,6 @@ import java.util.List;
 
 public class TitrationBarrelCategory implements DisplayCategory<TitrationBarrelDisplay> {
 	
-	private static final EntryIngredient TITRATION_BARREL = EntryIngredients.of(SpectrumBlocks.TITRATION_BARREL);
 	private static final EntryIngredient WATER_BUCKET = EntryIngredients.of(Items.WATER_BUCKET);
 	
 	@Override

@@ -13,6 +13,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,7 +36,12 @@ public class TitrationBarrelDisplay implements SimpleGridMenuDisplay, GatedRecip
 		this.secret = recipe.isSecret();
 		this.ingredients = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
 		this.output = EntryIngredients.of(recipe.getOutput());
-		this.tappingIngredient = EntryIngredients.of(recipe.getTappingItem().getDefaultStack());
+		if(recipe.getTappingItem() == Items.AIR) {
+			this.tappingIngredient = EntryIngredient.empty();
+		} else {
+			this.tappingIngredient = EntryIngredients.of(recipe.getTappingItem().getDefaultStack());
+		}
+
 		
 		this.minFermentationTimeHours = recipe.getMinFermentationTimeHours();
 		this.fermentationData = recipe.getFermentationData();

@@ -1,10 +1,9 @@
 {
-  "parent": "spectrum:midgame/plant_jade_vines",
+  "parent": "spectrum:craft_salted_jaramel_trifle_or_tart",
   "display": {
     "icon": {
-      "item": "spectrum:demon_trifle"
+      "item": "spectrum:triple_meat_pot_pie"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.eat_each_pastry.title"
     },
@@ -72,7 +71,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/plant_jade_vines"
+        "advancement_identifier": "spectrum:craft_salted_jaramel_trifle_or_tart"
       }
     }
   }

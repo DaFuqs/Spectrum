@@ -2407,6 +2407,8 @@
   "advancements.spectrum.have_half_a_heart_with_divinity.description": "Drink Freigeist, ascend then and reach only half a heart",
   "advancements.spectrum.kill_a_mob_with_frenzy3.title": "Dark Passion Play",
   "advancements.spectrum.kill_a_mob_with_frenzy3.description": "Kill a mob while having the Frenzy III effect or higher. Instead of extending the duration, getting the effect a second time will upgrade it's level instead",
+  "advancements.spectrum.collect_gemstone_rock_candy.title": "Colorful, Crunchy Confection",
+  "advancements.spectrum.collect_gemstone_rock_candy.description": "Get a hold of Gemstone colored Rock Candy",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

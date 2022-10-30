@@ -17,19 +17,19 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Titration Recipe",
+      "title": "Titration Snythesis",
       "recipe": "spectrum:titration_barrel/incandescent_amalgam",
       "text": "$(o)my very own sun...$()$(br2)The longer the synthesis goes on, the higher the yield... you really can't blame the angels for not wanting a cut of this."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Titration Recipe",
+      "title": "Pure Synthesis",
       "recipe": "spectrum:titration_barrel/incandescent_amalgam_hidden",
       "text": "$(o)...so grossly incandescent!$()$(br2)"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "title": "Titration Recipe",
+      "title": "Distillation",
       "recipe": "spectrum:titration_barrel/fast_pure_alcohol",
       "text": "$(o)the pristine burn of the amalgam makes it uniquely suited for pure alcohol distillation"
     }

@@ -17,7 +17,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Fusion Recipe",
+      "title": "Mum's Meat Pie",
       "recipe": "spectrum:pedestal/tier2/food/triple_meat_pot_pie",
       "text": "$(o)full of fat and meat and wine and warp!"
     }

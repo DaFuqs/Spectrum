@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_mob_head_using_treasure_hunter",
+  "parent": "spectrum:midgame/collect_blood_orchid_petal",
   "display": {
     "icon": {
       "item": "spectrum:freigeist"
@@ -25,7 +25,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/collect_mob_head_using_treasure_hunter"
+        "advancement_identifier": "spectrum:midgame/collect_blood_orchid_petal"
       }
     }
   },

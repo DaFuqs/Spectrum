@@ -41,8 +41,7 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100) ,1.0f)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 12000, 1) ,1.0f)
 			.build();
-
-
+	
 	public static final FoodComponent GLISTERING_JELLY_TEA = new FoodComponent.Builder()
 			.hunger(4).saturationModifier(0.75F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1200), 1.0F)
@@ -72,11 +71,31 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 60, 2), 1.0F)
 			.build();
 
-	public static final FoodComponent KIMCHI = new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build();
+	public static final FoodComponent KIMCHI = new FoodComponent.Builder()
+			.hunger(6).saturationModifier(0.6F)
+			.build();
 
-	public static final FoodComponent CLOTTED_CREAM = new FoodComponent.Builder().alwaysEdible().build();
+	public static final FoodComponent CLOTTED_CREAM = new FoodComponent.Builder()
+			.alwaysEdible()
+			.build();
 
-	public static final FoodComponent FRESH_CHOCOLATE = new FoodComponent.Builder().snack().hunger(4).saturationModifier(1F).build();
+	public static final FoodComponent FRESH_CHOCOLATE = new FoodComponent.Builder()
+			.snack().hunger(4).saturationModifier(0.6F)
+			.build();
+	
+	public static final FoodComponent HOT_CHOCOLATE = new FoodComponent.Builder()
+			.hunger(5).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 200), 1.0F)
+			.build();
+	
+	public static final FoodComponent DEMON_TEA = new FoodComponent.Builder()
+			.snack().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 800, 1), 2.0F / 3.0F)
+			.build();
+	
+	public static final FoodComponent SCONE = new FoodComponent.Builder()
+			.snack().hunger(2).saturationModifier(0.6F)
+			.build();
 
 	public static final FoodComponent FREIGEIST = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()
@@ -177,7 +196,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent DEMON_TRIFLE = new FoodComponent.Builder()
 			.hunger(10).saturationModifier(0.2F)
-			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 1200), 1.0F / 3.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 1200), 2.0F / 3.0F)
 			.build();
-
+	
 }

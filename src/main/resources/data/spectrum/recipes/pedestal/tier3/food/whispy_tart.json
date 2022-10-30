@@ -24,7 +24,7 @@
       "item": "minecraft:egg"
     },
     "M": {
-      "item": "minecraft:milk_bucket"
+      "tag": "c:milk"
     },
     "G": {
       "item": "minecraft:glow_berries"

@@ -1,0 +1,44 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 120,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 4.0,
+  "pattern": [
+    "EWE",
+    "MFL",
+    "ACA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:amaranth_grains"
+    },
+    "C": {
+      "item": "spectrum:clotted_cream"
+    },
+    "M": {
+      "tag": "spectrum:common_meats"
+    },
+    "F": {
+      "tag": "spectrum:water_meats"
+    },
+    "L": {
+      "tag": "spectrum:lean_meats"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "W": {
+      "tag": "spectrum:drinkable_spirits"
+    }
+  },
+  "result": {
+    "item": "spectrum:triple_meat_pot_pie",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_pies"
+}

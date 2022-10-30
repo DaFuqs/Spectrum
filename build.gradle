@@ -65,6 +65,10 @@ repositories {
 	}
 
 	maven {
+		url "https://maven.ryanliptak.com/"
+	}
+
+	maven {
 		name = "Curse"
 		url = 'https://cfa2.cursemaven.com'
 	}
@@ -119,6 +123,11 @@ dependencies {
 	//modImplementation include("com.github.devs-immortal:Divine-Intervention:${project.divine_intervention_version}")
 	modImplementation include("io.github.ladysnake:satin:${project.satin_version}")
 	modImplementation("com.github.LudoCrypt:Liminal-Library:5.2.1")
+
+	//testing aids, do not inlcude!
+	modRuntimeOnly("squeek.appleskin:appleskin-fabric:mc1.18.2-2.4.1") {
+		exclude module: 'modmenu'
+	}
 
 	// Soft dependencies:
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/

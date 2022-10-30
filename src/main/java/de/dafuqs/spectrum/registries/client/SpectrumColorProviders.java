@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import de.dafuqs.spectrum.items.beverages.InfusedBeverageItem;
 import de.dafuqs.spectrum.items.energy.InkFlaskItem;
 import de.dafuqs.spectrum.progression.ToggleableBlockColorProvider;
 import de.dafuqs.spectrum.progression.ToggleableItemColorProvider;
@@ -152,11 +153,13 @@ public class SpectrumColorProviders {
 
 	public static void registerBrewColors() {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
-
 			if (tintIndex == 0) {
 
+				var nbt = stack.getOrCreateNbt();
+				return nbt.contains("Color") ? nbt.getInt("Color") : 0xf4c6cb;
+
 				// Daf plz
-				return 0xff85f9;
+				//return 0xff85f9;
 
 			}
 			return -1;

@@ -13,7 +13,7 @@
     "item": "minecraft:glistering_melon_slice"
   },
   "ingredient3": {
-    "item": "minecraft:milk_bucket"
+    "tag": "c:milk"
   },
   "result": {
     "item": "spectrum:glistering_jelly_tea",

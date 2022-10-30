@@ -14,7 +14,7 @@
       "count": 2
     }
   ],
-  "min_fermentation_time_hours": 4,
+  "min_fermentation_time_hours": 3,
   "result": {
     "item": "spectrum:fresh_chocolate",
     "count": 16

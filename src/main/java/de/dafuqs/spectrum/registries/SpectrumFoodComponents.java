@@ -35,7 +35,14 @@ public class SpectrumFoodComponents {
 			.hunger(4).saturationModifier(0.25F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.ANOTHER_ROLL, 1200), 1.0F)
 			.build();
-	
+
+	public static final FoodComponent TRIPLE_MEAT_POT_PIE = new FoodComponent.Builder()
+			.hunger(20).saturationModifier(1F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100) ,1.0f)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 12000, 1) ,1.0f)
+			.build();
+
+
 	public static final FoodComponent GLISTERING_JELLY_TEA = new FoodComponent.Builder()
 			.hunger(4).saturationModifier(0.75F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1200), 1.0F)
@@ -69,7 +76,7 @@ public class SpectrumFoodComponents {
 
 	public static final FoodComponent CLOTTED_CREAM = new FoodComponent.Builder().alwaysEdible().build();
 
-	public static final FoodComponent FRESH_CHOCOLATE = new FoodComponent.Builder().snack().hunger(3).saturationModifier(1.667F).build();
+	public static final FoodComponent FRESH_CHOCOLATE = new FoodComponent.Builder().snack().hunger(4).saturationModifier(1F).build();
 
 	public static final FoodComponent FREIGEIST = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()

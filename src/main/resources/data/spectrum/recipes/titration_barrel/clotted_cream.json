@@ -10,7 +10,7 @@
       "count": 4
     }
   ],
-  "min_fermentation_time_hours": 2,
+  "min_fermentation_time_hours": 1,
   "result": {
     "item": "spectrum:clotted_cream",
     "count": 8

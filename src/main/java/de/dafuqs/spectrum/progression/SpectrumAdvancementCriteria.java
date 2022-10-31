@@ -35,6 +35,7 @@ public class SpectrumAdvancementCriteria {
 	public static ConfirmationButtonPressedCriterion CONFIRMATION_BUTTON_PRESSED;
 	public static BloodOrchidPluckingCriterion BLOOD_ORCHID_PLUCKING;
 	public static DivinityTickCriterion DIVINITY_TICK;
+	public static ConsumedTeaWithSconeCriterion CONSUMED_TEA_WITH_SCONE;
 	
 	public static void register() {
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
@@ -67,6 +68,7 @@ public class SpectrumAdvancementCriteria {
 		CONFIRMATION_BUTTON_PRESSED = CriteriaAccessor.callRegister(new ConfirmationButtonPressedCriterion());
 		BLOOD_ORCHID_PLUCKING = CriteriaAccessor.callRegister(new BloodOrchidPluckingCriterion());
 		DIVINITY_TICK = CriteriaAccessor.callRegister(new DivinityTickCriterion());
+		CONSUMED_TEA_WITH_SCONE = CriteriaAccessor.callRegister(new ConsumedTeaWithSconeCriterion());
 	}
 	
 }

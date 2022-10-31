@@ -19,7 +19,8 @@
         "item": {
           "items": [
             "spectrum:restoration_tea",
-            "spectrum:glistering_jelly_tea"
+            "spectrum:glistering_jelly_tea",
+            "spectrum:demon_tea"
           ],
           "nbt": "{Milk:1b}"
         }

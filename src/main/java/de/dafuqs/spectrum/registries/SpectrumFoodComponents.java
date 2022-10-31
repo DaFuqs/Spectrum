@@ -47,9 +47,26 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1200), 1.0F)
 			.build();
 	
+	public static final FoodComponent GLISTERING_JELLY_TEA_SCONE_BONUS = new FoodComponent.Builder()
+			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1200, 3), 1.0F)
+			.build();
+	
 	public static final FoodComponent RESTORATION_TEA = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, 1200), 1.0F)
+			.build();
+	
+	public static final FoodComponent RESTORATION_TEA_SCONE_BONUS = new FoodComponent.Builder()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, 1800), 1.0F)
+			.build();
+	
+	public static final FoodComponent DEMON_TEA = new FoodComponent.Builder()
+			.snack().hunger(2).saturationModifier(0.2F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 800, 1), 2.0F / 3.0F)
+			.build();
+	
+	public static final FoodComponent DEMON_TEA_SCONE_BONUS = new FoodComponent.Builder()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 800, 0), 1.0F)
 			.build();
 	
 	public static final FoodComponent INFUSED_BEVERAGE = new FoodComponent.Builder()
@@ -88,13 +105,12 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 1.0F)
 			.build();
 	
-	public static final FoodComponent DEMON_TEA = new FoodComponent.Builder()
-			.snack().hunger(2).saturationModifier(0.2F)
-			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 800, 1), 2.0F / 3.0F)
+	public static final FoodComponent HOT_CHOCOLATE_SCONE_BONUS = new FoodComponent.Builder()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 1.0F)
 			.build();
 	
 	public static final FoodComponent SCONE = new FoodComponent.Builder()
-			.snack().hunger(4).saturationModifier(0.6F)
+			.snack().hunger(3).saturationModifier(0.6F)
 			.build();
 
 	public static final FoodComponent FREIGEIST = new FoodComponent.Builder()

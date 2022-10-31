@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.food;
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
+import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -10,10 +10,10 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class GlisteringJellyTeaItem extends Item {
+public class GlisteringJellyTeaItem extends TeaItem {
 	
-	public GlisteringJellyTeaItem(Settings settings) {
-		super(settings);
+	public GlisteringJellyTeaItem(Settings settings, FoodComponent bonusFoodComponentWithScone) {
+		super(settings, bonusFoodComponentWithScone);
 	}
 	
 	@Override

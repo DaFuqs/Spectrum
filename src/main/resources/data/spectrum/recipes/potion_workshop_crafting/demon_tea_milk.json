@@ -11,8 +11,12 @@
   "ingredient2": {
     "item": "spectrum:bloodboil_syrup"
   },
+  "ingredient3": {
+    "tag": "c:milk"
+  },
   "result": {
-    "item": "spectrum:demon_tea"
+    "item": "spectrum:demon_tea",
+    "nbt": "{Milk:1b}"
   },
   "required_advancement": "spectrum:progression/unlock_demon_tea"
 }

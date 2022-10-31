@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "spectrum:block/amaranth_flower"
+    "cross": "spectrum:block/amaranth_bushel"
   }
 }

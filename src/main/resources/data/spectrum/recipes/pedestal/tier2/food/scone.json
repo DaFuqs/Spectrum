@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 50,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "BC",
+    "EA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:amaranth_grains"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "B": {
+      "item": "minecraft:sweet_berries"
+    },
+    "C": {
+      "item": "spectrum:clotted_cream"
+    }
+  },
+  "result": {
+    "item": "spectrum:scone",
+    "count": 2
+  },
+  "required_advancement": "spectrum:progression/unlock_pies"
+}

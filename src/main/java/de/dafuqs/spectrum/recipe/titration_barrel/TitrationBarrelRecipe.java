@@ -108,10 +108,10 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 			return new StatusEffectEntry(statusEffect, baseDuration, potencyEntries);
 		}
 	}
-	public record FermentationData(float fermentationSpeedMod, float angelsSharePerMcDay, List<StatusEffectEntry> statusEffectEntries) {
+	public record FermentationData(float fermentationSpeedMod, float angelsSharePercentPerMcDay, List<StatusEffectEntry> statusEffectEntries) {
 		public static FermentationData fromJson(JsonObject jsonObject) {
 			float fermentationSpeedMod = JsonHelper.getFloat(jsonObject, "fermentation_speed_mod", 1.0F);
-			float angelsSharePerMcDay = JsonHelper.getFloat(jsonObject, "angels_share_per_mc_day", 0.1F);
+			float angelsSharePerMcDay = JsonHelper.getFloat(jsonObject, "angels_share_percent_per_mc_day", 0.1F);
 			List<StatusEffectEntry> statusEffectEntries = new ArrayList<>();
 			if(JsonHelper.hasArray(jsonObject, "effects")) {
 				JsonArray effectsArray = JsonHelper.getArray(jsonObject, "effects");
@@ -125,7 +125,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		
 		public void write(PacketByteBuf packetByteBuf) {
 			packetByteBuf.writeFloat(this.fermentationSpeedMod);
-			packetByteBuf.writeFloat(this.angelsSharePerMcDay);
+			packetByteBuf.writeFloat(this.angelsSharePercentPerMcDay);
 			packetByteBuf.writeInt(this.statusEffectEntries.size());
 			for(StatusEffectEntry statusEffectEntry : this.statusEffectEntries) {
 				statusEffectEntry.write(packetByteBuf);
@@ -206,7 +206,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		if(this.fermentationData == null) {
 			return 0;
 		}
-		return this.fermentationData.angelsSharePerMcDay;
+		return this.fermentationData.angelsSharePercentPerMcDay;
 	}
 	
 	@Override

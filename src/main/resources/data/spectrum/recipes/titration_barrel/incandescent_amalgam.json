@@ -23,7 +23,7 @@
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
     "fermentation_speed_mod": 1.0,
-    "angels_share_per_mc_day": -0.25
+    "angels_share_per_mc_day": -0.005
   },
   "result": {
     "item": "spectrum:incandescent_amalgam"

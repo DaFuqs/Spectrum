@@ -1,0 +1,34 @@
+{
+  "name": "Blood Orchid Products",
+  "icon": "spectrum:bloodboil_syrup",
+  "advancement": "spectrum:progression/unlock_blood_orchid",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:bloodboil_syrup": 0,
+    "spectrum:demon_tea": 0,
+    "spectrum:demon_trifle": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Extracts of the $(l:resources:blood_orchid)Blood Orchid$(/l) have an ingense effect, when consumed: they may to put you into $(thing)Frenzy$().$(br)damage, attack speed, knockback resistance are buffed the more you kill. But if you do not regularly score a kill you get negative ones."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "recipe": "spectrum:potion_workshop_crafting/bloodboil_syrup",
+      "text": "It's active ingredients can be extracted from a petal into a thick solution. While it almost smells like Rose Water, it's effect when drunk is definitely... $(italic)a little more effervescent$()."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/unlock_demon_trifle",
+      "recipe": "spectrum:pedestal/tier3/food/demon_trifle",
+      "text": "The $(thing)Frenzy$() effect you may get is starts out low, but lasts a bit longer."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "advancement": "spectrum:progression/unlock_demon_tea",
+      "recipe": "spectrum:potion_workshop_crafting/demon_tea",
+      "text": "The $(thing)Frenzy$() effect you may get is relatively short, but starts out quite high."
+    }
+  ]
+}

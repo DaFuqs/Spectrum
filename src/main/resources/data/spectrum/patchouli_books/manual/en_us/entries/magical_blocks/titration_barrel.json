@@ -6,6 +6,7 @@
   "extra_recipe_mappings": {
     "spectrum:titration_barrel": 0,
     "spectrum:kimchi": 0,
+    "spectrum:hot_chocolate": 0
     "spectrum:pure_alcohol": 0
   },
   "pages": [
@@ -38,6 +39,28 @@
       "anchor": "kimchi",
       "recipe": "spectrum:titration_barrel/kimchi",
       "text": "Fermentation is not only for drinks! Made from 3 different vegetables, Kimchi is a hearty dish, best served as a side."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Clotted Cream",
+      "anchor": "clotted_cream",
+      "recipe": "spectrum:titration_barrel/clotted_cream",
+      "text": "Slightly fermented, it still keeps the properties of $(thing)Milk$(). Eating will remove currently active Status Effects."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Fresh Chocolate",
+      "anchor": "fresh_chocolate",
+      "recipe": "spectrum:titration_barrel/fresh_chocolate",
+      "text": "A great snack, literally: biting off a piece is quick and even makes you reasonably full.$(br)Pleasantly sweet and fruity."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Hot Chocolate",
+      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "anchor": "hot_chocolate",
+      "recipe": "spectrum:titration_barrel/hot_chocolate",
+      "text": "Perfect to come to the calm and in the cold season."
     },
     {
       "type": "patchouli:spotlight",

@@ -6,8 +6,7 @@
   "extra_recipe_mappings": {
     "spectrum:jaramel_trifle": 0,
     "spectrum:salted_jaramel_trifle": 0,
-    "spectrum:monster_trifle": 0,
-    "spectrum:demon_trifle": 0
+    "spectrum:monster_trifle": 0
   },
   "pages": [
     {
@@ -30,11 +29,6 @@
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier3/food/monster_trifle",
       "text": "Gives out effects at random. Fancy a gamble?"
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier3/food/demon_trifle",
-      "text": "May to put you into $(thing)Frenzy$().$(br)damage, attack speed, knockback resistance are buffed the more you kill. But if you do not regularly score a kill you get negative ones."
     }
   ]
 }

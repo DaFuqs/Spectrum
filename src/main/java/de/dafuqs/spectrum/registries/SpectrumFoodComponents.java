@@ -84,8 +84,8 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodComponent HOT_CHOCOLATE = new FoodComponent.Builder()
-			.hunger(5).saturationModifier(0.2F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 200), 1.0F)
+			.hunger(6).saturationModifier(0.3F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 1.0F)
 			.build();
 	
 	public static final FoodComponent DEMON_TEA = new FoodComponent.Builder()
@@ -94,7 +94,7 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodComponent SCONE = new FoodComponent.Builder()
-			.snack().hunger(2).saturationModifier(0.6F)
+			.snack().hunger(4).saturationModifier(1F)
 			.build();
 
 	public static final FoodComponent FREIGEIST = new FoodComponent.Builder()

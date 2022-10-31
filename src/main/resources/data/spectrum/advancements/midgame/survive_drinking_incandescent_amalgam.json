@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:incandescent_amalgam"
+    },
+    "title": {
+      "translate": "advancements.spectrum.survive_drinking_incandescent_amalgam.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.survive_drinking_incandescent_amalgam.description"
+    }
+  },
+  "parent": "spectrum:tap_titration_barrel",
+  "criteria": {
+    "survived_drinking_incandescent_amalgam": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "damage": {
+          "dealt": 500,
+          "type": {
+            "is_explosion": false,
+            "is_fire": false,
+            "is_magic": true,
+            "is_projectile": false,
+            "is_lightning": false,
+            "bypasses_armor": false,
+            "bypasses_invulnerability": false,
+            "bypasses_magic": false
+          }
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:tap_titration_barrel" }
+    }
+  }
+}

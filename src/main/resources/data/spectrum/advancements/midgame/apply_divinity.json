@@ -1,0 +1,43 @@
+{
+  "parent": "spectrum:midgame/collect_blood_orchid_petal",
+  "display": {
+    "icon": {
+      "item": "spectrum:freigeist"
+    },
+    "title": {
+      "translate": "advancements.spectrum.apply_divinity.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.apply_divinity.description"
+    }
+  },
+  "criteria": {
+    "apply_dinivity": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "advancements": {
+                  "spectrum:midgame/collect_blood_orchid_petal": true
+                }
+              }
+            }
+          }
+        ],
+        "effects": {
+          "spectrum:divinity": {}
+        }
+      }
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_blood_orchid_petal"
+      }
+    }
+  }
+}

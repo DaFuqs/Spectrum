@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_blood_orchid_petal",
+  "parent": "spectrum:midgame/apply_divinity",
   "display": {
     "icon": {
       "item": "spectrum:freigeist"
@@ -25,7 +25,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/collect_blood_orchid_petal"
+        "advancement_identifier": "spectrum:midgame/apply_divinity"
       }
     }
   },

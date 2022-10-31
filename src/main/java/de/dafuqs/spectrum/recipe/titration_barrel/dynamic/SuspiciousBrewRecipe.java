@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -30,14 +31,14 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SuspiciousBrewRecipe::new);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final int MIN_FERMENTATION_TIME_HOURS = 4;
-	public static final ItemStack OUTPUT_STACK = SpectrumItems.SUSPICIOUS_BREW.getDefaultStack();
+	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.SUSPICIOUS_BREW, 4);
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_suspicious_brew");
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
 	}};
 	
 	public SuspiciousBrewRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.35F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.35F, 0.1F, List.of()));
 	}
 	
 	@Override
@@ -48,7 +49,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}
 	
 	@Override
-	public ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature) {
+	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature) {
 		List<ItemStack> stacks = new ArrayList<>();
 		int itemCount = 0;
 		for(int i = 0; i < inventory.size(); i++) {
@@ -58,7 +59,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 				itemCount += stack.getCount();
 			}
 		}
-		float thickness = getThickness(waterBuckets, itemCount);
+		float thickness = getThickness(itemCount);
 		return tapWith(stacks, thickness, secondsFermented, downfall, temperature);
 	}
 	
@@ -113,14 +114,19 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
 	@Override
 	public boolean matches(Inventory inventory, World world) {
+		boolean flowerFound = false;
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
-			if(!stack.isEmpty() && !stack.isIn(ItemTags.SMALL_FLOWERS)) {
-				return false;
+			if(!stack.isEmpty()) {
+				if(stack.isIn(ItemTags.SMALL_FLOWERS)) {
+					flowerFound = true;
+				} else {
+					return false;
+				}
 			}
 		}
 		
-		return true;
+		return flowerFound;
 	}
 	
 	@Override

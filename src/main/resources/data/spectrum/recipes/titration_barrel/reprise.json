@@ -10,13 +10,15 @@
       "count": 4
     }
   ],
+  "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "min_fermentation_time_hours": 4,
   "fermentation_data": {
     "fermentation_speed_mod": 1.0
   },
   "result": {
-    "item": "spectrum:reprise"
+    "item": "spectrum:reprise",
+    "count": 2
   },
   "required_advancement": "spectrum:progression/unlock_reprise"
 }

@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.recipe.GatedRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import dev.architectury.fluid.FluidStack;
 import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,28 +25,34 @@ import java.util.List;
 public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("progression/unlock_titration_barrel");
-	int BOTTLES_PER_BUCKET_OF_WATER = 3;
 	
-	
-	ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature);
+	ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature);
 	
 	Item getTappingItem();
 	
+	Fluid getFluid();
+	
+	float getAngelsSharePerMcDay();
+	
 	// the amount of bottles able to get out of a single barrel
-	static int getYieldBottles(int waterCount, long secondsFermented, float temperature) {
-		return (int) Math.ceil(BOTTLES_PER_BUCKET_OF_WATER * (waterCount / FluidStack.bucketAmount()) * (1F - getAngelsSharePercent(secondsFermented, temperature) / 100F));
+	default int getOutputCountAfterAngelsShare(float temperature, long secondsFermented) {
+		if(getFermentationData() == null) {
+			return getOutput().getCount();
+		}
+		
+		float angelsSharePercent = getAngelsSharePercent(secondsFermented, temperature);
+		if(angelsSharePercent > 0) {
+			return (int) (getOutput().getCount() * Math.ceil(1F - angelsSharePercent / 100F));
+		} else {
+			return (int) (getOutput().getCount() * Math.floor(1F - angelsSharePercent / 100F));
+		}
 	}
 	
 	// the amount of fluid that evaporated while fermenting
 	// the higher the temperature in the biome is, the more evaporates
 	// making colder biomes more desirable
-	static double getAngelsSharePercent(long secondsFermented, float temperature) {
-		return Math.max(0.1, temperature) * TimeHelper.minecraftDaysFromSeconds(secondsFermented) / 8;
-	}
-	
-	@Override
-	default boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, UNLOCK_ADVANCEMENT_IDENTIFIER);
+	default float getAngelsSharePercent(long secondsFermented, float temperature) {
+		return Math.max(0.1F, temperature) * TimeHelper.minecraftDaysFromSeconds(secondsFermented) * getAngelsSharePerMcDay();
 	}
 	
 	@Override

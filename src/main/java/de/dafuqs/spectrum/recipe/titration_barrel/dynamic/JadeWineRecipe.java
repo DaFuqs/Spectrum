@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,7 +31,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_jade_wine");
 	
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;
-	public static final ItemStack OUTPUT_STACK = SpectrumItems.JADE_WINE.getDefaultStack();
+	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.JADE_WINE, 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)));
@@ -38,7 +39,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public JadeWineRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.08F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.08F, 0.1F, List.of()));
 	}
 	
 	@Override
@@ -47,12 +48,12 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	}
 	
 	@Override
-	public ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature) {
+	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature) {
 		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GERMINATED_JADE_VINE_SEEDS);
 		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADE_VINE_PETALS);
 		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
 		
-		float thickness = getThickness(bulbCount, petalCount, waterBuckets);
+		float thickness = getThickness(bulbCount, petalCount);
 		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall, temperature);
 	}
 	
@@ -100,11 +101,8 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	// the amount of solid to liquid
 	// adding more water will increase the amount of bottles the player can harvest from the barrel
 	// but too much water will - who would have thought - water it down
-	protected float getThickness(int bulbCount, int petalCount, int waterCount) {
-		if(waterCount == 0) {
-			return 0;
-		}
-		return waterCount / (bulbCount + petalCount / 8F);
+	protected float getThickness(int bulbCount, int petalCount) {
+		return bulbCount + petalCount / 8F;
 	}
 	
 	// the alc % determines the power of effects when drunk

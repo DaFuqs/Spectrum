@@ -15,6 +15,7 @@
       "count": 2
     }
   ],
+  "fluid": "minecraft:water",
   "min_fermentation_time_hours": 48,
   "fermentation_data": {
     "fermentation_speed_mod": 1.0

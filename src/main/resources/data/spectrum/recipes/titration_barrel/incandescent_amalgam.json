@@ -19,9 +19,11 @@
       "count": 16
     }
   ],
+  "fluid": "spectrum:liquid_crystal",
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
-    "fermentation_speed_mod": 1.0
+    "fermentation_speed_mod": 1.0,
+    "angels_share_per_mc_day": -0.25
   },
   "result": {
     "item": "spectrum:incandescent_amalgam"

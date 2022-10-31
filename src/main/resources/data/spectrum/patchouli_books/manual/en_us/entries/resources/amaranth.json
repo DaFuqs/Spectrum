@@ -5,9 +5,9 @@
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:amaranth_grains": 0,
-    "spectrum:amaranth_bushel": 0
-    "spectrum:honey_pastry": 0
-    "spectrum:scone": 0
+    "spectrum:amaranth_bushel": 0,
+    "spectrum:honey_pastry": 0,
+    "spectrum:scone": 0,
     "spectrum:triple_meat_pot_pie": 0
   },
   "pages": [
@@ -25,21 +25,21 @@
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:collect_amaranth_bushel",
-      "title": "Honey Pastry"
+      "title": "Honey Pastry",
       "recipe": "spectrum:pedestal/tier1/honey_pastry",
       "text": "The taste of Amaranth is as different from Wheat as its appearance. In your mind sprouted completely new ideas, like this deliciousness here."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/unlock_pies",
-      "title": "Scones"
+      "title": "Scones",
       "recipe": "spectrum:pedestal/tier2/scone",
       "text": "Small but fine pastry filled with cream.$(br2)$(italic)Perfect with tea."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/unlock_pies",
-      "title": "Triple Meat Pot Pie"
+      "title": "Triple Meat Pot Pie",
       "recipe": "spectrum:pedestal/tier2/triple_meat_pot_pie",
       "text": "This feast is guaranteed to fill your belly for quite some time.$(br2)$(italic)Full of fat and meat and wine and warp!"
     }

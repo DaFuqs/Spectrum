@@ -80,37 +80,6 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		return matchIngredientStacksExclusively(inv, getIngredientStacks());
 	}
 	
-	public static boolean matchIngredientStacksExclusively(Inventory inv, List<IngredientStack> ingredientStacks) {
-		if (inv.size() < ingredientStacks.size()) {
-			return false;
-		}
-		
-		int inputStackCount = 0;
-		for (int i = 0; i < inv.size(); i++) {
-			if (!inv.getStack(i).isEmpty()) {
-				inputStackCount++;
-			}
-		}
-		if (inputStackCount != ingredientStacks.size()) {
-			return false;
-		}
-		
-		
-		for (IngredientStack ingredientStack : ingredientStacks) {
-			boolean found = false;
-			for (int i = 0; i < inv.size(); i++) {
-				if (ingredientStack.test(inv.getStack(i))) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
 	@Override
 	public ItemStack craft(Inventory inv) {
 		return ItemStack.EMPTY;

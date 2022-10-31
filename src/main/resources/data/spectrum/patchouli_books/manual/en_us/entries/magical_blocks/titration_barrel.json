@@ -6,7 +6,7 @@
   "extra_recipe_mappings": {
     "spectrum:titration_barrel": 0,
     "spectrum:kimchi": 0,
-    "spectrum:hot_chocolate": 0
+    "spectrum:hot_chocolate": 0,
     "spectrum:pure_alcohol": 0
   },
   "pages": [
@@ -55,11 +55,11 @@
       "text": "A great snack, literally: biting off a piece is quick and even makes you reasonably full.$(br)Pleasantly sweet and fruity."
     },
     {
-      "type": "spectrum:titration_barrel_fermenting",
+      "type": "spectrum:potion_workshop_crafting",
       "title": "Hot Chocolate",
       "advancement": "spectrum:progression/unlock_potion_workshop",
       "anchor": "hot_chocolate",
-      "recipe": "spectrum:titration_barrel/hot_chocolate",
+      "recipe": "spectrum:potion_workshop_crafting/hot_chocolate",
       "text": "Perfect to come to the calm and in the cold season."
     },
     {

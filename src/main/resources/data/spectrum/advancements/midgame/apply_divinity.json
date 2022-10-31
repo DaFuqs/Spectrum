@@ -33,6 +33,7 @@
           "spectrum:divinity": {}
         }
       }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

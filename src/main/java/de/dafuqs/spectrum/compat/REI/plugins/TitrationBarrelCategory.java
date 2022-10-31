@@ -58,8 +58,8 @@ public class TitrationBarrelCategory implements DisplayCategory<TitrationBarrelD
 			int ingredientSize = display.ingredients.size();
 			int startX = startPoint.x + Math.max(-5, 15 - ingredientSize * 10);
 			int startY = startPoint.y + (ingredientSize > 2 ? 0 : 10);
-			for (int i = 0; i < ingredientSize + 1; i++) {
-				EntryIngredient currentIngredient = i == ingredientSize ? WATER_BUCKET : display.ingredients.get(i);
+			for (int i = 0; i < ingredientSize; i++) {
+				EntryIngredient currentIngredient = display.ingredients.get(i);
 				int yOffset;
 				int xOffset;
 				if(i < 3) {

@@ -8,6 +8,7 @@
     }
   ],
   "min_fermentation_time_hours": 48,
+  "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
     "fermentation_speed_mod": 0.1,
@@ -81,6 +82,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
+    "count": 4,
     "nbt": "{Variant: \"golden_apple_cider\", Color: 13404416 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"

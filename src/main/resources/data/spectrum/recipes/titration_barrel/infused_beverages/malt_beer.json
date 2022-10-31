@@ -12,6 +12,7 @@
     }
   ],
   "min_fermentation_time_hours": 24,
+  "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
     "fermentation_speed_mod": 0.0,
@@ -28,6 +29,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
+    "count": 4,
     "nbt": "{Variant: \"malt_beer\", Color: 5318176 }"
   }
 }

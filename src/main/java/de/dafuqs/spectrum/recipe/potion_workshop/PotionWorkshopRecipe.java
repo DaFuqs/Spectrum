@@ -65,7 +65,7 @@ public abstract class PotionWorkshopRecipe extends GatedSpectrumRecipe {
 			}
 			
 			// check ingredients
-			return matchIngredientStacksExclusively(inv, getOtherIngredients());
+			return matchIngredientStacksExclusively(inv, getOtherIngredients(), INGREDIENT_SLOTS);
 		} else {
 			return false;
 		}
@@ -88,33 +88,6 @@ public abstract class PotionWorkshopRecipe extends GatedSpectrumRecipe {
 				return false;
 			}
 		}
-		return true;
-	}
-	
-	private static boolean matchIngredientStacksExclusively(Inventory inv, List<Ingredient> ingredients) {
-		int inputStackCount = 0;
-		for (int slot : INGREDIENT_SLOTS) {
-			if (!inv.getStack(slot).isEmpty()) {
-				inputStackCount++;
-			}
-		}
-		if (inputStackCount != ingredients.size()) {
-			return false;
-		}
-		
-		for (Ingredient ingredient : ingredients) {
-			boolean found = false;
-			for (int slot : INGREDIENT_SLOTS) {
-				if (ingredient.test(inv.getStack(slot))) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				return false;
-			}
-		}
-		
 		return true;
 	}
 	

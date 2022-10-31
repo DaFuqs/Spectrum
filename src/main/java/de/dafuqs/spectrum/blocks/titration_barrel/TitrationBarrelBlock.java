@@ -10,10 +10,9 @@ import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -97,14 +96,8 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 										handStack.decrement(1);
 									}
 									sealBarrel(world, pos, state, barrelEntity);
-								} else if (handStack.isOf(Items.WATER_BUCKET)) {
-									if (barrelEntity.addWaterBucket()) {
-										ItemUsage.exchangeStack(handStack, player, Items.BUCKET.getDefaultStack());
-										world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-										if (barrelState == BarrelState.EMPTY) {
-											world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.FILLED));
-										}
-									}
+								} else if (handStack.getItem() instanceof BucketItem) {
+									barrelEntity.useBucket(world, pos, state, handStack, player);
 								} else {
 									int countBefore = handStack.getCount();
 									ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, barrelEntity.getInventory(), TitrationBarrelBlockEntity.MAX_ITEM_COUNT);
@@ -139,7 +132,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 						if (player.isSneaking()) {
 							Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, barrelEntity.inventory, world);
 							if(recipe.isPresent()) {
-								player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput().getName().asString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getExtractableBottleCount(world, pos)), false);
+								player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput().getName().asString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getExtractableBottleCount(world, pos, recipe.get())), false);
 							} else {
 								player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.invalid_recipe_after_opened"), false);
 							}

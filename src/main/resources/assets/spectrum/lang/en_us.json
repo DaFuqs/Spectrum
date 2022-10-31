@@ -2103,6 +2103,7 @@
   "block.spectrum.titration_barrel.tapping_item_required": "Tapping requires a ",
   "block.spectrum.titration_barrel.days_of_sealing_before_opened": "Sealed up %d days ago. Sneak-Use to open",
   "block.spectrum.titration_barrel.invalid_recipe_when_tapping": "This barrel only contained an undrinkable mixture. Eww",
+  "block.spectrum.titration_barrel.empty_when_tapping": "It... was empty. Huh",
   "block.spectrum.titration_barrel.missing_water_when_tapping": "The barrel seems to have lacked water so the content had gone bad. Pity",
   "block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount": " was fermenting for %d days (enough content for %d Bottles)",
   "block.spectrum.titration_barrel.invalid_recipe_after_opened": "A undrinkable mixture was fermenting for %d days. Eww",

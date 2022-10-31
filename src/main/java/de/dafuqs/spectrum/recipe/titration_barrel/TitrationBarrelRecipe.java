@@ -15,6 +15,7 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,13 +36,14 @@ import java.util.List;
 
 public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitrationBarrelRecipe {
 	
-	public static final float SOLID_TO_WATER_RATIO = 4F;
+	public static final float SOLID_TO_FLUID_RATIO = 4F;
 	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
 	public static final ItemStack PURE_ALCOHOL_STACK = SpectrumItems.PURE_ALCOHOL.getDefaultStack();
 	
 	protected final List<IngredientStack> inputStacks;
 	protected final ItemStack outputItemStack;
 	protected final Item tappingItem;
+	protected final Fluid fluid;
 	
 	protected final int minFermentationTimeHours;
 	protected final FermentationData fermentationData;
@@ -106,9 +108,10 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 			return new StatusEffectEntry(statusEffect, baseDuration, potencyEntries);
 		}
 	}
-	public record FermentationData(double fermentationSpeedMod, List<StatusEffectEntry> statusEffectEntries) {
+	public record FermentationData(float fermentationSpeedMod, float angelsSharePerMcDay, List<StatusEffectEntry> statusEffectEntries) {
 		public static FermentationData fromJson(JsonObject jsonObject) {
 			float fermentationSpeedMod = JsonHelper.getFloat(jsonObject, "fermentation_speed_mod", 1.0F);
+			float angelsSharePerMcDay = JsonHelper.getFloat(jsonObject, "angels_share_per_mc_day", 0.1F);
 			List<StatusEffectEntry> statusEffectEntries = new ArrayList<>();
 			if(JsonHelper.hasArray(jsonObject, "effects")) {
 				JsonArray effectsArray = JsonHelper.getArray(jsonObject, "effects");
@@ -117,11 +120,12 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 					statusEffectEntries.add(StatusEffectEntry.fromJson(object));
 				}
 			}
-			return new FermentationData(fermentationSpeedMod, statusEffectEntries);
+			return new FermentationData(fermentationSpeedMod, angelsSharePerMcDay, statusEffectEntries);
 		}
 		
 		public void write(PacketByteBuf packetByteBuf) {
-			packetByteBuf.writeDouble(this.fermentationSpeedMod);
+			packetByteBuf.writeFloat(this.fermentationSpeedMod);
+			packetByteBuf.writeFloat(this.angelsSharePerMcDay);
 			packetByteBuf.writeInt(this.statusEffectEntries.size());
 			for(StatusEffectEntry statusEffectEntry : this.statusEffectEntries) {
 				statusEffectEntry.write(packetByteBuf);
@@ -129,20 +133,22 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		}
 		
 		public static FermentationData read(PacketByteBuf packetByteBuf) {
-			double fermentationSpeedMod = packetByteBuf.readDouble();
+			float fermentationSpeedMod = packetByteBuf.readFloat();
+			float angelsSharePerMcDay = packetByteBuf.readFloat();
 			int statusEffectEntryCount = packetByteBuf.readInt();
 			List<StatusEffectEntry> statusEffectEntries = new ArrayList<>(statusEffectEntryCount);
 			for(int i = 0; i < statusEffectEntryCount; i++) {
 				statusEffectEntries.add(StatusEffectEntry.read(packetByteBuf));
 			}
-			return new FermentationData(fermentationSpeedMod, statusEffectEntries);
+			return new FermentationData(fermentationSpeedMod, angelsSharePerMcDay, statusEffectEntries);
 		}
 	}
 	
-	public TitrationBarrelRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> inputStacks, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
+	public TitrationBarrelRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> inputStacks, Fluid fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.inputStacks = inputStacks;
+		this.fluid = fluid;
 		this.minFermentationTimeHours = minFermentationTimeHours;
 		this.outputItemStack = outputItemStack;
 		this.tappingItem = tappingItem;
@@ -181,7 +187,6 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		return this.fermentationData;
 	}
 	
-	
 	@Override
 	public ItemStack craft(Inventory inventory) {
 		return ItemStack.EMPTY;
@@ -189,13 +194,25 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	
 	@Override
 	public ItemStack getOutput() {
-		return tapWith(1.0F, this.minFermentationTimeHours * 60 * 60, 0.8F, 0.4F); // downfall & temperature are for plains
+		return tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L, 0.8F, 0.4F); // downfall & temperature are for plains
+	}
+	
+	public Fluid getFluid() {
+		return fluid;
 	}
 	
 	@Override
-	public ItemStack tap(Inventory inventory, int waterBuckets, long secondsFermented, float downfall, float temperature) {
+	public float getAngelsSharePerMcDay() {
+		if(this.fermentationData == null) {
+			return 0;
+		}
+		return this.fermentationData.angelsSharePerMcDay;
+	}
+	
+	@Override
+	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature) {
 		int contentCount = InventoryHelper.countItemsInInventory(inventory);
-		float thickness = getThickness(waterBuckets, contentCount);
+		float thickness = getThickness(contentCount);
 		return tapWith(thickness, secondsFermented, downfall, temperature);
 	}
 	
@@ -205,6 +222,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		}
 		
 		ItemStack stack = this.outputItemStack.copy();
+		stack.setCount(1);
 		
 		if(this.fermentationData != null) {
 			float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
@@ -260,8 +278,8 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		return Support.logBase(1 + this.fermentationData.fermentationSpeedMod, ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D));
 	}
 	
-	protected float getThickness(int waterBuckets, int contentCount) {
-		return (contentCount / SOLID_TO_WATER_RATIO) / waterBuckets;
+	protected float getThickness(int contentCount) {
+		return contentCount / SOLID_TO_FLUID_RATIO;
 	}
 	
 	@Override

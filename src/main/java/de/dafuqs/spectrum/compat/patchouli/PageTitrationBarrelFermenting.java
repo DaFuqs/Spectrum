@@ -8,6 +8,8 @@ import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -23,7 +25,6 @@ import java.util.List;
 public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITitrationBarrelRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/titration_barrel.png");
-	private static final IngredientStack WATER_BUCKET = IngredientStack.of(Ingredient.ofStacks(Items.WATER_BUCKET.getDefaultStack()));
 	
 	private transient BookTextRenderer textRenderer;
 	private transient BookTextRenderer textRenderer2;
@@ -49,13 +50,21 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		
 		parent.drawCenteredStringNoShadow(ms, getTitle(second).asOrderedText(), GuiBook.PAGE_WIDTH / 2, recipeY - 10, book.headerColor);
 		
+		Fluid fluid = recipe.getFluid();
+		boolean usesFluid = fluid != Fluids.EMPTY;
+		IngredientStack bucketStack = IngredientStack.EMPTY;
+		if(usesFluid) {
+			bucketStack = IngredientStack.of(Ingredient.ofStacks(recipe.getFluid().getBucketItem().getDefaultStack()));
+		}
+		
 		// the ingredients
 		List<IngredientStack> ingredients = recipe.getIngredientStacks();
 		int ingredientSize = ingredients.size();
 		int startX = recipeX + Math.max(-5, 15 - ingredientSize * 10);
 		int startY = recipeY + (ingredientSize > 2 ? 0 : 10);
-		for (int i = 0; i < ingredientSize + 1; i++) {
-			IngredientStack currentIngredient = i == ingredientSize ? WATER_BUCKET : ingredients.get(i);
+		int ingredientSizeWithFluid = usesFluid ? ingredientSize + 1 : ingredientSize;
+		for (int i = 0; i < ingredientSizeWithFluid; i++) {
+			IngredientStack currentIngredient = i == ingredientSize ? bucketStack : ingredients.get(i);
 			int yOffset;
 			int xOffset;
 			if(i < 3) {

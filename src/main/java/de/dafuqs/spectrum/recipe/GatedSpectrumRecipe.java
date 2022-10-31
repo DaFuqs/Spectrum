@@ -1,12 +1,18 @@
 package de.dafuqs.spectrum.recipe;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public abstract class GatedSpectrumRecipe implements Recipe<Inventory>, GatedRecipe {
 	
@@ -82,6 +88,70 @@ public abstract class GatedSpectrumRecipe implements Recipe<Inventory>, GatedRec
 	@Override
 	public String toString() {
 		return this.getId().toString();
+	}
+	
+	protected static ItemStack getDefaultStackWithCount(Item item, int count) {
+		ItemStack stack = item.getDefaultStack();
+		stack.setCount(count);
+		return stack;
+	}
+	
+	protected static boolean matchIngredientStacksExclusively(Inventory inv, List<IngredientStack> ingredientStacks) {
+		if (inv.size() < ingredientStacks.size()) {
+			return false;
+		}
+		
+		int inputStackCount = 0;
+		for (int i = 0; i < inv.size(); i++) {
+			if (!inv.getStack(i).isEmpty()) {
+				inputStackCount++;
+			}
+		}
+		if (inputStackCount != ingredientStacks.size()) {
+			return false;
+		}
+		
+		
+		for (IngredientStack ingredientStack : ingredientStacks) {
+			boolean found = false;
+			for (int i = 0; i < inv.size(); i++) {
+				if (ingredientStack.test(inv.getStack(i))) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	protected static boolean matchIngredientStacksExclusively(Inventory inv, List<Ingredient> ingredients, int[] slots) {
+		int inputStackCount = 0;
+		for (int slot : slots) {
+			if (!inv.getStack(slot).isEmpty()) {
+				inputStackCount++;
+			}
+		}
+		if (inputStackCount != ingredients.size()) {
+			return false;
+		}
+		
+		for (Ingredient ingredient : ingredients) {
+			boolean found = false;
+			for (int slot : slots) {
+				if (ingredient.test(inv.getStack(slot))) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 	
 }

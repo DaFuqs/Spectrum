@@ -112,7 +112,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public Identifier getRecipeTypeUnlockIdentifier() {
-		return null; //TODO
+		return null;
 	}
 	
 }

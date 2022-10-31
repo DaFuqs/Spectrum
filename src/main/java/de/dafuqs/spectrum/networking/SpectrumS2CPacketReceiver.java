@@ -28,7 +28,6 @@ import de.dafuqs.spectrum.spells.InkSpellEffects;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
@@ -398,9 +397,8 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
-		// TODO: was does a ServerPlayNetworking receiver here??
-		ServerPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INK_COLOR_SELECTED, (server, player, handler, buf, responseSender) -> {
-			ScreenHandler screenHandler = player.currentScreenHandler;
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INK_COLOR_SELECTED, (client, handler, buf, responseSender) -> {
+			ScreenHandler screenHandler = MinecraftClient.getInstance().player.currentScreenHandler;
 			if(screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 				boolean isSelection = buf.readBoolean();
 				

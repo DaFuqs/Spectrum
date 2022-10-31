@@ -2411,6 +2411,12 @@
   "advancements.spectrum.kill_a_mob_with_frenzy3.description": "Kill a mob while having the Frenzy III effect or higher. Instead of extending the duration, getting the effect a second time will upgrade it's level instead",
   "advancements.spectrum.collect_gemstone_rock_candy.title": "Colorful, Crunchy Confection",
   "advancements.spectrum.collect_gemstone_rock_candy.description": "Get a hold of Gemstone colored Rock Candy",
+  "advancements.spectrum.apply_divinity.title": "TODO",
+  "advancements.spectrum.apply_divinity.description": "TODO",
+  "advancements.spectrum.drink_tea_with_scone.title": "TODO",
+  "advancements.spectrum.drink_tea_with_scone.description": "TODO",
+  "advancements.spectrum.survive_drinking_incandescent_amalgam.title": "TODO",
+  "advancements.spectrum.survive_drinking_incandescent_amalgam.description": "TODO",
 
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",

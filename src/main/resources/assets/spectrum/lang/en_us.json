@@ -2418,6 +2418,10 @@
   "advancements.spectrum.survive_drinking_incandescent_amalgam.title": "TODO",
   "advancements.spectrum.survive_drinking_incandescent_amalgam.description": "TODO",
 
+  "______food_tooltips" : "Food Tooltips:",
+  "spectrum.food.withChance": "%s [%d%%]",
+  "spectrum.food.whenEaten": "When Eaten:",
+
   "______name_changes_for_vanilla_blocks" : "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",
 
@@ -2437,9 +2441,6 @@
   "potion.potency.18": "XVIII",
   "potion.potency.19": "XIX",
   "potion.potency.20": "XX",
-
-  "spectrum.food.withChance": "%s - %d %%",
-  "spectrum.food.whenEaten": "When Eaten:",
 
   "______done_until_here" : "TODO:",
   "advancements.spectrum.craft_energy_collector.title": "Roger that",

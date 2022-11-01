@@ -27,7 +27,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent JARAMEL = new FoodComponent.Builder()
 			.hunger(1).saturationModifier(0.2F).snack().alwaysEdible()
-			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 2), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 1), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.HASTE, 300, 1), 1.0F)
 			.build();
 	
@@ -167,17 +167,17 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent SALTED_JARAMEL_TART = new FoodComponent.Builder()
 			.hunger(8).saturationModifier(0.2F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 40), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200), 1.0F)
 			.build();
 	
 	public static final FoodComponent ASHEN_TART = new FoodComponent.Builder()
 			.hunger(8).saturationModifier(0.2F)
-			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.BLAZING, 20 * 15), 1.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.BLAZING, 20 * 30), 1.0F)
 			.build();
 	
 	public static final FoodComponent WEEPING_TART = new FoodComponent.Builder()
 			.hunger(8).saturationModifier(0.2F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 20 * 15), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 20 * 30), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, 20 * 30), 1.0F)
 			.build();
 	public static final FoodComponent WHISPY_TART = new FoodComponent.Builder()
@@ -186,7 +186,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent PUFF_TART = new FoodComponent.Builder()
 			.hunger(8).saturationModifier(0.2F)
-			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.PROJECTILE_REBOUND, 20 * 15), 1.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.PROJECTILE_REBOUND, 20 * 30), 1.0F)
 			.build();
 	
 	public static final FoodComponent JARAMEL_TRIFLE = new FoodComponent.Builder()
@@ -195,7 +195,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent SALTED_JARAMEL_TRIFLE = new FoodComponent.Builder()
 			.hunger(10).saturationModifier(0.2F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 40), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200), 1.0F)
 			.build();
 	
 	public static final FoodComponent MONSTER_TRIFLE = new FoodComponent.Builder()

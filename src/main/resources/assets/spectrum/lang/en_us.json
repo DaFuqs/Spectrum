@@ -2058,7 +2058,7 @@
   "item.spectrum.divination_heart": "Divination Heart",
 
   "item.spectrum.incandescent_amalgam": "§eIncandescent Amalgam",
-  "item.spectrum.incandescent_amalgam.tooltip": "§6⚠ WARNING ⚠ High yield magical explosive, handle with care!",
+  "item.spectrum.incandescent_amalgam.tooltip": "§6⚠§r High yield magical explosive, handle with care",
 
   "item.spectrum.crescent_clock": "Crescent Clock",
   "item.spectrum.gilded_book": "Gilded Book",
@@ -2411,12 +2411,12 @@
   "advancements.spectrum.kill_a_mob_with_frenzy3.description": "Kill a mob while having the Frenzy III effect or higher. Instead of extending the duration, getting the effect a second time will upgrade it's level instead",
   "advancements.spectrum.collect_gemstone_rock_candy.title": "Colorful, Crunchy Confection",
   "advancements.spectrum.collect_gemstone_rock_candy.description": "Get a hold of Gemstone colored Rock Candy",
-  "advancements.spectrum.apply_divinity.title": "TODO",
-  "advancements.spectrum.apply_divinity.description": "TODO",
-  "advancements.spectrum.drink_tea_with_scone.title": "TODO",
-  "advancements.spectrum.drink_tea_with_scone.description": "TODO",
-  "advancements.spectrum.survive_drinking_incandescent_amalgam.title": "TODO",
-  "advancements.spectrum.survive_drinking_incandescent_amalgam.description": "TODO",
+  "advancements.spectrum.apply_divinity.title": "One with Gods",
+  "advancements.spectrum.apply_divinity.description": "Drink Freigeist to get enormous buffs... at great cost, if you die",
+  "advancements.spectrum.drink_tea_with_scone.title": "The Fine British Way",
+  "advancements.spectrum.drink_tea_with_scone.description": "Drink Tea while having a Scone in your hotbar. Classy!",
+  "advancements.spectrum.survive_drinking_incandescent_amalgam.title": "My own personal Eclipse",
+  "advancements.spectrum.survive_drinking_incandescent_amalgam.description": "Survive the damage dealt to you when drinking Incandescent Amalgam",
 
   "______food_tooltips" : "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",

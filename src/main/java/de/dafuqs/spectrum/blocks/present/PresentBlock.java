@@ -121,19 +121,21 @@ public class PresentBlock extends BlockWithEntity {
 				BlockEntity blockEntity = world.getBlockEntity(pos);
 				if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
 					int openingTick = presentBlockEntity.openingTick();
+					Vec3d posVec = new Vec3d(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
 					if (openingTick == OPENING_STEPS) {
-						Vec3d posVec = new Vec3d(pos.getX() + 0.5, pos.getY() + 0.25, pos.getZ() + 0.5);
-						world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.BLOCK_SAND_PLACE, SoundCategory.BLOCKS, 0.7F + openingTick * 0.1F, 1.0F);
 						spawnParticles(world, pos, presentBlockEntity.colors);
 						presentBlockEntity.triggerAdvancement();
-						if (presentBlockEntity.stacks.isEmpty()) {
+						if (presentBlockEntity.isEmpty()) {
+							world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 0.8F);
 							SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity(world, posVec, ParticleTypes.SMOKE, 5);
 						} else {
+							world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, 4.0F);
 							SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity(world, posVec, ParticleTypes.EXPLOSION, 1);
 							ItemScatterer.spawn(world, pos, presentBlockEntity.stacks);
 						}
 						world.setBlockState(pos, Blocks.AIR.getDefaultState());
 					} else {
+						world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.BLOCK_SAND_PLACE, SoundCategory.BLOCKS, 0.8F + openingTick * 0.1F, 1.0F);
 						spawnParticles(world, pos, presentBlockEntity.colors);
 					}
 				}

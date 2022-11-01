@@ -155,4 +155,13 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		return stack;
 	}
 	
+	public boolean isEmpty() {
+		for(int i = 0; i < PresentItem.MAX_STORAGE_STACKS; i++) {
+			if(!stacks.get(i).isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 }

@@ -23,6 +23,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
@@ -42,6 +43,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	
 	@Environment(EnvType.CLIENT)
 	public static MinecraftClient minecraftClient;
+	
+	public static boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
 	
 	@Override
 	public void onInitializeClient() {
@@ -87,8 +90,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		});
 		
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
-			if(stack.isFood()) {
-				if(SpectrumCommon.CONFIG.ShowFoodEffectTooltipsForNonSpectrumFoods || Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+			if(!foodEffectsTooltipsModLoaded && stack.isFood()) {
+				if(Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
 					TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
 				}
 			}

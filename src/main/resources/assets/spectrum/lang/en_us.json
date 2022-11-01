@@ -184,8 +184,8 @@
   "death.attack.spectrum_shooting_star": "%s was smitten by a Shooting Star. Make a Wish!",
   "death.attack.spectrum_midnight_solution": "%s was lost in Translation",
   "death.attack.spectrum_dike_gate": "%s was not invited, but understood too late",
-  "death.attack.spectrum_incandescence": "§6%s §6became §e grossly incandescent",
-  "death.attack.spectrum_incandescence.player": "§6%1$s §6witnessed %2&s §6become a star and drew too close - §emore kindling for the flame!",
+  "death.attack.spectrum_incandescence": "%s became grossly incandescent",
+  "death.attack.spectrum_incandescence.player": "%1$s witnessed %2&s become a star and drew too close - more kindling for the flame!",
 
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",
@@ -2415,7 +2415,7 @@
   "advancements.spectrum.apply_divinity.description": "Drink Freigeist to get enormous buffs... at great cost, if you die",
   "advancements.spectrum.drink_tea_with_scone.title": "The Fine British Way",
   "advancements.spectrum.drink_tea_with_scone.description": "Drink Tea while having a Scone in your hotbar. Classy!",
-  "advancements.spectrum.survive_drinking_incandescent_amalgam.title": "My own personal Eclipse",
+  "advancements.spectrum.survive_drinking_incandescent_amalgam.title": "I was the Sun, Once",
   "advancements.spectrum.survive_drinking_incandescent_amalgam.description": "Survive the damage dealt to you when drinking Incandescent Amalgam",
 
   "______food_tooltips" : "Food Tooltips:",

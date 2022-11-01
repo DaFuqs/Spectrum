@@ -13,22 +13,7 @@
   "parent": "spectrum:tap_titration_barrel",
   "criteria": {
     "survived_drinking_incandescent_amalgam": {
-      "trigger": "minecraft:entity_hurt_player",
-      "conditions": {
-        "damage": {
-          "dealt": 500,
-          "type": {
-            "is_explosion": false,
-            "is_fire": false,
-            "is_magic": true,
-            "is_projectile": false,
-            "is_lightning": false,
-            "bypasses_armor": false,
-            "bypasses_invulnerability": false,
-            "bypasses_magic": false
-          }
-        }
-      }
+      "trigger": "minecraft:impossible"
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

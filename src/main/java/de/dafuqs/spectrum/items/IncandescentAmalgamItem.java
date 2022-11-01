@@ -1,6 +1,5 @@
-package de.dafuqs.spectrum.items.food;
+package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.items.ItemWithTooltip;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -18,8 +17,9 @@ public class IncandescentAmalgamItem extends ItemWithTooltip {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         stack = super.finishUsing(stack, world, user);
 
-        user.damage(SpectrumDamageSources.INCANDESCENCE, 500f);
-        world.createExplosion(user, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), 12f, true, Explosion.DestructionType.NONE);
+        user.damage(SpectrumDamageSources.INCANDESCENCE, 500.0F);
+        world.createExplosion(user, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), 2.0F, false, Explosion.DestructionType.DESTROY);
+        world.createExplosion(user, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), 10.0F, true, Explosion.DestructionType.NONE);
 
         return stack;
     }

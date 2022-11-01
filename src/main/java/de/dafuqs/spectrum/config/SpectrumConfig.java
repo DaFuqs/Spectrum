@@ -14,6 +14,12 @@ public class SpectrumConfig implements ConfigData {
 	public long ToastTimeMilliseconds = 7500;
 	
 	@Comment("""
+            Spectrum displays Status Effects that get applied to the player when eaten (like a Golden Apple does
+            If true, these tooltips get displayed for the foods of all mods, if false only for spectrums items
+            """)
+	public boolean ShowFoodEffectTooltipsForNonSpectrumFoods = true;
+	
+	@Comment("""
 			The heights where citrine and topaz geodes will spawn
 			By default citrine will generate slightly below sea level (y=32-60)
 			while topaz will generate at the top of mountains (everywhere from y=82+)

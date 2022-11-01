@@ -5,6 +5,7 @@ import de.dafuqs.revelationary.api.revelations.RevealingCallback;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliFlags;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
+import de.dafuqs.spectrum.helpers.TooltipHelper;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
@@ -86,6 +87,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		});
 		
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+			if(stack.isFood()) {
+				if(SpectrumCommon.CONFIG.ShowFoodEffectTooltipsForNonSpectrumFoods || Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+					TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
+				}
+			}
 			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				lines.add(new TranslatableText("spectrum.tooltip.coming_soon"));
 			}

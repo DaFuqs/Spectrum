@@ -146,9 +146,9 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		return this.openerUUID;
 	}
 	
-	public ItemStack retrievePresent() {
+	public ItemStack retrievePresent(PresentBlock.Variant variant) {
 		ItemStack stack = SpectrumBlocks.PRESENT.asItem().getDefaultStack();
-		PresentItem.wrap(stack, this.colors);
+		PresentItem.wrap(stack, variant, this.colors);
 		if (this.ownerUUID != null && this.ownerName != null) {
 			PresentItem.setWrapper(stack, this.ownerUUID, this.ownerName);
 		}

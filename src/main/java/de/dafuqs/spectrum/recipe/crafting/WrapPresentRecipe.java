@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
+import de.dafuqs.spectrum.blocks.present.PresentBlock;
 import de.dafuqs.spectrum.blocks.present.PresentItem;
 import de.dafuqs.spectrum.items.PigmentItem;
 import net.minecraft.inventory.CraftingInventory;
@@ -44,6 +45,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	
 	public ItemStack craft(CraftingInventory craftingInventory) {
 		ItemStack presentStack = ItemStack.EMPTY;
+		PresentBlock.Variant variant = PresentBlock.Variant.RED;
 		Map<DyeColor, Integer> colors = new HashMap<>();
 		
 		for (int j = 0; j < craftingInventory.size(); ++j) {
@@ -59,8 +61,10 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 				}
 			}
 		}
-
-		PresentItem.wrap(presentStack, colors);
+		
+		// TODO: search and use variant item
+		
+		PresentItem.wrap(presentStack, variant, colors);
 		return presentStack;
 	}
 	

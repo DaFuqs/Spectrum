@@ -1,3 +1,59 @@
 {
-  "parent": "spectrum:block/present"
+  "parent": "spectrum:block/present_red",
+  "overrides": [
+    {
+      "predicate": {
+        "variant": 0.1
+      },
+      "model": "spectrum:block/present_blue"
+    },
+    {
+      "predicate": {
+        "variant": 0.2
+      },
+      "model": "spectrum:block/present_cyan"
+    },
+    {
+      "predicate": {
+        "variant": 0.3
+      },
+      "model": "spectrum:block/present_green"
+    },
+    {
+      "predicate": {
+        "variant": 0.4
+      },
+      "model": "spectrum:block/present_purple"
+    },
+    {
+      "predicate": {
+        "variant": 0.5
+      },
+      "model": "spectrum:block/present_cake"
+    },
+    {
+      "predicate": {
+        "variant": 0.6
+      },
+      "model": "spectrum:block/present_striped"
+    },
+    {
+      "predicate": {
+        "variant": 0.7
+      },
+      "model": "spectrum:block/present_starry"
+    },
+    {
+      "predicate": {
+        "variant": 0.8
+      },
+      "model": "spectrum:block/present_winter"
+    },
+    {
+      "predicate": {
+        "variant": 0.9
+      },
+      "model": "spectrum:block/present_pride"
+    }
+  ]
 }

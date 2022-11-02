@@ -39,6 +39,7 @@ public class PresentItem extends BlockItem {
 		super(block, settings);
 	}
 	
+	
 	@Override
 	protected boolean canPlace(ItemPlacementContext context, BlockState state) {
 		return isWrapped(context.getStack()) && super.canPlace(context, state);
@@ -89,9 +90,10 @@ public class PresentItem extends BlockItem {
 		return colors;
 	}
 	
-	public static void wrap(ItemStack itemStack, Map<DyeColor, Integer> colors) {
+	public static void wrap(ItemStack itemStack, PresentBlock.Variant variant, Map<DyeColor, Integer> colors) {
 		NbtCompound compound = itemStack.getOrCreateNbt();
 		setWrapped(compound);
+		setVariant(compound, variant);
 		setColors(compound, colors);
 		itemStack.setNbt(compound);
 	}
@@ -111,6 +113,17 @@ public class PresentItem extends BlockItem {
 			}
 			compound.put("Colors", colorList);
 		}
+	}
+	
+	public static void setVariant(NbtCompound compound, PresentBlock.Variant variant) {
+		compound.putString("Variant", variant.asString());
+	}
+	
+	public static PresentBlock.Variant getVariant(NbtCompound compound) {
+		if(compound != null && compound.contains("Variant", NbtElement.STRING_TYPE)) {
+			return PresentBlock.Variant.valueOf(compound.getString("Variant"));
+		}
+		return PresentBlock.Variant.RED;
 	}
 	
 	public boolean onStackClicked(ItemStack present, Slot slot, ClickType clickType, PlayerEntity player) {

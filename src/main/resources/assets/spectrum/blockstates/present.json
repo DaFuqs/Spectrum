@@ -1,7 +1,34 @@
 {
   "variants": {
-    "": {
-      "model": "spectrum:block/present"
+    "variant=red": {
+      "model": "spectrum:block/present_red"
+    },
+    "variant=green": {
+      "model": "spectrum:block/present_green"
+    },
+    "variant=blue": {
+      "model": "spectrum:block/present_blue"
+    },
+    "variant=cyan": {
+      "model": "spectrum:block/present_cyan"
+    },
+    "variant=purple": {
+      "model": "spectrum:block/present_purple"
+    },
+    "variant=cake": {
+      "model": "spectrum:block/present_cake"
+    },
+    "variant=pride": {
+      "model": "spectrum:block/present_pride"
+    },
+    "variant=winter": {
+      "model": "spectrum:block/present_winter"
+    },
+    "variant=starry": {
+      "model": "spectrum:block/present_starry"
+    },
+    "variant=striped": {
+      "model": "spectrum:block/present_striped"
     }
   }
 }

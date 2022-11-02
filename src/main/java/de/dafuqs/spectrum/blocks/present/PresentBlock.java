@@ -20,6 +20,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
@@ -35,26 +36,46 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
 public class PresentBlock extends BlockWithEntity {
+	
+	public enum Variant implements StringIdentifiable {
+		RED,
+		BLUE,
+		CYAN,
+		GREEN,
+		PURPLE,
+		CAKE,
+		STRIPED,
+		STARRY,
+		WINTER,
+		PRIDE;
+		
+		@Override
+		public String asString() {
+			return this.toString().toLowerCase(Locale.ROOT);
+		}
+	}
 	
 	public static final int TICKS_PER_OPENING_STEP = 20;
 	public static final int OPENING_STEPS = 6;
 	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = SpectrumCommon.locate("particle/shooting_star");
 	
 	public static final BooleanProperty OPENING = BooleanProperty.of("opening");
+	private static final EnumProperty<PresentBlock.Variant> VARIANT = EnumProperty.of("variant", PresentBlock.Variant.class);
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
 	
 	public PresentBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(OPENING, false));
+		this.setDefaultState(this.stateManager.getDefaultState().with(OPENING, false).with(VARIANT, Variant.RED));
 	}
 	
 	@Override
 	protected void appendProperties(StateManager.@NotNull Builder<Block, BlockState> builder) {
-		builder.add(OPENING);
+		builder.add(OPENING, VARIANT);
 	}
 	
 	@Override
@@ -108,7 +129,7 @@ public class PresentBlock extends BlockWithEntity {
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
-			return List.of(presentBlockEntity.retrievePresent());
+			return List.of(presentBlockEntity.retrievePresent(state.get(VARIANT)));
 		} else {
 			return super.getDroppedStacks(state, builder);
 		}

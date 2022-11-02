@@ -26,6 +26,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;
 
+import java.util.Locale;
 import java.util.Optional;
 
 // Vanilla models see: ModelPredicateProviderRegistry
@@ -70,7 +71,7 @@ public class SpectrumItemPredicates {
 			if(compound == null || !compound.contains("Variant", NbtElement.STRING_TYPE))
 				return 0.0F;
 			
-			PresentBlock.Variant variant = PresentBlock.Variant.valueOf(compound.getString("Variant"));
+			PresentBlock.Variant variant = PresentBlock.Variant.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
 			return variant.ordinal() / 10F;
 		});
 	}

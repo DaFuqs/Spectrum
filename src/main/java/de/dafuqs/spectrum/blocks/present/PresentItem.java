@@ -121,7 +121,7 @@ public class PresentItem extends BlockItem {
 	
 	public static PresentBlock.Variant getVariant(NbtCompound compound) {
 		if(compound != null && compound.contains("Variant", NbtElement.STRING_TYPE)) {
-			return PresentBlock.Variant.valueOf(compound.getString("Variant"));
+			return PresentBlock.Variant.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
 		}
 		return PresentBlock.Variant.RED;
 	}

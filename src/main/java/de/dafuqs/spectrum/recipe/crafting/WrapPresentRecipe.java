@@ -4,13 +4,17 @@ import de.dafuqs.spectrum.blocks.present.PresentBlock;
 import de.dafuqs.spectrum.blocks.present.PresentItem;
 import de.dafuqs.spectrum.items.PigmentItem;
 import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +29,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	
 	public boolean matches(CraftingInventory craftingInventory, World world) {
 		boolean presentItemFound = false;
+		boolean wrappingItemFound = false;
 		
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			ItemStack itemStack = craftingInventory.getStack(j);
@@ -34,6 +39,8 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 						return false;
 					}
 					presentItemFound = true;
+				} else if(!wrappingItemFound && getVariantForStack(itemStack) != null) {
+					wrappingItemFound = true;
 				} else if(!(itemStack.getItem() instanceof PigmentItem)) {
 					return false;
 				}
@@ -60,12 +67,40 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 					colors.put(color, 1);
 				}
 			}
+			PresentBlock.Variant stackVariant = getVariantForStack(stack);
+			if(stackVariant != null) {
+				variant = stackVariant;
+			}
 		}
-		
-		// TODO: search and use variant item
 		
 		PresentItem.wrap(presentStack, variant, colors);
 		return presentStack;
+	}
+	
+	public @Nullable PresentBlock.Variant getVariantForStack(ItemStack stack) {
+		Item item = stack.getItem();
+		if(item == Items.RED_DYE) {
+			return PresentBlock.Variant.RED;
+		} else if(item == Items.BLUE_DYE) {
+			return PresentBlock.Variant.BLUE;
+		} else if(item == Items.CYAN_DYE) {
+			return PresentBlock.Variant.CYAN;
+		} else if(item == Items.GREEN_DYE) {
+			return PresentBlock.Variant.GREEN;
+		} else if(item == Items.PURPLE_DYE) {
+			return PresentBlock.Variant.PURPLE;
+		} else if(item == Items.CAKE) {
+			return PresentBlock.Variant.CAKE;
+		} else if(stack.isIn(ItemTags.FLOWERS)) {
+			return PresentBlock.Variant.STRIPED;
+		} else if(item == Items.FIREWORK_STAR) {
+			return PresentBlock.Variant.STARRY;
+		} else if(stack.isIn(ItemTags.SAPLINGS)) {
+			return PresentBlock.Variant.WINTER;
+		} else if(item == Items.SPORE_BLOSSOM) {
+			return PresentBlock.Variant.PRIDE;
+		}
+		return null;
 	}
 	
 	public boolean fits(int width, int height) {

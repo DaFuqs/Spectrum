@@ -92,6 +92,7 @@ public class PresentBlock extends BlockWithEntity {
 	@Override
 	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
+		world.setBlockState(pos, state.with(PresentBlock.VARIANT, PresentItem.getVariant(itemStack.getNbt())));
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {
 			presentBlockEntity.setDataFromPresentStack(itemStack);
 		}

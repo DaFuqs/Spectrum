@@ -12,7 +12,7 @@
       "count": 4
     }
   ],
-  "min_fermentation_time_hours": 24,
+  "min_fermentation_time_hours": 48,
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
@@ -20,7 +20,7 @@
     "effects": [
       {
         "id": "minecraft:health_boost",
-        "base_duration": 1200,
+        "base_duration": 4800,
         "potency": [
           {
             "potency": 0
@@ -30,38 +30,26 @@
             "potency": 1
           },
           {
-            "min_alc": 24,
-            "potency": 2
-          },
-          {
-            "min_alc": 30,
+            "min_alc": 27,
             "potency": 3
           },
           {
-            "min_alc": 36,
-            "potency": 4
-          },
-          {
-            "min_alc": 42,
+            "min_alc": 39,
             "potency": 5
           },
           {
-            "min_alc": 48,
-            "potency": 6
-          },
-          {
-            "min_alc": 54,
+            "min_alc": 51,
             "potency": 7
           },
           {
             "min_alc": 60,
-            "potency": 8
+            "potency": 9
           }
         ]
       },
       {
-        "id": "minecraft:speed",
-        "base_duration": 1200,
+        "id": "minecraft:regeneration",
+        "base_duration": 2400,
         "potency": [
           {
             "min_alc": 25,
@@ -69,24 +57,19 @@
             "potency": 0
           },
           {
-            "min_alc": 35,
+            "min_alc": 39,
             "min_thickness": 1,
             "potency": 1
           },
           {
-            "min_alc": 45,
+            "min_alc": 53,
             "min_thickness": 1,
             "potency": 2
           },
           {
-            "min_alc": 55,
+            "min_alc": 70,
             "min_thickness": 1,
             "potency": 3
-          },
-          {
-            "min_alc": 65,
-            "min_thickness": 1,
-            "potency": 4
           }
         ]
       },
@@ -113,8 +96,8 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "count": 4,
-    "nbt": "{Variant: \"berry_liquor\", Color: 16745977 }"
+    "count": 2,
+    "nbt": "{Variant: \"berry_liquor\", Color: 16729462 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

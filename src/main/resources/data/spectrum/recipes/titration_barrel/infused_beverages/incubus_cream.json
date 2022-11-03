@@ -1,0 +1,101 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:crimson_fungus",
+      "count": 8
+    },
+    {
+      "item": "minecraft:weeping_vines",
+      "count": 2
+    },
+    {
+      "item": "spectrum:clotted_cream",
+      "count": 4
+    }
+  ],
+  "min_fermentation_time_hours": 24,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 2,
+    "effects": [
+      {
+        "id": "spectrum:blazing",
+        "base_duration": 3600,
+        "potency": [
+          {
+            "min_thickness": 0.25
+          },
+          {
+            "min_alc": 41,
+            "potency": 0
+          },
+          {
+            "min_alc": 55,
+            "potency": 1
+          },
+          {
+            "min_alc": 62,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:fire_resistance",
+        "base_duration": 3600,
+        "potency": [
+          {
+            "min_thickness": 0.25
+          },
+          {
+            "min_alc": 41,
+            "potency": 0
+          },
+          {
+            "min_alc": 55,
+            "potency": 1
+          },
+          {
+            "min_alc": 62,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:health_boost",
+        "base_duration": 3600,
+        "potency": [
+          {
+            "min_thickness": 0.25
+          },
+          {
+            "min_alc": 41,
+            "potency": 0
+          },
+          {
+            "min_alc": 62,
+            "potency": 1
+          }
+        ]
+      },
+      {
+        "id": "minecraft:poison",
+        "base_duration": 200,
+        "potency": [
+          {
+            "min_thickness": 2,
+            "potency": 0
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"incubus_cream\", Color: 14173082 }"
+  },
+  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+}

@@ -95,7 +95,7 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"mead\", Color: 14923037 }"
+    "nbt": "{Variant: \"mead\", Color: 16757819 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

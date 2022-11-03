@@ -1,0 +1,84 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:beetroot",
+      "count": 8
+    },
+    {
+      "item": "spectrum:clotted_cream",
+      "count": 1
+    }
+  ],
+  "min_fermentation_time_hours": 48,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 1.5,
+    "effects": [
+      {
+        "id": "minecraft:regeneration",
+        "base_duration": 2400,
+        "potency": [
+          {
+            "min_thickness": 0.25
+          },
+          {
+            "min_alc": 41,
+            "potency": 0
+          },
+          {
+            "min_alc": 55,
+            "potency": 1
+          },
+          {
+            "min_alc": 62,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:swiftness",
+        "base_duration": 2400,
+        "potency": [
+          {
+            "min_thickness": 0.25
+          },
+          {
+            "min_alc": 41,
+            "potency": 0
+          },
+          {
+            "min_alc": 62,
+            "potency": 1
+          }
+        ]
+      },
+      {
+        "id": "minecraft:blindness",
+        "base_duration": 80,
+        "potency": [
+          {
+            "min_alc": 47
+          }
+        ]
+      },
+      {
+        "id": "minecraft:weakness",
+        "base_duration": 900,
+        "potency": [
+          {
+            "min_thickness": 2
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"damassine\", Color: 7558132 }"
+  },
+  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+}

@@ -3,77 +3,77 @@
   "group": "infused_beverages",
   "ingredients": [
     {
-      "item": "minecraft:sweet_berries",
-      "count": 4
+      "item": "minecraft:sugar_cane",
+      "count": 12
     }
   ],
-  "min_fermentation_time_hours": 12,
+  "min_fermentation_time_hours": 48,
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 1.0,
+    "fermentation_speed_mod": 1.5,
     "effects": [
       {
-        "id": "minecraft:health_boost",
+        "id": "minecraft:absorption",
         "base_duration": 2400,
         "potency": [
           {
-            "min_alc": 2
+            "min_thickness": 0.25
           },
           {
-            "min_alc": 3,
-            "potency": 1
+            "min_alc": 41,
+            "potency": 0
           },
           {
-            "min_alc": 5,
+            "min_alc": 55,
             "potency": 2
           },
           {
-            "min_alc": 7,
-            "potency": 3
-          },
-          {
-            "min_alc": 13,
+            "min_alc": 62,
             "potency": 4
           }
         ]
       },
       {
-        "id": "minecraft:regeneration",
-        "base_duration": 1200,
+        "id": "minecraft:resistance",
+        "base_duration": 2400,
         "potency": [
           {
-            "min_alc": 4,
-            "min_thickness": 0.75
+            "min_thickness": 0.25
           },
           {
-            "min_alc": 9,
-            "min_thickness": 0.75,
+            "min_alc": 41,
+            "potency": 0
+          },
+          {
+            "min_alc": 62,
             "potency": 1
           }
         ]
       },
       {
         "id": "minecraft:nausea",
-        "base_duration": 1000,
+        "base_duration": 300,
         "potency": [
           {
-            "min_alc": 6
+            "min_alc": 28
           },
           {
-            "min_thickness": 3
-          },
-          {
-            "min_alc": 7,
+            "min_alc": 47,
             "potency": 1
           },
           {
-            "min_thickness": 4,
-            "potency": 1
-          },
-          {
-            "min_alc": 8,
+            "min_alc": 60,
             "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 2
           }
         ]
       }
@@ -82,7 +82,7 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"berry_cider\", Color: 14819906 }"
+    "nbt": "{Variant: \"rum\", Color: 10505507 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

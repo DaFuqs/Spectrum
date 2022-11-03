@@ -1,0 +1,78 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:potato",
+      "count": 6
+    },
+    {
+      "item": "spectrum:mermaids_gem",
+      "count": 2
+    },
+    {
+      "item": "spectrum:clover",
+      "count": 1
+    },
+    {
+      "item": "minecraft:snow_block",
+      "count": 1
+    }
+  ],
+  "min_fermentation_time_hours": 72,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.4,
+    "effects": [
+      {
+        "id": "minecraft:speed",
+        "base_duration": 1200,
+        "potency": [
+          {
+            "min_thickness": 0.25
+          },
+          {
+            "min_alc": 21,
+            "potency": 2
+          },
+          {
+            "min_alc": 28,
+            "potency": 3
+          },
+          {
+            "min_alc": 36,
+            "potency": 4
+          }
+        ]
+      },
+      {
+        "id": "spectrum:swiftness",
+        "base_duration": 1200,
+        "potency": [
+          {
+            "min_thickness": 0.25
+          },
+          {
+            "min_alc": 19,
+            "potency": 1
+          },
+          {
+            "min_alc": 27,
+            "potency": 2
+          },
+          {
+            "min_alc": 39,
+            "potency": 3
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 6,
+    "nbt": "{Variant: \"mint_schnapps\", Color: 1231480 }"
+  },
+  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+}

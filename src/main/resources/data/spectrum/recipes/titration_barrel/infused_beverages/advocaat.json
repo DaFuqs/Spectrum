@@ -5,34 +5,38 @@
     {
       "item": "minecraft:wheat",
       "count": 4
+    },
+    {
+      "item": "spectrum:clotted_cream",
+      "count": 1
+    },
+    {
+      "item": "minecraft:egg",
+      "count": 2
     }
   ],
   "min_fermentation_time_hours": 24,
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 2.0,
+    "fermentation_speed_mod": 0.5,
     "effects": [
       {
-        "id": "minecraft:haste",
-        "base_duration": 1200,
+        "id": "spectrum:nourishment",
+        "base_duration": 600,
         "potency": [
           {
             "min_thickness": 0.25
           },
           {
-            "min_alc": 5,
-            "potency": 1
-          },
-          {
             "min_alc": 10,
-            "potency": 2
+            "potency": 0
           }
         ]
       },
       {
         "id": "minecraft:saturation",
-        "base_duration": 20,
+        "base_duration": 10,
         "potency": [
           {
             "min_alc": 3,
@@ -52,36 +56,40 @@
         ]
       },
       {
-        "id": "minecraft:nausea",
-        "base_duration": 600,
+        "id": "spectrum:nourishment",
+        "base_duration": 1200,
         "potency": [
           {
-            "min_alc": 7
+            "min_alc": 5,
+            "min_thickness": 0.75,
+            "potency": 0
           },
           {
-            "min_alc": 14,
+            "min_alc": 7,
+            "min_thickness": 0.75,
             "potency": 1
-          },
-          {
-            "min_alc": 21,
-            "potency": 2
           }
         ]
       },
       {
-        "id": "minecraft:blindness",
+        "id": "minecraft:nausea",
+        "base_duration": 900,
+        "potency": [
+          {
+            "min_alc": 7
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
         "base_duration": 600,
         "potency": [
           {
-            "min_thickness": 2
+            "min_thickness": 5
           },
           {
-            "min_thickness": 3,
+            "min_thickness": 9,
             "potency": 1
-          },
-          {
-            "min_thickness": 4,
-            "potency": 2
           }
         ]
       }
@@ -89,8 +97,8 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "count": 8,
-    "nbt": "{Variant: \"beer\", Color: 16762703 }"
+    "count": 4,
+    "nbt": "{Variant: \"advocaat\", Color: 15191723 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

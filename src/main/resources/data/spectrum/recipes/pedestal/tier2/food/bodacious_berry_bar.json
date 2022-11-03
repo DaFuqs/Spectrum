@@ -16,7 +16,7 @@
   "key": {
     "L": {
       "item": "spectrum:infused_beverage",
-      "recipeViewNbt": "{Variant: \"berry_liquor\", Color: 16745977 }",
+      "recipeViewNbt": "{Variant: \"berry_liquor\", Color: 16729462 }",
       "matchbook": {
 
         "mode": "AND",
@@ -45,7 +45,7 @@
   },
   "result": {
     "item": "spectrum:bodacious_berry_bar",
-    "count": 2
+    "count": 4
   },
   "required_advancement": "spectrum:progression/unlock_pies"
 }

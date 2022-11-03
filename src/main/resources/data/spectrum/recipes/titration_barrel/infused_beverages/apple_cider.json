@@ -96,7 +96,7 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"apple_cider\", Color: 8543530 }"
+    "nbt": "{Variant: \"apple_cider\", Color: 15032656 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"
 }

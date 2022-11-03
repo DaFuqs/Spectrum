@@ -65,8 +65,6 @@ public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<Cinde
 			packetByteBuf.writeItemStack(output.getLeft());
 			packetByteBuf.writeFloat(output.getRight());
 		}
-		
-		packetByteBuf.writeIdentifier(recipe.requiredAdvancementIdentifier);
 	}
 	
 	@Override

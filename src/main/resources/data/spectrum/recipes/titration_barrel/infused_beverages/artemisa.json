@@ -127,7 +127,7 @@
         ]
       },
       {
-        "id": "minecraft:bad_luck",
+        "id": "minecraft:unluck",
         "base_duration": 600,
         "potency": [
           {

@@ -39,7 +39,7 @@
         ]
       },
       {
-        "id": "minecraft:swiftness",
+        "id": "spectrum:swiftness",
         "base_duration": 2400,
         "potency": [
           {

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.helpers.TimeHelper;
@@ -15,6 +16,7 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -72,6 +74,10 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		public static StatusEffectEntry fromJson(JsonObject jsonObject) {
 			Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "id"));
 			StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+			if(statusEffect == null) {
+				SpectrumCommon.logError("Status effect " + statusEffectIdentifier + " does not exist in the status effect registry. Falling back to WEAKNESS");
+				statusEffect = StatusEffects.WEAKNESS;
+			}
 			int baseDuration = JsonHelper.getInt(jsonObject, "base_duration", 1200);
 			
 			List<StatusEffectPotencyEntry> potencyEntries = new ArrayList<>();
@@ -88,7 +94,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		}
 		
 		public void write(PacketByteBuf packetByteBuf) {
-			packetByteBuf.writeString(this.statusEffect.toString());
+			packetByteBuf.writeString(Registry.STATUS_EFFECT.getId(this.statusEffect).toString());
 			packetByteBuf.writeInt(baseDuration);
 			packetByteBuf.writeInt(this.potencyEntries.size());
 			for(StatusEffectPotencyEntry potencyEntry : this.potencyEntries) {

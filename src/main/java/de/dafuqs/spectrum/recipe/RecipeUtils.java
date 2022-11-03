@@ -80,7 +80,7 @@ public class RecipeUtils {
 			try {
 				matchbook = matchbookFromJson(json.getAsJsonObject("matchbook"));
 			} catch (MalformedJsonException e) {
-				IncubusCore.LOG.error("RELAYED EXCEPTION. " + e);
+				IncubusCore.LOG.error("Error deserializing matchbook from json:\n" + json.getAsJsonObject("matchbook") + "\nError: " + e);
 			}
 		}
 
@@ -88,7 +88,7 @@ public class RecipeUtils {
 			try {
 				recipeViewNbt = NbtHelper.fromNbtProviderString(json.get("recipeViewNbt").getAsString());
 			} catch (CommandSyntaxException e) {
-				IncubusCore.LOG.error("RELAYED EXCEPTION. " + e);
+				IncubusCore.LOG.error("Error deserializing recipeViewNbt from json:\n" + json.get("recipeViewNbt").getAsString() + "\nError: " + e);
 			}
 		}
 

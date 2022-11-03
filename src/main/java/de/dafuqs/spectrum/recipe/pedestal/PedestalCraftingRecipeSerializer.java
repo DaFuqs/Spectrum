@@ -1,11 +1,16 @@
 package de.dafuqs.spectrum.recipe.pedestal;
 
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.mixin.accessors.ShapedRecipeAccessor;
 import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
@@ -13,9 +18,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<PedestalCraftingRecipe> {
 	
@@ -27,8 +30,8 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 	
 	public interface RecipeFactory<PedestalCraftingRecipe> {
 		PedestalCraftingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, PedestalRecipeTier tier, int width, int height,
-		                              DefaultedList<Ingredient> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemInputs,
-		                              ItemStack output, float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades);
+									  DefaultedList<IngredientStack> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemInputs,
+									  ItemStack output, float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades);
 	}
 	
 	@Override
@@ -37,11 +40,11 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 		boolean secret = readSecret(jsonObject);
 		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
 		
-		Map<String, Ingredient> map = ShapedRecipeAccessor.invokeReadSymbols(JsonHelper.getObject(jsonObject, "key"));
+		Map<String, IngredientStack> map = readIngredientStackSymbols(JsonHelper.getObject(jsonObject, "key"));
 		String[] strings = ShapedRecipeAccessor.invokeRemovePadding(ShapedRecipeAccessor.invokeGetPattern(JsonHelper.getArray(jsonObject, "pattern")));
 		int width = strings[0].length();
 		int height = strings.length;
-		DefaultedList<Ingredient> craftingInputs = ShapedRecipeAccessor.invokeCreatePatternMatrix(strings, map, width, height);
+		DefaultedList<IngredientStack> craftingInputs = createIngredientStackPatternMatrix(strings, map, width, height);
 		ItemStack output = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
 		PedestalRecipeTier tier = PedestalRecipeTier.valueOf(JsonHelper.getString(jsonObject, "tier", "basic").toUpperCase(Locale.ROOT));
@@ -72,6 +75,52 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, skipRecipeRemainders, noBenefitsFromYieldUpgrades);
 	}
+
+	static DefaultedList<IngredientStack> createIngredientStackPatternMatrix(String[] pattern, Map<String, IngredientStack> symbols, int width, int height) {
+		DefaultedList<IngredientStack> defaultedList = DefaultedList.ofSize(width * height, IngredientStack.EMPTY);
+		Set<String> set = Sets.newHashSet(symbols.keySet());
+		set.remove(" ");
+
+		for(int i = 0; i < pattern.length; ++i) {
+			for(int j = 0; j < pattern[i].length(); ++j) {
+				String string = pattern[i].substring(j, j + 1);
+				var ingredient = symbols.get(string);
+				if (ingredient == null) {
+					throw new JsonSyntaxException("Pattern references symbol '" + string + "' but it's not defined in the key");
+				}
+
+				set.remove(string);
+				defaultedList.set(j + width * i, ingredient);
+			}
+		}
+
+		if (!set.isEmpty()) {
+			throw new JsonSyntaxException("Key defines symbols that aren't used in pattern: " + set);
+		} else {
+			return defaultedList;
+		}
+	}
+
+	static Map<String, IngredientStack> readIngredientStackSymbols(JsonObject json) {
+		Map<String, IngredientStack> map = Maps.newHashMap();
+		Iterator var2 = json.entrySet().iterator();
+
+		while(var2.hasNext()) {
+			Map.Entry<String, JsonElement> entry = (Map.Entry)var2.next();
+			if (entry.getKey().length() != 1) {
+				throw new JsonSyntaxException("Invalid key entry: '" + entry.getKey() + "' is an invalid symbol (must be 1 character only).");
+			}
+
+			if (" ".equals(entry.getKey())) {
+				throw new JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.");
+			}
+
+			map.put(entry.getKey(), RecipeUtils.ingredientStackFromJson((JsonObject) entry.getValue()));
+		}
+
+		map.put(" ", IngredientStack.EMPTY);
+		return map;
+	}
 	
 	@Override
 	public void write(PacketByteBuf packetByteBuf, PedestalCraftingRecipe recipe) {
@@ -82,7 +131,7 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 		packetByteBuf.writeInt(recipe.width);
 		packetByteBuf.writeInt(recipe.height);
 		
-		for (Ingredient ingredient : recipe.craftingInputs) {
+		for (IngredientStack ingredient : recipe.craftingInputs) {
 			ingredient.write(packetByteBuf);
 		}
 		
@@ -110,10 +159,10 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 		
 		int width = packetByteBuf.readInt();
 		int height = packetByteBuf.readInt();
-		DefaultedList<Ingredient> craftingInputs = DefaultedList.ofSize(width * height, Ingredient.EMPTY);
+		DefaultedList<IngredientStack> craftingInputs = DefaultedList.ofSize(width * height, IngredientStack.EMPTY);
 		
 		for (int k = 0; k < craftingInputs.size(); ++k) {
-			craftingInputs.set(k, Ingredient.fromPacket(packetByteBuf));
+			craftingInputs.set(k, IngredientStack.fromByteBuf(packetByteBuf));
 		}
 		ItemStack output = packetByteBuf.readItemStack();
 		

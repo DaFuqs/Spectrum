@@ -45,13 +45,7 @@ repositories {
 		url 'https://server.bbkr.space/artifactory/libs-release/'
 	}*/
 	maven { url 'https://maven.wispforest.io/' } // owo lib
-	maven {
-		name = "JitPack"
-		url = 'https://jitpack.io'
-		metadataSources {// thank you, Incubus Core >:(
-			artifact() //Look directly for artifact
-		}
-	}
+	maven { url 'https://jitpack.io' }
 	//maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
 
 	maven {
@@ -118,7 +112,7 @@ dependencies {
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
 
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:2.1.1")
-	modImplementation include("com.github.DaFuqs:Incubus-Core:${project.incubus_core_version}")
+	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 	//modImplementation include("com.github.devs-immortal:Some-Assembly-Required:${project.sar_version}")
 	//modImplementation include("com.github.devs-immortal:Divine-Intervention:${project.divine_intervention_version}")
 	modImplementation include("io.github.ladysnake:satin:${project.satin_version}")

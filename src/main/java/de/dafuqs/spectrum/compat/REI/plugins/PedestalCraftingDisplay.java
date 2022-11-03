@@ -58,7 +58,7 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 			list.add(EntryIngredient.empty());
 		}
 		for (int i = 0; i < recipe.getIngredients().size(); i++) {
-			list.set(PedestalCraftingDisplaySerializer.getSlotWithSize(recipe.getWidth(), i), EntryIngredients.ofIngredient(recipe.getIngredients().get(i)));
+			list.set(PedestalCraftingDisplaySerializer.getSlotWithSize(recipe.getWidth(), i), EntryIngredients.ofItemStacks(recipe.getIngredientStackStacks().get(i)));
 		}
 		
 		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();

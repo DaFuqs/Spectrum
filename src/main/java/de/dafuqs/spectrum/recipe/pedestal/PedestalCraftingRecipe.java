@@ -13,6 +13,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	
@@ -38,7 +40,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	protected final int height;
 	
 	protected final PedestalRecipeTier tier;
-	protected final DefaultedList<Ingredient> craftingInputs;
+	protected final DefaultedList<IngredientStack> craftingInputs;
 	protected final HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs;
 	protected final ItemStack output;
 	protected final float experience;
@@ -52,7 +54,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	protected final boolean noBenefitsFromYieldUpgrades;
 	
 	public PedestalCraftingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-								  PedestalRecipeTier tier, int width, int height, DefaultedList<Ingredient> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
+								  PedestalRecipeTier tier, int width, int height, DefaultedList<IngredientStack> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs, ItemStack output,
 	                              float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
@@ -122,7 +124,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 			for (int j = 0; j < 3; ++j) {
 				int k = i - offsetX;
 				int l = j - offsetY;
-				Ingredient ingredient = Ingredient.EMPTY;
+				IngredientStack ingredient = IngredientStack.EMPTY;
 				if (k >= 0 && l >= 0 && k < this.width && l < this.height) {
 					if (flipped) {
 						ingredient = this.craftingInputs.get(this.width - k - 1 + l * this.width);
@@ -146,7 +148,13 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
-		return craftingInputs;
+		var defList = DefaultedList.<Ingredient>of();
+		craftingInputs.stream().map(IngredientStack::getIngredient).forEach(defList::add);
+		return defList;
+	}
+
+	public List<List<ItemStack>> getIngredientStackStacks() {
+		return craftingInputs.stream().map(IngredientStack::getStacks).collect(Collectors.toList());
 	}
 	
 	@Override

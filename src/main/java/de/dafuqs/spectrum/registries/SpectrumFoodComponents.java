@@ -59,6 +59,12 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent RESTORATION_TEA_SCONE_BONUS = new FoodComponent.Builder()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, 1800), 1.0F)
 			.build();
+
+	public static final FoodComponent BODACIOUS_BERRY_BAR = new FoodComponent.Builder()
+			.hunger(8).saturationModifier(0.5F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 3600), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 3600), 1.0F)
+			.build();
 	
 	public static final FoodComponent DEMON_TEA = new FoodComponent.Builder()
 			.snack().hunger(2).saturationModifier(0.2F)

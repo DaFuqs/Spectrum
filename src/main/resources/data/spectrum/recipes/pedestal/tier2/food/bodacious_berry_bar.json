@@ -1,0 +1,51 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 300,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "CHC",
+    "BLB",
+    "CMC"
+  ],
+  "key": {
+    "L": {
+      "item": "spectrum:infused_beverage",
+      "recipeViewNbt": "{Variant: \"berry_liquor\", Color: 16745977 }",
+      "matchbook": {
+
+        "mode": "AND",
+        "matches": [
+          {
+            "type": "string",
+            "key": "Variant",
+            "target": "berry_liquor"
+          }
+        ]
+
+      }
+    },
+    "H": {
+      "item": "minecraft:honey_bottle"
+    },
+    "B": {
+      "item": "minecraft:sweet_berries"
+    },
+    "M": {
+      "item": "spectrum:clotted_cream"
+    },
+    "C": {
+      "item": "spectrum:fresh_chocolate"
+    }
+  },
+  "result": {
+    "item": "spectrum:bodacious_berry_bar",
+    "count": 2
+  },
+  "required_advancement": "spectrum:progression/unlock_pies"
+}

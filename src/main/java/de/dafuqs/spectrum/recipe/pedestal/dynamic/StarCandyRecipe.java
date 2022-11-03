@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
+import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -41,17 +42,18 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 		}
 	}
 	
-	private static DefaultedList<Ingredient> generateInputs() {
-		DefaultedList<Ingredient> inputs = DefaultedList.ofSize(9);
-		inputs.add(Ingredient.ofItems(Items.SUGAR));
-		inputs.add(Ingredient.ofItems(Items.SUGAR));
-		inputs.add(Ingredient.ofItems(Items.SUGAR));
-		inputs.add(Ingredient.ofItems(SpectrumItems.STARDUST));
-		inputs.add(Ingredient.ofItems(SpectrumItems.STARDUST));
-		inputs.add(Ingredient.ofItems(SpectrumItems.STARDUST));
-		inputs.add(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS));
-		inputs.add(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS));
-		inputs.add(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS));
+	private static DefaultedList<IngredientStack> generateInputs() {
+		DefaultedList<IngredientStack> inputs = DefaultedList.ofSize(9);
+		inputs.add(IngredientStack.of(Ingredient.ofItems(Items.SUGAR)));
+		inputs.add(IngredientStack.of(Ingredient.ofItems(Items.SUGAR)));
+		inputs.add(IngredientStack.of(Ingredient.ofItems(Items.SUGAR)));
+		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.STARDUST)));
+		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.STARDUST)));
+		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.STARDUST)));
+		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
+		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
+		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
+
 		return inputs;
 	}
 	

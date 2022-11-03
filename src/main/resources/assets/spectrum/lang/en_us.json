@@ -121,6 +121,10 @@
   "container.spectrum.rei.titration_barrel.time_days": "Takes %d real-life days",
   "container.spectrum.rei.titration_barrel.at_least_time_hours": "At least %d real-life hours",
   "container.spectrum.rei.titration_barrel.at_least_time_days": "At least %d real-life days",
+  "container.spectrum.rei.titration_barrel.time_hour": "Takes 1 real-life hour",
+  "container.spectrum.rei.titration_barrel.time_day": "Takes 1 real-life day",
+  "container.spectrum.rei.titration_barrel.at_least_time_hour": "At least 1 real-life hour",
+  "container.spectrum.rei.titration_barrel.at_least_time_day": "At least 1 real-life day",
 
   "container.spectrum.bedrock_anvil": "Repair & write Lore",
   "container.spectrum.bedrock_anvil.tooltip": "Indestructible. Free renaming, unlimited",

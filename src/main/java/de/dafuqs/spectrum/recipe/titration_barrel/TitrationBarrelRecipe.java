@@ -288,17 +288,25 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	}
 	
 	// sadly we cannot use text.append() here, since patchouli does not support it
-	// but it might be easier for translations either way
+	// but this way it might be easier for translations either way
 	public static MutableText getDurationText(int minFermentationTimeHours, TitrationBarrelRecipe.FermentationData fermentationData) {
 		MutableText text;
 		if(fermentationData == null) {
-			if (minFermentationTimeHours > 72) {
+			if(minFermentationTimeHours == 1) {
+				text = new TranslatableText("container.spectrum.rei.titration_barrel.time_hour");
+			} else if(minFermentationTimeHours == 24) {
+				text = new TranslatableText("container.spectrum.rei.titration_barrel.time_day");
+			} else if (minFermentationTimeHours > 72) {
 				text = new TranslatableText("container.spectrum.rei.titration_barrel.time_days", Support.getWithOneDecimalAfterComma(minFermentationTimeHours  / 24F));
 			} else {
 				text = new TranslatableText("container.spectrum.rei.titration_barrel.time_hours", minFermentationTimeHours);
 			}
 		} else {
-			if (minFermentationTimeHours > 72) {
+			if(minFermentationTimeHours == 1) {
+				text = new TranslatableText("container.spectrum.rei.titration_barrel.at_least_time_hour");
+			} else if(minFermentationTimeHours == 24) {
+				text = new TranslatableText("container.spectrum.rei.titration_barrel.at_least_time_day");
+			} else if (minFermentationTimeHours > 72) {
 				text = new TranslatableText("container.spectrum.rei.titration_barrel.at_least_time_days", Support.getWithOneDecimalAfterComma(minFermentationTimeHours  / 24F));
 			} else {
 				text = new TranslatableText("container.spectrum.rei.titration_barrel.at_least_time_hours", minFermentationTimeHours);

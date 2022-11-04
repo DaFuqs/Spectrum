@@ -3,16 +3,19 @@ package de.dafuqs.spectrum.recipe.crafting;
 import de.dafuqs.spectrum.blocks.present.PresentBlock;
 import de.dafuqs.spectrum.blocks.present.PresentItem;
 import de.dafuqs.spectrum.items.PigmentItem;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.tag.ItemTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -25,6 +28,20 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	
 	public WrapPresentRecipe(Identifier identifier) {
 		super(identifier);
+	}
+	
+	@Override
+	public ItemStack getOutput() {
+		return SpectrumBlocks.PRESENT.asItem().getDefaultStack();
+	}
+	
+	@Override
+	public DefaultedList<Ingredient> getIngredients() {
+		DefaultedList<Ingredient> l = DefaultedList.ofSize(1, Ingredient.EMPTY);
+		ItemStack stack = SpectrumBlocks.PRESENT.asItem().getDefaultStack();
+		PresentItem.wrap(stack, PresentBlock.Variant.RED, Map.of());
+		l.set(0, Ingredient.ofStacks(stack));
+		return l;
 	}
 	
 	public boolean matches(CraftingInventory craftingInventory, World world) {

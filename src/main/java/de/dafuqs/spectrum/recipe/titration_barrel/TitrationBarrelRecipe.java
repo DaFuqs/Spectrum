@@ -205,7 +205,9 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	
 	@Override
 	public ItemStack getOutput() {
-		return tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L, 0.8F, 0.4F); // downfall & temperature are for plains
+		ItemStack stack = tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L, 0.8F, 0.4F); // downfall & temperature are for plains
+		stack.setCount(this.outputItemStack.getCount());
+		return stack;
 	}
 	
 	public Fluid getFluid() {

@@ -69,8 +69,10 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		public static StatusEffectPotencyEntry read(PacketByteBuf packetByteBuf) {
 			return new StatusEffectPotencyEntry(packetByteBuf.readInt(), packetByteBuf.readInt(), packetByteBuf.readInt());
 		}
+		
 	}
 	public record StatusEffectEntry(StatusEffect statusEffect, int baseDuration, List<StatusEffectPotencyEntry> potencyEntries) {
+		
 		public static StatusEffectEntry fromJson(JsonObject jsonObject) {
 			Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "id"));
 			StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
@@ -113,8 +115,10 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 			}
 			return new StatusEffectEntry(statusEffect, baseDuration, potencyEntries);
 		}
+		
 	}
 	public record FermentationData(float fermentationSpeedMod, float angelsSharePercentPerMcDay, List<StatusEffectEntry> statusEffectEntries) {
+		
 		public static FermentationData fromJson(JsonObject jsonObject) {
 			float fermentationSpeedMod = JsonHelper.getFloat(jsonObject, "fermentation_speed_mod", 1.0F);
 			float angelsSharePerMcDay = JsonHelper.getFloat(jsonObject, "angels_share_percent_per_mc_day", 0.1F);
@@ -148,6 +152,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 			}
 			return new FermentationData(fermentationSpeedMod, angelsSharePerMcDay, statusEffectEntries);
 		}
+		
 	}
 	
 	public TitrationBarrelRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> inputStacks, Fluid fluid, ItemStack outputItemStack, Item tappingItem, int minFermentationTimeHours, FermentationData fermentationData) {

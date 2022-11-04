@@ -8,6 +8,9 @@
     "spectrum:kimchi": 0,
     "spectrum:hot_chocolate": 0,
     "spectrum:pure_alcohol": 0
+    "spectrum:clotted_cream": 0
+    "spectrum:bodacious_berry_bar": 0
+    "spectrum:fresh_chocolate": 0
   },
   "pages": [
     {
@@ -23,15 +26,15 @@
     {
       "type": "patchouli:text",
       "title": "The Art of Brewing",
-      "text": "Fermentation is a very natural thing. But sadly, like most natural things, things take time and care. And since it's not a fully controlled environment there are a lot of variables to it.$(br)$(li)Time: Time, of course, being the most important ingredient. While some beverages only seeming to get more intense after more time, others go bad eventually"
+      "text": "Fermentation is a very natural thing. Like most natural things, things take time and care. And since it's not a fully controlled environment there are a lot of variables to it.$(br)$(li)Time: Time, of course, being the most important ingredient. While some beverages only seeming to get more intense after more time, others go bad eventually"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Temperature: The hotter it is, the more of your precious content simply evaporates over time, called the Angel's Share$(br)$(li)Humidity: The more humid the air, the more water evaporates in comparison to alcohol, making the drink stronger"
+      "text": "$(li)Temperature: The hotter it is, the more of your precious content simply evaporates over time. This is called the Angel's Share$(br)$(li)Humidity: The more humid the air, the more water evaporates in comparison to alcohol, making the drink stronger"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Water share: The ratio of ingredients to water is a fine balance, but one to be played with. A higher share of ingredients make the drinks stronger (more powerful effects), while more fluid gives more yield, of course, as well as allowing the magical wood to better evolve, making effects last longer. $(br2)4 items feels like a good starting point."
+      "text": "$(li)Water share: The ratio of ingredients to water is a fine balance, but one to be played with. A higher share of ingredients make the drinks stronger (more powerful effects)"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -53,6 +56,14 @@
       "anchor": "fresh_chocolate",
       "recipe": "spectrum:titration_barrel/fresh_chocolate",
       "text": "A great snack, literally: biting off a piece is quick and even makes you reasonably full.$(br)Pleasantly sweet and fruity."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Bodacious Berry Bar",
+      "advancement": "spectrum:progression/unlock_bodacious_berry_bar",
+      "anchor": "bodacious_berry_bar",
+      "recipe": "spectrum:pedestal/tier2/bodacious_berry_bar",
+      "text": "TODO"
     },
     {
       "type": "spectrum:potion_workshop_crafting",

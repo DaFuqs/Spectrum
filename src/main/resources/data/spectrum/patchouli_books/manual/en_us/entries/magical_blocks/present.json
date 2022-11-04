@@ -1,0 +1,31 @@
+{
+  "name": "Present",
+  "advancement": "spectrum:progression/unlock_present",
+  "icon": "spectrum:present",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:present": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. The bit of little $(l:resources/sparklestone)Shimmerstone$(/l) allows you to explode the package in a colorful shower of particles."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/present",
+      "text": "Click the Present onto items to add them to the Present.$(br)Then all you have to do is place it down for the gift recipient to open it and watch them jump of joy. (Or, you know, you can always gift yourself!)"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Wrapping",
+      "text": "Place a filled Present in a filled crafting grid.$(br)You can additionally add $(l:general/pigment)Pigments$() to add a colorful particle shower."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Wrapping Papers",
+      "text": "You can select a wide variety of wrapping papers, by adding one of those ingredients:$(li)Red Dye: Red$(li)Blue Dye: Blue$(li)Cyan Dye: Cyan$(li)Green Dye: Green$(li)Purple Dye: Purple$(li)Cake: Cake$(li)Flower: Stripes$(li)Firework Star: Starry$(li)Sapling: Winter$(li)Spore Blossom: Rainbow"
+    }
+  ]
+}

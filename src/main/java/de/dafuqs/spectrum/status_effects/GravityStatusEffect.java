@@ -5,12 +5,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class DensityStatusEffect extends SpectrumStatusEffect {
+public class GravityStatusEffect extends SpectrumStatusEffect {
 	
-	public static final float GRAVITY_PER_LEVEL = -0.02F;
+	protected float gravityPerLevel;
 	
-	public DensityStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
+	public GravityStatusEffect(StatusEffectCategory statusEffectCategory, int color, float gravityPerLevel) {
 		super(statusEffectCategory, color);
+		this.gravityPerLevel = gravityPerLevel;
 	}
 	
 	@Override
@@ -20,7 +21,7 @@ public class DensityStatusEffect extends SpectrumStatusEffect {
 	
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		applyGravityEffect(entity, GRAVITY_PER_LEVEL * (amplifier + 1));
+		applyGravityEffect(entity, gravityPerLevel * (amplifier + 1));
 	}
 	
 	public static void applyGravityEffect(Entity entity, double additionalYVelocity) {

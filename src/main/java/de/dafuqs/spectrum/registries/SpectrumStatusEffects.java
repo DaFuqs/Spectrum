@@ -30,10 +30,15 @@ public class SpectrumStatusEffects {
 	 */
 	public static StatusEffect SCARRED = registerStatusEffect("scarred", new ScarredStatusEffect(StatusEffectCategory.HARMFUL, 0x5b1d1d));
 	/**
+	 * Removes gravity to the entity
+	 * entities will fall slower and with high potencies start levitating
+	 */
+	public static StatusEffect LIGHTWEIGHT = registerStatusEffect("lightweight", new GravityStatusEffect(StatusEffectCategory.NEUTRAL, 0x00dde4, 0.02F));
+	/**
 	 * Adds gravity to the entity
 	 * flying mobs will fall and be nearly unable to fall (phantom, ghast)
 	 */
-	public static StatusEffect DENSITY = registerStatusEffect("density", new DensityStatusEffect(StatusEffectCategory.HARMFUL, 0x08082a));
+	public static StatusEffect DENSITY = registerStatusEffect("density", new GravityStatusEffect(StatusEffectCategory.HARMFUL, 0x671a25, -0.02F));
 	/**
 	 * Increases attack speed
 	 */

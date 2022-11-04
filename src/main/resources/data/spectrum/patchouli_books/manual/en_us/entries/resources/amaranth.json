@@ -31,14 +31,14 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_pies",
+      "advancement": "spectrum:progression/collect_amaranth_bushel",
       "title": "Scones",
       "recipe": "spectrum:pedestal/tier2/food/scone",
       "text": "Small but fine pastry filled with cream.$(br2)$(italic)Perfect with tea."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_pies",
+      "advancement": "spectrum:progression/unlock_triple_meat_pot_pie",
       "title": "Triple Meat Pot Pie",
       "recipe": "spectrum:pedestal/tier2/food/triple_meat_pot_pie",
       "text": "This feast is guaranteed to fill your belly for quite some time.$(br2)$(italic)Full of fat and meat and wine and warp!"

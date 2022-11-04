@@ -124,5 +124,5 @@
     "count": 6,
     "nbt": "{Variant: \"mint_cream\", Color: 2752440 }"
   },
-  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+  "required_advancement": "spectrum:progression/unlock_mint_beverages"
 }

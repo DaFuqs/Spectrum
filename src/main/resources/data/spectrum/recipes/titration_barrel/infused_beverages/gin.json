@@ -71,5 +71,5 @@
     "count": 6,
     "nbt": "{Variant: \"gin\", Color: 16437201 }"
   },
-  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+  "required_advancement": "spectrum:progression/unlock_gin"
 }

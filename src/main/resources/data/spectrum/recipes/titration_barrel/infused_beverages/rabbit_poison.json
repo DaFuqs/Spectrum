@@ -200,5 +200,5 @@
     "count": 6,
     "nbt": "{Variant: \"rabbit_poison\", Color: 9518003 }"
   },
-  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+  "required_advancement": "spectrum:progression/unlock_rabbit_poison"
 }

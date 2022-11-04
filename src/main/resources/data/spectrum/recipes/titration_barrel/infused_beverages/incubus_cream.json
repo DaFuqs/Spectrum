@@ -1,6 +1,7 @@
 {
   "type": "spectrum:titration_barrel",
   "group": "infused_beverages",
+  "secret": true,
   "ingredients": [
     {
       "item": "minecraft:crimson_fungus",

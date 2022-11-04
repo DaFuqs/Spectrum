@@ -38,7 +38,6 @@ import java.util.List;
 
 public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitrationBarrelRecipe {
 	
-	public static final float SOLID_TO_FLUID_RATIO = 4F;
 	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
 	public static final ItemStack PURE_ALCOHOL_STACK = SpectrumItems.PURE_ALCOHOL.getDefaultStack();
 	
@@ -292,7 +291,11 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	}
 	
 	protected float getThickness(int contentCount) {
-		return contentCount / SOLID_TO_FLUID_RATIO;
+		int inputStacksCount = 0;
+		for (IngredientStack stack : inputStacks) {
+			inputStacksCount += stack.getCount();
+		}
+		return contentCount / (float) inputStacksCount;
 	}
 	
 	@Override

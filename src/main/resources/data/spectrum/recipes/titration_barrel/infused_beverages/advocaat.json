@@ -23,14 +23,17 @@
     "effects": [
       {
         "id": "spectrum:nourishing",
-        "base_duration": 600,
+        "base_duration": 1200,
         "potency": [
           {
-            "min_thickness": 0.25
+            "min_alc": 5,
+            "min_thickness": 0.75,
+            "potency": 0
           },
           {
-            "min_alc": 10,
-            "potency": 0
+            "min_alc": 7,
+            "min_thickness": 0.75,
+            "potency": 1
           }
         ]
       },
@@ -56,22 +59,6 @@
         ]
       },
       {
-        "id": "spectrum:nourishing",
-        "base_duration": 1200,
-        "potency": [
-          {
-            "min_alc": 5,
-            "min_thickness": 0.75,
-            "potency": 0
-          },
-          {
-            "min_alc": 7,
-            "min_thickness": 0.75,
-            "potency": 1
-          }
-        ]
-      },
-      {
         "id": "minecraft:nausea",
         "base_duration": 900,
         "potency": [
@@ -85,10 +72,10 @@
         "base_duration": 600,
         "potency": [
           {
-            "min_thickness": 5
+            "min_thickness": 2.0
           },
           {
-            "min_thickness": 9,
+            "min_thickness": 3.0,
             "potency": 1
           }
         ]

@@ -15,8 +15,8 @@
       "count": 1
     },
     {
-      "item": "minecraft:snow_block",
-      "count": 1
+      "item": "minecraft:snowball",
+      "count": 4
     }
   ],
   "min_fermentation_time_hours": 72,

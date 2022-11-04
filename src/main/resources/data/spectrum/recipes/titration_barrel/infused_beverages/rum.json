@@ -11,7 +11,7 @@
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 1.5,
+    "fermentation_speed_mod": 0.12,
     "effects": [
       {
         "id": "minecraft:absorption",

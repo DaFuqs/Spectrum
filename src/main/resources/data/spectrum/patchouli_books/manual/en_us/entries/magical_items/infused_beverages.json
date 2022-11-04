@@ -9,7 +9,18 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Over time, the properties of the wood influence and affect the contents. The more time you give the process, the stronger the changes will be."
+      "title": "The Art of Brewing",
+      "text": "Fermentation is a very natural thing. Like most natural things, things take time and care. And since it's not a fully controlled environment there are a lot of variables to it.$(li)Time: Time, of course, being the most important ingredient. Over time, the properties of the wood influence and affect the contents. The more time you give the process, the stronger the changes will be. While some beverages only seem to get more intense after more time, others go bad eventually."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)Temperature: The hotter it is, the more of your precious content simply evaporates over time. This is called the Angel's Share$(li)Humidity: The more humid the air, the more water evaporates in comparison to alcohol, making the drink stronger$(li)Water Share: The ratio of ingredients to water is a fine balance, but one to be played with. A higher share of ingredients make the drinks ferment a bit faster, albeit at the cost of shorter status effect durations"
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Malt Beer",
+      "recipe": "spectrum:titration_barrel/infused_beverages/malt_beer",
+      "text": "Malt beer is both filling and tastes both sweet and savory. What a nice combination."
     },
     {
       "type": "spectrum:confirmation_button",
@@ -19,19 +30,6 @@
       "button_text_confirmed": "Confirmed ✔",
       "confirmation": "confirm_drinking_age",
       "text": "The $(thing)Titration Barrel$() is capable of brewing alcoholic drinks. If you are old enough to consume alcohol in your country, you can press the button below to unlock these recipes.$(br)If not don't worry - you won't miss anything important."
-    },
-    {
-      "type": "spectrum:titration_barrel_fermenting",
-      "title": "Malt Beer",
-      "recipe": "spectrum:titration_barrel/infused_beverages/malt_beer",
-      "text": "Malt beer is both filling and tastes both sweet and savory. What a nice combination."
-    },
-    {
-      "type": "spectrum:titration_barrel_fermenting",
-      "advancement": "spectrum:progression/unlock_gin",
-      "title": "Gin",
-      "recipe": "spectrum:titration_barrel/infused_beverages/gin",
-      "text": "Made from $(l:resources/amaranth)Amaranth$(/l), grants $(thing)Luck$() and $(thing)Haste$()."
     },
 	{
       "type": "spectrum:titration_barrel_fermenting",
@@ -48,6 +46,13 @@
       "recipe": "spectrum:titration_barrel/infused_beverages/lager",
       "recipe2": "spectrum:titration_barrel/infused_beverages/porter",
       "text": "Just... don't brew them too long or they will shift and end up tasting awful."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:progression/unlock_gin",
+      "title": "Gin",
+      "recipe": "spectrum:titration_barrel/infused_beverages/gin",
+      "text": "Made from $(l:resources/amaranth)Amaranth$(/l), grants $(thing)Luck$() and $(thing)Haste$()."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

@@ -24,15 +24,6 @@
       "text": "$(italic)When you blink and it felt like the world stopped existing? Each time that happens, the barrel fermentation process seems to have advanced."
     },
     {
-      "type": "patchouli:text",
-      "title": "The Art of Brewing",
-      "text": "Fermentation is a very natural thing. Like most natural things, things take time and care. And since it's not a fully controlled environment there are a lot of variables to it.$(li)Time: Time, of course, being the most important ingredient. While some beverages only seeming to get more intense after more time, others go bad eventually"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "$(li)Temperature: The hotter it is, the more of your precious content simply evaporates over time. This is called the Angel's Share$(li)Humidity: The more humid the air, the more water evaporates in comparison to alcohol, making the drink stronger$(li)Water Share: The ratio of ingredients to water is a fine balance, but one to be played with. A higher share of ingredients make the drinks ferment a bit faster, albeit at the cost of shorter status effect durations"
-    },
-    {
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Kimchi",
       "anchor": "kimchi",

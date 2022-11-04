@@ -671,6 +671,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 			
 			ItemStack recipeOutput = recipe.getOutput();
+			PlayerEntity player = getOwnerIfOnline();
+			if(player != null) {
+				recipeOutput.onCraft(this.world, player, recipeOutput.getCount());
+			}
+			
 			ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
 			if (existingOutput.isEmpty()) {
 				defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());

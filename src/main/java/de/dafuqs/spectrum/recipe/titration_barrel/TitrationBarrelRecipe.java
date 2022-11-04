@@ -256,7 +256,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 			}
 			
 			if(properties instanceof VariantBeverageProperties variantBeverageProperties) {
-				float durationDivisor = 0.5F + thickness / 2F;
+				float durationMultiplier = 1.5F - thickness / 2F;
 				
 				List<StatusEffectInstance> effects = new ArrayList<>();
 				
@@ -269,7 +269,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 						}
 					}
 					if(potency > -1) {
-						effects.add(new StatusEffectInstance(entry.statusEffect, (int) (durationTicks / durationDivisor), potency));
+						effects.add(new StatusEffectInstance(entry.statusEffect, (int) (durationTicks * durationMultiplier), potency));
 					}
 				}
 				

@@ -6,7 +6,6 @@
   "extra_recipe_mappings": {
     "spectrum:titration_barrel": 0,
     "spectrum:kimchi": 0,
-    "spectrum:pure_alcohol": 0,
     "spectrum:clotted_cream": 0,
     "spectrum:fresh_chocolate": 0,
     "spectrum:hot_chocolate": 0,
@@ -59,14 +58,6 @@
       "anchor": "hot_chocolate",
       "recipe": "spectrum:potion_workshop_crafting/hot_chocolate",
       "text": "Perfect to come to the calm and in the cold season."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Pure Alcohol",
-      "advancement": "spectrum:tap_pure_alcohol",
-      "anchor": "pure_alcohol",
-      "item": "spectrum:pure_alcohol",
-      "text": "Your memory isn't always up to snuff. Somehow you ended up with this bottle. Definitely got a little stronger than planned...$(br)More to disinfect than to drink."
     }
   ]
 }

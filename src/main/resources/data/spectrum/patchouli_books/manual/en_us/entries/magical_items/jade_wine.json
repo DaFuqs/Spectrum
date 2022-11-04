@@ -4,7 +4,8 @@
   "icon": "spectrum:jade_wine",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:jade_wine": 0
+    "spectrum:jade_wine": 0,
+    "spectrum:chrysocolla": 0
   },
   "pages": [
     {
@@ -16,6 +17,13 @@
       "title": "Titration Recipe",
       "recipe": "spectrum:titration_barrel/special/jade_wine",
       "text": "1 Bulb and 3 Petals for the Bucket of Water feel like a good starting point.$(br2)The longer the fermentation goes on, the stronger the taste gets, albeit you will have to pay the small Angel's Share"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:midgame/tap_chrysocolla",
+      "anchor": "chrysocolla",
+      "item": "spectrum:chrysocolla",
+      "text": "The result of fermenting Jade Wine a $(italic)tad$() too long.$(br)Immensely bitter and slightly acidic taste. While it retains some of the properties of the Jade Wine it once resembled, seems more useful for medicine than for drinking. But, you know... is anyone stopping you?"
     }
   ]
 }

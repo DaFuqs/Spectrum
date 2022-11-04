@@ -4,7 +4,8 @@
   "advancement": "spectrum:progression/unlock_titration_barrel",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:infused_beverage": 0
+    "spectrum:infused_beverage": 0,
+    "spectrum:pure_alcohol": 0
   },
   "pages": [
     {
@@ -137,6 +138,14 @@
       "recipe": "spectrum:titration_barrel/infused_beverages/damassine",
       "recipe2": "spectrum:titration_barrel/infused_beverages/hare_bane_creme",
       "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Pure Alcohol",
+      "advancement": "spectrum:tap_pure_alcohol",
+      "anchor": "pure_alcohol",
+      "item": "spectrum:pure_alcohol",
+      "text": "Your memory isn't always up to snuff. Somehow you ended up with this bottle. Definitely got a little stronger than planned...$(br)More to disinfect than to drink."
     }
   ]
 }

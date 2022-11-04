@@ -270,6 +270,8 @@ public class SpectrumItems {
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SUSPICIOUS_BREW).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_WINE = new JadeWineItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.JADE_WINE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item PURE_ALCOHOL = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item MOONSHINE = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSHINE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item CHRYSOCOLLA = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.CHRYSOCOLLA).recipeRemainder(Items.GLASS_BOTTLE));
 	
 	public static final Item HONEY_PASTRY = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.HONEY_PASTRY));
 	public static final Item LUCKY_ROLL = new Item(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.LUCKY_ROLL));
@@ -645,7 +647,9 @@ public class SpectrumItems {
 		register("scone", SCONE, DyeColor.PINK);
 		register("reprise", REPRISE, DyeColor.PINK);
 		register("suspicious_brew", SUSPICIOUS_BREW, DyeColor.LIME);
+		register("moonshine", MOONSHINE, DyeColor.WHITE);
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
+		register("chrysocolla", CHRYSOCOLLA, DyeColor.LIME);
 		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
 		register("jade_wine", JADE_WINE, DyeColor.LIME);
 		register("star_candy", STAR_CANDY, DyeColor.PINK);

@@ -93,6 +93,17 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 30, 2), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 60, 2), 1.0F)
 			.build();
+	
+	public static final FoodComponent CHRYSOCOLLA = new FoodComponent.Builder()
+			.hunger(2).saturationModifier(0.2F).alwaysEdible()
+			.statusEffect(new StatusEffectInstance(StatusEffects.POISON, 20 * 15, 4), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 30, 2), 1.0F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 60, 2), 1.0F)
+			.build();
+	
+	public static final FoodComponent MOONSHINE = new FoodComponent.Builder()
+			.hunger(2).saturationModifier(0.2F).alwaysEdible()
+			.build();
 
 	public static final FoodComponent KIMCHI = new FoodComponent.Builder()
 			.hunger(6).saturationModifier(0.6F)
@@ -186,6 +197,7 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, 20 * 30), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, 20 * 30), 1.0F)
 			.build();
+	
 	public static final FoodComponent WHISPY_TART = new FoodComponent.Builder()
 			.hunger(8).saturationModifier(0.2F)
 			.build();

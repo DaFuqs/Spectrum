@@ -58,6 +58,7 @@ public class ProgressionSanityCommand {
 		add(SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"));
 		add(SpectrumCommon.locate("midgame/build_cinderhearth_structure_without_lava"));
 		add(SpectrumCommon.locate("tap_aged_air"));
+		add(SpectrumCommon.locate("midgame/tap_chrysocolla"));
 	}};
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {

@@ -16,41 +16,56 @@ public class SpectrumStatusEffects {
 	 * and makes it immune against new ones
 	 */
 	public static StatusEffect IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5));
+	
 	/**
 	 * Like Saturation, but not OP
 	 */
 	public static StatusEffect NOURISHING = registerStatusEffect("nourishing", new NourishingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2324f8));
+	
 	/**
 	 * Rerolls loot table entry counts based on chance (like with fortune/looting) and takes the best one
 	 */
 	public static StatusEffect ANOTHER_ROLL = registerStatusEffect("another_roll", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xa1ce00));
+	
 	/**
 	 * Stops natural regeneration
 	 * and prevents sprinting
 	 */
 	public static StatusEffect SCARRED = registerStatusEffect("scarred", new ScarredStatusEffect(StatusEffectCategory.HARMFUL, 0x5b1d1d));
+	
+	/**
+	 * Increases all incoming damage by potency %
+	 */
+	public static final float VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL = 0.25F;
+	public static StatusEffect VULNERABILITY = registerStatusEffect("vulnerability", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x353535));
+	
 	/**
 	 * Removes gravity to the entity
 	 * entities will fall slower and with high potencies start levitating
 	 */
 	public static StatusEffect LIGHTWEIGHT = registerStatusEffect("lightweight", new GravityStatusEffect(StatusEffectCategory.NEUTRAL, 0x00dde4, 0.02F));
+	
 	/**
 	 * Adds gravity to the entity
 	 * flying mobs will fall and be nearly unable to fall (phantom, ghast)
 	 */
 	public static StatusEffect DENSITY = registerStatusEffect("density", new GravityStatusEffect(StatusEffectCategory.HARMFUL, 0x671a25, -0.02F));
+	
 	/**
 	 * Increases attack speed
 	 */
 	public static StatusEffect SWIFTNESS = registerStatusEffect("swiftness", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffe566).addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "3c2c6c5e-0a9f-4a0a-8ded-314ae028a753", 2 * 0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
+	
 	/**
 	 * Decreases attack speed
 	 */
 	public static StatusEffect STIFFNESS = registerStatusEffect("stiffness", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x7e7549)).addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "91e58b5a-d8d9-4037-a520-18c3d7230502", 2 * -0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+	
 	/**
 	 * Ouch.
 	 */
 	public static StatusEffect MILLENIA_DISEASE = registerStatusEffect("millenia_disease", new MilleniaDiseaseStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222).addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, MilleniaDiseaseStatusEffect.ATTRIBUTE_UUID_STRING, -1.0, EntityAttributeModifier.Operation.ADDITION));
+	
 	/**
 	 * Gives loads of buffs, but the player will be handled as if they were playing hardcore
 	 */
@@ -65,18 +80,21 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, "924896a5-8538-4b83-a510-509bccf0a897", 2.0D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, "9812c88f-dc8e-47d1-a092-38339da9891e", 5.0D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(AdditionalEntityAttributes.WATER_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.25D, EntityAttributeModifier.Operation.ADDITION));
+	
 	/**
 	 * damage, attack speed, knockback resistance are buffed the more the player kills.
 	 * But if they do not score a kill in 20 seconds they get negative effects.
 	 * Stacking $(thing)Frenzy$() (applying the effect while they already have it) increases these effects amplitude
 	 */
 	public static final StatusEffect FRENZY = registerStatusEffect("frenzy", new SpectrumStatusEffect(StatusEffectCategory.NEUTRAL, 0x990000)); // TODO
+	
 	/**
 	 * Increases speed and visibility in lava
 	 */
 	public static final StatusEffect BLAZING = registerStatusEffect("blazing", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xc42e0e)
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.2, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(AdditionalEntityAttributes.LAVA_VISIBILITY, "9812c88f-dc8e-47d1-a092-38339da9891e", 16.0D, EntityAttributeModifier.Operation.ADDITION));
+	
 	/**
 	 * % Chance to protect from projectiles per level
 	 */

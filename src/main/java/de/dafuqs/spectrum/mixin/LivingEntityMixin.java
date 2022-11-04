@@ -65,7 +65,9 @@ public abstract class LivingEntityMixin {
 	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
 	
 	@Shadow public abstract ItemStack getMainHandStack();
-
+	
+	@Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -112,11 +114,16 @@ public abstract class LivingEntityMixin {
 	
 	@ModifyVariable(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", argsOnly = true)
 	public float spectrum$applyAzureDikeDamageProtection(float amount, DamageSource source) {
+		@Nullable StatusEffectInstance vulnerability = getStatusEffect(SpectrumStatusEffects.VULNERABILITY);
+		if(vulnerability != null) {
+			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
+		}
+		
 		if (source.isOutOfWorld() || source.isUnblockable() || this.blockedByShield(source) || amount <= 0 || ((Entity) (Object) this).isInvulnerableTo(source) || source.isFire() && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
 			return amount;
-		} else {
-			return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
 		}
+		
+		return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
 	}
 	
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")

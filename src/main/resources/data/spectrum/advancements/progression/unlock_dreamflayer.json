@@ -2,11 +2,11 @@
   "criteria": {
     "collected_bismuth_crystal": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/collect_bismuth_crystal" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_bismuth_crystal" }
     },
     "harvested_moonstruck_nectar": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/harvest_moonstruck_nectar" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/harvest_moonstruck_nectar" }
     },
     "collected_light_gray_pigment": {
       "trigger":"revelationary:advancement_gotten",

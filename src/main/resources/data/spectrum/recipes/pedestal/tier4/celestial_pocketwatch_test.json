@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 2400,
+  "tier": "complex",
+  "magenta": 16,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 4,
+  "experience": 4.0,
+  "pattern": [
+    "PAP",
+    "ACA",
+    "PAP"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard",
+      "count": 2
+    },
+    "C": {
+      "item": "minecraft:water_bucket"
+    },
+    "P": {
+      "item": "spectrum:magenta_pigment",
+      "count": 8
+    }
+  },
+  "result": {
+    "item": "spectrum:celestial_pocketwatch",
+    "count": 2
+  },
+  "required_advancement": "spectrum:progression/unlock_celestial_pocketwatch"
+}

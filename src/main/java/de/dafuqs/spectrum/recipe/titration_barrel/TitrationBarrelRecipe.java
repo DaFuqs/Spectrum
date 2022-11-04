@@ -11,7 +11,6 @@ import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
 import de.dafuqs.spectrum.items.beverages.properties.VariantBeverageProperties;
 import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.effect.StatusEffect;
@@ -169,7 +168,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	
 	@Override
 	public boolean matches(Inventory inventory, World world) {
-		return FusionShrineRecipe.matchIngredientStacksExclusively(inventory, getIngredientStacks());
+		return matchIngredientStacksExclusively(inventory, getIngredientStacks());
 	}
 	
 	// should not be used. Instead, use getIngredientStacks(), which includes item counts

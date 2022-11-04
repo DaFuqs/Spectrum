@@ -96,6 +96,7 @@ public abstract class GatedSpectrumRecipe implements Recipe<Inventory>, GatedRec
 		return stack;
 	}
 	
+	
 	protected static boolean matchIngredientStacksExclusively(Inventory inv, List<IngredientStack> ingredientStacks) {
 		if (inv.size() < ingredientStacks.size()) {
 			return false;

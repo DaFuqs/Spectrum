@@ -9,7 +9,6 @@ import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
 import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import io.wispforest.owo.itemgroup.Icon;
@@ -125,7 +124,7 @@ public class SpectrumItemGroups {
 				
 				// Enchanted books with the max upgrade level available via Enchantment Upgrading
 				HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
-				for (EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject) {
+				for (EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
 					Enchantment enchantment = enchantmentUpgradeRecipe.getEnchantment();
 					int destinationLevel = enchantmentUpgradeRecipe.getEnchantmentDestinationLevel();
 					if (highestEnchantmentLevels.containsKey(enchantment)) {

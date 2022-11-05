@@ -830,6 +830,11 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	}
 	
 	@Override
+	public float getUpgradeValue(UpgradeType upgradeType) {
+		return this.upgrades.get(upgradeType);
+	}
+	
+	@Override
 	public int size() {
 		return INVENTORY_SIZE;
 	}

@@ -356,6 +356,11 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		this.markDirty();
 	}
 	
+	@Override
+	public float getUpgradeValue(UpgradeType upgradeType) {
+		return this.upgrades.get(upgradeType);
+	}
+	
 	public void inventoryChanged() {
 		this.markDirty();
 		this.inventory.markDirty();

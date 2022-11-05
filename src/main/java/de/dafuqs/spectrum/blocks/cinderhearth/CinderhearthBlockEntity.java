@@ -131,6 +131,11 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		this.markDirty();
 	}
 	
+	@Override
+	public float getUpgradeValue(UpgradeType upgradeType) {
+		return this.upgrades.get(upgradeType);
+	}
+	
 	public void updateInClientWorld() {
 		((ServerWorld) world).getChunkManager().markForUpdate(pos);
 	}

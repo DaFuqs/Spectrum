@@ -439,6 +439,11 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		this.markDirty();
 	}
 	
+	@Override
+	public float getUpgradeValue(UpgradeType upgradeType) {
+		return this.upgrades.get(upgradeType);
+	}
+	
 	// PLAYER OWNED
 	// "owned" is not to be taken literally here. The owner
 	// is always set to the last player interacted with to trigger advancements

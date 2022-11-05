@@ -165,4 +165,6 @@ public interface Upgradeable {
 	
 	void calculateUpgrades();
 	
+	float getUpgradeValue(UpgradeType upgradeType);
+	
 }

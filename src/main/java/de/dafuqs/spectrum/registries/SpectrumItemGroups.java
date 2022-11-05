@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
+import de.dafuqs.spectrum.items.beverages.BeverageItem;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -115,8 +116,9 @@ public class SpectrumItemGroups {
 				
 				// Infused Beverage Variants
 				for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
-					ItemStack output = recipe.getOutput();
-					if(output.isOf(SpectrumItems.INFUSED_BEVERAGE)) {
+					ItemStack output = recipe.getOutput().copy();
+					if(output.getItem() instanceof BeverageItem) {
+						output.setCount(1);
 						stacks.add(output);
 					}
 				}

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/build_spirit_instiller_structure",
+  "parent": "spectrum:midgame/break_decayed_bedrock",
   "display": {
     "icon": {
       "item": "spectrum:blood_orchid_petal"
@@ -18,7 +18,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/build_spirit_instiller_structure" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
     }
   }
 }

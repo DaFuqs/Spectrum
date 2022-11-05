@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.tap_chrysocolla.description"
     }
   },
-  "parent": "spectrum:drink_jade_wine",
+  "parent": "spectrum:midgame/drink_jade_wine",
   "criteria": {
     "tapped_chrysocolla": {
       "trigger": "spectrum:titration_barrel_tapping",

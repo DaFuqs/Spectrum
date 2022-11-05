@@ -25,7 +25,7 @@
     "fermentation_speed_mod": 0.2,
     "effects": [
       {
-        "id": "spectrum:invisibility",
+        "id": "minecraft:invisibility",
         "base_duration": 1200
       },
       {

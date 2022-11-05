@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
@@ -43,7 +44,6 @@ import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
@@ -308,7 +308,7 @@ public class SpectrumConfiguredFeatures {
 
 		BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
 		
-		// QUITOXIC REED
+		// QUITOXIC REEDS
 		Identifier quitoxicReedsIdentifier = SpectrumCommon.locate("quitoxic_reeds");
 		registerConfiguredAndPlacedFeature(quitoxicReedsIdentifier,
 				Feature.BLOCK_COLUMN,
@@ -320,11 +320,7 @@ public class SpectrumConfiguredFeatures {
 				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
 		);
 		
-		Collection<RegistryKey<Biome>> swamps = new ArrayList<>();
-		for (String biomeString : SpectrumCommon.CONFIG.QuitoxicReedsGenerationBiomes) {
-			swamps.add(RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString)));
-		}
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(swamps), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, quitoxicReedsIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.SWAMP), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, quitoxicReedsIdentifier));
 		
 		// CLOVER
 		Identifier cloversIdentifier = SpectrumCommon.locate("clovers");

@@ -408,6 +408,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 			
 			ItemStack recipeOutput = recipe.craft(pedestalBlockEntity);
+			PlayerEntity player = pedestalBlockEntity.getOwnerIfOnline();
+			if(player != null) {
+				recipeOutput.onCraft(pedestalBlockEntity.world, player, recipeOutput.getCount());
+			}
 			
 			// if it was a recipe to upgrade the pedestal itself
 			// => upgrade

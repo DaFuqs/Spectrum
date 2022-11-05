@@ -20,7 +20,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SpiritInstillingDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
@@ -32,7 +31,7 @@ public class SpiritInstillingDisplay implements SimpleGridMenuDisplay, GatedReci
 	protected final Identifier requiredAdvancementIdentifier;
 	
 	public SpiritInstillingDisplay(@NotNull SpiritInstillerRecipe recipe) {
-		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
+		this.craftingInputs = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
 		this.secret = recipe.isSecret();
 		
 		if (recipe instanceof SpawnerChangeRecipe spawnerChangeRecipe) {

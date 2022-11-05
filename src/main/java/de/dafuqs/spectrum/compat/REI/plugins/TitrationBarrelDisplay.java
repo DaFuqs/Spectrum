@@ -21,7 +21,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TitrationBarrelDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
@@ -35,7 +34,7 @@ public class TitrationBarrelDisplay implements SimpleGridMenuDisplay, GatedRecip
 	
 	public TitrationBarrelDisplay(@NotNull ITitrationBarrelRecipe recipe) {
 		this.secret = recipe.isSecret();
-		this.ingredients = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
+		this.ingredients = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
 		if(recipe.getFluid() != Fluids.EMPTY) {
 			this.ingredients.add(EntryIngredients.of(recipe.getFluid().getBucketItem()));
 		}

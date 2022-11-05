@@ -17,6 +17,12 @@
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/celestial_pocketwatch",
       "text": "$(italic)What a stellar idea of yours"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/celestial_pocketwatch_ingredient_stack_test",
+      "text": "$(italic)What a stellar idea of yours"
     }
   ]
 }

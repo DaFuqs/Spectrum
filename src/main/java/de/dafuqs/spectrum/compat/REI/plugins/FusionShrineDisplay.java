@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class FusionShrineDisplay implements SimpleGridMenuDisplay, GatedRecipeDisplay {
 	
@@ -36,7 +35,7 @@ public class FusionShrineDisplay implements SimpleGridMenuDisplay, GatedRecipeDi
 	
 	public FusionShrineDisplay(@NotNull FusionShrineRecipe recipe) {
 		this.secret = recipe.isSecret();
-		this.craftingInputs = recipe.getIngredientStacks().stream().map(REIHelper::ofIngredientStack).collect(Collectors.toCollection(ArrayList::new));
+		this.craftingInputs = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
 		this.output = EntryIngredients.of(recipe.getOutput());
 		this.experience = recipe.getExperience();
 		this.craftingTime = recipe.getCraftingTime();

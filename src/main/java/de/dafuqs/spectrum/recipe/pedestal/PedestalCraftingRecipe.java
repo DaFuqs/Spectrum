@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	
@@ -146,6 +145,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 		return sourceItemStack.getItem().equals(item) && sourceItemStack.getCount() >= amount;
 	}
 	
+	@Deprecated
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
 		var defList = DefaultedList.<Ingredient>of();
@@ -153,8 +153,8 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 		return defList;
 	}
 
-	public List<List<ItemStack>> getIngredientStackStacks() {
-		return craftingInputs.stream().map(IngredientStack::getStacks).collect(Collectors.toList());
+	public DefaultedList<IngredientStack> getIngredientStacks() {
+		return craftingInputs;
 	}
 	
 	@Override

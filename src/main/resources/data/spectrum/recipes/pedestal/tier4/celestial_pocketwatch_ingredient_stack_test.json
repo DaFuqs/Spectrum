@@ -15,15 +15,27 @@
   ],
   "key": {
     "A": {
-      "item": "minecraft:amethyst_shard",
-      "count": 2
+      "tag": "minecraft:saplings",
+      "count": 4
     },
     "C": {
       "item": "minecraft:water_bucket"
     },
     "P": {
-      "item": "spectrum:magenta_pigment",
-      "count": 8
+      "item": "spectrum:infused_beverage",
+      "recipeViewNbt": "{Variant: \"berry_liquor\", Color: 16729462 }",
+      "matchbook": {
+
+        "mode": "AND",
+        "matches": [
+          {
+            "type": "string",
+            "key": "Variant",
+            "target": "berry_liquor"
+          }
+        ]
+
+      }
     }
   },
   "result": {

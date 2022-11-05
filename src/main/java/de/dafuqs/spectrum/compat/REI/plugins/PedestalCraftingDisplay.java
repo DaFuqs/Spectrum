@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.REI.GatedRecipeDisplay;
+import de.dafuqs.spectrum.compat.REI.REIHelper;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
@@ -57,8 +58,8 @@ public class PedestalCraftingDisplay extends BasicDisplay implements SimpleGridM
 		for (int i = 0; i < 9 + shownGemstoneSlotCount; i++) {
 			list.add(EntryIngredient.empty());
 		}
-		for (int i = 0; i < recipe.getIngredients().size(); i++) {
-			list.set(PedestalCraftingDisplaySerializer.getSlotWithSize(recipe.getWidth(), i), EntryIngredients.ofItemStacks(recipe.getIngredientStackStacks().get(i)));
+		for (int i = 0; i < recipe.getIngredientStacks().size(); i++) {
+			list.set(PedestalCraftingDisplaySerializer.getSlotWithSize(recipe.getWidth(), i), REIHelper.ofIngredientStack(recipe.getIngredientStacks().get(i)));
 		}
 		
 		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();

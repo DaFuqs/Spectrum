@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.enchantments.ImprovedCriticalEnchantment;
 import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
+import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.trinkets.AttackRingItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
@@ -20,17 +21,25 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityMixin implements PlayerEntityAccessor {
+public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
+	
+	@Shadow public abstract Iterable<ItemStack> getItemsHand();
+	
+	@Shadow public abstract void increaseStat(Identifier stat, int amount);
 	
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
@@ -85,6 +94,21 @@ public class PlayerEntityMixin implements PlayerEntityAccessor {
 		if(player.hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
 			cir.setReturnValue(false);
 		}
+	}
+	
+	// If the player holds an ExperienceStorageItem in their hands
+	// experience is tried to get put in there first
+	@ModifyVariable(at = @At("HEAD"), method = "addExperience(I)V", argsOnly = true)
+	public int addExperience(int experience) {
+		for(ItemStack stack : getItemsHand()) {
+			if(stack.getItem() instanceof ExperienceStorageItem) {
+				experience = ExperienceStorageItem.addStoredExperience(stack, experience);
+				if(experience == 0) {
+					break;
+				}
+			}
+		}
+		return experience;
 	}
 	
 }

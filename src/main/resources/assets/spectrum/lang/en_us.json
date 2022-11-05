@@ -423,6 +423,7 @@
   "spectrum.toast.message.paint_flinging_unlocked.text": "Ink Slinging",
 
   "text.autoconfig.Spectrum.option.ToastTimeMilliseconds": "The duration in milliseconds ingame recipe/unlock popups stay on the screen",
+  "text.autoconfig.Spectrum.option.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel": "Bedrock Anvil can Exceed Enchantment Max Levels",
   "text.autoconfig.Spectrum.option.CitrineGeodeMinAboveBottomGenerationHeight": "Min Citrine Geode generation height (from world floor)",
   "text.autoconfig.Spectrum.option.CitrineGeodeFixedMaxGenerationHeight": "Max Citrine Geode generation height (Y value)",
   "text.autoconfig.Spectrum.option.TopazGeodeMinFixedGenerationHeight": "Min Topaz Geode generation height (Y value)",

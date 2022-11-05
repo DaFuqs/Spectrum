@@ -14,10 +14,11 @@ public class SpectrumConfig implements ConfigData {
 	public long ToastTimeMilliseconds = 7500;
 	
 	@Comment("""
-            Spectrum displays Status Effects that get applied to the player when eaten (like a Golden Apple does
-            If true, these tooltips get displayed for the foods of all mods, if false only for spectrums items
+			The vanilla anvil caps enchantment levels at the max level for the enchantment
+			So enchanted books that exceed the enchantments natural max level get capped
+			If true the bedrock anvil will not cap the enchantments level to it's natural max level
             """)
-	public boolean ShowFoodEffectTooltipsForNonSpectrumFoods = true;
+	public boolean BedrockAnvilCanExceedMaxVanillaEnchantmentLevel = false;
 	
 	@Comment("""
 			The heights where citrine and topaz geodes will spawn

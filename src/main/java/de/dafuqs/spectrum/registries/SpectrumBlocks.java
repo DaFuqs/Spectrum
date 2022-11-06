@@ -305,12 +305,12 @@ public class SpectrumBlocks {
 	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, AbstractBlock.Settings.of(MIDNIGHT_SOLUTION_MATERIAL).noCollision().strength(100.0F).dropsNothing());
 	
 	// ROCK CANDY
-	public static final Block SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.SUGAR);
-	public static final Block TOPAZ_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_TOPAZ_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.TOPAZ);
-	public static final Block AMETHYST_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.AMETHYST);
-	public static final Block CITRINE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_CITRINE_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.CITRINE);
-	public static final Block ONYX_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_ONYX_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.ONYX);
-	public static final Block MOONSTONE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_MOONSTONE_BUD).hardness(1.0F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.MOONSTONE);
+	public static final Block SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(0.5F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.SUGAR);
+	public static final Block TOPAZ_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_TOPAZ_BUD).hardness(0.5F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.TOPAZ);
+	public static final Block AMETHYST_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(0.5F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.AMETHYST);
+	public static final Block CITRINE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_CITRINE_BUD).hardness(0.5F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.CITRINE);
+	public static final Block ONYX_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_ONYX_BUD).hardness(0.5F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.ONYX);
+	public static final Block MOONSTONE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_MOONSTONE_BUD).hardness(0.5F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.MOONSTONE);
 	
 	// PASTEL NETWORK
 	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), "block.spectrum.connection_node.tooltip");

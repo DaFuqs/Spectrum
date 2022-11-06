@@ -7,17 +7,14 @@
       "count": 8
     },
     {
-      "item": "spectrum:bloodboil_syrup",
-      "count": 1
-    },
-    {
       "item": "spectrum:blood_orchid_petal",
       "count": 2
     },
     {
-      "item": "spectrum:quitoxic_reeds",
+      "item": "spectrum:quitoxic_powder",
       "count": 2
-    },{
+    },
+    {
       "item": "spectrum:bottle_of_ruin",
       "count": 1
     }
@@ -197,7 +194,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "count": 6,
+    "count": 4,
     "nbt": "{Variant: \"rabbit_poison\", Color: 9518003 }"
   },
   "required_advancement": "spectrum:progression/unlock_rabbit_poison"

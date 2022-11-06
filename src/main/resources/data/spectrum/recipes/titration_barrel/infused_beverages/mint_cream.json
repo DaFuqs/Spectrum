@@ -121,7 +121,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "count": 6,
+    "count": 4,
     "nbt": "{Variant: \"mint_cream\", Color: 2752440 }"
   },
   "required_advancement": "spectrum:progression/unlock_mint_beverages"

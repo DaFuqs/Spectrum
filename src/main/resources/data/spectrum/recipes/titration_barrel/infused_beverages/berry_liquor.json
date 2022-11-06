@@ -5,7 +5,7 @@
   "ingredients": [
     {
       "item": "minecraft:sweet_berries",
-      "count": 4
+      "count": 6
     },
     {
       "item": "minecraft:sugar",
@@ -96,7 +96,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "count": 2,
+    "count": 4,
     "nbt": "{Variant: \"berry_liquor\", Color: 16729462 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"

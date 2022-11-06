@@ -4,7 +4,7 @@
   "ingredients": [
     {
       "item": "spectrum:amaranth_bushel",
-      "count": 4
+      "count": 12
     }
   ],
   "min_fermentation_time_hours": 24,
@@ -68,7 +68,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "count": 6,
+    "count": 4,
     "nbt": "{Variant: \"gin\", Color: 16437201 }"
   },
   "required_advancement": "spectrum:progression/unlock_gin"

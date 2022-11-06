@@ -71,7 +71,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "count": 6,
+    "count": 4,
     "nbt": "{Variant: \"mint_schnapps\", Color: 1231480 }"
   },
   "required_advancement": "spectrum:progression/unlock_mint_beverages"

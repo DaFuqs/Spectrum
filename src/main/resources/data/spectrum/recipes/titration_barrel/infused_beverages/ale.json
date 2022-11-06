@@ -114,7 +114,7 @@
   },
   "result": {
     "item": "spectrum:infused_beverage",
-    "count": 8,
+    "count": 4,
     "nbt": "{Variant: \"ale\", Color: 14847529 }"
   },
   "required_advancement": "spectrum:milestones/confirmed_drinking_age"

@@ -30,17 +30,19 @@
       "text": "$(italic)You might even be able to add more stuff than just plain Sugar when immersed? Liquid crystal and all that..."
     },
     {
+      "type": "patchouli:image",
+      "title": "Growing Rock Candy",
+      "images": [
+        "spectrum:textures/gui/manual/rock_candy_growing.png"
+      ],
+      "text": "Harvest Sugar Sticks with $(thing)Silk Touch$() to keep their size for use as fancy lights, or just for storage. The bigger they have grown they more light emit."
+    },
+    {
       "type": "patchouli:spotlight",
       "item": "spectrum:topaz_rock_candy",
       "title": "Gemstone Rock Candy",
       "advancement": "spectrum:midgame/collect_gemstone_rock_candy",
-      "text": "A little $(l:general/gemstone_powder)Gemstone Powder$(/l) in addition to the Sugar dissolved in the liquid allows the Rock Candy to take on the gemstone typical color.$(br2)You always wanted to know what gemstones taste like. This one seems like a healthier option than snorting it up your nose."
-    },
-    {
-      "type": "patchouli:text",
-      "title": "As Decoration",
-      "advancement": "spectrum:hidden/collect_rock_candy",
-      "text": "You can harvest grown Sugar Sticks with $(thing)Silk Touch$() to keep their grown size.$(br2)You can then use those grown sticks as fancy lights, or just for storage. The bigger they have grown they more light they give up."
+      "text": "Dissolving $(l:general/gemstone_powder)Gemstone Powder$(/l) instead of Sugar in the liquid allows the Rock Candy to take on the gemstone typical color.$(br2)You always wanted to know what gemstones taste like. This one definitely seems like a healthier option than snorting it up your nose."
     }
   ]
 }

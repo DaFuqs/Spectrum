@@ -245,7 +245,7 @@ public class SpectrumItems {
 	
 	public static final Item BLOOD_ORCHID_PETAL = new Item(Tab.RESOURCES.settings());
 	
-	public static final Item ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.NONE);
+	public static final Item ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ROCK_CANDY), RockCandy.RockCandyVariant.SUGAR);
 	public static final Item TOPAZ_ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.TOPAZ_ROCK_CANDY), RockCandy.RockCandyVariant.TOPAZ);
 	public static final Item AMETHYST_ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.AMETHYST_ROCK_CANDY), RockCandy.RockCandyVariant.AMETHYST);
 	public static final Item CITRINE_ROCK_CANDY = new RockCandyItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CITRINE_ROCK_CANDY), RockCandy.RockCandyVariant.CITRINE);

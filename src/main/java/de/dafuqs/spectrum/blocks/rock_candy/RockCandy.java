@@ -1,40 +1,41 @@
 package de.dafuqs.spectrum.blocks.rock_candy;
 
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.items.conditional.GemstonePowderItem;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.StringIdentifiable;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
 
 public interface RockCandy {
 	
 	enum RockCandyVariant implements StringIdentifiable {
-		NONE,
+		SUGAR,
 		AMETHYST,
 		CITRINE,
 		TOPAZ,
 		ONYX,
 		MOONSTONE;
 		
-		public static RockCandyVariant fromGemstonePowder(Item item) {
-			if(item instanceof GemstonePowderItem gemstoneColorItem) {
-				GemstoneColor gemstoneColor = gemstoneColorItem.getGemstoneColor();
-				if (BuiltinGemstoneColor.CYAN.equals(gemstoneColor)) {
-					return RockCandyVariant.TOPAZ;
-				} else if (BuiltinGemstoneColor.MAGENTA.equals(gemstoneColor)) {
-					return RockCandyVariant.AMETHYST;
-				} else if (BuiltinGemstoneColor.YELLOW.equals(gemstoneColor)) {
-					return RockCandyVariant.CITRINE;
-				} else if (BuiltinGemstoneColor.BLACK.equals(gemstoneColor)) {
-					return RockCandyVariant.ONYX;
-				} else if (BuiltinGemstoneColor.WHITE.equals(gemstoneColor)) {
-					return RockCandyVariant.MOONSTONE;
-				}
+		public static @Nullable RockCandyVariant getFor(ItemStack itemStack) {
+			Item item = itemStack.getItem();
+			if(item == Items.SUGAR) {
+				return RockCandyVariant.SUGAR;
+			} else if(item == SpectrumItems.TOPAZ_POWDER) {
+				return RockCandyVariant.TOPAZ;
+			} else if(item == SpectrumItems.AMETHYST_POWDER) {
+				return RockCandyVariant.AMETHYST;
+			} else if(item == SpectrumItems.CITRINE_POWDER) {
+				return RockCandyVariant.CITRINE;
+			} else if(item == SpectrumItems.ONYX_POWDER) {
+				return RockCandyVariant.ONYX;
+			} else if(item == SpectrumItems.MOONSTONE_POWDER) {
+				return RockCandyVariant.MOONSTONE;
 			}
-			return RockCandyVariant.NONE;
+			return null;
 		}
 		
 		@Override

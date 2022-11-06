@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import de.dafuqs.spectrum.registries.SpectrumFluids;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -17,7 +16,6 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.world.ServerWorld;
@@ -40,10 +38,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class SugarStickBlock extends Block implements RockCandy {
 	
@@ -58,7 +53,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 	public static final IntProperty AGE = Properties.AGE_2;
 	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED  = SpectrumCommon.LIQUID_CRYSTAL_LOGGED;
 	
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(5.0D, 3.0D, 5.0D, 11.0D, 13.0D, 11.0D);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(5.0D, 3.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 	
 	public SugarStickBlock(Settings settings, RockCandyVariant rockCandyVariant) {
 		super(settings);
@@ -122,28 +117,23 @@ public class SugarStickBlock extends Block implements RockCandy {
 			int age = state.get(AGE);
 			if(age < Properties.AGE_2_MAX) {
 				List<ItemEntity> itemEntities = world.getNonSpectatingEntities(ItemEntity.class, Box.of(Vec3d.ofCenter(pos), ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE));
+				Collections.shuffle(itemEntities);
 				for (ItemEntity itemEntity : itemEntities) {
-					// is the item also submerged? (mostly the same pool)
+					// is the item also submerged?
+					// lazy, but mostly accurate and performant way to check if it's the same liquid pool
 					if(!itemEntity.isSubmergedIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
 						continue;
-					}itemEntity.setNeverDespawn();
+					}
 					
 					ItemStack stack = itemEntity.getStack();
 					if (stack.getCount() >= REQUIRED_ITEM_COUNT_PER_STAGE) {
-						if(stack.isOf(Items.SUGAR)) {
+						@Nullable RockCandyVariant itemVariant = RockCandyVariant.getFor(stack);
+						if(itemVariant != null && (rockCandyVariant == RockCandyVariant.SUGAR || rockCandyVariant == itemVariant)) {
 							stack.decrement(REQUIRED_ITEM_COUNT_PER_STAGE);
-							age++;
-							BlockState newState = state.with(AGE, age);
+							BlockState newState = SUGAR_STICK_BLOCKS.get(itemVariant).getDefaultState().with(AGE, age + 1).with(LIQUID_CRYSTAL_LOGGED, state.get(LIQUID_CRYSTAL_LOGGED));
 							world.setBlockState(pos, newState);
 							world.playSound(null, pos, newState.getSoundGroup().getHitSound(), SoundCategory.BLOCKS, 0.5F, 1.0F);
-							return;
-						} else if(rockCandyVariant == RockCandyVariant.NONE && stack.isIn(SpectrumItemTags.GEMSTONE_POWDERS)) {
-							stack.decrement(REQUIRED_ITEM_COUNT_PER_STAGE);
-							RockCandyVariant newVariant = RockCandyVariant.fromGemstonePowder(stack.getItem());
-							BlockState newState = SUGAR_STICK_BLOCKS.get(newVariant).getDefaultState().with(AGE, age).with(LIQUID_CRYSTAL_LOGGED, state.get(LIQUID_CRYSTAL_LOGGED));
-							world.setBlockState(pos, newState);
-							world.playSound(null, pos, newState.getSoundGroup().getHitSound(), SoundCategory.BLOCKS, 0.5F, 1.0F);
-							return;
+							break;
 						}
 					}
 				}

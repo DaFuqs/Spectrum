@@ -10,8 +10,15 @@
   },
   "pages": [
     {
+      "type": "patchouli:spotlight",
+      "name": "Blood Orchid Products",
+      "item": "spectrum:bloodboil_syrup",
+      "text": "Extracts of the $(l:resources:blood_orchid)Blood Orchid$(/l) have an intense effect when consumed: they may to put you into $(thing)Frenzy$().$(br)Damage, attack speed, speed and knockback resistance are buffed the more you kill. But if you do not score a kill all 15 seconds you get debuffs instead. The higher the effects level, the higher the amplitude."
+    },
+    {
       "type": "patchouli:text",
-      "text": "Extracts of the $(l:resources:blood_orchid)Blood Orchid$(/l) have an ingense effect, when consumed: they may to put you into $(thing)Frenzy$().$(br)damage, attack speed, knockback resistance are buffed the more you kill. But if you do not regularly score a kill you get negative ones."
+      "title": "Frenzy Stacking",
+      "text": "Instead of resetting the duration, applying another $(thing)Frenzy$() effect will increase it's potency instead.$(br2)To get the most out of the effect getting one with long duration first and then stacking up on that seems to be most effective."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

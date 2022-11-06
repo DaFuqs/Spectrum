@@ -24,7 +24,7 @@ public class FrenzyStatusEffect extends SpectrumStatusEffect implements Stackabl
 	public static final String KNOCKBACK_RESISTANCE_UUID_STRING = "b9d38c3a-75b5-462f-a624-eec9b987a5e2";
 	public static final double KNOCKBACK_RESISTANCE_PER_STAGE = 0.25D;
 	
-	public static final long REQUIRE_KILL_EVERY_X_TICKS = 400;
+	public static final long REQUIRE_KILL_EVERY_X_TICKS = 300;
 	
 	public FrenzyStatusEffect(StatusEffectCategory category, int color) {
 		super(category, color);

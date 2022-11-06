@@ -11,7 +11,7 @@
       "count": 2
     }
   ],
-  "min_fermentation_time_hours": 48,
+  "min_fermentation_time_hours": 24,
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {

@@ -15,11 +15,11 @@
       "count": 1
     }
   ],
-  "min_fermentation_time_hours": 24,
+  "min_fermentation_time_hours": 4,
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.12,
+    "fermentation_speed_mod": 2.0,
     "effects": [
       {
         "id": "minecraft:resistance",

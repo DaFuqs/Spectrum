@@ -23,11 +23,11 @@
       "count": 4
     }
   ],
-  "min_fermentation_time_hours": 72,
+  "min_fermentation_time_hours": 24,
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.1,
+    "fermentation_speed_mod": 0.2,
     "effects": [
       {
         "id": "spectrum:swiftness",

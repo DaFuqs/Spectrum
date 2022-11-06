@@ -22,7 +22,6 @@
   "fluid": "spectrum:liquid_crystal",
   "min_fermentation_time_hours": 24,
   "fermentation_data": {
-    "fermentation_speed_mod": 1.0,
     "angels_share_percent_per_mc_day": -0.005
   },
   "result": {

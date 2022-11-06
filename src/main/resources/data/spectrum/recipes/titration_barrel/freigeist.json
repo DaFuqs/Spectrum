@@ -26,9 +26,6 @@
   "fluid": "spectrum:liquid_crystal",
   "min_fermentation_time_hours": 48,
   "tapping_item": "minecraft:glass_bottle",
-  "fermentation_data": {
-    "fermentation_speed_mod": 1.0
-  },
   "result": {
     "item": "spectrum:freigeist",
     "count": 2

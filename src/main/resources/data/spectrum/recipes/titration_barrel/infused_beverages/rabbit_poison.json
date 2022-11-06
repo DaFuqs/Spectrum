@@ -22,7 +22,7 @@
       "count": 1
     }
   ],
-  "min_fermentation_time_hours": 48,
+  "min_fermentation_time_hours": 24,
   "fluid": "spectrum:midnight_solution",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {

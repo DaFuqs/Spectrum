@@ -4,7 +4,7 @@
   "ingredients": [
     {
       "item": "minecraft:sweet_berries",
-      "count": 4
+      "count": 8
     }
   ],
   "min_fermentation_time_hours": 12,

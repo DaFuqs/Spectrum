@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.items.ApplyFoodEffectsCallback;
 import de.dafuqs.spectrum.items.tools.DreamflayerItem;
 import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.status_effects.StackableStatusEffect;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -67,6 +68,14 @@ public abstract class LivingEntityMixin {
 	@Shadow public abstract ItemStack getMainHandStack();
 	
 	@Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
+	
+	@Shadow public abstract boolean canHaveStatusEffect(StatusEffectInstance effect);
+	
+	@Shadow public abstract boolean removeStatusEffect(StatusEffect type);
+	
+	@Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect);
+	
+	@Shadow protected abstract void initDataTracker();
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -272,6 +281,30 @@ public abstract class LivingEntityMixin {
 		Item item = stack.getItem();
 		if (item instanceof ApplyFoodEffectsCallback foodWithCallback) {
 			foodWithCallback.afterConsumption(world, stack, (LivingEntity)(Object) this);
+		}
+	}
+	
+	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true)
+	public void spectrum$addStackableStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+		if(effect.getEffectType() instanceof StackableStatusEffect) {
+			if(!SpectrumStatusEffects.effectsAreGettingStacked) {
+				if (this.canHaveStatusEffect(effect)) {
+					StatusEffectInstance existingInstance = getStatusEffect(effect.getEffectType());
+					if (existingInstance != null) {
+						SpectrumStatusEffects.effectsAreGettingStacked = true;
+						
+						int newAmplifier = 1 + existingInstance.getAmplifier() + effect.getAmplifier();
+						StatusEffectInstance newInstance = new StatusEffectInstance(existingInstance.getEffectType(), existingInstance.getDuration(), newAmplifier, existingInstance.isAmbient(), existingInstance.shouldShowParticles(), existingInstance.shouldShowIcon());
+						removeStatusEffect(existingInstance.getEffectType());
+						addStatusEffect(newInstance);
+						cir.cancel();
+					}
+				} else {
+					SpectrumStatusEffects.effectsAreGettingStacked = false;
+				}
+			} else {
+				SpectrumStatusEffects.effectsAreGettingStacked = false;
+			}
 		}
 	}
 	

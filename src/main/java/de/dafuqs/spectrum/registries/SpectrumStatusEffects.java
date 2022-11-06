@@ -11,6 +11,8 @@ import net.minecraft.util.registry.Registry;
 
 public class SpectrumStatusEffects {
 	
+	public static boolean effectsAreGettingStacked = false;
+	
 	/**
 	 * Clears negative effects on the entity
 	 * and makes it immune against new ones
@@ -82,11 +84,15 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(AdditionalEntityAttributes.WATER_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.25D, EntityAttributeModifier.Operation.ADDITION));
 	
 	/**
-	 * damage, attack speed, knockback resistance are buffed the more the player kills.
+	 * damage, attack speed, speed & knockback resistance are buffed the more the player kills.
 	 * But if they do not score a kill in 20 seconds they get negative effects.
 	 * Stacking $(thing)Frenzy$() (applying the effect while they already have it) increases these effects amplitude
 	 */
-	public static final StatusEffect FRENZY = registerStatusEffect("frenzy", new SpectrumStatusEffect(StatusEffectCategory.NEUTRAL, 0x990000)); // TODO
+	public static final StatusEffect FRENZY = registerStatusEffect("frenzy", new FrenzyStatusEffect(StatusEffectCategory.NEUTRAL, 0x990000))
+			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, FrenzyStatusEffect.ATTACK_SPEED_UUID_STRING,  FrenzyStatusEffect.ATTACK_SPEED_PER_STAGE, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
+			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, FrenzyStatusEffect.ATTACK_DAMAGE_UUID_STRING, FrenzyStatusEffect.ATTACK_DAMAGE_PER_STAGE, EntityAttributeModifier.Operation.ADDITION)
+			.addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, FrenzyStatusEffect.MOVEMENT_SPEED_UUID_STRING, FrenzyStatusEffect.MOVEMENT_SPEED_PER_STAGE, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
+			.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, FrenzyStatusEffect.KNOCKBACK_RESISTANCE_UUID_STRING, FrenzyStatusEffect.KNOCKBACK_RESISTANCE_PER_STAGE, EntityAttributeModifier.Operation.ADDITION);
 	
 	/**
 	 * Increases speed and visibility in lava

@@ -128,10 +128,16 @@ public class SugarStickBlock extends Block implements RockCandy {
 					ItemStack stack = itemEntity.getStack();
 					if (stack.getCount() >= REQUIRED_ITEM_COUNT_PER_STAGE) {
 						@Nullable RockCandyVariant itemVariant = RockCandyVariant.getFor(stack);
-						if(itemVariant != null && (rockCandyVariant == RockCandyVariant.SUGAR || rockCandyVariant == itemVariant)) {
+						if(itemVariant != null) {
+							BlockState newState;
+							if(rockCandyVariant != RockCandyVariant.SUGAR) {
+								newState = state;
+							} else {
+								newState = SUGAR_STICK_BLOCKS.get(itemVariant).getDefaultState();
+							}
+							
 							stack.decrement(REQUIRED_ITEM_COUNT_PER_STAGE);
-							BlockState newState = SUGAR_STICK_BLOCKS.get(itemVariant).getDefaultState().with(AGE, age + 1).with(LIQUID_CRYSTAL_LOGGED, state.get(LIQUID_CRYSTAL_LOGGED));
-							world.setBlockState(pos, newState);
+							world.setBlockState(pos, newState.with(AGE, age + 1).with(LIQUID_CRYSTAL_LOGGED, state.get(LIQUID_CRYSTAL_LOGGED)));
 							world.playSound(null, pos, newState.getSoundGroup().getHitSound(), SoundCategory.BLOCKS, 0.5F, 1.0F);
 							break;
 						}

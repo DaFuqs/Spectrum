@@ -22,25 +22,26 @@
               ],
               "conditions": [
                 {
+                  "condition": "minecraft:block_state_property",
+                  "block": "spectrum:moonstone_sugar_stick",
+                  "properties": {
+                    "age": {
+                      "min": 1
+                    }
+                  }
+                },
+                {
                   "condition": "minecraft:match_tool",
                   "predicate": {
                     "enchantments": [
                       {
-                        "enchantment": "minecraft:silk_touch",
-                        "levels": {
-                          "min": 1
-                        }
+                        "enchantment": "minecraft:silk_touch"
                       }
                     ]
                   }
                 }
               ]
-            }
-          ]
-        },
-        {
-          "type": "minecraft:alternatives",
-          "children": [
+            },
             {
               "type": "minecraft:item",
               "name": "spectrum:moonstone_rock_candy",
@@ -53,12 +54,12 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:moonstone_sugar_stick"
             }
           ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:moonstone_sugar_stick"
         }
       ]
     }

@@ -35,14 +35,14 @@
       "images": [
         "spectrum:textures/gui/manual/rock_candy_growing.png"
       ],
-      "text": "Harvest Sugar Sticks with $(thing)Silk Touch$() to keep their size for use as fancy lights, or just for storage. The bigger they have grown they more light emit."
+      "text": " $(thing)Silk Touch$() keeps their size for use as fancy lights, or just for storage. They emit more light the larger they are."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:topaz_rock_candy",
       "title": "Gemstone Rock Candy",
       "advancement": "spectrum:midgame/collect_gemstone_rock_candy",
-      "text": "Dissolving $(l:general/gemstone_powder)Gemstone Powder$(/l) instead of Sugar in the liquid allows the Rock Candy to take on the gemstone typical color.$(br2)You always wanted to know what gemstones taste like. This one definitely seems like a healthier option than snorting it up your nose."
+      "text": "Dissolving $(l:general/gemstone_powder)Gemstone Powder$(/l) instead of Sugar in the liquid allowed the Rock Candy to take on the gemstone's typical color.$(br2)You always wanted to know what those taste like. Definitely seems like a healthier option than snorting them up your nose."
     }
   ]
 }

@@ -80,16 +80,4 @@ public class HardcoreDeathComponent implements Component, LevelComponentInitiali
 		playersThatDiedInHardcore.remove(uuid);
 	}
 	
-	/*
-	@Override
-	public void writeSyncPacket(PacketByteBuf buf, ServerPlayerEntity recipient) {
-		NbtCompound tag = new NbtCompound();
-		NbtList uuidList = new NbtList();
-		if(hasHardcoreDeath(recipient.getUuid())) {
-			uuidList.add(NbtHelper.fromUuid(recipient.getUuid()));
-		}
-		tag.put("HardcoreDeaths", uuidList);
-		buf.writeNbt(tag);
-	}*/
-	
 }

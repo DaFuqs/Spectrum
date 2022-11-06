@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
+import de.dafuqs.spectrum.cca.LastKillComponent;
 import de.dafuqs.spectrum.enchantments.ImprovedCriticalEnchantment;
 import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
@@ -16,6 +17,7 @@ import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -23,6 +25,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -109,6 +112,13 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 			}
 		}
 		return experience;
+	}
+	
+	@Inject(method = "onKilledOther", at = @At("HEAD"))
+	public void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfo ci) {
+		if(world != null && !world.isClient) {
+			LastKillComponent.rememberKillTick((PlayerEntity)(Object) this, world.getTime());
+		}
 	}
 	
 }

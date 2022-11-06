@@ -33,7 +33,8 @@
     ],
     "cardinal-components": [
       "de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider",
-      "de.dafuqs.spectrum.cca.HardcoreDeathComponent"
+      "de.dafuqs.spectrum.cca.HardcoreDeathComponent",
+      "de.dafuqs.spectrum.cca.LastKillComponent"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
@@ -43,8 +44,8 @@
   "custom": {
     "cardinal-components": [
       "spectrum:azure_dike",
-      "spectrum:crystal_grace_effect_holder",
-      "spectrum:hardcore_deaths"
+      "spectrum:hardcore_deaths",
+      "spectrum:last_kill"
     ]
   },
   "depends": {

@@ -39,12 +39,12 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public JadeWineRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.75F, 0.1F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.075F, 0.1F, List.of()));
 	}
 	
 	@Override
 	public ItemStack getOutput() {
-		return tapWith(1, 1, false, 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.8F, 0.4F); // downfall & temperature are for plains
+		return tapWith(1, 1, false, 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
 	}
 	
 	@Override

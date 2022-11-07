@@ -11,56 +11,88 @@
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.1,
+    "fermentation_speed_mod": 0.125,
     "effects": [
       {
         "id": "minecraft:luck",
-        "base_duration": 600,
+        "base_duration": 9600,
         "potency": [
           {
-            "min_alc": 3,
-            "min_thickness": 0.75,
             "potency": 0
           },
           {
-            "min_alc": 6,
-            "min_thickness": 0.75,
+            "min_alc": 35,
             "potency": 1
           },
           {
-            "min_alc": 9,
-            "min_thickness": 0.75,
+            "min_alc": 45,
+            "potency": 2
+          },
+          {
+            "min_alc": 55,
+            "potency": 3
+          },
+          {
+            "min_alc": 65,
+            "potency": 4
+          }
+        ]
+      },
+      {
+        "id": "spectrum:swiftness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 40,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 40,
+            "min_thickness": 2.0,
+            "potency": 1
+          },
+          {
+            "min_alc": 40,
+            "min_thickness": 2.5,
             "potency": 2
           }
         ]
       },
       {
-        "id": "minecraft:haste",
-        "base_duration": 600,
+        "id": "minecraft:fire_resistance",
+        "base_duration": 9600,
         "potency": [
           {
-            "min_alc": 3,
-            "min_thickness": 0.75,
-            "potency": 0
-          },
-          {
-            "min_alc": 6,
-            "min_thickness": 0.75,
-            "potency": 1
-          },
-          {
-            "min_alc": 9,
-            "min_thickness": 0.75,
-            "potency": 2
+            "min_alc": 60
           }
         ]
       },
       {
-        "id": "minecraft:blindness",
-        "base_duration": 20,
+        "id": "minecraft:weakness",
+        "base_duration": 9600,
         "potency": [
           {
             "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:poison",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 60
           }
         ]
       }

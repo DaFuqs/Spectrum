@@ -11,11 +11,11 @@
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.075,
+    "fermentation_speed_mod": 0.1,
     "effects": [
       {
         "id": "minecraft:absorption",
-        "base_duration": 2400,
+        "base_duration": 3600,
         "potency": [
           {
             "potency": 0
@@ -30,7 +30,7 @@
           },
           {
             "min_alc": 85,
-            "potency": 3
+            "potency": 2
           }
         ]
       },
@@ -39,38 +39,29 @@
         "base_duration": 160,
         "potency": [
           {
-            "min_thickness": 0.75
+            "potency": 0
           },
           {
             "min_alc": 50,
-            "min_thickness": 0.75,
             "potency": 1
           },
           {
-            "min_alc": 60,
-            "min_thickness": 0.75,
+            "min_alc": 65,
             "potency": 2
           },
           {
-            "min_alc": 70,
-            "min_thickness": 0.75,
+            "min_alc": 80,
             "potency": 3
           },
           {
-            "min_alc": 80,
-            "min_thickness": 0.75,
+            "min_alc": 95,
             "potency": 4
-          },
-          {
-            "min_alc": 90,
-            "min_thickness": 0.75,
-            "potency": 5
           }
         ]
       },
       {
         "id": "minecraft:resistance",
-        "base_duration": 6000,
+        "base_duration": 9600,
         "potency": [
           {
             "min_alc": 60,

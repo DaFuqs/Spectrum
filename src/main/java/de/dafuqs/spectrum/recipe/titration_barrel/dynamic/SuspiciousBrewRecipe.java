@@ -38,14 +38,14 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public SuspiciousBrewRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.5F, 0.1F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(1.0F, 0.1F, List.of()));
 	}
 	
 	@Override
 	public ItemStack getOutput() {
 		ItemStack flowerStack = Items.DANDELION.getDefaultStack();
 		flowerStack.setCount(4);
-		return tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.8F, 0.4F); // downfall & temperature are for plains
+		return tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
 	}
 	
 	@Override
@@ -92,7 +92,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 			int potencyMod = (int) (alcPercent / 5D);
 			List<StatusEffectInstance> finalStatusEffects = new ArrayList<>();
 			for(Map.Entry<StatusEffect, Integer> entry : stewEffects.entrySet()) {
-				int duration = Math.max(80, entry.getValue() / potencyMod);
+				int duration = Math.max(80, entry.getValue() / ( 1 + potencyMod));
 				finalStatusEffects.add(new StatusEffectInstance(entry.getKey(), duration, potencyMod));
 			}
 			

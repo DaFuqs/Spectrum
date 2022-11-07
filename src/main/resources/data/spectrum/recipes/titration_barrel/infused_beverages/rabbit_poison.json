@@ -23,14 +23,14 @@
   "fluid": "spectrum:midnight_solution",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 2,
+    "fermentation_speed_mod": 1.0,
     "effects": [
       {
         "id": "spectrum:frenzy",
         "base_duration": 3600,
         "potency": [
           {
-            "min_thickness": 0.25
+            "potency": 0
           },
           {
             "min_alc": 28,
@@ -55,23 +55,19 @@
         "base_duration": 40,
         "potency": [
           {
-            "min_thickness": 1
-          },
-          {
-            "min_alc": 21,
-            "potency": 1
+            "potency": 0
           },
           {
             "min_alc": 28,
+            "potency": 1
+          },
+          {
+            "min_alc": 44,
             "potency": 2
           },
           {
-            "min_alc": 44,
+            "min_alc": 50,
             "potency": 3
-          },
-          {
-            "min_alc": 44,
-            "potency": 4
           }
         ]
       },
@@ -80,15 +76,15 @@
         "base_duration": 3600,
         "potency": [
           {
-            "min_thickness": 1
-          },
-          {
-            "min_alc": 21,
             "potency": 0
           },
           {
-            "min_alc": 44,
+            "min_alc": 21,
             "potency": 1
+          },
+          {
+            "min_alc": 44,
+            "potency": 2
           }
         ]
       },
@@ -97,11 +93,7 @@
         "base_duration": 300,
         "potency": [
           {
-            "min_thickness": 1
-          },
-          {
-            "min_alc": 21,
-            "potency": 0
+            "min_alc": 21
           },
           {
             "min_alc": 44,
@@ -114,11 +106,7 @@
         "base_duration": 2400,
         "potency": [
           {
-            "min_thickness": 1
-          },
-          {
-            "min_alc": 21,
-            "potency": 0
+            "min_alc": 21
           },
           {
             "min_alc": 44,
@@ -131,10 +119,6 @@
         "base_duration": 2400,
         "potency": [
           {
-            "min_thickness": 1
-          },
-          {
-            "min_alc": 21,
             "potency": 1
           },
           {
@@ -148,11 +132,7 @@
         "base_duration": 1200,
         "potency": [
           {
-            "min_thickness": 1
-          },
-          {
-            "min_alc": 21,
-            "potency": 0
+            "min_alc": 21
           },
           {
             "min_alc": 44,
@@ -165,11 +145,7 @@
         "base_duration": 2400,
         "potency": [
           {
-            "min_thickness": 1
-          },
-          {
-            "min_alc": 21,
-            "potency": 0
+            "min_alc": 21
           },
           {
             "min_alc": 44,
@@ -182,11 +158,10 @@
         "base_duration": 300,
         "potency": [
           {
-            "min_thickness": 1
+            "min_alc": 30
           },
           {
-            "min_alc": 12,
-            "potency": 0
+            "min_thickness": 1.25
           }
         ]
       }

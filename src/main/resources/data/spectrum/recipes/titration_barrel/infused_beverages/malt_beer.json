@@ -19,11 +19,11 @@
     "effects": [
       {
         "id": "minecraft:haste",
-        "base_duration": 6000
+        "base_duration": 9600
       },
       {
-        "id": "minecraft:saturation",
-        "base_duration": 600
+        "id": "spectrum:nourishing",
+        "base_duration": 9600
       }
     ]
   },

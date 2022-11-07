@@ -203,7 +203,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	
 	@Override
 	public ItemStack getOutput() {
-		ItemStack stack = tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L, 0.8F, 0.4F); // downfall & temperature are for plains
+		ItemStack stack = tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
 		stack.setCount(this.outputItemStack.getCount());
 		return stack;
 	}
@@ -286,7 +286,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	}
 	
 	protected double getAlcPercent(float thickness, float downfall, float ageIngameDays) {
-		return Support.logBase(1 + this.fermentationData.fermentationSpeedMod, ageIngameDays * (0.5 + thickness / 2) * (0.5D + downfall / 2D));
+		return Support.logBase(1 + this.fermentationData.fermentationSpeedMod, ageIngameDays * (0.5D + thickness / 2D) * (0.5D + downfall / 2D));
 	}
 	
 	protected float getThickness(int contentCount) {

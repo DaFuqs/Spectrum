@@ -6,6 +6,7 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.potion.PotionUtil;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -53,11 +54,12 @@ public class JadeWineItem extends BeverageItem {
 		}
 		
 		public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
-			super.addTooltip(itemStack, tooltip);
+			tooltip.add(new TranslatableText("item.spectrum.infused_beverage.tooltip.age", ageDays, alcPercent).formatted(Formatting.GRAY));
 			tooltip.add(new TranslatableText("item.spectrum.jade_wine.tooltip.bloominess", bloominess).formatted(Formatting.GRAY));
 			if (sweetened) {
 				tooltip.add(new TranslatableText("item.spectrum.jade_wine.tooltip.sweetened").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
 			}
+			PotionUtil.buildTooltip(itemStack, tooltip, 1.0F);
 		}
 		
 		public NbtCompound toNbt(NbtCompound nbtCompound) {

@@ -15,99 +15,86 @@
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.2,
+    "fermentation_speed_mod": 0.25,
     "effects": [
       {
         "id": "spectrum:swiftness",
-        "base_duration": 1200,
+        "base_duration": 9600,
         "potency": [
           {
             "potency": 0
           },
           {
-            "min_alc": 18,
+            "min_alc": 20,
             "potency": 1
           },
           {
-            "min_alc": 24,
+            "min_alc": 28,
             "potency": 2
           },
           {
-            "min_alc": 30,
-            "potency": 3
-          },
-          {
             "min_alc": 36,
-            "potency": 4
-          },
-          {
-            "min_alc": 42,
-            "potency": 5
-          },
-          {
-            "min_alc": 48,
-            "potency": 6
-          },
-          {
-            "min_alc": 54,
-            "potency": 7
-          },
-          {
-            "min_alc": 60,
-            "potency": 8
+            "potency": 3
           }
         ]
       },
       {
         "id": "minecraft:speed",
-        "base_duration": 1200,
+        "base_duration": 9600,
         "potency": [
           {
             "min_alc": 25,
-            "min_thickness": 1,
             "potency": 0
           },
           {
-            "min_alc": 35,
-            "min_thickness": 1,
+            "min_alc": 25,
             "potency": 1
           },
           {
-            "min_alc": 45,
-            "min_thickness": 1,
+            "min_alc": 30,
             "potency": 2
           },
           {
-            "min_alc": 55,
-            "min_thickness": 1,
+            "min_alc": 35,
             "potency": 3
-          },
-          {
-            "min_alc": 65,
-            "min_thickness": 1,
-            "potency": 4
           }
         ]
       },
       {
-        "id": "minecraft:glowing"
-      },
-      {
-        "id": "minecraft:nausea",
-        "base_duration": 400,
+        "id": "minecraft:glowing",
+        "base_duration": 4800,
         "potency": [
           {
-            "min_alc": 40,
             "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
           },
           {
             "min_thickness": 3,
             "potency": 1
           },
           {
-            "min_alc": 60,
-            "min_thickness": 2,
-            "potency": 1
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 30
           }
         ]
       }

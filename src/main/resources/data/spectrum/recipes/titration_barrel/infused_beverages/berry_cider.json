@@ -11,69 +11,65 @@
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 1.0,
+    "fermentation_speed_mod": 1.25,
     "effects": [
       {
         "id": "minecraft:health_boost",
-        "base_duration": 2400,
+        "base_duration": 9600,
         "potency": [
           {
-            "min_alc": 2
-          },
-          {
-            "min_alc": 3,
-            "potency": 1
+            "potency": 0
           },
           {
             "min_alc": 5,
-            "potency": 2
-          },
-          {
-            "min_alc": 7,
-            "potency": 3
-          },
-          {
-            "min_alc": 13,
-            "potency": 4
-          }
-        ]
-      },
-      {
-        "id": "minecraft:regeneration",
-        "base_duration": 1200,
-        "potency": [
-          {
-            "min_alc": 4,
-            "min_thickness": 0.75
-          },
-          {
-            "min_alc": 9,
-            "min_thickness": 0.75,
-            "potency": 1
-          }
-        ]
-      },
-      {
-        "id": "minecraft:nausea",
-        "base_duration": 1000,
-        "potency": [
-          {
-            "min_alc": 6
-          },
-          {
-            "min_thickness": 3
-          },
-          {
-            "min_alc": 7,
-            "potency": 1
-          },
-          {
-            "min_thickness": 4,
             "potency": 1
           },
           {
             "min_alc": 8,
             "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:strength",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 3,
+            "potency": 0
+          },
+          {
+            "min_alc": 6,
+            "potency": 1
+          }
+        ]
+      },
+      {
+        "id": "minecraft:weakness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 9
           }
         ]
       }

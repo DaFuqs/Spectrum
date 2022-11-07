@@ -27,93 +27,84 @@
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.2,
+    "fermentation_speed_mod": 0.25,
     "effects": [
       {
-        "id": "spectrum:swiftness",
-        "base_duration": 1800,
-        "potency": [
-          {
-            "min_thickness": 0.25
-          },
-          {
-            "min_alc": 19,
-            "potency": 2
-          },
-          {
-            "min_alc": 27,
-            "potency": 3
-          },
-          {
-            "min_alc": 39,
-            "potency": 4
-          }
-        ]
-      },
-      {
-        "id": "minecraft:haste",
-        "base_duration": 1800,
-        "potency": [
-          {
-            "min_thickness": 0.25
-          },
-          {
-            "min_alc": 21,
-            "potency": 3
-          },
-          {
-            "min_alc": 28,
-            "potency": 4
-          },
-          {
-            "min_alc": 36,
-            "potency": 5
-          }
-        ]
-      },
-      {
         "id": "spectrum:another_roll",
-        "base_duration": 1800,
+        "base_duration": 9600,
         "potency": [
           {
-            "min_thickness": 0.25
+            "potency": 0
           },
           {
-            "min_alc": 30,
+            "min_alc": 20,
             "potency": 1
           },
           {
-            "min_alc": 41,
+            "min_alc": 25,
             "potency": 2
           },
           {
-            "min_alc": 50,
+            "min_alc": 30,
             "potency": 3
+          }
+        ]
+      },
+      {
+        "id": "minecraft:speed",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 25,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 25,
+            "min_thickness": 2.0,
+            "potency": 1
+          },
+          {
+            "min_alc": 25,
+            "min_thickness": 2.5,
+            "potency": 2
           }
         ]
       },
       {
         "id": "minecraft:luck",
-        "base_duration": 1800,
+        "base_duration": 9600,
         "potency": [
           {
-            "min_thickness": 0.25
+            "min_alc": 28
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
           },
           {
-            "min_alc": 21,
+            "min_thickness": 3,
             "potency": 1
           },
           {
-            "min_alc": 28,
+            "min_thickness": 4,
             "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:blindness",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
           },
           {
-            "min_alc": 36,
-            "potency": 3
-          },
-          {
-            "min_alc": 44,
-            "potency": 4
+            "min_alc": 30
           }
         ]
       }

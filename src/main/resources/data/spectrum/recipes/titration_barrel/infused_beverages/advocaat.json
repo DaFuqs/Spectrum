@@ -19,64 +19,74 @@
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.2,
+    "fermentation_speed_mod": 0.25,
     "effects": [
       {
         "id": "spectrum:nourishing",
-        "base_duration": 1200,
+        "base_duration": 9600,
         "potency": [
           {
-            "min_alc": 5,
-            "min_thickness": 0.75,
             "potency": 0
           },
           {
-            "min_alc": 7,
-            "min_thickness": 0.75,
+            "min_alc": 20,
             "potency": 1
+          },
+          {
+            "min_alc": 25,
+            "potency": 2
+          },
+          {
+            "min_alc": 30,
+            "potency": 3
+          }
+        ]
+      },
+      {
+        "id": "minecraft:fire_resistance",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 25,
+            "min_thickness": 1.25
           }
         ]
       },
       {
         "id": "minecraft:saturation",
-        "base_duration": 10,
+        "base_duration": 8,
         "potency": [
           {
-            "min_alc": 3,
-            "min_thickness": 0.75,
-            "potency": 0
-          },
-          {
-            "min_alc": 6,
-            "min_thickness": 0.75,
-            "potency": 1
-          },
-          {
-            "min_alc": 9,
-            "min_thickness": 0.75,
-            "potency": 2
-          }
-        ]
-      },
-      {
-        "id": "minecraft:nausea",
-        "base_duration": 900,
-        "potency": [
-          {
-            "min_alc": 7
+            "min_alc": 28
           }
         ]
       },
       {
         "id": "minecraft:slowness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:blindness",
         "base_duration": 600,
         "potency": [
           {
-            "min_thickness": 2.0
+            "min_thickness": 3
           },
           {
-            "min_thickness": 3.0,
-            "potency": 1
+            "min_alc": 30
           }
         ]
       }

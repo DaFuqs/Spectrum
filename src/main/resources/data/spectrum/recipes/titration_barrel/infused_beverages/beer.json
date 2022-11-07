@@ -11,49 +11,42 @@
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 2.0,
+    "fermentation_speed_mod": 1.25,
     "effects": [
       {
         "id": "minecraft:haste",
-        "base_duration": 1200,
+        "base_duration": 9600,
         "potency": [
           {
-            "min_thickness": 0.25
+            "potency": 0
           },
           {
             "min_alc": 5,
             "potency": 1
           },
           {
-            "min_alc": 10,
+            "min_alc": 8,
             "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "spectrum:nourishing",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 3,
+            "potency": 0
+          },
+          {
+            "min_alc": 6,
+            "potency": 1
           }
         ]
       },
       {
         "id": "minecraft:saturation",
-        "base_duration": 20,
-        "potency": [
-          {
-            "min_alc": 3,
-            "min_thickness": 0.75,
-            "potency": 0
-          },
-          {
-            "min_alc": 6,
-            "min_thickness": 0.75,
-            "potency": 1
-          },
-          {
-            "min_alc": 9,
-            "min_thickness": 0.75,
-            "potency": 2
-          }
-        ]
-      },
-      {
-        "id": "minecraft:nausea",
-        "base_duration": 600,
+        "base_duration": 120,
         "potency": [
           {
             "min_alc": 7
@@ -69,7 +62,7 @@
         ]
       },
       {
-        "id": "minecraft:blindness",
+        "id": "spectrum:stiffness",
         "base_duration": 600,
         "potency": [
           {
@@ -82,6 +75,18 @@
           {
             "min_thickness": 4,
             "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 9
           }
         ]
       }

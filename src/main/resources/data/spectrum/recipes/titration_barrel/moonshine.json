@@ -19,10 +19,10 @@
     }
   ],
   "fluid": "spectrum:liquid_crystal",
-  "min_fermentation_time_hours": 72,
+  "min_fermentation_time_hours": 24,
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
-    "fermentation_speed_mod": 0.2,
+    "fermentation_speed_mod": 0.25,
     "effects": [
       {
         "id": "minecraft:invisibility",
@@ -84,8 +84,7 @@
         "base_duration": 200,
         "potency": [
           {
-            "min_thickness": 2,
-            "potency": 0
+            "min_thickness": 2
           },
           {
             "min_thickness": 3,

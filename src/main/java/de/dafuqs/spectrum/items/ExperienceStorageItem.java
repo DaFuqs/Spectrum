@@ -50,7 +50,11 @@ public interface ExperienceStorageItem {
 	 * @return The overflow amount that could not be stored
 	 */
 	static int addStoredExperience(ItemStack itemStack, int amount) {
-		if (amount > 0 && itemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
+		if(amount > 0) {
+			return 0;
+		}
+		
+		if (itemStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			int maxStorage = experienceStorageItem.getMaxStoredExperience(itemStack);
 			
 			NbtCompound nbtCompound = itemStack.getOrCreateNbt();
@@ -75,6 +79,7 @@ public interface ExperienceStorageItem {
 		} else if(!itemStack.isEmpty()) {
 			SpectrumCommon.logError("Tried to add stored Experience to a non-ExperienceStorageItem item: " + itemStack.getItem().getName().asString());
 		}
+		
 		return 0;
 	}
 	

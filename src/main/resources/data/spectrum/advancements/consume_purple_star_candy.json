@@ -15,7 +15,9 @@
   "criteria": {
     "consumed_purple_star_candy": {
       "trigger": "minecraft:consume_item",
-      "conditions": { "items": [{ "items": [ "spectrum:purple_star_candy" ]}] }
+      "conditions": {
+        "item": { "items": [ "spectrum:purple_star_candy" ] }
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

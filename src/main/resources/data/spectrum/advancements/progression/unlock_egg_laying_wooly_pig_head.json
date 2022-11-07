@@ -1,29 +1,5 @@
 {
   "criteria": {
-    "has_sheep_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{ "tag": "spectrum:mob_heads/sheep_heads" }]
-      }
-    },
-    "has_cow_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{ "items": [ "spectrum:cow_head" ] }]
-      }
-    },
-    "has_pig_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{ "items": [ "spectrum:pig_head" ] }]
-      }
-    },
-    "has_chicken_head": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{ "items": [ "spectrum:chicken_head" ] }]
-      }
-    },
     "collected_any_mob_head_using_treasure_hunter": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/collect_mob_head_using_treasure_hunter" }

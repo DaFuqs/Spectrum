@@ -3,7 +3,6 @@
     "icon": {
       "item": "spectrum:suspicious_brew"
     },
-	"hidden": true,
     "title": {
       "translate": "advancements.spectrum.tap_suspicious_brew.title"
     },

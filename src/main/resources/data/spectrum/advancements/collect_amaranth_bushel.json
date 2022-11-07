@@ -4,7 +4,6 @@
     "icon": {
       "item": "spectrum:amaranth_bushel"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.collect_amaranth_bushel.title"
     },

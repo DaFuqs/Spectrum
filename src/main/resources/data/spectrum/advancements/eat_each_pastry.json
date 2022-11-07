@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:craft_salted_jaramel_trifle_or_tart",
+  "parent": "spectrum:collect_amaranth_bushel",
   "display": {
     "icon": {
       "item": "spectrum:triple_meat_pot_pie"
@@ -71,7 +71,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:craft_salted_jaramel_trifle_or_tart"
+        "advancement_identifier": "spectrum:collect_amaranth_bushel"
       }
     }
   }

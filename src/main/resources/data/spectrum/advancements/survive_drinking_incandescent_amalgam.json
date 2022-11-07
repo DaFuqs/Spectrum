@@ -10,14 +10,14 @@
       "translate": "advancements.spectrum.survive_drinking_incandescent_amalgam.description"
     }
   },
-  "parent": "spectrum:tap_titration_barrel",
+  "parent": "spectrum:tap_pure_alcohol",
   "criteria": {
     "survived_drinking_incandescent_amalgam": {
       "trigger": "minecraft:impossible"
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:tap_titration_barrel" }
+      "conditions": { "advancement_identifier": "spectrum:tap_pure_alcohol" }
     }
   }
 }

@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
-import de.dafuqs.spectrum.items.beverages.BeverageItem;
+import de.dafuqs.spectrum.items.food.beverages.BeverageItem;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;

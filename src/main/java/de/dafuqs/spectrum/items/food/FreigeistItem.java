@@ -4,22 +4,20 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class MoonstruckNectarItem extends DrinkItem {
+public class FreigeistItem extends DrinkItem {
 	
-	public MoonstruckNectarItem(Settings settings) {
+	public FreigeistItem(Settings settings) {
 		super(settings);
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		tooltip.add(new TranslatableText("item.spectrum.moonstruck_nectar.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(new TranslatableText("item.spectrum.moonstruck_nectar.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(new TranslatableText("item.spectrum.freigeist.tooltip"));
 	}
 	
 }

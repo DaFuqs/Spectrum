@@ -1,7 +1,7 @@
-package de.dafuqs.spectrum.items.beverages;
+package de.dafuqs.spectrum.items.food.beverages;
 
-import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
-import de.dafuqs.spectrum.items.beverages.properties.StatusEffectBeverageProperties;
+import de.dafuqs.spectrum.items.food.beverages.properties.BeverageProperties;
+import de.dafuqs.spectrum.items.food.beverages.properties.StatusEffectBeverageProperties;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;

@@ -11,12 +11,12 @@ import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
 import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
-import de.dafuqs.spectrum.items.beverages.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItemWithLoomPattern;
 import de.dafuqs.spectrum.items.conditional.GemstonePowderItem;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
+import de.dafuqs.spectrum.items.food.beverages.*;
 import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
 import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
@@ -277,7 +277,7 @@ public class SpectrumItems {
 	public static final Item LUCKY_ROLL = new Item(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.LUCKY_ROLL));
 	public static final Item TRIPLE_MEAT_POT_PIE = new CustomUseTimeItem(Tab.CONSUMABLES.settings(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE), 96);
 	public static final Item GLISTERING_JELLY_TEA = new TeaItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS);
-	public static final Item FREIGEIST = new ItemWithTooltip(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE), "item.spectrum.freigeist.tooltip");
+	public static final Item FREIGEIST = new FreigeistItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item DIVINATION_HEART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DIVINATION_HEART));
 	public static final Item INCANDESCENT_AMALGAM = new IncandescentAmalgamItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM), "item.spectrum.incandescent_amalgam.tooltip");
 	

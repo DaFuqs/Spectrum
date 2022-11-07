@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.beverages.properties;
+package de.dafuqs.spectrum.items.food.beverages.properties;
 
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;

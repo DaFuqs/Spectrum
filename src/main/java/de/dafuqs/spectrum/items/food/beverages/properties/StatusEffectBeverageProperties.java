@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.items.beverages.properties;
+package de.dafuqs.spectrum.items.food.beverages.properties;
 
 import com.google.common.collect.Lists;
 import net.minecraft.entity.effect.StatusEffectInstance;

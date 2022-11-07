@@ -1,6 +1,6 @@
-package de.dafuqs.spectrum.items.beverages;
+package de.dafuqs.spectrum.items.food.beverages;
 
-import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
+import de.dafuqs.spectrum.items.food.beverages.properties.BeverageProperties;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.player.PlayerEntity;

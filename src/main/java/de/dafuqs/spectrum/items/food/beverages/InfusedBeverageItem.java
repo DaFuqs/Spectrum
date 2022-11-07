@@ -1,7 +1,7 @@
-package de.dafuqs.spectrum.items.beverages;
+package de.dafuqs.spectrum.items.food.beverages;
 
-import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
-import de.dafuqs.spectrum.items.beverages.properties.VariantBeverageProperties;
+import de.dafuqs.spectrum.items.food.beverages.properties.BeverageProperties;
+import de.dafuqs.spectrum.items.food.beverages.properties.VariantBeverageProperties;
 import net.minecraft.item.ItemStack;
 
 public class InfusedBeverageItem extends BeverageItem {

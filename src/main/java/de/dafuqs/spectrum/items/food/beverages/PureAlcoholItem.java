@@ -1,6 +1,6 @@
-package de.dafuqs.spectrum.items.beverages;
+package de.dafuqs.spectrum.items.food.beverages;
 
-import de.dafuqs.spectrum.items.beverages.properties.BeverageProperties;
+import de.dafuqs.spectrum.items.food.beverages.properties.BeverageProperties;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;

@@ -2,7 +2,7 @@
   "fluid": {
     "tag": "spectrum:midnight_solution"
   },
-  "chance": 0.4,
+  "chance": 0.25,
   "entities": [
     {
       "id": "minecraft:skeleton",

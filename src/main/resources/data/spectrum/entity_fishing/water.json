@@ -2,7 +2,7 @@
   "fluid": {
     "tag": "minecraft:water"
   },
-  "chance": 0.03,
+  "chance": 0.05,
   "entities": [
     {
       "id": "minecraft:cod",

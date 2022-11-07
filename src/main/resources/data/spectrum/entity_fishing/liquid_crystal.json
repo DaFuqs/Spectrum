@@ -2,7 +2,7 @@
   "fluid": {
     "tag": "spectrum:liquid_crystal"
   },
-  "chance": 0.02,
+  "chance": 0.05,
   "entities": [
     {
       "id": "minecraft:salmon",

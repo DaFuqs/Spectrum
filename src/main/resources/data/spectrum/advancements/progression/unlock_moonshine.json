@@ -3,6 +3,18 @@
     "confirmed_drinking_age": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:milestones/confirmed_drinking_age" }
+    },
+    "collected_moonstone_powder": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_gemstone_dust/collect_moonstone_powder" }
+    },
+    "collected_stardust": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_stardust" }
+    },
+    "collected_aerialite": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:lategame/collect_paletur" }
     }
   }
 }

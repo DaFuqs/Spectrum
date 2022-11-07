@@ -88,7 +88,7 @@ dependencies {
 	}
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 
-	implementation("com.github.LlamaLad7:MixinExtras:0.0.12")
+	implementation include("com.github.LlamaLad7:MixinExtras:0.0.12")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
 
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
@@ -102,10 +102,10 @@ dependencies {
 	modImplementation "dev.emi:trinkets:${project.trinkets_version}"
 
 	// https://github.com/OnyxStudios/Cardinal-Components-API/wiki/
-	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cca_version}"
-	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${cca_version}"
-	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-item:${cca_version}"
-	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-level:${cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cca_version}"
+	modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-level:${project.cca_version}"
 
 	// https://github.com/TheEpicBlock/banner-plus-plus
 	modImplementation include("io.github.fablabsmc:bannerpp:2.0.6-teb.1+mc.1.18.2")

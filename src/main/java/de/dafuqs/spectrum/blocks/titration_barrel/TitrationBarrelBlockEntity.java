@@ -22,6 +22,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -80,10 +81,10 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		return inventory;
 	}
 	
-	public boolean useBucket(World world, BlockPos pos, BlockState state, ItemStack bucketStack, PlayerEntity player) {
+	public boolean useBucket(World world, BlockPos pos, BlockState state, ItemStack bucketStack, PlayerEntity player, Hand hand) {
 		Fluid bucketFluid = ((BucketItemAccessor) bucketStack.getItem()).fabric_getFluid();
 		if(this.storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
-			ItemUsage.exchangeStack(bucketStack, player, BucketItem.getEmptiedStack(bucketStack, player), true);
+			player.setStackInHand(hand, ItemUsage.exchangeStack(bucketStack, player, BucketItem.getEmptiedStack(bucketStack, player)));
 			
 			Optional<SoundEvent> soundEvent = bucketFluid.getBucketFillSound();
 			soundEvent.ifPresent(event -> world.playSound(null, this.pos, event, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F));
@@ -97,7 +98,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			
 			return true;
 		} else if(this.sealTime == -1 && this.storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
-			ItemUsage.exchangeStack(bucketStack, player, this.storedFluid.getBucketItem().getDefaultStack(), true);
+			player.setStackInHand(hand, ItemUsage.exchangeStack(bucketStack, player, this.storedFluid.getBucketItem().getDefaultStack()));
 			
 			Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
 			soundEvent.ifPresent(event -> world.playSound(null, this.pos, event, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F));
@@ -221,7 +222,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed, inventoryCount);
 		}
 		
-		if(isEmpty(biome.getTemperature(), this.extractedBottles, optionalRecipe.get())) {
+		if(optionalRecipe.isEmpty() || isEmpty(biome.getTemperature(), this.extractedBottles, optionalRecipe.get())) {
 			reset(world, blockPos, blockState);
 		}
 

@@ -97,7 +97,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 									}
 									sealBarrel(world, pos, state, barrelEntity);
 								} else if (handStack.getItem() instanceof BucketItem) {
-									barrelEntity.useBucket(world, pos, state, handStack, player);
+									barrelEntity.useBucket(world, pos, state, handStack, player, hand);
 								} else {
 									int countBefore = handStack.getCount();
 									ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, barrelEntity.getInventory(), TitrationBarrelBlockEntity.MAX_ITEM_COUNT);

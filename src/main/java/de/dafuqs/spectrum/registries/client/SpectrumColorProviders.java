@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.items.beverages.InfusedBeverageItem;
 import de.dafuqs.spectrum.items.energy.InkFlaskItem;
 import de.dafuqs.spectrum.progression.ToggleableBlockColorProvider;
 import de.dafuqs.spectrum.progression.ToggleableItemColorProvider;

@@ -10,10 +10,10 @@ import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.mixin.accessors.ShapedRecipeAccessor;
 import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
+import net.id.incubus_core.json.RecipeParser;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
@@ -115,7 +115,7 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 				throw new JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.");
 			}
 
-			map.put(entry.getKey(), RecipeUtils.ingredientStackFromJson((JsonObject) entry.getValue()));
+			map.put(entry.getKey(), RecipeParser.ingredientStackFromJson((JsonObject) entry.getValue()));
 		}
 
 		map.put(" ", IngredientStack.EMPTY);

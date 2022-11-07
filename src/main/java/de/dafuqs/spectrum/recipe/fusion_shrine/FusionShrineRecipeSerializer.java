@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
+import net.id.incubus_core.json.RecipeParser;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -41,7 +42,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
 		
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
-		List<IngredientStack> craftingInputs = RecipeUtils.ingredientStacksFromJson(ingredientArray, ingredientArray.size());
+		List<IngredientStack> craftingInputs = RecipeParser.ingredientStacksFromJson(ingredientArray, ingredientArray.size());
 		
 		Fluid fluid = Fluids.EMPTY;
 		if (JsonHelper.hasString(jsonObject, "fluid")) {

@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.spirit_instiller;
 import com.google.gson.JsonObject;
 import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
+import net.id.incubus_core.json.RecipeParser;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -28,9 +29,9 @@ public class SpiritInstillerRecipeSerializer implements GatedRecipeSerializer<Sp
 		boolean secret = readSecret(jsonObject);
 		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
 		
-		IngredientStack centerIngredient = RecipeUtils.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "center_ingredient"));
-		IngredientStack bowlIngredient1 = RecipeUtils.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
-		IngredientStack bowlIngredient2 = RecipeUtils.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient2"));
+		IngredientStack centerIngredient = RecipeParser.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "center_ingredient"));
+		IngredientStack bowlIngredient1 = RecipeParser.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient1"));
+		IngredientStack bowlIngredient2 = RecipeParser.ingredientStackFromJson(JsonHelper.getObject(jsonObject, "ingredient2"));
 		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);

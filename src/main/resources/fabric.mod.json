@@ -58,7 +58,8 @@
     "cloth-config": ">=6.0.0",
     "patchouli": ">=1.18.2-71.1-FABRIC",
     "owo": ">=0.5.4",
-    "trinkets": ">=3.3.0"
+    "trinkets": ">=3.3.0",
+    "cardinal-components": ">=4.1.4"
   },
   "suggests": {
     "chalk": ">=2.0.0",

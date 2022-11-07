@@ -486,6 +486,7 @@
   "text.autoconfig.Spectrum.option.TightGripEnchantmentEnabled": "Enchantment TightGrip available",
   "text.autoconfig.Spectrum.option.SteadfastEnchantmentEnabled": "Enchantment Steadfast available",
   "text.autoconfig.Spectrum.option.IndestructibleEnchantmentEnabled": "Enchantment Indestructible available",
+  "text.autoconfig.Spectrum.option.BigCatchEnchantmentEnabled": "Enchantment Big Catch available",
 
   "text.autoconfig.Spectrum.option.TreasureHunterMaxLevel": "Max level for Treasure Hunter enchantment",
   "text.autoconfig.Spectrum.option.DisarmingMaxLevel": "Max level for Disarming enchantment",

@@ -75,7 +75,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
     public static Optional<EntityType> tryCatchEntity(ServerWorld world, BlockPos pos, int bigCatchLevel) {
         for(EntityFishingEntry entry : ENTITY_FISHING_ENTRIES) {
             if(entry.fluidPredicate.test(world, pos)) {
-                if(world.random.nextFloat() < entry.entityChance * bigCatchLevel) {
+                if(world.random.nextFloat() < entry.entityChance * (1 + bigCatchLevel)) {
                     Optional<Weighted.Present<EntityType>> x = entry.weightedEntityTypes.getOrEmpty(world.random);
                     if(x.isPresent()) {
                         return Optional.of(x.get().getData());

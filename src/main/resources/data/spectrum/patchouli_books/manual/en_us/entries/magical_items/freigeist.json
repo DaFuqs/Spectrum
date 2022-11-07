@@ -13,7 +13,6 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "advancement": "spectrum:midgame/craft_salted_jaramel_trifle_or_tart",
       "recipe": "spectrum:titration_barrel/freigeist",
       "text": "$(br)$(italic)Caress the one,$(br) the never-fading$(br)Rain in your heart,$(br)  the tears of$(br)  snow-white sorrow$(br)Caress the one,$(br)  the hiding amaranth$(br)In a land of the daybreak"
     }

@@ -1,7 +1,7 @@
 {
   "name": "Blood Orchid Products",
   "icon": "spectrum:bloodboil_syrup",
-  "advancement": "spectrum:progression/unlock_blood_orchid",
+  "advancement": "spectrum:midgame/collect_blood_orchid_petal",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:bloodboil_syrup": 0,

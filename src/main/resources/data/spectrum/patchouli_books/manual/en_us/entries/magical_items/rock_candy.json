@@ -27,7 +27,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/food/sugar_stick",
-      "text": "$(italic)You might even be able to add more stuff than just plain Sugar when immersed? Liquid crystal and all that..."
+      "text": "You might even be able to add more stuff than just plain Sugar when immersed? Liquid $(italic)Crystal$() and all that..."
     },
     {
       "type": "patchouli:image",
@@ -35,7 +35,7 @@
       "images": [
         "spectrum:textures/gui/manual/rock_candy_growing.png"
       ],
-      "text": " $(thing)Silk Touch$() keeps their size for use as fancy lights, or just for storage. They emit more light the larger they are."
+      "text": "$(thing)Silk Touch$() keeps their size for use as fancy lights, or just for storage."
     },
     {
       "type": "patchouli:spotlight",

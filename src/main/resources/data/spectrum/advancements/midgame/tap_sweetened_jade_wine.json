@@ -6,17 +6,17 @@
     },
     "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.drink_sweetened_jade_wine.title"
+      "translate": "advancements.spectrum.tap_sweetened_jade_wine.title"
     },
     "description": {
-      "translate": "advancements.spectrum.drink_sweetened_jade_wine.description"
+      "translate": "advancements.spectrum.tap_sweetened_jade_wine.description"
     }
   },
   "criteria": {
-    "tapped_fermentation_barrel": {
-      "trigger": "minecraft:consume_item",
+    "tapped_sweetened_jade_wine": {
+      "trigger": "minecraft:titration_barrel_tapping",
       "conditions": {
-        "item": {
+        "items": {
           "items": [
             "spectrum:jade_wine"
           ],

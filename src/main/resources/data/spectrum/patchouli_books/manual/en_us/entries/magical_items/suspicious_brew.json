@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Curiously, the combination of mushrooms and water is a perfect receptor for all forms of other bloomy notes, either rounding the taste, or creating... very peculiar ones.$()Each flower has a specific effect, as if you would feed it to a $(thing)Brown Mooshroom$(). The fermentation process in colored wood makes the effect last quite a bit longer than $(item)Suspicious Stew$()."
+      "text": "Curiously, the combination of mushrooms and water is a perfect receptor for all forms of other bloomy notes, either rounding the taste, or creating... very peculiar ones.$(br2)Each flower has a specific effect, as if you would feed it to a $(thing)Brown Mooshroom$()."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Titration Recipe",
       "recipe": "spectrum:titration_barrel/special/suspicious_brew",
-      "text": "The longer this brew ferments, the more powerful the effect becomes."
+      "text": "The fermentation process in colored wood makes the effect last quite a bit longer than $(item)Suspicious Stew$()."
     }
   ]
 }

@@ -1,8 +1,9 @@
 {
 	"parent": "spectrum:block/template_roundel",
 	"textures": {
-		"base": "spectrum:block/preservation_stone",
+		"base": "spectrum:block/preservation_stone_12",
 		"side": "spectrum:block/polished_calcite_pillar_side",
-		"top": "spectrum:block/polished_calcite_pillar_top"
+		"top": "spectrum:block/polished_calcite_pillar_top",
+		"particle": "spectrum:block/preservation_stone"
 	}
 }

@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class ItemRoundelBlock extends BlockWithEntity {
 	
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	
 	public ItemRoundelBlock(Settings settings) {
 		super(settings);

@@ -21,7 +21,7 @@ public class ItemRoundelBlockEntityRenderer<T extends ItemRoundelBlockEntity> im
 	}
 	
 	public void render(ItemRoundelBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-		ItemStack stack = blockEntity.inventory.getStack(0);
+		ItemStack stack = blockEntity.getStack(0);
 		if (!stack.isEmpty()) {
 			float time = blockEntity.getWorld().getTime() % 50000 + tickDelta;
 			

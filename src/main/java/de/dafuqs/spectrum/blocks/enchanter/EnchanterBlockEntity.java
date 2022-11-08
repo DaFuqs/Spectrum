@@ -463,7 +463,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 				BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 				if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 					itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, resultAmountAfterEfficiencyMod, false);
-					itemBowlBlockEntity.updateInClientWorld();
+					itemBowlBlockEntity.updateInClientWorld(world, itemBowlPos);
 				}
 			}
 		}
@@ -534,7 +534,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 			BlockEntity blockEntity = world.getBlockEntity(enchanterBlockEntity.pos.add(bowlOffset));
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				if (itemCountToConsumeAfterMod == 0) {
-					itemBowlBlockEntity.doEnchantingEffects(enchanterBlockEntity.pos);
+					itemBowlBlockEntity.spawnSphereParticlesTo(enchanterBlockEntity.pos);
 					consumedAmount += itemCountToConsume;
 				} else {
 					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, itemCountToConsumeAfterMod, true);
@@ -739,7 +739,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 			BlockPos itemBowlPos = pos.add(getItemBowlPositionOffset(i, 0));
 			BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				itemBowlBlockEntity.doEnchantingEffects(pos);
+				itemBowlBlockEntity.spawnSphereParticlesTo(pos);
 			}
 		}
 	}
@@ -792,7 +792,7 @@ public class EnchanterBlockEntity extends BlockEntity implements Inventory, Play
 	public ItemStack getItemBowlStack(World world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			return itemBowlBlockEntity.getInventory().getStack(0);
+			return itemBowlBlockEntity.getStack(0);
 		} else {
 			return ItemStack.EMPTY;
 		}

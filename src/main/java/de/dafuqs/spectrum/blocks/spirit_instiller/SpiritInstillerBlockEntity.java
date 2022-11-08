@@ -145,13 +145,13 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			
 			// left item bowl
 			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, itemBowlBlockEntity.getInventory().getStack(0));
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, itemBowlBlockEntity.getStack(0));
 			} else {
 				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, ItemStack.EMPTY);
 			}
 			// right item bowl
 			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, itemBowlBlockEntity.getInventory().getStack(0));
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, itemBowlBlockEntity.getStack(0));
 			} else {
 				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, ItemStack.EMPTY);
 			}
@@ -272,7 +272,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			// first side ingredient
 			int amountAfterEfficiencyModFirst = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
 			int amountAfterEfficiencyModSecond = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.SECOND_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
-			boolean leftIsFirstIngredient = ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).test(leftBowl.getInventory().getStack(0));
+			boolean leftIsFirstIngredient = ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).test(leftBowl.getStack(0));
 			if (leftIsFirstIngredient) {
 				if (amountAfterEfficiencyModFirst > 0) {
 					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModFirst, true);
@@ -400,13 +400,13 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		BlockPos itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(false).up());
 		BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.doEnchantingEffects(pos);
+			itemBowlBlockEntity.spawnSphereParticlesTo(pos);
 		}
 		
 		itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(true).up());
 		blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.doEnchantingEffects(pos);
+			itemBowlBlockEntity.spawnSphereParticlesTo(pos);
 		}
 	}
 	

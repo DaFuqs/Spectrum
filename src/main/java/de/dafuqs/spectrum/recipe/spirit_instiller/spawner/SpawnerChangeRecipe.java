@@ -41,8 +41,8 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 				World world = spiritInstillerBlockEntity.getWorld();
 				BlockPos pos = spiritInstillerBlockEntity.getPos();
 				
-				ItemStack firstBowlStack = leftBowl.getInventory().getStack(0);
-				ItemStack secondBowlStack = rightBowl.getInventory().getStack(0);
+				ItemStack firstBowlStack = leftBowl.getStack(0);
+				ItemStack secondBowlStack = rightBowl.getStack(0);
 				
 				NbtCompound spawnerNbt = spiritInstillerBlockEntity.getStack(0).getOrCreateNbt();
 				NbtCompound blockEntityTag;

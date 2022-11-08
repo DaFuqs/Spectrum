@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.TimeHelper;
+import de.dafuqs.spectrum.items.food.beverages.BeverageItem;
 import de.dafuqs.spectrum.items.food.beverages.properties.StatusEffectBeverageProperties;
 import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -35,6 +36,9 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_suspicious_brew");
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
+		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
+		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
+		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
 	}};
 	
 	public SuspiciousBrewRecipe(Identifier identifier) {
@@ -43,9 +47,11 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack getOutput() {
-		ItemStack flowerStack = Items.DANDELION.getDefaultStack();
+		ItemStack flowerStack = Items.POPPY.getDefaultStack();
 		flowerStack.setCount(4);
-		return tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
+		ItemStack tappedStack = tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
+		BeverageItem.setPreviewStack(tappedStack);
+		return tappedStack;
 	}
 	
 	@Override
@@ -73,7 +79,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		if(alcPercent >= 100) {
 			return PURE_ALCOHOL_STACK;
 		} else {
-			// add up all stew effects from the input stacks
+			// add up all stew effects with their durations from the input stacks
 			Map<StatusEffect, Integer> stewEffects = new HashMap<>();
 			for(ItemStack stack : stacks) {
 				Optional<Pair<StatusEffect, Integer>> stewEffect = getStewEffectFrom(stack);
@@ -88,12 +94,11 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 				}
 			}
 			
-			// all 5 % alc the potency is increased by 1, but duration is decreased
-			int potencyMod = (int) (alcPercent / 5D);
 			List<StatusEffectInstance> finalStatusEffects = new ArrayList<>();
+			double cappedAlcPercent = Math.min(alcPercent, 20D);
 			for(Map.Entry<StatusEffect, Integer> entry : stewEffects.entrySet()) {
-				int duration = Math.max(80, entry.getValue() / ( 1 + potencyMod));
-				finalStatusEffects.add(new StatusEffectInstance(entry.getKey(), duration, potencyMod));
+				int finalDurationTicks = (int) Math.pow(entry.getValue(), 1 + cappedAlcPercent * 0.1);
+				finalStatusEffects.add(new StatusEffectInstance(entry.getKey(), finalDurationTicks, 0));
 			}
 			
 			return new StatusEffectBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, finalStatusEffects).getStack(OUTPUT_STACK);

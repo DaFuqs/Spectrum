@@ -2034,6 +2034,8 @@
   "item.spectrum.purple_star_candy.tooltip2": "Fully heals & fills hunger",
   "item.spectrum.suspicious_brew": "Suspicious Brew",
   "item.spectrum.suspicious_brew.tooltip": "What might be mixed together here?",
+  "item.spectrum.suspicious_brew.tooltip.preview": "Exponentially longer duration the higher the Alc. %",
+  "item.spectrum.suspicious_brew.tooltip.preview2": "Effects depend on the flowers used",
   "item.spectrum.jade_wine": "Jade Wine",
   "item.spectrum.jade_wine.tooltip.bloominess": "%d %% Bloominess",
   "item.spectrum.jade_wine.tooltip.sweetened": "Sweetened",

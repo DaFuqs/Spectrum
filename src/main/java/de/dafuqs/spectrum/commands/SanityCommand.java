@@ -48,7 +48,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProgressionSanityCommand {
+public class SanityCommand {
 	
 	private static final List<Identifier> advancementGatingWarningWhitelist = new ArrayList<>() {{
 		add(SpectrumCommon.locate("find_ancient_ruins"));
@@ -62,7 +62,7 @@ public class ProgressionSanityCommand {
 	}};
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register((CommandManager.literal("spectrum_test_progression_sanity").requires((source) -> {
+		dispatcher.register((CommandManager.literal("spectrum_sanity").requires((source) -> {
 			return source.hasPermissionLevel(2);
 		}).executes((context) -> {
 			return execute(context.getSource());
@@ -78,8 +78,8 @@ public class ProgressionSanityCommand {
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				BlockState blockState = entry.getValue().getDefaultState();
 				
-				// unbreakable and break-instantly blocks do not need to have an entry
-				if(blockState.getBlock().getHardness() <= 0) {
+				// unbreakable blocks do not need to have an entry
+				if(blockState.getBlock().getHardness() <= -1) {
 					continue;
 				}
 				
@@ -100,6 +100,12 @@ public class ProgressionSanityCommand {
 				Block block = entry.getValue();
 				BlockState blockState = entry.getValue().getDefaultState();
 				Identifier lootTableID = block.getLootTableId();
+				
+				// unbreakable blocks do not need to have a loot table
+				if(blockState.getBlock().getHardness() <= -1) {
+					continue;
+				}
+				
 				if (!blockState.isIn(SpectrumBlockTags.EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK)) {
 					if (lootTableID.equals(LootTables.EMPTY) || lootTableID.getPath().equals("blocks/air")) {
 						SpectrumCommon.logWarning("[SANITY: Loot Tables] Block " + registryKey.getValue() + " has a non-existent loot table");

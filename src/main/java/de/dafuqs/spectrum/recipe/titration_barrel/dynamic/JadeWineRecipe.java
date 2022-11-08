@@ -4,11 +4,13 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.items.food.beverages.JadeWineItem;
+import de.dafuqs.spectrum.items.food.beverages.BeverageItem;
+import de.dafuqs.spectrum.items.food.beverages.properties.JadeWineBeverageProperties;
 import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.id.incubus_core.recipe.IngredientStack;
+import net.id.incubus_core.recipe.matchbook.Matchbook;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.Fluids;
@@ -35,7 +37,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)));
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADE_VINE_PETALS)));
+		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADE_VINE_PETALS), Matchbook.empty(), null, 3));
 	}};
 	
 	public JadeWineRecipe(Identifier identifier) {
@@ -44,7 +46,9 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack getOutput() {
-		return tapWith(1, 1, false, 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
+		ItemStack tappedStack = tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
+		BeverageItem.setPreviewStack(tappedStack);
+		return tappedStack;
 	}
 	
 	@Override
@@ -73,22 +77,23 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 		} else {
 			List<StatusEffectInstance> effects = new ArrayList<>();
 			
-			int effectDuration = 1500;
-			if(alcPercent >= 80) { effects.add(new StatusEffectInstance(StatusEffects.RESISTANCE, effectDuration)); effectDuration *= 2; }
+			int effectDuration = 1200;
+			if(alcPercent >= 80) { effects.add(new StatusEffectInstance(SpectrumStatusEffects.PROJECTILE_REBOUND, effectDuration)); effectDuration *= 2; }
+			if(alcPercent >= 70) { effects.add(new StatusEffectInstance(StatusEffects.RESISTANCE, effectDuration)); effectDuration *= 2; }
 			if(alcPercent >= 60) { effects.add(new StatusEffectInstance(StatusEffects.HASTE, effectDuration)); effectDuration *= 2; }
 			if(alcPercent >= 40) { effects.add(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, effectDuration)); effectDuration *= 2; }
 			if(alcPercent >= 20) { effects.add(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, effectDuration)); effectDuration *= 2; }
 			if(nectar) { effects.add(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, effectDuration)); }
 			
 			int nectarMod = nectar ? 3 : 1;
-			effectDuration = 1500;
+			effectDuration = 1200;
 			int alcAfterBloominess = (int) (alcPercent / (nectarMod + bloominess ));
 			if(alcAfterBloominess >= 40) { effects.add(new StatusEffectInstance(StatusEffects.BLINDNESS, effectDuration)); effectDuration *= 2; }
 			if(alcAfterBloominess >= 30) { effects.add(new StatusEffectInstance(StatusEffects.POISON, effectDuration)); effectDuration *= 2; }
 			if(alcAfterBloominess >= 20) { effects.add(new StatusEffectInstance(StatusEffects.NAUSEA, effectDuration)); effectDuration *= 2; }
 			if(alcAfterBloominess >= 10) { effects.add(new StatusEffectInstance(StatusEffects.WEAKNESS, effectDuration)); }
 			
-			return new JadeWineItem.JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack();
+			return new JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack(OUTPUT_STACK);
 		}
 	}
 	

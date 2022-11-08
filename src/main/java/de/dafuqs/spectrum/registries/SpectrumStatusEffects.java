@@ -104,6 +104,7 @@ public class SpectrumStatusEffects {
 	/**
 	 * % Chance to protect from projectiles per level
 	 */
+	public static final float PROJECTILE_REBOUND_CHANCE_PER_LEVEL = 0.2F;
 	public static final StatusEffect PROJECTILE_REBOUND = registerStatusEffect("projectile_rebound", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x77e6df));
 	
 	

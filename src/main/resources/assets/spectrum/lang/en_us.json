@@ -2034,11 +2034,14 @@
   "item.spectrum.purple_star_candy.tooltip2": "Fully heals & fills hunger",
   "item.spectrum.suspicious_brew": "Suspicious Brew",
   "item.spectrum.suspicious_brew.tooltip": "What might be mixed together here?",
-  "item.spectrum.suspicious_brew.tooltip.preview": "Exponentially longer duration the higher the Alc. %",
+  "item.spectrum.suspicious_brew.tooltip.preview": "Exponentially longer duration the higher Alc. %",
   "item.spectrum.suspicious_brew.tooltip.preview2": "Effects depend on the flowers used",
   "item.spectrum.jade_wine": "Jade Wine",
   "item.spectrum.jade_wine.tooltip.bloominess": "%d %% Bloominess",
   "item.spectrum.jade_wine.tooltip.sweetened": "Sweetened",
+  "item.spectrum.jade_wine.tooltip.preview3": "More and longer protective effects the higher Alc. %",
+  "item.spectrum.jade_wine.tooltip.preview": "Brew it with a combination of Bulbs & Petals",
+  "item.spectrum.jade_wine.tooltip.preview2": "Petals ferment slower than Bulbs but reduce negative effects",
   "item.spectrum.pure_alcohol": "Pure Alcohol",
   "item.spectrum.moonshine": "Moonshine",
   "item.spectrum.chrysocolla": "Chrysocolla",
@@ -2083,8 +2086,6 @@
   "item.spectrum.infused_beverage.tooltip.variant.artemisa": "Artemisa",
   "item.spectrum.infused_beverage.tooltip.variant.advocaat": "Advocaat",
   "item.spectrum.infused_beverage.tooltip.variant.gin": "Gin",
-
-
 
   "item.spectrum.freigeist": "Freigeist",
   "item.spectrum.freigeist.tooltip": "§4♥§r You wish you were an Angel? §4♡§r",

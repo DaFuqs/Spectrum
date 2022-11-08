@@ -550,12 +550,10 @@ public class SpectrumItems {
 		register("shooting_star", SHOOTING_STAR, DyeColor.PURPLE);
 		register("stardust", STARDUST, DyeColor.PURPLE);
 		register("blood_orchid_petal", BLOOD_ORCHID_PETAL, DyeColor.RED);
-		register("bloodboil_syrup", BLOODBOIL_SYRUP, DyeColor.RED);
 		
 		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_SEEDS, DyeColor.GRAY);
 		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS, DyeColor.LIME);
 		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
-		register("moonstruck_nectar", MOONSTRUCK_NECTAR, DyeColor.LIME);
 		
 		register("vegetal", VEGETAL, DyeColor.LIME);
 		register("neolith", NEOLITH, DyeColor.PINK);
@@ -634,25 +632,28 @@ public class SpectrumItems {
 		register("onyx_rock_candy", ONYX_ROCK_CANDY, DyeColor.BLACK);
 		register("moonstone_rock_candy", MOONSTONE_ROCK_CANDY, DyeColor.WHITE);
 		
-		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
-		register("infused_beverage", INFUSED_BEVERAGE, DyeColor.PINK);
+		register("triple_meat_pot_pie", TRIPLE_MEAT_POT_PIE, DyeColor.PINK);
 		register("kimchi", KIMCHI, DyeColor.PINK);
+		
 		register("clotted_cream", CLOTTED_CREAM, DyeColor.PINK);
 		register("fresh_chocolate", FRESH_CHOCOLATE, DyeColor.PINK);
-		register("hot_chocolate", HOT_CHOCOLATE, DyeColor.PINK);
 		register("bodacious_berry_bar", BODACIOUS_BERRY_BAR, DyeColor.PINK);
+		
+		register("hot_chocolate", HOT_CHOCOLATE, DyeColor.PINK);
+		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
+		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
 		register("demon_tea", DEMON_TEA, DyeColor.RED);
-		register("scone", SCONE, DyeColor.PINK);
-		register("reprise", REPRISE, DyeColor.PINK);
-		register("suspicious_brew", SUSPICIOUS_BREW, DyeColor.LIME);
-		register("moonshine", MOONSHINE, DyeColor.WHITE);
-		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
-		register("chrysocolla", CHRYSOCOLLA, DyeColor.LIME);
+		
 		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
-		register("jade_wine", JADE_WINE, DyeColor.LIME);
+		register("jaramel", JARAMEL, DyeColor.PINK);
+		register("moonstruck_nectar", MOONSTRUCK_NECTAR, DyeColor.LIME);
+		register("bloodboil_syrup", BLOODBOIL_SYRUP, DyeColor.RED);
+		
+		register("scone", SCONE, DyeColor.PINK);
 		register("star_candy", STAR_CANDY, DyeColor.PINK);
 		register("purple_star_candy", PURPLE_STAR_CANDY, DyeColor.PINK);
-		register("jaramel", JARAMEL, DyeColor.PINK);
+		register("lucky_roll", LUCKY_ROLL, DyeColor.PINK);
+		register("honey_pastry", HONEY_PASTRY, DyeColor.PINK);
 		
 		register("jaramel_tart", JARAMEL_TART, DyeColor.PINK);
 		register("salted_jaramel_tart", SALTED_JARAMEL_TART, DyeColor.PINK);
@@ -666,11 +667,13 @@ public class SpectrumItems {
 		register("monster_trifle", MONSTER_TRIFLE, DyeColor.PINK);
 		register("demon_trifle", DEMON_TRIFLE, DyeColor.PINK);
 		
-		register("honey_pastry", HONEY_PASTRY, DyeColor.PINK);
-		register("lucky_roll", LUCKY_ROLL, DyeColor.PINK);
-		register("triple_meat_pot_pie", TRIPLE_MEAT_POT_PIE, DyeColor.PINK);
-		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
-		
+		register("infused_beverage", INFUSED_BEVERAGE, DyeColor.PINK);
+		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
+		register("reprise", REPRISE, DyeColor.PINK);
+		register("suspicious_brew", SUSPICIOUS_BREW, DyeColor.LIME);
+		register("jade_wine", JADE_WINE, DyeColor.LIME);
+		register("chrysocolla", CHRYSOCOLLA, DyeColor.LIME);
+		register("moonshine", MOONSHINE, DyeColor.WHITE);
 		register("freigeist", FREIGEIST, DyeColor.RED);
 		register("divination_heart", DIVINATION_HEART, DyeColor.RED);
 	}

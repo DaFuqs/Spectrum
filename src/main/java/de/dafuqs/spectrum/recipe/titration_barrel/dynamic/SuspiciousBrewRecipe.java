@@ -101,7 +101,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 				finalStatusEffects.add(new StatusEffectInstance(entry.getKey(), finalDurationTicks, 0));
 			}
 			
-			return new StatusEffectBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, finalStatusEffects).getStack(OUTPUT_STACK);
+			return new StatusEffectBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, finalStatusEffects).getStack(OUTPUT_STACK.copy());
 		}
 	}
 	

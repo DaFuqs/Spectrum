@@ -93,7 +93,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 			if(alcAfterBloominess >= 20) { effects.add(new StatusEffectInstance(StatusEffects.NAUSEA, effectDuration)); effectDuration *= 2; }
 			if(alcAfterBloominess >= 10) { effects.add(new StatusEffectInstance(StatusEffects.WEAKNESS, effectDuration)); }
 			
-			return new JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack(OUTPUT_STACK);
+			return new JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack(OUTPUT_STACK.copy());
 		}
 	}
 	

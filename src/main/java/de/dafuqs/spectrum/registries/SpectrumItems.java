@@ -279,8 +279,6 @@ public class SpectrumItems {
 	public static final Item GLISTERING_JELLY_TEA = new TeaItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS);
 	public static final Item FREIGEIST = new FreigeistItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item DIVINATION_HEART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DIVINATION_HEART));
-	public static final Item INCANDESCENT_AMALGAM = new IncandescentAmalgamItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM), "item.spectrum.incandescent_amalgam.tooltip");
-	
 	
 	public static final Item STAR_CANDY = new StarCandyItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY));
 	public static final Item PURPLE_STAR_CANDY = new EnchantedStarCandyItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURPLE_STAR_CANDY));
@@ -675,8 +673,6 @@ public class SpectrumItems {
 		
 		register("freigeist", FREIGEIST, DyeColor.RED);
 		register("divination_heart", DIVINATION_HEART, DyeColor.RED);
-
-		register("incandescent_amalgam", INCANDESCENT_AMALGAM, DyeColor.YELLOW);
 	}
 	
 	public static void registerTrinkets() {

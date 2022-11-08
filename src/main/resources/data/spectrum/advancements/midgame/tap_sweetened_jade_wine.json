@@ -14,19 +14,23 @@
   },
   "criteria": {
     "tapped_sweetened_jade_wine": {
-      "trigger": "minecraft:titration_barrel_tapping",
+      "trigger": "spectrum:titration_barrel_tapping",
       "conditions": {
-        "items": {
-          "items": [
-            "spectrum:jade_wine"
-          ],
-          "nbt": "{Sweetened: 1b }"
-        }
+        "items": [
+          {
+            "items": [
+              "spectrum:jade_wine"
+            ]
+          }
+        ],
+        "nbt": "{Sweetened: 1b }"
       }
-    },
-    "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/drink_jade_wine" }
+    }
+  },
+  "gotten_previous": {
+    "trigger": "revelationary:advancement_gotten",
+    "conditions": {
+      "advancement_identifier": "spectrum:midgame/drink_jade_wine"
     }
   }
 }

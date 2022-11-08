@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/incandescent_amalgam"
+    "layer0": "spectrum:block/incandescent_amalgam"
   }
 }

@@ -1373,6 +1373,9 @@
   "block.spectrum.line_teleporting_mob_block.tooltip2": "§7in a straight line within %d blocks",
   "block.spectrum.feeding_mob_block.tooltip": "§7Feeds animals in a range of %d§7 blocks using food on the ground",
 
+  "block.spectrum.incandescent_amalgam": "Incandescent Amalgam",
+  "block.spectrum.incandescent_amalgam.tooltip": "§6⚠§r High yield magical explosive, handle with care",
+
   "item.spectrum.tooltip.loom_pattern_available": "✿ Usable as Banner Pattern",
   "item.spectrum.exchange_staff": "Exchanging Staff",
   "item.spectrum.exchange_staff.tooltip.range": "Exchanges blocks up to %s blocks around it",
@@ -2091,9 +2094,6 @@
   "item.spectrum.freigeist.tooltip": "§4♥§r You wish you were an Angel? §4♡§r",
   "item.spectrum.divination_heart": "Divination Heart",
 
-  "item.spectrum.incandescent_amalgam": "§eIncandescent Amalgam",
-  "item.spectrum.incandescent_amalgam.tooltip": "§6⚠§r High yield magical explosive, handle with care",
-
   "item.spectrum.crescent_clock": "Crescent Clock",
   "item.spectrum.gilded_book": "Gilded Book",
   "item.spectrum.gilded_book.tooltip.enchantability": "High Enchantability",
@@ -2455,6 +2455,8 @@
   "advancements.spectrum.drink_tea_with_scone.description": "Drink Tea while having a Scone in your hotbar. Classy!",
   "advancements.spectrum.survive_drinking_incandescent_amalgam.title": "I was the Sun, Once",
   "advancements.spectrum.survive_drinking_incandescent_amalgam.description": "Survive the damage dealt to you when drinking Incandescent Amalgam",
+  "advancements.spectrum.place_incandescent_amalgam.title": "Okay, now... what?",
+  "advancements.spectrum.place_incandescent_amalgam.description": "Incandescent Amalgam is a high yield explosive that is triggered by the slightest force of any kind and leaves behind a gigantic, burning crater",
 
   "______food_tooltips" : "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",

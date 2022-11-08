@@ -2,17 +2,25 @@ package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
+import net.minecraft.block.Block;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.EntityExplosionBehavior;
 import net.minecraft.world.explosion.Explosion;
+import org.jetbrains.annotations.Nullable;
 
-public class IncandescentAmalgamItem extends ItemWithTooltip {
+import java.util.List;
 
-    public IncandescentAmalgamItem(Settings settings, String tooltip) {
-        super(settings, tooltip);
+public class IncandescentAmalgamItem extends BlockItem {
+    
+    public IncandescentAmalgamItem(Block block, Settings settings) {
+        super(block, settings);
     }
 
     @Override
@@ -29,4 +37,11 @@ public class IncandescentAmalgamItem extends ItemWithTooltip {
         
         return stack;
     }
+    
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack, world, tooltip, context);
+        tooltip.add(new TranslatableText("block.spectrum.incandescent_amalgam.tooltip"));
+    }
+    
 }

@@ -11,7 +11,7 @@
     {
       "type": "patchouli:text",
       "title": "The Art of Brewing",
-      "text": "Fermentation is a very natural process - things take time and care. Since there never is a fully controlled environment there are a lot of variables to it:$(li)Time: It takes time for the barrel to influence the contents. The longer you give the process, the stronger the changes will be. Most beverages get more intense and even additional effects, when given more time than strictly required"
+      "text": "Fermentation is a very natural process - things take time and care. Since there never is a fully controlled environment there are a lot of variables:$(li)Time: It takes time for the barrel to influence the contents. The longer you give the process, the stronger the changes will be. Most beverages get more intense and even additional effects, when given more time than strictly required"
     },
     {
       "type": "patchouli:text",

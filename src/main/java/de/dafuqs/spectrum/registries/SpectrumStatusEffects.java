@@ -98,8 +98,8 @@ public class SpectrumStatusEffects {
 	 * Increases speed and visibility in lava
 	 */
 	public static final StatusEffect BLAZING = registerStatusEffect("blazing", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xc42e0e)
-			.addAttributeModifier(AdditionalEntityAttributes.LAVA_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.2, EntityAttributeModifier.Operation.ADDITION)
-			.addAttributeModifier(AdditionalEntityAttributes.LAVA_VISIBILITY, "9812c88f-dc8e-47d1-a092-38339da9891e", 16.0D, EntityAttributeModifier.Operation.ADDITION));
+			.addAttributeModifier(AdditionalEntityAttributes.LAVA_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.1D, EntityAttributeModifier.Operation.ADDITION)
+			.addAttributeModifier(AdditionalEntityAttributes.LAVA_VISIBILITY, "9812c88f-dc8e-47d1-a092-38339da9891e", 8.0D, EntityAttributeModifier.Operation.ADDITION));
 	
 	/**
 	 * % Chance to protect from projectiles per level

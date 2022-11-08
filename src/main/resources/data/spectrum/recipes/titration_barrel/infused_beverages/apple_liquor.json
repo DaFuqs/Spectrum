@@ -48,15 +48,6 @@
         ]
       },
       {
-        "id": "minecraft:glowing",
-        "base_duration": 4800,
-        "potency": [
-          {
-            "potency": 0
-          }
-        ]
-      },
-      {
         "id": "minecraft:weakness",
         "base_duration": 9600,
         "potency": [

@@ -976,7 +976,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, Tab.GENERAL.settings(8), "upgrade_experience"), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
 		
-		registerStructureBlocks(Tab.GENERAL.settings());
+		registerStructureBlocks(Tab.DECORATION.settings());
 		
 		registerMachines(Tab.GENERAL.settings(8));
 		registerPastelNetworkNodes(Tab.GENERAL.settings(16));
@@ -1029,7 +1029,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("clover", CLOVER, Tab.RESOURCES.settings(), DyeColor.LIME);
 		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, Tab.RESOURCES.settings(), locate("milestones/reveal_four_leaf_clover"), CLOVER.asItem()), DyeColor.LIME);
 		registerBlockWithItem("blood_orchid", BLOOD_ORCHID, Tab.RESOURCES.settings(), DyeColor.RED);
-		registerBlockWithItem("incandescent_amalgam", INCANDESCENT_AMALGAM, new IncandescentAmalgamItem(INCANDESCENT_AMALGAM, Tab.GENERAL.settings(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), DyeColor.RED);
+		registerBlockWithItem("incandescent_amalgam", INCANDESCENT_AMALGAM, new IncandescentAmalgamItem(INCANDESCENT_AMALGAM, Tab.EQUIPMENT.settings(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), DyeColor.RED);
 		
 		// Worldgen
 		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, Tab.RESOURCES.settings(), DyeColor.PURPLE);

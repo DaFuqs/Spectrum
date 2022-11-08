@@ -1,0 +1,8 @@
+{
+	"parent": "spectrum:block/template_roundel",
+	"textures": {
+		"base": "spectrum:block/polished_basalt",
+		"side": "spectrum:block/polished_calcite_pillar_side",
+		"top": "spectrum:block/polished_calcite_pillar_top"
+	}
+}

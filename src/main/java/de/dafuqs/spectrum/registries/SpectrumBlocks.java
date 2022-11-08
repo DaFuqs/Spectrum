@@ -38,6 +38,7 @@ import de.dafuqs.spectrum.blocks.gemstone.SpectrumGemstoneBlock;
 import de.dafuqs.spectrum.blocks.gravity.FloatBlock;
 import de.dafuqs.spectrum.blocks.gravity.FloatBlockItem;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlock;
+import de.dafuqs.spectrum.blocks.item_roundel.ItemRoundelBlock;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVineBulbBlock;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVinePetalBlock;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVinePlantBlock;
@@ -135,6 +136,7 @@ public class SpectrumBlocks {
 	public static final Block ENCHANTER = new EnchanterBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
 	public static final Block ITEM_BOWL_BASALT = new ItemBowlBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	public static final Block ITEM_BOWL_CALCITE = new ItemBowlBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
+	public static final Block ITEM_ROUNDEL = new ItemRoundelBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	public static final Block POTION_WORKSHOP = new PotionWorkshopBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
 	public static final Block SPIRIT_INSTILLER = new SpiritInstillerBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
 	public static final Block CRYSTALLARIEUM = new CrystallarieumBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
@@ -802,6 +804,7 @@ public class SpectrumBlocks {
 	private static final FabricBlockSettings preservationGlassBlockSettings = FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never);
 	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationGlassBlockSettings);
 	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).strength(Float.MAX_VALUE, 3600000.0F));
+	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE).nonOpaque());
 	
 	private static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
 	private static final BiMap<SpectrumSkullBlock.SpectrumSkullBlockType, Block> MOB_WALL_HEADS = EnumHashBiMap.create(SpectrumSkullBlock.SpectrumSkullBlockType.class);
@@ -957,6 +960,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("enchanter", ENCHANTER, Tab.GENERAL.settings(1), DyeColor.PURPLE);
 		registerBlockWithItem("item_bowl_basalt", ITEM_BOWL_BASALT, Tab.GENERAL.settings(16), DyeColor.PINK);
 		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, Tab.GENERAL.settings(16), DyeColor.PINK);
+		registerBlockWithItem("item_roundel", ITEM_ROUNDEL, Tab.GENERAL.settings(16), DyeColor.PINK);
 		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, Tab.GENERAL.settings(1), DyeColor.PURPLE);
 		
 		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, Tab.GENERAL.settings(1), DyeColor.WHITE);
@@ -1677,6 +1681,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("dike_chiseled_preservation_stone", DIKE_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_glass", PRESERVATION_GLASS, settings, DyeColor.BLUE);
 		registerBlockWithItem("tinted_preservation_glass", TINTED_PRESERVATION_GLASS, settings, DyeColor.BLUE);
+		registerBlockWithItem("preservation_roundel", PRESERVATION_ROUNDEL, settings, DyeColor.BLUE);
 		registerBlockWithItem("dike_gate_fountain", DIKE_GATE_FOUNTAIN, settings, DyeColor.BLUE);
 		registerBlockWithItem("dike_gate", DIKE_GATE, settings, DyeColor.BLUE);
 		registerBlockWithItem("invisible_wall", INVISIBLE_WALL, settings, DyeColor.BLUE);
@@ -1957,6 +1962,7 @@ public class SpectrumBlocks {
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_BASALT, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_BOWL_CALCITE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ITEM_ROUNDEL, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MEMORY, RenderLayer.getTranslucent());
 		

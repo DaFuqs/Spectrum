@@ -93,7 +93,7 @@ public class IncandescentAmalgamBlock extends Block {
 	}
 	
 	// does not run in creative
-	// so creative players can easily break it without causing an explosion
+	// => creative players can easily break it without causing an explosion
 	@Override
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		if(EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {

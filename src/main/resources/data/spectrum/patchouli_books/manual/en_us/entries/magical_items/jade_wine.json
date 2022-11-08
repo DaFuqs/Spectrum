@@ -31,7 +31,7 @@
       "advancement": "spectrum:midgame/tap_chrysocolla",
       "anchor": "chrysocolla",
       "item": "spectrum:chrysocolla",
-      "text": "The result of fermenting Jade Wine a $(italic)tad$() too long.$(br)Immensely bitter and slightly acidic taste.$(br)While it retains some of the properties of the Jade Wine it once resembled, seems more useful for medicine than for drinking. But, you know... is anyone stopping you?"
+      "text": "The result of fermenting Jade Wine a $(italic)tad$() too long.$(br)Immensely bitter and slightly acidic taste.$(br)While it retains some of the properties of the Jade Wine it once resembled, seems more useful for medicine than for drinking.$(br)But, you know... is anyone stopping you?"
     }
   ]
 }

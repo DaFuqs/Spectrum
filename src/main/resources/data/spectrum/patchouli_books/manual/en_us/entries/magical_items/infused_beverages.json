@@ -11,11 +11,11 @@
     {
       "type": "patchouli:text",
       "title": "The Art of Brewing",
-      "text": "Fermentation is a very natural thing. Like most natural things, things take time and care. And since it's not a fully controlled environment there are a lot of variables to it.$(li)Time: Time, of course, being the most important ingredient. Over time, the properties of the wood influence and affect the contents. The more time you give the process, the stronger the changes will be. Most beverages get better and more intense given more time than strictly required and even develop additional effects."
+      "text": "Fermentation is a very natural process - things take time and care. Since there never is a fully controlled environment there are a lot of variables to it:$(li)Time: It takes time for the barrel to influence the contents. The longer you give the process, the stronger the changes will be. Most beverages get more intense and even additional effects, when given more time than strictly required"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Temperature: The hotter it is, the more of your precious content simply evaporates over time. This is called the Angel's Share$(li)Humidity: The more humid the air, the more water evaporates in comparison to alcohol, making the drink stronger$(li)Water Share: The ratio of ingredients to water is a fine balance, but one to be played with. A higher share of ingredients make the drinks ferment a bit faster, albeit at the cost of shorter status effect durations"
+      "text": "$(li)Temperature: The hotter it is, the more of your precious content simply evaporates over time. This is called the Angel's Share$(li)Humidity: The more humid the air, the more water evaporates in comparison to alcohol, making the drink stronger$(li)Water Share: An increased rate of ingredients to water is a fine balance, but one to be played with. More thickness makes the drink ferment faster, albeit at the cost of shorter status effect durations"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

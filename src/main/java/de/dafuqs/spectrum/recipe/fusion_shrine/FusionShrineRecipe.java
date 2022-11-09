@@ -202,8 +202,8 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		if (!getOutput().isEmpty()) {
 			maxAmount = getOutput().getMaxCount();
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
-				for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.getInventory().getStack(i);
+				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
+					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
 					if (ingredientStack.test(currentStack)) {
 						int ingredientStackAmount = ingredientStack.getCount();
 						maxAmount = Math.min(maxAmount, currentStack.getCount() / ingredientStackAmount);
@@ -215,13 +215,13 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 			double efficiencyModifier = fusionShrineBlockEntity.getUpgrades().get(Upgradeable.UpgradeType.EFFICIENCY);
 			if (maxAmount > 0) {
 				for (IngredientStack ingredientStack : getIngredientStacks()) {
-					for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
-						ItemStack currentStack = fusionShrineBlockEntity.getInventory().getStack(i);
+					for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
+						ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
 						if (ingredientStack.test(currentStack)) {
 							int reducedAmount = maxAmount * ingredientStack.getCount();
 							int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
 							if (currentStack.getCount() - reducedAmountAfterMod < 1) {
-								fusionShrineBlockEntity.getInventory().setStack(i, ItemStack.EMPTY);
+								fusionShrineBlockEntity.setStack(i, ItemStack.EMPTY);
 							} else {
 								currentStack.decrement(reducedAmountAfterMod);
 							}
@@ -234,8 +234,8 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
 				double efficiencyModifier = fusionShrineBlockEntity.getUpgrades().get(Upgradeable.UpgradeType.EFFICIENCY);
 				
-				for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.getInventory().getStack(i);
+				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
+					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
 					if (ingredientStack.test(currentStack)) {
 						int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
 						currentStack.decrement(reducedAmountAfterMod);

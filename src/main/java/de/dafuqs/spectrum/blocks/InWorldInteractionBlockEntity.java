@@ -62,7 +62,10 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	
 	@Override
 	public void inventoryChanged() {
-		updateInClientWorld(world, pos);
+		this.markDirty();
+		if (!world.isClient) {
+			updateInClientWorld(world, pos);
+		}
 	}
 	
 }

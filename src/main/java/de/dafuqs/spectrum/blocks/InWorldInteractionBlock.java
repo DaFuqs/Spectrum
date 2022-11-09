@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks;
 
+import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import net.minecraft.block.Block;
@@ -9,6 +10,7 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -17,12 +19,18 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	
 	protected InWorldInteractionBlock(Settings settings) {
 		super(settings);
+	}
+	
+	@Override
+	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+		return false;
 	}
 	
 	@Override
@@ -125,6 +133,27 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		}
 		world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 		return true;
+	}
+	
+	public boolean retrieveLast(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
+		for (int i = blockEntity.size() - 1; i >= 0; i--) {
+			if(retrieveSingle(world, pos, player, hand, handStack, blockEntity, i)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	public boolean inputHandStack(World world, PlayerEntity player, Hand hand, ItemStack handStack, FusionShrineBlockEntity fusionShrineBlockEntity) {
+		int previousCount = handStack.getCount();
+		ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, fusionShrineBlockEntity, null);
+		if(remainingStack.getCount() != previousCount) {
+			player.setStackInHand(hand, remainingStack);
+			world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+			return true;
+		}
+		return false;
 	}
 	
 }

@@ -75,8 +75,8 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 		ItemStack shootingStarStack = ItemStack.EMPTY;
 		ItemStack diamondStack = ItemStack.EMPTY;
 		
-		for (int j = 0; j < fusionShrineBlockEntity.getInventory().size(); ++j) {
-			ItemStack itemStack = fusionShrineBlockEntity.getInventory().getStack(j);
+		for (int j = 0; j < fusionShrineBlockEntity.size(); ++j) {
+			ItemStack itemStack = fusionShrineBlockEntity.getStack(j);
 			if (!itemStack.isEmpty()) {
 				if (itemStack.getItem() instanceof ShootingStarItem && itemStack.getCount() == 1) {
 					shootingStarStack = itemStack;
@@ -96,7 +96,7 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 			shootingStarStack.decrement(craftedAmount);
 			diamondStack.decrement(craftedAmount);
 			
-			InventoryHelper.smartAddToInventory(hardenedStack, fusionShrineBlockEntity.getInventory(), null);
+			InventoryHelper.smartAddToInventory(hardenedStack, fusionShrineBlockEntity, null);
 			fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
 			FusionShrineBlockEntity.spawnCraftingResultAndXP(world, fusionShrineBlockEntity, this, craftedAmount); // spawn results
 		}

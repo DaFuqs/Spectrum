@@ -50,7 +50,7 @@ public interface ExperienceStorageItem {
 	 * @return The overflow amount that could not be stored
 	 */
 	static int addStoredExperience(ItemStack itemStack, int amount) {
-		if(amount > 0) {
+		if(amount <= 0) {
 			return 0;
 		}
 		

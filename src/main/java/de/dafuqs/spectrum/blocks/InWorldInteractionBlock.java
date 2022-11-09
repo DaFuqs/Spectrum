@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.blocks.item_roundel.ItemRoundelBlockEntity;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -10,6 +10,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -18,7 +19,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public abstract class InWorldInteractionBlock extends BlockWithEntity  {
+public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	
 	protected InWorldInteractionBlock(Settings settings) {
 		super(settings);
@@ -52,21 +53,21 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity  {
 	public static void scatterContents(World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof ItemRoundelBlockEntity itemBowlBlockEntity) {
-			ItemScatterer.spawn(world, pos, itemBowlBlockEntity);
+		if (blockEntity instanceof Inventory inventory) {
+			ItemScatterer.spawn(world, pos, inventory);
 			world.updateComparators(pos, block);
 		}
 	}
 	
 	public ItemStack inputItem(World world, BlockPos pos, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof InWorldInteractionBlockEntity inventory) {
+		if (blockEntity instanceof InWorldInteractionBlockEntity inWorldInteractionBlockEntity) {
 			int previousCount = itemStack.getCount();
-			ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, inventory, null);
+			ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemStack, inWorldInteractionBlockEntity, null);
 			
 			if (remainingStack.getCount() != previousCount) {
-				inventory.markDirty();
-				inventory.updateInClientWorld(world, pos);
+				inWorldInteractionBlockEntity.markDirty();
+				inWorldInteractionBlockEntity.updateInClientWorld(world, pos);
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 			}
 			return remainingStack;
@@ -74,27 +75,32 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity  {
 		return itemStack;
 	}
 	
-	public void exchangeSingle(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
+	public boolean exchangeSingle(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
+		return exchangeSingle(world, pos, player, hand, handStack, blockEntity, 0);
+	}
+	
+	public boolean exchangeSingle(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity, int slot) {
 		boolean itemsChanged = false;
 		if (player.isSneaking()) {
-			ItemStack retrievedStack = blockEntity.removeStack(0);
+			ItemStack retrievedStack = blockEntity.removeStack(slot);
 			if (!retrievedStack.isEmpty()) {
 				player.giveItemStack(retrievedStack);
 				itemsChanged = true;
 			}
 		} else {
-			ItemStack currentStack = blockEntity.getStack(0);
+			ItemStack currentStack = blockEntity.getStack(slot);
 			if (!handStack.isEmpty() && !currentStack.isEmpty()) {
-				blockEntity.setStack(0, handStack);
+				blockEntity.setStack(slot, handStack);
 				player.setStackInHand(hand, currentStack);
 				itemsChanged = true;
 			} else {
 				if (!handStack.isEmpty()) {
-					ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, blockEntity, null);
+					ItemStack remainingStack = InventoryHelper.setOrCombineStack(blockEntity, slot, handStack);
 					player.setStackInHand(hand, remainingStack);
 					itemsChanged = true;
 				}
 				if (!currentStack.isEmpty()) {
+					blockEntity.setStack(slot, ItemStack.EMPTY);
 					player.giveItemStack(currentStack);
 					itemsChanged = true;
 				}
@@ -102,10 +108,23 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity  {
 		}
 		
 		if (itemsChanged) {
-			blockEntity.markDirty();
-			blockEntity.updateInClientWorld(world, pos);
 			world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 		}
+		return itemsChanged;
+	}
+	
+	public boolean retrieveSingle(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity, int slot) {
+		ItemStack retrievedStack = blockEntity.removeStack(slot);
+		if (retrievedStack.isEmpty()) {
+			return false;
+		}
+		if(player.getStackInHand(hand).isEmpty()) {
+			player.setStackInHand(hand, retrievedStack);
+		} else {
+			Support.givePlayer(player, retrievedStack);
+		}
+		world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+		return true;
 	}
 	
 }

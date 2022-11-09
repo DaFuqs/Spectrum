@@ -61,7 +61,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 	}
 	
 	public int decrementBowlStack(BlockPos particleTargetBlockPos, int amount, boolean doEffects) {
-		ItemStack storedStack = this.inventory.getStack(0);
+		ItemStack storedStack = this.getStack(0);
 		if (storedStack.isEmpty()) {
 			return 0;
 		}
@@ -70,9 +70,9 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 		Item recipeRemainderItem = storedStack.getItem().getRecipeRemainder();
 		if (recipeRemainderItem != null) {
 			if (storedStack.getCount() == 1) {
-				inventory.setStack(0, recipeRemainderItem.getDefaultStack());
+				setStack(0, recipeRemainderItem.getDefaultStack());
 			} else {
-				inventory.getStack(0).decrement(decrementAmount);
+				getStack(0).decrement(decrementAmount);
 				
 				ItemStack remainderStack = recipeRemainderItem.getDefaultStack();
 				remainderStack.setCount(decrementAmount);
@@ -82,7 +82,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 				world.spawnEntity(itemEntity);
 			}
 		} else {
-			inventory.getStack(0).decrement(decrementAmount);
+			getStack(0).decrement(decrementAmount);
 		}
 		
 		if (decrementAmount > 0) {

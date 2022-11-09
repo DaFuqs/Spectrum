@@ -63,7 +63,7 @@ import vazkii.patchouli.api.IMultiblock;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory, Upgradeable {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, RecipeInputProvider, SidedInventory, ExtendedScreenHandlerFactory, Upgradeable {
 	
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;

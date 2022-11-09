@@ -121,20 +121,19 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (world.isClient) {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 				verifyStructure(world, pos, null, spiritInstillerBlockEntity);
 			}
 			return ActionResult.SUCCESS;
 		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-				ItemStack handStack = player.getStackInHand(hand);
-				exchangeSingle(world, pos, player, hand, handStack, spiritInstillerBlockEntity);
-				
 				if (verifyStructure(world, pos, (ServerPlayerEntity) player, spiritInstillerBlockEntity)) {
-					spiritInstillerBlockEntity.setOwner(player);
+					ItemStack handStack = player.getStackInHand(hand);
+					if(exchangeSingle(world, pos, player, hand, handStack, spiritInstillerBlockEntity)) {
+						spiritInstillerBlockEntity.setOwner(player);
+					}
 				}
 			}
 			return ActionResult.CONSUME;

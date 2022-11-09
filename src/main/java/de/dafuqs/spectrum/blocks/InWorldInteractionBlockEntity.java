@@ -4,27 +4,26 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class InWorldInteractionBlockEntity extends BlockEntity implements Inventory {
+public abstract class InWorldInteractionBlockEntity extends BlockEntity implements ImplementedInventory {
 	
 	private final int inventorySize;
-	protected SimpleInventory inventory;
+	private DefaultedList<ItemStack> items;
 	
 	public InWorldInteractionBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize) {
 		super(type, pos, state);
 		this.inventorySize = inventorySize;
-		this.inventory = new SimpleInventory(inventorySize);
+		this.items = DefaultedList.ofSize(inventorySize, ItemStack.EMPTY);
 	}
 	
 	// interaction methods
@@ -41,13 +40,13 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		this.inventory = new SimpleInventory(inventorySize);
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
+		this.items = DefaultedList.ofSize(inventorySize, ItemStack.EMPTY);
+		Inventories.readNbt(nbt, items);
 	}
 	
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		nbt.put("inventory", this.inventory.toNbtList());
+		Inventories.writeNbt(nbt, items);
 	}
 	
 	@Nullable
@@ -56,45 +55,14 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 		return BlockEntityUpdateS2CPacket.create(this);
 	}
 	
-	// Inventory
 	@Override
-	public int size() {
-		return inventory.size();
+	public DefaultedList<ItemStack> getItems() {
+		return items;
 	}
 	
 	@Override
-	public boolean isEmpty() {
-		return inventory.isEmpty();
-	}
-	
-	@Override
-	public ItemStack getStack(int slot) {
-		return inventory.getStack(slot);
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot, int amount) {
-		return inventory.removeStack(slot);
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot) {
-		return inventory.removeStack(slot);
-	}
-	
-	@Override
-	public void setStack(int slot, ItemStack stack) {
-		inventory.setStack(slot, stack);
-	}
-	
-	@Override
-	public boolean canPlayerUse(PlayerEntity player) {
-		return inventory.canPlayerUse(player);
-	}
-	
-	@Override
-	public void clear() {
-		inventory.clear();
+	public void inventoryChanged() {
+		updateInClientWorld(world, pos);
 	}
 	
 }

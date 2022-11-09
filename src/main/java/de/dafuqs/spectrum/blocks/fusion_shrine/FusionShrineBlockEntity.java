@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
+import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
@@ -204,7 +204,7 @@ public class FusionShrineBlockEntity extends BlockEntity implements RecipeInputP
 		double yieldModifier = recipe.areYieldUpgradesDisabled() ? 1.0 : blockEntity.upgrades.get(UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
 		
-		EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos.up(2), recipe.getOutput(), resultAmountAfterMod);
+		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos.up(2), recipe.getOutput(), resultAmountAfterMod);
 		
 		int spawnedXPAmount = 0;
 		if (recipe.getExperience() > 0) {

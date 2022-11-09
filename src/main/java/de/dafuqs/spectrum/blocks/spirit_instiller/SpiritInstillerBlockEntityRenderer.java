@@ -22,7 +22,7 @@ public class SpiritInstillerBlockEntityRenderer implements BlockEntityRenderer<S
 	public void render(SpiritInstillerBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		
 		// The item lying on top of the spirit instiller
-		ItemStack stack = blockEntity.inventory.getStack(0);
+		ItemStack stack = blockEntity.getStack(0);
 		if (!stack.isEmpty() && blockEntity.getMultiblockRotation() != null) {
 			BlockRotation itemFacingDirection = blockEntity.getMultiblockRotation();
 			

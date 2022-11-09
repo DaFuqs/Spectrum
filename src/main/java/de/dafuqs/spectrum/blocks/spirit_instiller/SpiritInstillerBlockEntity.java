@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
+import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.decoration.GemstoneChimeBlock;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
@@ -23,9 +24,6 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeMatcher;
@@ -40,12 +38,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class SpiritInstillerBlockEntity extends BlockEntity implements MultiblockCrafter, Inventory {
+public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter {
 	
+	protected static final int INVENTORY_SIZE = 1;
 	public static final List<Vec3i> itemBowlOffsetsHorizontal = new ArrayList<>() {{
 		add(new Vec3i(0, 0, 2));
 		add(new Vec3i(0, 0, -2));
@@ -55,10 +53,9 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		add(new Vec3i(2, 0, 0));
 		add(new Vec3i(-2, 0, 0));
 	}};
+	
 	private final Inventory autoCraftingInventory; // 0: instiller stack; 1-2: item bowl stacks
-	protected int INVENTORY_SIZE = 1;
-	protected SimpleInventory inventory;
-	protected boolean inventoryChanged;
+	private boolean inventoryChanged;
 	private UUID ownerUUID;
 	private Map<UpgradeType, Float> upgrades;
 	private BlockRotation multiblockRotation = BlockRotation.NONE;
@@ -68,8 +65,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	private boolean canCraft;
 	
 	public SpiritInstillerBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.SPIRIT_INSTILLER, pos, state);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		super(SpectrumBlockEntities.SPIRIT_INSTILLER, pos, state, INVENTORY_SIZE);
 		this.autoCraftingInventory = new SimpleInventory(INVENTORY_SIZE + 2); // 2 item bowls
 	}
 	
@@ -169,7 +165,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			spiritInstillerBlockEntity.canCraft = spiritInstillerBlockEntity.currentRecipe.canCraftWithStacks(instillerStack, spiritInstillerBlockEntity.autoCraftingInventory.getStack(1), spiritInstillerBlockEntity.autoCraftingInventory.getStack(2));
 		}
 		
-		spiritInstillerBlockEntity.updateInClientWorld();
+		spiritInstillerBlockEntity.updateInClientWorld(world, spiritInstillerBlockEntity.pos);
 	}
 	
 	public static BlockPos getItemBowlPos(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {
@@ -250,7 +246,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		spiritInstillerBlockEntity.inventoryChanged();
 	}
 	
-	public static boolean decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+	public static void decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		SpiritInstillerRecipe recipe = spiritInstillerBlockEntity.currentRecipe;
 		
 		double efficiencyModifier = 1.0;
@@ -288,16 +284,11 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModSecond, true);
 				}
 			}
-			
-			return true;
-		} else {
-			return false;
 		}
 	}
 	
 	public static void playCraftingFinishedEffects(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		spiritInstillerBlockEntity.world.playSound(null, spiritInstillerBlockEntity.pos, SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING_FINISHED, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) spiritInstillerBlockEntity.world,
 				new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5D, spiritInstillerBlockEntity.pos.getY() + 0.5, spiritInstillerBlockEntity.pos.getZ() + 0.5D),
 				SpectrumParticleTypes.LIGHT_BLUE_CRAFTING, 75, new Vec3d(0.5D, 0.5D, 0.5D),
@@ -307,8 +298,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
@@ -341,7 +330,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		nbt.put("inventory", this.inventory.toNbtList());
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putBoolean("CanCraft", this.canCraft);
@@ -418,14 +406,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		}
 	}
 	
-	public Inventory getInventory() {
-		return this.inventory;
-	}
-	
-	public void updateInClientWorld() {
-		((ServerWorld) world).getChunkManager().markForUpdate(pos);
-	}
-	
 	// UPGRADEABLE
 	@Override
 	public void resetUpgrades() {
@@ -463,7 +443,8 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	
 	}
 	
-	// Called when the chunk is first loaded to initialize this be
+	// Called when the chunk is first loaded to initialize this
+	@Override
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		nbtCompound.put("inventory", this.inventory.toNbtList());
@@ -474,12 +455,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
 		return nbtCompound;
-	}
-	
-	@Nullable
-	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
 	}
 	
 	public BlockRotation getMultiblockRotation() {
@@ -495,53 +470,32 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	public void inventoryChanged() {
 		this.inventoryChanged = true;
 		this.autoCraftingInventory.clear();
-		this.inventory.markDirty();
 		markDirty();
-		updateInClientWorld();
-	}
-	
-	@Override
-	public int size() {
-		return INVENTORY_SIZE;
-	}
-	
-	@Override
-	public boolean isEmpty() {
-		return this.inventory.isEmpty();
-	}
-	
-	@Override
-	public ItemStack getStack(int slot) {
-		return this.inventory.getStack(slot);
+		updateInClientWorld(this.world, this.pos);
 	}
 	
 	@Override
 	public ItemStack removeStack(int slot, int amount) {
 		this.inventoryChanged();
-		return this.inventory.removeStack(slot, amount);
+		return super.removeStack(slot, amount);
 	}
 	
 	@Override
 	public ItemStack removeStack(int slot) {
 		this.inventoryChanged();
-		return this.inventory.removeStack(slot);
+		return super.removeStack(slot);
 	}
 	
 	@Override
 	public void setStack(int slot, ItemStack stack) {
 		this.inventoryChanged();
-		this.inventory.setStack(slot, stack);
-	}
-	
-	@Override
-	public boolean canPlayerUse(PlayerEntity player) {
-		return true;
+		super.setStack(slot, stack);
 	}
 	
 	@Override
 	public void clear() {
 		this.inventoryChanged();
-		this.inventory.clear();
+		super.clear();
 	}
 	
 	public Map<UpgradeType, Float> getUpgrades() {

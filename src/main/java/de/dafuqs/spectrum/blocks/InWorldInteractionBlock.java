@@ -49,7 +49,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity  {
 		}
 	}
 	
-	public void scatterContents(World world, BlockPos pos) {
+	public static void scatterContents(World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof ItemRoundelBlockEntity itemBowlBlockEntity) {

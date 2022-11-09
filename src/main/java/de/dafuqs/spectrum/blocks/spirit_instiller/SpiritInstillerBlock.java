@@ -1,23 +1,25 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.blocks.InWorldInteractionBlock;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -29,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 
-public class SpiritInstillerBlock extends BlockWithEntity {
+public class SpiritInstillerBlock extends InWorldInteractionBlock {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("midgame/build_spirit_instiller_structure");
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
@@ -89,22 +91,6 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 		return valid;
 	}
 	
-	public static void scatterContents(@NotNull World world, BlockPos pos) {
-		Block block = world.getBlockState(pos).getBlock();
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-			ItemScatterer.spawn(world, pos, spiritInstillerBlockEntity.getInventory());
-			spiritInstillerBlockEntity.inventoryChanged = true;
-			world.updateComparators(pos, block);
-			spiritInstillerBlockEntity.updateInClientWorld();
-		}
-	}
-	
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
-	}
-	
 	@Nullable
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
@@ -142,61 +128,17 @@ public class SpiritInstillerBlock extends BlockWithEntity {
 			}
 			return ActionResult.SUCCESS;
 		} else {
-			ItemStack handStack = player.getStackInHand(hand);
-			boolean itemsChanged = false;
-			
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-				// if the structure is valid the player can put / retrieve blocks into the shrine
-				if (player.isSneaking()) {
-					Inventory inventory = spiritInstillerBlockEntity.getInventory();
-					ItemStack retrievedStack = inventory.removeStack(0);
-					if (!retrievedStack.isEmpty()) {
-						player.giveItemStack(retrievedStack);
-						itemsChanged = true;
-					}
-				} else {
-					Inventory inventory = spiritInstillerBlockEntity.getInventory();
-					ItemStack currentStack = inventory.getStack(0);
-					if (!handStack.isEmpty() && !currentStack.isEmpty()) {
-						inventory.setStack(0, handStack);
-						player.setStackInHand(hand, currentStack);
-						itemsChanged = true;
-					} else {
-						if (!handStack.isEmpty()) {
-							int previousCount = handStack.getCount();
-							ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, spiritInstillerBlockEntity.getInventory(), null);
-							if(remainingStack.getCount() != previousCount) {
-								player.setStackInHand(hand, remainingStack);
-								itemsChanged = true;
-							}
-						}
-						if (!currentStack.isEmpty()) {
-							player.giveItemStack(currentStack);
-							itemsChanged = true;
-						}
-					}
-				}
+				ItemStack handStack = player.getStackInHand(hand);
+				exchangeSingle(world, pos, player, hand, handStack, spiritInstillerBlockEntity);
 				
 				if (verifyStructure(world, pos, (ServerPlayerEntity) player, spiritInstillerBlockEntity)) {
 					spiritInstillerBlockEntity.setOwner(player);
 				}
-				
-				if (itemsChanged) {
-					spiritInstillerBlockEntity.inventoryChanged();
-					world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-				}
 			}
-			
 			return ActionResult.CONSUME;
 		}
-	}
-	
-	// drop all currently stored items
-	@Override
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		scatterContents(world, pos);
-		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 	
 }

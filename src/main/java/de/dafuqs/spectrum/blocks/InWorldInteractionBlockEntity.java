@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class InWorldInteractionBlockEntity extends BlockEntity implements Inventory {
 	
-	protected int inventorySize;
+	private final int inventorySize;
 	protected SimpleInventory inventory;
 	
 	public InWorldInteractionBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int inventorySize) {

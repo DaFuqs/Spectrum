@@ -36,12 +36,13 @@ import static net.minecraft.state.property.Properties.WATERLOGGED;
 
 public class RadianceStaffItem extends Item implements InkPowered {
 	
-	public static int USE_DURATION = 12;
-	public static int REACH_STEP_DISTANCE = 4;
-	public static int MAX_REACH_STEPS = 8;
-	public static int MIN_LIGHT_LEVEL = 10;
+	public static final int COOLDOWN_DURATION_TICKS = 10;
+	public static final int USE_DURATION = 12;
+	public static final int REACH_STEP_DISTANCE = 4;
+	public static final int MAX_REACH_STEPS = 8;
+	public static final int MIN_LIGHT_LEVEL = 10;
 	
-	public static ItemStack COST = new ItemStack(SpectrumItems.SPARKLESTONE_GEM, 1);
+	public static final ItemStack COST = new ItemStack(SpectrumItems.SPARKLESTONE_GEM, 1);
 	
 	public RadianceStaffItem(Settings settings) {
 		super(settings);

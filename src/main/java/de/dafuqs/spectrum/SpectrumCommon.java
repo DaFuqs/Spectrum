@@ -229,16 +229,17 @@ public class SpectrumCommon implements ModInitializer {
 				if (mainHandStack.isOf(SpectrumItems.EXCHANGE_STAFF)) {
 					Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
 					blockTarget.ifPresent(block -> ExchangeStaffItem.exchange(world, pos, player, block, player.getMainHandStack(), true));
-					return ActionResult.CONSUME;
+					return ActionResult.SUCCESS;
 				} else if (mainHandStack.isOf(SpectrumItems.RADIANCE_STAFF)) {
 					if (!world.getBlockState(pos).isOf(SpectrumBlocks.WAND_LIGHT_BLOCK)) { // those get destroyed instead
 						BlockPos targetPos = pos.offset(direction);
 						if (((RadianceStaffItem) mainHandStack.getItem()).placeLight(world, targetPos, (ServerPlayerEntity) player)) {
+							player.getItemCooldownManager().set(SpectrumItems.RADIANCE_STAFF, RadianceStaffItem.COOLDOWN_DURATION_TICKS);
 							RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayerEntity) player, world.random.nextInt(5), world.random.nextInt(5));
 						} else {
 							RadianceStaffItem.playDenySound(world, player);
 						}
-						return ActionResult.CONSUME;
+						return ActionResult.SUCCESS;
 					}
 				}
 			}

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
 import de.dafuqs.spectrum.blocks.BlackMateriaBlock;
+import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
@@ -53,19 +54,6 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 	
 	public MidnightSolutionFluidBlock(FlowableFluid fluid, Settings settings) {
 		super(fluid, settings);
-	}
-	
-	public static void spawnItemStackAsEntitySplitViaMaxCount(World world, Vec3d vec3d, ItemStack itemStack, int amount) {
-		while (amount > 0) {
-			int currentAmount = Math.min(amount, itemStack.getMaxCount());
-			
-			ItemStack resultStack = itemStack.copy();
-			resultStack.setCount(currentAmount);
-			ItemEntity itemEntity = new ItemEntity(world, vec3d.x, vec3d.y, vec3d.z, resultStack);
-			world.spawnEntity(itemEntity);
-			
-			amount -= currentAmount;
-		}
 	}
 	
 	public static boolean tryConvertNeighbor(@NotNull World world, BlockPos pos, BlockPos fromPos) {
@@ -145,7 +133,7 @@ public class MidnightSolutionFluidBlock extends FluidBlock {
 					MidnightSolutionConvertingRecipe recipe = getConversionRecipeFor(world, itemStack);
 					if (recipe != null) {
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-						spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount());
+						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount(), Vec3d.ZERO);
 						itemEntity.discard();
 					}
 				}

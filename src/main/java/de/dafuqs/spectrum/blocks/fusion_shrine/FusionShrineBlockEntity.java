@@ -194,7 +194,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		double yieldModifier = recipe.areYieldUpgradesDisabled() ? 1.0 : blockEntity.upgrades.get(UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
 		
-		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos.up(2), recipe.getOutput(), resultAmountAfterMod);
+		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos.up(2), recipe.getOutput(), resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
 		
 		int spawnedXPAmount = 0;
 		if (recipe.getExperience() > 0) {

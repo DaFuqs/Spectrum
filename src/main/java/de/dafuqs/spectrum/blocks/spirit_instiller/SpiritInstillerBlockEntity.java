@@ -236,7 +236,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			if (spiritInstillerBlockEntity.getStack(0).isEmpty()) {
 				spiritInstillerBlockEntity.setStack(0, resultStack);
 			} else {
-				MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
+				MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount(), MultiblockCrafter.RECIPE_STACK_VELOCITY);
 			}
 		}
 		

@@ -475,7 +475,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		
 		if (existingCenterStack.getCount() > 1) {
 			existingCenterStack.decrement(1);
-			MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, enchanterBlockEntity.pos, resultStack, resultStack.getCount());
+			MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, enchanterBlockEntity.pos, resultStack, resultStack.getCount(), MultiblockCrafter.RECIPE_STACK_VELOCITY);
 		} else {
 			enchanterBlockEntity.setStack(0, resultStack);
 		}

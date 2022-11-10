@@ -6,9 +6,12 @@ import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
+	
+	Vec3d RECIPE_STACK_VELOCITY = new Vec3d(0.0, 0.3, 0.0);
 	
 	static void spawnExperience(World world, BlockPos blockPos, int spawnedXPAmount) {
 		if (spawnedXPAmount > 0) {
@@ -17,14 +20,18 @@ public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 		}
 	}
 	
-	static void spawnItemStackAsEntitySplitViaMaxCount(World world, BlockPos blockPos, ItemStack itemStack, int amount) {
+	static void spawnItemStackAsEntitySplitViaMaxCount(World world, BlockPos blockPos, ItemStack itemStack, int amount, Vec3d velocity) {
+		spawnItemStackAsEntitySplitViaMaxCount(world, Vec3d.ofCenter(blockPos), itemStack, amount, velocity);
+	}
+	
+	static void spawnItemStackAsEntitySplitViaMaxCount(World world, Vec3d pos, ItemStack itemStack, int amount, Vec3d velocity) {
 		while (amount > 0) {
 			int currentAmount = Math.min(amount, itemStack.getMaxCount());
 			
 			ItemStack resultStack = itemStack.copy();
 			resultStack.setCount(currentAmount);
-			ItemEntity itemEntity = new ItemEntity(world, blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, resultStack);
-			itemEntity.setVelocity(0, 0.3, 0);
+			ItemEntity itemEntity = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), resultStack);
+			itemEntity.setVelocity(velocity);
 			world.spawnEntity(itemEntity);
 			
 			amount -= currentAmount;

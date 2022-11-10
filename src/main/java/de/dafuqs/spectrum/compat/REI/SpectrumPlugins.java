@@ -17,6 +17,7 @@ public class SpectrumPlugins {
 	public static final CategoryIdentifier<PotionWorkshopReactingDisplay> POTION_WORKSHOP_REACTING = CategoryIdentifier.of(SpectrumCommon.locate("potion_workshop_reacting"));
 	public static final CategoryIdentifier<SpiritInstillingDisplay> SPIRIT_INSTILLER = CategoryIdentifier.of(SpectrumCommon.locate("spirit_instiller"));
 	public static final CategoryIdentifier<MidnightSolutionConvertingDisplay> MIDNIGHT_SOLUTION_CONVERTING = CategoryIdentifier.of(SpectrumCommon.locate("midnight_solution_converting"));
+	public static final CategoryIdentifier<LiquidCrystalConvertingDisplay> LIQUID_CRYSTAL_CONVERTING = CategoryIdentifier.of(SpectrumCommon.locate("liquid_crystal_converting"));
 	public static final CategoryIdentifier<HeatingDisplay> HEATING = CategoryIdentifier.of(SpectrumCommon.locate("heating"));
 	public static final CategoryIdentifier<FreezingDisplay> FREEZING = CategoryIdentifier.of(SpectrumCommon.locate("freezing"));
 	public static final CategoryIdentifier<InkConvertingDisplay> INK_CONVERTING = CategoryIdentifier.of(SpectrumCommon.locate("ink_converting"));

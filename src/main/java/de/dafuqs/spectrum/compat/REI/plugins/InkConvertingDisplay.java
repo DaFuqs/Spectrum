@@ -20,9 +20,7 @@ public class InkConvertingDisplay extends BasicDisplay implements GatedRecipeDis
 	protected boolean secret;
 	protected final InkColor color;
 	protected final long amount;
-	
-	@Nullable
-	protected final Identifier requiredAdvancementIdentifier;
+	@Nullable protected final Identifier requiredAdvancementIdentifier;
 	
 	public InkConvertingDisplay(@NotNull InkConvertingRecipe recipe) {
 		super(EntryIngredients.ofIngredients(recipe.getIngredients()), List.of());

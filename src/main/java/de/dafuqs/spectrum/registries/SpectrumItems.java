@@ -14,6 +14,7 @@ import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItemWithLoomPattern;
 import de.dafuqs.spectrum.items.conditional.GemstonePowderItem;
+import de.dafuqs.spectrum.items.conditional.LightningStoneItem;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
@@ -234,7 +235,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALETUR_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALETUR_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	
 	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
-	public static final CloakedItem LIGHTNING_STONE = new CloakedItem(Tab.RESOURCES.settings(16), ((RevelationAware) SpectrumBlocks.STUCK_LIGHTNING_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
+	public static final CloakedItem LIGHTNING_STONE = new LightningStoneItem(Tab.RESOURCES.settings(16), ((RevelationAware) SpectrumBlocks.STUCK_LIGHTNING_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
 	public static final CloakedItem SHOOTING_STAR = new CloakedItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
 	public static final CloakedItem STARDUST = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);

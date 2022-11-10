@@ -4,7 +4,10 @@ import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -17,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class IncandescentAmalgamItem extends BlockItem {
+public class IncandescentAmalgamItem extends BlockItem implements DamageAwareItem {
     
     public IncandescentAmalgamItem(Block block, Settings settings) {
         super(block, settings);
@@ -42,6 +45,16 @@ public class IncandescentAmalgamItem extends BlockItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
         tooltip.add(new TranslatableText("block.spectrum.incandescent_amalgam.tooltip"));
+    }
+    
+    @Override
+    public void onItemEntityDamaged(DamageSource source, float amount, ItemEntity itemEntity) {
+        // remove the itemEntity before dealing damage, otherwise it would cause a stack overflow
+        itemEntity.remove(Entity.RemovalReason.KILLED);
+        
+        int stackCount = itemEntity.getStack().getCount();
+        itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), 1.0F + stackCount / 16F, false, Explosion.DestructionType.DESTROY);
+        itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), 8.0F + stackCount / 8F, true, Explosion.DestructionType.NONE);
     }
     
 }

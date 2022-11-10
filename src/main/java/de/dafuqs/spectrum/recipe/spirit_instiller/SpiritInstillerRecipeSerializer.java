@@ -35,7 +35,7 @@ public class SpiritInstillerRecipeSerializer implements GatedRecipeSerializer<Sp
 		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
-		float experience = JsonHelper.getFloat(jsonObject, "experience");
+		float experience = JsonHelper.getFloat(jsonObject, "experience", 1.0F);
 		
 		boolean noBenefitsFromYieldAndEfficiencyUpgrades = false;
 		if (JsonHelper.hasPrimitive(jsonObject, "disable_yield_and_efficiency_upgrades")) {

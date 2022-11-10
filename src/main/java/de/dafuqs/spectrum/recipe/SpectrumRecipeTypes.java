@@ -11,12 +11,13 @@ import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
 import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipeSerializer;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
+import de.dafuqs.spectrum.recipe.fluid_converting.FluidConvertingRecipeSerializer;
+import de.dafuqs.spectrum.recipe.fluid_converting.LiquidCrystalConvertingRecipe;
+import de.dafuqs.spectrum.recipe.fluid_converting.MidnightSolutionConvertingRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
 import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeSerializer;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
 import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipeSerializer;
-import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
-import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipeSerializer;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
 import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipeSerializer;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
@@ -64,8 +65,12 @@ public class SpectrumRecipeTypes {
 	public static RecipeSerializer<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING_SERIALIZER;
 	public static RecipeType<PotionWorkshopReactingRecipe> POTION_WORKSHOP_REACTING;
 	
+	public static final String LIQUID_CRYSTAL_CONVERTING_ID = "liquid_crystal_converting";
+	public static FluidConvertingRecipeSerializer<LiquidCrystalConvertingRecipe> LIQUID_CRYSTAL_CONVERTING_SERIALIZER;
+	public static RecipeType<LiquidCrystalConvertingRecipe> LIQUID_CRYSTAL_CONVERTING;
+	
 	public static final String MIDNIGHT_SOLUTION_CONVERTING_ID = "midnight_solution_converting";
-	public static RecipeSerializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER;
+	public static FluidConvertingRecipeSerializer<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER;
 	public static RecipeType<MidnightSolutionConvertingRecipe> MIDNIGHT_SOLUTION_CONVERTING;
 	
 	public static final String SPIRIT_INSTILLING_ID = "spirit_instiller";
@@ -126,7 +131,10 @@ public class SpectrumRecipeTypes {
 		POTION_WORKSHOP_REACTING_SERIALIZER = registerSerializer(POTION_WORKSHOP_REACTING_ID, new PotionWorkshopReactingRecipeSerializer(PotionWorkshopReactingRecipe::new));
 		POTION_WORKSHOP_REACTING = registerRecipeType(POTION_WORKSHOP_REACTING_ID);
 		
-		MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER = registerSerializer(MIDNIGHT_SOLUTION_CONVERTING_ID, new MidnightSolutionConvertingRecipeSerializer(MidnightSolutionConvertingRecipe::new));
+		LIQUID_CRYSTAL_CONVERTING_SERIALIZER = registerSerializer(LIQUID_CRYSTAL_CONVERTING_ID, new FluidConvertingRecipeSerializer<>(LiquidCrystalConvertingRecipe::new));
+		LIQUID_CRYSTAL_CONVERTING = registerRecipeType(LIQUID_CRYSTAL_CONVERTING_ID);
+		
+		MIDNIGHT_SOLUTION_CONVERTING_SERIALIZER = registerSerializer(MIDNIGHT_SOLUTION_CONVERTING_ID, new FluidConvertingRecipeSerializer<>(MidnightSolutionConvertingRecipe::new));
 		MIDNIGHT_SOLUTION_CONVERTING = registerRecipeType(MIDNIGHT_SOLUTION_CONVERTING_ID);
 		
 		SPIRIT_INSTILLING_SERIALIZER = registerSerializer(SPIRIT_INSTILLING_ID, new SpiritInstillerRecipeSerializer(SpiritInstillerRecipe::new));

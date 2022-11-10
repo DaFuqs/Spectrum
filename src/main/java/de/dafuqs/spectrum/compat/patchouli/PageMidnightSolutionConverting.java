@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.compat.patchouli;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.midnight_solution_converting.MidnightSolutionConvertingRecipe;
+import de.dafuqs.spectrum.recipe.fluid_converting.FluidConvertingRecipe;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import vazkii.patchouli.client.book.gui.GuiBook;
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
-public class PageMidnightSolutionConverting extends PageDoubleRecipeRegistry<MidnightSolutionConvertingRecipe> {
+public class PageMidnightSolutionConverting extends PageDoubleRecipeRegistry<FluidConvertingRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/midnight_solution.png");
 	
@@ -23,7 +23,7 @@ public class PageMidnightSolutionConverting extends PageDoubleRecipeRegistry<Mid
 	}
 	
 	@Override
-	protected ItemStack getRecipeOutput(MidnightSolutionConvertingRecipe recipe) {
+	protected ItemStack getRecipeOutput(FluidConvertingRecipe recipe) {
 		if (recipe == null) {
 			return ItemStack.EMPTY;
 		} else {
@@ -32,7 +32,7 @@ public class PageMidnightSolutionConverting extends PageDoubleRecipeRegistry<Mid
 	}
 	
 	@Override
-	protected void drawRecipe(MatrixStack ms, @NotNull MidnightSolutionConvertingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
+	protected void drawRecipe(MatrixStack ms, @NotNull FluidConvertingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX - 2, recipeY - 2, 0, 0, 104, 97, 128, 256);

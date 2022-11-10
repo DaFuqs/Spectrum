@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.recipe.midnight_solution_converting;
+package de.dafuqs.spectrum.recipe.fluid_converting;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -10,20 +10,20 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
-public class MidnightSolutionConvertingRecipeSerializer implements GatedRecipeSerializer<MidnightSolutionConvertingRecipe> {
+public class FluidConvertingRecipeSerializer<R extends FluidConvertingRecipe> implements GatedRecipeSerializer<R> {
 	
-	public final MidnightSolutionConvertingRecipeSerializer.RecipeFactory<MidnightSolutionConvertingRecipe> recipeFactory;
+	public final FluidConvertingRecipeSerializer.RecipeFactory<R> recipeFactory;
 	
-	public MidnightSolutionConvertingRecipeSerializer(MidnightSolutionConvertingRecipeSerializer.RecipeFactory<MidnightSolutionConvertingRecipe> recipeFactory) {
+	public FluidConvertingRecipeSerializer(FluidConvertingRecipeSerializer.RecipeFactory<R> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
 	
-	public interface RecipeFactory<MidnightSolutionConvertingRecipe> {
-		MidnightSolutionConvertingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, ItemStack outputItemStack);
+	public interface RecipeFactory<R> {
+		R create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, ItemStack outputItemStack);
 	}
 	
 	@Override
-	public MidnightSolutionConvertingRecipe read(Identifier identifier, JsonObject jsonObject) {
+	public R read(Identifier identifier, JsonObject jsonObject) {
 		String group = readGroup(jsonObject);
 		boolean secret = readSecret(jsonObject);
 		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
@@ -36,7 +36,7 @@ public class MidnightSolutionConvertingRecipeSerializer implements GatedRecipeSe
 	}
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, MidnightSolutionConvertingRecipe recipe) {
+	public void write(PacketByteBuf packetByteBuf, R recipe) {
 		packetByteBuf.writeString(recipe.group);
 		packetByteBuf.writeBoolean(recipe.secret);
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
@@ -46,7 +46,7 @@ public class MidnightSolutionConvertingRecipeSerializer implements GatedRecipeSe
 	}
 	
 	@Override
-	public MidnightSolutionConvertingRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
+	public R read(Identifier identifier, PacketByteBuf packetByteBuf) {
 		String group = packetByteBuf.readString();
 		boolean secret = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);

@@ -16,7 +16,6 @@ import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ColorRegistry;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -198,13 +197,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		
 		int spawnedXPAmount = 0;
 		if (recipe.getExperience() > 0) {
-			double experienceModifier = blockEntity.upgrades.get(UpgradeType.EXPERIENCE);
-			float recipeExperienceBeforeMod = recipe.getExperience() * amount;
-			spawnedXPAmount = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
-			if (spawnedXPAmount > 0) {
-				ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, blockEntity.pos.getX() + 0.5, blockEntity.pos.getY() + 1, blockEntity.pos.getZ() + 0.5, spawnedXPAmount);
-				world.spawnEntity(experienceOrbEntity);
-			}
+			spawnedXPAmount = Support.getIntFromDecimalWithChance(recipe.getExperience() * amount * blockEntity.upgrades.get(UpgradeType.EXPERIENCE), world.random);
+			MultiblockCrafter.spawnExperience(world, blockEntity.pos, spawnedXPAmount);
 		}
 		
 		//only triggered on server side. Therefore, has to be sent to client via S2C packet

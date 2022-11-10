@@ -67,25 +67,27 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
 		
-		if (entity instanceof LivingEntity livingEntity) {
-			// just check every x ticks for performance and slow healing
-			if (world.getTime() % 200 == 0) {
-				StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
-				if (regenerationInstance == null) {
-					StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
-					livingEntity.addStatusEffect(newRegenerationInstance);
+		if (!world.isClient) {
+			if (entity instanceof LivingEntity livingEntity) {
+				// just check every x ticks for performance and slow healing
+				if (world.getTime() % 200 == 0) {
+					StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
+					if (regenerationInstance == null) {
+						StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
+						livingEntity.addStatusEffect(newRegenerationInstance);
+					}
 				}
-			}
-		} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
-			ItemStack itemStack = itemEntity.getStack();
-			// do not try to search conversion recipes for items that are recipe outputs already
-			// => better performance
-			if (!LiquidCrystalConvertingRecipe.isExistingOutputItem(itemStack)) {
-				LiquidCrystalConvertingRecipe recipe = getConversionRecipeFor(world, itemStack);
-				if (recipe != null) {
-					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-					MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount(), Vec3d.ZERO);
-					itemEntity.discard();
+			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
+				ItemStack itemStack = itemEntity.getStack();
+				// do not try to search conversion recipes for items that are recipe outputs already
+				// => better performance
+				if (!LiquidCrystalConvertingRecipe.isExistingOutputItem(itemStack)) {
+					LiquidCrystalConvertingRecipe recipe = getConversionRecipeFor(world, itemStack);
+					if (recipe != null) {
+						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount(), Vec3d.ZERO);
+						itemEntity.discard();
+					}
 				}
 			}
 		}

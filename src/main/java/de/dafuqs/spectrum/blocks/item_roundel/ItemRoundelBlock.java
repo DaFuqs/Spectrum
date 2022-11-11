@@ -42,7 +42,7 @@ public class ItemRoundelBlock extends InWorldInteractionBlock {
 			if (blockEntity instanceof ItemRoundelBlockEntity itemRoundelBlockEntity) {
 				ItemStack handStack = player.getStackInHand(hand);
 				if (player.isSneaking() || handStack.isEmpty()) {
-					retrieveLast(world, pos, player, hand, handStack, itemRoundelBlockEntity);
+					retrieveLastStack(world, pos, player, hand, handStack, itemRoundelBlockEntity);
 				} else {
 					inputHandStack(world, player, hand, handStack, itemRoundelBlockEntity);
 				}

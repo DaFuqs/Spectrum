@@ -17,7 +17,6 @@ import net.minecraft.item.Items;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Pair;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
@@ -30,16 +29,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class InventoryHelper {
-	
-	public static int getItemCountInList(List<ItemStack> inventory, Item item) {
-		int count = 0;
-		for (ItemStack stack : inventory) {
-			if (stack.isOf(item)) {
-				count += stack.getCount();
-			}
-		}
-		return count;
-	}
 	
 	public static int getItemCountInInventory(Inventory inventory, Item item) {
 		int count = 0;
@@ -91,18 +80,6 @@ public class InventoryHelper {
 		}
 	}
 	
-	public static Pair<Integer, List<ItemStack>> getStackCountInInventory(ItemStack itemStack, List<ItemStack> inventory) {
-		List<ItemStack> foundStacks = new ArrayList<>();
-		int count = 0;
-		for (ItemStack inventoryStack : inventory) {
-			if (inventoryStack.isItemEqual(itemStack)) {
-				foundStacks.add(inventoryStack);
-				count += inventoryStack.getCount();
-			}
-		}
-		return new Pair(count, foundStacks);
-	}
-	
 	public static boolean isItemCountInInventory(List<ItemStack> inventory, ItemVariant itemVariant, int maxSearchAmount) {
 		int count = 0;
 		for (ItemStack inventoryStack : inventory) {
@@ -129,28 +106,6 @@ public class InventoryHelper {
 			}
 		}
 		return new Pair<>(count, foundStacks);
-	}
-	
-	public static boolean isIngredientCountInInventory(Ingredient ingredient, List<ItemStack> inventory, int maxSearchAmount) {
-		int count = 0;
-		for (ItemStack inventoryStack : inventory) {
-			if (ingredient.test(inventoryStack)) {
-				count += inventoryStack.getCount();
-				if (count >= maxSearchAmount) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
-	public static boolean existsStackInInventory(ItemStack itemStack, List<ItemStack> inventory) {
-		for (ItemStack inventoryStack : inventory) {
-			if (inventoryStack.isItemEqual(itemStack)) {
-				return true;
-			}
-		}
-		return false;
 	}
 	
 	/**
@@ -182,40 +137,12 @@ public class InventoryHelper {
 		return itemStack;
 	}
 	
-	public static ItemStack smartAddToInventory(ItemStack itemStack, DefaultedList<ItemStack> inventory) {
-		for (int i = 0; i < inventory.size(); i++) {
-			itemStack = setOrCombineStack(inventory, i, itemStack);
-			if (itemStack.isEmpty()) {
-				break;
-			}
-		}
-		return itemStack;
-	}
-	
-	public static ItemStack setOrCombineStack(DefaultedList<ItemStack> inventory, int slot, ItemStack addingStack) {
-		ItemStack existingStack = inventory.get(slot);
-		if (existingStack.isEmpty()) {
-			if (addingStack.getCount() > addingStack.getMaxCount()) {
-				int amount = Math.min(addingStack.getMaxCount(), addingStack.getCount());
-				ItemStack newStack = addingStack.copy();
-				newStack.setCount(amount);
-				addingStack.decrement(amount);
-				inventory.set(slot, newStack);
-			} else {
-				inventory.set(slot, addingStack);
-				return ItemStack.EMPTY;
-			}
-		} else {
-			combineStacks(existingStack, addingStack);
-		}
-		return addingStack;
-	}
-	
 	public static ItemStack setOrCombineStack(Inventory inventory, int slot, ItemStack addingStack) {
 		ItemStack existingStack = inventory.getStack(slot);
 		if (existingStack.isEmpty()) {
 			if (addingStack.getCount() > addingStack.getMaxCount()) {
 				int amount = Math.min(addingStack.getMaxCount(), addingStack.getCount());
+				amount = Math.min(amount, inventory.getMaxCountPerStack());
 				ItemStack newStack = addingStack.copy();
 				newStack.setCount(amount);
 				addingStack.decrement(amount);
@@ -482,18 +409,6 @@ public class InventoryHelper {
 		}
 		
 		return inventory;
-	}
-	
-	public static Optional<ItemStack> extractLastStack(DefaultedList<ItemStack> inventory) {
-		ItemStack currentStack;
-		for (int i = inventory.size() - 1; i >= 0; i--) {
-			currentStack = inventory.get(i);
-			if (!currentStack.isEmpty()) {
-				inventory.set(i, ItemStack.EMPTY);
-				return Optional.of(currentStack);
-			}
-		}
-		return Optional.empty();
 	}
 	
 	public static Optional<ItemStack> extractLastStack(Inventory inventory) {

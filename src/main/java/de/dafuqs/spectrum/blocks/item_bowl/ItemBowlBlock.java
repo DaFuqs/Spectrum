@@ -111,7 +111,7 @@ public class ItemBowlBlock extends InWorldInteractionBlock {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				ItemStack handStack = player.getStackInHand(hand);
-				exchangeSingle(world, pos, player, hand, handStack, itemBowlBlockEntity);
+				exchangeStack(world, pos, player, hand, handStack, itemBowlBlockEntity);
 			}
 			return ActionResult.CONSUME;
 		}

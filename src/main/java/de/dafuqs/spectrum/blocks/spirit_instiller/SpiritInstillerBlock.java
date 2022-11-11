@@ -131,7 +131,7 @@ public class SpiritInstillerBlock extends InWorldInteractionBlock {
 			if (blockEntity instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 				if (verifyStructure(world, pos, (ServerPlayerEntity) player, spiritInstillerBlockEntity)) {
 					ItemStack handStack = player.getStackInHand(hand);
-					if(exchangeSingle(world, pos, player, hand, handStack, spiritInstillerBlockEntity)) {
+					if(exchangeStack(world, pos, player, hand, handStack, spiritInstillerBlockEntity)) {
 						spiritInstillerBlockEntity.setOwner(player);
 					}
 				}

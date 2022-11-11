@@ -173,7 +173,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 					// if the structure is valid the player can put / retrieve blocks into the shrine
 					if (player.isSneaking() || handStack.isEmpty()) {
 						// sneaking or empty hand: remove items
-						if(retrieveLast(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
+						if(retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
 							fusionShrineBlockEntity.setOwner(player);
 						}
 					} else if (verifyStructure(world, pos, (ServerPlayerEntity) player) && !handStack.isEmpty()) {

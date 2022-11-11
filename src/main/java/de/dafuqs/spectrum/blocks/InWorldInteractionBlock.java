@@ -46,7 +46,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if (!world.isClient && entity instanceof ItemEntity itemEntity) {
-			ItemStack remainingStack = inputItem(world, pos, itemEntity.getStack());
+			ItemStack remainingStack = inputStack(world, pos, itemEntity.getStack());
 			if (remainingStack.isEmpty()) {
 				itemEntity.remove(Entity.RemovalReason.DISCARDED);
 			} else {
@@ -66,7 +66,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		}
 	}
 	
-	public ItemStack inputItem(World world, BlockPos pos, ItemStack itemStack) {
+	public ItemStack inputStack(World world, BlockPos pos, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof InWorldInteractionBlockEntity inWorldInteractionBlockEntity) {
 			int previousCount = itemStack.getCount();
@@ -82,11 +82,11 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		return itemStack;
 	}
 	
-	public boolean exchangeSingle(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
-		return exchangeSingle(world, pos, player, hand, handStack, blockEntity, 0);
+	public boolean exchangeStack(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
+		return exchangeStack(world, pos, player, hand, handStack, blockEntity, 0);
 	}
 	
-	public boolean exchangeSingle(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity, int slot) {
+	public boolean exchangeStack(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity, int slot) {
 		boolean itemsChanged = false;
 		if (player.isSneaking()) {
 			ItemStack retrievedStack = blockEntity.removeStack(slot);
@@ -120,7 +120,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		return itemsChanged;
 	}
 	
-	public boolean retrieveSingle(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity, int slot) {
+	public boolean retrieveStack(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity, int slot) {
 		ItemStack retrievedStack = blockEntity.removeStack(slot);
 		if (retrievedStack.isEmpty()) {
 			return false;
@@ -134,15 +134,14 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		return true;
 	}
 	
-	public boolean retrieveLast(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
+	public boolean retrieveLastStack(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
 		for (int i = blockEntity.size() - 1; i >= 0; i--) {
-			if(retrieveSingle(world, pos, player, hand, handStack, blockEntity, i)) {
+			if(retrieveStack(world, pos, player, hand, handStack, blockEntity, i)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
 	
 	public boolean inputHandStack(World world, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
 		int previousCount = handStack.getCount();

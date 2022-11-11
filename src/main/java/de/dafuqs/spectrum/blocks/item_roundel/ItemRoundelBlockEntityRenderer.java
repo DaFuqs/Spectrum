@@ -24,14 +24,19 @@ public class ItemRoundelBlockEntityRenderer<T extends ItemRoundelBlockEntity> im
 	}
 	
 	public void render(ItemRoundelBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-		
 		if (!blockEntity.isEmpty()) {
 			// the floating item stacks
 			List<ItemStack> inventoryStacks = new ArrayList<>();
 			for (int i = 0; i < blockEntity.size(); i++) {
 				ItemStack stack = blockEntity.getStack(i);
 				if (!stack.isEmpty()) {
-					inventoryStacks.add(stack);
+					if(blockEntity.renderStacksAsIndividualItems()) {
+						for (int j = 0; j < stack.getCount(); j++) {
+							inventoryStacks.add(stack);
+						}
+					} else {
+						inventoryStacks.add(stack);
+					}
 				}
 			}
 			

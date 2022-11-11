@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.compat.REI.plugins;
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.compat.REI.GatedSpectrumDisplay;
 import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.recipe.fluid_converting.LiquidCrystalConvertingRecipe;
 import de.dafuqs.spectrum.recipe.fluid_converting.MidnightSolutionConvertingRecipe;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
@@ -15,7 +14,7 @@ import java.util.Collections;
 public class MidnightSolutionConvertingDisplay extends GatedSpectrumDisplay {
 	
 	public MidnightSolutionConvertingDisplay(MidnightSolutionConvertingRecipe recipe) {
-		super(recipe, Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
+		super(recipe, Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), recipe.getOutput());
 	}
 	
 	public final EntryIngredient getIn() {
@@ -32,7 +31,7 @@ public class MidnightSolutionConvertingDisplay extends GatedSpectrumDisplay {
 	}
 	
 	public boolean isUnlocked() {
-		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, MidnightSolutionConvertingRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}
 	
 }

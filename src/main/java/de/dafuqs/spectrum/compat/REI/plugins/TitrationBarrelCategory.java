@@ -52,14 +52,14 @@ public class TitrationBarrelCategory implements DisplayCategory<TitrationBarrelD
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 13), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 23), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
-			List<EntryIngredient> output = display.getOutputEntries();
+			List<EntryIngredient> inputs = display.getInputEntries();
 			
 			// input slots
-			int ingredientSize = display.ingredients.size();
+			int ingredientSize = inputs.size();
 			int startX = startPoint.x + Math.max(-5, 15 - ingredientSize * 10);
 			int startY = startPoint.y + (ingredientSize > 2 ? 0 : 10);
 			for (int i = 0; i < ingredientSize; i++) {
-				EntryIngredient currentIngredient = display.ingredients.get(i);
+				EntryIngredient currentIngredient = inputs.get(i);
 				int yOffset;
 				int xOffset;
 				if(i < 3) {
@@ -80,7 +80,7 @@ public class TitrationBarrelCategory implements DisplayCategory<TitrationBarrelD
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + 64, startPoint.y + 20)).markInput().entries(display.tappingIngredient));
 			}
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 10)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 10)).markOutput().disableBackground().entries(output.get(0)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 10)).markOutput().disableBackground().entries(display.getOutputEntries().get(0)));
 			
 			// duration text
 			MutableText text = TitrationBarrelRecipe.getDurationText(display.minFermentationTimeHours, display.fermentationData);

@@ -27,19 +27,7 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
 	public NaturesStaffConversionsDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
 		super(inputs, outputs);
 	}
-	
-	public static BasicDisplay.Serializer<NaturesStaffConversionsDisplay> serializer() {
-		return BasicDisplay.Serializer.ofSimpleRecipeLess(NaturesStaffConversionsDisplay::new);
-	}
-	
-	public final EntryIngredient getIn() {
-		return getInputEntries().get(0);
-	}
-	
-	public final EntryIngredient getOut() {
-		return getOutputEntries().get(0);
-	}
-	
+
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.NATURES_STAFF;

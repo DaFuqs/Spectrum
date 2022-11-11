@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.mixin.accessors.ShapedRecipeAccessor;
@@ -162,7 +163,11 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 		DefaultedList<IngredientStack> craftingInputs = DefaultedList.ofSize(width * height, IngredientStack.EMPTY);
 		
 		for (int k = 0; k < craftingInputs.size(); ++k) {
-			craftingInputs.set(k, IngredientStack.fromByteBuf(packetByteBuf));
+			try {
+				craftingInputs.set(k, IngredientStack.fromByteBuf(packetByteBuf));
+			} catch (Exception e) {
+				SpectrumCommon.logError("!");
+			}
 		}
 		ItemStack output = packetByteBuf.readItemStack();
 		

@@ -14,7 +14,7 @@ import java.util.Collections;
 public class LiquidCrystalConvertingDisplay extends GatedSpectrumDisplay {
 	
 	public LiquidCrystalConvertingDisplay(LiquidCrystalConvertingRecipe recipe) {
-		super(recipe, Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
+		super(recipe, Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredients().get(0))), recipe.getOutput());
 	}
 	
 	public final EntryIngredient getIn() {

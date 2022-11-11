@@ -72,6 +72,8 @@
   "effect.spectrum.frenzy": "Frenzy",
   "effect.spectrum.blazing": "Blazing",
   "effect.spectrum.projectile_rebound": "Projectile Rebound",
+  "effect.spectrum.lightweight": "Lightweight",
+  "effect.spectrum.vulnerability": "Vulnerability",
 
   "__legacy: remove in 1.19": "",
   "item.spectrum.potion": "§2P§3i§cg§6m§be§en§dt§f Potion",

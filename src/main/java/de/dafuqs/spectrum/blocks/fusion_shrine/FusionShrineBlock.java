@@ -24,7 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.text.TranslatableText;
@@ -42,8 +41,6 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
-
-import java.util.Optional;
 
 public class FusionShrineBlock extends InWorldInteractionBlock {
 	
@@ -128,34 +125,6 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		if (!world.isClient && entity.getPos().x % 0.5 != 0 && entity.getPos().z % 0.5 != 0) {
 			super.onLandedUpon(world, state, pos, entity, fallDistance);
 		}
-	}
-	
-	public ItemStack inputFluidViaBucket(World world, BlockPos blockPos, ItemStack bucketStack) {
-		if (bucketStack.getItem() instanceof BucketItem) {
-			BlockEntity blockEntity = world.getBlockEntity(blockPos);
-			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-				Fluid storedFluid = fusionShrineBlockEntity.getFluid();
-				Fluid bucketFluid = ((BucketItemAccessor) bucketStack.getItem()).fabric_getFluid();
-				if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
-					fusionShrineBlockEntity.setFluid(bucketFluid);
-					fusionShrineBlockEntity.inventoryChanged();
-					
-					Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
-					soundEvent.ifPresent(event -> world.playSound(null, blockPos, event, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F));
-					
-					return new ItemStack(Items.BUCKET);
-				} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
-					fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
-					fusionShrineBlockEntity.inventoryChanged();
-					
-					Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
-					soundEvent.ifPresent(event -> world.playSound(null, blockPos, event, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F));
-					
-					return storedFluid.getBucketItem().getDefaultStack();
-				}
-			}
-		}
-		return bucketStack;
 	}
 	
 	@Override

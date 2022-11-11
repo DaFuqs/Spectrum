@@ -11,27 +11,43 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3f;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Environment(EnvType.CLIENT)
 public class ItemRoundelBlockEntityRenderer<T extends ItemRoundelBlockEntity> implements BlockEntityRenderer<T> {
 	
-	double radiant = Math.toRadians(360.0F);
+	private static final float distance = 0.29F;
 	
 	public ItemRoundelBlockEntityRenderer(BlockEntityRendererFactory.Context renderContext) {
 	
 	}
 	
 	public void render(ItemRoundelBlockEntity blockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-		ItemStack stack = blockEntity.getStack(0);
-		if (!stack.isEmpty()) {
-			float time = blockEntity.getWorld().getTime() % 50000 + tickDelta;
+		
+		if (!blockEntity.isEmpty()) {
+			// the floating item stacks
+			List<ItemStack> inventoryStacks = new ArrayList<>();
+			for (int i = 0; i < blockEntity.size(); i++) {
+				ItemStack stack = blockEntity.getStack(i);
+				if (!stack.isEmpty()) {
+					inventoryStacks.add(stack);
+				}
+			}
 			
-			matrixStack.push();
-			double currentRadiant = radiant + (radiant * (time / 16.0) / 8.0F);
-			double height = Math.sin((time + currentRadiant) / 8.0) / 7.0; // item height
-			matrixStack.translate(0.5, 0.8 + height, 0.5); // position offset
-			matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(time * 2)); // item stack rotation
-			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);
-			matrixStack.pop();
+			float time = blockEntity.getWorld().getTime() % 24000 + tickDelta;
+			double radiant = Math.toRadians(360.0F / inventoryStacks.size());
+			
+			for (int i = 0; i < inventoryStacks.size(); i++) {
+				matrixStack.push();
+				
+				double currentRadiant = radiant * i + (radiant * (time / 16.0) / (8.0F / inventoryStacks.size()));
+				matrixStack.translate(distance * Math.sin(currentRadiant) + 0.5, 0.6, distance * Math.cos(currentRadiant) + 0.5); // position offset
+				matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float) (i * 360 / inventoryStacks.size()) + (time / 16 / 8 * 360))); // item stack rotation; takes 0..360
+
+				MinecraftClient.getInstance().getItemRenderer().renderItem(inventoryStacks.get(i), ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);
+				matrixStack.pop();
+			}
 		}
 	}
 	

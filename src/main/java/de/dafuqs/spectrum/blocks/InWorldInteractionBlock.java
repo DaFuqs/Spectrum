@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import net.minecraft.block.Block;
@@ -145,9 +144,9 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	}
 	
 	
-	public boolean inputHandStack(World world, PlayerEntity player, Hand hand, ItemStack handStack, FusionShrineBlockEntity fusionShrineBlockEntity) {
+	public boolean inputHandStack(World world, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
 		int previousCount = handStack.getCount();
-		ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, fusionShrineBlockEntity, null);
+		ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, blockEntity, null);
 		if(remainingStack.getCount() != previousCount) {
 			player.setStackInHand(hand, remainingStack);
 			world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);

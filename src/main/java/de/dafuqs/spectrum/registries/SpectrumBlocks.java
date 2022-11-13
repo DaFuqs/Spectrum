@@ -800,6 +800,7 @@ public class SpectrumBlocks {
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).strength(-1.0F, 3600000.0F));
 	
 	public static final Block PRESERVATION_STONE = new Block(preservationBlockSettings);
+	public static final Block POWDER_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(2));
 	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(6));
 	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(preservationBlockSettings);
 	public static final Block PRESERVATION_BRICKS = new Block(preservationBlockSettings);
@@ -1686,6 +1687,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("preservation_stone", PRESERVATION_STONE, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_bricks", PRESERVATION_BRICKS, settings, DyeColor.BLUE);
 		registerBlockWithItem("shimmering_preservation_bricks", SHIMMERING_PRESERVATION_BRICKS, settings, DyeColor.BLUE);
+		registerBlockWithItem("powder_chiseled_preservation_stone", POWDER_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
 		registerBlockWithItem("dike_chiseled_preservation_stone", DIKE_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_glass", PRESERVATION_GLASS, settings, DyeColor.BLUE);
 		registerBlockWithItem("tinted_preservation_glass", TINTED_PRESERVATION_GLASS, settings, DyeColor.BLUE);

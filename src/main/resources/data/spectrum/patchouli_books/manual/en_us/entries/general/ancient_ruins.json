@@ -8,6 +8,7 @@
   "extra_recipe_mappings": {
     "spectrum:preservation_stone": 0,
     "spectrum:preservation_controller": 0,
+    "spectrum:powder_chiseled_preservation_stone": 0,
     "spectrum:dike_chiseled_preservation_stone": 0,
     "spectrum:treasure_chest": 0,
     "spectrum:preservation_glass": 0,

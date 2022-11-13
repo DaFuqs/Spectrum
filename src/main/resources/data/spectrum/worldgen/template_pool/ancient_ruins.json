@@ -24,7 +24,7 @@
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "spectrum:wireless_restone_puzzle_structure",
+        "location": "spectrum:wireless_redstone_puzzle_structure",
         "projection": "rigid",
         "processors": "minecraft:empty"
       }

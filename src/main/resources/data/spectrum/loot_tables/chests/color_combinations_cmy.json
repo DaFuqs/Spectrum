@@ -2,15 +2,20 @@
   "type": "minecraft:chest",
   "pools": [
     {
-      "rolls": {
-        "min": 2,
-        "max": 5
-      },
-      "bonus_rolls": 1,
+      "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:loot_table",
-          "name": "spectrum:chests/sub_tables/cmy_tier_gems_and_buds"
+          "type": "minecraft:item",
+          "name": "spectrum:amaranth_grains"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 1,
+            "max": 3
+          }
         }
       ]
     },
@@ -23,7 +28,7 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "name": "spectrum:chests/sub_tables/fancyful_trinkets"
+          "name": "spectrum:chests/sub_tables/cmy_tier_gems_and_buds"
         }
       ]
     },

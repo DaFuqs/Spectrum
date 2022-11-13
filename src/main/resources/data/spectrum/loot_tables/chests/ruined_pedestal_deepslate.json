@@ -1,0 +1,66 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 5,
+        "max": 9
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cobweb"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:coal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:redstone"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:emerald"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 4
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:amethyst_shard"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 4
+      },
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:dyes",
+          "expand": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:fanciful_stone_ring"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:fanciful_circlet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:fanciful_belt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:fanciful_pendant"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:fanciful_gloves"
+        }
+      ]
+    }
+  ]
+}

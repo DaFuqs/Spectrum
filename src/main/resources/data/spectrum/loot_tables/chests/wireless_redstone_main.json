@@ -6,7 +6,16 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:hibernating_jade_vine_seeds"
+          "name": "spectrum:blood_orchid_petal"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 2,
+            "max": 4
+          }
         }
       ]
     },
@@ -18,7 +27,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:music_disc_spectrum_theme"
+          "name": "spectrum:logo_banner_pattern"
         }
       ]
     },
@@ -46,36 +55,7 @@
     },
     {
       "rolls": {
-        "min": 2,
-        "max": 5
-      },
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:amethyst_shard"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:citrine_shard"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:topaz_shard"
-        }
-      ],
-      "functions": [
-        {
-          "function": "minecraft:set_count",
-          "count": {
-            "min": 3,
-            "max": 7
-          }
-        }
-      ]
-    },
-    {
-      "rolls": {
-        "min": 0,
+        "min": 1,
         "max": 3
       },
       "bonus_rolls": 1,

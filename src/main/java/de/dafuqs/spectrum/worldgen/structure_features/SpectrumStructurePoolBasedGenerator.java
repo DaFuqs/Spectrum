@@ -147,14 +147,14 @@ public class SpectrumStructurePoolBasedGenerator {
 			MutableObject<VoxelShape> mutableObject = new MutableObject();
 			BlockBox blockBox = piece.getBoundingBox();
 			int i = blockBox.getMinY();
-			Iterator var14 = structurePoolElement.getStructureBlockInfos(this.structureManager, blockPos, blockRotation, this.random).iterator();
+			Iterator<StructureBlockInfo> var14 = structurePoolElement.getStructureBlockInfos(this.structureManager, blockPos, blockRotation, this.random).iterator();
 			
 			while (true) {
 				while (true) {
 					while (true) {
 						label93:
 						while (var14.hasNext()) {
-							StructureBlockInfo structureBlockInfo = (StructureBlockInfo) var14.next();
+							StructureBlockInfo structureBlockInfo = var14.next();
 							Direction direction = JigsawBlock.getFacing(structureBlockInfo.state);
 							BlockPos blockPos2 = structureBlockInfo.pos;
 							BlockPos blockPos3 = blockPos2.offset(direction);
@@ -183,19 +183,17 @@ public class SpectrumStructurePoolBasedGenerator {
 									}
 									
 									list.addAll((optional2.get()).getElementIndicesInRandomOrder(this.random));
-									Iterator var28 = list.iterator();
 									
-									while (var28.hasNext()) {
-										StructurePoolElement structurePoolElement2 = (StructurePoolElement) var28.next();
+									for (StructurePoolElement structurePoolElement2 : list) {
 										if (structurePoolElement2 == EmptyPoolElement.INSTANCE) {
 											break;
 										}
 										
-										Iterator var30 = BlockRotation.randomRotationOrder(this.random).iterator();
+										Iterator<BlockRotation> var30 = BlockRotation.randomRotationOrder(this.random).iterator();
 										
 										label133:
 										while (var30.hasNext()) {
-											BlockRotation blockRotation2 = (BlockRotation) var30.next();
+											BlockRotation blockRotation2 = var30.next();
 											List<StructureBlockInfo> list2 = structurePoolElement2.getStructureBlockInfos(this.structureManager, BlockPos.ORIGIN, blockRotation2, this.random);
 											BlockBox blockBox2 = structurePoolElement2.getBoundingBox(this.structureManager, BlockPos.ORIGIN, blockRotation2);
 											int l;
@@ -290,7 +288,7 @@ public class SpectrumStructurePoolBasedGenerator {
 											poolStructurePiece.addJunction(new JigsawJunction(blockPos2.getX(), t - n + s, blockPos2.getZ(), -o, projection));
 											this.children.add(poolStructurePiece);
 											if (minY + 1 <= this.maxSize) {
-												this.structurePieces.addLast(new SpectrumStructurePoolBasedGenerator.ShapedPoolStructurePiece(poolStructurePiece, mutableObject2, minY + 1));
+												this.structurePieces.addLast(new ShapedPoolStructurePiece(poolStructurePiece, mutableObject2, minY + 1));
 											}
 											continue label93;
 										}

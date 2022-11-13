@@ -10,6 +10,24 @@
         "projection": "rigid",
         "processors": "minecraft:empty"
       }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "spectrum:color_mixing_puzzle_structure",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "spectrum:wireless_restone_puzzle_structure",
+        "projection": "rigid",
+        "processors": "minecraft:empty"
+      }
     }
   ]
 }

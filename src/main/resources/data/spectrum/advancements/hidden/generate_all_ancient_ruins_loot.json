@@ -1,17 +1,4 @@
 {
-  "display": {
-    "icon": {
-      "item": "spectrum:treasure_chest"
-    },
-    "title": {
-      "translate": "advancements.spectrum.generate_ancient_ruins_loot.title"
-    },
-    "description": {
-      "translate": "advancements.spectrum.generate_ancient_ruins_loot.description"
-    },
-    "hidden": true
-  },
-  "parent": "spectrum:find_ancient_ruins",
   "criteria": {
     "opened_ancient_ruins_main_treasure_chest": {
       "trigger": "minecraft:player_generates_container_loot",
@@ -66,21 +53,7 @@
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:find_ancient_ruins" }
+      "conditions": { "advancement_identifier": "spectrum:enter_ancient_ruins" }
     }
-  },
-  "requirements": [
-  [
-    "opened_ancient_ruins_main_treasure_chest",
-    "gotten_previous"
-  ],
-  [
-    "opened_color_combinations_cmy_treasure_chest",
-    "gotten_previous"
-  ],
-  [
-    "opened_wireless_redstone_main_treasure_chest",
-    "gotten_previous"
-  ]
-]
+  }
 }

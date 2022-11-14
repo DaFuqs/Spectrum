@@ -1,9 +1,10 @@
 {
-  "parent": "spectrum:find_ancient_ruins",
+  "parent": "spectrum:generate_ancient_ruins_loot",
   "display": {
     "icon": {
-      "item": "spectrum:powder_chiseled_preservation_stone"
+      "item": "minecraft:bedrock"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.enter_wireless_redstone_puzzle_structure.title"
     },

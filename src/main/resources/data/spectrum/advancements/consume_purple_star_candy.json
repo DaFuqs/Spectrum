@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.consume_purple_star_candy.description"
     }
   },
-  "parent": "spectrum:collect_amaranth",
+  "parent": "spectrum:collect_amaranth_bushel",
   "criteria": {
     "consumed_purple_star_candy": {
       "trigger": "minecraft:consume_item",
@@ -21,7 +21,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_amaranth" }
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth_bushel" }
     }
   }
 }

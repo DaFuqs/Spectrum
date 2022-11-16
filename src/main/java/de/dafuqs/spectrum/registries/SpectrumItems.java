@@ -306,7 +306,7 @@ public class SpectrumItems {
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1), SpectrumBannerPatterns.AMETHYST_SHARD, "item.minecraft.amethyst_shard");
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1), SpectrumBannerPatterns.AMETHYST_CLUSTER, "block.minecraft.amethyst_cluster");
 	
-	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 44975, 7969893, (new Item.Settings()).group(ItemGroup.MISC)); // TODO: colors
+	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x4e3842, 0xffe6c2, (new Item.Settings()).group(ItemGroup.MISC)); // TODO: colors
 	
 	// Magical Tools
 	public static final Item ENDER_BAG = new EnderBagItem(Tab.EQUIPMENT.settings(1));

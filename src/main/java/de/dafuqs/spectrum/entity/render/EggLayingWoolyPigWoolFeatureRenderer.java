@@ -16,10 +16,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class EggLayingWoolyPigWoolFeatureRenderer extends FeatureRenderer<EggLayingWoolyPigEntity, EggLayingWoolyPigEntityModel<EggLayingWoolyPigEntity>> {
+public class EggLayingWoolyPigWoolFeatureRenderer extends FeatureRenderer<EggLayingWoolyPigEntity, EggLayingWoolyPigEntityModel> {
     
     private static final Identifier SKIN = new Identifier("textures/entity/sheep/sheep_fur.png");
-    private final EggLayingWoolyPigEntityModel<EggLayingWoolyPigEntity> model;
+    private final EggLayingWoolyPigEntityModel model;
     
     public EggLayingWoolyPigWoolFeatureRenderer(EggLayingWoolyPigEntityRenderer context, EntityModelLoader loader) {
         super(context);

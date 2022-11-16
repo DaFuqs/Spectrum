@@ -1,37 +1,82 @@
 package de.dafuqs.spectrum.entity.models;
 
 import de.dafuqs.spectrum.entity.entity.EggLayingWoolyPigEntity;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.QuadrupedEntityModel;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.math.MathHelper;
 
-@Environment(EnvType.CLIENT)
-public class EggLayingWoolyPigEntityModel<T extends EggLayingWoolyPigEntity> extends QuadrupedEntityModel<T> {
-    
-    private float headPitchModifier;
+// Made with Blockbench 4.5.0
+// Exported for Minecraft version 1.17+ for Yarn
+// Paste this class into your mod and generate all required imports
+public class EggLayingWoolyPigEntityModel extends EntityModel<EggLayingWoolyPigEntity> {
 
-    public EggLayingWoolyPigEntityModel(ModelPart root) {
-        super(root, false, 8.0F, 4.0F, 2.0F, 2.0F, 24);
-    }
+	private final ModelPart torso;
+	private final ModelPart head;
+	//private final ModelPart ear_r1;
+	//private final ModelPart ear_r2;
+	private final ModelPart left_foreleg;
+	private final ModelPart right_foreleg;
+	private final ModelPart left_backleg;
+	private final ModelPart right_backleg;
+	private final ModelPart tail;
 
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = QuadrupedEntityModel.getModelData(12, Dilation.NONE);
-        ModelPartData modelPartData = modelData.getRoot();
-        modelPartData.addChild("head", ModelPartBuilder.create().uv(0, 0).cuboid(-3.0F, -4.0F, -6.0F, 6.0F, 6.0F, 8.0F), ModelTransform.pivot(0.0F, 6.0F, -8.0F));
-        modelPartData.addChild("body", ModelPartBuilder.create().uv(28, 8).cuboid(-4.0F, -10.0F, -7.0F, 8.0F, 16.0F, 6.0F), ModelTransform.of(0.0F, 5.0F, 2.0F, 1.5707964F, 0.0F, 0.0F));
-        return TexturedModelData.of(modelData, 64, 32);
-    }
+	public EggLayingWoolyPigEntityModel(ModelPart root) {
+		super();
+		this.torso = root.getChild("torso");
+		this.head = torso.getChild("head");
+		this.left_foreleg = torso.getChild("left_foreleg");
+		this.right_foreleg = torso.getChild("right_foreleg");
+		this.left_backleg = torso.getChild("left_backleg");
+		this.right_backleg = torso.getChild("right_backleg");
+		this.tail = torso.getChild("tail");
+	}
+	public static TexturedModelData getTexturedModelData() {
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
+		ModelPartData torso = modelPartData.addChild("torso", ModelPartBuilder.create().uv(42, 47).cuboid(-5.0F, -14.0F, -7.0F, 10.0F, 8.0F, 14.0F, new Dilation(0.0F))
+		.uv(0, 32).cuboid(-5.5F, -14.5F, -8.5F, 11.0F, 12.0F, 17.0F, new Dilation(0.0F))
+		.uv(0, 0).cuboid(-6.5F, -15.5F, -9.5F, 13.0F, 13.0F, 19.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
 
-    public void animateModel(T entity, float f, float g, float h) {
-        super.animateModel(entity, f, g, h);
-        this.head.pivotY = 6.0F + entity.getNeckAngle(h) * 9.0F;
-        this.headPitchModifier = entity.getHeadAngle(h);
-    }
+		ModelPartData head = torso.addChild("head", ModelPartBuilder.create().uv(56, 24).cuboid(-4.0F, -6.0F, -6.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F))
+				.uv(0, 44).cuboid(-2.5F, -2.0F, -7.0F, 5.0F, 3.0F, 1.0F, new Dilation(0.0F))
+				.uv(45, 0).cuboid(-5.02F, -7.0F, -7.0F, 10.0F, 7.0F, 10.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -13.0F, -7.0F));
 
-    public void setAngles(T entity, float f, float g, float h, float i, float j) {
-        super.setAngles(entity, f, g, h, i, j);
-        this.head.pitch = this.headPitchModifier;
-    }
-    
+		ModelPartData ear_r1 = head.addChild("ear_r1", ModelPartBuilder.create().uv(0, 0).cuboid(7.0964F, -13.0939F, -10.5F, 3.0F, 7.0F, 5.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 10.0F, 6.0F, 0.0F, 0.0F, -0.3927F));
+
+		ModelPartData ear_r2 = head.addChild("ear_r2", ModelPartBuilder.create().uv(0, 32).cuboid(-10.0964F, -13.0939F, -10.5F, 3.0F, 7.0F, 5.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 10.0F, 6.0F, 0.0F, 0.0F, 0.3927F));
+
+		ModelPartData left_foreleg = torso.addChild("left_foreleg", ModelPartBuilder.create().uv(54, 69).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.0F, -6.0F, -4.0F));
+
+		ModelPartData right_foreleg = torso.addChild("right_foreleg", ModelPartBuilder.create().uv(38, 69).cuboid(-2.0F, 0.0F, -2.0F, 4.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, -6.0F, -4.0F));
+
+		ModelPartData left_backleg = torso.addChild("left_backleg", ModelPartBuilder.create().uv(0, 61).cuboid(-3.0F, -2.0F, -3.0F, 5.0F, 6.0F, 6.0F, new Dilation(0.0F))
+		.uv(61, 40).cuboid(-3.0F, 4.0F, 0.0F, 3.0F, 4.0F, 3.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.0F, -8.0F, 5.0F));
+
+		ModelPartData right_backleg = torso.addChild("right_backleg", ModelPartBuilder.create().uv(39, 34).cuboid(-2.0F, -2.0F, -3.0F, 5.0F, 6.0F, 6.0F, new Dilation(0.0F))
+		.uv(0, 12).cuboid(0.0F, 4.0F, 0.0F, 3.0F, 4.0F, 3.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, -8.0F, 5.0F));
+
+		ModelPartData tail = torso.addChild("tail", ModelPartBuilder.create().uv(22, 61).cuboid(-2.5F, -15.0F, 7.0F, 5.0F, 5.0F, 5.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -2.0F, -1.0F));
+
+		return TexturedModelData.of(modelData, 128, 128);
+	}
+	@Override
+	public void setAngles(EggLayingWoolyPigEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.head.pitch = headPitch * 0.017453292F;
+		this.head.yaw = netHeadYaw * 0.017453292F;
+		this.right_backleg.pitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+		this.left_backleg.pitch = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
+		this.right_foreleg.pitch = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
+		this.left_foreleg.pitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+	}
+
+	@Override
+	public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
+		if (child) {
+			matrices.scale(0.6f, 0.6f, 0.6f);
+			matrices.translate(0, 1, 0);
+		}
+		torso.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+	}
 }

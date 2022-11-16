@@ -1,8 +1,12 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.entity.render.EggLayingWoolyPigEntityRenderer;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.SkullBlock;
@@ -18,10 +22,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.function.MaterialPredicate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Locale;
 
 public class SpectrumSkullBlock extends SkullBlock {
 	
@@ -179,6 +186,23 @@ public class SpectrumSkullBlock extends SkullBlock {
 		
 		SpectrumSkullBlockType(EntityType entityType) {
 			this.entityType = entityType;
+		}
+		
+		public SkullType getModelType() {
+			if(this == EGG_LAYING_WOOLY_PIG) {
+				return EGG_LAYING_WOOLY_PIG;
+			} else {
+				return Type.PLAYER;
+			}
+		}
+		
+		@Environment(EnvType.CLIENT)
+		public Identifier getTextureIdentifier() {
+			if(this == EGG_LAYING_WOOLY_PIG) {
+				return EggLayingWoolyPigEntityRenderer.WOOLY;
+			} else {
+				return SpectrumCommon.locate("textures/entity/mob_head/" + this.toString().toLowerCase(Locale.ROOT) + ".png");
+			}
 		}
 		
 	}

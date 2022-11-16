@@ -161,7 +161,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
 		EggLayingWoolyPigEntity e1 = (EggLayingWoolyPigEntity) entity;
-		EggLayingWoolyPigEntity e2 = (EggLayingWoolyPigEntity) SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
+		EggLayingWoolyPigEntity e2 = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
 		if(e2 != null) {
 			e2.setColor(this.getChildColor(this, e1));
 		}

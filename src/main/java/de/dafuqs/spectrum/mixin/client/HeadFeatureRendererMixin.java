@@ -4,9 +4,9 @@ import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockEntityRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.SkullBlock;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.block.entity.SkullBlockEntityModel;
 import net.minecraft.client.render.entity.feature.HeadFeatureRenderer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.ModelWithHead;
@@ -38,9 +38,10 @@ public class HeadFeatureRendererMixin<T extends LivingEntity, M extends EntityMo
 			
 			matrixStack.translate(-0.5D, 0.0D, -0.5D);
 			
-			SkullBlock.SkullType skullType = spectrumSkullBlock.getSkullType();
+			SpectrumSkullBlock.SpectrumSkullBlockType skullType = (SpectrumSkullBlock.SpectrumSkullBlockType) spectrumSkullBlock.getSkullType();
 			RenderLayer renderLayer = SpectrumSkullBlockEntityRenderer.getRenderLayer(skullType);
-			SpectrumSkullBlockEntityRenderer.renderSkull(null, 180.0F, animationProgress, matrixStack, vertexConsumerProvider, light, renderLayer);
+			SkullBlockEntityModel model = SpectrumSkullBlockEntityRenderer.getModel(skullType);
+			SpectrumSkullBlockEntityRenderer.renderSkull(null, 180.0F, animationProgress, matrixStack, vertexConsumerProvider, light, model, renderLayer);
 			matrixStack.pop();
 			ci.cancel();
 		}

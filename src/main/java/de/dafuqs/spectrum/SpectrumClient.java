@@ -50,6 +50,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	public void onInitializeClient() {
 		logInfo("Starting Client Startup");
 		
+		logInfo("Registering Model Layers...");
+		SpectrumModelLayers.register();
+		
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
 
@@ -99,9 +102,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				lines.add(new TranslatableText("spectrum.tooltip.coming_soon"));
 			}
 		});
-
-		logInfo("Registering Model Layers...");
-		SpectrumModelLayers.register();
 
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();

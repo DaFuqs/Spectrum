@@ -39,6 +39,23 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType JADE_VINES;
 	public static DefaultParticleType JADE_VINES_BLOOM;
 	
+	public static DefaultParticleType MUD_SPLASH;
+	public static DefaultParticleType LIQUID_CRYSTAL_SPLASH;
+	public static DefaultParticleType MIDNIGHT_SOLUTION_SPLASH;
+	
+	
+	public static DefaultParticleType LANDING_MUD;
+	public static DefaultParticleType LANDING_LIQUID_CRYSTAL;
+	public static DefaultParticleType LANDING_MIDNIGHT_SOLUTION;
+	
+	public static DefaultParticleType FALLING_MUD;
+	public static DefaultParticleType FALLING_LIQUID_CRYSTAL;
+	public static DefaultParticleType FALLING_MIDNIGHT_SOLUTION;
+	
+	public static DefaultParticleType DRIPPING_MUD;
+	public static DefaultParticleType DRIPPING_LIQUID_CRYSTAL;
+	public static DefaultParticleType DRIPPING_MIDNIGHT_SOLUTION;
+	
 	public static DefaultParticleType LAVA_FISHING;
 	public static DefaultParticleType MUD_FISHING;
 	public static DefaultParticleType LIQUID_CRYSTAL_FISHING;
@@ -183,6 +200,22 @@ public class SpectrumParticleTypes {
 		SHOOTING_STAR = register("shooting_star", false);
 		JADE_VINES = register("jade_vines", false);
 		JADE_VINES_BLOOM = register("jade_vines_bloom", false);
+		
+		MUD_SPLASH = register("mud_splash", false);
+		LIQUID_CRYSTAL_SPLASH = register("liquid_crystal_splash", false);
+		MIDNIGHT_SOLUTION_SPLASH = register("midnight_solution_splash", false);
+		
+		LANDING_MUD = register("landing_mud", false);
+		LANDING_LIQUID_CRYSTAL = register("landing_liquid_crystal", false);
+		LANDING_MIDNIGHT_SOLUTION = register("landing_midnight_solution", false);
+		
+		FALLING_MUD = register("falling_mud", false);
+		FALLING_LIQUID_CRYSTAL = register("falling_liquid_crystal", false);
+		FALLING_MIDNIGHT_SOLUTION = register("falling_midnight_solution", false);
+		
+		DRIPPING_MUD = register("dripping_mud", false);
+		DRIPPING_LIQUID_CRYSTAL = register("dripping_liquid_crystal", false);
+		DRIPPING_MIDNIGHT_SOLUTION = register("dripping_midnight_solution", false);
 		
 		LAVA_FISHING = register("lava_fishing", false);
 		MUD_FISHING = register("mud_fishing", false);

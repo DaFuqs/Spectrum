@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "spectrum:block/sag_bubble_small"
+    "cross": "spectrum:block/small_sag_bubble"
   }
 }

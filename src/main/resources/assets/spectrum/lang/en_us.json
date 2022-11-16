@@ -973,7 +973,10 @@
   "block.spectrum.shooting_star_pristine": "Pristine Shooting Star",
   "block.spectrum.shooting_star_gemstone": "Gemstone Shooting Star",
   "item.spectrum.shooting_star.tooltip.hardened": "Hardened - will not break",
-
+  
+  "block.spectrum.sag_leaf": "Sag Leaf",
+  "block.spectrum.sag_bubble": "Sag Bubble",
+  "block.spectrum.small_sag_bubble": "Small Sag Bubble",
   "block.spectrum.glistering_melon": "Glistering Melon",
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",
   "block.spectrum.attached_glistering_melon_stem": "Glistering Melon Stem",

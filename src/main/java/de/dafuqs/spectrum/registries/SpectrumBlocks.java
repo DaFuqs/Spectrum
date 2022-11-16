@@ -189,7 +189,7 @@ public class SpectrumBlocks {
 	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
 	public static final Block SAG_LEAF = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
 	public static final Block SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
-	public static final Block SAG_BUBBLE_SMALL = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
+	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
 
 
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
@@ -1049,11 +1049,10 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, Tab.GENERAL.settings(), DyeColor.BLACK);
 		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, Tab.GENERAL.settings(), DyeColor.PURPLE);
 
-		registerBlockWithItem("sag_leaf", SAG_LEAF, Tab.GENERAL.settings(), DyeColor.GRAY);
-		registerBlockWithItem("sag_bubble", SAG_BUBBLE, Tab.GENERAL.settings(), DyeColor.GRAY);
-		registerBlockWithItem("sag_bubble_small", SAG_BUBBLE_SMALL, Tab.GENERAL.settings(), DyeColor.GRAY);
-
 		// Technical Blocks without items
+		registerBlock("sag_leaf", SAG_LEAF);
+		registerBlock("sag_bubble", SAG_BUBBLE);
+		registerBlock("small_sag_bubble", SMALL_SAG_BUBBLE);
 		registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
 		registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
 		registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);
@@ -2014,7 +2013,7 @@ public class SpectrumBlocks {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SAG_LEAF, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SAG_BUBBLE, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SAG_BUBBLE_SMALL, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_SAG_BUBBLE, RenderLayer.getCutout());
 
 		// Mob Blocks
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.AXOLOTL_MOB_BLOCK, RenderLayer.getTranslucent());

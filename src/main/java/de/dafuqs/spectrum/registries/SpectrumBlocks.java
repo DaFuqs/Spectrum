@@ -967,11 +967,13 @@ public class SpectrumBlocks {
 		registerBlockWithItem("item_bowl_calcite", ITEM_BOWL_CALCITE, Tab.GENERAL.settings(16), DyeColor.PINK);
 		registerBlockWithItem("item_roundel", ITEM_ROUNDEL, Tab.GENERAL.settings(16), DyeColor.PINK);
 		registerBlockWithItem("potion_workshop", POTION_WORKSHOP, Tab.GENERAL.settings(1), DyeColor.PURPLE);
-		
 		registerBlockWithItem("spirit_instiller", SPIRIT_INSTILLER, Tab.GENERAL.settings(1), DyeColor.WHITE);
 		registerBlockWithItem("crystallarieum", CRYSTALLARIEUM, Tab.GENERAL.settings(1), DyeColor.BROWN);
 		registerBlockWithItem("cinderhearth", CINDERHEARTH, Tab.GENERAL.settings(1).fireproof(), DyeColor.ORANGE);
-		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.GENERAL.settings(Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, Tab.GENERAL.settings(8), DyeColor.GREEN);
+		registerBlockWithItem("color_picker", COLOR_PICKER, Tab.GENERAL.settings(8), DyeColor.GREEN);
+		registerBlockWithItem("inkwell", INKWELL, Tab.GENERAL.settings(8), DyeColor.GREEN);
+		registerBlockWithItem("ink_duct", INK_DUCT, Tab.GENERAL.settings(8), DyeColor.GREEN);
 		
 		registerBlockWithItem("upgrade_speed", UPGRADE_SPEED, new UpgradeBlockItem(UPGRADE_SPEED, Tab.GENERAL.settings(8), "upgrade_speed"), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("upgrade_speed2", UPGRADE_SPEED2, new UpgradeBlockItem(UPGRADE_SPEED2, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_speed2"), DyeColor.LIGHT_GRAY);
@@ -983,7 +985,9 @@ public class SpectrumBlocks {
 		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, Tab.GENERAL.settings(8), "upgrade_experience"), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
 		
-		registerMachines(Tab.GENERAL.settings(8));
+		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.GENERAL.settings(Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
+		
+
 		registerPastelNetworkNodes(Tab.GENERAL.settings(16));
 		registerStoneBlocks(Tab.DECORATION.settings());
 		registerGemBlocks(Tab.RESOURCES.settings());
@@ -1007,7 +1011,6 @@ public class SpectrumBlocks {
 		registerColoredWood(Tab.COLORED_WOOD.settings());
 		registerRedstone(Tab.GENERAL.settings());
 		registerMagicalBlocks(Tab.GENERAL.settings());
-		registerSpiritTree(Tab.GENERAL.settings());
 		registerMobBlocks(Tab.MOB_HEADS.settings());
 		registerMobHeads(Tab.MOB_HEADS.settings());
 		registerCrystallarieumGrowingBlocks(Tab.RESOURCES.settings());
@@ -1015,6 +1018,7 @@ public class SpectrumBlocks {
 		registerJadeVineBlocks(Tab.DECORATION.settings());
 		registerStructureBlocks(Tab.DECORATION.settings());
 		registerSugarSticks(Tab.CONSUMABLES.settings());
+		registerSpiritTree(Tab.GENERAL.settings());
 		
 		// Decay
 		registerBlock("fading", FADING);
@@ -1240,6 +1244,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.GREEN);
 		registerBlockWithItem("malachite_block", MALACHITE_BLOCK, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.GREEN);
 		
+		registerBlockWithItem("blackslag", BLACKSLAG, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_coal_ore", BLACKSLAG_COAL_ORE, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_iron_ore", BLACKSLAG_IRON_ORE, settings, DyeColor.BROWN);
 		registerBlockWithItem("blackslag_gold_ore", BLACKSLAG_GOLD_ORE, settings, DyeColor.YELLOW);
@@ -1358,8 +1363,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("calcite_brick_slab", CALCITE_BRICK_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_brick_wall", CALCITE_BRICK_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_brick_stairs", CALCITE_BRICK_STAIRS, settings, DyeColor.BROWN);
-
-		registerBlockWithItem("blackslag", BLACKSLAG, settings, DyeColor.BLACK);
 	}
 	
 	private static void registerRunes(FabricItemSettings settings) {
@@ -1606,13 +1609,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("pusher_node", PUSHER_NODE, settings, DyeColor.GREEN);
 		registerBlockWithItem("puller_node", PULLER_NODE, settings, DyeColor.GREEN);
 		registerBlockWithItem("interaction_node", INTERACTION_NODE, settings, DyeColor.GREEN);
-	}
-	
-	public static void registerMachines(FabricItemSettings settings) {
-		registerBlockWithItem("crystal_apothecary", CRYSTAL_APOTHECARY, settings, DyeColor.GREEN);
-		registerBlockWithItem("color_picker", COLOR_PICKER, settings, DyeColor.GREEN);
-		registerBlockWithItem("inkwell", INKWELL, settings, DyeColor.GREEN);
-		registerBlockWithItem("ink_duct", INK_DUCT, settings, DyeColor.GREEN);
 	}
 	
 	public static void registerSporeBlossoms(FabricItemSettings settings) {

@@ -414,7 +414,6 @@ public class SpectrumItems {
 		register("manual", GUIDEBOOK, DyeColor.WHITE);
 		register("paintbrush", PAINTBRUSH, DyeColor.WHITE);
 		
-		registerStructurePlacers();
 		registerGemstoneItems();
 		registerGraces();
 		registerPigments();
@@ -422,29 +421,23 @@ public class SpectrumItems {
 		registerResources();
 		registerDecayBottles();
 		registerPreEnchantedTools();
-		registerMagicalTools();
 		registerConsumables();
+		registerInkStorage();
 		registerTrinkets();
+		registerMagicalTools();
 		registerFluidBuckets();
 		registerBannerPatterns();
 		registerNativeClusters();
 		
-		register("crafting_tablet", CRAFTING_TABLET, DyeColor.LIGHT_GRAY);
-		register("void_bundle", BOTTOMLESS_BUNDLE, DyeColor.LIGHT_GRAY);
 		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME, DyeColor.GREEN);
 		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME, DyeColor.GREEN);
 		register("music_disc_everreflective", MUSIC_DISC_EVERREFLECTIVE, DyeColor.GREEN);
 		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
 		register("amaranth_grains", AMARANTH_GRAINS, DyeColor.LIME);
-		register("invisible_item_frame", INVISIBLE_ITEM_FRAME, DyeColor.YELLOW);
-		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME, DyeColor.YELLOW);
-		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);
-		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH, DyeColor.MAGENTA);
-		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
-		register("enchantment_canvas", ENCHANTMENT_CANVAS, DyeColor.PURPLE);
-		
 		register("egg_laying_wooly_pig_spawn_egg", EGG_LAYING_WOOLY_PIG_SPAWN_EGG, DyeColor.WHITE);
+		
+		registerStructurePlacers();
 	}
 	
 	public static void registerNativeClusters() {
@@ -614,6 +607,14 @@ public class SpectrumItems {
 	}
 	
 	public static void registerMagicalTools() {
+		register("crafting_tablet", CRAFTING_TABLET, DyeColor.LIGHT_GRAY);
+		register("void_bundle", BOTTOMLESS_BUNDLE, DyeColor.LIGHT_GRAY);
+		register("invisible_item_frame", INVISIBLE_ITEM_FRAME, DyeColor.YELLOW);
+		register("invisible_glow_item_frame", INVISIBLE_GLOW_ITEM_FRAME, DyeColor.YELLOW);
+		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);
+		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH, DyeColor.MAGENTA);
+		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
+		register("enchantment_canvas", ENCHANTMENT_CANVAS, DyeColor.PURPLE);
 		register("ender_bag", ENDER_BAG, DyeColor.PURPLE);
 		register("light_staff", RADIANCE_STAFF, DyeColor.YELLOW);
 		register("natures_staff", NATURES_STAFF, DyeColor.LIME);
@@ -679,6 +680,14 @@ public class SpectrumItems {
 		register("divination_heart", DIVINATION_HEART, DyeColor.RED);
 	}
 	
+	public static void registerInkStorage() {
+		register("ink_flask", INK_FLASK, DyeColor.WHITE);
+		register("ink_assortment", INK_ASSORTMENT, DyeColor.WHITE);
+		register("pigment_palette", PIGMENT_PALETTE, DyeColor.WHITE);
+		register("artists_palette", ARTISTS_PALETTE, DyeColor.WHITE);
+		register("creative_ink_assortment", CREATIVE_INK_ASSORTMENT, DyeColor.WHITE);
+	}
+	
 	public static void registerTrinkets() {
 		register("fanciful_stone_ring", FANCIFUL_STONE_RING, DyeColor.GREEN);
 		register("fanciful_belt", FANCIFUL_BELT, DyeColor.GREEN);
@@ -705,12 +714,6 @@ public class SpectrumItems {
 		register("puff_circlet", PUFF_CIRCLET, DyeColor.WHITE);
 		register("whispy_circlet", WHISPY_CIRCLET, DyeColor.BROWN);
 		register("neat_ring", NEAT_RING, DyeColor.GREEN);
-		
-		register("ink_flask", INK_FLASK, DyeColor.WHITE);
-		register("ink_assortment", INK_ASSORTMENT, DyeColor.WHITE);
-		register("pigment_palette", PIGMENT_PALETTE, DyeColor.WHITE);
-		register("artists_palette", ARTISTS_PALETTE, DyeColor.WHITE);
-		register("creative_ink_assortment", CREATIVE_INK_ASSORTMENT, DyeColor.WHITE);
 	}
 	
 	public static void registerFluidBuckets() {

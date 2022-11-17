@@ -76,7 +76,6 @@ public class SpectrumSkullBlock extends SkullBlock {
 		}
 	}
 	
-	// TODO: differentiate parrot / fox / ... colors
 	public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 		AXOLOTL_BLUE(EntityType.AXOLOTL),
 		AXOLOTL_BROWN(EntityType.AXOLOTL),

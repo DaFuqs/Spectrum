@@ -48,6 +48,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
 	private static final int MAX_GRASS_TIMER = 40;
 	private static final TrackedData<Byte> COLOR_AND_SHEARED = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BYTE);
+	private static final TrackedData<Boolean> HATLESS = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final Map<DyeColor, float[]> COLORS = Maps.newEnumMap((Map)Arrays.stream(DyeColor.values()).collect(Collectors.toMap((dyeColor) -> dyeColor, EggLayingWoolyPigEntity::getDyedColor)));
 	private static final Map<DyeColor, ItemConvertible> DROPS = Util.make(Maps.newEnumMap(DyeColor.class), (map) -> {
 		map.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
@@ -155,6 +156,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	protected void initDataTracker() {
 		super.initDataTracker();
 		this.dataTracker.startTracking(COLOR_AND_SHEARED, (byte)0);
+		this.dataTracker.startTracking(HATLESS, false);
 	}
 	
 	@Nullable
@@ -164,6 +166,9 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		EggLayingWoolyPigEntity e2 = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
 		if(e2 != null) {
 			e2.setColor(this.getChildColor(this, e1));
+			if(world.random.nextInt(50) == 0) {
+				e2.setHatless(true);
+			}
 		}
 		return e2;
 	}
@@ -172,6 +177,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		nbt.putBoolean("Sheared", this.isSheared());
+		nbt.putBoolean("Hatless", this.isHatless());
 		nbt.putByte("Color", (byte)this.getColor().getId());
 		nbt.putInt("EggLayTime", this.eggLayTime);
 	}
@@ -180,6 +186,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
 		this.setSheared(nbt.getBoolean("Sheared"));
+		this.setHatless(nbt.getBoolean("Hatless"));
 		this.setColor(DyeColor.byId(nbt.getByte("Color")));
 		if (nbt.contains("EggLayTime")) {
 			this.eggLayTime = nbt.getInt("EggLayTime");
@@ -268,6 +275,14 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		} else {
 			this.dataTracker.set(COLOR_AND_SHEARED, (byte)(color & -17));
 		}
+	}
+	
+	public boolean isHatless() {
+		return this.dataTracker.get(HATLESS);
+	}
+	
+	public void setHatless(boolean hatless) {
+		this.dataTracker.set(HATLESS, hatless);
 	}
 	
 	// COLORING

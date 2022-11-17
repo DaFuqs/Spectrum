@@ -25,9 +25,13 @@ public class EggLayingWoolyPigEntityRenderer extends MobEntityRenderer<EggLaying
 	@Override
 	public Identifier getTexture(EggLayingWoolyPigEntity entity) {
 		if (entity.isBaby()) {
-			return SHEARED;
+			return entity.isHatless() ? SHEARED_HATLESS : SHEARED;
 		}
-		return entity.isSheared() ? SHEARED : WOOLY;
+		if(entity.isHatless()) {
+			return entity.isSheared() ? SHEARED_HATLESS : WOOLY_HATLESS;
+		} else {
+			return entity.isSheared() ? SHEARED : WOOLY;
+		}
 	}
 	
 }

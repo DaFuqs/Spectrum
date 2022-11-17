@@ -75,6 +75,11 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		return SpectrumParticleTypes.DRIPPING_LIQUID_CRYSTAL;
 	}
 	
+	@Override
+	public ParticleEffect getSplashParticle() {
+		return SpectrumParticleTypes.LIQUID_CRYSTAL_SPLASH;
+	}
+	
 	public static class FlowingLiquidCrystal extends LiquidCrystalFluid {
 		
 		@Override
@@ -92,7 +97,6 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		public boolean isStill(FluidState fluidState) {
 			return false;
 		}
-		
 	}
 	
 	public static class StillLiquidCrystal extends LiquidCrystalFluid {

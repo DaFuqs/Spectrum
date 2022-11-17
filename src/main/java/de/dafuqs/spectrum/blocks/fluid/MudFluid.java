@@ -75,6 +75,11 @@ public abstract class MudFluid extends SpectrumFluid {
 		return SpectrumParticleTypes.DRIPPING_MUD;
 	}
 	
+	@Override
+	public ParticleEffect getSplashParticle() {
+		return SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH;
+	}
+	
 	public static class FlowingMud extends MudFluid {
 		
 		@Override

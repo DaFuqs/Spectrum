@@ -6,6 +6,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -83,5 +84,7 @@ public abstract class SpectrumFluid extends FlowableFluid {
 	public Optional<SoundEvent> getBucketFillSound() {
 		return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
 	}
+	
+	public abstract ParticleEffect getSplashParticle();
 	
 }

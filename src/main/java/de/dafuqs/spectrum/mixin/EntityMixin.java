@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityMixin {
 	
 	@Inject(method = "onKilledOther", at = @At("HEAD"))
-	public void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfo ci) {
+	private void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfo ci) {
 		if((Object) this instanceof LivingEntity livingEntity && !livingEntity.getWorld().isClient) {
 			LastKillComponent.rememberKillTick(livingEntity, livingEntity.getWorld().getTime());
 		}

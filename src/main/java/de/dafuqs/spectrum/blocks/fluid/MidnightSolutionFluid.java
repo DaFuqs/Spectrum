@@ -95,6 +95,11 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 		return SpectrumParticleTypes.DRIPPING_MIDNIGHT_SOLUTION;
 	}
 	
+	@Override
+	public ParticleEffect getSplashParticle() {
+		return SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH;
+	}
+	
 	public static class FlowingMidnightSolution extends MidnightSolutionFluid {
 		
 		@Override

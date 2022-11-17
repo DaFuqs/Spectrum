@@ -401,6 +401,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			} else {
 				this.waitCountdown = MathHelper.nextInt(this.random, 100, 600);
 				this.waitCountdown -= this.lureLevel * 20 * 5;
+				this.waitCountdown = Math.max(1, this.waitCountdown);
 			}
 		}
 	}

@@ -13,25 +13,16 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class EggLayingWoolyPigEntityRenderer extends MobEntityRenderer<EggLayingWoolyPigEntity, EggLayingWoolyPigEntityModel> {
 
-	public static final Identifier WOOLY = SpectrumCommon.locate("textures/entity/wooly_pig/wooly.png");
-	public static final Identifier SHEARED = SpectrumCommon.locate("textures/entity/wooly_pig/sheared.png");
-	public static final Identifier WOOLY_HATLESS = SpectrumCommon.locate("textures/entity/wooly_pig/wooly_hatless.png");
-	public static final Identifier SHEARED_HATLESS = SpectrumCommon.locate("textures/entity/wooly_pig/sheared_hatless.png");
+	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/egg_laying_wooly_pig.png");
 
 	public EggLayingWoolyPigEntityRenderer(EntityRendererFactory.Context context) {
 		super(context, new EggLayingWoolyPigEntityModel(context.getPart(SpectrumModelLayers.WOOLY_PIG)), 0.6F);
+		this.addFeature(new EggLayingWoolyPigWoolFeatureRenderer(this, context.getModelLoader()));
 	}
 	
 	@Override
 	public Identifier getTexture(EggLayingWoolyPigEntity entity) {
-		if (entity.isBaby()) {
-			return entity.isHatless() ? SHEARED_HATLESS : SHEARED;
-		}
-		if(entity.isHatless()) {
-			return entity.isSheared() ? SHEARED_HATLESS : WOOLY_HATLESS;
-		} else {
-			return entity.isSheared() ? SHEARED : WOOLY;
-		}
+		return TEXTURE;
 	}
 	
 }

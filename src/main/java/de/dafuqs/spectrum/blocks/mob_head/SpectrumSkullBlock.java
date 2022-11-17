@@ -198,7 +198,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 		@Environment(EnvType.CLIENT)
 		public Identifier getTextureIdentifier() {
 			if(this == EGG_LAYING_WOOLY_PIG) {
-				return EggLayingWoolyPigEntityRenderer.WOOLY;
+				return EggLayingWoolyPigEntityRenderer.TEXTURE;
 			} else {
 				return SpectrumCommon.locate("textures/entity/mob_head/" + this.toString().toLowerCase(Locale.ROOT) + ".png");
 			}

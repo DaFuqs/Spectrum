@@ -80,18 +80,25 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
 	
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
-		ItemStack itemStack = player.getStackInHand(hand);
+		ItemStack handStack = player.getStackInHand(hand);
 		
-		if (itemStack.isOf(Items.BUCKET) && !this.isBaby()) {
+		if(handStack.getItem() instanceof DyeItem dyeItem && isAlive() && getColor() != dyeItem.getColor()) {
+			world.playSoundFromEntity(player, this, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			if (!world.isClient) {
+				setColor(dyeItem.getColor());
+				handStack.decrement(1);
+			}
+			return ActionResult.success(player.world.isClient);
+		} else if (handStack.isOf(Items.BUCKET) && !this.isBaby()) {
 			player.playSound(SoundEvents.ENTITY_COW_MILK, 1.0F, 1.0F);
-			ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, Items.MILK_BUCKET.getDefaultStack());
+			ItemStack itemStack2 = ItemUsage.exchangeStack(handStack, player, Items.MILK_BUCKET.getDefaultStack());
 			player.setStackInHand(hand, itemStack2);
 			return ActionResult.success(this.world.isClient);
-		} else if (itemStack.getItem() instanceof ShearsItem) {
+		} else if (handStack.getItem() instanceof ShearsItem) {
 			if (!this.world.isClient && this.isShearable()) {
 				this.sheared(SoundCategory.PLAYERS);
 				this.emitGameEvent(GameEvent.SHEAR, player);
-				itemStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+				handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
 				return ActionResult.SUCCESS;
 			} else {
 				return ActionResult.CONSUME;
@@ -162,15 +169,15 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	@Nullable
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		EggLayingWoolyPigEntity e1 = (EggLayingWoolyPigEntity) entity;
-		EggLayingWoolyPigEntity e2 = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
-		if(e2 != null) {
-			e2.setColor(this.getChildColor(this, e1));
+		EggLayingWoolyPigEntity other = (EggLayingWoolyPigEntity) entity;
+		EggLayingWoolyPigEntity child = SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG.create(world);
+		if(child != null) {
+			child.setColor(this.getChildColor(this, other));
 			if(world.random.nextInt(50) == 0) {
-				e2.setHatless(true);
+				child.setHatless(true);
 			}
 		}
-		return e2;
+		return child;
 	}
 	
 	@Override

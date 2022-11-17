@@ -260,6 +260,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	}
 	
 	protected void onHookedEntity(Entity hookedEntity) { }
+	
 	protected void hookedEntityTick(Entity hookedEntity) { }
 	
 	public ItemStack getFishingRod(PlayerEntity player) {
@@ -349,15 +350,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				j = this.getZ() + (double) (h * (float) this.fishTravelCountdown * 0.1F);
 				blockState = serverWorld.getBlockState(new BlockPos(d, e - 1.0D, j));
 				
-				Pair<DefaultParticleType, DefaultParticleType> particles;
-				if(blockState.getBlock() instanceof SpectrumFluidBlock spectrumFluidBlock) {
-					particles = spectrumFluidBlock.getFishingParticles();
-				} else if(blockState.isOf(Blocks.LAVA)) {
-					particles = new Pair<>(ParticleTypes.FLAME, SpectrumParticleTypes.LAVA_FISHING);
-				} else {
-					particles = new Pair<>(ParticleTypes.BUBBLE, ParticleTypes.FISHING);
-				}
-				
+				Pair<DefaultParticleType, DefaultParticleType> particles = getFluidParticles(blockState);
 				if (particles != null) {
 					if (this.fishTravelCountdown > 0) {
 						if (this.random.nextFloat() < 0.15F) {
@@ -365,8 +358,8 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 						}
 						float k = g * 0.04F;
 						float l = h * 0.04F;
-						serverWorld.spawnParticles(ParticleTypes.FISHING, d, e, j, 0, l, 0.01D, (-k), 1.0D);
-						serverWorld.spawnParticles(ParticleTypes.FISHING, d, e, j, 0, (-l), 0.01D, k, 1.0D);
+						serverWorld.spawnParticles(particles.getRight(), d, e, j, 0, l, 0.01D, (-k), 1.0D);
+						serverWorld.spawnParticles(particles.getRight(), d, e, j, 0, (-l), 0.01D, k, 1.0D);
 					} else {
 						this.playSound(SoundEvents.ENTITY_FISHING_BOBBER_SPLASH, 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
 						double m = this.getY() + 0.5D;
@@ -394,8 +387,10 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 					e = ((float)MathHelper.floor(this.getY()) + 1.0F);
 					j = this.getZ() + (double)(MathHelper.cos(g) * h) * 0.1D;
 					blockState = serverWorld.getBlockState(new BlockPos(d, e - 1.0D, j));
-					if (blockState.getBlock() instanceof SpectrumFluidBlock spectrumFluidBlock) {
-						serverWorld.spawnParticles(spectrumFluidBlock.getSplashParticle(), d, e, j, 2 + this.random.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
+					
+					Pair<DefaultParticleType, DefaultParticleType> particles = getFluidParticles(blockState);
+					if (particles != null) {
+						serverWorld.spawnParticles(particles.getLeft(), d, e, j, 2 + this.random.nextInt(2), 0.10000000149011612D, 0.0D, 0.10000000149011612D, 0.0D);
 					}
 				}
 				
@@ -408,7 +403,19 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 				this.waitCountdown -= this.lureLevel * 20 * 5;
 			}
 		}
-		
+	}
+	
+	@Nullable
+	private Pair<DefaultParticleType, DefaultParticleType> getFluidParticles(BlockState blockState) {
+		Pair<DefaultParticleType, DefaultParticleType> particles = null;
+		if(world.getBlockState(getBlockPos()).getBlock() instanceof SpectrumFluidBlock spectrumFluidBlock) {
+			particles = spectrumFluidBlock.getFishingParticles();
+		} else if(blockState.isOf(Blocks.LAVA)) {
+			particles = new Pair<>(ParticleTypes.FLAME, SpectrumParticleTypes.LAVA_FISHING);
+		} else if(blockState.isOf(Blocks.WATER)) {
+			particles = new Pair<>(ParticleTypes.BUBBLE, ParticleTypes.FISHING);
+		}
+		return particles;
 	}
 	
 	public boolean isInTheOpen(BlockPos pos) {

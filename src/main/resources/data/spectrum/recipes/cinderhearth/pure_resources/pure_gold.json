@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:pure_gold"
+  },
+  "results": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 2
+    }
+  ],
+  "experience": 0.5,
+  "time": 200
+}

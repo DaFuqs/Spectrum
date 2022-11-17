@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_globette_end",
+          "name": "spectrum:pure_globette_end",
           "functions": [
             {
               "function": "minecraft:set_count",

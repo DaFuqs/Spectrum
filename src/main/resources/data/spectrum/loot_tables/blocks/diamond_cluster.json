@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_diamond",
+          "name": "spectrum:pure_diamond",
           "functions": [
             {
               "function": "minecraft:set_count",

@@ -384,25 +384,25 @@ public class SpectrumItems {
 	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item NEAT_RING = new NeatRingItem(Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	
-	// Native Clusters
-	public static final Item NATIVE_EMERALD = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_PRISMARINE = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_COAL = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_REDSTONE = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_GLOWSTONE = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_LAPIS = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_COPPER = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_QUARTZ = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_GOLD = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_DIAMOND = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_IRON = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_NETHERITE = new Item(Tab.RESOURCES.settings());
+	// Pure Clusters
+	public static final Item PURE_EMERALD = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_PRISMARINE = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_COAL = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_REDSTONE = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_GLOWSTONE = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_LAPIS = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_COPPER = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_QUARTZ = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_GOLD = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_DIAMOND = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_IRON = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_NETHERITE = new Item(Tab.RESOURCES.settings());
 	
-	public static final Item NATIVE_CERTUS_QUARTZ = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_FLUIX = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_GLOBETTE = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_GLOBETTE_NETHER = new Item(Tab.RESOURCES.settings());
-	public static final Item NATIVE_GLOBETTE_END = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_CERTUS_QUARTZ = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_FLUIX = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_GLOBETTE = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_GLOBETTE_NETHER = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_GLOBETTE_END = new Item(Tab.RESOURCES.settings());
 	
 	
 	private static void register(String name, Item item, DyeColor dyeColor) {
@@ -427,7 +427,7 @@ public class SpectrumItems {
 		registerMagicalTools();
 		registerFluidBuckets();
 		registerBannerPatterns();
-		registerNativeClusters();
+		registerPureClusters();
 		
 		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME, DyeColor.GREEN);
 		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME, DyeColor.GREEN);
@@ -440,26 +440,26 @@ public class SpectrumItems {
 		registerStructurePlacers();
 	}
 	
-	public static void registerNativeClusters() {
-		register("native_coal", NATIVE_COAL, DyeColor.BROWN);
-		register("native_iron", NATIVE_IRON, DyeColor.BROWN);
-		register("native_gold", NATIVE_GOLD, DyeColor.BROWN);
-		register("native_diamond", NATIVE_DIAMOND, DyeColor.CYAN);
-		register("native_emerald", NATIVE_EMERALD, DyeColor.CYAN);
-		register("native_redstone", NATIVE_REDSTONE, DyeColor.RED);
-		register("native_lapis", NATIVE_LAPIS, DyeColor.PURPLE);
-		register("native_copper", NATIVE_COPPER, DyeColor.BROWN);
-		register("native_quartz", NATIVE_QUARTZ, DyeColor.BROWN);
-		register("native_netherite", NATIVE_NETHERITE, DyeColor.BROWN);
-		register("native_glowstone", NATIVE_GLOWSTONE, DyeColor.YELLOW);
-		register("native_prismarine", NATIVE_PRISMARINE, DyeColor.CYAN);
+	public static void registerPureClusters() {
+		register("pure_coal", PURE_COAL, DyeColor.BROWN);
+		register("pure_iron", PURE_IRON, DyeColor.BROWN);
+		register("pure_gold", PURE_GOLD, DyeColor.BROWN);
+		register("pure_diamond", PURE_DIAMOND, DyeColor.CYAN);
+		register("pure_emerald", PURE_EMERALD, DyeColor.CYAN);
+		register("pure_redstone", PURE_REDSTONE, DyeColor.RED);
+		register("pure_lapis", PURE_LAPIS, DyeColor.PURPLE);
+		register("pure_copper", PURE_COPPER, DyeColor.BROWN);
+		register("pure_quartz", PURE_QUARTZ, DyeColor.BROWN);
+		register("pure_netherite", PURE_NETHERITE, DyeColor.BROWN);
+		register("pure_glowstone", PURE_GLOWSTONE, DyeColor.YELLOW);
+		register("pure_prismarine", PURE_PRISMARINE, DyeColor.CYAN);
 		
-		register("native_certus_quartz", NATIVE_CERTUS_QUARTZ, DyeColor.YELLOW);
-		register("native_fluix", NATIVE_FLUIX, DyeColor.YELLOW);
+		register("pure_certus_quartz", PURE_CERTUS_QUARTZ, DyeColor.YELLOW);
+		register("pure_fluix", PURE_FLUIX, DyeColor.YELLOW);
 		
-		register("native_globette", NATIVE_GLOBETTE, DyeColor.BLUE);
-		register("native_globette_nether", NATIVE_GLOBETTE_NETHER, DyeColor.RED);
-		register("native_globette_end", NATIVE_GLOBETTE_END, DyeColor.GREEN);
+		register("pure_globette", PURE_GLOBETTE, DyeColor.BLUE);
+		register("pure_globette_nether", PURE_GLOBETTE_NETHER, DyeColor.RED);
+		register("pure_globette_end", PURE_GLOBETTE_END, DyeColor.GREEN);
 	}
 	
 	public static void registerGraces() {

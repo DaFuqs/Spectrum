@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_iron",
+          "name": "spectrum:pure_iron",
           "functions": [
             {
               "function": "minecraft:set_count",

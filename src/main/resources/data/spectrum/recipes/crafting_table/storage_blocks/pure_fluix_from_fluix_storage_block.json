@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pure_ore_storage",
+  "ingredients": [
+    {
+      "item": "spectrum:pure_fluix_block"
+    }
+  ],
+  "result": {
+    "item": "spectrum:pure_fluix",
+    "count": 9
+  }
+}

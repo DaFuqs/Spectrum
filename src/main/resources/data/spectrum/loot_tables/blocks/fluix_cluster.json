@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_fluix",
+          "name": "spectrum:pure_fluix",
           "functions": [
             {
               "function": "minecraft:set_count",

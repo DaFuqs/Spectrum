@@ -49,6 +49,24 @@
           }
         }
       ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "bonus_rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:book",
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

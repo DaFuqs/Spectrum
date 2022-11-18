@@ -3,10 +3,20 @@
   "pools": [
     {
       "rolls": {
-        "min": 5,
-        "max": 9
+        "min": 1,
+        "max": 4
       },
       "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "minecraft:amethyst_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "name": "minecraft:wheat"
+        },
         {
           "type": "minecraft:item",
           "name": "minecraft:cobweb"
@@ -17,11 +27,11 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:gold_ingot"
+          "name": "minecraft:raw_gold"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:iron_ingot"
+          "name": "minecraft:raw_iron"
         },
         {
           "type": "minecraft:item",
@@ -34,18 +44,19 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:emerald"
-        }
-      ]
-    },
-    {
-      "rolls": {
-        "min": 2,
-        "max": 4
-      },
-      "entries": [
+        },
         {
           "type": "minecraft:item",
-          "name": "minecraft:amethyst_shard"
+          "name": "minecraft:book"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 1,
+            "max": 5
+          }
         }
       ]
     },
@@ -59,6 +70,15 @@
           "type": "minecraft:tag",
           "name": "spectrum:dyes",
           "expand": true
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 1,
+            "max": 6
+          }
         }
       ]
     }

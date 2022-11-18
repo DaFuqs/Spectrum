@@ -44,6 +44,24 @@
           "name": "spectrum:chests/sub_tables/moonstone_tier_gems_and_buds"
         }
       ]
+    },
+    {
+      "rolls": {
+        "min": 2,
+        "max": 4
+      },
+      "bonus_rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:book",
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

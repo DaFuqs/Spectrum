@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static de.dafuqs.spectrum.SpectrumCommon.logInfo;
 
 @Mixin(ClientPlayNetworkHandler.class)
-public class ClientPlayNetworkHandlerMixin {
+public abstract class ClientPlayNetworkHandlerMixin {
 
     @Inject(method = "onSynchronizeTags", at = @At("TAIL"))
     public void spectrum$syncTags(SynchronizeTagsS2CPacket packet, CallbackInfo ci) {

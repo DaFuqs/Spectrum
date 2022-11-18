@@ -4,7 +4,6 @@
     "icon": {
       "item": "spectrum:mysterious_locket"
     },
-    "secret": true,
     "title": {
       "translate": "advancements.spectrum.open_mysterious_locket.title"
     },

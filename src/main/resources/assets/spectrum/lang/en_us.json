@@ -2115,7 +2115,8 @@
   "item.spectrum.enchantment_canvas.tooltip.not_bound2": "§7The Canvas will be then bound to items of that type",
 
   "item.spectrum.mysterious_locket": "Mysterious Locket",
-  "item.spectrum.mysterious_locket.tooltip": "Features an odd crystal ornament which resembles a lock",
+  "item.spectrum.mysterious_locket.tooltip": "Features an crystal ornament which resembles a lock",
+  "item.spectrum.mysterious_locket.tooltip2": "softly glowing a pale white color",
 
   "item.spectrum.bottle_of_fading": "Bottle of Fading",
   "item.spectrum.bottle_of_fading.tooltip": "§2Glibbery",

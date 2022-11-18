@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
 import de.dafuqs.spectrum.loot.conditions.*;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.entity.passive.AxolotlEntity;
 import net.minecraft.entity.passive.FoxEntity;
@@ -13,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.EntityPropertiesLootCondition;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LootTableEntry;
@@ -115,8 +117,15 @@ public class SpectrumLootPoolModifiers {
 	
 	public static void setup() {
 		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-			// TREASURE HUNTER POOLS
-			if (trophyHunterLootPools.containsKey(id)) {
+			
+			// Dungeon loot
+			if(id.equals(new Identifier("chests/simple_dungeon"))) {
+				tableBuilder.pool(new LootPool.Builder().rolls(ConstantLootNumberProvider.create(1))
+						.conditionally(RandomChanceLootCondition.builder(0.02F).build())
+						.with(ItemEntry.builder(SpectrumItems.MYSTERIOUS_LOCKET).build()));
+				
+				// TREASURE HUNTER POOLS
+			} else if (trophyHunterLootPools.containsKey(id)) {
 				TreasureHunterDropDefinition treasureHunterDropDefinition = trophyHunterLootPools.get(id);
 				tableBuilder.pool(getLootPool(treasureHunterDropDefinition));
 				// Some entity types use custom loot conditions

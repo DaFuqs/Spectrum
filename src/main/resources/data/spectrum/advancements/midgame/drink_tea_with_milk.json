@@ -14,7 +14,7 @@
   },
   "criteria": {
     "drinking_restoration_tea_with_milk": {
-      "trigger": "minecraft:using_item",
+      "trigger": "minecraft:consume_item",
       "conditions": {
         "item": {
           "items": [

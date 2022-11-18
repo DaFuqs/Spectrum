@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin({LivingEntity.class, PlayerEntity.class})
-public class FirstStrikeEnchantmentMixin {
+public abstract class FirstStrikeEnchantmentMixin {
 	
 	@ModifyVariable(method = "applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
 	public float applyAdditionalFirstStrikeEnchantmentDamage(float amount, DamageSource source) {

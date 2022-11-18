@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)
-public class InGameHudMixin extends DrawableHelper {
+public abstract class InGameHudMixin extends DrawableHelper {
 	
 	@Shadow
 	@Final

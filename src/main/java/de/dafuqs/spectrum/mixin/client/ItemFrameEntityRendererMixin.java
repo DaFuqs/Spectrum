@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Environment(EnvType.CLIENT)
 @Mixin(ItemFrameEntityRenderer.class)
-public class ItemFrameEntityRendererMixin<T extends ItemFrameEntity> {
+public abstract class ItemFrameEntityRendererMixin<T extends ItemFrameEntity> {
 	
 	@Inject(at = @At("HEAD"), method = "getLight(Lnet/minecraft/entity/decoration/ItemFrameEntity;II)I", cancellable = true)
 	private void getLight(T itemFrame, int glowLight, int regularLight, CallbackInfoReturnable<Integer> callbackInfoReturnable) {

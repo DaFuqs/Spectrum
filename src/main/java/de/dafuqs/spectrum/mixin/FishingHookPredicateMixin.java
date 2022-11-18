@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(FishingHookPredicate.class)
-public class FishingHookPredicateMixin {
+public abstract class FishingHookPredicateMixin {
 	
 	@Inject(method = "test(Lnet/minecraft/entity/Entity;)Z", at = @At(value = "HEAD"), cancellable = true)
 	public void spectrum$test(Entity entity, CallbackInfoReturnable<Boolean> cir) {

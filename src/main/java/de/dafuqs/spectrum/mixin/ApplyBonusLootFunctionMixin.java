@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(net.minecraft.loot.function.ApplyBonusLootFunction.class)
-public class ApplyBonusLootFunctionMixin {
+public abstract class ApplyBonusLootFunctionMixin {
 	
 	@Shadow @Final Enchantment enchantment;
 	@Shadow @Final ApplyBonusLootFunction.Formula formula;

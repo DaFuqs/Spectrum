@@ -98,24 +98,20 @@ public class ShootingStarEntity extends Entity {
 		this.lastCollisionCount = entity.lastCollisionCount;
 	}
 	
-	public static void doShootingStarSpawns(@NotNull ServerWorld serverWorld) {
-		if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(serverWorld.getRegistryKey().getValue().toString())) {
-			if (serverWorld.getTime() % 100 == 0) {
-				long timeOfDay = serverWorld.getTimeOfDay() % 24000;
-				if (timeOfDay > 13000 && timeOfDay < 22000) { // 90 chances in a night
-					for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
-						if (!playerEntity.isSpectator() && AdvancementHelper.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier()) && serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
-							// 1 % chance for each cycle to spawn a lot of shooting stars for the player
-							// making it an amazing display
-							if (serverWorld.getRandom().nextFloat() < 0.01) {
-								for (int i = 0; i < 5; i++) {
-									spawnShootingStar(serverWorld, playerEntity);
-								}
-							} else {
-								spawnShootingStar(serverWorld, playerEntity);
-							}
-						}
+	public static void doShootingStarSpawnsForPlayers(@NotNull ServerWorld serverWorld) {
+		for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
+			if (!playerEntity.isSpectator()
+					&& AdvancementHelper.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier())
+					&& serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
+				
+				// 1 % chance for each cycle to spawn a lot of shooting stars for the player
+				// making it an amazing display
+				if (serverWorld.getRandom().nextFloat() < 0.01) {
+					for (int i = 0; i < 5; i++) {
+						spawnShootingStar(serverWorld, playerEntity);
 					}
+				} else {
+					spawnShootingStar(serverWorld, playerEntity);
 				}
 			}
 		}
@@ -413,7 +409,7 @@ public class ShootingStarEntity extends Entity {
 	public boolean handleAttack(Entity attacker) {
 		if (!this.isRemoved()) {
 			if (!this.world.isClient) {
-				if(!this.dataTracker.get(HARDENED)) {
+				if (!this.dataTracker.get(HARDENED)) {
 					this.age = 1; // prevent it from despawning, once interacted
 					
 					this.availableHits--;

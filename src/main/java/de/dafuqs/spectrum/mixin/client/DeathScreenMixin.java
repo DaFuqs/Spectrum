@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(DeathScreen.class)
-public class DeathScreenMixin {
+public abstract class DeathScreenMixin {
 	
 	@ModifyVariable(method = "<init>(Lnet/minecraft/text/Text;Z)V", at = @At("HEAD"), ordinal = 0, argsOnly = true)
 	private static boolean spectrum$isHardcore(boolean isHardcore) {

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(InfestedBlock.class)
-public class InfestedBlockMixin {
+public abstract class InfestedBlockMixin {
 	
 	/*
 	 * Do not spawn silverfish when block is broken with Resonance Tool

@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Environment(EnvType.CLIENT)
 @Mixin(BuiltinModelItemRenderer.class)
-public class BuiltinModelItemRendererMixin {
+public abstract class BuiltinModelItemRendererMixin {
 	
 	@Inject(method = "render(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II)V",
 			at = @At("HEAD"), cancellable = true)

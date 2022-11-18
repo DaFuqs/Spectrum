@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.data_loaders.ResonanceDropsDataLoader;
 import de.dafuqs.spectrum.deeper_down.DDDimension;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
@@ -38,6 +39,7 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -251,6 +253,17 @@ public class SpectrumCommon implements ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
 			SpectrumCommon.logInfo("Fetching server instance...");
 			SpectrumCommon.minecraftServer = server;
+		});
+		
+		ServerTickEvents.END_WORLD_TICK.register(world -> {
+			if (world.getTime() % 100 == 0) {
+				long timeOfDay = world.getTimeOfDay() % 24000;
+				if (timeOfDay > 13000 && timeOfDay < 22000) { // 90 chances in a night
+					if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(world.getRegistryKey().getValue().toString())) {
+						ShootingStarEntity.doShootingStarSpawnsForPlayers(world);
+					}
+				}
+			}
 		});
 		
 		ServerLifecycleEvents.SERVER_STARTED.register((minecraftServer) -> {

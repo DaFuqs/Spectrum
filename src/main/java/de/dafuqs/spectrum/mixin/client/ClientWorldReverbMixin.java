@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 
 @Environment(EnvType.CLIENT)
 @Mixin(ClientWorld.class)
-public class ClientWorldReverbMixin {
+public abstract class ClientWorldReverbMixin {
 	
 	@Inject(method = "<init>", at = @At("TAIL"))
 	private void spectrum$init(ClientPlayNetworkHandler netHandler, ClientWorld.Properties properties, RegistryKey registryRef, RegistryEntry registryEntry, int loadDistance, int simulationDistance, Supplier profiler, WorldRenderer worldRenderer, boolean debugWorld, long seed, CallbackInfo ci) {

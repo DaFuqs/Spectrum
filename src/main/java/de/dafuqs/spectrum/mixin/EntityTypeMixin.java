@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EntityType.class)
-public class EntityTypeMixin {
+public abstract class EntityTypeMixin {
 	
 	@Inject(at = @At("RETURN"), method = "alwaysUpdateVelocity()Z", cancellable = true)
 	public void alwaysUpdateVelocity(CallbackInfoReturnable<Boolean> cir) {

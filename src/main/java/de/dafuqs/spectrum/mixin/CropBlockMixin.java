@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(CropBlock.class)
-public class CropBlockMixin {
+public abstract class CropBlockMixin {
 	
 	@Inject(at = @At("RETURN"), method = "canPlantOnTop(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/BlockView;Lnet/minecraft/util/math/BlockPos;)Z", cancellable = true)
 	public void canPlantOnTopOfCustomFarmland(@NotNull BlockState floor, BlockView world, BlockPos pos, @NotNull CallbackInfoReturnable<Boolean> cir) {

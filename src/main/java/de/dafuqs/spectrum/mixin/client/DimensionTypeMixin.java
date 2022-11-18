@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Environment(EnvType.CLIENT)
 @Mixin(DimensionType.class)
-public class DimensionTypeMixin {
+public abstract class DimensionTypeMixin {
 	
 	@ModifyArg(method = "getSkyAngle", at = @At(value = "INVOKE", target = "Ljava/util/OptionalLong;orElse(J)J"))
 	private long spectrum$getLerpedSkyAngle(long time) {

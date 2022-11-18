@@ -38,7 +38,6 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -77,7 +76,6 @@ public class SpectrumCommon implements ModInitializer {
 	public static SpectrumConfig CONFIG;
 	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
 	public static MinecraftServer minecraftServer;
-	private static boolean serverLoadEventFired = false;
 	/**
 	 * Caches the luminance states from fluids as int
 	 * for blocks that react to the light level of fluids
@@ -255,23 +253,19 @@ public class SpectrumCommon implements ModInitializer {
 			SpectrumCommon.minecraftServer = server;
 		});
 		
-		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
+		ServerLifecycleEvents.SERVER_STARTED.register((minecraftServer) -> {
 			SpectrumCommon.minecraftServer = minecraftServer;
-			if(!serverLoadEventFired) {
-				SpectrumCommon.logInfo("Querying fluid luminance...");
-				for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
-					Block block = it.next();
-					if (block instanceof FluidBlock fluidBlock) {
-						fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
-					}
+			SpectrumCommon.logInfo("Querying fluid luminance...");
+			for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
+				Block block = it.next();
+				if (block instanceof FluidBlock fluidBlock) {
+					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
 				}
-				
-				SpectrumCommon.logInfo("Injecting additional recipes...");
-				FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
-				injectEnchantmentUpgradeRecipes(minecraftServer);
-				
-				serverLoadEventFired = true;
 			}
+			
+			SpectrumCommon.logInfo("Injecting additional recipes...");
+			FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
+			injectEnchantmentUpgradeRecipes(minecraftServer);
 		});
 		
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
@@ -330,7 +324,6 @@ public class SpectrumCommon implements ModInitializer {
 			
 			minecraftServer.getRecipeManager().setRecipes(newList);
 		}
-		EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.clear();
 	}
 	
 }

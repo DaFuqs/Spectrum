@@ -299,11 +299,10 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
 	private static float[] getDyedColor(DyeColor color) {
 		if (color == DyeColor.WHITE) {
-			return new float[]{0.9019608F, 0.9019608F, 0.9019608F};
+			return new float[]{1.0F, 1.0F, 1.0F};
 		} else {
 			float[] fs = color.getColorComponents();
-			float f = 0.75F;
-			return new float[]{fs[0] * f, fs[1] * f, fs[2] * f};
+			return new float[]{ fs[0], fs[1], fs[2] };
 		}
 	}
 	

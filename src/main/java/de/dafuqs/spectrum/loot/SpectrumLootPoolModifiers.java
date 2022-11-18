@@ -124,12 +124,12 @@ public class SpectrumLootPoolModifiers {
 						.conditionally(RandomChanceLootCondition.builder(0.02F).build())
 						.with(ItemEntry.builder(SpectrumItems.MYSTERIOUS_LOCKET).build()));
 				
-				// TREASURE HUNTER POOLS
+			// Treasure hunter pools
 			} else if (trophyHunterLootPools.containsKey(id)) {
 				TreasureHunterDropDefinition treasureHunterDropDefinition = trophyHunterLootPools.get(id);
 				tableBuilder.pool(getLootPool(treasureHunterDropDefinition));
-				// Some entity types use custom loot conditions
-				// because vanillas are too generic (fox/snow fox both use "fox" loot table)
+			// Some treasure hunter pools use custom loot conditions
+			// because vanillas are too generic (fox/snow fox both use "fox" loot table)
 			} else if (id.equals(new Identifier("entities/fox"))) {
 				tableBuilder.pool(getFoxLootPool(FoxEntity.Type.RED, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FOX).asItem(), 0.01F));
 				tableBuilder.pool(getFoxLootPool(FoxEntity.Type.SNOW, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FOX_ARCTIC).asItem(), 0.01F));

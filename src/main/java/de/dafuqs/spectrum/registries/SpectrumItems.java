@@ -350,6 +350,9 @@ public class SpectrumItems {
 	public static final Item GILDED_BOOK = new GildedBookItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	
+	// Lore
+	public static final Item MYSTERIOUS_LOCKET = new ItemWithTooltip(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), new String[]{"item.spectrum.mysterious_locket.tooltip", "item.spectrum.mysterious_locket.tooltip2"});
+	
 	// Trinkets
 	public static final Item FANCIFUL_BELT = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
 	public static final Item FANCIFUL_PENDANT = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
@@ -624,6 +627,8 @@ public class SpectrumItems {
 		register("ender_splice", ENDER_SPLICE, DyeColor.PURPLE);
 		register("end_portal_cracker", END_PORTAL_CRACKER, DyeColor.RED);
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
+		
+		register("mysterious_locket", MYSTERIOUS_LOCKET, DyeColor.GRAY);
 	}
 	
 	public static void registerConsumables() {

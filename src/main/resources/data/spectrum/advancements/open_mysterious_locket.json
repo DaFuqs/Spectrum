@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:collect_mysterious_locket",
+  "display": {
+    "icon": {
+      "item": "spectrum:mysterious_locket"
+    },
+    "secret": true,
+    "title": {
+      "translate": "advancements.spectrum.open_mysterious_locket.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.open_mysterious_locket.description"
+    }
+  },
+  "criteria": {
+    "opened_mysterious_locket": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_mysterious_locket" }
+    }
+  }
+}

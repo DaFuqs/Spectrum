@@ -100,6 +100,9 @@ dependencies {
 
 	//modImplementation("com.github.LudoCrypt:Liminal-Library:${project.liminal_lib_version}")
 
+	implementation include("com.github.LlamaLad7:MixinExtras:0.0.12")
+	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
+
 	// includes the textures in the "programmer art" folder in the programmer art texture pack
 	modImplementation "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"
 	include "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"

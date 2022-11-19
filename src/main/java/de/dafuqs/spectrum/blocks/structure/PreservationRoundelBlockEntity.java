@@ -90,7 +90,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	public void inventoryChanged() {
 		super.inventoryChanged();
 		if (!world.isClient && controllerOffset != null && inventoryAndConnectedOnesMatchRequirement()) {
-			BlockEntity blockEntity = world.getBlockEntity(Support.rotationalOffset(this.pos, this.controllerOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING)));
+			BlockEntity blockEntity = world.getBlockEntity(Support.directionalOffset(this.pos, this.controllerOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING)));
 			if (blockEntity instanceof PreservationControllerBlockEntity controller) {
 				// grant advancement
 				controller.openExit();
@@ -105,7 +105,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		
 
 		for(Vec3i otherRoundelOffset : this.otherRoundelOffsets) {
-			BlockPos otherRoundelPos = Support.rotationalOffset(this.pos, otherRoundelOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING));
+			BlockPos otherRoundelPos = Support.directionalOffset(this.pos, otherRoundelOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING));
 			if(world.getBlockEntity(otherRoundelPos) instanceof PreservationRoundelBlockEntity preservationRoundelBlockEntity) {
 				if(!preservationRoundelBlockEntity.inventoryMatchesRequirement()) {
 					return false;

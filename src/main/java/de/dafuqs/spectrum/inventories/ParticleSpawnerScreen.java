@@ -267,10 +267,11 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	}
 	
 	private void navigationButtonPressed(ButtonWidget buttonWidget) {
+		int pageCount = ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE) + 1);
 		if (buttonWidget == forwardButton) {
-			activeParticlePage = (activeParticlePage + 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE) + 1);
+			activeParticlePage = (activeParticlePage + 1) % pageCount;
 		} else {
-			activeParticlePage = (activeParticlePage - 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE) + 1);
+			activeParticlePage = (activeParticlePage - 1 + pageCount) % pageCount;
 		}
 	}
 	
@@ -292,7 +293,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	}
 	
 	private @NotNull ButtonWidget addParticleButton(int x, int y) {
-		ButtonWidget button = new ButtonWidget(x, y, 20, 20, Text.literal("asdfsd.asdfsd"), this::particleButtonPressed);
+		ButtonWidget button = new ButtonWidget(x, y, 20, 20, Text.literal("Particles"), this::particleButtonPressed);
 		addSelectableChild(button);
 		return button;
 	}
@@ -301,7 +302,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		int buttonIndex = particleButtons.indexOf(buttonWidget);
 		int newIndex = PARTICLES_PER_PAGE * activeParticlePage + buttonIndex;
 		
-		if (newIndex < AVAILABLE_PARTICLES.size() - 1) {
+		if (newIndex < AVAILABLE_PARTICLES.size()) {
 			particleSelectionIndex = newIndex;
 			onValuesChanged();
 		}

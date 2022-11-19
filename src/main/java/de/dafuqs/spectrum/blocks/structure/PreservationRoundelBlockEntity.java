@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.blocks.item_roundel.ItemRoundelBlockEntity;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.BlockState;
@@ -89,7 +90,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	public void inventoryChanged() {
 		super.inventoryChanged();
 		if (!world.isClient && controllerOffset != null && inventoryAndConnectedOnesMatchRequirement()) {
-			BlockEntity blockEntity = world.getBlockEntity(Support.directionalOffset(this.pos, this.controllerOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING)));
+			BlockEntity blockEntity = world.getBlockEntity(Support.rotationalOffset(this.pos, this.controllerOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING)));
 			if (blockEntity instanceof PreservationControllerBlockEntity controller) {
 				// grant advancement
 				controller.openExit();
@@ -104,11 +105,14 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		
 
 		for(Vec3i otherRoundelOffset : this.otherRoundelOffsets) {
-			BlockPos otherRoundelPos = Support.directionalOffset(this.pos, otherRoundelOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING));
+			BlockPos otherRoundelPos = Support.rotationalOffset(this.pos, otherRoundelOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING));
 			if(world.getBlockEntity(otherRoundelPos) instanceof PreservationRoundelBlockEntity preservationRoundelBlockEntity) {
 				if(!preservationRoundelBlockEntity.inventoryMatchesRequirement()) {
 					return false;
 				}
+			}
+			if(world instanceof ServerWorld) {
+				SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(otherRoundelPos), SpectrumParticleTypes.BLUE_CRAFTING, 60);
 			}
 		}
 		

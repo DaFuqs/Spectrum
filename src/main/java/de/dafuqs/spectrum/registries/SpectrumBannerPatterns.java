@@ -2,6 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.entity.BannerPattern;
+import net.minecraft.tag.TagKey;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 
@@ -25,6 +27,14 @@ public class SpectrumBannerPatterns {
 	public static RegistryEntry<BannerPattern> BEDROCK_DUST;
 	public static RegistryEntry<BannerPattern> SHIMMERSTONE;
 	public static RegistryEntry<BannerPattern> JADE_VINE;
+	
+	public static TagKey<BannerPattern> SPECTRUM_LOGO_TAG = of("pattern_item/logo");
+	public static TagKey<BannerPattern> AMETHYST_CLUSTER_TAG = of("pattern_item/amethyst_cluster");
+	public static TagKey<BannerPattern> AMETHYST_SHARD_TAG = of("pattern_item/amethyst_shard");
+	
+	private static TagKey<BannerPattern> of(String id) {
+		return TagKey.of(Registry.BANNER_PATTERN_KEY, new Identifier(id));
+	}
 	
 	private static RegistryEntry<BannerPattern> registerPattern(String id, String shortId) {
 		BannerPattern pattern = Registry.register(Registry.BANNER_PATTERN, SpectrumCommon.locate(id), new BannerPattern(SpectrumCommon.MOD_ID + "_" + shortId));

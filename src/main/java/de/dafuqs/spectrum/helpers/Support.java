@@ -170,31 +170,14 @@ public class Support {
 		}
 	}
 	
-	@Deprecated
-	// WTF was I doing here
-	public static BlockPos directionalOffset(BlockPos origin, Vec3i offset, @NotNull Direction horizontalFacing) {
-		switch (horizontalFacing) {
-			case NORTH -> {
-				return origin.add(offset.getZ(), offset.getY(), -offset.getX());
-			}
-			case EAST -> {
-				return origin.add(offset.getX(), offset.getY(), offset.getZ());
-			}
-			case SOUTH -> {
-				return origin.add(offset.getZ(), offset.getY(), offset.getX());
-			}
-			case WEST -> {
-				return origin.add(-offset.getX(), offset.getY(), offset.getZ());
-			}
-			default -> {
-				SpectrumCommon.logWarning("Called directionalOffset with facing" + horizontalFacing + " this is not supported.");
-				return origin;
-			}
-		}
-	}
-	
-	// TODO: Add Comments
-	public static BlockPos rotationalOffset(BlockPos origin, Vec3i forwardUpRight, @NotNull Direction horizontalFacing) {
+	/**
+	 * Returns a relative new BlockPos based on a facing direction and a vector
+	 * @param origin the source position
+	 * @param forwardUpRight a vector specifying the amount of blocks forward, up and right
+	 * @param horizontalFacing the facing direction
+	 * @return the blockpos with forwardUpRight offset from origin when facing horizontalFacing
+	 */
+	public static BlockPos directionalOffset(BlockPos origin, Vec3i forwardUpRight, @NotNull Direction horizontalFacing) {
 		switch (horizontalFacing) {
 			case NORTH -> {
 				return origin.add(forwardUpRight.getZ(), forwardUpRight.getY(), -forwardUpRight.getX());
@@ -209,7 +192,7 @@ public class Support {
 				return origin.add(-forwardUpRight.getX(), forwardUpRight.getY(), -forwardUpRight.getZ());
 			}
 			default -> {
-				SpectrumCommon.logWarning("Called rotationalOffset with facing" + horizontalFacing + " this is not supported.");
+				SpectrumCommon.logWarning("Called directionalOffset with facing" + horizontalFacing + " this is not supported.");
 				return origin;
 			}
 		}

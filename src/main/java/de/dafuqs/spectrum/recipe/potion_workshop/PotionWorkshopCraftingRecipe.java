@@ -29,6 +29,8 @@ public class PotionWorkshopCraftingRecipe extends PotionWorkshopRecipe {
 		this.baseIngredient = baseIngredient;
 		this.requiredExperience = requiredExperience;
 		this.consumeBaseIngredient = consumeBaseIngredient;
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	public Ingredient getBaseIngredient() {

@@ -48,6 +48,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	public ItemStack getOutput() {
 		ItemStack tappedStack = tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
 		BeverageItem.setPreviewStack(tappedStack);
+		tappedStack.setCount(OUTPUT_STACK.getCount());
 		return tappedStack;
 	}
 	
@@ -93,7 +94,9 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 			if(alcAfterBloominess >= 20) { effects.add(new StatusEffectInstance(StatusEffects.NAUSEA, effectDuration)); effectDuration *= 2; }
 			if(alcAfterBloominess >= 10) { effects.add(new StatusEffectInstance(StatusEffects.WEAKNESS, effectDuration)); }
 			
-			return new JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack(OUTPUT_STACK.copy());
+			ItemStack outputStack = OUTPUT_STACK.copy();
+			outputStack.setCount(1);
+			return new JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack(outputStack);
 		}
 	}
 	

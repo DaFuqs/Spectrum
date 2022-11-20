@@ -51,6 +51,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		flowerStack.setCount(4);
 		ItemStack tappedStack = tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
 		BeverageItem.setPreviewStack(tappedStack);
+		tappedStack.setCount(OUTPUT_STACK.getCount());
 		return tappedStack;
 	}
 	
@@ -97,11 +98,13 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 			List<StatusEffectInstance> finalStatusEffects = new ArrayList<>();
 			double cappedAlcPercent = Math.min(alcPercent, 20D);
 			for(Map.Entry<StatusEffect, Integer> entry : stewEffects.entrySet()) {
-				int finalDurationTicks = (int) Math.pow(entry.getValue(), 1 + cappedAlcPercent * 0.1);
+				int finalDurationTicks = (int) Math.pow(entry.getValue(), 1 + cappedAlcPercent * 0.075);
 				finalStatusEffects.add(new StatusEffectInstance(entry.getKey(), finalDurationTicks, 0));
 			}
 			
-			return new StatusEffectBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, finalStatusEffects).getStack(OUTPUT_STACK.copy());
+			ItemStack outputStack = OUTPUT_STACK.copy();
+			outputStack.setCount(1);
+			return new StatusEffectBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, finalStatusEffects).getStack(outputStack);
 		}
 	}
 	

@@ -32,7 +32,6 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
@@ -98,10 +97,9 @@ public class SpectrumItems {
 	public static final Item MOONSTONE_SHARD = new CloakedItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/break_decayed_bedrock"), Items.WHITE_DYE);
 	public static final Item SPECTRAL_SHARD = new CloakedItem(Tab.RESOURCES.settings(Rarity.RARE), SpectrumCommon.locate("lategame/build_complex_pedestal_structure"), Items.LIGHT_GRAY_DYE);
 	
-	private static final Identifier GEMSTONE_POWDER_CLOAK_IDENTIFIER = SpectrumCommon.locate("place_pedestal");
-	public static final Item TOPAZ_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.CYAN);
-	public static final Item AMETHYST_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.MAGENTA);
-	public static final Item CITRINE_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), GEMSTONE_POWDER_CLOAK_IDENTIFIER, BuiltinGemstoneColor.YELLOW);
+	public static final Item TOPAZ_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("hidden/collect_shards/collect_topaz_shard"), BuiltinGemstoneColor.CYAN);
+	public static final Item AMETHYST_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("hidden/collect_shards/collect_amethyst_shard"), BuiltinGemstoneColor.MAGENTA);
+	public static final Item CITRINE_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("hidden/collect_shards/collect_citrine_shard"), BuiltinGemstoneColor.YELLOW);
 	public static final Item ONYX_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("create_onyx_shard"), BuiltinGemstoneColor.BLACK);
 	public static final Item MOONSTONE_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
 	

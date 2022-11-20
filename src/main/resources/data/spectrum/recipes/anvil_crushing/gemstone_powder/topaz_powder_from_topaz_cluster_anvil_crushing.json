@@ -10,5 +10,7 @@
     "count": 16
   },
   "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "spectrum:block.topaz_cluster.break"
+  "soundEventIdentifier": "spectrum:block.topaz_cluster.break",
+  "group": "gemstone_crushing",
+  "required_advancement": "spectrum:hidden/collect_shards/collect_topaz_shard"
 }

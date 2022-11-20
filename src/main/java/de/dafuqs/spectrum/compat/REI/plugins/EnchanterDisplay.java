@@ -38,6 +38,7 @@ public class EnchanterDisplay extends GatedSpectrumDisplay {
 		return SpectrumPlugins.ENCHANTER;
 	}
 	
+	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, EnchanterRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}

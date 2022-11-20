@@ -42,6 +42,7 @@ public class SpiritInstillingDisplay extends GatedSpectrumDisplay {
 		return SpectrumPlugins.SPIRIT_INSTILLER;
 	}
 	
+	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, SpiritInstillerRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}

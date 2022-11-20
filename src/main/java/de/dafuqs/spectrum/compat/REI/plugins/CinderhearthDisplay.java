@@ -32,6 +32,7 @@ public class CinderhearthDisplay extends GatedSpectrumDisplay {
 		return SpectrumPlugins.CINDERHEARTH;
 	}
 	
+	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, CinderhearthRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}

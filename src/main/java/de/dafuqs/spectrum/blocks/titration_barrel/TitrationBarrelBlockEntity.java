@@ -222,7 +222,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed, inventoryCount);
 		}
 		
-		if(optionalRecipe.isEmpty() || isEmpty(biome.getTemperature(), this.extractedBottles, optionalRecipe.get())) {
+		if(optionalRecipe.isEmpty() || isEmpty(biome.getTemperature(), this.extractedBottles, optionalRecipe.get()) || !optionalRecipe.get().canPlayerCraft(player)) {
 			reset(world, blockPos, blockState);
 		}
 

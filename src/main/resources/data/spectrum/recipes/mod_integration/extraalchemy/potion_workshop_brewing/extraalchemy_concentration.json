@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "group": "extraalchemy_potions",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "minecraft:egg"
+  },
+  "effect": "extraalchemy:concentration",
+  "base_duration_ticks": 0,
+  "potency_modifier": 0,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": false,
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "extraalchemy"
+      ]
+    }
+  ]
+}

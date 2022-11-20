@@ -6,10 +6,12 @@
   "crushedItemsPerPointOfDamage": 0.75,
   "experience": 0.5,
   "result": {
-    "item": "spectrum:small_bismuth_bud",
+    "item": "spectrum:bismuth_flake",
     "count": 5
   },
   "particleEffectIdentifier": "enchanted_hit",
   "particleCount": 10,
-  "soundEventIdentifier": "block.chain.break"
+  "soundEventIdentifier": "block.chain.break",
+  "group": "bismuth_crushing",
+  "required_advancement": "spectrum:midgame/collect_bismuth"
 }

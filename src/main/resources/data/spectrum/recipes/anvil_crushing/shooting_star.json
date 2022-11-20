@@ -11,5 +11,6 @@
   },
   "particleEffectIdentifier": "explosion",
   "particleCount": 2,
-  "soundEventIdentifier": "block.stone.break"
+  "soundEventIdentifier": "block.stone.break",
+  "required_advancement": "spectrum:collect_shooting_star"
 }

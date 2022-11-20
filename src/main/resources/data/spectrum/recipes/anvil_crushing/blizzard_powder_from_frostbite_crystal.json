@@ -11,5 +11,6 @@
   },
   "particleEffectIdentifier": "enchanted_hit",
   "particleCount": 10,
-  "soundEventIdentifier": "block.glass.break"
+  "soundEventIdentifier": "block.glass.break",
+  "required_advancement": "spectrum:collect_frostbite_crystal"
 }

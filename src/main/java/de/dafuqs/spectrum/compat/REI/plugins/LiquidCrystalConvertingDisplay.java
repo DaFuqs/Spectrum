@@ -30,6 +30,7 @@ public class LiquidCrystalConvertingDisplay extends GatedSpectrumDisplay {
 		return SpectrumPlugins.LIQUID_CRYSTAL_CONVERTING;
 	}
 	
+	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}

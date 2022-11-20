@@ -8,8 +8,6 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Identifier;
 
@@ -33,7 +31,7 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
 		return SpectrumPlugins.NATURES_STAFF;
 	}
 	
-	@Environment(EnvType.CLIENT)
+	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
 	}

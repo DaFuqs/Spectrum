@@ -103,6 +103,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 		return SpectrumPlugins.PEDESTAL_CRAFTING;
 	}
 	
+	@Override
 	public boolean isUnlocked() {
 		return PedestalRecipeTier.hasUnlockedRequiredTier(MinecraftClient.getInstance().player, this.pedestalRecipeTier) && super.isUnlocked();
 	}

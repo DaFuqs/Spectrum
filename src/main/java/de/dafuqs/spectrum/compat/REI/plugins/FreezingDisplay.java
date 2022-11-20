@@ -24,6 +24,7 @@ public class FreezingDisplay extends BlockToBlockWithChanceDisplay {
 		return SpectrumPlugins.FREEZING;
 	}
 	
+	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
 	}

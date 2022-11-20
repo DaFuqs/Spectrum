@@ -24,6 +24,7 @@ public class HeatingDisplay extends BlockToBlockWithChanceDisplay {
 		return SpectrumPlugins.HEATING;
 	}
 	
+	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, UNLOCK_ADVANCEMENT_IDENTIFIER);
 	}

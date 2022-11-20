@@ -39,6 +39,7 @@ public class FusionShrineDisplay extends GatedSpectrumDisplay {
 		return SpectrumPlugins.FUSION_SHRINE;
 	}
 	
+	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, FusionShrineRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}

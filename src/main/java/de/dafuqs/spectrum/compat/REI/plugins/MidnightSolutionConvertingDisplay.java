@@ -30,6 +30,7 @@ public class MidnightSolutionConvertingDisplay extends GatedSpectrumDisplay {
 		return SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING;
 	}
 	
+	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, MidnightSolutionConvertingRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();
 	}

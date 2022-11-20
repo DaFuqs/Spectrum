@@ -1,11 +1,11 @@
 {
   "type": "spectrum:pedestal",
-  "group": "topaz_runes",
+  "group": "amethyst_runes",
   "time": 80,
-  "tier": "simple",
-  "magenta": 0,
+  "tier": "basic",
+  "magenta": 1,
   "yellow": 0,
-  "cyan": 1,
+  "cyan": 0,
   "black": 0,
   "white": 0,
   "experience": 1.0,
@@ -16,14 +16,14 @@
   ],
   "key": {
     "W": {
-      "item": "spectrum:polished_basalt"
+      "item": "spectrum:polished_calcite"
     },
     "X": {
-      "item": "spectrum:topaz_shard"
+      "item": "minecraft:amethyst_shard"
     }
   },
   "result": {
-    "item": "spectrum:topaz_chiseled_basalt",
+    "item": "spectrum:amethyst_chiseled_calcite",
     "count": 1
   },
   "required_advancement": "spectrum:create_onyx_shard"

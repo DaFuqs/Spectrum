@@ -2,7 +2,7 @@
   "type": "spectrum:pedestal",
   "group": "citrine_runes",
   "time": 80,
-  "tier": "simple",
+  "tier": "basic",
   "magenta": 0,
   "yellow": 4,
   "cyan": 0,

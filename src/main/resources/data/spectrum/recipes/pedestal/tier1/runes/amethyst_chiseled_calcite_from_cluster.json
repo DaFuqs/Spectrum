@@ -1,10 +1,10 @@
 {
   "type": "spectrum:pedestal",
-  "group": "citrine_runes",
+  "group": "amethyst_runes",
   "time": 80,
-  "tier": "simple",
-  "magenta": 0,
-  "yellow": 4,
+  "tier": "basic",
+  "magenta": 4,
+  "yellow": 0,
   "cyan": 0,
   "black": 0,
   "white": 0,
@@ -19,11 +19,11 @@
       "item": "spectrum:polished_calcite"
     },
     "X": {
-      "item": "spectrum:citrine_cluster"
+      "item": "minecraft:amethyst_cluster"
     }
   },
   "result": {
-    "item": "spectrum:citrine_chiseled_calcite",
+    "item": "spectrum:amethyst_chiseled_calcite",
     "count": 4
   },
   "required_advancement": "spectrum:create_onyx_shard"

@@ -1,11 +1,11 @@
 {
   "type": "spectrum:pedestal",
-  "group": "topaz_runes",
+  "group": "citrine_runes",
   "time": 80,
-  "tier": "simple",
+  "tier": "basic",
   "magenta": 0,
-  "yellow": 0,
-  "cyan": 1,
+  "yellow": 1,
+  "cyan": 0,
   "black": 0,
   "white": 0,
   "experience": 1.0,
@@ -16,14 +16,14 @@
   ],
   "key": {
     "W": {
-      "item": "spectrum:polished_calcite"
+      "item": "spectrum:polished_basalt"
     },
     "X": {
-      "item": "spectrum:topaz_shard"
+      "item": "spectrum:citrine_shard"
     }
   },
   "result": {
-    "item": "spectrum:topaz_chiseled_calcite",
+    "item": "spectrum:citrine_chiseled_basalt",
     "count": 1
   },
   "required_advancement": "spectrum:create_onyx_shard"

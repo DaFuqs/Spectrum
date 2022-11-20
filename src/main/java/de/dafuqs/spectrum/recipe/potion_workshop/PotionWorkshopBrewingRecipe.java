@@ -79,6 +79,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 				availableNegativeEffectPotencyMods.add(potencyModifier);
 			}
 		}
+		
+		registerInToastManager(getType(), this);
 	}
 	
 	@Override

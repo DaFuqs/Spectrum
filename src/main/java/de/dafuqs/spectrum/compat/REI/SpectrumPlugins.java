@@ -22,7 +22,7 @@ public class SpectrumPlugins {
 	public static final CategoryIdentifier<FreezingDisplay> FREEZING = CategoryIdentifier.of(SpectrumCommon.locate("freezing"));
 	public static final CategoryIdentifier<InkConvertingDisplay> INK_CONVERTING = CategoryIdentifier.of(SpectrumCommon.locate("ink_converting"));
 	public static final CategoryIdentifier<CrystallarieumDisplay> CRYSTALLARIEUM = CategoryIdentifier.of(SpectrumCommon.locate("crystallarieum"));
-	public static final CategoryIdentifier<CrystallarieumDisplay> CINDERHEARTH = CategoryIdentifier.of(SpectrumCommon.locate("cinderhearth"));
+	public static final CategoryIdentifier<CinderhearthDisplay> CINDERHEARTH = CategoryIdentifier.of(SpectrumCommon.locate("cinderhearth"));
 	public static final CategoryIdentifier<TitrationBarrelDisplay> TITRATION_BARREL = CategoryIdentifier.of(SpectrumCommon.locate("titration_barrel"));
 	
 }

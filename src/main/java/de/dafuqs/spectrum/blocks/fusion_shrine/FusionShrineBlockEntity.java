@@ -33,6 +33,7 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -121,7 +122,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		FusionShrineRecipe recipe = fusionShrineBlockEntity.currentRecipe;
 		if (recipe != null && recipe.getFluidInput().equals(fusionShrineBlockEntity.storedFluid)) {
 			// check the crafting conditions from time to time
-			//  good for performance because of the many checks
+			// good for performance because of the many checks
 			if (fusionShrineBlockEntity.craftingTime % 60 == 0) {
 				PlayerEntity lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline();
 				
@@ -130,9 +131,11 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 				
 				if (!recipeConditionsMet || !structureCompleteWithSky) {
 					if (!structureCompleteWithSky) {
+						SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(blockPos), SpectrumParticleTypes.RED_CRAFTING, 1, Vec3d.ZERO, new Vec3d(0, -0.5, 0));
 						world.playSound(null, fusionShrineBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 						world.playSound(null, fusionShrineBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
 						FusionShrineBlock.scatterContents(world, blockPos);
+						fusionShrineBlockEntity.inventoryChanged();
 					}
 					fusionShrineBlockEntity.craftingTime = 0;
 					return;

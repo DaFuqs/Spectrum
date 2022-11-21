@@ -41,7 +41,7 @@
       "title": "Fresh Chocolate",
       "anchor": "fresh_chocolate",
       "recipe": "spectrum:titration_barrel/fresh_chocolate",
-      "text": "A great snack, literally: biting off a piece is quick and even makes you reasonably full.$(br)Pleasantly sweet and fruity."
+      "text": "A great snack. Biting off a piece is quick and even makes you reasonably full.$(br)Pleasantly sweet and fruity."
     },
     {
       "type": "spectrum:pedestal_crafting",

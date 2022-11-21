@@ -104,7 +104,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
-		
+
 		logInfo("Client startup completed!");
 	}
 	

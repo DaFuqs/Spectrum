@@ -18,17 +18,17 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class InvisibleGlowItemFrameEntity extends ItemFrameEntity {
+public class PhantomGlowFrameEntity extends ItemFrameEntity {
 	
-	public InvisibleGlowItemFrameEntity(EntityType<? extends ItemFrameEntity> entityType, World world) {
+	public PhantomGlowFrameEntity(EntityType<? extends ItemFrameEntity> entityType, World world) {
 		super(entityType, world);
 	}
 	
-	public InvisibleGlowItemFrameEntity(World world, BlockPos pos, Direction facing) {
-		this(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, world, pos, facing);
+	public PhantomGlowFrameEntity(World world, BlockPos pos, Direction facing) {
+		this(SpectrumEntityTypes.PHANTOM_GLOW_FRAME, world, pos, facing);
 	}
 	
-	public InvisibleGlowItemFrameEntity(EntityType<? extends ItemFrameEntity> type, World world, BlockPos pos, Direction facing) {
+	public PhantomGlowFrameEntity(EntityType<? extends ItemFrameEntity> type, World world, BlockPos pos, Direction facing) {
 		super(type, world, pos, facing);
 	}
 	

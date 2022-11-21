@@ -23,7 +23,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3f;
 
-public class InvisibleItemFrameEntityRenderer<T extends ItemFrameEntity> extends ItemFrameEntityRenderer<T> {
+public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemFrameEntityRenderer<T> {
 	
 	public static final ModelIdentifier NORMAL_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=false");
 	public static final ModelIdentifier MAP_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=true");
@@ -33,13 +33,13 @@ public class InvisibleItemFrameEntityRenderer<T extends ItemFrameEntity> extends
 	private final MinecraftClient client = MinecraftClient.getInstance();
 	private final ItemRenderer itemRenderer;
 	
-	public InvisibleItemFrameEntityRenderer(EntityRendererFactory.Context context) {
+	public PhantomFrameEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);
 		this.itemRenderer = context.getItemRenderer();
 	}
 	
 	protected int getBlockLight(T itemFrameEntity, BlockPos blockPos) {
-		return itemFrameEntity.getType() == SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME ? Math.max(5, super.getBlockLight(itemFrameEntity, blockPos)) : super.getBlockLight(itemFrameEntity, blockPos);
+		return itemFrameEntity.getType() == SpectrumEntityTypes.PHANTOM_GLOW_FRAME ? Math.max(5, super.getBlockLight(itemFrameEntity, blockPos)) : super.getBlockLight(itemFrameEntity, blockPos);
 	}
 	
 	public void render(T itemFrameEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
@@ -97,11 +97,11 @@ public class InvisibleItemFrameEntityRenderer<T extends ItemFrameEntity> extends
 	}
 	
 	private int getLight(T itemFrame, int glowLight, int regularLight) {
-		return itemFrame.getType() == SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME ? glowLight : regularLight;
+		return itemFrame.getType() == SpectrumEntityTypes.PHANTOM_GLOW_FRAME ? glowLight : regularLight;
 	}
 	
 	private ModelIdentifier getModelId(T entity, ItemStack stack) {
-		boolean bl = entity.getType() == SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME;
+		boolean bl = entity.getType() == SpectrumEntityTypes.PHANTOM_GLOW_FRAME;
 		if (stack.isOf(Items.FILLED_MAP)) {
 			return bl ? MAP_GLOW_FRAME_MODEL_IDENTIFIER : MAP_FRAME_MODEL_IDENTIFIER;
 		} else {

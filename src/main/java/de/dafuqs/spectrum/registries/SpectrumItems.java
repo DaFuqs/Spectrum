@@ -18,8 +18,8 @@ import de.dafuqs.spectrum.items.conditional.LightningStoneItem;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
-import de.dafuqs.spectrum.items.item_frame.InvisibleGlowItemFrameItem;
-import de.dafuqs.spectrum.items.item_frame.InvisibleItemFrameItem;
+import de.dafuqs.spectrum.items.item_frame.PhantomFrameItem;
+import de.dafuqs.spectrum.items.item_frame.PhantomGlowFrameItem;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
@@ -342,8 +342,8 @@ public class SpectrumItems {
 	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, Tab.EQUIPMENT.settings(1,Rarity.RARE), 289);
 	
 	public static final Item SPAWNER = new SpectrumMobSpawnerItem(Tab.GENERAL.settings(1, Rarity.EPIC));
-	public static final Item PHANTOM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, Tab.EQUIPMENT.settings());
-	public static final Item PHANTOM_GLOW_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, Tab.EQUIPMENT.settings());
+	public static final Item PHANTOM_FRAME = new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, Tab.EQUIPMENT.settings());
+	public static final Item PHANTOM_GLOW_FRAME = new PhantomGlowFrameItem(SpectrumEntityTypes.PHANTOM_GLOW_FRAME, Tab.EQUIPMENT.settings());
 	
 	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(Tab.EQUIPMENT.settings(1));
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 10000);
@@ -613,7 +613,7 @@ public class SpectrumItems {
 	
 	public static void registerMagicalTools() {
 		register("crafting_tablet", CRAFTING_TABLET, DyeColor.LIGHT_GRAY);
-		register("void_bundle", BOTTOMLESS_BUNDLE, DyeColor.LIGHT_GRAY);
+		register("bottomless_bundle", BOTTOMLESS_BUNDLE, DyeColor.LIGHT_GRAY);
 		register("phantom_frame", PHANTOM_FRAME, DyeColor.YELLOW);
 		register("phantom_glow_frame", PHANTOM_GLOW_FRAME, DyeColor.YELLOW);
 		register("knowledge_gem", KNOWLEDGE_GEM, DyeColor.PURPLE);

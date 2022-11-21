@@ -17,17 +17,17 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class InvisibleItemFrameEntity extends ItemFrameEntity {
+public class PhantomFrameEntity extends ItemFrameEntity {
 	
-	public InvisibleItemFrameEntity(EntityType<? extends ItemFrameEntity> entityType, World world) {
+	public PhantomFrameEntity(EntityType<? extends ItemFrameEntity> entityType, World world) {
 		super(entityType, world);
 	}
 	
-	public InvisibleItemFrameEntity(World world, BlockPos pos, Direction facing) {
+	public PhantomFrameEntity(World world, BlockPos pos, Direction facing) {
 		this(SpectrumEntityTypes.PHANTOM_FRAME, world, pos, facing);
 	}
 	
-	public InvisibleItemFrameEntity(EntityType<? extends ItemFrameEntity> type, World world, BlockPos pos, Direction facing) {
+	public PhantomFrameEntity(EntityType<? extends ItemFrameEntity> type, World world, BlockPos pos, Direction facing) {
 		super(type, world, pos, facing);
 	}
 	

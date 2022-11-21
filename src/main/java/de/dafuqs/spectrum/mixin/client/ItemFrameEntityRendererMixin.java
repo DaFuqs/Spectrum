@@ -16,7 +16,7 @@ public abstract class ItemFrameEntityRendererMixin<T extends ItemFrameEntity> {
 	
 	@Inject(at = @At("HEAD"), method = "getLight(Lnet/minecraft/entity/decoration/ItemFrameEntity;II)I", cancellable = true)
 	private void getLight(T itemFrame, int glowLight, int regularLight, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
-		if (itemFrame.getType() == SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME) {
+		if (itemFrame.getType() == SpectrumEntityTypes.PHANTOM_GLOW_FRAME) {
 			callbackInfoReturnable.setReturnValue(glowLight);
 		}
 	}

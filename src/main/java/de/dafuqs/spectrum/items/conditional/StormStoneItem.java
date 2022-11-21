@@ -15,9 +15,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.explosion.Explosion;
 
-public class LightningStoneItem extends CloakedItem implements DamageAwareItem {
+public class StormStoneItem extends CloakedItem implements DamageAwareItem {
 	
-	public LightningStoneItem(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {
+	public StormStoneItem(Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {
 		super(settings, cloakAdvancementIdentifier, cloakItem);
 	}
 	

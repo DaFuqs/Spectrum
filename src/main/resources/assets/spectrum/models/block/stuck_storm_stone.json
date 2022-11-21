@@ -1,7 +1,7 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "spectrum:item/lightning_stone",
+    "0": "spectrum:item/storm_stone",
     "1": "minecraft:block/dirt",
     "particle": "minecraft:block/dirt"
   },

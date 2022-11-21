@@ -18,13 +18,13 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "advancement": "spectrum:midgame/collect_storm_stone",
       "recipe": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal",
       "text": "Desperately need $(thing)Charged Certus Quartz$()? Charge it up yourself, instead of relying on pure luck."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "advancement": "spectrum:midgame/collect_storm_stone",
       "recipe": "spectrum:mod_integration/ae2/fusion_shrine/fluix_dust",
       "text": "...and then create $(thing)Fluix$() from it, if you get impatient."
     },

@@ -26,11 +26,11 @@ import net.minecraft.world.explosion.Explosion;
 import java.util.Hashtable;
 import java.util.Map;
 
-public class LightningStoneBlock extends Block implements RevelationAware {
+public class StormStoneBlock extends Block implements RevelationAware {
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0D, 0.0D, 4.0D, 11.0D, 2.0D, 11.0D);
 	
-	public LightningStoneBlock(Settings settings) {
+	public StormStoneBlock(Settings settings) {
 		super(settings);
 		RevelationAware.register(this);
 	}
@@ -63,7 +63,7 @@ public class LightningStoneBlock extends Block implements RevelationAware {
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return SpectrumCommon.locate("milestones/reveal_lightning_stones");
+		return SpectrumCommon.locate("milestones/reveal_storm_stones");
 	}
 	
 	@Deprecated

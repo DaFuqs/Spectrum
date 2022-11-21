@@ -6,7 +6,7 @@
 		},
 		{
 			"item":"spectrum:cow_head",
-			"text":"$(italic)但是还有苦力怕！一旦被闪电击中，它们就会爆炸，爆炸威力巨大，以至于将对手的头颅从他们的头颅炸飞（最糟糕的情况是：你自己）。$(br)就像被闪电击中一样，你用$(l:resources/lightning_stones)风暴石$(/l)想出了这个新的魔法。$(br)于是灵魂猎手诞生了，你可以从$(l:creating_life/mob_heads)各种生物那里收集头颅$(/l)",
+			"text":"$(italic)但是还有苦力怕！一旦被闪电击中，它们就会爆炸，爆炸威力巨大，以至于将对手的头颅从他们的头颅炸飞（最糟糕的情况是：你自己）。$(br)就像被闪电击中一样，你用$(l:resources/storm_stones)风暴石$(/l)想出了这个新的魔法。$(br)于是灵魂猎手诞生了，你可以从$(l:creating_life/mob_heads)各种生物那里收集头颅$(/l)",
 			"type":"patchouli:spotlight"
 		},
 		{

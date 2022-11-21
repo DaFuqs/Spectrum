@@ -109,8 +109,8 @@
     {
       "type": "patchouli:spotlight",
       "title": "Storm Stone",
-      "item": "spectrum:lightning_stone",
-      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "item": "spectrum:storm_stone",
+      "advancement": "spectrum:midgame/collect_storm_stone",
       "text": "Increases the Potions Potency at the beginning, but wearing off fast over time"
     },
     {

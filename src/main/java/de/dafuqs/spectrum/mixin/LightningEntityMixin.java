@@ -51,7 +51,7 @@ public abstract class LightningEntityMixin {
 		}
 		
 		if (world.isAir(aboveGroundBlockPos)) {
-			BlockState placementBlockState = SpectrumBlocks.STUCK_LIGHTNING_STONE.getDefaultState();
+			BlockState placementBlockState = SpectrumBlocks.STUCK_STORM_STONE.getDefaultState();
 			if (placementBlockState.canPlaceAt(world, aboveGroundBlockPos)) {
 				world.setBlockState(aboveGroundBlockPos, placementBlockState);
 			}

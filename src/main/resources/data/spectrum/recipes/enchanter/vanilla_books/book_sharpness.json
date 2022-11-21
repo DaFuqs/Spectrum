@@ -17,7 +17,7 @@
       "item": "minecraft:flint"
     },
     {
-      "item": "spectrum:lightning_stone"
+      "item": "spectrum:storm_stone"
     },
     {
       "item": "spectrum:black_pigment"
@@ -29,7 +29,7 @@
       "item": "minecraft:flint"
     },
     {
-      "item": "spectrum:lightning_stone"
+      "item": "spectrum:storm_stone"
     }
   ],
   "result": {

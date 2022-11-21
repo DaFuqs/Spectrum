@@ -4,9 +4,9 @@
       "trigger": "spectrum:crafted_with_pedestal",
       "conditions": { "items": [{ "items": [ "spectrum:upgrade_speed" ]}] }
     },
-    "collected_lightning_stone": {
+    "collected_storm_stone": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_lightning_stone" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_storm_stone" }
     }
   }
 }

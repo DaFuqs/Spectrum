@@ -5,7 +5,7 @@
   "fluid": "minecraft:water",
   "ingredients": [
     {
-      "item": "spectrum:lightning_stone"
+      "item": "spectrum:storm_stone"
     }
   ],
   "required_advancement": "spectrum:progression/weather/weather_thunder",

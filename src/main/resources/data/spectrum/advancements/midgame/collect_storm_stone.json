@@ -2,20 +2,20 @@
   "parent": "spectrum:midgame/collect_neolith",
   "display": {
     "icon": {
-      "item": "spectrum:lightning_stone"
+      "item": "spectrum:storm_stone"
     },
     "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.collect_lightning_stone.title"
+      "translate": "advancements.spectrum.collect_storm_stone.title"
     },
     "description": {
-      "translate": "advancements.spectrum.collect_lightning_stone.description"
+      "translate": "advancements.spectrum.collect_storm_stone.description"
     }
   },
   "criteria": {
-    "has_lightning_stone": {
+    "has_storm_stone": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:lightning_stone" ]}] }
+      "conditions": { "items": [{ "items": [ "spectrum:storm_stone" ]}] }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

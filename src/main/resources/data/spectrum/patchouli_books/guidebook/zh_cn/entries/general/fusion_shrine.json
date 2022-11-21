@@ -53,7 +53,7 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "雷暴",
-      "advancement": "spectrum:midgame/collect_lightning_stone",
+      "advancement": "spectrum:midgame/collect_storm_stone",
       "recipe": "spectrum:fusion_shrine/weather/weather_thunder",
       "text": "$(italic)雷神为什么要喝水?$(br2)因为他脾气暴躁（thorsty）"
     }

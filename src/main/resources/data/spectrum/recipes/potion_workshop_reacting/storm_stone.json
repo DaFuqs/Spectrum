@@ -1,8 +1,8 @@
 {
   "type": "spectrum:potion_workshop_reacting",
-  "item": "spectrum:lightning_stone",
+  "item": "spectrum:storm_stone",
   "modifiers": {
     "potent_decreasing_effect": true
   },
-  "required_advancement": "spectrum:midgame/collect_lightning_stone"
+  "required_advancement": "spectrum:midgame/collect_storm_stone"
 }

@@ -5,7 +5,7 @@
   "fluid": "minecraft:water",
   "ingredients": [
     {
-      "item": "spectrum:lightning_stone"
+      "item": "spectrum:storm_stone"
     },
     {
       "item": "ae2:certus_quartz_crystal"
@@ -18,7 +18,7 @@
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],
   "finish_crafting_effect": "lightning_on_shrine",
-  "advancement": "spectrum:midgame/collect_lightning_stone",
+  "advancement": "spectrum:midgame/collect_storm_stone",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

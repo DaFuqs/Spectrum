@@ -23,7 +23,7 @@
     },
     {
       "ingredient": {
-        "item": "spectrum:lightning_stone"
+        "item": "spectrum:storm_stone"
       },
       "growth_acceleration_mod": 4.0,
       "ink_consumption_mod": 0.25,

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_lightning_stone",
+  "parent": "spectrum:midgame/collect_storm_stone",
   "display": {
     "icon": {
       "item": "spectrum:take_off_belt"
@@ -23,7 +23,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_lightning_stone" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/collect_storm_stone" }
     }
   }
 }

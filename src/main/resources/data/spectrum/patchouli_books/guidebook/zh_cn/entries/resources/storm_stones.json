@@ -6,17 +6,17 @@
 			"title":"雷暴"
 		},
 		{
-			"item":"spectrum:lightning_stone",
+			"item":"spectrum:storm_stone",
 			"text":"在被雷击的地面上，你发现这些石头由于固有的静电而在你的手上振动。$(br)在$(l:general/fusion_shrine)融合神殿$()中使用，你可以用它们召唤雷雨。$(br2)$(italic)由于其挥发性，它们对爆炸反应不太好。。。",
 			"type":"patchouli:spotlight",
 			"title":"风暴石"
 		}
 	],
-	"advancement":"spectrum:midgame/collect_lightning_stone",
+	"advancement":"spectrum:midgame/collect_storm_stone",
 	"extra_recipe_mappings":{
-		"spectrum:lightning_stone":0
+		"spectrum:storm_stone":0
 	},
 	"name":"风暴石",
-	"icon":"spectrum:lightning_stone",
+	"icon":"spectrum:storm_stone",
 	"category":"spectrum:resources_category"
 }

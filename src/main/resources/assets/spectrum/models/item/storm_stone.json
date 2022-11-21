@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/lightning_stone"
+    "layer0": "spectrum:item/storm_stone"
   }
 }

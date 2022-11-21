@@ -11,7 +11,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:cow_head",
-      "text": "$(italic)Mas tem os Creepers! Uma vez atingidos por um raio, eles causam uma explosão tão robusta que a explosão arranca a cabeça de seus oponentes do corpo (no pior caso: você).$(br)Num momento de epifania você pensou nesse novo encantamento usando $(l:resources/lightning_stones)Pedras de Tempestade$(/l).$(br)Então Caçador de Tesouros foi criado, permitindo você coletar $(l:creating_life/mob_heads)Cabeças de todos os tipo de Criaturas$(/l)."
+      "text": "$(italic)Mas tem os Creepers! Uma vez atingidos por um raio, eles causam uma explosão tão robusta que a explosão arranca a cabeça de seus oponentes do corpo (no pior caso: você).$(br)Num momento de epifania você pensou nesse novo encantamento usando $(l:resources/storm_stones)Pedras de Tempestade$(/l).$(br)Então Caçador de Tesouros foi criado, permitindo você coletar $(l:creating_life/mob_heads)Cabeças de todos os tipo de Criaturas$(/l)."
     },
     {
       "type": "patchouli:spotlight",

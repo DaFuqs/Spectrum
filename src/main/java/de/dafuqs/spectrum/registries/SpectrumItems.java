@@ -14,7 +14,7 @@ import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
 import de.dafuqs.spectrum.items.conditional.CloakedItemWithLoomPattern;
 import de.dafuqs.spectrum.items.conditional.GemstonePowderItem;
-import de.dafuqs.spectrum.items.conditional.LightningStoneItem;
+import de.dafuqs.spectrum.items.conditional.StormStoneItem;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
@@ -235,7 +235,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	
 	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
-	public static final CloakedItem LIGHTNING_STONE = new LightningStoneItem(Tab.RESOURCES.settings(16), ((RevelationAware) SpectrumBlocks.STUCK_LIGHTNING_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
+	public static final CloakedItem STORM_STONE = new StormStoneItem(Tab.RESOURCES.settings(16), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
 	public static final CloakedItem STAR_FRAGMENT = new CloakedItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE);
 	public static final CloakedItem STARDUST = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
@@ -545,7 +545,7 @@ public class SpectrumItems {
 		
 		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);
 		register("mermaids_gem", MERMAIDS_GEM, DyeColor.LIGHT_BLUE);
-		register("lightning_stone", LIGHTNING_STONE, DyeColor.YELLOW);
+		register("storm_stone", STORM_STONE, DyeColor.YELLOW);
 		register("star_fragment", STAR_FRAGMENT, DyeColor.PURPLE);
 		register("stardust", STARDUST, DyeColor.PURPLE);
 		register("blood_orchid_petal", BLOOD_ORCHID_PETAL, DyeColor.RED);

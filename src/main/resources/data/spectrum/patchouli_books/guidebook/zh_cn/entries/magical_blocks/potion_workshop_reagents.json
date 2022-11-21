@@ -103,8 +103,8 @@
 			"title":"恒星碎片"
 		},
 		{
-			"item":"spectrum:lightning_stone",
-			"advancement":"spectrum:midgame/collect_lightning_stone",
+			"item":"spectrum:storm_stone",
+			"advancement":"spectrum:midgame/collect_storm_stone",
 			"text":"在开始时增加药剂效力，但随着时间的推移会很快消失",
 			"type":"patchouli:spotlight",
 			"title":"风暴石"

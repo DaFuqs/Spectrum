@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "used_pedestal": {
+    "placed_color_picker": {
       "trigger": "minecraft:placed_block",
       "conditions": {
         "item": {

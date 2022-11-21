@@ -66,21 +66,23 @@
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:find_ancient_ruins" }
+      "conditions": {
+        "advancement_identifier": "spectrum:find_ancient_ruins"
+      }
     }
   },
   "requirements": [
-  [
-    "opened_ancient_ruins_main_treasure_chest",
-    "gotten_previous"
-  ],
-  [
-    "opened_color_combinations_cmy_treasure_chest",
-    "gotten_previous"
-  ],
-  [
-    "opened_wireless_redstone_main_treasure_chest",
-    "gotten_previous"
+    [
+      "opened_ancient_ruins_main_treasure_chest",
+      "gotten_previous"
+    ],
+    [
+      "opened_color_combinations_cmy_treasure_chest",
+      "gotten_previous"
+    ],
+    [
+      "opened_wireless_redstone_main_treasure_chest",
+      "gotten_previous"
+    ]
   ]
-]
 }

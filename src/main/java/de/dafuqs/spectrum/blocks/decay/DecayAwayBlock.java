@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.dimension.DimensionTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -102,10 +102,10 @@ public class DecayAwayBlock extends Block {
 		
 		public BlockState getTargetState(World world) {
 			if(this == DEFAULT) {
-				Identifier identifier = world.getDimension().getEffects();
-				if (DimensionType.THE_NETHER_ID.equals(identifier)) {
+				Identifier identifier = world.getDimension().effects();
+				if (DimensionTypes.THE_NETHER_ID.equals(identifier)) {
 					return Blocks.NETHERRACK.getDefaultState();
-				} else if (DimensionType.THE_END_ID.equals(identifier)) {
+				} else if (DimensionTypes.THE_END_ID.equals(identifier)) {
 					return Blocks.END_STONE.getDefaultState();
 				}
 				return Blocks.DIRT.getDefaultState();

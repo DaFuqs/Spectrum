@@ -134,7 +134,7 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
-		this.ownerName = playerEntity.getName().asString();
+		this.ownerName = playerEntity.getName().getString();
 	}
 	
 	public void setOpenerUUID(PlayerEntity opener) {

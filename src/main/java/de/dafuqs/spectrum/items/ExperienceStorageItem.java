@@ -76,7 +76,7 @@ public interface ExperienceStorageItem {
 				}
 			}
 		} else if(!itemStack.isEmpty()) {
-			SpectrumCommon.logError("Tried to add stored Experience to a non-ExperienceStorageItem item: " + itemStack.getItem().getName().asString());
+			SpectrumCommon.logError("Tried to add stored Experience to a non-ExperienceStorageItem item: " + itemStack.getItem().getName().getString());
 		}
 		
 		return 0;
@@ -106,7 +106,7 @@ public interface ExperienceStorageItem {
 				}
 			}
 		} else {
-			SpectrumCommon.logError("Tried to remove stored Experience from a non-ExperienceStorageItem: " + itemStack.getItem().getName().asString());
+			SpectrumCommon.logError("Tried to remove stored Experience from a non-ExperienceStorageItem: " + itemStack.getItem().getName().getString());
 			return false;
 		}
 	}

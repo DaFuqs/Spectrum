@@ -42,6 +42,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -49,7 +50,6 @@ import org.slf4j.Logger;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 // yeah, this pretty much is a full reimplementation. Sadge
 // I wanted to use more of FishingBobberEntity for mod compat,
@@ -82,7 +82,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	public SpectrumFishingBobberEntity(EntityType type, World world, int luckOfTheSeaLevel, int lureLevel, int exuberanceLevel, int bigCatchLevel, boolean inventoryInsertion, boolean ablaze) {
 		super(type, world);
-		this.velocityRandom = new Random();
+		this.velocityRandom = Random.create();
 		this.inTheOpen = true;
 		this.state = SpectrumFishingBobberEntity.State.FLYING;
 		this.ignoreCameraFrustum = true;

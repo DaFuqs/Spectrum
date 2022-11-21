@@ -58,7 +58,7 @@ public class DrinkItem extends Item {
 			}
 		}
 		
-		world.emitGameEvent(user, GameEvent.DRINKING_FINISH, user.getCameraBlockPos());
+		user.emitGameEvent(GameEvent.DRINK);
 		return super.finishUsing(stack, world, user);
 	}
 	

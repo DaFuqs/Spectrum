@@ -29,15 +29,15 @@ import java.util.Map;
 
 public class TidalCircletItem extends SpectrumTrinketItem {
 	
-	private final int TRIGGER_EVERY_X_TICKS = 40;
-	private final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
+	private final static int TRIGGER_EVERY_X_TICKS = 40;
+	private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
 	
-	private final int HEAL_AXOLOTLS_EVERY_X_TICKS = 160;
-	private final int MAX_AXOLOTL_DISTANCE = 12;
-	private final int AXOLOTL_HEALING = 2;
+	private final static int HEAL_AXOLOTLS_EVERY_X_TICKS = 160;
+	private final static int MAX_AXOLOTL_DISTANCE = 12;
+	private final static int AXOLOTL_HEALING = 2;
 	
 	public TidalCircletItem(Settings settings) {
-		super(settings, SpectrumCommon.locate(SpectrumCommon.MOD_ID, "progression/unlock_weeping_circlet"));
+		super(settings, SpectrumCommon.locate("progression/unlock_weeping_circlet"));
 	}
 	
 	@Override

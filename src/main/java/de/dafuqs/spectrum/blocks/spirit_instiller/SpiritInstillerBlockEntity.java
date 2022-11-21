@@ -269,19 +269,20 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			int amountAfterEfficiencyModFirst = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
 			int amountAfterEfficiencyModSecond = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.SECOND_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
 			boolean leftIsFirstIngredient = ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).test(leftBowl.getStack(0));
+			Vec3d particlePos = new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5, spiritInstillerBlockEntity.pos.getY() + 1, spiritInstillerBlockEntity.pos.getZ() + 0.5);
 			if (leftIsFirstIngredient) {
 				if (amountAfterEfficiencyModFirst > 0) {
-					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModFirst, true);
+					leftBowl.decrementBowlStack(particlePos, amountAfterEfficiencyModFirst, true);
 				}
 				if (amountAfterEfficiencyModSecond > 0) {
-					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModSecond, true);
+					rightBowl.decrementBowlStack(particlePos, amountAfterEfficiencyModSecond, true);
 				}
 			} else {
 				if (amountAfterEfficiencyModFirst > 0) {
-					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModFirst, true);
+					rightBowl.decrementBowlStack(particlePos, amountAfterEfficiencyModFirst, true);
 				}
 				if (amountAfterEfficiencyModSecond > 0) {
-					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModSecond, true);
+					leftBowl.decrementBowlStack(particlePos, amountAfterEfficiencyModSecond, true);
 				}
 			}
 		}

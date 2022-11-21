@@ -34,7 +34,7 @@ public final class DDOreVeinSampler {
             int k = i - veinType.minY;
             if (k >= 0 && j >= 0) {
                 int l = Math.min(j, k);
-                double f = MathHelper.clampedLerpFromProgress(l, 0.0D, field_36621, field_36622, 0.0D);
+                double f = MathHelper.clampedMap(l, 0.0D, field_36621, field_36622, 0.0D);
                 if (absVeinTypeSample + f < 0.05) {
                     return null;
                 } else {
@@ -44,7 +44,7 @@ public final class DDOreVeinSampler {
                     } else if (veinRidged.sample(pos) >= 0.0D) {
                         return null;
                     } else {
-                        double g = MathHelper.clampedLerpFromProgress(absVeinTypeSample, field_36620, field_36626, field_36624, field_36625);
+                        double g = MathHelper.clampedMap(absVeinTypeSample, field_36620, field_36626, field_36624, field_36625);
                         if ((double)random.nextFloat() < g && veinGap.sample(pos) > ORE_OR_STONE_THRESHOLD) {
                             return random.nextFloat() < RAW_ORE_BLOCK_CHANCE ? veinType.rawOreBlock : veinType.ore;
                         } else {

@@ -16,12 +16,7 @@ public class BlackSludgePlantBlock extends PlantBlock {
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return floor.isIn(SpectrumBlockTags.BLACK_SLUDGE_BLOCKS) || super.canPlantOnTop(floor, world, pos);
     }
-
-    @Override
-    public OffsetType getOffsetType() {
-        return OffsetType.XZ;
-    }
-
+    
     @Override
     public float getMaxHorizontalModelOffset() {
         return 0.08F;

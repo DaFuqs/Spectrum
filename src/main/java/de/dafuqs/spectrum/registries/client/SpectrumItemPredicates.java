@@ -201,8 +201,8 @@ public class SpectrumItemPredicates {
 		);
 	}
 	
-	private static void registerKnowledgeDropPredicates() {
-		ModelPredicateProviderRegistry.register(SpectrumItems.KNOWLEDGE_GEM, new Identifier("stored_experience_10000"), (itemStack, clientWorld, livingEntity, i) -> {
+	private static void registerKnowledgeDropPredicates(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("stored_experience_10000"), (itemStack, clientWorld, livingEntity, i) -> {
 			if (SpectrumItems.KNOWLEDGE_GEM instanceof ExperienceStorageItem) {
 				return ExperienceStorageItem.getStoredExperience(itemStack) / 10000F;
 			} else {

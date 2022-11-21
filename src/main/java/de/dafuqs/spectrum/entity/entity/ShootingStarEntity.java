@@ -101,7 +101,7 @@ public class ShootingStarEntity extends Entity {
 	public static void doShootingStarSpawnsForPlayers(@NotNull ServerWorld serverWorld) {
 		for (PlayerEntity playerEntity : serverWorld.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
 			if (!playerEntity.isSpectator()
-					&& AdvancementHelper.hasAdvancement(playerEntity, SpectrumItems.SHOOTING_STAR.getCloakAdvancementIdentifier())
+					&& AdvancementHelper.hasAdvancement(playerEntity, SpectrumItems.STAR_FRAGMENT.getCloakAdvancementIdentifier())
 					&& serverWorld.getRandom().nextFloat() < getShootingStarChanceWithMultiplier(playerEntity)) {
 				
 				// 1 % chance for each cycle to spawn a lot of shooting stars for the player
@@ -432,7 +432,7 @@ public class ShootingStarEntity extends Entity {
 					if (this.availableHits <= 0) {
 						SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) world, this.getPos(), ParticleTypes.EXPLOSION, 1, new Vec3d(0, 0, 0), new Vec3d(0, 0, 0));
 						
-						ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), SpectrumItems.SHOOTING_STAR.getDefaultStack());
+						ItemEntity itemEntity = new ItemEntity(this.world, this.getX(), this.getY(), this.getZ(), SpectrumItems.STAR_FRAGMENT.getDefaultStack());
 						itemEntity.addVelocity(0, 0.15, 0);
 						this.world.spawnEntity(itemEntity);
 						this.discard();

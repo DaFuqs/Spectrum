@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.status_effects;
 
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
+import de.dafuqs.spectrum.helpers.ParticleHelper;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -23,7 +23,7 @@ public class AscensionStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 		if(entity.world.isClient && entity.world.getTime() % 4 == 0) {
-			SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.WHITE_SPARKLE_RISING, ParticlePattern.EIGHT, 0.2);
+			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.WHITE_SPARKLE_RISING, ParticlePattern.EIGHT, 0.2);
 		}
 	}
 	

@@ -18,13 +18,13 @@ public class ItemWithTooltip extends Item {
 	
 	public ItemWithTooltip(Settings settings, String tooltip) {
 		super(settings);
-		this.tooltipTexts.add(new Text.translatable(tooltip));
+		this.tooltipTexts.add(Text.translatable(tooltip));
 	}
 	
 	public ItemWithTooltip(Settings settings, String[] tooltips) {
 		super(settings);
 		for(String tooltip : tooltips) {
-			this.tooltipTexts.add(new Text.translatable(tooltip));
+			this.tooltipTexts.add(Text.translatable(tooltip));
 		}
 	}
 	

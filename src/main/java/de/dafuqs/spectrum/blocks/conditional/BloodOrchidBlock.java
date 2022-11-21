@@ -75,11 +75,6 @@ public class BloodOrchidBlock extends FlowerBlock implements RevelationAware {
 	}
 	
 	@Override
-	public OffsetType getOffsetType() {
-		return OffsetType.NONE;
-	}
-	
-	@Override
 	public Identifier getCloakAdvancementIdentifier() {
 		return SpectrumCommon.locate("midgame/collect_blood_orchid_petal");
 	}

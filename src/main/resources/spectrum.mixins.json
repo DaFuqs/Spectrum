@@ -55,8 +55,7 @@
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
     "accessors.ShulkerEntityAccessor",
-    "accessors.SlimeEntityAccessor",
-    "accessors.StructureFeatureAccessor"
+    "accessors.SlimeEntityAccessor"
   ],
   "client": [
     "accessors.WorldRendererAccessor",

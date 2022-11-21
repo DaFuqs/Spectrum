@@ -441,7 +441,7 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				MinecraftClient.getInstance().world.playSound(MinecraftClient.getInstance().player.getBlockPos(), SpectrumSoundEvents.FADING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
-				SpectrumClient.minecraftClient.getSoundManager().play(new DivinitySoundInstance());
+				MinecraftClient.getInstance().getSoundManager().play(new DivinitySoundInstance());
 			});
 		});
 		
@@ -453,8 +453,8 @@ public class SpectrumS2CPacketReceiver {
 				MinecraftClient.getInstance().gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
 				MinecraftClient.getInstance().world.playSound(player.getBlockPos(), SpectrumSoundEvents.FAILING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
 				
-				SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
-				SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
+				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
+				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
 			});
 		});
 	}

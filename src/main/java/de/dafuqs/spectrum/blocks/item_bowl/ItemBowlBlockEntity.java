@@ -61,7 +61,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 		}
 	}
 	
-	public int decrementBowlStack(BlockPos particleTargetBlockPos, int amount, boolean doEffects) {
+	public int decrementBowlStack(Vec3d orbTargetPos, int amount, boolean doEffects) {
 		ItemStack storedStack = this.getStack(0);
 		if (storedStack.isEmpty()) {
 			return 0;

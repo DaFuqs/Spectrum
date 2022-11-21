@@ -74,7 +74,7 @@ public class AnvilCrushingCategory implements DisplayCategory<AnvilCrushingDispl
 			).leftAligned().color(0x3f3f3f).noShadow());
 			
 			// the tooltip text
-			TranslatableText text;
+			Text text;
 			if (display.crushedItemsPerPointOfDamage >= 1) {
 				text = Text.translatable("container.spectrum.rei.anvil_crushing.low_force_required");
 			} else if (display.crushedItemsPerPointOfDamage >= 0.5) {

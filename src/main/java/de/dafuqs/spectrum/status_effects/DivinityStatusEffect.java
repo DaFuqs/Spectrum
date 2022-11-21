@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.status_effects;
 
+import de.dafuqs.spectrum.helpers.ParticleHelper;
 import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -31,7 +31,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 		}
 		if (entity.world.isClient) {
 			if (entity.world.getTime() % 4 == 0) {
-				SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.EIGHT, 0.2);
+				ParticleHelper.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.EIGHT, 0.2);
 			}
 		} else {
 			WhispyCircletItem.removeSingleHarmfulStatusEffect(entity);

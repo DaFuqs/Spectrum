@@ -17,6 +17,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -131,7 +132,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 						if (player.isSneaking()) {
 							Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, barrelEntity.inventory, world);
 							if(recipe.isPresent()) {
-								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput().getName().asString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getExtractableBottleCount(world, pos, recipe.get())), false);
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput().getName().getString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getExtractableBottleCount(world, pos, recipe.get())), false);
 							} else {
 								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_after_opened"), false);
 							}

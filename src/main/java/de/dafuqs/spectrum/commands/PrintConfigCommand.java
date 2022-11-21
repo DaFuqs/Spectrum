@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
 
 
 public class PrintConfigCommand {

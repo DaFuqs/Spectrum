@@ -9,6 +9,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.sound.AbstractSoundInstance;
+import net.minecraft.client.sound.SoundInstance;
 import net.minecraft.client.sound.TickableSoundInstance;
 import net.minecraft.sound.SoundCategory;
 
@@ -20,7 +21,7 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 	private boolean done;
 	
 	public DivinitySoundInstance() {
-		super(SpectrumSoundEvents.DIVINITY, SoundCategory.PLAYERS);
+		super(SpectrumSoundEvents.DIVINITY, SoundCategory.PLAYERS, SoundInstance.createRandom());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 0.8F;

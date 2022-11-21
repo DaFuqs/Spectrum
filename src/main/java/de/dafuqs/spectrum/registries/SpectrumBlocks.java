@@ -792,8 +792,7 @@ public class SpectrumBlocks {
 	public static final Block PURE_GLOBETTE_END_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
 	
 	// STRUCTURE BLOCKS
-	private static final FabricBlockSettings preservationBlockSettings = FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(SpectrumBlocks::never);
-	
+	private static final AbstractBlock.Settings preservationBlockSettings = FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(SpectrumBlocks::never);
 	public static final Block PRESERVATION_CONTROLLER = new PreservationControllerBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().luminance(1).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().luminance(3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block INVISIBLE_WALL = new InvisibleWallBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().luminance(3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
@@ -806,7 +805,7 @@ public class SpectrumBlocks {
 	public static final Block PRESERVATION_BRICKS = new Block(preservationBlockSettings);
 	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(preservationBlockSettings).luminance(5));
 	public static final Block COURIER_STATUE = new StatueBlock(preservationBlockSettings);
-	private static final FabricBlockSettings preservationGlassBlockSettings = FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never);
+	private static final AbstractBlock.Settings preservationGlassBlockSettings = FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never);
 	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationGlassBlockSettings);
 	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).strength(Float.MAX_VALUE, 3600000.0F));
 	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE).nonOpaque());

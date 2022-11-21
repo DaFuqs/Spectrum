@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:collect_sparklestone",
+  "parent": "spectrum:collect_shimmerstone",
   "display": {
     "icon": {
         "item": "spectrum:present"
@@ -17,7 +17,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+      "conditions": { "advancement_identifier": "spectrum:collect_shimmerstone" }
     }
   },
   "rewards": {

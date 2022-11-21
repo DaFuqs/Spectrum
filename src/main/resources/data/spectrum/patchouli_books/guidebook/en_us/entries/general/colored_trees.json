@@ -150,7 +150,7 @@
     "spectrum:red_button": 0,
     "spectrum:white_button": 0,
     "spectrum:yellow_button": 0,
-    "spectrum:black_slab": 0,
+    "spectrum:black_plank_slab": 0,
     "spectrum:blue_slab": 0,
     "spectrum:brown_slab": 0,
     "spectrum:cyan_slab": 0,
@@ -184,13 +184,14 @@
       "title": "Natural Generation",
       "advancement": "spectrum:craft_colored_sapling",
       "images": [
-        "spectrum:textures/gui/guidebook/colored_trees.png"
+        "spectrum:textures/gui/manual/colored_trees.png"
       ],
       "text": "They existed around you all along! Who knows what else is out there?"
     },
     {
       "type": "patchouli:crafting",
       "advancement": "spectrum:craft_colored_sapling",
+      "anchor": "colored_wood",
       "title": "Colored Wood",
       "recipe": "spectrum:crafting_table/colored_wood/light_blue_planks",
       "text": "Like their non-colorful, non-magical counterparts, you can use the colored wood for Planks, Stairs, Slabs, Buttons, Pressure Plates, Fences and Fence Gates."

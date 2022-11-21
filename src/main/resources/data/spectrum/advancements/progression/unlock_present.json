@@ -1,8 +1,8 @@
 {
   "criteria": {
-    "collected_sparklestone": {
+    "collected_shimmerstone": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+      "conditions": { "advancement_identifier": "spectrum:collect_shimmerstone" }
     },
     "collected_topaz": {
       "trigger":"revelationary:advancement_gotten",

@@ -1,10 +1,10 @@
 {
   "name": "Storm Stones",
-  "advancement": "spectrum:midgame/collect_lightning_stone",
-  "icon": "spectrum:lightning_stone",
+  "advancement": "spectrum:midgame/collect_storm_stone",
+  "icon": "spectrum:storm_stone",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
-    "spectrum:lightning_stone": 0
+    "spectrum:storm_stone": 0
   },
   "pages": [
     {
@@ -15,7 +15,7 @@
     {
       "type": "patchouli:spotlight",
       "title": "Storm Stones",
-      "item": "spectrum:lightning_stone",
+      "item": "spectrum:storm_stone",
       "text": "Dug into the ground by lightning strikes, you found these stones vibrating in your hand due to the inherent static.$(br)Used in the $(l:general/fusion_shrine)Fusion Shrine$(), you can use them to summon thunderstorms yourself.$(br2)$(italic)Because of their volatile nature they do not react too nicely to explosions..."
     }
   ]

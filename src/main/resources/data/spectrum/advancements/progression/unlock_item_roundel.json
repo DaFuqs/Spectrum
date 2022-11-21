@@ -1,8 +1,8 @@
 {
   "criteria": {
-    "collected_sparklestone": {
+    "collected_shimmerstone": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+      "conditions": { "advancement_identifier": "spectrum:collect_shimmerstone" }
     },
     "entered_color_mixing_puzzle_structure": {
       "trigger":"revelationary:advancement_gotten",

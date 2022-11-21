@@ -39,7 +39,7 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 	}
 	
 	protected int getBlockLight(T itemFrameEntity, BlockPos blockPos) {
-		return itemFrameEntity.getType() == SpectrumEntityTypes.PHANTOM_GLOW_FRAME ? Math.max(5, super.getBlockLight(itemFrameEntity, blockPos)) : super.getBlockLight(itemFrameEntity, blockPos);
+		return itemFrameEntity.getType() == SpectrumEntityTypes.GLOW_PHANTOM_FRAME ? Math.max(5, super.getBlockLight(itemFrameEntity, blockPos)) : super.getBlockLight(itemFrameEntity, blockPos);
 	}
 	
 	public void render(T itemFrameEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
@@ -97,11 +97,11 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 	}
 	
 	private int getLight(T itemFrame, int glowLight, int regularLight) {
-		return itemFrame.getType() == SpectrumEntityTypes.PHANTOM_GLOW_FRAME ? glowLight : regularLight;
+		return itemFrame.getType() == SpectrumEntityTypes.GLOW_PHANTOM_FRAME ? glowLight : regularLight;
 	}
 	
 	private ModelIdentifier getModelId(T entity, ItemStack stack) {
-		boolean bl = entity.getType() == SpectrumEntityTypes.PHANTOM_GLOW_FRAME;
+		boolean bl = entity.getType() == SpectrumEntityTypes.GLOW_PHANTOM_FRAME;
 		if (stack.isOf(Items.FILLED_MAP)) {
 			return bl ? MAP_GLOW_FRAME_MODEL_IDENTIFIER : MAP_FRAME_MODEL_IDENTIFIER;
 		} else {

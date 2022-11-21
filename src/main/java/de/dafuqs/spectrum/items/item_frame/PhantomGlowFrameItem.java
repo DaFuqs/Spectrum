@@ -16,7 +16,7 @@ public class PhantomGlowFrameItem extends SpectrumItemFrameItem {
 	}
 	
 	public ItemFrameEntity getItemFrameEntity(World world, BlockPos blockPos, Direction direction) {
-		return new PhantomGlowFrameEntity(SpectrumEntityTypes.PHANTOM_GLOW_FRAME, world, blockPos, direction);
+		return new PhantomGlowFrameEntity(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, world, blockPos, direction);
 	}
 	
 }

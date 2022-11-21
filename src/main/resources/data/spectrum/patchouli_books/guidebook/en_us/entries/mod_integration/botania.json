@@ -23,7 +23,7 @@
       "title": "Glimmering Flowers",
       "advancement": "spectrum:collect_shimmerstone",
       "recipe": "spectrum:mod_integration/botania/pedestal/glimmering_flowers/purple_glimmering_flower",
-      "text": "Adding some $(l:resources/shimmerstone)Sparklestone(/l) to magical flowers makes them glimmer."
+      "text": "Adding some $(l:resources/shimmerstone)Shimmerstone(/l) to magical flowers makes them glimmer."
     },
     {
       "type": "spectrum:pedestal_crafting",

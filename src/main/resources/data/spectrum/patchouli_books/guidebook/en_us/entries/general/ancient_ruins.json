@@ -47,7 +47,7 @@
       "title": "Color Combinations",
       "advancement": "spectrum:enter_color_mixing_puzzle_structure",
       "images": [
-        "spectrum:textures/gui/manual/color_mixing_puzzle_structure.png"
+        "spectrum:textures/gui/guidebook/color_mixing_puzzle_structure.png"
       ],
       "border": true,
       "text": "It was all so clear, in the end! You had it $(l:general/color_mixing)laid all out already$(/l)."
@@ -57,7 +57,7 @@
       "title": "Short Wired",
       "advancement": "spectrum:enter_wireless_redstone_puzzle_structure",
       "images": [
-        "spectrum:textures/gui/manual/wireless_redstone_puzzle_structure.png"
+        "spectrum:textures/gui/guidebook/wireless_redstone_puzzle_structure.png"
       ],
       "border": true,
       "text": "A really weird one. Having some colors at hand helped a lot."

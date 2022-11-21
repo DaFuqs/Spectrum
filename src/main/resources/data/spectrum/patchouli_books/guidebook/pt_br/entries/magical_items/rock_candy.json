@@ -33,7 +33,7 @@
       "type": "patchouli:image",
       "title": "Growing Rock Candy",
       "images": [
-        "spectrum:textures/gui/manual/rock_candy_growing.png"
+        "spectrum:textures/gui/guidebook/rock_candy_growing.png"
       ],
       "text": "$(thing)Silk Touch$() keeps their size for use as fancy lights, or just for storage."
     },

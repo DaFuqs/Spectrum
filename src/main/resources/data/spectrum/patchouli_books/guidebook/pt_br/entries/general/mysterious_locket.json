@@ -29,7 +29,7 @@
       "title": "The Locket's Contents",
       "advancement": "spectrum:open_mysterious_locket",
       "images": [
-        "spectrum:textures/gui/manual/locket.png"
+        "spectrum:textures/gui/guidebook/locket.png"
       ],
       "border": true,
       "text": ""

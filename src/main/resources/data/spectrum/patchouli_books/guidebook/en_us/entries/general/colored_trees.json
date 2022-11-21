@@ -3,7 +3,7 @@
   "icon": "spectrum:red_sapling",
   "sortnum": 7,
   "advancement": "spectrum:collect_vegetal",
-  "turnin": "spectrum:craft_colored_sapling",
+  "turnin": "spectrum:collect_pigment",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {
     "spectrum:black_sapling": 0,
@@ -184,7 +184,7 @@
       "title": "Natural Generation",
       "advancement": "spectrum:craft_colored_sapling",
       "images": [
-        "spectrum:textures/gui/manual/colored_trees.png"
+        "spectrum:textures/gui/guidebook/colored_trees.png"
       ],
       "text": "They existed around you all along! Who knows what else is out there?"
     },

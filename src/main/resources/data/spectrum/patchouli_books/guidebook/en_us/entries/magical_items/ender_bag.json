@@ -1,0 +1,23 @@
+{
+  "name": "Bag of Holding",
+  "advancement": "spectrum:progression/unlock_ender_bag",
+  "icon": "spectrum:ender_bag",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:ender_bag": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Bag of Holding",
+      "item": "spectrum:ender_bag",
+      "text": "$(italic)Placing an Ender Chest, opening it, and mining it with an enchanted pickaxe is not what you think of as fun.$(br)That's why you invented this thing."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier1/ender_bag",
+      "text": "Just open it and the contents of your Ender Chest are right there."
+    }
+  ]
+}

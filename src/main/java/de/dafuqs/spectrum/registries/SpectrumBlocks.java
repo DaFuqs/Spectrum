@@ -133,6 +133,10 @@ public class SpectrumBlocks {
 	public static final Block PEDESTAL_ONYX = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.ONYX);
 	public static final Block PEDESTAL_MOONSTONE = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.MOONSTONE);
 	
+	private static final FabricBlockSettings FUSION_SHINE_BLOCK_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).requiresTool().nonOpaque().luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL));
+	public static final Block FUSION_SHRINE_BASALT = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
+	public static final Block FUSION_SHRINE_CALCITE = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
+	
 	public static final Block ENCHANTER = new EnchanterBlock(FabricBlockSettings.of(Material.STONE).strength(5.0F, 8.0F).nonOpaque());
 	public static final Block ITEM_BOWL_BASALT = new ItemBowlBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
 	public static final Block ITEM_BOWL_CALCITE = new ItemBowlBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0f).nonOpaque());
@@ -494,7 +498,6 @@ public class SpectrumBlocks {
 	public static final Block AMARANTH_BUSHEL = new AmaranthBushelBlock(FabricBlockSettings.of(Material.PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.CROP));
 	public static final Block POTTED_AMARANTH_BUSHEL = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL, AbstractBlock.Settings.of(Material.DECORATION).breakInstantly().nonOpaque());
 	
-	public static final Block ENDER_TREASURE = new EnderTreasureBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
 	public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL_FRAME));
 	public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE));
 	public static final Block WET_LAVA_SPONGE = new WetLavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.WET_SPONGE).luminance(9).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
@@ -549,9 +552,6 @@ public class SpectrumBlocks {
 	public static final Block CLOVER = new CloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS).offsetType(AbstractBlock.OffsetType.XZ));
 	public static final Block FOUR_LEAF_CLOVER = new FourLeafCloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS).offsetType(AbstractBlock.OffsetType.XZ));
 	public static final Block BLOOD_ORCHID = new BloodOrchidBlock(StatusEffects.BAD_OMEN, 10, FabricBlockSettings.copyOf(Blocks.POPPY).offsetType(AbstractBlock.OffsetType.NONE).ticksRandomly());
-	private static final FabricBlockSettings FUSION_SHINE_BLOCK_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).requiresTool().nonOpaque().luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL));
-	public static final Block FUSION_SHRINE_BASALT = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
-	public static final Block FUSION_SHRINE_CALCITE = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
 
 	//public static final Block STONESETTING_WORKSHOP = new StonesettingWorkshopBlock(FabricBlockSettings.copyOf(POLISHED_BASALT).nonOpaque().solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	

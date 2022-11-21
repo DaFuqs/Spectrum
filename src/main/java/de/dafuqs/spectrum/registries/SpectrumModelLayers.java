@@ -6,11 +6,14 @@ import de.dafuqs.spectrum.entity.models.EggLayingWoolyPigEntityModel;
 import de.dafuqs.spectrum.entity.models.EggLayingWoolyPigHatEntityModel;
 import de.dafuqs.spectrum.entity.models.EggLayingWoolyPigWoolEntityModel;
 import de.dafuqs.spectrum.render.armor.BedrockArmorModel;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.minecraft.client.model.TexturedModelData;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.util.Identifier;
 
+@Environment(EnvType.CLIENT)
 public class SpectrumModelLayers {
 
     /**

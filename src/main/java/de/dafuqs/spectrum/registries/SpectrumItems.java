@@ -340,6 +340,7 @@ public class SpectrumItems {
 	public static final Item MUSIC_DISC_SPECTRUM_THEME = new SpectrumMusicDiscItem(1, SpectrumSoundEvents.SPECTRUM_THEME, Tab.EQUIPMENT.settings(1,Rarity.RARE), 120);
 	public static final Item MUSIC_DISC_DIMENSION_THEME = new SpectrumMusicDiscItem(2, SpectrumSoundEvents.BOSS_THEME, Tab.EQUIPMENT.settings(1,Rarity.RARE), 265);
 	public static final Item MUSIC_DISC_EVERREFLECTIVE = new SpectrumMusicDiscItem(3, SpectrumSoundEvents.DIVINITY, Tab.EQUIPMENT.settings(1,Rarity.RARE), 289);
+	
 	public static final Item SPAWNER = new SpectrumMobSpawnerItem(Tab.GENERAL.settings(1, Rarity.EPIC));
 	public static final Item PHANTOM_FRAME = new InvisibleItemFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, Tab.EQUIPMENT.settings());
 	public static final Item PHANTOM_GLOW_FRAME = new InvisibleGlowItemFrameItem(SpectrumEntityTypes.INVISIBLE_GLOW_ITEM_FRAME, Tab.EQUIPMENT.settings());
@@ -435,6 +436,7 @@ public class SpectrumItems {
 		register("music_disc_spectrum_theme", MUSIC_DISC_SPECTRUM_THEME, DyeColor.GREEN);
 		register("music_disc_dimension_theme", MUSIC_DISC_DIMENSION_THEME, DyeColor.GREEN);
 		register("music_disc_everreflective", MUSIC_DISC_EVERREFLECTIVE, DyeColor.GREEN);
+		
 		register("spawner", SPAWNER, DyeColor.LIGHT_GRAY);
 		register("glistering_melon_seeds", GLISTERING_MELON_SEEDS, DyeColor.LIME);
 		register("amaranth_grains", AMARANTH_GRAINS, DyeColor.LIME);
@@ -647,9 +649,11 @@ public class SpectrumItems {
 		register("bodacious_berry_bar", BODACIOUS_BERRY_BAR, DyeColor.PINK);
 		
 		register("hot_chocolate", HOT_CHOCOLATE, DyeColor.PINK);
+		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
 		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
 		register("demon_tea", DEMON_TEA, DyeColor.RED);
 		
+		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
 		register("jaramel", JARAMEL, DyeColor.PINK);
 		register("moonstruck_nectar", MOONSTRUCK_NECTAR, DyeColor.LIME);
 		register("bloodboil_syrup", BLOODBOIL_SYRUP, DyeColor.RED);

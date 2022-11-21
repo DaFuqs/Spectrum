@@ -99,9 +99,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			}
 		});
 
-		logInfo("Registering Model Layers...");
-		SpectrumModelLayers.register();
-
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();
 

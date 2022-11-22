@@ -1,5 +1,5 @@
 {
-  "name": "Crystallization",
+  "name": "Crystallisation",
   "advancement": "spectrum:hidden/collect_any_crystallized_block",
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:resources_category",

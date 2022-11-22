@@ -18,6 +18,18 @@
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/onyx_shard",
       "text": "The creation of this 'blackest of blacks' in the $(l:general/fusion_shrine)Fusion Shrine$() has to be performed in a way that absolutely no unregulated light can pollute the crystal. So midnight on a new moon it is. Best to bring a clock with you."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Moon Phases",
+      "images": [
+        "spectrum:textures/gui/manual/moon_phases.png"
+      ],
+      "text": "Depending on the positions of Sun and Moon, the Moon will reflect more or less light."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "This is called $(thing)Moon Phases$().$(br2)The point where the Moon almost reflects maximal light down to you, it's called $(thing)Full Moon$(), the opposite of a $(thing)New Moon$().$(br2)An entire lunar phase cycle from one new moon to the following new moon is also called a $(thing)lunation$()."
     }
   ]
 }

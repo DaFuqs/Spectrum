@@ -47,6 +47,7 @@ public class BlackMateriaBlock extends FallingBlock {
 		return state.get(AGE) != Properties.AGE_3_MAX;
 	}
 	
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		int age = state.get(AGE);
 		if (age < MAX_AGE) {

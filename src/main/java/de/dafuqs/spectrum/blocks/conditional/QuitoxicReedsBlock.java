@@ -145,6 +145,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 		builder.add(AGE, FLUIDLOGGED, ALWAYS_DROP);
 	}
 	
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (world.isAir(pos.up()) || (world.isWater(pos.up()) && world.isAir(pos.up(2)))) {
 			

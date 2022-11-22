@@ -18,7 +18,7 @@
       "type": "patchouli:image",
       "title": "Transfer",
       "images": [
-        "spectrum:textures/gui/manual/ink_transfer.png"
+        "spectrum:textures/gui/guidebook/ink_transfer.png"
       ],
       "text": "Ink behaves very much like a liquid. It flows from where it is abundant to where is little."
     },

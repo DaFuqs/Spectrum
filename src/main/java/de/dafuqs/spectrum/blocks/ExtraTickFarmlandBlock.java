@@ -23,7 +23,8 @@ public class ExtraTickFarmlandBlock extends FarmlandBlock {
 	 * If there is a crop block on top of this block: tick it, too
 	 * => the crop grows faster
 	 */
-	public void randomTick(BlockState state, @NotNull ServerWorld world, @NotNull BlockPos pos, Random random) {
+	@Override
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		BlockPos topPos = pos.up();
 		BlockState topBlockState = world.getBlockState(topPos);
 		if (hasCrop(world, pos)) {

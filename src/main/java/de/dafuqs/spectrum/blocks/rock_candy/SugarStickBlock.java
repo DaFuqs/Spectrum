@@ -110,6 +110,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 		}
 	}
 	
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
 		

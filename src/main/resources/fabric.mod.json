@@ -71,6 +71,7 @@
     "shimmer": "*"
   },
   "breaks": {
-    "Dashloader": "<=3.0.9"
+    "Dashloader": "<=3.0.9",
+    "healthoverlay": "*"
   }
 }

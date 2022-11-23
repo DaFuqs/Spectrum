@@ -15,7 +15,7 @@ public abstract class ClientPlayNetworkHandlerMixin {
 
     @Inject(method = "onSynchronizeTags", at = @At("TAIL"))
     public void spectrum$syncTags(SynchronizeTagsS2CPacket packet, CallbackInfo ci) {
-        logInfo("Registering MultiBlocks for client...");
+        logInfo("Registering MultiBlocks on Client...");
         SpectrumMultiblocks.register();
     }
 

@@ -104,7 +104,7 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	@ModifyVariable(at = @At("HEAD"), method = "addExperience(I)V", argsOnly = true)
 	public int addExperience(int experience) {
 		for(ItemStack stack : getItemsHand()) {
-			if(stack.getItem() instanceof ExperienceStorageItem) {
+			if(!((PlayerEntity)(Object) this).isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
 				experience = ExperienceStorageItem.addStoredExperience(stack, experience);
 				if(experience == 0) {
 					break;

@@ -95,7 +95,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 				int maxStorage = getMaxStoredExperience(stack);
 				int experienceToTransfer = serverPlayerEntity.isCreative() ? Math.min(transferableExperience, maxStorage - itemExperience) : Math.min(Math.min(transferableExperience, playerExperience), maxStorage - itemExperience);
 				
-				// Store experience
+				// store experience in gem; drain from player
 				if (experienceToTransfer > 0 && itemExperience < maxStorage && removePlayerExperience(serverPlayerEntity, experienceToTransfer)) {
 					ExperienceStorageItem.addStoredExperience(stack, experienceToTransfer);
 					
@@ -104,7 +104,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 					}
 				}
 			} else {
-				// drain experience
+				// drain experience from gem; give to player
 				if (itemExperience > 0 && playerExperience != Integer.MAX_VALUE) {
 					int experienceToTransfer = Math.min(Math.min(transferableExperience, itemExperience), Integer.MAX_VALUE - playerExperience);
 					
@@ -170,7 +170,6 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 					playerEntity.experienceProgress = 0.0F;
 				}
 			}
-			
 			return true;
 		}
 	}

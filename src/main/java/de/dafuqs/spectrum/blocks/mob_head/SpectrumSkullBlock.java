@@ -64,7 +64,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.onPlaced(world, pos, state, placer, itemStack);
 		
-		// Trigger advancement if player builds a wither structure with using wither skulls
+		// Trigger advancement if player builds a wither structure using wither skulls instead of wither skeleton skulls
 		if (getSkullType().equals(SpectrumSkullBlockType.WITHER) && placer instanceof ServerPlayerEntity serverPlayerEntity) {
 			if (pos.getY() >= world.getBottomY()) {
 				BlockPattern blockPattern = getWitherSkullPattern();

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.status_effects;
 
-import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.cca.LastKillComponent;
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.entity.LivingEntity;
@@ -61,7 +60,6 @@ public class FrenzyStatusEffect extends SpectrumStatusEffect implements Stackabl
 	public void tick(@NotNull LivingEntity entity, int amplifier, boolean scoredKillInTimeFrame) {
 		AttributeContainer attributes = entity.getAttributes();
 		if(attributes != null) {
-			SpectrumCommon.logWarning("Tick at " + entity.getWorld().getTime() + "; killed in time: " + scoredKillInTimeFrame);
 			for (Map.Entry<EntityAttribute, EntityAttributeModifier> attributeEntry : this.getAttributeModifiers().entrySet()) {
 				EntityAttributeInstance entityInstance = attributes.getCustomInstance(attributeEntry.getKey());
 				if (entityInstance != null) {
@@ -72,7 +70,6 @@ public class FrenzyStatusEffect extends SpectrumStatusEffect implements Stackabl
 					entityInstance.removeModifier(baseAttributeValue);
 					entityInstance.addPersistentModifier(new EntityAttributeModifier(baseAttributeValue.getId(), baseAttributeValue.getName(), newValue, baseAttributeValue.getOperation()));
 					entityInstance.getValue();
-					SpectrumCommon.logWarning(".." + attributeEntry.getValue().getId() + ": " + entityInstance.getValue());
 				}
 			}
 		}

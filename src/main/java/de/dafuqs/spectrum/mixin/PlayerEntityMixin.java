@@ -26,7 +26,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -41,8 +40,6 @@ import java.util.ArrayList;
 public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
 	@Shadow public abstract Iterable<ItemStack> getHandItems();
-	
-	@Shadow public abstract void increaseStat(Identifier stat, int amount);
 	
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	

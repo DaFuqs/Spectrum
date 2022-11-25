@@ -43,8 +43,6 @@ public abstract class ItemEntityMixin {
 	@Shadow
 	public abstract void setNeverDespawn();
 	
-	@Shadow private int itemAge;
-	
 	@Shadow public abstract boolean damage(DamageSource source, float amount);
 	
 	@Inject(at = @At("TAIL"), method = "<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;DDD)V")

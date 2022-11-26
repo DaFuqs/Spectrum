@@ -95,7 +95,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 									if(!player.isCreative()) {
 										handStack.decrement(1);
 									}
-									sealBarrel(world, pos, state, barrelEntity);
+									sealBarrel(world, pos, state, barrelEntity, player);
 								} else if (handStack.getItem() instanceof BucketItem) {
 									barrelEntity.useBucket(world, pos, state, handStack, player, hand);
 								} else {
@@ -163,7 +163,11 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 		}
 	}
 	
-	private void sealBarrel(World world, BlockPos pos, BlockState state, TitrationBarrelBlockEntity barrelEntity) {
+	private void sealBarrel(World world, BlockPos pos, BlockState state, TitrationBarrelBlockEntity barrelEntity, PlayerEntity player) {
+		// give recipe remainders
+		barrelEntity.giveRecipeRemainders(player);
+		
+		// seal
 		world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.SEALED));
 		barrelEntity.seal();
 		world.playSound(null, pos, SoundEvents.BLOCK_BARREL_CLOSE, SoundCategory.BLOCKS, 1.0F, 1.0F);

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
 import de.dafuqs.spectrum.helpers.InventoryHelper;
+import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
@@ -240,6 +241,18 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		this.markDirty();
 		
 		return harvestedStack;
+	}
+	
+	public void giveRecipeRemainders(PlayerEntity player) {
+		for(ItemStack stack : this.inventory.stacks) {
+			Item item = stack.getItem();
+			Item remainderItem = item.getRecipeRemainder();
+			if(remainderItem != null) {
+				ItemStack remainderStack = remainderItem.getDefaultStack();
+				remainderStack.setCount(stack.getCount());
+				Support.givePlayer(player, remainderStack);
+			}
+		}
 	}
 	
 }

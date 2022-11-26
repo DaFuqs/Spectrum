@@ -244,7 +244,9 @@ public class SpectrumCommon implements ModInitializer {
 		});
 		
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
-			SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger((ServerPlayerEntity) player, state);
+			if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
+			}
 		});
 		
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {

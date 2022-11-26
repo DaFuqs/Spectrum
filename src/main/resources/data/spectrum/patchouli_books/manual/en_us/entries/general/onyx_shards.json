@@ -23,7 +23,7 @@
       "type": "patchouli:image",
       "title": "Moon Phases",
       "images": [
-        "spectrum:textures/gui/guidebook/moon_phases.png"
+        "spectrum:textures/gui/manual/moon_phases.png"
       ],
       "text": "Depending on the positions of Sun and Moon, the Moon will reflect more or less light."
     },

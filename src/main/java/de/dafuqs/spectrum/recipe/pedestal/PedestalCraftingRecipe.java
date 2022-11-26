@@ -183,48 +183,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 			if(orientation == null) {
 				return ItemStack.EMPTY;
 			}
-			
-			for(int x = 0; x < this.width; x++) {
-				for(int y = 0; y < this.height; y++) {
-					int ingredientStackId = orientation.getC() ? ((this.width - 1) - x) + this.width * y : x + this.width * y;
-					int invStackId = (x + orientation.getA()) + 3 * (y + orientation.getB());
-					
-					IngredientStack ingredientStackAtPos = this.craftingInputs.get(ingredientStackId);
-					ItemStack invStack = inv.getStack(invStackId);
-					if(!ingredientStackAtPos.test(invStack)) {
-						SpectrumCommon.logError("Looks like DaFuqs fucked up Spectrums Pedestal recipe matching. Go open up a report with the recipe that was crafted and an image of the pedestals contents, please! :)");
-					}
-					
-					if (!invStack.isEmpty()) {
-						Item recipeReminderItem = this.skipRecipeRemainders() ? null : invStack.getItem().getRecipeRemainder();
-						if (recipeReminderItem == null) {
-							invStack.decrement(ingredientStackAtPos.getCount());
-						} else {
-							if (pedestal.getStack(invStackId).getCount() == ingredientStackAtPos.getCount()) {
-								ItemStack remainderStack = recipeReminderItem.getDefaultStack();
-								remainderStack.setCount(ingredientStackAtPos.getCount());
-								pedestal.setStack(invStackId, remainderStack);
-							} else {
-								pedestal.getStack(invStackId).decrement(ingredientStackAtPos.getCount());
-								
-								ItemStack remainderStack = recipeReminderItem.getDefaultStack();
-								ItemEntity itemEntity = new ItemEntity(pedestal.getWorld(), pedestal.getPos().getX() + 0.5, pedestal.getPos().getY() + 1, pedestal.getPos().getZ() + 0.5, remainderStack);
-								itemEntity.addVelocity(0, 0.05, 0);
-								pedestal.getWorld().spawnEntity(itemEntity);
-							}
-						}
-					}
-					
-				}
-			}
-			
-			// -X for all the pigment inputs
-			for (BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
-				double efficiencyModifier = pedestal.getUpgradeValue(Upgradeable.UpgradeType.EFFICIENCY);
-				int gemstonePowderAmount = this.getGemstonePowderAmount(gemstoneColor);
-				int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, pedestal.getWorld().random);
-				pedestal.getStack(PedestalBlockEntity.getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmountAfterMod);
-			}
+			decrementIngredientStacks(pedestal, orientation);
 			
 			ItemStack recipeOutput = this.output.copy();
 			PlayerEntity player = pedestal.getOwnerIfOnline();
@@ -234,6 +193,50 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 			return recipeOutput;
 		}
 		return ItemStack.EMPTY;
+	}
+	
+	protected void decrementIngredientStacks(PedestalBlockEntity pedestal, Triplet<Integer, Integer, Boolean> orientation) {
+		for(int x = 0; x < this.width; x++) {
+			for(int y = 0; y < this.height; y++) {
+				int ingredientStackId = orientation.getC() ? ((this.width - 1) - x) + this.width * y : x + this.width * y;
+				int invStackId = (x + orientation.getA()) + 3 * (y + orientation.getB());
+				
+				IngredientStack ingredientStackAtPos = this.craftingInputs.get(ingredientStackId);
+				ItemStack invStack = pedestal.getStack(invStackId);
+				if(!ingredientStackAtPos.test(invStack)) {
+					SpectrumCommon.logError("Looks like DaFuqs fucked up Spectrums Pedestal recipe matching. Go open up a report with the recipe that was crafted and an image of the pedestals contents, please! :)");
+				}
+				
+				if (!invStack.isEmpty()) {
+					Item recipeReminderItem = this.skipRecipeRemainders() ? null : invStack.getItem().getRecipeRemainder();
+					if (recipeReminderItem == null) {
+						invStack.decrement(ingredientStackAtPos.getCount());
+					} else {
+						if (pedestal.getStack(invStackId).getCount() == ingredientStackAtPos.getCount()) {
+							ItemStack remainderStack = recipeReminderItem.getDefaultStack();
+							remainderStack.setCount(ingredientStackAtPos.getCount());
+							pedestal.setStack(invStackId, remainderStack);
+						} else {
+							pedestal.getStack(invStackId).decrement(ingredientStackAtPos.getCount());
+							
+							ItemStack remainderStack = recipeReminderItem.getDefaultStack();
+							ItemEntity itemEntity = new ItemEntity(pedestal.getWorld(), pedestal.getPos().getX() + 0.5, pedestal.getPos().getY() + 1, pedestal.getPos().getZ() + 0.5, remainderStack);
+							itemEntity.addVelocity(0, 0.05, 0);
+							pedestal.getWorld().spawnEntity(itemEntity);
+						}
+					}
+				}
+				
+			}
+		}
+		
+		// -X for all the pigment inputs
+		for (BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
+			double efficiencyModifier = pedestal.getUpgradeValue(Upgradeable.UpgradeType.EFFICIENCY);
+			int gemstonePowderAmount = this.getGemstonePowderAmount(gemstoneColor);
+			int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, pedestal.getWorld().random);
+			pedestal.getStack(PedestalBlockEntity.getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmountAfterMod);
+		}
 	}
 	
 	public PedestalRecipeTier getTier() {

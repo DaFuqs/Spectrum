@@ -52,11 +52,11 @@
             "min_alc": 7
           },
           {
-            "min_alc": 14,
+            "min_alc": 9,
             "potency": 1
           },
           {
-            "min_alc": 21,
+            "min_alc": 11,
             "potency": 2
           }
         ]

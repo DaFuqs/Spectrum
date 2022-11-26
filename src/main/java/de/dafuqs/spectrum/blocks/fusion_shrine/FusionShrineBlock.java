@@ -20,8 +20,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BucketItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
@@ -137,18 +137,21 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
 				
 				ItemStack handStack = player.getStackInHand(hand);
-				if (handStack.getItem() instanceof BucketItem) {
+				if (handStack.getItem() instanceof BucketItem bucketItem) {
 					fusionShrineBlockEntity.setOwner(player);
 					
 					Fluid storedFluid = fusionShrineBlockEntity.getFluid();
-					Fluid bucketFluid = ((BucketItemAccessor) handStack.getItem()).fabric_getFluid();
+					Fluid bucketFluid = ((BucketItemAccessor) bucketItem).fabric_getFluid();
 					if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
 						fusionShrineBlockEntity.setFluid(bucketFluid);
 						if (!player.isCreative()) {
 							handStack.decrement(1);
 							player.setStackInHand(hand, handStack);
 							
-							player.giveItemStack(Items.BUCKET.getDefaultStack());
+							Item remainderItem = bucketItem.getRecipeRemainder();
+							if(remainderItem != null) {
+								player.giveItemStack(remainderItem.getDefaultStack());
+							}
 						}
 						
 						fusionShrineBlockEntity.inventoryChanged();

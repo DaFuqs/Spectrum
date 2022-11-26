@@ -14,7 +14,10 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -84,7 +87,15 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	public boolean useBucket(World world, BlockPos pos, BlockState state, ItemStack bucketStack, PlayerEntity player, Hand hand) {
 		Fluid bucketFluid = ((BucketItemAccessor) bucketStack.getItem()).fabric_getFluid();
 		if(this.storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
-			player.setStackInHand(hand, ItemUsage.exchangeStack(bucketStack, player, BucketItem.getEmptiedStack(bucketStack, player)));
+			if (!player.isCreative()) {
+				bucketStack.decrement(1);
+				player.setStackInHand(hand, bucketStack);
+				
+				Item remainderItem = bucketStack.getItem().getRecipeRemainder();
+				if(remainderItem != null) {
+					player.giveItemStack(remainderItem.getDefaultStack());
+				}
+			}
 			
 			Optional<SoundEvent> soundEvent = bucketFluid.getBucketFillSound();
 			soundEvent.ifPresent(event -> world.playSound(null, this.pos, event, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F));

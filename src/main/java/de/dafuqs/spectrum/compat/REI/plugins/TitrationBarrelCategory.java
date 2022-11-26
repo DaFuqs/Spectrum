@@ -12,9 +12,7 @@ import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import net.minecraft.item.Items;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
@@ -23,8 +21,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class TitrationBarrelCategory implements DisplayCategory<TitrationBarrelDisplay> {
-	
-	private static final EntryIngredient WATER_BUCKET = EntryIngredients.of(Items.WATER_BUCKET);
 	
 	@Override
 	public CategoryIdentifier<TitrationBarrelDisplay> getCategoryIdentifier() {

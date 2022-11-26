@@ -12,13 +12,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_failing",
-      "text": "Empowered by the potent energy of your Onyx and Stratine, this second organism is clearly... more active than your last creation.$(br2)$(bold)And DEFINITELY hungrier.$(br)WAY hungrier."
+      "text": "Ambition has taken hold of you, seriously. Your first step towards changing the world.$(br)Empowered by the potent energy of your Onyx and Stratine, this second organism you created is clearly... more active than your last creation.$(br2)$(bold)And DEFINITELY hungrier.$(br)WAY hungrier."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/bottle_of_failing",
-      "text": "Maybe one of the strongest materials you know can satisfy their hunger?"
+      "text": "Maybe one of the sturdiest materials you know can satisfy their hunger? What has to be done has to be done."
     },
     {
       "type": "patchouli:spotlight",
@@ -26,7 +26,7 @@
       "title": "Neolith",
       "anchor": "neolith",
       "item": "spectrum:neolith",
-      "text": "The obsidian was literally pulverized by your experiment. This is what you call power!$(br2)The result was this sturdy reagent."
+      "text": "The Obsidian was literally pulverized. This is what you call power!$(br2)The result was this sturdy reagent.$(br)Very powerful.$(br)Yes."
     }
   ]
 }

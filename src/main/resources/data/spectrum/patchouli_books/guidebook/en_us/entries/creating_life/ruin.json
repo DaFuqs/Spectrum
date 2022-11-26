@@ -6,25 +6,20 @@
   "turnin": "spectrum:midgame/break_decayed_bedrock",
   "extra_recipe_mappings": {
     "spectrum:bottle_of_ruin": 0,
-    "spectrum:bedrock_dust": 0
+    "spectrum:bedrock_dust": 0,
+    "spectrum:bedrock_storage_block": 0
   },
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_ruin",
-      "text": "This is it. The perfection of your recipe. You won't even make it subtle. This stuff is $(#ff0000)NASTY$() by design, you didn't call it that for the fun of it.$(br)This may be the one thing aggressive enough to destroy even materials previously deemed unbreakable.$(br)$(bold)If you are not careful you may ruin the world. Literally.$()"
+      "text": "This is it: the perfection of your recipe. A little failure definitely couldn't stop you.$(br)This may be the one thing aggressive enough to destroy even some materials previously deemed unbreakable.$(br)If you are not careful you may ruin the world.$(br)A necessary sacrifice, really."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/bottle_of_ruin",
-      "text": "You may not have created such lives as you initially imagined, but you still created something clearly powerful. Guess that counts?"
-    },
-    {
-      "type": "patchouli:text",
-      "advancement": "spectrum:midgame/break_decayed_bedrock",
-      "title": "A Friendly Reminder",
-      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you WILL regret it.$(br2)Luckily you already invented a $(l:creating_life/decay_away)suitable counteragent$(/l)."
+      "text": "You won't even make it subtle. This stuff is $(#ff0000)NASTY$() by design, you didn't call it that for the fun of it."
     },
     {
       "type": "patchouli:spotlight",
@@ -34,18 +29,24 @@
       "text": "Even Bedrock was not strong enough to withstand your newly created \"life\".  It broke through the Bedrock like dandelions through concrete."
     },
     {
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/break_decayed_bedrock",
+      "title": "A Friendly Reminder",
+      "text": "Should you be reading your notes here while some of that stuff is still roaming around free, you should change that as soon as possible otherwise you MIGHT regret it.$(br2)Luckily you already invented a $(l:creating_life/decay_away)suitable counteragent$(/l)."
+    },
+    {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
       "title": "Bedrock Blocks",
       "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_storage_block",
-      "text": "The chunks of Bedrock are so sturdy, that a normal Crafting Table can't handle it. But using your $(l:general/pedestal)Pigment Pedestal$(/l) handles it no problem."
+      "text": "The chunks of Bedrock are so sturdy, that a normal Crafting Table can't handle it. But your $(l:general/pedestal)Pigment Pedestal$(/l) handles it no problem."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
       "title": "Converting back",
       "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_storage_block_uncrafting",
-      "text": "These seem so sturdy, not even a Wither may be able to break them.$(br2)Of course you are also able to convert it back again."
+      "text": "These seem so sturdy, not even a Wither would be able to break them.$(br2)Of course you are also able to convert it back again."
     }
   ]
 }

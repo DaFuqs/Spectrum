@@ -1,0 +1,41 @@
+{
+  "name": "Moonstone Pedestal (2)",
+  "icon": "spectrum:pedestal_moonstone",
+  "sortnum": 17,
+  "secret": true,
+  "advancement": "spectrum:midgame/built_pedestal_complex_structure_without_moonstone_check",
+  "category": "spectrum:general_category",
+  "turnin": "spectrum:lategame/build_complex_pedestal_structure",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+	  "item": "spectrum:moonstone_chiseled_basalt",
+      "text": "Your latest Pedestal structure feels... somewhat lacking. And now you have gotten a hold of $(l:general/moonstone_shards)Moonstone$(/l) you also know exactly what is missing: $(c_white)Moonstone$() exactly. The tricky part: Creating the required $(thing)Moonstone Chiseled Blocks$() would require you being able to use your $(thing)Moonstone Pedestal$() to it's full capability already.$(br)$(italic)Is there a way to kickstart you?"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Spectrum Palace",
+      "multiblock_id": "spectrum:pedestal_complex_structure_check",
+      "enable_visualize": true,
+      "text": "You can switch the basalt blocks with calcite and the amethyst blocks for any other gemstone block."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Checklist (Complete)",
+      "text": "$(li)1 Pigment Pedestal$(li)4 Onyx Chiseled Blocks$(li)4 Notched Polished Blocks$(li)8 Gemstone Lamps$(li)4 Gemstone Chiseled Blocks$(li)12 Polished Gemstone Blocks$(li)16 CMY Gemstone Chiseled Bl.$(li)28 Moonstone Chiseled Bl.$(li)36 Polished Pillars$(li)52 Polished Crests$(li)144 Polished Blocks"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Checklist (Upgrade)",
+      "text": "$(li)28 Moonstone Chiseled Bl."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Individualize!",
+      "images": [
+        "spectrum:textures/gui/manual/spectrum_complex_customisation.png"
+      ],
+      "text": "Mix them up to create your personal variation!"
+    }
+  ]
+}

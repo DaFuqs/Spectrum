@@ -3,7 +3,7 @@
   "icon": "spectrum:mysterious_locket",
   "advancement": "spectrum:collect_mysterious_locket",
   "category": "spectrum:general_category",
-  "sortnum": 15,
+  "sortnum": 20,
   "extra_recipe_mappings": {
     "spectrum:mysterious_locket": 0
   },
@@ -16,7 +16,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "There seems to be something inside. It also has an engraving on it's back, but if it even resembles a language it's none you have ever seem.$(br2)$(bold)Want to know what's inside? Stay tuned for the next mod update soon(tm)"
+      "text": "There seems to be something inside. It also has an engraving on it's back, but if it even resembles a language it's none you have ever seem.$(br2)$(bold)Want to know what's inside? Stay tuned for the next mod update soon (tm)"
     },
     {
       "type": "patchouli:text",
@@ -37,7 +37,7 @@
     {
       "type": "patchouli:text",
       "advancement": "spectrum:open_mysterious_locket",
-      "text": "The locket also contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.$(br)While in the $(l:dimension/dimension)Deeper Down$(/l) it softly vibrates as you turn."
+      "text": "The locket also contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.$(br)While in the $(l:dimension/dimension)Deeper Down$(/l)it softly vibrates as you turn."
     }
   ]
 }

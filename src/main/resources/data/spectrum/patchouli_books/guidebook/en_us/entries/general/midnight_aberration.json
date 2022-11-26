@@ -11,13 +11,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The latest findings from your last experiment make you strive for more and more. Squeeze every last ounce of energy out of your gemstones.$(br2)Neolith is the key! Yes, it must be! If you combine all the stones you have collected so far with it, something must be created that holds incredible power. Alone for you and ONLY for you, master of Pigment!"
+      "text": "The latest findings from your last experiment make you strive for more and more. Squeeze every last ounce of energy out of your gemstones.$(br2)Neolith is the key! Yes, it must be! If you combine all the gems you have collected so far with it, something must be created that holds incredible power. Alone for you and ONLY for you, master of Pigment!"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/midnight_aberration",
-      "text": "Fusing all those magical energies must result in an incredible source of power.$(br2)Requires daytime and a clear sky."
+      "text": "Fusing those magical energies must result in an incredible source of power - with a display to match. Best to make sure your Shrine and everything around it is fortified.$(br)Requires daytime and a clear sky."
     },
     {
       "type": "patchouli:spotlight",

@@ -114,38 +114,40 @@ public class SpectrumItemGroups {
 				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.TAKE_OFF_BELT, Enchantments.POWER, Enchantments.FEATHER_FALLING));
 				
 				// Infused Beverage Variants
-				for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
-					ItemStack output = recipe.getOutput().copy();
-					if(output.getItem() instanceof BeverageItem) {
-						output.setCount(1);
-						stacks.add(output);
+				if(SpectrumCommon.minecraftServer != null) {
+					for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
+						ItemStack output = recipe.getOutput().copy();
+						if (output.getItem() instanceof BeverageItem) {
+							output.setCount(1);
+							stacks.add(output);
+						}
 					}
-				}
-				
-				// Enchanted books with the max upgrade level available via Enchantment Upgrading
-				HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
-				for (EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
-					Enchantment enchantment = enchantmentUpgradeRecipe.getEnchantment();
-					int destinationLevel = enchantmentUpgradeRecipe.getEnchantmentDestinationLevel();
-					if (highestEnchantmentLevels.containsKey(enchantment)) {
-						if (highestEnchantmentLevels.get(enchantment) < destinationLevel) {
+					
+					// Enchanted books with the max upgrade level available via Enchantment Upgrading
+					HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
+					for (EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
+						Enchantment enchantment = enchantmentUpgradeRecipe.getEnchantment();
+						int destinationLevel = enchantmentUpgradeRecipe.getEnchantmentDestinationLevel();
+						if (highestEnchantmentLevels.containsKey(enchantment)) {
+							if (highestEnchantmentLevels.get(enchantment) < destinationLevel) {
+								highestEnchantmentLevels.put(enchantment, destinationLevel);
+							}
+						} else {
 							highestEnchantmentLevels.put(enchantment, destinationLevel);
 						}
-					} else {
-						highestEnchantmentLevels.put(enchantment, destinationLevel);
 					}
-				}
-				for (Map.Entry<Enchantment, Integer> s : highestEnchantmentLevels.entrySet()) {
-					if (s.getValue() > s.getKey().getMaxLevel()) {
-						stacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(s.getKey(), s.getValue())));
+					for (Map.Entry<Enchantment, Integer> s : highestEnchantmentLevels.entrySet()) {
+						if (s.getValue() > s.getKey().getMaxLevel()) {
+							stacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(s.getKey(), s.getValue())));
+						}
 					}
-				}
-				
-				// all memories that have spirit instiller recipes
-				Item memoryItem = SpectrumBlocks.MEMORY.asItem();
-				for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-					if (recipe.getOutput().isOf(memoryItem)) {
-						stacks.add(recipe.getOutput());
+					
+					// all memories that have spirit instiller recipes
+					Item memoryItem = SpectrumBlocks.MEMORY.asItem();
+					for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
+						if (recipe.getOutput().isOf(memoryItem)) {
+							stacks.add(recipe.getOutput());
+						}
 					}
 				}
 			}

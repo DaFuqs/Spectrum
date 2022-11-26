@@ -257,6 +257,8 @@ public class SpectrumCommon implements ModInitializer {
 			SpectrumMultiblocks.register();
 		});
 		
+		ServerLifecycleEvents.SERVER_STOPPED.register(server -> SpectrumCommon.minecraftServer = null);
+		
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
 			if (world.getTime() % 100 == 0) {
 				long timeOfDay = world.getTimeOfDay() % 24000;
@@ -268,8 +270,7 @@ public class SpectrumCommon implements ModInitializer {
 			}
 		});
 		
-		ServerLifecycleEvents.SERVER_STARTED.register((minecraftServer) -> {
-			SpectrumCommon.minecraftServer = minecraftServer;
+		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
 			SpectrumCommon.logInfo("Querying fluid luminance...");
 			for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
 				Block block = it.next();
@@ -279,8 +280,8 @@ public class SpectrumCommon implements ModInitializer {
 			}
 			
 			SpectrumCommon.logInfo("Injecting additional recipes...");
-			FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
-			injectEnchantmentUpgradeRecipes(minecraftServer);
+			FirestarterMobBlock.addBlockSmeltingRecipes(server.getRecipeManager());
+			injectEnchantmentUpgradeRecipes(server);
 		});
 		
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {

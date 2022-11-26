@@ -2,9 +2,7 @@ package de.dafuqs.spectrum.blocks.fusion_shrine;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
-import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
@@ -178,6 +176,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	// in its crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
 		recipe.craft(world, fusionShrineBlockEntity);
+		fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
 		scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
 		
 		SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
@@ -186,23 +185,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	public Map<UpgradeType, Float> getUpgrades() {
 		return this.upgrades;
-	}
-	
-	public static void spawnCraftingResultAndXP(World world, FusionShrineBlockEntity blockEntity, FusionShrineRecipe recipe, int amount) {
-		int resultAmountBeforeMod = amount * recipe.getOutput().getCount();
-		double yieldModifier = recipe.areYieldUpgradesDisabled() ? 1.0 : blockEntity.upgrades.get(UpgradeType.YIELD);
-		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
-		
-		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.pos.up(2), recipe.getOutput(), resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
-		
-		int spawnedXPAmount = 0;
-		if (recipe.getExperience() > 0) {
-			spawnedXPAmount = Support.getIntFromDecimalWithChance(recipe.getExperience() * amount * blockEntity.upgrades.get(UpgradeType.EXPERIENCE), world.random);
-			MultiblockCrafter.spawnExperience(world, blockEntity.pos, spawnedXPAmount);
-		}
-		
-		//only triggered on server side. Therefore, has to be sent to client via S2C packet
-		blockEntity.grantPlayerFusionCraftingAdvancement(recipe, spawnedXPAmount);
 	}
 	
 	public static void scatterContents(World world, BlockPos pos, FusionShrineBlockEntity blockEntity) {
@@ -260,7 +242,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, volume, 0.9F + random.nextFloat() * 0.15F);
 	}
 	
-	private void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe, int experience) {
+	public void grantPlayerFusionCraftingAdvancement(FusionShrineRecipe recipe, int experience) {
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
 			SpectrumAdvancementCriteria.FUSION_SHRINE_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(), experience);

@@ -29,6 +29,7 @@ import net.minecraft.world.World;
 
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Random;
 
 public class BloodOrchidBlock extends FlowerBlock implements RevelationAware {
 	
@@ -46,7 +47,7 @@ public class BloodOrchidBlock extends FlowerBlock implements RevelationAware {
 	}
 	
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		int age = state.get(AGE);
 		if (age < Properties.AGE_5_MAX) {
 			BlockState newState = state.with(AGE, age + 1);

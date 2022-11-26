@@ -12,14 +12,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You first stumbled about this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$().$(br)Creatures that touch it seem to get their life drained out of them. Better not get caught in it yourself.$(br)! Creatures unalived by this cruel process seem to drop items as if they were killed by a player."
+      "text": "You stumbled about this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$(). Pity, really, but look what you have now.$(br)Creatures that touch it seem to get their life drained out of them. Interesting...$(br)Better not get caught in it yourself."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Midnight Chip",
       "item": "spectrum:midnight_chip",
       "advancement": "spectrum:midgame/collect_midnight_chip",
-      "text": "Creatures that died in that feisty liquid drop a small splinter that almost resembles a $(l:general/midnight_aberration)Midnight Aberration$(/l), just way, way smaller. Sharp-Edged and vicious. Almost as if it was that splinter in their heart that finally caused their demise."
+      "text": "Creatures that died in that feisty liquid drop a small splinter that almost resembles a $(l:general/midnight_aberration)Midnight Aberration$(/l), just way, way smaller. Sharp-Edged and vicious.$(br)Creatures unalived by this cruel process also seem to $(thing)drop items as if they were killed by a player$()."
     },
     {
       "type": "spectrum:potion_workshop_crafting",
@@ -27,6 +27,13 @@
       "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
       "advancement": "spectrum:midgame/collect_midnight_chip",
       "text": "Using the exact drop that you got by killing creatures with that fluid you can create even more of it. Quite morbid, if you think about it."
+    },	
+    {
+      "type": "patchouli:spotlight",
+      "title": "Black Materia",
+      "item": "spectrum:black_materia",
+      "advancement": "spectrum:hidden/break_black_materia",
+      "text": "A seemingly useless material that forms around pools of Midnight Solution."
     },
     {
       "type": "spectrum:midnight_solution_converting",
@@ -38,13 +45,6 @@
       "type": "patchouli:text",
       "title": "Disenchanting",
       "text": "Even more, if you throw enchanted items into it, they will be stripped of their special abilities. All that's left is the ordinary item and a bunch of experience."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Black Materia",
-      "item": "spectrum:black_materia",
-      "advancement": "spectrum:hidden/break_black_materia",
-      "text": "A seemingly useless material that forms around pools of Midnight Solution."
     }
   ]
 }

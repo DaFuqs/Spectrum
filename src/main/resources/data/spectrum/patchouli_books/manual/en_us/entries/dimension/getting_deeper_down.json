@@ -1,19 +1,21 @@
 {
   "name": "Getting Deeper Down",
-  "icon": "spectrum:bottle_of_ruin",
-  "sortnum": 0,
+  "icon": "minecraft:bedrock",
+  "sortnum": 1,
   "secret": true,
-  "advancement": "spectrum:lategame/__spectrum_lategame",
+  "advancement": "spectrum:midgame/opened_portal",
   "category": "spectrum:dimension_category",
   "pages": [
     {
-      "type": "patchouli:text",
-      "text": "TODO"
+      "type": "patchouli:spotlight",
+      "item": "minecraft:bedrock",
+      "text": "A place which has not seen a single ray of sunlight for eons. A place where the sun never shines, shrouded in darkness.$(br2)What is waiting for you to discover down there?"
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:bottle_of_ruin",
-      "text": "TODO"
+      "type": "patchouli:text",
+      "advancement": "spectrum:midgame/enter_dimension",
+      "title": "Horrows Below?",
+      "text": "There is something lurking for you in the dark, you are sure. Or is it just your nerves?"
     }
   ]
 }

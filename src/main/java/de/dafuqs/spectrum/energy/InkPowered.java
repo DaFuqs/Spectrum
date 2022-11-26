@@ -134,10 +134,10 @@ public interface InkPowered {
 			}
 		}
 		
-		// trinket slot
+		// trinket slots
 		Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(player);
 		if (optionalTrinketComponent.isPresent()) {
-			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorage);
+			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorageItem);
 			for (Pair<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
 				amount -= tryDrainEnergy(trinketEnergyStorageStack.getRight(), color, amount, true);
 				if (amount <= 0) {

@@ -25,7 +25,9 @@
     }
   },
   "result": {
-    "item": "spectrum:lagoon_rod"
+    "item": "spectrum:lagoon_rod",
+    "nbt": "{Enchantments: [{id: \"minecraft:lure\", lvl: 3s}]}",
+    "count": 1
   },
   "required_advancement": "spectrum:progression/unlock_lagoon_rod"
 }

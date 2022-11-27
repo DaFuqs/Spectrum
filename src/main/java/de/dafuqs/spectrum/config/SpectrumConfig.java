@@ -16,8 +16,7 @@ public class SpectrumConfig implements ConfigData {
 	@Comment("""
 			The vanilla anvil caps enchantment levels at the max level for the enchantment
 			So enchanted books that exceed the enchantments natural max level get capped
-			If true the bedrock anvil will not cap the enchantments level to it's natural max level
-            """)
+			If true the bedrock anvil will not cap the enchantments level to it's natural max level""")
 	public boolean BedrockAnvilCanExceedMaxVanillaEnchantmentLevel = false;
 	
 	@Comment("""
@@ -82,7 +81,7 @@ public class SpectrumConfig implements ConfigData {
 	public float FadingDecayTickRate = 1.0F;
 	public float FailingDecayTickRate = 1.0F;
 	public float RuinDecayTickRate = 1.0F;
-	public float TerrorDecayTickRate = 1.0F;
+	public float ForfeitureTickRate = 1.0F;
 	
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
 	public float BlockSoundVolume = 0.75F;

@@ -73,7 +73,7 @@ public class RuinBlock extends DecayBlock {
 	
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		if (state.get(TerrorBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
+		if (state.get(ForfeitureBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
 			float xOffset = random.nextFloat();
 			float zOffset = random.nextFloat();
 			world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);

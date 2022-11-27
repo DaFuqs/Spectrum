@@ -23,7 +23,7 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> FAILING_CONVERSIONS = getReference("failing_conversions");
 	public static TagKey<Block> FAILING_SPECIAL_CONVERSIONS = getReference("failing_special_conversions");
 	public static TagKey<Block> RUIN_SAFE = getReference("ruin_safe");
-	public static TagKey<Block> TERROR_SAFE = getReference("terror_safe");
+	public static TagKey<Block> FORFEITURE_SAFE = getReference("forfeiture_safe");
 	public static TagKey<Block> RUIN_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
 	public static TagKey<Block> BLACK_MATERIA_CONVERSIONS = getReference("black_materia_conversions");
 

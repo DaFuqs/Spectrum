@@ -19,7 +19,7 @@ import de.dafuqs.spectrum.blocks.crystallarieum.CrystallarieumGrowableBlock;
 import de.dafuqs.spectrum.blocks.decay.DecayAwayBlock;
 import de.dafuqs.spectrum.blocks.decay.FadingBlock;
 import de.dafuqs.spectrum.blocks.decay.FailingBlock;
-import de.dafuqs.spectrum.blocks.decay.TerrorBlock;
+import de.dafuqs.spectrum.blocks.decay.ForfeitureBlock;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlock;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
@@ -300,8 +300,8 @@ public class SpectrumBlocks {
 	// DECAY
 	public static final Block FADING = new FadingBlock(FabricBlockSettings.of(SpectrumBlockMaterials.DECAY, MapColor.BLACK).ticksRandomly().strength(0.5F, 0.5F).allowsSpawning((state, world, pos, type) -> false), SpectrumBlockTags.FADING_CONVERSIONS, null, 1, 1F);
 	public static final Block FAILING = new FailingBlock(FabricBlockSettings.copyOf(FADING).strength(20.0F, 50.0F), null, SpectrumBlockTags.FAILING_SAFE, 2, 2.5F);
-	public static final Block RUIN = new TerrorBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.RUIN_SAFE, 3, 5F);
-	public static final Block TERROR = new TerrorBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.TERROR_SAFE, 4, 7.5F);
+	public static final Block RUIN = new ForfeitureBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.RUIN_SAFE, 3, 5F);
+	public static final Block FORFEITURE = new ForfeitureBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.FORFEITURE_SAFE, 4, 7.5F);
 	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
 
 	// FLUIDS
@@ -1025,7 +1025,7 @@ public class SpectrumBlocks {
 		registerBlock("fading", FADING);
 		registerBlock("failing", FAILING);
 		registerBlock("ruin", RUIN);
-		registerBlock("terror", TERROR);
+		registerBlock("forfeiture", FORFEITURE);
 		registerBlock("decay_away", DECAY_AWAY);
 		
 		// Fluids + Products

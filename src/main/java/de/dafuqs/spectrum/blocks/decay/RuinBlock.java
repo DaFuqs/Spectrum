@@ -1,8 +1,11 @@
 package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlock;
+import de.dafuqs.spectrum.deeper_down.DDDimension;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -73,10 +76,23 @@ public class RuinBlock extends DecayBlock {
 	
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		if (state.get(ForfeitureBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
+		if (state.get(RuinBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
 			float xOffset = random.nextFloat();
 			float zOffset = random.nextFloat();
 			world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
+		}
+	}
+	
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		super.onStateReplaced(state, world, pos, newState, moved);
+		
+		if(state.get(RuinBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
+			if(world.getRegistryKey() == World.OVERWORLD && pos.getY() == world.getBottomY()) {
+				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, false), 3);
+			} else if(world.getRegistryKey() == DDDimension.DEEPER_DOWN_DIMENSION_KEY && pos.getY() == world.getTopY() - 1) { // highest layer cannot be built on
+				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, true), 3);
+			}
 		}
 	}
 	

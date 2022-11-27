@@ -142,7 +142,7 @@ public abstract class ItemEntityMixin {
 					world.playSound(null, position.x, position.y, position.z, soundEvent, SoundCategory.PLAYERS, randomVolume, randomPitch);
 				}
 				
-				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, new BlockPos(position), recipe.getParticleEffectIdentifier(), recipe.getParticleCount());
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetWithoutVelocity((ServerWorld) world, new BlockPos(position), recipe.getParticleEffectIdentifier(), recipe.getParticleCount());
 			}
 		}
 	}

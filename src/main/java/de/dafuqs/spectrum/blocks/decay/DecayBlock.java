@@ -16,7 +16,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -69,11 +68,6 @@ public abstract class DecayBlock extends Block {
 			entity.damage(SpectrumDamageSources.DECAY, damageOnTouching);
 		}
 		super.onSteppedOn(world, pos, state, entity);
-	}
-	
-	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		return super.canPlaceAt(state, world, pos) && pos.getY() > world.getBottomY();
 	}
 	
 	// jump to neighboring blocks

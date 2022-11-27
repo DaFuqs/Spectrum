@@ -57,6 +57,12 @@
       "spectrum:enchanter_working"
     ]
   },
+  "deeper_down_portal_open": {
+    "subtitle": "spectrum.subtitles.deeper_down_portal_open",
+    "sounds": [
+      "spectrum:deeper_down_portal_open"
+    ]
+  },
   "enchanter_ding": {
     "sounds": [
       "spectrum:enchanter_ding"

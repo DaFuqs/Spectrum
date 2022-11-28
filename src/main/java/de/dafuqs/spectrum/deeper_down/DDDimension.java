@@ -39,7 +39,7 @@ public class DDDimension {
 	public static final RegistryKey<Biome> DEEPER_DOWN_BIOME_KEY = RegistryKey.of(Registry.BIOME_KEY, SpectrumCommon.locate("deeper_down_biome"));
 	public static Biome DEEPER_DOWN_BIOME;
 	
-	public static final RuleTest BLACKSLAG_ORE_REPLACEABLES = new TagMatchRuleTest(SpectrumBlockTags.BLACKSLAG_ORE_REPLACEABLES);
+	public static final RuleTest BLACKSLAG_ORE_REPLACEABLE_TEST = new TagMatchRuleTest(SpectrumBlockTags.BLACKSLAG_ORE_REPLACEABLES);
 	
 	public static void register() {
 		Registry.register(BuiltinRegistries.BIOME, DEEPER_DOWN_BIOME_KEY.getValue(), DDBiome.INSTANCE);
@@ -61,77 +61,76 @@ public class DDDimension {
 	public static void registerSpectrumOres() {
 		registerAndAddOreFeature("dd_malachite_ore",
 				new OreFeatureConfig(ImmutableList.of(
+						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_MALACHITE_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, SpectrumBlocks.MALACHITE_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_MALACHITE_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_MALACHITE_ORE.getDefaultState())
-				), 7),
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(64), YOffset.belowTop(256)),
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_MALACHITE_ORE.getDefaultState())
+						), 7),
+				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(32), YOffset.belowTop(256)),
 				CountPlacementModifier.of(40));
 		
 		registerAndAddOreFeature("dd_shimmerstone_ore",
 				new OreFeatureConfig(ImmutableList.of(
+						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_SHIMMERSTONE_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, SpectrumBlocks.SHIMMERSTONE_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_SHIMMERSTONE_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_SHIMMERSTONE_ORE.getDefaultState())
-				), 7),
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_SHIMMERSTONE_ORE.getDefaultState())
+						), 7),
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(16), YOffset.belowTop(128)),
 				CountPlacementModifier.of(24));
 	}
 	
-	
 	public static void registerVanillaOres() {
 		registerAndAddOreFeature("dd_iron_ore",
 				new OreFeatureConfig(ImmutableList.of(
+						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_IRON_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.IRON_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_IRON_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_IRON_ORE.getDefaultState())
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_IRON_ORE.getDefaultState())
 				), 25),
 				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(192), YOffset.aboveBottom(384)),
 				CountPlacementModifier.of(20));
 		
 		registerAndAddOreFeature("dd_iron_ore2",
 				new OreFeatureConfig(ImmutableList.of(
+						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_IRON_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.IRON_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_IRON_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_IRON_ORE.getDefaultState())
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_IRON_ORE.getDefaultState())
 				), 25),
 				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(4), YOffset.belowTop(4)),
 				CountPlacementModifier.of(10));
 		
 		registerAndAddOreFeature("dd_gold_ore",
 				new OreFeatureConfig(ImmutableList.of(
+						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_GOLD_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.GOLD_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_GOLD_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_GOLD_ORE.getDefaultState())
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_GOLD_ORE.getDefaultState())
 				), 15),
 				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(128), YOffset.aboveBottom(256)),
 				CountPlacementModifier.of(20));
 		
 		registerAndAddOreFeature("dd_gold_ore2",
 				new OreFeatureConfig(ImmutableList.of(
+						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_GOLD_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.GOLD_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_GOLD_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_GOLD_ORE.getDefaultState())
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_GOLD_ORE.getDefaultState())
 				), 15),
 				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(4), YOffset.belowTop(4)),
 				CountPlacementModifier.of(8));
 		
 		registerAndAddOreFeature("dd_diamond_ore",
 				new OreFeatureConfig(ImmutableList.of(
+						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_DIAMOND_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.DIAMOND_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_DIAMOND_ORE.getDefaultState())
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_DIAMOND_ORE.getDefaultState())
 				), 9),
 				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(0), YOffset.aboveBottom(256)),
 				CountPlacementModifier.of(3));
 		
 		registerAndAddOreFeature("dd_emerald_ore",
 				new OreFeatureConfig(ImmutableList.of(
-						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLES, SpectrumBlocks.BLACKSLAG_EMERALD_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.EMERALD_ORE.getDefaultState()),
-						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState())
+						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState()),
+						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_EMERALD_ORE.getDefaultState()),
+						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, Blocks.EMERALD_ORE.getDefaultState())
 				), 18),
-				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(0), YOffset.aboveBottom(128)),
+				HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(4), YOffset.aboveBottom(128)),
 				RarityFilterPlacementModifier.of(3));
 	}
 	

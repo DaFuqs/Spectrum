@@ -5,9 +5,9 @@
   "max_distance_from_center": 106,
   "biomes": "#spectrum:has_structure/city_below",
   "step": "underground_structures",
-  "terrain_adaptation": "beard_box",
+  "terrain_adaptation": "beard_thin",
   "start_height": {
-      "absolute": -336
+      "absolute": -334
   },
   "use_expansion_hack": false,
   "spawn_overrides": {}

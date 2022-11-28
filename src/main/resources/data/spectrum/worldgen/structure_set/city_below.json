@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "spectrum:city_below",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 10,
+    "separation": 6,
+    "salt": 7831267
+  }
+}

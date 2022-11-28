@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_trapdoor_open",
+  "textures": {
+    "all": "spectrum:block/slate_noxwood_trapdoor"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "spectrum:block/slate_noxcap_gills",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "spectrum:block/slate_noxcap_gills"
+    },
+    "axis=z": {
+      "model": "spectrum:block/slate_noxcap_gills",
+      "x": 90
+    }
+  }
+}

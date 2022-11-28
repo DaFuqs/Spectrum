@@ -13,7 +13,7 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "spectrum:terror",
+          "block": "spectrum:forfeiture",
           "properties": {
             "decay_state": "bedrock"
           }

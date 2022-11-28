@@ -42,7 +42,7 @@ public class SpectrumRenderLayers {
 		}
 		
 		public static RenderLayer get() {
-			RenderLayer.MultiPhaseParameters multiPhaseParameters = RenderLayer.MultiPhaseParameters.builder().shader(END_PORTAL_SHADER).texture(Textures.create()
+			RenderLayer.MultiPhaseParameters multiPhaseParameters = RenderLayer.MultiPhaseParameters.builder().shader(RenderPhase.END_GATEWAY_SHADER).texture(Textures.create()
 					.add(OVERLAY_TEXTURE, false, false)
 					.add(PORTAL_TEXTURE, false, false)
 					.build()).build(false);

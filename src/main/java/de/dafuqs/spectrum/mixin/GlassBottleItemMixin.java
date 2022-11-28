@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.decay.ForfeitureBlock;
 import de.dafuqs.spectrum.blocks.decay.RuinBlock;
-import de.dafuqs.spectrum.blocks.decay.TerrorBlock;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.block.BlockState;
@@ -55,14 +55,14 @@ public abstract class GlassBottleItemMixin {
 			}
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_RUIN.getDefaultStack()), world.isClient()));
-		} else if (blockState.isOf(SpectrumBlocks.TERROR) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_terror"))) {
-			if (blockState.get(TerrorBlock.DECAY_STATE) == TerrorBlock.DecayConversion.BEDROCK) {
+		} else if (blockState.isOf(SpectrumBlocks.FORFEITURE) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_forfeiture"))) {
+			if (blockState.get(ForfeitureBlock.DECAY_STATE) == ForfeitureBlock.DecayConversion.BEDROCK) {
 				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
 			} else {
 				world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			}
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_TERROR.getDefaultStack()), world.isClient()));
+			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FORFEITURE.getDefaultStack()), world.isClient()));
 		}
 	}
 	

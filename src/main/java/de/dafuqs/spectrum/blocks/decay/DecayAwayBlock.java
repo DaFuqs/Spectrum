@@ -64,7 +64,7 @@ public class DecayAwayBlock extends Block {
 	public BlockState getTargetStateForCurable(BlockState blockState) {
 		if (blockState.getBlock() instanceof DecayBlock) {
 			if (blockState.isOf(SpectrumBlocks.RUIN)) {
-				if (blockState.get(TerrorBlock.DECAY_STATE) == TerrorBlock.DecayConversion.BEDROCK) {
+				if (blockState.get(ForfeitureBlock.DECAY_STATE) == ForfeitureBlock.DecayConversion.BEDROCK) {
 					return this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.BEDROCK);
 				}
 			} else if (blockState.isOf(SpectrumBlocks.FAILING)) {

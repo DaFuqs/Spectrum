@@ -49,7 +49,7 @@ public class SpectrumS2CPacketSender {
 	 * @param position                 the pos of the particles
 	 * @param particleEffectIdentifier The particle effect identifier to play
 	 */
-	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, BlockPos position, Identifier particleEffectIdentifier, int amount) {
+	public static void playParticleWithRandomOffsetWithoutVelocity(ServerWorld world, BlockPos position, Identifier particleEffectIdentifier, int amount) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeBlockPos(position);
 		buf.writeIdentifier(particleEffectIdentifier);
@@ -67,8 +67,8 @@ public class SpectrumS2CPacketSender {
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, BlockPos position, ParticleType particleEffect, int amount) {
-		playParticleWithRandomOffsetAndVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect), amount);
+	public static void playParticleWithRandomOffsetWithoutVelocity(ServerWorld world, BlockPos position, ParticleType particleEffect, int amount) {
+		playParticleWithRandomOffsetWithoutVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect), amount);
 	}
 	
 	/**
@@ -483,4 +483,14 @@ public class SpectrumS2CPacketSender {
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, buf);
 	}
 	
+	public static void sendPortalCreatedEffects(ServerWorld serverWorld, BlockPos pos, boolean hasNeighboringPortals) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(pos);
+		buf.writeBoolean(hasNeighboringPortals);
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, pos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PORTAL_CREATED_EFFECTS, buf);
+		}
+	}
 }

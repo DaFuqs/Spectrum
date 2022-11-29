@@ -1,15 +1,15 @@
 {
   "variants": {
     "axis=x": {
-      "model": "spectrum:block/slate_noxwood_amphora",
+      "model": "spectrum:block/slate_noxwood_amphora_closed",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "spectrum:block/slate_noxwood_amphora"
+      "model": "spectrum:block/slate_noxwood_amphora_closed"
     },
     "axis=z": {
-      "model": "spectrum:block/slate_noxwood_amphora",
+      "model": "spectrum:block/slate_noxwood_amphora_closed",
       "x": 90
     }
   }

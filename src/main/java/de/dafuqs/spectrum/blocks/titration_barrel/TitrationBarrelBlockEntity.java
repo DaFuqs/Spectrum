@@ -89,10 +89,10 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		Fluid bucketFluid = ((BucketItemAccessor) bucketStack.getItem()).fabric_getFluid();
 		if(this.storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
 			if (!player.isCreative()) {
+				Item remainderItem = bucketStack.getItem().getRecipeRemainder();
 				bucketStack.decrement(1);
 				player.setStackInHand(hand, bucketStack);
 				
-				Item remainderItem = bucketStack.getItem().getRecipeRemainder();
 				if(remainderItem != null) {
 					player.giveItemStack(remainderItem.getDefaultStack());
 				}

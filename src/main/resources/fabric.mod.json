@@ -22,6 +22,9 @@
     "client": [
       "de.dafuqs.spectrum.SpectrumClient"
     ],
+    "preLaunch": [
+      "com.llamalad7.mixinextras.MixinExtrasBootstrap::init"
+    ],
     "modmenu": [
       "de.dafuqs.spectrum.config.ModMenuConfig"
     ],

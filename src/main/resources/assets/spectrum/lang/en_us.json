@@ -2015,6 +2015,8 @@
 
   "item.spectrum.star_fragment": "Star Fragment",
   "item.spectrum.stardust": "Stardust",
+  "item.spectrum.frigid_stardust": "Frigid Stardust",
+  "item.spectrum.frigid_stardust.tooltip": "$o$9gentle power",
   "item.spectrum.hibernating_jade_vine_seeds": "Hibernating Jade Vine Bulb",
   "item.spectrum.hibernating_jade_vine_seeds.tooltip": "Kind of... deadish?",
   "item.spectrum.germinated_jade_vine_seeds": "Germinated Jade Vine Bulb",

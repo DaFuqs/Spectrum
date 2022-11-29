@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:base/base_noxwood_lamp_hanging_diagonal_alt",
+  "textures": {
+    "all": "spectrum:block/slate_noxwood_lamp"
+  }
+}

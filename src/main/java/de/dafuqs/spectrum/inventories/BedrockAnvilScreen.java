@@ -81,6 +81,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		
 		this.nameField = new TextFieldWidget(this.textRenderer, i + 62, j + 24, 98, 12, new TranslatableText("container.spectrum.bedrock_anvil"));
 		this.nameField.setFocusUnlocked(false);
+		this.nameField.setEditable(false);
 		this.nameField.setEditableColor(-1);
 		this.nameField.setUneditableColor(-1);
 		this.nameField.setDrawsBackground(false);
@@ -88,11 +89,10 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		this.nameField.setText("");
 		this.nameField.setChangedListener(this::onRenamed);
 		this.addSelectableChild(this.nameField);
-		this.setInitialFocus(this.nameField);
-		this.nameField.setEditable(false);
 		
 		this.loreField = new TextFieldWidget(this.textRenderer, i + 45, j + 76, 116, 12, new TranslatableText("container.spectrum.bedrock_anvil.lore"));
 		this.loreField.setFocusUnlocked(false);
+		this.loreField.setEditable(false);
 		this.loreField.setEditableColor(-1);
 		this.loreField.setUneditableColor(-1);
 		this.loreField.setDrawsBackground(false);
@@ -100,7 +100,6 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		this.loreField.setText("");
 		this.loreField.setChangedListener(this::onLoreChanged);
 		this.addSelectableChild(this.loreField);
-		this.loreField.setEditable(false);
 	}
 	
 	@Override
@@ -217,6 +216,10 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 			if (stack.isEmpty()) {
 				this.nameField.setEditable(false);
 				this.loreField.setEditable(false);
+				this.nameField.setFocusUnlocked(false);
+				this.loreField.setFocusUnlocked(false);
+				this.nameField.setTextFieldFocused(false);
+				this.loreField.setTextFieldFocused(false);
 				this.nameField.setChangedListener(null);
 				this.loreField.setChangedListener(null);
 				this.nameField.setText("");
@@ -226,6 +229,9 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 			} else {
 				this.nameField.setEditable(true);
 				this.loreField.setEditable(true);
+				this.nameField.setFocusUnlocked(true);
+				this.loreField.setFocusUnlocked(true);
+				this.nameField.setTextFieldFocused(true);
 				this.nameField.setText(stack.getName().getString());
 				
 				String loreString = LoreHelper.getStringFromLoreTextArray(LoreHelper.getLoreList(stack));

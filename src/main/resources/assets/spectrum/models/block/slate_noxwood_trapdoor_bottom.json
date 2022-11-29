@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/template_trapdoor_bottom",
+  "parent": "minecraft:block/template_orientable_trapdoor_bottom",
   "textures": {
-    "all": "spectrum:block/slate_noxwood_trapdoor"
+    "texture": "spectrum:block/slate_noxwood_trapdoor"
   }
 }

@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "spectrum:item/slate_noxwood_trapdoor"
-  }
+  "parent": "spectrum:block/slate_noxwood_trapdoor_bottom"
 }

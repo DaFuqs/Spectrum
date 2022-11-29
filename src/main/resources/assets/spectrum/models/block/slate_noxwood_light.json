@@ -1,8 +1,8 @@
 {
   "parent": "spectrum:base/multilayer_light",
   "textures": {
-    "top": "spectrum:block/polished_basalt",
-    "side": "spectrum:block/amethyst_basalt_lamp",
-    "inside": "spectrum:block/slate_noxwood_gills"
+    "top": "spectrum:block/slate_noxwood_light_top",
+    "side": "spectrum:block/slate_noxwood_light",
+    "inside": "spectrum:block/slate_noxcap_gills"
   }
 }

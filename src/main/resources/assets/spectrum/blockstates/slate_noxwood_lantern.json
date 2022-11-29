@@ -1,7 +1,7 @@
 {
   "variants": {
     "lit=false": {
-      "model": "spectrum:block/slate_noxwood_lantern"
+      "model": "spectrum:block/slate_noxwood_lantern_off"
     },
     "lit=true": {
       "model": "spectrum:block/slate_noxwood_lantern_on"

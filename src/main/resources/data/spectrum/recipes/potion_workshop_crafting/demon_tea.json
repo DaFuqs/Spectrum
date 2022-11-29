@@ -1,5 +1,6 @@
 {
   "type": "spectrum:potion_workshop_crafting",
+  "group": "demon_tea",
   "base_ingredient": {
     "item": "minecraft:glass_bottle"
   },

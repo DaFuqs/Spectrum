@@ -62,7 +62,7 @@ public class PotionWorkshopReactingRecipeSerializer implements GatedRecipeSerial
 		packetByteBuf.writeIdentifier(Registry.ITEM.getId(recipe.item));
 		
 		packetByteBuf.writeInt(recipe.modifiers.size());
-		for(PotionMod mod : recipe.modifiers) {
+		for (PotionMod mod : recipe.modifiers) {
 			mod.write(packetByteBuf);
 		}
 	}
@@ -77,7 +77,7 @@ public class PotionWorkshopReactingRecipeSerializer implements GatedRecipeSerial
 		
 		List<PotionMod> mods = new ArrayList<>();
 		int modCount = packetByteBuf.readInt();
-		for(int i = 0; i < modCount; i++) {
+		for (int i = 0; i < modCount; i++) {
 			mods.add(PotionMod.fromPacket(packetByteBuf));
 		}
 		

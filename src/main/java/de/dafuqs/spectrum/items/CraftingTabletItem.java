@@ -109,7 +109,7 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 			ItemStack craftingResult = recipe.getOutput().copy();
 			Support.givePlayer(serverPlayerEntity, craftingResult);
 			
-			for(ItemStack remainder : remainders) {
+			for (ItemStack remainder : remainders) {
 				Support.givePlayer(serverPlayerEntity, remainder);
 			}
 		}

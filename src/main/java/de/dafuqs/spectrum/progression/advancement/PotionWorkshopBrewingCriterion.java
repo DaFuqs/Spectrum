@@ -60,8 +60,8 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 			}
 			
 			List<StatusEffect> uniqueEffects = new ArrayList<>();
-			for(StatusEffectInstance instance : effects) {
-				if(!uniqueEffects.contains(instance.getEffectType())) {
+			for (StatusEffectInstance instance : effects) {
+				if (!uniqueEffects.contains(instance.getEffectType())) {
 					uniqueEffects.add(instance.getEffectType());
 				}
 			}

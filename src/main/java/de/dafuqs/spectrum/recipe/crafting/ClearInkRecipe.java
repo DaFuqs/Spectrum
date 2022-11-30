@@ -23,7 +23,7 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			ItemStack itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty()) {
-				if(itemStack.getItem() instanceof InkStorageItem) {
+				if (itemStack.getItem() instanceof InkStorageItem) {
 					inkStorageItemFound = true;
 				} else {
 					return false;
@@ -43,7 +43,7 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 				return itemStack;
 			}
 		}
-
+		
 		return ItemStack.EMPTY;
 	}
 	

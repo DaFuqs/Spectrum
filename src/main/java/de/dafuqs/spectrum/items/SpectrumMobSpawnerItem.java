@@ -62,7 +62,7 @@ public class SpectrumMobSpawnerItem extends Item {
 					BlockItem.writeNbtToBlockEntity(world, playerEntity, blockPos, itemStack);
 					blockState2.getBlock().onPlaced(world, blockPos, blockState2, playerEntity, itemStack);
 					if (playerEntity instanceof ServerPlayerEntity) {
-						Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity)playerEntity, blockPos, itemStack);
+						Criteria.PLACED_BLOCK.trigger((ServerPlayerEntity) playerEntity, blockPos, itemStack);
 					}
 				}
 				

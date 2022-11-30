@@ -21,20 +21,20 @@ public class TooltipHelper {
 	
 	public static void addFoodComponentEffectTooltip(ItemStack stack, List<Text> tooltip) {
 		FoodComponent foodComponent = stack.getItem().getFoodComponent();
-		if(foodComponent != null) {
+		if (foodComponent != null) {
 			buildFoodEffectTooltip(tooltip, foodComponent.getStatusEffects());
 		}
 	}
 	
 	public static void buildFoodEffectTooltip(List<Text> tooltip, List<Pair<StatusEffectInstance, Float>> effectsWithChance) {
-		if(effectsWithChance.isEmpty()) {
+		if (effectsWithChance.isEmpty()) {
 			return;
 		}
 		
 		List<Pair<EntityAttribute, EntityAttributeModifier>> modifiersList = Lists.newArrayList();
 		MutableText translatableText;
 		StatusEffect statusEffect;
-		for(Iterator<Pair<StatusEffectInstance, Float>> var5 = effectsWithChance.iterator(); var5.hasNext(); tooltip.add(translatableText.formatted(statusEffect.getCategory().getFormatting()))) {
+		for (Iterator<Pair<StatusEffectInstance, Float>> var5 = effectsWithChance.iterator(); var5.hasNext(); tooltip.add(translatableText.formatted(statusEffect.getCategory().getFormatting()))) {
 			Pair<StatusEffectInstance, Float> entry = var5.next();
 			StatusEffectInstance statusEffectInstance = entry.getFirst();
 			Float chance = entry.getSecond();
@@ -56,7 +56,7 @@ public class TooltipHelper {
 			if (statusEffectInstance.getDuration() > 20) {
 				translatableText = Text.translatable("potion.withDuration", translatableText, StringHelper.formatTicks(statusEffectInstance.getDuration()));
 			}
-			if(chance < 1.0F) {
+			if (chance < 1.0F) {
 				translatableText = Text.translatable("spectrum.food.withChance", translatableText, Math.round(chance * 100));
 			}
 		}

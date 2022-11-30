@@ -98,8 +98,8 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		super.inventoryTick(stack, world, entity, slot, selected);
 		
-		if(world.isClient) {
-			if(ActivatableItem.isActivated(stack)) {
+		if (world.isClient) {
+			if (ActivatableItem.isActivated(stack)) {
 				Vec3d pos = entity.getPos();
 				world.addParticle(SpectrumParticleTypes.RED_CRAFTING,
 						pos.getX() + world.random.nextDouble(), pos.getY() + 1.05D, pos.getZ() + world.random.nextDouble(),
@@ -120,7 +120,7 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 		super.appendTooltip(stack, world, tooltip, context);
 		tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip2").formatted(Formatting.GRAY));
-		if(ActivatableItem.isActivated(stack)) {
+		if (ActivatableItem.isActivated(stack)) {
 			tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip.activated").formatted(Formatting.GRAY));
 		} else {
 			tooltip.add(Text.translatable("item.spectrum.dreamflayer.tooltip.deactivated").formatted(Formatting.GRAY));

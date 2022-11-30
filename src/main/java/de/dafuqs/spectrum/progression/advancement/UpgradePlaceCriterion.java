@@ -74,11 +74,11 @@ public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriteri
 		
 		public boolean matches(ServerWorld world, BlockPos pos, int upgradeCount, Map<Upgradeable.UpgradeType, Float> upgradeModifiers) {
 			return this.blockPredicate.test(world, pos)
-				&& this.countRange.test(upgradeCount)
-				&& this.speedRange.test(upgradeModifiers.get(Upgradeable.UpgradeType.SPEED))
-				&& this.experienceRange.test(upgradeModifiers.get(Upgradeable.UpgradeType.EXPERIENCE))
-				&& this.efficiencyRange.test(upgradeModifiers.get(Upgradeable.UpgradeType.EFFICIENCY))
-				&& this.yieldRange.test(upgradeModifiers.get(Upgradeable.UpgradeType.YIELD));
+					&& this.countRange.test(upgradeCount)
+					&& this.speedRange.test(upgradeModifiers.get(Upgradeable.UpgradeType.SPEED))
+					&& this.experienceRange.test(upgradeModifiers.get(Upgradeable.UpgradeType.EXPERIENCE))
+					&& this.efficiencyRange.test(upgradeModifiers.get(Upgradeable.UpgradeType.EFFICIENCY))
+					&& this.yieldRange.test(upgradeModifiers.get(Upgradeable.UpgradeType.YIELD));
 		}
 	}
 	

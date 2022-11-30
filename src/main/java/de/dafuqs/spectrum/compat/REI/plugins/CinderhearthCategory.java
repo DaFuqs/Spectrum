@@ -45,7 +45,7 @@ public class CinderhearthCategory implements DisplayCategory<CinderhearthDisplay
 		
 		List<Widget> widgets = Lists.newArrayList();
 		widgets.add(Widgets.createRecipeBase(bounds));
-
+		
 		if (!display.isUnlocked()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 33), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x, startPoint.y + 43), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
@@ -65,7 +65,7 @@ public class CinderhearthCategory implements DisplayCategory<CinderhearthDisplay
 				Point point = new Point(startPoint.x + 50 + i * 28, startPoint.y + 5);
 				widgets.add(Widgets.createResultSlotBackground(point));
 				widgets.add(Widgets.createSlot(point).disableBackground().markOutput().entries(EntryIngredients.of(outputStack)));
-				if(chance < 1.0) {
+				if (chance < 1.0) {
 					widgets.add(Widgets.createLabel(new Point(point.x - 2, point.y + 23), Text.literal((int) (chance * 100) + " %")).leftAligned().color(0x3f3f3f).noShadow());
 				}
 			}

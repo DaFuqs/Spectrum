@@ -83,7 +83,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 					blockEntity.updateInClientWorld();
 					blockEntity.setInkDirty();
 					blockEntity.markDirty();
-				} else if(shouldPause) {
+				} else if (shouldPause) {
 					blockEntity.paused = true;
 				}
 			}
@@ -199,7 +199,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	@Override
 	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
 		buf.writeBlockPos(pos);
-		if(this.selectedColor == null) {
+		if (this.selectedColor == null) {
 			buf.writeBoolean(false);
 		} else {
 			buf.writeBoolean(true);
@@ -216,7 +216,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 				inventory.get(INPUT_SLOT_ID).decrement(1);
 				this.inkStorage.addEnergy(color, amount);
 				
-				if(SpectrumCommon.CONFIG.BlockSoundVolume > 0) {
+				if (SpectrumCommon.CONFIG.BlockSoundVolume > 0) {
 					world.playSound(null, pos, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, SpectrumCommon.CONFIG.BlockSoundVolume / 2, 1.0F);
 				}
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world,

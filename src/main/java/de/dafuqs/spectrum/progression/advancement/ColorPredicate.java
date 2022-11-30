@@ -12,7 +12,7 @@ import java.util.Locale;
 public class ColorPredicate {
 	
 	public static final ColorPredicate ANY;
-
+	
 	static {
 		ANY = new ColorPredicate(null);
 	}

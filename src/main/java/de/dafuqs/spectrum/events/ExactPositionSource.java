@@ -11,44 +11,44 @@ import net.minecraft.world.event.PositionSourceType;
 import java.util.Optional;
 
 public class ExactPositionSource implements PositionSource {
-    
-    public static final Codec<ExactPositionSource> CODEC = RecordCodecBuilder.create((instance) -> {
-        return instance.group(Vec3d.CODEC.fieldOf("pos").forGetter((positionSource) -> {
-            return positionSource.pos;
-        })).apply(instance, ExactPositionSource::new);
-    });
-    
-    final Vec3d pos;
-
-    public ExactPositionSource(Vec3d pos) {
-        this.pos = pos;
-    }
-
-    public Optional<Vec3d> getPos(World world) {
-        return Optional.of(this.pos);
-    }
-
-    public PositionSourceType<?> getType() {
-        return SpectrumPositionSources.EXACT;
-    }
-
-    public static class Type implements PositionSourceType<ExactPositionSource> {
-        public Type() {
-        }
-
-        public ExactPositionSource readFromBuf(PacketByteBuf packetByteBuf) {
-            return new ExactPositionSource(new Vec3d(packetByteBuf.readDouble(), packetByteBuf.readDouble(), packetByteBuf.readDouble()));
-        }
-
-        public void writeToBuf(PacketByteBuf packetByteBuf, ExactPositionSource blockPositionSource) {
-            packetByteBuf.writeDouble(blockPositionSource.pos.x);
-            packetByteBuf.writeDouble(blockPositionSource.pos.y);
-            packetByteBuf.writeDouble(blockPositionSource.pos.z);
-        }
-
-        public Codec<ExactPositionSource> getCodec() {
-            return ExactPositionSource.CODEC;
-        }
-    }
-    
+	
+	public static final Codec<ExactPositionSource> CODEC = RecordCodecBuilder.create((instance) -> {
+		return instance.group(Vec3d.CODEC.fieldOf("pos").forGetter((positionSource) -> {
+			return positionSource.pos;
+		})).apply(instance, ExactPositionSource::new);
+	});
+	
+	final Vec3d pos;
+	
+	public ExactPositionSource(Vec3d pos) {
+		this.pos = pos;
+	}
+	
+	public Optional<Vec3d> getPos(World world) {
+		return Optional.of(this.pos);
+	}
+	
+	public PositionSourceType<?> getType() {
+		return SpectrumPositionSources.EXACT;
+	}
+	
+	public static class Type implements PositionSourceType<ExactPositionSource> {
+		public Type() {
+		}
+		
+		public ExactPositionSource readFromBuf(PacketByteBuf packetByteBuf) {
+			return new ExactPositionSource(new Vec3d(packetByteBuf.readDouble(), packetByteBuf.readDouble(), packetByteBuf.readDouble()));
+		}
+		
+		public void writeToBuf(PacketByteBuf packetByteBuf, ExactPositionSource blockPositionSource) {
+			packetByteBuf.writeDouble(blockPositionSource.pos.x);
+			packetByteBuf.writeDouble(blockPositionSource.pos.y);
+			packetByteBuf.writeDouble(blockPositionSource.pos.z);
+		}
+		
+		public Codec<ExactPositionSource> getCodec() {
+			return ExactPositionSource.CODEC;
+		}
+	}
+	
 }

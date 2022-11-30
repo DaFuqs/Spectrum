@@ -31,8 +31,8 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 	
 	public interface RecipeFactory<PedestalCraftingRecipe> {
 		PedestalCraftingRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, PedestalRecipeTier tier, int width, int height,
-									  DefaultedList<IngredientStack> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemInputs,
-									  ItemStack output, float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades);
+		                              DefaultedList<IngredientStack> craftingInputs, HashMap<BuiltinGemstoneColor, Integer> gemInputs,
+		                              ItemStack output, float experience, int craftingTime, boolean skipRecipeRemainders, boolean noBenefitsFromYieldUpgrades);
 	}
 	
 	@Override
@@ -59,15 +59,25 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 		
 		HashMap<BuiltinGemstoneColor, Integer> gemInputs = new HashMap<>();
 		int amount = JsonHelper.getInt(jsonObject, "cyan", 0);
-		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.CYAN, amount); }
+		if (amount > 0) {
+			gemInputs.put(BuiltinGemstoneColor.CYAN, amount);
+		}
 		amount = JsonHelper.getInt(jsonObject, "magenta", 0);
-		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.MAGENTA, amount); }
+		if (amount > 0) {
+			gemInputs.put(BuiltinGemstoneColor.MAGENTA, amount);
+		}
 		amount = JsonHelper.getInt(jsonObject, "yellow", 0);
-		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.YELLOW, amount); }
+		if (amount > 0) {
+			gemInputs.put(BuiltinGemstoneColor.YELLOW, amount);
+		}
 		amount = JsonHelper.getInt(jsonObject, "black", 0);
-		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.BLACK, amount); }
+		if (amount > 0) {
+			gemInputs.put(BuiltinGemstoneColor.BLACK, amount);
+		}
 		amount = JsonHelper.getInt(jsonObject, "white", 0);
-		if(amount > 0) { gemInputs.put(BuiltinGemstoneColor.WHITE, amount); }
+		if (amount > 0) {
+			gemInputs.put(BuiltinGemstoneColor.WHITE, amount);
+		}
 		
 		boolean skipRecipeRemainders = false;
 		if (JsonHelper.hasBoolean(jsonObject, "skip_recipe_remainders")) {
@@ -76,49 +86,49 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, tier, width, height, craftingInputs, gemInputs, output, experience, craftingTime, skipRecipeRemainders, noBenefitsFromYieldUpgrades);
 	}
-
+	
 	static DefaultedList<IngredientStack> createIngredientStackPatternMatrix(String[] pattern, Map<String, IngredientStack> symbols, int width, int height) {
 		DefaultedList<IngredientStack> defaultedList = DefaultedList.ofSize(width * height, IngredientStack.EMPTY);
 		Set<String> set = Sets.newHashSet(symbols.keySet());
 		set.remove(" ");
-
-		for(int i = 0; i < pattern.length; ++i) {
-			for(int j = 0; j < pattern[i].length(); ++j) {
+		
+		for (int i = 0; i < pattern.length; ++i) {
+			for (int j = 0; j < pattern[i].length(); ++j) {
 				String string = pattern[i].substring(j, j + 1);
 				var ingredient = symbols.get(string);
 				if (ingredient == null) {
 					throw new JsonSyntaxException("Pattern references symbol '" + string + "' but it's not defined in the key");
 				}
-
+				
 				set.remove(string);
 				defaultedList.set(j + width * i, ingredient);
 			}
 		}
-
+		
 		if (!set.isEmpty()) {
 			throw new JsonSyntaxException("Key defines symbols that aren't used in pattern: " + set);
 		} else {
 			return defaultedList;
 		}
 	}
-
+	
 	static Map<String, IngredientStack> readIngredientStackSymbols(JsonObject json) {
 		Map<String, IngredientStack> map = Maps.newHashMap();
 		Iterator var2 = json.entrySet().iterator();
-
-		while(var2.hasNext()) {
-			Map.Entry<String, JsonElement> entry = (Map.Entry)var2.next();
+		
+		while (var2.hasNext()) {
+			Map.Entry<String, JsonElement> entry = (Map.Entry) var2.next();
 			if (entry.getKey().length() != 1) {
 				throw new JsonSyntaxException("Invalid key entry: '" + entry.getKey() + "' is an invalid symbol (must be 1 character only).");
 			}
-
+			
 			if (" ".equals(entry.getKey())) {
 				throw new JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.");
 			}
-
+			
 			map.put(entry.getKey(), RecipeParser.ingredientStackFromJson((JsonObject) entry.getValue()));
 		}
-
+		
 		map.put(" ", IngredientStack.EMPTY);
 		return map;
 	}

@@ -180,7 +180,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	public ItemStack craft(Inventory inv) {
 		if (inv instanceof PedestalBlockEntity pedestal) {
 			Triplet<Integer, Integer, Boolean> orientation = getRecipeOrientation(inv);
-			if(orientation == null) {
+			if (orientation == null) {
 				return ItemStack.EMPTY;
 			}
 			decrementIngredientStacks(pedestal, orientation);
@@ -196,14 +196,14 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	}
 	
 	protected void decrementIngredientStacks(PedestalBlockEntity pedestal, Triplet<Integer, Integer, Boolean> orientation) {
-		for(int x = 0; x < this.width; x++) {
-			for(int y = 0; y < this.height; y++) {
+		for (int x = 0; x < this.width; x++) {
+			for (int y = 0; y < this.height; y++) {
 				int ingredientStackId = orientation.getC() ? ((this.width - 1) - x) + this.width * y : x + this.width * y;
 				int invStackId = (x + orientation.getA()) + 3 * (y + orientation.getB());
 				
 				IngredientStack ingredientStackAtPos = this.craftingInputs.get(ingredientStackId);
 				ItemStack invStack = pedestal.getStack(invStackId);
-				if(!ingredientStackAtPos.test(invStack)) {
+				if (!ingredientStackAtPos.test(invStack)) {
 					SpectrumCommon.logError("Looks like DaFuqs fucked up Spectrums Pedestal recipe matching. Go open up a report with the recipe that was crafted and an image of the pedestals contents, please! :)");
 				}
 				

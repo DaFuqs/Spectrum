@@ -29,7 +29,7 @@ public class InkConvertingRecipe extends GatedSpectrumRecipe {
 	
 	public InkConvertingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, InkColor color, long amount) {
 		super(id, group, secret, requiredAdvancementIdentifier);
-
+		
 		this.inputIngredient = inputIngredient;
 		this.color = color;
 		this.amount = amount;

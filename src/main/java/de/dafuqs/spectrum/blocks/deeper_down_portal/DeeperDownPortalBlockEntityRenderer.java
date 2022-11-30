@@ -22,7 +22,7 @@ public class DeeperDownPortalBlockEntityRenderer<T extends DeeperDownPortalBlock
 	
 	public void render(T blockEntity, float f, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, int j) {
 		BlockState state = blockEntity.getWorld().getBlockState(blockEntity.getPos());
-		if(state.getBlock() instanceof DeeperDownPortalBlock) {
+		if (state.getBlock() instanceof DeeperDownPortalBlock) {
 			boolean facingUp = state.get(DeeperDownPortalBlock.FACING_UP);
 			float bottomYOffset = facingUp ? 16.0F - this.getYOffset() : this.getYOffset();
 			this.renderSides(facingUp, bottomYOffset, matrixStack.peek().getPositionMatrix(), vertexConsumerProvider.getBuffer(getLayer()));
@@ -49,7 +49,7 @@ public class DeeperDownPortalBlockEntityRenderer<T extends DeeperDownPortalBlock
 	
 	@Environment(EnvType.CLIENT)
 	public boolean shouldDrawSide(boolean facingUp, Direction direction) {
-		if(facingUp) {
+		if (facingUp) {
 			return direction == Direction.DOWN;
 		} else {
 			return direction == Direction.UP;

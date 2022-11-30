@@ -36,13 +36,13 @@ public class TeaItem extends DrinkItem implements ApplyFoodEffectsCallback {
 			tooltip.add(Text.translatable("item.spectrum.restoration_tea.tooltip_milk"));
 		}
 	}
-
+	
 	@Override
 	public void afterConsumption(World world, ItemStack teaStack, LivingEntity entity) {
-		if(entity instanceof PlayerEntity player) {
-			for(int i = 0; i < player.getInventory().size(); i++) {
+		if (entity instanceof PlayerEntity player) {
+			for (int i = 0; i < player.getInventory().size(); i++) {
 				ItemStack sconeStack = player.getInventory().getStack(i);
-				if(sconeStack.isOf(SpectrumItems.SCONE)) {
+				if (sconeStack.isOf(SpectrumItems.SCONE)) {
 					if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 						Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, sconeStack);
 						SpectrumAdvancementCriteria.CONSUMED_TEA_WITH_SCONE.trigger(serverPlayerEntity, sconeStack, teaStack);

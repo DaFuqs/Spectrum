@@ -42,7 +42,7 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 	@Override
 	public void tick() {
 		time++;
-		if(time > AscensionStatusEffect.MUSIC_INTRO_TICKS) {
+		if (time > AscensionStatusEffect.MUSIC_INTRO_TICKS) {
 			this.volume = 0.8F;
 		} else {
 			this.volume = 0.5F + ((float) time / AscensionStatusEffect.MUSIC_INTRO_TICKS) * 0.2F;

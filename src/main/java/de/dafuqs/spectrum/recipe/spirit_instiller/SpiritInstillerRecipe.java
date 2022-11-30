@@ -37,7 +37,7 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 	public static final int CENTER_INGREDIENT = 0;
 	public static final int FIRST_INGREDIENT = 1;
 	public static final int SECOND_INGREDIENT = 2;
-
+	
 	protected final IngredientStack centerIngredient;
 	protected final IngredientStack bowlIngredient1;
 	protected final IngredientStack bowlIngredient2;
@@ -186,17 +186,17 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 	}
 	
 	@Override
-	public  ItemStack createIcon() {
+	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.SPIRIT_INSTILLER);
 	}
 	
 	@Override
-	public  RecipeType<?> getType() {
+	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.SPIRIT_INSTILLING;
 	}
 	
 	@Override
-	public  boolean fits(int width, int height) {
+	public boolean fits(int width, int height) {
 		return width * height >= 3;
 	}
 	

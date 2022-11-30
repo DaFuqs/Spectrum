@@ -52,7 +52,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
-
+		
 		logInfo("Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();
 		
@@ -89,8 +89,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		});
 		
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
-			if(!foodEffectsTooltipsModLoaded && stack.isFood()) {
-				if(Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
+				if (Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
 					TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
 				}
 			}
@@ -98,19 +98,19 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
 			}
 		});
-
+		
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();
-
+		
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
-
+		
 		logInfo("Client startup completed!");
 	}
 	
 	@Override
 	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
-		if(!isJoinPacket) {
+		if (!isJoinPacket) {
 			for (Block block : blocks) {
 				if (Registry.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
 					RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
@@ -122,7 +122,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	
 	@Override
 	public void onClientAdvancementPacket(Set<Identifier> gottenAdvancements, Set<Identifier> removedAdvancements, boolean isJoinPacket) {
-		if(!isJoinPacket) {
+		if (!isJoinPacket) {
 			UnlockToastManager.processAdvancements(gottenAdvancements);
 		}
 	}

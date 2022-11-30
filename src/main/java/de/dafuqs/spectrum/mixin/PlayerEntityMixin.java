@@ -39,7 +39,8 @@ import java.util.ArrayList;
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
-	@Shadow public abstract Iterable<ItemStack> getHandItems();
+	@Shadow
+	public abstract Iterable<ItemStack> getHandItems();
 	
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
@@ -91,7 +92,7 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	@Inject(at = @At("HEAD"), method = "canFoodHeal()Z", cancellable = true)
 	public void canFoodHeal(CallbackInfoReturnable<Boolean> cir) {
 		PlayerEntity player = (PlayerEntity) (Object) this;
-		if(player.hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
+		if (player.hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
 			cir.setReturnValue(false);
 		}
 	}
@@ -100,10 +101,10 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	// experience is tried to get put in there first
 	@ModifyVariable(at = @At("HEAD"), method = "addExperience(I)V", argsOnly = true)
 	public int addExperience(int experience) {
-		for(ItemStack stack : getHandItems()) {
-			if(!((PlayerEntity)(Object) this).isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
+		for (ItemStack stack : getHandItems()) {
+			if (!((PlayerEntity) (Object) this).isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
 				experience = ExperienceStorageItem.addStoredExperience(stack, experience);
-				if(experience == 0) {
+				if (experience == 0) {
 					break;
 				}
 			}
@@ -113,8 +114,8 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
 	@Inject(method = "onKilledOther", at = @At("HEAD"))
 	public void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
-		if(world != null && !world.isClient) {
-			LastKillComponent.rememberKillTick((PlayerEntity)(Object) this, world.getTime());
+		if (world != null && !world.isClient) {
+			LastKillComponent.rememberKillTick((PlayerEntity) (Object) this, world.getTime());
 		}
 	}
 	

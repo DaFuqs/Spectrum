@@ -20,7 +20,7 @@ public interface SpiritVines {
 	
 	VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
 	EnumProperty<YieldType> YIELD = EnumProperty.of("yield", YieldType.class);
-
+	
 	static ActionResult pick(BlockState blockState, World world, BlockPos blockPos) {
 		if (canBeHarvested(blockState)) {
 			Block.dropStack(world, blockPos, new ItemStack(getYieldItem(blockState, false), 1));

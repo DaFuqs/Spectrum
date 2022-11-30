@@ -92,7 +92,7 @@ public class SpectrumC2SPacketReceiver {
 			// pay cost
 			Ingredient payment = Ingredient.fromPacket(buf);
 			
-			for(ItemStack remainder : InventoryHelper.removeFromInventoryWithRemainders(List.of(payment), player.getInventory())) {
+			for (ItemStack remainder : InventoryHelper.removeFromInventoryWithRemainders(List.of(payment), player.getInventory())) {
 				InventoryHelper.smartAddToInventory(remainder, player.getInventory(), null);
 			}
 			
@@ -123,11 +123,11 @@ public class SpectrumC2SPacketReceiver {
 		
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.INK_COLOR_SELECTED, (server, player, handler, buf, responseSender) -> {
 			ScreenHandler screenHandler = player.currentScreenHandler;
-			if(screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
+			if (screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 				boolean isSelection = buf.readBoolean();
 				
 				InkColor color;
-				if(isSelection) {
+				if (isSelection) {
 					String inkColorString = buf.readString();
 					color = InkColor.of(inkColorString);
 				} else {
@@ -137,8 +137,8 @@ public class SpectrumC2SPacketReceiver {
 				// send the newly selected color to all players that have the same gui open
 				// this is minus the player that selected that entry (since they have that info already)
 				inkColorSelectedPacketReceiver.onInkColorSelectedPacket(color);
-				for(ServerPlayerEntity serverPlayer : server.getPlayerManager().getPlayerList()) {
-					if(serverPlayer.currentScreenHandler instanceof InkColorSelectedPacketReceiver receiver && receiver.getBlockEntity() != null && receiver.getBlockEntity() == inkColorSelectedPacketReceiver.getBlockEntity()) {
+				for (ServerPlayerEntity serverPlayer : server.getPlayerManager().getPlayerList()) {
+					if (serverPlayer.currentScreenHandler instanceof InkColorSelectedPacketReceiver receiver && receiver.getBlockEntity() != null && receiver.getBlockEntity() == inkColorSelectedPacketReceiver.getBlockEntity()) {
 						SpectrumS2CPacketSender.sendInkColorSelected(color, serverPlayer);
 					}
 				}

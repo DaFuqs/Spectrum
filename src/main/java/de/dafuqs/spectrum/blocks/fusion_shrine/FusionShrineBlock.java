@@ -149,13 +149,13 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 							player.setStackInHand(hand, handStack);
 							
 							Item remainderItem = bucketItem.getRecipeRemainder();
-							if(remainderItem != null) {
+							if (remainderItem != null) {
 								player.giveItemStack(remainderItem.getDefaultStack());
 							}
 						}
 						
 						fusionShrineBlockEntity.inventoryChanged();
-						if(bucketFluid.getBucketFillSound().isPresent()) {
+						if (bucketFluid.getBucketFillSound().isPresent()) {
 							world.playSound(null, player.getBlockPos(), bucketFluid.getBucketFillSound().get(), SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 						}
 					} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
@@ -168,7 +168,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 						}
 						
 						fusionShrineBlockEntity.inventoryChanged();
-						if(storedFluid.getBucketFillSound().isPresent()) {
+						if (storedFluid.getBucketFillSound().isPresent()) {
 							world.playSound(null, player.getBlockPos(), storedFluid.getBucketFillSound().get(), SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 						}
 					}
@@ -176,11 +176,11 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 					// if the structure is valid the player can put / retrieve blocks into the shrine
 					if (player.isSneaking() || handStack.isEmpty()) {
 						// sneaking or empty hand: remove items
-						if(retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
+						if (retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
 							fusionShrineBlockEntity.setOwner(player);
 						}
 					} else if (verifyStructure(world, pos, (ServerPlayerEntity) player) && !handStack.isEmpty()) {
-						if(inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
+						if (inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
 							fusionShrineBlockEntity.setOwner(player);
 						}
 					}
@@ -213,7 +213,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 			super.onStateReplaced(state, world, pos, newState, moved);
 		}
 	}
-
+	
 	static {
 		VoxelShape neck = Block.createCuboidShape(2, 0, 2, 14, 12, 14);
 		VoxelShape head = Block.createCuboidShape(1, 12, 1, 15, 15, 15);

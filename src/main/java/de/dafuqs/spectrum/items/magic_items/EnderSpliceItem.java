@@ -97,7 +97,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 	
 	public static boolean hasTeleportTarget(ItemStack itemStack) {
 		NbtCompound nbtCompound = itemStack.getNbt();
-		if(nbtCompound == null) {
+		if (nbtCompound == null) {
 			return false;
 		}
 		
@@ -146,14 +146,14 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 			if (teleportTargetPos.isPresent()) {
 				RegistryKey<World> targetWorldKey = RegistryKey.of(Registry.WORLD_KEY, new Identifier(teleportTargetPos.get().getLeft()));
 				World targetWorld = world.getServer().getWorld(targetWorldKey);
-				if(teleportPlayerToPos(world, user, playerEntity, targetWorld, teleportTargetPos.get().getRight(), resonance)) {
+				if (teleportPlayerToPos(world, user, playerEntity, targetWorld, teleportTargetPos.get().getRight(), resonance)) {
 					decrementWithChance(itemStack, world, playerEntity);
 				}
 			} else {
 				// If UUID stored => Teleport to player, if online
 				Optional<UUID> teleportTargetPlayerUUID = getTeleportTargetPlayerUUID(itemStack);
 				if (teleportTargetPlayerUUID.isPresent()) {
-					if(teleportPlayerToPlayerWithUUID(world, user, playerEntity, teleportTargetPlayerUUID.get(), resonance)) {
+					if (teleportPlayerToPlayerWithUUID(world, user, playerEntity, teleportTargetPlayerUUID.get(), resonance)) {
 						decrementWithChance(itemStack, world, playerEntity);
 					}
 				} else {

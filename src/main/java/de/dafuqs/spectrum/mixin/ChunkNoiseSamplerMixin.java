@@ -9,7 +9,8 @@ import org.spongepowered.asm.mixin.Shadow;
 public abstract class ChunkNoiseSamplerMixin {
 	
 	// TODO: readd
-	@Shadow protected abstract DensityFunction getActualDensityFunction(DensityFunction densityFunction);
+	@Shadow
+	protected abstract DensityFunction getActualDensityFunction(DensityFunction densityFunction);
 	
 	/*@Inject(method = "<init>(ILnet/minecraft/world/gen/noise/NoiseConfig;IILnet/minecraft/world/gen/chunk/GenerationShapeConfig;Lnet/minecraft/world/gen/densityfunction/DensityFunctionTypes$Beardifying;Lnet/minecraft/world/gen/chunk/ChunkGeneratorSettings;Lnet/minecraft/world/gen/chunk/AquiferSampler$FluidLevelSampler;Lnet/minecraft/world/gen/chunk/Blender;)V",
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/world/gen/chunk/ChunkGeneratorSettings;oreVeins()Z"),

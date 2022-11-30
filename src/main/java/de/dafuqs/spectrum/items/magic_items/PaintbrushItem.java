@@ -210,11 +210,11 @@ public class PaintbrushItem extends Item {
 	
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		if(canColor(user)) {
+		if (canColor(user)) {
 			Optional<InkColor> color = getColor(stack);
-			if(color.isPresent() && payBlockColorCost(user, color.get())) {
+			if (color.isPresent() && payBlockColorCost(user, color.get())) {
 				boolean colored = ColorHelper.tryColorEntity(user, entity, color.get().getDyeColor());
-				if(colored) {
+				if (colored) {
 					return ActionResult.success(user.world.isClient);
 				}
 			}

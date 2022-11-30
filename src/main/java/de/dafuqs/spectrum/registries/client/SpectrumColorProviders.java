@@ -99,7 +99,7 @@ public class SpectrumColorProviders {
 			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
 		}
 	}
-
+	
 	private static void registerInkFlask() {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
@@ -149,20 +149,20 @@ public class SpectrumColorProviders {
 		}, SpectrumBlocks.MEMORY);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MemoryItem.getEggColor(stack.getNbt(), tintIndex), SpectrumBlocks.MEMORY.asItem());
 	}
-
+	
 	public static void registerBrewColors() {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 0) {
-
+				
 				var nbt = stack.getOrCreateNbt();
 				return nbt.contains("Color") ? nbt.getInt("Color") : 0xf4c6cb;
-
+				
 				// Daf plz
 				//return 0xff85f9;
-
+				
 			}
 			return -1;
-
+			
 		}, SpectrumItems.INFUSED_BEVERAGE);
 	}
 	
@@ -180,5 +180,5 @@ public class SpectrumColorProviders {
 		}
 		return -1;
 	}
-
+	
 }

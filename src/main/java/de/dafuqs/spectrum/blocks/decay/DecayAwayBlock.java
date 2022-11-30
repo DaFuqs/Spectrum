@@ -101,7 +101,7 @@ public class DecayAwayBlock extends Block {
 		}
 		
 		public BlockState getTargetState(World world) {
-			if(this == DEFAULT) {
+			if (this == DEFAULT) {
 				Identifier identifier = world.getDimension().effects();
 				if (DimensionTypes.THE_NETHER_ID.equals(identifier)) {
 					return Blocks.NETHERRACK.getDefaultState();

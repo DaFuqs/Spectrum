@@ -26,7 +26,7 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 			SpectrumS2CPacketSender.sendItemTransferPacket((ServerWorld) world, new SimpleTransmission(pos, this.positionSource, delay));
 		}
 	}
-
+	
 	public static class EventEntry {
 		public GameEvent gameEvent;
 		public ItemEntity itemEntity;

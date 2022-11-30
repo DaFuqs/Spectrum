@@ -19,8 +19,12 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(net.minecraft.loot.function.ApplyBonusLootFunction.class)
 public abstract class ApplyBonusLootFunctionMixin {
 	
-	@Shadow @Final Enchantment enchantment;
-	@Shadow @Final ApplyBonusLootFunction.Formula formula;
+	@Shadow
+	@Final
+	Enchantment enchantment;
+	@Shadow
+	@Final
+	ApplyBonusLootFunction.Formula formula;
 	
 	@ModifyVariable(method = "process(Lnet/minecraft/item/ItemStack;Lnet/minecraft/loot/context/LootContext;)Lnet/minecraft/item/ItemStack;", at = @At("STORE"), ordinal = 1)
 	public int spectrum$rerollBonusLoot(int oldValue, ItemStack stack, LootContext context) {
@@ -30,9 +34,9 @@ public abstract class ApplyBonusLootFunctionMixin {
 		Entity entity = context.get(LootContextParameters.THIS_ENTITY);
 		if (itemStack != null && entity instanceof LivingEntity livingEntity) {
 			int enchantmentLevel = EnchantmentHelper.getLevel(this.enchantment, itemStack);
-			if(enchantmentLevel > 0) {
+			if (enchantmentLevel > 0) {
 				StatusEffectInstance effect = livingEntity.getStatusEffect(SpectrumStatusEffects.ANOTHER_ROLL);
-				if(effect != null) {
+				if (effect != null) {
 					int rollCount = effect.getAmplifier() + 1;
 					int highestRoll = oldValue;
 					for (int i = 0; i < rollCount; i++) {

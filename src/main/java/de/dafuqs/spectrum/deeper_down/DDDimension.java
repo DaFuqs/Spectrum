@@ -64,7 +64,7 @@ public class DDDimension {
 						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_MALACHITE_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, SpectrumBlocks.MALACHITE_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_MALACHITE_ORE.getDefaultState())
-						), 7),
+				), 7),
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(32), YOffset.belowTop(256)),
 				CountPlacementModifier.of(40));
 		
@@ -73,7 +73,7 @@ public class DDDimension {
 						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_SHIMMERSTONE_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, SpectrumBlocks.SHIMMERSTONE_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_SHIMMERSTONE_ORE.getDefaultState())
-						), 7),
+				), 7),
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(16), YOffset.belowTop(128)),
 				CountPlacementModifier.of(24));
 	}

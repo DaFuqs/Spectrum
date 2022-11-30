@@ -63,36 +63,64 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	}
 	
 	public ItemStack tapWith(int bulbCount, int petalCount, boolean nectar, float thickness, long secondsFermented, float downfall, float temperature) {
-		if(secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
+		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
 			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
 		}
 		
 		double bloominess = getBloominess(bulbCount, petalCount);
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
-		if(nectar) {
+		if (nectar) {
 			ageIngameDays *= 1.5;
 		}
 		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
-		if(alcPercent >= 100) {
+		if (alcPercent >= 100) {
 			return PURE_ALCOHOL_STACK;
 		} else {
 			List<StatusEffectInstance> effects = new ArrayList<>();
 			
 			int effectDuration = 1200;
-			if(alcPercent >= 80) { effects.add(new StatusEffectInstance(SpectrumStatusEffects.PROJECTILE_REBOUND, effectDuration)); effectDuration *= 2; }
-			if(alcPercent >= 70) { effects.add(new StatusEffectInstance(StatusEffects.RESISTANCE, effectDuration)); effectDuration *= 2; }
-			if(alcPercent >= 60) { effects.add(new StatusEffectInstance(StatusEffects.HASTE, effectDuration)); effectDuration *= 2; }
-			if(alcPercent >= 40) { effects.add(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, effectDuration)); effectDuration *= 2; }
-			if(alcPercent >= 20) { effects.add(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, effectDuration)); effectDuration *= 2; }
-			if(nectar) { effects.add(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, effectDuration)); }
+			if (alcPercent >= 80) {
+				effects.add(new StatusEffectInstance(SpectrumStatusEffects.PROJECTILE_REBOUND, effectDuration));
+				effectDuration *= 2;
+			}
+			if (alcPercent >= 70) {
+				effects.add(new StatusEffectInstance(StatusEffects.RESISTANCE, effectDuration));
+				effectDuration *= 2;
+			}
+			if (alcPercent >= 60) {
+				effects.add(new StatusEffectInstance(StatusEffects.HASTE, effectDuration));
+				effectDuration *= 2;
+			}
+			if (alcPercent >= 40) {
+				effects.add(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, effectDuration));
+				effectDuration *= 2;
+			}
+			if (alcPercent >= 20) {
+				effects.add(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, effectDuration));
+				effectDuration *= 2;
+			}
+			if (nectar) {
+				effects.add(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, effectDuration));
+			}
 			
 			int nectarMod = nectar ? 3 : 1;
 			effectDuration = 1200;
-			int alcAfterBloominess = (int) (alcPercent / (nectarMod + bloominess ));
-			if(alcAfterBloominess >= 40) { effects.add(new StatusEffectInstance(StatusEffects.BLINDNESS, effectDuration)); effectDuration *= 2; }
-			if(alcAfterBloominess >= 30) { effects.add(new StatusEffectInstance(StatusEffects.POISON, effectDuration)); effectDuration *= 2; }
-			if(alcAfterBloominess >= 20) { effects.add(new StatusEffectInstance(StatusEffects.NAUSEA, effectDuration)); effectDuration *= 2; }
-			if(alcAfterBloominess >= 10) { effects.add(new StatusEffectInstance(StatusEffects.WEAKNESS, effectDuration)); }
+			int alcAfterBloominess = (int) (alcPercent / (nectarMod + bloominess));
+			if (alcAfterBloominess >= 40) {
+				effects.add(new StatusEffectInstance(StatusEffects.BLINDNESS, effectDuration));
+				effectDuration *= 2;
+			}
+			if (alcAfterBloominess >= 30) {
+				effects.add(new StatusEffectInstance(StatusEffects.POISON, effectDuration));
+				effectDuration *= 2;
+			}
+			if (alcAfterBloominess >= 20) {
+				effects.add(new StatusEffectInstance(StatusEffects.NAUSEA, effectDuration));
+				effectDuration *= 2;
+			}
+			if (alcAfterBloominess >= 10) {
+				effects.add(new StatusEffectInstance(StatusEffects.WEAKNESS, effectDuration));
+			}
 			
 			ItemStack outputStack = OUTPUT_STACK.copy();
 			outputStack.setCount(1);
@@ -103,7 +131,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	// bloominess reduces the possibility of negative effects to trigger (better on the tongue)
 	// but also reduces the potency of positive effects a bit
 	protected static double getBloominess(int bulbCount, int petalCount) {
-		if(bulbCount == 0) {
+		if (bulbCount == 0) {
 			return 0;
 		}
 		return (double) petalCount / (double) bulbCount / 2F;
@@ -131,12 +159,12 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 		
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
-			if(stack.isEmpty()) {
+			if (stack.isEmpty()) {
 				continue;
 			}
-			if(stack.isOf(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)) {
+			if (stack.isOf(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)) {
 				bulbsFound = true;
-			} else if(!stack.isOf(SpectrumItems.JADE_VINE_PETALS) && !stack.isOf(SpectrumItems.MOONSTRUCK_NECTAR)) {
+			} else if (!stack.isOf(SpectrumItems.JADE_VINE_PETALS) && !stack.isOf(SpectrumItems.MOONSTRUCK_NECTAR)) {
 				return false;
 			}
 		}

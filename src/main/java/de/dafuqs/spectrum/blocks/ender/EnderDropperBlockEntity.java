@@ -55,7 +55,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 	
 	public ItemStack getStack(int slot) {
 		PlayerEntity playerEntity = getOwnerIfOnline();
-		if(playerEntity != null) {
+		if (playerEntity != null) {
 			EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
 			return enderInventory.getStack(slot);
 		}
@@ -64,7 +64,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 	
 	public void setStack(int slot, ItemStack itemStack) {
 		PlayerEntity playerEntity = getOwnerIfOnline();
-		if(playerEntity != null) {
+		if (playerEntity != null) {
 			EnderChestInventory enderInventory = playerEntity.getEnderChestInventory();
 			enderInventory.setStack(slot, itemStack);
 		}

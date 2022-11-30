@@ -33,7 +33,7 @@ public class SpectrumC2SPacketSender {
 	
 	public static void sendInkColorSelectedInGUI(@Nullable InkColor color) {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
-		if(color == null) {
+		if (color == null) {
 			packetByteBuf.writeBoolean(false);
 		} else {
 			packetByteBuf.writeBoolean(true);

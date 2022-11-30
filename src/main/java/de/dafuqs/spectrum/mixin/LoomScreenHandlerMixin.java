@@ -30,7 +30,7 @@ public abstract class LoomScreenHandlerMixin extends ScreenHandler {
 	
 	@Inject(method = "getPatternsFor(Lnet/minecraft/item/ItemStack;)Ljava/util/List;", at = @At("HEAD"), cancellable = true)
 	private void spectrum$getPatternsFor(ItemStack stack, CallbackInfoReturnable<List<RegistryEntry<BannerPattern>>> cir) {
-		if(stack.getItem() instanceof LoomPatternProvider loomPatternProvider) {
+		if (stack.getItem() instanceof LoomPatternProvider loomPatternProvider) {
 			cir.setReturnValue(loomPatternProvider.getPatterns());
 		}
 	}

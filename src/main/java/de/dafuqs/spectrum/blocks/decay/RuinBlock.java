@@ -87,10 +87,10 @@ public class RuinBlock extends DecayBlock {
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		super.onStateReplaced(state, world, pos, newState, moved);
 		
-		if(state.get(RuinBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
-			if(world.getRegistryKey() == World.OVERWORLD && pos.getY() == world.getBottomY()) {
+		if (state.get(RuinBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
+			if (world.getRegistryKey() == World.OVERWORLD && pos.getY() == world.getBottomY()) {
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, false), 3);
-			} else if(world.getRegistryKey() == DDDimension.DEEPER_DOWN_DIMENSION_KEY && pos.getY() == world.getTopY() - 1) { // highest layer cannot be built on
+			} else if (world.getRegistryKey() == DDDimension.DEEPER_DOWN_DIMENSION_KEY && pos.getY() == world.getTopY() - 1) { // highest layer cannot be built on
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, true), 3);
 			}
 		}

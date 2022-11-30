@@ -32,7 +32,7 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 	public void sendContentUpdates() {
 		super.sendContentUpdates();
 		
-		if(this.player != null && this.blockEntity.getInkDirty()) {
+		if (this.player != null && this.blockEntity.getInkDirty()) {
 			SpectrumS2CPacketSender.updateBlockEntityInk(blockEntity.getPos(), blockEntity.getEnergyStorage(), player);
 		}
 	}
@@ -60,10 +60,10 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 		this.addSlot(new ExperienceStorageItemSlot(cinderhearthBlockEntity, CinderhearthBlockEntity.EXPERIENCE_STORAGE_ITEM_SLOT_ID, 38, 52));
 		this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.INPUT_SLOT_ID, 14, 28));
 		
-		for(int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.FIRST_OUTPUT_SLOT_ID + i, 62 + i * 18, 28));
 		}
-		for(int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			this.addSlot(new Slot(cinderhearthBlockEntity, CinderhearthBlockEntity.FIRST_OUTPUT_SLOT_ID + 4 + i, 62 + i * 18, 28 + 18));
 		}
 		
@@ -79,7 +79,7 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 			this.addSlot(new Slot(playerInventory, j, PLAYER_INVENTORY_START_X + j * 18, PLAYER_INVENTORY_START_Y + 58));
 		}
 		
-		if(this.player != null) {
+		if (this.player != null) {
 			SpectrumS2CPacketSender.updateBlockEntityInk(blockEntity.getPos(), this.blockEntity.getEnergyStorage(), player);
 		}
 		

@@ -48,7 +48,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		this.selectedDotY = selectedDotY;
 		this.screen = screen;
 		
-		for(InkColor inkColor : InkColor.all()) {
+		for (InkColor inkColor : InkColor.all()) {
 			usableColors.add(new Pair<>(inkColor, AdvancementHelper.hasAdvancementClient(inkColor.getRequiredAdvancement())));
 		}
 	}
@@ -79,8 +79,8 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			int verticalColorOffset = yOffset / 7;
 			int newColorIndex = horizontalColorOffset + verticalColorOffset * 8;
 			InkColor newColor = InkColor.all().get(newColorIndex);
-			if(this.colorPicker.getSelectedColor() != newColor) {
-				if(AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
+			if (this.colorPicker.getSelectedColor() != newColor) {
+				if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
 					MinecraftClient.getInstance().player.playSound(SpectrumSoundEvents.BUTTON_CLICK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 					onChanged(newColor);
 				} else {
@@ -105,7 +105,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		int currentX = this.x + 1;
 		int currentY = this.y + 1;
 		for (Pair<InkColor, Boolean> color : usableColors) {
-			if(color.getRight()) {
+			if (color.getRight()) {
 				fillQuad(matrices, currentX, currentY, 5, 5, color.getLeft().getColor());
 			}
 			i = i + 1;
@@ -118,7 +118,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		
 		// draw currently selected icon
 		InkColor selectedColor = this.colorPicker.getSelectedColor();
-		if(selectedColor != null) {
+		if (selectedColor != null) {
 			fillQuad(matrices, selectedDotX, selectedDotY, 4, 4, selectedColor.getColor());
 		}
 	}

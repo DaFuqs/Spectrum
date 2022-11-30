@@ -6,20 +6,22 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 
 public class InkDuctBlockEntity extends BlockEntity {
-
-    public static int RANGE=64;
-
-    public InkDuctBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
-        super(blockEntityType, blockPos, blockState);
-    }
-
-    public boolean canSee(InkDuctBlockEntity duct){return duct.pos.isWithinDistance(pos, RANGE);}
-
-    private boolean canTransferTo(BlockEntity blockEntity) {
-        return blockEntity instanceof InkDuctBlockEntity;
-    }
-
-    public int getRange(){
-        return RANGE;
-    }
+	
+	public static int RANGE = 64;
+	
+	public InkDuctBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
+		super(blockEntityType, blockPos, blockState);
+	}
+	
+	public boolean canSee(InkDuctBlockEntity duct) {
+		return duct.pos.isWithinDistance(pos, RANGE);
+	}
+	
+	private boolean canTransferTo(BlockEntity blockEntity) {
+		return blockEntity instanceof InkDuctBlockEntity;
+	}
+	
+	public int getRange() {
+		return RANGE;
+	}
 }

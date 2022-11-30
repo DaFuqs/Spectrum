@@ -43,7 +43,7 @@ public class DDConfiguredFeatures {
 	public static final ConfiguredFeature<RandomBudsFeaturesConfig, ?> BISMUTH_BUDS = new ConfiguredFeature<>(SpectrumFeatures.RANDOM_BUDS,
 			new RandomBudsFeaturesConfig(20, false, true, true, DD_BASE_BLOCKS,
 					List.of(SpectrumBlocks.SMALL_BISMUTH_BUD.getDefaultState(), SpectrumBlocks.LARGE_BISMUTH_BUD.getDefaultState())));
-
+	
 	public static final ConfiguredFeature<GeodeFeatureConfig, ?> MOONSTONE_GEODE = new ConfiguredFeature<>(Feature.GEODE,
 			new GeodeFeatureConfig(
 					new GeodeLayerConfig(

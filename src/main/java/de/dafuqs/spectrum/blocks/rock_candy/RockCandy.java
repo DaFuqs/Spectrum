@@ -22,17 +22,17 @@ public interface RockCandy {
 		
 		public static @Nullable RockCandyVariant getFor(ItemStack itemStack) {
 			Item item = itemStack.getItem();
-			if(item == Items.SUGAR) {
+			if (item == Items.SUGAR) {
 				return RockCandyVariant.SUGAR;
-			} else if(item == SpectrumItems.TOPAZ_POWDER) {
+			} else if (item == SpectrumItems.TOPAZ_POWDER) {
 				return RockCandyVariant.TOPAZ;
-			} else if(item == SpectrumItems.AMETHYST_POWDER) {
+			} else if (item == SpectrumItems.AMETHYST_POWDER) {
 				return RockCandyVariant.AMETHYST;
-			} else if(item == SpectrumItems.CITRINE_POWDER) {
+			} else if (item == SpectrumItems.CITRINE_POWDER) {
 				return RockCandyVariant.CITRINE;
-			} else if(item == SpectrumItems.ONYX_POWDER) {
+			} else if (item == SpectrumItems.ONYX_POWDER) {
 				return RockCandyVariant.ONYX;
-			} else if(item == SpectrumItems.MOONSTONE_POWDER) {
+			} else if (item == SpectrumItems.MOONSTONE_POWDER) {
 				return RockCandyVariant.MOONSTONE;
 			}
 			return null;
@@ -45,12 +45,24 @@ public interface RockCandy {
 		
 		public DyeColor getDyeColor() {
 			switch (this) {
-				case TOPAZ -> { return DyeColor.CYAN; }
-				case AMETHYST -> { return DyeColor.MAGENTA; }
-				case CITRINE -> { return DyeColor.YELLOW; }
-				case ONYX -> { return DyeColor.BLACK; }
-				case MOONSTONE -> { return DyeColor.WHITE; }
-				default -> { return DyeColor.LIGHT_GRAY; }
+				case TOPAZ -> {
+					return DyeColor.CYAN;
+				}
+				case AMETHYST -> {
+					return DyeColor.MAGENTA;
+				}
+				case CITRINE -> {
+					return DyeColor.YELLOW;
+				}
+				case ONYX -> {
+					return DyeColor.BLACK;
+				}
+				case MOONSTONE -> {
+					return DyeColor.WHITE;
+				}
+				default -> {
+					return DyeColor.LIGHT_GRAY;
+				}
 			}
 		}
 	}

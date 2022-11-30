@@ -67,7 +67,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	protected boolean inventoryChanged;
 	
 	public static final Set<InkColor> USED_INK_COLORS = Set.of(InkColors.ORANGE, InkColors.LIGHT_BLUE, InkColors.MAGENTA, InkColors.PURPLE, InkColors.BLACK);
-	public static final long INK_STORAGE_SIZE = 64*100;
+	public static final long INK_STORAGE_SIZE = 64 * 100;
 	protected IndividualCappedInkStorage inkStorage;
 	
 	private UUID ownerUUID;
@@ -180,14 +180,14 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		super.readNbt(nbt);
 		
 		Inventories.readNbt(nbt, this.inventory);
-		if(nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
+		if (nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
 			this.inkStorage = IndividualCappedInkStorage.fromNbt(nbt.getCompound("InkStorage"));
 		}
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.canTransferInk = nbt.getBoolean("Paused");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
-		if(nbt.contains("Structure", NbtElement.INT_TYPE)) {
+		if (nbt.contains("Structure", NbtElement.INT_TYPE)) {
 			this.structure = CinderHearthStructureType.values()[nbt.getInt("Structure")];
 		} else {
 			this.structure = CinderHearthStructureType.NONE;
@@ -273,9 +273,9 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			}
 			
 			if (cinderhearthBlockEntity.currentRecipe != null) {
-				if(world.getTime() % 20 == 0) {
+				if (world.getTime() % 20 == 0) {
 					int usedOrangeInk = (int) (4 / cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY), InkColors.BLACK));
-					if(cinderhearthBlockEntity.inkStorage.drainEnergy(InkColors.ORANGE, usedOrangeInk) != usedOrangeInk) {
+					if (cinderhearthBlockEntity.inkStorage.drainEnergy(InkColors.ORANGE, usedOrangeInk) != usedOrangeInk) {
 						cinderhearthBlockEntity.currentRecipe = null;
 						cinderhearthBlockEntity.craftingTime = 0;
 						cinderhearthBlockEntity.craftingTimeTotal = 0;
@@ -287,11 +287,10 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				cinderhearthBlockEntity.craftingTime++;
 				
 				
-				
 				if (cinderhearthBlockEntity.craftingTime == cinderhearthBlockEntity.craftingTimeTotal) {
-					if(cinderhearthBlockEntity.currentRecipe instanceof CinderhearthRecipe cinderhearthRecipe) {
+					if (cinderhearthBlockEntity.currentRecipe instanceof CinderhearthRecipe cinderhearthRecipe) {
 						craftCinderhearthRecipe(world, cinderhearthBlockEntity, cinderhearthRecipe);
-					} else if(cinderhearthBlockEntity.currentRecipe instanceof BlastingRecipe blastingRecipe) {
+					} else if (cinderhearthBlockEntity.currentRecipe instanceof BlastingRecipe blastingRecipe) {
 						craftBlastingRecipe(world, cinderhearthBlockEntity, blastingRecipe);
 					}
 				}
@@ -317,9 +316,9 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		ItemStack instillerStack = cinderhearthBlockEntity.getStack(0);
 		if (!instillerStack.isEmpty()) {
 			CinderhearthRecipe cinderhearthRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.CINDERHEARTH, cinderhearthBlockEntity, world).orElse(null);
-			if(cinderhearthRecipe == null) {
+			if (cinderhearthRecipe == null) {
 				BlastingRecipe blastingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.BLASTING, cinderhearthBlockEntity, world).orElse(null);
-				if(blastingRecipe != null) {
+				if (blastingRecipe != null) {
 					cinderhearthBlockEntity.currentRecipe = blastingRecipe;
 					cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(blastingRecipe.getCookTime() / cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED), InkColors.MAGENTA, cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY)));
 				}
@@ -342,7 +341,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			return false;
 		}
 		
-		if(cinderhearthBlockEntity.currentRecipe instanceof GatedRecipe gatedRecipe) {
+		if (cinderhearthBlockEntity.currentRecipe instanceof GatedRecipe gatedRecipe) {
 			return gatedRecipe.canPlayerCraft(lastInteractedPlayer);
 		}
 		return true;
@@ -353,12 +352,12 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		ItemStack inputStack = cinderhearthBlockEntity.getStack(INPUT_SLOT_ID);
 		ItemStack output = blastingRecipe.getOutput().copy();
 		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(UpgradeType.YIELD), InkColors.LIGHT_BLUE, cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY));
-		if(yieldMod > 1) {
+		if (yieldMod > 1) {
 			output.setCount(Math.min(output.getMaxCount(), Support.getIntFromDecimalWithChance(output.getCount() * yieldMod, world.random)));
 		}
 		
 		boolean couldAdd = InventoryHelper.addToInventory(cinderhearthBlockEntity, output, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
-		if(couldAdd) {
+		if (couldAdd) {
 			cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY), InkColors.BLACK);
 			
 			Item remainder = inputStack.getItem().getRecipeRemainder();
@@ -368,7 +367,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			
 			if (remainder != null) {
 				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearthBlockEntity, remainder.getDefaultStack(), FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
-				if(!remainderAdded) {
+				if (!remainderAdded) {
 					cinderhearthBlockEntity.setStack(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder.getDefaultStack());
 				}
 			}
@@ -398,21 +397,21 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random, yieldMod);
 		
 		DefaultedList<ItemStack> backupInventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
-		for(int i = 0; i < cinderhearthBlockEntity.inventory.size(); i++) {
+		for (int i = 0; i < cinderhearthBlockEntity.inventory.size(); i++) {
 			backupInventory.set(i, cinderhearthBlockEntity.inventory.get(i));
 		}
 		
 		boolean couldAdd = InventoryHelper.addToInventory(cinderhearthBlockEntity, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
-		if(couldAdd) {
+		if (couldAdd) {
 			cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.upgrades.get(UpgradeType.EFFICIENCY), InkColors.BLACK);
 			Item remainder = inputStack.getItem().getRecipeRemainder();
 			
 			// use up input ingredient
 			inputStack.decrement(1);
 			
-			if(remainder != null) {
+			if (remainder != null) {
 				boolean remainderAdded = InventoryHelper.addToInventory(cinderhearthBlockEntity, remainder.getDefaultStack(), FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
-				if(!remainderAdded) {
+				if (!remainderAdded) {
 					cinderhearthBlockEntity.setStack(CinderhearthBlockEntity.INPUT_SLOT_ID, remainder.getDefaultStack());
 				}
 			}
@@ -441,18 +440,18 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		Direction.Axis axis = null;
 		Direction direction = null;
 		
-		for(Map.Entry<UpgradeType, Float> entry : cinderhearthBlockEntity.upgrades.entrySet()) {
+		for (Map.Entry<UpgradeType, Float> entry : cinderhearthBlockEntity.upgrades.entrySet()) {
 			float value = entry.getValue();
-			if(value > 1.0) {
-				if(axis == null) {
+			if (value > 1.0) {
+				if (axis == null) {
 					BlockState state = cinderhearthBlockEntity.world.getBlockState(cinderhearthBlockEntity.pos);
 					direction = state.get(CinderhearthBlock.FACING);
 					axis = direction.getAxis();
 				}
 				
-				double d = (double)cinderhearthBlockEntity.pos.getX() + 0.5D;
+				double d = (double) cinderhearthBlockEntity.pos.getX() + 0.5D;
 				double e = cinderhearthBlockEntity.pos.getY() + 0.4;
-				double f = (double)cinderhearthBlockEntity.pos.getZ() + 0.5D;
+				double f = (double) cinderhearthBlockEntity.pos.getZ() + 0.5D;
 				double g2 = -3D / 16D;
 				double h2 = 4D / 16D;
 				double i2 = axis == Direction.Axis.X ? (double) direction.getOffsetX() * g2 : h2;

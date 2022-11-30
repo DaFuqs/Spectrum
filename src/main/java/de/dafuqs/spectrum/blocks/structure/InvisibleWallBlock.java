@@ -15,7 +15,7 @@ public class InvisibleWallBlock extends AbstractGlassBlock {
 	}
 	
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		if(context.isHolding(this.asItem())) {
+		if (context.isHolding(this.asItem())) {
 			return VoxelShapes.fullCube();
 		} else {
 			return VoxelShapes.empty();

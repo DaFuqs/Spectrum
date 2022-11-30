@@ -23,7 +23,7 @@ public class SuspiciousBrewItem extends BeverageItem {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		if(BeverageItem.isPreviewStack(itemStack)) {
+		if (BeverageItem.isPreviewStack(itemStack)) {
 			tooltip.add(Text.translatable("item.spectrum.suspicious_brew.tooltip.preview").formatted(Formatting.GRAY));
 			tooltip.add(Text.translatable("item.spectrum.suspicious_brew.tooltip.preview2").formatted(Formatting.GRAY));
 		}

@@ -35,7 +35,7 @@ public class GuidebookItem extends Item implements LoomPatternProvider {
 	}
 	
 	public static void reprocessAdvancementUnlocks(ServerPlayerEntity serverPlayerEntity) {
-		if(serverPlayerEntity.getServer() == null) {
+		if (serverPlayerEntity.getServer() == null) {
 			return;
 		}
 		

@@ -53,7 +53,7 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		Fluid fluid = recipe.getFluid();
 		boolean usesFluid = fluid != Fluids.EMPTY;
 		IngredientStack bucketStack = IngredientStack.EMPTY;
-		if(usesFluid) {
+		if (usesFluid) {
 			bucketStack = IngredientStack.of(Ingredient.ofStacks(recipe.getFluid().getBucketItem().getDefaultStack()));
 		}
 		
@@ -67,7 +67,7 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 			IngredientStack currentIngredient = i == ingredientSize ? bucketStack : ingredients.get(i);
 			int yOffset;
 			int xOffset;
-			if(i < 3) {
+			if (i < 3) {
 				xOffset = i * 18;
 				yOffset = 0;
 			} else {
@@ -78,7 +78,7 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		}
 		
 		// the titration barrel / tapping ingredient
-		if(recipe.getTappingItem() == Items.AIR) {
+		if (recipe.getTappingItem() == Items.AIR) {
 			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.createIcon());
 		} else {
 			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.getTappingItem().getDefaultStack());
@@ -88,14 +88,14 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		parent.renderItemStack(ms, recipeX + 78, recipeY + 10, mouseX, mouseY, recipe.getOutput());
 		
 		// the duration
-		if(second) {
-			if(textRenderer2 == null) {
+		if (second) {
+			if (textRenderer2 == null) {
 				MutableText text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());
 				textRenderer2 = new BookTextRenderer(parent, text, 0, recipeY + 40);
 			}
 			textRenderer2.render(ms, mouseX, mouseY);
 		} else {
-			if(textRenderer == null) {
+			if (textRenderer == null) {
 				MutableText text = TitrationBarrelRecipe.getDurationText(recipe.getMinFermentationTimeHours(), recipe.getFermentationData());
 				textRenderer = new BookTextRenderer(parent, text, 0, recipeY + 40);
 			}

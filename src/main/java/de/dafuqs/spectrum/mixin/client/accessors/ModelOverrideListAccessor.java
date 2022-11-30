@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(ModelOverrideList.class)
 public interface ModelOverrideListAccessor {
-
-    @Accessor()
-    ModelOverrideList.BakedOverride[] getOverrides();
+	
+	@Accessor()
+	ModelOverrideList.BakedOverride[] getOverrides();
 }

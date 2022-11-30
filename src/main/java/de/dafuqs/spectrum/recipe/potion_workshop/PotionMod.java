@@ -35,61 +35,61 @@ public class PotionMod {
 	public static PotionMod fromJson(JsonObject jsonObject) {
 		PotionMod mod = new PotionMod();
 		
-		if(JsonHelper.hasNumber(jsonObject, "flat_duration_bonus_ticks")) {
+		if (JsonHelper.hasNumber(jsonObject, "flat_duration_bonus_ticks")) {
 			mod.flatDurationBonusTicks += JsonHelper.getInt(jsonObject, "flat_duration_bonus_ticks");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "flat_potency_bonus")) {
+		if (JsonHelper.hasNumber(jsonObject, "flat_potency_bonus")) {
 			mod.flatPotencyBonus += JsonHelper.getFloat(jsonObject, "flat_potency_bonus");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "multiplicative_duration_modifier")) {
+		if (JsonHelper.hasNumber(jsonObject, "multiplicative_duration_modifier")) {
 			mod.multiplicativeDurationModifier += JsonHelper.getFloat(jsonObject, "multiplicative_duration_modifier");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "multiplicative_potency_modifier")) {
+		if (JsonHelper.hasNumber(jsonObject, "multiplicative_potency_modifier")) {
 			mod.multiplicativePotencyModifier += JsonHelper.getFloat(jsonObject, "multiplicative_potency_modifier");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "flat_potency_bonus_positive_effects")) {
+		if (JsonHelper.hasNumber(jsonObject, "flat_potency_bonus_positive_effects")) {
 			mod.flatPotencyBonusPositiveEffects += JsonHelper.getFloat(jsonObject, "flat_potency_bonus_positive_effects");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "flat_potency_bonus_negative_effects")) {
+		if (JsonHelper.hasNumber(jsonObject, "flat_potency_bonus_negative_effects")) {
 			mod.flatPotencyBonusNegativeEffects += JsonHelper.getFloat(jsonObject, "flat_potency_bonus_negative_effects");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "additional_random_positive_effect_count")) {
+		if (JsonHelper.hasNumber(jsonObject, "additional_random_positive_effect_count")) {
 			mod.additionalRandomPositiveEffectCount += JsonHelper.getFloat(jsonObject, "additional_random_positive_effect_count");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "additional_random_negative_effect_count")) {
+		if (JsonHelper.hasNumber(jsonObject, "additional_random_negative_effect_count")) {
 			mod.additionalRandomNegativeEffectCount += JsonHelper.getFloat(jsonObject, "additional_random_negative_effect_count");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "chance_to_add_last_effect")) {
+		if (JsonHelper.hasNumber(jsonObject, "chance_to_add_last_effect")) {
 			mod.chanceToAddLastEffect += JsonHelper.getFloat(jsonObject, "chance_to_add_last_effect");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "last_effect_potency_modifier")) {
+		if (JsonHelper.hasNumber(jsonObject, "last_effect_potency_modifier")) {
 			mod.lastEffectPotencyModifier += JsonHelper.getFloat(jsonObject, "last_effect_potency_modifier");
 		}
-		if(JsonHelper.hasNumber(jsonObject, "flat_yield_bonus")) {
+		if (JsonHelper.hasNumber(jsonObject, "flat_yield_bonus")) {
 			mod.flatYieldBonus += JsonHelper.getFloat(jsonObject, "flat_yield_bonus");
 		}
-		if(JsonHelper.hasBoolean(jsonObject, "make_splashing")) {
+		if (JsonHelper.hasBoolean(jsonObject, "make_splashing")) {
 			mod.makeSplashing = JsonHelper.getBoolean(jsonObject, "make_splashing");
 		}
-		if(JsonHelper.hasBoolean(jsonObject, "make_lingering")) {
+		if (JsonHelper.hasBoolean(jsonObject, "make_lingering")) {
 			mod.makeLingering = JsonHelper.getBoolean(jsonObject, "make_lingering");
 		}
-		if(JsonHelper.hasBoolean(jsonObject, "no_particles")) {
+		if (JsonHelper.hasBoolean(jsonObject, "no_particles")) {
 			mod.noParticles = JsonHelper.getBoolean(jsonObject, "no_particles");
 		}
-		if(JsonHelper.hasBoolean(jsonObject, "unidentifiable")) {
+		if (JsonHelper.hasBoolean(jsonObject, "unidentifiable")) {
 			mod.unidentifiable = JsonHelper.getBoolean(jsonObject, "unidentifiable");
 		}
-		if(JsonHelper.hasBoolean(jsonObject, "make_effects_positive")) {
+		if (JsonHelper.hasBoolean(jsonObject, "make_effects_positive")) {
 			mod.makeEffectsPositive = JsonHelper.getBoolean(jsonObject, "make_effects_positive");
 		}
-		if(JsonHelper.hasBoolean(jsonObject, "potent_decreasing_effect")) {
+		if (JsonHelper.hasBoolean(jsonObject, "potent_decreasing_effect")) {
 			mod.potentDecreasingEffect = JsonHelper.getBoolean(jsonObject, "potent_decreasing_effect");
 		}
-		if(JsonHelper.hasBoolean(jsonObject, "negate_decreasing_duration")) {
+		if (JsonHelper.hasBoolean(jsonObject, "negate_decreasing_duration")) {
 			mod.negateDecreasingDuration = JsonHelper.getBoolean(jsonObject, "negate_decreasing_duration");
 		}
-		if(JsonHelper.hasBoolean(jsonObject, "fast_drinkable")) {
+		if (JsonHelper.hasBoolean(jsonObject, "fast_drinkable")) {
 			mod.fastDrinkable = JsonHelper.getBoolean(jsonObject, "fast_drinkable");
 		}
 		

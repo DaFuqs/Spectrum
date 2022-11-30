@@ -27,10 +27,10 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	protected final int time;
 	protected final float experience;
 	protected final List<Pair<ItemStack, Float>> outputsWithChance;
-
+	
 	public CinderhearthRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, int time, float experience, List<Pair<ItemStack, Float>> outputsWithChance) {
 		super(id, group, secret, requiredAdvancementIdentifier);
-
+		
 		this.inputIngredient = inputIngredient;
 		this.time = time;
 		this.experience = experience;
@@ -101,11 +101,11 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	
 	public List<ItemStack> getRolledOutputs(Random random, float yieldMod) {
 		List<ItemStack> output = new ArrayList<>();
-		for(Pair<ItemStack, Float> possibleOutput : this.outputsWithChance) {
+		for (Pair<ItemStack, Float> possibleOutput : this.outputsWithChance) {
 			float chance = possibleOutput.getRight();
-			if(chance >= 1.0 || random.nextFloat() < chance) {
+			if (chance >= 1.0 || random.nextFloat() < chance) {
 				ItemStack stack = possibleOutput.getLeft().copy();
-				if(yieldMod > 1) {
+				if (yieldMod > 1) {
 					stack.setCount(Math.min(stack.getMaxCount(), Support.getIntFromDecimalWithChance(stack.getCount() * yieldMod, random)));
 				}
 				output.add(stack);
@@ -116,7 +116,7 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	
 	public List<ItemStack> getPossibleOutputs() {
 		List<ItemStack> outputs = new ArrayList<>();
-		for(Pair<ItemStack, Float> pair : this.outputsWithChance) {
+		for (Pair<ItemStack, Float> pair : this.outputsWithChance) {
 			outputs.add(pair.getLeft());
 		}
 		return outputs;

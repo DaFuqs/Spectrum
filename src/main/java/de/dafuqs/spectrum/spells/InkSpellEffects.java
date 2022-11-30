@@ -44,7 +44,7 @@ public class InkSpellEffects {
 			public void playEffects(World world, Vec3d origin, float potency) {
 				int count = 12 + (int) (potency * 3);
 				Random random = world.random;
-				for(int i = 0; i < count; i++) {
+				for (int i = 0; i < count; i++) {
 					world.addParticle(ParticleTypes.WAX_OFF,
 							origin.x + potency - random.nextFloat() * potency * 2,
 							origin.y + potency - random.nextFloat() * potency * 2,
@@ -56,9 +56,9 @@ public class InkSpellEffects {
 			@Override
 			void affectEntity(Entity entity, Vec3d origin, float potency) {
 				// heal living entities
-				if(entity instanceof LivingEntity livingEntity && (livingEntity.getHealth() < livingEntity.getMaxHealth() || livingEntity.isUndead())) {
+				if (entity instanceof LivingEntity livingEntity && (livingEntity.getHealth() < livingEntity.getMaxHealth() || livingEntity.isUndead())) {
 					float amount = potency - (float) entity.getPos().distanceTo(origin);
-					if(amount >= 1) {
+					if (amount >= 1) {
 						livingEntity.heal(amount);
 						entity.getWorld().playSound(null, entity.getBlockPos(), SpectrumSoundEvents.BLOCK_CITRINE_BLOCK_CHIME, SoundCategory.NEUTRAL, 1.0F, 0.9F + entity.getWorld().random.nextFloat() * 0.2F);
 						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), ParticleTypes.WAX_OFF, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0, 0, 0));
@@ -87,7 +87,7 @@ public class InkSpellEffects {
 				
 				int count = 10 + (int) (potency * 3);
 				Random random = world.random;
-				for(int i = 0; i < count; i++) {
+				for (int i = 0; i < count; i++) {
 					world.addParticle(ParticleTypes.DRIPPING_LAVA,
 							origin.x + potency - random.nextFloat() * potency * 2,
 							origin.y + potency - random.nextFloat() * potency * 2,
@@ -99,9 +99,9 @@ public class InkSpellEffects {
 			@Override
 			void affectEntity(Entity entity, Vec3d origin, float potency) {
 				// set entities on fire
-				if(!entity.isFireImmune()) {
+				if (!entity.isFireImmune()) {
 					int duration = (int) (10 * potency) - (int) (5 * entity.getPos().distanceTo(origin));
-					if(duration >= 1) {
+					if (duration >= 1) {
 						entity.setFireTicks(duration);
 						entity.getWorld().playSound(null, entity.getBlockPos(), SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.NEUTRAL, 1.0F, 0.9F + entity.getWorld().random.nextFloat() * 0.2F);
 						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), ParticleTypes.ASH, 10, new Vec3d(0.5, 0.5, 0.5), new Vec3d(0, 0, 0));
@@ -112,12 +112,12 @@ public class InkSpellEffects {
 			@Override
 			void affectArea(World world, BlockPos origin, float potency) {
 				// burn & cause fires
-				if(world instanceof ServerWorld serverWorld) {
+				if (world instanceof ServerWorld serverWorld) {
 					int range = Support.getIntFromDecimalWithChance(potency, world.random);
 					for (BlockPos blockPos : BlockPos.iterateOutwards(origin, range, range, range)) {
 						int distance = 1 + blockPos.getManhattanDistance(origin);
 						float div = (float) range / distance;
-						if(div >= 1 || world.random.nextFloat() < div) {
+						if (div >= 1 || world.random.nextFloat() < div) {
 							FirestarterMobBlock.causeFire(serverWorld, blockPos, Direction.random(world.random));
 						}
 					}

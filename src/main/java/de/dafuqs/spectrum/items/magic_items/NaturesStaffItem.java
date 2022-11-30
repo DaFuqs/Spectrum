@@ -176,14 +176,14 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
 		if (efficiencyLevel == 0) {
-			if(InkPowered.canUseClient()) {
+			if (InkPowered.canUseClient()) {
 				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_ink"));
 			} else {
 				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip"));
 			}
 		} else {
 			int chancePercent = (int) Math.round(2.0 / (2 + efficiencyLevel) * 100);
-			if(InkPowered.canUseClient()) {
+			if (InkPowered.canUseClient()) {
 				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_ink_and_chance", chancePercent));
 			} else {
 				tooltip.add(Text.translatable("item.spectrum.natures_staff.tooltip_with_chance", chancePercent));
@@ -257,10 +257,10 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 			} else if (user.getItemUseTime() % 10 == 0) {
 				ServerPlayerEntity player = (ServerPlayerEntity) context.getPlayer();
 				boolean paid = player.isCreative(); // free for creative players
-				if(!paid) { // try pay with ink
+				if (!paid) { // try pay with ink
 					paid = InkPowered.tryDrainEnergy(context.getPlayer(), USED_COLOR, getInkCost(context.getStack()));
 				}
-				if(!paid) {  // try pay with item
+				if (!paid) {  // try pay with item
 					int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.getStack());
 					paid = (efficiencyLevel == 0 && InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), COST)) || (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), COST));
 				}
@@ -289,11 +289,11 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 						}
 						
 						return ActionResult.success(false);
-					// fertilizable? => grow
+						// fertilizable? => grow
 					} else if (useOnFertilizable(world, blockPos)) {
 						world.syncWorldEvent(2005, blockPos, 0);
 						return ActionResult.success(false);
-					// blockstate marked as stackable? => stack on top!
+						// blockstate marked as stackable? => stack on top!
 					} else if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
 						int i = 0;
 						BlockState state;
@@ -314,8 +314,8 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 							return ActionResult.success(false);
 						}
 						
-					// random tickable and whitelisted? => tick
-					// without whitelist we would be able to tick budding blocks, ...
+						// random tickable and whitelisted? => tick
+						// without whitelist we would be able to tick budding blocks, ...
 					} else if (blockState.hasRandomTicks() && blockState.isIn(SpectrumBlockTags.NATURES_STAFF_TICKABLE)) {
 						if (world instanceof ServerWorld) {
 							blockState.randomTick((ServerWorld) world, blockPos, world.random);
@@ -354,10 +354,10 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 	public int getEnchantability() {
 		return 10;
 	}
-
-    @Override
-    public List<InkColor> getUsedColors() {
-        return List.of(USED_COLOR);
-    }
+	
+	@Override
+	public List<InkColor> getUsedColors() {
+		return List.of(USED_COLOR);
+	}
 	
 }

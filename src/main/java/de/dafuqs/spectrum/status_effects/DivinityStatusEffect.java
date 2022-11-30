@@ -21,7 +21,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 		if (entity instanceof PlayerEntity player) {
-			if(!player.world.isClient) {
+			if (!player.world.isClient) {
 				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayerEntity) player);
 			}
 			player.getHungerManager().add(1, 0.25F);
@@ -50,7 +50,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onApplied(entity, attributes, amplifier);
-		if(entity instanceof ServerPlayerEntity player) {
+		if (entity instanceof ServerPlayerEntity player) {
 			SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
 		}
 	}

@@ -183,7 +183,7 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	@Override
 	@Deprecated
 	public void setEnergy(Map<InkColor, Long> colors, long total) {
-		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
+		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
 			if (color instanceof ElementalColor elementalColor) {
 				this.storedEnergy.put(elementalColor, color.getValue());
 			}
@@ -250,7 +250,7 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
-		if(includeHeader) {
+		if (includeHeader) {
 			tooltip.add(Text.translatable("item.spectrum.artists_palette.tooltip", getShortenedNumberString(this.maxEnergyTotal)));
 			tooltip.add(Text.translatable("item.spectrum.artists_palette.tooltip.mix_on_demand"));
 		}

@@ -13,7 +13,7 @@ public abstract class LoomContainerPatternSlotMixin extends Slot {
 	private LoomContainerPatternSlotMixin() {
 		super(null, 0, 0, 0);
 	}
-
+	
 	@Inject(method = "canInsert(Lnet/minecraft/item/ItemStack;)Z", at = @At("RETURN"), cancellable = true)
 	private void checkBppLoomPatternItem(ItemStack stack, CallbackInfoReturnable<Boolean> info) {
 		if (stack.getItem() instanceof LoomPatternProvider) {

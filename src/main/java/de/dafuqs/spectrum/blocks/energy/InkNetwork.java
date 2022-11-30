@@ -5,14 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 
 public class InkNetwork {
-    protected static List<InkNetwork> networks = new ArrayList<>();
-
-    protected HashSet<InkDuctBlockEntity> inkDucts = new HashSet<>();
-
-    public boolean canConnect(InkDuctBlockEntity newDuct){
-        for (InkDuctBlockEntity currentDuct: inkDucts){
-            currentDuct.canSee(newDuct);
-        }
-        return false;
-    }
+	protected static List<InkNetwork> networks = new ArrayList<>();
+	
+	protected HashSet<InkDuctBlockEntity> inkDucts = new HashSet<>();
+	
+	public boolean canConnect(InkDuctBlockEntity newDuct) {
+		for (InkDuctBlockEntity currentDuct : inkDucts) {
+			currentDuct.canSee(newDuct);
+		}
+		return false;
+	}
 }

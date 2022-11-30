@@ -125,7 +125,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		if (retrievedStack.isEmpty()) {
 			return false;
 		}
-		if(player.getStackInHand(hand).isEmpty()) {
+		if (player.getStackInHand(hand).isEmpty()) {
 			player.setStackInHand(hand, retrievedStack);
 		} else {
 			Support.givePlayer(player, retrievedStack);
@@ -136,7 +136,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	
 	public boolean retrieveLastStack(World world, BlockPos pos, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
 		for (int i = blockEntity.size() - 1; i >= 0; i--) {
-			if(retrieveStack(world, pos, player, hand, handStack, blockEntity, i)) {
+			if (retrieveStack(world, pos, player, hand, handStack, blockEntity, i)) {
 				return true;
 			}
 		}
@@ -146,7 +146,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	public boolean inputHandStack(World world, PlayerEntity player, Hand hand, ItemStack handStack, InWorldInteractionBlockEntity blockEntity) {
 		int previousCount = handStack.getCount();
 		ItemStack remainingStack = InventoryHelper.smartAddToInventory(handStack, blockEntity, null);
-		if(remainingStack.getCount() != previousCount) {
+		if (remainingStack.getCount() != previousCount) {
 			player.setStackInHand(hand, remainingStack);
 			world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 			return true;

@@ -42,7 +42,7 @@ public class SpectrumSkullBlockEntityRenderer implements BlockEntityRenderer<Spe
 	}
 	
 	public static SkullBlockEntityModel getModel(SkullBlock.SkullType skullType) {
-		if(MODELS.containsKey(skullType)) {
+		if (MODELS.containsKey(skullType)) {
 			return MODELS.get(skullType);
 		} else {
 			return MODELS.get(SkullBlock.Type.PLAYER);

@@ -58,14 +58,14 @@ public class BloodOrchidBlock extends FlowerBlock implements RevelationAware {
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		int age = state.get(AGE);
-		if(age > 0) {
+		if (age > 0) {
 			if (world.isClient) {
 				return ActionResult.SUCCESS;
 			} else {
 				world.setBlockState(pos, state.with(AGE, age - 1));
 				Support.givePlayer(player, SpectrumItems.BLOOD_ORCHID_PETAL.getDefaultStack());
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
-				if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+				if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 					SpectrumAdvancementCriteria.BLOOD_ORCHID_PLUCKING.trigger(serverPlayerEntity);
 				}
 				return ActionResult.CONSUME;
@@ -82,7 +82,7 @@ public class BloodOrchidBlock extends FlowerBlock implements RevelationAware {
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-		for(int i = 0; i <= Properties.AGE_5_MAX; i++) {
+		for (int i = 0; i <= Properties.AGE_5_MAX; i++) {
 			hashtable.put(this.getDefaultState().with(AGE, i), Blocks.RED_TULIP.getDefaultState());
 		}
 		return hashtable;

@@ -45,6 +45,7 @@ public abstract class GatedSpectrumRecipe implements Recipe<Inventory>, GatedRec
 	
 	/**
 	 * The advancement the player has to have for the recipe be craftable
+	 *
 	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
 	 */
 	@Nullable

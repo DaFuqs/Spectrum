@@ -43,7 +43,7 @@ public class HudRenderers {
 			int absorptionAmount = MathHelper.ceil(cameraPlayer.getAbsorptionAmount());
 			int maxCharges = AzureDikeProvider.getMaxAzureDikeCharges(cameraPlayer);
 			boolean blink = false;
-			if(cameraPlayer.getRecentDamageSource() != null && cameraPlayer.getWorld() != null) {
+			if (cameraPlayer.getRecentDamageSource() != null && cameraPlayer.getWorld() != null) {
 				blink = (cameraPlayer.getWorld().getTime() >> 2) % 2 == 0;
 			}
 			
@@ -60,7 +60,7 @@ public class HudRenderers {
 			
 			int maxHealth = (int) cameraPlayer.getMaxHealth();
 			int heartRows = maxHealth / 20;
-			if(cameraPlayer.getMaxHealth() % 20 == 0) {
+			if (cameraPlayer.getMaxHealth() % 20 == 0) {
 				heartRows--;
 			}
 			boolean hasArmor = cameraPlayer.getArmor() > 0;
@@ -70,7 +70,7 @@ public class HudRenderers {
 			int height = scaledHeight - 49;
 			
 			int y = hasArmor ? height + heartRows * SpectrumCommon.CONFIG.azureDikeHudOffsetYForEachRowOfExtraHearts + SpectrumCommon.CONFIG.azureDikeHudOffsetYWithArmor : height + SpectrumCommon.CONFIG.azureDikeHudOffsetY;
-			if(absorptionAmount > 0) {
+			if (absorptionAmount > 0) {
 				int absorptionRows = (int) Math.ceil(absorptionAmount / 20.0F);
 				int absorptionRowHeight = 10 - (absorptionRows - 2);
 				y -= absorptionRows * Math.max(absorptionRowHeight, 3);
@@ -78,7 +78,7 @@ public class HudRenderers {
 			int x = width - 9 + SpectrumCommon.CONFIG.azureDikeHudOffsetX;
 			
 			// back row
-			if(renderBackRow) {
+			if (renderBackRow) {
 				for (int i = displayedHearts / 2; i < 10; i++) {
 					InGameHud.drawTexture(matrixStack, x + i * 8, y, 36, 9, 9, 9, 256, 256); // "back row" icon
 				}
@@ -86,7 +86,7 @@ public class HudRenderers {
 			
 			// outline
 			for (int i = 0; i < renderedOutlines; i++) {
-				if(renderBackRow) {
+				if (renderBackRow) {
 					if (blink) {
 						InGameHud.drawTexture(matrixStack, x + i * 8, y, 54, 9, 9, 9, 256, 256); // background
 					} else {
@@ -112,17 +112,17 @@ public class HudRenderers {
 			}
 			
 			// canisters
-			for(int i = 0; i < fullCanisters; i++) {
+			for (int i = 0; i < fullCanisters; i++) {
 				InGameHud.drawTexture(matrixStack, x + i * 6, y - 9, 0, 0, 9, 9, 256, 256); // full canisters
 			}
-			for(int i = fullCanisters; i < fullCanisters + emptyCanisters; i++) {
+			for (int i = fullCanisters; i < fullCanisters + emptyCanisters; i++) {
 				InGameHud.drawTexture(matrixStack, x + i * 6, y - 9, 9, 0, 9, 9, 256, 256); // empty canisters
 			}
 			
 			RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
 		}
 	}
-
+	
 	private static void renderSelectedStaffStack(MatrixStack matrixStack) {
 		if (amount > -1 && itemStackToRender != null) {
 			// Render the item stack next to the cursor

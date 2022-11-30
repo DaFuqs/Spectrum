@@ -22,6 +22,7 @@ public abstract class SpectrumFluidBlock extends FluidBlock {
 	}
 	
 	public abstract DefaultParticleType getSplashParticle();
+	
 	public abstract Pair<DefaultParticleType, DefaultParticleType> getFishingParticles();
 	
 	public <R extends FluidConvertingRecipe> R getConversionRecipeFor(RecipeType<R> recipeType, @NotNull World world, ItemStack itemStack) {

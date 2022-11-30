@@ -8,18 +8,18 @@ import net.minecraft.util.math.Vec3f;
 import java.util.HashMap;
 
 public class InkColors {
-
-    public static Identifier BASE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
-    public static Identifier BLACK_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
-    public static Identifier WHITE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/collect_moonstone_shard");
-
+	
+	public static Identifier BASE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
+	public static Identifier BLACK_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
+	public static Identifier WHITE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/collect_moonstone_shard");
+	
 	
 	public static ElementalColor CYAN = new ElementalColor(DyeColor.CYAN, new Vec3f(0.36f, 1f, 0.93f), BASE_ADVANCEMENT_ID);
 	public static ElementalColor MAGENTA = new ElementalColor(DyeColor.MAGENTA, new Vec3f(0.84f, 0.25f, 0.94f), BASE_ADVANCEMENT_ID);
 	public static ElementalColor YELLOW = new ElementalColor(DyeColor.YELLOW, new Vec3f(0.97f, 0.75f, 0.24f), BASE_ADVANCEMENT_ID);
 	public static ElementalColor BLACK = new ElementalColor(DyeColor.BLACK, new Vec3f(0.07f, 0.07f, 0.07f), BLACK_ADVANCEMENT_ID);
 	public static ElementalColor WHITE = new ElementalColor(DyeColor.WHITE, new Vec3f(0.93f, 0.95f, 0.98f), WHITE_ADVANCEMENT_ID);
-
+	
 	public static CompoundColor ORANGE = new CompoundColor(DyeColor.ORANGE, new Vec3f(1f, 0.61f, 0.08f), BASE_ADVANCEMENT_ID, new HashMap<>() {{
 		put(MAGENTA, 1F / 3F);
 		put(YELLOW, 2F / 3F);

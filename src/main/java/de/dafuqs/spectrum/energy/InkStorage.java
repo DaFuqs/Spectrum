@@ -24,7 +24,7 @@ public interface InkStorage {
 	 */
 	static long transferInk(@NotNull InkStorage source, @NotNull InkStorage destination) {
 		long transferred = 0;
-		for(InkColor inkColor : source.getEnergy().keySet()) {
+		for (InkColor inkColor : source.getEnergy().keySet()) {
 			transferred += transferInk(source, destination, inkColor);
 		}
 		return transferred;
@@ -50,7 +50,7 @@ public interface InkStorage {
 			long destinationRoom = destination.getRoom(color);
 			if (destinationRoom > 0) {
 				long destinationAmount = destination.getEnergy(color);
-				if(sourceAmount > destinationAmount + 1) {
+				if (sourceAmount > destinationAmount + 1) {
 					long transferAmount = Math.max(1, (sourceAmount - destinationAmount) / 32); // the constant here is simulating pressure flow
 					transferAmount = Math.min(transferAmount, Math.min(sourceAmount, destinationRoom));
 					destination.addEnergy(color, transferAmount);
@@ -151,5 +151,5 @@ public interface InkStorage {
 	void addTooltip(List<Text> tooltip, boolean includeHeader);
 	
 	long getRoom(InkColor color);
-
+	
 }

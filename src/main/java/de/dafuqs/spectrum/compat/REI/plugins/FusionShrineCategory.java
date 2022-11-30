@@ -63,7 +63,7 @@ public class FusionShrineCategory implements DisplayCategory<FusionShrineDisplay
 			int ingredientSize = inputs.size() - 1;
 			int startX = Math.max(-10, 10 - ingredientSize * 10);
 			for (int i = 0; i < ingredientSize; i++) {
-				EntryIngredient currentIngredient = inputs.get(i+1);
+				EntryIngredient currentIngredient = inputs.get(i + 1);
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + i * 20, startPoint.y + 9)).markInput().entries(currentIngredient));
 			}
 			

@@ -291,7 +291,7 @@ public class SpectrumConfiguredFeatures {
 				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
 				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
 		);
-
+		
 		BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.IS_OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
 		
 		// QUITOXIC REEDS

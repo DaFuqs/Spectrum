@@ -23,7 +23,7 @@ public class NourishingStatusEffect extends SpectrumStatusEffect {
 	
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
 		int i = 200 >> amplifier;
-		if(i > 0) {
+		if (i > 0) {
 			return duration % i == 0;
 		}
 		return true;

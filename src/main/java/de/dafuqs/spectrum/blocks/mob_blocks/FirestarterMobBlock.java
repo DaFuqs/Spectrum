@@ -101,7 +101,7 @@ public class FirestarterMobBlock extends MobBlock {
 	@Override
 	public boolean trigger(ServerWorld world, BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		for (Direction direction : Direction.values()) {
-			if(causeFire(world, blockPos.offset(direction), direction)) {
+			if (causeFire(world, blockPos.offset(direction), direction)) {
 				world.playSound(null, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
 			}
 		}

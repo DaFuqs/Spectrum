@@ -49,13 +49,15 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	
 	protected DefaultedList<ItemStack> inventory;
 	
-	public static final long INK_STORAGE_SIZE = 64*64*100;
+	public static final long INK_STORAGE_SIZE = 64 * 64 * 100;
 	protected IndividualCappedInkStorage inkStorage;
 	protected boolean inkDirty;
 	
-	@Nullable protected UUID ownerUUID;
+	@Nullable
+	protected UUID ownerUUID;
 	
-	@Nullable protected CrystallarieumRecipe currentRecipe;
+	@Nullable
+	protected CrystallarieumRecipe currentRecipe;
 	protected CrystallarieumCatalyst currentCatalyst;
 	protected int currentGrowthStageDuration;
 	protected boolean canWork;
@@ -68,12 +70,12 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
-		if(crystallarieum.canWork && crystallarieum.currentRecipe != null) {
+		if (crystallarieum.canWork && crystallarieum.currentRecipe != null) {
 			int amount = crystallarieum.currentRecipe.getInkPerSecond();
 			if (amount > 0) {
 				ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(crystallarieum.currentRecipe.getInkColor().getDyeColor());
 				
-				if(amount > 199 || Support.getIntFromDecimalWithChance(amount / 200.0, world.random) > 0) {
+				if (amount > 199 || Support.getIntFromDecimalWithChance(amount / 200.0, world.random) > 0) {
 					double randomX = world.getRandom().nextDouble() * 0.8;
 					double randomZ = world.getRandom().nextDouble() * 0.8;
 					world.addParticle(particleEffect, blockPos.getX() + 0.1 + randomX, blockPos.getY() + 1, blockPos.getZ() + 0.1 + randomZ, 0.0D, 0.03D, 0.0D);
@@ -83,16 +85,16 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	}
 	
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
-		if(world.getTime() % 20 == 0 && crystallarieum.canWork && crystallarieum.currentRecipe != null) {
+		if (world.getTime() % 20 == 0 && crystallarieum.canWork && crystallarieum.currentRecipe != null) {
 			// advance growing
-			if(crystallarieum.currentCatalyst == null) {
-				if(!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
+			if (crystallarieum.currentCatalyst == null) {
+				if (!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
 					return;
 				}
 				
 				// running without catalyst
 				int consumedInk = crystallarieum.currentRecipe.getInkPerSecond();
-				if(crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
+				if (crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
 					crystallarieum.canWork = false;
 					crystallarieum.setInkDirty();
 					crystallarieum.updateInClientWorld();
@@ -104,7 +106,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 			} else {
 				// running with catalyst
 				int consumedInk = (int) Math.ceil(crystallarieum.currentRecipe.getInkPerSecond() * crystallarieum.currentCatalyst.inkConsumptionMod);
-				if(crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
+				if (crystallarieum.inkStorage.drainEnergy(crystallarieum.currentRecipe.getInkColor(), consumedInk) < consumedInk) {
 					crystallarieum.canWork = false;
 					crystallarieum.setInkDirty();
 					crystallarieum.updateInClientWorld();
@@ -115,12 +117,12 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 				crystallarieum.currentGrowthStageDuration += 20 * crystallarieum.currentCatalyst.growthAccelerationMod;
 				
 				// check if a catalyst should get used up
-				if(world.random.nextFloat() < crystallarieum.currentCatalyst.consumeChancePerSecond) {
+				if (world.random.nextFloat() < crystallarieum.currentCatalyst.consumeChancePerSecond) {
 					ItemStack catalystStack = crystallarieum.getStack(CATALYST_SLOT_ID);
 					catalystStack.decrement(1);
-					if(catalystStack.isEmpty()) {
+					if (catalystStack.isEmpty()) {
 						crystallarieum.currentCatalyst = null;
-						if(!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
+						if (!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
 							crystallarieum.canWork = false;
 						}
 					}
@@ -128,13 +130,13 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 			}
 			
 			// advanced enough? grow!
-			if(crystallarieum.currentGrowthStageDuration >= crystallarieum.currentRecipe.getSecondsPerGrowthStage() * 20) {
+			if (crystallarieum.currentGrowthStageDuration >= crystallarieum.currentRecipe.getSecondsPerGrowthStage() * 20) {
 				BlockPos topPos = blockPos.up();
 				BlockState topState = world.getBlockState(topPos);
 				for (Iterator<BlockState> it = crystallarieum.currentRecipe.getGrowthStages().iterator(); it.hasNext(); ) {
 					BlockState state = it.next();
-					if(state.equals(topState)) {
-						if(it.hasNext()) {
+					if (state.equals(topState)) {
+						if (it.hasNext()) {
 							BlockState targetState = it.next();
 							world.setBlockState(topPos, targetState);
 							if (targetState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
@@ -142,7 +144,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 							}
 							
 							// if the stone on top can not grow any further: pause
-							if(!it.hasNext()) {
+							if (!it.hasNext()) {
 								crystallarieum.canWork = false;
 								crystallarieum.updateInClientWorld();
 							}
@@ -160,7 +162,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 		super.readNbt(nbt);
 		
 		Inventories.readNbt(nbt, this.inventory);
-		if(nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
+		if (nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
 			this.inkStorage = IndividualCappedInkStorage.fromNbt(nbt.getCompound("InkStorage"));
 		}
 		this.currentGrowthStageDuration = nbt.getShort("CraftingTime");
@@ -241,13 +243,14 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	
 	/**
 	 * Searches recipes for a valid one using itemStack and plants the first block of that recipe on top
+	 *
 	 * @param itemStack stack that is tried to plant on top, if a valid recipe
 	 */
 	public void acceptStack(ItemStack itemStack, boolean creative) {
-		if(world.getBlockState(pos.up()).isAir()) {
+		if (world.getBlockState(pos.up()).isAir()) {
 			CrystallarieumRecipe recipe = CrystallarieumRecipe.getRecipeForStack(itemStack);
 			if (recipe != null) {
-				if(!creative) {
+				if (!creative) {
 					itemStack.decrement(1);
 				}
 				BlockState placedState = recipe.getGrowthStages().get(0);
@@ -257,13 +260,13 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 				return;
 			}
 		}
-		if(this.currentRecipe != null) {
+		if (this.currentRecipe != null) {
 			ItemStack currentCatalystStack = getStack(CATALYST_SLOT_ID);
-			if(currentCatalystStack.isEmpty()) {
+			if (currentCatalystStack.isEmpty()) {
 				Optional<CrystallarieumCatalyst> optionalCatalyst = this.currentRecipe.getCatalyst(itemStack);
-				if(optionalCatalyst.isPresent()) {
+				if (optionalCatalyst.isPresent()) {
 					setStack(CATALYST_SLOT_ID, itemStack.copy());
-					if(!creative) {
+					if (!creative) {
 						itemStack.setCount(0);
 					}
 					this.currentCatalyst = optionalCatalyst.get();
@@ -271,7 +274,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 					updateInClientWorld();
 					markDirty();
 				}
-			} else if(ItemStack.canCombine(currentCatalystStack, itemStack)) {
+			} else if (ItemStack.canCombine(currentCatalystStack, itemStack)) {
 				InventoryHelper.combineStacks(currentCatalystStack, itemStack);
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 				this.canWork = true;
@@ -309,11 +312,12 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	/**
 	 * Triggered when the block on top of the crystallarieum has changed
 	 * Sets the new recipe matching that block state
+	 *
 	 * @param newState the new block state on top
-	 * @param recipe optionally the matching CrystallarieumRecipe. If null is passed it will be calculated
+	 * @param recipe   optionally the matching CrystallarieumRecipe. If null is passed it will be calculated
 	 */
 	public void onTopBlockChange(BlockState newState, @Nullable CrystallarieumRecipe recipe) {
-		if(newState.isAir()) { // fast fail
+		if (newState.isAir()) { // fast fail
 			this.currentRecipe = null;
 			this.canWork = false;
 			markDirty();
@@ -322,9 +326,9 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 			this.currentRecipe = recipe == null ? CrystallarieumRecipe.getRecipeForState(newState) : recipe;
 			
 			ItemStack catalystStack = getStack(CATALYST_SLOT_ID);
-			if(!catalystStack.isEmpty()) {
+			if (!catalystStack.isEmpty()) {
 				Optional<CrystallarieumCatalyst> newCatalyst = this.currentRecipe.getCatalyst(catalystStack);
-				if(newCatalyst.isPresent()) {
+				if (newCatalyst.isPresent()) {
 					this.currentCatalyst = newCatalyst.get();
 				} else {
 					this.currentCatalyst = null;

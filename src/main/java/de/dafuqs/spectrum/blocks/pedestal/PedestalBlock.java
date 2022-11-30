@@ -172,7 +172,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		ActionResult actionResult = checkAndDoPaintbrushTrigger(state, world, pos, player, hand, hit);
-		if(actionResult.isAccepted()) {
+		if (actionResult.isAccepted()) {
 			return actionResult;
 		}
 		
@@ -230,12 +230,12 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	public int getComparatorOutput(BlockState state, @NotNull World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
-
+	
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
-
+	
 	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull World world, BlockState state, BlockEntityType<T> type) {
@@ -287,7 +287,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	public PedestalVariant getVariant() {
 		return this.variant;
 	}
-
+	
 	static {
 		var foot = Block.createCuboidShape(3, 0, 3, 13, 3, 13);
 		var neck = Block.createCuboidShape(5, 3, 5, 11, 12, 11);
@@ -299,18 +299,18 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	@Override
 	public ActionResult onPaintBrushTrigger(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
-			if(pedestalBlockEntity.craftingTime > 0) {
+		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+			if (pedestalBlockEntity.craftingTime > 0) {
 				return ActionResult.FAIL;
 			}
-			if(pedestalBlockEntity.currentRecipe == null) {
+			if (pedestalBlockEntity.currentRecipe == null) {
 				return ActionResult.FAIL;
 			}
-			if(pedestalBlockEntity.currentRecipe instanceof GatedRecipe gatedRecipe && !gatedRecipe.canPlayerCraft(player)) {
+			if (pedestalBlockEntity.currentRecipe instanceof GatedRecipe gatedRecipe && !gatedRecipe.canPlayerCraft(player)) {
 				return ActionResult.FAIL;
 			}
 			
-			if(!world.isClient) {
+			if (!world.isClient) {
 				pedestalBlockEntity.shouldCraft = true;
 				SpectrumS2CPacketSender.spawnPedestalStartCraftingParticles(pedestalBlockEntity);
 			}

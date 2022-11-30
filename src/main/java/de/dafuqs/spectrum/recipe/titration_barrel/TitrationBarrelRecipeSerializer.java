@@ -53,12 +53,12 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		int minTimeDays = JsonHelper.getInt(jsonObject, "min_fermentation_time_hours", 24);
 		
 		Item tappingItem = Items.AIR;
-		if(JsonHelper.hasString(jsonObject, "tapping_item")) {
+		if (JsonHelper.hasString(jsonObject, "tapping_item")) {
 			tappingItem = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "tapping_item")));
 		}
 		
 		TitrationBarrelRecipe.FermentationData fermentationData = null;
-		if(JsonHelper.hasJsonObject(jsonObject, "fermentation_data")) {
+		if (JsonHelper.hasJsonObject(jsonObject, "fermentation_data")) {
 			fermentationData = TitrationBarrelRecipe.FermentationData.fromJson(JsonHelper.getObject(jsonObject, "fermentation_data"));
 		}
 		
@@ -81,7 +81,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		packetByteBuf.writeString(Registry.ITEM.getId(recipe.tappingItem).toString());
 		packetByteBuf.writeInt(recipe.minFermentationTimeHours);
 		
-		if(recipe.fermentationData == null) {
+		if (recipe.fermentationData == null) {
 			packetByteBuf.writeBoolean(false);
 		} else {
 			packetByteBuf.writeBoolean(true);
@@ -101,7 +101,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		
 		Fluid fluid = Fluids.EMPTY;
 		Identifier fluidId = readNullableIdentifier(packetByteBuf);
-		if(fluidId != null) {
+		if (fluidId != null) {
 			fluid = Registry.FLUID.get(fluidId);
 		}
 		
@@ -110,7 +110,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		int minTimeDays = packetByteBuf.readInt();
 		
 		TitrationBarrelRecipe.FermentationData fermentationData = null;
-		if(packetByteBuf.readBoolean()) {
+		if (packetByteBuf.readBoolean()) {
 			fermentationData = TitrationBarrelRecipe.FermentationData.read(packetByteBuf);
 		}
 		

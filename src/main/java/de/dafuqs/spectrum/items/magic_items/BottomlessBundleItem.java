@@ -206,17 +206,17 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
-		if(user.isSneaking()) {
+		if (user.isSneaking()) {
 			ItemStack handStack = user.getStackInHand(hand);
 			NbtCompound compound = handStack.getOrCreateNbt();
 			if (compound.contains("Locked")) {
 				compound.remove("Locked");
-				if(world.isClient) {
+				if (world.isClient) {
 					plaZipSound(user, 0.8F);
 				}
 			} else {
 				compound.putBoolean("Locked", true);
-				if(world.isClient) {
+				if (world.isClient) {
 					plaZipSound(user, 1.0F);
 				}
 			}
@@ -322,14 +322,14 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		int storedAmount = getStoredAmount(stack);
 		if (storedAmount == 0) {
 			tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty").formatted(Formatting.GRAY));
-			if(locked) {
+			if (locked) {
 				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.locked").formatted(Formatting.GRAY));
 			}
 		} else {
 			ItemStack firstStack = getFirstBundledStack(stack);
 			String totalStacks = Support.getShortenedNumberString(storedAmount / (float) firstStack.getMaxCount());
 			tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count", storedAmount, getMaxStoredAmount(stack), totalStacks).formatted(Formatting.GRAY));
-			if(locked) {
+			if (locked) {
 				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.locked").formatted(Formatting.GRAY));
 			} else {
 				tooltip.add(Text.translatable("item.spectrum.bottomless_bundle.tooltip.enter_inventory", firstStack.getName().getString()).formatted(Formatting.GRAY));
@@ -439,7 +439,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	
 	@Override
 	public int acceptItemStack(ItemStack inventoryInsertionAcceptorStack, ItemStack itemStackToAccept, PlayerEntity playerEntity) {
-		if(isLocked(inventoryInsertionAcceptorStack)) {
+		if (isLocked(inventoryInsertionAcceptorStack)) {
 			return itemStackToAccept.getCount();
 		}
 		

@@ -24,16 +24,16 @@ public class BlockVariantHelper {
 	
 	public static Block getCursedBlockColorVariant(World world, BlockPos blockPos, DyeColor newColor) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
-		if(blockEntity != null) {
+		if (blockEntity != null) {
 			return Blocks.AIR;
 		}
 		
 		BlockState blockState = world.getBlockState(blockPos);
 		Block block = blockState.getBlock();
 		
-		if(coloredStates.containsKey(block)) {
+		if (coloredStates.containsKey(block)) {
 			Map<DyeColor, Block> colorMap = coloredStates.get(block);
-			if(colorMap.containsKey(newColor)) {
+			if (colorMap.containsKey(newColor)) {
 				return colorMap.get(newColor);
 			}
 		}
@@ -41,24 +41,24 @@ public class BlockVariantHelper {
 		Identifier identifier = Registry.BLOCK.getId(block);
 		
 		String newPath = null;
-		for(String colorString : COLOR_STRINGS) {
-			if(identifier.getPath().contains(colorString)) {
+		for (String colorString : COLOR_STRINGS) {
+			if (identifier.getPath().contains(colorString)) {
 				newPath = identifier.getPath().replace(colorString, newColor.toString());
 				break;
 			}
 		}
 		
 		Block returnBlock = Blocks.AIR;
-		if(newPath != null) {
+		if (newPath != null) {
 			Identifier newIdentifier = new Identifier(identifier.getNamespace(), newPath);
 			Block newIdentifierBlock = Registry.BLOCK.get(newIdentifier);
-			if(newIdentifierBlock != block) {
+			if (newIdentifierBlock != block) {
 				returnBlock = newIdentifierBlock;
 			}
 		}
 		
 		// cache
-		if(coloredStates.containsKey(block)) {
+		if (coloredStates.containsKey(block)) {
 			Map<DyeColor, Block> colorMap = coloredStates.get(block);
 			colorMap.put(newColor, returnBlock);
 		} else {
@@ -78,7 +78,7 @@ public class BlockVariantHelper {
 		put(Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS, Blocks.POLISHED_BLACKSTONE_BRICKS);
 		put(Blocks.CRACKED_STONE_BRICKS, Blocks.STONE_BRICKS);
 		put(Blocks.INFESTED_CRACKED_STONE_BRICKS, Blocks.INFESTED_STONE_BRICKS);
-
+		
 		put(Blocks.DAMAGED_ANVIL, Blocks.CHIPPED_ANVIL);
 		put(Blocks.CHIPPED_ANVIL, Blocks.ANVIL);
 		
@@ -92,14 +92,14 @@ public class BlockVariantHelper {
 	
 	public static Block getCursedRepairedBlockVariant(World world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
-		if(blockEntity != null) {
+		if (blockEntity != null) {
 			return Blocks.AIR;
 		}
 		
 		BlockState blockState = world.getBlockState(blockPos);
 		Block block = blockState.getBlock();
 		
-		if(repairedStates.containsKey(block)) {
+		if (repairedStates.containsKey(block)) {
 			return repairedStates.get(block);
 		}
 		
@@ -111,10 +111,10 @@ public class BlockVariantHelper {
 		newPath = newPath.replace("chipped_", "");
 		
 		Block returnBlock = Blocks.AIR;
-		if(newPath != identifier.getPath()) {
+		if (newPath != identifier.getPath()) {
 			Identifier newIdentifier = new Identifier(identifier.getNamespace(), newPath);
 			Block newIdentifierBlock = Registry.BLOCK.get(newIdentifier);
-			if(newIdentifierBlock != block) {
+			if (newIdentifierBlock != block) {
 				returnBlock = newIdentifierBlock;
 			}
 		}

@@ -43,9 +43,9 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		super.readNbt(nbt);
 		this.requiredItems = new ArrayList<>();
 		if (nbt.contains("RequiredItems", NbtElement.LIST_TYPE)) {
-			for(NbtElement e : nbt.getList("RequiredItems", NbtElement.STRING_TYPE)) {
+			for (NbtElement e : nbt.getList("RequiredItems", NbtElement.STRING_TYPE)) {
 				Item item = Registry.ITEM.get(Identifier.tryParse(e.asString()));
-				if(item != Items.AIR) {
+				if (item != Items.AIR) {
 					this.requiredItems.add(item);
 				}
 			}
@@ -57,7 +57,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		}
 		otherRoundelOffsets = new ArrayList<>();
 		if (nbt.contains("OtherRoundelOffsets", NbtElement.LIST_TYPE)) {
-			for(NbtElement e : nbt.getList("OtherRoundelOffsets", NbtElement.INT_ARRAY_TYPE)) {
+			for (NbtElement e : nbt.getList("OtherRoundelOffsets", NbtElement.INT_ARRAY_TYPE)) {
 				int[] intArray = ((NbtIntArray) e).getIntArray();
 				otherRoundelOffsets.add(new Vec3i(intArray[0], intArray[1], intArray[2]));
 			}
@@ -66,9 +66,9 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		if(!this.requiredItems.isEmpty()) {
+		if (!this.requiredItems.isEmpty()) {
 			NbtList itemList = new NbtList();
-			for(Item requiredItem : this.requiredItems) {
+			for (Item requiredItem : this.requiredItems) {
 				itemList.add(NbtString.of(Registry.ITEM.getId(requiredItem).toString()));
 			}
 			nbt.put("RequiredItems", itemList);
@@ -78,7 +78,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		}
 		if (!this.otherRoundelOffsets.isEmpty()) {
 			NbtList offsetList = new NbtList();
-			for(Vec3i offset : this.otherRoundelOffsets) {
+			for (Vec3i offset : this.otherRoundelOffsets) {
 				offsetList.add(new NbtIntArray(new int[]{offset.getX(), offset.getY(), offset.getZ()}));
 			}
 			nbt.put("OtherRoundelOffsets", offsetList);
@@ -98,15 +98,15 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	}
 	
 	public boolean inventoryAndConnectedOnesMatchRequirement() {
-		if(!inventoryMatchesRequirement()) {
+		if (!inventoryMatchesRequirement()) {
 			return false;
 		}
 		
-
-		for(Vec3i otherRoundelOffset : this.otherRoundelOffsets) {
+		
+		for (Vec3i otherRoundelOffset : this.otherRoundelOffsets) {
 			BlockPos otherRoundelPos = Support.directionalOffset(this.pos, otherRoundelOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING));
-			if(world.getBlockEntity(otherRoundelPos) instanceof PreservationRoundelBlockEntity preservationRoundelBlockEntity) {
-				if(!preservationRoundelBlockEntity.inventoryMatchesRequirement()) {
+			if (world.getBlockEntity(otherRoundelPos) instanceof PreservationRoundelBlockEntity preservationRoundelBlockEntity) {
+				if (!preservationRoundelBlockEntity.inventoryMatchesRequirement()) {
 					return false;
 				}
 			}
@@ -116,7 +116,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 	}
 	
 	public boolean inventoryMatchesRequirement() {
-		if(this.requiredItems.isEmpty()) {
+		if (this.requiredItems.isEmpty()) {
 			return false;
 		}
 		
@@ -126,23 +126,23 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 			ItemStack slotStack = getStack(i);
 			if (!slotStack.isEmpty()) {
 				int usedCount = 0;
-				for(int j = 0; j < requirements.size(); j++) {
-					if(slotStack.getItem().equals(requirements.get(j))) {
+				for (int j = 0; j < requirements.size(); j++) {
+					if (slotStack.getItem().equals(requirements.get(j))) {
 						requirements.remove(j);
 						j--;
 						usedCount++;
-						if(slotStack.getCount() == usedCount) {
+						if (slotStack.getCount() == usedCount) {
 							break;
 						}
 					}
 				}
-				if(usedCount != slotStack.getCount()) {
+				if (usedCount != slotStack.getCount()) {
 					return false;
 				}
 			}
 		}
 		
-		if(requirements.isEmpty()) {
+		if (requirements.isEmpty()) {
 			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(pos), ParticleTypes.HAPPY_VILLAGER, 10, new Vec3d(0.25, 0.5, 0.25), new Vec3d(0.1, 0.1, 0.1));
 			world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			return true;

@@ -119,17 +119,17 @@ public class SpectrumLootPoolModifiers {
 		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
 			
 			// Dungeon loot
-			if(id.equals(new Identifier("chests/simple_dungeon"))) {
+			if (id.equals(new Identifier("chests/simple_dungeon"))) {
 				tableBuilder.pool(new LootPool.Builder().rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(0.02F).build())
 						.with(ItemEntry.builder(SpectrumItems.MYSTERIOUS_LOCKET).build()));
 				
-			// Treasure hunter pools
+				// Treasure hunter pools
 			} else if (trophyHunterLootPools.containsKey(id)) {
 				TreasureHunterDropDefinition treasureHunterDropDefinition = trophyHunterLootPools.get(id);
 				tableBuilder.pool(getLootPool(treasureHunterDropDefinition));
-			// Some treasure hunter pools use custom loot conditions
-			// because vanillas are too generic (fox/snow fox both use "fox" loot table)
+				// Some treasure hunter pools use custom loot conditions
+				// because vanillas are too generic (fox/snow fox both use "fox" loot table)
 			} else if (id.equals(new Identifier("entities/fox"))) {
 				tableBuilder.pool(getFoxLootPool(FoxEntity.Type.RED, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FOX).asItem(), 0.02F));
 				tableBuilder.pool(getFoxLootPool(FoxEntity.Type.SNOW, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FOX_ARCTIC).asItem(), 0.02F));
@@ -165,9 +165,9 @@ public class SpectrumLootPoolModifiers {
 				tableBuilder.pool(getParrotLootPool(2, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GREEN).asItem(), 0.02F));
 				tableBuilder.pool(getParrotLootPool(3, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_CYAN).asItem(), 0.02F));
 				tableBuilder.pool(getParrotLootPool(4, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GRAY).asItem(), 0.02F));
-			} else if(GoFishCompat.isLoaded()) {
+			} else if (GoFishCompat.isLoaded()) {
 				//Go-Fish compat: fishing of crates & go-fish fishies
-				if(id.equals(SpectrumCommon.locate("gameplay/fishing/lava/fishing"))) {
+				if (id.equals(SpectrumCommon.locate("gameplay/fishing/lava/fishing"))) {
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.NETHER_FISH_LOOT_TABLE_ID).weight(80).quality(-1).build()));
 					tableBuilder.modifyPools(builder -> builder.with(LootTableEntry.builder(GoFishCompat.NETHER_CRATES_LOOT_TABLE_ID).weight(5).quality(2).conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, new EntityPredicate.Builder().typeSpecific(FishingHookPredicate.of(true)).build()))));
 				} else if (id.equals(SpectrumCommon.locate("gameplay/fishing/end/fishing"))) {

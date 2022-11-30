@@ -169,7 +169,7 @@ public class TotalCappedInkStorage implements InkStorage {
 	
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
-		if(includeHeader) {
+		if (includeHeader) {
 			tooltip.add(Text.translatable("item.spectrum.total_capped_simple_pigment_energy_storage.tooltip", getShortenedNumberString(maxEnergyTotal)));
 		}
 		for (Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {

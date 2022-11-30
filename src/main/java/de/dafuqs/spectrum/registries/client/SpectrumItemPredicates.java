@@ -58,7 +58,7 @@ public class SpectrumItemPredicates {
 	private static void registerColorPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
 			Optional<InkColor> color = PaintbrushItem.getColor(itemStack);
-			if(color.isEmpty()) {
+			if (color.isEmpty()) {
 				return 0.0F;
 			}
 			return (1F + color.get().getDyeColor().getId()) / 100F;
@@ -68,7 +68,7 @@ public class SpectrumItemPredicates {
 	private static void registerPresentPredicates(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("variant"), (itemStack, clientWorld, livingEntity, i) -> {
 			NbtCompound compound = itemStack.getNbt();
-			if(compound == null || !compound.contains("Variant", NbtElement.STRING_TYPE))
+			if (compound == null || !compound.contains("Variant", NbtElement.STRING_TYPE))
 				return 0.0F;
 			
 			PresentBlock.Variant variant = PresentBlock.Variant.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
@@ -79,13 +79,13 @@ public class SpectrumItemPredicates {
 	private static void registerBottomlessBundlePredicates(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("locked"), (itemStack, clientWorld, livingEntity, i) -> {
 			NbtCompound compound = itemStack.getNbt();
-			if(compound == null)
+			if (compound == null)
 				return 0.0F;
 			return compound.contains("Locked") ? 1.0F : 0.0F;
 		});
 		ModelPredicateProviderRegistry.register(SpectrumItems.BOTTOMLESS_BUNDLE, new Identifier("filled"), (itemStack, clientWorld, livingEntity, i) -> {
 			NbtCompound compound = itemStack.getNbt();
-			if(compound == null)
+			if (compound == null)
 				return 0.0F;
 			return compound.contains("StoredStack") ? 1.0F : 0.0F;
 		});
@@ -118,7 +118,7 @@ public class SpectrumItemPredicates {
 			return currentItemRenderMode == ModelTransformation.Mode.GUI ? 1.0F : 0.0F;
 		});
 		ModelPredicateProviderRegistry.register(item, new Identifier(ActivatableItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
-			if(ActivatableItem.isActivated(itemStack)) {
+			if (ActivatableItem.isActivated(itemStack)) {
 				return 1.0F;
 			} else {
 				return 0.0F;
@@ -147,15 +147,15 @@ public class SpectrumItemPredicates {
 		});
 		
 		ModelPredicateProviderRegistry.register(crossbowItem, new Identifier("pulling"), (itemStack, clientWorld, livingEntity, i) ->
-			livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F
+				livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F
 		);
 		
 		ModelPredicateProviderRegistry.register(crossbowItem, new Identifier("charged"), (itemStack, clientWorld, livingEntity, i) ->
-			livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F
+				livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F
 		);
 		
 		ModelPredicateProviderRegistry.register(crossbowItem, new Identifier("firework"), (itemStack, clientWorld, livingEntity, i) ->
-			livingEntity != null && CrossbowItem.isCharged(itemStack) && CrossbowItem.hasProjectile(itemStack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F
+				livingEntity != null && CrossbowItem.isCharged(itemStack) && CrossbowItem.hasProjectile(itemStack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F
 		);
 	}
 	
@@ -197,7 +197,7 @@ public class SpectrumItemPredicates {
 	
 	private static void registerAnimatedWandPredicates(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("in_use"), (itemStack, clientWorld, livingEntity, i) ->
-			(livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack) ? 1.0F : 0.0F
+				(livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack) ? 1.0F : 0.0F
 		);
 	}
 	
@@ -235,7 +235,7 @@ public class SpectrumItemPredicates {
 	private static void registerEnchantmentCanvasPrediates(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("bound"), (itemStack, world, livingEntity, i) -> {
 			NbtCompound nbt = itemStack.getNbt();
-			if(nbt != null && nbt.contains("BoundItem", NbtElement.STRING_TYPE)) {
+			if (nbt != null && nbt.contains("BoundItem", NbtElement.STRING_TYPE)) {
 				return 1;
 			}
 			return 0;

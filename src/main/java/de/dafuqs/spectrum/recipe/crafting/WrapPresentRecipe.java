@@ -51,14 +51,14 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			ItemStack itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty()) {
-				if(itemStack.getItem() instanceof PresentItem) {
-					if(presentItemFound || PresentItem.isWrapped(itemStack)) {
+				if (itemStack.getItem() instanceof PresentItem) {
+					if (presentItemFound || PresentItem.isWrapped(itemStack)) {
 						return false;
 					}
 					presentItemFound = true;
-				} else if(!wrappingItemFound && getVariantForStack(itemStack) != null) {
+				} else if (!wrappingItemFound && getVariantForStack(itemStack) != null) {
 					wrappingItemFound = true;
-				} else if(!(itemStack.getItem() instanceof PigmentItem)) {
+				} else if (!(itemStack.getItem() instanceof PigmentItem)) {
 					return false;
 				}
 			}
@@ -76,16 +76,16 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 			ItemStack stack = craftingInventory.getStack(j);
 			if (stack.getItem() instanceof PresentItem) {
 				presentStack = stack.copy();
-			} else if(stack.getItem() instanceof PigmentItem pigmentItem) {
+			} else if (stack.getItem() instanceof PigmentItem pigmentItem) {
 				DyeColor color = pigmentItem.getColor();
-				if(colors.containsKey(color)) {
+				if (colors.containsKey(color)) {
 					colors.put(color, colors.get(color) + 1);
 				} else {
 					colors.put(color, 1);
 				}
 			}
 			PresentBlock.Variant stackVariant = getVariantForStack(stack);
-			if(stackVariant != null) {
+			if (stackVariant != null) {
 				variant = stackVariant;
 			}
 		}
@@ -96,25 +96,25 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	
 	public @Nullable PresentBlock.Variant getVariantForStack(ItemStack stack) {
 		Item item = stack.getItem();
-		if(item == Items.RED_DYE) {
+		if (item == Items.RED_DYE) {
 			return PresentBlock.Variant.RED;
-		} else if(item == Items.BLUE_DYE) {
+		} else if (item == Items.BLUE_DYE) {
 			return PresentBlock.Variant.BLUE;
-		} else if(item == Items.CYAN_DYE) {
+		} else if (item == Items.CYAN_DYE) {
 			return PresentBlock.Variant.CYAN;
-		} else if(item == Items.GREEN_DYE) {
+		} else if (item == Items.GREEN_DYE) {
 			return PresentBlock.Variant.GREEN;
-		} else if(item == Items.PURPLE_DYE) {
+		} else if (item == Items.PURPLE_DYE) {
 			return PresentBlock.Variant.PURPLE;
-		} else if(item == Items.CAKE) {
+		} else if (item == Items.CAKE) {
 			return PresentBlock.Variant.CAKE;
-		} else if(stack.isIn(ItemTags.FLOWERS)) {
+		} else if (stack.isIn(ItemTags.FLOWERS)) {
 			return PresentBlock.Variant.STRIPED;
-		} else if(item == Items.FIREWORK_STAR) {
+		} else if (item == Items.FIREWORK_STAR) {
 			return PresentBlock.Variant.STARRY;
-		} else if(stack.isIn(ItemTags.SAPLINGS)) {
+		} else if (stack.isIn(ItemTags.SAPLINGS)) {
 			return PresentBlock.Variant.WINTER;
-		} else if(item == Items.SPORE_BLOSSOM) {
+		} else if (item == Items.SPORE_BLOSSOM) {
 			return PresentBlock.Variant.PRIDE;
 		}
 		return null;

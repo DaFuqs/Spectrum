@@ -19,7 +19,7 @@ public class REIOverlayDecider implements OverlayDecider {
 	
 	@Override
 	public <R extends Screen> ActionResult shouldScreenBeOverlaid(R screen) {
-		if(screen instanceof PaintbrushScreen) {
+		if (screen instanceof PaintbrushScreen) {
 			return ActionResult.FAIL;
 		}
 		return ActionResult.PASS;

@@ -18,11 +18,11 @@ public class SpectrumStatusEffect extends StatusEffect {
 	}
 	
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-
+	
 	}
 	
 	public void applyInstantEffect(@Nullable Entity source, @Nullable Entity attacker, LivingEntity target, int amplifier, double proximity) {
-
+	
 	}
 	
 	

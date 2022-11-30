@@ -67,7 +67,7 @@ public class CrystallarieumCategory implements DisplayCategory<CrystallarieumDis
 			Iterator<EntryIngredient> it = display.growthStages.iterator();
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y)).markInput().entries(it.next()));
 			int x = 0;
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				widgets.add(Widgets.createSlot(new Point(startPoint.x + 66 + x * 20, startPoint.y + 8)).markInput().entries(it.next()));
 				x++;
 			}
@@ -81,7 +81,7 @@ public class CrystallarieumCategory implements DisplayCategory<CrystallarieumDis
 			int i = 0;
 			int startX = 46;
 			int offsetPerReagent = 18;
-			for(CrystallarieumCatalyst catalyst : display.catalysts) {
+			for (CrystallarieumCatalyst catalyst : display.catalysts) {
 				int offsetX = startPoint.x + startX + offsetPerReagent * i;
 				widgets.add(Widgets.createSlot(new Point(offsetX, startPoint.y + 38)).markInput().entries(EntryIngredients.ofIngredient(catalyst.ingredient)));
 				

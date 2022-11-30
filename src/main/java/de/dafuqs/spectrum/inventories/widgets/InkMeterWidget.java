@@ -75,7 +75,7 @@ public class InkMeterWidget extends DrawableHelper implements Drawable, Element,
 		
 		IndividualCappedInkStorage inkStorage = inkStorageBlockEntity.getEnergyStorage();
 		long total = inkStorage.getMaxPerColor();
-		for(InkColor inkColor : inkStorage.getSupportedColors()) {
+		for (InkColor inkColor : inkStorage.getSupportedColors()) {
 			long amount = inkStorage.getEnergy(inkColor);
 			if (amount > 0) {
 				int height = Math.max(1, Math.round(((float) amount / ((float) total / this.height))));
@@ -84,7 +84,7 @@ public class InkMeterWidget extends DrawableHelper implements Drawable, Element,
 			currentXOffset = currentXOffset + WIDTH_PER_COLOR + SPACE_BETWEEN_COLORS;
 		}
 		
-
+		
 	}
 	
 }

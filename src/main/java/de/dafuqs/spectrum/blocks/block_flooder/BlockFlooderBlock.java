@@ -174,7 +174,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 					PlayerEntity owner = PlayerOwned.getPlayerEntityIfOnline(blockFlooderBlockEntity.getOwnerUUID());
 					if (!owner.isCreative()) {
 						List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(new ItemStack(targetState.getBlock().asItem()), owner.getInventory());
-						for(ItemStack remainder : remainders) {
+						for (ItemStack remainder : remainders) {
 							owner.giveItemStack(remainder);
 						}
 					}

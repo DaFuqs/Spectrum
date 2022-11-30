@@ -19,7 +19,7 @@ public class StarCandyItem extends Item {
 	
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		ItemStack itemStack = super.finishUsing(stack, world, user);
-		if(!world.isClient) {
+		if (!world.isClient) {
 			WhispyCircletItem.removeSingleHarmfulStatusEffect(user);
 		}
 		return itemStack;

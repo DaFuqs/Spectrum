@@ -24,13 +24,13 @@ public class GoFishCompat {
 	}
 	
 	public static boolean hasDeepfry(ItemStack itemStack) {
-		if(!isLoaded()) {
+		if (!isLoaded()) {
 			return false;
 		}
 		
 		Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
-		for(Enchantment enchantment : enchantments.keySet()) {
-			if(isDeepfry(enchantment)) {
+		for (Enchantment enchantment : enchantments.keySet()) {
+			if (isDeepfry(enchantment)) {
 				return true;
 			}
 		}

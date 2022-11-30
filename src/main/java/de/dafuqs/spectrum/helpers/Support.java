@@ -81,7 +81,7 @@ public class Support {
 	private static final DecimalFormat df = new DecimalFormat("0.00");
 	private static final DecimalFormat df1 = new DecimalFormat("0.0");
 	private static final DecimalFormat df2 = new DecimalFormat("0");
-
+	
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
 		return blockState.streamTags().filter(tags::contains).findFirst();
 	}
@@ -120,14 +120,14 @@ public class Support {
 	 * If it approaches 100 %, but is not yet still there, returns 99
 	 */
 	public static String getSensiblePercent(long x, long y) {
-		if(y == 0) {
+		if (y == 0) {
 			return "0";
 		}
 		
 		double result = (double) x / y;
-		if(result < 0.01 && x > 0) {
+		if (result < 0.01 && x > 0) {
 			return "1";
-		} else if(result > 0.99 && x != y) {
+		} else if (result > 0.99 && x != y) {
 			return "99";
 		} else {
 			return df2.format(Math.round(result * 100L));
@@ -173,8 +173,9 @@ public class Support {
 	
 	/**
 	 * Returns a relative new BlockPos based on a facing direction and a vector
-	 * @param origin the source position
-	 * @param forwardUpRight a vector specifying the amount of blocks forward, up and right
+	 *
+	 * @param origin           the source position
+	 * @param forwardUpRight   a vector specifying the amount of blocks forward, up and right
 	 * @param horizontalFacing the facing direction
 	 * @return the blockpos with forwardUpRight offset from origin when facing horizontalFacing
 	 */
@@ -200,7 +201,7 @@ public class Support {
 	}
 	
 	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, Identifier advancementIdentifier, String criterion) {
-		if(serverPlayerEntity.getServer() == null) {
+		if (serverPlayerEntity.getServer() == null) {
 			return;
 		}
 		ServerAdvancementLoader sal = serverPlayerEntity.getServer().getAdvancementLoader();

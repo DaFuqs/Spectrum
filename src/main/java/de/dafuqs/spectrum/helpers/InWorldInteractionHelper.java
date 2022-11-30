@@ -36,13 +36,13 @@ public class InWorldInteractionHelper {
 			ItemStack stack = itemEntity.getStack();
 			if (stack.isIn(tag)) {
 				foundCount += stack.getCount();
-				if(foundCount >= count) {
+				if (foundCount >= count) {
 					break;
 				}
 			}
 		}
 		
-		if(foundCount < count) {
+		if (foundCount < count) {
 			return false;
 		}
 		
@@ -55,7 +55,7 @@ public class InWorldInteractionHelper {
 				if (stack.isEmpty()) {
 					itemEntity.discard();
 				}
-				if(count == 0) {
+				if (count == 0) {
 					return true;
 				}
 			}
@@ -70,13 +70,13 @@ public class InWorldInteractionHelper {
 			ItemStack stack = itemEntity.getStack();
 			if (stack.isOf(item)) {
 				foundCount += stack.getCount();
-				if(foundCount >= count) {
+				if (foundCount >= count) {
 					break;
 				}
 			}
 		}
 		
-		if(foundCount < count) {
+		if (foundCount < count) {
 			return false;
 		}
 		
@@ -89,7 +89,7 @@ public class InWorldInteractionHelper {
 				if (stack.isEmpty()) {
 					itemEntity.discard();
 				}
-				if(count == 0) {
+				if (count == 0) {
 					return true;
 				}
 			}

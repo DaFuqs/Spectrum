@@ -188,7 +188,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 		}
 		
 		public SkullType getModelType() {
-			if(this == EGG_LAYING_WOOLY_PIG) {
+			if (this == EGG_LAYING_WOOLY_PIG) {
 				return EGG_LAYING_WOOLY_PIG;
 			} else {
 				return Type.PLAYER;
@@ -197,7 +197,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 		
 		@Environment(EnvType.CLIENT)
 		public Identifier getTextureIdentifier() {
-			if(this == EGG_LAYING_WOOLY_PIG) {
+			if (this == EGG_LAYING_WOOLY_PIG) {
 				return EggLayingWoolyPigEntityRenderer.TEXTURE;
 			} else {
 				return SpectrumCommon.locate("textures/entity/mob_head/" + this.toString().toLowerCase(Locale.ROOT) + ".png");

@@ -26,7 +26,7 @@ public class RandomBudsFeature extends Feature<RandomBudsFeaturesConfig> {
 		StructureWorldAccess structureWorldAccess = context.getWorld();
 		BlockPos blockPos = context.getOrigin();
 		Random random = context.getRandom();
-		RandomBudsFeaturesConfig randomBudsFeaturesConfig = (RandomBudsFeaturesConfig)context.getConfig();
+		RandomBudsFeaturesConfig randomBudsFeaturesConfig = (RandomBudsFeaturesConfig) context.getConfig();
 		if (!isAirOrWater(structureWorldAccess.getBlockState(blockPos))) {
 			return false;
 		} else {
@@ -71,7 +71,7 @@ public class RandomBudsFeature extends Feature<RandomBudsFeaturesConfig> {
 			
 			direction = var7.next();
 			blockState = world.getBlockState(mutable.set(pos, direction));
-		} while(!blockState.isIn(config.canPlaceOn));
+		} while (!blockState.isIn(config.canPlaceOn));
 		
 		BlockState stateToPlace = config.blockStates.get(random.nextInt(config.blockStates.size())).with(Properties.FACING, Direction.random(random));
 		if (stateToPlace.canPlaceAt(world, pos)) {

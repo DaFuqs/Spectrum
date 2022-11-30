@@ -79,7 +79,7 @@ public class SanityCommand {
 				BlockState blockState = entry.getValue().getDefaultState();
 				
 				// unbreakable blocks do not need to have an entry
-				if(blockState.getBlock().getHardness() <= -1) {
+				if (blockState.getBlock().getHardness() <= -1) {
 					continue;
 				}
 				
@@ -102,7 +102,7 @@ public class SanityCommand {
 				Identifier lootTableID = block.getLootTableId();
 				
 				// unbreakable blocks do not need to have a loot table
-				if(blockState.getBlock().getHardness() <= -1) {
+				if (blockState.getBlock().getHardness() <= -1) {
 					continue;
 				}
 				
@@ -232,18 +232,18 @@ public class SanityCommand {
 		// Pedestal Recipes in wrong data folder
 		for (PedestalCraftingRecipe recipe : recipeManager.listAllOfType(SpectrumRecipeTypes.PEDESTAL)) {
 			Identifier id = recipe.getId();
-			if(id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gem_lamps/") || id.getPath().contains("/decostones/")
-					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/")|| id.getPath().contains("/pastel_network/") || id.getPath().contains("/player_only_glass/")) {
+			if (id.getPath().contains("/glass/") || id.getPath().contains("/saplings/") || id.getPath().contains("/detectors/") || id.getPath().contains("/gem_lamps/") || id.getPath().contains("/decostones/")
+					|| id.getPath().contains("/runes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/gemstone_chimes/") || id.getPath().contains("/pastel_network/") || id.getPath().contains("/player_only_glass/")) {
 				continue;
 			}
 			
-			if(recipe.getTier() == PedestalRecipeTier.BASIC && !id.getPath().contains("/tier1/")) {
+			if (recipe.getTier() == PedestalRecipeTier.BASIC && !id.getPath().contains("/tier1/")) {
 				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] BASIC Recipe not in the correct tier folder: '" + id + "'");
-			} else if(recipe.getTier() == PedestalRecipeTier.SIMPLE && !id.getPath().contains("/tier2/")) {
+			} else if (recipe.getTier() == PedestalRecipeTier.SIMPLE && !id.getPath().contains("/tier2/")) {
 				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] SIMPLE Recipe not in the correct tier folder: '" + id + "'");
-			} else if(recipe.getTier() == PedestalRecipeTier.ADVANCED && !id.getPath().contains("/tier3/")) {
+			} else if (recipe.getTier() == PedestalRecipeTier.ADVANCED && !id.getPath().contains("/tier3/")) {
 				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] ADVANCED Recipe not in the correct tier folder: '" + id + "'");
-			} else if(recipe.getTier() == PedestalRecipeTier.COMPLEX && !id.getPath().contains("/tier4/")) {
+			} else if (recipe.getTier() == PedestalRecipeTier.COMPLEX && !id.getPath().contains("/tier4/")) {
 				SpectrumCommon.logWarning("[SANITY: Pedestal Recipes] COMPLEX Recipe not in the correct tier folder: '" + id + "'");
 			}
 		}
@@ -299,7 +299,7 @@ public class SanityCommand {
 		for (GatedRecipe recipe : recipeManager.listAllOfType(recipeType)) {
 			Identifier advancementIdentifier = recipe.getRequiredAdvancementIdentifier();
 			if (advancementIdentifier != null && advancementLoader.get(advancementIdentifier) == null) {
-				SpectrumCommon.logWarning("[SANITY: "+ name + " Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
+				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe Unlocks] Advancement '" + recipe.getRequiredAdvancementIdentifier() + "' in recipe '" + recipe.getId() + "' does not exist");
 			}
 		}
 	}

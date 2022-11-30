@@ -84,7 +84,7 @@ public class InkProjectileSoundInstance extends AbstractSoundInstance implements
 		this.done = true;
 		this.repeat = false;
 		
-		if(inkProjectile.isRemoved() && !playedExplosion) {
+		if (inkProjectile.isRemoved() && !playedExplosion) {
 			MinecraftClient.getInstance().player.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.NEUTRAL, Math.max(0.1F, this.volume / 4), 0.9F + MinecraftClient.getInstance().world.random.nextFloat() * 0.2F);
 			spawnImpactParticles(this.inkProjectile);
 			playedExplosion = true;

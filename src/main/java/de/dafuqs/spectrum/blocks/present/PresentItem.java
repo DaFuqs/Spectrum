@@ -67,7 +67,7 @@ public class PresentItem extends BlockItem {
 	}
 	
 	public static Optional<Pair<UUID, String>> getWrapper(NbtCompound compound) {
-		if(compound != null && compound.contains("GiverUUID") && compound.contains("Giver", NbtElement.STRING_TYPE)) {
+		if (compound != null && compound.contains("GiverUUID") && compound.contains("Giver", NbtElement.STRING_TYPE)) {
 			return Optional.of(new Pair<>(compound.getUuid("GiverUUID"), compound.getString("Giver")));
 		}
 		return Optional.empty();
@@ -79,8 +79,8 @@ public class PresentItem extends BlockItem {
 	
 	public static Map<DyeColor, Integer> getColors(NbtCompound compound) {
 		Map<DyeColor, Integer> colors = new HashMap<>();
-		if(compound != null && compound.contains("Colors", NbtElement.LIST_TYPE)) {
-			for(NbtElement e : compound.getList("Colors", NbtElement.COMPOUND_TYPE)) {
+		if (compound != null && compound.contains("Colors", NbtElement.LIST_TYPE)) {
+			for (NbtElement e : compound.getList("Colors", NbtElement.COMPOUND_TYPE)) {
 				NbtCompound c = (NbtCompound) e;
 				colors.put(DyeColor.valueOf(c.getString("Color").toUpperCase(Locale.ROOT)), c.getInt("Amount"));
 			}
@@ -101,9 +101,9 @@ public class PresentItem extends BlockItem {
 	}
 	
 	public static void setColors(NbtCompound compound, Map<DyeColor, Integer> colors) {
-		if(!colors.isEmpty()) {
+		if (!colors.isEmpty()) {
 			NbtList colorList = new NbtList();
-			for(Map.Entry<DyeColor, Integer> colorEntry : colors.entrySet()) {
+			for (Map.Entry<DyeColor, Integer> colorEntry : colors.entrySet()) {
 				NbtCompound colorCompound = new NbtCompound();
 				colorCompound.putString("Color", colorEntry.getKey().getName());
 				colorCompound.putInt("Amount", colorEntry.getValue());
@@ -118,7 +118,7 @@ public class PresentItem extends BlockItem {
 	}
 	
 	public static PresentBlock.Variant getVariant(NbtCompound compound) {
-		if(compound != null && compound.contains("Variant", NbtElement.STRING_TYPE)) {
+		if (compound != null && compound.contains("Variant", NbtElement.STRING_TYPE)) {
 			return PresentBlock.Variant.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
 		}
 		return PresentBlock.Variant.RED;
@@ -138,7 +138,7 @@ public class PresentItem extends BlockItem {
 				ItemStack slotStack = slot.takeStackRange(itemStack.getCount(), 64, player);
 				int acceptedStacks = addToPresent(present, slotStack);
 				slotStack.decrement(acceptedStacks);
-				if(!slotStack.isEmpty()) {
+				if (!slotStack.isEmpty()) {
 					slot.setStack(slotStack);
 				}
 				if (acceptedStacks > 0) {
@@ -174,14 +174,14 @@ public class PresentItem extends BlockItem {
 	@Override
 	public void onCraft(ItemStack stack, World world, PlayerEntity player) {
 		super.onCraft(stack, world, player);
-		if(player != null) {
+		if (player != null) {
 			setWrapper(stack, player);
 		}
 	}
 	
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
-		if(isWrapped(itemStack)) {
+		if (isWrapped(itemStack)) {
 			super.use(world, user, hand);
 		}
 		return TypedActionResult.pass(itemStack);
@@ -209,18 +209,18 @@ public class PresentItem extends BlockItem {
 			NbtList nbtList = bundleCompound.getList(ITEMS_KEY, 10);
 			
 			int originalCount = stackToBundle.getCount();
-			for(int i = 0; i < MAX_STORAGE_STACKS; i++) {
+			for (int i = 0; i < MAX_STORAGE_STACKS; i++) {
 				ItemStack storedStack = ItemStack.fromNbt(nbtList.getCompound(i));
-				if(storedStack.isEmpty()) {
+				if (storedStack.isEmpty()) {
 					NbtCompound leftoverCompound = new NbtCompound();
 					stackToBundle.writeNbt(leftoverCompound);
 					nbtList.add(leftoverCompound);
 					bundle.setNbt(bundleCompound);
 					return originalCount;
 				}
-				if(ItemStack.canCombine(stackToBundle, storedStack)) {
+				if (ItemStack.canCombine(stackToBundle, storedStack)) {
 					int additionalAmount = Math.min(stackToBundle.getCount(), storedStack.getMaxCount() - storedStack.getCount());
-					if(additionalAmount > 0) {
+					if (additionalAmount > 0) {
 						stackToBundle.decrement(additionalAmount);
 						storedStack.increment(additionalAmount);
 						
@@ -279,7 +279,7 @@ public class PresentItem extends BlockItem {
 	
 	public Optional<TooltipData> getTooltipData(ItemStack stack) {
 		boolean wrapped = isWrapped(stack);
-		if(wrapped) {
+		if (wrapped) {
 			return Optional.empty();
 		}
 		
@@ -293,11 +293,11 @@ public class PresentItem extends BlockItem {
 	
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		boolean wrapped = isWrapped(stack);
-		if(wrapped) {
+		if (wrapped) {
 			Optional<Pair<UUID, String>> giver = getWrapper(stack);
-			if(giver.isPresent()) {
+			if (giver.isPresent()) {
 				tooltip.add((Text.translatable("block.spectrum.present.tooltip.wrapped.giver", giver.get().getRight()).formatted(Formatting.GRAY)));
-				if(context.isAdvanced()) {
+				if (context.isAdvanced()) {
 					tooltip.add((Text.literal("UUID: " + giver.get().getLeft().toString()).formatted(Formatting.GRAY)));
 				}
 			} else {

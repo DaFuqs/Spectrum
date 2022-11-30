@@ -24,11 +24,11 @@ public class ExperienceTransmissionParticleEffect extends TransmissionParticleEf
 	public static final Factory<ExperienceTransmissionParticleEffect> FACTORY = new Factory<>() {
 		public ExperienceTransmissionParticleEffect read(ParticleType<ExperienceTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
 			stringReader.expect(' ');
-			float f = (float)stringReader.readDouble();
+			float f = (float) stringReader.readDouble();
 			stringReader.expect(' ');
-			float g = (float)stringReader.readDouble();
+			float g = (float) stringReader.readDouble();
 			stringReader.expect(' ');
-			float h = (float)stringReader.readDouble();
+			float h = (float) stringReader.readDouble();
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
 			BlockPos blockPos = new BlockPos(f, g, h);

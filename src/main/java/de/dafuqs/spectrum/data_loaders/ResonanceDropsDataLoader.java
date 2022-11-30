@@ -36,7 +36,7 @@ public class ResonanceDropsDataLoader extends JsonDataLoader implements Identifi
 			Item itemIn = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "input")));
 			Item itemOut = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "output")));
 			
-			if(itemIn != Items.AIR && itemOut != Items.AIR) {
+			if (itemIn != Items.AIR && itemOut != Items.AIR) {
 				RESONANCE_DROPS.put(itemIn, itemOut);
 			}
 		});
@@ -49,7 +49,7 @@ public class ResonanceDropsDataLoader extends JsonDataLoader implements Identifi
 	
 	public static ItemStack applyResonance(ItemStack stack) {
 		Item item = stack.getItem();
-		if(RESONANCE_DROPS.containsKey(item)) {
+		if (RESONANCE_DROPS.containsKey(item)) {
 			ItemStack convertedStack = RESONANCE_DROPS.get(item).getDefaultStack();
 			convertedStack.setCount(stack.getCount());
 			return convertedStack;

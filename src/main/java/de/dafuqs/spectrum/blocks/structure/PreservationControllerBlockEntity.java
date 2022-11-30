@@ -65,7 +65,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	private static void calculateLocationData(World world, BlockPos blockPos, @NotNull BlockState blockState, @NotNull PreservationControllerBlockEntity blockEntity) {
 		Direction facing = world.getBlockState(blockPos).get(PreservationControllerBlock.FACING);
 		BlockPos centerPos = blockPos;
-		if(blockEntity.checkBoxOffset != null) {
+		if (blockEntity.checkBoxOffset != null) {
 			centerPos = Support.directionalOffset(blockEntity.pos, blockEntity.checkBoxOffset, blockState.get(PreservationControllerBlock.FACING));
 		}
 		if (facing == Direction.NORTH || facing == Direction.SOUTH) {
@@ -138,9 +138,9 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	
 	public void spawnParticles() {
 		if (spawnParticles) {
-			if(checkBox != null) {
+			if (checkBox != null) {
 				BlockPos centerPos = this.pos;
-				if(checkBoxOffset != null) {
+				if (checkBoxOffset != null) {
 					centerPos = Support.directionalOffset(pos, checkBoxOffset, world.getBlockState(pos).get(PreservationControllerBlock.FACING));
 				}
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(centerPos), ParticleTypes.FLAME, 1,
@@ -152,7 +152,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 						new Vec3d(0, 0, 0));
 			}
 			
-			if(destinationPos != null) {
+			if (destinationPos != null) {
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(destinationPos), ParticleTypes.END_ROD, 1,
 						new Vec3d(0, 0, 0),
 						new Vec3d(0.1, 0.1, 0.1));

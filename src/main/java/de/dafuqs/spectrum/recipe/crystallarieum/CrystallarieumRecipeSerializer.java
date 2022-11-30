@@ -69,7 +69,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 		
 		recipe.inputIngredient.write(packetByteBuf);
 		packetByteBuf.writeInt(recipe.growthStages.size());
-		for(BlockState state : recipe.growthStages) {
+		for (BlockState state : recipe.growthStages) {
 			packetByteBuf.writeString(RecipeUtils.blockStateToString(state));
 		}
 		packetByteBuf.writeInt(recipe.secondsPerGrowthStage);
@@ -77,7 +77,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 		packetByteBuf.writeInt(recipe.inkPerSecond);
 		packetByteBuf.writeBoolean(recipe.growsWithoutCatalyst);
 		packetByteBuf.writeInt(recipe.catalysts.size());
-		for(CrystallarieumCatalyst catalyst : recipe.catalysts) {
+		for (CrystallarieumCatalyst catalyst : recipe.catalysts) {
 			catalyst.write(packetByteBuf);
 		}
 	}
@@ -91,7 +91,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 		Ingredient inputIngredient = Ingredient.fromPacket(packetByteBuf);
 		List<BlockState> growthStages = new ArrayList<>();
 		int count = packetByteBuf.readInt();
-		for(int i = 0; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 			String blockStateString = packetByteBuf.readString();
 			try {
 				growthStages.add(RecipeUtils.blockStateFromString(blockStateString));
@@ -107,7 +107,7 @@ public class CrystallarieumRecipeSerializer implements GatedRecipeSerializer<Cry
 		boolean growthWithoutCatalyst = packetByteBuf.readBoolean();
 		List<CrystallarieumCatalyst> catalysts = new ArrayList<>();
 		count = packetByteBuf.readInt();
-		for(int i = 0; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 			catalysts.add(CrystallarieumCatalyst.fromPacket(packetByteBuf));
 		}
 		

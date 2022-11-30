@@ -229,7 +229,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 	
 	@Override
 	public int[] getAvailableSlots(Direction side) {
-		return IntStream.rangeClosed(0, EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT-1).toArray();
+		return IntStream.rangeClosed(0, EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT - 1).toArray();
 	}
 	
 	@Override

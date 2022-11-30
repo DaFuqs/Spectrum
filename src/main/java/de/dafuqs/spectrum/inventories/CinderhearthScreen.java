@@ -53,14 +53,14 @@ public class CinderhearthScreen extends HandledScreen<CinderhearthScreenHandler>
 		int startY = (this.height - this.backgroundHeight) / 2;
 		
 		// main background
-        drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
-
+		drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
+		
 		this.inkMeterWidget.draw(matrices);
 		
 		int craftingTime = this.handler.getCraftingTime();
 		int craftingTimeTotal = this.handler.getCraftingTimeTotal();
 		
-		if(this.handler.getBlockEntity().getEnergyStorage().getEnergy(InkColors.ORANGE) > 0) {
+		if (this.handler.getBlockEntity().getEnergyStorage().getEnergy(InkColors.ORANGE) > 0) {
 			this.drawTexture(matrices, this.x + 14, this.y + 62, 176, 14, 15, 2);
 		}
 		
@@ -83,7 +83,7 @@ public class CinderhearthScreen extends HandledScreen<CinderhearthScreenHandler>
 	
 	@Override
 	protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
-		if(this.inkMeterWidget.isMouseOver(x, y)) {
+		if (this.inkMeterWidget.isMouseOver(x, y)) {
 			this.inkMeterWidget.drawMouseoverTooltip(matrices, x, y);
 		} else {
 			super.drawMouseoverTooltip(matrices, x, y);

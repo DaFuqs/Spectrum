@@ -29,7 +29,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		super(recipe, Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredientStack())), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
 		
 		this.growthStages = new ArrayList<>();
-		for(BlockState state : recipe.getGrowthStages()) {
+		for (BlockState state : recipe.getGrowthStages()) {
 			growthStages.add(EntryIngredients.of(state.getBlock().asItem()));
 		}
 		this.catalysts = recipe.getCatalysts();

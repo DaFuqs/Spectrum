@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractHorseEntity.class)
 public abstract class AbstractHorseEntityMixin {
-
+	
 	@Shadow
 	protected SimpleInventory items;
 	

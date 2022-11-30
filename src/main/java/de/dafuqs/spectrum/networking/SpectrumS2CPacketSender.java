@@ -425,7 +425,7 @@ public class SpectrumS2CPacketSender {
 		
 		Map<InkColor, Long> colors = inkStorage.getEnergy();
 		buf.writeInt(colors.size());
-		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
+		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
 			buf.writeString(color.getKey().toString());
 			buf.writeLong(color.getValue());
 		}
@@ -435,7 +435,7 @@ public class SpectrumS2CPacketSender {
 	
 	public static void sendInkColorSelected(@Nullable InkColor color, ServerPlayerEntity player) {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
-		if(color == null) {
+		if (color == null) {
 			packetByteBuf.writeBoolean(false);
 		} else {
 			packetByteBuf.writeBoolean(true);
@@ -462,7 +462,7 @@ public class SpectrumS2CPacketSender {
 		PacketByteBuf packetByteBuf = PacketByteBufs.create();
 		packetByteBuf.writeBlockPos(pos);
 		packetByteBuf.writeInt(colors.size());
-		for(Map.Entry<DyeColor, Integer> color : colors.entrySet()) {
+		for (Map.Entry<DyeColor, Integer> color : colors.entrySet()) {
 			packetByteBuf.writeByte(color.getKey().getId());
 			packetByteBuf.writeByte(color.getValue());
 		}

@@ -26,7 +26,7 @@ public interface GatedRecipeSerializer<T extends Recipe<?>> extends RecipeSerial
 	}
 	
 	default void writeNullableIdentifier(PacketByteBuf buf, @Nullable Identifier identifier) {
-		if(identifier == null) {
+		if (identifier == null) {
 			buf.writeBoolean(false);
 		} else {
 			buf.writeBoolean(true);
@@ -36,7 +36,7 @@ public interface GatedRecipeSerializer<T extends Recipe<?>> extends RecipeSerial
 	
 	default @Nullable Identifier readNullableIdentifier(PacketByteBuf buf) {
 		boolean notNull = buf.readBoolean();
-		if(notNull) {
+		if (notNull) {
 			return buf.readIdentifier();
 		}
 		return null;

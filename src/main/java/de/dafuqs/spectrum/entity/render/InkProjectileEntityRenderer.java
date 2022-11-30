@@ -41,9 +41,9 @@ public class InkProjectileEntityRenderer extends EntityRenderer<InkProjectileEnt
 		float k = 1F;
 		float l = 0F;
 		float m = 0.25F;
-		int s = (int)(starColor.getX() * 255.0F);
-		int t = (int)(starColor.getY() * 255.0F);
-		int u = (int)(starColor.getZ() * 255.0F);
+		int s = (int) (starColor.getX() * 255.0F);
+		int t = (int) (starColor.getY() * 255.0F);
+		int u = (int) (starColor.getZ() * 255.0F);
 		MatrixStack.Entry entry = matrixStack.peek();
 		Matrix4f matrix4f = entry.getPositionMatrix();
 		Matrix3f matrix3f = entry.getNormalMatrix();
@@ -62,7 +62,7 @@ public class InkProjectileEntityRenderer extends EntityRenderer<InkProjectileEnt
 	private static void vertex(VertexConsumer vertexConsumer, Matrix4f positionMatrix, Matrix3f normalMatrix, float x, float y, int red, int green, int blue, float u, float v, int light) {
 		vertexConsumer.vertex(positionMatrix, x, y, 0.0F).color(red, green, blue, 128).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normalMatrix, 0.0F, 1.0F, 0.0F).next();
 	}
-
+	
 	@Override
 	public Identifier getTexture(InkProjectileEntity entity) {
 		return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;

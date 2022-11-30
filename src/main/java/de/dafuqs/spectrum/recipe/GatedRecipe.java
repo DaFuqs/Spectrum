@@ -16,6 +16,7 @@ public interface GatedRecipe extends Recipe<Inventory> {
 	boolean canPlayerCraft(PlayerEntity playerEntity);
 	
 	Identifier getRequiredAdvancementIdentifier();
+	
 	boolean isSecret();
 	
 	default void registerInToastManager(RecipeType recipeType, GatedRecipe gatedRecipe) {

@@ -24,7 +24,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 	
 	public TitrationBarrelDisplay(@NotNull ITitrationBarrelRecipe recipe) {
 		super(recipe, buildInputs(recipe), recipe.getOutput());
-		if(recipe.getTappingItem() == Items.AIR) {
+		if (recipe.getTappingItem() == Items.AIR) {
 			this.tappingIngredient = EntryIngredient.empty();
 		} else {
 			this.tappingIngredient = EntryIngredients.of(recipe.getTappingItem().getDefaultStack());
@@ -35,7 +35,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 	
 	public static List<EntryIngredient> buildInputs(ITitrationBarrelRecipe recipe) {
 		List<EntryIngredient> inputs = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
-		if(recipe.getFluid() != Fluids.EMPTY) {
+		if (recipe.getFluid() != Fluids.EMPTY) {
 			inputs.add(EntryIngredients.of(recipe.getFluid().getBucketItem()));
 		}
 		return inputs;

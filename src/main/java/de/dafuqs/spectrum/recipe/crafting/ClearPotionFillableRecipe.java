@@ -23,8 +23,8 @@ public class ClearPotionFillableRecipe extends SpecialCraftingRecipe {
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			ItemStack itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty()) {
-				if(itemStack.getItem() instanceof PotionFillable potionFillable) {
-					if(potionFillable.isAtLeastPartiallyFilled(itemStack)) {
+				if (itemStack.getItem() instanceof PotionFillable potionFillable) {
+					if (potionFillable.isAtLeastPartiallyFilled(itemStack)) {
 						potionFillableFound = true;
 					} else {
 						return false;
@@ -47,7 +47,7 @@ public class ClearPotionFillableRecipe extends SpecialCraftingRecipe {
 				return itemStack;
 			}
 		}
-
+		
 		return ItemStack.EMPTY;
 	}
 	

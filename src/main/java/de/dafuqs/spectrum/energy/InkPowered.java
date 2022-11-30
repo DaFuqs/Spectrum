@@ -49,27 +49,27 @@ public interface InkPowered {
 	 **/
 	@Environment(EnvType.CLIENT)
 	default void addInkPoweredTooltip(List<Text> tooltip) {
-		if(canUseClient()) {
-            if (getUsedColors().size() > 1) {
-                tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.prefix").formatted(Formatting.GRAY));
-                for (InkColor color : getUsedColors()) {
-                    tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.toString()));
-                }
-            } else {
-                tooltip.add(Text.translatable("spectrum.tooltip.ink_powered." + getUsedColors().get(0).toString()).formatted(Formatting.GRAY));
-            }
-        }
+		if (canUseClient()) {
+			if (getUsedColors().size() > 1) {
+				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.prefix").formatted(Formatting.GRAY));
+				for (InkColor color : getUsedColors()) {
+					tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.bullet." + color.toString()));
+				}
+			} else {
+				tooltip.add(Text.translatable("spectrum.tooltip.ink_powered." + getUsedColors().get(0).toString()).formatted(Formatting.GRAY));
+			}
+		}
 	}
 	
 	private static long tryDrainEnergy(@NotNull ItemStack stack, InkColor color, long amount, boolean viaPlayer) {
 		if (stack.getItem() instanceof InkStorageItem inkStorageItem) {
-			if(!inkStorageItem.getDrainability().canDrain(viaPlayer)) {
+			if (!inkStorageItem.getDrainability().canDrain(viaPlayer)) {
 				return 0;
 			}
 			
 			InkStorage inkStorage = inkStorageItem.getEnergyStorage(stack);
 			long drained = inkStorage.drainEnergy(color, amount);
-			if(drained > 0) {
+			if (drained > 0) {
 				inkStorageItem.setEnergyStorage(stack, inkStorage);
 			}
 			return drained;
@@ -105,8 +105,8 @@ public interface InkPowered {
 		}
 		return false;
 	}
-
-    /**
+	
+	/**
 	 * Searches the players Trinkets for energy storage first and inventory second
 	 * for PigmentEnergyStorageItem and tries to drain the color energy.
 	 * If enough could be drained returns true, else false.
@@ -119,10 +119,10 @@ public interface InkPowered {
 	 * - Inventory
 	 **/
 	static boolean tryDrainEnergy(@NotNull PlayerEntity player, InkColor color, long amount) {
-		if(player.isCreative()) {
+		if (player.isCreative()) {
 			return true;
 		}
-		if(!canUse(player)) {
+		if (!canUse(player)) {
 			return false;
 		}
 		
@@ -158,10 +158,10 @@ public interface InkPowered {
 	}
 	
 	static long getAvailableInk(@NotNull PlayerEntity player, InkColor color) {
-		if(player.isCreative()) {
+		if (player.isCreative()) {
 			return Long.MAX_VALUE;
 		}
-		if(!canUse(player)) {
+		if (!canUse(player)) {
 			return 0;
 		}
 		
@@ -188,14 +188,14 @@ public interface InkPowered {
 	}
 	
 	static boolean hasAvailableInk(PlayerEntity player, InkColor color, long amount) {
-		if(!canUse(player)) {
+		if (!canUse(player)) {
 			return false;
 		}
 		
 		// offhand
 		for (ItemStack itemStack : player.getInventory().offHand) {
 			amount -= tryGetEnergy(itemStack, color);
-			if(amount <= 0) {
+			if (amount <= 0) {
 				return true;
 			}
 		}
@@ -206,7 +206,7 @@ public interface InkPowered {
 			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorage);
 			for (Pair<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
 				amount -= tryGetEnergy(trinketEnergyStorageStack.getRight(), color);
-				if(amount <= 0) {
+				if (amount <= 0) {
 					return true;
 				}
 			}
@@ -215,7 +215,7 @@ public interface InkPowered {
 		// inventory
 		for (ItemStack itemStack : player.getInventory().main) {
 			amount -= tryGetEnergy(itemStack, color);
-			if(amount <= 0) {
+			if (amount <= 0) {
 				return true;
 			}
 		}

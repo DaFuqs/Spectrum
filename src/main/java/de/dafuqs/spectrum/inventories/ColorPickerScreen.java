@@ -66,14 +66,14 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 		int startY = (this.height - this.backgroundHeight) / 2;
 		
 		// main background
-        drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
+		drawTexture(matrices, startX, startY, 0, 0, backgroundWidth, backgroundHeight);
 		
 		this.inkGaugeWidget.draw(matrices);
 		this.inkMeterWidget.draw(matrices);
-        this.colorSelectionWidget.draw(matrices);
-
+		this.colorSelectionWidget.draw(matrices);
+		
 		// gauge blanket
-		drawTexture(matrices, startX+52, startY+18, 176 ,0 ,46 , 46);
+		drawTexture(matrices, startX + 52, startY + 18, 176, 0, 46, 46);
 	}
 	
 	@Override
@@ -85,11 +85,11 @@ public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> i
 	
 	@Override
 	protected void drawMouseoverTooltip(MatrixStack matrices, int x, int y) {
-		if(this.inkGaugeWidget.isMouseOver(x, y)) {
+		if (this.inkGaugeWidget.isMouseOver(x, y)) {
 			this.inkGaugeWidget.drawMouseoverTooltip(matrices, x, y);
-		} else if(this.inkMeterWidget.isMouseOver(x, y)) {
+		} else if (this.inkMeterWidget.isMouseOver(x, y)) {
 			this.inkMeterWidget.drawMouseoverTooltip(matrices, x, y);
-		} else if(this.colorSelectionWidget.isMouseOver(x, y)) {
+		} else if (this.colorSelectionWidget.isMouseOver(x, y)) {
 			this.colorSelectionWidget.drawMouseoverTooltip(matrices, x, y);
 		} else {
 			super.drawMouseoverTooltip(matrices, x, y);

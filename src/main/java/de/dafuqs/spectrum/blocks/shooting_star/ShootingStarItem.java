@@ -42,7 +42,7 @@ public class ShootingStarItem extends BlockItem {
 		ItemStack stack = shootingStarItem.getDefaultStack();
 		NbtCompound nbtCompound = new NbtCompound();
 		nbtCompound.putInt("remaining_hits", remainingHits);
-		if(hardened) {
+		if (hardened) {
 			nbtCompound.putBoolean("Hardened", true);
 		}
 		stack.setNbt(nbtCompound);
@@ -86,7 +86,7 @@ public class ShootingStarItem extends BlockItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		if(isHardened(stack)) {
+		if (isHardened(stack)) {
 			tooltip.add(Text.translatable("item.spectrum.shooting_star.tooltip.hardened").formatted(Formatting.GRAY));
 		}
 	}

@@ -17,7 +17,7 @@ public class CloversFavorEnchantment extends SpectrumEnchantment {
 	}
 	
 	public static float rollChance(float baseChance, Entity entity) {
-		if(entity instanceof LivingEntity livingEntity) {
+		if (entity instanceof LivingEntity livingEntity) {
 			int rareLootLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.CLOVERS_FAVOR, livingEntity.getMainHandStack(), entity);
 			if (rareLootLevel > 0) {
 				return baseChance * (float) rareLootLevel * rareLootLevel;

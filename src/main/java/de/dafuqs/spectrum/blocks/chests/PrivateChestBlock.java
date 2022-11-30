@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class PrivateChestBlock extends SpectrumChestBlock {
-
+	
 	public PrivateChestBlock(Settings settings) {
 		super(settings);
 	}
@@ -97,7 +97,7 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 			if (privateChestBlockEntity.canBreak(player.getUuid())) {
 				float hardness = 20.0F;
 				int i = player.canHarvest(state) ? 30 : 100;
-				return player.getBlockBreakingSpeed(state) / hardness / (float)i;
+				return player.getBlockBreakingSpeed(state) / hardness / (float) i;
 			}
 		}
 		return -1;

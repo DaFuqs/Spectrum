@@ -23,7 +23,7 @@ public class StormStoneItem extends CloakedItem implements DamageAwareItem {
 	
 	@Override
 	public void onItemEntityDamaged(DamageSource source, float amount, ItemEntity itemEntity) {
-		if(source.isExplosive()) {
+		if (source.isExplosive()) {
 			doLightningExplosion(itemEntity);
 		}
 	}

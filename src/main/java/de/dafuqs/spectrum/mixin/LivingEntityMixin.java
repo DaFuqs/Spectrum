@@ -61,19 +61,27 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	public abstract boolean hasStatusEffect(StatusEffect effect);
 	
-	@Shadow public abstract boolean blockedByShield(DamageSource source);
+	@Shadow
+	public abstract boolean blockedByShield(DamageSource source);
 	
-	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
+	@Shadow
+	protected abstract void applyDamage(DamageSource source, float amount);
 	
-	@Shadow public abstract ItemStack getMainHandStack();
+	@Shadow
+	public abstract ItemStack getMainHandStack();
 	
-	@Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
+	@Shadow
+	@Nullable
+	public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
 	
-	@Shadow public abstract boolean canHaveStatusEffect(StatusEffectInstance effect);
+	@Shadow
+	public abstract boolean canHaveStatusEffect(StatusEffectInstance effect);
 	
-	@Shadow public abstract boolean removeStatusEffect(StatusEffect type);
+	@Shadow
+	public abstract boolean removeStatusEffect(StatusEffect type);
 	
-	@Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect);
+	@Shadow
+	public abstract boolean addStatusEffect(StatusEffectInstance effect);
 	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -122,7 +130,7 @@ public abstract class LivingEntityMixin {
 	@ModifyVariable(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", argsOnly = true)
 	public float spectrum$applyAzureDikeDamageProtection(float amount, DamageSource source) {
 		@Nullable StatusEffectInstance vulnerability = getStatusEffect(SpectrumStatusEffects.VULNERABILITY);
-		if(vulnerability != null) {
+		if (vulnerability != null) {
 			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
 		}
 		
@@ -148,14 +156,14 @@ public abstract class LivingEntityMixin {
 	
 	@ModifyVariable(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), argsOnly = true)
 	public float spectrum$applyDreamflayerDamage(float amount, DamageSource source) {
-		if(!(source.getAttacker() instanceof LivingEntity attacker))
+		if (!(source.getAttacker() instanceof LivingEntity attacker))
 			return amount;
 		
 		LivingEntity target = (LivingEntity) (Object) this;
 		if (amount > 0 && source instanceof EntityDamageSource && source.getSource() instanceof LivingEntity livingSource) {
 			ItemStack mainHandStack = attacker.getMainHandStack();
 			if (mainHandStack.isOf(SpectrumItems.DREAMFLAYER)) {
-				if(ActivatableItem.isActivated(mainHandStack)) {
+				if (ActivatableItem.isActivated(mainHandStack)) {
 					float newDamage = DreamflayerItem.getDamageAfterModifier(amount, attacker, target);
 					
 					// deal 1/2 as magic damage
@@ -267,7 +275,7 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(method = "setSprinting(Z)V", at = @At("HEAD"), cancellable = true)
 	public void setSprinting(boolean sprinting, CallbackInfo ci) {
-		if(sprinting && ((LivingEntity) (Object) this).hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
+		if (sprinting && ((LivingEntity) (Object) this).hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
 			ci.cancel();
 		}
 	}
@@ -276,14 +284,14 @@ public abstract class LivingEntityMixin {
 	public void eat(ItemStack stack, World world, LivingEntity targetEntity, CallbackInfo ci) {
 		Item item = stack.getItem();
 		if (item instanceof ApplyFoodEffectsCallback foodWithCallback) {
-			foodWithCallback.afterConsumption(world, stack, (LivingEntity)(Object) this);
+			foodWithCallback.afterConsumption(world, stack, (LivingEntity) (Object) this);
 		}
 	}
 	
 	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true)
 	public void spectrum$addStackableStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
-		if(effect.getEffectType() instanceof StackableStatusEffect) {
-			if(!SpectrumStatusEffects.effectsAreGettingStacked) {
+		if (effect.getEffectType() instanceof StackableStatusEffect) {
+			if (!SpectrumStatusEffects.effectsAreGettingStacked) {
 				if (this.canHaveStatusEffect(effect)) {
 					StatusEffectInstance existingInstance = getStatusEffect(effect.getEffectType());
 					if (existingInstance != null) {

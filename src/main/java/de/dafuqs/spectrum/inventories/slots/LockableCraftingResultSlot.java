@@ -42,7 +42,7 @@ public class LockableCraftingResultSlot extends CraftingResultSlot {
 		this.onCrafted(stack);
 		DefaultedList<ItemStack> defaultedList = player.world.getRecipeManager().getRemainingStacks(RecipeType.CRAFTING, this.input, player.world);
 		
-		for(int i = craftingGridStartIndex; i < craftingGridEndIndex + 1; ++i) {
+		for (int i = craftingGridStartIndex; i < craftingGridEndIndex + 1; ++i) {
 			ItemStack slotStack = this.input.getStack(i);
 			ItemStack remainingStacks = defaultedList.get(i);
 			if (!slotStack.isEmpty()) {

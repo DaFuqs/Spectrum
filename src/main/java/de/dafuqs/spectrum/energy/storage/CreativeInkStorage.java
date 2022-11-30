@@ -14,7 +14,7 @@ import java.util.Map;
 public class CreativeInkStorage implements InkStorage {
 	
 	private static Map<InkColor, Long> STORAGE = new HashMap<>() {{
-		for(InkColor inkColor : InkColor.all()) {
+		for (InkColor inkColor : InkColor.all()) {
 			put(inkColor, Long.MAX_VALUE);
 		}
 	}};
@@ -62,7 +62,8 @@ public class CreativeInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public void setEnergy(Map<InkColor, Long> colors, long total) {	}
+	public void setEnergy(Map<InkColor, Long> colors, long total) {
+	}
 	
 	@Override
 	public long getMaxPerColor() {
@@ -90,14 +91,16 @@ public class CreativeInkStorage implements InkStorage {
 	}
 	
 	@Override
-	public void fillCompletely() { }
+	public void fillCompletely() {
+	}
 	
 	@Override
-	public void clear() { }
+	public void clear() {
+	}
 	
 	@Override
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
-		if(includeHeader) {
+		if (includeHeader) {
 			tooltip.add(Text.translatable("item.spectrum.creative_ink_assortment.tooltip"));
 		}
 	}

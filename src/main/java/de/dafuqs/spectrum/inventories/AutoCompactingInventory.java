@@ -7,6 +7,7 @@ public class AutoCompactingInventory extends AutoInventory {
 	
 	ItemStack inputItemStack;
 	private AutoCraftingMode autoCraftingMode;
+	
 	public AutoCompactingInventory() {
 		super(3, 3);
 		this.inputItemStack = ItemStack.EMPTY;

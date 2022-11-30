@@ -32,7 +32,7 @@ public class InventoryHelper {
 	
 	public static int getItemCountInInventory(Inventory inventory, Item item) {
 		int count = 0;
-		for(int i = 0; i < inventory.size(); i++) {
+		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
 			if (stack.isOf(item)) {
 				count += stack.getCount();
@@ -171,10 +171,11 @@ public class InventoryHelper {
 	
 	/**
 	 * Adds a single stacks to an inventory in a given slot range
-	 * @param inventory the inventory to add to
+	 *
+	 * @param inventory  the inventory to add to
 	 * @param stackToAdd the stack to add to the inventory
 	 * @param rangeStart the start insert slot
-	 * @param rangeEnd the last insert slot
+	 * @param rangeEnd   the last insert slot
 	 * @return false if the stack could not be completely added
 	 */
 	public static boolean addToInventory(Inventory inventory, ItemStack stackToAdd, int rangeStart, int rangeEnd) {
@@ -195,10 +196,11 @@ public class InventoryHelper {
 	
 	/**
 	 * Adds a list of stacks to an inventory in a given slot range
-	 * @param inventory the inventory to add to
+	 *
+	 * @param inventory   the inventory to add to
 	 * @param stacksToAdd the stacks to add to the inventory
-	 * @param rangeStart the start insert slot
-	 * @param rangeEnd the last insert slot
+	 * @param rangeStart  the start insert slot
+	 * @param rangeEnd    the last insert slot
 	 * @return false if not add stacksToAdd could be added
 	 */
 	public static boolean addToInventory(Inventory inventory, List<ItemStack> stacksToAdd, int rangeStart, int rangeEnd) {
@@ -207,17 +209,17 @@ public class InventoryHelper {
 			if (inventoryStack.isEmpty()) {
 				inventory.setStack(i, stacksToAdd.get(0));
 				stacksToAdd.remove(0);
-				if(stacksToAdd.isEmpty()) {
+				if (stacksToAdd.isEmpty()) {
 					return true;
 				}
 			}
-			for(int j = 0; j < stacksToAdd.size(); j++) {
+			for (int j = 0; j < stacksToAdd.size(); j++) {
 				ItemStack stackToAdd = stacksToAdd.get(j);
 				if (stackToAdd.isStackable()) {
 					combineStacks(inventoryStack, stackToAdd);
 					if (stackToAdd.isEmpty()) {
 						stacksToAdd.remove(j);
-						if(stacksToAdd.isEmpty()) {
+						if (stacksToAdd.isEmpty()) {
 							return true;
 						}
 						j--;
@@ -247,7 +249,7 @@ public class InventoryHelper {
 		List<Ingredient> ingredientsToFind = new ArrayList<>();
 		List<Integer> requiredIngredientAmounts = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
-			if(ingredient.isEmpty()) {
+			if (ingredient.isEmpty()) {
 				continue;
 			}
 			
@@ -264,7 +266,7 @@ public class InventoryHelper {
 				break;
 			}
 			ItemStack currentStack = inventory.getStack(i);
-			if(!currentStack.isEmpty()) {
+			if (!currentStack.isEmpty()) {
 				int amount = currentStack.getCount();
 				for (int j = 0; j < ingredientsToFind.size(); j++) {
 					if (ingredientsToFind.get(j).test(currentStack)) {
@@ -278,7 +280,7 @@ public class InventoryHelper {
 						}
 						
 						amount -= ingredientCount;
-						if(amount < 1) {
+						if (amount < 1) {
 							break;
 						}
 					}
@@ -296,7 +298,7 @@ public class InventoryHelper {
 		List<Ingredient> requiredIngredients = new ArrayList<>();
 		List<Integer> requiredIngredientAmounts = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
-			if(ingredient.isEmpty()) {
+			if (ingredient.isEmpty()) {
 				continue;
 			}
 			
@@ -314,14 +316,14 @@ public class InventoryHelper {
 			}
 			
 			ItemStack currentStack = inventory.getStack(i);
-			if(!currentStack.isEmpty()) {
+			if (!currentStack.isEmpty()) {
 				for (int j = 0; j < requiredIngredients.size(); j++) {
 					int currentStackCount = currentStack.getCount();
 					if (requiredIngredients.get(j).test(currentStack)) {
 						int ingredientCount = requiredIngredientAmounts.get(j);
 						Item remainder = currentStack.getItem().getRecipeRemainder();
 						if (currentStackCount >= ingredientCount) {
-							if(remainder != null && remainder != Items.AIR) {
+							if (remainder != null && remainder != Items.AIR) {
 								ItemStack remainderStack = remainder.getDefaultStack();
 								remainderStack.setCount(requiredIngredientAmounts.get(j));
 								remainders.add(remainderStack);
@@ -330,7 +332,7 @@ public class InventoryHelper {
 							requiredIngredientAmounts.remove(j);
 							j--;
 						} else {
-							if(remainder != null && remainder != Items.AIR) {
+							if (remainder != null && remainder != Items.AIR) {
 								ItemStack remainderStack = remainder.getDefaultStack();
 								remainderStack.setCount(currentStackCount);
 								remainders.add(remainderStack);
@@ -362,7 +364,7 @@ public class InventoryHelper {
 				currentStack.decrement(amountAbleToDecrement);
 				removeItemStackCount -= amountAbleToDecrement;
 				
-				if(remainder != null && remainder != Items.AIR) {
+				if (remainder != null && remainder != Items.AIR) {
 					ItemStack remainderStack = remainder.getDefaultStack();
 					remainderStack.setCount(amountAbleToDecrement);
 					remainders.add(remainderStack);
@@ -432,23 +434,23 @@ public class InventoryHelper {
 			ItemStack slotStack = inventory.getStack(i);
 			
 			if (slotStack.isEmpty()) {
-				if(firstEmptySlot == -1) {
+				if (firstEmptySlot == -1) {
 					firstEmptySlot = i;
 				}
 			} else {
 				itemCount += slotStack.getCount();
-				if(ItemStack.canCombine(itemStack, slotStack)) {
+				if (ItemStack.canCombine(itemStack, slotStack)) {
 					matchingStack = slotStack;
 				}
 			}
 		}
 		
 		int storageLeft = maxTotalCount - itemCount;
-		if(storageLeft <= 0) {
+		if (storageLeft <= 0) {
 			return itemStack;
 		}
 		
-		if(matchingStack != null) {
+		if (matchingStack != null) {
 			int addedCount = Math.min(matchingStack.getMaxCount() - matchingStack.getCount(), itemStack.getCount());
 			addedCount = Math.min(storageLeft, addedCount);
 			if (addedCount > 0) {
@@ -458,7 +460,7 @@ public class InventoryHelper {
 			return itemStack;
 		}
 		
-		if(firstEmptySlot == -1) {
+		if (firstEmptySlot == -1) {
 			return itemStack;
 		}
 		
@@ -468,7 +470,7 @@ public class InventoryHelper {
 	
 	public static int countItemsInInventory(Inventory inventory) {
 		int contentCount = 0;
-		for(int i = 0; i < inventory.size(); i++) {
+		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
 			contentCount += stack.getCount();
 		}

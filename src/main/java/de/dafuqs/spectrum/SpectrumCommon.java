@@ -96,7 +96,7 @@ public class SpectrumCommon implements ModInitializer {
 	public static void logError(String message) {
 		LOGGER.error("[Spectrum] " + message);
 	}
-
+	
 	public static Identifier locate(String name) {
 		return new Identifier(MOD_ID, name);
 	}
@@ -244,7 +244,7 @@ public class SpectrumCommon implements ModInitializer {
 		});
 		
 		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
-			if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+			if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
 			}
 		});

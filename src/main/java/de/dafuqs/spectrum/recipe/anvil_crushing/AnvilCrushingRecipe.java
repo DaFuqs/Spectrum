@@ -38,7 +38,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 		this.particleCount = particleCount;
 		this.soundEvent = soundEventIdentifier;
 		
-		if(requiredAdvancementIdentifier != null) {
+		if (requiredAdvancementIdentifier != null) {
 			registerInToastManager(getType(), this);
 		}
 	}

@@ -104,7 +104,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 					if (player.isSneaking() || handStack.isEmpty()) {
 						// sneaking or empty hand: remove items
 						for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
-							if(retrieveStack(world, pos, player, hand, handStack, enchanterBlockEntity, i)) {
+							if (retrieveStack(world, pos, player, hand, handStack, enchanterBlockEntity, i)) {
 								enchanterBlockEntity.setItemFacingDirection(player.getHorizontalFacing());
 								enchanterBlockEntity.setOwner(player);
 								break;
@@ -115,7 +115,7 @@ public class EnchanterBlock extends InWorldInteractionBlock {
 						// hand is full and inventory is empty: add
 						// hand is full and inventory already contains item: exchange them
 						int inputInventorySlotIndex = handStack.getItem() instanceof ExperienceStorageItem ? enchanterBlockEntity.getStack(1).isEmpty() ? 1 : 0 : 0;
-						if(exchangeStack(world, pos, player, hand, handStack, enchanterBlockEntity, inputInventorySlotIndex)) {
+						if (exchangeStack(world, pos, player, hand, handStack, enchanterBlockEntity, inputInventorySlotIndex)) {
 							enchanterBlockEntity.setItemFacingDirection(player.getHorizontalFacing());
 							enchanterBlockEntity.setOwner(player);
 						}

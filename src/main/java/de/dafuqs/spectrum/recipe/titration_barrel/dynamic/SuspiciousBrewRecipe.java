@@ -59,9 +59,9 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature) {
 		List<ItemStack> stacks = new ArrayList<>();
 		int itemCount = 0;
-		for(int i = 0; i < inventory.size(); i++) {
+		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
-			if(!stack.isEmpty()) {
+			if (!stack.isEmpty()) {
 				stacks.add(stack);
 				itemCount += stack.getCount();
 			}
@@ -71,23 +71,23 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}
 	
 	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall, float temperature) {
-		if(secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
+		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
 			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
 		}
 		
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = getAlcPercent(thickness, downfall, ageIngameDays);
-		if(alcPercent >= 100) {
+		if (alcPercent >= 100) {
 			return PURE_ALCOHOL_STACK;
 		} else {
 			// add up all stew effects with their durations from the input stacks
 			Map<StatusEffect, Integer> stewEffects = new HashMap<>();
-			for(ItemStack stack : stacks) {
+			for (ItemStack stack : stacks) {
 				Optional<Pair<StatusEffect, Integer>> stewEffect = getStewEffectFrom(stack);
-				if(stewEffect.isPresent()) {
+				if (stewEffect.isPresent()) {
 					StatusEffect effect = stewEffect.get().getLeft();
 					int duration = stewEffect.get().getRight() * stack.getCount();
-					if(stewEffects.containsKey(effect)) {
+					if (stewEffects.containsKey(effect)) {
 						stewEffects.put(effect, stewEffects.get(effect) + duration);
 					} else {
 						stewEffects.put(effect, duration);
@@ -97,7 +97,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 			
 			List<StatusEffectInstance> finalStatusEffects = new ArrayList<>();
 			double cappedAlcPercent = Math.min(alcPercent, 20D);
-			for(Map.Entry<StatusEffect, Integer> entry : stewEffects.entrySet()) {
+			for (Map.Entry<StatusEffect, Integer> entry : stewEffects.entrySet()) {
 				int finalDurationTicks = (int) Math.pow(entry.getValue(), 1 + cappedAlcPercent * 0.075);
 				finalStatusEffects.add(new StatusEffectInstance(entry.getKey(), finalDurationTicks, 0));
 			}
@@ -125,8 +125,8 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		boolean flowerFound = false;
 		for (int i = 0; i < inventory.size(); i++) {
 			ItemStack stack = inventory.getStack(i);
-			if(!stack.isEmpty()) {
-				if(stack.isIn(ItemTags.SMALL_FLOWERS)) {
+			if (!stack.isEmpty()) {
+				if (stack.isIn(ItemTags.SMALL_FLOWERS)) {
 					flowerFound = true;
 				} else {
 					return false;

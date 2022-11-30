@@ -35,7 +35,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	protected static final VoxelShape FRAME_WITH_EYE_SHAPE;
 	private static BlockPattern COMPLETED_FRAME;
 	private static BlockPattern END_PORTAL;
-
+	
 	static {
 		FACING_VERTICAL = BooleanProperty.of("facing_vertical");
 		EYE_TYPE = EnumProperty.of("eye_type", CrackedEndPortalFrameBlock.EndPortalFrameEye.class);

@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
  * @param <PStorage>
  */
 public interface InkStorageItem<PStorage extends InkStorage> {
-
+	
 	enum Drainability {
 		ALWAYS,
 		MACHINE_ONLY,

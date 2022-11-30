@@ -48,7 +48,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 		this.catalysts = catalysts;
 		
 		ingredientMap.put(inputIngredient, this);
-		for(BlockState growthStage : growthStages) {
+		for (BlockState growthStage : growthStages) {
 			stateMap.put(growthStage, this);
 		}
 		
@@ -57,8 +57,8 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	
 	@Nullable
 	public static CrystallarieumRecipe getRecipeForStack(ItemStack itemStack) {
-		for(Map.Entry<Ingredient, CrystallarieumRecipe> entry : ingredientMap.entrySet()) {
-			if(entry.getKey().test(itemStack)) {
+		for (Map.Entry<Ingredient, CrystallarieumRecipe> entry : ingredientMap.entrySet()) {
+			if (entry.getKey().test(itemStack)) {
 				return entry.getValue();
 			}
 		}
@@ -93,7 +93,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	@Override
 	public ItemStack getOutput() {
 		List<BlockState> states = getGrowthStages();
-		return states.get(states.size()-1).getBlock().asItem().getDefaultStack();
+		return states.get(states.size() - 1).getBlock().asItem().getDefaultStack();
 	}
 	
 	@Override
@@ -133,8 +133,8 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	}
 	
 	public Optional<CrystallarieumCatalyst> getCatalyst(ItemStack itemStack) {
-		for(CrystallarieumCatalyst catalyst : this.catalysts) {
-			if(catalyst.ingredient.test(itemStack)) {
+		for (CrystallarieumCatalyst catalyst : this.catalysts) {
+			if (catalyst.ingredient.test(itemStack)) {
 				return Optional.of(catalyst);
 			}
 		}

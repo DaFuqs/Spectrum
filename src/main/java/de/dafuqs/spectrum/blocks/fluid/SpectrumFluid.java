@@ -41,6 +41,7 @@ public abstract class SpectrumFluid extends FlowableFluid {
 	
 	/**
 	 * Lava returns true if its FluidState is above a certain height and the Fluid is Water.
+	 *
 	 * @return if the given Fluid can flow into this FluidState?
 	 */
 	@Override

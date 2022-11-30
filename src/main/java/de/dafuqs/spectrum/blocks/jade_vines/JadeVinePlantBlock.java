@@ -50,7 +50,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(PART, JadeVinesPlantPart.BASE).with(AGE, 1));
 	}
-
+	
 	public static List<ItemStack> getHarvestedStacks(BlockState state, ServerWorld world, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity entity, ItemStack stack, Identifier lootTableIdentifier) {
 		LootContext.Builder builder = (new LootContext.Builder(world)).random(world.random)
 				.parameter(LootContextParameters.BLOCK_STATE, state)
@@ -118,7 +118,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 					if (world.isClient) {
 						return ActionResult.SUCCESS;
 					} else {
-						if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+						if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 							Criteria.ITEM_USED_ON_BLOCK.trigger(serverPlayerEntity, pos, handStack);
 						}
 						

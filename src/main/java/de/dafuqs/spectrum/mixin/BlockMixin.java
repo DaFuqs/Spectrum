@@ -49,16 +49,16 @@ public abstract class BlockMixin {
 		if (enchantmentMap.containsKey(SpectrumEnchantments.VOIDING)) {
 			world.spawnParticles(ParticleTypes.SMOKE, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 10, 0.5, 0.5, 0.5, 0.05);
 			droppedStacks.clear();
-		// Resonance: drop itself
-		} else if(enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && (state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
+			// Resonance: drop itself
+		} else if (enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && (state.isIn(SpectrumBlockTags.RESONANCE_HARVESTABLES) || state.getBlock() instanceof InfestedBlock) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
 			droppedStacks.clear();
 			droppedStacks.add(state.getBlock().asItem().getDefaultStack());
 		}
 		
 		if (droppedStacks.size() > 0) {
 			// Resonance enchant: grant different drops for some items
-			if(enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
-				for(int i = 0; i < droppedStacks.size(); i++) {
+			if (enchantmentMap.containsKey(SpectrumEnchantments.RESONANCE) && SpectrumEnchantments.RESONANCE.canEntityUse(entity)) {
+				for (int i = 0; i < droppedStacks.size(); i++) {
 					droppedStacks.set(i, ResonanceDropsDataLoader.applyResonance(droppedStacks.get(i)));
 				}
 			}

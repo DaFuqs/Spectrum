@@ -54,16 +54,16 @@ public class PageCrystallarieumGrowing extends PageDoubleRecipeRegistry<Crystall
 		BlockState growthState = it.next();
 		parent.renderItemStack(ms, recipeX + 23, recipeY - 2, mouseX, mouseY, growthState.getBlock().asItem().getDefaultStack());
 		int x = 0;
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			parent.renderItemStack(ms, recipeX + 52 + 16 * x, recipeY + 4, mouseX, mouseY, it.next().getBlock().asItem().getDefaultStack());
 			x++;
 		}
 		
 		// crystallarieum
 		parent.renderItemStack(ms, recipeX + 23, recipeY + 8, mouseX, mouseY, recipe.createIcon());
-
+		
 		// catalyst text
-		if(textRenderer == null) {
+		if (textRenderer == null) {
 			textRenderer = new BookTextRenderer(parent, Text.translatable("container.spectrum.patchouli.crystallarieum.catalyst"), 0, 38);
 		}
 		textRenderer.render(ms, mouseX, mouseY);
@@ -72,10 +72,10 @@ public class PageCrystallarieumGrowing extends PageDoubleRecipeRegistry<Crystall
 		x = 0;
 		int startX = 26;
 		int offsetPerReagent = 18;
-		for(CrystallarieumCatalyst catalyst : recipe.getCatalysts()) {
+		for (CrystallarieumCatalyst catalyst : recipe.getCatalysts()) {
 			int offsetX = recipeX + startX + offsetPerReagent * x;
 			parent.renderIngredient(ms, recipeX + startX + offsetPerReagent * x, recipeY + 27, mouseX, mouseY, catalyst.ingredient);
-
+			
 			float growthAcceleration = catalyst.growthAccelerationMod;
 			float inkConsumption = catalyst.inkConsumptionMod;
 			float consumeChance = catalyst.consumeChancePerSecond;

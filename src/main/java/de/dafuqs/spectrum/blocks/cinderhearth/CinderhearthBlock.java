@@ -90,7 +90,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
-			if(placer instanceof PlayerEntity player) {
+			if (placer instanceof PlayerEntity player) {
 				cinderhearthBlockEntity.setOwner(player);
 			}
 			if (itemStack.hasCustomName()) {
@@ -146,15 +146,15 @@ public class CinderhearthBlock extends BlockWithEntity {
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if(blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
+		if (blockEntity instanceof CinderhearthBlockEntity cinderhearthBlockEntity) {
 			Direction direction = state.get(FACING);
 			Direction.Axis axis = direction.getAxis();
-			double d = (double)pos.getX() + 0.5D;
+			double d = (double) pos.getX() + 0.5D;
 			double e = pos.getY() + 0.4;
-			double f = (double)pos.getZ() + 0.5D;
+			double f = (double) pos.getZ() + 0.5D;
 			
 			Recipe recipe = cinderhearthBlockEntity.getCurrentRecipe();
-			if(recipe != null) {
+			if (recipe != null) {
 				if (random.nextDouble() < 0.1D) {
 					world.playSound(d, e, f, SoundEvents.BLOCK_FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 0.8F, false);
 				}
@@ -175,7 +175,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 					world.addParticle(ParticleTypes.CLOUD, d + i2, pos.getY() + 1.1, f + k2, 0.0D, 0.06D, 0.0D);
 				}
 			}
-			if(cinderhearthBlockEntity.structure == CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA) {
+			if (cinderhearthBlockEntity.structure == CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA) {
 				for (int v = 0; v < 2; v++) {
 					double g3 = 1.5 - random.nextDouble() * 2.0;
 					double h3 = 1.5 - random.nextDouble() * 3.0;
@@ -192,7 +192,7 @@ public class CinderhearthBlock extends BlockWithEntity {
 		
 		IMultiblock multiblockWithLava = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_IDENTIFIER);
 		IMultiblock multiblockWithoutLava = SpectrumMultiblocks.MULTIBLOCKS.get(SpectrumMultiblocks.CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER);
-		if(world.isClient) {
+		if (world.isClient) {
 			if (multiblockWithoutLava.validate(world, blockPos.down(3), rotation)) {
 				return CinderhearthBlockEntity.CinderHearthStructureType.WITH_LAVA;
 			} else {

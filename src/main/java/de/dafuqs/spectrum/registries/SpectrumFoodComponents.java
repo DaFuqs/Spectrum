@@ -35,11 +35,11 @@ public class SpectrumFoodComponents {
 			.hunger(4).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.ANOTHER_ROLL, 1200), 1.0F)
 			.build();
-
+	
 	public static final FoodComponent TRIPLE_MEAT_POT_PIE = new FoodComponent.Builder()
 			.hunger(20).saturationModifier(1.2F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100) ,1.0f)
-			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 12000, 1) ,1.0f)
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100), 1.0f)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 12000, 1), 1.0f)
 			.build();
 	
 	public static final FoodComponent GLISTERING_JELLY_TEA = new FoodComponent.Builder()
@@ -59,7 +59,7 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent RESTORATION_TEA_SCONE_BONUS = new FoodComponent.Builder()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, 1800), 1.0F)
 			.build();
-
+	
 	public static final FoodComponent BODACIOUS_BERRY_BAR = new FoodComponent.Builder()
 			.hunger(8).saturationModifier(0.5F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 2), 1.0F)
@@ -104,15 +104,15 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent MOONSHINE = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.build();
-
+	
 	public static final FoodComponent KIMCHI = new FoodComponent.Builder()
 			.hunger(6).saturationModifier(0.6F)
 			.build();
-
+	
 	public static final FoodComponent CLOTTED_CREAM = new FoodComponent.Builder()
 			.alwaysEdible()
 			.build();
-
+	
 	public static final FoodComponent FRESH_CHOCOLATE = new FoodComponent.Builder()
 			.snack().hunger(4).saturationModifier(0.6F)
 			.build();
@@ -129,12 +129,12 @@ public class SpectrumFoodComponents {
 	public static final FoodComponent SCONE = new FoodComponent.Builder()
 			.snack().hunger(3).saturationModifier(0.6F)
 			.build();
-
+	
 	public static final FoodComponent FREIGEIST = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.ASCENSION, AscensionStatusEffect.MUSIC_INTRO_TICKS), 1.0F)
 			.build();
-
+	
 	public static final FoodComponent INCANDESCENT_AMALGAM = new FoodComponent.Builder()
 			.hunger(1).saturationModifier(0.2F).alwaysEdible()
 			.build();

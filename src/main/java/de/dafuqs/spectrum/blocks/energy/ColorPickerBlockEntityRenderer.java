@@ -15,7 +15,7 @@ import net.minecraft.util.math.Vec3f;
 public class ColorPickerBlockEntityRenderer<T extends ColorPickerBlockEntity> implements BlockEntityRenderer<T> {
 	
 	public ColorPickerBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-
+	
 	}
 	
 	@Override
@@ -46,5 +46,5 @@ public class ColorPickerBlockEntityRenderer<T extends ColorPickerBlockEntity> im
 			matrixStack.pop();
 		}
 	}
-
+	
 }

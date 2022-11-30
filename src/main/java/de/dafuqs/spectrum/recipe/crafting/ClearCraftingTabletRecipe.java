@@ -23,8 +23,8 @@ public class ClearCraftingTabletRecipe extends SpecialCraftingRecipe {
 		for (int j = 0; j < craftingInventory.size(); ++j) {
 			ItemStack itemStack = craftingInventory.getStack(j);
 			if (!itemStack.isEmpty()) {
-				if(itemStack.getItem() instanceof CraftingTabletItem) {
-					if(!craftingTabletWithStoredRecipeFound && CraftingTabletItem.getStoredRecipe(world, itemStack) != null) {
+				if (itemStack.getItem() instanceof CraftingTabletItem) {
+					if (!craftingTabletWithStoredRecipeFound && CraftingTabletItem.getStoredRecipe(world, itemStack) != null) {
 						craftingTabletWithStoredRecipeFound = true;
 					} else {
 						return false;
@@ -47,7 +47,7 @@ public class ClearCraftingTabletRecipe extends SpecialCraftingRecipe {
 				return itemStack;
 			}
 		}
-
+		
 		return ItemStack.EMPTY;
 	}
 	

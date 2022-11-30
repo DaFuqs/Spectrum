@@ -61,7 +61,7 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 		DefaultedList<IngredientStack> ingredients = recipe.getIngredientStacks();
 		int wrap = recipe.getWidth();
 		for (int i = 0; i < ingredients.size(); i++) {
-			PatchouliHelper.renderIngredientStack(parent, ms,recipeX + (i % wrap) * 19 + 3, recipeY + (i / wrap) * 19 + 3, mouseX, mouseY, ingredients.get(i));
+			PatchouliHelper.renderIngredientStack(parent, ms, recipeX + (i % wrap) * 19 + 3, recipeY + (i / wrap) * 19 + 3, mouseX, mouseY, ingredients.get(i));
 		}
 	}
 	

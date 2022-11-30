@@ -22,5 +22,5 @@ public class SpectrumFluidTags {
 	private static TagKey<Fluid> register(String id) {
 		return TagKey.of(Registry.FLUID_KEY, new Identifier(SpectrumCommon.MOD_ID + ":" + id));
 	}
-
+	
 }

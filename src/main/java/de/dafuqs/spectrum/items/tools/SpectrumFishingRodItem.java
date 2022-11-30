@@ -33,7 +33,7 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
-
+		
 		PlayerEntityAccessor playerEntityAccessor = ((PlayerEntityAccessor) user);
 		if (playerEntityAccessor.getSpectrumBobber() != null) {
 			if (!world.isClient) {

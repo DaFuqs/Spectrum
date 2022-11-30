@@ -30,19 +30,19 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	
 	public static void removeSingleHarmfulStatusEffect(@NotNull LivingEntity entity) {
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
-		if(currentEffects.size() == 0) {
+		if (currentEffects.size() == 0) {
 			return;
 		}
 		
 		List<StatusEffectInstance> negativeEffects = new ArrayList<>();
-		for(StatusEffectInstance statusEffectInstance : currentEffects) {
+		for (StatusEffectInstance statusEffectInstance : currentEffects) {
 			StatusEffect effect = statusEffectInstance.getEffectType();
-			if(effect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(effect)) {
+			if (effect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(effect)) {
 				negativeEffects.add(statusEffectInstance);
 			}
 		}
 		
-		if(negativeEffects.size() == 0) {
+		if (negativeEffects.size() == 0) {
 			return;
 		}
 		
@@ -59,7 +59,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 			}
 		}
 		
-		for(StatusEffect effect : effectsToRemove) {
+		for (StatusEffect effect : effectsToRemove) {
 			entity.removeStatusEffect(effect);
 		}
 	}

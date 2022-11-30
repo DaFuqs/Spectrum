@@ -14,7 +14,7 @@ public abstract class EntityMixin {
 	
 	@Inject(method = "onKilledOther", at = @At("HEAD"))
 	private void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
-		if((Object) this instanceof LivingEntity livingEntity && !livingEntity.getWorld().isClient) {
+		if ((Object) this instanceof LivingEntity livingEntity && !livingEntity.getWorld().isClient) {
 			LastKillComponent.rememberKillTick(livingEntity, livingEntity.getWorld().getTime());
 		}
 	}

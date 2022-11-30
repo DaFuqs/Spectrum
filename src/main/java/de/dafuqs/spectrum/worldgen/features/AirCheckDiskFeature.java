@@ -17,7 +17,7 @@ public class AirCheckDiskFeature extends OreFeature {
 		BlockPos blockPos = context.getOrigin();
 		StructureWorldAccess structureWorldAccess = context.getWorld();
 		
-		if(structureWorldAccess.getBlockState(blockPos).isAir()) {
+		if (structureWorldAccess.getBlockState(blockPos).isAir()) {
 			return false;
 		}
 		

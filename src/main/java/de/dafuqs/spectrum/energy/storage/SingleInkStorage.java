@@ -112,9 +112,9 @@ public class SingleInkStorage implements InkStorage {
 	@Override
 	@Deprecated
 	public void setEnergy(Map<InkColor, Long> colors, long total) {
-		for(Map.Entry<InkColor, Long> color : colors.entrySet()) {
+		for (Map.Entry<InkColor, Long> color : colors.entrySet()) {
 			long value = color.getValue();
-			if(value > 0) {
+			if (value > 0) {
 				this.storedColor = color.getKey();
 				this.storedEnergy = color.getValue();
 			}
@@ -155,7 +155,7 @@ public class SingleInkStorage implements InkStorage {
 	}
 	
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
-		if(includeHeader) {
+		if (includeHeader) {
 			tooltip.add(Text.translatable("item.spectrum.ink_flask.tooltip", getShortenedNumberString(this.maxEnergy)));
 		}
 		if (this.storedEnergy > 0) {

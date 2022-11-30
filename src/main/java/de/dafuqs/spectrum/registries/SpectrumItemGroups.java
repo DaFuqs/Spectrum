@@ -114,7 +114,7 @@ public class SpectrumItemGroups {
 				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.TAKE_OFF_BELT, Enchantments.POWER, Enchantments.FEATHER_FALLING));
 				
 				// Infused Beverage Variants
-				if(SpectrumCommon.minecraftServer != null) {
+				if (SpectrumCommon.minecraftServer != null) {
 					for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
 						ItemStack output = recipe.getOutput().copy();
 						if (output.getItem() instanceof BeverageItem) {

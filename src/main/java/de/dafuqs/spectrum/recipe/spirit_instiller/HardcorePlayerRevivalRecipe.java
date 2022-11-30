@@ -38,9 +38,9 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	public ItemStack craft(Inventory inv) {
 		if (inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 			GameProfile gameProfile = getSkullOwner(inv.getStack(SpiritInstillerRecipe.CENTER_INGREDIENT));
-			if(gameProfile != null) {
+			if (gameProfile != null) {
 				ServerPlayerEntity revivedPlayer = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(gameProfile.getName());
-				if(revivedPlayer != null) {
+				if (revivedPlayer != null) {
 					HardcoreDeathComponent.removeHardcoreDeath(gameProfile);
 					revivedPlayer.changeGameMode(SpectrumCommon.minecraftServer.getDefaultGameMode());
 					
@@ -70,9 +70,9 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	
 	@Override
 	public boolean canCraftWithStacks(ItemStack instillerStack, ItemStack leftBowlStack, ItemStack rightBowlStack) {
-		if(instillerStack.isOf(Blocks.PLAYER_HEAD.asItem())) {
+		if (instillerStack.isOf(Blocks.PLAYER_HEAD.asItem())) {
 			GameProfile gameProfile = getSkullOwner(instillerStack);
-			if(gameProfile == null) {
+			if (gameProfile == null) {
 				return false;
 			}
 			
@@ -87,7 +87,7 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	private GameProfile getSkullOwner(ItemStack instillerStack) {
 		GameProfile gameProfile = null;
 		NbtCompound nbtCompound = instillerStack.getNbt();
-		if(nbtCompound != null) {
+		if (nbtCompound != null) {
 			if (nbtCompound.contains("SkullOwner", 10)) {
 				gameProfile = NbtHelper.toGameProfile(nbtCompound.getCompound("SkullOwner"));
 			} else if (nbtCompound.contains("SkullOwner", 8) && !StringUtils.isBlank(nbtCompound.getString("SkullOwner"))) {

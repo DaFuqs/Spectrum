@@ -378,14 +378,14 @@ public class SpectrumS2CPacketReceiver {
 			
 			int colorEntries = buf.readInt();
 			Map<InkColor, Long> colors = new HashMap<>();
-			for(int i = 0; i < colorEntries; i++) {
+			for (int i = 0; i < colorEntries; i++) {
 				colors.put(InkColor.of(buf.readString()), buf.readLong());
 			}
 			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				BlockEntity blockEntity = client.getInstance().player.world.getBlockEntity(blockPos);
-				if(blockEntity instanceof InkStorageBlockEntity inkStorageBlockEntity) {
+				if (blockEntity instanceof InkStorageBlockEntity inkStorageBlockEntity) {
 					inkStorageBlockEntity.getEnergyStorage().setEnergy(colors, colorTotal);
 				}
 			});
@@ -393,11 +393,11 @@ public class SpectrumS2CPacketReceiver {
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INK_COLOR_SELECTED, (client, handler, buf, responseSender) -> {
 			ScreenHandler screenHandler = MinecraftClient.getInstance().player.currentScreenHandler;
-			if(screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
+			if (screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 				boolean isSelection = buf.readBoolean();
 				
 				InkColor color;
-				if(isSelection) {
+				if (isSelection) {
 					String inkColorString = buf.readString();
 					color = InkColor.of(inkColorString);
 				} else {
@@ -425,7 +425,7 @@ public class SpectrumS2CPacketReceiver {
 			int colorCount = buf.readInt();
 			
 			Map<DyeColor, Integer> colors = new HashMap<>();
-			for(int i = 0; i < colorCount; i++) {
+			for (int i = 0; i < colorCount; i++) {
 				DyeColor dyeColor = DyeColor.byId(buf.readByte());
 				int amount = buf.readByte();
 				colors.put(dyeColor, amount);

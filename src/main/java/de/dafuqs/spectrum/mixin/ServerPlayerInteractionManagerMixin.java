@@ -14,13 +14,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ServerPlayerInteractionManager.class)
 public abstract class ServerPlayerInteractionManagerMixin {
 	
-	@Shadow @Final protected ServerPlayerEntity player;
+	@Shadow
+	@Final
+	protected ServerPlayerEntity player;
 	
 	// If someone puts players out of spectator manually
 	// forget about their hardcore death
 	@Inject(at = @At("HEAD"), method = "setGameMode(Lnet/minecraft/world/GameMode;Lnet/minecraft/world/GameMode;)V")
 	public void spectrum$mitigateFallDamageWithPuffCirclet(GameMode gameMode, GameMode previousGameMode, CallbackInfo ci) {
-		if(gameMode != GameMode.SPECTATOR && previousGameMode == GameMode.SPECTATOR && HardcoreDeathComponent.hasHardcoreDeath(player.getGameProfile())) {
+		if (gameMode != GameMode.SPECTATOR && previousGameMode == GameMode.SPECTATOR && HardcoreDeathComponent.hasHardcoreDeath(player.getGameProfile())) {
 			HardcoreDeathComponent.removeHardcoreDeath(player.getGameProfile());
 		}
 	}

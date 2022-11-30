@@ -77,7 +77,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	);
 	
 	private int currentGrid = 0;
-
+	
 	public PaintbrushScreen(PaintbrushScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 256;
@@ -95,17 +95,17 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderTexture(0, BACKGROUND);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		if(currentGrid == 0) {
+		if (currentGrid == 0) {
 			drawTexture(matrices, startX - 5, startY - 5, 0, 0, 10, 10);
 		} else {
 			drawTexture(matrices, startX - 14, startY - 14, 48, 0, 28, 28);
-			RenderHelper.fillQuad(matrices, startX - 12, startY - 12, 24, 24, MAIN_GRID.get(currentGrid-1).getColor());
+			RenderHelper.fillQuad(matrices, startX - 12, startY - 12, 24, 24, MAIN_GRID.get(currentGrid - 1).getColor());
 		}
 		
 		Iterator<Pair<Integer, Integer>> iOffset = SQUARE_OFFSETS.iterator();
-		for(InkColor color : grid) {
+		for (InkColor color : grid) {
 			Pair<Integer, Integer> offset = iOffset.next();
-			if(color != null) {
+			if (color != null) {
 				drawTexture(matrices, startX + offset.getLeft() - 3, startY + offset.getRight() - 3, 10, 0, 38, 38);
 				RenderHelper.fillQuad(matrices, startX + offset.getLeft(), startY + offset.getRight(), 32, 32, color.getColor());
 			}
@@ -114,12 +114,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-
+	
 	}
 	
 	@Override
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
-		if(button == 1) {
+		if (button == 1) {
 			// select
 			selectBack();
 		} else {
@@ -131,7 +131,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 			mouseY = mouseY - y;
 			
 			int centerElementSize = currentGrid == 0 ? 5 : 14;
-			if(mouseX >= startX -centerElementSize && mouseX <= startX + centerElementSize && mouseY >= startY -centerElementSize && mouseY <= startY + centerElementSize) {
+			if (mouseX >= startX - centerElementSize && mouseX <= startX + centerElementSize && mouseY >= startY - centerElementSize && mouseY <= startY + centerElementSize) {
 				selectCenter();
 				return true;
 			}
@@ -142,7 +142,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 			for (InkColor color : grid) {
 				Pair<Integer, Integer> offset = iOffset.next();
 				if (color != null) {
-					if(mouseX >= startX + offset.getLeft() && mouseX <= startX + offset.getLeft() + 32 && mouseY >= startY + offset.getRight() && mouseY <= startY + offset.getRight() + 32) {
+					if (mouseX >= startX + offset.getLeft() && mouseX <= startX + offset.getLeft() + 32 && mouseY >= startY + offset.getRight() && mouseY <= startY + offset.getRight() + 32) {
 						switch (offsetID) {
 							case 0 -> {
 								selectLeft();
@@ -176,16 +176,16 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 		if (options.leftKey.matchesKey(keyCode, scanCode)) {
 			selectLeft();
 			return true;
-		} else if(options.forwardKey.matchesKey(keyCode, scanCode)) {
+		} else if (options.forwardKey.matchesKey(keyCode, scanCode)) {
 			selectUp();
 			return true;
-		} else if(options.rightKey.matchesKey(keyCode, scanCode)) {
+		} else if (options.rightKey.matchesKey(keyCode, scanCode)) {
 			selectRight();
 			return true;
-		} else if(options.backKey.matchesKey(keyCode, scanCode)) {
+		} else if (options.backKey.matchesKey(keyCode, scanCode)) {
 			selectDown();
 			return true;
-		} else if(options.dropKey.matchesKey(keyCode, scanCode) || options.inventoryKey.matchesKey(keyCode, scanCode)) {
+		} else if (options.dropKey.matchesKey(keyCode, scanCode) || options.inventoryKey.matchesKey(keyCode, scanCode)) {
 			selectCenter();
 			return true;
 		}
@@ -193,20 +193,20 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	}
 	
 	private void selectCenter() {
-		if(currentGrid == 0) {
+		if (currentGrid == 0) {
 			chooseColor(null);
 		} else {
-			chooseColor(MAIN_GRID.get(currentGrid-1));
+			chooseColor(MAIN_GRID.get(currentGrid - 1));
 		}
 	}
 	
 	private void selectRight() {
-		if(currentGrid == 0) {
+		if (currentGrid == 0) {
 			currentGrid = 3;
 			client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 		} else {
 			InkColor selectedColor = GRIDS.get(currentGrid).get(2);
-			if(selectedColor == null) {
+			if (selectedColor == null) {
 				selectBack();
 			} else {
 				chooseColor(selectedColor);
@@ -215,12 +215,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	}
 	
 	private void selectUp() {
-		if(currentGrid == 0) {
+		if (currentGrid == 0) {
 			currentGrid = 2;
 			client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 		} else {
 			InkColor selectedColor = GRIDS.get(currentGrid).get(1);
-			if(selectedColor == null) {
+			if (selectedColor == null) {
 				selectBack();
 			} else {
 				chooseColor(selectedColor);
@@ -229,12 +229,12 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	}
 	
 	private void selectLeft() {
-		if(currentGrid == 0) {
+		if (currentGrid == 0) {
 			currentGrid = 1;
 			client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 		} else {
 			InkColor selectedColor = GRIDS.get(currentGrid).get(0);
-			if(selectedColor == null) {
+			if (selectedColor == null) {
 				selectBack();
 			} else {
 				chooseColor(selectedColor);
@@ -243,8 +243,8 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	}
 	
 	private void selectDown() {
-		if(currentGrid == 0) {
-			if(handler.hasAccessToWhites()) {
+		if (currentGrid == 0) {
+			if (handler.hasAccessToWhites()) {
 				currentGrid = 4;
 				client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 			} else {
@@ -252,7 +252,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 			}
 		} else {
 			InkColor selectedColor = GRIDS.get(currentGrid).get(3);
-			if(selectedColor == null) {
+			if (selectedColor == null) {
 				selectBack();
 			} else {
 				chooseColor(selectedColor);
@@ -261,7 +261,7 @@ public class PaintbrushScreen extends HandledScreen<PaintbrushScreenHandler> {
 	}
 	
 	private void selectBack() {
-		if(currentGrid != 0) {
+		if (currentGrid != 0) {
 			currentGrid = 0;
 			client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 		}

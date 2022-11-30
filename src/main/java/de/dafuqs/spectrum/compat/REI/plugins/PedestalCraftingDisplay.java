@@ -27,6 +27,7 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 	
 	/**
 	 * When using the REI recipe functionality
+	 *
 	 * @param recipe The recipe
 	 */
 	public PedestalCraftingDisplay(PedestalCraftingRecipe recipe) {
@@ -50,29 +51,29 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 		}
 		
 		HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = recipe.getGemstonePowderInputs();
-		int firstGemstoneSlotId = 3*3;
-
+		int firstGemstoneSlotId = 3 * 3;
+		
 		int cyan = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.CYAN, 0);
-		if(cyan > 0) {
+		if (cyan > 0) {
 			list.set(firstGemstoneSlotId, EntryIngredients.of(SpectrumItems.TOPAZ_POWDER, cyan));
 		}
 		int magenta = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.MAGENTA, 0);
-		if(magenta > 0) {
-			list.set(firstGemstoneSlotId+1, EntryIngredients.of(SpectrumItems.AMETHYST_POWDER, magenta));
+		if (magenta > 0) {
+			list.set(firstGemstoneSlotId + 1, EntryIngredients.of(SpectrumItems.AMETHYST_POWDER, magenta));
 		}
 		int yellow = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.YELLOW, 0);
-		if(yellow > 0) {
-			list.set(firstGemstoneSlotId+2, EntryIngredients.of(SpectrumItems.CITRINE_POWDER, yellow));
+		if (yellow > 0) {
+			list.set(firstGemstoneSlotId + 2, EntryIngredients.of(SpectrumItems.CITRINE_POWDER, yellow));
 		}
-		if(shownGemstoneSlotCount >= 4) {
+		if (shownGemstoneSlotCount >= 4) {
 			int black = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.BLACK, 0);
-			if(black > 0) {
-				list.set(firstGemstoneSlotId+3, EntryIngredients.of(SpectrumItems.ONYX_POWDER, black));
+			if (black > 0) {
+				list.set(firstGemstoneSlotId + 3, EntryIngredients.of(SpectrumItems.ONYX_POWDER, black));
 			}
-			if(shownGemstoneSlotCount == 5) {
+			if (shownGemstoneSlotCount == 5) {
 				int white = gemstonePowderInputs.getOrDefault(BuiltinGemstoneColor.WHITE, 0);
-				if(white > 0) {
-					list.set(firstGemstoneSlotId+4, EntryIngredients.of(SpectrumItems.MOONSTONE_POWDER, white));
+				if (white > 0) {
+					list.set(firstGemstoneSlotId + 4, EntryIngredients.of(SpectrumItems.MOONSTONE_POWDER, white));
 				}
 			}
 		}
@@ -97,7 +98,6 @@ public class PedestalCraftingDisplay extends GatedSpectrumDisplay {
 		this.experience = experience;
 		this.craftingTime = craftingTime;
 	}*/
-	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.PEDESTAL_CRAFTING;

@@ -46,7 +46,7 @@ public abstract class ProjectileEntityMixin {
 				boolean protect = false;
 				
 				StatusEffectInstance reboundInstance = livingEntity.getStatusEffect(SpectrumStatusEffects.PROJECTILE_REBOUND);
-				if(reboundInstance != null && entity.world.getRandom().nextFloat() < SpectrumStatusEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * reboundInstance.getAmplifier()) {
+				if (reboundInstance != null && entity.world.getRandom().nextFloat() < SpectrumStatusEffects.PROJECTILE_REBOUND_CHANCE_PER_LEVEL * reboundInstance.getAmplifier()) {
 					protect = true;
 				} else {
 					Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(livingEntity);
@@ -62,7 +62,7 @@ public abstract class ProjectileEntityMixin {
 					}
 				}
 				
-				if(protect) {
+				if (protect) {
 					this.setVelocity(0, 0, 0, 0, 0);
 					
 					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) thisEntity.getWorld(), thisEntity.getPos(),
@@ -81,7 +81,6 @@ public abstract class ProjectileEntityMixin {
 			}
 		}
 	}
-	
 	
 	
 }

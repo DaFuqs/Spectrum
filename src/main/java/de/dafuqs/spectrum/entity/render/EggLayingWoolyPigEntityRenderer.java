@@ -12,9 +12,9 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class EggLayingWoolyPigEntityRenderer extends MobEntityRenderer<EggLayingWoolyPigEntity, EggLayingWoolyPigEntityModel> {
-
+	
 	public static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/egg_laying_wooly_pig.png");
-
+	
 	public EggLayingWoolyPigEntityRenderer(EntityRendererFactory.Context context) {
 		super(context, new EggLayingWoolyPigEntityModel(context.getPart(SpectrumModelLayers.WOOLY_PIG)), 0.6F);
 		this.addFeature(new EggLayingWoolyPigWoolFeatureRenderer(this, context.getModelLoader()));

@@ -97,7 +97,7 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 						currentItemStack.increment(outputItemStack.getCount());
 					}
 					
-					for(ItemStack remainder : remainders) {
+					for (ItemStack remainder : remainders) {
 						InventoryHelper.smartAddToInventory(remainder, restockingChestBlockEntity, null);
 					}
 					return true;

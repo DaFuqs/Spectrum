@@ -23,7 +23,7 @@ public class ItemWithTooltip extends Item {
 	
 	public ItemWithTooltip(Settings settings, String[] tooltips) {
 		super(settings);
-		for(String tooltip : tooltips) {
+		for (String tooltip : tooltips) {
 			this.tooltipTexts.add(Text.translatable(tooltip));
 		}
 	}
@@ -31,7 +31,7 @@ public class ItemWithTooltip extends Item {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		for(MutableText text : this.tooltipTexts) {
+		for (MutableText text : this.tooltipTexts) {
 			tooltip.add(text.formatted(Formatting.GRAY));
 		}
 	}

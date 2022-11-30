@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class EnchantedStarCandyItem extends Item {
-
+	
 	public EnchantedStarCandyItem(Settings settings) {
 		super(settings);
 	}
@@ -22,10 +22,10 @@ public class EnchantedStarCandyItem extends Item {
 		ItemStack itemStack = super.finishUsing(stack, world, user);
 		
 		user.heal(user.getMaxHealth());
-		if(!world.isClient) {
+		if (!world.isClient) {
 			WhispyCircletItem.removeNegativeStatusEffects(user);
 		}
-		if(user instanceof PlayerEntity player) {
+		if (user instanceof PlayerEntity player) {
 			player.getHungerManager().add(1000, 1.0F);
 		}
 		return itemStack;

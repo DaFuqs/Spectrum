@@ -35,8 +35,8 @@ public class PaintbrushScreenHandler extends ScreenHandler implements InkColorSe
 	}
 	
 	public boolean canUse(PlayerEntity player) {
-		for(ItemStack itemStack : player.getHandItems()) {
-			if(itemStack == paintBrushStack) {
+		for (ItemStack itemStack : player.getHandItems()) {
+			if (itemStack == paintBrushStack) {
 				return true;
 			}
 		}

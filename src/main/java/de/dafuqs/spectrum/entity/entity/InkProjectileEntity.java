@@ -55,7 +55,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 	
 	public InkProjectileEntity(EntityType<InkProjectileEntity> type, World world) {
 		super(type, world);
-		if(world.isClient) {
+		if (world.isClient) {
 			InkProjectileSoundInstance.startSoundInstance(this);
 		}
 	}
@@ -106,7 +106,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
-
+		
 		if (nbt.contains("Color", 99)) {
 			this.setColor(nbt.getInt("Color"));
 		}
@@ -122,8 +122,8 @@ public class InkProjectileEntity extends ProjectileEntity {
 		Vec3d thisVelocity = this.getVelocity();
 		if (this.prevPitch == 0.0F && this.prevYaw == 0.0F) {
 			double d = thisVelocity.horizontalLength();
-			this.setYaw((float)(MathHelper.atan2(thisVelocity.x, thisVelocity.z) * 57.2957763671875D));
-			this.setPitch((float)(MathHelper.atan2(thisVelocity.y, d) * 57.2957763671875D));
+			this.setYaw((float) (MathHelper.atan2(thisVelocity.x, thisVelocity.z) * 57.2957763671875D));
+			this.setPitch((float) (MathHelper.atan2(thisVelocity.y, d) * 57.2957763671875D));
 			this.prevYaw = this.getYaw();
 			this.prevPitch = this.getPitch();
 		}
@@ -138,16 +138,16 @@ public class InkProjectileEntity extends ProjectileEntity {
 			vec3d2 = (hitResult).getPos();
 		}
 		
-		if(!this.isRemoved()) {
+		if (!this.isRemoved()) {
 			EntityHitResult entityHitResult = this.getEntityCollision(thisPos, vec3d2);
 			if (entityHitResult != null) {
 				hitResult = entityHitResult;
 			}
 			
 			if (hitResult.getType() == HitResult.Type.ENTITY) {
-				Entity entity = ((EntityHitResult)hitResult).getEntity();
+				Entity entity = ((EntityHitResult) hitResult).getEntity();
 				Entity entity2 = this.getOwner();
-				if (entity instanceof PlayerEntity && entity2 instanceof PlayerEntity && !((PlayerEntity)entity2).shouldDamagePlayer((PlayerEntity)entity)) {
+				if (entity instanceof PlayerEntity && entity2 instanceof PlayerEntity && !((PlayerEntity) entity2).shouldDamagePlayer((PlayerEntity) entity)) {
 					hitResult = null;
 				}
 			}
@@ -168,17 +168,17 @@ public class InkProjectileEntity extends ProjectileEntity {
 		double k = this.getZ() + velocityZ;
 		double l = thisVelocity.horizontalLength();
 		if (noClip) {
-			this.setYaw((float)(MathHelper.atan2(-velocityX, -velocityZ) * 57.2957763671875D));
+			this.setYaw((float) (MathHelper.atan2(-velocityX, -velocityZ) * 57.2957763671875D));
 		} else {
-			this.setYaw((float)(MathHelper.atan2(velocityX, velocityZ) * 57.2957763671875D));
+			this.setYaw((float) (MathHelper.atan2(velocityX, velocityZ) * 57.2957763671875D));
 		}
 		
-		this.setPitch((float)(MathHelper.atan2(velocityY, l) * 57.2957763671875D));
+		this.setPitch((float) (MathHelper.atan2(velocityY, l) * 57.2957763671875D));
 		this.setPitch(updateRotation(this.prevPitch, this.getPitch()));
 		this.setYaw(updateRotation(this.prevYaw, this.getYaw()));
 		
 		if (this.isTouchingWater()) {
-			for(int o = 0; o < 4; ++o) {
+			for (int o = 0; o < 4; ++o) {
 				this.world.addParticle(ParticleTypes.BUBBLE, h - velocityX * 0.25D, j - velocityY * 0.25D, k - velocityZ * 0.25D, velocityX, velocityY, velocityZ);
 			}
 		}
@@ -208,7 +208,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 		if (colorOrdinal != -1 && amount > 0) {
 			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
 			Vec3f inkColor = InkColor.of(dyeColor).getColor();
-			for(int j = 0; j < amount; ++j) {
+			for (int j = 0; j < amount; ++j) {
 				this.world.addParticle(SpectrumParticleTypes.getCraftingParticle(dyeColor), this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), inkColor.getX(), inkColor.getY(), inkColor.getZ());
 			}
 		}
@@ -222,8 +222,8 @@ public class InkProjectileEntity extends ProjectileEntity {
 		
 		ColorHelper.tryColorEntity(null, entity, getDyeColor());
 		
-		float velocity = (float)this.getVelocity().length();
-		int damage = MathHelper.ceil(MathHelper.clamp((double)velocity * DAMAGE_PER_POTENCY * SPELL_POTENCY, 0.0D, 2.147483647E9D));
+		float velocity = (float) this.getVelocity().length();
+		int damage = MathHelper.ceil(MathHelper.clamp((double) velocity * DAMAGE_PER_POTENCY * SPELL_POTENCY, 0.0D, 2.147483647E9D));
 		
 		Entity entity2 = this.getOwner();
 		DamageSource damageSource;
@@ -232,27 +232,27 @@ public class InkProjectileEntity extends ProjectileEntity {
 		} else {
 			damageSource = SpectrumDamageSources.inkProjectile(this, entity2);
 			if (entity2 instanceof LivingEntity) {
-				((LivingEntity)entity2).onAttacking(entity);
+				((LivingEntity) entity2).onAttacking(entity);
 			}
 		}
 		
-		if (entity.damage(damageSource, (float)damage)) {
+		if (entity.damage(damageSource, (float) damage)) {
 			if (entity instanceof LivingEntity) {
-				LivingEntity livingEntity = (LivingEntity)entity;
+				LivingEntity livingEntity = (LivingEntity) entity;
 				
 				if (!this.world.isClient && entity2 instanceof LivingEntity) {
 					EnchantmentHelper.onUserDamaged(livingEntity, entity2);
-					EnchantmentHelper.onTargetDamaged((LivingEntity)entity2, livingEntity);
+					EnchantmentHelper.onTargetDamaged((LivingEntity) entity2, livingEntity);
 				}
 				
 				this.onHit(livingEntity);
 				
 				if (livingEntity != entity2 && livingEntity instanceof PlayerEntity && entity2 instanceof ServerPlayerEntity && !this.isSilent()) {
-					((ServerPlayerEntity)entity2).networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.PROJECTILE_HIT_PLAYER, 0.0F));
+					((ServerPlayerEntity) entity2).networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.PROJECTILE_HIT_PLAYER, 0.0F));
 				}
 				
 				if (!this.world.isClient && entity2 instanceof ServerPlayerEntity) {
-					ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity2;
+					ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) entity2;
 					if (!entity.isAlive()) {
 						SpectrumAdvancementCriteria.KILLED_BY_INK_PROJECTILE.trigger(serverPlayerEntity, Arrays.asList(entity));
 					}

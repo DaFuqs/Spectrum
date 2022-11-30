@@ -40,13 +40,13 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 	public ItemStack craft(Inventory inv) {
 		if (inv instanceof PedestalBlockEntity pedestal) {
 			Triplet<Integer, Integer, Boolean> orientation = getRecipeOrientation(inv);
-			if(orientation == null) {
+			if (orientation == null) {
 				return ItemStack.EMPTY;
 			}
 			decrementIngredientStacks(pedestal, orientation);
 			
 			ItemStack recipeOutput;
-			if(RANDOM.nextFloat() < PURPLE_STAR_CANDY_CHANCE) {
+			if (RANDOM.nextFloat() < PURPLE_STAR_CANDY_CHANCE) {
 				recipeOutput = SpectrumItems.PURPLE_STAR_CANDY.getDefaultStack();
 			} else {
 				recipeOutput = this.output.copy();
@@ -72,7 +72,7 @@ public class StarCandyRecipe extends PedestalCraftingRecipe {
 		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
 		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
 		inputs.add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.AMARANTH_GRAINS)));
-
+		
 		return inputs;
 	}
 	

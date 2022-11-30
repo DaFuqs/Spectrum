@@ -8,6 +8,7 @@ import net.minecraft.text.Text;
 public interface DescriptiveGatedRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	Text getDescription();
+	
 	Item getItem();
 	
 }

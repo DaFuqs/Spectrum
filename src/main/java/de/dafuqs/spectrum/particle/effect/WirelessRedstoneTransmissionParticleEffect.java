@@ -26,11 +26,11 @@ public class WirelessRedstoneTransmissionParticleEffect extends TransmissionPart
 	public static final ParticleEffect.Factory<WirelessRedstoneTransmissionParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
 		public WirelessRedstoneTransmissionParticleEffect read(ParticleType<WirelessRedstoneTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
 			stringReader.expect(' ');
-			float f = (float)stringReader.readDouble();
+			float f = (float) stringReader.readDouble();
 			stringReader.expect(' ');
-			float g = (float)stringReader.readDouble();
+			float g = (float) stringReader.readDouble();
 			stringReader.expect(' ');
-			float h = (float)stringReader.readDouble();
+			float h = (float) stringReader.readDouble();
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
 			BlockPos blockPos = new BlockPos(f, g, h);

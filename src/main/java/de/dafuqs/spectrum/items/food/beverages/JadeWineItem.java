@@ -23,7 +23,7 @@ public class JadeWineItem extends BeverageItem {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		if(BeverageItem.isPreviewStack(itemStack)) {
+		if (BeverageItem.isPreviewStack(itemStack)) {
 			tooltip.add(Text.translatable("item.spectrum.jade_wine.tooltip.preview").formatted(Formatting.GRAY));
 			tooltip.add(Text.translatable("item.spectrum.jade_wine.tooltip.preview2").formatted(Formatting.GRAY));
 			tooltip.add(Text.translatable("item.spectrum.jade_wine.tooltip.preview3").formatted(Formatting.GRAY));

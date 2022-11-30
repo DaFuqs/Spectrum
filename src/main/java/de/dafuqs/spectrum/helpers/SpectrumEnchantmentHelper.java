@@ -197,7 +197,7 @@ public class SpectrumEnchantmentHelper {
 	
 	public static int getUsableLevel(SpectrumEnchantment enchantment, ItemStack itemStack, Entity entity) {
 		int level = EnchantmentHelper.getLevel(enchantment, itemStack);
-		if(level > 0 && !enchantment.canEntityUse(entity)) {
+		if (level > 0 && !enchantment.canEntityUse(entity)) {
 			level = 0;
 		}
 		return level;

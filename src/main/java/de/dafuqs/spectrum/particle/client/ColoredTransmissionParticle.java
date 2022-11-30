@@ -28,9 +28,9 @@ public class ColoredTransmissionParticle extends TransmissionParticle {
 	@Override
 	public void render(VertexConsumer vertexConsumer, Camera camera, float tickDelta, Consumer<Quaternion> transforms) {
 		Vec3d vec3d = camera.getPos();
-		float f = (float)(MathHelper.lerp(tickDelta, this.prevPosX, this.x) - vec3d.getX());
-		float g = (float)(MathHelper.lerp(tickDelta, this.prevPosY, this.y) - vec3d.getY());
-		float h = (float)(MathHelper.lerp(tickDelta, this.prevPosZ, this.z) - vec3d.getZ());
+		float f = (float) (MathHelper.lerp(tickDelta, this.prevPosX, this.x) - vec3d.getX());
+		float g = (float) (MathHelper.lerp(tickDelta, this.prevPosY, this.y) - vec3d.getY());
+		float h = (float) (MathHelper.lerp(tickDelta, this.prevPosZ, this.z) - vec3d.getZ());
 		Vec3f vec3f = new Vec3f(0.5F, 0.5F, 0.5F);
 		vec3f.normalize();
 		Quaternion quaternion = new Quaternion(vec3f, 0.0F, true);
@@ -48,7 +48,7 @@ public class ColoredTransmissionParticle extends TransmissionParticle {
 			quaternion.hamiltonProduct(Vec3f.POSITIVE_Z.getRadialQuaternion(z));
 		}
 		
-		for(int j = 0; j < 4; ++j) {
+		for (int j = 0; j < 4; ++j) {
 			Vec3f vec3f3 = vec3fs[j];
 			vec3f3.rotate(quaternion);
 			vec3f3.scale(i);

@@ -12,7 +12,7 @@ import net.minecraft.block.FluidBlock;
 import java.util.List;
 
 public abstract class BlockToBlockWithChanceDisplay extends BasicDisplay implements GatedRecipeDisplay {
-
+	
 	public final float chance;
 	
 	public BlockToBlockWithChanceDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, float chance) {
@@ -28,7 +28,7 @@ public abstract class BlockToBlockWithChanceDisplay extends BasicDisplay impleme
 		}
 		
 	}
-
+	
 	public final float getChance() {
 		return chance;
 	}

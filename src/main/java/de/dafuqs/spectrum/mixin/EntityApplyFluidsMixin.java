@@ -27,7 +27,8 @@ public abstract class EntityApplyFluidsMixin {
 	@Shadow
 	private Set<TagKey<Fluid>> submergedFluidTag;
 	
-	@Shadow public abstract void readNbt(NbtCompound nbt);
+	@Shadow
+	public abstract void readNbt(NbtCompound nbt);
 	
 	@Inject(method = "isSubmergedIn(Lnet/minecraft/tag/TagKey;)Z", at = @At("RETURN"), cancellable = true)
 	public void isSubmergedIn(TagKey<Fluid> fluidTag, CallbackInfoReturnable<Boolean> cir) {
@@ -51,8 +52,8 @@ public abstract class EntityApplyFluidsMixin {
 	
 	@ModifyArg(method = "onSwimmingStart()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;addParticle(Lnet/minecraft/particle/ParticleEffect;DDDDDD)V"), index = 0)
 	private ParticleEffect spectrum$modifySwimmingStartParticles(ParticleEffect particleEffect) {
-		Fluid fluid = ((Entity)(Object) this).world.getFluidState(((Entity)(Object) this).getBlockPos()).getFluid();
-		if(fluid instanceof SpectrumFluid spectrumFluid) {
+		Fluid fluid = ((Entity) (Object) this).world.getFluidState(((Entity) (Object) this).getBlockPos()).getFluid();
+		if (fluid instanceof SpectrumFluid spectrumFluid) {
 			return spectrumFluid.getSplashParticle();
 		}
 		return particleEffect;

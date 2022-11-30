@@ -59,7 +59,7 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 			}
 		}
 		
-		if(!shootingStarStack.isEmpty() && !diamondStack.isEmpty()) {
+		if (!shootingStarStack.isEmpty() && !diamondStack.isEmpty()) {
 			int craftedAmount = Math.min(shootingStarStack.getCount(), diamondStack.getCount());
 			
 			ItemStack hardenedStack = shootingStarStack.copy();

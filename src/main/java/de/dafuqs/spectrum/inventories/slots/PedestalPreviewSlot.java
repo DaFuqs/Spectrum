@@ -15,7 +15,7 @@ public class PedestalPreviewSlot extends ReadOnlySlot implements SlotWithOnClick
 	
 	@Override
 	public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
-		if(!this.inventory.getStack(0).isEmpty() && player instanceof ServerPlayerEntity serverPlayerEntity) {
+		if (!this.inventory.getStack(0).isEmpty() && player instanceof ServerPlayerEntity serverPlayerEntity) {
 			Support.grantAdvancementCriterion(serverPlayerEntity, "craft_using_pedestal_without_redstone", "try_take_out_item_from_pedestal");
 		}
 		return false;

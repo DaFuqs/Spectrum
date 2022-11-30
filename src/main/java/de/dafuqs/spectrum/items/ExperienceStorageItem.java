@@ -27,6 +27,7 @@ public interface ExperienceStorageItem {
 	/**
 	 * Adds amount experience to an ExperienceProviderItem stack.
 	 * If the experience would be overflowing return the amount of experience that could not be stored
+	 *
 	 * @param itemStack The item stack
 	 * @param amount    The amount of experience to store
 	 * @param random    A random
@@ -49,7 +50,7 @@ public interface ExperienceStorageItem {
 	 * @return The overflow amount that could not be stored
 	 */
 	static int addStoredExperience(ItemStack itemStack, int amount) {
-		if(amount <= 0) {
+		if (amount <= 0) {
 			return 0;
 		}
 		
@@ -75,7 +76,7 @@ public interface ExperienceStorageItem {
 					return 0;
 				}
 			}
-		} else if(!itemStack.isEmpty()) {
+		} else if (!itemStack.isEmpty()) {
 			SpectrumCommon.logError("Tried to add stored Experience to a non-ExperienceStorageItem item: " + itemStack.getItem().getName().getString());
 		}
 		

@@ -35,7 +35,8 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	private static final int PLAYER_INVENTORY_END_INDEX = 39;
 	
 	protected final CraftingResultInventory output = new CraftingResultInventory();
-	protected final ScreenHandlerContext context;	protected final Inventory input = new SimpleInventory(2) {
+	protected final ScreenHandlerContext context;
+	protected final Inventory input = new SimpleInventory(2) {
 		public void markDirty() {
 			super.markDirty();
 			onContentChanged(this);
@@ -46,6 +47,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	private int repairItemCount;
 	private String newItemName;
 	private String newLoreString;
+	
 	public BedrockAnvilScreenHandler(int syncId, PlayerInventory inventory) {
 		this(syncId, inventory, ScreenHandlerContext.EMPTY);
 	}
@@ -383,6 +385,5 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		return this.levelCost.get();
 	}
 	
-
 	
 }

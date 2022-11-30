@@ -25,7 +25,7 @@ public class NaturesStaffConversionsDisplay extends BasicDisplay implements Gate
 	public NaturesStaffConversionsDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs) {
 		super(inputs, outputs);
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.NATURES_STAFF;

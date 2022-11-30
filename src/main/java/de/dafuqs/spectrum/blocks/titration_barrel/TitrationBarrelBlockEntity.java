@@ -71,7 +71,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		super.readNbt(nbt);
 		
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		if(nbt.contains("Inventory", NbtElement.LIST_TYPE)) {
+		if (nbt.contains("Inventory", NbtElement.LIST_TYPE)) {
 			this.inventory.readNbtList(nbt.getList("Inventory", NbtElement.COMPOUND_TYPE));
 		}
 		
@@ -87,13 +87,13 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	
 	public boolean useBucket(World world, BlockPos pos, BlockState state, ItemStack bucketStack, PlayerEntity player, Hand hand) {
 		Fluid bucketFluid = ((BucketItemAccessor) bucketStack.getItem()).fabric_getFluid();
-		if(this.storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
+		if (this.storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
 			if (!player.isCreative()) {
 				Item remainderItem = bucketStack.getItem().getRecipeRemainder();
 				bucketStack.decrement(1);
 				player.setStackInHand(hand, bucketStack);
 				
-				if(remainderItem != null) {
+				if (remainderItem != null) {
 					player.giveItemStack(remainderItem.getDefaultStack());
 				}
 			}
@@ -109,7 +109,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			}
 			
 			return true;
-		} else if(this.sealTime == -1 && this.storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
+		} else if (this.sealTime == -1 && this.storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
 			player.setStackInHand(hand, ItemUsage.exchangeStack(bucketStack, player, this.storedFluid.getBucketItem().getDefaultStack()));
 			
 			Optional<SoundEvent> soundEvent = storedFluid.getBucketFillSound();
@@ -149,12 +149,12 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	}
 	
 	public long getSealMilliseconds() {
-		if(this.sealTime == -1) {
+		if (this.sealTime == -1) {
 			return 0;
 		}
 		
 		long tapTime;
-		if(this.tapTime == -1) {
+		if (this.tapTime == -1) {
 			tapTime = new Date().getTime();
 		} else {
 			tapTime = this.tapTime;
@@ -171,7 +171,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	}
 	
 	private boolean isEmpty(float temperature, int extractedBottles, ITitrationBarrelRecipe recipe) {
-		if(recipe.isEmpty() || recipe.getFluid() != this.storedFluid) {
+		if (recipe.isEmpty() || recipe.getFluid() != this.storedFluid) {
 			return true;
 		}
 		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(temperature, getSealSeconds());
@@ -194,7 +194,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		Optional<ITitrationBarrelRecipe> optionalRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, this.inventory, world);
 		if (optionalRecipe.isEmpty()) {
 			if (player != null) {
-				if(inventory.isEmpty() && storedFluid == Fluids.EMPTY) {
+				if (inventory.isEmpty() && storedFluid == Fluids.EMPTY) {
 					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.empty_when_tapping"), false);
 				} else {
 					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), false);
@@ -206,8 +206,8 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 				Item tappingItem = recipe.getTappingItem();
 				
 				boolean canTap = tappingItem == Items.AIR;
-				if(!canTap) {
-					if(handStack.isOf(tappingItem)) {
+				if (!canTap) {
+					if (handStack.isOf(tappingItem)) {
 						handStack.decrement(1);
 						canTap = true;
 					} else if (player != null) {
@@ -228,26 +228,26 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			}
 		}
 		
-		if(player != null) {
+		if (player != null) {
 			int daysSealed = getSealMinecraftDays();
 			int inventoryCount = InventoryHelper.countItemsInInventory(this.inventory);
 			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed, inventoryCount);
 		}
 		
-		if(optionalRecipe.isEmpty() || isEmpty(biome.getTemperature(), this.extractedBottles, optionalRecipe.get()) || !optionalRecipe.get().canPlayerCraft(player)) {
+		if (optionalRecipe.isEmpty() || isEmpty(biome.getTemperature(), this.extractedBottles, optionalRecipe.get()) || !optionalRecipe.get().canPlayerCraft(player)) {
 			reset(world, blockPos, blockState);
 		}
-
+		
 		this.markDirty();
 		
 		return harvestedStack;
 	}
 	
 	public void giveRecipeRemainders(PlayerEntity player) {
-		for(ItemStack stack : this.inventory.stacks) {
+		for (ItemStack stack : this.inventory.stacks) {
 			Item item = stack.getItem();
 			Item remainderItem = item.getRecipeRemainder();
-			if(remainderItem != null) {
+			if (remainderItem != null) {
 				ItemStack remainderStack = remainderItem.getDefaultStack();
 				remainderStack.setCount(stack.getCount());
 				Support.givePlayer(player, remainderStack);

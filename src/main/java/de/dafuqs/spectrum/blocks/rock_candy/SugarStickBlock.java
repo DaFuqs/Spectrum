@@ -54,7 +54,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 	public static final int REQUIRED_ITEM_COUNT_PER_STAGE = 4;
 	
 	public static final IntProperty AGE = Properties.AGE_2;
-	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED  = SpectrumCommon.LIQUID_CRYSTAL_LOGGED;
+	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = SpectrumCommon.LIQUID_CRYSTAL_LOGGED;
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(5.0D, 3.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 	
@@ -97,10 +97,10 @@ public class SugarStickBlock extends Block implements RockCandy {
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		if(!state.get(LIQUID_CRYSTAL_LOGGED)) {
+		if (!state.get(LIQUID_CRYSTAL_LOGGED)) {
 			int age = state.get(AGE);
 			
-			if(age == 2 || (age == 1 ? random.nextBoolean() : random.nextFloat() < 0.25)) {
+			if (age == 2 || (age == 1 ? random.nextBoolean() : random.nextFloat() < 0.25)) {
 				world.addParticle(new ParticleSpawnerParticleEffect(PARTICLE_SPRITE_IDENTIFIER, 0.1F, ColorHelper.getVec(rockCandyVariant.getDyeColor()), 0.5F, 120, true, true),
 						pos.getX() + 0.25 + random.nextFloat() * 0.5,
 						pos.getY() + 0.25 + random.nextFloat() * 0.5,
@@ -117,24 +117,24 @@ public class SugarStickBlock extends Block implements RockCandy {
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
 		
-		if(state.get(LIQUID_CRYSTAL_LOGGED)) {
+		if (state.get(LIQUID_CRYSTAL_LOGGED)) {
 			int age = state.get(AGE);
-			if(age < Properties.AGE_2_MAX) {
+			if (age < Properties.AGE_2_MAX) {
 				List<ItemEntity> itemEntities = world.getNonSpectatingEntities(ItemEntity.class, Box.of(Vec3d.ofCenter(pos), ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE));
 				Collections.shuffle(itemEntities);
 				for (ItemEntity itemEntity : itemEntities) {
 					// is the item also submerged?
 					// lazy, but mostly accurate and performant way to check if it's the same liquid pool
-					if(!itemEntity.isSubmergedIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
+					if (!itemEntity.isSubmergedIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
 						continue;
 					}
 					
 					ItemStack stack = itemEntity.getStack();
 					if (stack.getCount() >= REQUIRED_ITEM_COUNT_PER_STAGE) {
 						@Nullable RockCandyVariant itemVariant = RockCandyVariant.getFor(stack);
-						if(itemVariant != null) {
+						if (itemVariant != null) {
 							BlockState newState;
-							if(rockCandyVariant != RockCandyVariant.SUGAR) {
+							if (rockCandyVariant != RockCandyVariant.SUGAR) {
 								newState = state;
 							} else {
 								newState = SUGAR_STICK_BLOCKS.get(itemVariant).getDefaultState();
@@ -176,16 +176,16 @@ public class SugarStickBlock extends Block implements RockCandy {
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
 		NbtCompound nbt = stack.getNbt();
-		if(nbt != null && nbt.contains("BlockStateTag")) {
+		if (nbt != null && nbt.contains("BlockStateTag")) {
 			NbtCompound blockStateTag = nbt.getCompound("BlockStateTag");
-			if(blockStateTag.contains("age", NbtElement.STRING_TYPE)) {
+			if (blockStateTag.contains("age", NbtElement.STRING_TYPE)) {
 				String age = blockStateTag.getString("age");
-				if("1".equals(age)) {
+				if ("1".equals(age)) {
 					tooltip.add(Text.translatable("block.spectrum.sugar_stick.tooltip.medium"));
-				} else if("2".equals(age)) {
+				} else if ("2".equals(age)) {
 					tooltip.add(Text.translatable("block.spectrum.sugar_stick.tooltip.large"));
 				}
-
+				
 			}
 		}
 	}

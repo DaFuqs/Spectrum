@@ -52,7 +52,7 @@ public class IndividualCappedInkStorage implements InkStorage {
 			
 			Map<InkColor, Long> colors = new HashMap<>();
 			for (InkColor color : InkColor.all()) {
-				if(compound.contains(color.toString())) {
+				if (compound.contains(color.toString())) {
 					colors.put(color, compound.getLong(color.toString()));
 				}
 			}
@@ -156,7 +156,7 @@ public class IndividualCappedInkStorage implements InkStorage {
 	
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
-		if(includeHeader) {
+		if (includeHeader) {
 			tooltip.add(Text.translatable("item.spectrum.pigment_palette.tooltip", getShortenedNumberString(maxEnergyPerColor)));
 		}
 		for (Map.Entry<InkColor, Long> color : this.storedEnergy.entrySet()) {

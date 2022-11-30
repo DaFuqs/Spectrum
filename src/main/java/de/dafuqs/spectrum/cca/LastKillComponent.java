@@ -36,14 +36,14 @@ public class LastKillComponent implements Component, EntityComponentInitializer 
 	
 	@Override
 	public void writeToNbt(@NotNull NbtCompound tag) {
-		if(this.lastKillTick >= 0) {
+		if (this.lastKillTick >= 0) {
 			tag.putLong("last_kill_tick", this.lastKillTick);
 		}
 	}
 	
 	@Override
 	public void readFromNbt(NbtCompound tag) {
-		if(tag.contains("last_kill_tick", NbtElement.LONG_TYPE)) {
+		if (tag.contains("last_kill_tick", NbtElement.LONG_TYPE)) {
 			this.lastKillTick = tag.getLong("last_kill_tick");
 		}
 	}

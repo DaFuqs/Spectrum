@@ -81,8 +81,8 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 			int currentHeight = this.y + this.height;
 			for (Map.Entry<InkColor, Long> entry : inkStorage.getEnergy().entrySet()) {
 				long amount = entry.getValue();
-				if(amount > 0) {
-					int height = Math.max(1, Math.round (((float) amount / ((float) maxTotal / this.height))));
+				if (amount > 0) {
+					int height = Math.max(1, Math.round(((float) amount / ((float) maxTotal / this.height))));
 					RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, entry.getKey().getColor());
 					currentHeight -= height;
 				}

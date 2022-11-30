@@ -59,22 +59,22 @@ public class EnchantmentCanvasItem extends Item {
 	
 	private boolean tryExchangeEnchantments(ItemStack canvasStack, ItemStack targetStack, PlayerEntity player) {
 		Optional<Item> itemLock = getItemBoundTo(canvasStack);
-		if(itemLock.isPresent() && !targetStack.isOf(itemLock.get())) {
+		if (itemLock.isPresent() && !targetStack.isOf(itemLock.get())) {
 			return false;
 		}
 		
 		Map<Enchantment, Integer> canvasEnchantments = EnchantmentHelper.fromNbt(EnchantedBookItem.getEnchantmentNbt(canvasStack));
 		Map<Enchantment, Integer> targetEnchantments = EnchantmentHelper.get(targetStack);
-		if(canvasEnchantments.isEmpty() && targetEnchantments.isEmpty()) {
+		if (canvasEnchantments.isEmpty() && targetEnchantments.isEmpty()) {
 			return false;
 		}
 		
 		// if the canvas received enchantments: bind it to the other stack
-		if(itemLock.isEmpty() && !targetEnchantments.isEmpty() ) {
+		if (itemLock.isEmpty() && !targetEnchantments.isEmpty()) {
 			bindTo(canvasStack, targetStack);
 		}
 		
-		if(canvasStack.getCount() == 1) {
+		if (canvasStack.getCount() == 1) {
 			SpectrumEnchantmentHelper.setStoredEnchantments(targetEnchantments, canvasStack);
 			EnchantmentHelper.set(canvasEnchantments, targetStack);
 		} else {
@@ -84,7 +84,7 @@ public class EnchantmentCanvasItem extends Item {
 			Support.givePlayer(player, canvasStack);
 		}
 		
-		if(player != null) {
+		if (player != null) {
 			playExchangeSound(player);
 		}
 		return true;
@@ -118,7 +118,7 @@ public class EnchantmentCanvasItem extends Item {
 	
 	private Optional<Item> getItemBoundTo(ItemStack enchantmentExchangerStack) {
 		NbtCompound nbt = enchantmentExchangerStack.getNbt();
-		if(nbt == null || !nbt.contains("BoundItem", NbtElement.STRING_TYPE)) {
+		if (nbt == null || !nbt.contains("BoundItem", NbtElement.STRING_TYPE)) {
 			return Optional.empty();
 		}
 		String targetItemString = nbt.getString("BoundItem");

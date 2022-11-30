@@ -55,7 +55,7 @@ public class EnchantmentUpgradeDisplay extends GatedSpectrumDisplay {
 	
 	@Override
 	public boolean isUnlocked() {
-		if(!AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, EnchanterRecipe.UNLOCK_IDENTIFIER) || !super.isUnlocked()) {
+		if (!AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, EnchanterRecipe.UNLOCK_IDENTIFIER) || !super.isUnlocked()) {
 			return false;
 		}
 		if (enchantmentDestinationLevel > enchantment.getMaxLevel()) {

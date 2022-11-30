@@ -60,13 +60,13 @@ public class PageCinderhearthSmelting extends PageDoubleRecipeRegistry<Cinderhea
 		
 		// outputs
 		int chanceTextIndex = 0;
-		for(int i = 0; i < possibleOutputs.size(); i++) {
+		for (int i = 0; i < possibleOutputs.size(); i++) {
 			Pair<ItemStack, Float> possibleOutput = possibleOutputs.get(i);
 			int x = recipeX + 37 + i * 23;
 			parent.renderItemStack(ms, x, recipeY + 6, mouseX, mouseY, possibleOutput.getLeft());
 			
-			if(possibleOutput.getRight() < 1.0F) {
-				if(chanceTextRenders.size() < chanceTextIndex + 1) {
+			if (possibleOutput.getRight() < 1.0F) {
+				if (chanceTextRenders.size() < chanceTextIndex + 1) {
 					chanceTextRenders.add(new BookTextRenderer(parent, Text.literal((int) (possibleOutput.getRight() * 100) + "%"), x, recipeY + 24));
 				}
 				chanceTextRenders.get(chanceTextIndex).render(ms, mouseX, mouseY);

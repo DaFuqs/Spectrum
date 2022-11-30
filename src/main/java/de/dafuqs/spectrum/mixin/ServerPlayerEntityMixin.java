@@ -35,7 +35,8 @@ public abstract class ServerPlayerEntityMixin {
 	@Shadow
 	public abstract ServerWorld getWorld();
 	
-	@Shadow public abstract void playerTick();
+	@Shadow
+	public abstract void playerTick();
 	
 	@Inject(at = @At("HEAD"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
 	protected void spectrum$dropPlayerHeadWithTreasureHunt(DamageSource source, CallbackInfo ci) {
@@ -45,7 +46,7 @@ public abstract class ServerPlayerEntityMixin {
 	@Inject(at = @At("TAIL"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
 	protected void spectrum$onDeath(DamageSource source, CallbackInfo ci) {
 		ServerPlayerEntity player = (ServerPlayerEntity) (Object) this;
-		if(player.getWorld().getLevelProperties().isHardcore() || HardcoreDeathComponent.isInHardcore(player)) {
+		if (player.getWorld().getLevelProperties().isHardcore() || HardcoreDeathComponent.isInHardcore(player)) {
 			HardcoreDeathComponent.addHardcoreDeath(player.getGameProfile());
 		}
 	}

@@ -26,7 +26,7 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> FORFEITURE_SAFE = getReference("forfeiture_safe");
 	public static TagKey<Block> RUIN_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
 	public static TagKey<Block> BLACK_MATERIA_CONVERSIONS = getReference("black_materia_conversions");
-
+	
 	// MISC
 	public static TagKey<Block> MAGICAL_LEAVES = getReference("magical_leaves");
 	public static TagKey<Block> NATURES_STAFF_TICKABLE = getReference("natures_staff_tickable");
@@ -35,16 +35,16 @@ public class SpectrumBlockTags {
 	public static TagKey<Block> CRYSTAL_APOTHECARY_HARVESTABLE = getReference("crystal_apothecary_harvestable");
 	public static TagKey<Block> GEMSTONE_BUDS = getReference("gemstone_buds");
 	public static final TagKey<Block> BASE_STONE_DEEPER_DOWN = getReference("base_stone_deeper_down");
-
+	
 	// DEBUG
 	public static TagKey<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK = getReference("exempt_from_mineable_debug_check");
 	public static TagKey<Block> EXEMPT_FROM_LOOT_TABLE_DEBUG_CHECK = getReference("exempt_from_loot_table_debug_check");
-
+	
 	// MEMORIES
 	public static TagKey<Block> MEMORY_NEVER_MANIFESTERS = getReference("memory_never_manifesters");
 	public static TagKey<Block> MEMORY_FAST_MANIFESTERS = getReference("memory_fast_manifesters");
 	public static TagKey<Block> MEMORY_VERY_FAST_MANIFESTERS = getReference("memory_very_fast_manifesters");
-
+	
 	public static TagKey<Block> UNBREAKABLE_STRUCTURE_BLOCKS = getReference("unbreakable_structure_blocks");
 	public static TagKey<Block> RESONANCE_HARVESTABLES = getReference("resonance_harvestables");
 	public static TagKey<Block> SPAWNERS = getReference("spawners");

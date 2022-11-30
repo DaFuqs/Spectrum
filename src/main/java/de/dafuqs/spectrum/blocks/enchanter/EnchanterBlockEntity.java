@@ -458,7 +458,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
 				BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 				if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-					itemBowlBlockEntity.decrementBowlStack(new Vec3d(enchanterBlockEntity.pos.getX(), enchanterBlockEntity.pos.getY() + 1,enchanterBlockEntity.pos.getX() + 0.5), resultAmountAfterEfficiencyMod, false);
+					itemBowlBlockEntity.decrementBowlStack(new Vec3d(enchanterBlockEntity.pos.getX(), enchanterBlockEntity.pos.getY() + 1, enchanterBlockEntity.pos.getX() + 0.5), resultAmountAfterEfficiencyMod, false);
 					itemBowlBlockEntity.updateInClientWorld(world, itemBowlPos);
 				}
 			}

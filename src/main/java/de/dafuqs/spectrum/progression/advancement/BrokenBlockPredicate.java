@@ -23,11 +23,11 @@ import java.util.Set;
 public class BrokenBlockPredicate {
 	
 	public static final BrokenBlockPredicate ANY;
-
+	
 	static {
 		ANY = new BrokenBlockPredicate(null, null, StatePredicate.ANY);
 	}
-
+	
 	@Nullable
 	private final TagKey<Block> tag;
 	@Nullable

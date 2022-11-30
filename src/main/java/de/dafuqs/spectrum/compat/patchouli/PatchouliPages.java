@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import vazkii.patchouli.client.book.ClientBookRegistry;
 
 public class PatchouliPages {
-
+	
 	public static void register() {
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("anvil_crushing"), PageAnvilCrushing.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("pedestal_crafting"), PagePedestalCrafting.class);

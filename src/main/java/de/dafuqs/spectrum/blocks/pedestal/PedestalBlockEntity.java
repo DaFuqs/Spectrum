@@ -145,7 +145,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	public static void spawnCraftingStartParticles(@NotNull World world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
-		if(blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
 			Recipe currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 			if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
 				HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
@@ -641,7 +641,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			
 			ItemStack recipeOutput = recipe.getOutput();
 			PlayerEntity player = getOwnerIfOnline();
-			if(player != null) {
+			if (player != null) {
 				recipeOutput.onCraft(this.world, player, recipeOutput.getCount());
 			}
 			

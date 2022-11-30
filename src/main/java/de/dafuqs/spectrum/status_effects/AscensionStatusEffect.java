@@ -22,7 +22,7 @@ public class AscensionStatusEffect extends SpectrumStatusEffect {
 	
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		if(entity.world.isClient && entity.world.getTime() % 4 == 0) {
+		if (entity.world.isClient && entity.world.getTime() % 4 == 0) {
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.WHITE_SPARKLE_RISING, ParticlePattern.EIGHT, 0.2);
 		}
 	}
@@ -35,7 +35,7 @@ public class AscensionStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onApplied(entity, attributes, amplifier);
-		if(entity instanceof ServerPlayerEntity player) {
+		if (entity instanceof ServerPlayerEntity player) {
 			SpectrumS2CPacketSender.playAscensionAppliedEffects(player);
 		}
 	}

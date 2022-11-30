@@ -64,7 +64,7 @@ public abstract class WorldRendererMixin {
 		HudRenderers.doNotRenderOverlay();
 		
 		if (client.player != null && renderBlockOutline) {
-			for(ItemStack handStack : client.player.getHandItems()) {
+			for (ItemStack handStack : client.player.getHandItems()) {
 				Item handItem = handStack.getItem();
 				if (handItem instanceof PlacementStaffItem) {
 					HitResult hitResult = this.client.crosshairTarget;
@@ -106,7 +106,7 @@ public abstract class WorldRendererMixin {
 				boolean sneaking = player.isSneaking();
 				if (itemCountInInventory == 0) {
 					HudRenderers.setItemStackToRender(new ItemStack(item), 0, false);
-				} else if(inkLimit == 0) {
+				} else if (inkLimit == 0) {
 					HudRenderers.setItemStackToRender(new ItemStack(item), 1, true);
 				} else {
 					int usableCount = Math.min(itemCountInInventory, inkLimit);
@@ -153,7 +153,7 @@ public abstract class WorldRendererMixin {
 					
 					if (itemCountInInventory == 0) {
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 0, false);
-					} else if(inkLimit == 0) {
+					} else if (inkLimit == 0) {
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 1, true);
 					} else {
 						int usableCount = Math.min(itemCountInInventory, inkLimit);

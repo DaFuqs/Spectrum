@@ -39,5 +39,5 @@ public class MoltenRodItem extends SpectrumFishingRodItem {
 		tooltip.add(Text.translatable("item.spectrum.molten_rod.tooltip").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.molten_rod.tooltip2").formatted(Formatting.GRAY));
 	}
-
+	
 }

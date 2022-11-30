@@ -91,9 +91,13 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	}
 	
 	// Overwrite these
-	@Override public abstract RecipeSerializer<?> getSerializer();
+	@Override
+	public abstract RecipeSerializer<?> getSerializer();
+	
 	public abstract boolean canCraftWithBlockEntityTag(NbtCompound spawnerBlockEntityNbt, ItemStack leftBowlStack, ItemStack rightBowlStack);
+	
 	public abstract NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack secondBowlStack, ItemStack centerStack);
+	
 	public abstract Text getOutputLoreText();
 	
 }

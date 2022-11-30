@@ -46,20 +46,20 @@ public class FrenzyStatusEffect extends SpectrumStatusEffect implements Stackabl
 	
 	@Override
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
-		if(!SpectrumStatusEffects.effectsAreGettingStacked && !entity.hasStatusEffect(this)) {
+		if (!SpectrumStatusEffects.effectsAreGettingStacked && !entity.hasStatusEffect(this)) {
 			super.onApplied(entity, attributes, amplifier);
 		}
 	}
 	
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
-		if(!SpectrumStatusEffects.effectsAreGettingStacked) {
+		if (!SpectrumStatusEffects.effectsAreGettingStacked) {
 			super.onRemoved(entity, attributes, amplifier);
 		}
 	}
 	
 	public void tick(@NotNull LivingEntity entity, int amplifier, boolean scoredKillInTimeFrame) {
 		AttributeContainer attributes = entity.getAttributes();
-		if(attributes != null) {
+		if (attributes != null) {
 			for (Map.Entry<EntityAttribute, EntityAttributeModifier> attributeEntry : this.getAttributeModifiers().entrySet()) {
 				EntityAttributeInstance entityInstance = attributes.getCustomInstance(attributeEntry.getKey());
 				if (entityInstance != null) {

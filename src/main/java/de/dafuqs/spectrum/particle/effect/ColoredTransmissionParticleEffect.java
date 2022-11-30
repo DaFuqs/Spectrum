@@ -28,11 +28,11 @@ public class ColoredTransmissionParticleEffect extends TransmissionParticleEffec
 	public static final ParticleEffect.Factory<ColoredTransmissionParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
 		public ColoredTransmissionParticleEffect read(ParticleType<ColoredTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
 			stringReader.expect(' ');
-			float f = (float)stringReader.readDouble();
+			float f = (float) stringReader.readDouble();
 			stringReader.expect(' ');
-			float g = (float)stringReader.readDouble();
+			float g = (float) stringReader.readDouble();
 			stringReader.expect(' ');
-			float h = (float)stringReader.readDouble();
+			float h = (float) stringReader.readDouble();
 			stringReader.expect(' ');
 			int i = stringReader.readInt();
 			int dyeColorId = stringReader.readInt();

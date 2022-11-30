@@ -58,9 +58,9 @@ public class RepriseItem extends BeverageItem {
 			double e = user.getY();
 			double f = user.getZ();
 			
-			for(int i = 0; i < 16; ++i) {
+			for (int i = 0; i < 16; ++i) {
 				double g = user.getX() + (user.getRandom().nextDouble() - 0.5D) * maxRange;
-				double h = MathHelper.clamp(user.getY() + (double)(user.getRandom().nextInt(maxRange) - maxRange / 2), world.getBottomY(), (world.getBottomY() + ((ServerWorld)world).getLogicalHeight() - 1));
+				double h = MathHelper.clamp(user.getY() + (double) (user.getRandom().nextInt(maxRange) - maxRange / 2), world.getBottomY(), (world.getBottomY() + ((ServerWorld) world).getLogicalHeight() - 1));
 				double j = user.getZ() + (user.getRandom().nextDouble() - 0.5D) * maxRange;
 				if (user.hasVehicle()) {
 					user.stopRiding();
@@ -75,7 +75,7 @@ public class RepriseItem extends BeverageItem {
 			}
 			
 			if (user instanceof PlayerEntity) {
-				((PlayerEntity)user).getItemCooldownManager().set(this, 20);
+				((PlayerEntity) user).getItemCooldownManager().set(this, 20);
 			}
 		}
 	}

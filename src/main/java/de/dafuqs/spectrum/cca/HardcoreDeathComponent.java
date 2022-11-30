@@ -28,13 +28,13 @@ public class HardcoreDeathComponent implements Component, LevelComponentInitiali
 	
 	@Override
 	public void registerLevelComponentFactories(LevelComponentFactoryRegistry registry) {
-		registry.register(HARDCORE_DEATHS_COMPONENT , e -> new HardcoreDeathComponent());
+		registry.register(HARDCORE_DEATHS_COMPONENT, e -> new HardcoreDeathComponent());
 	}
 	
 	@Override
 	public void writeToNbt(@NotNull NbtCompound tag) {
 		NbtList uuidList = new NbtList();
-		for(UUID playerThatDiedInHardcore : playersThatDiedInHardcore) {
+		for (UUID playerThatDiedInHardcore : playersThatDiedInHardcore) {
 			uuidList.add(NbtHelper.fromUuid(playerThatDiedInHardcore));
 		}
 		tag.put("HardcoreDeaths", uuidList);
@@ -44,7 +44,7 @@ public class HardcoreDeathComponent implements Component, LevelComponentInitiali
 	public void readFromNbt(NbtCompound tag) {
 		playersThatDiedInHardcore.clear();
 		NbtList uuidList = tag.getList("HardcoreDeaths", NbtElement.INT_ARRAY_TYPE);
-		for(NbtElement listEntry : uuidList) {
+		for (NbtElement listEntry : uuidList) {
 			playersThatDiedInHardcore.add(NbtHelper.toUuid(listEntry));
 		}
 	}
@@ -66,7 +66,7 @@ public class HardcoreDeathComponent implements Component, LevelComponentInitiali
 	}
 	
 	protected static void addHardcoreDeath(UUID uuid) {
-		if(!playersThatDiedInHardcore.contains(uuid)) {
+		if (!playersThatDiedInHardcore.contains(uuid)) {
 			playersThatDiedInHardcore.add(uuid);
 		}
 		SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(uuid).changeGameMode(GameMode.SPECTATOR);

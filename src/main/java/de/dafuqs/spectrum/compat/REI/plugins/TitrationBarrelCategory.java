@@ -57,7 +57,7 @@ public class TitrationBarrelCategory implements DisplayCategory<TitrationBarrelD
 				EntryIngredient currentIngredient = inputs.get(i);
 				int yOffset;
 				int xOffset;
-				if(i < 3) {
+				if (i < 3) {
 					xOffset = i * 20;
 					yOffset = 0;
 				} else {
@@ -68,7 +68,7 @@ public class TitrationBarrelCategory implements DisplayCategory<TitrationBarrelD
 			}
 			
 			// output arrow and slot
-			if(display.tappingIngredient.isEmpty()) {
+			if (display.tappingIngredient.isEmpty()) {
 				widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 10)).animationDurationTicks(display.minFermentationTimeHours * 20));
 			} else {
 				widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 2)).animationDurationTicks(display.minFermentationTimeHours * 20));

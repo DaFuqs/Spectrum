@@ -36,12 +36,12 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	// the amount of bottles able to get out of a single barrel
 	default int getOutputCountAfterAngelsShare(float temperature, long secondsFermented) {
-		if(getFermentationData() == null) {
+		if (getFermentationData() == null) {
 			return getOutput().getCount();
 		}
 		
 		float angelsSharePercent = getAngelsSharePercent(secondsFermented, temperature);
-		if(angelsSharePercent > 0) {
+		if (angelsSharePercent > 0) {
 			return (int) (getOutput().getCount() * Math.ceil(1F - angelsSharePercent / 100F));
 		} else {
 			return (int) (getOutput().getCount() * Math.floor(1F - angelsSharePercent / 100F));
@@ -75,7 +75,6 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	int getMinFermentationTimeHours();
 	
 	TitrationBarrelRecipe.FermentationData getFermentationData();
-	
 	
 	
 }

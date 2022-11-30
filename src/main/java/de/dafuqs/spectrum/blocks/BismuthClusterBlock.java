@@ -43,7 +43,7 @@ public class BismuthClusterBlock extends AmethystClusterBlock {
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
-		if(!world.isClient && grownBlockState != null && searchAndConsumeBlock(world, pos, GROWTH_CHECK_RADIUS, CONSUMED_TAG_TO_GROW, CONSUMED_TARGET_STATE, GROWTH_CHECK_TRIES, random)) {
+		if (!world.isClient && grownBlockState != null && searchAndConsumeBlock(world, pos, GROWTH_CHECK_RADIUS, CONSUMED_TAG_TO_GROW, CONSUMED_TARGET_STATE, GROWTH_CHECK_TRIES, random)) {
 			world.setBlockState(pos, grownBlockState);
 			world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_CHAIN_PLACE, SoundCategory.BLOCKS, 0.8F, 0.9F + random.nextFloat() * 0.2F);
 			
@@ -58,10 +58,10 @@ public class BismuthClusterBlock extends AmethystClusterBlock {
 	}
 	
 	public static boolean searchAndConsumeBlock(World world, BlockPos pos, int radius, TagKey<Block> tagKey, BlockState targetState, int tries, Random random) {
-		for(int i = 0; i < tries; i++) {
+		for (int i = 0; i < tries; i++) {
 			BlockPos offsetPos = pos.add(radius - random.nextInt(1 + radius + radius), radius - random.nextInt(1 + radius + radius), radius - random.nextInt(1 + radius + radius));
 			BlockState offsetState = world.getBlockState(offsetPos);
-			if(offsetState.isIn(tagKey)) {
+			if (offsetState.isIn(tagKey)) {
 				world.setBlockState(offsetPos, targetState);
 				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), offsetState.getSoundGroup().getBreakSound(), SoundCategory.BLOCKS, 0.8F, 0.9F + random.nextFloat() * 0.2F);
 				return true;

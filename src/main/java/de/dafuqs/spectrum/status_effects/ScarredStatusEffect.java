@@ -13,7 +13,7 @@ public class ScarredStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onApplied(entity, attributes, amplifier);
-		if(entity.isSprinting()) {
+		if (entity.isSprinting()) {
 			entity.setSprinting(false);
 		}
 	}

@@ -37,11 +37,11 @@ public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<Cinde
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
 		
 		List<Pair<ItemStack, Float>> outputsWithChance = new ArrayList<>();
-		for(JsonElement outputEntry : JsonHelper.getArray(jsonObject, "results")) {
+		for (JsonElement outputEntry : JsonHelper.getArray(jsonObject, "results")) {
 			JsonObject outputObject = outputEntry.getAsJsonObject();
 			ItemStack outputStack = RecipeUtils.itemStackWithNbtFromJson(outputObject);
 			float outputChance = 1.0F;
-			if(JsonHelper.hasNumber(outputObject, "chance")) {
+			if (JsonHelper.hasNumber(outputObject, "chance")) {
 				outputChance = JsonHelper.getFloat(outputObject, "chance");
 			}
 			outputsWithChance.add(new Pair<>(outputStack, outputChance));
@@ -59,9 +59,9 @@ public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<Cinde
 		recipe.inputIngredient.write(packetByteBuf);
 		packetByteBuf.writeInt(recipe.time);
 		packetByteBuf.writeFloat(recipe.experience);
-
+		
 		packetByteBuf.writeInt(recipe.outputsWithChance.size());
-		for(Pair<ItemStack, Float> output : recipe.outputsWithChance) {
+		for (Pair<ItemStack, Float> output : recipe.outputsWithChance) {
 			packetByteBuf.writeItemStack(output.getLeft());
 			packetByteBuf.writeFloat(output.getRight());
 		}
@@ -79,7 +79,7 @@ public class CinderhearthRecipeSerializer implements GatedRecipeSerializer<Cinde
 		
 		int outputCount = packetByteBuf.readInt();
 		List<Pair<ItemStack, Float>> outputsWithChance = new ArrayList<>(outputCount);
-		for(int i = 0; i < outputCount; i++) {
+		for (int i = 0; i < outputCount; i++) {
 			outputsWithChance.add(new Pair<>(packetByteBuf.readItemStack(), packetByteBuf.readFloat()));
 		}
 		

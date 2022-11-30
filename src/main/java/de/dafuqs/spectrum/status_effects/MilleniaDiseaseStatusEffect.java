@@ -27,12 +27,13 @@ public class MilleniaDiseaseStatusEffect extends SpectrumStatusEffect {
 				EntityAttributeModifier newModifier = new EntityAttributeModifier(UUID.fromString(ATTRIBUTE_UUID_STRING), this::getTranslationKey, currentMod.getValue() - 1, EntityAttributeModifier.Operation.ADDITION);
 				instance.addPersistentModifier(newModifier);
 				instance.getValue(); // recalculate final value
-				if(entity.getHealth() > entity.getMaxHealth()) {
+				if (entity.getHealth() > entity.getMaxHealth()) {
 					entity.setHealth(entity.getMaxHealth());
 				}
 			}
 		}
 	}
+	
 	@Override
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
 		return duration % Math.max(1, 40 - amplifier * 2) == 0;

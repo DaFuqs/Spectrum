@@ -37,40 +37,40 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 		ItemStack catalystStack = entity.getStack(CrystallarieumBlockEntity.CATALYST_SLOT_ID);
 		
 		CrystallarieumRecipe recipe = entity.getCurrentRecipe();
-		if(recipe != null) {
+		if (recipe != null) {
 			InkColor inkColor = recipe.getInkColor();
 			
 			VertexConsumer vertexConsumer = SPRITE_IDENTIFIER.getVertexConsumer(vertexConsumers, RenderLayer::getEntityCutout);
 			body.render(matrices, vertexConsumer, light, overlay, inkColor.getColor().getX(), inkColor.getColor().getY(), inkColor.getColor().getZ(), 1.0F);
 		}
 		
-		if(!catalystStack.isEmpty()) {
+		if (!catalystStack.isEmpty()) {
 			matrices.push();
 			
 			int count = catalystStack.getCount();
-			if(count > 0) {
+			if (count > 0) {
 				matrices.translate(0.65, 0.95, 0.65);
 				matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
 				matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
 				matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(70));
 				MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
 				
-				if(count > 4) {
+				if (count > 4) {
 					matrices.translate(0.45, 0.0, 0.01);
 					matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(140));
 					MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
 					
-					if(count > 16) {
+					if (count > 16) {
 						matrices.translate(0.2, 0.5, 0.01);
 						matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(100));
 						MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
 						
-						if(count > 32) {
+						if (count > 32) {
 							matrices.translate(-0.55, 0.0, 0.01);
 							matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(40));
 							MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
 							
-							if(count > 48) {
+							if (count > 48) {
 								matrices.translate(0.6, 0.0, 0.01);
 								matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(170));
 								MinecraftClient.getInstance().getItemRenderer().renderItem(catalystStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);

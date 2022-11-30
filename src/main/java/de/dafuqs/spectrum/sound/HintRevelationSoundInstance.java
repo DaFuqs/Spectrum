@@ -46,7 +46,7 @@ public class HintRevelationSoundInstance extends AbstractSoundInstance implement
 	public void tick() {
 		playtime++;
 		
-		if(this.player != null) {
+		if (this.player != null) {
 			this.x = player.getX();
 			this.y = player.getY();
 			this.z = player.getZ();

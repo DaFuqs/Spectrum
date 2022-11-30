@@ -22,7 +22,8 @@ public class PageChecklist extends BookPage {
 	protected IVariable text;
 	transient BookTextRenderer textRender;
 	
-	@SerializedName("checklist") Map<String, String> checklist = new HashMap<>();
+	@SerializedName("checklist")
+	Map<String, String> checklist = new HashMap<>();
 	
 	@Override
 	public void onDisplayed(GuiBookEntry parent, int left, int top) {
@@ -35,9 +36,9 @@ public class PageChecklist extends BookPage {
 			stringBuilder.append(text.asString());
 		}
 		
-		for(Map.Entry<String, String> entry : checklist.entrySet()) {
+		for (Map.Entry<String, String> entry : checklist.entrySet()) {
 			String value = entry.getValue();
-			if(AdvancementHelper.hasAdvancementClient(Identifier.tryParse(entry.getKey()))) {
+			if (AdvancementHelper.hasAdvancementClient(Identifier.tryParse(entry.getKey()))) {
 				stringBuilder.append("$(li)");
 				stringBuilder.append("$(m)");
 				stringBuilder.append(value);

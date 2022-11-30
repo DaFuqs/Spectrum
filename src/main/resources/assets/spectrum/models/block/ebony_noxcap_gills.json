@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/ebony_noxcap_gills_top",
+    "side": "spectrum:block/ebony_noxcap_gills"
+  }
+}

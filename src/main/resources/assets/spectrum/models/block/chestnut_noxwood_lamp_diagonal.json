@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:base/base_noxwood_lamp_diagonal",
+  "textures": {
+    "all": "spectrum:block/chestnut_noxwood_lamp"
+  }
+}

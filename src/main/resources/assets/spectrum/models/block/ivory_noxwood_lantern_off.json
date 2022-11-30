@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "spectrum:block/ivory_noxwood_lantern_off"
+  }
+}

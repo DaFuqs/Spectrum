@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "spectrum:block/ivory_noxwood_lantern_off"
+    },
+    "lit=true": {
+      "model": "spectrum:block/ivory_noxwood_lantern_on"
+    }
+  }
+}

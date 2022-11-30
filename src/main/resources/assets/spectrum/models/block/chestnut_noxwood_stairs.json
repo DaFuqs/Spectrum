@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "spectrum:block/chestnut_noxwood",
+    "top": "spectrum:block/chestnut_noxwood",
+    "side": "spectrum:block/chestnut_noxwood"
+  }
+}

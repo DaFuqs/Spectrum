@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/chestnut_noxwood_beam_top",
+    "side": "spectrum:block/chestnut_noxwood_beam"
+  }
+}

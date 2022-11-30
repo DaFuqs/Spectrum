@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/ebony_noxwood_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/ebony_noxwood_planks"
+    },
+    "type=top": {
+      "model": "spectrum:block/ebony_noxwood_slab_top"
+    }
+  }
+}

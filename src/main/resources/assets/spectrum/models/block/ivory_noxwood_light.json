@@ -1,0 +1,8 @@
+{
+  "parent": "spectrum:base/multilayer_light",
+  "textures": {
+    "top": "spectrum:block/ivory_noxwood_light_top",
+    "side": "spectrum:block/ivory_noxwood_light",
+    "inside": "spectrum:block/ivory_noxcap_gills"
+  }
+}

@@ -29,7 +29,7 @@ public class PrintConfigCommand {
 		send(source, "ShootingStarChance: " + SpectrumCommon.CONFIG.ShootingStarChance);
 		send(source, "VanillaRecipeCraftingTimeTicks: " + SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks);
 		
-		send(source, "Decay tick rates: " + SpectrumCommon.CONFIG.FadingDecayTickRate + ", " + SpectrumCommon.CONFIG.FailingDecayTickRate + ", " + SpectrumCommon.CONFIG.RuinDecayTickRate + ", " + SpectrumCommon.CONFIG.ForfeitureTickRate);
+		send(source, "Decay tick rates: " + SpectrumCommon.CONFIG.FadingDecayTickRate + ", " + SpectrumCommon.CONFIG.FailingDecayTickRate + ", " + SpectrumCommon.CONFIG.RuinDecayTickRate + ", " + SpectrumCommon.CONFIG.ForfeitureDecayTickRate);
 		
 		String disabledEnchantments = "";
 		if (!SpectrumCommon.CONFIG.AutoSmeltEnchantmentEnabled) {

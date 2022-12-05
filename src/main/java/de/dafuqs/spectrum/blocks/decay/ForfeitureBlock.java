@@ -14,7 +14,7 @@ public class ForfeitureBlock extends RuinBlock {
 	
 	@Override
 	protected float getSpreadChance() {
-		return SpectrumCommon.CONFIG.ForfeitureTickRate;
+		return SpectrumCommon.CONFIG.ForfeitureDecayTickRate;
 	}
 	
 	

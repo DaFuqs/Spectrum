@@ -160,10 +160,6 @@ public class SpectrumItems {
 	
 	public static final SwordItem DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	
-	// Graces
-	//public static OwoItemSettings graceSettings = new OwoItemSettings().group(SpectrumItemGroups.ITEM_GROUP_GENERAL).tab(3Rarity.RARE1).fireproof();
-	//public static final CrystalGraceItem WHITE_CRYSTAL_GRACE = new CrystalGraceItem(ColorPool.WHITE, graceSettings, "ooooo go stick my dick in Azzy's ass oooo");
-	
 	// Bedrock Armor
 	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.HEAD, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
 		@Override
@@ -417,7 +413,6 @@ public class SpectrumItems {
 		register("paintbrush", PAINTBRUSH, DyeColor.WHITE);
 		
 		registerGemstoneItems();
-		registerGraces();
 		registerPigments();
 		registerCatkin();
 		registerResources();
@@ -463,10 +458,6 @@ public class SpectrumItems {
 		register("pure_globette", PURE_GLOBETTE, DyeColor.BLUE);
 		register("pure_globette_nether", PURE_GLOBETTE_NETHER, DyeColor.RED);
 		register("pure_globette_end", PURE_GLOBETTE_END, DyeColor.GREEN);
-	}
-	
-	public static void registerGraces() {
-		//register("white_crystal_grace", WHITE_CRYSTAL_GRACE, DyeColor.WHITE);
 	}
 	
 	public static void registerStructurePlacers() {

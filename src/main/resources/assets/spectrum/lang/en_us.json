@@ -1578,8 +1578,6 @@
   "item.spectrum.onyx_rock_candy": "Onyx Rock Candy",
   "item.spectrum.moonstone_rock_candy": "Moonstone Rock Candy",
 
-  "item.spectrum.white_crystal_grace": "Moony Crystal",
-
   "item.spectrum.knowledge_gem": "Knowledge Gem",
   "item.spectrum.knowledge_gem.tooltip.stored_experience": "/ %d Experience stored",
   "item.spectrum.knowledge_gem.tooltip.use": "Use to drain, or crouch-use to store experience (%d/tick)",

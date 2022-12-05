@@ -198,25 +198,6 @@ public abstract class LivingEntityMixin {
 		
 		return amount;
 	}
-
-	/*@ModifyVariable(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;applyDamage(Lnet/minecraft/entity/damage/DamageSource;F)V"), argsOnly = true)
-	public float spectrum$applyGraceDamage(float amount, DamageSource source) {
-
-		if (attacker == null)
-			return amount;
-
-		var mainHand = attacker.getStackInHand(Hand.MAIN_HAND);
-		var offHand = attacker.getStackInHand(Hand.OFF_HAND);
-		var mainMod = Optional.ofNullable(mainHand.getModifier(SimpleDamageMultiplier.class));
-		var offMod = Optional.ofNullable(offHand.getModifier(SimpleDamageMultiplier.class));
-
-		if (mainMod.isPresent())
-			amount = mainMod.get().apply(source, mainHand, amount);
-		if (offMod.isPresent())
-			amount = offMod.get().apply(source, mainHand, amount);
-
-		return amount;
-	}*/
 	
 	@Inject(at = @At("RETURN"), method = "tryUseTotem(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)
 	public void spectrum$checkForTotemPendant(DamageSource source, CallbackInfoReturnable<Boolean> cir) {

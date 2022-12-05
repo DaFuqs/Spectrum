@@ -19,7 +19,7 @@ public class SpectrumResourceConditions {
 		ResourceConditions.register(ENCHANTMENTS_EXIST, object -> enchantmentExistsMatch(object));
 	}
 	
-	public static boolean enchantmentExistsMatch(JsonObject object) {
+	private static boolean enchantmentExistsMatch(JsonObject object) {
 		JsonArray array = JsonHelper.getArray(object, "values");
 		
 		for (JsonElement element : array) {

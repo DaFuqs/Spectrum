@@ -42,10 +42,10 @@ public class PotionMod {
 			mod.flatPotencyBonus += JsonHelper.getFloat(jsonObject, "flat_potency_bonus");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "multiplicative_duration_modifier")) {
-			mod.multiplicativeDurationModifier += JsonHelper.getFloat(jsonObject, "multiplicative_duration_modifier");
+			mod.multiplicativeDurationModifier = JsonHelper.getFloat(jsonObject, "multiplicative_duration_modifier");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "multiplicative_potency_modifier")) {
-			mod.multiplicativePotencyModifier += JsonHelper.getFloat(jsonObject, "multiplicative_potency_modifier");
+			mod.multiplicativePotencyModifier = JsonHelper.getFloat(jsonObject, "multiplicative_potency_modifier");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "flat_potency_bonus_positive_effects")) {
 			mod.flatPotencyBonusPositiveEffects += JsonHelper.getFloat(jsonObject, "flat_potency_bonus_positive_effects");
@@ -63,7 +63,7 @@ public class PotionMod {
 			mod.chanceToAddLastEffect += JsonHelper.getFloat(jsonObject, "chance_to_add_last_effect");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "last_effect_potency_modifier")) {
-			mod.lastEffectPotencyModifier += JsonHelper.getFloat(jsonObject, "last_effect_potency_modifier");
+			mod.lastEffectPotencyModifier = JsonHelper.getFloat(jsonObject, "last_effect_potency_modifier");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "flat_yield_bonus")) {
 			mod.flatYieldBonus += JsonHelper.getFloat(jsonObject, "flat_yield_bonus");

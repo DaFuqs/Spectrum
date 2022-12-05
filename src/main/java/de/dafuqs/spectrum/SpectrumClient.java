@@ -122,7 +122,9 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	
 	@Override
 	public void onClientAdvancementPacket(Set<Identifier> gottenAdvancements, Set<Identifier> removedAdvancements, boolean isJoinPacket) {
-		if (!isJoinPacket) {
+		if(isJoinPacket) {
+			SpectrumColorProviders.resetToggleableProviders();
+		} else {
 			UnlockToastManager.processAdvancements(gottenAdvancements);
 		}
 	}

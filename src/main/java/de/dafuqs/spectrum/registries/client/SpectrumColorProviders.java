@@ -153,13 +153,8 @@ public class SpectrumColorProviders {
 	public static void registerBrewColors() {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 0) {
-				
-				var nbt = stack.getOrCreateNbt();
+				NbtCompound nbt = stack.getOrCreateNbt();
 				return nbt.contains("Color") ? nbt.getInt("Color") : 0xf4c6cb;
-				
-				// Daf plz
-				//return 0xff85f9;
-				
 			}
 			return -1;
 			
@@ -179,6 +174,16 @@ public class SpectrumColorProviders {
 			}
 		}
 		return -1;
+	}
+	
+	public static void resetToggleableProviders() {
+		coloredLeavesBlockColorProvider.setShouldApply(true);
+		coloredLeavesItemColorProvider.setShouldApply(true);
+		
+		amaranthBushelBlockColorProvider.setShouldApply(true);
+		amaranthBushelItemColorProvider.setShouldApply(true);
+		amaranthCropBlockColorProvider.setShouldApply(true);
+		amaranthCropItemColorProvider.setShouldApply(true);
 	}
 	
 }

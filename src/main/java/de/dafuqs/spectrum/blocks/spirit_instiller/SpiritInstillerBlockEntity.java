@@ -308,8 +308,8 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		} else {
 			this.ownerUUID = null;
 		}
-		if (nbt.contains("MulitblockRotation")) {
-			this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MulitblockRotation").toUpperCase(Locale.ROOT));
+		if (nbt.contains("MultiblockRotation")) {
+			this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MultiblockRotation").toUpperCase(Locale.ROOT));
 		}
 		
 		this.currentRecipe = null;
@@ -335,7 +335,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putBoolean("CanCraft", this.canCraft);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
-		nbt.putString("MulitblockRotation", this.multiblockRotation.asString());
+		nbt.putString("MultiblockRotation", this.multiblockRotation.asString());
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
 		}
@@ -345,6 +345,21 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
+	}
+	
+	
+	// Called when the chunk is first loaded to initialize this on the clients
+	@Override
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound nbtCompound = new NbtCompound();
+		Inventories.writeNbt(nbtCompound, this.getItems());
+		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
+		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
+		nbtCompound.putString("MultiblockRotation", this.multiblockRotation.asString());
+		if (this.currentRecipe != null && canCraft) {
+			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
+		}
+		return nbtCompound;
 	}
 	
 	private void doInstillerParticles(@NotNull World world) {
@@ -437,20 +452,6 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
 		this.markDirty();
-	}
-	
-	// Called when the chunk is first loaded to initialize this
-	@Override
-	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = new NbtCompound();
-		Inventories.writeNbt(nbtCompound, this.getItems());
-		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
-		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbtCompound.putString("MulitblockRotation", this.multiblockRotation.asString());
-		if (this.currentRecipe != null && canCraft) {
-			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
-		}
-		return nbtCompound;
 	}
 	
 	public BlockRotation getMultiblockRotation() {

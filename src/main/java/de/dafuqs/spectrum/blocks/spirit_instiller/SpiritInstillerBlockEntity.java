@@ -306,8 +306,8 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		} else {
 			this.ownerUUID = null;
 		}
-		if (nbt.contains("MulitblockRotation")) {
-			this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MulitblockRotation").toUpperCase(Locale.ROOT));
+		if (nbt.contains("MultiblockRotation")) {
+			this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MultiblockRotation").toUpperCase(Locale.ROOT));
 		}
 		
 		this.currentRecipe = null;
@@ -333,7 +333,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putBoolean("CanCraft", this.canCraft);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
-		nbt.putString("MulitblockRotation", this.multiblockRotation.toString());
+		nbt.putString("MultiblockRotation", this.multiblockRotation.toString());
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
 		}
@@ -345,11 +345,26 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 	}
 	
+	
+	// Called when the chunk is first loaded to initialize this on the clients
+	@Override
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound nbtCompound = new NbtCompound();
+		Inventories.writeNbt(nbtCompound, this.getItems());
+		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
+		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
+		nbtCompound.putString("MultiblockRotation", this.multiblockRotation.toString());
+		if (this.currentRecipe != null && canCraft) {
+			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
+		}
+		return nbtCompound;
+	}
+	
 	private void doInstillerParticles(@NotNull World world) {
-		Random random = world.random;
 		Optional<DyeColor> stackColor = ItemColors.ITEM_COLORS.getMapping(this.getStack(0).getItem());
 		
 		if (stackColor.isPresent()) {
+			Random random = world.random;
 			ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(stackColor.get());
 			world.addParticle(particleEffect,
 					pos.getX() + 0.25 + random.nextDouble() * 0.5,
@@ -435,20 +450,6 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
 		this.markDirty();
-	}
-	
-	// Called when the chunk is first loaded to initialize this
-	@Override
-	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = new NbtCompound();
-		Inventories.writeNbt(nbtCompound, this.getItems());
-		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
-		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbtCompound.putString("MulitblockRotation", this.multiblockRotation.toString());
-		if (this.currentRecipe != null && canCraft) {
-			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
-		}
-		return nbtCompound;
 	}
 	
 	public BlockRotation getMultiblockRotation() {

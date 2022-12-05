@@ -67,7 +67,7 @@ dependencies {
 	// jetbrains annotations
 	implementation 'org.jetbrains:annotations:23.0.0'
 
-	// fabric
+	// fabric & api
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
@@ -107,7 +107,7 @@ dependencies {
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
 
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:2.1.1")
-	modImplementation include("azzy.fabric:incubus-core:${project.incubus_core_version}")
+	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 	modImplementation("com.github.LudoCrypt:Liminal-Library:5.2.1")
 
 	// includes the textures in the "programmer art" folder in the programmer art texture pack

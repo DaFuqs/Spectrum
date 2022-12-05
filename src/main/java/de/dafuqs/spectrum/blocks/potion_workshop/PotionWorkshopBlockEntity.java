@@ -108,6 +108,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		// check recipe crafted last tick => performance
 		boolean shouldMarkDirty = false;
 		
+		if(potionWorkshopBlockEntity.inventoryChanged) {
+			potionWorkshopBlockEntity.brewTime = 0;
+		}
 		PotionWorkshopRecipe calculatedRecipe = calculateRecipe(world, potionWorkshopBlockEntity);
 		potionWorkshopBlockEntity.inventoryChanged = false;
 		if (potionWorkshopBlockEntity.currentRecipe != calculatedRecipe) {

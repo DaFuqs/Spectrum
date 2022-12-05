@@ -34,7 +34,8 @@ public class MidnightAberrationItem extends CloakedItem {
 				return;
 			}
 			
-			if (world.random.nextFloat() < 0.2F) {
+			// check if it's a real stack in the player's inventory or just a proxy item (like from the Bottomless Bundle)
+			if (playerEntity.getInventory().getStack(slot).getItem() instanceof MidnightAberrationItem && world.random.nextFloat() < 0.2F) {
 				stack.decrement(1);
 				Support.givePlayer(playerEntity, Items.GUNPOWDER.getDefaultStack());
 				world.playSoundFromEntity(null, playerEntity, SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, SoundCategory.PLAYERS, 0.5F, 1.0F);

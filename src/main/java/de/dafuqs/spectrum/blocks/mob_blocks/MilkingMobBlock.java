@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
+import de.dafuqs.spectrum.entity.entity.EggLayingWoolyPigEntity;
 import de.dafuqs.spectrum.mixin.accessors.MooshroomEntityAccessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
@@ -65,6 +66,18 @@ public class MilkingMobBlock extends MobBlock {
 				if (emptyBucketFound) {
 					world.playSound(null, cowEntity.getBlockPos(), SoundEvents.ENTITY_COW_MILK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 					spawnItemStackAtEntity(world, cowEntity, Items.MILK_BUCKET.getDefaultStack());
+				}
+			}
+		}
+		
+		// Egg Laying Wooly Pigs
+		List<EggLayingWoolyPigEntity> eggLayingWoolyPigEntities = world.getNonSpectatingEntities(EggLayingWoolyPigEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
+		for (EggLayingWoolyPigEntity eggLayingWoolyPigEntity : eggLayingWoolyPigEntities) {
+			if (!eggLayingWoolyPigEntity.isBaby()) {
+				boolean emptyBucketFound = findAndDecreaseClosestItemEntityOfItem(world, eggLayingWoolyPigEntity.getPos(), Items.BUCKET, BUCKET_SEARCH_RANGE);
+				if (emptyBucketFound) {
+					world.playSound(null, eggLayingWoolyPigEntity.getBlockPos(), SoundEvents.ENTITY_COW_MILK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+					spawnItemStackAtEntity(world, eggLayingWoolyPigEntity, Items.MILK_BUCKET.getDefaultStack());
 				}
 			}
 		}

@@ -159,6 +159,7 @@ public class SpectrumItems {
 	public static final SpectrumFishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	
 	public static final SwordItem DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final SwordItem NIGHTFALLS_BLADE = new NightfallsBladeItem(SpectrumToolMaterials.ToolMaterial.NIGHTFALL, 3, -1.8F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	
 	// Bedrock Armor
 	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, EquipmentSlot.HEAD, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
@@ -354,6 +355,7 @@ public class SpectrumItems {
 	public static final Item FANCIFUL_STONE_RING = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
 	public static final Item FANCIFUL_CIRCLET = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
 	public static final Item FANCIFUL_GLOVES = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
+	public static final Item FANCIFUL_BISMUTH_RING = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
 	
 	public static final Item GLOW_VISION_GOGGLES = new GlowVisionGogglesItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item JEOPARDANT = new AttackRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
@@ -366,6 +368,7 @@ public class SpectrumItems {
 	public static final AzureDikeAmuletItem SHIELDGRASP_AMULET = new AzureDikeAmuletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final ExtraHealthRingItem HEARTSINGERS_REWARD_RING = new ExtraHealthRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final ExtraReachGlovesItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final ExtraMiningSpeedRingItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(Tab.EQUIPMENT.settings(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(Tab.EQUIPMENT.settings(1), 64 * 100);
@@ -599,6 +602,7 @@ public class SpectrumItems {
 		register("bedrock_boots", BEDROCK_BOOTS, DyeColor.BLACK);
 		
 		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
+		register("nightfalls_blade", NIGHTFALLS_BLADE, DyeColor.GRAY);
 	}
 	
 	public static void registerMagicalTools() {
@@ -691,6 +695,7 @@ public class SpectrumItems {
 		register("fanciful_pendant", FANCIFUL_PENDANT, DyeColor.GREEN);
 		register("fanciful_circlet", FANCIFUL_CIRCLET, DyeColor.GREEN);
 		register("fanciful_gloves", FANCIFUL_GLOVES, DyeColor.GREEN);
+		register("fanciful_bismuth_ring", FANCIFUL_BISMUTH_RING, DyeColor.GREEN);
 		
 		register("glow_vision_goggles", GLOW_VISION_GOGGLES, DyeColor.WHITE);
 		register("jeopardant", JEOPARDANT, DyeColor.RED);
@@ -703,6 +708,7 @@ public class SpectrumItems {
 		register("shieldgrasp_amulet", SHIELDGRASP_AMULET, DyeColor.BLUE);
 		register("heartsingers_reward", HEARTSINGERS_REWARD_RING, DyeColor.PINK);
 		register("gloves_of_dawns_grasp", GLOVES_OF_DAWNS_GRASP, DyeColor.YELLOW);
+		register("ring_of_pursuit", RING_OF_PURSUIT, DyeColor.MAGENTA);
 		register("gleaming_pin", GLEAMING_PIN, DyeColor.YELLOW);
 		register("lesser_potion_pendant", LESSER_POTION_PENDANT, DyeColor.PINK);
 		register("greater_potion_pendant", GREATER_POTION_PENDANT, DyeColor.PINK);

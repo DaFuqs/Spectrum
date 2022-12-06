@@ -15,6 +15,10 @@
     "unlocked_fanciful_pendant": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:progression/unlock_fanciful_pendant" }
+    },
+    "unlocked_fanciful_bismuth_ring": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_fanciful_bismuth_ring" }
     }
   },
   "requirements": [
@@ -22,7 +26,8 @@
       "unlocked_fanciful_stone_ring",
       "unlocked_fanciful_circlet",
       "unlocked_fanciful_belt",
-      "unlocked_fanciful_pendant"
+      "unlocked_fanciful_pendant",
+      "unlocked_fanciful_bismuth_ring"
     ]
   ]
 }

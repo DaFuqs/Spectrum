@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_midnight_aberration": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/create_refined_azurite" }
+    },
+    "collected_bismuth_flake": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/bismuth_flake" }
+    }
+  }
+}

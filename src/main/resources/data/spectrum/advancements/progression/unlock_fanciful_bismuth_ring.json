@@ -1,0 +1,13 @@
+{
+  "criteria": {
+    "todo": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:progression/__todo" }
+    }
+  },
+  "requirements": [
+    [
+      "todo"
+    ]
+  ]
+}

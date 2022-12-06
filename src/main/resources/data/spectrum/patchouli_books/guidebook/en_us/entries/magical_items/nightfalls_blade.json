@@ -1,0 +1,21 @@
+{
+  "name": "Nightfall's Blade",
+  "advancement": "spectrum:progression/unlock_nightfalls_blade",
+  "secret": true,
+  "icon": "spectrum:nightfalls_blade",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:nightfalls_blade": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/nightfalls_blade",
+      "text": "$(italic)"
+    }
+  ]
+}

@@ -7,7 +7,8 @@
     "spectrum:fanciful_stone_ring": 0,
     "spectrum:fanciful_belt": 0,
     "spectrum:fanciful_pendant": 0,
-    "spectrum:fanciful_circlet": 0
+    "spectrum:fanciful_circlet": 0,
+    "spectrum:fanciful_bismuth_ring": 0
   },
   "pages": [
     {
@@ -43,6 +44,13 @@
       "title": "Fanciful Gloves",
       "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_gloves",
       "advancement": "spectrum:progression/unlock_fanciful_gloves",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Fanciful Bismuth Ring",
+      "recipe": "spectrum:pedestal/tier4/fanciful_bismuth_ring",
+      "advancement": "spectrum:progression/unlock_fanciful_bismuth_ring",
       "text": ""
     }
   ]

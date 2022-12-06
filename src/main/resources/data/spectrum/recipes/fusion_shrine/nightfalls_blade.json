@@ -9,17 +9,17 @@
     },
     {
       "item": "spectrum:bismuth_crystal",
-      "count": 4
+      "count": 2
     },
     {
-      "item": "spectrum:moonstruck_nectar"
+      "item": "spectrum:midnight_aberration"
     },
     {
-      "item": "spectrum:red_pigment",
-      "count": 4
+      "item": "spectrum:midnight_chip",
+      "count": 8
     },
     {
-      "item": "spectrum:light_blue_pigment",
+      "item": "spectrum:pure_coal",
       "count": 4
     },
     {
@@ -32,9 +32,9 @@
     }
   ],
   "result": {
-    "item": "spectrum:dreamflayer"
+    "item": "spectrum:nightfalls_blade"
   },
-  "required_advancement": "spectrum:progression/unlock_dreamflayer",
+  "required_advancement": "spectrum:progression/unlock_nightfalls_blade",
   "world_conditions": [],
   "start_crafting_effect": "single_visual_explosion_on_shrine",
   "during_crafting_effects": [
@@ -43,5 +43,5 @@
     "nothing"
   ],
   "finish_crafting_effect": "lightning_on_shrine",
-  "description": "spectrum.recipe.fusion_shrine.explanation.dreamflayer"
+  "description": "spectrum.recipe.fusion_shrine.explanation.nightfalls_blade"
 }

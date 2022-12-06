@@ -1,33 +1,26 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import com.google.common.collect.Lists;
-import com.mojang.datafixers.util.Pair;
 import de.dafuqs.spectrum.interfaces.PotionFillable;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtil;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Map;
 
 public class PotionPendantItem extends SpectrumTrinketItem implements PotionFillable {
 	
-	private final int TRIGGER_EVERY_X_TICKS = 200;
-	private final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
+	private final static int TRIGGER_EVERY_X_TICKS = 200;
+	private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
 	
-	int maxEffectCount;
-	int maxAmplifier;
+	private final int maxEffectCount;
+	private final int maxAmplifier;
 	
 	public PotionPendantItem(Settings settings, int maxEffectCount, int maxAmplifier, Identifier unlockIdentifier) {
 		super(settings, unlockIdentifier);
@@ -38,60 +31,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		
-		List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(stack);
-		if (effects.size() > 0) {
-			List<Pair<EntityAttribute, EntityAttributeModifier>> attributeModifiers = Lists.newArrayList();
-			for (StatusEffectInstance effect : effects) {
-				MutableText mutableText = Text.translatable(effect.getTranslationKey());
-				
-				if (effect.getAmplifier() > 0) {
-					mutableText = Text.translatable("potion.withAmplifier", mutableText, Text.translatable("potion.potency." + effect.getAmplifier()));
-				}
-				tooltip.add(mutableText.formatted(effect.getEffectType().getCategory().getFormatting()));
-				
-				Map<EntityAttribute, EntityAttributeModifier> map = effect.getEffectType().getAttributeModifiers();
-				for (Map.Entry<EntityAttribute, EntityAttributeModifier> entityAttributeEntityAttributeModifierEntry : map.entrySet()) {
-					Map.Entry<EntityAttribute, EntityAttributeModifier> entry = entityAttributeEntityAttributeModifierEntry;
-					EntityAttributeModifier entityAttributeModifier = entry.getValue();
-					EntityAttributeModifier entityAttributeModifier2 = new EntityAttributeModifier(entityAttributeModifier.getName(), effect.getEffectType().adjustModifierAmount(effect.getAmplifier(), entityAttributeModifier), entityAttributeModifier.getOperation());
-					attributeModifiers.add(new Pair(entry.getKey(), entityAttributeModifier2));
-				}
-			}
-			
-			if (!attributeModifiers.isEmpty()) {
-				tooltip.add(Text.empty());
-				tooltip.add((Text.translatable("potion.whenDrank")).formatted(Formatting.DARK_PURPLE));
-				
-				for (Pair<EntityAttribute, EntityAttributeModifier> entityAttributeEntityAttributeModifierPair : attributeModifiers) {
-					EntityAttributeModifier mutableText = entityAttributeEntityAttributeModifierPair.getSecond();
-					double statusEffect = mutableText.getValue();
-					double d;
-					if (mutableText.getOperation() != EntityAttributeModifier.Operation.MULTIPLY_BASE && mutableText.getOperation() != EntityAttributeModifier.Operation.MULTIPLY_TOTAL) {
-						d = mutableText.getValue();
-					} else {
-						d = mutableText.getValue() * 100.0D;
-					}
-					
-					if (statusEffect > 0.0D) {
-						tooltip.add((Text.translatable("attribute.modifier.plus." + mutableText.getOperation().getId(), ItemStack.MODIFIER_FORMAT.format(d), Text.translatable((entityAttributeEntityAttributeModifierPair.getFirst()).getTranslationKey()))).formatted(Formatting.BLUE));
-					} else if (statusEffect < 0.0D) {
-						d *= -1.0D;
-						tooltip.add((Text.translatable("attribute.modifier.take." + mutableText.getOperation().getId(), ItemStack.MODIFIER_FORMAT.format(d), Text.translatable((entityAttributeEntityAttributeModifierPair.getFirst()).getTranslationKey()))).formatted(Formatting.RED));
-					}
-				}
-			}
-		}
-		
-		int maxEffectCount = maxEffectCount();
-		if (effects.size() < maxEffectCount) {
-			if (maxEffectCount == 1) {
-				tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_not_full_one"));
-			} else {
-				tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
-			}
-			tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_max_level").append(Text.translatable("enchantment.level." + (this.maxAmplifier + 1))));
-		}
+		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.potion_pendant.when_worn"));
 	}
 	
 	@Override

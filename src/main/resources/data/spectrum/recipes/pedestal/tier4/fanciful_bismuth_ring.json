@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 800,
+  "tier": "complex",
+  "cyan": 2,
+  "magenta": 2,
+  "yellow": 2,
+  "black": 0,
+  "white": 8,
+  "experience": 2.0,
+  "pattern": [
+    " B ",
+    "B B",
+    " B "
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:bismuth_crystal"
+    }
+  },
+  "result": {
+    "item": "spectrum:fanciful_bismuth_ring",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_fanciful_bismuth_ring"
+}

@@ -91,6 +91,7 @@ public class SpectrumItemGroups {
 				stacks.add(SpectrumItems.HEARTSINGERS_REWARD_RING.getFullStack());
 				stacks.add(SpectrumItems.GLOVES_OF_DAWNS_GRASP.getFullStack());
 				stacks.add(SpectrumItems.SHIELDGRASP_AMULET.getFullStack());
+				stacks.add(SpectrumItems.RING_OF_PURSUIT.getFullStack());
 				
 				// Bottomless Bundles willed with useful, basic materials
 				stacks.add(BottomlessBundleItem.getWithBlockAndCount(Items.COBBLESTONE.getDefaultStack(), 20000));

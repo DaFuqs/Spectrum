@@ -40,15 +40,16 @@ public class SpectrumColorProviders {
 		SpectrumCommon.logInfo("Registering Block and Item Color Providers...");
 		
 		// Biome Colors for colored leaves items and blocks
-		// They don't use it, but their decay as oak leaves do
+		// They don't use it, but their decoy oak leaves do
 		registerColoredLeaves();
 		
 		// Same for Amaranth
 		registerAmaranth();
 		
 		registerClover();
-		registerMemories();
+		registerMemory();
 		registerPotionPentants();
+		ColorProviderRegistry.ITEM.register(SpectrumColorProviders::potionColor, SpectrumItems.NIGHTFALLS_BLADE);
 		registerInkFlask();
 		registerBrewColors();
 	}
@@ -134,7 +135,7 @@ public class SpectrumColorProviders {
 		}, SpectrumItems.GREATER_POTION_PENDANT);
 	}
 	
-	private static void registerMemories() {
+	private static void registerMemory() {
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
 			if (world == null) {
 				return 0x0;

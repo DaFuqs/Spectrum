@@ -1,9 +1,12 @@
 package de.dafuqs.spectrum.interfaces;
 
+import de.dafuqs.spectrum.helpers.TooltipHelper;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 
 import java.util.List;
 
@@ -47,6 +50,21 @@ public interface PotionFillable {
 	
 	default void removeEffects(ItemStack itemStack) {
 		PotionUtil.setPotion(itemStack, Potions.EMPTY);
+	}
+	
+	default void appendPotionFillableTooltip(ItemStack stack, List<Text> tooltip, MutableText attributeModifierText) {
+		List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(stack);
+		TooltipHelper.buildEffectTooltip(tooltip, effects, attributeModifierText);
+		
+		int maxEffectCount = maxEffectCount();
+		if (effects.size() < maxEffectCount) {
+			if (maxEffectCount == 1) {
+				tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_not_full_one"));
+			} else {
+				tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_not_full_count", maxEffectCount));
+			}
+			tooltip.add(Text.translatable("item.spectrum.potion_pendant.tooltip_max_level").append(Text.translatable("enchantment.level." + (maxEffectAmplifier() + 1))));
+		}
 	}
 	
 }

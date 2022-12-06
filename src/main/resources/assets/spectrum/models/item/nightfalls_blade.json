@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:item/nightfalls_blade",
+    "layer1": "spectrum:item/nightfalls_blade_overlay"
+  }
+}

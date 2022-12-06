@@ -1657,6 +1657,9 @@
   "item.spectrum.dreamflayer.tooltip.deactivated": "Crouch-Use to overpower (consumes lots of §cRed Ink§r)",
   "item.spectrum.dreamflayer.tooltip.activated": "Overpowered. Crouch-Use to unpower",
 
+  "item.spectrum.nightfalls_blade": "Nightfall's Blade",
+  "item.spectrum.nightfalls_blade.when_struck": "When Struck:",
+
   "item.spectrum.spawner": "Empty Spawner",
   "item.spectrum.spawner.tooltip.unknown_mob": "Unknown Mob",
   "item.spectrum.spawner.tooltip.spawn_count": "Spawn Count: %d",
@@ -2008,6 +2011,7 @@
   "item.spectrum.fanciful_pendant": "Fanciful Pendant",
   "item.spectrum.fanciful_circlet": "Fanciful Circlet",
   "item.spectrum.fanciful_gloves": "Fanciful Gloves",
+  "item.spectrum.fanciful_bismuth_ring": "Fanciful Bismuth Ring",
   "item.spectrum.jeopardant": "Jeopardant",
   "item.spectrum.jeopardant.tooltip.damage_zero": "§7Increased Damage on low HP (currently §80 %%§7)",
   "item.spectrum.jeopardant.tooltip.damage": "§7Increased Damage on low HP (currently §a+%d %%§7)",
@@ -2057,6 +2061,7 @@
   "item.spectrum.potion_pendant.tooltip_not_full_one": "§7Fill with an Effect in the §fPotion Workshop",
   "item.spectrum.potion_pendant.tooltip_not_full_count": "§7Fill with up to §f%d§7 Effects in the §fPotion Workshop",
   "item.spectrum.potion_pendant.tooltip_max_level": "§7Supports Effects up to level ",
+  "item.spectrum.potion_pendant.when_worn": "When Worn:",
   "item.spectrum.radiance_pin": "Radiance Pin",
   "item.spectrum.radiance_pin.tooltip": "§7Places temporary Lights when in the Dark",
   "item.spectrum.ashen_circlet": "Ashen Circlet",
@@ -2079,6 +2084,8 @@
   "item.spectrum.heartsingers_reward.tooltip": "Grants you extra Hearts",
   "item.spectrum.gloves_of_dawns_grasp": "Gloves of Dawn's Grasp",
   "item.spectrum.gloves_of_dawns_grasp.tooltip": "Increases your Reach",
+  "item.spectrum.ring_of_pursuit": "Ring of Pursuit",
+  "item.spectrum.ring_of_pursuit.tooltip": "Increases your Mining Speed",
 
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Put items into the Crafting Grid to save a Recipe",
@@ -2554,6 +2561,9 @@
   "advancements.spectrum.enter_wireless_redstone_puzzle_structure.description": "A structure protected by solid Bedrock... no more",
   "advancements.spectrum.generate_ancient_ruins_loot.title": "Gift from an Ancient Civilization",
   "advancements.spectrum.generate_ancient_ruins_loot.description": "Discover the precious contents of an Ancient Treasure Chest",
+
+  "______that_should_have_been_in_aea" : "Additional Entity Attributes:",
+  "attribute.name.generic.additionalentityattributes.generic.dig_speed": "Mining Speed",
 
   "______food_tooltips" : "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",

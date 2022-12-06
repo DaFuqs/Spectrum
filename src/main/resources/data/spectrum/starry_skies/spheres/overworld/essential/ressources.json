@@ -1,0 +1,41 @@
+{
+  "generation_group": "starry_skies:overworld/essential",
+  "generation_weight": 1.0,
+  "min_size": 5,
+  "max_size": 20,
+  "type": "starry_skies:modular",
+  "type_data": {
+    "main_block": "minecraft:dirt",
+    "top_block": "minecraft:grass_block"
+  },
+  "decorators": {
+    "spectrum:clover": 0.8,
+    "spectrum:four_leaf_clover": 0.8
+  },
+  "spawns": [
+    {
+      "type": "minecraft:cow",
+      "chance": 0.1,
+      "min_count": 2,
+      "max_count": 4
+    },
+    {
+      "type": "minecraft:sheep",
+      "chance": 0.1,
+      "min_count": 2,
+      "max_count": 4
+    },
+    {
+      "type": "minecraft:chicken",
+      "chance": 0.1,
+      "min_count": 2,
+      "max_count": 4
+    },
+    {
+      "type": "minecraft:pig",
+      "chance": 0.1,
+      "min_count": 2,
+      "max_count": 4
+    }
+  ]
+}

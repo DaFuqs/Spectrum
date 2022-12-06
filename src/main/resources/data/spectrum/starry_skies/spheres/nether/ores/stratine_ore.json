@@ -1,0 +1,15 @@
+{
+	"generation_group": "starry_skies:nether/ores",
+	"generation_weight": 0.8,
+	"min_size": 4,
+	"max_size": 7,
+	"type": "starry_skies:core",
+	"type_data": {
+		"core_block": "spectrum:stratine_ore",
+		"min_core_size": 2,
+		"max_core_size": 5,
+		"main_block": "$starry_skies:nether_stones"
+	},
+	"decorators": {},
+	"spawns": []
+}

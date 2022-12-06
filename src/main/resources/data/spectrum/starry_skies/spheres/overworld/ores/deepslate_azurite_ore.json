@@ -1,0 +1,15 @@
+{
+	"generation_group": "starry_skies:overworld/ores",
+	"generation_weight": 0.6,
+	"min_size": 3,
+	"max_size": 7,
+	"type": "starry_skies:core",
+	"type_data": {
+		"core_block": "spectrum:deepslate_azurite_ore",
+		"min_core_size": 2,
+		"max_core_size": 4,
+		"main_block": "$starry_skies:deepslates"
+	},
+	"decorators": {},
+	"spawns": []
+}

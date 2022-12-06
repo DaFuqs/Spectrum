@@ -1,0 +1,15 @@
+{
+	"generation_group": "starry_skies:overworld/wood",
+	"generation_weight": 0.1,
+	"min_size": 8,
+	"max_size": 14,
+	"type": "starry_skies:shell",
+	"type_data": {
+		"min_shell_size": 2,
+		"max_shell_size": 4,
+		"main_block": "spectrum:cyan_log",
+		"shell_block": "spectrum:cyan_leaves[distance=1]"
+	},
+	"decorators": {},
+	"spawns": []
+}

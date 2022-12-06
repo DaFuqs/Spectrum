@@ -1,0 +1,15 @@
+{
+	"generation_group": "starry_skies:overworld/ores",
+	"generation_weight": 0.8,
+	"min_size": 5,
+	"max_size": 9,
+	"type": "starry_skies:core",
+	"type_data": {
+		"core_block": "spectrum:shimmerstone_ore",
+		"min_core_size": 3,
+		"max_core_size": 5,
+		"main_block": "$starry_skies:stones"
+	},
+	"decorators": {},
+	"spawns": []
+}

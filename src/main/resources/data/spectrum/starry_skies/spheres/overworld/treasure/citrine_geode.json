@@ -1,0 +1,16 @@
+{
+	"generation_group": "starry_skies:overworld/treasure",
+	"generation_weight": 1.0,
+	"min_size": 5,
+	"max_size": 7,
+	"type": "starry_skies:geode",
+	"type_data": {
+		"inner_block": "spectrum:citrine_block",
+		"inner_speckles_block": "spectrum:budding_citrine",
+		"inner_speckles_block_chance": 0.1,
+		"middle_block": "minecraft:calcite",
+		"outer_block": "minecraft:basalt"
+	},
+	"decorators": {},
+	"spawns": []
+}

@@ -1,0 +1,15 @@
+{
+	"generation_group": "starry_skies:end/ores",
+	"generation_weight": 0.5,
+	"min_size": 4,
+	"max_size": 7,
+	"type": "starry_skies:core",
+	"type_data": {
+		"core_block": "spectrum:paltaeria_ore",
+		"min_core_size": 2,
+		"max_core_size": 4,
+		"main_block": "$starry_skies:end_stones"
+	},
+	"decorators": {},
+	"spawns": []
+}

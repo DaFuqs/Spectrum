@@ -1,0 +1,16 @@
+{
+	"generation_group": "starry_skies:overworld/treasure",
+	"generation_weight": 0.6,
+	"min_size": 8,
+	"max_size": 12,
+	"type": "starry_skies:geode",
+	"type_data": {
+		"inner_block": "spectrum:topaz_block",
+		"inner_speckles_block": "spectrum:budding_topaz",
+		"inner_speckles_block_chance": 0.05,
+		"middle_block": "minecraft:calcite",
+		"outer_block": "minecraft:basalt"
+	},
+	"decorators": {},
+	"spawns": []
+}

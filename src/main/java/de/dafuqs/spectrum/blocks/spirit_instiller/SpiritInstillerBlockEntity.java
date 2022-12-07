@@ -309,7 +309,11 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			this.ownerUUID = null;
 		}
 		if (nbt.contains("MultiblockRotation")) {
-			this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MultiblockRotation").toUpperCase(Locale.ROOT));
+			try {
+				this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MultiblockRotation").toUpperCase(Locale.ROOT));
+			} catch (Exception e) {
+				this.multiblockRotation = BlockRotation.NONE;
+			}
 		}
 		
 		this.currentRecipe = null;
@@ -335,7 +339,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putBoolean("CanCraft", this.canCraft);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
-		nbt.putString("MultiblockRotation", this.multiblockRotation.asString());
+		nbt.putString("MultiblockRotation", this.multiblockRotation.toString());
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
 		}
@@ -355,7 +359,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		Inventories.writeNbt(nbtCompound, this.getItems());
 		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
 		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbtCompound.putString("MultiblockRotation", this.multiblockRotation.asString());
+		nbtCompound.putString("MultiblockRotation", this.multiblockRotation.toString());
 		if (this.currentRecipe != null && canCraft) {
 			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}

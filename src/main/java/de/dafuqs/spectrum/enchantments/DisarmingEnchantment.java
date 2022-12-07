@@ -32,7 +32,7 @@ public class DisarmingEnchantment extends SpectrumEnchantment {
 			ItemStack equippedStack = player.getEquippedStack(slot);
 			if (!equippedStack.isEmpty()) {
 				ItemEntity itemEntity = new ItemEntity(player.world, player.getX(), player.getY(), player.getZ(), equippedStack);
-				itemEntity.setVelocity(player.world.random.nextTriangular(0.0, 0.11485000171139836), player.world.random.nextTriangular(0.2, 0.11485000171139836), player.world.random.nextTriangular(0.0, 0.11485000171139836));
+				itemEntity.setVelocity(player.world.random.nextGaussian() * 0.05000000074505806, player.world.random.nextGaussian() * 0.05000000074505806 + 0.20000000298023224, player.world.random.nextGaussian() * 0.05000000074505806);
 				itemEntity.setPickupDelay(120);
 				player.world.spawnEntity(itemEntity);
 				

@@ -38,7 +38,7 @@ public class EggLayingWoolyPigHeadModel extends SkullBlockEntityModel {
 	
 	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
 		matrices.push();
-		matrices.scale(0.75F, 0.75F, 0.75F);
+		matrices.scale(0.86F, 0.86F, 0.86F);
 		this.head.render(matrices, vertices, light, overlay, red, green, blue, alpha);
 		matrices.pop();
 	}

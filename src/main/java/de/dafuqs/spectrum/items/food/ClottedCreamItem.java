@@ -7,8 +7,8 @@ import net.minecraft.world.World;
 
 public class ClottedCreamItem extends ItemWithTooltip {
 	
-	public ClottedCreamItem(Settings settings, String tooltip) {
-		super(settings, tooltip);
+	public ClottedCreamItem(Settings settings, String[] tooltips) {
+		super(settings, tooltips);
 	}
 	
 	@Override

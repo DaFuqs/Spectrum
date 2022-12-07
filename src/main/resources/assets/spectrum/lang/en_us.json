@@ -50,7 +50,6 @@
   "recipeGroup.spectrum.horse_armor": "Horse Armor",
   "recipeGroup.spectrum.memories": "Memories",
   "recipeGroup.spectrum.boss_memories": "Boss Memories",
-  "recipeGroup.spectrum.restoration_tea": "Restoration Tea",
   "recipeGroup.spectrum.mob_blocks": "Idols",
   "recipeGroup.spectrum.spawner_manipulation": "Spawner Manipulation",
   "recipeGroup.spectrum.infused_beverages": "Infused Beverages",
@@ -58,6 +57,8 @@
   "recipeGroup.spectrum.crystallarieum_growable_crushing": "Crystallarieum Buds",
   "recipeGroup.spectrum.gemstone_crushing": "Gemstone Shards & Buds",
   "recipeGroup.spectrum.bismuth_crushing": "Bismuth",
+  "recipeGroup.spectrum.restoration_tea": "Restoration Tea",
+  "recipeGroup.spectrum.glistering_jelly_tea": "Glistering Jelly Tea",
   "recipeGroup.spectrum.demon_tea": "Demon Tea",
 
   "recipeGroup.spectrum.botania_mushrooms": "Colored Mushrooms",

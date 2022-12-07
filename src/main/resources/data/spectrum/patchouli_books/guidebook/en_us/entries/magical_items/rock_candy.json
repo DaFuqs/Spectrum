@@ -21,7 +21,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A stick with sugar on it.$(br2)...wait wait wait, there's more to it!$(br)If you place this stick so that its underside is immersed in $(l:magical_items/liquid_crystal)Liquid Crystal$(/l), you just have to slowly dissolve more sugar in the liquid until the stick turns into a sweet-crunchy candy stick."
+      "text": "A stick with sugar on it.$(br2)...wait wait wait, there's more to it!$(br)If you place this stick so that its underside is immersed in $(l:magical_blocks/liquid_crystal)Liquid Crystal$(/l), you just have to slowly dissolve more sugar in the liquid until the stick turns into a sweet-crunchy candy stick."
     },
     {
       "type": "spectrum:pedestal_crafting",

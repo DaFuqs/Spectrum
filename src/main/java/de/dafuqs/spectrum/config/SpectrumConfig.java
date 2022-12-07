@@ -212,6 +212,10 @@ public class SpectrumConfig implements ConfigData {
 		if (BigCatchMaxLevel <= 0) {
 			BigCatchMaxLevel = 3;
 		}
+		if (QuitoxicReedsCountPerChunk > 256) {
+			// 16x16 blocks in a chunk; else the worldgen feature would break
+			QuitoxicReedsCountPerChunk = 256;
+		}
 		
 		if (ShootingStarWorlds.isEmpty()) {
 			ShootingStarWorlds.add("minecraft:overworld");

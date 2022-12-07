@@ -2117,7 +2117,7 @@
   "item.spectrum.gilded_book.tooltip.copy_enchantments2": "from any desired item onto this book",
   "item.spectrum.enchantment_canvas": "Enchantment Canvas",
   "item.spectrum.enchantment_canvas.tooltip.bound_to": "§7Bound to ",
-  "item.spectrum.enchantment_canvas.tooltip.not_bound": "§7Click onto an item to swap Enchantments",
+  "item.spectrum.enchantment_canvas.tooltip.not_bound": "§7Right click onto an item to swap Enchantments",
   "item.spectrum.enchantment_canvas.tooltip.not_bound2": "§7The Canvas will be then bound to items of that type",
 
   "item.spectrum.mysterious_locket": "Mysterious Locket",

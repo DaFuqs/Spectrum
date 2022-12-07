@@ -239,7 +239,9 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		ItemStack stack = this.outputItemStack.copy();
 		stack.setCount(1);
 		
-		if (this.fermentationData != null) {
+		if (this.fermentationData == null) {
+			return stack;
+		} else {
 			float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 			double alcPercent = 0;
 			if (this.fermentationData.fermentationSpeedMod > 0) {
@@ -285,8 +287,6 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 			properties.thickness = thickness;
 			return properties.getStack(stack);
 		}
-		
-		return outputItemStack;
 	}
 	
 	protected double getAlcPercent(float thickness, float downfall, float ageIngameDays) {

@@ -110,34 +110,31 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 					}
 				}
 			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
-				ItemStack itemStack = itemEntity.getStack();
-				
-				// if the item is enchanted: remove enchantments and spawn XP
-				// basically disenchanting the item
-				if (itemStack.hasEnchantments() || itemStack.isOf(Items.ENCHANTED_BOOK)) {
-					Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
-					if (enchantments.size() > 0) {
-						int randomEnchantmentIndex = world.random.nextInt(enchantments.size());
-						Enchantment enchantmentToRemove = (Enchantment) enchantments.keySet().toArray()[randomEnchantmentIndex];
-						
-						int experience = EnchanterBlockEntity.getEnchantingPrice(itemStack, enchantmentToRemove, enchantments.get(enchantmentToRemove));
-						experience /= EXPERIENCE_DISENCHANT_RETURN_DIV;
-						
-						if (experience > 0) {
-							ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), experience);
-							world.spawnEntity(experienceOrbEntity);
+				if (world.random.nextInt(120) == 0) {
+					ItemStack itemStack = itemEntity.getStack();
+					// if the item is enchanted: remove enchantments and spawn XP
+					// basically disenchanting the item
+					if (itemStack.hasEnchantments() || itemStack.isOf(Items.ENCHANTED_BOOK)) {
+						Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
+						if (enchantments.size() > 0) {
+							int randomEnchantmentIndex = world.random.nextInt(enchantments.size());
+							Enchantment enchantmentToRemove = (Enchantment) enchantments.keySet().toArray()[randomEnchantmentIndex];
+							
+							int experience = EnchanterBlockEntity.getEnchantingPrice(itemStack, enchantmentToRemove, enchantments.get(enchantmentToRemove));
+							experience /= EXPERIENCE_DISENCHANT_RETURN_DIV;
+							
+							if (experience > 0) {
+								ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), experience);
+								world.spawnEntity(experienceOrbEntity);
+							}
+							world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+							SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, itemEntity.getPos(), SpectrumParticleTypes.GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.4, 0.2));
+							itemEntity.setStack(SpectrumEnchantmentHelper.removeEnchantment(itemStack, enchantmentToRemove));
+							itemEntity.setToDefaultPickupDelay();
+							return;
 						}
-						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
-						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, itemEntity.getPos(), SpectrumParticleTypes.GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.4, 0.2));
-						itemEntity.setStack(SpectrumEnchantmentHelper.removeEnchantment(itemStack, enchantmentToRemove));
-						itemEntity.setToDefaultPickupDelay();
-						return;
 					}
-				}
-				
-				// do not try to search conversion recipes for items that are recipe outputs already
-				// => better performance
-				if (!MidnightSolutionConvertingRecipe.isExistingOutputItem(itemStack)) {
+					
 					MidnightSolutionConvertingRecipe recipe = getConversionRecipeFor(SpectrumRecipeTypes.MIDNIGHT_SOLUTION_CONVERTING, world, itemStack);
 					if (recipe != null) {
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);

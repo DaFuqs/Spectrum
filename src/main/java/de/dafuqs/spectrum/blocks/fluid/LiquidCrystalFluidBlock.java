@@ -83,10 +83,8 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 					}
 				}
 			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
-				ItemStack itemStack = itemEntity.getStack();
-				// do not try to search conversion recipes for items that are recipe outputs already
-				// => better performance
-				if (!LiquidCrystalConvertingRecipe.isExistingOutputItem(itemStack)) {
+				if (world.random.nextInt(200) == 0) {
+					ItemStack itemStack = itemEntity.getStack();
 					LiquidCrystalConvertingRecipe recipe = getConversionRecipeFor(SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, world, itemStack);
 					if (recipe != null) {
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);

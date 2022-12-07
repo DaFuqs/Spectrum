@@ -16,6 +16,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class DecayBlock extends Block {
+	
+	private static final boolean CREATE_DD_PORTALS = true;
 	
 	/**
 	 * Since Tag is not comparable we can not use a SortedMap for decayConversions
@@ -113,6 +116,11 @@ public abstract class DecayBlock extends Block {
 			}
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		return super.canPlaceAt(state, world, pos) && (pos.getY() != world.getBottomY() || CREATE_DD_PORTALS);
 	}
 	
 	/**

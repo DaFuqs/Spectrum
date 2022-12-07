@@ -307,7 +307,11 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			this.ownerUUID = null;
 		}
 		if (nbt.contains("MultiblockRotation")) {
-			this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MultiblockRotation").toUpperCase(Locale.ROOT));
+			try {
+				this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MultiblockRotation").toUpperCase(Locale.ROOT));
+			} catch (Exception e) {
+				this.multiblockRotation = BlockRotation.NONE;
+			}
 		}
 		
 		this.currentRecipe = null;

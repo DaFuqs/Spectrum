@@ -85,14 +85,14 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 							ItemStack handStack = player.getStackInHand(hand);
 							if (handStack.isEmpty()) {
 								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity.inventory);
-								if(itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
+								if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
 									player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.content_count_full", itemCount), false);
 								} else {
 									player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.content_count", itemCount, TitrationBarrelBlockEntity.MAX_ITEM_COUNT), false);
 								}
 							} else {
 								if (handStack.isIn(SpectrumItemTags.COLORED_PLANKS)) {
-									if(!player.isCreative()) {
+									if (!player.isCreative()) {
 										handStack.decrement(1);
 									}
 									sealBarrel(world, pos, state, barrelEntity, player);
@@ -131,8 +131,8 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 						// reverting it to the empty state again
 						if (player.isSneaking()) {
 							Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, barrelEntity.inventory, world);
-							if(recipe.isPresent()) {
-								player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput().getName().asString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getExtractableBottleCount(world, pos, recipe.get())), false);
+							if (recipe.isPresent()) {
+								player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput().getName().getString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getExtractableBottleCount(world, pos, recipe.get())), false);
 							} else {
 								player.sendMessage(new TranslatableText("block.spectrum.titration_barrel.invalid_recipe_after_opened"), false);
 							}

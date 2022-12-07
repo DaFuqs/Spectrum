@@ -10,12 +10,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "TODO"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/nightfalls_blade",
-      "text": "$(italic)"
+      "text": "TODO"
     }
   ]
 }

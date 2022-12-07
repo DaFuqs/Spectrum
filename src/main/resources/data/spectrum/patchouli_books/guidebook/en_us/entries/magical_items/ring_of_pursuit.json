@@ -2,6 +2,7 @@
   "name": "Ring of Pursuit",
   "advancement": "spectrum:progression/unlock_ring_of_pursuit",
   "icon": "spectrum:ring_of_pursuit",
+  "secret": true,
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:ring_of_pursuit": 0
@@ -9,13 +10,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "TODO"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/ring_of_pursuit",
-      "text": ""
+      "text": "TODO"
     }
   ]
 }

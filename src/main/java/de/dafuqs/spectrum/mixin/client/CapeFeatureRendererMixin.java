@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumModelLayers;
+import de.dafuqs.spectrum.registries.client.SpectrumModelLayers;
 import de.dafuqs.spectrum.render.RenderingContext;
 import de.dafuqs.spectrum.render.armor.BedrockArmorCapeModel;
 import net.fabricmc.api.EnvType;

@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.deeper_down_portal;
 
-import de.dafuqs.spectrum.registries.SpectrumRenderLayers;
+import de.dafuqs.spectrum.registries.client.SpectrumRenderLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;

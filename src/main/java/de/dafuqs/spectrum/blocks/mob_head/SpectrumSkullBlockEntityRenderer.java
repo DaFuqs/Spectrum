@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
 import com.google.common.collect.ImmutableMap;
-import de.dafuqs.spectrum.registries.SpectrumModelLayers;
+import de.dafuqs.spectrum.registries.client.SpectrumModelLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;

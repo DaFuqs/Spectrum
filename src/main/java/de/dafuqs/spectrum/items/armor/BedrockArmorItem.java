@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.items.armor;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.items.Preenchanted;
-import de.dafuqs.spectrum.registries.SpectrumModelLayers;
+import de.dafuqs.spectrum.registries.client.SpectrumModelLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

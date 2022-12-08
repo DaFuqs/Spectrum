@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.entity.render;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.entity.entity.EggLayingWoolyPigEntity;
 import de.dafuqs.spectrum.entity.models.EggLayingWoolyPigEntityModel;
-import de.dafuqs.spectrum.registries.SpectrumModelLayers;
+import de.dafuqs.spectrum.registries.client.SpectrumModelLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.EntityRendererFactory;

@@ -2,7 +2,6 @@
   "name": "Moonstone Pedestal (2)",
   "icon": "spectrum:pedestal_moonstone",
   "sortnum": 17,
-  "secret": true,
   "advancement": "spectrum:midgame/built_pedestal_complex_structure_without_moonstone_check",
   "category": "spectrum:general_category",
   "turnin": "spectrum:lategame/build_complex_pedestal_structure",

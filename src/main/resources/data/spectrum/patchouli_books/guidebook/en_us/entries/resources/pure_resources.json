@@ -1,7 +1,6 @@
 {
   "name": "Pure Resources",
   "advancement": "spectrum:lategame/collect_pure_resource",
-  "secret": true,
   "icon": "spectrum:pure_iron",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {

@@ -2,7 +2,6 @@
   "name": "Moonstone Shards",
   "icon": "spectrum:moonstone_shard",
   "sortnum": 15,
-  "secret": true,
   "advancement": "spectrum:midgame/collect_moonstone_shard",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

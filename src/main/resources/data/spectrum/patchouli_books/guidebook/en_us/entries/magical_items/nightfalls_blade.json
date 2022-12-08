@@ -1,7 +1,6 @@
 {
   "name": "Nightfall's Blade",
   "advancement": "spectrum:progression/unlock_nightfalls_blade",
-  "secret": true,
   "icon": "spectrum:nightfalls_blade",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
@@ -10,12 +9,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "TODO"
+      "text": "The sharp blades of this knife easily drill into any meat. The small blade is too fine to inflict permanent wounds. Soaked in a potion, however, all hit opponents are directly affected by the effect, provided you have enough Ink on you, which corresponds to the effect."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/nightfalls_blade",
-      "text": "TODO"
+      "text": "$(italic)Cruel, really, but effective."
     }
   ]
 }

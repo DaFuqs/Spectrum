@@ -3,7 +3,6 @@
   "category": "spectrum:hints_category",
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:milestones/reveal_azurite",
-  "secret": true,
   "read_by_default": true,
   "turnin": "spectrum:midgame/collect_azurite",
   "pages": [

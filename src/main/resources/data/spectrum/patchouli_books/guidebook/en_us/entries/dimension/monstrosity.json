@@ -1,8 +1,7 @@
 {
   "name": "The Monstrosity",
   "icon": "minecraft:bedrock",
-  "sortnum": 2,
-  "secret": true,
+  "sortnum": 1,
   "advancement": "spectrum:midgame/hurt_by_monstrosity",
   "category": "spectrum:dimension_category",
   "pages": [

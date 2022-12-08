@@ -1,7 +1,6 @@
 {
   "name": "Entity Detector",
   "advancement": "spectrum:progression/detectors/unlock_entity_detector",
-  "secret": true,
   "icon": "spectrum:player_detector",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

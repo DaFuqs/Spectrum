@@ -3,7 +3,6 @@
   "category": "spectrum:hints_category",
   "icon": "minecraft:writable_book",
   "advancement": "spectrum:spectrum",
-  "secret": true,
   "read_by_default": true,
   "turnin": "spectrum:hidden/collect_shards/collect_citrine_shard",
   "pages": [

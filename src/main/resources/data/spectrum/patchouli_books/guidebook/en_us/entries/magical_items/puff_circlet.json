@@ -1,7 +1,6 @@
 {
   "name": "Puff Circlet",
   "advancement": "spectrum:progression/unlock_puff_circlet",
-  "secret": true,
   "icon": "spectrum:puff_circlet",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

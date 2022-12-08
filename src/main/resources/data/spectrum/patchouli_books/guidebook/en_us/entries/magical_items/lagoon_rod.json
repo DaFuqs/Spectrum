@@ -1,7 +1,6 @@
 {
   "name": "Lagoon Rod",
   "advancement": "spectrum:progression/unlock_lagoon_rod",
-  "secret": true,
   "icon": "spectrum:lagoon_rod",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

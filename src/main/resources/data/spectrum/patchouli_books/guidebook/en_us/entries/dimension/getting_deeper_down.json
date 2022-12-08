@@ -1,8 +1,7 @@
 {
   "name": "Getting Deeper Down",
   "icon": "minecraft:bedrock",
-  "sortnum": 1,
-  "secret": true,
+  "sortnum": 0,
   "advancement": "spectrum:midgame/opened_portal",
   "category": "spectrum:dimension_category",
   "pages": [

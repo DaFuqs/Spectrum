@@ -3,11 +3,16 @@
     "unlocked_ring_of_pursuit": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:progression/unlock_ring_of_pursuit" }
+    },
+    "unlocked_neat_ring": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_neat_ring" }
     }
   },
   "requirements": [
     [
-      "unlocked_ring_of_pursuit"
+      "unlocked_ring_of_pursuit",
+      "unlocked_neat_ring"
     ]
   ]
 }

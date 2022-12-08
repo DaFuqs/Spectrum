@@ -8,8 +8,12 @@
       "item": "spectrum:fanciful_bismuth_ring"
     },
     {
-      "item": "minecraft:gold_ingot",
+      "item": "spectrum:bedrock_dust",
       "count": 8
+    },
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 4
     },
     {
       "item": "spectrum:magenta_pigment",

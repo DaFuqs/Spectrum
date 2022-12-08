@@ -12,5 +12,5 @@
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "spectrum:block.large_onyx_bud.break",
   "group": "gemstone_crushing",
-  "required_advancement": "spectrum:hidden/collect_shards/collect_onyx_shard"
+  "required_advancement": "spectrum:create_onyx_shard"
 }

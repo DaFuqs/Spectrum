@@ -1,13 +1,13 @@
 {
   "criteria": {
-    "todo": {
+    "unlocked_ring_of_pursuit": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:progression/__todo" }
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_ring_of_pursuit" }
     }
   },
   "requirements": [
     [
-      "todo"
+      "unlocked_ring_of_pursuit"
     ]
   ]
 }

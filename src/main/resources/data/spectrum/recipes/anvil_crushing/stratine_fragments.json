@@ -11,5 +11,5 @@
   },
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "block.glass.break",
-  "required_advancement": "spectrum:midgame/collect_scarlet"
+  "required_advancement": "spectrum:midgame/collect_stratine"
 }

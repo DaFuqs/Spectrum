@@ -2,7 +2,7 @@
   "criteria": {
     "finished_progression_without_tips": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/finish_progression_without_tips" }
+      "conditions": { "advancement_identifier": "spectrum:__lategame/spectrum_lategame" }
     }
   }
 }

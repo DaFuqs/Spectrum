@@ -51,14 +51,22 @@ import java.util.Map;
 public class SanityCommand {
 	
 	private static final List<Identifier> advancementGatingWarningWhitelist = new ArrayList<>() {{
+		add(SpectrumCommon.locate("collect_mysterious_locket"));
 		add(SpectrumCommon.locate("find_ancient_ruins"));
+		add(SpectrumCommon.locate("enter_ancient_ruins"));
+		add(SpectrumCommon.locate("enter_wireless_redstone_puzzle_structure"));
+		add(SpectrumCommon.locate("enter_color_mixing_puzzle_structure"));
+		
+		add(SpectrumCommon.locate("enter_ancient_ruins"));
+		add(SpectrumCommon.locate("tap_aged_air"));
 		add(SpectrumCommon.locate("hook_entity_with_molten_rod"));
+		
 		add(SpectrumCommon.locate("midgame/take_off_belt_overcharged"));
 		add(SpectrumCommon.locate("midgame/craft_blacklisted_memory_fail"));
 		add(SpectrumCommon.locate("midgame/craft_blacklisted_memory_success"));
 		add(SpectrumCommon.locate("midgame/build_cinderhearth_structure_without_lava"));
-		add(SpectrumCommon.locate("tap_aged_air"));
 		add(SpectrumCommon.locate("midgame/tap_chrysocolla"));
+		add(SpectrumCommon.locate("midgame/tap_sweetened_jade_wine"));
 	}};
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {

@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.deeper_down_portal;
+package de.dafuqs.spectrum.blocks;
 
 import de.dafuqs.spectrum.deeper_down.DDDimension;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
@@ -8,9 +8,13 @@ import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
@@ -28,7 +32,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 
-public class DeeperDownPortalBlock extends EndPortalBlock {
+public class DeeperDownPortalBlock extends Block {
 	
 	public static final BooleanProperty FACING_UP = Properties.UP;
 	
@@ -55,12 +59,6 @@ public class DeeperDownPortalBlock extends EndPortalBlock {
 		if (!hasNeighboringPortals) {
 			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.DEEPER_DOWN_PORTAL_OPEN, SoundCategory.BLOCKS, 0.75F, 0.75F);
 		}
-		
-	}
-	
-	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new DeeperDownPortalBlockEntity(pos, state);
 	}
 	
 	@Override
@@ -70,6 +68,14 @@ public class DeeperDownPortalBlock extends EndPortalBlock {
 		} else {
 			return SHAPE;
 		}
+	}
+	
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return ItemStack.EMPTY;
+	}
+	
+	public boolean canBucketPlace(BlockState state, Fluid fluid) {
+		return false;
 	}
 	
 	@Override

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.decay;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlock;
+import de.dafuqs.spectrum.blocks.DeeperDownPortalBlock;
 import de.dafuqs.spectrum.deeper_down.DDDimension;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;

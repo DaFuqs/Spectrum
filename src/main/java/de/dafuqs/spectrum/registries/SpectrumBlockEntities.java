@@ -7,8 +7,6 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.cinderhearth.CinderhearthBlockEntity;
 import de.dafuqs.spectrum.blocks.crystallarieum.CrystallarieumBlockEntity;
 import de.dafuqs.spectrum.blocks.crystallarieum.CrystallarieumBlockEntityRenderer;
-import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntity;
-import de.dafuqs.spectrum.blocks.deeper_down_portal.DeeperDownPortalBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.ender.EnderDropperBlockEntity;
@@ -79,7 +77,6 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<CreativeParticleSpawnerBlockEntity> CREATIVE_PARTICLE_SPAWNER;
 	public static BlockEntityType<UpgradeBlockEntity> UPGRADE_BLOCK;
 	public static BlockEntityType<SpectrumSkullBlockEntity> SKULL;
-	public static BlockEntityType<DeeperDownPortalBlockEntity> DEEPER_DOWN_PORTAL;
 	public static BlockEntityType<ShootingStarBlockEntity> SHOOTING_STAR;
 	public static BlockEntityType<BottomlessBundleBlockEntity> BOTTOMLESS_BUNDLE;
 	public static BlockEntityType<PotionWorkshopBlockEntity> POTION_WORKSHOP;
@@ -123,7 +120,6 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		PEDESTAL = register("pedestal_block_entity", PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE);
 		FUSION_SHRINE = register("fusion_shrine_block_entity", FusionShrineBlockEntity::new, SpectrumBlocks.FUSION_SHRINE_BASALT, SpectrumBlocks.FUSION_SHRINE_CALCITE);
 		ENCHANTER = register("enchanter_block_entity", EnchanterBlockEntity::new, SpectrumBlocks.ENCHANTER);
-		//STONESETTING_WORKSHOP = register("stonesetting_workshop", StonesettingWorkshopBlockEntity::new, SpectrumBlocks.STONESETTING_WORKSHOP);
 		ITEM_BOWL = register("item_bowl_block_entity", ItemBowlBlockEntity::new, SpectrumBlocks.ITEM_BOWL_BASALT, SpectrumBlocks.ITEM_BOWL_CALCITE);
 		ITEM_ROUNDEL = register("item_roundel", ItemRoundelBlockEntity::new, SpectrumBlocks.ITEM_ROUNDEL);
 		PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
@@ -131,7 +127,6 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		ENDER_HOPPER = register("ender_hopper", EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER);
 		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER);
 		CREATIVE_PARTICLE_SPAWNER = register("creative_particle_spawner", CreativeParticleSpawnerBlockEntity::new, SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
-		DEEPER_DOWN_PORTAL = register("deeper_down_portal", DeeperDownPortalBlockEntity::new, SpectrumBlocks.DEEPER_DOWN_PORTAL);
 		COMPACTING_CHEST = register("compacting_chest", CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST);
 		RESTOCKING_CHEST = register("restocking_chest", RestockingChestBlockEntity::new, SpectrumBlocks.RESTOCKING_CHEST);
 		PRIVATE_CHEST = register("private_chest", PrivateChestBlockEntity::new, SpectrumBlocks.PRIVATE_CHEST);
@@ -194,10 +189,8 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.ITEM_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PRESERVATION_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.SKULL, SpectrumSkullBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
-		//BlockEntityRendererRegistry.register(SpectrumBlockEntities.STONESETTING_WORKSHOP, StoneSettingWorkshopBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
 		

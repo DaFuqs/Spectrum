@@ -78,8 +78,8 @@ public class SanityCommand {
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				BlockState blockState = entry.getValue().getDefaultState();
 				
-				// unbreakable blocks do not need to have an entry
-				if (blockState.getBlock().getHardness() <= -1) {
+				// unbreakable or instabreak blocks do not need to have an entry
+				if (blockState.getBlock().getHardness() <= 0) {
 					continue;
 				}
 				

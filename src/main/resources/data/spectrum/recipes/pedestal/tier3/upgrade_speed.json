@@ -37,5 +37,5 @@
     "item": "spectrum:upgrade_speed",
     "count": 1
   },
-  "required_advancement": "spectrum:midgame/build_advanced_pedestal_structure"
+  "required_advancement": "spectrum:progression/unlock_upgrade_speed"
 }

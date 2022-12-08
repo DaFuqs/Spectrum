@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "built_advanced_pedestal_structure": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure" }
+    }
+  }
+}

@@ -20,10 +20,9 @@
       "text": "Pigment Pedestal and Fusion Shrine have already proven their worth. But there is still plenty of room for improvement. That's why you created these upgrades. Each one improves the properties of your structures in a different way, depending on what's most important to you personally.$(br)Additional ones of the same type have a decreased effect."
     },
 
-
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+      "advancement": "spectrum:progression/unlock_upgrade_speed",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/upgrade_speed",
       "text": "The crafting time of the $(l:general/pedestal)Pigment Pedestal$(/l) increases a lot when using complex components. This will help you bring back the times to an acceptable level."
@@ -60,7 +59,7 @@
 
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:midgame/create_refined_azurite",
+      "advancement": "spectrum:progression/efficiency",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/upgrade_efficiency",
       "text": "The $(l:general/pedestal)Pigment Pedestal$(/l) devours vast amounts of Gemstone Powder.$(br)Now you should be able to cushion the consumption of your structures a little."
@@ -75,7 +74,7 @@
 
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:lategame/collect_paltaeria",
+      "advancement": "spectrum:progression/unlock_upgrade_yield",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/upgrade_yield",
       "text": "This is an interesting one. Although the chance is very small, you can increase the # of your crafting outputs.$(br)$(italic)More bang for your buck!"

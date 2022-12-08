@@ -31,5 +31,5 @@
     "item": "spectrum:upgrade_yield",
     "count": 1
   },
-  "required_advancement": "spectrum:lategame/collect_paltaeria"
+  "required_advancement": "spectrum:progression/unlock_upgrade_yield"
 }

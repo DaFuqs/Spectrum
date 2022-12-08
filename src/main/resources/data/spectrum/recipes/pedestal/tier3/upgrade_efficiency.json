@@ -37,5 +37,5 @@
     "item": "spectrum:upgrade_efficiency",
     "count": 1
   },
-  "required_advancement": "spectrum:midgame/create_refined_azurite"
+  "required_advancement": "spectrum:progression/unlock_upgrade_experience"
 }

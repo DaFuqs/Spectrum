@@ -1173,7 +1173,7 @@ public class SpectrumBlocks {
 		
 		registerBlockWithItem("ebony_noxcap_cap", EBONY_NOXCAP_CAP, settings, DyeColor.LIME);
 		registerBlockWithItem("ebony_noxcap_stem", EBONY_NOXCAP_STEM, settings, DyeColor.LIME);
-		registerBlockWithItem("stripped_ebony_noxcap_stripped_stem", STRIPPED_EBONY_NOXCAP_STEM, settings, DyeColor.LIME);
+		registerBlockWithItem("stripped_ebony_noxcap_stem", STRIPPED_EBONY_NOXCAP_STEM, settings, DyeColor.LIME);
 		registerBlockWithItem("ebony_noxcap_gills", EBONY_NOXCAP_GILLS, settings, DyeColor.LIME);
 		registerBlockWithItem("ebony_noxwood", EBONY_NOXWOOD, settings, DyeColor.LIME);
 		registerBlockWithItem("ebony_noxwood_stairs", EBONY_NOXWOOD_STAIRS, settings, DyeColor.LIME);

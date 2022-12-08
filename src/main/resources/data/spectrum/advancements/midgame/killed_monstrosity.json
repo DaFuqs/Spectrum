@@ -1,0 +1,37 @@
+{
+  "parent": "spectrum:midgame/enter_dimension",
+  "display": {
+    "icon": {
+      "item": "spectrum:bedrock_dust"
+    },
+    "title": {
+      "translate": "advancements.spectrum.killed_monstrosity.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.killed_monstrosity.description"
+    }
+  },
+  "criteria": {
+    "killed_monstrosity": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "spectrum:monstrosity",
+              "location": {
+                "dimension": "spectrum:deeper_down_dimension"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/enter_dimension" }
+    }
+  }
+}

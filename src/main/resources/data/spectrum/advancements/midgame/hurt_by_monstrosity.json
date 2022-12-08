@@ -1,0 +1,31 @@
+{
+  "parent": "spectrum:midgame/enter_dimension",
+  "display": {
+    "icon": {
+      "item": "spectrum:bedrock_dust"
+    },
+    "title": {
+      "translate": "advancements.spectrum.hurt_by_monstrosity.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.hurt_by_monstrosity.description"
+    }
+  },
+  "criteria": {
+    "hurt_by_monstrosity": {
+      "trigger": "minecraft:entity_hurt_player",
+      "conditions": {
+        "player": [],
+        "damage": {
+          "source_entity": {
+            "type": "spectrum:monstrosity"
+          }
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/enter_dimension" }
+    }
+  }
+}

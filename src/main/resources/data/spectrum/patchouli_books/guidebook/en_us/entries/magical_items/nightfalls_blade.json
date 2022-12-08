@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The sharp blades of this knife easily drill into any meat. The small blade is too fine to inflict permanent wounds. Soaked in a potion, however, all hit opponents are directly affected by the effect, provided you have enough Ink on you, which corresponds to the effect."
+      "text": "This small blade is too fine to inflict permanent wounds, but has many sharp edges that drill themselves into the flesh of your opponent.$(br)Infused in the $(l:magical_blocks/potion_workshop)Potion Workshop$() however, all struck opponents are directly affected by the potion's effect, provided you have enough of the color of Ink on you, that corresponds to it."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

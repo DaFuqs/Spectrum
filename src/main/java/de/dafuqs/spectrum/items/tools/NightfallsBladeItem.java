@@ -2,12 +2,13 @@ package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.energy.InkPowered;
+import de.dafuqs.spectrum.energy.InkPoweredStatusEffectInstance;
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.interfaces.PotionFillable;
+import de.dafuqs.spectrum.items.PotionFillable;
 import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -16,6 +17,7 @@ import net.minecraft.potion.PotionUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -50,20 +52,26 @@ public class NightfallsBladeItem extends SwordItem implements PotionFillable {
 	}
 	
 	@Override
+	public long adjustFinalCostFor(@NotNull InkPoweredStatusEffectInstance instance) {
+		return (long) Math.pow(instance.getInkCost().getCost(), 2 + instance.getStatusEffectInstance().getAmplifier());
+	}
+	
+	@Override
 	public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		if(target.isAlive() && attacker instanceof PlayerEntity player) {
 			if (AdvancementHelper.hasAdvancement(player, UNLOCK_IDENTIFIER)) {
-				List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(stack);
-				for(StatusEffectInstance instance : effects) {
-					// TODO: this should have an ink cost attached to it
-					World world = attacker.getWorld();
-					if(world.isClient) {
-						world.addParticle(new ParticleSpawnerParticleEffect(PARTICLE_SPRITE_IDENTIFIER, 0.1F, ColorHelper.colorIntToVec(instance.getEffectType().getColor()), 0.5F, 120, true, true),
-								target.getParticleX(0.5D), target.getBodyY(0.5D), target.getParticleZ(0.5D),
-								world.random.nextFloat() - 0.5, world.random.nextFloat() - 0.5, world.random.nextFloat() - 0.5
-						);
-					} else {
-						target.addStatusEffect(instance, attacker);
+				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
+				for(InkPoweredStatusEffectInstance instance : effects) {
+					if(InkPowered.tryDrainEnergy(player, instance.getInkCost().getColor(), instance.getInkCost().getCost())) {
+						World world = attacker.getWorld();
+						if (world.isClient) {
+							world.addParticle(new ParticleSpawnerParticleEffect(PARTICLE_SPRITE_IDENTIFIER, 0.1F, ColorHelper.colorIntToVec(instance.getStatusEffectInstance().getEffectType().getColor()), 0.5F, 120, true, true),
+									target.getParticleX(0.5D), target.getBodyY(0.5D), target.getParticleZ(0.5D),
+									world.random.nextFloat() - 0.5, world.random.nextFloat() - 0.5, world.random.nextFloat() - 0.5
+							);
+						} else {
+							target.addStatusEffect(instance.getStatusEffectInstance(), attacker);
+						}
 					}
 				}
 			}
@@ -79,8 +87,7 @@ public class NightfallsBladeItem extends SwordItem implements PotionFillable {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		// todo: show effect duration
-		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.nightfalls_blade.when_struck"));
+		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.nightfalls_blade.when_struck"), true);
 	}
 	
 }

@@ -12,5 +12,7 @@
   "potency_modifier": 0.5,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
-  "applicable_to_potion_fillables": true
+  "applicable_to_potion_fillables": true,
+  "ink_color": "red",
+  "ink_cost": 4
 }

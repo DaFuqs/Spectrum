@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.interfaces;
+package de.dafuqs.spectrum.items;
 
 import de.dafuqs.spectrum.progression.GravityAdvancementsManager;
 import net.minecraft.entity.Entity;

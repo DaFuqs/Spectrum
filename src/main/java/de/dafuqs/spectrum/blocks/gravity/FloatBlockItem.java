@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.gravity;
 
-import de.dafuqs.spectrum.interfaces.GravitableItem;
+import de.dafuqs.spectrum.items.GravitableItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.BlockItem;

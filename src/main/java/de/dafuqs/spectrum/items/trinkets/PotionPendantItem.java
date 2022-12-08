@@ -1,10 +1,13 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.interfaces.PotionFillable;
+import de.dafuqs.spectrum.energy.InkPowered;
+import de.dafuqs.spectrum.energy.InkPoweredStatusEffectInstance;
+import de.dafuqs.spectrum.items.PotionFillable;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.text.Text;
@@ -31,7 +34,7 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.potion_pendant.when_worn"));
+		appendPotionFillableTooltip(stack, tooltip, Text.translatable("item.spectrum.potion_pendant.when_worn"), false);
 	}
 	
 	@Override
@@ -53,15 +56,14 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
 		
-		if (!entity.getWorld().isClient && entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0) {
-			giveEffects(stack, entity);
+		if (!entity.getWorld().isClient && entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof PlayerEntity player) {
+			for (InkPoweredStatusEffectInstance inkPoweredEffect : InkPoweredStatusEffectInstance.getEffects(stack)) {
+				if(InkPowered.tryDrainEnergy(player, inkPoweredEffect.getInkCost())) {
+					StatusEffectInstance effect = inkPoweredEffect.getStatusEffectInstance();
+					player.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));
+				}
+			}
 		}
 	}
 	
-	private void giveEffects(ItemStack stack, LivingEntity entity) {
-		List<StatusEffectInstance> effects = PotionUtil.getCustomPotionEffects(stack);
-		for (StatusEffectInstance effect : effects) {
-			entity.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));
-		}
-	}
 }

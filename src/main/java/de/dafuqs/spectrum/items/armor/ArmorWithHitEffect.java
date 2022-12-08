@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.interfaces;
+package de.dafuqs.spectrum.items.armor;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

@@ -106,6 +106,10 @@ public interface InkPowered {
 		return false;
 	}
 	
+	static boolean tryDrainEnergy(@NotNull PlayerEntity player, @NotNull InkCost inkCost) {
+		return tryDrainEnergy(player, inkCost.getColor(), inkCost.getCost());
+	}
+	
 	/**
 	 * Searches the players Trinkets for energy storage first and inventory second
 	 * for PigmentEnergyStorageItem and tries to drain the color energy.
@@ -118,7 +122,7 @@ public interface InkPowered {
 	 * - Trinket Slots
 	 * - Inventory
 	 **/
-	static boolean tryDrainEnergy(@NotNull PlayerEntity player, InkColor color, long amount) {
+	static boolean tryDrainEnergy(@NotNull PlayerEntity player, @NotNull InkColor color, long amount) {
 		if (player.isCreative()) {
 			return true;
 		}

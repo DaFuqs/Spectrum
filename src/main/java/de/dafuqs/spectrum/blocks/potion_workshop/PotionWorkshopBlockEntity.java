@@ -5,9 +5,9 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.interfaces.PotionFillable;
 import de.dafuqs.spectrum.inventories.PotionWorkshopScreenHandler;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
+import de.dafuqs.spectrum.items.PotionFillable;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.potion_workshop.*;
@@ -16,7 +16,6 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -27,6 +26,7 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeInputProvider;
 import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -42,15 +42,11 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, RecipeInputProvider, SidedInventory, PlayerOwned {
 	
@@ -68,8 +64,6 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	public static final int FIRST_REAGENT_SLOT = 5;
 	public static final int FIRST_INVENTORY_SLOT = 9;
 	public static final int[] REGENT_SLOTS = new int[]{5, 6, 7, 8};
-	protected static final int BASE_POTION_COUNT_ON_BREWING = 3;
-	protected static final int BASE_ARROW_COUNT_ON_BREWING = 12;
 	protected final PropertyDelegate propertyDelegate;
 	protected DefaultedList<ItemStack> inventory;
 	protected boolean inventoryChanged;
@@ -78,7 +72,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	protected int brewTimeTotal;
 	protected int potionColor;
 	protected UUID ownerUUID;
-	protected StatusEffect lastBrewedStatusEffect;
+	protected PotionWorkshopBrewingRecipe lastBrewedRecipe;
 	
 	public PotionWorkshopBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.POTION_WORKSHOP, pos, state);
@@ -111,11 +105,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		// check recipe crafted last tick => performance
 		boolean shouldMarkDirty = false;
 		
-		if(potionWorkshopBlockEntity.inventoryChanged) {
-			potionWorkshopBlockEntity.brewTime = 0;
-		}
 		PotionWorkshopRecipe calculatedRecipe = calculateRecipe(world, potionWorkshopBlockEntity);
-		potionWorkshopBlockEntity.inventoryChanged = false;
 		if (potionWorkshopBlockEntity.currentRecipe != calculatedRecipe) {
 			potionWorkshopBlockEntity.currentRecipe = calculatedRecipe;
 			potionWorkshopBlockEntity.brewTime = 0;
@@ -125,7 +115,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			}
 			shouldMarkDirty = true;
 		}
-		
+		potionWorkshopBlockEntity.inventoryChanged = false;
 		
 		if (calculatedRecipe != null) {
 			// if crafting has not started: check if the inventory has enough room to start
@@ -269,7 +259,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	private static void brewRecipe(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {
 		// process reagents
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
-		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(BASE_POTION_COUNT_ON_BREWING + potionMod.flatYieldBonus, potionWorkshopBlockEntity.world.random);
+		int maxBrewedPotionsAmount = Support.getIntFromDecimalWithChance(PotionWorkshopBrewingRecipe.BASE_POTION_COUNT_ON_BREWING + potionMod.flatYieldBonus, potionWorkshopBlockEntity.world.random);
 		int brewedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxBrewedPotionsAmount);
 		
 		// consume ingredients
@@ -280,7 +270,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		// calculate outputs
 		List<ItemStack> results = new ArrayList<>();
 		for (int i = 0; i < brewedAmount; i++) {
-			results.add(brewingRecipe.brewRandomPotion(potionMod, potionWorkshopBlockEntity.lastBrewedStatusEffect, potionWorkshopBlockEntity.world.random));
+			results.add(brewingRecipe.brewRandomPotion(potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random));
 		}
 		
 		// trigger advancements for all brewed potions
@@ -295,13 +285,13 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			}
 		}
 		
-		potionWorkshopBlockEntity.lastBrewedStatusEffect = brewingRecipe.getStatusEffect();
+		potionWorkshopBlockEntity.lastBrewedRecipe = brewingRecipe;
 	}
 	
 	private static void createTippedArrows(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {
 		// process reagents
 		PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
-		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(BASE_ARROW_COUNT_ON_BREWING + potionMod.flatYieldBonus * 4, potionWorkshopBlockEntity.world.random);
+		int maxTippedArrowsAmount = Support.getIntFromDecimalWithChance(PotionWorkshopBrewingRecipe.BASE_ARROW_COUNT_ON_BREWING + potionMod.flatYieldBonus * 4, potionWorkshopBlockEntity.world.random);
 		int tippedAmount = Math.min(potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getCount(), maxTippedArrowsAmount);
 		
 		// consume ingredients
@@ -310,7 +300,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		decreaseReagentSlots(potionWorkshopBlockEntity);
 		
 		// calculate outputs
-		ItemStack tippedArrows = brewingRecipe.getTippedArrows(potionMod, potionWorkshopBlockEntity.lastBrewedStatusEffect, tippedAmount, potionWorkshopBlockEntity.world.random);
+		ItemStack tippedArrows = brewingRecipe.getTippedArrows(potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, tippedAmount, potionWorkshopBlockEntity.world.random);
 		
 		// trigger advancements for all brewed potions
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
@@ -319,7 +309,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, tippedArrows);
 		}
 		
-		potionWorkshopBlockEntity.lastBrewedStatusEffect = brewingRecipe.getStatusEffect();
+		potionWorkshopBlockEntity.lastBrewedRecipe = brewingRecipe;
 	}
 	
 	private static void fillPotionFillable(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {
@@ -333,7 +323,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			decreaseReagentSlots(potionWorkshopBlockEntity);
 			potionWorkshopBlockEntity.inventory.set(BASE_INPUT_SLOT_ID, ItemStack.EMPTY);
 			
-			brewingRecipe.fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedStatusEffect, potionWorkshopBlockEntity.world.random);
+			brewingRecipe.fillPotionFillable(potionFillableStack, potionMod, potionWorkshopBlockEntity.lastBrewedRecipe, potionWorkshopBlockEntity.world.random);
 			
 			// trigger advancements for all brewed potions
 			ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) potionWorkshopBlockEntity.getOwnerIfOnline();
@@ -342,7 +332,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				SpectrumAdvancementCriteria.POTION_WORKSHOP_BREWING.trigger(serverPlayerEntity, potionFillableStack);
 			}
 			
-			potionWorkshopBlockEntity.lastBrewedStatusEffect = brewingRecipe.getStatusEffect();
+			potionWorkshopBlockEntity.lastBrewedRecipe = brewingRecipe;
 		}
 	}
 	
@@ -372,7 +362,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	}
 	
 	public static void decreaseReagentSlots(@NotNull PotionWorkshopBlockEntity potionWorkshopBlockEntity) {
-		for (int i : new int[]{5, 6, 7, 8}) {
+		for (int i : REGENT_SLOTS) {
 			ItemStack currentStack = potionWorkshopBlockEntity.getStack(i);
 			if (!currentStack.isEmpty()) {
 				currentStack.decrement(1);
@@ -389,10 +379,16 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		} else {
 			this.ownerUUID = null;
 		}
-		if (nbt.contains("LastBrewedStatusEffect")) {
-			this.lastBrewedStatusEffect = Registry.STATUS_EFFECT.get(Identifier.tryParse(nbt.getString("LastBrewedStatusEffect")));
+		if (nbt.contains("LastBrewedRecipe") && this.world != null) {
+			String recipeString = nbt.getString("LastBrewedRecipe");
+			if (!recipeString.isEmpty() && world != null) {
+				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof PotionWorkshopBrewingRecipe brewingRecipe) {
+					this.lastBrewedRecipe = brewingRecipe;
+				}
+			}
 		} else {
-			this.lastBrewedStatusEffect = null;
+			this.lastBrewedRecipe = null;
 		}
 	}
 	
@@ -402,11 +398,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
 		}
-		if (this.lastBrewedStatusEffect != null) {
-			Identifier lastBrewedStatusEffectIdentifier = Registry.STATUS_EFFECT.getId(this.lastBrewedStatusEffect);
-			if (lastBrewedStatusEffectIdentifier != null) {
-				nbt.putString("LastBrewedStatusEffect", lastBrewedStatusEffectIdentifier.toString());
-			}
+		if (this.lastBrewedRecipe != null) {
+			nbt.putString("LastBrewedRecipe", this.lastBrewedRecipe.getId().toString());
 		}
 	}
 	
@@ -533,9 +526,9 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 			return new int[]{0, 1, 2, 3, 4};
 		} else {
 			if (this.hasFourthReagentSlotUnlocked()) {
-				return new int[]{5, 6, 7};
-			} else {
 				return new int[]{5, 6, 7, 8};
+			} else {
+				return new int[]{5, 6, 7};
 			}
 		}
 	}

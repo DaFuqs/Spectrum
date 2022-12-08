@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.interfaces;
+package de.dafuqs.spectrum.items;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

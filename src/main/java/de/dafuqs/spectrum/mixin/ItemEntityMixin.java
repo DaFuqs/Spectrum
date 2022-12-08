@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.interfaces.GravitableItem;
 import de.dafuqs.spectrum.inventories.AutoCompactingInventory;
 import de.dafuqs.spectrum.items.DamageAwareItem;
+import de.dafuqs.spectrum.items.GravitableItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;

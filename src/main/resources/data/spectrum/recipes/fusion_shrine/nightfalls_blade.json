@@ -5,25 +5,22 @@
   "fluid": "spectrum:midnight_solution",
   "ingredients": [
     {
-      "item": "minecraft:netherite_sword"
+      "item": "minecraft:diamond_sword"
     },
     {
-      "item": "spectrum:bismuth_crystal",
+      "item": "spectrum:midnight_aberration",
       "count": 2
-    },
-    {
-      "item": "spectrum:midnight_aberration"
     },
     {
       "item": "spectrum:midnight_chip",
       "count": 8
     },
     {
-      "item": "spectrum:pure_coal",
-      "count": 4
+      "item": "spectrum:quitoxic_powder",
+      "count": 8
     },
     {
-      "item": "spectrum:light_gray_pigment",
+      "item": "spectrum:red_pigment",
       "count": 4
     },
     {

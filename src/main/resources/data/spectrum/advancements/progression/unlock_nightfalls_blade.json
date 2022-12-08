@@ -4,9 +4,13 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/create_refined_azurite" }
     },
-    "collected_bismuth_flake": {
+    "created_midnight_aberration": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/bismuth_flake" }
+      "conditions": { "advancement_identifier": "spectrum:midgame/create_midnight_aberration" }
+    },
+    "collected_quitoxic_reeds": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }
     }
   }
 }

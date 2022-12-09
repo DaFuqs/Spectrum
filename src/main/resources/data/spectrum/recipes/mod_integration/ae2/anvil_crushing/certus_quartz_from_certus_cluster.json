@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "ae2:quartz_cluster"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 2.0,
+  "result": {
+    "item": "ae2:certus_quartz_dust",
+    "count": 8
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.amethyst_cluster.break",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ae2"
+      ]
+    }
+  ]
+}

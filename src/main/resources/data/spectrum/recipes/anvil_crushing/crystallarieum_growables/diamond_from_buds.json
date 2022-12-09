@@ -12,7 +12,7 @@
   "experience": 2.0,
   "result": {
     "item": "minecraft:diamond",
-    "count": 2
+    "count": 1
   },
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "block.amethyst_cluster.break",

@@ -381,8 +381,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 		if (nbt.contains("LastBrewedRecipe") && this.world != null) {
 			String recipeString = nbt.getString("LastBrewedRecipe");
-			if (!recipeString.isEmpty() && world != null) {
-				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
+				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof PotionWorkshopBrewingRecipe brewingRecipe) {
 					this.lastBrewedRecipe = brewingRecipe;
 				}

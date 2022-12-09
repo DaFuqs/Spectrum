@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.decoration.GemstoneChimeBlock;
@@ -319,8 +320,8 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && world != null) {
-				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
+				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof SpiritInstillerRecipe spiritInstillerRecipe) {
 					this.currentRecipe = spiritInstillerRecipe;
 				}

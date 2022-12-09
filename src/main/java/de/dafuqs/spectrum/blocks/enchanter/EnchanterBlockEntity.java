@@ -645,8 +645,8 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && world != null) {
-				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
+				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				if (optionalRecipe.isPresent() && (optionalRecipe.get() instanceof EnchanterRecipe || optionalRecipe.get() instanceof EnchantmentUpgradeRecipe)) {
 					this.currentRecipe = optionalRecipe.get();
 				}

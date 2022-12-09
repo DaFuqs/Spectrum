@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.cinderhearth;
 
+import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.energy.InkStorage;
@@ -199,8 +200,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		}
 		if (nbt.contains("CurrentRecipe")) {
 			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && world != null) {
-				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
+				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				this.currentRecipe = optionalRecipe.orElse(null);
 			} else {
 				this.currentRecipe = null;

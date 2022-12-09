@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.mixin.client;
 
 import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
+import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.s2c.play.SynchronizeTagsS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,6 +18,8 @@ public abstract class ClientPlayNetworkHandlerMixin {
 	public void spectrum$syncTags(SynchronizeTagsS2CPacket packet, CallbackInfo ci) {
 		logInfo("Registering MultiBlocks on Client...");
 		SpectrumMultiblocks.register();
+		
+		SpectrumColorProviders.resetToggleableProviders();
 	}
 	
 }

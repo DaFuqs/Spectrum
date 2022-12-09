@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 400,
+  "experience": 8.0,
+  "ingredient1": {
+    "tag": "ae2:flawed_budding_quartz"
+  },
+  "ingredient2": {
+    "item": "ae2:charged_certus_quartz_crystal"
+  },
+  "center_ingredient": {
+    "item": "spectrum:neolith",
+    "count": 4
+  },
+  "result": {
+    "item": "ae2:flawless_budding_quartz"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ae2"
+      ]
+    }
+  ]
+}

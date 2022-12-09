@@ -111,7 +111,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 					fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(fusionShrineBlockEntity.currentRecipe.getCraftingTime() / fusionShrineBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
 				}
 				
-				fusionShrineBlockEntity.updateInClientWorld(world, blockPos);
+				fusionShrineBlockEntity.updateInClientWorld();
 			}
 			
 			fusionShrineBlockEntity.inventoryChanged = false;

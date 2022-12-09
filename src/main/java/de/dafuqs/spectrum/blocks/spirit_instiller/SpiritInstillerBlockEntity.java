@@ -165,7 +165,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			spiritInstillerBlockEntity.canCraft = spiritInstillerBlockEntity.currentRecipe.canCraftWithStacks(instillerStack, spiritInstillerBlockEntity.autoCraftingInventory.getStack(1), spiritInstillerBlockEntity.autoCraftingInventory.getStack(2));
 		}
 		
-		spiritInstillerBlockEntity.updateInClientWorld(world, spiritInstillerBlockEntity.pos);
+		spiritInstillerBlockEntity.updateInClientWorld();
 	}
 	
 	public static BlockPos getItemBowlPos(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {

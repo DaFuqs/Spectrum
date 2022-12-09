@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -20,6 +21,7 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	
@@ -74,7 +76,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 			
 			if (remainingStack.getCount() != previousCount) {
 				inWorldInteractionBlockEntity.markDirty();
-				inWorldInteractionBlockEntity.updateInClientWorld(world, pos);
+				inWorldInteractionBlockEntity.updateInClientWorld();
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 			}
 			return remainingStack;
@@ -152,6 +154,16 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public boolean hasComparatorOutput(BlockState state) {
+		return true;
+	}
+	
+	@Override
+	public int getComparatorOutput(BlockState state, @NotNull World world, BlockPos pos) {
+		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
 	
 }

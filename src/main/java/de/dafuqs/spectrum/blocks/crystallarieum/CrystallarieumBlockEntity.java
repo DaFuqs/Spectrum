@@ -1,6 +1,10 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
+import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
+import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
@@ -12,26 +16,16 @@ import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -41,13 +35,11 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.UUID;
 
-public class CrystallarieumBlockEntity extends LootableContainerBlockEntity implements PlayerOwned, InkStorageBlockEntity<IndividualCappedInkStorage> {
+public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, InkStorageBlockEntity<IndividualCappedInkStorage> {
 	
 	protected final static int INVENTORY_SIZE = 2;
-	protected final static int INK_PROVIDER_STACK_SLOT_ID = 0;
-	protected final static int CATALYST_SLOT_ID = 1;
-	
-	protected DefaultedList<ItemStack> inventory;
+	protected final static int CATALYST_SLOT_ID = 0;
+	protected final static int INK_STORAGE_STACK_SLOT_ID = 1;
 	
 	public static final long INK_STORAGE_SIZE = 64 * 64 * 100;
 	protected IndividualCappedInkStorage inkStorage;
@@ -63,8 +55,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	protected boolean canWork;
 	
 	public CrystallarieumBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.CRYSTALLARIEUM, pos, state);
-		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
+		super(SpectrumBlockEntities.CRYSTALLARIEUM, pos, state, INVENTORY_SIZE);
 		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE);
 		this.canWork = true;
 	}
@@ -86,6 +77,16 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	
 	public static void serverTick(@NotNull World world, BlockPos blockPos, BlockState blockState, CrystallarieumBlockEntity crystallarieum) {
 		if (world.getTime() % 20 == 0 && crystallarieum.canWork && crystallarieum.currentRecipe != null) {
+			// transfer ink
+			ItemStack inkStorageStack = crystallarieum.getStack(INK_STORAGE_STACK_SLOT_ID);
+			if(inkStorageStack.getItem() instanceof InkStorageItem inkStorageItem) {
+				InkStorage itemInkStorage = inkStorageItem.getEnergyStorage(inkStorageStack);
+				long transferredAmount = InkStorage.transferInk(itemInkStorage, crystallarieum.inkStorage);
+				if (transferredAmount > 0) {
+					inkStorageItem.setEnergyStorage(inkStorageStack, itemInkStorage);
+				}
+			}
+			
 			// advance growing
 			if (crystallarieum.currentCatalyst == null) {
 				if (!crystallarieum.currentRecipe.growsWithoutCatalyst()) {
@@ -157,11 +158,20 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 		}
 	}
 	
+	public void inventoryChanged() {
+		if(this.currentRecipe != null) {
+			Optional<CrystallarieumCatalyst> optionalCatalyst = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
+			optionalCatalyst.ifPresent(crystallarieumCatalyst -> this.currentCatalyst = crystallarieumCatalyst);
+		}
+		
+		this.canWork = true;
+		super.inventoryChanged();
+	}
+	
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		
-		Inventories.readNbt(nbt, this.inventory);
 		if (nbt.contains("InkStorage", NbtElement.COMPOUND_TYPE)) {
 			this.inkStorage = IndividualCappedInkStorage.fromNbt(nbt.getCompound("InkStorage"));
 		}
@@ -176,20 +186,26 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 		
 		this.currentRecipe = null;
 		if (nbt.contains("CurrentRecipe")) {
+			this.currentGrowthStageDuration = nbt.getInt("CurrentGrowthStageDuration");
 			String recipeString = nbt.getString("CurrentRecipe");
-			if (!recipeString.isEmpty() && world != null) {
-				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
+			if (!recipeString.isEmpty() && SpectrumCommon.minecraftServer != null) {
+				Optional<? extends Recipe> optionalRecipe = SpectrumCommon.minecraftServer.getRecipeManager().get(new Identifier(recipeString));
 				if (optionalRecipe.isPresent() && (optionalRecipe.get() instanceof CrystallarieumRecipe crystallarieumRecipe)) {
 					this.currentRecipe = crystallarieumRecipe;
+					Optional<CrystallarieumCatalyst> oc = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));
+					oc.ifPresent(crystallarieumCatalyst -> this.currentCatalyst = crystallarieumCatalyst);
 				}
 			}
+		} else {
+			this.currentGrowthStageDuration = 0;
+			this.currentRecipe = null;
+			this.currentCatalyst = null;
 		}
 	}
 	
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		Inventories.writeNbt(nbt, this.inventory);
 		nbt.put("InkStorage", this.inkStorage.toNbt());
 		nbt.putShort("CraftingTime", (short) this.currentGrowthStageDuration);
 		nbt.putBoolean("CanWork", this.canWork);
@@ -198,42 +214,18 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 		}
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
+			nbt.putInt("CurrentGrowthStageDuration", this.currentGrowthStageDuration);
 		}
 	}
 	
 	@Override
-	public UUID getOwnerUUID() {
+	public @Nullable UUID getOwnerUUID() {
 		return this.ownerUUID;
 	}
 	
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();
-	}
-	
-	@Override
-	protected Text getContainerName() {
-		return Text.translatable("block.spectrum.crystallarieum");
-	}
-	
-	@Override
-	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return null;
-	}
-	
-	@Override
-	public int size() {
-		return INVENTORY_SIZE;
-	}
-	
-	@Override
-	protected DefaultedList<ItemStack> getInvStackList() {
-		return this.inventory;
-	}
-	
-	@Override
-	protected void setInvStackList(DefaultedList<ItemStack> list) {
-		this.inventory = list;
 	}
 	
 	@Nullable
@@ -247,6 +239,18 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	 * @param itemStack stack that is tried to plant on top, if a valid recipe
 	 */
 	public void acceptStack(ItemStack itemStack, boolean creative) {
+		if (itemStack.getItem() instanceof InkStorageItem) {
+			ItemStack currentInkStorageStack = getStack(INK_STORAGE_STACK_SLOT_ID);
+			if (currentInkStorageStack.isEmpty()) {
+				setStack(INK_STORAGE_STACK_SLOT_ID, currentInkStorageStack.copy());
+				if (!creative) {
+					itemStack.setCount(0);
+				}
+				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
+			}
+			return;
+		}
+		
 		if (world.getBlockState(pos.up()).isAir()) {
 			CrystallarieumRecipe recipe = CrystallarieumRecipe.getRecipeForStack(itemStack);
 			if (recipe != null) {
@@ -270,43 +274,14 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 						itemStack.setCount(0);
 					}
 					this.currentCatalyst = optionalCatalyst.get();
-					this.canWork = true;
-					updateInClientWorld();
-					markDirty();
+					inventoryChanged();
 				}
 			} else if (ItemStack.canCombine(currentCatalystStack, itemStack)) {
 				InventoryHelper.combineStacks(currentCatalystStack, itemStack);
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-				this.canWork = true;
-				updateInClientWorld();
-				markDirty();
+				inventoryChanged();
 			}
 		}
-	}
-	
-	public ItemStack popCatalyst() {
-		ItemStack catalystStack = getStack(CATALYST_SLOT_ID);
-		setStack(CATALYST_SLOT_ID, ItemStack.EMPTY);
-		this.currentCatalyst = null;
-		updateInClientWorld();
-		return catalystStack;
-	}
-	
-	// Called when the chunk is first loaded to initialize this be
-	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = new NbtCompound();
-		this.writeNbt(nbtCompound);
-		return nbtCompound;
-	}
-	
-	@Nullable
-	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
-	}
-	
-	public void updateInClientWorld() {
-		((ServerWorld) world).getChunkManager().markForUpdate(pos);
 	}
 	
 	/**
@@ -338,8 +313,7 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 				}
 			}
 			this.canWork = true;
-			markDirty();
-			updateInClientWorld();
+			inventoryChanged();
 		}
 	}
 	
@@ -356,6 +330,16 @@ public class CrystallarieumBlockEntity extends LootableContainerBlockEntity impl
 	@Override
 	public boolean getInkDirty() {
 		return this.inkDirty;
+	}
+	
+	@Override
+	public boolean isValid(int slot, ItemStack stack) {
+		if (slot == INK_STORAGE_STACK_SLOT_ID) {
+			return stack.getItem() instanceof InkStorageItem;
+		} else if (this.currentRecipe != null) {
+			return this.currentRecipe.getCatalyst(stack).isPresent();
+		}
+		return false;
 	}
 	
 }

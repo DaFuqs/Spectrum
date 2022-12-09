@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -10,9 +9,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class InWorldInteractionBlockEntity extends BlockEntity implements ImplementedInventory {
@@ -27,8 +26,8 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	}
 	
 	// interaction methods
-	public void updateInClientWorld(World world, BlockPos pos) {
-		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
+	public void updateInClientWorld() {
+		((ServerWorld) world).getChunkManager().markForUpdate(pos);
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
@@ -64,7 +63,7 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	public void inventoryChanged() {
 		this.markDirty();
 		if (!world.isClient) {
-			updateInClientWorld(world, pos);
+			updateInClientWorld();
 		}
 	}
 	

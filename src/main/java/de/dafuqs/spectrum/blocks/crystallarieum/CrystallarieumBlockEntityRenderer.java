@@ -34,8 +34,6 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 	
 	@Override
 	public void render(CrystallarieumBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-		ItemStack catalystStack = entity.getStack(CrystallarieumBlockEntity.CATALYST_SLOT_ID);
-		
 		CrystallarieumRecipe recipe = entity.getCurrentRecipe();
 		if (recipe != null) {
 			InkColor inkColor = recipe.getInkColor();
@@ -44,6 +42,21 @@ public class CrystallarieumBlockEntityRenderer<T extends CrystallarieumBlockEnti
 			body.render(matrices, vertexConsumer, light, overlay, inkColor.getColor().getX(), inkColor.getColor().getY(), inkColor.getColor().getZ(), 1.0F);
 		}
 		
+		ItemStack inkStorageStack = entity.getStack(CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID);
+		if(!inkStorageStack.isEmpty()) {
+			matrices.push();
+			
+			float time = entity.getWorld().getTime() % 50000 + tickDelta;
+			double height = 1 + Math.sin((time) / 8.0) / 6.0; // item height
+			
+			matrices.translate(0.5, 1.0 + height, 0.5);
+			matrices.multiply(MinecraftClient.getInstance().getBlockEntityRenderDispatcher().camera.getRotation());
+			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
+			MinecraftClient.getInstance().getItemRenderer().renderItem(inkStorageStack, ModelTransformation.Mode.GROUND, light, overlay, matrices, vertexConsumers, 0);
+			matrices.pop();
+		}
+		
+		ItemStack catalystStack = entity.getStack(CrystallarieumBlockEntity.CATALYST_SLOT_ID);
 		if (!catalystStack.isEmpty()) {
 			matrices.push();
 			

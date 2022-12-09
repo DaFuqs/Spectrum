@@ -90,7 +90,7 @@ public class ItemBowlBlockEntity extends InWorldInteractionBlockEntity {
 			if (doEffects) {
 				spawnOrbParticles(orbTargetPos);
 			}
-			updateInClientWorld(world, pos);
+			updateInClientWorld();
 			markDirty();
 		}
 		

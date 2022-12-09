@@ -1,33 +1,27 @@
 package de.dafuqs.spectrum.blocks.crystallarieum;
 
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.blocks.InWorldInteractionBlock;
+import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
+import de.dafuqs.spectrum.energy.InkStorageItem;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CrystallarieumBlock extends BlockWithEntity {
+public class CrystallarieumBlock extends InWorldInteractionBlock {
 	
 	public CrystallarieumBlock(Settings settings) {
 		super(settings);
@@ -42,17 +36,7 @@ public class CrystallarieumBlock extends BlockWithEntity {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return !world.isClient ? checkType(type, SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntity::serverTick) : checkType(type, SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntity::clientTick);
-	}
-	
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
-	}
-	
-	@Override
-	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
-		return false;
+		return checkType(type, SpectrumBlockEntities.CRYSTALLARIEUM, world.isClient ? CrystallarieumBlockEntity::clientTick : CrystallarieumBlockEntity::serverTick);
 	}
 	
 	@Override
@@ -86,50 +70,31 @@ public class CrystallarieumBlock extends BlockWithEntity {
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
 		} else {
-			if (world.getBlockEntity(pos) instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
-				if (player.isSneaking()) {
-					ItemStack stack = crystallarieumBlockEntity.popCatalyst();
-					Support.givePlayer(player, stack);
+			// if the structure is valid the player can put / retrieve blocks into the shrine
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
+				
+				ItemStack handStack = player.getStackInHand(hand);
+				if (player.isSneaking() || handStack.isEmpty()) {
+					// sneaking or empty hand: remove items
+					for (int i = 0; i < EnchanterBlockEntity.INVENTORY_SIZE; i++) {
+						if (retrieveStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, i)) {
+							crystallarieumBlockEntity.setOwner(player);
+							break;
+						}
+					}
+					return ActionResult.CONSUME;
 				} else {
-					crystallarieumBlockEntity.acceptStack(player.getStackInHand(hand), player.isCreative());
+					// hand is full and inventory is empty: add
+					// hand is full and inventory already contains item: exchange them
+					int inputInventorySlotIndex = handStack.getItem() instanceof InkStorageItem<?> ? CrystallarieumBlockEntity.INK_STORAGE_STACK_SLOT_ID : CrystallarieumBlockEntity.CATALYST_SLOT_ID;
+					if (exchangeStack(world, pos, player, hand, handStack, crystallarieumBlockEntity, inputInventorySlotIndex)) {
+						crystallarieumBlockEntity.setOwner(player);
+					}
 				}
 			}
 			return ActionResult.CONSUME;
 		}
-	}
-	
-	protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
-			crystallarieumBlockEntity.setOwner(player);
-			player.openHandledScreen(crystallarieumBlockEntity);
-		}
-	}
-	
-	// drop all currently stored items
-	@Override
-	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-		scatterContents(world, pos);
-		super.onStateReplaced(state, world, pos, newState, moved);
-	}
-	
-	public static void scatterContents(World world, BlockPos pos) {
-		Block block = world.getBlockState(pos).getBlock();
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity instanceof CrystallarieumBlockEntity crystallarieumBlockEntity) {
-			ItemScatterer.spawn(world, pos, crystallarieumBlockEntity.getInvStackList());
-			world.updateComparators(pos, block);
-		}
-	}
-	
-	@Override
-	public boolean hasComparatorOutput(BlockState state) {
-		return true;
-	}
-	
-	@Override
-	public int getComparatorOutput(BlockState state, @NotNull World world, BlockPos pos) {
-		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
 	
 }

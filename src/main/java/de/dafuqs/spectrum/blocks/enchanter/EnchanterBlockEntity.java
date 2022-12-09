@@ -459,7 +459,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 				if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 					itemBowlBlockEntity.decrementBowlStack(new Vec3d(enchanterBlockEntity.pos.getX(), enchanterBlockEntity.pos.getY() + 1, enchanterBlockEntity.pos.getX() + 0.5), resultAmountAfterEfficiencyMod, false);
-					itemBowlBlockEntity.updateInClientWorld(world, itemBowlPos);
+					itemBowlBlockEntity.updateInClientWorld();
 				}
 			}
 		}
@@ -754,7 +754,6 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		currentItemProcessingTime = -1;
 		
 		super.inventoryChanged();
-		this.markDirty();
 	}
 	
 	public ItemStack getItemBowlStack(World world, BlockPos blockPos) {

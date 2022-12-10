@@ -33,9 +33,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-// increased priority, cause https://github.com/Luligabi1/Incantationem/blob/b87d864cba60601c78c70c9999b6df37cce9fd03/src/main/java/me/luligabi/incantationem/mixin/BlockMixin.java#L60 would cancel the spectrum$getDroppedStacks call
-// the use of @ModifyReturnValue ensues both end up compatible as soon as both mods use it
-@Mixin(value = Block.class, priority = 999)
+// the use of mixin extras @ModifyReturnValue ensues mods end up compatible when mods use it
+@Mixin(value = Block.class)
 public abstract class BlockMixin {
 	
 	PlayerEntity spectrum$breakingPlayer;

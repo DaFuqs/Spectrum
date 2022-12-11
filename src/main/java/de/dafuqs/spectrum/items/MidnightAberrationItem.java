@@ -11,8 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Pair;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -59,6 +61,11 @@ public class MidnightAberrationItem extends CloakedItem {
 		compound.putBoolean("Stable", true);
 		stack.setNbt(compound);
 		return stack;
+	}
+	
+	@Override
+	public @Nullable Pair<Item, MutableText> getCloakedItemTranslation() {
+		return new Pair<>(this, Text.translatable("item.spectrum.midnight_aberration.cloaked"));
 	}
 	
 }

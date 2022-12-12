@@ -12,6 +12,7 @@ group = project.maven_group
 
 repositories {
 	mavenLocal()
+	maven { url 'https://jitpack.io' }
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com" }
 	maven {
@@ -31,7 +32,6 @@ repositories {
 		url "https://maven.jamieswhiteshirt.com/libs-release/"
 	}
 	maven { url 'https://maven.wispforest.io/' } // owo lib
-	maven { url 'https://jitpack.io' }
 	maven {
 		name = "ProgrammerArtInjector"
 		url = 'https://maven.extracraftx.com'
@@ -94,12 +94,12 @@ dependencies {
 
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
-	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
+	//modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 
 	//modImplementation("com.github.LudoCrypt:Liminal-Library:${project.liminal_lib_version}")
 
-	implementation include("com.github.LlamaLad7:MixinExtras:0.0.12")
-	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
+	implementation include("com.github.LlamaLad7:MixinExtras:0.1.1")
+	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
 
 	// includes the textures in the "programmer art" folder in the programmer art texture pack
 	modImplementation "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"

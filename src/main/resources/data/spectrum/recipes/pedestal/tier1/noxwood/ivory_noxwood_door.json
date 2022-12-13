@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_doors",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:ivory_noxwood_planks"
+    }
+  },
+  "result": {
+    "item": "spectrum:ivory_noxwood_door",
+    "count": 3
+  }
+}

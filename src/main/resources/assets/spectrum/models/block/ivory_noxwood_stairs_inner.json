@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/inner_stairs",
   "textures": {
-    "bottom": "spectrum:block/ivory_noxwood",
-    "top": "spectrum:block/ivory_noxwood",
-    "side": "spectrum:block/ivory_noxwood"
+    "bottom": "spectrum:block/ivory_noxwood_planks",
+    "top": "spectrum:block/ivory_noxwood_planks",
+    "side": "spectrum:block/ivory_noxwood_planks"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_fence_gate_wall",
   "textures": {
-    "texture": "spectrum:block/chestnut_noxwood"
+    "texture": "spectrum:block/chestnut_noxwood_planks"
   }
 }

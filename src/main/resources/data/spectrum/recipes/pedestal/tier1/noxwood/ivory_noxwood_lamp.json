@@ -1,0 +1,36 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "noxwood_lamps",
+  "time": 80,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.5,
+  "pattern": [
+    "SSS",
+    "GXG",
+    "III"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:ivory_noxcap_stem"
+    },
+    "G": {
+      "item": "spectrum:ivory_noxcap_gills"
+    },
+    "I": {
+      "item": "minecraft:copper_ingot"
+    },
+    "X": {
+      "item": "spectrum:sparklestone_gem"
+    }
+  },
+  "result": {
+    "item": "spectrum:ivory_noxwood_lamp",
+    "count": 2
+  },
+  "required_advancement": "spectrum:progression/lategame/collect_noxwood"
+}

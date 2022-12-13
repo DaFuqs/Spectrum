@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_fence_gate_open",
   "textures": {
-    "texture": "spectrum:block/ivory_noxwood"
+    "texture": "spectrum:block/ivory_noxwood_planks"
   }
 }

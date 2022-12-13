@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoors",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:chestnut_noxwood_planks"
+    }
+  },
+  "result": {
+    "item": "spectrum:chestnut_noxwood_trapdoor",
+    "count": 2
+  }
+}

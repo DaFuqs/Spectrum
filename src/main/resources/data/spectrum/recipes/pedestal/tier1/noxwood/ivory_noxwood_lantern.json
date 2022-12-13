@@ -1,0 +1,39 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "noxwood_lanterns",
+  "time": 240,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 1.0,
+  "pattern": [
+    " S ",
+    "GHG",
+    "CIC"
+  ],
+  "key": {
+    "S": {
+      "item": "spectrum:ivory_noxwood_slab"
+    },
+    "G": {
+      "item": "spectrum:ivory_noxcap_gills"
+    }
+    "C": {
+      "item": "spectrum:ivory_noxcap_cap"
+    }
+    "I": {
+      "item": "minecraft:copper_ingot"
+    },
+    "H": {
+      "item": "spectrum:shimmerstone"
+    }
+  },
+  "result": {
+    "item": "spectrum:ivory_noxwood_lantern",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/lategame/collect_noxwood"
+}

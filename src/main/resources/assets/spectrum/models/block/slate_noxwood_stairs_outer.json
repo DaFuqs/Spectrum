@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/outer_stairs",
   "textures": {
-    "bottom": "spectrum:block/slate_noxwood",
-    "top": "spectrum:block/slate_noxwood",
-    "side": "spectrum:block/slate_noxwood"
+    "bottom": "spectrum:block/slate_noxwood_planks",
+    "top": "spectrum:block/slate_noxwood_planks",
+    "side": "spectrum:block/slate_noxwood_planks"
   }
 }

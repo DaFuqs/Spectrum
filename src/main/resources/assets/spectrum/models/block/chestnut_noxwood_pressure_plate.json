@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/pressure_plate_up",
   "textures": {
-    "texture": "spectrum:block/chestnut_noxwood"
+    "texture": "spectrum:block/chestnut_noxwood_planks"
   }
 }

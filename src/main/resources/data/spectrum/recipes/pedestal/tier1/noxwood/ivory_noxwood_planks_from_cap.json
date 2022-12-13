@@ -1,0 +1,25 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "noxwood_planks",
+  "time": 40,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.0,
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:ivory_noxwood_cap"
+    }
+  },
+  "result": {
+    "item": "spectrum:ivory_noxwood_planks",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/lategame/collect_noxwood"
+}

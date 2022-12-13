@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/pressure_plate_down",
   "textures": {
-    "texture": "spectrum:block/ivory_noxwood"
+    "texture": "spectrum:block/ivory_noxwood_planks"
   }
 }

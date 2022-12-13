@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -94,16 +94,11 @@ dependencies {
 
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
-	//modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
+
+	implementation include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
+	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 
 	//modImplementation("com.github.LudoCrypt:Liminal-Library:${project.liminal_lib_version}")
-
-	implementation include("com.github.LlamaLad7:MixinExtras:0.1.1")
-	annotationProcessor("com.github.LlamaLad7:MixinExtras:0.1.1")
-
-	// includes the textures in the "programmer art" folder in the programmer art texture pack
-	modImplementation "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"
-	include "com.extracraftx.minecraft:ProgrammerArtInjector:${project.programmer_art_injector_version}"
 
 	// Soft testing-only dependencies:
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/

@@ -1,0 +1,26 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "hexcasting:charged_amethyst",
+  "modifiers": [
+    {
+      "flat_duration_bonus_ticks": 300
+    },
+    {
+    "flat_duration_bonus_ticks": 600
+    },
+    {
+    "flat_duration_bonus_ticks": 900
+    },
+    {
+    "flat_duration_bonus_ticks": 1200
+    }
+  ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "hexcasting"
+      ]
+    }
+  ]
+}

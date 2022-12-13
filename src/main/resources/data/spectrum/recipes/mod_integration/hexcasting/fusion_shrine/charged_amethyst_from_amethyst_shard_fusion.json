@@ -1,0 +1,37 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 800,
+  "experience": 2.0,
+  "fluid": "minecraft:water",
+  "ingredients": [
+    {
+      "item": "minecraft:amethyst_shard",
+      "count": 8
+    },
+    {
+      "item": "spectrum:storm_stone"
+    }
+  ],
+  "result": {
+    "item": "hexcasting:charged_amethyst",
+	"count": 8
+  },
+  "required_advancement": "spectrum:midgame/collect_storm_stone",
+  "world_conditions": [],
+  "start_crafting_effect": "single_visual_explosion_on_shrine",
+  "during_crafting_effects": [
+    "nothing",
+    "visual_explosions_on_shrine",
+    "nothing"
+  ],
+  "finish_crafting_effect": "lightning_on_shrine",
+  "description": "",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "hexcasting"
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.blocks.conditional.ColoredLeavesBlock;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.util.DyeColor;
 
-public class SpectrumComposting {
+public class SpectrumCompostableBlocks {
 	
 	public static void register() {
 		CompostingChanceRegistry.INSTANCE.add(SpectrumBlocks.CLOVER.asItem(), 0.25F);

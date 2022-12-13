@@ -1,6 +1,7 @@
 {
-    "parent": "minecraft:block/cube_all",
+    "parent": "minecraft:block/cube_column",
     "textures": {
-    "all": "spectrum:block/blackslag_side"
+        "end": "spectrum:block/blackslag_malachite_ore_top",
+        "side": "spectrum:block/blackslag_malachite_ore"
     }
 }

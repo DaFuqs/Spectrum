@@ -63,7 +63,12 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	}
 	
 	private static void calculateLocationData(World world, BlockPos blockPos, @NotNull BlockState blockState, @NotNull PreservationControllerBlockEntity blockEntity) {
-		Direction facing = world.getBlockState(blockPos).get(PreservationControllerBlock.FACING);
+		BlockState state = world.getBlockState(blockPos);
+		if(!state.isOf(SpectrumBlocks.PRESERVATION_CONTROLLER)) {
+			return;
+		}
+		
+		Direction facing = state.get(PreservationControllerBlock.FACING);
 		BlockPos centerPos = blockPos;
 		if (blockEntity.checkBoxOffset != null) {
 			centerPos = Support.directionalOffset(blockEntity.pos, blockEntity.checkBoxOffset, blockState.get(PreservationControllerBlock.FACING));
@@ -166,7 +171,12 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	
 	public void openExit() {
 		boolean didSomething = false;
-		Direction facing = world.getBlockState(pos).get(PreservationControllerBlock.FACING);
+		BlockState state = world.getBlockState(pos);
+		if(!state.isOf(SpectrumBlocks.PRESERVATION_CONTROLLER)) {
+			return;
+		}
+		
+		Direction facing = state.get(PreservationControllerBlock.FACING);
 		if (facing == Direction.NORTH || facing == Direction.SOUTH) {
 			for (int x = -1; x < 2; x++) {
 				for (int y = -3; y < 0; y++) {

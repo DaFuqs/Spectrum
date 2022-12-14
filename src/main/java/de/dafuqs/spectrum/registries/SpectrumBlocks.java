@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.registries;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.EnumHashBiMap;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.amphora.AmphoraBlock;
 import de.dafuqs.spectrum.blocks.block_flooder.BlockFlooderBlock;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlock;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlock;
@@ -470,7 +471,7 @@ public class SpectrumBlocks {
 	public static final Block SLATE_NOXWOOD_BUTTON = new WoodenButtonBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.GRAY));
-	public static final Block SLATE_NOXWOOD_AMPHORA = new PillarBlock(noxcap(MapColor.GRAY)); // TODO daf, plz implement BIIIG storage thx
+	public static final Block SLATE_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.GRAY).luminance(litProvider));
 	public static final Block SLATE_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.GRAY).luminance(15));
 	public static final Block SLATE_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.GRAY).luminance(13));
@@ -489,7 +490,7 @@ public class SpectrumBlocks {
 	public static final Block EBONY_NOXWOOD_BUTTON = new WoodenButtonBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final Block EBONY_NOXWOOD_AMPHORA = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK)); // TODO daf, plz implement BIIIG storage thx
+	public static final Block EBONY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(litProvider));
 	public static final Block EBONY_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(15));
 	public static final Block EBONY_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(13));
@@ -508,7 +509,7 @@ public class SpectrumBlocks {
 	public static final Block IVORY_NOXWOOD_BUTTON = new WoodenButtonBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.OFF_WHITE));
-	public static final Block IVORY_NOXWOOD_AMPHORA = new PillarBlock(noxcap(MapColor.OFF_WHITE)); // TODO daf, plz implement BIIIG storage thx
+	public static final Block IVORY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.OFF_WHITE).luminance(litProvider));
 	public static final Block IVORY_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.OFF_WHITE).luminance(15));
 	public static final Block IVORY_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.OFF_WHITE).luminance(13));
@@ -527,7 +528,7 @@ public class SpectrumBlocks {
 	public static final Block CHESTNUT_NOXWOOD_BUTTON = new WoodenButtonBlock(noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.DULL_RED));
-	public static final Block CHESTNUT_NOXWOOD_AMPHORA = new PillarBlock(noxcap(MapColor.DULL_RED)); // TODO daf, plz implement BIIIG storage thx
+	public static final Block CHESTNUT_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.DULL_RED).luminance(litProvider));
 	public static final Block CHESTNUT_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.DULL_RED).luminance(15));
 	public static final Block CHESTNUT_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.DULL_RED).luminance(13));

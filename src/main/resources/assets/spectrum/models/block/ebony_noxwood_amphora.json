@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "spectrum:block/ebony_noxwood_amphora_bottom",
     "side": "spectrum:block/ebony_noxwood_amphora",
-    "top": "spectrum:block/ebony_noxwood_amphora_top_closed"
+    "top": "spectrum:block/ebony_noxwood_amphora_top"
   }
 }

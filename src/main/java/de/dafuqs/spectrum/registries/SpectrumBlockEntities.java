@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.amphora.AmphoraBlockEntity;
 import de.dafuqs.spectrum.blocks.block_flooder.BlockFlooderBlockEntity;
 import de.dafuqs.spectrum.blocks.bottomless_bundle.BottomlessBundleBlockEntity;
 import de.dafuqs.spectrum.blocks.chests.*;
@@ -91,6 +92,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<PrivateChestBlockEntity> PRIVATE_CHEST;
 	public static BlockEntityType<SuckingChestBlockEntity> SUCKING_CHEST;
 	public static BlockEntityType<TreasureChestBlockEntity> TREASURE_CHEST;
+	public static BlockEntityType<AmphoraBlockEntity> AMPHORA;
 	
 	public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
 	public static BlockEntityType<RedstoneCalculatorBlockEntity> REDSTONE_CALCULATOR;
@@ -132,6 +134,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		PRIVATE_CHEST = register("private_chest", PrivateChestBlockEntity::new, SpectrumBlocks.PRIVATE_CHEST);
 		SUCKING_CHEST = register("sucking_chest", SuckingChestBlockEntity::new, SpectrumBlocks.SUCKING_CHEST);
 		TREASURE_CHEST = register("treasure_chest", TreasureChestBlockEntity::new, SpectrumBlocks.TREASURE_CHEST);
+		AMPHORA = register("amphora", AmphoraBlockEntity::new, SpectrumBlocks.CHESTNUT_NOXWOOD_AMPHORA, SpectrumBlocks.EBONY_NOXWOOD_AMPHORA, SpectrumBlocks.SLATE_NOXWOOD_AMPHORA, SpectrumBlocks.IVORY_NOXWOOD_AMPHORA);
 		PLAYER_DETECTOR = register("player_detector", PlayerDetectorBlockEntity::new, SpectrumBlocks.PLAYER_DETECTOR);
 		REDSTONE_CALCULATOR = register("redstone_calculator", RedstoneCalculatorBlockEntity::new, SpectrumBlocks.REDSTONE_CALCULATOR);
 		REDSTONE_WIRELESS = register("redstone_wireless", RedstoneWirelessBlockEntity::new, SpectrumBlocks.REDSTONE_WIRELESS);

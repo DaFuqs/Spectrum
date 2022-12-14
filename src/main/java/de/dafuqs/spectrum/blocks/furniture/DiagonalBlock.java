@@ -23,7 +23,7 @@ public class DiagonalBlock extends Block {
 		var player = ctx.getPlayer();
 		
 		if (player != null && state != null) {
-			var yaw = player.getYaw() + 180;
+			var yaw = player.getYaw() + 180 + 360;
 			var arc = yaw % 90;
 			
 			return state.with(DIAGONAL, arc > 25 && arc < 65);

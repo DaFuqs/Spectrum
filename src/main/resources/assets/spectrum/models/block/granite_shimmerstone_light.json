@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:block/template_shimmerstone_light",
+  "parent": "spectrum:templates/shimmerstone_light",
   "textures": {
     "outer": "minecraft:block/polished_granite",
     "inner": "spectrum:block/shimmerstone_light",

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:block/template_upgrade",
+  "parent": "spectrum:templates/upgrade",
   "textures": {
     "inner": "spectrum:block/upgrade_speed_inner",
     "outer": "spectrum:block/upgrade_speed_outer",

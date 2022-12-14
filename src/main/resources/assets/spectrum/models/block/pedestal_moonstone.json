@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:block/template_pedestal",
+  "parent": "spectrum:templates/pedestal",
   "textures": {
     "pedestal": "spectrum:block/pedestal_moonstone",
     "particle": "spectrum:block/pedestal_moonstone_breaking"

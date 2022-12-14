@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:block/template_item_bowl",
+  "parent": "spectrum:templates/item_bowl",
   "textures": {
     "0": "spectrum:block/item_bowl_basalt",
     "1": "spectrum:block/polished_basalt_pillar_side",

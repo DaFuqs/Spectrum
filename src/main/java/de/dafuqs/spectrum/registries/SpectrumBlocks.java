@@ -884,6 +884,7 @@ public class SpectrumBlocks {
 	public static final Block INVISIBLE_WALL = new InvisibleWallBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).strength(-1.0F, 3600000.0F));
 	
+	public static final Block DOWNSTONE = new Block(preservationBlockSettings); // "raw" preservation stone, used in the Deeper Down
 	public static final Block PRESERVATION_STONE = new Block(preservationBlockSettings);
 	public static final Block POWDER_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(2));
 	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(6));
@@ -1841,7 +1842,8 @@ public class SpectrumBlocks {
 	}
 	
 	private static void registerStructureBlocks(FabricItemSettings settings) {
-		registerBlockWithItem("preservation_controller", PRESERVATION_CONTROLLER, settings, DyeColor.BLUE);
+		registerBlockWithItem("downstone", DOWNSTONE, settings, DyeColor.BLUE);
+		
 		registerBlockWithItem("preservation_stone", PRESERVATION_STONE, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_bricks", PRESERVATION_BRICKS, settings, DyeColor.BLUE);
 		registerBlockWithItem("shimmering_preservation_bricks", SHIMMERING_PRESERVATION_BRICKS, settings, DyeColor.BLUE);
@@ -1852,6 +1854,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("preservation_roundel", PRESERVATION_ROUNDEL, settings, DyeColor.BLUE);
 		registerBlockWithItem("dike_gate_fountain", DIKE_GATE_FOUNTAIN, settings, DyeColor.BLUE);
 		registerBlockWithItem("dike_gate", DIKE_GATE, settings, DyeColor.BLUE);
+		registerBlockWithItem("preservation_controller", PRESERVATION_CONTROLLER, settings, DyeColor.BLUE);
 		registerBlockWithItem("invisible_wall", INVISIBLE_WALL, settings, DyeColor.BLUE);
 		registerBlockWithItem("courier_statue", COURIER_STATUE, settings, DyeColor.BLUE);
 		registerBlockWithItem("treasure_chest", TREASURE_CHEST, settings, DyeColor.BLUE);

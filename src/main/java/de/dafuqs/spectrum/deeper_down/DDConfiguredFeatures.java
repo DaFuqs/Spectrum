@@ -33,8 +33,8 @@ public class DDConfiguredFeatures {
 	public static final ConfiguredFeature<OreFeatureConfig, ?> GRANITE_DISK = new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(BASE_STONE_DD, Blocks.GRANITE.getDefaultState(), 64));
 	public static final ConfiguredFeature<OreFeatureConfig, ?> DIORITE_DISK = new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(BASE_STONE_DD, Blocks.DIORITE.getDefaultState(), 64));
 	public static final ConfiguredFeature<OreFeatureConfig, ?> ANDESITE_DISK = new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(BASE_STONE_DD, Blocks.ANDESITE.getDefaultState(), 64));
-	public static final ConfiguredFeature<OreFeatureConfig, ?> BEDROCK_DISK = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, Blocks.BEDROCK.getDefaultState(), 40));
-	public static final ConfiguredFeature<OreFeatureConfig, ?> BEDROCK_DISK_SLOPED = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, Blocks.BEDROCK.getDefaultState(), 40));
+	public static final ConfiguredFeature<OreFeatureConfig, ?> DOWNSTONE_DISK = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, SpectrumBlocks.DOWNSTONE.getDefaultState(), 40));
+	public static final ConfiguredFeature<OreFeatureConfig, ?> DOWNSTONE_DISK_SLOPED = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, SpectrumBlocks.DOWNSTONE.getDefaultState(), 40));
 	
 	public static final ConfiguredFeature<SpringFeatureConfig, ?> WATER_SPRING = new ConfiguredFeature<>(Feature.SPRING_FEATURE, new SpringFeatureConfig(Fluids.WATER.getDefaultState(), true, 4, 1, DD_BASE_BLOCKS));
 	public static final ConfiguredFeature<MultifaceGrowthFeatureConfig, ?> GLOW_LICHEN = new ConfiguredFeature<>(Feature.MULTIFACE_GROWTH, new MultifaceGrowthFeatureConfig((GlowLichenBlock) Blocks.GLOW_LICHEN, 20, false, true, true, 0.5F, DD_BASE_BLOCKS));

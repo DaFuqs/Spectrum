@@ -589,7 +589,7 @@
 
   "block.spectrum.black_materia": "Black Materia",
 
-  "block.spectrum.preservation_controller": "Preservation Controller",
+  "block.spectrum.downstone": "Downstone",
   "block.spectrum.preservation_stone": "Preservation Stone",
   "block.spectrum.preservation_glass": "Preservation Glass",
   "block.spectrum.tinted_preservation_glass": "Tinted Preservation Glass",
@@ -603,6 +603,7 @@
   "block.spectrum.invisible_wall": "Invisible Wall",
   "block.spectrum.courier_statue": "Ancient Statue",
   "block.spectrum.treasure_chest": "Treasure Chest",
+  "block.spectrum.preservation_controller": "Preservation Controller",
 
   "block.spectrum.blackslag": "Blackslag",
   "block.spectrum.blackslag_coal_ore": "Blackslag Coal Ore",
@@ -1724,15 +1725,12 @@
 
   "block.spectrum.malachite_ore": "Malachite Ore",
   "block.spectrum.deepslate_malachite_ore": "Deepslate Malachite Ore",
-  "block.spectrum.downstone_malachite_ore": "Downstone Malachite Ore",
   "item.spectrum.raw_malachite": "Raw Malachite",
   "block.spectrum.small_malachite_bud": "Small Malachite Bud",
   "block.spectrum.large_malachite_bud": "Large Malachite Bud",
   "block.spectrum.malachite_cluster": "Malachite Cluster",
   "block.spectrum.malachite_block": "Block of Malachite",
   "item.spectrum.malachite_crystal": "Refined Malachite",
-
-  "block.spectrum.downstone": "Downstone",
 
   "item.spectrum.logo_banner_pattern": "Banner Pattern",
   "item.spectrum.logo_banner_pattern.desc": "Color Theory",

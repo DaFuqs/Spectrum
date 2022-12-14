@@ -174,11 +174,11 @@ public class DDDimension {
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_bedrock");
-		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.BEDROCK_DISK, HeightRangePlacementModifier.uniform(YOffset.belowTop(128), YOffset.getTop()), CountPlacementModifier.of(16));
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.DOWNSTONE_DISK, HeightRangePlacementModifier.uniform(YOffset.belowTop(128), YOffset.getTop()), CountPlacementModifier.of(16));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_bedrock_sloped");
-		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.BEDROCK_DISK_SLOPED, HeightRangePlacementModifier.of(VeryBiasedToBottomHeightProvider.create(YOffset.getBottom(), YOffset.aboveBottom(50), 24)), CountPlacementModifier.of(16));
+		registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.DOWNSTONE_DISK_SLOPED, HeightRangePlacementModifier.of(VeryBiasedToBottomHeightProvider.create(YOffset.getBottom(), YOffset.aboveBottom(50), 24)), CountPlacementModifier.of(16));
 		BiomeModifications.addFeature(BiomeSelectors.includeByKey(DDDimension.DEEPER_DOWN_BIOME_KEY), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, id));
 		
 		id = SpectrumCommon.locate("dd_stone");

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:base/multilayer_light",
+  "parent": "spectrum:templates/multilayer_light",
   "textures": {
     "top": "spectrum:block/polished_basalt",
     "side": "spectrum:block/amethyst_basalt_lamp",

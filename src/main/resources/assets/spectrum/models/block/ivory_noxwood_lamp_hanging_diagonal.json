@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:base/base_noxwood_lamp_hanging_diagonal",
+  "parent": "spectrum:templates/noxwood_lamp_hanging_diagonal",
   "textures": {
     "all": "spectrum:block/ivory_noxwood_lamp"
   }

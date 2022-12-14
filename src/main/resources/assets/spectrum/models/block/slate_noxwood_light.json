@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:base/multilayer_light",
+  "parent": "spectrum:templates/multilayer_light",
   "textures": {
     "top": "spectrum:block/slate_noxwood_light_top",
     "side": "spectrum:block/slate_noxwood_light",

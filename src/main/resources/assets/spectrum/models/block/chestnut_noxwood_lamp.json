@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:base/base_noxwood_lamp",
+  "parent": "spectrum:templates/noxwood_lamp",
   "textures": {
     "all": "spectrum:block/chestnut_noxwood_lamp"
   }

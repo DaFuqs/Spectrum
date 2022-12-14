@@ -8,7 +8,7 @@
   "yellow": 0,
   "white": 0,
   "black": 0,
-  "experience": 0.5,
+  "experience": 0.1,
   "pattern": [
     "SSS",
     "GXG",
@@ -22,15 +22,15 @@
       "item": "spectrum:slate_noxcap_gills"
     },
     "I": {
-      "item": "minecraft:copper_ingot"
+      "item": "minecraft:prismarine_crystals"
     },
     "X": {
-      "item": "spectrum:sparklestone_gem"
+      "item": "spectrum:shimmerstone_gem"
     }
   },
   "result": {
     "item": "spectrum:slate_noxwood_lamp",
     "count": 2
   },
-  "required_advancement": "spectrum:progression/lategame/collect_noxwood"
+  "required_advancement": "spectrum:lategame/collect_noxwood"
 }

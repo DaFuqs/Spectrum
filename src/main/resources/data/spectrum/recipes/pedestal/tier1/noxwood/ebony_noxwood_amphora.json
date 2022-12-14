@@ -10,7 +10,7 @@
   "black": 0,
   "experience": 1.0,
   "pattern": [
-    "PSP",
+    "SAS",
     "I I",
     "PSP"
   ],
@@ -19,15 +19,18 @@
       "item": "spectrum:ebony_noxwood_slab"
     },
     "P": {
-      "item": "spectrum:ebony_noxcap_planks"
+      "item": "spectrum:ebony_noxwood_planks"
     },
     "I": {
       "item": "minecraft:copper_ingot"
+    },
+    "A": {
+      "item": "minecraft:paper"
     }
   },
   "result": {
     "item": "spectrum:ebony_noxwood_amphora",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/lategame/collect_noxwood"
+  "required_advancement": "spectrum:lategame/collect_noxwood"
 }

@@ -1,6 +1,14 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "wooden_slab",
+  "type": "spectrum:pedestal",
+  "group": "noxwood_decorations",
+  "time": 80,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.1,
   "pattern": [
     "###"
   ],
@@ -12,5 +20,6 @@
   "result": {
     "item": "spectrum:chestnut_noxwood_slab",
     "count": 6
-  }
+  },
+  "required_advancement": "spectrum:lategame/collect_noxwood"
 }

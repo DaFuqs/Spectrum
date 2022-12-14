@@ -1,6 +1,14 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "group": "wooden_pressure_plate",
+  "type": "spectrum:pedestal",
+  "group": "noxwood_decorations",
+  "time": 80,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.1,
   "pattern": [
     "##"
   ],
@@ -10,6 +18,8 @@
     }
   },
   "result": {
-    "item": "spectrum:ebony_noxwood_pressure_plate"
-  }
+    "item": "spectrum:ebony_noxwood_pressure_plate",
+    "count": 4
+  },
+  "required_advancement": "spectrum:lategame/collect_noxwood"
 }

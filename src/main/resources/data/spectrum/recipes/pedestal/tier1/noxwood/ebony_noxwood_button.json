@@ -1,12 +1,25 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "group": "wooden_button",
-  "ingredients": [
-    {
+  "type": "spectrum:pedestal",
+  "group": "noxwood_decorations",
+  "time": 80,
+  "tier": "basic",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 0,
+  "black": 0,
+  "experience": 0.1,
+  "pattern": [
+    "S"
+  ],
+  "key": {
+    "S": {
       "item": "spectrum:ebony_noxwood_planks"
     }
-  ],
+  },
   "result": {
-    "item": "spectrum:ebony_noxwood_button"
-  }
+    "item": "spectrum:ebony_noxwood_button",
+    "count": 4
+  },
+  "required_advancement": "spectrum:lategame/collect_noxwood"
 }

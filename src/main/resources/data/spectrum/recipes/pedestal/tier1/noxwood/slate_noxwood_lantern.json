@@ -20,20 +20,20 @@
     },
     "G": {
       "item": "spectrum:slate_noxcap_gills"
-    }
+    },
     "C": {
       "item": "spectrum:slate_noxcap_cap"
-    }
+    },
     "I": {
-      "item": "minecraft:copper_ingot"
+      "item": "minecraft:prismarine_crystals"
     },
     "H": {
-      "item": "spectrum:shimmerstone"
+      "item": "spectrum:shimmerstone_gem"
     }
   },
   "result": {
     "item": "spectrum:slate_noxwood_lantern",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/lategame/collect_noxwood"
+  "required_advancement": "spectrum:lategame/collect_noxwood"
 }

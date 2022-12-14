@@ -14,12 +14,12 @@
   ],
   "key": {
     "#": {
-      "item": "spectrum:chestnut_noxwood_cap"
+      "item": "spectrum:chestnut_noxcap_cap"
     }
   },
   "result": {
     "item": "spectrum:chestnut_noxwood_planks",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/lategame/collect_noxwood"
+  "required_advancement": "spectrum:lategame/collect_noxwood"
 }

@@ -14,12 +14,12 @@
   ],
   "key": {
     "#": {
-      "item": "spectrum:ivory_noxwood_stem"
+      "item": "spectrum:ivory_noxcap_stem"
     }
   },
   "result": {
     "item": "spectrum:ivory_noxwood_planks",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/lategame/collect_noxwood"
+  "required_advancement": "spectrum:lategame/collect_noxwood"
 }

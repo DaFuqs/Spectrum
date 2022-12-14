@@ -22,10 +22,10 @@ public class BlockVariantHelper {
 	// ordered color strings so "light_" variants match before non-light
 	private static final List<String> COLOR_STRINGS = List.of("light_blue", "light_gray", "white", "orange", "magenta", "yellow", "lime", "pink", "gray", "cyan", "purple", "blue", "brown", "green", "red", "black");
 	
-	public static Block getCursedBlockColorVariant(World world, BlockPos blockPos, DyeColor newColor) {
+	public static BlockState getCursedBlockColorVariant(World world, BlockPos blockPos, DyeColor newColor) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity != null) {
-			return Blocks.AIR;
+			return Blocks.AIR.getDefaultState();
 		}
 		
 		BlockState blockState = world.getBlockState(blockPos);
@@ -34,7 +34,8 @@ public class BlockVariantHelper {
 		if (coloredStates.containsKey(block)) {
 			Map<DyeColor, Block> colorMap = coloredStates.get(block);
 			if (colorMap.containsKey(newColor)) {
-				return colorMap.get(newColor);
+				Block newBlock = colorMap.get(newColor);
+				return newBlock.getStateWithProperties(blockState);
 			}
 		}
 		
@@ -67,7 +68,7 @@ public class BlockVariantHelper {
 			coloredStates.put(block, colorMap);
 		}
 		
-		return returnBlock;
+		return returnBlock.getStateWithProperties(blockState);
 	}
 	
 	// cache for getCursedRepairedBlockVariant()

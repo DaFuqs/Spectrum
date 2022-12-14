@@ -9,8 +9,7 @@ import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.sound.InkProjectileSoundInstance;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.ProtectionEnchantment;
 import net.minecraft.entity.Entity;
@@ -286,9 +285,9 @@ public class InkProjectileEntity extends ProjectileEntity {
 			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
 			
 			for (BlockPos blockPos : BlockPos.iterateOutwards(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
-				Block coloredBlock = BlockVariantHelper.getCursedBlockColorVariant(this.world, blockPos, dyeColor);
-				if (coloredBlock != Blocks.AIR) {
-					this.world.setBlockState(blockPos, coloredBlock.getDefaultState());
+				BlockState coloredBlockState = BlockVariantHelper.getCursedBlockColorVariant(this.world, blockPos, dyeColor);
+				if (!coloredBlockState.isAir()) {
+					this.world.setBlockState(blockPos, coloredBlockState);
 				}
 			}
 			

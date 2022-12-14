@@ -13,8 +13,7 @@ import de.dafuqs.spectrum.items.PigmentItem;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -131,16 +130,12 @@ public class PaintbrushItem extends Item {
 		DyeColor dyeColor = inkColor.getDyeColor();
 		
 		if (payBlockColorCost(context.getPlayer(), inkColor)) {
-			
-			// TODO: Use Jellos API to support all of jellos block colors
-			// https://modrinth.com/mod/jello
-			Block newBlock = BlockVariantHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
-			if (newBlock == Blocks.AIR) {
+			BlockState newBlockState = BlockVariantHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
+			if (newBlockState.isAir()) {
 				return false;
 			}
-			
 			if (!context.getWorld().isClient) {
-				context.getWorld().setBlockState(context.getBlockPos(), newBlock.getDefaultState());
+				context.getWorld().setBlockState(context.getBlockPos(), newBlockState);
 				context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			return true;

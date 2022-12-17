@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:item/handheld_oversized",
+  "textures": {
+    "layer0": "spectrum:item/moonstone_crest_ultra_greatsword_oversized"
+  }
+}

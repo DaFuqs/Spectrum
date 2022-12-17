@@ -49,10 +49,32 @@ public class SpectrumItemPredicates {
 		registerInkColorPredicate(SpectrumItems.INK_FLASK);
 		registerInkFillStateItemPredicate(SpectrumItems.INK_FLASK);
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
-		registerDreamFlayerPredicates(SpectrumItems.DREAMFLAYER);
+		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
+		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
+		
+		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_WORKSTAFF);
+		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_ULTRA_GREATSWORD);
+		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_CROSSBOW);
+		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_BIDENT);
+		registerOversizedItemPredicate(SpectrumItems.MOONSTONE_CREST_WORKSTAFF);
+		registerOversizedItemPredicate(SpectrumItems.MOONSTONE_CREST_ULTRA_GREATSWORD);
+		registerOversizedItemPredicate(SpectrumItems.MOONSTONE_CREST_CROSSBOW);
+		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_MOONSTONE_CREST_BIDENT);
+		registerOversizedItemPredicate(SpectrumItems.FRACTAL_MOONSTONE_CREST_BIDENT);
+		
+		registerThrowingItemPredicate(SpectrumItems.GLASS_CREST_BIDENT);
+		registerThrowingItemPredicate(SpectrumItems.FEROCIOUS_MOONSTONE_CREST_BIDENT);
+		registerThrowingItemPredicate(SpectrumItems.FRACTAL_MOONSTONE_CREST_BIDENT);
+		
 		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
 		registerEnchantmentCanvasPrediates(SpectrumItems.ENCHANTMENT_CANVAS);
 		registerPresentPredicates(SpectrumBlocks.PRESENT.asItem());
+	}
+	
+	private static void registerThrowingItemPredicate(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("throwing"), (itemStack, clientWorld, livingEntity, i) -> {
+			return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
+		});
 	}
 	
 	private static void registerColorPredicate(Item item) {
@@ -113,16 +135,21 @@ public class SpectrumItemPredicates {
 		});
 	}
 	
-	private static void registerDreamFlayerPredicates(Item item) {
-		ModelPredicateProviderRegistry.register(item, new Identifier("in_inventory"), (itemStack, world, livingEntity, i) -> {
-			return currentItemRenderMode == ModelTransformation.Mode.GUI ? 1.0F : 0.0F;
-		});
+	private static void registerActivatableItemPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier(ActivatableItem.NBT_STRING), (itemStack, clientWorld, livingEntity, i) -> {
 			if (ActivatableItem.isActivated(itemStack)) {
 				return 1.0F;
 			} else {
 				return 0.0F;
 			}
+		});
+	}
+	
+	private static void registerOversizedItemPredicate(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("in_world"), (itemStack, world, livingEntity, i) -> {
+			return currentItemRenderMode == ModelTransformation.Mode.GUI
+					|| currentItemRenderMode == ModelTransformation.Mode.GROUND
+					|| currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F;
 		});
 	}
 	

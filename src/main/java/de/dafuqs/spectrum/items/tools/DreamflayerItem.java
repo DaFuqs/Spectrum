@@ -102,7 +102,7 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 			if (ActivatableItem.isActivated(stack)) {
 				Vec3d pos = entity.getPos();
 				world.addParticle(SpectrumParticleTypes.RED_CRAFTING,
-						pos.getX() + world.random.nextDouble(), pos.getY() + 1.05D, pos.getZ() + world.random.nextDouble(),
+						entity.getParticleX(1.0), pos.getY() + 1.05D, entity.getParticleZ(1.0),
 						0.0D, 0.1D, 0.0D);
 			}
 		} else {

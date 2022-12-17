@@ -158,6 +158,50 @@ public class SpectrumItems {
 	public static final BedrockShearsItem BEDROCK_SHEARS = new BedrockShearsItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	public static final SpectrumFishingRodItem BEDROCK_FISHING_ROD = new BedrockFishingRodItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	
+	public static final Item MOONSTONE_CORE = new Item(Tab.EQUIPMENT.settings(8, Rarity.RARE));
+	
+	// Malachite Tools
+	// have durability, albeit high one; weaker than bedrock by default, but high enchantability
+	// deal 25 % of their damage as magic damage
+	
+	// moon variants by socketing a moonstone core (100 % magic damage)
+	// gain right click ability (white ink cost)
+	
+	// Improved multitool
+	// switchable enchants: silk touch, fortune, resonance (when unlocked)
+	// aoe mining?
+	// can till, hoe, strip (disableable)
+	// right click ability: ranged mining
+	// that's a lot of abilities and click actions... maybe remove one.
+	public static final SpectrumToolMaterials.ToolMaterial MALACHITE = SpectrumToolMaterials.ToolMaterial.MALACHITE;
+	public static final ToolItem GLASS_CREST_WORKSTAFF = new MalachiteWorkstaffItem(MALACHITE, 1, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
+	
+	// tad higher reach & knockback; right click ability: aoe ground slam
+	public static final ToolItem GLASS_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 6, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
+	// shoots glass arrows
+	public static final CrossbowItem GLASS_CREST_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.GLASS);
+	// allows riptide in all fluids; comes with loyalty
+	public static final MalachiteBidentItem GLASS_CREST_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.GLASS);
+	
+	public static final ToolItem MOONSTONE_CREST_WORKSTAFF = new MalachiteWorkstaffItem(MALACHITE, 2, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.MOONSTONE);
+	public static final ToolItem MOONSTONE_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 8, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.MOONSTONE);
+	// riptide w/o weather requirement; damages enemies on touch; iframes?
+	public static final MalachiteBidentItem FEROCIOUS_MOONSTONE_CREST_BIDENT = new MalachiteBidentItem( Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.FEROCIOUS_MOONSTONE);
+	// gets shot as copy instead of getting removed from the player's inv
+	// no fractal non-moon variant?
+	public static final MalachiteBidentItem FRACTAL_MOONSTONE_CREST_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.FRACTAL_MOONSTONE);
+	// right click ability: able to overload an already loaded arrow
+	public static final CrossbowItem MOONSTONE_CREST_CROSSBOW  = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.MOONSTONE);
+	
+	// able to pass through translucent blocks, like glass; render as rays of light
+	public static final ArrowItem GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.GLASS);
+	public static final ArrowItem TOPAZ_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.CYAN);
+	public static final ArrowItem AMETHYST_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.MAGENTA);
+	public static final ArrowItem CITRINE_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.YELLOW);
+	public static final ArrowItem ONYX_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.BLACK); // pulls entities
+	public static final ArrowItem MOONSTONE_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.WHITE);
+	
+	// Special tools
 	public static final SwordItem DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final SwordItem NIGHTFALLS_BLADE = new NightfallsBladeItem(SpectrumToolMaterials.ToolMaterial.NIGHTFALL, 0, -3.4F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	
@@ -561,6 +605,8 @@ public class SpectrumItems {
 		
 		register("fiery_powder", FIERY_POWDER, DyeColor.ORANGE);
 		register("blizzard_powder", BLIZZARD_POWDER, DyeColor.LIGHT_BLUE);
+		
+		register("moonstone_core", MOONSTONE_CORE, DyeColor.WHITE);
 	}
 	
 	public static void registerDecayBottles() {
@@ -600,6 +646,24 @@ public class SpectrumItems {
 		register("bedrock_chestplate", BEDROCK_CHESTPLATE, DyeColor.BLACK);
 		register("bedrock_leggings", BEDROCK_LEGGINGS, DyeColor.BLACK);
 		register("bedrock_boots", BEDROCK_BOOTS, DyeColor.BLACK);
+		
+		register("glass_crest_workstaff", GLASS_CREST_WORKSTAFF, DyeColor.GREEN);
+		register("glass_crest_ultra_greatsword", GLASS_CREST_ULTRA_GREATSWORD, DyeColor.GREEN);
+		register("glass_crest_crossbow", GLASS_CREST_CROSSBOW, DyeColor.GREEN);
+		register("glass_crest_bident", GLASS_CREST_BIDENT, DyeColor.GREEN);
+		
+		register("moonstone_crest_workstaff", MOONSTONE_CREST_WORKSTAFF, DyeColor.WHITE);
+		register("moonstone_crest_ultra_greatsword", MOONSTONE_CREST_ULTRA_GREATSWORD, DyeColor.WHITE);
+		register("ferocious_moonstone_crest_bident", FEROCIOUS_MOONSTONE_CREST_BIDENT, DyeColor.WHITE);
+		register("fractal_moonstone_crest_bident", FRACTAL_MOONSTONE_CREST_BIDENT, DyeColor.WHITE);
+		register("moonstone_crest_crossbow", MOONSTONE_CREST_CROSSBOW, DyeColor.WHITE);
+		
+		register("glass_arrow", GLASS_ARROW, DyeColor.GREEN);
+		register("topaz_glass_arrow", TOPAZ_GLASS_ARROW, DyeColor.CYAN);
+		register("amethyst_glass_arrow", AMETHYST_GLASS_ARROW, DyeColor.MAGENTA);
+		register("citrine_glass_arrow", CITRINE_GLASS_ARROW, DyeColor.YELLOW);
+		register("onyx_glass_arrow", ONYX_GLASS_ARROW, DyeColor.BLACK);
+		register("moonstone_glass_arrow", MOONSTONE_GLASS_ARROW, DyeColor.WHITE);
 		
 		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
 		register("nightfalls_blade", NIGHTFALLS_BLADE, DyeColor.GRAY);

@@ -1,6 +1,6 @@
 {
   "parent": "spectrum:item/handheld_oversized",
   "textures": {
-    "layer0": "spectrum:item/dreamflayer_held"
+    "layer0": "spectrum:item/glass_crest_workstaff_oversized"
   }
 }

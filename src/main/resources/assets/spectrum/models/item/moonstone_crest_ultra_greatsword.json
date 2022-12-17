@@ -1,0 +1,14 @@
+{
+  "parent": "spectrum:item/handheld_oversized",
+  "textures": {
+    "layer0": "spectrum:item/moonstone_crest_ultra_greatsword"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_world": 1.0
+      },
+      "model": "spectrum:item/moonstone_crest_ultra_greatsword_oversized"
+    }
+  ]
+}

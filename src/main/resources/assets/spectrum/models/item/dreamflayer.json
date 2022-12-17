@@ -6,31 +6,24 @@
   "overrides": [
     {
       "predicate": {
-        "activated": 0,
-        "in_inventory": 0
-      },
-      "model": "spectrum:item/dreamflayer_held"
-    },
-    {
-      "predicate": {
-        "in_inventory": 0,
-        "activated": 1
-      },
-      "model": "spectrum:item/dreamflayer_activated_held"
-    },
-    {
-      "predicate": {
-        "in_inventory": 1,
-        "activated": 0
-      },
-      "model": "spectrum:item/dreamflayer"
-    },
-    {
-      "predicate": {
-        "activated": 1,
-        "in_inventory": 1
+        "in_world": 0.0,
+        "activated": 1.0
       },
       "model": "spectrum:item/dreamflayer_activated"
+    },
+    {
+      "predicate": {
+        "in_world": 1.0,
+        "activated": 0.0
+      },
+      "model": "spectrum:item/dreamflayer_oversized"
+    },
+    {
+      "predicate": {
+        "activated": 1.0,
+        "in_world": 1.0
+      },
+      "model": "spectrum:item/dreamflayer_activated_oversized"
     }
   ]
 }

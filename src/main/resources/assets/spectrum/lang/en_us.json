@@ -1677,6 +1677,24 @@
   "item.spectrum.bedrock_leggings": "Bedrock Leggings",
   "item.spectrum.bedrock_boots": "Bedrock Boots",
 
+  "item.spectrum.glass_crest_workstaff": "Glass Crest Workstaff",
+  "item.spectrum.glass_crest_ultra_greatsword": "Glass Crest Ultra Greatsword",
+  "item.spectrum.glass_crest_crossbow": "Glass Crest Crossbow",
+  "item.spectrum.glass_crest_bident": "Glass Crest Bident",
+
+  "item.spectrum.moonstone_crest_workstaff": "Moonstone Crest Workstaff",
+  "item.spectrum.moonstone_crest_ultra_greatsword": "Moonstone Crest Ultra Greatsword",
+  "item.spectrum.moonstone_crest_crossbow": "Moonstone Crest Crossbow",
+  "item.spectrum.ferocious_moonstone_crest_bident": "Ferocious Moonstone Crest Bident",
+  "item.spectrum.fractal_moonstone_crest_bident": "Fractal Moonstone Crest Bident",
+
+  "item.spectrum.glass_arrow": "Glass Arrow",
+  "item.spectrum.topaz_glass_arrow": "Topaz Glass Arrow",
+  "item.spectrum.amethyst_glass_arrow": "Amethyst Glass Arrow",
+  "item.spectrum.citrine_glass_arrow": "Citrine Glass Arrow",
+  "item.spectrum.onyx_glass_arrow": "Onyx Glass Arrow",
+  "item.spectrum.moonstone_glass_arrow": "Moonstone Glass Arrow",
+
   "item.spectrum.dreamflayer": "Dreamflayer",
   "item.spectrum.dreamflayer.tooltip": "Deals more damage the greater the difference in",
   "item.spectrum.dreamflayer.tooltip2": "armor between the wearer and the target is",
@@ -1712,6 +1730,7 @@
   "item.spectrum.midnight_aberration.tooltip.stable": "§oHeld together by mysterious force",
   "item.spectrum.midnight_aberration.cloaked": "The Perfect Compound",
   "item.spectrum.midnight_chip": "Midnight Chip",
+  "item.spectrum.moonstone_core": "Moonstone Core",
 
   "item.spectrum.fiery_powder": "Fiery Powder",
   "item.spectrum.blizzard_powder": "Blizzard Powder",

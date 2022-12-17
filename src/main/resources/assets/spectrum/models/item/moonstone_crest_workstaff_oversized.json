@@ -1,6 +1,6 @@
 {
   "parent": "spectrum:item/handheld_oversized",
   "textures": {
-    "layer0": "spectrum:item/dreamflayer_activated_held"
+    "layer0": "spectrum:item/moonstone_crest_workstaff_oversized"
   }
 }

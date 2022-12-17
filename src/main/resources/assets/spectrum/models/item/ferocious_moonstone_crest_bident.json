@@ -1,0 +1,22 @@
+{
+  "parent": "spectrum:item/handheld_oversized",
+  "textures": {
+    "layer0": "spectrum:item/ferocious_moonstone_crest_bident"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_world": 1.0,
+        "throwing": 0.0
+      },
+      "model": "spectrum:item/ferocious_moonstone_crest_bident_oversized"
+    },
+    {
+      "predicate": {
+        "in_world": 1.0,
+        "throwing": 1
+      },
+      "model": "spectrum:item/ferocious_moonstone_crest_bident_oversized_throwing"
+    }
+  ]
+}

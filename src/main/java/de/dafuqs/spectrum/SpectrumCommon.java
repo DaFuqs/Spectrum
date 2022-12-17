@@ -10,6 +10,7 @@ import de.dafuqs.spectrum.data_loaders.ResonanceDropsDataLoader;
 import de.dafuqs.spectrum.deeper_down.DDDimension;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.entity.SpectrumTrackedDataHandlerRegistry;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.events.SpectrumPositionSources;
@@ -141,8 +142,6 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Items...");
 		SpectrumPotions.register();
 		SpectrumItems.register();
-		//logInfo("Registering SAR Components...");
-		//SpectrumComponents.register();
 		logInfo("Registering Block Entities...");
 		SpectrumBlockEntities.register();
 		
@@ -179,8 +178,11 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumItems.registerFuelRegistry();
 		logInfo("Registering Enchantments...");
 		SpectrumEnchantments.register();
-		logInfo("Registering Entity Types...");
+		
+		logInfo("Registering Entities...");
 		SpectrumEntityTypes.register();
+		SpectrumTrackedDataHandlerRegistry.register();
+		
 		logInfo("Registering Commands...");
 		SpectrumCommands.register();
 		

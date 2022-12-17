@@ -30,4 +30,9 @@ public abstract class ItemRendererMixin {
 		SpectrumItemPredicates.currentItemRenderMode = renderMode;
 	}
 	
+	@Inject(at = @At("HEAD"), method = "innerRenderInGui(Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;IIII)V")
+	private void spectrum$storeItemRenderMode3(LivingEntity entity, ItemStack itemStack, int x, int y, int seed, int depth, CallbackInfo ci) {
+		SpectrumItemPredicates.currentItemRenderMode =  ModelTransformation.Mode.GUI;
+	}
+	
 }

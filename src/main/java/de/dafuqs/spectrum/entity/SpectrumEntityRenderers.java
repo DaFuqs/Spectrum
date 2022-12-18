@@ -26,6 +26,7 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.BEDROCK_FISHING_BOBBER, BedrockFishingBobberEntityRenderer::new);
 		register(SpectrumEntityTypes.FIREPROOF_ITEM, ItemEntityRenderer::new);
 		register(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntityRenderer::new);
+		register(SpectrumEntityTypes.GLASS_ARROW, GlassArrowEntityRenderer::new);
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {

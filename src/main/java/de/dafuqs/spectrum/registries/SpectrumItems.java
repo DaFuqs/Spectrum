@@ -179,7 +179,7 @@ public class SpectrumItems {
 	// tad higher reach & knockback; right click ability: aoe ground slam
 	public static final ToolItem GLASS_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 6, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
 	// shoots glass arrows
-	public static final CrossbowItem GLASS_CREST_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.GLASS);
+	public static final MalachiteCrossbowItem GLASS_CREST_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.GLASS);
 	// allows riptide in all fluids; comes with loyalty
 	public static final MalachiteBidentItem GLASS_CREST_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.GLASS);
 	
@@ -191,15 +191,15 @@ public class SpectrumItems {
 	// no fractal non-moon variant?
 	public static final MalachiteBidentItem FRACTAL_MOONSTONE_CREST_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.FRACTAL_MOONSTONE);
 	// right click ability: able to overload an already loaded arrow
-	public static final CrossbowItem MOONSTONE_CREST_CROSSBOW  = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.MOONSTONE);
+	public static final MalachiteCrossbowItem MOONSTONE_CREST_CROSSBOW  = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.MOONSTONE);
 	
 	// able to pass through translucent blocks, like glass; render as rays of light
-	public static final ArrowItem GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.GLASS);
-	public static final ArrowItem TOPAZ_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.CYAN);
-	public static final ArrowItem AMETHYST_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.MAGENTA);
-	public static final ArrowItem CITRINE_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.YELLOW);
-	public static final ArrowItem ONYX_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.BLACK); // pulls entities
-	public static final ArrowItem MOONSTONE_GLASS_ARROW = new MalachiteArrowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteArrowItem.Variant.WHITE);
+	public static final ArrowItem GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.GLASS);
+	public static final ArrowItem TOPAZ_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings( Rarity.RARE), GlassArrowItem.Variant.TOPAZ);
+	public static final ArrowItem AMETHYST_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.AMETHYST);
+	public static final ArrowItem CITRINE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.CITRINE);
+	public static final ArrowItem ONYX_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.ONYX); // pulls entities
+	public static final ArrowItem MOONSTONE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.MOONSTONE);
 	
 	// Special tools
 	public static final SwordItem DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));

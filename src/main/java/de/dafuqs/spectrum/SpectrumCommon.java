@@ -180,8 +180,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumEnchantments.register();
 		
 		logInfo("Registering Entities...");
-		SpectrumEntityTypes.register();
 		SpectrumTrackedDataHandlerRegistry.register();
+		SpectrumEntityTypes.register();
 		
 		logInfo("Registering Commands...");
 		SpectrumCommands.register();

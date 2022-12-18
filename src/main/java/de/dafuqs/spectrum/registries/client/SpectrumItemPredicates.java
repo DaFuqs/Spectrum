@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.energy.InkFlaskItem;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
+import de.dafuqs.spectrum.items.tools.MalachiteCrossbowItem;
 import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
@@ -18,10 +19,7 @@ import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BowItem;
-import net.minecraft.item.CrossbowItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;
@@ -66,9 +64,55 @@ public class SpectrumItemPredicates {
 		registerThrowingItemPredicate(SpectrumItems.FEROCIOUS_MOONSTONE_CREST_BIDENT);
 		registerThrowingItemPredicate(SpectrumItems.FRACTAL_MOONSTONE_CREST_BIDENT);
 		
+		registerMalachiteCrossbowPredicates(SpectrumItems.GLASS_CREST_CROSSBOW);
+		registerMalachiteCrossbowPredicates(SpectrumItems.MOONSTONE_CREST_CROSSBOW);
+		
 		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
 		registerEnchantmentCanvasPrediates(SpectrumItems.ENCHANTMENT_CANVAS);
 		registerPresentPredicates(SpectrumBlocks.PRESENT.asItem());
+	}
+	
+	private static void registerMalachiteCrossbowPredicates(MalachiteCrossbowItem crossbowItem) {
+		ModelPredicateProviderRegistry.register(crossbowItem, new Identifier("pull"), (itemStack, clientWorld, livingEntity, i) -> {
+			if (livingEntity == null) {
+				return 0.0F;
+			} else {
+				return CrossbowItem.isCharged(itemStack) ? 0.0F : (float) (itemStack.getMaxUseTime() - livingEntity.getItemUseTimeLeft()) / (float) CrossbowItem.getPullTime(itemStack);
+			}
+		});
+		ModelPredicateProviderRegistry.register(crossbowItem, new Identifier("pulling"), (itemStack, clientWorld, livingEntity, i) ->
+				livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack && !CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F
+		);
+		ModelPredicateProviderRegistry.register(crossbowItem, new Identifier("charged"), (itemStack, clientWorld, livingEntity, i) ->
+				livingEntity != null && CrossbowItem.isCharged(itemStack) ? 1.0F : 0.0F
+		);
+		ModelPredicateProviderRegistry.register(crossbowItem, new Identifier("projectile"), (itemStack, world, entity, seed) -> {
+			if (itemStack == null) {
+				return 0F;
+			}
+			ItemStack projectile = MalachiteCrossbowItem.getFirstProjectile(itemStack);
+			if(projectile.isEmpty()) {
+				return 0F;
+			}
+			
+			// Well, this is awkward
+			if(projectile.isOf(Items.FIREWORK_ROCKET)) {
+				return 0.1F;
+			} else if (projectile.isOf(SpectrumItems.GLASS_ARROW)) {
+				return 0.2F;
+			} else if (projectile.isOf(SpectrumItems.TOPAZ_GLASS_ARROW)) {
+				return 0.3F;
+			} else if (projectile.isOf(SpectrumItems.AMETHYST_GLASS_ARROW)) {
+				return 0.4F;
+			} else if (projectile.isOf(SpectrumItems.CITRINE_GLASS_ARROW)) {
+				return 0.5F;
+			} else if (projectile.isOf(SpectrumItems.ONYX_GLASS_ARROW)) {
+				return 0.6F;
+			} else if (projectile.isOf(SpectrumItems.MOONSTONE_GLASS_ARROW)) {
+				return 0.7F;
+			}
+			return 0F;
+		});
 	}
 	
 	private static void registerThrowingItemPredicate(Item item) {

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:colored_planks"
+    "#spectrum:colored_planks",
+    "#spectrum:noxwood_planks"
   ]
 }

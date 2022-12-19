@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "#spectrum:pure_resources",
+
     "minecraft:amethyst_shard",
     "spectrum:topaz_shard",
     "spectrum:citrine_shard",

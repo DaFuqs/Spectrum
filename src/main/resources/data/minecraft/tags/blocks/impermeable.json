@@ -8,6 +8,7 @@
     "spectrum:onyx_glass",
     "spectrum:moonstone_glass",
     "spectrum:glowing_glass",
+
     "spectrum:vanilla_semi_permeable_glass",
     "spectrum:tinted_semi_permeable_glass",
     "spectrum:glowing_semi_permeable_glass",
@@ -15,6 +16,10 @@
     "spectrum:amethyst_semi_permeable_glass",
     "spectrum:citrine_semi_permeable_glass",
     "spectrum:onyx_semi_permeable_glass",
-    "spectrum:moonstone_semi_permeable_glass"
+    "spectrum:moonstone_semi_permeable_glass",
+
+    "spectrum:preservation_glass",
+    "spectrum:tinted_preservation_glass",
+    "spectrum:invisible_wall"
   ]
 }

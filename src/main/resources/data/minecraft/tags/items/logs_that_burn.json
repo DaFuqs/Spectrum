@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:colored_logs"
+    "#spectrum:colored_logs",
+    "#spectrum:noxcap_stems"
   ]
 }

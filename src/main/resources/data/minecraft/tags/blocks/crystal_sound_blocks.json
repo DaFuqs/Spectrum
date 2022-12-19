@@ -1,14 +1,9 @@
 {
   "replace": false,
   "values": [
-    "spectrum:citrine_block",
-    "spectrum:budding_citrine",
-    "spectrum:topaz_block",
-    "spectrum:budding_topaz",
-    "spectrum:onyx_block",
-    "spectrum:budding_onyx",
-    "spectrum:moonstone_block",
-    "spectrum:budding_moonstone",
+    "#spectrum:gemstone_blocks",
+    "#spectrum:budding_blocks",
+
     "spectrum:ethereal_platform"
   ]
 }

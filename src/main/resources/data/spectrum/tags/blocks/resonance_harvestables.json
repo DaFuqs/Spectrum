@@ -4,19 +4,13 @@
     "#spectrum:crystallarieum_growable_buds",
     "#spectrum:infested_blocks",
     "#spectrum:spawners",
-
     "spectrum:black_materia",
+
+    "minecraft:reinforced_deepslate",
+    "minecraft:sculk_shrieker",
 
     {
       "id": "botania:enchanted_soil",
-      "required": false
-    },
-    {
-      "id": "minecraft:sculk_shrieker",
-      "required": false
-    },
-    {
-      "id": "minecraft:reinforced_deepslate",
       "required": false
     }
   ]

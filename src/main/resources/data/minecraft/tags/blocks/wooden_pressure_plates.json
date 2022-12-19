@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:colored_pressure_plates"
+    "#spectrum:colored_pressure_plates",
+    "#spectrum:noxwood_pressure_plates"
   ]
 }

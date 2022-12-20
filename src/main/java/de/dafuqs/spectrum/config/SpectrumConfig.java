@@ -149,12 +149,12 @@ public class SpectrumConfig implements ConfigData {
 	public int GemstoneArmorRegenerationAmplifier = 1;
 	public int GemstoneArmorSpeedAmplifier = 2;
 	
-	public int BedrockArmorHelmetProtection = 6;
-	public int BedrockArmorLeggingsProtection = 10;
-	public int BedrockArmorChestplateProtection = 14;
-	public int BedrockArmorBootsProtection = 6;
-	public float BedrockArmorToughness = 4.0F;
-	public float BedrockArmorKnockbackResistance = 0.4F;
+	public int BedrockArmorHelmetProtection = 5;
+	public int BedrockArmorLeggingsProtection = 9;
+	public int BedrockArmorChestplateProtection = 13;
+	public int BedrockArmorBootsProtection = 5;
+	public float BedrockArmorToughness = 3.0F;
+	public float BedrockArmorKnockbackResistance = 0.3F;
 	
 	public int MaxLevelForEffectsInLesserPotionPendant = 3;
 	public int MaxLevelForEffectsInGreaterPotionPendant = 1;

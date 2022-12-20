@@ -129,7 +129,7 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 							}
 							world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
 							SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, itemEntity.getPos(), SpectrumParticleTypes.GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.4, 0.2));
-							itemEntity.setStack(SpectrumEnchantmentHelper.removeEnchantment(itemStack, enchantmentToRemove));
+							SpectrumEnchantmentHelper.removeEnchantment(itemStack, enchantmentToRemove);
 							itemEntity.setToDefaultPickupDelay();
 							return;
 						}

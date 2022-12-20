@@ -44,6 +44,7 @@
     "RandomChanceWithLootingLootConditionMixin",
     "RedstoneOreMixin",
     "ServerPlayerEntityMixin",
+    "ServerPlayerGameModeFabricMixin",
     "ServerPlayerInteractionManagerMixin",
     "ServerWorldMixin",
     "WitherEntityMixin",

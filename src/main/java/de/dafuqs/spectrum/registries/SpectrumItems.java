@@ -122,7 +122,7 @@ public class SpectrumItems {
 	public static final Item YELLOW_PIGMENT = new PigmentItem(Tab.RESOURCES.settings(), DyeColor.YELLOW);
 	
 	// Preenchanted tools
-	public static final Item MULTITOOL = new MultiToolItem(ToolMaterials.IRON, 2, -2.4F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability()));
+	public static final Item MULTITOOL = new PreenchantedMultiToolItem(ToolMaterials.IRON, 2, -2.4F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability()));
 	public static final Item TENDER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability())) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {

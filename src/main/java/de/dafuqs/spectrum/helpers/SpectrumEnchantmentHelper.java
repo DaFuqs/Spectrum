@@ -153,10 +153,10 @@ public class SpectrumEnchantmentHelper {
 		}
 	}
 	
-	public static @NotNull ItemStack removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {
+	public static boolean removeEnchantment(@NotNull ItemStack itemStack, Enchantment enchantment) {
 		NbtCompound compound = itemStack.getNbt();
 		if (compound == null) {
-			return itemStack;
+			return false;
 		}
 		
 		NbtList enchantmentList;
@@ -167,10 +167,12 @@ public class SpectrumEnchantmentHelper {
 		}
 		
 		Identifier enchantmentIdentifier = Registry.ENCHANTMENT.getId(enchantment);
+		boolean success = false;
 		for (int i = 0; i < enchantmentList.size(); i++) {
 			NbtCompound currentCompound = enchantmentList.getCompound(i);
 			if (currentCompound.contains("id", NbtElement.STRING_TYPE) && Objects.equals(Identifier.tryParse(currentCompound.getString("id")), enchantmentIdentifier)) {
 				enchantmentList.remove(i);
+				success = true;
 				break;
 			}
 		}
@@ -183,7 +185,7 @@ public class SpectrumEnchantmentHelper {
 		}
 		itemStack.setNbt(compound);
 		
-		return itemStack;
+		return success;
 	}
 	
 	public static ItemStack getMaxEnchantedStack(@NotNull Item item, Enchantment... enchantments) {

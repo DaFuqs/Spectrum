@@ -8,32 +8,25 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerContext;
 import org.jetbrains.annotations.Nullable;
 
-public class PaintbrushScreenHandler extends ScreenHandler implements InkColorSelectedPacketReceiver {
+public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler implements InkColorSelectedPacketReceiver {
 	
 	private final PlayerEntity player;
 	private final ItemStack paintBrushStack;
-	private boolean hasAccessToWhites;
+	private final boolean hasAccessToWhites;
 	
 	public PaintbrushScreenHandler(int syncId, PlayerInventory playerInventory) {
-		this(syncId, playerInventory, ScreenHandlerContext.EMPTY, null);
+		this(syncId, playerInventory, ItemStack.EMPTY);
 	}
 	
-	public PaintbrushScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, ItemStack paintBrushStack) {
+	public PaintbrushScreenHandler(int syncId, PlayerInventory playerInventory, ItemStack paintBrushStack) {
 		super(SpectrumScreenHandlerTypes.PAINTBRUSH, syncId);
 		this.player = playerInventory.player;
 		this.paintBrushStack = paintBrushStack;
 		this.hasAccessToWhites = AdvancementHelper.hasAdvancement(playerInventory.player, InkColors.WHITE.getRequiredAdvancement());
 	}
-	
-	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
-		return ItemStack.EMPTY;
-	}
-	
+
 	public boolean canUse(PlayerEntity player) {
 		for (ItemStack itemStack : player.getHandItems()) {
 			if (itemStack == paintBrushStack) {
@@ -50,6 +43,7 @@ public class PaintbrushScreenHandler extends ScreenHandler implements InkColorSe
 	@Override
 	public void onInkColorSelectedPacket(@Nullable InkColor inkColor) {
 		PaintbrushItem.setColor(paintBrushStack, inkColor);
+		close(player);
 	}
 	
 	@Override

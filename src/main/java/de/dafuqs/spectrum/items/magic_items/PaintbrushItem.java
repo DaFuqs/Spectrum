@@ -22,7 +22,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -45,7 +44,6 @@ public class PaintbrushItem extends Item {
 	public static final int INK_FLING_COST = 100;
 	
 	public static final String COLOR_NBT_STRING = "Color";
-	private static final Text GUI_TITLE = Text.translatable("item.spectrum.paintbrush");
 	
 	public PaintbrushItem(Settings settings) {
 		super(settings);
@@ -86,8 +84,11 @@ public class PaintbrushItem extends Item {
 		return AdvancementHelper.hasAdvancement(player, UNLOCK_INK_SLINGING_ADVANCEMENT_ID);
 	}
 	
-	public NamedScreenHandlerFactory createScreenHandlerFactory(World world, ServerPlayerEntity serverPlayerEntity, ItemStack itemStack) {
-		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new PaintbrushScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, serverPlayerEntity.getBlockPos()), itemStack), GUI_TITLE);
+	public NamedScreenHandlerFactory createScreenHandlerFactory(ItemStack itemStack) {
+		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) ->
+				new PaintbrushScreenHandler(syncId, inventory, itemStack),
+				Text.translatable("item.spectrum.paintbrush")
+		);
 	}
 	
 	public static void setColor(ItemStack stack, @Nullable InkColor color) {
@@ -158,7 +159,7 @@ public class PaintbrushItem extends Item {
 		if (user.isSneaking()) {
 			if (user instanceof ServerPlayerEntity serverPlayerEntity) {
 				if (canColor(serverPlayerEntity)) {
-					serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(world, serverPlayerEntity, user.getStackInHand(hand)));
+					serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(user.getStackInHand(hand)));
 				}
 			}
 			return TypedActionResult.pass(user.getStackInHand(hand));

@@ -5,11 +5,9 @@ import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.inventories.BedrockAnvilScreenHandler;
-import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
-import de.dafuqs.spectrum.inventories.InkColorSelectedPacketReceiver;
-import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
+import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
+import de.dafuqs.spectrum.items.tools.MalachiteWorkstaffItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
@@ -142,6 +140,14 @@ public class SpectrumC2SPacketReceiver {
 						SpectrumS2CPacketSender.sendInkColorSelected(color, serverPlayer);
 					}
 				}
+			}
+		});
+		
+		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.WORKSTAFF_TOGGLE_SELECTED, (server, player, handler, buf, responseSender) -> {
+			ScreenHandler screenHandler = player.currentScreenHandler;
+			if (screenHandler instanceof WorkstaffScreenHandler workstaffScreenHandler) {
+				MalachiteWorkstaffItem.GUIToggle toggle = MalachiteWorkstaffItem.GUIToggle.values()[buf.readInt()];
+				workstaffScreenHandler.onWorkstaffToggleSelectionPacket(toggle);
 			}
 		});
 		

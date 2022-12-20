@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.compat.patchouli.PatchouliFlags;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
 import de.dafuqs.spectrum.helpers.TooltipHelper;
-import de.dafuqs.spectrum.inventories.SpectrumContainers;
+import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerIDs;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
 import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
@@ -55,7 +55,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumFluids.registerClient();
 		
 		logInfo("Setting up GUIs...");
-		SpectrumContainers.register();
+		SpectrumScreenHandlerIDs.register();
 		SpectrumScreenHandlerTypes.registerClient();
 		
 		logInfo("Setting up ItemPredicates...");

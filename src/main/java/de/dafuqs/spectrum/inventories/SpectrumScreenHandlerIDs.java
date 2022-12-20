@@ -3,9 +3,11 @@ package de.dafuqs.spectrum.inventories;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.util.Identifier;
 
-public class SpectrumContainers {
+public class SpectrumScreenHandlerIDs {
 	
 	public static Identifier PAINTBRUSH;
+	public static Identifier WORKSTAFF;
+	
 	public static Identifier PEDESTAL;
 	public static Identifier CRAFTING_TABLET;
 	public static Identifier RESTOCKING_CHEST;
@@ -31,6 +33,8 @@ public class SpectrumContainers {
 	
 	public static void register() {
 		PAINTBRUSH = SpectrumCommon.locate("paintbrush");
+		WORKSTAFF = SpectrumCommon.locate("workstaff");
+		
 		PEDESTAL = SpectrumCommon.locate("pedestal");
 		CRAFTING_TABLET = SpectrumCommon.locate("crafting_tablet");
 		RESTOCKING_CHEST = SpectrumCommon.locate("restocking_chest");

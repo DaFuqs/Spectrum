@@ -14,7 +14,7 @@ import de.dafuqs.spectrum.entity.SpectrumTrackedDataHandlerRegistry;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.events.SpectrumPositionSources;
-import de.dafuqs.spectrum.inventories.SpectrumContainers;
+import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerIDs;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
@@ -163,7 +163,7 @@ public class SpectrumCommon implements ModInitializer {
 		
 		// GUI
 		logInfo("Registering Containers...");
-		SpectrumContainers.register();
+		SpectrumScreenHandlerIDs.register();
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register();
 		

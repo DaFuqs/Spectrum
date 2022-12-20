@@ -10,6 +10,8 @@ import net.minecraft.util.registry.Registry;
 public class SpectrumScreenHandlerTypes {
 	
 	public static ScreenHandlerType<PaintbrushScreenHandler> PAINTBRUSH;
+	public static ScreenHandlerType<WorkstaffScreenHandler> WORKSTAFF;
+	
 	public static ScreenHandlerType<PedestalScreenHandler> PEDESTAL;
 	public static ScreenHandlerType<CraftingTabletScreenHandler> CRAFTING_TABLET;
 	public static ScreenHandlerType<RestockingChestScreenHandler> RESTOCKING_CHEST;
@@ -44,34 +46,38 @@ public class SpectrumScreenHandlerTypes {
 	}
 	
 	public static void register() {
-		PAINTBRUSH = registerSimple(SpectrumContainers.PAINTBRUSH, PaintbrushScreenHandler::new);
-		PEDESTAL = registerExtended(SpectrumContainers.PEDESTAL, PedestalScreenHandler::new);
-		PARTICLE_SPAWNER = registerExtended(SpectrumContainers.PARTICLE_SPAWNER, ParticleSpawnerScreenHandler::new);
-		COMPACTING_CHEST = registerExtended(SpectrumContainers.COMPACTING_CHEST, CompactingChestScreenHandler::new);
-		SUCKING_CHEST = registerExtended(SpectrumContainers.SUCKING_CHEST, SuckingChestScreenHandler::new);
-		COLOR_PICKER = registerExtended(SpectrumContainers.COLOR_PICKER, ColorPickerScreenHandler::new);
-		CINDERHEARTH = registerExtended(SpectrumContainers.CINDERHEARTH, CinderhearthScreenHandler::new);
+		PAINTBRUSH = registerSimple(SpectrumScreenHandlerIDs.PAINTBRUSH, PaintbrushScreenHandler::new);
+		WORKSTAFF = registerSimple(SpectrumScreenHandlerIDs.WORKSTAFF, WorkstaffScreenHandler::new);
 		
-		CRAFTING_TABLET = registerSimple(SpectrumContainers.CRAFTING_TABLET, CraftingTabletScreenHandler::new);
-		RESTOCKING_CHEST = registerSimple(SpectrumContainers.RESTOCKING_CHEST, RestockingChestScreenHandler::new);
-		BEDROCK_ANVIL = registerSimple(SpectrumContainers.BEDROCK_ANVIL, BedrockAnvilScreenHandler::new);
-		POTION_WORKSHOP = registerSimple(SpectrumContainers.POTION_WORKSHOP, PotionWorkshopScreenHandler::new);
+		PEDESTAL = registerExtended(SpectrumScreenHandlerIDs.PEDESTAL, PedestalScreenHandler::new);
+		PARTICLE_SPAWNER = registerExtended(SpectrumScreenHandlerIDs.PARTICLE_SPAWNER, ParticleSpawnerScreenHandler::new);
+		COMPACTING_CHEST = registerExtended(SpectrumScreenHandlerIDs.COMPACTING_CHEST, CompactingChestScreenHandler::new);
+		SUCKING_CHEST = registerExtended(SpectrumScreenHandlerIDs.SUCKING_CHEST, SuckingChestScreenHandler::new);
+		COLOR_PICKER = registerExtended(SpectrumScreenHandlerIDs.COLOR_PICKER, ColorPickerScreenHandler::new);
+		CINDERHEARTH = registerExtended(SpectrumScreenHandlerIDs.CINDERHEARTH, CinderhearthScreenHandler::new);
 		
-		GENERIC_TIER1_9X3 = registerSimple(SpectrumContainers.GENERIC_TIER1_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier1);
-		GENERIC_TIER2_9X3 = registerSimple(SpectrumContainers.GENERIC_TIER2_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier2);
-		GENERIC_TIER3_9X3 = registerSimple(SpectrumContainers.GENERIC_TIER3_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier3);
+		CRAFTING_TABLET = registerSimple(SpectrumScreenHandlerIDs.CRAFTING_TABLET, CraftingTabletScreenHandler::new);
+		RESTOCKING_CHEST = registerSimple(SpectrumScreenHandlerIDs.RESTOCKING_CHEST, RestockingChestScreenHandler::new);
+		BEDROCK_ANVIL = registerSimple(SpectrumScreenHandlerIDs.BEDROCK_ANVIL, BedrockAnvilScreenHandler::new);
+		POTION_WORKSHOP = registerSimple(SpectrumScreenHandlerIDs.POTION_WORKSHOP, PotionWorkshopScreenHandler::new);
 		
-		GENERIC_TIER1_9X6 = registerSimple(SpectrumContainers.GENERIC_TIER1_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier1);
-		GENERIC_TIER2_9X6 = registerSimple(SpectrumContainers.GENERIC_TIER2_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier2);
-		GENERIC_TIER3_9X6 = registerSimple(SpectrumContainers.GENERIC_TIER3_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier3);
+		GENERIC_TIER1_9X3 = registerSimple(SpectrumScreenHandlerIDs.GENERIC_TIER1_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier1);
+		GENERIC_TIER2_9X3 = registerSimple(SpectrumScreenHandlerIDs.GENERIC_TIER2_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier2);
+		GENERIC_TIER3_9X3 = registerSimple(SpectrumScreenHandlerIDs.GENERIC_TIER3_9x3, GenericSpectrumContainerScreenHandler::createGeneric9x3_Tier3);
 		
-		GENERIC_TIER1_3X3 = registerSimple(SpectrumContainers.GENERIC_TIER1_3X3, Spectrum3x3ContainerScreenHandler::createTier1);
-		GENERIC_TIER2_3X3 = registerSimple(SpectrumContainers.GENERIC_TIER2_3X3, Spectrum3x3ContainerScreenHandler::createTier2);
-		GENERIC_TIER3_3X3 = registerSimple(SpectrumContainers.GENERIC_TIER3_3X3, Spectrum3x3ContainerScreenHandler::createTier3);
+		GENERIC_TIER1_9X6 = registerSimple(SpectrumScreenHandlerIDs.GENERIC_TIER1_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier1);
+		GENERIC_TIER2_9X6 = registerSimple(SpectrumScreenHandlerIDs.GENERIC_TIER2_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier2);
+		GENERIC_TIER3_9X6 = registerSimple(SpectrumScreenHandlerIDs.GENERIC_TIER3_9x6, GenericSpectrumContainerScreenHandler::createGeneric9x6_Tier3);
+		
+		GENERIC_TIER1_3X3 = registerSimple(SpectrumScreenHandlerIDs.GENERIC_TIER1_3X3, Spectrum3x3ContainerScreenHandler::createTier1);
+		GENERIC_TIER2_3X3 = registerSimple(SpectrumScreenHandlerIDs.GENERIC_TIER2_3X3, Spectrum3x3ContainerScreenHandler::createTier2);
+		GENERIC_TIER3_3X3 = registerSimple(SpectrumScreenHandlerIDs.GENERIC_TIER3_3X3, Spectrum3x3ContainerScreenHandler::createTier3);
 	}
 	
 	public static void registerClient() {
 		HandledScreens.register(SpectrumScreenHandlerTypes.PAINTBRUSH, PaintbrushScreen::new);
+		HandledScreens.register(SpectrumScreenHandlerTypes.WORKSTAFF, WorkstaffScreen::new);
+		
 		HandledScreens.register(SpectrumScreenHandlerTypes.PEDESTAL, PedestalScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.CRAFTING_TABLET, CraftingTabletScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.RESTOCKING_CHEST, RestockingChestScreen::new);

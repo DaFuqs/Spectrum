@@ -174,10 +174,10 @@ public class SpectrumItems {
 	// right click ability: ranged mining
 	// that's a lot of abilities and click actions... maybe remove one.
 	public static final SpectrumToolMaterials.ToolMaterial MALACHITE = SpectrumToolMaterials.ToolMaterial.MALACHITE;
-	public static final ToolItem GLASS_CREST_WORKSTAFF = new MalachiteWorkstaffItem(MALACHITE, 1, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
+	public static final ToolItem GLASS_CREST_WORKSTAFF = new MalachiteWorkstaffItem(MALACHITE, 1, -3.2F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
 	
 	// tad higher reach & knockback; right click ability: aoe ground slam
-	public static final ToolItem GLASS_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 6, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
+	public static final ToolItem GLASS_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 4, -3.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
 	// shoots glass arrows
 	public static final MalachiteCrossbowItem GLASS_CREST_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.GLASS);
 	// allows riptide in all fluids; comes with loyalty

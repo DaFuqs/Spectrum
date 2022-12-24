@@ -10,6 +10,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -62,6 +63,11 @@ public class TreasureHunterEnchantment extends SpectrumEnchantment {
 	@Override
 	public boolean canAccept(Enchantment other) {
 		return super.canAccept(other) && other != Enchantments.LOOTING;
+	}
+	
+	@Override
+	public boolean isAcceptableItem(ItemStack stack) {
+		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem;
 	}
 	
 }

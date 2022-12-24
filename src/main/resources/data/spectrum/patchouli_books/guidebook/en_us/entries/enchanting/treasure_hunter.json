@@ -1,6 +1,6 @@
 {
   "name": "Treasure Hunter",
-  "icon": "minecraft:iron_sword",
+  "icon": "minecraft:iron_axe",
   "advancement": "spectrum:progression/enchantments/treasure_hunter",
   "flag": "spectrum:enchantment_exists_spectrum_treasure_hunter",
   "category": "spectrum:enchanting_category",
@@ -17,8 +17,8 @@
     {
       "type": "patchouli:spotlight",
       "title": "Characteristics",
-      "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
-      "text": "Occasionally drops mob heads on kill.$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
+      "item": "minecraft:iron_axe{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
+      "text": "Occasionally drops mob heads on kill.$(br2)Max Level: 3$(br)Applicable to axes and melee weapons.$(br)Mutually exclusive with Looting."
     },
     {
       "type": "spectrum:enchanter_crafting",

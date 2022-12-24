@@ -110,10 +110,10 @@ public class MalachiteGreatswordItem extends SwordItem {
 		super.usageTick(world, user, stack, remainingUseTicks);
 		if(world.isClient) {
 			Random random = world.random;
-			for(int i = 0; i < 1 + remainingUseTicks / 8; i++) {
+			for(int i = 0; i < (GROUND_SLAM_CHARGE_TICKS - remainingUseTicks) / 8; i++) {
 				world.addParticle(ParticleTypes.INSTANT_EFFECT,
 						user.getParticleX(1.0), user.getY(), user.getParticleZ(1.0),
-						random.nextDouble() * 3.2D - 1.6D, random.nextDouble() * 1.2D, random.nextDouble() * 3.2D - 1.6D);
+						random.nextDouble() * 5.0D - 2.5D, random.nextDouble() * 1.2D, random.nextDouble() * 5.0D - 2.5D);
 			}
 		}
 	}
@@ -128,7 +128,7 @@ public class MalachiteGreatswordItem extends SwordItem {
 			
 			Vec3d particlePos = new Vec3d(user.getParticleX(1.0), user.getY(), user.getParticleZ(1.0));
 			SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) world, particlePos, ParticleTypes.EXPLOSION, 1);
-			SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) world, particlePos, ParticleTypes.CRIT, 16, Vec3d.ZERO, new Vec3d(3.2, 0, 3.2));
+			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, particlePos, ParticleTypes.CRIT, 16, Vec3d.ZERO, new Vec3d(7.5D, 0, 7.5D));
 
 			if(user instanceof ServerPlayerEntity serverPlayer) {
 				serverPlayer.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -170,7 +170,11 @@ public class MalachiteGreatswordItem extends SwordItem {
 						double ac = (1.0D - w) * ab;
 						
 						float damage = (float) ((int) ((ac * ac + ac) / 2.0D * (double) strength + 1.0D));
-						entity.damage(DamageSource.mob(attacker), damage);
+						if(entity instanceof PlayerEntity player){
+							entity.damage(DamageSource.player(player), damage);
+						} else {
+							entity.damage(DamageSource.mob(attacker), damage);
+						}
 						
 						double ad = ac;
 						if (entity instanceof LivingEntity) {

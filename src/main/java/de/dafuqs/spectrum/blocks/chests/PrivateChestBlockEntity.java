@@ -140,7 +140,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		if (!isOwner && this.world != null) {
 			this.lastNonOwnerOpenedTick = this.world.getTime();
 			updateRedstone(this.pos, this.world.getBlockState(pos));
-			player.sendMessage(Text.translatable("block.spectrum.private_chest.title_with_owner", this.getOwnerName()), false);
+			player.sendMessage(Text.translatable("block.spectrum.private_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName)), false);
 		}
 		
 		return isOwner;

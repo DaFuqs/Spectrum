@@ -36,6 +36,21 @@
       "spectrum:paintbrush_paint10"
     ]
   },
+  "ground_slam": {
+    "subtitle": "spectrum.subtitles.ground_slam",
+    "sounds": [
+      "spectrum:ground_slam1",
+      "spectrum:ground_slam2",
+      "spectrum:ground_slam3",
+      "spectrum:ground_slam4"
+    ]
+  },
+  "ground_slam_charge": {
+    "subtitle": "spectrum.subtitles.ground_slam_charge",
+    "sounds": [
+      "spectrum:ground_slam_charge"
+    ]
+  },
   "ink_projectile_hit": {
     "subtitle": "spectrum.subtitles.ink_projectile_hit",
     "sounds": [

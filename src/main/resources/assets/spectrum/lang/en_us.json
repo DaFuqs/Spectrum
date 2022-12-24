@@ -360,6 +360,8 @@
   "enchantment.spectrum.big_catch": "Big Catch",
   "enchantment.spectrum.big_catch.desc": "Higher chance to reel in living creatures",
 
+  "spectrum.subtitles.ground_slam": "Sword slamming ground",
+  "spectrum.subtitles.ground_slam_charge": "Ground Slam charging",
   "spectrum.subtitles.paintbrush_trigger": "Paintbrush activation",
   "spectrum.subtitles.paintbrush_paint": "Paintbrush paints",
   "spectrum.subtitles.ink_projectile_hit": "Ink hits block",
@@ -1693,6 +1695,7 @@
 
   "item.spectrum.glass_crest_workstaff": "Glass Crest Workstaff",
   "item.spectrum.glass_crest_ultra_greatsword": "Glass Crest Ultra Greatsword",
+  "item.spectrum.glass_crest_ultra_greatsword.tooltip": "Charge to perform a ground slam",
   "item.spectrum.glass_crest_crossbow": "Glass Crest Crossbow",
   "item.spectrum.glass_crest_bident": "Glass Crest Bident",
 

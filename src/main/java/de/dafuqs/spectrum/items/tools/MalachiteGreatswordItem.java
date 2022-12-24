@@ -53,6 +53,7 @@ public class MalachiteGreatswordItem extends SwordItem {
 	
 	protected static final UUID REACH_MODIFIER_ID = UUID.fromString("c81a7152-313c-452f-b15e-fcf51322ccc0");
 	public static final int GROUND_SLAM_CHARGE_TICKS = 32;
+	public final int baseGroundSlamStrength;
 	
 	private final MalachiteWorkstaffItem.Variant variant;
 	
@@ -60,9 +61,10 @@ public class MalachiteGreatswordItem extends SwordItem {
 	private final float attackDamage;
 	private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
 	
-	public MalachiteGreatswordItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings, MalachiteWorkstaffItem.Variant variant) {
+	public MalachiteGreatswordItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings, MalachiteWorkstaffItem.Variant variant, int baseGroundSlamStrength) {
 		super(material, attackDamage, attackSpeed, settings);
 		this.variant = variant;
+		this.baseGroundSlamStrength = baseGroundSlamStrength;
 		
 		this.attackDamage = (float)attackDamage + material.getAttackDamage();
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
@@ -120,7 +122,7 @@ public class MalachiteGreatswordItem extends SwordItem {
 	public ItemStack finishUsing(ItemStack itemStack, World world, LivingEntity user) {
 		if (!world.isClient) {
 			int sweepingLevel = EnchantmentHelper.getLevel(Enchantments.SWEEPING, itemStack);
-			affectEntitiesInRange(world, user.getPos(), user, 8 + sweepingLevel);
+			performGroundSlam(world, user.getPos(), user, this.baseGroundSlamStrength + sweepingLevel);
 			
 			world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.GROUND_SLAM, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			
@@ -132,11 +134,11 @@ public class MalachiteGreatswordItem extends SwordItem {
 				serverPlayer.incrementStat(Stats.USED.getOrCreateStat(this));
 			}
 		}
-		user.stopUsingItem();
+
 		return itemStack;
 	}
 	
-	public void affectEntitiesInRange(World world, Vec3d pos, LivingEntity attacker, float strength) {
+	public void performGroundSlam(World world, Vec3d pos, LivingEntity attacker, float strength) {
 		world.emitGameEvent(attacker, GameEvent.ENTITY_ROAR, new BlockPos(pos.x, pos.y, pos.z));
 		
 		double posX = pos.x;

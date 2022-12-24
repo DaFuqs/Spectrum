@@ -177,14 +177,14 @@ public class SpectrumItems {
 	public static final ToolItem GLASS_CREST_WORKSTAFF = new MalachiteWorkstaffItem(MALACHITE, 1, -3.2F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
 	
 	// tad higher reach & knockback; right click ability: aoe ground slam (improved by sweeping)
-	public static final ToolItem GLASS_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 4, -3.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
+	public static final ToolItem GLASS_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 4, -3.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS, 8);
 	// shoots glass arrows
 	public static final MalachiteCrossbowItem GLASS_CREST_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.GLASS);
 	// allows riptide in all fluids; comes with loyalty
 	public static final MalachiteBidentItem GLASS_CREST_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.GLASS);
 	
 	public static final ToolItem MOONSTONE_CREST_WORKSTAFF = new MalachiteWorkstaffItem(MALACHITE, 2, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.MOONSTONE);
-	public static final ToolItem MOONSTONE_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 8, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.MOONSTONE);
+	public static final ToolItem MOONSTONE_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 8, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.MOONSTONE, 10);
 	// riptide w/o weather requirement; damages enemies on touch; iframes?
 	public static final MalachiteBidentItem FEROCIOUS_MOONSTONE_CREST_BIDENT = new MalachiteBidentItem( Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.FEROCIOUS_MOONSTONE);
 	// gets shot as copy instead of getting removed from the player's inv

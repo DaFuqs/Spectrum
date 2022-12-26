@@ -108,7 +108,6 @@ public class DeeperDownPortalBlock extends Block {
 						makeRoomAround(targetWorld, targetPos, 2);
 						FabricDimensions.teleport(entity, targetWorld, new TeleportTarget(Vec3d.ofCenter(targetPos), Vec3d.ZERO, entity.getYaw(), entity.getPitch()));
 						teleportToSafePosition(targetWorld, entity, targetPos, 3);
-						
 					}
 				}
 			} else {
@@ -145,6 +144,10 @@ public class DeeperDownPortalBlock extends Block {
 			}
 			
 			BlockState state = world.getBlockState(bp);
+			if(state.getBlock() instanceof DeeperDownPortalBlock) {
+				continue;
+			}
+			
 			float hardness = state.getHardness(world, bp);
 			if ((bp.getX() == blockPos.getX() && bp.getZ() == blockPos.getZ())
 					|| (hardness >= 0 && hardness < 30)) {

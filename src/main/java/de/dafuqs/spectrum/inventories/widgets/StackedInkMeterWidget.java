@@ -1,24 +1,16 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
-import de.dafuqs.spectrum.energy.InkStorage;
-import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.helpers.RenderHelper;
-import de.dafuqs.spectrum.helpers.Support;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.Selectable;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.TranslatableText;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.gui.screen.narration.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.text.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class StackedInkMeterWidget extends DrawableHelper implements Drawable, Element, Selectable {
@@ -81,9 +73,11 @@ public class StackedInkMeterWidget extends DrawableHelper implements Drawable, E
 			int currentHeight = this.y + this.height;
 			for (Map.Entry<InkColor, Long> entry : inkStorage.getEnergy().entrySet()) {
 				long amount = entry.getValue();
-				if(amount > 0) {
-					int height = Math.max(1, Math.round (((float) amount / ((float) maxTotal / this.height))));
-					RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, entry.getKey().getColor());
+				if (amount > 0) {
+					int height = Math.round(((float) amount / ((float) maxTotal / this.height)));
+					if (height > 0) {
+						RenderHelper.fillQuad(matrices, this.x, currentHeight - height, height, this.width, entry.getKey().getColor());
+					}
 					currentHeight -= height;
 				}
 			}

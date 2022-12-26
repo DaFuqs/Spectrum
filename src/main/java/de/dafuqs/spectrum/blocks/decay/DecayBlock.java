@@ -120,7 +120,11 @@ public abstract class DecayBlock extends Block {
 	
 	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		return super.canPlaceAt(state, world, pos) && (pos.getY() != world.getBottomY() || CREATE_DD_PORTALS);
+		return super.canPlaceAt(state, world, pos) && (pos.getY() != world.getBottomY() || CREATE_DD_PORTALS) && !isSpawnArea(pos);
+	}
+	
+	public static boolean isSpawnArea(BlockPos pos) {
+		return Math.abs(pos.getX()) < 16 && Math.abs(pos.getZ()) < 16;
 	}
 	
 	/**

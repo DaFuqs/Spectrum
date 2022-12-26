@@ -21,7 +21,7 @@
     {
       "experience": 2000,
       "item": "spectrum:blue_pigment",
-      "item_count": 128
+      "item_count": 512
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/vanilla_water"

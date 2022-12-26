@@ -31,7 +31,7 @@
     {
       "experience": 5000,
       "item": "spectrum:red_pigment",
-      "item_count": 1024
+      "item_count": 512
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/vanilla_damage"

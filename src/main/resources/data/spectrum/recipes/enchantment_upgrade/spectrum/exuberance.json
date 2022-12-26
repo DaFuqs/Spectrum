@@ -40,12 +40,12 @@
     {
       "experience": 900,
       "item": "spectrum:purple_pigment",
-      "item_count": 1024
+      "item_count": 512
     },
     {
       "experience": 1000,
       "item": "spectrum:purple_pigment",
-      "item_count": 2048
+      "item_count": 512
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/exuberance",

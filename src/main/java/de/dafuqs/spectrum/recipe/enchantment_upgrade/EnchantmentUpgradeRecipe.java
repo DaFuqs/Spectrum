@@ -70,20 +70,21 @@ public class EnchantmentUpgradeRecipe extends GatedSpectrumRecipe {
 			}
 			
 			Ingredient inputIngredient = inputs.get(1);
-			boolean ingredientFound = false;
+			int ingredientsFound = 0;
 			for (int i = 1; i < 9; i++) {
 				ItemStack currentStack = inv.getStack(i + 1);
 				
 				if (!currentStack.isEmpty()) {
-					if (inputIngredient.test(inv.getStack(i + 1))) {
-						ingredientFound = true;
+					ItemStack slotStack = inv.getStack(i + 1);
+					if (inputIngredient.test(slotStack)) {
+						ingredientsFound += slotStack.getCount();
 					} else {
 						return false;
 					}
 				}
 			}
 			
-			return ingredientFound;
+			return ingredientsFound >= requiredItemCount;
 		}
 		return false;
 	}

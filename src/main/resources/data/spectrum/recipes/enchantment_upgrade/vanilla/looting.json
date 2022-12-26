@@ -26,7 +26,7 @@
     {
       "experience": 20000,
       "item": "spectrum:light_blue_pigment",
-      "item_count": 2048
+      "item_count": 512
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/vanilla_luck"

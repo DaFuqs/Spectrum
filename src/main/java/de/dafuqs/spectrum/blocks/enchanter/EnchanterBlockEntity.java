@@ -189,11 +189,15 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					enchanterBlockEntity.currentItemProcessingTime = 0;
 					
 					int consumedItems = tickEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe, enchanterBlockEntity.craftingTimeTotal - enchanterBlockEntity.craftingTime);
-					enchanterBlockEntity.craftingTime += consumedItems;
-					if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
-						playCraftingFinishedEffects(enchanterBlockEntity);
-						craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
-						craftingSuccess = true;
+					if(consumedItems == 0) {
+						enchanterBlockEntity.inventoryChanged();
+					} else {
+						enchanterBlockEntity.craftingTime += consumedItems;
+						if (enchanterBlockEntity.craftingTime >= enchanterBlockEntity.craftingTimeTotal) {
+							playCraftingFinishedEffects(enchanterBlockEntity);
+							craftEnchantmentUpgradeRecipe(world, enchanterBlockEntity, enchantmentUpgradeRecipe);
+							craftingSuccess = true;
+						}
 					}
 				}
 				enchanterBlockEntity.markDirty();
@@ -510,13 +514,10 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			BlockEntity blockEntity = world.getBlockEntity(enchanterBlockEntity.pos.add(bowlOffset));
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				if (itemCountToConsumeAfterMod == 0) {
-					// TODO: resolve
 					itemBowlBlockEntity.spawnOrbParticles(new Vec3d(enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1.0, enchanterBlockEntity.pos.getZ() + 0.5));
-					//itemBowlBlockEntity.spawnSphereParticlesTo(enchanterBlockEntity.pos);
 					consumedAmount += itemCountToConsume;
 				} else {
 					int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(new Vec3d(enchanterBlockEntity.pos.getX() + 0.5, enchanterBlockEntity.pos.getY() + 1.0, enchanterBlockEntity.pos.getZ() + 0.5), itemCountToConsumeAfterMod, true);
-					//int decrementedAmount = itemBowlBlockEntity.decrementBowlStack(enchanterBlockEntity.pos, itemCountToConsumeAfterMod, true);
 					consumedAmount += decrementedAmount;
 				}
 			}
@@ -570,11 +571,12 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		SimpleInventory recipeTestInventory = new SimpleInventory(enchanterBlockEntity.virtualInventoryIncludingBowlStacks.size());
 		recipeTestInventory.setStack(0, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(0));
 		recipeTestInventory.setStack(1, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack(1));
-		// Cycle through 4 phases of recipe orientations
-		// This way the player can arrange the ingredients in the item bowls as he likes
-		// without resorting to specifying a fixed orientation
+		
 		EnchantmentUpgradeRecipe enchantmentUpgradeRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE, enchanterBlockEntity.virtualInventoryIncludingBowlStacks, world).orElse(null);
 		if (enchantmentUpgradeRecipe == null) {
+			// Cycle through 4 phases of recipe orientations
+			// This way the player can arrange the ingredients in the item bowls as they like
+			// without resorting to specifying a fixed orientation
 			for (int orientation = 0; orientation < 4; orientation++) {
 				int offset = orientation * 2;
 				recipeTestInventory.setStack(2, enchanterBlockEntity.virtualInventoryIncludingBowlStacks.getStack((offset + 8) % 8 + 2));

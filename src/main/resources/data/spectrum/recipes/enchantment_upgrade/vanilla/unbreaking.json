@@ -21,12 +21,12 @@
     {
       "experience": 2000,
       "item": "spectrum:cyan_pigment",
-      "item_count": 1024
+      "item_count": 512
     },
     {
       "experience": 5000,
       "item": "spectrum:cyan_pigment",
-      "item_count": 2048
+      "item_count": 512
     }
   ],
   "required_advancement": "spectrum:progression/enchantments/vanilla_unbreaking"

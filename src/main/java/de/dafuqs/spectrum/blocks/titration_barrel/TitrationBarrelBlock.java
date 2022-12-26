@@ -92,6 +92,11 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 								}
 							} else {
 								if (handStack.isIn(SpectrumItemTags.COLORED_PLANKS)) {
+									Optional<ITitrationBarrelRecipe> optionalRecipe = barrelEntity.getRecipeForInventory(world);
+									if(optionalRecipe.isEmpty() || !optionalRecipe.get().canPlayerCraft(player)) {
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe"), false);
+										return ActionResult.CONSUME;
+									}
 									if (!player.isCreative()) {
 										handStack.decrement(1);
 									}

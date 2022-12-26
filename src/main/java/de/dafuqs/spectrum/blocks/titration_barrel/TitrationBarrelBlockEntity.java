@@ -181,11 +181,6 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(temperature, getSealSeconds());
 	}
 	
-	public int getExtractableBottleCount(World world, BlockPos blockPos, ITitrationBarrelRecipe recipe) {
-		Biome biome = world.getBiome(blockPos).value();
-		return recipe.getOutputCountAfterAngelsShare(biome.getTemperature(), getSealSeconds());
-	}
-	
 	public void addDayOfSealTime() {
 		this.sealTime -= TimeHelper.EPOCH_DAY_MILLIS;
 		this.markDirty();
@@ -195,7 +190,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		ItemStack harvestedStack = ItemStack.EMPTY;
 		Biome biome = world.getBiome(blockPos).value();
 		
-		Optional<ITitrationBarrelRecipe> optionalRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, this.inventory, world);
+		Optional<ITitrationBarrelRecipe> optionalRecipe = getRecipeForInventory(world);
 		if (optionalRecipe.isEmpty()) {
 			if (player != null) {
 				if (inventory.isEmpty() && storedFluid == Fluids.EMPTY) {
@@ -245,6 +240,10 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		this.markDirty();
 		
 		return harvestedStack;
+	}
+	
+	public Optional<ITitrationBarrelRecipe> getRecipeForInventory(World world) {
+		return world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, this.inventory, world);
 	}
 	
 	public void giveRecipeRemainders(PlayerEntity player) {

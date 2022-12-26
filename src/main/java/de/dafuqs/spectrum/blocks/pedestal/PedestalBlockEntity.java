@@ -352,13 +352,13 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		return newRecipe;
 	}
 	
-	private static boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
+	private static boolean canAcceptRecipeOutput(@Nullable Recipe<?> recipe, DefaultedList<ItemStack> inventory, int maxCountPerStack) {
 		if (recipe != null) {
 			ItemStack output = recipe.getOutput();
 			if (output.isEmpty()) {
 				return false;
 			} else {
-				ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
+				ItemStack existingOutput = inventory.get(OUTPUT_SLOT_ID);
 				if (existingOutput.isEmpty()) {
 					return true;
 				} else if (!existingOutput.isItemEqualIgnoreDamage(output)) {
@@ -376,7 +376,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	private static boolean craftPedestalRecipe(PedestalBlockEntity pedestalBlockEntity, @Nullable PedestalCraftingRecipe recipe, DefaultedList<ItemStack> inventory, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
-			ItemStack recipeOutput = recipe.craft(pedestalBlockEntity);
+			ItemStack recipeOutput = recipe.craftAndDecrement(pedestalBlockEntity);
 			
 			// if it was a recipe to upgrade the pedestal itself
 			// => upgrade
@@ -614,48 +614,52 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), soundEvent, SoundCategory.BLOCKS, 0.9F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F);
 	}
 	
-	private boolean craftVanillaRecipe(@Nullable CraftingRecipe recipe, DefaultedList<ItemStack> defaultedList, int maxCountPerStack) {
-		if (canAcceptRecipeOutput(recipe, defaultedList, maxCountPerStack)) {
-			
+	private boolean craftVanillaRecipe(@Nullable CraftingRecipe recipe, DefaultedList<ItemStack> inventory, int maxCountPerStack) {
+		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
+			autoCraftingInventory.setInputInventory(inventory.subList(0, 9));
 			// -1 for all crafting inputs
-			for (int i = 0; i < 9; i++) {
-				ItemStack itemStack = defaultedList.get(i);
-				if (!itemStack.isEmpty()) {
-					Item recipeReminderItem = itemStack.getItem().getRecipeRemainder();
-					if (recipeReminderItem == null) {
-						itemStack.decrement(1);
-					} else {
-						if (inventory.get(i).getCount() == 1) {
-							inventory.set(i, new ItemStack(recipeReminderItem, 1));
-						} else {
-							inventory.get(i).decrement(1);
-							
-							ItemStack remainderStack = recipeReminderItem.getDefaultStack();
-							ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainderStack);
-							itemEntity.addVelocity(0, 0.05, 0);
-							world.spawnEntity(itemEntity);
-						}
-					}
-				}
-			}
+			decrementInputStacks(inventory);
 			
-			ItemStack recipeOutput = recipe.getOutput();
+			ItemStack recipeOutput = recipe.craft(autoCraftingInventory);
 			PlayerEntity player = getOwnerIfOnline();
 			if (player != null) {
 				recipeOutput.onCraft(this.world, player, recipeOutput.getCount());
 			}
 			
-			ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
+			ItemStack existingOutput = inventory.get(OUTPUT_SLOT_ID);
 			if (existingOutput.isEmpty()) {
-				defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());
+				inventory.set(OUTPUT_SLOT_ID, recipeOutput.copy());
 			} else {
 				existingOutput.increment(recipeOutput.getCount());
-				defaultedList.set(OUTPUT_SLOT_ID, existingOutput);
+				inventory.set(OUTPUT_SLOT_ID, existingOutput);
 			}
 			
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	private void decrementInputStacks(DefaultedList<ItemStack> defaultedList) {
+		for (int i = 0; i < 9; i++) {
+			ItemStack itemStack = defaultedList.get(i);
+			if (!itemStack.isEmpty()) {
+				Item recipeReminderItem = itemStack.getItem().getRecipeRemainder();
+				if (recipeReminderItem == null) {
+					itemStack.decrement(1);
+				} else {
+					if (inventory.get(i).getCount() == 1) {
+						inventory.set(i, new ItemStack(recipeReminderItem, 1));
+					} else {
+						inventory.get(i).decrement(1);
+						
+						ItemStack remainderStack = recipeReminderItem.getDefaultStack();
+						ItemEntity itemEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, remainderStack);
+						itemEntity.addVelocity(0, 0.05, 0);
+						world.spawnEntity(itemEntity);
+					}
+				}
+			}
 		}
 	}
 	
@@ -766,7 +770,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (this.currentRecipe == null) {
 			return ItemStack.EMPTY;
 		} else {
-			return this.currentRecipe.getOutput();
+			if(currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
+				return pedestalCraftingRecipe.craft(this);
+			} else {
+				return this.currentRecipe.craft(autoCraftingInventory);
+			}
 		}
 	}
 	

@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.energy.color.InkColor;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +26,7 @@ public class CreativeInkStorage implements InkStorage {
 		super();
 	}
 	
-	public static @Nullable CreativeInkStorage fromNbt(@NotNull NbtCompound compound) {
+	public static CreativeInkStorage fromNbt(@NotNull NbtCompound compound) {
 		return new CreativeInkStorage();
 	}
 	

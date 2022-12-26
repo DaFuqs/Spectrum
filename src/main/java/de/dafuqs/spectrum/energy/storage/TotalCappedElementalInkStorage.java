@@ -66,15 +66,16 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 	@Override
 	public long addEnergy(InkColor color, long amount) {
 		if (color instanceof ElementalColor elementalColor) {
-			long resultingAmount = this.storedEnergy.get(color) + amount;
-			if (resultingAmount > this.maxEnergyTotal) {
+			long currentAmount = this.storedEnergy.get(color);
+			if (amount > this.maxEnergyTotal - this.currentTotal) {
+				long resultingAmount = currentAmount + amount;
 				long overflow = resultingAmount - this.maxEnergyTotal + this.currentTotal;
 				this.currentTotal = this.currentTotal + (resultingAmount - this.maxEnergyTotal);
 				this.storedEnergy.put(elementalColor, this.maxEnergyTotal);
 				return overflow;
 			} else {
 				this.currentTotal += amount;
-				this.storedEnergy.put(elementalColor, resultingAmount);
+				this.storedEnergy.put(elementalColor, currentAmount + amount);
 				return 0;
 			}
 		}

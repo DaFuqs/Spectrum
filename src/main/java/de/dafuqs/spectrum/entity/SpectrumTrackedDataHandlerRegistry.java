@@ -7,10 +7,10 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 
 public class SpectrumTrackedDataHandlerRegistry {
 	
-	public static final TrackedDataHandler<GlassArrowItem.Variant> MALACHITE_ARROW_VARIANT = TrackedDataHandler.of(SpectrumRegistries.MALACHITE_ARROW_VARIANT);
+	public static final TrackedDataHandler<GlassArrowItem.Variant> GLASS_ARROW_VARIANT = TrackedDataHandler.of(SpectrumRegistries.GLASS_ARROW_VARIANT);
 	
 	public static void register() {
-		TrackedDataHandlerRegistry.register(MALACHITE_ARROW_VARIANT);
+		TrackedDataHandlerRegistry.register(GLASS_ARROW_VARIANT);
 	}
 	
 }

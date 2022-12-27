@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.entity.SpectrumTrackedDataHandlerRegistry;
 import de.dafuqs.spectrum.items.tools.GlassArrowItem;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.DataTracker;
@@ -11,11 +12,14 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class GlassArrowEntity extends PersistentProjectileEntity {
 	
-	private static final TrackedData<GlassArrowItem.Variant> VARIANT = DataTracker.registerData(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.MALACHITE_ARROW_VARIANT);
+	private static final TrackedData<GlassArrowItem.Variant> VARIANT = DataTracker.registerData(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
 	
 	public GlassArrowEntity(EntityType entityType, World world) {
 		super(entityType, world);
@@ -45,6 +49,30 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	protected void onHit(LivingEntity target) {
 		super.onHit(target);
+	}
+	
+	/**
+	 * Glass Arrows pass through translucent blocks as if it were air
+	 */
+	@Override
+	protected void onCollision(HitResult hitResult) {
+		HitResult.Type type = hitResult.getType();
+		if (type == HitResult.Type.BLOCK) {
+			BlockPos hitPos = ((BlockHitResult) hitResult).getBlockPos();
+			BlockState state = this.world.getBlockState(hitPos);
+			if(state.isTranslucent(world, hitPos)) {
+				return;
+			}
+		}
+		super.onCollision(hitResult);
+	}
+	
+	/**
+	 * Glass Arrows pass through water almost effortlessly
+	 */
+	@Override
+	protected float getDragInWater() {
+		return 0.1F;
 	}
 	
 	@Override

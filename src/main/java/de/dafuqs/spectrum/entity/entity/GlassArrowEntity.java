@@ -5,8 +5,10 @@ import de.dafuqs.spectrum.entity.SpectrumTrackedDataHandlerRegistry;
 import de.dafuqs.spectrum.items.tools.GlassArrowItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -14,14 +16,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class GlassArrowEntity extends PersistentProjectileEntity {
 	
 	private static final TrackedData<GlassArrowItem.Variant> VARIANT = DataTracker.registerData(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
-	public static final float DAMAGE_MODIFIER = 1.5F;
+	public static final float DAMAGE_MODIFIER = 1.25F;
 	
 	
 	public GlassArrowEntity(EntityType entityType, World world) {
@@ -77,9 +81,47 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		}
 	}
 	
+	
 	@Override
-	protected void onBlockHit(BlockHitResult blockHitResult) {
-		super.onBlockHit(blockHitResult);
+	protected void onEntityHit(EntityHitResult entityHitResult) {
+		super.onEntityHit(entityHitResult);
+		
+		// additional effects depending on arrow type
+		// mundane glass arrows do not have additional effects
+		switch (getVariant()) {
+			case TOPAZ -> {
+			
+			}
+			case AMETHYST -> {
+			
+			}
+			case CITRINE -> {
+			
+			}
+			case ONYX -> {
+				if(this.getOwner() != null) {
+					Entity entity = entityHitResult.getEntity();
+					pullEntityClose(this.getOwner(), entity, 0.1);
+				}
+			}
+			case MOONSTONE -> {
+			
+			}
+		}
+	}
+	
+	protected static void pullEntityClose(Entity shooter, Entity entityToPull, double pullStrength) {
+		double d = shooter.getX() - entityToPull.getX();
+		double e = shooter.getY() - entityToPull.getY();
+		double f = shooter.getZ() - entityToPull.getZ();
+		
+		double pullStrengthModifier = 1.0;
+		if(entityToPull instanceof LivingEntity livingEntity) {
+			pullStrengthModifier = Math.max(0.0, 1.0 - livingEntity.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
+		}
+		
+		Vec3d additionalVelocity = new Vec3d(d * pullStrength, e * pullStrength + Math.sqrt(Math.sqrt(d * d + e * e + f * f)) * 0.08D, f * pullStrength).multiply(pullStrengthModifier);
+		entityToPull.addVelocity(additionalVelocity.x, additionalVelocity.y, additionalVelocity.z);
 	}
 	
 	@Override

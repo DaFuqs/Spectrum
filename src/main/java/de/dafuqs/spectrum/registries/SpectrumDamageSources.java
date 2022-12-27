@@ -1,8 +1,11 @@
 package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.entity.entity.InkProjectileEntity;
+import de.dafuqs.spectrum.entity.entity.MoonstoneBlast;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.EntityDamageSource;
 import net.minecraft.entity.damage.ProjectileDamageSource;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,6 +21,14 @@ public class SpectrumDamageSources {
 	
 	public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
 		return (new ProjectileDamageSource("spectrum_ink_projectile", projectile, attacker)).setProjectile();
+	}
+	
+	public static DamageSource moonstoneBlast(@Nullable MoonstoneBlast moonstoneBlast) {
+		return moonstoneBlast(moonstoneBlast != null ? moonstoneBlast.getCausingEntity() : null);
+	}
+	
+	public static DamageSource moonstoneBlast(@Nullable LivingEntity attacker) {
+		return attacker != null ? (new EntityDamageSource("moonstone_blast.player", attacker).setExplosive()) : (new DamageSource("moonstone_blast").setExplosive());
 	}
 	
 	public static class SpectrumDamageSource extends DamageSource {

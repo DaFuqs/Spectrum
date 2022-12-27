@@ -15,6 +15,8 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -51,6 +53,11 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		}
 	}
 	
+	@Override
+	public boolean hasNoGravity() {
+		return this.getVelocity().lengthSquared() > 0.1F;
+	}
+	
 	private void spawnParticles(int amount) {
 		DefaultParticleType particleType = null;
 		switch (this.getVariant()) {
@@ -81,32 +88,41 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		}
 	}
 	
-	
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
-		super.onEntityHit(entityHitResult);
-		
 		// additional effects depending on arrow type
 		// mundane glass arrows do not have additional effects
 		switch (getVariant()) {
 			case TOPAZ -> {
-			
+				// TODO
 			}
 			case AMETHYST -> {
-			
-			}
-			case CITRINE -> {
-			
+				if(!this.world.isClient) {
+					Entity entity = entityHitResult.getEntity();
+					entity.setFrozenTicks(200);
+				}
 			}
 			case ONYX -> {
-				if(this.getOwner() != null) {
+				if(!this.world.isClient && this.getOwner() != null) {
 					Entity entity = entityHitResult.getEntity();
-					pullEntityClose(this.getOwner(), entity, 0.1);
+					pullEntityClose(this.getOwner(), entity, 0.2);
 				}
 			}
 			case MOONSTONE -> {
-			
+				MoonstoneBlast.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
 			}
+		}
+		
+		super.onEntityHit(entityHitResult);
+		this.playSound(SoundEvents.BLOCK_GLASS_BREAK, 0.75F, 0.9F + world.random.nextFloat() * 0.2F);
+		this.remove(RemovalReason.DISCARDED);
+	}
+	
+	@Override
+	protected void onBlockHit(BlockHitResult blockHitResult) {
+		super.onBlockHit(blockHitResult);
+		if(getVariant() == GlassArrowItem.Variant.MOONSTONE) {
+			MoonstoneBlast.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
 		}
 	}
 	
@@ -122,6 +138,12 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		
 		Vec3d additionalVelocity = new Vec3d(d * pullStrength, e * pullStrength + Math.sqrt(Math.sqrt(d * d + e * e + f * f)) * 0.08D, f * pullStrength).multiply(pullStrengthModifier);
 		entityToPull.addVelocity(additionalVelocity.x, additionalVelocity.y, additionalVelocity.z);
+	}
+	
+	protected void moonstoneExplosion(Vec3d position) {
+		this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), 0, 0, 0);
+		
+		
 	}
 	
 	@Override
@@ -161,6 +183,10 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	
 	public void setVariant(GlassArrowItem.Variant variant) {
 		this.dataTracker.set(VARIANT, variant);
+		
+		if(variant == GlassArrowItem.Variant.CITRINE) {
+			setPunch(5);
+		}
 	}
 	
 	public GlassArrowItem.Variant getVariant() {

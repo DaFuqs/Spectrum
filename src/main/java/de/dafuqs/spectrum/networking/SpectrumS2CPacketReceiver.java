@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.blocks.present.PresentBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
 import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
 import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.entity.entity.MoonstoneBlast;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.enums.PedestalRecipeTier;
 import de.dafuqs.spectrum.helpers.ColorHelper;
@@ -458,18 +459,23 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PORTAL_CREATED_EFFECTS, (client, handler, buf, responseSender) -> {
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.MOONSTONE_BLAST, (client, handler, buf, responseSender) -> {
+			ClientPlayerEntity player = MinecraftClient.getInstance().player;
+			
+			double x = buf.readDouble();
+			double y = buf.readDouble();
+			double z = buf.readDouble();
+			float power = buf.readFloat();
+			double playerVelocityX = buf.readDouble();
+			double playerVelocityY = buf.readDouble();
+			double playerVelocityZ = buf.readDouble();
+			
 			client.execute(() -> {
-				// Everything in this lambda is running on the render thread
-				ClientPlayerEntity player = MinecraftClient.getInstance().player;
-				client.particleManager.addEmitter(player, SpectrumParticleTypes.DIVINITY, 30);
-				MinecraftClient.getInstance().gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
-				MinecraftClient.getInstance().world.playSound(player.getBlockPos(), SpectrumSoundEvents.FAILING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
-				
-				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
-				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
+				MoonstoneBlast.create(client.world, null, null, x, y, z, power);
+				player.setVelocity(player.getVelocity().add(playerVelocityX, playerVelocityY, playerVelocityZ));
 			});
 		});
+		
 	}
 	
 }

@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
 import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
 import de.dafuqs.spectrum.energy.InkStorage;
 import de.dafuqs.spectrum.energy.color.InkColor;
+import de.dafuqs.spectrum.entity.entity.MoonstoneBlast;
 import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.effect.ColoredTransmission;
@@ -493,4 +494,24 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PORTAL_CREATED_EFFECTS, buf);
 		}
 	}
+	
+	public static void sendMoonstoneBlast(ServerWorld serverWorld, MoonstoneBlast moonstoneBlast) {
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, new BlockPos(moonstoneBlast.getX(), moonstoneBlast.getY(), moonstoneBlast.getZ()))) {
+			Vec3d playerVelocity = moonstoneBlast.getAffectedPlayers().getOrDefault(player, Vec3d.ZERO);
+			
+			PacketByteBuf buf = PacketByteBufs.create();
+			buf.writeDouble(moonstoneBlast.getX());
+			buf.writeDouble(moonstoneBlast.getY());
+			buf.writeDouble(moonstoneBlast.getZ());
+			buf.writeFloat(moonstoneBlast.getPower());
+			buf.writeDouble(playerVelocity.x);
+			buf.writeDouble(playerVelocity.y);
+			buf.writeDouble(playerVelocity.z);
+			
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.MOONSTONE_BLAST, buf);
+		}
+	}
+	
 }

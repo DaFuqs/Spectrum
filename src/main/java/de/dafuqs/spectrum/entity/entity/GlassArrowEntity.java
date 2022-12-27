@@ -20,6 +20,8 @@ import net.minecraft.world.World;
 public class GlassArrowEntity extends PersistentProjectileEntity {
 	
 	private static final TrackedData<GlassArrowItem.Variant> VARIANT = DataTracker.registerData(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
+	public static final float DAMAGE_MODIFIER = 1.5F;
+	
 	
 	public GlassArrowEntity(EntityType entityType, World world) {
 		super(entityType, world);
@@ -31,6 +33,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	
 	public GlassArrowEntity(World world, double x, double y, double z) {
 		super(SpectrumEntityTypes.GLASS_ARROW, x, y, z, world);
+		setDamage(getDamage() * DAMAGE_MODIFIER);
 	}
 	
 	@Override
@@ -44,11 +47,6 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	protected ItemStack asItemStack() {
 		return dataTracker.get(VARIANT).getStack();
-	}
-	
-	@Override
-	protected void onHit(LivingEntity target) {
-		super.onHit(target);
 	}
 	
 	/**

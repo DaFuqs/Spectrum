@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.entity.SpectrumTrackedDataHandlerRegistry;
 import de.dafuqs.spectrum.items.tools.GlassArrowItem;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -11,7 +12,7 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
@@ -39,9 +40,46 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.world.isClient && !this.inGround) {
-			this.world.addParticle(ParticleTypes.INSTANT_EFFECT, this.getX(), this.getY(), this.getZ(), 0.0, 0.0, 0.0);
+		if (this.world.isClient) {
+			if(!this.onGround || world.getTime() % 2 == 0) {
+				spawnParticles(1);
+			}
 		}
+	}
+	
+	private void spawnParticles(int amount) {
+		DefaultParticleType particleType = null;
+		switch (this.getVariant()) {
+			case GLASS -> {
+				particleType = SpectrumParticleTypes.LIME_CRAFTING;
+			}
+			case TOPAZ -> {
+				particleType = SpectrumParticleTypes.CYAN_CRAFTING;
+			}
+			case AMETHYST -> {
+				particleType = SpectrumParticleTypes.MAGENTA_CRAFTING;
+			}
+			case CITRINE -> {
+				particleType = SpectrumParticleTypes.YELLOW_CRAFTING;
+			}
+			case ONYX -> {
+				particleType = SpectrumParticleTypes.BLACK_CRAFTING;
+			}
+			case MOONSTONE -> {
+				particleType = SpectrumParticleTypes.WHITE_CRAFTING;
+			}
+		}
+		
+		if(particleType != null) {
+			for (int j = 0; j < amount; ++j) {
+				this.world.addParticle(particleType, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), 0, 0, 0);
+			}
+		}
+	}
+	
+	@Override
+	protected void onBlockHit(BlockHitResult blockHitResult) {
+		super.onBlockHit(blockHitResult);
 	}
 	
 	@Override

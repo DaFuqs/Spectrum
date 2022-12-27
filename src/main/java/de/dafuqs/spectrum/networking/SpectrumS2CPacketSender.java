@@ -63,18 +63,16 @@ public class SpectrumS2CPacketSender {
 	
 	/**
 	 * Play particle effect
-	 *
 	 * @param world          the world of the pedestal
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithRandomOffsetWithoutVelocity(ServerWorld world, BlockPos position, ParticleType particleEffect, int amount) {
+	public static void playParticleWithRandomOffsetWithoutVelocity(ServerWorld world, BlockPos position, ParticleType<?> particleEffect, int amount) {
 		playParticleWithRandomOffsetWithoutVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect), amount);
 	}
 	
 	/**
 	 * Play particle effect
-	 *
 	 * @param world                    the world of the pedestal
 	 * @param position                 the pos of the particles
 	 * @param particleEffectIdentifier The particle effect identifier to play
@@ -101,7 +99,6 @@ public class SpectrumS2CPacketSender {
 	
 	/**
 	 * Play particle effect
-	 *
 	 * @param world          the world of the pedestal
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
@@ -112,7 +109,6 @@ public class SpectrumS2CPacketSender {
 	
 	/**
 	 * Play particle effect
-	 *
 	 * @param world          the world of the pedestal
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
@@ -122,8 +118,7 @@ public class SpectrumS2CPacketSender {
 	}
 	
 	/**
-	 * Play anvil crafting particle effect
-	 *
+	 * Play particle effect
 	 * @param world                    the world of the pedestal
 	 * @param position                 the pos of the particles
 	 * @param particleEffectIdentifier The particle effect identifier to play
@@ -166,7 +161,7 @@ public class SpectrumS2CPacketSender {
 		
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
-			if (notThisPlayerEntity == null || !player.equals(notThisPlayerEntity)) {
+			if (!player.equals(notThisPlayerEntity)) {
 				ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID, buf);
 			}
 		}

@@ -32,21 +32,18 @@ public class SpectrumC2SPacketReceiver {
 	
 	public static void registerC2SReceivers() {
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.RENAME_ITEM_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-			String name = buf.readString();
-			
-			if (player.currentScreenHandler instanceof BedrockAnvilScreenHandler) {
-				BedrockAnvilScreenHandler bedrockAnvilScreenHandler = (BedrockAnvilScreenHandler) player.currentScreenHandler;
+			if (player.currentScreenHandler instanceof BedrockAnvilScreenHandler bedrockAnvilScreenHandler) {
+				String name = buf.readString();
 				String string = SharedConstants.stripInvalidChars(name);
 				if (string.length() <= 50) {
 					bedrockAnvilScreenHandler.setNewItemName(string);
 				}
 			}
 		});
+		
 		ServerPlayNetworking.registerGlobalReceiver(SpectrumC2SPackets.ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID, (server, player, handler, buf, responseSender) -> {
-			String lore = buf.readString();
-			
-			if (player.currentScreenHandler instanceof BedrockAnvilScreenHandler) {
-				BedrockAnvilScreenHandler bedrockAnvilScreenHandler = (BedrockAnvilScreenHandler) player.currentScreenHandler;
+			if (player.currentScreenHandler instanceof BedrockAnvilScreenHandler bedrockAnvilScreenHandler) {
+				String lore = buf.readString();
 				String string = SharedConstants.stripInvalidChars(lore);
 				if (string.length() <= 256) {
 					bedrockAnvilScreenHandler.setNewItemLore(string);

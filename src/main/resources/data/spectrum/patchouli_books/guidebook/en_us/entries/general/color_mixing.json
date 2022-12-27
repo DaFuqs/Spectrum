@@ -20,6 +20,7 @@
     },
     {
       "type": "patchouli:text",
+      "advancement": "spectrum:collect_all_basic_pigments_besides_brown",
       "title": "Creating Brown Pigment",
       "text": "You tried and tried. You could not figure out a way to create brown color by mixing your gemstone dust. The closest you came was merely a washed out orange - yuck.$(br)It can't be THAT hard. Like... $(c_brown)dirt is brown$() and it is the most common stuff around.$(br2)There has to be a way...$(br)and you are pretty sure $(c_black)Black$() is the answer."
     },

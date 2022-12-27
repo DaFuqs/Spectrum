@@ -48,17 +48,19 @@ public class DeeperDownPortalBlock extends Block {
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		
-		boolean hasNeighboringPortals = false;
-		for (Direction direction : Direction.Type.HORIZONTAL) {
-			if (world.getBlockState(pos.offset(direction)).isOf(this)) {
-				hasNeighboringPortals = true;
-				break;
-			}
-		}
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(pos), SpectrumParticleTypes.VOID_FOG, 30, new Vec3d(0.5, 0.0, 0.5), Vec3d.ZERO);
-		if (!hasNeighboringPortals) {
+		if (!hasNeighboringPortals(world, pos)) {
 			world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.DEEPER_DOWN_PORTAL_OPEN, SoundCategory.BLOCKS, 0.75F, 0.75F);
 		}
+	}
+	
+	private boolean hasNeighboringPortals(World world, BlockPos pos) {
+		for (Direction direction : Direction.Type.HORIZONTAL) {
+			if (world.getBlockState(pos.offset(direction)).isOf(this)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override

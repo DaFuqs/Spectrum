@@ -484,17 +484,6 @@ public class SpectrumS2CPacketSender {
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, buf);
 	}
 	
-	public static void sendPortalCreatedEffects(ServerWorld serverWorld, BlockPos pos, boolean hasNeighboringPortals) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeBlockPos(pos);
-		buf.writeBoolean(hasNeighboringPortals);
-		
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, pos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PORTAL_CREATED_EFFECTS, buf);
-		}
-	}
-	
 	public static void sendMoonstoneBlast(ServerWorld serverWorld, MoonstoneBlast moonstoneBlast) {
 		
 		// Iterate over all players tracking a position in the world and send the packet to each player

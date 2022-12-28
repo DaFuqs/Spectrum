@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.client;
+package de.dafuqs.spectrum.mixin.compat.healthoverlay.absent;
 
 import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import de.dafuqs.spectrum.render.HudRenderers;

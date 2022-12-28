@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.mixin.client;
+package de.dafuqs.spectrum.mixin.compat.limlib.absent;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.compat.liminal_library.LiminalDimensionReverb;

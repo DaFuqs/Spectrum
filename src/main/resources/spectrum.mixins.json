@@ -2,7 +2,7 @@
   "required": true,
   "package": "de.dafuqs.spectrum.mixin",
   "compatibilityLevel": "JAVA_17",
-  "plugin": "de.dafuqs.spectrum.mixin.Plugin",
+  "plugin": "de.dafuqs.spectrum.mixin.compat.Plugin",
   "mixins": [
     "AbstractHorseEntityMixin",
     "AnvilBlockMixin",
@@ -59,17 +59,16 @@
     "accessors.SlimeEntityAccessor"
   ],
   "client": [
+    "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.CapeFeatureRendererMixin",
     "client.ClientPlayNetworkHandlerMixin",
-    "client.ClientWorldReverbMixin",
     "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
     "client.ElytraFeatureRendererMixin",
     "client.HeadFeatureRendererMixin",
-    "client.InGameHudMixin",
     "client.ItemFrameEntityRendererMixin",
     "client.ItemRendererMixin",
     "client.MinecraftClientMixin",
@@ -80,7 +79,10 @@
     "client.accessors.BakedOverrideAccessor",
     "client.accessors.BossBarHudAccessor",
     "client.accessors.ModelOverrideListAccessor",
-    "client.accessors.RenderLayerAccessor"
+    "client.accessors.RenderLayerAccessor",
+    "compat.healthoverlay.absent.InGameHudMixin",
+    "compat.healthoverlay.present.InGameHudMixin",
+    "compat.limlib.absent.ClientWorldReverbMixin"
   ],
   "injectors": {
     "defaultRequire": 1

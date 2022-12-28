@@ -27,13 +27,4 @@ public abstract class InGameHudMixin {
 		int scaledHeight = ((InGameHudAccessor) hud).getHeight();
 		HudRenderers.renderAzureDike(poseStack, scaledWidth, scaledHeight, player);
 	}
-
-	// Doesn't work, so left aside until some eventual fix
-	/*@Redirect(method = "renderPlayerHearts", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getHealth()F"), remap = false)
-	private float renderPlayerHeartsPlayerGetHealthRedirect(PlayerEntity instance) {
-		if (instance.hasStatusEffect(SpectrumStatusEffects.DIVINITY)) {
-			return 9 * 5f;
-		}
-		return instance.getHealth();
-	}*/
 }

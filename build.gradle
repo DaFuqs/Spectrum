@@ -98,6 +98,10 @@ dependencies {
 	implementation include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 
+	// https://github.com/Terrails/HealthOverlay
+	// Thanks to yurisuika's Raised for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
+	modCompileOnly ("curse.maven:health-overlay-fabric-313219:${project.health_overlay_version}") {transitive = false}
+
 	//modImplementation("com.github.LudoCrypt:Liminal-Library:${project.liminal_lib_version}")
 
 	// Soft testing-only dependencies:

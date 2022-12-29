@@ -191,17 +191,39 @@ public class SpectrumBlocks {
 	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
 	
 	// DD BLOCKS
-	public static final Block BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(6.0F, 5.0F));
+	public static final Block BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(5.0F, 7.0F));
 	public static final Block INFESTED_BLACKSLAG = new InfestedBlock(BLACKSLAG, AbstractBlock.Settings.of(Material.ORGANIC_PRODUCT));
+	public static final Block COBBLED_BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(6.0F, 7.0F));
+	public static final Block COBBLED_BLACKSLAG_STAIRS = new StairsBlock(COBBLED_BLACKSLAG.getDefaultState(), AbstractBlock.Settings.copy(COBBLED_BLACKSLAG));
+	public static final Block COBBLED_BLACKSLAG_SLAB = new SlabBlock(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG));
+	public static final Block COBBLED_BLACKSLAG_WALL = new WallBlock(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG));
+	public static final Block POLISHED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.POLISHED_DEEPSLATE));
+	public static final Block POLISHED_BLACKSLAG_STAIRS = new StairsBlock(POLISHED_BLACKSLAG.getDefaultState(), AbstractBlock.Settings.copy(POLISHED_BLACKSLAG));
+	public static final Block POLISHED_BLACKSLAG_SLAB = new SlabBlock(AbstractBlock.Settings.copy(POLISHED_BLACKSLAG));
+	public static final Block POLISHED_BLACKSLAG_WALL = new WallBlock(AbstractBlock.Settings.copy(POLISHED_BLACKSLAG));
+	public static final Block BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_TILES));
+	public static final Block BLACKSLAG_TILE_STAIRS = new StairsBlock(BLACKSLAG_TILES.getDefaultState(), AbstractBlock.Settings.copy(BLACKSLAG_TILES));
+	public static final Block BLACKSLAG_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
+	public static final Block BLACKSLAG_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
+	public static final Block BLACKSLAG_BRICKS = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block BLACKSLAG_BRICK_STAIRS = new StairsBlock(BLACKSLAG_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block BLACKSLAG_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block BLACKSLAG_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block CHISELED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block CRACKED_BLACKSLAG_BRICKS = new Block(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block CRACKED_BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
+	public static final Block POLISHED_BLACKSLAG_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
+	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
+	
 	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
 	public static final Block SAG_LEAF = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
 	public static final Block SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
 	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
 	
-	
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_STAIRS = new SpectrumStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
+	
 	public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F));
 	public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_CREST = new CardinalFacingBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -219,6 +241,18 @@ public class SpectrumBlocks {
 	public static final Block CITRINE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(7));
 	public static final Block ONYX_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(3));
 	public static final Block MOONSTONE_CHISELED_BASALT = new PillarBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(12));
+	
+	public static final Block BASALT_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
+	public static final Block AZURITE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_BASALT));
+	public static final Block MALACHITE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_BASALT));
+	public static final Block CRACKED_BASALT_TILES = new Block(FabricBlockSettings.copyOf(BASALT_TILES));
+	public static final Block BASALT_TILE_STAIRS = new SpectrumStairsBlock(BASALT_TILES.getDefaultState(), FabricBlockSettings.copyOf(BASALT_TILES));
+	public static final Block BASALT_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_TILES));
+	public static final Block BASALT_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_TILES));
+	public static final Block CRACKED_BASALT_BRICKS = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS));
+	public static final Block POLISHED_BASALT_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
+	public static final Block POLISHED_BASALT_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
+	
 	public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
 	public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
 	public static final Block CALCITE_STAIRS = new SpectrumStairsBlock(Blocks.CALCITE.getDefaultState(), FabricBlockSettings.copyOf(Blocks.CALCITE));
@@ -239,6 +273,17 @@ public class SpectrumBlocks {
 	public static final Block CITRINE_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(7));
 	public static final Block ONYX_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(3));
 	public static final Block MOONSTONE_CHISELED_CALCITE = new PillarBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(12));
+	
+	public static final Block CALCITE_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_CALCITE));
+	public static final Block AZURITE_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_CALCITE));
+	public static final Block MALACHITE_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_CALCITE));
+	public static final Block CALCITE_TILE_STAIRS = new SpectrumStairsBlock(CALCITE_TILES.getDefaultState(), FabricBlockSettings.copyOf(CALCITE_TILES));
+	public static final Block CALCITE_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
+	public static final Block CALCITE_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
+	public static final Block CRACKED_CALCITE_TILES = new Block(FabricBlockSettings.copyOf(CALCITE_TILES));
+	public static final Block CRACKED_CALCITE_BRICKS = new Block(FabricBlockSettings.copyOf(CALCITE_BRICKS));
+	public static final Block POLISHED_CALCITE_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
+	public static final Block POLISHED_CALCITE_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
 	
 	// GEMSTONE LAMPS
 	public static final Block TOPAZ_CALCITE_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
@@ -886,7 +931,7 @@ public class SpectrumBlocks {
 	public static final Block INVISIBLE_WALL = new InvisibleWallBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).strength(-1.0F, 3600000.0F));
 	
-	public static final Block DOWNSTONE = new Block(preservationBlockSettings); // "raw" preservation stone, used in the Deeper Down
+	public static final Block DOWNSTONE = new Block(preservationBlockSettings); // "raw" preservation stone, used in the Deeper Down bottom in place of bedrock
 	public static final Block PRESERVATION_STONE = new Block(preservationBlockSettings);
 	public static final Block POWDER_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(2));
 	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(6));
@@ -1410,8 +1455,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("malachite_cluster", MALACHITE_CLUSTER, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.GREEN);
 		registerBlockWithItem("malachite_block", MALACHITE_BLOCK, Tab.RESOURCES.settings(Rarity.UNCOMMON), DyeColor.GREEN);
 		
-		registerBlockWithItem("blackslag", BLACKSLAG, settings, DyeColor.BLACK);
-		registerBlockWithItem("infested_blackslag", INFESTED_BLACKSLAG, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_coal_ore", BLACKSLAG_COAL_ORE, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_copper_ore", BLACKSLAG_COPPER_ORE, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_iron_ore", BLACKSLAG_IRON_ORE, settings, DyeColor.BROWN);
@@ -1502,10 +1545,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("smooth_basalt_wall", SMOOTH_BASALT_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("smooth_basalt_stairs", SMOOTH_BASALT_STAIRS, settings, DyeColor.BROWN);
 		
-		registerBlockWithItem("calcite_slab", CALCITE_SLAB, settings, DyeColor.BROWN);
-		registerBlockWithItem("calcite_wall", CALCITE_WALL, settings, DyeColor.BROWN);
-		registerBlockWithItem("calcite_stairs", CALCITE_STAIRS, settings, DyeColor.BROWN);
-		
 		registerBlockWithItem("polished_basalt", POLISHED_BASALT, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_basalt_pillar", POLISHED_BASALT_PILLAR, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_basalt_crest", POLISHED_BASALT_CREST, settings, DyeColor.BROWN);
@@ -1514,10 +1553,29 @@ public class SpectrumBlocks {
 		registerBlockWithItem("polished_basalt_slab", POLISHED_BASALT_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_basalt_wall", POLISHED_BASALT_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_basalt_stairs", POLISHED_BASALT_STAIRS, settings, DyeColor.BROWN);
+		
 		registerBlockWithItem("basalt_bricks", BASALT_BRICKS, settings, DyeColor.BROWN);
 		registerBlockWithItem("basalt_brick_slab", BASALT_BRICK_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("basalt_brick_wall", BASALT_BRICK_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("basalt_brick_stairs", BASALT_BRICK_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("cracked_basalt_bricks", CRACKED_BASALT_BRICKS, settings, DyeColor.BROWN);
+		
+		registerBlockWithItem("basalt_tiles", BASALT_TILES, settings, DyeColor.BROWN);
+		registerBlockWithItem("basalt_tile_stairs", BASALT_TILE_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("basalt_tile_slab", BASALT_TILE_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("basalt_tile_wall", BASALT_TILE_WALL, settings, DyeColor.BROWN);
+		registerBlockWithItem("cracked_basalt_tiles", CRACKED_BASALT_TILES, settings, DyeColor.BROWN);
+		
+		registerBlockWithItem("azurite_chiseled_basalt", AZURITE_CHISELED_BASALT, settings, DyeColor.BROWN);
+		registerBlockWithItem("malachite_chiseled_basalt", MALACHITE_CHISELED_BASALT, settings, DyeColor.BROWN);
+		
+		registerBlockWithItem("polished_basalt_button", POLISHED_BASALT_BUTTON, settings, DyeColor.BROWN);
+		registerBlockWithItem("polished_basalt_pressure_plate", POLISHED_BASALT_PRESSURE_PLATE, settings, DyeColor.BROWN);
+		
+		
+		registerBlockWithItem("calcite_slab", CALCITE_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_wall", CALCITE_WALL, settings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_stairs", CALCITE_STAIRS, settings, DyeColor.BROWN);
 		
 		registerBlockWithItem("polished_calcite", POLISHED_CALCITE, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_calcite_pillar", POLISHED_CALCITE_PILLAR, settings, DyeColor.BROWN);
@@ -1527,10 +1585,52 @@ public class SpectrumBlocks {
 		registerBlockWithItem("polished_calcite_slab", POLISHED_CALCITE_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_calcite_wall", POLISHED_CALCITE_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_calcite_stairs", POLISHED_CALCITE_STAIRS, settings, DyeColor.BROWN);
+		
 		registerBlockWithItem("calcite_bricks", CALCITE_BRICKS, settings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_brick_slab", CALCITE_BRICK_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_brick_wall", CALCITE_BRICK_WALL, settings, DyeColor.BROWN);
 		registerBlockWithItem("calcite_brick_stairs", CALCITE_BRICK_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("cracked_calcite_bricks", CRACKED_CALCITE_BRICKS, settings, DyeColor.BROWN);
+		
+		registerBlockWithItem("calcite_tiles", CALCITE_TILES, settings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_tile_stairs", CALCITE_TILE_STAIRS, settings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_tile_slab", CALCITE_TILE_SLAB, settings, DyeColor.BROWN);
+		registerBlockWithItem("calcite_tile_wall", CALCITE_TILE_WALL, settings, DyeColor.BROWN);
+		registerBlockWithItem("cracked_calcite_tiles", CRACKED_CALCITE_TILES, settings, DyeColor.BROWN);
+		
+		registerBlockWithItem("azurite_chiseled_calcite", AZURITE_CHISELED_CALCITE, settings, DyeColor.BROWN);
+		registerBlockWithItem("malachite_chiseled_calcite", MALACHITE_CHISELED_CALCITE, settings, DyeColor.BROWN);
+		
+		registerBlockWithItem("polished_calcite_button", POLISHED_CALCITE_BUTTON, settings, DyeColor.BROWN);
+		registerBlockWithItem("polished_calcite_pressure_plate", POLISHED_CALCITE_PRESSURE_PLATE, settings, DyeColor.BROWN);
+		
+		
+		registerBlockWithItem("blackslag", BLACKSLAG, settings, DyeColor.BLACK);
+		registerBlockWithItem("cobbled_blackslag", COBBLED_BLACKSLAG, settings, DyeColor.BLACK);
+		registerBlockWithItem("cobbled_blackslag_stairs", COBBLED_BLACKSLAG_STAIRS, settings, DyeColor.BLACK);
+		registerBlockWithItem("cobbled_blackslag_slab", COBBLED_BLACKSLAG_SLAB, settings, DyeColor.BLACK);
+		registerBlockWithItem("cobbled_blackslag_wall", COBBLED_BLACKSLAG_WALL, settings, DyeColor.BLACK);
+		registerBlockWithItem("polished_blackslag", POLISHED_BLACKSLAG, settings, DyeColor.BLACK);
+		registerBlockWithItem("polished_blackslag_stairs", POLISHED_BLACKSLAG_STAIRS, settings, DyeColor.BLACK);
+		registerBlockWithItem("polished_blackslag_slab", POLISHED_BLACKSLAG_SLAB, settings, DyeColor.BLACK);
+		registerBlockWithItem("polished_blackslag_wall", POLISHED_BLACKSLAG_WALL, settings, DyeColor.BLACK);
+		
+		registerBlockWithItem("blackslag_tiles", BLACKSLAG_TILES, settings, DyeColor.BLACK);
+		registerBlockWithItem("blackslag_tile_stairs", BLACKSLAG_TILE_STAIRS, settings, DyeColor.BLACK);
+		registerBlockWithItem("blackslag_tile_slab", BLACKSLAG_TILE_SLAB, settings, DyeColor.BLACK);
+		registerBlockWithItem("blackslag_tile_wall", BLACKSLAG_TILE_WALL, settings, DyeColor.BLACK);
+		registerBlockWithItem("cracked_blackslag_tiles", CRACKED_BLACKSLAG_TILES, settings, DyeColor.BLACK);
+		
+		registerBlockWithItem("blackslag_bricks", BLACKSLAG_BRICKS, settings, DyeColor.BLACK);
+		registerBlockWithItem("blackslag_brick_stairs", BLACKSLAG_BRICK_STAIRS, settings, DyeColor.BLACK);
+		registerBlockWithItem("blackslag_brick_slab", BLACKSLAG_BRICK_SLAB, settings, DyeColor.BLACK);
+		registerBlockWithItem("blackslag_brick_wall", BLACKSLAG_BRICK_WALL, settings, DyeColor.BLACK);
+		registerBlockWithItem("cracked_blackslag_bricks", CRACKED_BLACKSLAG_BRICKS, settings, DyeColor.BLACK);
+		
+		registerBlockWithItem("chiseled_blackslag", CHISELED_BLACKSLAG, settings, DyeColor.BLACK);
+		registerBlockWithItem("polished_blackslag_button", POLISHED_BLACKSLAG_BUTTON, settings, DyeColor.BLACK);
+		registerBlockWithItem("polished_blackslag_pressure_plate", POLISHED_BLACKSLAG_PRESSURE_PLATE, settings, DyeColor.BLACK);
+		registerBlockWithItem("infested_blackslag", INFESTED_BLACKSLAG, settings, DyeColor.BLACK);
 	}
 	
 	private static void registerRunes(FabricItemSettings settings) {

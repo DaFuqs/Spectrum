@@ -1,383 +1,383 @@
 {
-  "multipart": [
-    {
-      "when": {
-        "powered": true,
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_base",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_base",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_base"
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_base",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_base_off",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_base_off",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_base_off"
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_base_off",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "addition",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_addition",
-        "uvlock": true,
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "addition",
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_addition",
-        "uvlock": true,
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "addition",
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_addition",
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "addition",
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_addition",
-        "uvlock": true,
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "subtraction",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_subtraction",
-        "uvlock": true,
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "subtraction",
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_subtraction",
-        "uvlock": true,
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "subtraction",
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_subtraction",
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "subtraction",
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_subtraction",
-        "uvlock": true,
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "multiplication",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_multiplication",
-        "uvlock": true,
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "multiplication",
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_multiplication",
-        "uvlock": true,
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "multiplication",
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_multiplication",
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "multiplication",
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_multiplication",
-        "uvlock": true,
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "division",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_division",
-        "uvlock": true,
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "division",
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_division",
-        "uvlock": true,
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "division",
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_division",
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "division",
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_division",
-        "uvlock": true,
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "modulo",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_modulo",
-        "uvlock": true,
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "modulo",
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_modulo",
-        "uvlock": true,
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "modulo",
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_modulo",
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "modulo",
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_modulo",
-        "uvlock": true,
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "min",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_min",
-        "uvlock": true,
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "min",
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_min",
-        "uvlock": true,
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "min",
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_min",
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "min",
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_min",
-        "uvlock": true,
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "max",
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_max",
-        "uvlock": true,
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "max",
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_max",
-        "uvlock": true,
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "max",
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_max",
-        "uvlock": true
-      }
-    },
-    {
-      "when": {
-        "calculation_mode": "max",
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_calculator_max",
-        "uvlock": true,
-        "y": 90
-      }
-    }
-  ]
+	"multipart": [
+		{
+			"when": {
+				"powered": true,
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_base",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_base",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_base"
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_base",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_base_off",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_base_off",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_base_off"
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_base_off",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "addition",
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_addition",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "addition",
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_addition",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "addition",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_addition",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "addition",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_addition",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "subtraction",
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_subtraction",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "subtraction",
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_subtraction",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "subtraction",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_subtraction",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "subtraction",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_subtraction",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "multiplication",
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_multiplication",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "multiplication",
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_multiplication",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "multiplication",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_multiplication",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "multiplication",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_multiplication",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "division",
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_division",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "division",
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_division",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "division",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_division",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "division",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_division",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "modulo",
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_modulo",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "modulo",
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_modulo",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "modulo",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_modulo",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "modulo",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_modulo",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "min",
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_min",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "min",
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_min",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "min",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_min",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "min",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_min",
+				"uvlock": true,
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "max",
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_max",
+				"uvlock": true,
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "max",
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_max",
+				"uvlock": true,
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "max",
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_max",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"calculation_mode": "max",
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_calculator_max",
+				"uvlock": true,
+				"y": 90
+			}
+		}
+	]
 }

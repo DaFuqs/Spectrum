@@ -1,10 +1,10 @@
 {
-  "variants": {
-    "inverted=false": {
-      "model": "spectrum:block/player_detector"
-    },
-    "inverted=true": {
-      "model": "spectrum:block/player_detector_inverted"
-    }
-  }
+	"variants": {
+		"inverted=false": {
+			"model": "spectrum:block/player_detector"
+		},
+		"inverted=true": {
+			"model": "spectrum:block/player_detector_inverted"
+		}
+	}
 }

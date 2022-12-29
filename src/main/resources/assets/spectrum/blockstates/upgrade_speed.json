@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/upgrade_speed"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/upgrade_speed"
+		}
+	}
 }

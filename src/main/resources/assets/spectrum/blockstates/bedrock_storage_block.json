@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/bedrock_storage_block"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/bedrock_storage_block"
+		}
+	}
 }

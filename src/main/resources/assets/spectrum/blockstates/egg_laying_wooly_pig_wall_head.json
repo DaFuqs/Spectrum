@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/egg_laying_wooly_pig_head"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/egg_laying_wooly_pig_head"
+		}
+	}
 }

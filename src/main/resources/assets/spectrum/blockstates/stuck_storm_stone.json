@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/stuck_storm_stone"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/stuck_storm_stone"
+		}
+	}
 }

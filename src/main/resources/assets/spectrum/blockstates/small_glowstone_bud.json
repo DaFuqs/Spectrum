@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/small_glowstone_bud"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/small_glowstone_bud"
+		}
+	}
 }

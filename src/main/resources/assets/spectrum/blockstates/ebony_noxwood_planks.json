@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/ebony_noxwood_planks"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/ebony_noxwood_planks"
+		}
+	}
 }

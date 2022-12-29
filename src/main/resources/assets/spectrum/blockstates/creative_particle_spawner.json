@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/particle_spawner"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/particle_spawner"
+		}
+	}
 }

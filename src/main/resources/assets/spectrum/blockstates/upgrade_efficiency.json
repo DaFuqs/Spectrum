@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/upgrade_efficiency"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/upgrade_efficiency"
+		}
+	}
 }

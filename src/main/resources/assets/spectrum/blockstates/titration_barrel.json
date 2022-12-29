@@ -1,83 +1,80 @@
 {
-  "variants": {
-    "facing=east,barrel_state=empty": {
-      "x": 90,
-      "y": 90,
-      "model": "spectrum:block/titration_barrel"
-    },
-    "facing=east,barrel_state=filled": {
-      "x": 90,
-      "y": 90,
-      "model": "spectrum:block/titration_barrel_filled"
-    },
-	"facing=east,barrel_state=sealed": {
-      "x": 90,
-      "y": 90,
-      "model": "spectrum:block/titration_barrel_sealed"
-    },
-    "facing=east,barrel_state=tapped": {
-      "x": 90,
-      "y": 90,
-      "model": "spectrum:block/titration_barrel_tapped"
-    },
-	
-    "facing=north,barrel_state=empty": {
-      "x": 90,
-      "model": "spectrum:block/titration_barrel"
-    },
-    "facing=north,barrel_state=filled": {
-      "x": 90,
-      "model": "spectrum:block/titration_barrel_filled"
-    },
-	"facing=north,barrel_state=sealed": {
-      "x": 90,
-      "model": "spectrum:block/titration_barrel_sealed"
-    },
-    "facing=north,barrel_state=tapped": {
-      "x": 90,
-      "model": "spectrum:block/titration_barrel_tapped"
-    },
-	
-    "facing=south,barrel_state=empty": {
-      "x": 90,
-      "y": 180,
-      "model": "spectrum:block/titration_barrel"
-    },
-    "facing=south,barrel_state=filled": {
-      "x": 90,
-      "y": 180,
-      "model": "spectrum:block/titration_barrel_filled"
-    },
-	"facing=south,barrel_state=sealed": {
-      "x": 90,
-      "y": 180,
-      "model": "spectrum:block/titration_barrel_sealed"
-    },
-    "facing=south,barrel_state=tapped": {
-      "x": 90,
-      "y": 180,
-      "model": "spectrum:block/titration_barrel_tapped"
-    },
-	
-    "facing=west,barrel_state=empty": {
-      "x": 90,
-      "y": 270,
-      "model": "spectrum:block/titration_barrel"
-    },
-    "facing=west,barrel_state=filled": {
-      "x": 90,
-      "y": 270,
-      "model": "spectrum:block/titration_barrel_filled"
-    },
-    "facing=west,barrel_state=sealed": {
-      "x": 90,
-      "y": 270,
-      "model": "spectrum:block/titration_barrel_sealed"
-    },
-    "facing=west,barrel_state=tapped": {
-      "x": 90,
-      "y": 270,
-      "model": "spectrum:block/titration_barrel_tapped"
-    }
-  }
+	"variants": {
+		"facing=east,barrel_state=empty": {
+			"x": 90,
+			"y": 90,
+			"model": "spectrum:block/titration_barrel"
+		},
+		"facing=east,barrel_state=filled": {
+			"x": 90,
+			"y": 90,
+			"model": "spectrum:block/titration_barrel_filled"
+		},
+		"facing=east,barrel_state=sealed": {
+			"x": 90,
+			"y": 90,
+			"model": "spectrum:block/titration_barrel_sealed"
+		},
+		"facing=east,barrel_state=tapped": {
+			"x": 90,
+			"y": 90,
+			"model": "spectrum:block/titration_barrel_tapped"
+		},
+		"facing=north,barrel_state=empty": {
+			"x": 90,
+			"model": "spectrum:block/titration_barrel"
+		},
+		"facing=north,barrel_state=filled": {
+			"x": 90,
+			"model": "spectrum:block/titration_barrel_filled"
+		},
+		"facing=north,barrel_state=sealed": {
+			"x": 90,
+			"model": "spectrum:block/titration_barrel_sealed"
+		},
+		"facing=north,barrel_state=tapped": {
+			"x": 90,
+			"model": "spectrum:block/titration_barrel_tapped"
+		},
+		"facing=south,barrel_state=empty": {
+			"x": 90,
+			"y": 180,
+			"model": "spectrum:block/titration_barrel"
+		},
+		"facing=south,barrel_state=filled": {
+			"x": 90,
+			"y": 180,
+			"model": "spectrum:block/titration_barrel_filled"
+		},
+		"facing=south,barrel_state=sealed": {
+			"x": 90,
+			"y": 180,
+			"model": "spectrum:block/titration_barrel_sealed"
+		},
+		"facing=south,barrel_state=tapped": {
+			"x": 90,
+			"y": 180,
+			"model": "spectrum:block/titration_barrel_tapped"
+		},
+		"facing=west,barrel_state=empty": {
+			"x": 90,
+			"y": 270,
+			"model": "spectrum:block/titration_barrel"
+		},
+		"facing=west,barrel_state=filled": {
+			"x": 90,
+			"y": 270,
+			"model": "spectrum:block/titration_barrel_filled"
+		},
+		"facing=west,barrel_state=sealed": {
+			"x": 90,
+			"y": 270,
+			"model": "spectrum:block/titration_barrel_sealed"
+		},
+		"facing=west,barrel_state=tapped": {
+			"x": 90,
+			"y": 270,
+			"model": "spectrum:block/titration_barrel_tapped"
+		}
+	}
 }

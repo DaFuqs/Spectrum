@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/citrine_glass"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/citrine_glass"
+		}
+	}
 }

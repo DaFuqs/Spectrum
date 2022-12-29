@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/radiating_ender"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/radiating_ender"
+		}
+	}
 }

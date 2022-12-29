@@ -1,13 +1,13 @@
 {
-  "variants": {
-    "type=bottom": {
-      "model": "spectrum:block/smooth_basalt_slab"
-    },
-    "type=double": {
-      "model": "minecraft:block/smooth_basalt"
-    },
-    "type=top": {
-      "model": "spectrum:block/smooth_basalt_slab_top"
-    }
-  }
+	"variants": {
+		"type=bottom": {
+			"model": "spectrum:block/smooth_basalt_slab"
+		},
+		"type=double": {
+			"model": "minecraft:block/smooth_basalt"
+		},
+		"type=top": {
+			"model": "spectrum:block/smooth_basalt_slab_top"
+		}
+	}
 }

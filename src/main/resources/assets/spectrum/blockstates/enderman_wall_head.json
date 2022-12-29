@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/enderman"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/enderman"
+		}
+	}
 }

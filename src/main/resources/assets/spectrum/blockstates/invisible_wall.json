@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/invisible_wall"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/invisible_wall"
+		}
+	}
 }

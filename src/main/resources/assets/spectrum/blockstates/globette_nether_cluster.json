@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/globette_nether_cluster"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/globette_nether_cluster"
+		}
+	}
 }

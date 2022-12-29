@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/snow_golem"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/snow_golem"
+		}
+	}
 }

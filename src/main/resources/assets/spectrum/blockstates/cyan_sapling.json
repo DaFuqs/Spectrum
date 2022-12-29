@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/cyan_sapling"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/cyan_sapling"
+		}
+	}
 }

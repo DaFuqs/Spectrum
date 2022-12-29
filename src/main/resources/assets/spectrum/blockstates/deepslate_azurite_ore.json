@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/deepslate_azurite_ore"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/deepslate_azurite_ore"
+		}
+	}
 }

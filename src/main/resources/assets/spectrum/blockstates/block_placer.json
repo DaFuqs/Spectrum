@@ -1,26 +1,26 @@
 {
-  "variants": {
-    "facing=down": {
-      "model": "spectrum:block/block_placer_vertical",
-      "x": 180
-    },
-    "facing=east": {
-      "model": "spectrum:block/block_placer",
-      "y": 90
-    },
-    "facing=north": {
-      "model": "spectrum:block/block_placer"
-    },
-    "facing=south": {
-      "model": "spectrum:block/block_placer",
-      "y": 180
-    },
-    "facing=up": {
-      "model": "spectrum:block/block_placer_vertical"
-    },
-    "facing=west": {
-      "model": "spectrum:block/block_placer",
-      "y": 270
-    }
-  }
+	"variants": {
+		"facing=down": {
+			"model": "spectrum:block/block_placer_vertical",
+			"x": 180
+		},
+		"facing=east": {
+			"model": "spectrum:block/block_placer",
+			"y": 90
+		},
+		"facing=north": {
+			"model": "spectrum:block/block_placer"
+		},
+		"facing=south": {
+			"model": "spectrum:block/block_placer",
+			"y": 180
+		},
+		"facing=up": {
+			"model": "spectrum:block/block_placer_vertical"
+		},
+		"facing=west": {
+			"model": "spectrum:block/block_placer",
+			"y": 270
+		}
+	}
 }

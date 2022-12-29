@@ -1,19 +1,19 @@
 {
-  "variants": {
-    "facing=east": {
-      "model": "spectrum:block/bedrock_anvil",
-      "y": 270
-    },
-    "facing=north": {
-      "model": "spectrum:block/bedrock_anvil",
-      "y": 180
-    },
-    "facing=south": {
-      "model": "spectrum:block/bedrock_anvil"
-    },
-    "facing=west": {
-      "model": "spectrum:block/bedrock_anvil",
-      "y": 90
-    }
-  }
+	"variants": {
+		"facing=east": {
+			"model": "spectrum:block/bedrock_anvil",
+			"y": 270
+		},
+		"facing=north": {
+			"model": "spectrum:block/bedrock_anvil",
+			"y": 180
+		},
+		"facing=south": {
+			"model": "spectrum:block/bedrock_anvil"
+		},
+		"facing=west": {
+			"model": "spectrum:block/bedrock_anvil",
+			"y": 90
+		}
+	}
 }

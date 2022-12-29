@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/ethereal_platform"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/ethereal_platform"
+		}
+	}
 }

@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/wandering_trader"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/wandering_trader"
+		}
+	}
 }

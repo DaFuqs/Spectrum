@@ -1,10 +1,10 @@
 {
-  "variants": {
-    "lit=false": {
-      "model": "spectrum:block/green_lamp"
-    },
-    "lit=true": {
-      "model": "spectrum:block/green_lamp_on"
-    }
-  }
+	"variants": {
+		"lit=false": {
+			"model": "spectrum:block/green_lamp"
+		},
+		"lit=true": {
+			"model": "spectrum:block/green_lamp_on"
+		}
+	}
 }

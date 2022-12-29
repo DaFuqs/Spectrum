@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/horse"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/horse"
+		}
+	}
 }

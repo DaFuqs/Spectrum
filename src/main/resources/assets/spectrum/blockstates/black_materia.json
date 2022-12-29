@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/black_materia"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/black_materia"
+		}
+	}
 }

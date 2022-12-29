@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/chestnut_noxcap_cap"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/chestnut_noxcap_cap"
+		}
+	}
 }

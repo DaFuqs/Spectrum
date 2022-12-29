@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/elder_guardian"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/elder_guardian"
+		}
+	}
 }

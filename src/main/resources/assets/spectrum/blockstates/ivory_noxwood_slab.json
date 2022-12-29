@@ -1,13 +1,13 @@
 {
-  "variants": {
-    "type=bottom": {
-      "model": "spectrum:block/ivory_noxwood_slab"
-    },
-    "type=double": {
-      "model": "spectrum:block/ivory_noxwood_planks"
-    },
-    "type=top": {
-      "model": "spectrum:block/ivory_noxwood_slab_top"
-    }
-  }
+	"variants": {
+		"type=bottom": {
+			"model": "spectrum:block/ivory_noxwood_slab"
+		},
+		"type=double": {
+			"model": "spectrum:block/ivory_noxwood_planks"
+		},
+		"type=top": {
+			"model": "spectrum:block/ivory_noxwood_slab_top"
+		}
+	}
 }

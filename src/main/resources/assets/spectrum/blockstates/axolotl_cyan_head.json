@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/axolotl_cyan"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/axolotl_cyan"
+		}
+	}
 }

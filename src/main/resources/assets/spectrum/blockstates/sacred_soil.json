@@ -1,28 +1,28 @@
 {
-  "variants": {
-    "moisture=0": {
-      "model": "spectrum:block/sacred_soil"
-    },
-    "moisture=1": {
-      "model": "spectrum:block/sacred_soil"
-    },
-    "moisture=2": {
-      "model": "spectrum:block/sacred_soil"
-    },
-    "moisture=3": {
-      "model": "spectrum:block/sacred_soil"
-    },
-    "moisture=4": {
-      "model": "spectrum:block/sacred_soil"
-    },
-    "moisture=5": {
-      "model": "spectrum:block/sacred_soil"
-    },
-    "moisture=6": {
-      "model": "spectrum:block/sacred_soil"
-    },
-    "moisture=7": {
-      "model": "spectrum:block/sacred_soil_moist"
-    }
-  }
+	"variants": {
+		"moisture=0": {
+			"model": "spectrum:block/sacred_soil"
+		},
+		"moisture=1": {
+			"model": "spectrum:block/sacred_soil"
+		},
+		"moisture=2": {
+			"model": "spectrum:block/sacred_soil"
+		},
+		"moisture=3": {
+			"model": "spectrum:block/sacred_soil"
+		},
+		"moisture=4": {
+			"model": "spectrum:block/sacred_soil"
+		},
+		"moisture=5": {
+			"model": "spectrum:block/sacred_soil"
+		},
+		"moisture=6": {
+			"model": "spectrum:block/sacred_soil"
+		},
+		"moisture=7": {
+			"model": "spectrum:block/sacred_soil_moist"
+		}
+	}
 }

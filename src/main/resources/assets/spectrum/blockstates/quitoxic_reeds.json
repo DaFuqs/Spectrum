@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/quitoxic_reeds"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/quitoxic_reeds"
+		}
+	}
 }

@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/shulker_brown"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/shulker_brown"
+		}
+	}
 }

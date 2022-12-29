@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/pedestal_onyx"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/pedestal_onyx"
+		}
+	}
 }

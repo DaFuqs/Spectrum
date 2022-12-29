@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/blaze"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/blaze"
+		}
+	}
 }

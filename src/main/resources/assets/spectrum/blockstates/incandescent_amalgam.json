@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/incandescent_amalgam"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/incandescent_amalgam"
+		}
+	}
 }

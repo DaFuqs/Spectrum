@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/axolotl_gold"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/axolotl_gold"
+		}
+	}
 }

@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/enchanter"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/enchanter"
+		}
+	}
 }

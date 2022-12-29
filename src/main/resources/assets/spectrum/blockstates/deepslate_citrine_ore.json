@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/deepslate_citrine_ore"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/deepslate_citrine_ore"
+		}
+	}
 }

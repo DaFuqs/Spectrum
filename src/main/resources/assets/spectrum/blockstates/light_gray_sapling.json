@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/light_gray_sapling"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/light_gray_sapling"
+		}
+	}
 }

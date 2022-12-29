@@ -1,0 +1,8 @@
+{
+	"parent": "minecraft:block/slab_top",
+	"textures": {
+		"bottom": "spectrum:block/polished_blackslag",
+		"top": "spectrum:block/polished_blackslag",
+		"side": "spectrum:block/polished_blackslag"
+	}
+}

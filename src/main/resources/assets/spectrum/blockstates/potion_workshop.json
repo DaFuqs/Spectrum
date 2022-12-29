@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/potion_workshop"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/potion_workshop"
+		}
+	}
 }

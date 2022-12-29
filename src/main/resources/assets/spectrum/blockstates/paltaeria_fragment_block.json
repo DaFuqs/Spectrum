@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/paltaeria_fragment_block"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/paltaeria_fragment_block"
+		}
+	}
 }

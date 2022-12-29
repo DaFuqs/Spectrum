@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/wither"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/wither"
+		}
+	}
 }

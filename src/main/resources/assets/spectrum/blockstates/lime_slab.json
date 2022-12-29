@@ -1,13 +1,13 @@
 {
-  "variants": {
-    "type=bottom": {
-      "model": "spectrum:block/lime_slab"
-    },
-    "type=double": {
-      "model": "spectrum:block/lime_planks"
-    },
-    "type=top": {
-      "model": "spectrum:block/lime_slab_top"
-    }
-  }
+	"variants": {
+		"type=bottom": {
+			"model": "spectrum:block/lime_slab"
+		},
+		"type=double": {
+			"model": "spectrum:block/lime_planks"
+		},
+		"type=top": {
+			"model": "spectrum:block/lime_slab_top"
+		}
+	}
 }

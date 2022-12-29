@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/topaz_calcite_lamp"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/topaz_calcite_lamp"
+		}
+	}
 }

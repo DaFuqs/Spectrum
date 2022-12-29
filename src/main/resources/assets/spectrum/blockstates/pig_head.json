@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/pig"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/pig"
+		}
+	}
 }

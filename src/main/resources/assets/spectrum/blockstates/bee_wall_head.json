@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/bee"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/bee"
+		}
+	}
 }

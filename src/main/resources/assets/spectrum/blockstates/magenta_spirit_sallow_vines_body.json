@@ -1,13 +1,13 @@
 {
-  "variants": {
-    "yield=none": {
-      "model": "spectrum:block/magenta_spirit_sallow_vines_body_none"
-    },
-    "yield=normal": {
-      "model": "spectrum:block/magenta_spirit_sallow_vines_body_normal"
-    },
-    "yield=lucid": {
-      "model": "spectrum:block/magenta_spirit_sallow_vines_body_lucid"
-    }
-  }
+	"variants": {
+		"yield=none": {
+			"model": "spectrum:block/magenta_spirit_sallow_vines_body_none"
+		},
+		"yield=normal": {
+			"model": "spectrum:block/magenta_spirit_sallow_vines_body_normal"
+		},
+		"yield=lucid": {
+			"model": "spectrum:block/magenta_spirit_sallow_vines_body_lucid"
+		}
+	}
 }

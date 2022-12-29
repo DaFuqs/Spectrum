@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/lava_sponge"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/lava_sponge"
+		}
+	}
 }

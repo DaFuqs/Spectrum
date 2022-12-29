@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/large_quartz_bud"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/large_quartz_bud"
+		}
+	}
 }

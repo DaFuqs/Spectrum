@@ -1,16 +1,16 @@
 {
-  "variants": {
-    "axis=x": {
-      "model": "spectrum:block/slate_noxwood_beam",
-      "x": 90,
-      "y": 90
-    },
-    "axis=y": {
-      "model": "spectrum:block/slate_noxwood_beam"
-    },
-    "axis=z": {
-      "model": "spectrum:block/slate_noxwood_beam",
-      "x": 90
-    }
-  }
+	"variants": {
+		"axis=x": {
+			"model": "spectrum:block/slate_noxwood_beam",
+			"x": 90,
+			"y": 90
+		},
+		"axis=y": {
+			"model": "spectrum:block/slate_noxwood_beam"
+		},
+		"axis=z": {
+			"model": "spectrum:block/slate_noxwood_beam",
+			"x": 90
+		}
+	}
 }

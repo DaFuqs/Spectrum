@@ -1,10 +1,10 @@
 {
-  "variants": {
-    "lit=false": {
-      "model": "spectrum:block/red_lamp"
-    },
-    "lit=true": {
-      "model": "spectrum:block/red_lamp_on"
-    }
-  }
+	"variants": {
+		"lit=false": {
+			"model": "spectrum:block/red_lamp"
+		},
+		"lit=true": {
+			"model": "spectrum:block/red_lamp_on"
+		}
+	}
 }

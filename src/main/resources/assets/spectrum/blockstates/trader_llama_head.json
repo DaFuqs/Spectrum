@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/trader_llama"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/trader_llama"
+		}
+	}
 }

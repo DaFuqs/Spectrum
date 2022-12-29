@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/squid"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/squid"
+		}
+	}
 }

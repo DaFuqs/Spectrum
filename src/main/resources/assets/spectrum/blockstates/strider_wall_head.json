@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/strider"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/strider"
+		}
+	}
 }

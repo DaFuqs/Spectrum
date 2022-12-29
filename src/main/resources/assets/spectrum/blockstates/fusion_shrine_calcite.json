@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/fusion_shrine_calcite"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/fusion_shrine_calcite"
+		}
+	}
 }

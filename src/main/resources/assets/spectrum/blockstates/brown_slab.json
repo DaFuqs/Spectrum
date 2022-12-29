@@ -1,13 +1,13 @@
 {
-  "variants": {
-    "type=bottom": {
-      "model": "spectrum:block/brown_slab"
-    },
-    "type=double": {
-      "model": "spectrum:block/brown_planks"
-    },
-    "type=top": {
-      "model": "spectrum:block/brown_slab_top"
-    }
-  }
+	"variants": {
+		"type=bottom": {
+			"model": "spectrum:block/brown_slab"
+		},
+		"type=double": {
+			"model": "spectrum:block/brown_planks"
+		},
+		"type=top": {
+			"model": "spectrum:block/brown_slab_top"
+		}
+	}
 }

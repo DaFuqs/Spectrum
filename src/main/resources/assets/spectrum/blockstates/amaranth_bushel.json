@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/amaranth_bushel"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/amaranth_bushel"
+		}
+	}
 }

@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/turtle"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/turtle"
+		}
+	}
 }

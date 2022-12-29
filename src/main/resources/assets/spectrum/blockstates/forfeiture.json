@@ -1,10 +1,10 @@
 {
-  "variants": {
-    "decay_state=default": {
-      "model": "spectrum:block/forfeiture_default"
-    },
-    "decay_state=bedrock": {
-      "model": "spectrum:block/forfeiture_bedrock"
-    }
-  }
+	"variants": {
+		"decay_state=default": {
+			"model": "spectrum:block/forfeiture_default"
+		},
+		"decay_state=bedrock": {
+			"model": "spectrum:block/forfeiture_bedrock"
+		}
+	}
 }

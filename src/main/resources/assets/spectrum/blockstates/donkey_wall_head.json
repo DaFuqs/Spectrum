@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/donkey"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/donkey"
+		}
+	}
 }

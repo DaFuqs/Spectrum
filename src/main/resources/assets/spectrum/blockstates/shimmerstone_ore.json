@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/shimmerstone_ore"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/shimmerstone_ore"
+		}
+	}
 }

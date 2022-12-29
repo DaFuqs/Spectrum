@@ -1,13 +1,13 @@
 {
-  "variants": {
-    "type=bottom": {
-      "model": "spectrum:block/orange_slab"
-    },
-    "type=double": {
-      "model": "spectrum:block/orange_planks"
-    },
-    "type=top": {
-      "model": "spectrum:block/orange_slab_top"
-    }
-  }
+	"variants": {
+		"type=bottom": {
+			"model": "spectrum:block/orange_slab"
+		},
+		"type=double": {
+			"model": "spectrum:block/orange_planks"
+		},
+		"type=top": {
+			"model": "spectrum:block/orange_slab_top"
+		}
+	}
 }

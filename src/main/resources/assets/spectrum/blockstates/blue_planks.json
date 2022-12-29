@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/blue_planks"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/blue_planks"
+		}
+	}
 }

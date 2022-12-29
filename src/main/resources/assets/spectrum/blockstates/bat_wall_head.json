@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/bat"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/bat"
+		}
+	}
 }

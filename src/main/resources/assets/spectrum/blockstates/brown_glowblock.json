@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/brown_glowblock"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/brown_glowblock"
+		}
+	}
 }

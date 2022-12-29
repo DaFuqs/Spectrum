@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/pink_sapling"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/pink_sapling"
+		}
+	}
 }

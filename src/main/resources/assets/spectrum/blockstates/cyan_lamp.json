@@ -1,10 +1,10 @@
 {
-  "variants": {
-    "lit=false": {
-      "model": "spectrum:block/cyan_lamp"
-    },
-    "lit=true": {
-      "model": "spectrum:block/cyan_lamp_on"
-    }
-  }
+	"variants": {
+		"lit=false": {
+			"model": "spectrum:block/cyan_lamp"
+		},
+		"lit=true": {
+			"model": "spectrum:block/cyan_lamp_on"
+		}
+	}
 }

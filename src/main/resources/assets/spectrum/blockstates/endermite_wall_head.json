@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/endermite"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/endermite"
+		}
+	}
 }

@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/midnight_solution"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/midnight_solution"
+		}
+	}
 }

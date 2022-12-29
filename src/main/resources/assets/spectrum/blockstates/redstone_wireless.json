@@ -1,304 +1,304 @@
 {
-  "multipart": [
-    {
-      "when": {
-        "powered": true,
-        "sender": true,
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_sender",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "sender": true,
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_sender",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "sender": true,
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_sender"
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "sender": true,
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_sender",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "sender": true,
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_sender_off",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "sender": true,
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_sender_off",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "sender": true,
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_sender_off"
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "sender": true,
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_sender_off",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "sender": false,
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_receiver",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "sender": false,
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_receiver",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "sender": false,
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_receiver"
-      }
-    },
-    {
-      "when": {
-        "powered": true,
-        "sender": false,
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_receiver",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "sender": false,
-        "facing": "north"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_receiver_off",
-        "y": 180
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "sender": false,
-        "facing": "east"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_receiver_off",
-        "y": 270
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "sender": false,
-        "facing": "south"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_receiver_off"
-      }
-    },
-    {
-      "when": {
-        "powered": false,
-        "sender": false,
-        "facing": "west"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_receiver_off",
-        "y": 90
-      }
-    },
-    {
-      "when": {
-        "channel": "black"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_black"
-      }
-    },
-    {
-      "when": {
-        "channel": "blue"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_blue"
-      }
-    },
-    {
-      "when": {
-        "channel": "brown"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_brown"
-      }
-    },
-    {
-      "when": {
-        "channel": "cyan"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_cyan"
-      }
-    },
-    {
-      "when": {
-        "channel": "gray"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_gray"
-      }
-    },
-    {
-      "when": {
-        "channel": "green"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_green"
-      }
-    },
-    {
-      "when": {
-        "channel": "light_blue"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_light_blue"
-      }
-    },
-    {
-      "when": {
-        "channel": "light_gray"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_light_gray"
-      }
-    },
-    {
-      "when": {
-        "channel": "lime"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_lime"
-      }
-    },
-    {
-      "when": {
-        "channel": "magenta"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_magenta"
-      }
-    },
-    {
-      "when": {
-        "channel": "orange"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_orange"
-      }
-    },
-    {
-      "when": {
-        "channel": "pink"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_pink"
-      }
-    },
-    {
-      "when": {
-        "channel": "purple"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_purple"
-      }
-    },
-    {
-      "when": {
-        "channel": "red"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_red"
-      }
-    },
-    {
-      "when": {
-        "channel": "white"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_white"
-      }
-    },
-    {
-      "when": {
-        "channel": "yellow"
-      },
-      "apply": {
-        "model": "spectrum:block/redstone_wireless_channel_yellow"
-      }
-    }
-  ]
+	"multipart": [
+		{
+			"when": {
+				"powered": true,
+				"sender": true,
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_sender",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"sender": true,
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_sender",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"sender": true,
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_sender"
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"sender": true,
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_sender",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"sender": true,
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_sender_off",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"sender": true,
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_sender_off",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"sender": true,
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_sender_off"
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"sender": true,
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_sender_off",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"sender": false,
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_receiver",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"sender": false,
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_receiver",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"sender": false,
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_receiver"
+			}
+		},
+		{
+			"when": {
+				"powered": true,
+				"sender": false,
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_receiver",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"sender": false,
+				"facing": "north"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_receiver_off",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"sender": false,
+				"facing": "east"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_receiver_off",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"sender": false,
+				"facing": "south"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_receiver_off"
+			}
+		},
+		{
+			"when": {
+				"powered": false,
+				"sender": false,
+				"facing": "west"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_receiver_off",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"channel": "black"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_black"
+			}
+		},
+		{
+			"when": {
+				"channel": "blue"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_blue"
+			}
+		},
+		{
+			"when": {
+				"channel": "brown"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_brown"
+			}
+		},
+		{
+			"when": {
+				"channel": "cyan"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_cyan"
+			}
+		},
+		{
+			"when": {
+				"channel": "gray"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_gray"
+			}
+		},
+		{
+			"when": {
+				"channel": "green"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_green"
+			}
+		},
+		{
+			"when": {
+				"channel": "light_blue"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_light_blue"
+			}
+		},
+		{
+			"when": {
+				"channel": "light_gray"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_light_gray"
+			}
+		},
+		{
+			"when": {
+				"channel": "lime"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_lime"
+			}
+		},
+		{
+			"when": {
+				"channel": "magenta"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_magenta"
+			}
+		},
+		{
+			"when": {
+				"channel": "orange"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_orange"
+			}
+		},
+		{
+			"when": {
+				"channel": "pink"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_pink"
+			}
+		},
+		{
+			"when": {
+				"channel": "purple"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_purple"
+			}
+		},
+		{
+			"when": {
+				"channel": "red"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_red"
+			}
+		},
+		{
+			"when": {
+				"channel": "white"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_white"
+			}
+		},
+		{
+			"when": {
+				"channel": "yellow"
+			},
+			"apply": {
+				"model": "spectrum:block/redstone_wireless_channel_yellow"
+			}
+		}
+	]
 }

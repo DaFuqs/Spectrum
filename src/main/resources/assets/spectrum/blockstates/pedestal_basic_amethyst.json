@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/pedestal_basic_amethyst"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/pedestal_basic_amethyst"
+		}
+	}
 }

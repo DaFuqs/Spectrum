@@ -1,13 +1,13 @@
 {
-  "variants": {
-    "yield=none": {
-      "model": "spectrum:block/white_spirit_sallow_vines_head_none"
-    },
-    "yield=normal": {
-      "model": "spectrum:block/white_spirit_sallow_vines_head_normal"
-    },
-    "yield=lucid": {
-      "model": "spectrum:block/white_spirit_sallow_vines_head_lucid"
-    }
-  }
+	"variants": {
+		"yield=none": {
+			"model": "spectrum:block/white_spirit_sallow_vines_head_none"
+		},
+		"yield=normal": {
+			"model": "spectrum:block/white_spirit_sallow_vines_head_normal"
+		},
+		"yield=lucid": {
+			"model": "spectrum:block/white_spirit_sallow_vines_head_lucid"
+		}
+	}
 }

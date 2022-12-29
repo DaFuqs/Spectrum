@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/malachite_block"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/malachite_block"
+		}
+	}
 }

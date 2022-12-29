@@ -1,12 +1,29 @@
 ﻿$leaves = @("black_leaves", "blue_leaves", "brown_leaves", "cyan_leaves", "gray_leaves", "green_leaves", "light_blue_leaves", "light_gray_leaves", "lime_leaves", "magenta_leaves", "orange_leaves", "pink_leaves", "purple_leaves", "red_leaves", "white_leaves", "yellow_leaves")
-$saplings = @("black_sapling", "blue_sapling", "brown_sapling", "cyan_sapling", "gray_sapling", "green_sapling", "light_blue_sapling", "light_gray_sapling", "lime_sapling", "magenta_sapling", "orange_sapling", "pink_sapling", "purple_sapling", "red_sapling", "white_sapling", "yellow_sapling")
-$logs = @("black_log", "blue_log", "brown_log", "cyan_log", "gray_log", "green_log", "light_blue_log", "light_gray_log", "lime_log", "magenta_log", "orange_log", "pink_log", "purple_log", "red_log", "white_log", "yellow_log")
-$flat = @("black_glowblock", "blue_glowblock", "brown_glowblock", "cyan_glowblock", "gray_glowblock", "green_glowblock", "light_blue_glowblock", "light_gray_glowblock", "lime_glowblock", "magenta_glowblock", "orange_glowblock", "pink_glowblock", "purple_glowblock", "red_glowblock", "white_glowblock", "yellow_glowblock")
-$lamp = @("black_lamp", "blue_lamp", "brown_lamp", "cyan_lamp", "gray_lamp", "green_lamp", "light_blue_lamp", "light_gray_lamp", "lime_lamp", "magenta_lamp", "orange_lamp", "pink_lamp", "purple_lamp", "red_lamp", "white_lamp", "yellow_lamp")
-$ores = @("sparklestone_block", "koenigsblau_ore", "koenigsblau_block")
-$upgrades = @("upgrade_speed", "upgrade_speed2", "upgrade_speed3", "upgrade_efficiency", "upgrade_efficiency2", "upgrade_yield", "upgrade_yield2", "upgrade_experience", "upgrade_experience2")
 
-$new = @("chestnut_noxwood_lantern", "chestnut_noxwood_fence", "chestnut_noxwood_amphora", "ebony_noxwood_trapdoor", "ivory_noxwood_slab", "ivory_noxwood_amphora", "ebony_noxwood_beam", "chestnut_noxwood_button", "slate_noxcap_gills", "ebony_noxcap_cap", "slate_noxwood_trapdoor", "slate_noxwood", "stripped_chestnut_noxcap_stem", "stripped_slate_noxcap_stem", "ivory_noxcap_stem", "ebony_noxwood_lamp", "chestnut_noxwood_beam", "chestnut_noxwood_pressure_plate", "ivory_noxcap_gills", "ivory_noxwood_lamp", "ivory_noxwood_beam", "ebony_noxwood_fence", "slate_noxwood_fence", "slate_noxwood_fence_gate", "slate_noxcap_stem", "ebony_noxwood_lantern", "ebony_noxwood_fence_gate", "stripped_ivory_noxcap_stem", "stripped_ebony_noxcap_stripped_stem", "ivory_noxwood", "ivory_noxwood_button", "slate_noxwood_light", "ebony_noxcap_gills", "slate_noxwood_lamp", "ivory_noxwood_fence", "ebony_noxcap_stem", "ebony_noxwood_amphora", "chestnut_noxwood_light", "slate_noxwood_pressure_plate", "ivory_noxwood_light", "ebony_noxwood_button", "slate_noxwood_stairs", "ebony_noxwood_door", "slate_noxwood_beam", "chestnut_noxcap_gills", "ivory_noxwood_lantern", "slate_noxwood_slab", "chestnut_noxwood_trapdoor", "chestnut_noxwood_stairs", "slate_noxwood_door", "ivory_noxwood_trapdoor", "chestnut_noxwood_lamp", "ivory_noxwood_stairs", "slate_noxwood_button", "slate_noxcap_cap", "ivory_noxwood_door", "ivory_noxwood_pressure_plate", "ebony_noxwood_pressure_plate", "ebony_noxwood_stairs", "ivory_noxcap_cap", "ivory_noxwood_fence_gate", "ebony_noxwood", "chestnut_noxwood_fence_gate", "ebony_noxwood_light", "slate_noxwood_amphora", "ebony_noxwood_slab", "chestnut_noxwood", "chestnut_noxwood_slab", "chestnut_noxcap_stem", "chestnut_noxcap_cap", "slate_noxwood_lantern", "chestnut_noxwood_door")
+$new = @(   "cobbled_blackslag",
+            "cobbled_blackslag_stairs",
+            "cobbled_blackslag_slab",
+            "cobbled_blackslag_wall",
+            "polished_blackslag",
+            "polished_blackslag_stairs",
+            "polished_blackslag_slab",
+            "polished_blackslag_wall",
+            "blackslag_tiles",
+            "blackslag_tile_stairs",
+            "blackslag_tile_slab",
+            "blackslag_tile_wall",
+            "blackslag_bricks",
+            "blackslag_brick_stairs",
+            "blackslag_brick_slab",
+            "blackslag_brick_wall",
+            "chiseled_blackslag",
+            "cracked_blackslag_bricks",
+            "cracked_blackslag_tiles",
+            "polished_blackslag_button",
+            "polished_blackslag_pressure_plate",
+            "polished_calcite_pressure_plate",
+            "polished_basalt_pressure_plate"
+)
 
 enum BlockType {
     Default
@@ -14,6 +31,10 @@ enum BlockType {
     Log
     Upgrade
     Crystallarieum
+    Stairs
+    Wall
+    Button
+    PressurePlate
 }
 
 Function Generate-BlockFiles {
@@ -153,6 +174,457 @@ Function Generate-BlockFiles {
 "@
         }
 
+                
+        function Get-BlockStateStairs($Name) {
+            Write-Output @"
+{
+	"variants": {
+		"facing=east,half=bottom,shape=inner_left": {
+			"model": "spectrum:block/$Name`_inner",
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=east,half=bottom,shape=inner_right": {
+			"model": "spectrum:block/$Name`_inner"
+		},
+		"facing=east,half=bottom,shape=outer_left": {
+			"model": "spectrum:block/$Name`_outer",
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=east,half=bottom,shape=outer_right": {
+			"model": "spectrum:block/$Name`_outer"
+		},
+		"facing=east,half=bottom,shape=straight": {
+			"model": "spectrum:block/$Name"
+		},
+		"facing=east,half=top,shape=inner_left": {
+			"model": "spectrum:block/$Name`_inner",
+			"x": 180,
+			"uvlock": true
+		},
+		"facing=east,half=top,shape=inner_right": {
+			"model": "spectrum:block/$Name`_inner",
+			"x": 180,
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=east,half=top,shape=outer_left": {
+			"model": "spectrum:block/$Name`_outer",
+			"x": 180,
+			"uvlock": true
+		},
+		"facing=east,half=top,shape=outer_right": {
+			"model": "spectrum:block/$Name`_outer",
+			"x": 180,
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=east,half=top,shape=straight": {
+			"model": "spectrum:block/$Name",
+			"x": 180,
+			"uvlock": true
+		},
+		"facing=north,half=bottom,shape=inner_left": {
+			"model": "spectrum:block/$Name`_inner",
+			"y": 180,
+			"uvlock": true
+		},
+		"facing=north,half=bottom,shape=inner_right": {
+			"model": "spectrum:block/$Name`_inner",
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=north,half=bottom,shape=outer_left": {
+			"model": "spectrum:block/$Name`_outer",
+			"y": 180,
+			"uvlock": true
+		},
+		"facing=north,half=bottom,shape=outer_right": {
+			"model": "spectrum:block/$Name`_outer",
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=north,half=bottom,shape=straight": {
+			"model": "spectrum:block/$Name",
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=north,half=top,shape=inner_left": {
+			"model": "spectrum:block/$Name`_inner",
+			"x": 180,
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=north,half=top,shape=inner_right": {
+			"model": "spectrum:block/$Name`_inner",
+			"x": 180,
+			"uvlock": true
+		},
+		"facing=north,half=top,shape=outer_left": {
+			"model": "spectrum:block/$Name`_outer",
+			"x": 180,
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=north,half=top,shape=outer_right": {
+			"model": "spectrum:block/$Name`_outer",
+			"x": 180,
+			"uvlock": true
+		},
+		"facing=north,half=top,shape=straight": {
+			"model": "spectrum:block/$Name",
+			"x": 180,
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=south,half=bottom,shape=inner_left": {
+			"model": "spectrum:block/$Name`_inner"
+		},
+		"facing=south,half=bottom,shape=inner_right": {
+			"model": "spectrum:block/$Name`_inner",
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=south,half=bottom,shape=outer_left": {
+			"model": "spectrum:block/$Name`_outer"
+		},
+		"facing=south,half=bottom,shape=outer_right": {
+			"model": "spectrum:block/$Name`_outer",
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=south,half=bottom,shape=straight": {
+			"model": "spectrum:block/$Name",
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=south,half=top,shape=inner_left": {
+			"model": "spectrum:block/$Name`_inner",
+			"x": 180,
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=south,half=top,shape=inner_right": {
+			"model": "spectrum:block/$Name`_inner",
+			"x": 180,
+			"y": 180,
+			"uvlock": true
+		},
+		"facing=south,half=top,shape=outer_left": {
+			"model": "spectrum:block/$Name`_outer",
+			"x": 180,
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=south,half=top,shape=outer_right": {
+			"model": "spectrum:block/$Name`_outer",
+			"x": 180,
+			"y": 180,
+			"uvlock": true
+		},
+		"facing=south,half=top,shape=straight": {
+			"model": "spectrum:block/$Name",
+			"x": 180,
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=west,half=bottom,shape=inner_left": {
+			"model": "spectrum:block/$Name`_inner",
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=west,half=bottom,shape=inner_right": {
+			"model": "spectrum:block/$Name`_inner",
+			"y": 180,
+			"uvlock": true
+		},
+		"facing=west,half=bottom,shape=outer_left": {
+			"model": "spectrum:block/$Name`_outer",
+			"y": 90,
+			"uvlock": true
+		},
+		"facing=west,half=bottom,shape=outer_right": {
+			"model": "spectrum:block/$Name`_outer",
+			"y": 180,
+			"uvlock": true
+		},
+		"facing=west,half=bottom,shape=straight": {
+			"model": "spectrum:block/$Name",
+			"y": 180,
+			"uvlock": true
+		},
+		"facing=west,half=top,shape=inner_left": {
+			"model": "spectrum:block/$Name`_inner",
+			"x": 180,
+			"y": 180,
+			"uvlock": true
+		},
+		"facing=west,half=top,shape=inner_right": {
+			"model": "spectrum:block/$Name`_inner",
+			"x": 180,
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=west,half=top,shape=outer_left": {
+			"model": "spectrum:block/$Name`_outer",
+			"x": 180,
+			"y": 180,
+			"uvlock": true
+		},
+		"facing=west,half=top,shape=outer_right": {
+			"model": "spectrum:block/$Name`_outer",
+			"x": 180,
+			"y": 270,
+			"uvlock": true
+		},
+		"facing=west,half=top,shape=straight": {
+			"model": "spectrum:block/$Name",
+			"x": 180,
+			"y": 180,
+			"uvlock": true
+		}
+	}
+}
+"@
+        }
+
+        
+        function Get-BlockStateWall($Name) {
+            Write-Output @"
+{
+	"multipart": [
+		{
+			"when": {
+				"up": "true"
+			},
+			"apply": {
+				"model": "spectrum:block/$Name`_post"
+			}
+		},
+		{
+			"when": {
+				"north": "low"
+			},
+			"apply": {
+				"model": "spectrum:block/$Name`_side",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"east": "low"
+			},
+			"apply": {
+				"model": "spectrum:block/$Name`_side",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "low"
+			},
+			"apply": {
+				"model": "spectrum:block/$Name`_side",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "low"
+			},
+			"apply": {
+				"model": "spectrum:block/$Name`_side",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"north": "tall"
+			},
+			"apply": {
+				"model": "spectrum:block/$Name`_side_tall",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"east": "tall"
+			},
+			"apply": {
+				"model": "spectrum:block/$Name`_side_tall",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "tall"
+			},
+			"apply": {
+				"model": "spectrum:block/$Name`_side_tall",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "tall"
+			},
+			"apply": {
+				"model": "spectrum:block/$Name`_side_tall",
+				"y": 270,
+				"uvlock": true
+			}
+		}
+	]
+}
+"@
+        }
+
+        
+        function Get-BlockStateButton($Name) {
+            Write-Output @"
+{
+  "variants": {
+    "face=ceiling,facing=east,powered=false": {
+      "model": "spectrum:block/$Name",
+      "y": 270,
+      "x": 180
+    },
+    "face=ceiling,facing=east,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "y": 270,
+      "x": 180
+    },
+    "face=ceiling,facing=north,powered=false": {
+      "model": "spectrum:block/$Name",
+      "y": 180,
+      "x": 180
+    },
+    "face=ceiling,facing=north,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "y": 180,
+      "x": 180
+    },
+    "face=ceiling,facing=south,powered=false": {
+      "model": "spectrum:block/$Name",
+      "x": 180
+    },
+    "face=ceiling,facing=south,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "x": 180
+    },
+    "face=ceiling,facing=west,powered=false": {
+      "model": "spectrum:block/$Name",
+      "y": 90,
+      "x": 180
+    },
+    "face=ceiling,facing=west,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "y": 90,
+      "x": 180
+    },
+    "face=floor,facing=east,powered=false": {
+      "model": "spectrum:block/$Name",
+      "y": 90
+    },
+    "face=floor,facing=east,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "y": 90
+    },
+    "face=floor,facing=north,powered=false": {
+      "model": "spectrum:block/$Name"
+    },
+    "face=floor,facing=north,powered=true": {
+      "model": "spectrum:block/$Name`_pressed"
+    },
+    "face=floor,facing=south,powered=false": {
+      "model": "spectrum:block/$Name",
+      "y": 180
+    },
+    "face=floor,facing=south,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "y": 180
+    },
+    "face=floor,facing=west,powered=false": {
+      "model": "spectrum:block/$Name",
+      "y": 270
+    },
+    "face=floor,facing=west,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "y": 270
+    },
+    "face=wall,facing=east,powered=false": {
+      "model": "spectrum:block/$Name",
+      "y": 90,
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=east,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "y": 90,
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=north,powered=false": {
+      "model": "spectrum:block/$Name`",
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=north,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=south,powered=false": {
+      "model": "spectrum:block/$Name`",
+      "y": 180,
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=south,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "y": 180,
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=west,powered=false": {
+      "model": "spectrum:block/$Name`",
+      "y": 270,
+      "x": 90,
+      "uvlock": true
+    },
+    "face=wall,facing=west,powered=true": {
+      "model": "spectrum:block/$Name`_pressed",
+      "y": 270,
+      "x": 90,
+      "uvlock": true
+    }
+  }
+}
+"@
+        }
+
+        
+        function Get-BlockStatePressurePlate($Name) {
+            Write-Output @"
+{
+  "variants": {
+    "powered=false": {
+      "model": "spectrum:block/$Name"
+    },
+    "powered=true": {
+      "model": "spectrum:block/$Name`_down"
+    }
+  }
+}
+"@
+        }
+
 
         ####################################
         #endregion BLOCK STATE             #
@@ -211,7 +683,6 @@ Function Generate-BlockFiles {
 "@
         }
 
-
         function Get-BlockModelLampOff($Name) {
             Write-Output @"
 {
@@ -222,7 +693,6 @@ Function Generate-BlockFiles {
 }
 "@
         }
-
 
         function Get-BlockModelUpgrade($Name) {
             $NameWithoutNumber = $Name -replace "[0-9]", ""
@@ -245,13 +715,150 @@ Function Generate-BlockFiles {
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "spectrum:block/$_"
+    "crop": "spectrum:block/$Name"
   }
 }
 "@
-
         }
 
+        function Get-BlockModelStairs($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "spectrum:block/$Name",
+    "top": "spectrum:block/$Name",
+    "side": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+        
+
+        function Get-BlockModelStairsInner($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "spectrum:block/$Name",
+    "top": "spectrum:block/$Name",
+    "side": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelStairsOuter($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "spectrum:block/$Name",
+    "top": "spectrum:block/$Name",
+    "side": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelWallInventory($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelWallPost($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelWallSide($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/template_wall_side",
+  "textures": {
+    "wall": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelWallSideTall($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/template_wall_side_tall",
+  "textures": {
+    "wall": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelButton($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelButtonInventory($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/button_inventory",
+  "textures": {
+    "texture": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelButtonPressed($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/button_pressed",
+  "textures": {
+    "texture": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelPressurePlate($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/pressure_plate_up",
+  "textures": {
+    "texture": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelPressurePlateDown($Name) {
+            Write-Output @"
+{
+  "parent": "minecraft:block/pressure_plate_down",
+  "textures": {
+    "texture": "spectrum:block/$Name"
+  }
+}
+"@
+        }
 
 
         ####################################
@@ -353,30 +960,54 @@ Function Generate-BlockFiles {
                 $blockState = Get-BlockStateUpgrade -Name $_
             } elseif ($blockType -eq [BlockType]::Crystallarieum) {
                 $blockState = Get-BlockStateCrystallarieum -Name $_
+            } elseif ($blockType -eq [BlockType]::Stairs) {
+                $blockState = Get-BlockStateStairs -Name $_
+            } elseif ($blockType -eq [BlockType]::Wall) {
+                $blockState = Get-BlockStateWall -Name $_
+            } elseif ($blockType -eq [BlockType]::Button) {
+                $blockState = Get-BlockStateButton -Name $_
+            } elseif ($blockType -eq [BlockType]::PressurePlate) {
+                $blockState = Get-BlockStatePressurePlate -Name $_
             }
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\blockstates\") -Name "$_`.json" -ItemType File -Force -Value $blockState | Out-Null
     
             # BLOCK MODELS
             if($blockType -eq [BlockType]::Default) {
-                $blockModel = Get-BlockModel -Name $_
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModel | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModel -Name $_) | Out-Null
             } elseif ($blockType -eq [BlockType]::Log) {
-                $blockModelLog = Get-BlockModelLog -Name $_
-                $blockModelLogHorizontal = Get-BlockModelLogHorizontal -Name $_
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModelLog | Out-Null
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_horizontal.json" -ItemType File -Force -Value $blockModelLogHorizontal | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelLog -Name $_) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_horizontal.json" -ItemType File -Force -Value $(Get-BlockModelLogHorizontal -Name $_) | Out-Null
             } elseif ($blockType -eq [BlockType]::Lamp) {
                 $blockModelLampOn = Get-BlockModelLampOn -Name $_
                 $blockModelLampOff = Get-BlockModelLampOff -Name $_
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModelLampOff | Out-Null
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_on.json" -ItemType File -Force -Value $blockModelLampOn | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelLampOff -Name $_) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_on.json" -ItemType File -Force -Value $(Get-BlockModelLampOn -Name $_) | Out-Null
             } elseif ($blockType -eq [BlockType]::Upgrade) {
                 $NameWithoutNumber = $_ -replace "[0-9]", ""
-                $blockModel = Get-BlockModelUpgrade -Name $NameWithoutNumber
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$NameWithoutNumber`.json" -ItemType File -Force -Value $blockModel | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$NameWithoutNumber`.json" -ItemType File -Force -Value $(Get-Get-BlockModelUpgrade -Name $NameWithoutNumber) | Out-Null
             } elseif ($blockType -eq [BlockType]::Crystallarieum) {
                 $blockModel = Get-BlockModelCrystallarieum -Name $_
-                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $blockModel | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelCrystallarieum -Name $_) | Out-Null
+            } elseif ($blockType -eq [BlockType]::Stairs) {
+                $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelStairs -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_inner.json" -ItemType File -Force -Value $(Get-BlockModelStairsInner -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_outer.json" -ItemType File -Force -Value $(Get-BlockModelStairsOuter -Name $textureName) | Out-Null
+            } elseif ($blockType -eq [BlockType]::Wall) {
+                $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_inventory.json" -ItemType File -Force -Value $(Get-BlockModelWallInventory -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_post.json" -ItemType File -Force -Value $(Get-BlockModelWallPost -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_side.json" -ItemType File -Force -Value $(Get-BlockModelWallSide -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_side_tall.json" -ItemType File -Force -Value $(Get-BlockModelWallSideTall -Name $textureName) | Out-Null
+            } elseif ($blockType -eq [BlockType]::Button) {
+                $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelButton -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_inventory.json" -ItemType File -Force -Value $(Get-BlockModelButtonInventory -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_pressed.json" -ItemType File -Force -Value $(Get-BlockModelButtonPressed -Name $textureName) | Out-Null
+            } elseif ($blockType -eq [BlockType]::PressurePlate) {
+                $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelPressurePlate -Name $textureName) | Out-Null
+                New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_down.json" -ItemType File -Force -Value $(Get-BlockModelPressurePlateDown -Name $textureName) | Out-Null
             }
 
             # ITEM MODEL
@@ -433,4 +1064,4 @@ Function Generate-BlockFiles {
 }
 
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Default)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::PressurePlate)

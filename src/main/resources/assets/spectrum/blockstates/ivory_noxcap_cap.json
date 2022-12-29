@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/ivory_noxcap_cap"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/ivory_noxcap_cap"
+		}
+	}
 }

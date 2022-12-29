@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/silverfish"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/silverfish"
+		}
+	}
 }

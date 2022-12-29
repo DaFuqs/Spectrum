@@ -1,22 +1,22 @@
 {
-  "variants": {
-    "age=0": {
-      "model": "spectrum:block/blood_orchid0"
-    },
-    "age=1": {
-      "model": "spectrum:block/blood_orchid1"
-    },
-    "age=2": {
-      "model": "spectrum:block/blood_orchid2"
-    },
-    "age=3": {
-      "model": "spectrum:block/blood_orchid3"
-    },
-    "age=4": {
-      "model": "spectrum:block/blood_orchid4"
-    },
-    "age=5": {
-      "model": "spectrum:block/blood_orchid5"
-    }
-  }
+	"variants": {
+		"age=0": {
+			"model": "spectrum:block/blood_orchid0"
+		},
+		"age=1": {
+			"model": "spectrum:block/blood_orchid1"
+		},
+		"age=2": {
+			"model": "spectrum:block/blood_orchid2"
+		},
+		"age=3": {
+			"model": "spectrum:block/blood_orchid3"
+		},
+		"age=4": {
+			"model": "spectrum:block/blood_orchid4"
+		},
+		"age=5": {
+			"model": "spectrum:block/blood_orchid5"
+		}
+	}
 }

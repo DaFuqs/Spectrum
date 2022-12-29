@@ -1,10 +1,10 @@
 {
-  "variants": {
-    "up=false": {
-      "model": "spectrum:block/deeper_down_portal"
-    },
-    "up=true": {
-      "model": "spectrum:block/deeper_down_portal_up"
-    }
-  }
+	"variants": {
+		"up=false": {
+			"model": "spectrum:block/deeper_down_portal"
+		},
+		"up=true": {
+			"model": "spectrum:block/deeper_down_portal_up"
+		}
+	}
 }

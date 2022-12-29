@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/sheep_pink"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/sheep_pink"
+		}
+	}
 }

@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/spirit_instiller"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/spirit_instiller"
+		}
+	}
 }

@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "spectrum:block/parrot_blue"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "spectrum:block/parrot_blue"
+		}
+	}
 }

@@ -81,8 +81,8 @@
     "client.accessors.ModelOverrideListAccessor",
     "client.accessors.RenderLayerAccessor",
     "compat.healthoverlay.absent.InGameHudMixin",
+    "compat.healthoverlay.present.HeartMixin",
     "compat.healthoverlay.present.InGameHudMixin",
-    "compat.healthoverlay.present.LivingEntityMixin",
     "compat.limlib.absent.ClientWorldReverbMixin"
   ],
   "injectors": {

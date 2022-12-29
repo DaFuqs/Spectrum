@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.cca.azure_dike.AzureDikeComponent;
 import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
+import de.dafuqs.spectrum.config.CompatibilitySettingAccessors;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -72,8 +73,13 @@ public class HudRenderers {
 
 			// Fit display to HealthOverlay renderer if present
 			if (FabricLoader.getInstance().isModLoaded("healthoverlay")) {
+				int i = 1;
+				if (CompatibilitySettingAccessors.INSTANCE.get(
+						"healthoverlay", "absorptionOverHealth", Boolean.class, false)) {
+					i = 0;
+				}
 				heartRows = 0;
-				absorptionAmount = Math.min(1, absorptionAmount);
+				absorptionAmount = Math.min(i, absorptionAmount);
 			}
 			
 			int y = hasArmor ? height + heartRows * SpectrumCommon.CONFIG.azureDikeHudOffsetYForEachRowOfExtraHearts + SpectrumCommon.CONFIG.azureDikeHudOffsetYWithArmor : height + SpectrumCommon.CONFIG.azureDikeHudOffsetY;

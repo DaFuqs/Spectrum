@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.Window;
@@ -68,6 +69,12 @@ public class HudRenderers {
 			
 			int width = scaledWidth / 2 - 82;
 			int height = scaledHeight - 49;
+
+			// Fit display to HealthOverlay renderer if present
+			if (FabricLoader.getInstance().isModLoaded("healthoverlay")) {
+				heartRows = 0;
+				absorptionAmount = Math.min(1, absorptionAmount);
+			}
 			
 			int y = hasArmor ? height + heartRows * SpectrumCommon.CONFIG.azureDikeHudOffsetYForEachRowOfExtraHearts + SpectrumCommon.CONFIG.azureDikeHudOffsetYWithArmor : height + SpectrumCommon.CONFIG.azureDikeHudOffsetY;
 			if (absorptionAmount > 0) {

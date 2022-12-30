@@ -1,15 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
+    "W  ",
+    "WW ",
     "WWW"
   ],
   "key": {
     "W": {
-      "item": "spectrum:calcite_tiles"
+      "item": "spectrum:blackslag_brick"
     }
   },
   "result": {
-    "item": "spectrum:calcite_tile_slab",
+    "item": "spectrum:blackslag_brick_stairs",
     "count": 6
   }
 }

@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "minecraft:blackslag"
+    "item": "spectrum:blackslag"
   },
   "result": "spectrum:polished_blackslag",
   "experience": 0.1,

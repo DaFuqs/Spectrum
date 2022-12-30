@@ -9,7 +9,6 @@
   "itemGroup.spectrum.blocks.tab.colored_wood": "Colored Wood",
   "itemGroup.spectrum.blocks.tab.mob_heads": "Idols & Mob Heads",
   "itemGroup.spectrum.blocks.tab.predefined_items": "Predefined Items",
-
   "itemGroup.spectrum.general.button.discord": "Join Spectrums Discord",
   "itemGroup.spectrum.general.button.github": "Spectrum on Github",
   "itemGroup.spectrum.general.button.curseforge": "Spectrum on CurseForge",
@@ -18,7 +17,6 @@
   "itemGroup.spectrum.blocks.button.github": "Spectrum on Github",
   "itemGroup.spectrum.blocks.button.curseforge": "Spectrum on CurseForge",
   "itemGroup.spectrum.blocks.button.modrinth": "Spectrum on Modrinth",
-
   "recipeGroup.spectrum.topaz_lamps": "Topaz Lamps",
   "recipeGroup.spectrum.amethyst_lamps": "Amethyst Lamps",
   "recipeGroup.spectrum.citrine_lamps": "Citrine Lamps",
@@ -65,12 +63,10 @@
   "recipeGroup.spectrum.noxwood_lamps": "Noxwood Lamps",
   "recipeGroup.spectrum.noxwood_lanterns": "Noxwood Lanterns",
   "recipeGroup.spectrum.noxwood_lights": "Noxwood Lights",
-
   "recipeGroup.spectrum.botania_mushrooms": "Colored Mushrooms",
   "recipeGroup.spectrum.botania_glimmering_flowers": "Glimmering Flowers",
   "recipeGroup.spectrum.chalk_chalk": "Unbreakable Chalk",
   "recipeGroup.spectrum.chalk_glow_chalk": "Unbr. Glow Chalk",
-
   "effect.spectrum.immunity": "Immunity",
   "effect.spectrum.another_roll": "Another Roll",
   "effect.spectrum.scarred": "Scarred",
@@ -85,19 +81,15 @@
   "effect.spectrum.projectile_rebound": "Projectile Rebound",
   "effect.spectrum.lightweight": "Lightweight",
   "effect.spectrum.vulnerability": "Vulnerability",
-
   "item.minecraft.potion.effect.pigment_potion": "§2P§3i§cg§6m§be§en§dt§f Potion",
   "item.minecraft.splash_potion.effect.pigment_potion": "Splash §2P§3i§cg§6m§be§en§dt§f Potion",
   "item.minecraft.lingering_potion.effect.pigment_potion": "Lingering §2P§3i§cg§6m§be§en§dt§f Potion",
   "item.minecraft.tipped_arrow.effect.pigment_potion": "§2P§3i§cg§6m§be§en§dt§f Dipped Arrow",
   "item.spectrum.potion.tooltip.unidentifiable": "§0Blackened beyond recognition",
-
   "spectrum.tooltip.coming_soon": "§4Not available in Survival yet",
-
   "spectrum.gui.lexicon.reveal_hint_button.text": "Reveal Hint    ",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.pay": "Pay a small fee to unlock a hint",
   "spectrum.gui.lexicon.reveal_hint_button.tooltip.lacking_resource": "You do not have this fee in your inventory",
-
   "container.spectrum.owned_by_player": " of %s",
   "container.spectrum.rei.pedestal_crafting.title": "Pedestal Crafting",
   "container.spectrum.rei.pedestal_crafting.crafting_time_and_xp": "%f seconds - %f XP",
@@ -133,22 +125,18 @@
   "container.spectrum.rei.titration_barrel.time_day": "Takes 1 real-life day",
   "container.spectrum.rei.titration_barrel.at_least_time_hour": "At least 1 real-life hour",
   "container.spectrum.rei.titration_barrel.at_least_time_day": "At least 1 real-life day",
-
   "container.spectrum.bedrock_anvil": "Repair & write Lore",
   "container.spectrum.bedrock_anvil.tooltip": "Indestructible. Free renaming, unlimited",
   "container.spectrum.bedrock_anvil.tooltip2": "repair cap & able to add Lore to Items",
   "container.spectrum.bedrock_anvil.lore": "Lore:",
-
   "container.spectrum.rei.anvil_crushing.title": "Item Crushing",
   "container.spectrum.rei.anvil_crushing.low_force_required": "Low force required",
   "container.spectrum.rei.anvil_crushing.medium_force_required": "Medium force required",
   "container.spectrum.rei.anvil_crushing.high_force_required": "High force required",
   "container.spectrum.rei.anvil_crushing.plus_xp": "+%f XP",
-
   "container.spectrum.rei.potion_workshop_brewing.title": "Potion Workshop Brewing",
   "container.spectrum.rei.potion_workshop_crafting.title": "Potion Workshop Crafting",
   "container.spectrum.rei.potion_workshop.crafting_time": "%f seconds",
-
   "container.spectrum.rei.potion_workshop_reacting.title": "Potion Reagents",
   "spectrum.rei.potion_workshop_reacting.minecraft.dragon_breath": "Creates Lingering Potions - also requires Gunpowder as reagent. Allows you to create Tipped Arrows, if you supply Arrows instead of Bottles",
   "spectrum.rei.potion_workshop_reacting.minecraft.glowstone_dust": "Flat increase in Potency",
@@ -173,14 +161,12 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.stardust": "Small chance to add the main Effect of the Potion that was brewed previously",
   "spectrum.rei.potion_workshop_reacting.spectrum.topaz_powder": "Makes Effects not show any particles",
   "spectrum.rei.potion_workshop_reacting.spectrum.vegetal": "Doubles the potions Duration at the cost of Potency",
-
   "spectrum.rei.potion_workshop_reacting.botania.pixie_dust": "Converts the Potions into Lingering Potions as a single reagent. This way it allows you to directly create Tipped Arrows, too!",
   "spectrum.rei.potion_workshop_reacting.botania.black_lotus": "Infuses the Potion with a huge amount of additional positive as well as negative, effects, but it's black color also makes it completely unidentifiable. What might you get?",
   "spectrum.rei.potion_workshop_reacting.botania.blacker_lotus": "Infuses the Potion with a huge amount of additional - mostly positive - effects, but it's black color also makes it completely unidentifiable. What might you get?",
   "spectrum.rei.potion_workshop_reacting.botania.life_essence": "Makes your Potions much more potent, but at a huge loss of duration. If the duration will get too short the potion might end up useless altogether...",
   "spectrum.rei.potion_workshop_reacting.botania.mana_powder": "Gives a small multiplicative boost to Duration and a tiny chance to add the last brewed effect, too",
   "spectrum.rei.potion_workshop_reacting.hexcasting.charged_amethyst": "Increases the Potion's duration by a variable amount. Sometimes more, sometimes less",
-
   "multiblock.spectrum.pedestal.upgrade_available": "Structure Upgrade available!",
   "multiblock.spectrum.pedestal.simple_structure": "Spectrum Focus",
   "multiblock.spectrum.pedestal.advanced_structure": "Spectrum Temple",
@@ -189,7 +175,6 @@
   "multiblock.spectrum.enchanter.structure": "Enchanter",
   "multiblock.spectrum.spirit_instiller.structure": "Spirit Instiller",
   "multiblock.spectrum.cinderhearth.structure": "Cinderhearth",
-
   "death.attack.spectrum_decay": "%s was eaten alive",
   "death.attack.spectrum_ink_projectile": "%2$s taught %1$s the joy of painting",
   "death.attack.spectrum_ink_projectile.item": "%2$s taught %1$s the joy of painting using %3$s",
@@ -201,7 +186,6 @@
   "death.attack.spectrum_incandescence.player": "%1$s witnessed %2&s become a star and drew too close - more kindling for the flame!",
   "death.attack.moonstone_blast": "%1$s was disintegrated",
   "death.attack.moonstone_blast.player": "%1$s was disintegrated by %2$s",
-
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",
   "entity.spectrum.phantom_frame": "Phantom Frame",
@@ -213,12 +197,9 @@
   "entity.spectrum.ink_projectile": "Ink Projectile",
   "entity.spectrum.living_marker": "Marker",
   "entity.spectrum.egg_laying_wooly_pig": "Egg Laying Wooly Pig",
-
   "item.spectrum.egg_laying_wooly_pig_spawn_egg": "Egg Laying Wooly Pig Spawn Egg",
-
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",
   "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",
-
   "spectrum.ink.color.black": "§8Black§r",
   "spectrum.ink.color.red": "§cRed§r",
   "spectrum.ink.color.green": "§2Green§r",
@@ -235,7 +216,6 @@
   "spectrum.ink.color.magenta": "§dMagenta§r",
   "spectrum.ink.color.orange": "§6Orange",
   "spectrum.ink.color.white": "§fWhite§r",
-
   "spectrum.tooltip.ink_powered.prefix": "Consumes the following ink types:  ",
   "spectrum.tooltip.ink_powered.cyan": "Consumes §bCyan Ink§r",
   "spectrum.tooltip.ink_powered.magenta": "Consumes §dMagenta Ink§r",
@@ -253,7 +233,6 @@
   "spectrum.tooltip.ink_powered.pink": "Consumes §dPink Ink§r",
   "spectrum.tooltip.ink_powered.purple": "Consumes §5Purple Ink§r",
   "spectrum.tooltip.ink_powered.red": "Consumes §cRed Ink§r",
-
   "spectrum.tooltip.ink_powered.bullet.cyan": "§b◆ %d §bCyan Ink§r",
   "spectrum.tooltip.ink_powered.bullet.magenta": "§d◆ %d §dMagenta Ink§r",
   "spectrum.tooltip.ink_powered.bullet.yellow": "§e◆ %d §eYellow Ink§r",
@@ -274,7 +253,6 @@
   "spectrum.tooltip.ink_powered.stored": "Stored:",
   "spectrum.tooltip.ink_powered.unselect_color": "Unselect Color",
   "spectrum.tooltip.ink_powered.percent_filled": "%d Ink (%d %%)",
-
   "spectrum.tooltip.ink_cost.cyan": "§7 [%s §bCyan Ink§7]",
   "spectrum.tooltip.ink_cost.magenta": "§7 [%s §dMagenta Ink§7]",
   "spectrum.tooltip.ink_cost.yellow": "§7 [%s §eYellow Ink§7]",
@@ -291,7 +269,6 @@
   "spectrum.tooltip.ink_cost.pink": "§r [%s §dPink Ink§r]",
   "spectrum.tooltip.ink_cost.purple": "§r [%s §5Purple Ink§r]",
   "spectrum.tooltip.ink_cost.red": "§r [%s §cRed Ink§r]",
-
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.cyan": "%d §bCyan Ink§r until next improvement",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.magenta": "%d §dMagenta Ink§r until next improvement",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.yellow": "%d §eYellow Ink§r until next improvement",
@@ -309,12 +286,11 @@
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.purple": "%d §5Purple Ink§r until next improvement",
   "spectrum.tooltip.ink_drain.tooltip.ink_for_next_step.red": "%d §cRed Ink§r until next improvement",
   "spectrum.tooltip.ink_drain.tooltip.maxed_out": "§f⭐§r MAXED OUT §f⭐§r",
-
   "spectrum.recipe.fusion_shrine.explanation.onyx_shard": "Midnight on a new moon only",
-  "spectrum.recipe.fusion_shrine.explanation.decay_away":  "Requires a clear sky",
-  "spectrum.recipe.fusion_shrine.explanation.ominous_sapling":  "Requires daytime",
-  "spectrum.recipe.fusion_shrine.explanation.stratine_gem":  "Requires a thunderstorm",
-  "spectrum.recipe.fusion_shrine.explanation.paltaeria_gem":  "Requires a thunderstorm",
+  "spectrum.recipe.fusion_shrine.explanation.decay_away": "Requires a clear sky",
+  "spectrum.recipe.fusion_shrine.explanation.ominous_sapling": "Requires daytime",
+  "spectrum.recipe.fusion_shrine.explanation.stratine_gem": "Requires a thunderstorm",
+  "spectrum.recipe.fusion_shrine.explanation.paltaeria_gem": "Requires a thunderstorm",
   "spectrum.recipe.fusion_shrine.explanation.midnight_aberration": "Daytime with sunny weather",
   "spectrum.recipe.fusion_shrine.explanation.spectral_shard": "The perfect Compound",
   "spectrum.recipe.fusion_shrine.explanation.netherite_ingot": "risky, but yielding...",
@@ -324,9 +300,7 @@
   "spectrum.recipe.fusion_shrine.explanation.dreamflayer": "Midnight on a full moon",
   "spectrum.recipe.fusion_shrine.explanation.shooting_star_hardening": "Protects star from breaking",
   "spectrum.recipe.fusion_shrine.explanation.egg_laying_wooly_pig_head": "",
-
   "spectrum.tooltip.dragon_and_wither_immune": "§7Ender Dragon and Wither proof",
-
   "enchantment.spectrum.resonance": "Resonance",
   "enchantment.spectrum.resonance.desc": "Uses gentle vibrations to allow some blocks to drop themselves",
   "enchantment.spectrum.pest_control": "Pest Control",
@@ -361,7 +335,6 @@
   "enchantment.spectrum.indestructible.desc": "Makes the tool fully unbreakable",
   "enchantment.spectrum.big_catch": "Big Catch",
   "enchantment.spectrum.big_catch.desc": "Higher chance to reel in living creatures",
-
   "spectrum.subtitles.ground_slam": "Sword slamming ground",
   "spectrum.subtitles.ground_slam_charge": "Ground Slam charging",
   "spectrum.subtitles.paintbrush_trigger": "Paintbrush activation",
@@ -405,12 +378,10 @@
   "spectrum.subtitles.dreamflayer_activates": "Dreamflayer activates",
   "spectrum.subtitles.dreamflayer_deactivates": "Dreamflayer deactivates",
   "spectrum.subtitles.deeper_down_portal_open": "Portal opens",
-
   "subtitles.block.citrine_block.chime": "Citrine chimes",
   "subtitles.block.topaz_block.chime": "Topaz chimes",
   "subtitles.block.onyx_block.chime": "Onyx chimes",
   "subtitles.block.moonstone_block.chime": "Moonstone chimes",
-
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",
   "spectrum.toast.anvil_crushing_recipe_unlocked.title": "New Crushing recipe:",
@@ -441,7 +412,6 @@
   "spectrum.toast.titration_barrel_recipes_unlocked.title": "New Titration recipes:",
   "spectrum.toast.midnight_solution_converting_recipe_unlocked.title": "New Midnight Sol. recipe:",
   "spectrum.toast.midnight_solution_converting_recipes_unlocked.title": "New Midnight Sol. recipes:",
-
   "spectrum.toast.message.second_advancement_tree_unlocked.title": "Chapter 2: Fall from Grace",
   "spectrum.toast.message.second_advancement_tree_unlocked.text": "You unlocked a new Advancement Tree",
   "spectrum.toast.message.third_advancement_tree_unlocked.title": "Chapter 3: Turn to Purity",
@@ -458,7 +428,6 @@
   "spectrum.toast.message.block_coloring_unlocked.text": "Block Coloring",
   "spectrum.toast.message.paint_flinging_unlocked.title": "New Paintbrush Ability:",
   "spectrum.toast.message.paint_flinging_unlocked.text": "Ink Slinging",
-
   "text.autoconfig.Spectrum.option.ToastTimeMilliseconds": "The duration in milliseconds ingame recipe/unlock popups stay on the screen",
   "text.autoconfig.Spectrum.option.BedrockAnvilCanExceedMaxVanillaEnchantmentLevel": "Bedrock Anvil can Exceed Enchantment Max Levels",
   "text.autoconfig.Spectrum.option.CitrineGeodeMinAboveBottomGenerationHeight": "Min Citrine Geode generation height (from world floor)",
@@ -483,31 +452,26 @@
   "text.autoconfig.Spectrum.option.FailingDecayTickRate": "Propagation speed of Failing",
   "text.autoconfig.Spectrum.option.RuinDecayTickRate": "Propagation speed of Ruin",
   "text.autoconfig.Spectrum.option.ForfeitureDecayTickRate": "Propagation speed of Forfeiture",
-
   "text.autoconfig.Spectrum.option.GemstoneArmorHelmetProtection": "Gemstone Helmet Protection",
   "text.autoconfig.Spectrum.option.GemstoneArmorChestplateProtection": "Gemstone Chestplate Protection",
   "text.autoconfig.Spectrum.option.GemstoneArmorLeggingsProtection": "Gemstone Leggings Protection",
   "text.autoconfig.Spectrum.option.GemstoneArmorBootsProtection": "Gemstone Boots Protection",
   "text.autoconfig.Spectrum.option.GemstoneArmorToughness": "Gemstone Armor Toughness",
   "text.autoconfig.Spectrum.option.GemstoneArmorKnockbackResistance": "Gemstone Armor Knockback Resistance",
-
   "text.autoconfig.Spectrum.option.GemstoneArmorWeaknessAmplifier": "Gemstone Armor Weakness Amplifier",
   "text.autoconfig.Spectrum.option.GemstoneArmorSlownessAmplifier": "Gemstone Armor Slowness Amplifier",
   "text.autoconfig.Spectrum.option.GemstoneArmorAbsorptionAmplifier": "Gemstone Armor Absorption Amplifier",
   "text.autoconfig.Spectrum.option.GemstoneArmorResistanceAmplifier": "Gemstone Armor Resistance Amplifier",
   "text.autoconfig.Spectrum.option.GemstoneArmorRegenerationAmplifier": "Gemstone Armor Regeneration Amplifier",
   "text.autoconfig.Spectrum.option.GemstoneArmorSpeedAmplifier": "Gemstone Armor Speed Amplifier",
-
   "text.autoconfig.Spectrum.option.BedrockArmorHelmetProtection": "Bedrock Helmet Protection",
   "text.autoconfig.Spectrum.option.BedrockArmorLeggingsProtection": "Bedrock Chestplate Protection",
   "text.autoconfig.Spectrum.option.BedrockArmorChestplateProtection": "Bedrock Leggings Protection",
   "text.autoconfig.Spectrum.option.BedrockArmorBootsProtection": "Bedrock Boots Protection",
   "text.autoconfig.Spectrum.option.BedrockArmorToughness": "Bedrock Armor Armor Toughness",
   "text.autoconfig.Spectrum.option.BedrockArmorKnockbackResistance": "Bedrock Armor Knockback Resistance",
-
   "text.autoconfig.Spectrum.option.MaxLevelForEffectsInLesserPotionPendant": "Max Level for Status Effects in Lesser Potion Pendant",
   "text.autoconfig.Spectrum.option.MaxLevelForEffectsInGreaterPotionPendant": "Max Level for Status Effects in Greater Potion Pendant",
-
   "text.autoconfig.Spectrum.option.AutoSmeltEnchantmentEnabled": "Enchantment Autosmelt available",
   "text.autoconfig.Spectrum.option.ExuberanceEnchantmentEnabled": "Enchantment Exuberance available",
   "text.autoconfig.Spectrum.option.InventoryInsertionEnchantmentEnabled": "Enchantment Inventory Insertion available",
@@ -524,7 +488,6 @@
   "text.autoconfig.Spectrum.option.SteadfastEnchantmentEnabled": "Enchantment Steadfast available",
   "text.autoconfig.Spectrum.option.IndestructibleEnchantmentEnabled": "Enchantment Indestructible available",
   "text.autoconfig.Spectrum.option.BigCatchEnchantmentEnabled": "Enchantment Big Catch available",
-
   "text.autoconfig.Spectrum.option.TreasureHunterMaxLevel": "Max level for Treasure Hunter enchantment",
   "text.autoconfig.Spectrum.option.DisarmingMaxLevel": "Max level for Disarming enchantment",
   "text.autoconfig.Spectrum.option.FirstStrikeMaxLevel": "Max level for First Strike enchantment",
@@ -540,14 +503,12 @@
   "text.autoconfig.Spectrum.option.GlowVisionGogglesDuration": "Glow Vision Goggle duration in seconds per Glow Ink Sac",
   "text.autoconfig.Spectrum.option.DisarmingChancePerLevelMobs": "Chance to disarm Mobs on hit with a Disarming enchanted weapon per level",
   "text.autoconfig.Spectrum.option.DisarmingChancePerLevelPlayers": "Chance to disarm Players on hit with a Disarming enchanted weapon per level",
-
   "text.autoconfig.Spectrum.option.BlockSoundVolume": "Sound Volume of Multiblock Structure Tunes",
   "text.autoconfig.Spectrum.option.REIListsRecipesAsNotUnlocked": "Show 'recipe not unlocked yet' REI screens for not unlocked recipes",
   "text.autoconfig.Spectrum.option.azureDikeHudOffsetX": "X Position of the Azure Dike Overlay on the players screen. Default: On top of Hearts",
   "text.autoconfig.Spectrum.option.azureDikeHudOffsetY": "Y Position of the Azure Dike Overlay on the players screen. Default: On top of Hearts",
   "text.autoconfig.Spectrum.option.azureDikeHudOffsetYWithArmor": "Y Position of the Azure Dike Overlay on the players screen when not having full air. Default: On top of Armor",
   "text.autoconfig.Spectrum.option.azureDikeHudOffsetYForEachRowOfExtraHearts": "Added Y position offset for each extra row of hearts",
-
   "block.spectrum.upgrade_speed": "Crafting Accelerator",
   "block.spectrum.upgrade_speed2": "Crafting Accelerator T2",
   "block.spectrum.upgrade_speed3": "Crafting Accelerator T3",
@@ -567,7 +528,6 @@
   "item.spectrum.upgrade_experience.tooltip": "Slightly increases experience gain / decreases consumption",
   "item.spectrum.upgrade_experience2.tooltip": "Greatly increases experience gain / decreases consumption",
   "item.spectrum.upgrade.tooltip_increase": "Similar upgrades have a decreased effect",
-
   "block.spectrum.fusion_shrine": "Fusion Shrine",
   "block.spectrum.fusion_shrine_basalt": "Fusion Shrine",
   "block.spectrum.fusion_shrine_calcite": "Fusion Shrine",
@@ -580,7 +540,6 @@
   "block.spectrum.crystallarieum": "Crystallarieum",
   "block.spectrum.cinderhearth": "Cinderhearth",
   "block.spectrum.stonesetting_workshop": "Stonesetting Workshop",
-
   "block.spectrum.memory": "Memory",
   "item.spectrum.memory.tooltip.entity_type": "§7Remembers a §f%s",
   "item.spectrum.memory.tooltip.unrecognizable_entity_type": "The memory is blurred",
@@ -590,9 +549,7 @@
   "item.spectrum.memory.tooltip.medium_time_to_manifest": "May manifest the next few days",
   "item.spectrum.memory.tooltip.short_time_to_manifest": "Seems to manifest soon!",
   "item.spectrum.memory.tooltip.does_not_manifest": "Will not manifest in your lifetime",
-
   "block.spectrum.black_materia": "Black Materia",
-
   "block.spectrum.downstone": "Downstone",
   "block.spectrum.preservation_stone": "Preservation Stone",
   "block.spectrum.preservation_glass": "Preservation Glass",
@@ -621,54 +578,54 @@
   "block.spectrum.blackslag_tiles": "Blackslag Tiles",
   "block.spectrum.blackslag_tile_stairs": "Blackslag Tile Stairs",
   "block.spectrum.blackslag_tile_slab": "Blackslag Tile Slab",
-	"block.spectrum.blackslag_tile_wall": "Blackslag Tile Wall",
-	"block.spectrum.blackslag_bricks": "Blackslag Bricks",
-	"block.spectrum.blackslag_brick_stairs": "Blackslag Brick Stairs",
-	"block.spectrum.blackslag_brick_slab": "Blackslag Brick Slab",
-	"block.spectrum.blackslag_brick_wall": "Blackslag Brick Wall",
-	"block.spectrum.chiseled_blackslag": "Chiseled Blackslag",
-	"block.spectrum.cracked_blackslag_bricks": "Cracked Blackslag Bricks",
-	"block.spectrum.cracked_blackslag_tiles": "Cracked Blackslag Tiles",
-	"block.spectrum.polished_blackslag_button": "Polished Blackslag Button",
-	"block.spectrum.polished_blackslag_pressure_plate": "Polished Blackslag Pressure Plate",
-	"block.spectrum.blackslag_coal_ore": "Blackslag Coal Ore",
-	"block.spectrum.blackslag_copper_ore": "Blackslag Copper Ore",
-	"block.spectrum.blackslag_iron_ore": "Blackslag Iron Ore",
-	"block.spectrum.blackslag_gold_ore": "Blackslag Gold Ore",
-	"block.spectrum.blackslag_diamond_ore": "Blackslag Diamond Ore",
-	"block.spectrum.blackslag_redstone_ore": "Blackslag Redstone Ore",
-	"block.spectrum.blackslag_lapis_ore": "Blackslag Lapis Ore",
-	"block.spectrum.blackslag_emerald_ore": "Blackslag Emerald Ore",
-	"block.spectrum.blackslag_shimmerstone_ore": "Blackslag Shimmerstone Ore",
-	"block.spectrum.blackslag_malachite_ore": "Blackslag Malachite Ore",
-	"block.spectrum.polished_calcite_button": "Polished Calcite Button",
-	"block.spectrum.polished_calcite_pressure_plate": "Polished Calcite Pressure Plate",
-	"block.spectrum.polished_basalt_button": "Polished Basalt Button",
-	"block.spectrum.polished_basalt_pressure_plate": "Polished Basalt Pressure Plate",
-	"block.spectrum.basalt_tiles": "Polished Basalt Tiles",
-	"block.spectrum.calcite_tiles": "Polished Calcite Tiles",
-	"block.spectrum.azurite_chiseled_basalt": "Azurite Chiseled Basalt",
-	"block.spectrum.malachite_chiseled_basalt": "Malachite Chiseled Basalt",
-	"block.spectrum.azurite_chiseled_calcite": "Azurite Chiseled Calcite",
-	"block.spectrum.malachite_chiseled_calcite": "Malachite Chiseled Calcite",
-	"block.spectrum.calcite_tile_stairs": "Calcite Tile Stairs",
-	"block.spectrum.basalt_tile_stairs": "Basalt Tile Stairs",
-	"block.spectrum.calcite_tile_slab": "Calcite Tile Slab",
-	"block.spectrum.basalt_tile_slab": "Basalt Tile Slab",
-	"block.spectrum.calcite_tile_wall": "Calcite Tile Wall",
-	"block.spectrum.basalt_tile_wall": "Basalt Tile Wall",
-	"block.spectrum.cracked_calcite_tiles": "Cracked Calcite Tiles",
-	"block.spectrum.cracked_basalt_tiles": "Cracked Basalt Tiles",
-	"block.spectrum.cracked_calcite_bricks": "Cracked Calcite Bricks",
-	"block.spectrum.cracked_basalt_bricks": "Cracked Basalt Bricks",
-	"block.spectrum.jade_vines": "Jade Vines",
-	"block.spectrum.jade_vine_petal_block": "Jade Petal Block",
-	"block.spectrum.jade_vine_petal_carpet": "Jade Petal Carpet",
-	"block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
-	"block.spectrum.spirit_sallow_log": "Spirit Sallow Log",
-	"block.spectrum.spirit_sallow_leaves": "Spirit Sallow Leaves",
-	"block.spectrum.spirit_sallow_heart": "Spirit Sallow Heart",
-	"block.spectrum.sacred_soil": "Sacred Soil",
+  "block.spectrum.blackslag_tile_wall": "Blackslag Tile Wall",
+  "block.spectrum.blackslag_bricks": "Blackslag Bricks",
+  "block.spectrum.blackslag_brick_stairs": "Blackslag Brick Stairs",
+  "block.spectrum.blackslag_brick_slab": "Blackslag Brick Slab",
+  "block.spectrum.blackslag_brick_wall": "Blackslag Brick Wall",
+  "block.spectrum.chiseled_blackslag": "Chiseled Blackslag",
+  "block.spectrum.cracked_blackslag_bricks": "Cracked Blackslag Bricks",
+  "block.spectrum.cracked_blackslag_tiles": "Cracked Blackslag Tiles",
+  "block.spectrum.polished_blackslag_button": "Polished Blackslag Button",
+  "block.spectrum.polished_blackslag_pressure_plate": "Polished Blackslag Pressure Plate",
+  "block.spectrum.blackslag_coal_ore": "Blackslag Coal Ore",
+  "block.spectrum.blackslag_copper_ore": "Blackslag Copper Ore",
+  "block.spectrum.blackslag_iron_ore": "Blackslag Iron Ore",
+  "block.spectrum.blackslag_gold_ore": "Blackslag Gold Ore",
+  "block.spectrum.blackslag_diamond_ore": "Blackslag Diamond Ore",
+  "block.spectrum.blackslag_redstone_ore": "Blackslag Redstone Ore",
+  "block.spectrum.blackslag_lapis_ore": "Blackslag Lapis Ore",
+  "block.spectrum.blackslag_emerald_ore": "Blackslag Emerald Ore",
+  "block.spectrum.blackslag_shimmerstone_ore": "Blackslag Shimmerstone Ore",
+  "block.spectrum.blackslag_malachite_ore": "Blackslag Malachite Ore",
+  "block.spectrum.polished_calcite_button": "Polished Calcite Button",
+  "block.spectrum.polished_calcite_pressure_plate": "Polished Calcite Pressure Plate",
+  "block.spectrum.polished_basalt_button": "Polished Basalt Button",
+  "block.spectrum.polished_basalt_pressure_plate": "Polished Basalt Pressure Plate",
+  "block.spectrum.basalt_tiles": "Basalt Tiles",
+  "block.spectrum.calcite_tiles": "Calcite Tiles",
+  "block.spectrum.azurite_chiseled_basalt": "Azurite Chiseled Basalt",
+  "block.spectrum.malachite_chiseled_basalt": "Malachite Chiseled Basalt",
+  "block.spectrum.azurite_chiseled_calcite": "Azurite Chiseled Calcite",
+  "block.spectrum.malachite_chiseled_calcite": "Malachite Chiseled Calcite",
+  "block.spectrum.calcite_tile_stairs": "Calcite Tile Stairs",
+  "block.spectrum.basalt_tile_stairs": "Basalt Tile Stairs",
+  "block.spectrum.calcite_tile_slab": "Calcite Tile Slab",
+  "block.spectrum.basalt_tile_slab": "Basalt Tile Slab",
+  "block.spectrum.calcite_tile_wall": "Calcite Tile Wall",
+  "block.spectrum.basalt_tile_wall": "Basalt Tile Wall",
+  "block.spectrum.cracked_calcite_tiles": "Cracked Calcite Tiles",
+  "block.spectrum.cracked_basalt_tiles": "Cracked Basalt Tiles",
+  "block.spectrum.cracked_calcite_bricks": "Cracked Calcite Bricks",
+  "block.spectrum.cracked_basalt_bricks": "Cracked Basalt Bricks",
+  "block.spectrum.jade_vines": "Jade Vines",
+  "block.spectrum.jade_vine_petal_block": "Jade Petal Block",
+  "block.spectrum.jade_vine_petal_carpet": "Jade Petal Carpet",
+  "block.spectrum.spirit_sallow_roots": "Spirit Sallow Roots",
+  "block.spectrum.spirit_sallow_log": "Spirit Sallow Log",
+  "block.spectrum.spirit_sallow_leaves": "Spirit Sallow Leaves",
+  "block.spectrum.spirit_sallow_heart": "Spirit Sallow Heart",
+  "block.spectrum.sacred_soil": "Sacred Soil",
   "block.spectrum.wand_light": "Spectrum Light",
   "block.spectrum.bedrock_storage_block": "Bedrock Block",
   "block.spectrum.shimmerstone_ore": "Shimmerstone Ore",
@@ -682,24 +639,20 @@
   "block.spectrum.lava_sponge": "Lava Sponge",
   "block.spectrum.wet_lava_sponge": "Wet Lava Sponge",
   "item.spectrum.wet_lava_sponge.tooltip": "§e⚠ Caution: Hot surface ⚠",
-
   "item.spectrum.amaranth_grains": "Amaranth Grains",
   "block.spectrum.amaranth": "Amaranth",
   "block.spectrum.amaranth_bushel": "Amaranth Bushel",
   "block.spectrum.potted_amaranth_bushel": "Potted Amaranth Bushel",
-
   "block.spectrum.amethyst_decostone": "Amethyst Decostone",
   "block.spectrum.topaz_decostone": "Topaz Decostone",
   "block.spectrum.citrine_decostone": "Citrine Decostone",
   "block.spectrum.moonstone_decostone": "Moonstone Decostone",
   "block.spectrum.onyx_decostone": "Onyx Decostone",
-
   "block.spectrum.amethyst_chime": "Amethyst Chime",
   "block.spectrum.topaz_chime": "Topaz Chime",
   "block.spectrum.citrine_chime": "Citrine Chime",
   "block.spectrum.moonstone_chime": "Moonstone Chime",
   "block.spectrum.onyx_chime": "Onyx Chime",
-
   "block.spectrum.clover": "Clover",
   "block.spectrum.four_leaf_clover": "Four-leaved Clover",
   "block.spectrum.ethereal_platform": "Ethereal Platform",
@@ -727,7 +680,6 @@
   "block.spectrum.entity_detector": "Creature Detector",
   "block.spectrum.block_placer": "Block Placer",
   "block.spectrum.redstone_wireless": "Wireless Redstone",
-
   "block.spectrum.redstone_calculator": "Redstone Calculator",
   "block.spectrum.redstone_calculator.mode_set": "Set to mode: ",
   "block.spectrum.redstone_calculator.mode.addition": "Addition",
@@ -737,7 +689,6 @@
   "block.spectrum.redstone_calculator.mode.modulo": "Modulo",
   "block.spectrum.redstone_calculator.mode.min": "Minimum",
   "block.spectrum.redstone_calculator.mode.max": "Maximum",
-
   "block.spectrum.redstone_timer": "Redstone Timer",
   "block.spectrum.redstone_timer.setting.active": "Active time set to: ",
   "block.spectrum.redstone_timer.setting.inactive": "Inactive time set to: ",
@@ -746,7 +697,6 @@
   "block.spectrum.redstone_timer.setting.one_minute": "1 minute",
   "block.spectrum.redstone_timer.setting.ten_minutes": "10 minutes",
   "block.spectrum.redstone_timer.setting.one_hour": "1 hour",
-
   "block.spectrum.cyan_spirit_sallow_vines_head": "Cyan Spirit Sallow Vines",
   "block.spectrum.magenta_spirit_sallow_vines_head": "Magenta Spirit Sallow Vines",
   "block.spectrum.yellow_spirit_sallow_vines_head": "Yellow Spirit Sallow Vines",
@@ -757,7 +707,6 @@
   "block.spectrum.yellow_spirit_sallow_vines_body": "Yellow Spirit Sallow Vines",
   "block.spectrum.white_spirit_sallow_vines_body": "White Spirit Sallow Vines",
   "block.spectrum.black_spirit_sallow_vines_body": "Black Spirit Sallow Vines",
-
   "block.spectrum.basalt_shimmerstone_light": "Basalt Shimmerstone Light",
   "block.spectrum.calcite_shimmerstone_light": "Calcite Shimmerstone Light",
   "block.spectrum.stone_shimmerstone_light": "Stone Shimmerstone Light",
@@ -765,14 +714,12 @@
   "block.spectrum.diorite_shimmerstone_light": "Diorite Shimmerstone Light",
   "block.spectrum.andesite_shimmerstone_light": "Andesite Shimmerstone Light",
   "block.spectrum.deepslate_shimmerstone_light": "Deepslate Shimmerstone Light",
-
   "block.spectrum.amethyst_storage_block": "Polished Amethyst",
   "block.spectrum.citrine_storage_block": "Polished Citrine",
   "block.spectrum.topaz_storage_block": "Polished Topaz",
   "block.spectrum.onyx_storage_block": "Polished Onyx",
   "block.spectrum.moonstone_storage_block": "Polished Moonstone",
   "block.spectrum.spectral_shard_storage_block": "Polished Spectral Shard Block",
-
   "block.spectrum.black_block": "Black Block",
   "block.spectrum.blue_block": "Blue Block",
   "block.spectrum.brown_block": "Brown Block",
@@ -789,7 +736,6 @@
   "block.spectrum.red_block": "Red Block",
   "block.spectrum.white_block": "White Block",
   "block.spectrum.yellow_block": "Yellow Block",
-
   "block.spectrum.black_spore_blossom": "Black Spore Blossom",
   "block.spectrum.blue_spore_blossom": "Blue Spore Blossom",
   "block.spectrum.brown_spore_blossom": "Brown Spore Blossom",
@@ -806,7 +752,6 @@
   "block.spectrum.red_spore_blossom": "Red Spore Blossom",
   "block.spectrum.white_spore_blossom": "White Spore Blossom",
   "block.spectrum.yellow_spore_blossom": "Yellow Spore Blossom",
-
   "block.spectrum.black_sapling": "Black Sapling",
   "block.spectrum.black_log": "Black Log",
   "block.spectrum.black_leaves": "Black Leaves",
@@ -855,7 +800,6 @@
   "block.spectrum.yellow_sapling": "Yellow Sapling",
   "block.spectrum.yellow_log": "Yellow Log",
   "block.spectrum.yellow_leaves": "Yellow Leaves",
-
   "block.spectrum.black_glowblock": "Black Glowblock",
   "block.spectrum.blue_glowblock": "Blue Glowblock",
   "block.spectrum.brown_glowblock": "Brown Glowblock",
@@ -872,7 +816,6 @@
   "block.spectrum.red_glowblock": "Red Glowblock",
   "block.spectrum.white_glowblock": "White Glowblock",
   "block.spectrum.yellow_glowblock": "Yellow Glowblock",
-
   "block.spectrum.black_lamp": "Black Lamp",
   "block.spectrum.blue_lamp": "Blue Lamp",
   "block.spectrum.brown_lamp": "Brown Lamp",
@@ -889,7 +832,6 @@
   "block.spectrum.red_lamp": "Red Lamp",
   "block.spectrum.white_lamp": "White Lamp",
   "block.spectrum.yellow_lamp": "Yellow Lamp",
-
   "block.spectrum.black_planks": "Black Planks",
   "block.spectrum.black_button": "Black Button",
   "block.spectrum.black_fence": "Black Fence",
@@ -897,7 +839,6 @@
   "block.spectrum.black_stairs": "Black Stairs",
   "block.spectrum.black_slab": "Black Slab",
   "block.spectrum.black_fence_gate": "Black Fence Gate",
-
   "block.spectrum.blue_planks": "Blue Planks",
   "block.spectrum.blue_button": "Blue Button",
   "block.spectrum.blue_fence": "Blue Fence",
@@ -905,7 +846,6 @@
   "block.spectrum.blue_stairs": "Blue Stairs",
   "block.spectrum.blue_slab": "Blue Slab",
   "block.spectrum.blue_fence_gate": "Blue Fence Gate",
-
   "block.spectrum.brown_planks": "Brown Planks",
   "block.spectrum.brown_button": "Brown Button",
   "block.spectrum.brown_fence": "Brown Fence",
@@ -913,7 +853,6 @@
   "block.spectrum.brown_stairs": "Brown Stairs",
   "block.spectrum.brown_slab": "Brown Slab",
   "block.spectrum.brown_fence_gate": "Brown Fence Gate",
-
   "block.spectrum.cyan_planks": "Cyan Planks",
   "block.spectrum.cyan_button": "Cyan Button",
   "block.spectrum.cyan_fence": "Cyan Fence",
@@ -921,7 +860,6 @@
   "block.spectrum.cyan_stairs": "Cyan Stairs",
   "block.spectrum.cyan_slab": "Cyan Slab",
   "block.spectrum.cyan_fence_gate": "Cyan Fence Gate",
-
   "block.spectrum.gray_planks": "Gray Planks",
   "block.spectrum.gray_button": "Gray Button",
   "block.spectrum.gray_fence": "Gray Fence",
@@ -929,7 +867,6 @@
   "block.spectrum.gray_stairs": "Gray Stairs",
   "block.spectrum.gray_slab": "Gray Slab",
   "block.spectrum.gray_fence_gate": "Gray Fence Gate",
-
   "block.spectrum.green_planks": "Green Planks",
   "block.spectrum.green_button": "Green Button",
   "block.spectrum.green_fence": "Green Fence",
@@ -937,7 +874,6 @@
   "block.spectrum.green_stairs": "Green Stairs",
   "block.spectrum.green_slab": "Green Slab",
   "block.spectrum.green_fence_gate": "Green Fence Gate",
-
   "block.spectrum.light_blue_planks": "Light Blue Planks",
   "block.spectrum.light_blue_button": "Light Blue Button",
   "block.spectrum.light_blue_fence": "Light Blue Fence",
@@ -945,7 +881,6 @@
   "block.spectrum.light_blue_stairs": "Light Blue Stairs",
   "block.spectrum.light_blue_slab": "Light Blue Slab",
   "block.spectrum.light_blue_fence_gate": "Light Blue Fence Gate",
-
   "block.spectrum.light_gray_planks": "Light Gray Planks",
   "block.spectrum.light_gray_button": "Light Gray Button",
   "block.spectrum.light_gray_fence": "Light Gray Fence",
@@ -953,7 +888,6 @@
   "block.spectrum.light_gray_stairs": "Light Gray Stairs",
   "block.spectrum.light_gray_slab": "Light Gray Slab",
   "block.spectrum.light_gray_fence_gate": "Light Gray Fence Gate",
-
   "block.spectrum.lime_planks": "Lime Planks",
   "block.spectrum.lime_button": "Lime Button",
   "block.spectrum.lime_fence": "Lime Fence",
@@ -961,7 +895,6 @@
   "block.spectrum.lime_stairs": "Lime Stairs",
   "block.spectrum.lime_slab": "Lime Slab",
   "block.spectrum.lime_fence_gate": "Lime Fence Gate",
-
   "block.spectrum.magenta_planks": "Magenta Planks",
   "block.spectrum.magenta_button": "Magenta Button",
   "block.spectrum.magenta_fence": "Magenta Fence",
@@ -969,7 +902,6 @@
   "block.spectrum.magenta_stairs": "Magenta Stairs",
   "block.spectrum.magenta_slab": "Magenta Slab",
   "block.spectrum.magenta_fence_gate": "Magenta Fence Gate",
-
   "block.spectrum.orange_planks": "Orange Planks",
   "block.spectrum.orange_button": "Orange Button",
   "block.spectrum.orange_fence": "Orange Fence",
@@ -977,7 +909,6 @@
   "block.spectrum.orange_stairs": "Orange Stairs",
   "block.spectrum.orange_slab": "Orange Slab",
   "block.spectrum.orange_fence_gate": "Orange Fence Gate",
-
   "block.spectrum.pink_planks": "Pink Planks",
   "block.spectrum.pink_button": "Pink Button",
   "block.spectrum.pink_fence": "Pink Fence",
@@ -985,7 +916,6 @@
   "block.spectrum.pink_stairs": "Pink Stairs",
   "block.spectrum.pink_slab": "Pink Slab",
   "block.spectrum.pink_fence_gate": "Pink Fence Gate",
-
   "block.spectrum.purple_planks": "Purple Planks",
   "block.spectrum.purple_button": "Purple Button",
   "block.spectrum.purple_fence": "Purple Fence",
@@ -993,7 +923,6 @@
   "block.spectrum.purple_stairs": "Purple Stairs",
   "block.spectrum.purple_slab": "Purple Slab",
   "block.spectrum.purple_fence_gate": "Purple Fence Gate",
-
   "block.spectrum.red_planks": "Red Planks",
   "block.spectrum.red_button": "Red Button",
   "block.spectrum.red_fence": "Red Fence",
@@ -1001,7 +930,6 @@
   "block.spectrum.red_stairs": "Red Stairs",
   "block.spectrum.red_slab": "Red Slab",
   "block.spectrum.red_fence_gate": "Red Fence Gate",
-
   "block.spectrum.white_planks": "White Planks",
   "block.spectrum.white_button": "White Button",
   "block.spectrum.white_fence": "White Fence",
@@ -1009,7 +937,6 @@
   "block.spectrum.white_stairs": "White Stairs",
   "block.spectrum.white_slab": "White Slab",
   "block.spectrum.white_fence_gate": "White Fence Gate",
-
   "block.spectrum.yellow_planks": "Yellow Planks",
   "block.spectrum.yellow_button": "Yellow Button",
   "block.spectrum.yellow_fence": "Yellow Fence",
@@ -1017,32 +944,26 @@
   "block.spectrum.yellow_stairs": "Yellow Stairs",
   "block.spectrum.yellow_slab": "Yellow Slab",
   "block.spectrum.yellow_fence_gate": "Yellow Fence Gate",
-
   "item.spectrum.mud_bucket": "Bucket of Mud",
   "block.spectrum.mud": "Mud",
   "block.spectrum.flowing_mud": "Mud",
-
   "item.spectrum.liquid_crystal_bucket": "Liquid Crystal Bucket",
   "block.spectrum.liquid_crystal": "Liquid Crystal",
   "block.spectrum.flowing_liquid_crystal": "Liquid Crystal",
-
   "item.spectrum.midnight_solution_bucket": "Midnight Solution Bucket",
   "block.spectrum.midnight_solution": "Midnight Solution",
   "block.spectrum.flowing_midnight_solution": "Midnight Solution",
-
   "block.spectrum.paltaeria_ore": "Paltaeria Ore",
   "block.spectrum.paltaeria_fragment_block": "Paltaeria Floatblock",
   "block.spectrum.stratine_ore": "Stratine Ore",
   "block.spectrum.stratine_fragment_block": "Stratine Floatblock",
   "block.spectrum.hover_block": "Hover Block",
-
   "block.spectrum.shooting_star_glistering": "Glistering Shooting Star",
   "block.spectrum.shooting_star_fiery": "Fiery Shooting Star",
   "block.spectrum.shooting_star_colorful": "Colorful Shooting Star",
   "block.spectrum.shooting_star_pristine": "Pristine Shooting Star",
   "block.spectrum.shooting_star_gemstone": "Gemstone Shooting Star",
   "item.spectrum.shooting_star.tooltip.hardened": "Hardened - will not break",
-
   "block.spectrum.slate_noxcap_cap": "Slate Noxcap Cap",
   "block.spectrum.slate_noxcap_stem": "Slate Noxcap Stem",
   "block.spectrum.stripped_slate_noxcap_stem": "Stripped Slate Noxcap Stem",
@@ -1062,7 +983,6 @@
   "block.spectrum.slate_noxwood_light": "Slate Noxwood Light",
   "block.spectrum.slate_noxwood_lamp": "Slate Noxwood Lamp",
   "block.spectrum.amphora": "Amphora",
-
   "block.spectrum.ebony_noxcap_cap": "Ebony Noxcap Cap",
   "block.spectrum.ebony_noxcap_stem": "Ebony Noxcap Stem",
   "block.spectrum.stripped_ebony_noxcap_stem": "Stripped Ebony Noxcap Stem",
@@ -1081,7 +1001,6 @@
   "block.spectrum.ebony_noxwood_lantern": "Ebony Noxwood Lantern",
   "block.spectrum.ebony_noxwood_light": "Ebony Noxwood Light",
   "block.spectrum.ebony_noxwood_lamp": "Ebony Noxwood Lamp",
-
   "block.spectrum.ivory_noxcap_cap": "Ivory Noxcap Cap",
   "block.spectrum.ivory_noxcap_stem": "Ivory Noxcap Stem",
   "block.spectrum.stripped_ivory_noxcap_stem": "Stripped Ivory Noxcap Stem",
@@ -1100,7 +1019,6 @@
   "block.spectrum.ivory_noxwood_lantern": "Ivory Noxwood Lantern",
   "block.spectrum.ivory_noxwood_light": "Ivory Noxwood Light",
   "block.spectrum.ivory_noxwood_lamp": "Ivory Noxwood Lamp",
-
   "block.spectrum.chestnut_noxcap_cap": "Chestnut Noxcap Cap",
   "block.spectrum.chestnut_noxcap_stem": "Chestnut Noxcap Stem",
   "block.spectrum.stripped_chestnut_noxcap_stem": "Stripped Chestnut Noxcap Stem",
@@ -1119,14 +1037,12 @@
   "block.spectrum.chestnut_noxwood_lantern": "Chestnut Noxwood Lantern",
   "block.spectrum.chestnut_noxwood_light": "Chestnut Noxwood Light",
   "block.spectrum.chestnut_noxwood_lamp": "Chestnut Noxwood Lamp",
-
   "block.spectrum.sag_leaf": "Sag Leaf",
   "block.spectrum.sag_bubble": "Sag Bubble",
   "block.spectrum.small_sag_bubble": "Small Sag Bubble",
   "block.spectrum.glistering_melon": "Glistering Melon",
   "block.spectrum.glistering_melon_stem": "Glistering Melon Stem",
   "block.spectrum.attached_glistering_melon_stem": "Glistering Melon Stem",
-
   "block.spectrum.spectral_shard_block": "Spectral Shard Block",
   "block.spectrum.small_citrine_bud": "Small Citrine Bud",
   "block.spectrum.medium_citrine_bud": "Medium Citrine Bud",
@@ -1152,19 +1068,16 @@
   "block.spectrum.moonstone_cluster": "Moonstone Cluster",
   "block.spectrum.moonstone_block": "Block of Moonstone",
   "block.spectrum.budding_moonstone": "Budding Moonstone",
-
   "block.spectrum.amethyst_ore": "Amethyst Ore",
   "block.spectrum.citrine_ore": "Citrine Ore",
   "block.spectrum.topaz_ore": "Topaz Ore",
   "block.spectrum.onyx_ore": "Onyx Ore",
   "block.spectrum.moonstone_ore": "Moonstone Ore",
-
   "block.spectrum.deepslate_amethyst_ore": "Deepslate Amethyst Ore",
   "block.spectrum.deepslate_citrine_ore": "Deepslate Citrine Ore",
   "block.spectrum.deepslate_topaz_ore": "Deepslate Topaz Ore",
   "block.spectrum.deepslate_onyx_ore": "Deepslate Onyx Ore",
   "block.spectrum.deepslate_moonstone_ore": "Deepslate Moonstone Ore",
-
   "block.spectrum.smooth_basalt_slab": "Smooth Basalt Slab",
   "block.spectrum.smooth_basalt_wall": "Smooth Basalt Wall",
   "block.spectrum.smooth_basalt_stairs": "smooth_basalt Stairs",
@@ -1185,7 +1098,6 @@
   "block.spectrum.citrine_chiseled_basalt": "Citrine Chiseled Basalt",
   "block.spectrum.onyx_chiseled_basalt": "Onyx Chiseled Basalt",
   "block.spectrum.moonstone_chiseled_basalt": "Moonstone Chiseled Basalt",
-
   "block.spectrum.calcite_slab": "Calcite Slab",
   "block.spectrum.calcite_wall": "Calcite Wall",
   "block.spectrum.calcite_stairs": "Calcite Stairs",
@@ -1206,36 +1118,30 @@
   "block.spectrum.citrine_chiseled_calcite": "Citrine Chiseled Calcite",
   "block.spectrum.onyx_chiseled_calcite": "Onyx Chiseled Calcite",
   "block.spectrum.moonstone_chiseled_calcite": "Moonstone Chiseled Calcite",
-
   "block.spectrum.amethyst_glass": "Amethyst Glass",
   "block.spectrum.topaz_glass": "Topaz Glass",
   "block.spectrum.citrine_glass": "Citrine Glass",
   "block.spectrum.onyx_glass": "Onyx Glass",
   "block.spectrum.moonstone_glass": "Moonstone Glass",
-
   "block.spectrum.glowing_glass": "Radiant Glass",
   "block.spectrum.tinted_semi_permeable_glass": "Semi-Permeable Tinted Glass",
   "block.spectrum.glowing_semi_permeable_glass": "Semi-Permeable Radiant Glass",
-
   "block.spectrum.vanilla_semi_permeable_glass": "Semi-Permeable Glass",
   "block.spectrum.amethyst_semi_permeable_glass": "Semi-Permeable Amethyst Glass",
   "block.spectrum.topaz_semi_permeable_glass": "Semi-Permeable Topaz Glass",
   "block.spectrum.citrine_semi_permeable_glass": "Semi-Permeable Citrine Glass",
   "block.spectrum.onyx_semi_permeable_glass": "Semi-Permeable Onyx Glass",
   "block.spectrum.moonstone_semi_permeable_glass": "Semi-Permeable Moonstone Glass",
-
   "block.spectrum.amethyst_calcite_lamp": "Amethyst Calcite Lamp",
   "block.spectrum.topaz_calcite_lamp": "Topaz Calcite Lamp",
   "block.spectrum.citrine_calcite_lamp": "Citrine Calcite Lamp",
   "block.spectrum.onyx_calcite_lamp": "Onyx Calcite Lamp",
   "block.spectrum.moonstone_calcite_lamp": "Moonstone Calcite Lamp",
-
   "block.spectrum.amethyst_basalt_lamp": "Amethyst Basalt Lamp",
   "block.spectrum.topaz_basalt_lamp": "Topaz Basalt Lamp",
   "block.spectrum.citrine_basalt_lamp": "Citrine Basalt Lamp",
   "block.spectrum.onyx_basalt_lamp": "Onyx Basalt Lamp",
   "block.spectrum.moonstone_basalt_lamp": "Moonstone Basalt Lamp",
-
   "block.spectrum.pedestal": "Pigment Pedestal",
   "block.spectrum.pedestal_basic_topaz": "Pigment Pedestal",
   "block.spectrum.pedestal_basic_amethyst": "Pigment Pedestal",
@@ -1249,7 +1155,6 @@
   "item.spectrum.pedestal.tooltip.all_basic": "§bC§dM§eY§7 Variant",
   "item.spectrum.pedestal.tooltip.onyx": "§8Onyx§7 Variant",
   "item.spectrum.pedestal.tooltip.moonstone": "§fMoonstone§7 Variant",
-
   "block.spectrum.provider_node": "Pastel Network Provider Node",
   "block.spectrum.puller_node": "Pastel Network Puller Node",
   "block.spectrum.pusher_node": "Pastel Network Pusher Node",
@@ -1263,7 +1168,6 @@
   "block.spectrum.connection_node.tooltip": "§fSimple Connector",
   "block.spectrum.interaction_node.tooltip": "§fRequest items form the Network",
   "block.spectrum.pastel_network_nodes.tooltip.range": "Connects to other Nodes 16 Blocks from it",
-
   "item.spectrum.mob_head.tooltip.designer": "§7Head design by %s",
   "block.spectrum.goat_head": "Goat Head",
   "block.spectrum.glow_squid_head": "Glow Squid Head",
@@ -1367,7 +1271,6 @@
   "block.spectrum.zombie_villager_head": "Zombie Villager Head",
   "block.spectrum.zombified_piglin_head": "Zombified Piglin Head",
   "block.spectrum.egg_laying_wooly_pig_head": "Egg Laying Wooly Pig Head",
-
   "block.spectrum.axolotl_mob_block": "Covert Idol",
   "block.spectrum.bat_mob_block": "Swift Idol",
   "block.spectrum.bee_mob_block": "Dilligent Idol",
@@ -1412,7 +1315,6 @@
   "block.spectrum.wither_mob_block": "Destructive Idol",
   "block.spectrum.wither_skeleton_mob_block": "Occult Idol",
   "block.spectrum.zombie_mob_block": "Forsaken Idol",
-
   "block.spectrum.small_coal_bud": "Small Coal Bud",
   "block.spectrum.large_coal_bud": "Large Coal Bud",
   "block.spectrum.coal_cluster": "Coal Cluster",
@@ -1449,14 +1351,12 @@
   "block.spectrum.small_redstone_bud": "Small Redstone Bud",
   "block.spectrum.large_redstone_bud": "Large Redstone Bud",
   "block.spectrum.redstone_cluster": "Redstone Cluster",
-
   "block.spectrum.small_certus_quartz_bud": "Small Certus Quartz Bud",
   "block.spectrum.large_certus_quartz_bud": "Large Certus Quartz Bud",
   "block.spectrum.certus_quartz_cluster": "Certus Quartz Cluster",
   "block.spectrum.small_fluix_bud": "Small Fluix Bud",
   "block.spectrum.large_fluix_bud": "Large Fluix Bud",
   "block.spectrum.fluix_cluster": "Fluix Cluster",
-
   "block.spectrum.small_globette_bud": "Small Globette Bud",
   "block.spectrum.large_globette_bud": "Large Globette Bud",
   "block.spectrum.globette_cluster": "Globette Cluster",
@@ -1466,7 +1366,6 @@
   "block.spectrum.small_globette_nether_bud": "Small Nether Globette Bud",
   "block.spectrum.large_globette_nether_bud": "Large Nether Globette Bud",
   "block.spectrum.globette_nether_cluster": "Nether Globette Cluster",
-
   "item.spectrum.pure_emerald": "Pure Emerald",
   "item.spectrum.pure_prismarine": "Pure Prismarine",
   "item.spectrum.pure_coal": "Pure Coal",
@@ -1479,14 +1378,11 @@
   "item.spectrum.pure_diamond": "Pure Diamond",
   "item.spectrum.pure_netherite": "Pure Netherite",
   "item.spectrum.pure_iron": "Pure Iron",
-
   "item.spectrum.pure_certus_quartz": "Pure Certus Quartz",
   "item.spectrum.pure_fluix": "Pure Fluix",
-
   "item.spectrum.pure_globette": "Pure Gobber Globette",
   "item.spectrum.pure_globette_end": "Pure End Gobber Globette",
   "item.spectrum.pure_globette_nether": "Pure Nether Gobber Globette",
-
   "block.spectrum.pure_coal_block": "Pure Coal Block",
   "block.spectrum.pure_iron_block": "Pure Iron Block",
   "block.spectrum.pure_gold_block": "Pure Gold Block",
@@ -1504,7 +1400,6 @@
   "block.spectrum.pure_globette_block": "Pure Globette Block",
   "block.spectrum.pure_globette_nether_block": "Pure Nether Gobber Block",
   "block.spectrum.pure_globette_end_block": "Pure End Gobber Block",
-
   "block.spectrum.mob_block.tooltip": "When triggered via use/stepping on/projectile hit:",
   "block.spectrum.bonemealing_mob_block.tooltip": "§7Fertilises a plant next to it",
   "block.spectrum.echolocating_mob_block.tooltip": "§7Echolocates creatures in a %d block radius",
@@ -1528,10 +1423,8 @@
   "block.spectrum.line_teleporting_mob_block.tooltip": "§7Teleports you on top of the next block of this type ",
   "block.spectrum.line_teleporting_mob_block.tooltip2": "§7in a straight line within %d blocks",
   "block.spectrum.feeding_mob_block.tooltip": "§7Feeds animals in a range of %d§7 blocks using food on the ground",
-
   "block.spectrum.incandescent_amalgam": "Incandescent Amalgam",
   "block.spectrum.incandescent_amalgam.tooltip": "§6⚠§r High yield magical explosive, handle with care",
-
   "item.spectrum.tooltip.loom_pattern_available": "✿ Usable as Banner Pattern",
   "item.spectrum.exchanging_staff": "Exchanging Staff",
   "item.spectrum.exchanging_staff.tooltip.range": "Exchanges blocks up to %s blocks around it",
@@ -1614,25 +1507,20 @@
   "item.spectrum.paltaeria_fragments": "Paltaeria Fragments",
   "item.spectrum.paltaeria_gem": "Paltaeria Gem",
   "item.spectrum.glistering_melon_seeds": "Glistering Melon Seeds",
-
   "item.spectrum.honey_pastry": "Honey Pastry",
-
   "item.spectrum.jaramel_trifle": "Jaramel Trifle",
   "item.spectrum.salted_jaramel_trifle": "Salted Jaramel Trifle",
   "item.spectrum.monster_trifle": "Monster Trifle",
   "item.spectrum.demon_trifle": "Demon Trifle",
-
   "item.spectrum.jaramel_tart": "Jaramel Tart",
   "item.spectrum.salted_jaramel_tart": "Salted Jaramel Tart",
   "item.spectrum.ashen_tart": "Ashen Tart",
   "item.spectrum.weeping_tart": "Weeping Tart",
   "item.spectrum.whispy_tart": "Whispy Tart",
   "item.spectrum.puff_tart": "Puff Tart",
-
   "block.spectrum.blood_orchid": "Blood Orchid",
   "item.spectrum.blood_orchid_petal": "Blood Orchid Petal",
   "item.spectrum.bloodboil_syrup": "Bloodboil Syrup",
-
   "block.spectrum.sugar_stick": "Sugar Stick",
   "block.spectrum.sugar_stick.tooltip.medium": "Halfway grown",
   "block.spectrum.sugar_stick.tooltip.large": "Fully grown",
@@ -1647,16 +1535,13 @@
   "item.spectrum.citrine_rock_candy": "Citrine Rock Candy",
   "item.spectrum.onyx_rock_candy": "Onyx Rock Candy",
   "item.spectrum.moonstone_rock_candy": "Moonstone Rock Candy",
-
   "item.spectrum.knowledge_gem": "Knowledge Gem",
   "item.spectrum.knowledge_gem.tooltip.stored_experience": "/ %d Experience stored",
   "item.spectrum.knowledge_gem.tooltip.use": "Use to drain, or crouch-use to store experience (%d/tick)",
-
   "item.spectrum.celestial_pocketwatch": "Celestial Pocketwatch",
   "item.spectrum.celestial_pocketwatch.tooltip.working": "Gives you reign over Day and Night",
   "item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule": "A great power prevents the use of your watch",
   "item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time": "Your clock seems dysfunctional in this strange dimension",
-
   "item.spectrum.fetchling_helmet": "Fetchling Helmet",
   "item.spectrum.ferocious_chestplate": "Ferocious Chestplate",
   "item.spectrum.sylph_leggings": "Sylph Leggings",
@@ -1665,7 +1550,6 @@
   "item.spectrum.ferocious_chestplate.tooltip": "Grants Absorption & Resistance when hit",
   "item.spectrum.sylph_leggings.tooltip": "Grants Regeneration when hit",
   "item.spectrum.oread_boots.tooltip": "Grants Speed & Invisibility when hit",
-
   "item.spectrum.vibrant_cyan_catkin": "Vibrant Cyan Catkin",
   "item.spectrum.vibrant_magenta_catkin": "Vibrant Magenta Catkin",
   "item.spectrum.vibrant_yellow_catkin": "Vibrant Yellow Catkin",
@@ -1676,13 +1560,11 @@
   "item.spectrum.lucid_yellow_catkin": "Lucid Yellow Catkin",
   "item.spectrum.lucid_black_catkin": "Lucid Black Catkin",
   "item.spectrum.lucid_white_catkin": "Lucid White Catkin",
-
   "item.spectrum.block_flooder": "Block Flooder",
   "item.spectrum.block_flooder.tooltip": "§fFills empty spaces (caves, ravines, pits…) ",
   "item.spectrum.block_flooder.tooltip2": "§fThrow to use; Radius of 10 blocks",
   "item.spectrum.block_flooder.tooltip3": "Takes matching blocks right out of your inventory",
   "item.spectrum.block_flooder.tooltip4": "Alternatively uses Cobblestone",
-
   "item.spectrum.black_pigment": "Black Pigment",
   "item.spectrum.blue_pigment": "Blue Pigment",
   "item.spectrum.brown_pigment": "Brown Pigment",
@@ -1699,13 +1581,11 @@
   "item.spectrum.red_pigment": "Red Pigment",
   "item.spectrum.white_pigment": "White Pigment",
   "item.spectrum.yellow_pigment": "Yellow Pigment",
-
   "item.spectrum.amethyst_powder": "Amethyst Powder",
   "item.spectrum.citrine_powder": "Citrine Powder",
   "item.spectrum.topaz_powder": "Topaz Powder",
   "item.spectrum.moonstone_powder": "Moonstone Powder",
   "item.spectrum.onyx_powder": "Onyx Powder",
-
   "item.spectrum.bedrock_pickaxe": "Bedrock Pickaxe",
   "item.spectrum.bedrock_axe": "Bedrock Axe",
   "item.spectrum.bedrock_sword": "Bedrock Sword",
@@ -1720,7 +1600,6 @@
   "item.spectrum.bedrock_chestplate": "Bedrock Chestplate",
   "item.spectrum.bedrock_leggings": "Bedrock Leggings",
   "item.spectrum.bedrock_boots": "Bedrock Boots",
-
   "item.spectrum.workstaff": "Workstaff",
   "item.spectrum.workstaff.tooltip.right_click_actions_disabled": "Tilling, Stripping and Flattening disabled",
   "item.spectrum.workstaff.tooltip.mining_range": "%dx%d area mining active",
@@ -1732,35 +1611,29 @@
   "item.spectrum.workstaff.message.silk_touch": "Switched Enchantment to Silk Touch",
   "item.spectrum.workstaff.message.enabled_right_click_actions": "Enabled Tilling, Stripping and Flattening",
   "item.spectrum.workstaff.message.disabled_right_click_actions": "Disabled Tilling, Stripping and Flattening",
-
   "item.spectrum.glass_crest_workstaff": "Glass Crest Workstaff",
   "item.spectrum.glass_crest_ultra_greatsword": "Glass Crest Ultra Greatsword",
   "item.spectrum.glass_crest_ultra_greatsword.tooltip": "Charge to perform a ground slam",
   "item.spectrum.glass_crest_crossbow": "Glass Crest Crossbow",
   "item.spectrum.glass_crest_bident": "Glass Crest Bident",
-
   "item.spectrum.moonstone_crest_workstaff": "Moonstone Crest Workstaff",
   "item.spectrum.moonstone_crest_ultra_greatsword": "Moonstone Crest Ultra Greatsword",
   "item.spectrum.moonstone_crest_crossbow": "Moonstone Crest Crossbow",
   "item.spectrum.ferocious_moonstone_crest_bident": "Ferocious Moonstone Crest Bident",
   "item.spectrum.fractal_moonstone_crest_bident": "Fractal Moonstone Crest Bident",
-
   "item.spectrum.glass_arrow": "Glass Arrow",
   "item.spectrum.topaz_glass_arrow": "Topaz Glass Arrow",
   "item.spectrum.amethyst_glass_arrow": "Amethyst Glass Arrow",
   "item.spectrum.citrine_glass_arrow": "Citrine Glass Arrow",
   "item.spectrum.onyx_glass_arrow": "Onyx Glass Arrow",
   "item.spectrum.moonstone_glass_arrow": "Moonstone Glass Arrow",
-
   "item.spectrum.dreamflayer": "Dreamflayer",
   "item.spectrum.dreamflayer.tooltip": "Deals more damage the greater the difference in",
   "item.spectrum.dreamflayer.tooltip2": "armor between the wearer and the target is",
   "item.spectrum.dreamflayer.tooltip.deactivated": "Crouch-Use to overpower (consumes lots of §cRed Ink§r)",
   "item.spectrum.dreamflayer.tooltip.activated": "Overpowered. Crouch-Use to unpower",
-
   "item.spectrum.nightfalls_blade": "Nightfall's Blade",
   "item.spectrum.nightfalls_blade.when_struck": "When Struck:",
-
   "item.spectrum.spawner": "Empty Spawner",
   "item.spectrum.spawner.tooltip.unknown_mob": "Unknown Mob",
   "item.spectrum.spawner.tooltip.spawn_count": "Spawn Count: %d",
@@ -1773,13 +1646,11 @@
   "recipe.spectrum.spawner.lore.increased_required_player_range": "Longer active when the player is farther away.",
   "recipe.spectrum.spawner.lore.increased_spawn_count": "Increased count of spawned creatures",
   "recipe.spectrum.spawner.lore.decreased_spawn_delay": "Decreased spawn delay",
-
   "item.spectrum.citrine_shard": "Citrine Shard",
   "item.spectrum.topaz_shard": "Topaz Shard",
   "item.spectrum.onyx_shard": "Onyx Shard",
   "item.spectrum.moonstone_shard": "Moonstone Shard",
   "item.spectrum.spectral_shard": "Spectral Shard",
-
   "item.spectrum.vegetal": "Vegetal",
   "item.spectrum.neolith": "Neolith",
   "item.spectrum.bedrock_dust": "Bedrock Dust",
@@ -1788,17 +1659,14 @@
   "item.spectrum.midnight_aberration.cloaked": "The Perfect Compound",
   "item.spectrum.midnight_chip": "Midnight Chip",
   "item.spectrum.moonstone_core": "Moonstone Core",
-
   "item.spectrum.fiery_powder": "Fiery Powder",
   "item.spectrum.blizzard_powder": "Blizzard Powder",
-
   "block.spectrum.small_bismuth_bud": "Small Bismuth Bud",
   "block.spectrum.large_bismuth_bud": "Large Bismuth Bud",
   "block.spectrum.bismuth_cluster": "Bismuth Cluster",
   "block.spectrum.bismuth_block": "Block of Bismuth",
   "item.spectrum.bismuth_flake": "Bismuth Flake'",
   "item.spectrum.bismuth_crystal": "Bismuth Crystal",
-
   "block.spectrum.malachite_ore": "Malachite Ore",
   "block.spectrum.deepslate_malachite_ore": "Deepslate Malachite Ore",
   "item.spectrum.raw_malachite": "Raw Malachite",
@@ -1807,12 +1675,10 @@
   "block.spectrum.malachite_cluster": "Malachite Cluster",
   "block.spectrum.malachite_block": "Block of Malachite",
   "item.spectrum.malachite_crystal": "Refined Malachite",
-
   "item.spectrum.logo_banner_pattern": "Banner Pattern",
   "item.spectrum.logo_banner_pattern.desc": "Color Theory",
   "item.spectrum.amethyst_shard_banner_pattern": "Banner Pattern",
   "item.spectrum.amethyst_cluster_banner_pattern": "Banner Pattern",
-
   "block.minecraft.banner.spectrum.shimmer.black": "Black Shimmer",
   "block.minecraft.banner.spectrum.shimmer.red": "Red Shimmer",
   "block.minecraft.banner.spectrum.shimmer.green": "Green Shimmer",
@@ -2101,11 +1967,9 @@
   "block.minecraft.banner.spectrum.jade_vine.magenta": "Magenta Jade Vine",
   "block.minecraft.banner.spectrum.jade_vine.orange": "Orange Jade Vine",
   "block.minecraft.banner.spectrum.jade_vine.white": "White Jade Vine",
-
   "trinkets.slot.chest.pin": "Pin",
   "trinkets.slot.head.crown": "Crown",
   "trinkets.slot.legs.pigment_palette": "Pigment Palette",
-
   "item.spectrum.fanciful_stone_ring": "Fanciful Tuff Ring",
   "item.spectrum.fanciful_belt": "Fanciful Belt",
   "item.spectrum.fanciful_pendant": "Fanciful Pendant",
@@ -2128,23 +1992,18 @@
   "item.spectrum.azure_dike_ring.tooltip": "§7Slightly increases §9Azure Dike§7 charging",
   "item.spectrum.shieldgrasp_amulet": "Shieldgrasp Amulet",
   "item.spectrum.azure_dike_provider.tooltip": "§7Grants §a%d§7 units of §9Azure Dike",
-
   "item.spectrum.total_capped_simple_pigment_energy_storage.tooltip": "§7Stores up to %d§7 Ink in total",
-
   "item.spectrum.pigment_palette": "Pigment Palette",
   "item.spectrum.pigment_palette.tooltip": "§7Stores up to %d§7 Ink per type",
   "item.spectrum.artists_palette": "Artists Palette",
   "item.spectrum.artists_palette.tooltip": "§7Stores up to %d§7 of elemental Ink in total",
   "item.spectrum.artists_palette.tooltip.mix_on_demand": "§7Mixes other types of Ink on demand",
-
   "item.spectrum.ink_flask": "Ink Flask",
   "item.spectrum.ink_flask.tooltip": "§7Stores up to %d§7 of one type of Ink",
   "item.spectrum.ink_assortment": "Ink Assortment",
   "item.spectrum.ink_assortment.tooltip": "§7Stores up to %d§7 Ink per type",
-
   "item.spectrum.creative_ink_assortment": "Creative Ink Assortment",
   "item.spectrum.creative_ink_assortment.tooltip": "§7A never ending well of Ink",
-
   "block.spectrum.color_picker": "Color Picker",
   "block.spectrum.color_picker.tooltip": "Converts §2P§3i§cg§6m§be§en§dt§7 into Ink",
   "block.spectrum.inkwell": "Inkwell",
@@ -2153,7 +2012,6 @@
   "block.spectrum.ink_duct.tooltip": "Transfers Ink in a straight line",
   "block.spectrum.crystal_apothecary": "Crystal Apothecary",
   "block.spectrum.crystal_apothecary.tooltip": "Place in a Geode to harvest Gemstone Shards",
-
   "item.spectrum.neat_ring": "A Neat Ring",
   "item.spectrum.neat_ring.tooltip": "§7§oIts neat",
   "item.spectrum.lesser_potion_pendant": "Lesser Potion Pendant",
@@ -2186,14 +2044,12 @@
   "item.spectrum.gloves_of_dawns_grasp.tooltip": "Increases your Reach",
   "item.spectrum.ring_of_pursuit": "Ring of Pursuit",
   "item.spectrum.ring_of_pursuit.tooltip": "Increases your Mining Speed",
-
   "item.spectrum.crafting_tablet": "Crafting Tablet",
   "item.spectrum.crafting_tablet.tooltip.no_recipe": "Put items into the Crafting Grid to save a Recipe",
   "item.spectrum.crafting_tablet.tooltip.crafting_recipe": "Press Use to Craft",
   "item.spectrum.crafting_tablet.tooltip.shift_to_view_gui": "Crouch-Use to open Crafting Grid",
   "item.spectrum.crafting_tablet.tooltip.pedestal_recipe": "Use in a Pedestal for Autocrafting",
   "item.spectrum.crafting_tablet.tooltip.recipe": "%d %s",
-
   "item.spectrum.star_fragment": "Star Fragment",
   "item.spectrum.stardust": "Stardust",
   "item.spectrum.frigid_stardust": "Frigid Stardust",
@@ -2219,7 +2075,6 @@
   "item.spectrum.jaramel": "Jaramel",
   "item.spectrum.lucky_roll": "Lucky Roll",
   "item.spectrum.triple_meat_pot_pie": "Triple Meat Pot Pie",
-
   "item.spectrum.star_candy": "Star Candy",
   "item.spectrum.star_candy.tooltip": "Cures a single negative status effect",
   "item.spectrum.purple_star_candy": "Star Candy",
@@ -2280,11 +2135,9 @@
   "item.spectrum.infused_beverage.tooltip.variant.artemisa": "Artemisa",
   "item.spectrum.infused_beverage.tooltip.variant.advocaat": "Advocaat",
   "item.spectrum.infused_beverage.tooltip.variant.gin": "Gin",
-
   "item.spectrum.freigeist": "Freigeist",
   "item.spectrum.freigeist.tooltip": "§4♥§r You wish you were an Angel? §4♡§r",
   "item.spectrum.divination_heart": "Divination Heart",
-
   "item.spectrum.crescent_clock": "Crescent Clock",
   "item.spectrum.gilded_book": "Gilded Book",
   "item.spectrum.gilded_book.tooltip.enchantability": "High Enchantability",
@@ -2294,11 +2147,9 @@
   "item.spectrum.enchantment_canvas.tooltip.bound_to": "§7Bound to ",
   "item.spectrum.enchantment_canvas.tooltip.not_bound": "§7Right click onto an item to swap Enchantments",
   "item.spectrum.enchantment_canvas.tooltip.not_bound2": "§7The Canvas will be then bound to items of that type",
-
   "item.spectrum.mysterious_locket": "Mysterious Locket",
   "item.spectrum.mysterious_locket.tooltip": "Features an crystal ornament which resembles a lock",
   "item.spectrum.mysterious_locket.tooltip2": "softly glowing a pale white color",
-
   "item.spectrum.bottle_of_fading": "Bottle of Fading",
   "item.spectrum.bottle_of_fading.tooltip": "§2Glibbery",
   "item.spectrum.bottle_of_failing": "Bottle of Failing",
@@ -2318,7 +2169,6 @@
   "block.spectrum.creative_particle_spawner": "Creative Particle Spawner",
   "block.spectrum.creative_particle_spawner.tooltip": "Unbreakable - does not require Redstone",
   "block.spectrum.cracked_end_portal_frame": "Cracked End Portal Frame",
-
   "block.spectrum.present": "Present",
   "block.spectrum.present.tooltip.description": "Click it on items to add them to the Present",
   "block.spectrum.present.tooltip.description2": "Then put it in a crafting grid and add Pigment to wrap",
@@ -2326,7 +2176,6 @@
   "block.spectrum.present.tooltip.wrapped.giver": "Wrapped by %s (place and sneak-use to open)",
   "block.spectrum.present.tooltip.wrapped_placed": "A present! Sneak-use to open",
   "block.spectrum.present.tooltip.wrapped_placed.giver": "A present wrapped by %s! (sneak-use to open)",
-
   "block.spectrum.titration_barrel": "Titration Barrel",
   "block.spectrum.titration_barrel.content_count": "Contains %d items (of %d max). Seal with a Colored Plank to start fermenting.",
   "block.spectrum.titration_barrel.content_count_full": "Contains %d items (full). Seal with a Colored Plank to start fermenting.",
@@ -2339,7 +2188,6 @@
   "block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount": "%s was fermenting for %d mc days (%s real days)",
   "block.spectrum.titration_barrel.invalid_recipe_after_opened": "A undrinkable mixture was fermenting for %d mc days (%s real days). Eww",
   "block.spectrum.titration_barrel.debug_added_day": "(Debug Function) Added a real life day of fermentation time",
-
   "advancements.spectrum.break_decayed_bedrock.title": "Groundbreaking",
   "advancements.spectrum.break_decayed_bedrock.description": "Break Decayed Bedrock using a Netherite Pickaxe",
   "advancements.spectrum.break_budding_block_with_resonance_tool.title": "Budding Friendship",
@@ -2458,7 +2306,6 @@
   "advancements.spectrum.use_glistering_melon_seeds.description": "Get a Glistering Melon... Plant!",
   "advancements.spectrum.plant_ominous_sapling.title": "Let it grow, let it grow!",
   "advancements.spectrum.plant_ominous_sapling.description": "You're sure combining Vegetal with a Young sapling will yield something interesting",
-
   "advancements.spectrum.build_fusion_shrine.title": "Powerful Display",
   "advancements.spectrum.build_fusion_shrine.description": "Construct the Fusion Shrine",
   "advancements.spectrum.build_enchanting_structure.title": "Next Level Enchanting",
@@ -2651,12 +2498,10 @@
   "advancements.spectrum.trigger_unenchanted_workstaff.description": "Disenchant a Workstaff and think about what you've done",
   "advancements.spectrum.collect_noxwood.title": "Mushroom Trees?",
   "advancements.spectrum.collect_noxwood.description": "Collect Noxwood",
-
   "advancements.spectrum.collect_mysterious_locket.title": "A Mysterious Locket",
   "advancements.spectrum.collect_mysterious_locket.description": "Find a mysterious locket in a dungeon chest. What is it for? Who did it belong to?",
   "advancements.spectrum.open_mysterious_locket.title": "Guided by Spirit's Hand",
   "advancements.spectrum.open_mysterious_locket.description": "Want to know, what's inside? Stay tuned for Spectrum's next update!",
-
   "advancements.spectrum.find_ancient_ruins.title": "An impenetrable Fort",
   "advancements.spectrum.find_ancient_ruins.description": "In the underground you found a well-protected structure. There HAS to be a way to get into it! If not now, then later... better keep this place in mind.",
   "advancements.spectrum.enter_color_mixing_puzzle_structure.title": "Mixed Up",
@@ -2667,18 +2512,14 @@
   "advancements.spectrum.enter_wireless_redstone_puzzle_structure.description": "A structure protected by solid Bedrock... no more",
   "advancements.spectrum.generate_ancient_ruins_loot.title": "Gift from an Ancient Civilization",
   "advancements.spectrum.generate_ancient_ruins_loot.description": "Discover the precious contents of an Ancient Treasure Chest",
-
-  "______that_should_have_been_in_aea" : "Additional Entity Attributes:",
+  "______that_should_have_been_in_aea": "Additional Entity Attributes:",
   "attribute.name.generic.additionalentityattributes.generic.dig_speed": "Mining Speed",
-
-  "______food_tooltips" : "Food Tooltips:",
+  "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",
   "spectrum.food.whenEaten": "When Eaten:",
-
-  "______name_changes_for_vanilla_blocks" : "Changes:",
+  "______name_changes_for_vanilla_blocks": "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",
-
-  "______vanilla_additions" : "Additions:",
+  "______vanilla_additions": "Additions:",
   "potion.potency.6": "VI",
   "potion.potency.7": "VII",
   "potion.potency.8": "VIII",
@@ -2694,14 +2535,12 @@
   "potion.potency.18": "XVIII",
   "potion.potency.19": "XIX",
   "potion.potency.20": "XX",
-
-  "______done_until_here" : "TODO:",
+  "______done_until_here": "TODO:",
   "advancements.spectrum.craft_energy_collector.title": "Roger that",
   "advancements.spectrum.craft_energy_collector.description": "Construct a collector powerful enough to harvest energy from gem geodes",
   "advancements.spectrum.place_energy_collector.title": "A new form of energy",
   "advancements.spectrum.place_energy_collector.description": "Place the collector in the center of a geode and watch it work",
-
-  "______unused" : "UNUSED:",
+  "______unused": "UNUSED:",
   "advancements.spectrum.place_bottle_of_failing.title": "It... feeds on Obsidian?",
   "advancements.spectrum.place_bottle_of_failing.description": "It's WAY more powerful than your first experiment. It seems to destroy everything it touches after a while. Is there something sturdy enough to withstand its destructive potential?",
   "advancements.spectrum.place_bottle_of_ruin.title": "What have you done",

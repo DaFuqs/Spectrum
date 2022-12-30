@@ -1,3 +1,6 @@
 {
-	"parent": "spectrum:block/moonstone_core"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:item/moonstone_core"
+  }
 }

@@ -7,7 +7,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "spectrum:polished_calcite_tile_wall"
+					"name": "spectrum:calcite_tile_wall"
 				}
 			],
 			"conditions": [

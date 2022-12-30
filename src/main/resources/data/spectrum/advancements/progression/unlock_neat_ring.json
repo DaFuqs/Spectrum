@@ -2,7 +2,9 @@
   "criteria": {
   	"unlocked_complex_crafting": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_moonstone_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
     },
   	"collected_resonant_lily": {
       "trigger":"revelationary:advancement_gotten",

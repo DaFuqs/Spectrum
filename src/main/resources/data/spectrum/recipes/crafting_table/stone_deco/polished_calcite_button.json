@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "spectrum:polished_calcite"
+    }
+  ],
+  "result": {
+    "item": "minecraft:polished_calcite_button"
+  }
+}

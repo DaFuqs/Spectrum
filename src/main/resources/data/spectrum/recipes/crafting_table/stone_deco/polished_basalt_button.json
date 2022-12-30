@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "spectrum:polished_basalt"
+    }
+  ],
+  "result": {
+    "item": "minecraft:polished_basalt_button"
+  }
+}

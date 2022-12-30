@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:polished_basalt"
+    }
+  },
+  "result": {
+    "item": "spectrum:polished_basalt_pressure_plate"
+  }
+}

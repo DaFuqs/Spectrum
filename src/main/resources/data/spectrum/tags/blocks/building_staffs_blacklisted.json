@@ -5,9 +5,7 @@
     "minecraft:cake",
     "minecraft:beehive",
     "minecraft:brewing_stand",
-    "spectrum:fading",
-    "spectrum:failing",
-    "spectrum:ruin",
+    "#spectrum:decay",
     "spectrum:decay_away"
   ]
 }

@@ -1,0 +1,27 @@
+{
+  "values": [
+    "spectrum:blackslag",
+    "spectrum:cobbled_blackslag",
+    "spectrum:polished_blackslag",
+    "spectrum:polished_blackslag_button",
+    "spectrum:polished_blackslag_pressure_plate",
+    "spectrum:blackslag_tiles",
+    "spectrum:blackslag_tile_stairs",
+    "spectrum:blackslag_tile_wall",
+    "spectrum:blackslag_tile_slab",
+    "spectrum:cobbled_blackslag_stairs",
+    "spectrum:polished_blackslag_stairs",
+    "spectrum:blackslag_brick_stairs",
+    "spectrum:cobbled_blackslag_slab",
+    "spectrum:polished_blackslag_slab",
+    "spectrum:blackslag_brick_slab",
+    "spectrum:cobbled_blackslag_wall",
+    "spectrum:polished_blackslag_wall",
+    "spectrum:blackslag_brick_wall",
+    "spectrum:blackslag_bricks",
+    "spectrum:cracked_blackslag_bricks",
+    "spectrum:cracked_blackslag_tiles",
+    "spectrum:chiseled_blackslag",
+    "spectrum:infested_blackslag"
+  ]
+}

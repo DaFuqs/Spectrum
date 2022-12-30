@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:polished_blackslag"
+    }
+  },
+  "result": {
+    "item": "spectrum:blackslag_bricks",
+    "count": 4
+  }
+}

@@ -15,15 +15,15 @@
   ],
   "key": {
     "W": {
-      "item": "spectrum:polished_blackslag"
+      "item": "spectrum:polished_basalt"
     },
     "X": {
       "item": "spectrum:refined_azurite"
     }
   },
   "result": {
-    "item": "spectrum:azurite_chiseled_blackslag",
+    "item": "spectrum:azurite_chiseled_basalt",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/unlock_azurite_chiseled_blackslag"
+  "required_advancement": "spectrum:midgame/create_refined_azurite"
 }

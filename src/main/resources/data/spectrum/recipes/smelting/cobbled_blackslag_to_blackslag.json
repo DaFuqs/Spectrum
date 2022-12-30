@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "minecraft:calcite"
+    "item": "spectrum:cobbled_blackslag"
   },
-  "result": "spectrum:polished_calcite",
+  "result": "spectrum:blackslag",
   "experience": 0.1,
   "cookingtime": 200
 }

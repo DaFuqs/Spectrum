@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_blackslag": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:blackslag"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

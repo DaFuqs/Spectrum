@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:blackslag_bricks"
+  },
+  "result": "spectrum:cracked_blackslag_bricks",
+  "experience": 0.1,
+  "cookingtime": 100
+}

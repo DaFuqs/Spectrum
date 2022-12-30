@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:basalt_tiles"
+  },
+  "result": "spectrum:cracked_basalt_tiles",
+  "experience": 0.1,
+  "cookingtime": 100
+}

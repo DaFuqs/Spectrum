@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "group": "block_cracking",
+  "ingredient": {
+    "item": "spectrum:basalt_tiles"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.0,
+  "result": {
+    "item": "spectrum:cracked_basalt_tiles",
+    "count": 1
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.deepslate.break"
+}

@@ -103,10 +103,10 @@
       "recipe2": "spectrum:crafting_table/stone_deco/polished_calcite_pressure_plate"
     },
     {
-      "type": "patchouli:smelting",
+      "type": "spectrum:anvil_crushing",
       "title": "Cracked Variants",
-      "recipe": "spectrum:smelting/stone_deco_cracking/cracked_calcite_bricks",
-      "recipe2": "spectrum:smelting/stone_deco_cracking/cracked_calcite_tiles"
+      "recipe": "spectrum:anvil_crushing/spectrum_pulverising/cracked_calcite_bricks",
+      "text": "You can crack Bricks & Tiles."
     },
     {
       "type": "patchouli:crafting",

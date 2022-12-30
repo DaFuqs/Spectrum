@@ -6,11 +6,11 @@
   ],
   "key": {
     "W": {
-      "item": "spectrum:basalt_tiles"
+      "item": "spectrum:blackslag_tiles"
     }
   },
   "result": {
-    "item": "spectrum:basalt_tile_wall",
+    "item": "spectrum:blackslag_tile_wall",
     "count": 6
   }
 }

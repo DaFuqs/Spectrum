@@ -6,11 +6,11 @@
   ],
   "key": {
     "W": {
-      "item": "spectrum:basalt_bricks"
+      "item": "spectrum:blackslag_bricks"
     }
   },
   "result": {
-    "item": "spectrum:basalt_brick_wall",
+    "item": "spectrum:blackslag_brick_wall",
     "count": 6
   }
 }

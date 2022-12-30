@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "group": "block_cracking",
+  "ingredient": {
+    "item": "spectrum:blackslag_bricks"
+  },
+  "crushedItemsPerPointOfDamage": 1,
+  "experience": 0.0,
+  "result": {
+    "item": "spectrum:cracked_blackslag_bricks",
+    "count": 1
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.deepslate.break",
+  "required_advancement": "spectrum:hidden/collect_blackslag"
+}

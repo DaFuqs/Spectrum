@@ -1,0 +1,81 @@
+{
+  "name": "Blackslag Variants",
+  "advancement": "spectrum:spectrum",
+  "icon": "spectrum:blackslag",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:cobbled_blackslag": 0,
+    "spectrum:polished_blackslag": 0,
+    "spectrum:polished_blackslag_button": 0,
+    "spectrum:polished_blackslag_pressure_plate": 0,
+    "spectrum:blackslag_tiles": 0,
+    "spectrum:blackslag_tile_stairs": 0,
+    "spectrum:blackslag_tile_wall": 0,
+    "spectrum:blackslag_tile_slab": 0,
+    "spectrum:cobbled_blackslag_stairs": 0,
+    "spectrum:polished_blackslag_stairs": 0,
+    "spectrum:blackslag_brick_stairs": 0,
+    "spectrum:cobbled_blackslag_slab": 0,
+    "spectrum:polished_blackslag_slab": 0,
+    "spectrum:blackslag_brick_slab": 0,
+    "spectrum:cobbled_blackslag_wall": 0,
+    "spectrum:polished_blackslag_wall": 0,
+    "spectrum:blackslag_brick_wall": 0,
+    "spectrum:blackslag_bricks": 0,
+    "spectrum:chiseled_blackslag": 0,
+    "spectrum:cracked_blackslag_bricks": 0,
+    "spectrum:cracked_blackslag_tiles": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:smelting",
+      "title": "Blackslag Variants",
+      "recipe": "spectrum:smelting/cobbled_blackslag_to_blackslag",
+      "recipe2": "spectrum:smelting/blackslag_to_polished_blackslag",
+      "text": "You can also do all these recipes in the $(thing)Blast Furnace$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Chiseled Blackslag",
+      "recipe": "spectrum:crafting_table/stone_deco/chiseled_blackslag",
+      "text": "Includes slab, stair & wall variants."
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Bricks & Tiles",
+      "recipe": "spectrum:crafting_table/stone_deco/blackslag_bricks",
+      "recipe2": "spectrum:crafting_table/stone_deco/blackslag_tiles"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Slabs & Stairs",
+      "recipe": "spectrum:crafting_table/stone_deco/polished_blackslag_slab",
+      "recipe2": "spectrum:crafting_table/stone_deco/polished_blackslag_stairs"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Walls",
+      "recipe": "spectrum:crafting_table/stone_deco/polished_blackslag_wall",
+      "recipe2": "spectrum:crafting_table/stone_deco/blackslag_tile_wall"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Buttons & Pressure Pl.",
+      "recipe": "spectrum:crafting_table/stone_deco/polished_blackslag_button",
+      "recipe2": "spectrum:crafting_table/stone_deco/polished_blackslag_pressure_plate"
+    },
+    {
+      "type": "patchouli:smelting",
+      "title": "Cracked Variants",
+      "recipe": "spectrum:smelting/stone_deco_cracking/cracked_blackslag_bricks",
+      "recipe2": "spectrum:smelting/stone_deco_cracking/cracked_blackslag_tiles"
+    },
+    {
+      "type": "patchouli:smelting",
+      "title": "Smelting them back",
+      "recipe": "spectrum:smelting/stone_deco_unsmelting/basalt_brick_stairs_to_polished_basalt",
+      "recipe2": "spectrum:smelting/stone_deco_unsmelting/chiseled_polished_calcite_to_polished_calcite",
+      "text": "By applying heat, all blocks can be converted back to their polished versions again."
+    }
+  ]
+}

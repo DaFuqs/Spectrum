@@ -33,7 +33,23 @@
     "spectrum:smooth_basalt_stairs": 0,
     "spectrum:calcite_stairs": 0,
     "spectrum:smooth_basalt_wall": 0,
-    "spectrum:calcite_wall": 0
+    "spectrum:calcite_wall": 0,
+    "spectrum:polished_calcite_button": 0,
+    "spectrum:polished_basalt_button": 0,
+    "spectrum:polished_calcite_pressure_plate": 0,
+    "spectrum:polished_basalt_pressure_plate": 0,
+    "spectrum:basalt_tiles": 0,
+    "spectrum:calcite_tiles": 0,
+    "spectrum:calcite_tile_stairs": 0,
+    "spectrum:basalt_tile_stairs": 0,
+    "spectrum:calcite_tile_wall": 0,
+    "spectrum:basalt_tile_wall": 0,
+    "spectrum:calcite_tile_slab": 0,
+    "spectrum:basalt_tile_slab": 0,
+    "spectrum:cracked_calcite_bricks": 0,
+    "spectrum:cracked_basalt_bricks": 0,
+    "spectrum:cracked_calcite_tiles": 0,
+    "spectrum:cracked_basalt_tiles": 0
   },
   "pages": [
     {
@@ -70,13 +86,32 @@
     },
     {
       "type": "patchouli:crafting",
-      "title": "Walls",
-      "recipe2": "spectrum:crafting_table/stone_deco/polished_basalt_wall"
+      "title": "Brick & Tile Variants",
+      "recipe": "spectrum:crafting_table/stone_deco/basalt_brick_stairs",
+      "recipe2": "spectrum:crafting_table/stone_deco/calcite_tile_stairs"
     },
     {
       "type": "patchouli:crafting",
-      "title": "Brick & Raw Variants",
-      "recipe": "spectrum:crafting_table/stone_deco/basalt_brick_stairs",
+      "title": "Walls",
+      "recipe": "spectrum:crafting_table/stone_deco/polished_basalt_wall",
+      "recipe2": "spectrum:crafting_table/stone_deco/calcite_tile_wall"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Buttons & Pressure Pl.",
+      "recipe": "spectrum:crafting_table/stone_deco/polished_basalt_button",
+      "recipe2": "spectrum:crafting_table/stone_deco/polished_calcite_pressure_plate"
+    },
+    {
+      "type": "patchouli:smelting",
+      "title": "Cracked Variants",
+      "recipe": "spectrum:smelting/stone_deco_cracking/cracked_calcite_bricks",
+      "recipe2": "spectrum:smelting/stone_deco_cracking/cracked_calcite_tiles"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Raw Variants",
+      "recipe": "spectrum:crafting_table/stone_deco/basalt_stairs",
       "recipe2": "spectrum:crafting_table/stone_deco/calcite_slab"
     },
     {

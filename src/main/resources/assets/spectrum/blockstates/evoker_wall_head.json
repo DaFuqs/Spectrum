@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/evoker"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

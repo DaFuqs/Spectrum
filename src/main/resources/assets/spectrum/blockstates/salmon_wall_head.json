@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/salmon"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

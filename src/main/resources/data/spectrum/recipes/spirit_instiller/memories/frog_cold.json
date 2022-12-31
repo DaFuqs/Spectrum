@@ -1,0 +1,20 @@
+﻿{
+  "type": "spectrum:spirit_instiller",
+  "group": "memories",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:frog_cold_head"
+  },
+  "ingredient2": {
+    "item": "minecraft:slime_ball"
+  },
+  "center_ingredient": {
+    "tag": "spectrum:memory_bonding_agents",
+    "count": 4
+  },
+  "result": {
+    "item": "spectrum:memory",
+    "nbt": "{EntityTag: {id: \"minecraft:frog\", variant: \"minecraft:cold\"}, TicksToManifest: 20}"
+  }
+}

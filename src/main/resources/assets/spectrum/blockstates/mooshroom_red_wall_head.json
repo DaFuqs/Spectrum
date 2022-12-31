@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/mooshroom_red"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

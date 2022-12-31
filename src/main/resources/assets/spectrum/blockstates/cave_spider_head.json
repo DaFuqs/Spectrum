@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/cave_spider"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

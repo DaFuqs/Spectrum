@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/horse"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

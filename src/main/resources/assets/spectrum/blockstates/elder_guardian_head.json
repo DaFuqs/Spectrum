@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/elder_guardian"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

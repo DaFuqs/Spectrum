@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/goat"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

@@ -1,0 +1,21 @@
+﻿{
+  "type": "spectrum:spirit_instiller",
+  "group": "boss_memories",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:warden_head"
+  },
+  "ingredient2": {
+    "item": "minecraft:sculk_catalyst"
+  },
+  "center_ingredient": {
+    "tag": "spectrum:memory_bonding_agents",
+    "count": 4
+  },
+  "result": {
+    "item": "spectrum:memory",
+    "nbt": "{EntityTag: {id: \"minecraft:warden\"}, TicksToManifest: 40}"
+  },
+  "required_advancement": "spectrum:milestones/unlock_remembering_boss_memories"
+}

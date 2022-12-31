@@ -1,0 +1,20 @@
+﻿{
+  "type": "spectrum:spirit_instiller",
+  "group": "memories",
+  "time": 800,
+  "experience": 4.0,
+  "ingredient1": {
+    "item": "spectrum:allay_head"
+  },
+  "ingredient2": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "center_ingredient": {
+    "tag": "spectrum:memory_bonding_agents",
+    "count": 4
+  },
+  "result": {
+    "item": "spectrum:memory",
+    "nbt": "{EntityTag: {id: \"minecraft:allay\"}, TicksToManifest: 20}"
+  }
+}

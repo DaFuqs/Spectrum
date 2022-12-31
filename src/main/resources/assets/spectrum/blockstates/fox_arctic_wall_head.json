@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/fox_arctic"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

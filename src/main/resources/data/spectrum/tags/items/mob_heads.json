@@ -107,6 +107,12 @@
     "spectrum:wolf_head",
     "spectrum:zoglin_head",
     "spectrum:zombie_villager_head",
-    "spectrum:zombified_piglin_head"
+    "spectrum:zombified_piglin_head",
+    "spectrum:frog_temperate_head",
+    "spectrum:frog_cold_head",
+    "spectrum:frog_warm_head",
+    "spectrum:allay_head",
+    "spectrum:warden_head",
+    "spectrum:tadpole_head"
   ]
 }

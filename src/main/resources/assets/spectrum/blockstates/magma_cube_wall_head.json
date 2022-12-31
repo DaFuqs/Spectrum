@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/magma_cube"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

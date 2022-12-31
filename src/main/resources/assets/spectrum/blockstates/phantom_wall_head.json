@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/phantom"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/axolotl_brown"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

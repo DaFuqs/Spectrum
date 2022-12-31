@@ -178,18 +178,26 @@ public class SpectrumSkullBlock extends SkullBlock {
 		ZOGLIN(EntityType.ZOGLIN),
 		ZOMBIE_VILLAGER(EntityType.ZOMBIE_VILLAGER),
 		ZOMBIFIED_PIGLIN(EntityType.ZOMBIFIED_PIGLIN),
-		
+		FROG_TEMPERATE(EntityType.FROG),
+		FROG_WARM(EntityType.FROG),
+		FROG_COLD(EntityType.FROG),
+		TADPOLE(EntityType.TADPOLE),
+		WARDEN(EntityType.WARDEN),
+		ALLAY(EntityType.ALLAY),
+
 		EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG);
-		
+
 		public final EntityType entityType;
-		
+
 		SpectrumSkullBlockType(EntityType entityType) {
 			this.entityType = entityType;
 		}
-		
+
 		public SkullType getModelType() {
 			if (this == EGG_LAYING_WOOLY_PIG) {
 				return EGG_LAYING_WOOLY_PIG;
+			} else if (this == WARDEN) {
+				return WARDEN;
 			} else {
 				return Type.PLAYER;
 			}
@@ -199,6 +207,8 @@ public class SpectrumSkullBlock extends SkullBlock {
 		public Identifier getTextureIdentifier() {
 			if (this == EGG_LAYING_WOOLY_PIG) {
 				return EggLayingWoolyPigEntityRenderer.TEXTURE;
+			} else if (this == WARDEN) {
+				return new Identifier("textures/entity/warden/warden.png");
 			} else {
 				return SpectrumCommon.locate("textures/entity/mob_head/" + this.toString().toLowerCase(Locale.ROOT) + ".png");
 			}

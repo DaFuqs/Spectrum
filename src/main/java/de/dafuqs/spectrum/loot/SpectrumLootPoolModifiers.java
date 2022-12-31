@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.entity.passive.AxolotlEntity;
 import net.minecraft.entity.passive.FoxEntity;
+import net.minecraft.entity.passive.FrogVariant;
 import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -111,7 +112,10 @@ public class SpectrumLootPoolModifiers {
 		put(new Identifier("entities/tropical_fish"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.CLOWNFISH).asItem(), 0.02F));
 		put(new Identifier("entities/goat"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.GOAT).asItem(), 0.02F));
 		put(new Identifier("entities/glow_squid"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.GLOW_SQUID).asItem(), 0.02F));
-		
+		put(new Identifier("entities/warden"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.WARDEN).asItem(), 0.2F));
+		put(new Identifier("entities/tadpole"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.TADPOLE).asItem(), 0.02F));
+		put(new Identifier("entities/allay"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.ALLAY).asItem(), 0.02F));
+
 		put(new Identifier("spectrum:entities/egg_laying_wooly_pig"), new TreasureHunterDropDefinition(SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.EGG_LAYING_WOOLY_PIG).asItem(), 0.1F));
 	}};
 	
@@ -165,6 +169,10 @@ public class SpectrumLootPoolModifiers {
 				tableBuilder.pool(getParrotLootPool(2, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GREEN).asItem(), 0.02F));
 				tableBuilder.pool(getParrotLootPool(3, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_CYAN).asItem(), 0.02F));
 				tableBuilder.pool(getParrotLootPool(4, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GRAY).asItem(), 0.02F));
+			} else if (id.equals(new Identifier("entities/frog"))) {
+				tableBuilder.pool(getFrogLootPool(FrogVariant.TEMPERATE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FROG_TEMPERATE).asItem(), 0.02F));
+				tableBuilder.pool(getFrogLootPool(FrogVariant.COLD, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FROG_COLD).asItem(), 0.02F));
+				tableBuilder.pool(getFrogLootPool(FrogVariant.WARM, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FROG_WARM).asItem(), 0.02F));
 			} else if (GoFishCompat.isLoaded()) {
 				//Go-Fish compat: fishing of crates & go-fish fishies
 				if (id.equals(SpectrumCommon.locate("gameplay/fishing/lava/fishing"))) {
@@ -219,7 +227,7 @@ public class SpectrumLootPoolModifiers {
 				.conditionally(ShulkerColorLootCondition.builder(dyeColor).build())
 				.with(ItemEntry.builder(item).build()).build();
 	}
-	
+
 	private static LootPool getAxolotlLootPool(AxolotlEntity.Variant variant, Item item, float chance) {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
@@ -227,7 +235,15 @@ public class SpectrumLootPoolModifiers {
 				.conditionally(AxolotlVariantLootCondition.builder(variant).build())
 				.with(ItemEntry.builder(item).build()).build();
 	}
-	
+
+	private static LootPool getFrogLootPool(FrogVariant variant, Item item, float chance) {
+		return new LootPool.Builder()
+				.rolls(ConstantLootNumberProvider.create(1))
+				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
+				.conditionally(FrogVariantLootCondition.builder(variant).build())
+				.with(ItemEntry.builder(item).build()).build();
+	}
+
 	private static LootPool getParrotLootPool(int variant, Item item, float chance) {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
@@ -235,7 +251,7 @@ public class SpectrumLootPoolModifiers {
 				.conditionally(ParrotVariantLootCondition.builder(variant).build())
 				.with(ItemEntry.builder(item).build()).build();
 	}
-	
+
 	private static class TreasureHunterDropDefinition {
 		public Item skullItem;
 		public float treasureHunterMultiplier;

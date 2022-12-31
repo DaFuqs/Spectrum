@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/sheep_orange"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

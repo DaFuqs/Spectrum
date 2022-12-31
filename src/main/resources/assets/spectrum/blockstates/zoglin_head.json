@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/zoglin"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

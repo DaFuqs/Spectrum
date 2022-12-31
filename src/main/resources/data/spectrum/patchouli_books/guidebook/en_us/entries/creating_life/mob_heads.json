@@ -104,7 +104,13 @@
     "spectrum:wolf_head": 0,
     "spectrum:zoglin_head": 0,
     "spectrum:zombie_villager_head": 0,
-    "spectrum:zombified_piglin_head": 0
+    "spectrum:zombified_piglin_head": 0,
+    "spectrum:warden_head": 0,
+    "spectrum:allay_head": 0,
+    "spectrum:tadpole_head": 0,
+    "spectrum:frog_temperate_head": 0,
+    "spectrum:frog_warm_head": 0,
+    "spectrum:frog_cold_head": 0
   },
   "pages": [
     {

@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/vex"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

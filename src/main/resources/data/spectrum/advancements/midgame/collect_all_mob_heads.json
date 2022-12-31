@@ -429,133 +429,120 @@
     },
     "has_zoglin_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:zoglin_head" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:zoglin_head"
+            ]
+          }
+        ]
+      }
     },
     "has_zombie_villager_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:zombie_villager_head" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:zombie_villager_head"
+            ]
+          }
+        ]
+      }
     },
     "has_zombified_piglin_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:zombified_piglin_head" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:zombified_piglin_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_tadpole_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:tadpole_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_allay_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:allay_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_warden_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:warden_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_frog_temperate_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:frog_temperate_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_frog_warm_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:frog_warm_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_frog_cold_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:frog_cold_head"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_ender_dragon_head_using_treasure_hunter" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_ender_dragon_head_using_treasure_hunter"
+      }
     }
   },
-  "requirements": [
-    ["has_skeleton_skull"],
-    ["has_wither_skeleton_skull"],
-    ["has_zombie_head"],
-    ["has_creeper_head"],
-    ["has_dragon_head"],
-
-    ["has_axolotl_blue_head"],
-    ["has_axolotl_brown_head"],
-    ["has_axolotl_cyan_head"],
-    ["has_axolotl_gold_head"],
-    ["has_axolotl_leucistic_head"],
-    ["has_bat_head"],
-    ["has_bee_head"],
-    ["has_blaze_head"],
-    ["has_cat_head"],
-    ["has_cave_spider_head"],
-    ["has_chicken_head"],
-    ["has_clownfish_head"],
-    ["has_cow_head"],
-    ["has_donkey_head"],
-    ["has_drowned_head"],
-    ["has_elder_guardian_head"],
-    ["has_enderman_head"],
-    ["has_endermite_head"],
-    ["has_evoker_head"],
-    ["has_fox_head"],
-    ["has_fox_arctic_head"],
-    ["has_ghast_head"],
-    ["has_glow_squid_head"],
-    ["has_goat_head"],
-    ["has_guardian_head"],
-    ["has_hoglin_head"],
-    ["has_horse_head"],
-    ["has_husk_head"],
-    ["has_illusioner_head"],
-    ["has_iron_golem_head"],
-    ["has_llama_head"],
-    ["has_magma_cube_head"],
-    ["has_mooshroom_brown_head"],
-    ["has_mooshroom_red_head"],
-    ["has_mule_head"],
-    ["has_ocelot_head"],
-    ["has_panda_head"],
-    ["has_parrot_blue_head"],
-    ["has_parrot_cyan_head"],
-    ["has_parrot_gray_head"],
-    ["has_parrot_green_head"],
-    ["has_parrot_red_head"],
-    ["has_phantom_head"],
-    ["has_pig_head"],
-    ["has_piglin_head"],
-    ["has_polar_bear_head"],
-    ["has_pufferfish_head"],
-    ["has_rabbit_head"],
-    ["has_ravager_head"],
-    ["has_salmon_head"],
-    ["has_sheep_black_head"],
-    ["has_sheep_blue_head"],
-    ["has_sheep_brown_head"],
-    ["has_sheep_cyan_head"],
-    ["has_sheep_gray_head"],
-    ["has_sheep_green_head"],
-    ["has_sheep_light_blue_head"],
-    ["has_sheep_light_gray_head"],
-    ["has_sheep_lime_head"],
-    ["has_sheep_magenta_head"],
-    ["has_sheep_orange_head"],
-    ["has_sheep_pink_head"],
-    ["has_sheep_purple_head"],
-    ["has_sheep_red_head"],
-    ["has_sheep_white_head"],
-    ["has_sheep_yellow_head"],
-    ["has_shulker_black_head"],
-    ["has_shulker_blue_head"],
-    ["has_shulker_brown_head"],
-    ["has_shulker_cyan_head"],
-    ["has_shulker_gray_head"],
-    ["has_shulker_green_head"],
-    ["has_shulker_light_blue_head"],
-    ["has_shulker_light_gray_head"],
-    ["has_shulker_lime_head"],
-    ["has_shulker_magenta_head"],
-    ["has_shulker_orange_head"],
-    ["has_shulker_pink_head"],
-    ["has_shulker_purple_head"],
-    ["has_shulker_red_head"],
-    ["has_shulker_white_head"],
-    ["has_shulker_yellow_head"],
-    ["has_silverfish_head"],
-    ["has_slime_head"],
-    ["has_snow_golem_head"],
-    ["has_spider_head"],
-    ["has_squid_head"],
-    ["has_stray_head"],
-    ["has_strider_head"],
-    ["has_trader_llama_head"],
-    ["has_turtle_head"],
-    ["has_vex_head"],
-    ["has_villager_head"],
-    ["has_vindicator_head"],
-    ["has_wandering_trader_head"],
-    ["has_witch_head"],
-    ["has_wither_head"],
-    ["has_wolf_head"],
-    ["has_zoglin_head"],
-    ["has_zombie_villager_head"],
-    ["has_zombified_piglin_head"],
-
-    ["gotten_previous"]
-  ],
   "rewards": {
-    "experience": 1000
+    "experience": 2500
   }
 }

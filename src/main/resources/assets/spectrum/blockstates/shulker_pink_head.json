@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "spectrum:block/shulker_pink"
+			"model": "spectrum:block/mob_head"
 		}
 	}
 }

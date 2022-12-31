@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:cobbled_blackslag"
+  },
+  "result": "spectrum:cobbled_blackslag_slab",
+  "count": 2
+}

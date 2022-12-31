@@ -11,6 +11,5 @@
     "count": 1
   },
   "particleEffectIdentifier": "cloud",
-  "soundEventIdentifier": "block.deepslate.break",
-  "required_advancement": "spectrum:hidden/collect_blackslag"
+  "soundEventIdentifier": "block.deepslate.break"
 }

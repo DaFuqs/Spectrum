@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:blackslag_bricks"
+  },
+  "result": "spectrum:cracked_blackslag_bricks",
+  "count": 1
+}

@@ -29,7 +29,20 @@
             "spectrum:deepslate_onyx_ore",
             "spectrum:deepslate_moonstone_ore"
           ]
-        }
+        },
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "advancements": {
+                  "spectrum:spectrum": true
+                }
+              }
+            }
+          }
+        ]
       }
     },
     "gotten_previous": {

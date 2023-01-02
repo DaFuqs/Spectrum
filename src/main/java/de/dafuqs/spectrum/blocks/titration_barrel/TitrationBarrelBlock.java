@@ -10,6 +10,8 @@ import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
@@ -85,10 +87,20 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 							ItemStack handStack = player.getStackInHand(hand);
 							if (handStack.isEmpty()) {
 								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity.inventory);
-								if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
-									player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count_full", itemCount), false);
+								Fluid fluid = barrelEntity.storedFluid;
+								if (fluid == Fluids.EMPTY) {
+									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count_without_fluid_full", itemCount), false);
+									} else {
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count_without_fluid", itemCount, false));
+									}
 								} else {
-									player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count", itemCount, TitrationBarrelBlockEntity.MAX_ITEM_COUNT), false);
+									String fluidName = fluid.getDefaultState().getBlockState().getBlock().getName().getString();
+									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count_with_fluid_full", fluidName, itemCount), false);
+									} else {
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count_with_fluid", fluidName, itemCount, false));
+									}
 								}
 							} else {
 								if (handStack.isIn(SpectrumItemTags.COLORED_PLANKS)) {

@@ -1,13 +1,22 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
+import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.particle.effect.ColoredTransmission;
+import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.event.BlockPositionSource;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,9 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpgradeBlock extends BlockWithEntity {
-	
+
 	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 10.0D, 14.0D);
-	private static final List<Block> registeredUpgradeBlocks = new ArrayList<>();
+	private static final List<Block> upgradeBlocks = new ArrayList<>();
 	// Positions to check on place / destroy to upgrade those blocks upgrade counts
 	private final List<Vec3i> possibleUpgradeBlockOffsets = new ArrayList<>() {{
 		// Pedestal
@@ -25,7 +34,7 @@ public class UpgradeBlock extends BlockWithEntity {
 		add(new Vec3i(-3, -2, 3));
 		add(new Vec3i(3, -2, -3));
 		add(new Vec3i(-3, -2, -3));
-		
+
 		// Fusion Shrine
 		add(new Vec3i(2, 0, 2));
 		add(new Vec3i(-2, 0, 2));
@@ -58,23 +67,25 @@ public class UpgradeBlock extends BlockWithEntity {
 	// the higher are the chances for good mods?
 	private final Upgradeable.UpgradeType upgradeType;
 	private final float upgradeMod;
-	
-	public UpgradeBlock(Settings settings, Upgradeable.UpgradeType upgradeType, float upgradeMod) {
+	private final DyeColor effectColor;
+
+	public UpgradeBlock(Settings settings, Upgradeable.UpgradeType upgradeType, float upgradeMod, DyeColor effectColor) {
 		super(settings);
 		this.upgradeType = upgradeType;
 		this.upgradeMod = upgradeMod;
-		
-		registeredUpgradeBlocks.add(this);
+		this.effectColor = effectColor;
+
+		upgradeBlocks.add(this);
 	}
-	
-	public static List<Block> getRegisteredUpgradeBlocks() {
-		return registeredUpgradeBlocks;
+
+	public static List<Block> getUpgradeBlocks() {
+		return upgradeBlocks;
 	}
-	
+
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE_UP;
 	}
-	
+
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
@@ -82,37 +93,63 @@ public class UpgradeBlock extends BlockWithEntity {
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
-		updateConnectedUpgradeBlock(world, pos);
+		if (!world.isClient) {
+			updateConnectedUpgradeBlock((ServerWorld) world, pos);
+		}
 	}
 	
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		super.onStateReplaced(state, world, pos, newState, moved);
-		updateConnectedUpgradeBlock(world, pos);
+		if (!world.isClient) {
+			updateConnectedUpgradeBlock((ServerWorld) world, pos);
+		}
 	}
-	
+
 	/**
 	 * When placed or removed the upgrade block searches for a valid Upgradeable block
 	 * and triggers it to update its upgrades
 	 */
-	private void updateConnectedUpgradeBlock(@NotNull World world, @NotNull BlockPos pos) {
+	private void updateConnectedUpgradeBlock(@NotNull ServerWorld world, @NotNull BlockPos pos) {
 		for (Vec3i possibleUpgradeBlockOffset : possibleUpgradeBlockOffsets) {
 			BlockPos currentPos = pos.add(possibleUpgradeBlockOffset);
 			BlockEntity blockEntity = world.getBlockEntity(currentPos);
 			if (blockEntity instanceof Upgradeable upgradeable) {
 				upgradeable.resetUpgrades();
+				playConnectedParticles(world, pos, currentPos);
 			}
 		}
 	}
-	
+
+	private void playConnectedParticles(@NotNull ServerWorld world, @NotNull BlockPos pos, BlockPos currentPos) {
+		DyeColor particleColor = getEffectColor();
+		world.playSound(null, pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(
+				world, Vec3d.ofCenter(pos),
+				SpectrumParticleTypes.getSparkleRisingParticle(particleColor),
+				10, new Vec3d(0.5, 0.5, 0.5),
+				new Vec3d(0.1, 0.1, 0.1));
+		SpectrumS2CPacketSender.playColorTransmission(
+				world,
+				new ColoredTransmission(
+						new Vec3d(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D),
+						new BlockPositionSource(currentPos), 6,
+						particleColor)
+		);
+	}
+
+	private DyeColor getEffectColor() {
+		return this.effectColor;
+	}
+
 	public Upgradeable.UpgradeType getUpgradeType() {
 		return this.upgradeType;
 	}
-	
+
 	public float getUpgradeMod() {
 		return this.upgradeMod;
 	}
-	
+
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}

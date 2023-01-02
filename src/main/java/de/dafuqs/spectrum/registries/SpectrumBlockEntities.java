@@ -163,8 +163,8 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
 		
 		// All the upgrades
-		List<Block> upgradeBlocksList = UpgradeBlock.getRegisteredUpgradeBlocks();
-		Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
+		List<Block> upgradeBlocksList = UpgradeBlock.getUpgradeBlocks();
+        Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
 		upgradeBlocksArray = upgradeBlocksList.toArray(upgradeBlocksArray);
 		UPGRADE_BLOCK = register("upgrade_block", UpgradeBlockEntity::new, upgradeBlocksArray);
 		

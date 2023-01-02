@@ -61,6 +61,7 @@
   "client": [
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
+    "client.BipedEntityModelMixin",
     "client.BlockOverlayRendererMixin",
     "client.BuiltinModelItemRendererMixin",
     "client.CapeFeatureRendererMixin",

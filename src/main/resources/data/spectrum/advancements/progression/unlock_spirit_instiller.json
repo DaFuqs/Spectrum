@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "created_refined_azurite": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/create_refined_azurite" }
+    "collected_azurite": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_azurite"
+      }
     },
     "collected_midnight_chip": {
       "trigger":"revelationary:advancement_gotten",

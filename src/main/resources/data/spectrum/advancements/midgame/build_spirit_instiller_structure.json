@@ -1,13 +1,13 @@
 {
-  "parent": "spectrum:midgame/collect_midnight_chip",
+  "parent": "spectrum:midgame/collect_azurite",
   "display": {
     "icon": {
       "item": "spectrum:spirit_instiller"
     },
     "title": {
       "translate": "advancements.spectrum.build_spirit_instiller_structure.title"
-    },                                          
-    "description": {                            
+    },
+    "description": {
       "translate": "advancements.spectrum.build_spirit_instiller_structure.description"
     }
   },
@@ -18,7 +18,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_midnight_chip" }
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_azurite"
+      }
     }
   },
   "rewards": {

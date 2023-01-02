@@ -28,22 +28,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class MalachiteWorkstaffItem extends MultiToolItem implements AoEBreakingTool {
-	
-	public enum Variant {
-		GLASS,
-		MOONSTONE
-	}
-	
-	public enum GUIToggle {
-		SELECT_SILK_TOUCH("item.spectrum.workstaff.message.silk_touch"),
-		SELECT_FORTUNE("item.spectrum.workstaff.message.fortune"),
-		SELECT_RESONANCE("item.spectrum.workstaff.message.resonance"),
-		SELECT_1x1("item.spectrum.workstaff.message.1x1"),
-		SELECT_3x3("item.spectrum.workstaff.message.3x3"),
-		SELECT_5x5("item.spectrum.workstaff.message.5x5"),
-		ENABLE_RIGHT_CLICK_ACTIONS("item.spectrum.workstaff.message.enabled_right_click_actions"),
-		DISABLE_RIGHT_CLICK_ACTIONS("item.spectrum.workstaff.message.disabled_right_click_actions");
+public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
+
+    public enum GUIToggle {
+        SELECT_SILK_TOUCH("item.spectrum.workstaff.message.silk_touch"),
+        SELECT_FORTUNE("item.spectrum.workstaff.message.fortune"),
+        SELECT_RESONANCE("item.spectrum.workstaff.message.resonance"),
+        SELECT_1x1("item.spectrum.workstaff.message.1x1"),
+        SELECT_3x3("item.spectrum.workstaff.message.3x3"),
+        SELECT_5x5("item.spectrum.workstaff.message.5x5"),
+        ENABLE_RIGHT_CLICK_ACTIONS("item.spectrum.workstaff.message.enabled_right_click_actions"),
+        DISABLE_RIGHT_CLICK_ACTIONS("item.spectrum.workstaff.message.disabled_right_click_actions");
 		
 		private final String triggerText;
 		
@@ -59,13 +54,10 @@ public class MalachiteWorkstaffItem extends MultiToolItem implements AoEBreaking
 	
 	public static final String RANGE_NBT_STRING = "Range";
 	public static final String RIGHT_CLICK_DISABLED_NBT_STRING = "RightClickDisabled";
-	
-	private final Variant variant;
-	
-	public MalachiteWorkstaffItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings, Variant variant) {
-		super(material, attackDamage, attackSpeed, settings);
-		this.variant = variant;
-	}
+
+    public WorkstaffItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+        super(material, attackDamage, attackSpeed, settings);
+    }
 	
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {

@@ -24,7 +24,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -40,12 +39,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class GroundSlamGreatswordItem extends GreatswordItem {
+public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDamageItem {
 
+	public final float magicDamageShare = 0.25F;
 	public final int groundSlamChargeTicks;
 	public final int baseGroundSlamStrength;
 
-	public GroundSlamGreatswordItem(ToolMaterial material, int attackDamage, float attackSpeed, float extraReach, int groundSlamChargeTicks, int baseGroundSlamStrength, Settings settings) {
+	public GlassCrestGreatswordItem(ToolMaterial material, int attackDamage, float attackSpeed, float extraReach, int groundSlamChargeTicks, int baseGroundSlamStrength, Settings settings) {
 		super(material, attackDamage, attackSpeed, extraReach, settings);
 		this.groundSlamChargeTicks = groundSlamChargeTicks;
 		this.baseGroundSlamStrength = baseGroundSlamStrength;
@@ -54,8 +54,8 @@ public class GroundSlamGreatswordItem extends GreatswordItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip").formatted(Formatting.GRAY));
-		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip2").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip", (int) (this.magicDamageShare * 100)));
+		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip2"));
 	}
 
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -158,7 +158,15 @@ public class GroundSlamGreatswordItem extends GreatswordItem {
 
 	@Environment(EnvType.CLIENT)
 	public void startSoundInstance(PlayerEntity user) {
-		MinecraftClient.getInstance().getSoundManager().play(new GreatswordChargingSoundInstance(user));
+		MinecraftClient.getInstance().getSoundManager().play(new GreatswordChargingSoundInstance(user, this.groundSlamChargeTicks));
+	}
+
+	@Override
+	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
+		DamageComposition composition = new DamageComposition();
+		composition.addPlayerOrEntity(attacker, damage * (1 - this.magicDamageShare));
+		composition.add(DamageSource.magic(attacker, attacker), damage * this.magicDamageShare);
+		return composition;
 	}
 
 }

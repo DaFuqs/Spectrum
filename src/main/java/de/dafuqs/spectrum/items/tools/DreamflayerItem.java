@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.registries.SpectrumDamageSources;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -18,6 +19,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -34,12 +36,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered, ActivatableItem {
-	
+public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered, ActivatableItem, SplitDamageItem {
+
 	public static final InkColor USED_COLOR = InkColors.RED;
 	public static final long INK_COST_FOR_ACTIVATION = 200L;
 	public static final long INK_COST_PER_SECOND = 20L;
-	
+
 	/**
 	 * The less armor the attacker with this sword has and the more
 	 * the one that gets attacked, the higher the damage will be
@@ -148,15 +150,32 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 		}
 		return builder.build();
 	}
-	
+
 	@Override
 	public List<InkColor> getUsedColors() {
 		return List.of(USED_COLOR);
 	}
-	
+
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void addInkPoweredTooltip(List<Text> tooltip) {
 		InkPowered.super.addInkPoweredTooltip(tooltip);
 	}
+
+	@Override
+	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
+		float newDamage = getDamageAfterModifier(damage, attacker, target);
+
+		DamageComposition composition = new DamageComposition();
+		if (ActivatableItem.isActivated(stack)) {
+			composition.addPlayerOrEntity(attacker, newDamage * 0.5F);
+			composition.add(DamageSource.magic(attacker, attacker), newDamage * 0.25F);
+			composition.add(SpectrumDamageSources.setHealth(attacker), newDamage * 0.25F);
+		} else {
+			composition.addPlayerOrEntity(attacker, newDamage * 0.75F);
+			composition.add(DamageSource.magic(attacker, attacker), newDamage * 0.25F);
+		}
+		return composition;
+	}
+
 }

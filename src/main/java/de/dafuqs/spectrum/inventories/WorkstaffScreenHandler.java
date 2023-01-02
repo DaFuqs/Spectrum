@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.items.tools.MalachiteWorkstaffItem;
+import de.dafuqs.spectrum.items.tools.WorkstaffItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
@@ -20,18 +20,18 @@ public class WorkstaffScreenHandler extends QuickNavigationGridScreenHandler {
 		this.workstaffStack = workstaffStack;
 		this.player = playerInventory.player;
 	}
-	
-	public boolean canUse(PlayerEntity player) {
-		for (ItemStack itemStack : player.getHandItems()) {
-			if (itemStack == workstaffStack) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public void onWorkstaffToggleSelectionPacket(@Nullable MalachiteWorkstaffItem.GUIToggle toggle) {
-		MalachiteWorkstaffItem.applyToggle(player, workstaffStack, toggle);
-	}
-	
+
+    public boolean canUse(PlayerEntity player) {
+        for (ItemStack itemStack : player.getHandItems()) {
+            if (itemStack == workstaffStack) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void onWorkstaffToggleSelectionPacket(@Nullable WorkstaffItem.GUIToggle toggle) {
+        WorkstaffItem.applyToggle(player, workstaffStack, toggle);
+    }
+
 }

@@ -163,10 +163,10 @@ public class SpectrumItems {
 	// Malachite Tools
 	// have durability, albeit high one; weaker than bedrock by default, but high enchantability
 	// deal 25 % of their damage as magic damage
-	
+
 	// moon variants by socketing a moonstone core (100 % magic damage)
 	// gain right click ability (white ink cost)
-	
+
 	// Improved multitool
 	// switchable enchants: silk touch, fortune, resonance (when unlocked)
 	// aoe mining?
@@ -174,25 +174,23 @@ public class SpectrumItems {
 	// right click ability: ranged mining
 	// that's a lot of abilities and click actions... maybe remove one.
 	public static final SpectrumToolMaterials.ToolMaterial MALACHITE = SpectrumToolMaterials.ToolMaterial.MALACHITE;
-	public static final ToolItem GLASS_CREST_WORKSTAFF = new MalachiteWorkstaffItem(MALACHITE, 1, -3.2F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS);
-	
-	// tad higher reach & knockback; right click ability: aoe ground slam (improved by sweeping)
-	public static final ToolItem GLASS_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 4, -3.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.GLASS, 8);
+	public static final ToolItem GLASS_CREST_WORKSTAFF = new WorkstaffItem(MALACHITE, 1, -3.2F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
+	public static final ToolItem GLASS_CREST_ULTRA_GREATSWORD = new GreatswordItem(MALACHITE, 4, -3.0F, 1.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	// shoots glass arrows
-	public static final MalachiteCrossbowItem GLASS_CREST_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.GLASS);
+	public static final MalachiteCrossbowItem GLASS_CREST_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()));
 	// allows riptide in all fluids; comes with loyalty
 	public static final MalachiteBidentItem GLASS_CREST_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.GLASS);
-	
-	public static final ToolItem MOONSTONE_CREST_WORKSTAFF = new MalachiteWorkstaffItem(MALACHITE, 2, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.MOONSTONE);
-	public static final ToolItem MOONSTONE_CREST_ULTRA_GREATSWORD = new MalachiteGreatswordItem(MALACHITE, 8, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE), MalachiteWorkstaffItem.Variant.MOONSTONE, 10);
+
+	public static final ToolItem MOONSTONE_CREST_WORKSTAFF = new RangedWorkstaffItem(MALACHITE, 2, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
+	public static final ToolItem MOONSTONE_CREST_ULTRA_GREATSWORD = new GlassCrestGreatswordItem(MALACHITE, 8, -2.8F, 1.0F, 32, 10, Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	// riptide w/o weather requirement; damages enemies on touch; iframes?
-	public static final MalachiteBidentItem FEROCIOUS_MOONSTONE_CREST_BIDENT = new MalachiteBidentItem( Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.FEROCIOUS_MOONSTONE);
+	public static final MalachiteBidentItem FEROCIOUS_MOONSTONE_CREST_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.FEROCIOUS_MOONSTONE);
 	// gets shot as copy instead of getting removed from the player's inv
 	// no fractal non-moon variant?
 	public static final MalachiteBidentItem FRACTAL_MOONSTONE_CREST_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()), MalachiteBidentItem.Variant.FRACTAL_MOONSTONE);
 	// right click ability: able to overload an already loaded arrow
-	public static final MalachiteCrossbowItem MOONSTONE_CREST_CROSSBOW  = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()), MalachiteWorkstaffItem.Variant.MOONSTONE);
-	
+	public static final MalachiteCrossbowItem MOONSTONE_CREST_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()));
+
 	// able to pass through translucent blocks, like glass; render as rays of light
 	public static final ArrowItem GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.GLASS);
 	public static final ArrowItem TOPAZ_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings( Rarity.RARE), GlassArrowItem.Variant.TOPAZ);

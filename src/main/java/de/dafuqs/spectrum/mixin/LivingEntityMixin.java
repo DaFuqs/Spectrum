@@ -3,10 +3,9 @@ package de.dafuqs.spectrum.mixin;
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
-import de.dafuqs.spectrum.items.ActivatableItem;
 import de.dafuqs.spectrum.items.ApplyFoodEffectsCallback;
 import de.dafuqs.spectrum.items.armor.ArmorWithHitEffect;
-import de.dafuqs.spectrum.items.tools.DreamflayerItem;
+import de.dafuqs.spectrum.items.tools.SplitDamageItem;
 import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.status_effects.StackableStatusEffect;
@@ -65,29 +64,32 @@ public abstract class LivingEntityMixin {
 	public abstract boolean blockedByShield(DamageSource source);
 	
 	@Shadow
-	protected abstract void applyDamage(DamageSource source, float amount);
-	
-	@Shadow
 	public abstract ItemStack getMainHandStack();
 	
 	@Shadow
 	@Nullable
 	public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
-	
+
 	@Shadow
 	public abstract boolean canHaveStatusEffect(StatusEffectInstance effect);
-	
+
 	@Shadow
 	public abstract boolean removeStatusEffect(StatusEffect type);
-	
+
 	@Shadow
 	public abstract boolean addStatusEffect(StatusEffectInstance effect);
-	
+
+	@Shadow
+	protected ItemStack activeItemStack;
+
+	@Shadow
+	public abstract boolean damage(DamageSource source, float amount);
+
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
 	}
-	
+
 	private float spectrum$getExuberanceMod(PlayerEntity attackingPlayer) {
 		if (attackingPlayer != null && SpectrumEnchantments.EXUBERANCE.canEntityUse(attackingPlayer)) {
 			int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, attackingPlayer);
@@ -153,50 +155,37 @@ public abstract class LivingEntityMixin {
 			}
 		}
 	}
-	
-	@ModifyVariable(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"), argsOnly = true)
-	public float spectrum$applyDreamflayerDamage(float amount, DamageSource source) {
-		if (!(source.getAttacker() instanceof LivingEntity attacker))
-			return amount;
-		
+
+	@Inject(method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", at = @At("HEAD"))
+	public void spectrum$applyBonusDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
 		LivingEntity target = (LivingEntity) (Object) this;
-		if (amount > 0 && source instanceof EntityDamageSource && source.getSource() instanceof LivingEntity livingSource) {
-			ItemStack mainHandStack = attacker.getMainHandStack();
-			if (mainHandStack.isOf(SpectrumItems.DREAMFLAYER)) {
-				if (ActivatableItem.isActivated(mainHandStack)) {
-					float newDamage = DreamflayerItem.getDamageAfterModifier(amount, attacker, target);
-					
-					// deal 1/2 as magic damage
-					if (!source.isMagic() && newDamage >= 1.0F) {
-						this.applyDamage(DamageSource.magic(livingSource, livingSource), amount / 2);
-					}
-					
-					// deal 1/4 directly
-					// that has to hurt
-					float quarterDamage = newDamage / 4;
-					float h = target.getHealth();
-					target.setHealth(h - quarterDamage);
-					target.getDamageTracker().onDamage(source, h, quarterDamage);
-					if (target.isDead()) {
-						target.onDeath(source);
-					}
-					
-					// deal 1/4 as normal damage
-					return quarterDamage;
-				} else {
-					float newDamage = DreamflayerItem.getDamageAfterModifier(amount, attacker, target);
-					
-					// deal 1/4 as magic damage
-					if (!source.isMagic() && newDamage >= 1.0F) {
-						this.applyDamage(DamageSource.magic(livingSource, livingSource), amount / 4);
-					}
-					// deal 3/4 as normal damage
-					return newDamage / 4 * 3;
+
+		// SetHealth damage does exactly that
+		if (amount > 0 && source instanceof SpectrumDamageSources.SetHealthDamageSource) {
+			float h = target.getHealth();
+			target.setHealth(h - amount);
+			target.getDamageTracker().onDamage(source, h, amount);
+			if (target.isDead()) {
+				target.onDeath(source);
+			}
+			return;
+		}
+
+		// If this entity is hit with a SplitDamageItem, damage() get's called recursively for each type of damage dealt
+		if (!SpectrumDamageSources.recursiveDamage && amount > 0 && source instanceof EntityDamageSource && source.getSource() instanceof LivingEntity livingSource) {
+			ItemStack mainHandStack = livingSource.getMainHandStack();
+			if (mainHandStack.getItem() instanceof SplitDamageItem splitDamageItem) {
+				SpectrumDamageSources.recursiveDamage = true;
+				SplitDamageItem.DamageComposition composition = splitDamageItem.getDamageComposition(livingSource, target, activeItemStack, amount);
+
+				for (Pair<DamageSource, Float> entry : composition.get()) {
+					damage(entry.getLeft(), entry.getRight());
 				}
+
+				SpectrumDamageSources.recursiveDamage = false;
+				return;
 			}
 		}
-		
-		return amount;
 	}
 	
 	@Inject(at = @At("RETURN"), method = "tryUseTotem(Lnet/minecraft/entity/damage/DamageSource;)Z", cancellable = true)

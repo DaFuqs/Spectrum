@@ -20,12 +20,9 @@ public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted,
 	
 	public static final Predicate<ItemStack> PROJECTILES = (stack) -> stack.isIn(ItemTags.ARROWS) || stack.isIn(SpectrumItemTags.GLASS_ARROWS);
 	
-	private final MalachiteWorkstaffItem.Variant variant;
-	
-	public MalachiteCrossbowItem(Settings settings, MalachiteWorkstaffItem.Variant variant) {
-		super(settings);
-		this.variant = variant;
-	}
+	public MalachiteCrossbowItem(Settings settings) {
+        super(settings);
+    }
 	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {

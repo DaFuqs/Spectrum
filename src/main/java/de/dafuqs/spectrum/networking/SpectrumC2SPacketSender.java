@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.items.tools.MalachiteWorkstaffItem;
+import de.dafuqs.spectrum.items.tools.WorkstaffItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -42,11 +42,11 @@ public class SpectrumC2SPacketSender {
 		}
 		ClientPlayNetworking.send(SpectrumC2SPackets.INK_COLOR_SELECTED, packetByteBuf);
 	}
-	
-	public static void sendWorkstaffToggle(MalachiteWorkstaffItem.GUIToggle toggle) {
-		PacketByteBuf packetByteBuf = PacketByteBufs.create();
-		packetByteBuf.writeInt(toggle.ordinal());
-		ClientPlayNetworking.send(SpectrumC2SPackets.WORKSTAFF_TOGGLE_SELECTED, packetByteBuf);
-	}
+
+    public static void sendWorkstaffToggle(WorkstaffItem.GUIToggle toggle) {
+        PacketByteBuf packetByteBuf = PacketByteBufs.create();
+        packetByteBuf.writeInt(toggle.ordinal());
+        ClientPlayNetworking.send(SpectrumC2SPackets.WORKSTAFF_TOGGLE_SELECTED, packetByteBuf);
+    }
 	
 }

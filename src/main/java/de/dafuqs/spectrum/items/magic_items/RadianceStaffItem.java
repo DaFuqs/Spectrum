@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
@@ -19,6 +20,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
@@ -64,15 +66,17 @@ public class RadianceStaffItem extends Item implements InkPowered {
 	}
 	
 	public static void playSoundAndParticles(World world, BlockPos targetPos, ServerPlayerEntity playerEntity, int useTimes, int iteration) {
-		float pitch;
-		if (useTimes % 2 == 0) { // high ding <=> deep ding
-			pitch = Math.min(1.35F, 0.7F + 0.1F * useTimes);
-		} else {
-			pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
-		}
-		SpectrumS2CPacketSender.sendLightCreatedParticle(world, targetPos);
-		world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F - (float) iteration * 0.1F), pitch);
-	}
+        float pitch;
+        if (useTimes % 2 == 0) { // high ding <=> deep ding
+            pitch = Math.min(1.35F, 0.7F + 0.1F * useTimes);
+        } else {
+            pitch = Math.min(1.5F, 0.7F + 0.1F * useTimes);
+        }
+        SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(targetPos),
+                SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, 20, Vec3d.ZERO, new Vec3d(0.3, 0.3, 0.3));
+
+        world.playSound(null, playerEntity.getX() + 0.5, playerEntity.getY() + 0.5, playerEntity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, (float) Math.max(0.25, 1.0F - (float) iteration * 0.1F), pitch);
+    }
 	
 	public static void playDenySound(World world, PlayerEntity playerEntity) {
 		world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 0.8F + playerEntity.getRandom().nextFloat() * 0.4F);

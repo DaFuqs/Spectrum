@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import dev.emi.trinkets.api.SlotReference;
@@ -12,9 +13,12 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -60,15 +64,23 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 						world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE_WATER, 3);
 					} else {
 						world.setBlockState(entity.getBlockPos(), LIGHT_BLOCK_STATE, 3);
-					}
-					placed = true;
-				}
-				if (placed) {
-					SpectrumS2CPacketSender.sendSmallLightCreatedParticle(world, entity.getBlockPos());
-					world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, 0.08F, 0.9F + world.random.nextFloat() * 0.2F);
-				}
-			}
-		}
-	}
-	
+                    }
+                    placed = true;
+                }
+                if (placed) {
+                    sendSmallLightCreatedParticle((ServerWorld) world, entity.getBlockPos());
+                    world.playSound(null, entity.getX() + 0.5, entity.getY() + 0.5, entity.getZ() + 0.5, SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, 0.08F, 0.9F + world.random.nextFloat() * 0.2F);
+                }
+            }
+        }
+    }
+
+    public static void sendSmallLightCreatedParticle(ServerWorld world, BlockPos blockPos) {
+        SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, Vec3d.ofCenter(blockPos),
+                SpectrumParticleTypes.SHIMMERSTONE_SPARKLE,
+                4,
+                Vec3d.ZERO,
+                new Vec3d(0.1, 0.1, 0.1));
+    }
+
 }

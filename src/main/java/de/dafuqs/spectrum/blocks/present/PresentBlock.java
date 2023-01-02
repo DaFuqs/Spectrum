@@ -149,10 +149,10 @@ public class PresentBlock extends BlockWithEntity {
 						presentBlockEntity.triggerAdvancement();
 						if (presentBlockEntity.isEmpty()) {
 							world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 0.8F);
-							SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity(world, posVec, ParticleTypes.SMOKE, 5);
+							SpectrumS2CPacketSender.playParticleWithExactVelocity(world, posVec, ParticleTypes.SMOKE, 5, Vec3d.ZERO);
 						} else {
 							world.playSound(null, posVec.x, posVec.y, posVec.z, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, 4.0F);
-							SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity(world, posVec, ParticleTypes.EXPLOSION, 1);
+							SpectrumS2CPacketSender.playParticleWithExactVelocity(world, posVec, ParticleTypes.EXPLOSION, 1, Vec3d.ZERO);
 							ItemScatterer.spawn(world, pos, presentBlockEntity.stacks);
 						}
 						world.setBlockState(pos, Blocks.AIR.getDefaultState());

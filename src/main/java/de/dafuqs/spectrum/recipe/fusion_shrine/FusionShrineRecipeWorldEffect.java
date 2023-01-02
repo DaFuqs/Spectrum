@@ -69,12 +69,12 @@ public enum FusionShrineRecipeWorldEffect {
 			case VISUAL_EXPLOSIONS_ON_SHRINE -> {
 				if (world.getRandom().nextFloat() < 0.1) {
 					world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5F, 0.8F + world.random.nextFloat() * 0.4F);
-					SpectrumS2CPacketSender.playParticleWithRandomOffsetWithoutVelocity(world, shrinePos.up(), ParticleTypes.EXPLOSION, 1);
+					SpectrumS2CPacketSender.playParticles(world, shrinePos.up(), ParticleTypes.EXPLOSION, 1);
 				}
 			}
 			case SINGLE_VISUAL_EXPLOSION_ON_SHRINE -> {
 				world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F);
-				SpectrumS2CPacketSender.playParticleWithRandomOffsetWithoutVelocity(world, shrinePos, ParticleTypes.EXPLOSION, 1);
+				SpectrumS2CPacketSender.playParticles(world, shrinePos, ParticleTypes.EXPLOSION, 1);
 			}
 			case PLACE_MIDNIGHT_SOLUTION, MAYBE_PLACE_MIDNIGHT_SOLUTION -> {
 				if (this == PLACE_MIDNIGHT_SOLUTION || world.getRandom().nextFloat() < 0.05F) {

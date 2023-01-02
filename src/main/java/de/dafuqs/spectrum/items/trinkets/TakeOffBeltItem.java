@@ -77,7 +77,7 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 							
 							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 							for (Vec3d vec : Support.VECTORS_16) {
-								SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 1, new Vec3d(0, 0, 0), vec.multiply(0.5));
+								SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 1, vec.multiply(0.5));
 							}
 							
 							int powerEnchantmentLevel = EnchantmentHelper.getLevel(Enchantments.POWER, stack);

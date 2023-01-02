@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
@@ -20,7 +21,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	protected final ItemStack outputItemStack;
 	protected final float crushedItemsPerPointOfDamage;
 	protected final float experience;
-	protected final Identifier particleEffect;
+	protected final Identifier particleEffectIdentifier;
 	protected final int particleCount;
 	protected final Identifier soundEvent;
 	
@@ -34,7 +35,7 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 		this.outputItemStack = outputItemStack;
 		this.crushedItemsPerPointOfDamage = crushedItemsPerPointOfDamage;
 		this.experience = experience;
-		this.particleEffect = particleEffectIdentifier;
+		this.particleEffectIdentifier = particleEffectIdentifier;
 		this.particleCount = particleCount;
 		this.soundEvent = soundEventIdentifier;
 		
@@ -89,23 +90,23 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 		defaultedList.add(this.inputIngredient);
 		return defaultedList;
 	}
-	
+
 	public float getCrushedItemsPerPointOfDamage() {
 		return crushedItemsPerPointOfDamage;
 	}
-	
+
 	public SoundEvent getSoundEvent() {
 		return Registry.SOUND_EVENT.get(soundEvent);
 	}
-	
-	public Identifier getParticleEffectIdentifier() {
-		return particleEffect;
+
+	public ParticleEffect getParticleEffect() {
+		return (ParticleEffect) Registry.PARTICLE_TYPE.get(particleEffectIdentifier);
 	}
-	
+
 	public int getParticleCount() {
 		return particleCount;
 	}
-	
+
 	public float getExperience() {
 		return experience;
 	}

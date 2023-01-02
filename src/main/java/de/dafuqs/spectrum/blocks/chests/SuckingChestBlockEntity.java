@@ -9,6 +9,7 @@ import de.dafuqs.spectrum.helpers.InventoryHelper;
 import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;
 import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
@@ -27,6 +28,7 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -152,8 +154,8 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 			ExperienceOrbEntity experienceOrbEntity = experienceEntry.experienceOrbEntity;
 			if (experienceOrbEntity != null && experienceOrbEntity.isAlive() && hasExperienceStorageItem()) {
 				ExperienceStorageItem.addStoredExperience(this.inventory.get(EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT), experienceOrbEntity.getExperienceAmount()); // overflow experience is void, to not lag the world on large farms
-				
-				SpectrumS2CPacketSender.sendPlayExperienceOrbEntityAbsorbedParticle(world, experienceOrbEntity);
+
+				sendPlayExperienceOrbEntityAbsorbedParticle((ServerWorld) world, experienceOrbEntity);
 				world.playSound(null, experienceOrbEntity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
 				experienceOrbEntity.remove(Entity.RemovalReason.DISCARDED);
 			}
@@ -164,13 +166,13 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(itemEntity.getStack(), this, Direction.UP);
 				
 				if (remainingStack.isEmpty()) {
-					SpectrumS2CPacketSender.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
+					sendPlayItemEntityAbsorbedParticle((ServerWorld) world, itemEntity);
 					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
 					itemEntity.setStack(ItemStack.EMPTY);
 					itemEntity.discard();
 				} else {
 					if (remainingStack.getCount() != previousAmount) {
-						SpectrumS2CPacketSender.sendPlayItemEntityAbsorbedParticle(world, itemEntity);
+						sendPlayItemEntityAbsorbedParticle((ServerWorld) world, itemEntity);
 						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + this.world.random.nextFloat() * 0.2F, 0.9F + this.world.random.nextFloat() * 0.2F);
 						itemEntity.setStack(remainingStack);
 					}
@@ -178,12 +180,24 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 			}
 		}
 	}
-	
+
+	public static void sendPlayItemEntityAbsorbedParticle(ServerWorld world, @NotNull ItemEntity itemEntity) {
+		SpectrumS2CPacketSender.playParticleWithExactVelocity(world, itemEntity.getPos(),
+				SpectrumParticleTypes.BLUE_BUBBLE_POP,
+				1, Vec3d.ZERO);
+	}
+
+	public static void sendPlayExperienceOrbEntityAbsorbedParticle(ServerWorld world, @NotNull ExperienceOrbEntity experienceOrbEntity) {
+		SpectrumS2CPacketSender.playParticleWithExactVelocity(world, experienceOrbEntity.getPos(),
+				SpectrumParticleTypes.GREEN_BUBBLE_POP,
+				1, Vec3d.ZERO);
+	}
+
 	@Override
 	public SoundEvent getOpenSound() {
 		return SpectrumSoundEvents.SUCKING_CHEST_OPEN;
 	}
-	
+
 	@Override
 	public SoundEvent getCloseSound() {
 		return SpectrumSoundEvents.SUCKING_CHEST_CLOSE;

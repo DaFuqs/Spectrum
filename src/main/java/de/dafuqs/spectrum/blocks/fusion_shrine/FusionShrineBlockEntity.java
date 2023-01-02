@@ -129,7 +129,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 				
 				if (!recipeConditionsMet || !structureCompleteWithSky) {
 					if (!structureCompleteWithSky) {
-						SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(blockPos), SpectrumParticleTypes.RED_CRAFTING, 1, Vec3d.ZERO, new Vec3d(0, -0.5, 0));
+						SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, Vec3d.ofCenter(blockPos), SpectrumParticleTypes.RED_CRAFTING, 1, new Vec3d(0, -0.5, 0));
 						world.playSound(null, fusionShrineBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
 						world.playSound(null, fusionShrineBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
 						FusionShrineBlock.scatterContents(world, blockPos);

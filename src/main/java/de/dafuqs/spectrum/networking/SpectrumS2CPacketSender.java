@@ -16,13 +16,10 @@ import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -42,47 +39,20 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class SpectrumS2CPacketSender {
-	
+
 	/**
 	 * Play particle effect
 	 *
-	 * @param world                    the world of the pedestal
-	 * @param position                 the pos of the particles
-	 * @param particleEffectIdentifier The particle effect identifier to play
-	 */
-	public static void playParticleWithRandomOffsetWithoutVelocity(ServerWorld world, BlockPos position, Identifier particleEffectIdentifier, int amount) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeBlockPos(position);
-		buf.writeIdentifier(particleEffectIdentifier);
-		buf.writeInt(amount);
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, position)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_AT_EXACT_BLOCK_POSITION_WITHOUT_VELOCITY_ID, buf);
-		}
-	}
-	
-	/**
-	 * Play particle effect
-	 * @param world          the world of the pedestal
+	 * @param world          the world
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithRandomOffsetWithoutVelocity(ServerWorld world, BlockPos position, ParticleType<?> particleEffect, int amount) {
-		playParticleWithRandomOffsetWithoutVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect), amount);
-	}
-	
-	/**
-	 * Play particle effect
-	 * @param world                    the world of the pedestal
-	 * @param position                 the pos of the particles
-	 * @param particleEffectIdentifier The particle effect identifier to play
-	 */
-	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, @NotNull Vec3d position, Identifier particleEffectIdentifier, int amount, @NotNull Vec3d randomOffset, @NotNull Vec3d randomVelocity) {
+	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, Vec3d position, @NotNull ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);
 		buf.writeDouble(position.z);
-		buf.writeIdentifier(particleEffectIdentifier);
+		buf.writeIdentifier(Registry.PARTICLE_TYPE.getId(particleEffect.getType()));
 		buf.writeInt(amount);
 		buf.writeDouble(randomOffset.x);
 		buf.writeDouble(randomOffset.y);
@@ -93,60 +63,48 @@ public class SpectrumS2CPacketSender {
 		
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_RANDOM_OFFSET_AND_VELOCITY_ID, buf);
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_WITH_RANDOM_OFFSET_AND_VELOCITY, buf);
 		}
 	}
-	
+
 	/**
 	 * Play particle effect
-	 * @param world          the world of the pedestal
+	 *
+	 * @param world          the world
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithExactOffsetAndVelocity(ServerWorld world, Vec3d position, @NotNull ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
-		playParticleWithExactOffsetAndVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect.getType()), amount, randomOffset, randomVelocity);
+	public static void playParticles(ServerWorld world, BlockPos position, ParticleEffect particleEffect, int amount) {
+		playParticleWithExactVelocity(world, Vec3d.ofCenter(position), particleEffect, amount, Vec3d.ZERO);
 	}
-	
+
 	/**
 	 * Play particle effect
-	 * @param world          the world of the pedestal
+	 *
+	 * @param world          the world
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithExactOffsetAndVelocity(ServerWorld world, Vec3d position, @NotNull ParticleEffect particleEffect, int amount) {
-		playParticleWithExactOffsetAndVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect.getType()), amount, Vec3d.ZERO, Vec3d.ZERO);
-	}
-	
-	/**
-	 * Play particle effect
-	 * @param world                    the world of the pedestal
-	 * @param position                 the pos of the particles
-	 * @param particleEffectIdentifier The particle effect identifier to play
-	 */
-	public static void playParticleWithExactOffsetAndVelocity(ServerWorld world, @NotNull Vec3d position, Identifier particleEffectIdentifier, int amount, @NotNull Vec3d randomOffset, @NotNull Vec3d velocity) {
+	public static void playParticleWithExactVelocity(ServerWorld world, @NotNull Vec3d position, @NotNull ParticleEffect particleEffect, int amount, @NotNull Vec3d velocity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);
 		buf.writeDouble(position.z);
-		buf.writeIdentifier(particleEffectIdentifier);
+		buf.writeIdentifier(Registry.PARTICLE_TYPE.getId(particleEffect.getType()));
 		buf.writeInt(amount);
-		buf.writeDouble(randomOffset.x);
-		buf.writeDouble(randomOffset.y);
-		buf.writeDouble(randomOffset.z);
 		buf.writeDouble(velocity.x);
 		buf.writeDouble(velocity.y);
 		buf.writeDouble(velocity.z);
 		
 		// Iterate over all players tracking a position in the world and send the packet to each player
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_EXACT_OFFSET_AND_VELOCITY_ID, buf);
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_WITH_EXACT_VELOCITY, buf);
 		}
 	}
-	
+
 	/**
 	 * Play particles matching a spawn pattern
-	 *
-	 * @param world          the world of the pedestal
+	 * @param world          the world
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
@@ -166,46 +124,9 @@ public class SpectrumS2CPacketSender {
 			}
 		}
 	}
-	
+
 	/**
-	 * Play anvil crafting particle effect
-	 *
-	 * @param world          the world of the pedestal
-	 * @param position       the pos of the particles
-	 * @param particleEffect The particle effect to play
-	 */
-	public static void playParticleWithRandomOffsetAndVelocity(ServerWorld world, Vec3d position, @NotNull ParticleEffect particleEffect, int amount, Vec3d randomOffset, Vec3d randomVelocity) {
-		playParticleWithRandomOffsetAndVelocity(world, position, Registry.PARTICLE_TYPE.getId(particleEffect.getType()), amount, randomOffset, randomVelocity);
-	}
-	
-	/**
-	 * @param world    the world of the pedestal
-	 * @param blockPos the blockpos of the newly created light
-	 */
-	public static void sendLightCreatedParticle(World world, BlockPos blockPos) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeBlockPos(blockPos);
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_LIGHT_CREATED_PACKET_ID, buf);
-		}
-	}
-	
-	/**
-	 * @param world    the world of the pedestal
-	 * @param blockPos the blockpos of the newly created light
-	 */
-	public static void sendSmallLightCreatedParticle(World world, BlockPos blockPos) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeBlockPos(blockPos);
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_SMALL_LIGHT_CREATED_PACKET_ID, buf);
-		}
-	}
-	
-	/**
-	 * @param world     the world of the pedestal
+	 * @param world     the world
 	 * @param blockPos  the blockpos of the pedestal
 	 * @param itemStack the itemstack that was crafted
 	 */
@@ -289,30 +210,6 @@ public class SpectrumS2CPacketSender {
 		
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.WIRELESS_REDSTONE_TRANSMISSION, buf);
-		}
-	}
-	
-	public static void sendPlayItemEntityAbsorbedParticle(World world, @NotNull ItemEntity itemEntity) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeDouble(itemEntity.getPos().x);
-		buf.writeDouble(itemEntity.getPos().y);
-		buf.writeDouble(itemEntity.getPos().z);
-		
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, itemEntity.getBlockPos())) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_ITEM_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID, buf);
-		}
-	}
-	
-	public static void sendPlayExperienceOrbEntityAbsorbedParticle(World world, @NotNull ExperienceOrbEntity experienceOrbEntity) {
-		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeDouble(experienceOrbEntity.getPos().x);
-		buf.writeDouble(experienceOrbEntity.getPos().y);
-		buf.writeDouble(experienceOrbEntity.getPos().z);
-		
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, experienceOrbEntity.getBlockPos())) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_EXPERIENCE_ORB_ENTITY_ABSORBED_PARTICLE_EFFECT_PACKET_ID, buf);
 		}
 	}
 	

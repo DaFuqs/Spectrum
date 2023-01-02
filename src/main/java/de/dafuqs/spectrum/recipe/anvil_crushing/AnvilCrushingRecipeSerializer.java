@@ -33,9 +33,7 @@ public class AnvilCrushingRecipeSerializer implements GatedRecipeSerializer<Anvi
 		ItemStack outputItemStack = RecipeUtils.itemStackWithNbtFromJson(JsonHelper.getObject(jsonObject, "result"));
 		float crushedItemsPerPointOfDamage = JsonHelper.getFloat(jsonObject, "crushedItemsPerPointOfDamage");
 		float experience = JsonHelper.getFloat(jsonObject, "experience");
-		
-		String particleEffectString = JsonHelper.getString(jsonObject, "particleEffectIdentifier");
-		Identifier particleEffectIdentifier = new Identifier(particleEffectString);
+		Identifier particleEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "particleEffectIdentifier"));
 		
 		int particleCount = 1;
 		if (JsonHelper.hasNumber(jsonObject, "particleCount")) {
@@ -58,7 +56,7 @@ public class AnvilCrushingRecipeSerializer implements GatedRecipeSerializer<Anvi
 		packetByteBuf.writeItemStack(recipe.outputItemStack);
 		packetByteBuf.writeFloat(recipe.crushedItemsPerPointOfDamage);
 		packetByteBuf.writeFloat(recipe.experience);
-		packetByteBuf.writeIdentifier(recipe.particleEffect);
+		packetByteBuf.writeIdentifier(recipe.particleEffectIdentifier);
 		packetByteBuf.writeInt(recipe.particleCount);
 		packetByteBuf.writeIdentifier(recipe.soundEvent);
 	}

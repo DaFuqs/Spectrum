@@ -144,18 +144,18 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 	public void spawnParticles() {
 		if (spawnParticles) {
 			if (checkBox != null) {
-				BlockPos centerPos = this.pos;
-				if (checkBoxOffset != null) {
-					centerPos = Support.directionalOffset(pos, checkBoxOffset, world.getBlockState(pos).get(PreservationControllerBlock.FACING));
-				}
-				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(centerPos), ParticleTypes.FLAME, 1,
-						new Vec3d(0, 0, 0),
-						new Vec3d(0.1, 0.1, 0.1));
-				
-				SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(centerPos), ParticleTypes.SMOKE, 250,
-						new Vec3d(checkBox.getXLength() / 2, checkBox.getYLength() / 2, checkBox.getZLength() / 2),
-						new Vec3d(0, 0, 0));
-			}
+                BlockPos centerPos = this.pos;
+                if (checkBoxOffset != null) {
+                    centerPos = Support.directionalOffset(pos, checkBoxOffset, world.getBlockState(pos).get(PreservationControllerBlock.FACING));
+                }
+                SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(centerPos), ParticleTypes.FLAME, 1,
+                        new Vec3d(0, 0, 0),
+                        new Vec3d(0.1, 0.1, 0.1));
+
+                SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(centerPos), ParticleTypes.SMOKE, 250,
+                        Vec3d.ZERO,
+                        new Vec3d(checkBox.getXLength() / 2, checkBox.getYLength() / 2, checkBox.getZLength() / 2));
+            }
 			
 			if (destinationPos != null) {
 				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, Vec3d.ofCenter(destinationPos), ParticleTypes.END_ROD, 1,

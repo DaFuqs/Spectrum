@@ -127,8 +127,8 @@ public class MalachiteGreatswordItem extends SwordItem {
 			world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.GROUND_SLAM, SoundCategory.PLAYERS, 1.0F, 1.0F);
 			
 			Vec3d particlePos = new Vec3d(user.getParticleX(1.0), user.getY(), user.getParticleZ(1.0));
-			SpectrumS2CPacketSender.playParticleWithExactOffsetAndVelocity((ServerWorld) world, particlePos, ParticleTypes.EXPLOSION, 1);
-			SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, particlePos, ParticleTypes.CRIT, 16, Vec3d.ZERO, new Vec3d(7.5D, 0, 7.5D));
+			SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, particlePos, ParticleTypes.EXPLOSION, 1, Vec3d.ZERO);
+            SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, particlePos, ParticleTypes.CRIT, 16, Vec3d.ZERO, new Vec3d(7.5D, 0, 7.5D));
 
 			if(user instanceof ServerPlayerEntity serverPlayer) {
 				serverPlayer.incrementStat(Stats.USED.getOrCreateStat(this));

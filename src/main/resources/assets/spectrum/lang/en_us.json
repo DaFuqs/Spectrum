@@ -2521,6 +2521,8 @@
   "advancements.spectrum.enter_wireless_redstone_puzzle_structure.description": "A structure protected by solid Bedrock... no more",
   "advancements.spectrum.generate_ancient_ruins_loot.title": "Gift from an Ancient Civilization",
   "advancements.spectrum.generate_ancient_ruins_loot.description": "Discover the precious contents of an Ancient Treasure Chest",
+  "advancements.spectrum.break_gemstone_ore.title": "Gemstone Prospector",
+  "advancements.spectrum.break_gemstone_ore.description": "Mine Gemstone Ore. You found it right next to a Geode - a good indicator a Geode is close!",
   "______that_should_have_been_in_aea": "Additional Entity Attributes:",
   "attribute.name.generic.additionalentityattributes.generic.dig_speed": "Mining Speed",
   "______food_tooltips": "Food Tooltips:",

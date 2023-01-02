@@ -285,7 +285,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:spectrum",
+      "advancement": "spectrum:break_gemstone_ore",
       "title": "Gemstone Ores",
       "item": "spectrum:amethyst_ore",
       "text": "Now that you are paying attention, you noticed small inclusions of gems in the rock all over the place.$(br)If you see such an ore a geode is surely not far!$(br2)While not renewable like Gemstone Clusters, Gemstone Ore provides a lot of Shards, especially when broken with a Fortune-Tool."

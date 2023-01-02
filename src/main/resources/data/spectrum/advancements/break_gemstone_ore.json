@@ -1,0 +1,42 @@
+{
+  "parent": "spectrum:spectrum",
+  "display": {
+    "icon": {
+      "item": "spectrum:amethyst_ore"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.break_gemstone_ore.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.break_gemstone_ore.description"
+    }
+  },
+  "criteria": {
+    "broken_gemstone_ore": {
+      "trigger": "spectrum:block_broken",
+      "conditions": {
+        "broken_block": {
+          "blocks": [
+            "spectrum:topaz_ore",
+            "spectrum:amethyst_ore",
+            "spectrum:citrine_ore",
+            "spectrum:onyx_ore",
+            "spectrum:moonstone_ore",
+            "spectrum:deepslate_topaz_ore",
+            "spectrum:deepslate_amethyst_ore",
+            "spectrum:deepslate_citrine_ore",
+            "spectrum:deepslate_onyx_ore",
+            "spectrum:deepslate_moonstone_ore"
+          ]
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:spectrum"
+      }
+    }
+  }
+}

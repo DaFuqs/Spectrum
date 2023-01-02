@@ -187,6 +187,8 @@
   "death.attack.spectrum_incandescence.player": "%1$s witnessed %2&s become a star and drew too close - more kindling for the flame!",
   "death.attack.moonstone_blast": "%1$s was disintegrated",
   "death.attack.moonstone_blast.player": "%1$s was disintegrated by %2$s",
+  "death.attack.set_health.player": "%1$s was sent to the shadow realm by %2$s",
+  "death.attack.set_health.item": "%1$s was sent to the shadow realm by %2$s using %3$s",
   "entity.spectrum.block_flooder_projectile": "Block Flooder",
   "entity.spectrum.gravity_block": "Gravity Block",
   "entity.spectrum.phantom_frame": "Phantom Frame",

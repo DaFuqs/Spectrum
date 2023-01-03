@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.entity.render;
 
 import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.entity.entity.InkProjectileEntity;
+import de.dafuqs.spectrum.entity.entity.MagicProjectileEntity;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
@@ -17,26 +17,26 @@ import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.math.random.Random;
 
-public class InkProjectileEntityRenderer extends EntityRenderer<InkProjectileEntity> {
-	
+public class MagicProjectileEntityRenderer extends EntityRenderer<MagicProjectileEntity> {
+
 	private static final Identifier TEXTURE = new Identifier("textures/entity/experience_orb.png");
 	private static final RenderLayer LAYER = RenderLayer.getItemEntityTranslucentCull(TEXTURE);
-	
-	public InkProjectileEntityRenderer(EntityRendererFactory.Context context) {
+
+	public MagicProjectileEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);
 	}
-	
+
 	@Override
-	public void render(InkProjectileEntity tEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+	public void render(MagicProjectileEntity tEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		matrixStack.push();
 		Vec3f starColor = InkColor.of(DyeColor.byId(tEntity.getColor())).getColor();
-		
+
 		double time = (tEntity.world.getTime() % 24000) + tickDelta + Random.create(tEntity.getId()).nextInt(200);
 		float scale = 0.75F + 0.1F * (float) Math.sin(time / 10);
 		matrixStack.scale(scale, scale, scale);
-		
+
 		VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(LAYER);
-		
+
 		float h = 0.75F;
 		float k = 1F;
 		float l = 0F;
@@ -62,9 +62,9 @@ public class InkProjectileEntityRenderer extends EntityRenderer<InkProjectileEnt
 	private static void vertex(VertexConsumer vertexConsumer, Matrix4f positionMatrix, Matrix3f normalMatrix, float x, float y, int red, int green, int blue, float u, float v, int light) {
 		vertexConsumer.vertex(positionMatrix, x, y, 0.0F).color(red, green, blue, 128).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normalMatrix, 0.0F, 1.0F, 0.0F).next();
 	}
-	
+
 	@Override
-	public Identifier getTexture(InkProjectileEntity entity) {
+	public Identifier getTexture(MagicProjectileEntity entity) {
 		return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
 	}
 	

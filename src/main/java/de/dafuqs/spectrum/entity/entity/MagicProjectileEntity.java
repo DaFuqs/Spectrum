@@ -134,4 +134,6 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 		return ProjectileUtil.getEntityCollision(this.world, this, currentPosition, nextPosition, this.getBoundingBox().stretch(this.getVelocity()).expand(1.0D), this::canHit);
 	}
 
+	public abstract int getColor();
+
 }

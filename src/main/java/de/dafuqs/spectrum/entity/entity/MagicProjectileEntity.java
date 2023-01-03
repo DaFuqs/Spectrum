@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import de.dafuqs.spectrum.sound.MagicProjectileSoundInstance;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,7 +9,7 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.MathHelper;
@@ -20,8 +21,11 @@ import org.jetbrains.annotations.Nullable;
 public abstract class MagicProjectileEntity extends ProjectileEntity {
 
 	public MagicProjectileEntity(EntityType<? extends MagicProjectileEntity> type, World world) {
-		super(type, world);
-	}
+        super(type, world);
+        if (world.isClient) {
+            MagicProjectileSoundInstance.startSoundInstance(this);
+        }
+    }
 
 	public MagicProjectileEntity(EntityType<? extends MagicProjectileEntity> type, double x, double y, double z, World world) {
 		this(type, world);
@@ -118,13 +122,6 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 		}
 	}
 
-	@Override
-	protected void onBlockHit(BlockHitResult blockHitResult) {
-		super.onBlockHit(blockHitResult);
-		this.playSound(this.getHitSound(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
-		this.discard();
-	}
-
 	protected SoundEvent getHitSound() {
 		return SpectrumSoundEvents.INK_PROJECTILE_HIT;
 	}
@@ -134,6 +131,6 @@ public abstract class MagicProjectileEntity extends ProjectileEntity {
 		return ProjectileUtil.getEntityCollision(this.world, this, currentPosition, nextPosition, this.getBoundingBox().stretch(this.getVelocity()).expand(1.0D), this::canHit);
 	}
 
-	public abstract int getColor();
+    public abstract DyeColor getDyeColor();
 
 }

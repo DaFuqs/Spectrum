@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.sound.InkProjectileSoundInstance;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.ProtectionEnchantment;
@@ -26,7 +25,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.explosion.Explosion;
@@ -44,9 +46,6 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 
 	public InkProjectileEntity(EntityType<InkProjectileEntity> type, World world) {
 		super(type, world);
-		if (world.isClient) {
-			InkProjectileSoundInstance.startSoundInstance(this);
-		}
 	}
 
 	public InkProjectileEntity(double x, double y, double z, World world) {
@@ -60,12 +59,20 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		this.setOwner(owner);
 		this.setRotation(owner.getYaw(), owner.getPitch());
 	}
-	
+
+	public static InkProjectileEntity shoot(World world, LivingEntity entity, InkColor color) {
+		InkProjectileEntity projectile = new InkProjectileEntity(world, entity);
+		projectile.setVelocity(entity, entity.getPitch(), entity.getYaw(), 0.0F, 2.0F, 1.0F);
+		projectile.setColor(color);
+		world.spawnEntity(projectile);
+		return projectile;
+	}
+
 	@Override
 	protected void initDataTracker() {
 		this.dataTracker.startTracking(COLOR, -1);
 	}
-	
+
 	public int getColor() {
 		return this.dataTracker.get(COLOR);
 	}
@@ -111,9 +118,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		int colorOrdinal = this.getColor();
 		if (colorOrdinal != -1 && amount > 0) {
 			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
-			Vec3f inkColor = InkColor.of(dyeColor).getColor();
 			for (int j = 0; j < amount; ++j) {
-				this.world.addParticle(SpectrumParticleTypes.getCraftingParticle(dyeColor), this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), inkColor.getX(), inkColor.getY(), inkColor.getZ());
+				this.world.addParticle(SpectrumParticleTypes.getCraftingParticle(dyeColor), this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0, 0, 0);
 			}
 		}
 	}

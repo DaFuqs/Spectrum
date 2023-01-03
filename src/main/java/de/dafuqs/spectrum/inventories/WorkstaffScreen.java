@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
 import de.dafuqs.spectrum.energy.color.InkColors;
+import de.dafuqs.spectrum.items.tools.RangedWorkstaffItem;
 import de.dafuqs.spectrum.items.tools.WorkstaffItem;
 import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
@@ -8,6 +9,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 
@@ -36,17 +38,26 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 		super(handler, playerInventory, title);
 
 		GridEntry rightClickGridEntry;
-		if (WorkstaffItem.canTill(playerInventory.player.getMainHandStack().getNbt())) {
+		ItemStack mainHandStack = playerInventory.player.getMainHandStack();
+		if (WorkstaffItem.canTill(mainHandStack.getNbt())) {
 			rightClickGridEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(144, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_RIGHT_CLICK_ACTIONS));
 		} else {
 			rightClickGridEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(128, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_RIGHT_CLICK_ACTIONS));
+		}
+		GridEntry projectileEntry = GridEntry.EMPTY;
+		if (mainHandStack.getItem() instanceof RangedWorkstaffItem) {
+			if (RangedWorkstaffItem.canShoot(mainHandStack.getNbt())) {
+				projectileEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(176, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_PROJECTILES));
+			} else {
+				projectileEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(160, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_PROJECTILES));
+			}
 		}
 
 		gridStack.push(new Grid(
 				GridEntry.CLOSE,
 				GridEntry.of(InkColors.GRAY.getColor(), new Point(112, 38), (screen) -> screen.selectGrid(RANGE_GRID)),
 				rightClickGridEntry,
-				GridEntry.EMPTY,
+				projectileEntry,
 				GridEntry.of(InkColors.GRAY.getColor(), new Point(48, 38), (screen) -> screen.selectGrid(ENCHANTMENT_GRID))
 		));
 	}

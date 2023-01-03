@@ -31,7 +31,7 @@ public class WorkstaffScreenHandler extends QuickNavigationGridScreenHandler {
     }
 
     public void onWorkstaffToggleSelectionPacket(@Nullable WorkstaffItem.GUIToggle toggle) {
-        WorkstaffItem.applyToggle(player, workstaffStack, toggle);
+        ((WorkstaffItem) workstaffStack.getItem()).applyToggle(player, workstaffStack, toggle);
     }
 
 }

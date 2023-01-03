@@ -12,6 +12,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Predicate;
 
@@ -36,7 +37,7 @@ public class AoEHelper {
 			boolean suitableSpeed = stack.getMiningSpeedMultiplier(state) > 1;
 			return suitableTool && suitableSpeed;
 		};
-		
+
 		BlockState targetState = world.getBlockState(pos);
 		if (!minableBlocksPredicate.test(targetState)) {
 			return;
@@ -45,21 +46,20 @@ public class AoEHelper {
 		boolean doX = side.getOffsetX() == 0;
 		boolean doY = side.getOffsetY() == 0;
 		boolean doZ = side.getOffsetZ() == 0;
-		
+
 		Vec3i beginDiff = new Vec3i(doX ? -radius : 0, doY ? -1 : 0, doZ ? -radius : 0);
 		Vec3i endDiff = new Vec3i(doX ? radius : 0, doY ? radius * 2 - 1 : 0, doZ ? radius : 0);
-		
+
 		removeBlocksInIteration(player, stack, world, pos, beginDiff, endDiff, minableBlocksPredicate);
 	}
-	
-	
+
 	private static boolean recursive = false;
-	
+
 	private static void removeBlocksInIteration(PlayerEntity player, ItemStack stack, World world, BlockPos centerPos, Vec3i startDelta, Vec3i endDelta, Predicate<BlockState> filter) {
 		if (recursive) {
 			return;
 		}
-		
+
 		recursive = true;
 		try {
 			for (BlockPos blockPos : BlockPos.iterate(centerPos.add(startDelta), centerPos.add(endDelta))) {
@@ -71,14 +71,40 @@ public class AoEHelper {
 			recursive = false;
 		}
 	}
-	
-	private static void breakBlockWithDrops(PlayerEntity player, ItemStack stack, World world, BlockPos pos, Predicate<BlockState> filter) {
+
+	public static void breakBlocksAround(PlayerEntity player, ItemStack stack, BlockPos pos, int radius, @Nullable Predicate<BlockState> predicate) {
+		if (radius <= 0) {
+			return;
+		}
+
+		World world = player.world;
+
+		Predicate<BlockState> minableBlocksPredicate = state -> {
+			boolean suitableTool = !state.isToolRequired() || stack.isSuitableFor(state);
+			boolean suitableSpeed = stack.getMiningSpeedMultiplier(state) > 1;
+			return suitableTool && suitableSpeed;
+		};
+		if (predicate != null) {
+			minableBlocksPredicate = minableBlocksPredicate.and(predicate);
+		}
+
+		BlockState targetState = world.getBlockState(pos);
+		if (!minableBlocksPredicate.test(targetState)) {
+			return;
+		}
+
+		for (BlockPos blockPos : BlockPos.iterateOutwards(pos, radius, radius, radius)) {
+			breakBlockWithDrops(player, stack, world, blockPos, minableBlocksPredicate);
+		}
+	}
+
+	public static void breakBlockWithDrops(PlayerEntity player, ItemStack stack, World world, BlockPos pos, Predicate<BlockState> filter) {
 		if (!world.isChunkLoaded(pos)) {
 			return;
 		}
-		
+
 		BlockState blockstate = world.getBlockState(pos);
-		if (!world.isClient && blockstate.calcBlockBreakingDelta(player, world, pos) > 0 && filter.test(blockstate) && !blockstate.isAir()) {
+		if (!world.isClient && !blockstate.isAir() && blockstate.calcBlockBreakingDelta(player, world, pos) > 0 && filter.test(blockstate)) {
 			ItemStack save = player.getMainHandStack();
 			player.setStackInHand(Hand.MAIN_HAND, stack);
 			((ServerPlayerEntity) player).networkHandler.sendPacket(new WorldEventS2CPacket(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(blockstate), false));

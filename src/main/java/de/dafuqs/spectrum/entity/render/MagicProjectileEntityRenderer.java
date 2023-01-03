@@ -10,7 +10,6 @@ import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix3f;
 import net.minecraft.util.math.Matrix4f;
@@ -29,7 +28,7 @@ public class MagicProjectileEntityRenderer extends EntityRenderer<MagicProjectil
 	@Override
 	public void render(MagicProjectileEntity tEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
 		matrixStack.push();
-		Vec3f starColor = InkColor.of(DyeColor.byId(tEntity.getColor())).getColor();
+		Vec3f starColor = InkColor.of(tEntity.getDyeColor()).getColor();
 
 		double time = (tEntity.world.getTime() % 24000) + tickDelta + Random.create(tEntity.getId()).nextInt(200);
 		float scale = 0.75F + 0.1F * (float) Math.sin(time / 10);

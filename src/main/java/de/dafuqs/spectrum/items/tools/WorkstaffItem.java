@@ -31,21 +31,23 @@ import java.util.List;
 public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 
     public enum GUIToggle {
-        SELECT_SILK_TOUCH("item.spectrum.workstaff.message.silk_touch"),
-        SELECT_FORTUNE("item.spectrum.workstaff.message.fortune"),
-        SELECT_RESONANCE("item.spectrum.workstaff.message.resonance"),
-        SELECT_1x1("item.spectrum.workstaff.message.1x1"),
-        SELECT_3x3("item.spectrum.workstaff.message.3x3"),
-        SELECT_5x5("item.spectrum.workstaff.message.5x5"),
-        ENABLE_RIGHT_CLICK_ACTIONS("item.spectrum.workstaff.message.enabled_right_click_actions"),
-        DISABLE_RIGHT_CLICK_ACTIONS("item.spectrum.workstaff.message.disabled_right_click_actions");
-		
+		SELECT_SILK_TOUCH("item.spectrum.workstaff.message.silk_touch"),
+		SELECT_FORTUNE("item.spectrum.workstaff.message.fortune"),
+		SELECT_RESONANCE("item.spectrum.workstaff.message.resonance"),
+		SELECT_1x1("item.spectrum.workstaff.message.1x1"),
+		SELECT_3x3("item.spectrum.workstaff.message.3x3"),
+		SELECT_5x5("item.spectrum.workstaff.message.5x5"),
+		ENABLE_RIGHT_CLICK_ACTIONS("item.spectrum.workstaff.message.enabled_right_click_actions"),
+		DISABLE_RIGHT_CLICK_ACTIONS("item.spectrum.workstaff.message.disabled_right_click_actions"),
+		ENABLE_PROJECTILES("item.spectrum.workstaff.message.enabled_projectiles"),
+		DISABLE_PROJECTILES("item.spectrum.workstaff.message.disabled_projectiles");
+
 		private final String triggerText;
-		
+
 		GUIToggle(String triggerText) {
 			this.triggerText = triggerText;
 		}
-		
+
 		public Text getTriggerText() {
 			return Text.translatable(triggerText);
 		}
@@ -54,6 +56,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 	
 	public static final String RANGE_NBT_STRING = "Range";
 	public static final String RIGHT_CLICK_DISABLED_NBT_STRING = "RightClickDisabled";
+	public static final String PROJECTILES_DISABLED_NBT_STRING = "ProjectilesDisabled";
 
     public WorkstaffItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -65,7 +68,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 			if (user instanceof ServerPlayerEntity serverPlayerEntity) {
 				serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(user.getStackInHand(hand)));
 			}
-			return TypedActionResult.pass(user.getStackInHand(hand));
+			return TypedActionResult.success(user.getStackInHand(hand));
 		}
 		return super.use(world, user, hand);
 	}
@@ -167,7 +170,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 				couldRemoveOtherEnchantment |= SpectrumEnchantmentHelper.removeEnchantment(stack, Enchantments.SILK_TOUCH);
 				if(couldRemoveOtherEnchantment) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, SpectrumEnchantments.RESONANCE, 1, true, true);
-				} else if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+				} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 				}
 			}
@@ -176,6 +179,12 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 			}
 			case DISABLE_RIGHT_CLICK_ACTIONS -> {
 				nbt.putBoolean(RIGHT_CLICK_DISABLED_NBT_STRING, true);
+			}
+			case ENABLE_PROJECTILES -> {
+				nbt.remove(PROJECTILES_DISABLED_NBT_STRING);
+			}
+			case DISABLE_PROJECTILES -> {
+				nbt.putBoolean(PROJECTILES_DISABLED_NBT_STRING, true);
 			}
 		}
 		stack.setNbt(nbt);

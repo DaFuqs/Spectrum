@@ -169,18 +169,11 @@ public class PaintbrushItem extends Item {
 				
 				InkColor inkColor = optionalInkColor.get();
 				if (user.isCreative() || InkPowered.tryDrainEnergy(user, inkColor, INK_FLING_COST)) {
-					
 					user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
 					
 					if (!world.isClient) {
-						// spawn projectile
-						InkProjectileEntity paintProjectile = new InkProjectileEntity(world, user);
-						paintProjectile.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 2.0F, 1.0F);
-						paintProjectile.setColor(inkColor);
-						world.spawnEntity(paintProjectile);
-						
+						InkProjectileEntity.shoot(world, user, inkColor);
 					}
-					
 					// cause the slightest bit of knockback
 					if (!user.isCreative()) {
 						causeKnockback(user, user.getYaw(), user.getPitch(), 0, 0.3F);

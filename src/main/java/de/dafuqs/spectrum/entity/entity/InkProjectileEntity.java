@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.sound.InkProjectileSoundInstance;
 import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -21,52 +20,43 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.*;
-import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import net.minecraft.world.explosion.Explosion;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class InkProjectileEntity extends ProjectileEntity {
-	
+public class InkProjectileEntity extends MagicProjectileEntity {
+
 	private static final int COLOR_SPLAT_RANGE = 2;
 	private static final int SPELL_POTENCY = 2;
 	private static final float DAMAGE_PER_POTENCY = 0.5F;
-	
+
 	private static final TrackedData<Integer> COLOR = DataTracker.registerData(InkProjectileEntity.class, TrackedDataHandlerRegistry.INTEGER);
-	
-	protected int life;
-	
+
 	public InkProjectileEntity(EntityType<InkProjectileEntity> type, World world) {
 		super(type, world);
 		if (world.isClient) {
 			InkProjectileSoundInstance.startSoundInstance(this);
 		}
 	}
-	
-	public InkProjectileEntity(EntityType<InkProjectileEntity> type, double x, double y, double z, World world) {
-		this(type, world);
+
+	public InkProjectileEntity(double x, double y, double z, World world) {
+		this(SpectrumEntityTypes.INK_PROJECTILE, world);
 		this.refreshPositionAndAngles(x, y, z, this.getYaw(), this.getPitch());
 		this.refreshPosition();
 	}
-	
+
 	public InkProjectileEntity(World world, LivingEntity owner) {
-		this(SpectrumEntityTypes.INK_PROJECTILE, owner.getX(), owner.getEyeY() - 0.10000000149011612D, owner.getZ(), world);
+		this(owner.getX(), owner.getEyeY() - 0.10000000149011612D, owner.getZ(), world);
 		this.setOwner(owner);
 		this.setRotation(owner.getYaw(), owner.getPitch());
 	}
@@ -114,94 +104,9 @@ public class InkProjectileEntity extends ProjectileEntity {
 	@Override
 	public void tick() {
 		super.tick();
-		
 		this.spawnParticles(1);
-		
-		boolean noClip = this.isNoClip();
-		Vec3d thisVelocity = this.getVelocity();
-		if (this.prevPitch == 0.0F && this.prevYaw == 0.0F) {
-			double d = thisVelocity.horizontalLength();
-			this.setYaw((float) (MathHelper.atan2(thisVelocity.x, thisVelocity.z) * 57.2957763671875D));
-			this.setPitch((float) (MathHelper.atan2(thisVelocity.y, d) * 57.2957763671875D));
-			this.prevYaw = this.getYaw();
-			this.prevPitch = this.getPitch();
-		}
-		
-		this.age();
-		
-		Vec3d vec3d2;
-		Vec3d thisPos = this.getPos();
-		vec3d2 = thisPos.add(thisVelocity);
-		HitResult hitResult = this.world.raycast(new RaycastContext(thisPos, vec3d2, RaycastContext.ShapeType.COLLIDER, RaycastContext.FluidHandling.NONE, this));
-		if ((hitResult).getType() != HitResult.Type.MISS) {
-			vec3d2 = (hitResult).getPos();
-		}
-		
-		if (!this.isRemoved()) {
-			EntityHitResult entityHitResult = this.getEntityCollision(thisPos, vec3d2);
-			if (entityHitResult != null) {
-				hitResult = entityHitResult;
-			}
-			
-			if (hitResult.getType() == HitResult.Type.ENTITY) {
-				Entity entity = ((EntityHitResult) hitResult).getEntity();
-				Entity entity2 = this.getOwner();
-				if (entity instanceof PlayerEntity && entity2 instanceof PlayerEntity && !((PlayerEntity) entity2).shouldDamagePlayer((PlayerEntity) entity)) {
-					hitResult = null;
-				}
-			}
-			
-			if (hitResult != null && !noClip) {
-				this.onCollision(hitResult);
-				this.velocityDirty = true;
-			}
-		}
-		
-		thisVelocity = this.getVelocity();
-		double velocityX = thisVelocity.x;
-		double velocityY = thisVelocity.y;
-		double velocityZ = thisVelocity.z;
-		
-		double h = this.getX() + velocityX;
-		double j = this.getY() + velocityY;
-		double k = this.getZ() + velocityZ;
-		double l = thisVelocity.horizontalLength();
-		if (noClip) {
-			this.setYaw((float) (MathHelper.atan2(-velocityX, -velocityZ) * 57.2957763671875D));
-		} else {
-			this.setYaw((float) (MathHelper.atan2(velocityX, velocityZ) * 57.2957763671875D));
-		}
-		
-		this.setPitch((float) (MathHelper.atan2(velocityY, l) * 57.2957763671875D));
-		this.setPitch(updateRotation(this.prevPitch, this.getPitch()));
-		this.setYaw(updateRotation(this.prevYaw, this.getYaw()));
-		
-		if (this.isTouchingWater()) {
-			for (int o = 0; o < 4; ++o) {
-				this.world.addParticle(ParticleTypes.BUBBLE, h - velocityX * 0.25D, j - velocityY * 0.25D, k - velocityZ * 0.25D, velocityX, velocityY, velocityZ);
-			}
-		}
-		
-		this.setPosition(h, j, k);
-		this.checkBlockCollision();
 	}
-	
-	protected void age() {
-		++this.life;
-		if (this.life >= 200) {
-			this.discard();
-		}
-		
-	}
-	
-	public boolean isNoClip() {
-		if (!this.world.isClient) {
-			return this.noClip;
-		} else {
-			return true;
-		}
-	}
-	
+
 	private void spawnParticles(int amount) {
 		int colorOrdinal = this.getColor();
 		if (colorOrdinal != -1 && amount > 0) {
@@ -299,16 +204,7 @@ public class InkProjectileEntity extends ProjectileEntity {
 		
 		this.discard();
 	}
-	
-	protected SoundEvent getHitSound() {
-		return SpectrumSoundEvents.INK_PROJECTILE_HIT;
-	}
-	
-	@Nullable
-	protected EntityHitResult getEntityCollision(Vec3d currentPosition, Vec3d nextPosition) {
-		return ProjectileUtil.getEntityCollision(this.world, this, currentPosition, nextPosition, this.getBoundingBox().stretch(this.getVelocity()).expand(1.0D), this::canHit);
-	}
-	
+
 	protected void onHit(LivingEntity target) {
 		int colorOrdinal = this.getColor();
 		if (colorOrdinal != -1) {

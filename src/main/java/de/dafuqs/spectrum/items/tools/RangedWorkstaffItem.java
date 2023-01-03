@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.energy.InkPowered;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.entity.entity.MiningProjectileEntity;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;
@@ -34,10 +35,16 @@ public class RangedWorkstaffItem extends WorkstaffItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         TypedActionResult<ItemStack> result = super.use(world, user, hand);
-        if (!result.getResult().isAccepted() && canShoot(user.getStackInHand(hand).getNbt()) && InkPowered.tryDrainEnergy(user, PROJECTILE_COST)) {
-            user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
-            if (!world.isClient) {
-                MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand));
+        if (!result.getResult().isAccepted()) {
+            ItemStack stack = user.getStackInHand(hand);
+            if (canShoot(stack.getNbt()) && InkPowered.tryDrainEnergy(user, PROJECTILE_COST)) {
+                user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
+                if (!world.isClient) {
+                    MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand)); // TODO: make projectile mining aoe dependent on workstaff aoe selection
+                }
+                stack.damage(4, user, (e) -> {
+                    e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
+                });
             }
         }
         return result;

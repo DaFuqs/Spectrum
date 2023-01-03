@@ -19,6 +19,13 @@
       "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble $(l:general/colored_trees)Color Trees$(/l) in more than just one point.$(br2)No wonder that their petals can also be used to create $(l:magic/ink)Ink$(/l)."
     },
     {
+      "type": "patchouli:spotlight",
+      "title": "Enchanted Soil",
+      "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
+      "item": "botania:botania:enchanted_soil",
+      "text": "Enchanted Soil can be mined using tools enchanted with $(l:enchanting/resonance)Resonance$(/l)."
+    },
+    {
       "type": "spectrum:pedestal_crafting",
       "title": "Glimmering Flowers",
       "advancement": "spectrum:collect_shimmerstone",

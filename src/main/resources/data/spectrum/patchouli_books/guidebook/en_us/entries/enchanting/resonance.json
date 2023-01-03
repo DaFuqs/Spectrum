@@ -24,28 +24,33 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Native Resources",
-      "item": "spectrum:pure_iron",
-      "advancement": "spectrum:lategame/collect_pure_resource",
-      "text": "Breaking Ores with Resonance directly drops $(l:resources/pure_resources)Native Resources$()."
-    },
-    {
-      "type": "patchouli:spotlight",
       "title": "Gemstone Buds",
       "item": "minecraft:medium_amethyst_bud",
       "text": "The smaller gem buds are usually too fragile to be broken from their mother block.$(br2)However, if you hit the right frequency, the small bods will break from the stone almost by themselves."
     },
     {
       "type": "patchouli:spotlight",
+      "title": "Pure Resources",
+      "item": "spectrum:pure_iron",
+      "advancement": "spectrum:lategame/collect_pure_resource",
+      "text": "Breaking Ores with Resonance directly drops $(l:resources/pure_resources)Pure Resources$()."
+    },
+    {
+      "type": "patchouli:spotlight",
       "title": "Colored Leaves",
       "item": "spectrum:orange_leaves",
-      "text": "Colored Leaves get stimulated in a way to release more saplings.$(br2)Applied to a hoe his will finally be your key to get $(l:general/colored_trees)Colored Saplings$() renewably."
+      "text": "Colored Leaves get stimulated in a way to release a lot more saplings.$(br2)Applied to a hoe his will finally be your key to get $(l:general/colored_trees)Colored Saplings$() renewably."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Harvesting Spawners",
       "item": "minecraft:spawner",
       "text": "In the depths you have come across cages that seem to spit out an endless number of enemies. Which madman placed them there, what purpose they serve and whether it was really worth the effort is a mystery to you. However, you can definitely find some use for these. Whoever the maker was certainly won't miss you packing a few."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:reinforced_deepslate",
+      "text": "This immensely sturdy stone found in underground cities can be picked up."
     },
     {
       "type": "patchouli:spotlight",

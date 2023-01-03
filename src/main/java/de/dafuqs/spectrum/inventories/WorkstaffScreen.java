@@ -67,9 +67,6 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 		MinecraftClient client = MinecraftClient.getInstance();
 		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SELECT, SoundCategory.NEUTRAL, 0.6F, 1.0F, false);
 		client.player.closeHandledScreen();
-
-		MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
-
 	}
 	
 }

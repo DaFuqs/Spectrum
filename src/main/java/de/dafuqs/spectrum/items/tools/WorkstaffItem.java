@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.inventories.WorkstaffScreenHandler;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -124,12 +125,15 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 		switch (toggle) {
 			case SELECT_1x1 -> {
 				nbt.remove(RANGE_NBT_STRING);
+				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 			}
 			case SELECT_3x3 -> {
 				nbt.putInt(RANGE_NBT_STRING, 1);
+				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 			}
 			case SELECT_5x5 -> {
 				nbt.putInt(RANGE_NBT_STRING, 2);
+				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 			}
 			// switching to another enchantment
 			// fortune is handled a bit special. Its level is preserved in NBT, should the player enchant a different/higher tier
@@ -144,6 +148,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 				}
 				if(couldRemoveOtherEnchantment) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, Enchantments.FORTUNE, fortuneLevel, true, true);
+					MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 				} else if(player instanceof ServerPlayerEntity serverPlayerEntity) {
 					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 				}
@@ -157,6 +162,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 				couldRemoveOtherEnchantment |= SpectrumEnchantmentHelper.removeEnchantment(stack, SpectrumEnchantments.RESONANCE);
 				if(couldRemoveOtherEnchantment) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, Enchantments.SILK_TOUCH, 1, true, true);
+					MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 				} else if(player instanceof ServerPlayerEntity serverPlayerEntity) {
 					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 				}
@@ -170,21 +176,26 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 				couldRemoveOtherEnchantment |= SpectrumEnchantmentHelper.removeEnchantment(stack, Enchantments.SILK_TOUCH);
 				if(couldRemoveOtherEnchantment) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, SpectrumEnchantments.RESONANCE, 1, true, true);
+					MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 				} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 				}
 			}
 			case ENABLE_RIGHT_CLICK_ACTIONS -> {
 				nbt.remove(RIGHT_CLICK_DISABLED_NBT_STRING);
+				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 			}
 			case DISABLE_RIGHT_CLICK_ACTIONS -> {
 				nbt.putBoolean(RIGHT_CLICK_DISABLED_NBT_STRING, true);
+				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 			}
 			case ENABLE_PROJECTILES -> {
 				nbt.remove(PROJECTILES_DISABLED_NBT_STRING);
+				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 			}
 			case DISABLE_PROJECTILES -> {
 				nbt.putBoolean(PROJECTILES_DISABLED_NBT_STRING, true);
+				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
 			}
 		}
 		stack.setNbt(nbt);

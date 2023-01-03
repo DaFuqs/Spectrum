@@ -1,7 +1,7 @@
 {
   "type": "spectrum:enchanter",
-  "time": 300,
-  "required_experience": 100,
+  "time": 400,
+  "required_experience": 800,
   "ingredients": [
     {
       "item": "minecraft:book"
@@ -16,7 +16,7 @@
       "item": "spectrum:paltaeria_gem"
     },
     {
-      "item": "spectrum:mermaids_gem"
+      "item": "spectrum:moonstone_shard"
     },
     {
       "item": "spectrum:cyan_pigment"
@@ -28,7 +28,7 @@
       "item": "spectrum:paltaeria_gem"
     },
     {
-      "item": "spectrum:mermaids_gem"
+      "item": "spectrum:moonstone_shard"
     }
   ],
   "result": {

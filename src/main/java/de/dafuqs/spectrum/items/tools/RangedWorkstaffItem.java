@@ -22,7 +22,7 @@ import java.util.List;
 public class RangedWorkstaffItem extends WorkstaffItem {
 
     public static final int COOLDOWN_DURATION_TICKS = 10;
-    public static final InkCost PROJECTILE_COST = new InkCost(InkColors.CYAN, 250);
+    public static final InkCost PROJECTILE_COST = new InkCost(InkColors.WHITE, 250);
 
     public RangedWorkstaffItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -40,9 +40,9 @@ public class RangedWorkstaffItem extends WorkstaffItem {
             if (canShoot(stack.getNbt()) && InkPowered.tryDrainEnergy(user, PROJECTILE_COST)) {
                 user.getItemCooldownManager().set(this, COOLDOWN_DURATION_TICKS);
                 if (!world.isClient) {
-                    MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand)); // TODO: make projectile mining aoe dependent on workstaff aoe selection
+                    MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand));
                 }
-                stack.damage(4, user, (e) -> {
+                stack.damage(2, user, (e) -> {
                     e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
                 });
             }
@@ -55,6 +55,8 @@ public class RangedWorkstaffItem extends WorkstaffItem {
         super.appendTooltip(stack, world, tooltip, context);
         if (canShoot(stack.getNbt())) {
             tooltip.add(Text.translatable("item.spectrum.glass_crest_workstaff.tooltip.projectile").formatted(Formatting.GRAY));
+        } else {
+            tooltip.add(Text.translatable("item.spectrum.glass_crest_workstaff.tooltip.projectiles_disabled").formatted(Formatting.DARK_RED));
         }
     }
 

@@ -69,7 +69,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 			if (user instanceof ServerPlayerEntity serverPlayerEntity) {
 				serverPlayerEntity.openHandledScreen(createScreenHandlerFactory(user.getStackInHand(hand)));
 			}
-			return TypedActionResult.success(user.getStackInHand(hand));
+			return TypedActionResult.consume(user.getStackInHand(hand));
 		}
 		return super.use(world, user, hand);
 	}

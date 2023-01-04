@@ -1,6 +1,0 @@
-{
-  "parent": "spectrum:item/handheld_oversized",
-  "textures": {
-    "layer0": "spectrum:item/fractal_moonstone_crest_bident_oversized"
-  }
-}

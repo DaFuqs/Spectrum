@@ -13,13 +13,13 @@ import java.util.Locale;
 public class GlassArrowItem extends ArrowItem {
 	
 	public enum Variant {
-		GLASS,
+		MALACHITE,
 		TOPAZ,
 		AMETHYST,
 		CITRINE,
 		ONYX,
 		MOONSTONE;
-		
+
 		public static Variant fromString(String string) {
 			return valueOf(string.toUpperCase(Locale.ROOT));
 		}
@@ -42,7 +42,7 @@ public class GlassArrowItem extends ArrowItem {
 					return SpectrumItems.MOONSTONE_GLASS_ARROW.getDefaultStack();
 				}
 				default -> {
-					return SpectrumItems.GLASS_ARROW.getDefaultStack();
+					return SpectrumItems.MALACHITE_GLASS_ARROW.getDefaultStack();
 				}
 			}
 		}

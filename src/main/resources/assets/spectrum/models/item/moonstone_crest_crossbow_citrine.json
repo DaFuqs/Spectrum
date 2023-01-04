@@ -1,6 +1,0 @@
-{
-  "parent": "spectrum:item/crossbow_oversized",
-  "textures": {
-    "layer0": "spectrum:item/moonstone_crest_crossbow_citrine"
-  }
-}

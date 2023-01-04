@@ -1,0 +1,14 @@
+{
+  "parent": "spectrum:item/handheld_oversized",
+  "textures": {
+    "layer0": "spectrum:item/malachite_workstaff"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "in_world": 1.0
+      },
+      "model": "spectrum:item/malachite_workstaff_oversized"
+    }
+  ]
+}

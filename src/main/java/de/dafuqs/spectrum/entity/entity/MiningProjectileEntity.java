@@ -91,7 +91,7 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 
 	@Override
 	public DyeColor getDyeColor() {
-		return DyeColor.CYAN;
+		return DyeColor.WHITE;
 	}
 
 }

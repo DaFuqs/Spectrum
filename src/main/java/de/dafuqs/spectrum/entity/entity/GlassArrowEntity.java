@@ -61,7 +61,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	private void spawnParticles(int amount) {
 		DefaultParticleType particleType = null;
 		switch (this.getVariant()) {
-			case GLASS -> {
+			case MALACHITE -> {
 				particleType = SpectrumParticleTypes.LIME_CRAFTING;
 			}
 			case TOPAZ -> {
@@ -178,7 +178,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
-		this.dataTracker.startTracking(VARIANT, GlassArrowItem.Variant.GLASS);
+		this.dataTracker.startTracking(VARIANT, GlassArrowItem.Variant.MALACHITE);
 	}
 	
 	public void setVariant(GlassArrowItem.Variant variant) {

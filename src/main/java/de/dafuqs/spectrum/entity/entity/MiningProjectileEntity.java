@@ -61,7 +61,7 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 
 	private void spawnParticles(int amount) {
 		for (int j = 0; j < amount; ++j) {
-			this.world.addParticle(SpectrumParticleTypes.CYAN_CRAFTING, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0, 0, 0);
+			this.world.addParticle(SpectrumParticleTypes.WHITE_CRAFTING, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0, 0, 0);
 		}
 	}
 

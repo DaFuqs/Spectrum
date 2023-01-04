@@ -1,11 +1,6 @@
 {
   "replace": false,
   "values": [
-    "spectrum:glass_arrow",
-    "spectrum:topaz_glass_arrow",
-    "spectrum:amethyst_glass_arrow",
-    "spectrum:citrine_glass_arrow",
-    "spectrum:onyx_glass_arrow",
-    "spectrum:moonstone_glass_arrow"
+    "#spectrum:glass_arrows"
   ]
 }

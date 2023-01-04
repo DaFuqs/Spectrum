@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#spectrum:workstaffs",
     "spectrum:bedrock_hoe",
     "spectrum:multitool"
   ]

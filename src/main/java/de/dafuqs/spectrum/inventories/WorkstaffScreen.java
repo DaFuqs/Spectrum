@@ -8,6 +8,8 @@ import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
@@ -17,7 +19,7 @@ import java.awt.*;
 
 @Environment(EnvType.CLIENT)
 public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHandler> {
-	
+
 	private static final Grid RANGE_GRID = new Grid(
 			GridEntry.EMPTY,
 			GridEntry.of(InkColors.GRAY.getColor(), new Point(0, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_1x1)),
@@ -25,7 +27,15 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 			GridEntry.BACK,
 			GridEntry.of(InkColors.GRAY.getColor(), new Point(16, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_3x3))
 	);
-	
+
+	private static final Grid ENCHANTMENT_GRID = new Grid(
+			GridEntry.EMPTY,
+			GridEntry.of(InkColors.GRAY.getColor(), new Point(48, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_SILK_TOUCH)),
+			GridEntry.BACK,
+			GridEntry.of(InkColors.GRAY.getColor(), new Point(64, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_RESONANCE)),
+			GridEntry.of(InkColors.GRAY.getColor(), new Point(80, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_FORTUNE))
+	);
+
 	public WorkstaffScreen(WorkstaffScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 
@@ -37,33 +47,36 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 			rightClickGridEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(128, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_RIGHT_CLICK_ACTIONS));
 		}
 
-		GridEntry projectileEntry = GridEntry.EMPTY;
-		boolean isRangedWorkStaff = mainHandStack.getItem() instanceof RangedWorkstaffItem;
-		if (isRangedWorkStaff) {
-			if (RangedWorkstaffItem.canShoot(mainHandStack.getNbt())) {
-				projectileEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(176, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_PROJECTILES));
-			} else {
-				projectileEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(160, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_PROJECTILES));
-			}
+		if (mainHandStack.getItem() instanceof RangedWorkstaffItem) {
+
+			GridEntry projectileEntry = RangedWorkstaffItem.canShoot(mainHandStack.getNbt())
+					? GridEntry.of(InkColors.GRAY.getColor(), new Point(176, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_PROJECTILES))
+					: GridEntry.of(InkColors.GRAY.getColor(), new Point(160, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_PROJECTILES));
+
+			gridStack.push(new Grid(
+					GridEntry.CLOSE,
+					GridEntry.of(InkColors.GRAY.getColor(), new Point(112, 38), (screen) -> screen.selectGrid(RANGE_GRID)),
+					rightClickGridEntry,
+					projectileEntry,
+					GridEntry.of(InkColors.GRAY.getColor(), new Point(48, 38), (screen) -> screen.selectGrid(ENCHANTMENT_GRID))
+			));
+
+		} else {
+
+			GridEntry enchantmentEntry = EnchantmentHelper.getLevel(Enchantments.FORTUNE, mainHandStack) > 0
+					? GridEntry.of(InkColors.GRAY.getColor(), new Point(48, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_SILK_TOUCH))
+					: GridEntry.of(InkColors.GRAY.getColor(), new Point(160, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_FORTUNE));
+
+			gridStack.push(new Grid(
+					GridEntry.CLOSE,
+					GridEntry.of(InkColors.GRAY.getColor(), new Point(112, 38), (screen) -> screen.selectGrid(RANGE_GRID)),
+					rightClickGridEntry,
+					GridEntry.EMPTY,
+					enchantmentEntry
+			));
+
 		}
 
-		Grid enchantmentGrid = new Grid(
-				GridEntry.EMPTY,
-				GridEntry.of(InkColors.GRAY.getColor(), new Point(48, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_SILK_TOUCH)),
-				GridEntry.BACK,
-				isRangedWorkStaff ?
-						GridEntry.of(InkColors.GRAY.getColor(), new Point(64, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_RESONANCE))
-						: GridEntry.EMPTY,
-				GridEntry.of(InkColors.GRAY.getColor(), new Point(80, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_FORTUNE))
-		);
-
-		gridStack.push(new Grid(
-				GridEntry.CLOSE,
-				GridEntry.of(InkColors.GRAY.getColor(), new Point(112, 38), (screen) -> screen.selectGrid(RANGE_GRID)),
-				rightClickGridEntry,
-				projectileEntry,
-				GridEntry.of(InkColors.GRAY.getColor(), new Point(48, 38), (screen) -> screen.selectGrid(enchantmentGrid))
-		));
 	}
 
 	protected static void select(WorkstaffItem.GUIToggle toggle) {

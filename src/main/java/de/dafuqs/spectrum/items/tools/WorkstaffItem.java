@@ -3,13 +3,16 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.inventories.WorkstaffScreenHandler;
+import de.dafuqs.spectrum.items.Preenchanted;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.ToolMaterial;
@@ -24,14 +27,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 
-public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
+public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Preenchanted {
 
-    public enum GUIToggle {
+	public enum GUIToggle {
 		SELECT_SILK_TOUCH("item.spectrum.workstaff.message.silk_touch"),
 		SELECT_FORTUNE("item.spectrum.workstaff.message.fortune"),
 		SELECT_RESONANCE("item.spectrum.workstaff.message.resonance"),
@@ -200,10 +205,27 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool {
 		}
 		stack.setNbt(nbt);
 	}
-	
+
 	private static void triggerUnenchantedWorkstaffAdvancement(ServerPlayerEntity player) {
 		player.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 0.75F, 1.0F);
 		Support.grantAdvancementCriterion(player, "lategame/trigger_unenchanted_workstaff", "code_triggered");
 	}
-	
+
+	@Override
+	public Map<Enchantment, Integer> getDefaultEnchantments() {
+		return Map.of(Enchantments.FORTUNE, 4);
+	}
+
+	@Override
+	public ItemStack getDefaultStack() {
+		return getDefaultEnchantedStack(this);
+	}
+
+	@Override
+	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
+		if (this.isIn(group)) {
+			stacks.add(getDefaultEnchantedStack(this));
+		}
+	}
+
 }

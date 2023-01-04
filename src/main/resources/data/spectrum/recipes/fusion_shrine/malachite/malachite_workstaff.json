@@ -1,0 +1,42 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 1200,
+  "experience": 16.0,
+  "fluid": "spectrum:liquid_crystal",
+  "ingredients": [
+    {
+      "item": "minecraft:diamond_pickaxe"
+    },
+    {
+      "item": "minecraft:diamond_axe"
+    },
+    {
+      "item": "minecraft:diamond_shovel"
+    },
+    {
+      "item": "spectrum:malachite_crystal",
+      "count": 8
+    },
+    {
+      "item": "spectrum:pure_quartz",
+      "count": 8
+    },
+    {
+      "item": "spectrum:paltaeria_fragments",
+      "count": 4
+    },
+    {
+      "item": "spectrum:moonstone_powder",
+      "count": 8
+    }
+  ],
+  "result": {
+    "item": "spectrum:malachite_workstaff",
+    "nbt": "{Enchantments: [{id: \"minecraft:fortune\", lvl: 4s}]}"
+  },
+  "required_advancement": "spectrum:progression/malachite/unlock_malachite_tools",
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

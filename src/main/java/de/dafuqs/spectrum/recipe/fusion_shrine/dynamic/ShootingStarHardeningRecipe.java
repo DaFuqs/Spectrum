@@ -29,7 +29,7 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 	
 	public ShootingStarHardeningRecipe(Identifier identifier) {
 		super(identifier, "", false, UNLOCK_IDENTIFIER, List.of(IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SHOOTING_STARS)), IngredientStack.of(Ingredient.ofItems(Items.DIAMOND))), Fluids.WATER, getHardenedShootingStar(),
-				5, 100, true, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, DESCRIPTION);
+				5, 100, true, true, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, DESCRIPTION);
 	}
 	
 	private static ItemStack getHardenedShootingStar() {

@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.recipe.fusion_shrine;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
+import com.google.gson.JsonParseException;
 import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import de.dafuqs.spectrum.recipe.RecipeUtils;
 import net.id.incubus_core.json.RecipeParser;
@@ -27,10 +27,11 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 	public FusionShrineRecipeSerializer(FusionShrineRecipeSerializer.RecipeFactory<FusionShrineRecipe> recipeFactory) {
 		this.recipeFactory = recipeFactory;
 	}
-	
+
 	public interface RecipeFactory<FusionShrineRecipe> {
-		FusionShrineRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades,
-		                          List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);
+		FusionShrineRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
+								  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean copyNbt,
+								  List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);
 	}
 	
 	@Override
@@ -38,16 +39,19 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		String group = readGroup(jsonObject);
 		boolean secret = readSecret(jsonObject);
 		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
-		
+
 		JsonArray ingredientArray = JsonHelper.getArray(jsonObject, "ingredients");
 		List<IngredientStack> craftingInputs = RecipeParser.ingredientStacksFromJson(ingredientArray, ingredientArray.size());
-		
+		if (craftingInputs.size() > 7) {
+			throw new JsonParseException("Recipe cannot have more than 7 ingredients. Has " + craftingInputs.size());
+		}
+
 		Fluid fluid = Fluids.EMPTY;
 		if (JsonHelper.hasString(jsonObject, "fluid")) {
 			Identifier fluidIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "fluid"));
 			fluid = Registry.FLUID.get(fluidIdentifier);
 			if (fluid.getDefaultState().isEmpty()) {
-				SpectrumCommon.logError("Fusion Shrine Recipe " + identifier + " specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
+				throw new JsonParseException("Recipe specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
 			}
 		}
 		
@@ -100,8 +104,14 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		} else {
 			description = null;
 		}
-		
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, craftingInputs, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
+		boolean copyNbt = JsonHelper.getBoolean(jsonObject, "copy_nbt", false);
+		if (copyNbt && output.isEmpty()) {
+			throw new JsonParseException("Recipe does have copy_nbt set, but has no output!");
+		}
+
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier,
+				craftingInputs, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, copyNbt,
+				worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 	
 	
@@ -138,6 +148,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		} else {
 			packetByteBuf.writeText(recipe.getDescription().get());
 		}
+		packetByteBuf.writeBoolean(recipe.copyNbt);
 	}
 	
 	
@@ -169,10 +180,13 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 			duringWorldEffects.add(FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()]);
 		}
 		FusionShrineRecipeWorldEffect finishWorldEffect = FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()];
-		
+
 		Text description = packetByteBuf.readText();
-		
-		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
+		boolean copyNbt = packetByteBuf.readBoolean();
+
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier,
+				ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, copyNbt,
+				worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 	
 }

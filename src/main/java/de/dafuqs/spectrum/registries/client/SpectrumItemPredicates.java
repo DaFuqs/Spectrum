@@ -49,24 +49,24 @@ public class SpectrumItemPredicates {
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
-		
+
+		registerOversizedItemPredicate(SpectrumItems.MALACHITE_WORKSTAFF);
+		registerOversizedItemPredicate(SpectrumItems.MALACHITE_ULTRA_GREATSWORD);
+		registerOversizedItemPredicate(SpectrumItems.MALACHITE_CROSSBOW);
+		registerOversizedItemPredicate(SpectrumItems.MALACHITE_BIDENT);
 		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_WORKSTAFF);
 		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_ULTRA_GREATSWORD);
 		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_CROSSBOW);
-		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_BIDENT);
-		registerOversizedItemPredicate(SpectrumItems.MOONSTONE_CREST_WORKSTAFF);
-		registerOversizedItemPredicate(SpectrumItems.MOONSTONE_CREST_ULTRA_GREATSWORD);
-		registerOversizedItemPredicate(SpectrumItems.MOONSTONE_CREST_CROSSBOW);
-		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_MOONSTONE_CREST_BIDENT);
-		registerOversizedItemPredicate(SpectrumItems.FRACTAL_MOONSTONE_CREST_BIDENT);
-		
-		registerThrowingItemPredicate(SpectrumItems.GLASS_CREST_BIDENT);
-		registerThrowingItemPredicate(SpectrumItems.FEROCIOUS_MOONSTONE_CREST_BIDENT);
-		registerThrowingItemPredicate(SpectrumItems.FRACTAL_MOONSTONE_CREST_BIDENT);
-		
+		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
+		registerOversizedItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
+
+		registerThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT);
+		registerThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
+		registerThrowingItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
+
+		registerMalachiteCrossbowPredicates(SpectrumItems.MALACHITE_CROSSBOW);
 		registerMalachiteCrossbowPredicates(SpectrumItems.GLASS_CREST_CROSSBOW);
-		registerMalachiteCrossbowPredicates(SpectrumItems.MOONSTONE_CREST_CROSSBOW);
-		
+
 		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
 		registerEnchantmentCanvasPrediates(SpectrumItems.ENCHANTMENT_CANVAS);
 		registerPresentPredicates(SpectrumBlocks.PRESENT.asItem());
@@ -96,9 +96,9 @@ public class SpectrumItemPredicates {
 			}
 			
 			// Well, this is awkward
-			if(projectile.isOf(Items.FIREWORK_ROCKET)) {
+			if (projectile.isOf(Items.FIREWORK_ROCKET)) {
 				return 0.1F;
-			} else if (projectile.isOf(SpectrumItems.GLASS_ARROW)) {
+			} else if (projectile.isOf(SpectrumItems.MALACHITE_GLASS_ARROW)) {
 				return 0.2F;
 			} else if (projectile.isOf(SpectrumItems.TOPAZ_GLASS_ARROW)) {
 				return 0.3F;

@@ -1,0 +1,21 @@
+{
+  "name": "Gloves of Dawn's Grasp",
+  "advancement": "spectrum:progression/unlock_gloves_of_dawns_grasp",
+  "icon": "spectrum:gloves_of_dawns_grasp",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:gloves_of_dawns_grasp": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "When you asked your neighbor what this \"gobber\" was that they were always talking about, the only answer you got was that this godlike material was out of reach for you little artist.$(br)Before they could explain to you that \"out of reach\" was not to be taken literally, you had already designed these gloves. Oops."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/gloves_of_dawns_grasp",
+      "text": "Oh, well, now that you've thought them up, you're gonna use them!$(br2)Infuse them with $(l:magic/ink)Light Blue Ink$(/l) to increase the additional reach provided."
+    }
+  ]
+}

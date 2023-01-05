@@ -1,0 +1,21 @@
+{
+  "name": "Weeping Circlet",
+  "advancement": "spectrum:progression/unlock_weeping_circlet",
+  "icon": "spectrum:weeping_circlet",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:weeping_circlet": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "These hostile underwater temples are a hell to maneuver. Luckily, in your search for treasure you stumbled upon a Heart of The Sea.$(br)This circlet allows you to live and mine under water as if it were the most natural thing ever. You swim and mine faster, require no air and are able to see better.$(br)It also heals your little close by Axolotl friends ♥"
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/weeping_circlet",
+      "text": "$(italic)Have you ever wanted to live underwater? No?$(br)Whatever, now you can.$(br)Time to build an underwater base!"
+    }
+  ]
+}

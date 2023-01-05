@@ -1,0 +1,20 @@
+{
+  "name": "Nightfall's Blade",
+  "advancement": "spectrum:progression/unlock_nightfalls_blade",
+  "icon": "spectrum:nightfalls_blade",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:nightfalls_blade": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This small blade is too fine to inflict permanent wounds, but has many sharp edges that drill themselves into the flesh of your opponent.$(br)Infused in the $(l:magical_blocks/potion_workshop)Potion Workshop$() however, all struck opponents are directly affected by the potion's effect, provided you have enough of the color of Ink on you, that corresponds to it."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/nightfalls_blade",
+      "text": "$(italic)Cruel, really, but effective."
+    }
+  ]
+}

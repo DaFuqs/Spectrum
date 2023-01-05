@@ -1,0 +1,21 @@
+{
+  "name": "Jeopardant",
+  "advancement": "spectrum:progression/unlock_jeopardant",
+  "icon": "spectrum:jeopardant",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:jeopardant": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Adrenaline does not have to be the only thing racing through your veins in state of emergency.$(br)With every heart lost, the $(l:resources/stratine)Stratine Gem$() in this ring shines brighter and brighter, pulsating in the same rhythm as your racing heart - granting you an exponential damage boost."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/jeopardant",
+      "text": "$(italic)Tell me what you think about your situation$(br)Complication, aggravation"
+    }
+  ]
+}

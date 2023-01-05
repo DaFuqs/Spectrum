@@ -1,0 +1,21 @@
+{
+  "name": "Heartsinger's Reward",
+  "advancement": "spectrum:progression/unlock_heartsingers_reward",
+  "icon": "spectrum:heartsingers_reward",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:heartsingers_reward": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This dainty ring has it all: with the help of a little (or a lot!) of Pink Ink, it strengthens you from the inside out and grants you additional hearts."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/heartsingers_reward",
+      "text": "Infuse it with $(l:magic/ink)Pink Ink$(/l) to increase the amount of extra Hearts provided."
+    }
+  ]
+}

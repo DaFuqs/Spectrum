@@ -1,0 +1,22 @@
+{
+  "name": "Neat Ring",
+  "advancement": "spectrum:progression/unlock_neat_ring",
+  "icon": "spectrum:neat_ring",
+  "secret": true,
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:neat_ring": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)I just think it's neat."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/neat_ring",
+      "text": ""
+    }
+  ]
+}

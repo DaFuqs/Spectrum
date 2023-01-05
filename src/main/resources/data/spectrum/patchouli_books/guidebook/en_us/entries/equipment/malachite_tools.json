@@ -1,0 +1,74 @@
+{
+  "name": "Malachite Tools",
+  "advancement": "spectrum:progression/unlock_malachite_tools",
+  "icon": "spectrum:malachite_ultra_greatsword",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:malachite_workstaff": 0,
+    "spectrum:malachite_ultra_greatsword": 0,
+    "spectrum:malachite_crossbow": 0,
+    "spectrum:malachite_bident": 0,
+    "spectrum:malachite_glass_arrow": 0,
+    "spectrum:topaz_glass_arrow": 0,
+    "spectrum:amethyst_glass_arrow": 0,
+    "spectrum:citrine_glass_arrow": 0,
+    "spectrum:onyx_glass_arrow": 0,
+    "spectrum:moonstone_glass_arrow": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(l:resources/malachite)Malachite$/l) as a material does seem perfectly suited for tools, best compared to $(thing)Diamond$(), but far easier combinable with other materials.$(br)These combinations are where the fun begins, allowing for some intricately unique tools."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/malachite/malachite_workstaff",
+      "text": ""
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword",
+      "text": ""
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/malachite/malachite_crossbow",
+      "text": ""
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/malachite/malachite_bident",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/malachite_glass_arrow",
+      "text": "When shot, these special arrows transform into pure energy, allowing them to pierce translucent blocks, like glass."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/topaz_glass_arrow",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/amethyst_glass_arrow",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/citrine_glass_arrow",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/onyx_glass_arrow",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier1/arrows/moonstone_glass_arrow",
+      "text": ""
+    }
+  ]
+}

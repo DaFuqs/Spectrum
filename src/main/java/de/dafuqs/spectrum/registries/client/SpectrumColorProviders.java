@@ -154,8 +154,8 @@ public class SpectrumColorProviders {
 	public static void registerBrewColors() {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 0) {
-				NbtCompound nbt = stack.getOrCreateNbt();
-				return nbt.contains("Color") ? nbt.getInt("Color") : 0xf4c6cb;
+				NbtCompound nbt = stack.getNbt();
+				return (nbt != null && nbt.contains("Color")) ? nbt.getInt("Color") : 0xf4c6cb;
 			}
 			return -1;
 			

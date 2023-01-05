@@ -1,29 +1,10 @@
 {
   "criteria": {
-    "unlocked_lucky_pickaxe": {
+    "collected_malachite": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:progression/tools/unlock_lucky_pickaxe"
-      }
-    },
-    "unlocked_razor_falchion": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:progression/tools/unlock_razor_falchion"
-      }
-    },
-    "unlocked_tender_pickaxe": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:progression/tools/unlock_tender_pickaxe"
+        "advancement_identifier": "spectrum:lategame/collect_malachite"
       }
     }
-  },
-  "requirements": [
-    [
-      "unlocked_lucky_pickaxe",
-      "unlocked_razor_falchion",
-      "unlocked_tender_pickaxe"
-    ]
-  ]
+  }
 }

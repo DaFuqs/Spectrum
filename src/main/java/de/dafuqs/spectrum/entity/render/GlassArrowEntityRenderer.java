@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class GlassArrowEntityRenderer extends ProjectileEntityRenderer<GlassArrowEntity> {
     
-    public static final Identifier TEXTURE_GLASS = SpectrumCommon.locate("textures/entity/projectiles/glass_arrow.png");
+    public static final Identifier TEXTURE_MALACHITE = SpectrumCommon.locate("textures/entity/projectiles/malachite_glass_arrow.png");
     public static final Identifier TEXTURE_TOPAZ = SpectrumCommon.locate("textures/entity/projectiles/topaz_glass_arrow.png");
     public static final Identifier TEXTURE_AMETHYST = SpectrumCommon.locate("textures/entity/projectiles/amethyst_glass_arrow.png");
     public static final Identifier TEXTURE_CITRINE = SpectrumCommon.locate("textures/entity/projectiles/citrine_glass_arrow.png");
@@ -42,7 +42,7 @@ public class GlassArrowEntityRenderer extends ProjectileEntityRenderer<GlassArro
                 return TEXTURE_MOONSTONE;
             }
             default -> {
-                return TEXTURE_GLASS;
+                return TEXTURE_MALACHITE;
             }
         }
     }

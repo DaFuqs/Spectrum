@@ -64,7 +64,8 @@ public class DDDimension {
 						OreFeatureConfig.createTarget(BLACKSLAG_ORE_REPLACEABLE_TEST, SpectrumBlocks.BLACKSLAG_MALACHITE_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(STONE_ORE_REPLACEABLES, SpectrumBlocks.MALACHITE_ORE.getDefaultState()),
 						OreFeatureConfig.createTarget(DEEPSLATE_ORE_REPLACEABLES, SpectrumBlocks.DEEPSLATE_MALACHITE_ORE.getDefaultState())
-				), 7),
+				), 7, 0.75F),
+				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(4), YOffset.aboveBottom(64)),
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(32), YOffset.belowTop(256)),
 				CountPlacementModifier.of(40));
 		

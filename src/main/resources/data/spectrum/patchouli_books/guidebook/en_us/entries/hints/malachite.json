@@ -1,0 +1,23 @@
+{
+  "name": "A new Ore",
+  "category": "spectrum:hints_category",
+  "icon": "minecraft:writable_book",
+  "advancement": "spectrum:milestones/reveal_malachite",
+  "read_by_default": true,
+  "turnin": "spectrum:lategame/collect_malachite",
+  "pages": [
+    {
+      "type": "spectrum:hint",
+      "title": "Where to find",
+      "completion_advancement": "spectrum:lategame/collect_malachite",
+      "cost": "spectrum:bismuth_crystal#8",
+      "text": "There is a new ore found in the Deeper Down."
+    },
+    {
+      "type": "spectrum:hint",
+      "title": "Concise Instructions",
+      "cost": "spectrum:bismuth_crystal#24",
+      "text": "It is bright green and generates in the deepest depths of the Deeper Down. It's not found exposed to air often, so you may be most successful via branch mining."
+    }
+  ]
+}

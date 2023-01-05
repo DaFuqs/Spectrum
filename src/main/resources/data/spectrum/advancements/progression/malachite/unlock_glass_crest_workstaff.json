@@ -3,13 +3,7 @@
     "unlocked_malachite_tools": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:progression/malachite/unlock_malachite_tools"
-      }
-    },
-    "collected_moonstone_core": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
+        "advancement_identifier": "spectrum:progression/malachite/unlock_glass_crest_tools"
       }
     },
     "broken_budding_block_with_resonance_tool": {

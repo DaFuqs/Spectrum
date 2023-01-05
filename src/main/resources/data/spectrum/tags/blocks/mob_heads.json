@@ -102,7 +102,12 @@
     "spectrum:zoglin_head",
     "spectrum:zombie_villager_head",
     "spectrum:zombified_piglin_head",
-
+    "spectrum:frog_temperate_head",
+    "spectrum:frog_cold_head",
+    "spectrum:frog_warm_head",
+    "spectrum:allay_head",
+    "spectrum:warden_head",
+    "spectrum:tadpole_head",
     "spectrum:egg_laying_wooly_pig_wall_head",
     "spectrum:axolotl_blue_wall_head",
     "spectrum:axolotl_brown_wall_head",
@@ -205,11 +210,11 @@
     "spectrum:zoglin_wall_head",
     "spectrum:zombie_villager_wall_head",
     "spectrum:zombified_piglin_wall_head",
-    "spectrum:frog_temperate_head",
-    "spectrum:frog_cold_head",
-    "spectrum:frog_warm_head",
-    "spectrum:allay_head",
-    "spectrum:warden_head",
-    "spectrum:tadpole_head"
+    "spectrum:frog_temperate_wall_head",
+    "spectrum:frog_cold_wall_head",
+    "spectrum:frog_warm_wall_head",
+    "spectrum:allay_wall_head",
+    "spectrum:warden_wall_head",
+    "spectrum:tadpole_wall_head"
   ]
 }

@@ -181,12 +181,15 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.STONE_SWORD, DyeColor.BROWN);
 		put(Items.STONE_SHOVEL, DyeColor.BROWN);
 		put(Items.STONE_HOE, DyeColor.BROWN);
-		
+
 		put(Items.WOODEN_AXE, DyeColor.LIME);
 		put(Items.WOODEN_PICKAXE, DyeColor.LIME);
 		put(Items.WOODEN_SWORD, DyeColor.LIME);
 		put(Items.WOODEN_SHOVEL, DyeColor.LIME);
 		put(Items.WOODEN_HOE, DyeColor.LIME);
+
+		put(Items.TRIDENT, DyeColor.LIGHT_BLUE);
+		put(Items.ECHO_SHARD, DyeColor.GRAY);
 	}};
 	
 	@Override

@@ -9,13 +9,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
@@ -33,21 +33,26 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	public GlassArrowEntity(EntityType entityType, World world) {
 		super(entityType, world);
 	}
-	
+
 	public GlassArrowEntity(World world, LivingEntity owner) {
 		super(SpectrumEntityTypes.GLASS_ARROW, owner, world);
 	}
-	
+
 	public GlassArrowEntity(World world, double x, double y, double z) {
 		super(SpectrumEntityTypes.GLASS_ARROW, x, y, z, world);
+	}
+
+	@Override
+	public void applyEnchantmentEffects(LivingEntity entity, float damageModifier) {
+		super.applyEnchantmentEffects(entity, damageModifier);
 		setDamage(getDamage() * DAMAGE_MODIFIER);
 	}
-	
+
 	@Override
 	public void tick() {
 		super.tick();
 		if (this.world.isClient) {
-			if(!this.onGround || world.getTime() % 2 == 0) {
+			if (!this.onGround || world.getTime() % 2 == 0) {
 				spawnParticles(1);
 			}
 		}
@@ -90,11 +95,16 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
+		LivingEntity livingEntityToResetHurtTime = null;
+
 		// additional effects depending on arrow type
 		// mundane glass arrows do not have additional effects
 		switch (getVariant()) {
 			case TOPAZ -> {
-				// TODO
+				if (!this.world.isClient && this.getOwner() != null) {
+					Entity entity = entityHitResult.getEntity();
+					pullEntityClose(this.getOwner(), entity, 0.2);
+				}
 			}
 			case AMETHYST -> {
 				if(!this.world.isClient) {
@@ -103,17 +113,27 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 				}
 			}
 			case ONYX -> {
-				if(!this.world.isClient && this.getOwner() != null) {
-					Entity entity = entityHitResult.getEntity();
-					pullEntityClose(this.getOwner(), entity, 0.2);
+				Entity entity = entityHitResult.getEntity();
+				if (entity instanceof LivingEntity livingEntity) {
+					// we're resetting hurtTime here for once so onEntityHit() can deal damage
+					// and also resetting after that again so the target is damageable again after this
+					livingEntity.hurtTime = 0;
+					livingEntityToResetHurtTime = livingEntity;
+					livingEntity.damageShield(20);
+					livingEntity.damageArmor(DamageSource.MAGIC, 20);
 				}
 			}
 			case MOONSTONE -> {
 				MoonstoneBlast.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
 			}
 		}
-		
+
 		super.onEntityHit(entityHitResult);
+
+		if (livingEntityToResetHurtTime != null) {
+			livingEntityToResetHurtTime.hurtTime = 0;
+		}
+
 		this.playSound(SoundEvents.BLOCK_GLASS_BREAK, 0.75F, 0.9F + world.random.nextFloat() * 0.2F);
 		this.remove(RemovalReason.DISCARDED);
 	}
@@ -138,12 +158,6 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		
 		Vec3d additionalVelocity = new Vec3d(d * pullStrength, e * pullStrength + Math.sqrt(Math.sqrt(d * d + e * e + f * f)) * 0.08D, f * pullStrength).multiply(pullStrengthModifier);
 		entityToPull.addVelocity(additionalVelocity.x, additionalVelocity.y, additionalVelocity.z);
-	}
-	
-	protected void moonstoneExplosion(Vec3d position) {
-		this.world.addParticle(ParticleTypes.EXPLOSION_EMITTER, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), 0, 0, 0);
-		
-		
 	}
 	
 	@Override
@@ -183,7 +197,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	
 	public void setVariant(GlassArrowItem.Variant variant) {
 		this.dataTracker.set(VARIANT, variant);
-		
+
 		if(variant == GlassArrowItem.Variant.CITRINE) {
 			setPunch(5);
 		}

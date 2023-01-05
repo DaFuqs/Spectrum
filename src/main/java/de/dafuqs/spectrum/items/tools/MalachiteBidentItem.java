@@ -18,7 +18,7 @@ public class MalachiteBidentItem extends TridentItem implements Preenchanted {
 
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
-		return Map.of(Enchantments.IMPALING, 5);
+		return Map.of(Enchantments.LOYALTY, 4);
 	}
 
 	@Override

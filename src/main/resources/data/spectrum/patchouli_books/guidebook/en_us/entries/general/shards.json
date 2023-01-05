@@ -52,7 +52,7 @@
     {
       "type": "patchouli:spotlight",
       "anchor": "moonstone",
-      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
       "title": "Moonstone Shards",
       "item": "spectrum:moonstone_shard",
       "text": "It's bluish-white shimmer reminds you of the soothing light of the moon on a calm summer night. The tranquility it exudes leaves a calming, yet significant impression, like a sleeping cat - balm for the soul and yet a predator, always on guard.$(br2)The Moonstone embodies $(bold)$(c_white)pure magic$()."

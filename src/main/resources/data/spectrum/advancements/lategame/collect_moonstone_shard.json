@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/enter_dimension",
+  "parent": "spectrum:lategame/spectrum_lategame",
   "display": {
     "icon": {
       "item": "spectrum:moonstone_shard"
@@ -19,7 +19,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/enter_dimension" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
     }
   },
   "rewards": {

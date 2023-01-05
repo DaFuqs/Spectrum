@@ -95,7 +95,7 @@
                 "type_specific": {
                   "type": "player",
                   "advancements": {
-                    "spectrum:midgame/collect_moonstone_shard": true
+                    "spectrum:lategame/collect_moonstone_shard": true
                   }
                 }
               }

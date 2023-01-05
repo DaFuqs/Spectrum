@@ -1,8 +1,8 @@
 {
-  "parent": "spectrum:midgame/collect_bismuth_crystal",
+  "parent": "spectrum:lategame/collect_bismuth_crystal",
   "display": {
     "icon": {
-        "item": "spectrum:crystallarieum"
+      "item": "spectrum:crystallarieum"
     },
     "title": {
       "translate": "advancements.spectrum.grow_bismuth_in_crystallarieum.title"
@@ -22,7 +22,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_bismuth_crystal" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_bismuth_crystal"
+      }
     }
   }
 }

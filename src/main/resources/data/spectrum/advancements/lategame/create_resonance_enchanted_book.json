@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/create_spectral_shard",
+  "parent": "spectrum:lategame/craft_resonant_pickaxe",
   "display": {
     "icon": {
       "item": "minecraft:enchanted_book"
@@ -29,7 +29,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/create_spectral_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/craft_resonant_pickaxe"
+      }
     }
   }
 }

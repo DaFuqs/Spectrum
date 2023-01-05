@@ -309,7 +309,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
       "title": "Moonstone Geodes",
       "item": "spectrum:moonstone_block",
       "text": "TODO"

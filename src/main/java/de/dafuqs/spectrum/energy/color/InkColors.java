@@ -11,7 +11,7 @@ public class InkColors {
 	
 	public static Identifier BASE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
 	public static Identifier BLACK_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/spectrum_midgame");
-	public static Identifier WHITE_ADVANCEMENT_ID = SpectrumCommon.locate("midgame/collect_moonstone_shard");
+	public static Identifier WHITE_ADVANCEMENT_ID = SpectrumCommon.locate("lategame/collect_moonstone_shard");
 	
 	
 	public static ElementalColor CYAN = new ElementalColor(DyeColor.CYAN, new Vec3f(0.36f, 1f, 0.93f), BASE_ADVANCEMENT_ID);

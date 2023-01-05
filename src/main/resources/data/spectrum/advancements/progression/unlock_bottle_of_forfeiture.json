@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "finished_progression_without_tips": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:__lategame/spectrum_lategame" }
+    "todo": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:__lategame/spectrum_lategame"
+      }
     }
   }
 }

@@ -50,12 +50,12 @@
 			"title":"好运"
 		},
 		{
-			"advancement":"spectrum:midgame/collect_moonstone_shard",
-			"recipe":"spectrum:potion_workshop_brewing/resistance",
-			"text":"",
-			"type":"spectrum:potion_workshop_brewing",
-			"title":"抗性提升"
-		},
+          "advancement": "spectrum:lategame/collect_moonstone_shard",
+          "recipe": "spectrum:potion_workshop_brewing/resistance",
+          "text": "",
+          "type": "spectrum:potion_workshop_brewing",
+          "title": "抗性提升"
+        },
 		{
 			"advancement":"spectrum:midgame/craft_midnight_chip",
 			"recipe":"spectrum:potion_workshop_brewing/wither",

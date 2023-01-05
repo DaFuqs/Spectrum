@@ -1,20 +1,14 @@
 {
   "criteria": {
-    "found_end_city": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "minecraft:end/find_end_city" }
+    "collected_paltaeria": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_paltaeria"
+      }
     },
     "collected_star_fragment": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:collect_star_fragment" }
-    },
-    "built_complex_pedestal_structure": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
-    },
-    "collected_quitoxic_reeds": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }
     }
   }
 }

@@ -14,7 +14,9 @@
   "criteria": {
     "finished_midgame": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/craft_moonstone_pedestal" }
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/enter_dimension"
+      }
     }
   }
 }

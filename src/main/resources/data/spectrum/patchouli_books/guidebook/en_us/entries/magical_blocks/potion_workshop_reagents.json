@@ -62,7 +62,7 @@
       "type": "patchouli:spotlight",
       "title": "Moonstone",
       "item": "spectrum:moonstone_powder",
-      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
       "text": "Changes all otherwise negative Effects to their positive ones"
     },
     {
@@ -145,14 +145,14 @@
       "type": "patchouli:spotlight",
       "title": "Midnight Chip",
       "item": "spectrum:midnight_chip",
-      "advancement": "spectrum:midgame/collect_midnight Chip",
+      "advancement": "spectrum:midgame/collect_midnight_chip",
       "text": "Increases Potency and adds 30 seconds to the Duration, but drastically lowers Yield"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Moonstruck Nectar",
       "item": "spectrum:moonstruck_nectar",
-      "advancement": "spectrum:hidden/harvest_moonstruck_nectar",
+      "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
       "text": "Makes the Potion much more smooth, resulting in it being way faster to drink. Might come in handy when every second is crucial"
     },
     {

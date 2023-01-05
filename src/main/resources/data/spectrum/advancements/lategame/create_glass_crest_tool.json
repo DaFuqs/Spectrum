@@ -1,0 +1,42 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:glass_crest_workstaff",
+      "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
+    },
+    "title": {
+      "translate": "advancements.spectrum.create_glass_crest_tool.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_glass_crest_tool.description"
+    }
+  },
+  "parent": "spectrum:lategame/grow_malachite_in_crystallarieum",
+  "criteria": {
+    "created_spectral_shard": {
+      "trigger": "spectrum:crafted_with_fusion_shrine",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:glass_crest_workstaff",
+              "spectrum:glass_crest_ultra_greatsword",
+              "spectrum:ferocious_glass_crest_bident",
+              "spectrum:fractal_glass_crest_bident",
+              "spectrum:glass_crest_crossbow"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/grow_malachite_in_crystallarieum"
+      }
+    }
+  },
+  "rewards": {
+    "experience": 250
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "parent": "spectrum:lategame/spectrum_lategame",
   "display": {
     "icon": {
       "item": "spectrum:slate_noxcap_stem"
@@ -19,7 +19,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
     }
   }
 }

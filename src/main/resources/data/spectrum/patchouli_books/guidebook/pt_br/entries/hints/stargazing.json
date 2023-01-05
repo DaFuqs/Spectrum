@@ -2,7 +2,7 @@
   "name": "A new Resource",
   "category": "spectrum:hints_category",
   "icon": "minecraft:writable_book",
-  "advancement": "spectrum:milestones/unlock_star_fragments",
+  "advancement": "spectrum:milestones/unlock_shooting_stars",
   "secret": true,
   "read_by_default": true,
   "turnin": "spectrum:collect_star_fragment",

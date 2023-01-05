@@ -2,7 +2,9 @@
   "criteria": {
     "collected_moonstone": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_moonstone_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_shard"
+      }
     },
     "has_onyx_shard": {
       "trigger": "minecraft:inventory_changed",

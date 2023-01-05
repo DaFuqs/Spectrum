@@ -11,15 +11,25 @@
       "translate": "advancements.spectrum.create_spectral_shard.description"
     }
   },
-  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "parent": "spectrum:lategame/grow_ominous_sapling",
   "criteria": {
     "created_spectral_shard": {
-      "trigger":"spectrum:crafted_with_fusion_shrine",
-      "conditions": { "items": [{ "items": [ "spectrum:spectral_shard" ]}] }
+      "trigger": "spectrum:crafted_with_fusion_shrine",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:spectral_shard"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/grow_ominous_sapling"
+      }
     }
   },
   "rewards": {

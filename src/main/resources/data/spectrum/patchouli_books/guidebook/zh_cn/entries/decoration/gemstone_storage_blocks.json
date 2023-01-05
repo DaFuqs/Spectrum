@@ -34,12 +34,12 @@
 			"title":"磨制玛瑙"
 		},
 		{
-			"recipe2":"spectrum:crafting_table/storage_blocks/moonstone_shards_from_moonstone_storage_block",
-			"advancement":"spectrum:midgame/collect_moonstone_shard",
-			"recipe":"spectrum:crafting_table/storage_blocks/moonstone_storage_block",
-			"type":"patchouli:crafting",
-			"title":"磨制月光石"
-		}
+          "recipe2": "spectrum:crafting_table/storage_blocks/moonstone_shards_from_moonstone_storage_block",
+          "advancement": "spectrum:lategame/collect_moonstone_shard",
+          "recipe": "spectrum:crafting_table/storage_blocks/moonstone_storage_block",
+          "type": "patchouli:crafting",
+          "title": "磨制月光石"
+        }
 	],
 	"advancement":"spectrum:spectrum",
 	"extra_recipe_mappings":{

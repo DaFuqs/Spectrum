@@ -1,12 +1,26 @@
 {
   "criteria": {
-    "collected_hover_block": {
+    "collected_bismuth": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:small_bismuth_bud" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:bismuth_flake",
+              "spectrum:bismuth_crystal",
+              "spectrum:small_bismuth_bud",
+              "spectrum:large_bismuth_bud",
+              "spectrum:bismuth_cluster"
+            ]
+          }
+        ]
+      }
     },
-    "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/spectrum_lategame" }
+    "built_complex_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
     }
   }
 }

@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:moonstone_core"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.collect_moonstone_core.title"
     },

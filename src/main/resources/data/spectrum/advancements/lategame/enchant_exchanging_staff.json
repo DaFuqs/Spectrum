@@ -2,7 +2,8 @@
   "parent": "spectrum:lategame/collect_paltaeria",
   "display": {
     "icon": {
-      "item": "spectrum:exchanging_staff"
+      "item": "spectrum:exchanging_staff",
+      "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
     },
     "title": {
       "translate": "advancements.spectrum.enchant_exchanging_staff.title"

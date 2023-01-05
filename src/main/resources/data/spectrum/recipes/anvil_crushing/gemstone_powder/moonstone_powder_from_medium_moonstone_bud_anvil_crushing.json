@@ -12,5 +12,5 @@
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "spectrum:block.medium_moonstone_bud.break",
   "group": "gemstone_crushing",
-  "required_advancement": "spectrum:midgame/collect_moonstone_shard"
+  "required_advancement": "spectrum:lategame/collect_moonstone_shard"
 }

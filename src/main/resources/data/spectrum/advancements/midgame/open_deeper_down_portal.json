@@ -2,13 +2,13 @@
   "parent": "spectrum:midgame/break_decayed_bedrock",
   "display": {
     "icon": {
-      "item": "spectrum:bedrock_dust"
+      "item": "spectrum:bedrock_storage_block"
     },
     "title": {
-      "translate": "advancements.spectrum.opened_deeper_down_portal.title"
+      "translate": "advancements.spectrum.open_deeper_down_portal.title"
     },
     "description": {
-      "translate": "advancements.spectrum.opened_deeper_down_portal.description"
+      "translate": "advancements.spectrum.open_deeper_down_portal.description"
     }
   },
   "criteria": {

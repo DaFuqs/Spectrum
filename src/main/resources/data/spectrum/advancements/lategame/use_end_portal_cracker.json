@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-        "item": "spectrum:end_portal_cracker"
+      "item": "spectrum:end_portal_cracker"
     },
     "title": {
       "translate": "advancements.spectrum.use_end_portal_cracker.title"
@@ -10,19 +10,23 @@
       "translate": "advancements.spectrum.use_end_portal_cracker.description"
     }
   },
-  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "parent": "spectrum:lategame/collect_paltaeria",
   "criteria": {
     "used": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "item": {
-          "items": ["spectrum:end_portal_cracker"]
+          "items": [
+            "spectrum:end_portal_cracker"
+          ]
         }
       }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_paltaeria"
+      }
     }
   }
 }

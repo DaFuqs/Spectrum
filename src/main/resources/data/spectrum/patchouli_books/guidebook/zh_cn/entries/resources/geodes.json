@@ -270,12 +270,12 @@
 			"title":"黄水晶晶洞"
 		},
 		{
-			"item":"spectrum:moonstone_block",
-			"advancement":"spectrum:midgame/collect_moonstone_shard",
-			"text":"待办事项",
-			"type":"patchouli:spotlight",
-			"title":"月亮石晶洞"
-		},
+          "item": "spectrum:moonstone_block",
+          "advancement": "spectrum:lategame/collect_moonstone_shard",
+          "text": "待办事项",
+          "type": "patchouli:spotlight",
+          "title": "月亮石晶洞"
+        },
 		{
 			"advancement":"spectrum:lategame/collect_resonance_enchanted_tool",
 			"text":"=>$(l:enchanting/resonance)共振$()。",

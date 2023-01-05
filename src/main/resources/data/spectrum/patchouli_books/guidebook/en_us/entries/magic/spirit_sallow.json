@@ -1,6 +1,6 @@
 {
   "name": "Spirit Sallow",
-  "advancement": "spectrum:lategame/spectrum_lategame",
+  "advancement": "spectrum:progression/unlock_ominous_sapling",
   "secret": true,
   "icon": "spectrum:ominous_sapling",
   "category": "spectrum:magic_category",

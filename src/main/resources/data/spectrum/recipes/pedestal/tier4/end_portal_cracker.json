@@ -9,16 +9,16 @@
   "black": 0,
   "experience": 4.0,
   "pattern": [
-    "QPQ",
-    "PEP",
-    "QPQ"
+    "EPE",
+    "PQP",
+    "EPE"
   ],
   "key": {
     "E": {
       "item": "minecraft:ender_eye"
     },
     "Q": {
-      "item": "spectrum:quitoxic_powder"
+      "item": "spectrum:star_fragment"
     },
     "P": {
       "item": "spectrum:paltaeria_fragments"

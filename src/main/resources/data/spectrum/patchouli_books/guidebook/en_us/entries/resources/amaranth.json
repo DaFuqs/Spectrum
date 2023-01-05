@@ -31,7 +31,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/collect_amaranth_bushel",
+      "advancement": "spectrum:collect_amaranth_bushel",
       "title": "Scones",
       "recipe": "spectrum:pedestal/tier2/food/scone",
       "text": "Small but fine pastry filled with cream.$(br2)$(italic)Perfect with tea."

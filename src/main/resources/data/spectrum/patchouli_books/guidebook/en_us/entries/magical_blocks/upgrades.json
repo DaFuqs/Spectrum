@@ -59,7 +59,7 @@
 
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/efficiency",
+      "advancement": "spectrum:progression/unlock_upgrade_efficiency",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/upgrade_efficiency",
       "text": "The $(l:general/pedestal)Pigment Pedestal$(/l) devours vast amounts of Gemstone Powder.$(br)Now you should be able to cushion the consumption of your structures a little."

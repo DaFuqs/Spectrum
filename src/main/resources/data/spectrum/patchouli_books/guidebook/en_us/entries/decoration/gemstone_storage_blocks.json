@@ -47,7 +47,7 @@
     {
       "type": "patchouli:crafting",
       "title": "Polished Moonstone",
-      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
       "recipe": "spectrum:crafting_table/storage_blocks/moonstone_storage_block",
       "recipe2": "spectrum:crafting_table/storage_blocks/moonstone_shards_from_moonstone_storage_block"
     }

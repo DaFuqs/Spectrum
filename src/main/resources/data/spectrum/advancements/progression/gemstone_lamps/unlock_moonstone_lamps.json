@@ -2,7 +2,9 @@
   "criteria": {
     "collected_gemstone_shard": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_moonstone_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_shard"
+      }
     },
     "collected_shimmerstone_gem": {
       "trigger":"revelationary:advancement_gotten",

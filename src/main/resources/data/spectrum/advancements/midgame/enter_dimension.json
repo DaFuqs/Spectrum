@@ -1,8 +1,8 @@
 {
-  "parent": "spectrum:midgame/break_decayed_bedrock",
+  "parent": "spectrum:midgame/open_deeper_down_portal",
   "display": {
     "icon": {
-      "item": "minecraft:bedrock"
+      "item": "spectrum:black_glowblock"
     },
     "title": {
       "translate": "advancements.spectrum.enter_dimension.title"
@@ -20,7 +20,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/open_deeper_down_portal"
+      }
     }
   }
 }

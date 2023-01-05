@@ -24,7 +24,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:midgame/craft_salted_jaramel_trifle_or_tart",
+      "advancement": "spectrum:craft_salted_jaramel_trifle_or_tart",
       "recipe": "spectrum:pedestal/tier3/food/salted_jaramel_tart",
       "text": "$(italic)Extra Salty"
     },

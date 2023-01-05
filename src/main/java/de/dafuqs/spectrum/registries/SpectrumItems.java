@@ -101,7 +101,7 @@ public class SpectrumItems {
 	public static final Item AMETHYST_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("hidden/collect_shards/collect_amethyst_shard"), BuiltinGemstoneColor.MAGENTA);
 	public static final Item CITRINE_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("hidden/collect_shards/collect_citrine_shard"), BuiltinGemstoneColor.YELLOW);
 	public static final Item ONYX_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("create_onyx_shard"), BuiltinGemstoneColor.BLACK);
-	public static final Item MOONSTONE_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
+    public static final Item MOONSTONE_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("lategame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
 	
 	// Pigment
 	public static final Item BLACK_PIGMENT = new PigmentItem(Tab.RESOURCES.settings(), DyeColor.BLACK);

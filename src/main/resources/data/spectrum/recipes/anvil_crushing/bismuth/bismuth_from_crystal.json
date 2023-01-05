@@ -13,5 +13,5 @@
   "particleCount": 10,
   "soundEventIdentifier": "block.chain.break",
   "group": "bismuth_crushing",
-  "required_advancement": "spectrum:midgame/collect_bismuth"
+  "required_advancement": "spectrum:lategame/collect_bismuth"
 }

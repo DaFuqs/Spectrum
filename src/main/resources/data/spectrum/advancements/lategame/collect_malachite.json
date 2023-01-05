@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/spectrum_lategame",
+  "parent": "spectrum:lategame/build_complex_pedestal_structure",
   "display": {
     "icon": {
       "item": "spectrum:deepslate_malachite_ore"
@@ -19,7 +19,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/spectrum_lategame" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
     }
   }
 }

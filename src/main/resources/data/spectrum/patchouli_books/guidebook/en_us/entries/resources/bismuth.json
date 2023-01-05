@@ -1,6 +1,6 @@
 {
   "name": "Bismuth",
-  "advancement": "spectrum:midgame/collect_bismuth",
+  "advancement": "spectrum:lategame/collect_bismuth",
   "icon": "spectrum:bismuth_flake",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {

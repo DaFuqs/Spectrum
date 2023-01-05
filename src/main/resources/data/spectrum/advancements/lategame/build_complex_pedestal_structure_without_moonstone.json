@@ -1,0 +1,32 @@
+{
+  "parent": "spectrum:lategame/craft_moonstone_pedestal",
+  "display": {
+    "icon": {
+      "item": "spectrum:moonstone_chiseled_calcite"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.build_complex_pedestal_structure_without_moonstone.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.build_complex_pedestal_structure_without_moonstone.description"
+    }
+  },
+  "criteria": {
+    "built_structure": {
+      "trigger": "spectrum:completed_multiblock",
+      "conditions": {
+        "multiblock_identifier": "spectrum:pedestal_complex_structure_without_moonstone_check"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/craft_moonstone_pedestal"
+      }
+    }
+  },
+  "rewards": {
+    "experience": 500
+  }
+}

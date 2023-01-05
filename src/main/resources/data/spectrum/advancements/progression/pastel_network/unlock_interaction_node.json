@@ -6,7 +6,9 @@
     },
 	"collected_moonstone": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:__midgame/collect_moonstone_shard" }
+      "conditions": {
+        "advancement_identifier": "spectrum:__lategame/collect_moonstone_shard"
+      }
     }
   }
 }

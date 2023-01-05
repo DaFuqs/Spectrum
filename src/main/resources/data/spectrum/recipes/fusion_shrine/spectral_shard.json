@@ -23,7 +23,7 @@
   "result": {
     "item": "spectrum:spectral_shard"
   },
-  "required_advancement": "spectrum:lategame/spectrum_lategame",
+  "required_advancement": "spectrum:progression/__unlock_spectral_shard",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [

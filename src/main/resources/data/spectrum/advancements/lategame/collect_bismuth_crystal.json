@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/collect_bismuth",
+  "parent": "spectrum:lategame/collect_bismuth",
   "display": {
     "icon": {
       "item": "spectrum:bismuth_crystal"
@@ -18,7 +18,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_bismuth" }
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_bismuth"
+      }
     }
   }
 }

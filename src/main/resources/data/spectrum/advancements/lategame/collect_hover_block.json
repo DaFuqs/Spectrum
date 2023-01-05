@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/collect_paltaeria",
   "display": {
     "icon": {
-      "item": "spectrum:paltaeria_fragment_block"
+      "item": "spectrum:hover_block"
     },
     "title": {
       "translate": "advancements.spectrum.collect_hover_block.title"

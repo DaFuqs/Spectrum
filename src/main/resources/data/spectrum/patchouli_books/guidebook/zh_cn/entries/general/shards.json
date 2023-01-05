@@ -52,7 +52,7 @@
     {
       "type": "patchouli:spotlight",
       "anchor": "moonstone",
-      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
       "title": "月长石碎片",
       "item": "spectrum:moonstone_shard",
       "text": "它那蓝白色的微光使你想起平静夏夜的月光。它散发出的宁静给人留下了一种平静而又重要的印象，就像一只沉睡的猫——灵魂的安抚剂，同时又是一个时刻警惕的捕食者。$(br2)月长石代表 $(bold)$(c_white)纯魔法$()."

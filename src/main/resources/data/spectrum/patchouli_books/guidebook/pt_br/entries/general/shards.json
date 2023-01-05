@@ -52,7 +52,7 @@
     {
       "type": "patchouli:spotlight",
       "anchor": "moonstone",
-      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
       "title": "Fragmentos de Pedra da Lua",
       "item": "spectrum:moonstone_shard",
       "text": "Seu brilho branco azulada te lembra da luz acalmante da lua em uma noite calma de verão. A tranquilidade que exala deixa uma marca calma, mas significante, como um gato dormindo - bálsamo para a alma, mas também um predador, sempre de guarda.$(br2)A Pedra da Lua encarna $(bold)$(c_white)magia pura$()."

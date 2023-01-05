@@ -692,14 +692,14 @@ public class SpectrumBlocks {
 	public static final Block AMETHYST_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.STONE.getDefaultState());
 	public static final Block CITRINE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.STONE.getDefaultState());
 	public static final Block ONYX_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.STONE.getDefaultState());
-	public static final Block MOONSTONE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("midgame/collect_moonstone_shard"), Blocks.STONE.getDefaultState());
+    public static final Block MOONSTONE_ORE = new GemstoneOreBlock(gemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), Blocks.STONE.getDefaultState());
 	
 	private static final FabricBlockSettings deepslateGemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE);
 	public static final Block DEEPSLATE_TOPAZ_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.CYAN, locate("hidden/collect_shards/collect_topaz_shard"), Blocks.DEEPSLATE.getDefaultState());
 	public static final Block DEEPSLATE_AMETHYST_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.MAGENTA, locate("hidden/collect_shards/collect_amethyst_shard"), Blocks.DEEPSLATE.getDefaultState());
 	public static final Block DEEPSLATE_CITRINE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.YELLOW, locate("hidden/collect_shards/collect_citrine_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_ONYX_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.DEEPSLATE.getDefaultState());
-	public static final Block DEEPSLATE_MOONSTONE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("midgame/collect_moonstone_shard"), Blocks.DEEPSLATE.getDefaultState());
+    public static final Block DEEPSLATE_ONYX_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.BLACK, locate("create_onyx_shard"), Blocks.DEEPSLATE.getDefaultState());
+    public static final Block DEEPSLATE_MOONSTONE_ORE = new GemstoneOreBlock(deepslateGemOreBlockSettings, gemOreExperienceProvider, BuiltinGemstoneColor.WHITE, locate("lategame/collect_moonstone_shard"), Blocks.DEEPSLATE.getDefaultState());
 	
 	private static final FabricBlockSettings gemstoneStorageBlockSettings = FabricBlockSettings.of(Material.AMETHYST).requiresTool().strength(5.0F, 6.0F);
 	public static final Block TOPAZ_STORAGE_BLOCK = new Block(gemstoneStorageBlockSettings);

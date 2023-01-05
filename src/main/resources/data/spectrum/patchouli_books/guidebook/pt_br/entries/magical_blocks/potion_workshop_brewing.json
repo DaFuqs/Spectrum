@@ -59,7 +59,7 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Resistance",
-      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
       "recipe": "spectrum:potion_workshop_brewing/resistance",
       "text": ""
     },

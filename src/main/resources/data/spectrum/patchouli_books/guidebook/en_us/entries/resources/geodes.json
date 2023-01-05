@@ -313,7 +313,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:midgame/collect_moonstone_shard",
+      "advancement": "spectrum:lategame/collect_moonstone_shard",
       "title": "Moonstone Geodes",
       "item": "spectrum:moonstone_block",
       "text": "In the $(l:dimension/dimension)Deeper Down$() you stumbled upon Moonstone Geodes!$(br)You always suspected that there would be another variant and here you are. Those often majestic geodes shine in the brightest of whites, almost blinding, when only accustomed to the darkness of the Deeper Down."

@@ -55,12 +55,12 @@
 			"title":"玛瑙"
 		},
 		{
-			"item":"spectrum:moonstone_powder",
-			"advancement":"spectrum:midgame/collect_moonstone_shard",
-			"text":"将所有其他负面影响变为积极影响",
-			"type":"patchouli:spotlight",
-			"title":"月亮石"
-		},
+          "item": "spectrum:moonstone_powder",
+          "advancement": "spectrum:lategame/collect_moonstone_shard",
+          "text": "将所有其他负面影响变为积极影响",
+          "type": "patchouli:spotlight",
+          "title": "月亮石"
+        },
 		{
 			"item":"spectrum:shimmerstone_gem",
 			"text":"持续时间和效力的微小乘法加成",
@@ -137,20 +137,20 @@
 			"type":"patchouli:spotlight",
 			"title":"黑曜能量粉"
 		},
-		{
-			"item":"spectrum:midnight_chip",
-			"advancement":"spectrum:midgame/collect_midnight Chip",
-			"text":"增加效力，增加30秒的持续时间，但大幅降低产量。",
-			"type":"patchouli:spotlight",
-			"title":"午夜片"
-		},
-		{
-			"item":"spectrum:moonstruck_nectar",
-			"advancement":"spectrum:hidden/harvest_moonstruck_nectar",
-			"text":"使药水更加顺滑，因此饮用速度更快。当每一秒都至关重要时，可能会派上用场。",
-			"type":"patchouli:spotlight",
-			"title":"月相花蜜"
-		},
+      {
+        "item": "spectrum:midnight_chip",
+        "advancement": "spectrum:midgame/collect_midnight_chip",
+        "text": "增加效力，增加30秒的持续时间，但大幅降低产量。",
+        "type": "patchouli:spotlight",
+        "title": "午夜片"
+      },
+      {
+        "item": "spectrum:moonstruck_nectar",
+        "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
+        "text": "使药水更加顺滑，因此饮用速度更快。当每一秒都至关重要时，可能会派上用场。",
+        "type": "patchouli:spotlight",
+        "title": "月相花蜜"
+      },
 		{
 			"item":"spectrum:bedrock_dust",
 			"advancement":"spectrum:midgame/break_decayed_bedrock",

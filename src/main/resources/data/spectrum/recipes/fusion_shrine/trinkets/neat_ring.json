@@ -1,7 +1,7 @@
 {
   "type": "spectrum:fusion_shrine",
   "time": 600,
-  "experience": 2.0,
+  "experience": 8.0,
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
     {
@@ -9,10 +9,11 @@
     },
     {
       "item": "minecraft:gold_ingot",
-      "count": 8
+      "count": 64
     },
     {
-      "item": "spectrum:moonstone_shard"
+      "item": "spectrum:moonstone_shard",
+      "count": 32
     },
     {
       "item": "spectrum:resonant_lily"

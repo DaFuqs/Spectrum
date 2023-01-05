@@ -13,12 +13,18 @@
     }
   },
   "criteria": {
-    "requirement": {
+    "used_oblivion_pickaxe_with_efficiency": {
       "trigger": "minecraft:item_durability_changed",
       "conditions": {
         "item": {
-          "items": [ "spectrum:oblivion_pickaxe" ],
-          "enchantments": [ { "enchantment": "minecraft:efficiency" } ]
+          "items": [
+            "spectrum:oblivion_pickaxe"
+          ],
+          "enchantments": [
+            {
+              "enchantment": "minecraft:efficiency"
+            }
+          ]
         }
       }
     },

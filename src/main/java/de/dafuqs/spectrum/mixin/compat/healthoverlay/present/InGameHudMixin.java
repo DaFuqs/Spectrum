@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import terrails.healthoverlay.ModConfiguration;
+import terrails.healthoverlay.config.Configuration;
 import terrails.healthoverlay.render.HeartRenderer;
 
 @Environment(EnvType.CLIENT)
@@ -27,7 +27,7 @@ public abstract class InGameHudMixin {
 		// Get config for
 		CompatibilitySettingAccessors.INSTANCE.register(
 				"healthoverlay", Boolean.class,
-				"absorptionOverHealth", ModConfiguration.absorptionOverHealth);
+				"absorptionOverHealth", Configuration.ABSORPTION.renderOverHealth.get());
 
 		InGameHud hud = MinecraftClient.getInstance().inGameHud;
 		int scaledWidth = ((InGameHudAccessor) hud).getWidth();

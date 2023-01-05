@@ -28,16 +28,16 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 		super(settings, SpectrumCommon.locate("progression/unlock_whispy_circlet"));
 	}
 	
-	public static void removeSingleHarmfulStatusEffect(@NotNull LivingEntity entity) {
+	public static void removeSingleStatusEffect(@NotNull LivingEntity entity, StatusEffectCategory category) {
 		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
 		if (currentEffects.size() == 0) {
 			return;
 		}
-		
+
 		List<StatusEffectInstance> negativeEffects = new ArrayList<>();
 		for (StatusEffectInstance statusEffectInstance : currentEffects) {
 			StatusEffect effect = statusEffectInstance.getEffectType();
-			if (effect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(effect)) {
+			if (effect.getCategory() == category && !SpectrumStatusEffectTags.isUncurable(effect)) {
 				negativeEffects.add(statusEffectInstance);
 			}
 		}

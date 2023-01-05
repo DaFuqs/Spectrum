@@ -40,7 +40,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 			}
 		}
 		if(world.getTime() % 200 == 0) {
-			WhispyCircletItem.removeSingleHarmfulStatusEffect(entity);
+			WhispyCircletItem.removeSingleStatusEffect(entity, StatusEffectCategory.HARMFUL);
 		}
 	}
 	

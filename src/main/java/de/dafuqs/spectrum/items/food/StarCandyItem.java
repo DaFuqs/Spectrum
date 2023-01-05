@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.food;
 import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -20,7 +21,7 @@ public class StarCandyItem extends Item {
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		ItemStack itemStack = super.finishUsing(stack, world, user);
 		if (!world.isClient) {
-			WhispyCircletItem.removeSingleHarmfulStatusEffect(user);
+			WhispyCircletItem.removeSingleStatusEffect(user, StatusEffectCategory.HARMFUL);
 		}
 		return itemStack;
 	}

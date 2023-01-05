@@ -1,0 +1,50 @@
+{
+  "name": "Glass Crest Tools",
+  "advancement": "spectrum:progression/malachite/unlock_glass_crest_tools",
+  "icon": "spectrum:glass_crest_ultra_greatsword",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:glass_crest_workstaff": 0,
+    "spectrum:glass_crest_ultra_greatsword": 0,
+    "spectrum:glass_crest_crossbow": 0,
+    "spectrum:ferocious_glass_crest_bident": 0,
+    "spectrum:fractal_glass_crest_bident": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:moonstone_core",
+      "text": "Socketing $(l:resources/moonstone_core)Moonstone Cores$(/l) into your $(l:equipment/malachite_tools)Malachite Tools$/l) grants them powerful new abilities."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:progression/malachite/unlock_glass_crest_workstaff",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_workstaff",
+      "text": "$(k:use) will shoot out $(c_white)White Ink$() which will break blocks on impact. You can also choose from $(l:enchanting/resonance)Resonance$() as an enchantment."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:progression/malachite/unlock_glass_crest_ultra_greatsword",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_ultra_greatsword",
+      "text": "Deals a chunk of it's damage via $(thing)Magic$() - piercing armor. $(k:use) to charge a $(thing)ground slam$(), knocking back everything around you (improved by $(thing)Sweeping$())."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:progression/malachite/unlock_glass_crest_crossbow",
+      "recipe": "spectrum:fusion_shrine/malachite/glass_crest_crossbow",
+      "text": "If an arrow is loaded, you can overcharge the shot to deal additional damage using $(k:use)."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:progression/malachite/unlock_ferocious_glass_crest_bident",
+      "recipe": "spectrum:fusion_shrine/malachite/ferocious_glass_crest_bident",
+      "text": "What's a bit of $(thing)Riptide$() when you can have your Water always with you?$(br)Allows flinging yourself in the air, damaging everything in your path. Even without rain and even in the driest of deserts - as long as you do not run out of ink."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/malachite/unlock_fractal_glass_crest_bident",
+      "recipe": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident",
+      "text": "The $(thing)Echo Shards$() make this Bident throw an echo of itself when thrown that shatters upon impact - your original will never leave your hand."
+    }
+  ]
+}

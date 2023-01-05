@@ -1,6 +1,6 @@
 {
   "name": "Malachite Tools",
-  "advancement": "spectrum:progression/unlock_malachite_tools",
+  "advancement": "spectrum:progression/malachite/unlock_malachite_tools",
   "icon": "spectrum:malachite_ultra_greatsword",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {
@@ -23,52 +23,52 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_workstaff",
-      "text": ""
+      "text": "The perfect $(l:equipment/multitool)Multitool$():$(br)$(k:sneak) + $(k:use) allows you to switch between $(thing)Silk Touch$() and $(thing)Fortune$(), mine large tunnels at once and allows you to $(thing)strip$(), $(thing)till$() and $(thing)flatten$()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword",
-      "text": ""
-    },
-    {
-      "type": "spectrum:fusion_shrine_crafting",
-      "recipe": "spectrum:fusion_shrine/malachite/malachite_crossbow",
-      "text": ""
+      "text": "It's sheer size allows you to hit foes at a larger distance.$(br)Would it not be for the $(resources/paltaeria)Paltaeria$()you worked in, you probably wouldn't even be able to lift it."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_bident",
-      "text": ""
+      "text": "This upgraded $(thing)Trident$() is a powerhouse, returning to you almost instantly."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/malachite/malachite_crossbow",
+      "text": "Shoots projectiles at a higher Speed and precision than a mundane $(thing)Crossbow$(). Not only able to shoot flint arrows or fireworks, but also $(thing)Glass Arrows$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/malachite_glass_arrow",
-      "text": "When shot, these special arrows transform into pure energy, allowing them to pierce translucent blocks, like glass."
+      "text": "When shot, these special arrows transform into pure energy, dealing increased damage, allowing them to pierce translucent blocks and do not get slowed down by fluids."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/topaz_glass_arrow",
-      "text": ""
+      "text": "Pulls the target in your direction, so you are ready to deal a deadly melee hit."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/amethyst_glass_arrow",
-      "text": ""
+      "text": "Freezes the target, slowing them down. Also deals freezing damage over time."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/citrine_glass_arrow",
-      "text": ""
+      "text": "Hits your foe with enormous force, knocking them far away."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/onyx_glass_arrow",
-      "text": ""
+      "text": "Deals damage regardless of your targets invisibility frames and resets them. Deals additional damage to armor and shields."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/moonstone_glass_arrow",
-      "text": ""
+      "text": "Explodes as an orb of pure energy, dealing damage to everything close to the detonation."
     }
   ]
 }

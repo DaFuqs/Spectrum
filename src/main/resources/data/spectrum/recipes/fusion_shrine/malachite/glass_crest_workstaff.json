@@ -12,10 +12,6 @@
       "item": "spectrum:moonstone_core"
     },
     {
-      "item": "spectrum:white_pigment",
-      "count": 16
-    },
-    {
       "item": "minecraft:enchanted_book",
       "recipeViewNbt": "{StoredEnchantments: [{id: \"spectrum:resonance\", lvl:1s}]}",
       "matchbook": {
@@ -30,6 +26,10 @@
           }
         ]
       }
+    },
+    {
+      "item": "spectrum:white_pigment",
+      "count": 16
     }
   ],
   "result": {

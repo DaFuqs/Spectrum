@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_malachite_tools": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:progression/malachite/unlock_glass_crest_tools"
+      }
+    },
+    "collected_nether_star": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_nether_star"
+      }
+    },
+    "collected_bismuth_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_bismuth_crystal"
+      }
+    }
+  }
+}

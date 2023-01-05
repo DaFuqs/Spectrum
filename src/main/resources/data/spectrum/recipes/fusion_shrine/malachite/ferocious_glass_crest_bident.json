@@ -12,7 +12,7 @@
       "item": "spectrum:moonstone_core"
     },
     {
-      "item": "spectrum:storm_stone",
+      "item": "spectrum:mermaids_gem",
       "count": 4
     },
     {
@@ -24,7 +24,7 @@
     "item": "spectrum:ferocious_glass_crest_bident",
     "nbt": "{Enchantments: [{id: \"minecraft:impaling\", lvl: 6s}]}"
   },
-  "required_advancement": "spectrum:progression/malachite/unlock_glass_crest_tools",
+  "required_advancement": "spectrum:progression/malachite/unlock_ferocious_glass_crest_bident",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

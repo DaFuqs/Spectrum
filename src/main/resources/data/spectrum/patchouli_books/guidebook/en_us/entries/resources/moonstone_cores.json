@@ -1,0 +1,24 @@
+{
+  "name": "Moonstone Cores",
+  "advancement": "spectrum:lategame/collect_moonstone_core",
+  "icon": "spectrum:moonstone_core",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:moonstone_core": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spectrum:textures/gui/guidebook/moonstone_core.png"
+      ],
+      "text": "A relic of times long gone."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Moonstone Cores",
+      "item": "spectrum:moonstone_core",
+      "text": "This powerhouse of an item is able to funnel huge amounts of $(c_white)White Ink$() with ease. Can be used to boost the capabilities of equipment and devices."
+    }
+  ]
+}

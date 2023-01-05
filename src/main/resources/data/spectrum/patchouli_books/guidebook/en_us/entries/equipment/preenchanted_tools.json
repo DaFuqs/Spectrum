@@ -2,7 +2,7 @@
   "name": "Preenchanted Tools",
   "advancement": "spectrum:progression/tools/unlock_any_preenchanted_tool",
   "icon": "spectrum:lucky_pickaxe",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {
     "spectrum:tender_pickaxe": 0,
     "spectrum:lucky_pickaxe": 0,
@@ -41,7 +41,7 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:progression/tools/unlock_oblivion_pickaxe",
       "recipe": "spectrum:pedestal/tier2/oblivion_pickaxe",
-      "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all mined blocks $(l:enchanting/curse_of_the_void)are destroyed$()."
+      "text": "As an outlier in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all mined blocks $(l:enchanting/curse_of_the_void)are destroyed$()."
     },
     {
       "type": "patchouli:text",

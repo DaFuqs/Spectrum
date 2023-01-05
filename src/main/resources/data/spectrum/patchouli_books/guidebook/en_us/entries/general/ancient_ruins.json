@@ -40,7 +40,7 @@
         "spectrum:textures/gui/guidebook/ancient_ruins.png"
       ],
       "border": true,
-      "text": "A strong, magical forcefield. Wearing $(l:magical_items/azure_dike_equipment)Azure Dike equipment$(/l) allowed you to enter."
+      "text": "A strong, magical forcefield. Wearing $(l:equipment/azure_dike_equipment)Azure Dike equipment$(/l) allowed you to enter."
     },
     {
       "type": "patchouli:image",

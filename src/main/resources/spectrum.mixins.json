@@ -84,7 +84,6 @@
     "compat.healthoverlay.absent.InGameHudMixin",
     "compat.healthoverlay.present.HeartMixin",
     "compat.healthoverlay.present.InGameHudMixin",
-    "compat.limlib.absent.ClientWorldReverbMixin"
   ],
   "injectors": {
     "defaultRequire": 1

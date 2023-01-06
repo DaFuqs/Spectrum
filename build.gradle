@@ -55,7 +55,7 @@ repositories {
 
 dependencies {
 	// jetbrains annotations
-	implementation 'org.jetbrains:annotations:23.0.0'
+	implementation 'org.jetbrains:annotations:23.1.0'
 
 	// fabric & api
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -67,13 +67,18 @@ dependencies {
 	modImplementation "com.github.DaFuqs:Revelationary:${project.revelationary_version}"
 	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
+	modImplementation include("de.dafuqs:DimensionalReverb:${project.dimensional_reverb_version}")
 
-	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}"){
+	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
+	// we need a bit of concern
+
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
 
-	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
+	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
 	modImplementation "io.wispforest:owo-lib:${project.owo_version}"
 
 	// https://github.com/shedaniel/RoughlyEnoughItems
@@ -91,9 +96,7 @@ dependencies {
 	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-level:${project.cca_version}")
 
 	modImplementation include("com.github.emilyploszaj:step-height-entity-attribute:${project.step_height_attribute_version}")
-
 	modImplementation include("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
-	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
 	implementation include("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
 	annotationProcessor("com.github.LlamaLad7:MixinExtras:${project.mixin_extras_version}")
@@ -101,8 +104,6 @@ dependencies {
 	// https://github.com/Terrails/HealthOverlay
 	// Thanks to yurisuika's Raised for the head-up (https://github.com/yurisuika/Raised/blob/Fabric-1.19/build.gradle)
 	modCompileOnly ("curse.maven:health-overlay-fabric-313219:${project.health_overlay_version}") {transitive = false}
-
-	//modImplementation("com.github.LudoCrypt:Liminal-Library:${project.liminal_lib_version}")
 
 	// Soft testing-only dependencies:
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/

@@ -1,38 +1,33 @@
 package de.dafuqs.spectrum;
 
-import de.dafuqs.revelationary.api.advancements.ClientAdvancementPacketCallback;
-import de.dafuqs.revelationary.api.revelations.RevealingCallback;
-import de.dafuqs.spectrum.compat.patchouli.PatchouliFlags;
-import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
-import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
-import de.dafuqs.spectrum.helpers.TooltipHelper;
-import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerIDs;
-import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
-import de.dafuqs.spectrum.particle.SpectrumParticleFactories;
-import de.dafuqs.spectrum.progression.UnlockToastManager;
-import de.dafuqs.spectrum.progression.toast.RevelationToast;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.compat.patchouli.*;
+import de.dafuqs.spectrum.compat.reverb.*;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.registries.client.*;
-import de.dafuqs.spectrum.render.HudRenderers;
-import de.dafuqs.spectrum.render.SkyLerper;
-import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.block.Block;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import de.dafuqs.spectrum.render.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
+import net.fabricmc.fabric.api.client.item.v1.*;
+import net.fabricmc.loader.api.*;
+import net.minecraft.block.*;
+import net.minecraft.client.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
-import java.util.Set;
+import java.util.*;
 
-import static de.dafuqs.spectrum.SpectrumCommon.logInfo;
+import static de.dafuqs.spectrum.SpectrumCommon.*;
 
 public class SpectrumClient implements ClientModInitializer, RevealingCallback, ClientAdvancementPacketCallback {
 	
@@ -70,22 +65,24 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
 		logInfo("Registering Particle Factories...");
 		SpectrumParticleFactories.register();
-		
+
 		logInfo("Registering Overlays...");
 		HudRenderers.register();
-		
+
 		logInfo("Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();
-		
+
 		logInfo("Registering custom Patchouli Pages & Flags...");
 		PatchouliPages.register();
 		PatchouliFlags.register();
-		
+
+		DimensionReverb.setup();
+
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
 			SpectrumColorProviders.registerClient();
 		});
-		
+
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
 				if (Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {

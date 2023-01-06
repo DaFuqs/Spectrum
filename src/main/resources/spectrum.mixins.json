@@ -59,6 +59,7 @@
     "accessors.SlimeEntityAccessor"
   ],
   "client": [
+    "accessors.DimensionEffectsAccessor",
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",
     "client.BipedEntityModelMixin",
@@ -69,6 +70,7 @@
     "client.DeathScreenMixin",
     "client.DimensionTypeMixin",
     "client.ElytraFeatureRendererMixin",
+    "client.GameRendererMixin",
     "client.HeadFeatureRendererMixin",
     "client.ItemFrameEntityRendererMixin",
     "client.ItemRendererMixin",
@@ -83,7 +85,7 @@
     "client.accessors.RenderLayerAccessor",
     "compat.healthoverlay.absent.InGameHudMixin",
     "compat.healthoverlay.present.HeartMixin",
-    "compat.healthoverlay.present.InGameHudMixin",
+    "compat.healthoverlay.present.InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

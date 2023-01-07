@@ -46,7 +46,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	public void tick() {
 		super.tick();
 		if (this.world.isClient) {
-			if (!this.onGround || world.getTime() % 2 == 0) {
+			if (!this.onGround || world.getTime() % 8 == 0) {
 				spawnParticles(1);
 			}
 		}

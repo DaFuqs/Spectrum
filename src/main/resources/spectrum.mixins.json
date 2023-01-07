@@ -56,7 +56,8 @@
     "accessors.RecipeManagerAccessor",
     "accessors.ShapedRecipeAccessor",
     "accessors.ShulkerEntityAccessor",
-    "accessors.SlimeEntityAccessor"
+    "accessors.SlimeEntityAccessor",
+    "accessors.TridentEntityAccessor"
   ],
   "client": [
     "accessors.DimensionEffectsAccessor",

@@ -1,15 +1,11 @@
 package de.dafuqs.spectrum.entity;
 
 import de.dafuqs.spectrum.entity.render.*;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.id.incubus_core.blocklikeentities.api.client.BlockLikeEntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
-import net.minecraft.client.render.entity.ItemEntityRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.id.incubus_core.blocklikeentities.api.client.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.entity.*;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumEntityRenderers {
@@ -27,7 +23,8 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.FIREPROOF_ITEM, ItemEntityRenderer::new);
 		register(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntityRenderer::new);
 		register(SpectrumEntityTypes.GLASS_ARROW, GlassArrowEntityRenderer::new);
-        register(SpectrumEntityTypes.MINING_PROJECTILE, MagicProjectileEntityRenderer::new);
+		register(SpectrumEntityTypes.MINING_PROJECTILE, MagicProjectileEntityRenderer::new);
+		register(SpectrumEntityTypes.BIDENT, BidentEntityRenderer::new);
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {

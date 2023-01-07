@@ -1,28 +1,22 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.entity.SpectrumTrackedDataHandlerRegistry;
-import de.dafuqs.spectrum.items.tools.GlassArrowItem;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.spells.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.data.*;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.particle.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class GlassArrowEntity extends PersistentProjectileEntity {
 	
@@ -124,7 +118,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 				}
 			}
 			case MOONSTONE -> {
-				MoonstoneBlast.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
+				MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
 			}
 		}
 
@@ -142,7 +136,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
 		if(getVariant() == GlassArrowItem.Variant.MOONSTONE) {
-			MoonstoneBlast.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
+			MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
 		}
 	}
 	

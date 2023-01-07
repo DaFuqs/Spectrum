@@ -1,35 +1,27 @@
-package de.dafuqs.spectrum.entity.entity;
+package de.dafuqs.spectrum.spells;
 
-import com.google.common.collect.Maps;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import net.minecraft.enchantment.ProtectionEnchantment;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.TntEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.HitResult.Type;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.RaycastContext;
-import net.minecraft.world.RaycastContext.FluidHandling;
-import net.minecraft.world.RaycastContext.ShapeType;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.hit.HitResult.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.RaycastContext.*;
+import net.minecraft.world.event.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class MoonstoneBlast {
-    
+public class MoonstoneStrike {
+
     private final World world;
     private final double x;
     private final double y;
@@ -40,11 +32,11 @@ public class MoonstoneBlast {
     private final DamageSource damageSource;
     protected final Map<PlayerEntity, Vec3d> affectedPlayers;
 
-    public MoonstoneBlast(World world, @Nullable Entity entity, double x, double y, double z, float power) {
+    public MoonstoneStrike(World world, @Nullable Entity entity, double x, double y, double z, float power) {
         this(world, entity, null, x, y, z, power);
     }
 
-    public MoonstoneBlast(World world, @Nullable Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
+    public MoonstoneStrike(World world, @Nullable Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
         this.affectedPlayers = Maps.newHashMap();
         this.world = world;
         this.entity = entity;
@@ -54,20 +46,20 @@ public class MoonstoneBlast {
         this.z = z;
         this.damageSource = damageSource == null ? SpectrumDamageSources.moonstoneBlast(this) : damageSource;
     }
-    
-    public static MoonstoneBlast create(World world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
-        MoonstoneBlast moonstoneBlast = new MoonstoneBlast(world, entity, damageSource, x, y, z, power);
-    
-        if(world.isClient) {
+
+    public static MoonstoneStrike create(World world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
+        MoonstoneStrike moonstoneStrike = new MoonstoneStrike(world, entity, damageSource, x, y, z, power);
+
+        if (world.isClient) {
             // TODO: custom sounds and particles
             world.playSound(x, y, z, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
-            world.addParticle(ParticleTypes.EXPLOSION_EMITTER, x, y, z, 1.0, 0.0, 0.0);
+            world.addParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, x, y, z, 1.0, 0.0, 0.0);
         } else {
-            moonstoneBlast.damageEntities();
-            SpectrumS2CPacketSender.sendMoonstoneBlast((ServerWorld) world, moonstoneBlast);
+            moonstoneStrike.damageEntities();
+            SpectrumS2CPacketSender.sendMoonstoneBlast((ServerWorld) world, moonstoneStrike);
         }
-        
-        return moonstoneBlast;
+
+        return moonstoneStrike;
     }
     
     public double getX() {

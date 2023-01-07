@@ -1,17 +1,15 @@
 package de.dafuqs.spectrum.particle;
 
-import com.mojang.serialization.Codec;
-import de.dafuqs.spectrum.SpectrumCommon;
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.particle.effect.*;
-import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.NotNull;
+import net.fabricmc.fabric.api.particle.v1.*;
+import net.minecraft.particle.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
+import org.jetbrains.annotations.*;
 
-import java.util.function.Function;
+import java.util.function.*;
 
 public class SpectrumParticleTypes {
 	
@@ -38,12 +36,13 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType DECAY_PLACE;
 	public static DefaultParticleType JADE_VINES;
 	public static DefaultParticleType JADE_VINES_BLOOM;
-	
+	public static DefaultParticleType MOONSTONE_STRIKE;
+
 	public static DefaultParticleType MUD_SPLASH;
 	public static DefaultParticleType LIQUID_CRYSTAL_SPLASH;
 	public static DefaultParticleType MIDNIGHT_SOLUTION_SPLASH;
-	
-	
+
+
 	public static DefaultParticleType LANDING_MUD;
 	public static DefaultParticleType LANDING_LIQUID_CRYSTAL;
 	public static DefaultParticleType LANDING_MIDNIGHT_SOLUTION;
@@ -200,15 +199,16 @@ public class SpectrumParticleTypes {
 		SHOOTING_STAR = register("shooting_star", false);
 		JADE_VINES = register("jade_vines", false);
 		JADE_VINES_BLOOM = register("jade_vines_bloom", false);
-		
+		MOONSTONE_STRIKE = register("moonstone_strike", false);
+
 		MUD_SPLASH = register("mud_splash", false);
 		LIQUID_CRYSTAL_SPLASH = register("liquid_crystal_splash", false);
 		MIDNIGHT_SOLUTION_SPLASH = register("midnight_solution_splash", false);
-		
+
 		LANDING_MUD = register("landing_mud", false);
 		LANDING_LIQUID_CRYSTAL = register("landing_liquid_crystal", false);
 		LANDING_MIDNIGHT_SOLUTION = register("landing_midnight_solution", false);
-		
+
 		FALLING_MUD = register("falling_mud", false);
 		FALLING_LIQUID_CRYSTAL = register("falling_liquid_crystal", false);
 		FALLING_MIDNIGHT_SOLUTION = register("falling_midnight_solution", false);

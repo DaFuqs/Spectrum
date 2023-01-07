@@ -1,42 +1,30 @@
 package de.dafuqs.spectrum.networking;
 
-import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
-import de.dafuqs.spectrum.energy.InkStorage;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.entity.entity.MoonstoneBlast;
-import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
-import de.dafuqs.spectrum.particle.ParticlePattern;
-import de.dafuqs.spectrum.particle.effect.ColoredTransmission;
-import de.dafuqs.spectrum.particle.effect.SimpleTransmission;
-import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
-import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.blocks.memory.*;
+import de.dafuqs.spectrum.blocks.pedestal.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.registries.color.*;
+import de.dafuqs.spectrum.spells.*;
+import net.fabricmc.fabric.api.networking.v1.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class SpectrumS2CPacketSender {
 
@@ -375,22 +363,22 @@ public class SpectrumS2CPacketSender {
 		buf.writeInt(player.getId());
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, buf);
 	}
-	
-	public static void sendMoonstoneBlast(ServerWorld serverWorld, MoonstoneBlast moonstoneBlast) {
-		
+
+	public static void sendMoonstoneBlast(ServerWorld serverWorld, MoonstoneStrike moonstoneStrike) {
+
 		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, new BlockPos(moonstoneBlast.getX(), moonstoneBlast.getY(), moonstoneBlast.getZ()))) {
-			Vec3d playerVelocity = moonstoneBlast.getAffectedPlayers().getOrDefault(player, Vec3d.ZERO);
-			
+		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, new BlockPos(moonstoneStrike.getX(), moonstoneStrike.getY(), moonstoneStrike.getZ()))) {
+			Vec3d playerVelocity = moonstoneStrike.getAffectedPlayers().getOrDefault(player, Vec3d.ZERO);
+
 			PacketByteBuf buf = PacketByteBufs.create();
-			buf.writeDouble(moonstoneBlast.getX());
-			buf.writeDouble(moonstoneBlast.getY());
-			buf.writeDouble(moonstoneBlast.getZ());
-			buf.writeFloat(moonstoneBlast.getPower());
+			buf.writeDouble(moonstoneStrike.getX());
+			buf.writeDouble(moonstoneStrike.getY());
+			buf.writeDouble(moonstoneStrike.getZ());
+			buf.writeFloat(moonstoneStrike.getPower());
 			buf.writeDouble(playerVelocity.x);
 			buf.writeDouble(playerVelocity.y);
 			buf.writeDouble(playerVelocity.z);
-			
+
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.MOONSTONE_BLAST, buf);
 		}
 	}

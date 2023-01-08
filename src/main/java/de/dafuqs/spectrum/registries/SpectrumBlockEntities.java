@@ -70,7 +70,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<BlackHoleChestBlockEntity> BLACK_HOLE_CHEST;
 	public static BlockEntityType<TreasureChestBlockEntity> TREASURE_CHEST;
 	public static BlockEntityType<AmphoraBlockEntity> AMPHORA;
-	
+
 	public static BlockEntityType<PlayerDetectorBlockEntity> PLAYER_DETECTOR;
 	public static BlockEntityType<RedstoneCalculatorBlockEntity> REDSTONE_CALCULATOR;
 	public static BlockEntityType<RedstoneWirelessBlockEntity> REDSTONE_WIRELESS;
@@ -81,19 +81,19 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<JadeVineRootsBlockEntity> JADE_VINE_ROOTS;
 	public static BlockEntityType<PresentBlockEntity> PRESENT;
 	public static BlockEntityType<TitrationBarrelBlockEntity> TITRATION_BARREL;
-	
-	public static BlockEntityType<PastelNetworkConnectionNode> CONNECTION_NODE;
-	public static BlockEntityType<PastelNetworkProviderNodeBlockEntity> PROVIDER_NODE;
-	public static BlockEntityType<PastelNetworkStorageNodeBlockEntity> STORAGE_NODE;
-	public static BlockEntityType<PastelNetworkPusherNodeBlockEntity> PUSHER_NODE;
-	public static BlockEntityType<PastelNetworkPullerNodeBlockEntity> PULLER_NODE;
-	
+
+	public static BlockEntityType<PastelConnectionNodeBlockEntity> CONNECTION_NODE;
+	public static BlockEntityType<PastelProviderNodeBlockEntity> PROVIDER_NODE;
+	public static BlockEntityType<PastelStorageNodeBlockEntity> STORAGE_NODE;
+	public static BlockEntityType<PastelPusherNodeBlockEntity> PUSHER_NODE;
+	public static BlockEntityType<PastelPullerNodeBlockEntity> PULLER_NODE;
+
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
-	
+
 	private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
 		return Registry.register(Registry.BLOCK_ENTITY_TYPE, SpectrumCommon.locate(id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
 	}
-	
+
 	public static void register() {
 		OMINOUS_SAPLING = register("ominous_sapling_block_entity", OminousSaplingBlockEntity::new, SpectrumBlocks.OMINOUS_SAPLING);
 		PEDESTAL = register("pedestal_block_entity", PedestalBlockEntity::new, SpectrumBlocks.PEDESTAL_BASIC_AMETHYST, SpectrumBlocks.PEDESTAL_BASIC_TOPAZ, SpectrumBlocks.PEDESTAL_BASIC_CITRINE, SpectrumBlocks.PEDESTAL_ALL_BASIC, SpectrumBlocks.PEDESTAL_ONYX, SpectrumBlocks.PEDESTAL_MOONSTONE);
@@ -129,22 +129,22 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
 		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
 		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
-		
+
 		// All the pastel network nodes
-		CONNECTION_NODE = register("connection_node", PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE);
-		PROVIDER_NODE = register("provider_node", PastelNetworkProviderNodeBlockEntity::new, SpectrumBlocks.PROVIDER_NODE);
-		STORAGE_NODE = register("storage_node", PastelNetworkStorageNodeBlockEntity::new, SpectrumBlocks.STORAGE_NODE);
-		PUSHER_NODE = register("pusher_node", PastelNetworkPusherNodeBlockEntity::new, SpectrumBlocks.PUSHER_NODE);
-		PULLER_NODE = register("puller_node", PastelNetworkPullerNodeBlockEntity::new, SpectrumBlocks.PULLER_NODE);
-		
+		CONNECTION_NODE = register("connection_node", PastelConnectionNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE);
+		PROVIDER_NODE = register("provider_node", PastelProviderNodeBlockEntity::new, SpectrumBlocks.PROVIDER_NODE);
+		STORAGE_NODE = register("storage_node", PastelStorageNodeBlockEntity::new, SpectrumBlocks.STORAGE_NODE);
+		PUSHER_NODE = register("pusher_node", PastelPusherNodeBlockEntity::new, SpectrumBlocks.PUSHER_NODE);
+		PULLER_NODE = register("puller_node", PastelPullerNodeBlockEntity::new, SpectrumBlocks.PULLER_NODE);
+
 		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
-		
+
 		// All the upgrades
 		List<Block> upgradeBlocksList = UpgradeBlock.getUpgradeBlocks();
-        Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
+		Block[] upgradeBlocksArray = new Block[upgradeBlocksList.size()];
 		upgradeBlocksArray = upgradeBlocksList.toArray(upgradeBlocksArray);
 		UPGRADE_BLOCK = register("upgrade_block", UpgradeBlockEntity::new, upgradeBlocksArray);
-		
+
 		// All the skulls
 		List<Block> skullBlocksList = new ArrayList<>();
 		skullBlocksList.addAll(SpectrumBlocks.getMobHeads());
@@ -173,13 +173,13 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
-		
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CONNECTION_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PROVIDER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.STORAGE_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PUSHER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PULLER_NODE, PastelNetworkNodeBlockEntityRenderer::new);
-		
+
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CONNECTION_NODE, PastelNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PROVIDER_NODE, PastelNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.STORAGE_NODE, PastelNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PUSHER_NODE, PastelNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PULLER_NODE, PastelNodeBlockEntityRenderer::new);
+
 		registerTextureAtlasCallback();
 	}
 	

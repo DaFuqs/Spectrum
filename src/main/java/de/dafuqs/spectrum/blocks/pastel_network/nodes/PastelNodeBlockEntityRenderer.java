@@ -7,8 +7,6 @@ import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.math.*;
 
-import java.util.*;
-
 @Environment(EnvType.CLIENT)
 public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> implements BlockEntityRenderer<T> {
 
@@ -18,32 +16,30 @@ public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> impl
 
     @Override
     public void render(PastelNodeBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
-        int startColor = 0xff00ffff;
-        int endColor = 0xffff00ff;
-
         PastelNetwork network = entity.getNetwork();
         if (network != null) {
 
-            for (List<PastelNodeBlockEntity> nodeList : network.getNodes().values()) {
-                for (PastelNodeBlockEntity node : nodeList) {
-                    boolean shouldRenderLine = entity.getPos().compareTo(node.getPos()) > 0;
-                    if (shouldRenderLine) {
-                        var offset = Vec3d.ofCenter(entity.getPos()).subtract(Vec3d.of(entity.getPos()));
+            for (PastelNodeBlockEntity node : network.getAllNodes()) {
 
-                        vertexConsumerProvider.getBuffer(RenderLayer.LINES)
-                                .vertex(matrixStack.peek().getPositionMatrix(), .5f, .5f, .5f)
-                                .color(startColor)
-                                .normal(1, 0, 1)
-                                .next();
+                boolean shouldRenderLine = entity.getPos().compareTo(node.getPos()) < 0;
+                if (shouldRenderLine) {
+                    Vec3d offset = Vec3d.ofCenter(node.getPos()).subtract(Vec3d.of(entity.getPos()));
+                    Vec3d normalized = offset.normalize();
 
-                        vertexConsumerProvider.getBuffer(RenderLayer.LINES)
-                                .vertex(matrixStack.peek().getPositionMatrix(), (float) offset.x, (float) offset.y, (float) offset.z)
-                                .color(endColor)
-                                .normal(1, 0, 1)
-                                .next();
-                    }
+                    vertexConsumerProvider.getBuffer(RenderLayer.getLines())
+                            .vertex(matrixStack.peek().getPositionMatrix(), 0.5F, 0.5F, 0.5F)
+                            .color(0xFFFFFF00)
+                            .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
+                            .next();
+                    vertexConsumerProvider.getBuffer(RenderLayer.getLines())
+                            .vertex(matrixStack.peek().getPositionMatrix(), (float) offset.x, (float) offset.y, (float) offset.z)
+                            .color(0xFFFFFF00)
+                            .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
+                            .next();
                 }
+
             }
+
         }
 
     }

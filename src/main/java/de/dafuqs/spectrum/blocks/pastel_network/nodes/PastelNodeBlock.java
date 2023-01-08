@@ -20,7 +20,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityProvider {
+public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider {
 
     protected static final Map<Direction, VoxelShape> SHAPES = new HashMap<>() {{
         put(Direction.UP, Block.createCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D));
@@ -36,7 +36,7 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
     protected static final Text RANGE_TOOLTIP_TEXT = Text.translatable("block.spectrum.pastel_network_nodes.tooltip.range").formatted(Formatting.GRAY);
     protected final PastelNodeType type;
 
-    public PastelNetworkNodeBlock(Settings settings, PastelNodeType type) {
+    public PastelNodeBlock(Settings settings, PastelNodeType type) {
         super(settings);
         this.type = type;
     }
@@ -102,16 +102,25 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
         if (world.isClient) {
+            if (blockEntity != null) {
+                PastelNetwork network = blockEntity.network;
+                player.sendMessage(Text.literal("####################"));
+                if (network == null) {
+                    player.sendMessage(Text.literal("C: No connected network :("));
+                } else {
+                    player.sendMessage(Text.literal("C: Network: " + network.getUUID() + " (" + network.getAllNodes().size() + ")"));
+                }
+            }
             return ActionResult.SUCCESS;
         } else {
-            BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof PastelNodeBlockEntity nodeBlockEntity) {
-                PastelNetwork network = nodeBlockEntity.network;
+            if (blockEntity != null) {
+                PastelNetwork network = blockEntity.network;
                 if (network == null) {
-                    player.sendMessage(Text.literal("No connected network :("));
+                    player.sendMessage(Text.literal("S: No connected network :("));
                 } else {
-                    player.sendMessage(Text.literal("Network: " + network.getName() + "; Count: " + network.getNodes().size()));
+                    player.sendMessage(Text.literal("S: Network: " + network.getUUID() + " (" + network.getAllNodes().size() + ")"));
                 }
             }
             return ActionResult.CONSUME;

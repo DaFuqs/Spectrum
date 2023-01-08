@@ -305,7 +305,7 @@ public class SpectrumBlocks {
 	public static final Block RUIN = new ForfeitureBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.RUIN_SAFE, 3, 5F);
 	public static final Block FORFEITURE = new ForfeitureBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.FORFEITURE_SAFE, 4, 7.5F);
 	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
-	
+
 	// FLUIDS
 	public static final Material LIQUID_CRYSTAL_MATERIAL = (new FabricMaterialBuilder(MapColor.LIGHT_GRAY)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().build();
 	public static final Material MUD_MATERIAL = (new FabricMaterialBuilder(MapColor.TERRACOTTA_BROWN)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().build();
@@ -323,11 +323,11 @@ public class SpectrumBlocks {
 	public static final Block MOONSTONE_SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(SpectrumBlocks.SMALL_MOONSTONE_BUD).hardness(0.5F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.MOONSTONE);
 
 	// PASTEL NETWORK
-	public static final Block CONNECTION_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), PastelNodeType.CONNECTION);
-	public static final Block PROVIDER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), PastelNodeType.PROVIDER);
-	public static final Block STORAGE_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), PastelNodeType.STORAGE);
-	public static final Block PUSHER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.CITRINE_CLUSTER), PastelNodeType.PUSHER);
-	public static final Block PULLER_NODE = new PastelNetworkNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER), PastelNodeType.PULLER);
+	public static final Block CONNECTION_NODE = new PastelNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), PastelNodeType.CONNECTION);
+	public static final Block PROVIDER_NODE = new PastelNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(BlockSoundGroup.AMETHYST_CLUSTER), PastelNodeType.PROVIDER);
+	public static final Block STORAGE_NODE = new PastelNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), PastelNodeType.STORAGE);
+	public static final Block PUSHER_NODE = new PastelNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.CITRINE_CLUSTER), PastelNodeType.PUSHER);
+	public static final Block PULLER_NODE = new PastelNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER), PastelNodeType.PULLER);
 	public static final Block INTERACTION_NODE = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(5.0F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER));
 
 	// ENERGY

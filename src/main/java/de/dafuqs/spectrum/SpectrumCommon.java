@@ -4,6 +4,7 @@ import com.google.common.collect.*;
 import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.config.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.deeper_down.*;
@@ -234,18 +235,23 @@ public class SpectrumCommon implements ModInitializer {
 				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
 			}
 		});
-		
+
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
 			SpectrumCommon.logInfo("Fetching server instance...");
 			SpectrumCommon.minecraftServer = server;
-			
+
 			logInfo("Registering MultiBlocks...");
 			SpectrumMultiblocks.register();
 		});
-		
-		ServerLifecycleEvents.SERVER_STOPPED.register(server -> SpectrumCommon.minecraftServer = null);
-		
+
+		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
+			PastelNetworkManager.clearServerInstance();
+			SpectrumCommon.minecraftServer = server;
+		});
+
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
+			PastelNetworkManager.getServerInstance().tickLogic();
+
 			if (world.getTime() % 100 == 0) {
 				long timeOfDay = world.getTimeOfDay() % 24000;
 				if (timeOfDay > 13000 && timeOfDay < 22000) { // 90 chances in a night

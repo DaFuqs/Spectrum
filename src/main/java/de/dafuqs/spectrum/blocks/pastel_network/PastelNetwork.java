@@ -35,24 +35,22 @@ public class PastelNetwork {
 			"Omeg"
 	);
 
-	/**
-	 * MOONSTONE
-	 * Giant node. Getting close to it lets the player get items from the network
-	 */
-	//protected HashSet<InteractionNode> interactionNodes = new ArrayList<>();
-
-	Map<PastelNodeType, List<PastelNodeBlockEntity>> nodes = new HashMap<>();
-
+	protected Map<PastelNodeType, List<PastelNodeBlockEntity>> nodes = new HashMap<>();
 	protected World world;
 	protected String name;
+	protected UUID uuid;
 
 	public PastelNetwork(World world) {
+		this(world, UUID.randomUUID());
+	}
+
+	public PastelNetwork(World world, UUID uuid) {
 		this.world = world;
+		this.uuid = uuid;
 		this.name = networkNames.get(world.random.nextInt(networkNames.size()));
 		for (PastelNodeType type : PastelNodeType.values()) {
 			this.nodes.put(type, new ArrayList<>());
 		}
-		PastelNetworkManager.add(this);
 	}
 
 	public void addNode(PastelNodeBlockEntity node) {
@@ -63,7 +61,7 @@ public class PastelNetwork {
 		this.nodes.get(node.getNodeType()).remove(node);
 
 		if (!hasNodes()) {
-			PastelNetworkManager.remove(this);
+			PastelNetworkManager.getInstance(this.world.isClient).remove(this);
 		}
 	}
 
@@ -74,6 +72,19 @@ public class PastelNetwork {
 			}
 		}
 		return false;
+	}
+
+
+	public Map<PastelNodeType, List<PastelNodeBlockEntity>> getGroupedNodes() {
+		return this.nodes;
+	}
+
+	public List<PastelNodeBlockEntity> getAllNodes() {
+		List<PastelNodeBlockEntity> nodes = new ArrayList<>();
+		for (Map.Entry<PastelNodeType, List<PastelNodeBlockEntity>> nodeList : this.nodes.entrySet()) {
+			nodes.addAll(this.nodes.get(nodeList.getKey()));
+		}
+		return nodes;
 	}
 
 	public boolean canConnect(PastelNodeBlockEntity newNode) {
@@ -91,26 +102,22 @@ public class PastelNetwork {
 		return false;
 	}
 
-	public void join(PastelNetwork network) {
-		for (Map.Entry<PastelNodeType, List<PastelNodeBlockEntity>> nodeList : network.getNodes().entrySet()) {
+	public void merge(PastelNetwork network) {
+		for (Map.Entry<PastelNodeType, List<PastelNodeBlockEntity>> nodeList : network.getGroupedNodes().entrySet()) {
 			List<PastelNodeBlockEntity> existingNodes = this.nodes.get(nodeList.getKey());
 			for (PastelNodeBlockEntity node : nodeList.getValue()) {
 				existingNodes.add(node);
 				node.setNetwork(this);
 			}
 		}
-		PastelNetworkManager.remove(network);
-	}
-
-	public Map<PastelNodeType, List<PastelNodeBlockEntity>> getNodes() {
-		return this.nodes;
+		PastelNetworkManager.getInstance(network.world.isClient).remove(network);
 	}
 
 	public void split() {
 		//TODO
 	}
 
-	public void tick() {
+	public void tickLogic() {
 
 	}
 
@@ -126,6 +133,10 @@ public class PastelNetwork {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public UUID getUUID() {
+		return this.uuid;
 	}
 
 }

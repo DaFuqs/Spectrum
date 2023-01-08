@@ -2,6 +2,7 @@ package de.dafuqs.spectrum;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.entity.*;
@@ -62,46 +63,49 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumEntityRenderers.registerClient();
 		
 		logInfo("Registering Server to Client Package Receivers...");
-		SpectrumS2CPacketReceiver.registerS2CReceivers();
-		logInfo("Registering Particle Factories...");
-		SpectrumParticleFactories.register();
+        SpectrumS2CPacketReceiver.registerS2CReceivers();
+        logInfo("Registering Particle Factories...");
+        SpectrumParticleFactories.register();
 
-		logInfo("Registering Overlays...");
-		HudRenderers.register();
+        logInfo("Registering Overlays...");
+        HudRenderers.register();
 
-		logInfo("Registering Item Tooltips...");
-		SpectrumTooltipComponents.registerTooltipComponents();
+        logInfo("Registering Item Tooltips...");
+        SpectrumTooltipComponents.registerTooltipComponents();
 
-		logInfo("Registering custom Patchouli Pages & Flags...");
-		PatchouliPages.register();
-		PatchouliFlags.register();
+        logInfo("Registering custom Patchouli Pages & Flags...");
+        PatchouliPages.register();
+        PatchouliFlags.register();
 
-		DimensionReverb.setup();
+        DimensionReverb.setup();
 
-		logInfo("Registering Event Listeners...");
-		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
-			SpectrumColorProviders.registerClient();
-		});
+        logInfo("Registering Event Listeners...");
+        ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
+            SpectrumColorProviders.registerClient();
+        });
+        ClientLifecycleEvents.CLIENT_STOPPING.register(minecraftClient -> {
+            PastelNetworkManager.clearClientInstance();
+        });
 
-		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
-			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
-				if (Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
-					TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
-				}
-			}
-			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
-				lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
-			}
-		});
-		
-		logInfo("Registering Armor Renderers...");
-		SpectrumArmorRenderers.register();
-		
-		RevealingCallback.register(this);
-		ClientAdvancementPacketCallback.registerCallback(this);
-		
-		logInfo("Client startup completed!");
-	}
+        ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+            if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
+                if (Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+                    TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
+                }
+            }
+            if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
+                lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
+            }
+        });
+
+        logInfo("Registering Armor Renderers...");
+        SpectrumArmorRenderers.register();
+
+        RevealingCallback.register(this);
+        ClientAdvancementPacketCallback.registerCallback(this);
+
+        logInfo("Client startup completed!");
+    }
 	
 	@Override
 	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {

@@ -7,13 +7,13 @@ import net.minecraft.util.math.*;
 
 public class PastelConnectionNodeBlockEntity extends PastelNodeBlockEntity {
 
-	public PastelConnectionNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.CONNECTION_NODE, blockPos, blockState);
-	}
+    public PastelConnectionNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(SpectrumBlockEntities.CONNECTION_NODE, blockPos, blockState);
+    }
 
-	@Override
-	public PastelNodeType getNodeType() {
-		return PastelNodeType.CONNECTION;
-	}
+    @Override
+    public PastelNodeType getNodeType() {
+        return PastelNodeType.CONNECTION;
+    }
 
 }

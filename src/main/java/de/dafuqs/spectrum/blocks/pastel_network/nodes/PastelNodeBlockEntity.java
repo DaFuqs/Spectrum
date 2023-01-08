@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.inventory.*;
@@ -106,6 +107,10 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
     // interaction methods
     public void updateInClientWorld() {
         ((ServerWorld) world).getChunkManager().markForUpdate(pos);
+    }
+
+    public Inventory getConnectedInventory() {
+        return connectedInventory;
     }
 
 }

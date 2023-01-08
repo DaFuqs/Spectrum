@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.inventory.*;
 import net.minecraft.util.math.*;
 
 public class PastelConnectionNodeBlockEntity extends PastelNodeBlockEntity {
@@ -14,6 +15,10 @@ public class PastelConnectionNodeBlockEntity extends PastelNodeBlockEntity {
     @Override
     public PastelNodeType getNodeType() {
         return PastelNodeType.CONNECTION;
+    }
+
+    public Inventory getConnectedInventory() {
+        return null;
     }
 
 }

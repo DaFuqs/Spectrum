@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network;
 
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.fabricmc.api.*;
 

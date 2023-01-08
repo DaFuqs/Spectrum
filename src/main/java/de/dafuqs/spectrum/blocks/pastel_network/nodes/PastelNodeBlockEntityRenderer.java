@@ -7,6 +7,8 @@ import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.math.*;
 
+import java.util.*;
+
 @Environment(EnvType.CLIENT)
 public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> implements BlockEntityRenderer<T> {
 
@@ -22,22 +24,24 @@ public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> impl
         PastelNetwork network = entity.getNetwork();
         if (network != null) {
 
-            for (PastelNodeBlockEntity node : network.getAllNodes()) {
-                boolean shouldRenderLine = entity.getPos().compareTo(node.getPos()) > 0;
-                if (shouldRenderLine) {
-                    var offset = Vec3d.ofCenter(entity.getPos()).subtract(Vec3d.of(entity.getPos()));
+            for (List<PastelNodeBlockEntity> nodeList : network.getNodes().values()) {
+                for (PastelNodeBlockEntity node : nodeList) {
+                    boolean shouldRenderLine = entity.getPos().compareTo(node.getPos()) > 0;
+                    if (shouldRenderLine) {
+                        var offset = Vec3d.ofCenter(entity.getPos()).subtract(Vec3d.of(entity.getPos()));
 
-                    vertexConsumerProvider.getBuffer(RenderLayer.LINES)
-                            .vertex(matrixStack.peek().getPositionMatrix(), .5f, .5f, .5f)
-                            .color(startColor)
-                            .normal(1, 0, 1)
-                            .next();
+                        vertexConsumerProvider.getBuffer(RenderLayer.LINES)
+                                .vertex(matrixStack.peek().getPositionMatrix(), .5f, .5f, .5f)
+                                .color(startColor)
+                                .normal(1, 0, 1)
+                                .next();
 
-                    vertexConsumerProvider.getBuffer(RenderLayer.LINES)
-                            .vertex(matrixStack.peek().getPositionMatrix(), (float) offset.x, (float) offset.y, (float) offset.z)
-                            .color(endColor)
-                            .normal(1, 0, 1)
-                            .next();
+                        vertexConsumerProvider.getBuffer(RenderLayer.LINES)
+                                .vertex(matrixStack.peek().getPositionMatrix(), (float) offset.x, (float) offset.y, (float) offset.z)
+                                .color(endColor)
+                                .normal(1, 0, 1)
+                                .next();
+                    }
                 }
             }
         }

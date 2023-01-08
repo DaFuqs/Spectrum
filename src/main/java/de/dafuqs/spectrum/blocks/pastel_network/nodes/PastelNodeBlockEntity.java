@@ -45,4 +45,10 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
         return this.network;
     }
 
+    public abstract PastelNodeType getNodeType();
+
+    public void setNetwork(PastelNetwork network) {
+        this.network = network;
+    }
+
 }

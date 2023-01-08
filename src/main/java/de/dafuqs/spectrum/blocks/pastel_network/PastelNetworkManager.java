@@ -14,7 +14,10 @@ public class PastelNetworkManager {
                 return network;
             }
         }
-        return new PastelNetwork(node.getWorld());
+
+        PastelNetwork network = new PastelNetwork(node.getWorld());
+        network.addNode(node);
+        return network;
     }
 
     public static void remove(PastelNetwork network) {

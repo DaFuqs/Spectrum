@@ -111,7 +111,7 @@ public class PastelNetworkNodeBlock extends FacingBlock implements BlockEntityPr
                 if (network == null) {
                     player.sendMessage(Text.literal("No connected network :("));
                 } else {
-                    player.sendMessage(Text.literal("Network: " + network.getName() + "; Count: " + network.getAllNodes().size()));
+                    player.sendMessage(Text.literal("Network: " + network.getName() + "; Count: " + network.getNodes().size()));
                 }
             }
             return ActionResult.CONSUME;

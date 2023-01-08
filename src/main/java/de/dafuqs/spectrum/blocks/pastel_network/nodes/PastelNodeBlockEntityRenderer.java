@@ -23,17 +23,19 @@ public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> impl
 
                 boolean shouldRenderLine = entity.getPos().compareTo(node.getPos()) < 0;
                 if (shouldRenderLine) {
+                    boolean canSee = entity.canSee(node);
+                    int color = canSee ? 0xFF00FF00 : 0xFFFF0000;
                     Vec3d offset = Vec3d.ofCenter(node.getPos()).subtract(Vec3d.of(entity.getPos()));
                     Vec3d normalized = offset.normalize();
 
                     vertexConsumerProvider.getBuffer(RenderLayer.getLines())
                             .vertex(matrixStack.peek().getPositionMatrix(), 0.5F, 0.5F, 0.5F)
-                            .color(0xFFFFFF00)
+                            .color(color)
                             .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
                             .next();
                     vertexConsumerProvider.getBuffer(RenderLayer.getLines())
                             .vertex(matrixStack.peek().getPositionMatrix(), (float) offset.x, (float) offset.y, (float) offset.z)
-                            .color(0xFFFFFF00)
+                            .color(color)
                             .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
                             .next();
                 }

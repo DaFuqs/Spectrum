@@ -113,4 +113,12 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
         return connectedInventory;
     }
 
+    public Direction getDirection() {
+        try {
+            return world.getBlockState(pos).get(PastelNodeBlock.FACING);
+        } catch (Exception e) {
+            return Direction.DOWN;
+        }
+    }
+
 }

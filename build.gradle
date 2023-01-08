@@ -53,6 +53,8 @@ dependencies {
 	// jetbrains annotations
 	implementation 'org.jetbrains:annotations:23.1.0'
 
+	implementation 'org.jgrapht:jgrapht-core:1.5.1'
+
 	// fabric & api
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"

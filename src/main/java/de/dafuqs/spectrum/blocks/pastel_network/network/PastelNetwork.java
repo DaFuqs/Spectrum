@@ -3,9 +3,9 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
 import net.minecraft.inventory.*;
-import net.minecraft.item.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
@@ -123,26 +123,61 @@ public class PastelNetwork {
         //TODO
     }
 
-    public void tickLogic() {
+    public boolean tickLogic() {
         for (PastelNodeBlockEntity pusher : this.nodes.get(PastelNodeType.PUSHER)) {
             Inventory pusherInventory = pusher.getConnectedInventory();
             if (pusherInventory != null) {
-                InventoryStorage pusherStorage = InventoryStorage.of(pusherInventory, null);
-                for (PastelNodeBlockEntity storage : this.nodes.get(PastelNodeType.STORAGE)) {
-                    Inventory storageInventory = storage.getConnectedInventory();
-                    if (storageInventory != null) {
-                        InventoryStorage storageStorage = InventoryStorage.of(storageInventory, null);
 
-                        ItemVariant stone = ItemVariant.of(Items.STONE);
-                        try (Transaction transaction = Transaction.openOuter()) {
-                            if (pusherStorage.extract(stone, 1, transaction) == 1 && storageStorage.insert(stone, 1, transaction) == 1) {
-                                transaction.commit();
-                            }
-                        }
-                    }
+                InventoryStorage pusherStorage = InventoryStorage.of(pusherInventory, null);
+                if (!pusherStorage.supportsExtraction()) {
+                    continue;
+                }
+
+                if (tryTransferToType(pusherStorage, PastelNodeType.PULLER)) {
+                    return true;
+                }
+
+            }
+        }
+        return false;
+    }
+
+    private boolean tryTransferToType(InventoryStorage storage, PastelNodeType type) {
+        for (PastelNodeBlockEntity destinationNode : this.nodes.get(type)) {
+            Inventory destinationInventory = destinationNode.getConnectedInventory();
+            if (destinationInventory != null) {
+                InventoryStorage destinationStorage = InventoryStorage.of(destinationInventory, null);
+                if (destinationStorage.supportsInsertion() && tryTransfer(storage, destinationStorage)) {
+                    return true;
                 }
             }
         }
+        return false;
+    }
+
+    private boolean tryTransfer(InventoryStorage pusherStorage, InventoryStorage storageStorage) {
+        ItemVariant variant = ItemVariant.blank();
+        for (SingleSlotStorage slot : pusherStorage.getSlots()) {
+            if (slot.isResourceBlank()) {
+                continue;
+            }
+            Object resource = slot.getResource();
+            if (resource instanceof ItemVariant itemVariant) {
+                variant = itemVariant;
+                break;
+            }
+        }
+        if (variant.isBlank()) {
+            return false;
+        }
+
+        try (Transaction transaction = Transaction.openOuter()) {
+            if (pusherStorage.simulateExtract(variant, 1, transaction) == 1 && storageStorage.simulateInsert(variant, 1, transaction) == 1) {
+                transaction.commit();
+                return true;
+            }
+        }
+        return false;
     }
 
     private final SchedulerMap<BlockPos> particleCooldowns = new SchedulerMap<>();

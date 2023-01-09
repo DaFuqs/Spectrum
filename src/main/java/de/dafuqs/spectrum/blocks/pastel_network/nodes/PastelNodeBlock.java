@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
-import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;
@@ -54,7 +52,7 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         Direction targetDirection = state.get(FACING).getOpposite();
-        return Block.sideCoversSmallSquare(world, pos.offset(targetDirection), targetDirection);
+        return world.getBlockState(pos.offset(targetDirection)).getMaterial().isSolid();
     }
 
     @Override
@@ -67,18 +65,6 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
-    }
-
-    @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        super.onPlaced(world, pos, state, placer, itemStack);
-        if (!world.isClient) {
-            PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
-            if (blockEntity != null) {
-                Direction attachedDirection = state.get(FACING).getOpposite();
-                blockEntity.onPlaced(world, pos, attachedDirection);
-            }
-        }
     }
 
     @Override

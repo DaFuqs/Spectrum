@@ -2,11 +2,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
-import net.fabricmc.fabric.api.transfer.v1.item.*;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
-import net.fabricmc.fabric.api.transfer.v1.transaction.*;
-import net.minecraft.inventory.*;
-import net.minecraft.util.math.*;
+import de.dafuqs.spectrum.blocks.pastel_network.transfer.*;
 import net.minecraft.world.*;
 
 import java.util.*;
@@ -44,6 +40,7 @@ public class PastelNetwork {
     protected World world;
     protected String name;
     protected UUID uuid;
+    protected SchedulerMap<PastelTransfer> transfers = new SchedulerMap<>();
 
     public PastelNetwork(World world) {
         this(world, UUID.randomUUID());
@@ -66,7 +63,7 @@ public class PastelNetwork {
         this.nodes.get(node.getNodeType()).remove(node);
 
         if (!hasNodes()) {
-            PastelNetworkManager.getInstance(this.world.isClient).remove(this);
+            Pastel.getInstance(this.world.isClient).remove(this);
         }
     }
 
@@ -79,9 +76,8 @@ public class PastelNetwork {
         return false;
     }
 
-
-    public Map<PastelNodeType, List<PastelNodeBlockEntity>> getGroupedNodes() {
-        return this.nodes;
+    public List<PastelNodeBlockEntity> getNodes(PastelNodeType type) {
+        return this.nodes.get(type);
     }
 
     public List<PastelNodeBlockEntity> getAllNodes() {
@@ -109,85 +105,22 @@ public class PastelNetwork {
 
     // TODO: call
     public void merge(PastelNetwork network) {
-        for (Map.Entry<PastelNodeType, List<PastelNodeBlockEntity>> nodeList : network.getGroupedNodes().entrySet()) {
+        for (Map.Entry<PastelNodeType, List<PastelNodeBlockEntity>> nodeList : this.nodes.entrySet()) {
             List<PastelNodeBlockEntity> existingNodes = this.nodes.get(nodeList.getKey());
             for (PastelNodeBlockEntity node : nodeList.getValue()) {
                 existingNodes.add(node);
                 node.setNetwork(this);
             }
         }
-        PastelNetworkManager.getInstance(network.world.isClient).remove(network);
+        Pastel.getInstance(network.world.isClient).remove(network);
     }
 
     public void split() {
         //TODO
     }
 
-    public boolean tickLogic() {
-        for (PastelNodeBlockEntity pusher : this.nodes.get(PastelNodeType.PUSHER)) {
-            Inventory pusherInventory = pusher.getConnectedInventory();
-            if (pusherInventory != null) {
-
-                InventoryStorage pusherStorage = InventoryStorage.of(pusherInventory, null);
-                if (!pusherStorage.supportsExtraction()) {
-                    continue;
-                }
-
-                if (tryTransferToType(pusherStorage, PastelNodeType.PULLER)) {
-                    return true;
-                }
-
-            }
-        }
-        return false;
-    }
-
-    private boolean tryTransferToType(InventoryStorage storage, PastelNodeType type) {
-        for (PastelNodeBlockEntity destinationNode : this.nodes.get(type)) {
-            Inventory destinationInventory = destinationNode.getConnectedInventory();
-            if (destinationInventory != null) {
-                InventoryStorage destinationStorage = InventoryStorage.of(destinationInventory, null);
-                if (destinationStorage.supportsInsertion() && tryTransfer(storage, destinationStorage)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean tryTransfer(InventoryStorage pusherStorage, InventoryStorage storageStorage) {
-        ItemVariant variant = ItemVariant.blank();
-        for (SingleSlotStorage slot : pusherStorage.getSlots()) {
-            if (slot.isResourceBlank()) {
-                continue;
-            }
-            Object resource = slot.getResource();
-            if (resource instanceof ItemVariant itemVariant) {
-                variant = itemVariant;
-                break;
-            }
-        }
-        if (variant.isBlank()) {
-            return false;
-        }
-
-        try (Transaction transaction = Transaction.openOuter()) {
-            if (pusherStorage.simulateExtract(variant, 1, transaction) == 1 && storageStorage.simulateInsert(variant, 1, transaction) == 1) {
-                transaction.commit();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private final SchedulerMap<BlockPos> particleCooldowns = new SchedulerMap<>();
-
-    protected final boolean queueParticle(BlockPos blockPos) {
-        if (!particleCooldowns.containsKey(blockPos)) {
-            particleCooldowns.put(blockPos, 3);
-            return true;
-        }
-        return false;
+    public void tick() {
+        transfers.tick();
     }
 
     public String getName() {
@@ -196,6 +129,10 @@ public class PastelNetwork {
 
     public UUID getUUID() {
         return this.uuid;
+    }
+
+    public void addTransfer(PastelTransfer transfer, int travelTime) {
+        this.transfers.put(transfer, travelTime);
     }
 
 }

@@ -19,14 +19,6 @@ public final class TickLooper {
         return currentTick >= maxTick;
     }
 
-    public boolean checkCap() {
-        boolean cap = this.reachedCap();
-        if (cap) {
-            this.reset();
-        }
-        return cap;
-    }
-
     public void reset() {
         currentTick = 0;
     }

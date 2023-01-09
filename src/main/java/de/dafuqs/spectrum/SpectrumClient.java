@@ -84,7 +84,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
             SpectrumColorProviders.registerClient();
         });
         ClientLifecycleEvents.CLIENT_STOPPING.register(minecraftClient -> {
-            PastelNetworkManager.clearClientInstance();
+			Pastel.clearClientInstance();
         });
 
         ItemTooltipCallback.EVENT.register((stack, context, lines) -> {

@@ -245,12 +245,12 @@ public class SpectrumCommon implements ModInitializer {
 		});
 
 		ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
-			PastelNetworkManager.clearServerInstance();
+			Pastel.clearServerInstance();
 			SpectrumCommon.minecraftServer = server;
 		});
 
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
-			PastelNetworkManager.getServerInstance().tickLogic();
+			Pastel.getServerInstance().tick();
 
 			if (world.getTime() % 100 == 0) {
 				long timeOfDay = world.getTimeOfDay() % 24000;

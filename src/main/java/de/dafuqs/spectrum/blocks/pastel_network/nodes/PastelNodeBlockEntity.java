@@ -21,7 +21,6 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
     public static int RANGE = 16;
     protected PastelNetwork network;
     protected @Nullable UUID networkUUIDToMerge = null;
-    protected Inventory connectedInventory;
 
     public PastelNodeBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
         super(blockEntityType, blockPos, blockState);
@@ -31,15 +30,16 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
         return node.pos.isWithinDistance(this.pos, RANGE);
     }
 
-    public void updateConnectedInventory(World world, BlockPos blockPos, Direction attachedDirection) {
-        BlockEntity connectedBlockEntity = world.getBlockEntity(blockPos.offset(attachedDirection));
-        if (connectedBlockEntity instanceof Inventory inventory) {
-            this.connectedInventory = inventory;
+    public @Nullable Inventory getConnectedInventory() {
+        BlockState state = world.getBlockState(pos);
+        if (state.getBlock() instanceof PastelNodeBlock) {
+            Direction direction = state.get(PastelNodeBlock.FACING).getOpposite();
+            BlockEntity connectedBlockEntity = world.getBlockEntity(pos.offset(direction));
+            if (connectedBlockEntity instanceof Inventory inventory) {
+                return inventory;
+            }
         }
-    }
-
-    public void onPlaced(World world, BlockPos pos, Direction attachedDirection) {
-        updateConnectedInventory(world, pos, attachedDirection);
+        return null;
     }
 
     public void onBreak() {
@@ -63,9 +63,9 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
         super.setWorld(world);
         if (!world.isClient) {
             if (this.networkUUIDToMerge != null) {
-                this.network = PastelNetworkManager.getServerInstance().joinNetwork(this, this.networkUUIDToMerge);
+                this.network = Pastel.getServerInstance().joinNetwork(this, this.networkUUIDToMerge);
             } else if (this.network == null) {
-                this.network = PastelNetworkManager.getServerInstance().joinNetwork(this);
+                this.network = Pastel.getServerInstance().joinNetwork(this);
             }
         }
     }
@@ -78,7 +78,7 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
             if (this.world == null) {
                 this.networkUUIDToMerge = networkUUID;
             } else {
-                this.network = PastelNetworkManager.getInstance(world.isClient).joinNetwork(this, networkUUID);
+                this.network = Pastel.getInstance(world.isClient).joinNetwork(this, networkUUID);
             }
         }
     }
@@ -107,10 +107,6 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
     // interaction methods
     public void updateInClientWorld() {
         ((ServerWorld) world).getChunkManager().markForUpdate(pos);
-    }
-
-    public Inventory getConnectedInventory() {
-        return connectedInventory;
     }
 
     public Direction getDirection() {

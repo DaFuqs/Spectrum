@@ -121,23 +121,7 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        switch (this.type) {
-            case PULLER -> {
-                return new PastelPullerNodeBlockEntity(pos, state);
-            }
-            case PUSHER -> {
-                return new PastelPusherNodeBlockEntity(pos, state);
-            }
-            case STORAGE -> {
-                return new PastelStorageNodeBlockEntity(pos, state);
-            }
-            case PROVIDER -> {
-                return new PastelProviderNodeBlockEntity(pos, state);
-            }
-            default -> {
-                return new PastelConnectionNodeBlockEntity(pos, state);
-            }
-        }
+        return new PastelNodeBlockEntity(pos, state);
     }
 
 }

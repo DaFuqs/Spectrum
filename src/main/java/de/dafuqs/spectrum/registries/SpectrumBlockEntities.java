@@ -81,12 +81,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<JadeVineRootsBlockEntity> JADE_VINE_ROOTS;
 	public static BlockEntityType<PresentBlockEntity> PRESENT;
 	public static BlockEntityType<TitrationBarrelBlockEntity> TITRATION_BARREL;
-
-	public static BlockEntityType<PastelConnectionNodeBlockEntity> CONNECTION_NODE;
-	public static BlockEntityType<PastelProviderNodeBlockEntity> PROVIDER_NODE;
-	public static BlockEntityType<PastelStorageNodeBlockEntity> STORAGE_NODE;
-	public static BlockEntityType<PastelPusherNodeBlockEntity> PUSHER_NODE;
-	public static BlockEntityType<PastelPullerNodeBlockEntity> PULLER_NODE;
+	public static BlockEntityType<PastelNodeBlockEntity> PASTEL_NODE;
 
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
 
@@ -129,14 +124,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
 		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
 		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
-
-		// All the pastel network nodes
-		CONNECTION_NODE = register("connection_node", PastelConnectionNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE);
-		PROVIDER_NODE = register("provider_node", PastelProviderNodeBlockEntity::new, SpectrumBlocks.PROVIDER_NODE);
-		STORAGE_NODE = register("storage_node", PastelStorageNodeBlockEntity::new, SpectrumBlocks.STORAGE_NODE);
-		PUSHER_NODE = register("pusher_node", PastelPusherNodeBlockEntity::new, SpectrumBlocks.PUSHER_NODE);
-		PULLER_NODE = register("puller_node", PastelPullerNodeBlockEntity::new, SpectrumBlocks.PULLER_NODE);
-
+		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.PUSHER_NODE, SpectrumBlocks.PULLER_NODE);
 		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
 
 		// All the upgrades
@@ -173,12 +161,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
-
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CONNECTION_NODE, PastelNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PROVIDER_NODE, PastelNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.STORAGE_NODE, PastelNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PUSHER_NODE, PastelNodeBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PULLER_NODE, PastelNodeBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PASTEL_NODE, PastelNodeBlockEntityRenderer::new);
 
 		registerTextureAtlasCallback();
 	}

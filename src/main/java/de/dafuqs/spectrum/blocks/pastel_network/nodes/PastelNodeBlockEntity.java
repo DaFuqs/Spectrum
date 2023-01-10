@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.minecraft.block.*;
@@ -17,14 +18,14 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public abstract class PastelNodeBlockEntity extends BlockEntity {
+public class PastelNodeBlockEntity extends BlockEntity {
 
     public static int RANGE = 16;
     protected PastelNetwork network;
     protected @Nullable UUID networkUUIDToMerge = null;
 
-    public PastelNodeBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
-        super(blockEntityType, blockPos, blockState);
+    public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(SpectrumBlockEntities.PASTEL_NODE, blockPos, blockState);
     }
 
     public @Nullable Storage<ItemVariant> getConnectedStorage() {
@@ -99,7 +100,12 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
         return this.network;
     }
 
-    public abstract PastelNodeType getNodeType();
+    public PastelNodeType getNodeType() {
+        if (this.getCachedState().getBlock() instanceof PastelNodeBlock pastelNodeBlock) {
+            return pastelNodeBlock.type;
+        }
+        return PastelNodeType.CONNECTION;
+    }
 
     public void setNetwork(PastelNetwork network) {
         this.network = network;

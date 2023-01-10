@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.pastel_network;
 
 import java.util.*;
 
-public class SchedulerMap<K> {
+public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
 
     private final Map<K, Integer> map;
 
@@ -62,6 +62,11 @@ public class SchedulerMap<K> {
                 }
             }
         }
+    }
+
+    @Override
+    public Iterator<Map.Entry<K, Integer>> iterator() {
+        return map.entrySet().iterator();
     }
 
     public interface Callback {

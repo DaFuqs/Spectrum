@@ -2,9 +2,10 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import net.fabricmc.fabric.api.transfer.v1.item.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.inventory.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
@@ -26,36 +27,13 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
         super(blockEntityType, blockPos, blockState);
     }
 
-    public boolean canSee(PastelNodeBlockEntity node) {
-        return node.pos.isWithinDistance(this.pos, RANGE);
-    }
-
-    public @Nullable Inventory getConnectedInventory() {
+    public @Nullable Storage<ItemVariant> getConnectedStorage() {
         BlockState state = world.getBlockState(pos);
         if (state.getBlock() instanceof PastelNodeBlock) {
             Direction direction = state.get(PastelNodeBlock.FACING).getOpposite();
-            BlockEntity connectedBlockEntity = world.getBlockEntity(pos.offset(direction));
-            if (connectedBlockEntity instanceof Inventory inventory) {
-                return inventory;
-            }
+            return ItemStorage.SIDED.find(this.world, this.getPos().offset(direction), direction);
         }
         return null;
-    }
-
-    public void onBreak() {
-        if (this.network != null) {
-            this.network.removeNode(this);
-        }
-    }
-
-    public PastelNetwork getNetwork() {
-        return this.network;
-    }
-
-    public abstract PastelNodeType getNodeType();
-
-    public void setNetwork(PastelNetwork network) {
-        this.network = network;
     }
 
     @Override
@@ -64,8 +42,9 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
         if (!world.isClient) {
             if (this.networkUUIDToMerge != null) {
                 this.network = Pastel.getServerInstance().joinNetwork(this, this.networkUUIDToMerge);
+                this.networkUUIDToMerge = null;
             } else if (this.network == null) {
-                this.network = Pastel.getServerInstance().joinNetwork(this);
+                this.network = Pastel.getServerInstance().joinNetwork(this, null);
             }
         }
     }
@@ -104,17 +83,35 @@ public abstract class PastelNodeBlockEntity extends BlockEntity {
         return nbtCompound;
     }
 
+    @Override
+    public void markRemoved() {
+        super.markRemoved();
+        if (this.network != null) {
+            this.network.removeNode(this);
+        }
+    }
+
+    public boolean canConnect(PastelNodeBlockEntity node) {
+        return this.pos.isWithinDistance(node.pos, RANGE);
+    }
+
+    public PastelNetwork getNetwork() {
+        return this.network;
+    }
+
+    public abstract PastelNodeType getNodeType();
+
+    public void setNetwork(PastelNetwork network) {
+        this.network = network;
+        if (this.world != null && !this.world.isClient) {
+            updateInClientWorld();
+            this.markDirty();
+        }
+    }
+
     // interaction methods
     public void updateInClientWorld() {
         ((ServerWorld) world).getChunkManager().markForUpdate(pos);
-    }
-
-    public Direction getDirection() {
-        try {
-            return world.getBlockState(pos).get(PastelNodeBlock.FACING);
-        } catch (Exception e) {
-            return Direction.DOWN;
-        }
     }
 
 }

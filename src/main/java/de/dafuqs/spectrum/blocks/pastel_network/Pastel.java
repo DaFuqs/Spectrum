@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.pastel_network;
 
-import de.dafuqs.spectrum.blocks.pastel_network.transfer.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import net.fabricmc.api.*;
 
 public class Pastel {
@@ -12,7 +13,7 @@ public class Pastel {
     @Environment(EnvType.CLIENT)
     public static PastelNetworkManager getClientInstance() {
         if (clientManager == null) {
-            clientManager = new PastelNetworkManager();
+            clientManager = new ClientPastelNetworkManager();
         }
         return clientManager;
     }
@@ -20,6 +21,7 @@ public class Pastel {
     public static ServerPastelNetworkManager getServerInstance() {
         if (serverManager == null) {
             serverManager = new ServerPastelNetworkManager();
+            PastelPersistentState persistentState = PastelPersistentState.get(SpectrumCommon.minecraftServer.getOverworld());
         }
         return serverManager;
     }

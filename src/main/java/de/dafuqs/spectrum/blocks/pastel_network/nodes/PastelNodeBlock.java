@@ -68,15 +68,6 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
     }
 
     @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
-        if (blockEntity != null) {
-            blockEntity.onBreak();
-        }
-        super.onBreak(world, pos, state, player);
-    }
-
-    @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         super.appendTooltip(stack, world, tooltip, options);
         tooltip.add(this.type.getTooltip());
@@ -97,7 +88,7 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
                 if (network == null) {
                     player.sendMessage(Text.literal("C: No connected network :("));
                 } else {
-                    player.sendMessage(Text.literal("C: Network: " + network.getUUID() + " (" + network.getAllNodes().size() + ")"));
+                    player.sendMessage(Text.literal("C: " + network));
                 }
             }
             return ActionResult.SUCCESS;
@@ -107,7 +98,7 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
                 if (network == null) {
                     player.sendMessage(Text.literal("S: No connected network :("));
                 } else {
-                    player.sendMessage(Text.literal("S: Network: " + network.getUUID() + " (" + network.getAllNodes().size() + ")"));
+                    player.sendMessage(Text.literal("S: " + network));
                 }
             }
             return ActionResult.CONSUME;

@@ -1,9 +1,11 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.item.*;
+import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.minecraft.block.*;
-import net.minecraft.inventory.*;
 import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
 public class PastelConnectionNodeBlockEntity extends PastelNodeBlockEntity {
 
@@ -16,7 +18,7 @@ public class PastelConnectionNodeBlockEntity extends PastelNodeBlockEntity {
         return PastelNodeType.CONNECTION;
     }
 
-    public Inventory getConnectedInventory() {
+    public @Nullable Storage<ItemVariant> getConnectedStorage() {
         return null;
     }
 

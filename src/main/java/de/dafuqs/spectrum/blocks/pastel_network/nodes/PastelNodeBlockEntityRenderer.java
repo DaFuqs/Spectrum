@@ -6,6 +6,8 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.math.*;
+import org.jgrapht.*;
+import org.jgrapht.graph.*;
 
 @Environment(EnvType.CLIENT)
 public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> implements BlockEntityRenderer<T> {
@@ -18,32 +20,33 @@ public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> impl
     public void render(PastelNodeBlockEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
         PastelNetwork network = entity.getNetwork();
         if (network != null) {
-
-            for (PastelNodeBlockEntity node : network.getAllNodes()) {
-
-                boolean shouldRenderLine = entity.getPos().compareTo(node.getPos()) < 0;
-                if (shouldRenderLine) {
-                    boolean canSee = entity.canSee(node);
-                    int color = canSee ? 0xFF00FF00 : 0xFFFF0000;
-                    Vec3d offset = Vec3d.ofCenter(node.getPos()).subtract(Vec3d.of(entity.getPos()));
-                    Vec3d normalized = offset.normalize();
-
-                    vertexConsumerProvider.getBuffer(RenderLayer.getLines())
-                            .vertex(matrixStack.peek().getPositionMatrix(), 0.5F, 0.5F, 0.5F)
-                            .color(color)
-                            .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
-                            .next();
-                    vertexConsumerProvider.getBuffer(RenderLayer.getLines())
-                            .vertex(matrixStack.peek().getPositionMatrix(), (float) offset.x, (float) offset.y, (float) offset.z)
-                            .color(color)
-                            .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
-                            .next();
+            Graph<PastelNodeBlockEntity, DefaultEdge> graph = network.getGraph();
+            if (!graph.containsVertex(entity)) {
+                return;
+            }
+            for (DefaultEdge edge : graph.edgesOf(entity)) {
+                PastelNodeBlockEntity target = graph.getEdgeTarget(edge);
+                if (target == entity) {
+                    continue;
                 }
 
+                Vec3d offset = Vec3d.ofCenter(target.getPos()).subtract(Vec3d.of(entity.getPos()));
+                Vec3d normalized = offset.normalize();
+
+                int color = network.getColor();
+
+                vertexConsumerProvider.getBuffer(RenderLayer.getLines())
+                        .vertex(matrixStack.peek().getPositionMatrix(), 0.5F, 0.5F, 0.5F)
+                        .color(color)
+                        .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
+                        .next();
+                vertexConsumerProvider.getBuffer(RenderLayer.getLines())
+                        .vertex(matrixStack.peek().getPositionMatrix(), (float) offset.x, (float) offset.y, (float) offset.z)
+                        .color(color)
+                        .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
+                        .next();
             }
-
         }
-
     }
 
 }

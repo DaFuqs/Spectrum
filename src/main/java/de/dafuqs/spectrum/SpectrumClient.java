@@ -18,9 +18,11 @@ import de.dafuqs.spectrum.render.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
+import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
+import net.minecraft.client.network.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -83,8 +85,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
         ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
             SpectrumColorProviders.registerClient();
         });
-        ClientLifecycleEvents.CLIENT_STOPPING.register(minecraftClient -> {
-			Pastel.clearClientInstance();
+        ClientPlayConnectionEvents.DISCONNECT.register(new ClientPlayConnectionEvents.Disconnect() {
+            @Override
+            public void onPlayDisconnect(ClientPlayNetworkHandler handler, MinecraftClient client) {
+                Pastel.clearClientInstance();
+            }
         });
 
         ItemTooltipCallback.EVENT.register((stack, context, lines) -> {

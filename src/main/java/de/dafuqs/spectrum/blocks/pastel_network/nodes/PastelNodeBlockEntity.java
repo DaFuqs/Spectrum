@@ -102,7 +102,7 @@ public class PastelNodeBlockEntity extends BlockEntity {
 
     public PastelNodeType getNodeType() {
         if (this.getCachedState().getBlock() instanceof PastelNodeBlock pastelNodeBlock) {
-            return pastelNodeBlock.type;
+            return pastelNodeBlock.pastelNodeType;
         }
         return PastelNodeType.CONNECTION;
     }

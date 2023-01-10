@@ -182,4 +182,17 @@ public class PastelNetwork {
         return builder.toString();
     }
 
+    public String getNodeDebugText() {
+        return "Prov: " +
+                getNodes(PastelNodeType.PROVIDER).size() +
+                " - Send: " +
+                getNodes(PastelNodeType.SENDER).size() +
+                " - Gath: " +
+                getNodes(PastelNodeType.GATHER).size() +
+                " - Stor: " +
+                getNodes(PastelNodeType.STORAGE).size() +
+                " - Conn: " +
+                getNodes(PastelNodeType.CONNECTION).size();
+    }
+
 }

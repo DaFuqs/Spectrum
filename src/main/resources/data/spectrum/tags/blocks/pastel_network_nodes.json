@@ -3,8 +3,7 @@
     "spectrum:connection_node",
     "spectrum:provider_node",
     "spectrum:storage_node",
-    "spectrum:pusher_node",
-    "spectrum:puller_node",
-    "spectrum:interaction_node"
+    "spectrum:sender_node",
+    "spectrum:gather_node"
   ]
 }

@@ -3,7 +3,6 @@
     "spectrum:music_disc_dimension_theme",
     "spectrum:bottle_of_forfeiture",
     "spectrum:greater_potion_pendant",
-    "spectrum:resonant_pickaxe",
 
     "spectrum:upgrade_speed3",
     "spectrum:upgrade_efficiency2",
@@ -33,12 +32,6 @@
     "spectrum:lucid_black_catkin",
     "spectrum:lucid_white_catkin",
     "spectrum:sacred_soil",
-    "spectrum:connection_node",
-    "spectrum:provider_node",
-    "spectrum:storage_node",
-    "spectrum:pusher_node",
-    "spectrum:puller_node",
-    "spectrum:interaction_node",
     "spectrum:frigid_stardust"
   ]
 }

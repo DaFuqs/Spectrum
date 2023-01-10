@@ -32,21 +32,21 @@ public enum PastelNodeType {
      * CITRINE
      * Active Provider (pushes items into network)
      */
-    PUSHER("block.spectrum.pusher_node.tooltip"),
+    SENDER("block.spectrum.sender_node.tooltip"),
 
     /**
      * ONYX
      * Requester Nodes, requests on redstone (active>passive>storage)
      */
-    PULLER("block.spectrum.puller_node.tooltip");
+    GATHER("block.spectrum.gather_node.tooltip");
 
-    private final Text tooltip;
+    private final MutableText tooltip;
 
     PastelNodeType(String tooltip) {
         this.tooltip = Text.translatable(tooltip);
     }
 
-    public Text getTooltip() {
+    public MutableText getTooltip() {
         return this.tooltip;
     }
 

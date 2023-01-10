@@ -4,9 +4,9 @@
   "time": 80,
   "tier": "advanced",
   "magenta": 0,
-  "yellow": 0,
+  "yellow": 1,
   "cyan": 0,
-  "black": 1,
+  "black": 0,
   "white": 0,
   "experience": 1.0,
   "pattern": [
@@ -16,7 +16,7 @@
   ],
   "key": {
     "S": {
-      "item": "spectrum:onyx_shard"
+      "item": "spectrum:citrine_shard"
     },
     "X": {
       "item": "spectrum:polished_basalt"
@@ -29,7 +29,7 @@
     }
   },
   "result": {
-    "item": "spectrum:puller_node",
+    "item": "spectrum:sender_node",
     "count": 1
   },
   "required_advancement": "spectrum:progression/pastel_network/unlock_basic_nodes"

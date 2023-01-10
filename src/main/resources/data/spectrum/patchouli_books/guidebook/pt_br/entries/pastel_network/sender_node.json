@@ -12,8 +12,8 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/pastel_network/pusher_node",
-      "text": "The order, in which it pushes items to is as follows:$(br)1. $(l:pastel_network/puller_node)Puller Nodes$(/l)$(br)2. $(l:pastel_network/storage_node)Storage Nodes$(/l)"
+      "recipe": "spectrum:pedestal/tier3/pastel_network/sender_node",
+      "text": "The order, in which it pushes items to is as follows:$(br)1. $(l:pastel_network/gather_node)Puller Nodes$(/l)$(br)2. $(l:pastel_network/storage_node)Storage Nodes$(/l)"
     }
   ]
 }

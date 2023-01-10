@@ -115,10 +115,10 @@ public class ServerPastelNetwork extends PastelNetwork {
             }
             tickLooper.reset();
 
-            transferBetween(PastelNodeType.PUSHER, PastelNodeType.PULLER);
-            transferBetween(PastelNodeType.PROVIDER, PastelNodeType.PULLER);
-            transferBetween(PastelNodeType.STORAGE, PastelNodeType.PULLER);
-            transferBetween(PastelNodeType.PUSHER, PastelNodeType.STORAGE);
+            transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER);
+            transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER);
+            transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER);
+            transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE);
 
             return false;
         }

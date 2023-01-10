@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:pusher_node"
+          "name": "spectrum:sender_node"
         }
       ],
       "conditions": [

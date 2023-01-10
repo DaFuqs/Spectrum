@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
@@ -21,7 +22,8 @@ import java.util.*;
 
 public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider {
 
-    protected static final Map<Direction, VoxelShape> SHAPES = new HashMap<>() {{
+    public static final DirectionProperty FACING = Properties.FACING;
+    public static final Map<Direction, VoxelShape> SHAPES = new HashMap<>() {{
         put(Direction.UP, Block.createCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D));
         put(Direction.DOWN, Block.createCuboidShape(4.0D, 8.0D, 4.0D, 12.0D, 16.0D, 12.0D));
         put(Direction.NORTH, Block.createCuboidShape(4.0D, 4.0D, 8.0D, 12.0D, 12.0D, 16.0D));
@@ -30,14 +32,11 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
         put(Direction.WEST, Block.createCuboidShape(8.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D));
     }};
 
-    public static final DirectionProperty FACING = Properties.FACING;
+    protected final PastelNodeType pastelNodeType;
 
-    protected static final Text RANGE_TOOLTIP_TEXT = Text.translatable("block.spectrum.pastel_network_nodes.tooltip.range").formatted(Formatting.GRAY);
-    protected final PastelNodeType type;
-
-    public PastelNodeBlock(Settings settings, PastelNodeType type) {
+    public PastelNodeBlock(Settings settings, PastelNodeType pastelNodeType) {
         super(settings);
-        this.type = type;
+        this.pastelNodeType = pastelNodeType;
     }
 
     @Nullable
@@ -70,8 +69,9 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
         super.appendTooltip(stack, world, tooltip, options);
-        tooltip.add(this.type.getTooltip());
-        tooltip.add(RANGE_TOOLTIP_TEXT);
+        tooltip.add(this.pastelNodeType.getTooltip().formatted(Formatting.WHITE));
+        tooltip.add(Text.translatable("block.spectrum.pastel_network_nodes.tooltip.placing").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("block.spectrum.pastel_network_nodes.tooltip.range").formatted(Formatting.GRAY));
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
@@ -81,14 +81,23 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
+        if (player.getStackInHand(hand).isOf(SpectrumItems.PAINTBRUSH)) {
+            return sendDebugMessage(world, player, blockEntity);
+        }
+        return ActionResult.PASS;
+    }
+
+    @NotNull
+    private static ActionResult sendDebugMessage(World world, PlayerEntity player, PastelNodeBlockEntity blockEntity) {
         if (world.isClient) {
             if (blockEntity != null) {
                 PastelNetwork network = blockEntity.network;
-                player.sendMessage(Text.literal("####################"));
+                player.sendMessage(Text.translatable("block.spectrum.pastel_network_nodes.connection_debug"));
                 if (network == null) {
                     player.sendMessage(Text.literal("C: No connected network :("));
                 } else {
-                    player.sendMessage(Text.literal("C: " + network));
+                    player.sendMessage(Text.literal("C: " + network.getUUID().toString()));
+                    player.sendMessage(Text.literal("C: " + network.getNodeDebugText()));
                 }
             }
             return ActionResult.SUCCESS;
@@ -98,7 +107,8 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
                 if (network == null) {
                     player.sendMessage(Text.literal("S: No connected network :("));
                 } else {
-                    player.sendMessage(Text.literal("S: " + network));
+                    player.sendMessage(Text.literal("S: " + network.getUUID().toString()));
+                    player.sendMessage(Text.literal("S: " + network.getNodeDebugText()));
                 }
             }
             return ActionResult.CONSUME;

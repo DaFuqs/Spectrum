@@ -8,7 +8,7 @@
     {
       "type": "patchouli:text",
       "title": "Provider Node",
-      "text": "Passively offers all items in the connected inventory to it's connected $(l:pastel_network/pastel_network)Pastel Network$(/l). Items will not be pushed to other nodes, but can be requested, for example by $(l:pastel_network/puller_node)Puller Nodes$(/l)."
+      "text": "Passively offers all items in the connected inventory to it's connected $(l:pastel_network/pastel_network)Pastel Network$(/l). Items will not be pushed to other nodes, but can be requested, for example by $(l:pastel_network/gather_node)Puller Nodes$(/l)."
     },
     {
       "type": "spectrum:pedestal_crafting",

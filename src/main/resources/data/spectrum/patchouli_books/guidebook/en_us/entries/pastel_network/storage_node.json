@@ -8,7 +8,7 @@
     {
       "type": "patchouli:text",
       "title": "Storage Node",
-      "text": "The Storage Node, while nothing spectacular itself, will show their greatest use in combination with $(l:pastel_network/pusher_node)Pusher Nodes$(/l) (Will push items to it) and $(l:pastel_network/puller_node)Puller Nodes$(/l) (pull items from it."
+      "text": "The Storage Node, while nothing spectacular itself, will show their greatest use in combination with $(l:pastel_network/sender_node)Pusher Nodes$(/l) (Will push items to it) and $(l:pastel_network/gather_node)Puller Nodes$(/l) (pull items from it."
     },
     {
       "type": "spectrum:pedestal_crafting",

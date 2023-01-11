@@ -32,7 +32,7 @@
       "type": "patchouli:image",
       "title": "Individualize!",
       "images": [
-        "spectrum:textures/gui/manual/spectrum_complex_customisation.png"
+        "spectrum:textures/gui/guidebook/spectrum_complex_customisation.png"
       ],
       "text": "Mix them up to create your personal variation!"
     }

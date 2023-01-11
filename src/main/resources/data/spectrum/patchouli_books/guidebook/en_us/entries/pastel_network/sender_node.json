@@ -1,20 +1,19 @@
 {
-  "name": "Pusher Node",
-  "icon": "spectrum:provider_node",
-  "secret": true,
-  "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
+  "name": "Sender Node",
+  "icon": "spectrum:sender_node",
+  "advancement": "spectrum:progression/unlock_pastel_network",
   "category": "spectrum:pastel_network_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Pusher Node",
-      "text": "The pusher node actively tries to keep the connected inventory empty from items."
+      "title": "Sender Node",
+      "text": "The Sender Node actively tries to keep the connected inventory empty from items.$(br)The order, in which it pushes items to is as follows:$(br)1. $(l:pastel_network/gather_node)Gather Nodes$(/l)$(br)2. $(l:pastel_network/storage_node)Storage Nodes$(/l)"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/pastel_network/sender_node",
-      "text": "The order, in which it pushes items to is as follows:$(br)1. $(l:pastel_network/gather_node)Puller Nodes$(/l)$(br)2. $(l:pastel_network/storage_node)Storage Nodes$(/l)"
+      "text": ""
     }
   ]
 }

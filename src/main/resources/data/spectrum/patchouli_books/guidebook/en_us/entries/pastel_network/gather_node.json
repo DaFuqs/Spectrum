@@ -1,20 +1,18 @@
 {
-  "name": "Puller Node",
-  "icon": "spectrum:provider_node",
-  "secret": true,
-  "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
+  "name": "Gather Node",
+  "icon": "spectrum:gather_node",
+  "advancement": "spectrum:progression/unlock_pastel_network",
   "category": "spectrum:pastel_network_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Puller Node",
-      "text": "The Puller Node has the special feature of having an interface. There you are able to configure items that the Puller Node will actively request from other nodes to be placed in its connected inventory."
+      "text": "The Gather Node will actively request from other nodes in it's $(l:pastel_network/pastel_network)Pastel Network$(/l) and put them in it's connected inventory.$(br)Specify the items to collect in it's $(thing)filter$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/pastel_network/gather_node",
-      "text": "The order, in which it checks other nodes to request items from is as follows:$(br)1. $(l:pastel_network/sender_node)Pusher Nodes$(/l)$(br)2. $(l:pastel_network/provider_node)Provider Nodes$(/l)$(br)3. $(l:pastel_network/storage_node)Storage Nodes$(/l)"
+      "text": "Gathering Order:$(br)1. $(l:pastel_network/sender_node)Sender Nodes$(/l)$(br)2. $(l:pastel_network/provider_node)Provider Nodes$(/l)$(br)3. $(l:pastel_network/storage_node)Storage Nodes$(/l)"
     }
   ]
 }

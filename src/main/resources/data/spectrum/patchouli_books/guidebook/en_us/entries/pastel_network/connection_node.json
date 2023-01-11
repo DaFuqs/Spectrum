@@ -1,14 +1,12 @@
 {
   "name": "Connection Node",
   "icon": "spectrum:provider_node",
-  "secret": true,
-  "advancement": "spectrum:progression/pastel_network/__unlock_basic_nodes",
+  "advancement": "spectrum:progression/unlock_pastel_network",
   "category": "spectrum:pastel_network_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Connection Node",
-      "text": "As the most basic of Nodes the Connection Node does not have any use by itself.$(br)They are very small and solely act as a cheap and unobtrusive way to expand the range of your network."
+      "text": "As the most basic of Nodes the Connection Node does not have any use by itself.$(br2)They solely act as a cheap and unobtrusive way to expand the range of your network."
     },
     {
       "type": "spectrum:pedestal_crafting",

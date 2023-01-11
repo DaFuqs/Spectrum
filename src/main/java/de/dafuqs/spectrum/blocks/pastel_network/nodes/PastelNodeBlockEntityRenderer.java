@@ -48,9 +48,13 @@ public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> impl
                 VertexConsumer vertexConsumer = TEXTURE.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityTranslucent);
 
                 Matrix4f positionMatrix = matrixStack.peek().getPositionMatrix();
-                renderTranslucentLine(vertexConsumer, positionMatrix, color, offset, normalized); // TODO: this only renders black and not facing the player
-                renderDebugLine(vertexConsumerProvider, color, offset, normalized, positionMatrix);
 
+                // TODO: fix me please
+                // this should render TEXTURE between the two nodes, colored in "color"
+                // but currently it only draws a wack black something
+                //renderTranslucentLine(vertexConsumer, positionMatrix, color, offset, normalized);
+
+                renderDebugLine(vertexConsumerProvider, color, offset, normalized, positionMatrix);
             }
         }
     }

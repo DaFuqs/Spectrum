@@ -58,11 +58,13 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle {
         int light = this.getBrightness(tickDelta);
 
         matrixStack.translate(x, y, z);
+
         // TODO: rendering the ItemEntity 50 % translucent
         entityRenderer.render(this.itemEntity, this.itemEntity.getYaw(), tickDelta, matrixStack, immediate, light);
         immediate.draw();
 
-        // TODO: this does not render unless the above code is removed o.O
+        // TODO: fix me please
+        // this does not render unless the above code is removed o.O
         /*
         Quaternion quaternion = camera.getRotation();
         Vec3f[] vec3fs = new Vec3f[]{new Vec3f(-1.0F, -1.0F, 0.0F), new Vec3f(-1.0F, 1.0F, 0.0F), new Vec3f(1.0F, 1.0F, 0.0F), new Vec3f(1.0F, -1.0F, 0.0F)};

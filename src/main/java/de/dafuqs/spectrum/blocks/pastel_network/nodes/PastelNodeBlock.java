@@ -92,8 +92,14 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
         PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
         if (player.getStackInHand(hand).isOf(SpectrumItems.PAINTBRUSH)) {
             return sendDebugMessage(world, player, blockEntity);
+        } else {
+            if (world.isClient) {
+                return ActionResult.SUCCESS;
+            } else {
+                player.openHandledScreen(blockEntity);
+                return ActionResult.CONSUME;
+            }
         }
-        return ActionResult.PASS;
     }
 
     @NotNull

@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.nbt.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -20,7 +19,7 @@ public class PastelNetwork {
     protected @Nullable Graph<PastelNodeBlockEntity, DefaultEdge> graph;
     protected World world;
     protected UUID uuid;
-    protected SchedulerMap<PastelTransmission> transfers = new SchedulerMap<>();
+    protected SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
 
     public PastelNetwork(World world, @Nullable UUID uuid) {
         this.world = world;
@@ -91,11 +90,6 @@ public class PastelNetwork {
             // delete the now removed node from this networks graph
             this.graph.removeVertex(node);
         }
-
-        // network empty => delete
-        if (!hasNodes()) {
-            Pastel.getInstance(this.world.isClient).remove(this);
-        }
         return true;
     }
 
@@ -148,36 +142,20 @@ public class PastelNetwork {
     }
 
     public void tick() {
-        transfers.tick();
+        transmissions.tick();
     }
 
     public UUID getUUID() {
         return this.uuid;
     }
 
-    public void addTransmission(PastelTransmission transfer, int travelTime) {
-        transfer.setNetwork(this);
-        this.transfers.put(transfer, travelTime);
+    public void addTransmission(PastelTransmission transmission, int travelTime) {
+        transmission.setNetwork(this);
+        this.transmissions.put(transmission, travelTime);
     }
 
     public int getColor() {
         return Color.getHSBColor((float) this.uuid.hashCode() / Integer.MAX_VALUE, 0.7F, 0.9F).getRGB();
-    }
-
-    public NbtCompound toNbt() {
-        NbtCompound compound = new NbtCompound();
-        compound.putUuid("UUID", this.uuid);
-        compound.putString("World", this.world.getRegistryKey().getValue().toString());
-
-        NbtList list = new NbtList();
-        for (Map.Entry<PastelTransmission, Integer> transfer : this.transfers) {
-            NbtCompound transferCompound = new NbtCompound();
-            transferCompound.putInt("Delay", transfer.getValue());
-            transferCompound.put("Transfer", transfer.getKey().toNbt());
-        }
-        compound.put("Transfers", list);
-
-        return compound;
     }
 
     @Override

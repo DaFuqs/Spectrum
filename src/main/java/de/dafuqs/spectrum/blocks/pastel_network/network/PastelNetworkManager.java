@@ -6,31 +6,16 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public abstract class PastelNetworkManager {
+public interface PastelNetworkManager {
 
-    protected List<PastelNetwork> networks = new ArrayList<>();
+    PastelNetwork createNetwork(World world, UUID uuid);
 
-    public abstract PastelNetwork createNetwork(World world, UUID uuid);
+    PastelNetwork joinNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid);
 
-    public abstract PastelNetwork joinNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid);
+    void remove(PastelNetwork network);
 
-    public void remove(PastelNetwork network) {
-        this.networks.remove(network);
-    }
+    void tick();
 
-    public void tick() {
-        for (PastelNetwork network : networks) {
-            network.tick();
-        }
-    }
-
-    public @Nullable PastelNetwork getNetwork(UUID uuid) {
-        for (PastelNetwork network : networks) {
-            if (network.getUUID() == uuid) {
-                return network;
-            }
-        }
-        return null;
-    }
+    @Nullable PastelNetwork getNetwork(UUID uuid);
 
 }

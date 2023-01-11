@@ -20,8 +20,7 @@ public class Pastel {
 
     public static ServerPastelNetworkManager getServerInstance() {
         if (serverManager == null) {
-            serverManager = new ServerPastelNetworkManager();
-            PastelPersistentState persistentState = PastelPersistentState.get(SpectrumCommon.minecraftServer.getOverworld());
+            serverManager = ServerPastelNetworkManager.get(SpectrumCommon.minecraftServer.getOverworld());
         }
         return serverManager;
     }

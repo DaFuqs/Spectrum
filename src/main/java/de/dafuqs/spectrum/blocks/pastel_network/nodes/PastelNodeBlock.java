@@ -55,6 +55,15 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
     }
 
     @Override
+    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
+        super.onBroken(world, pos, state);
+        PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
+        if (blockEntity != null) {
+            blockEntity.onBroken();
+        }
+    }
+
+    @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         Direction direction = ctx.getSide();
         BlockState blockState = ctx.getWorld().getBlockState(ctx.getBlockPos().offset(direction.getOpposite()));
@@ -120,7 +129,7 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
         return SHAPES.get(state.get(FACING));
     }
 
-    public @Nullable PastelNodeBlockEntity getBlockEntity(World world, BlockPos blockPos) {
+    public @Nullable PastelNodeBlockEntity getBlockEntity(WorldAccess world, BlockPos blockPos) {
         BlockEntity blockEntity = world.getBlockEntity(blockPos);
         if (blockEntity instanceof PastelNodeBlockEntity pastelNodeBlockEntity) {
             return pastelNodeBlockEntity;

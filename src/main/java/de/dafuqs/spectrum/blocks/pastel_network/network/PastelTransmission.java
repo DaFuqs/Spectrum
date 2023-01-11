@@ -57,6 +57,10 @@ public class PastelTransmission implements SchedulerMap.Callback {
     }
 
     private void arriveAtDestination() {
+        if (nodePositions.size() == 0) {
+            return;
+        }
+
         BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
         PastelNodeBlockEntity destinationNode = this.network.getNodeAt(destinationPos);
         World world = this.network.getWorld();
@@ -91,16 +95,16 @@ public class PastelTransmission implements SchedulerMap.Callback {
             posCompound.putInt("Z", pos.getZ());
             posList.add(posCompound);
         }
-        compound.put("Nodes", posList);
+        compound.put("NodePositions", posList);
         return compound;
     }
 
-    public PastelTransmission fromNbt(NbtCompound nbt) {
+    public static PastelTransmission fromNbt(NbtCompound nbt) {
         ItemVariant variant = ItemVariant.fromNbt(nbt.getCompound("Variant"));
         int amount = nbt.getInt("Amount");
 
         List<BlockPos> posList = new ArrayList<>();
-        for (NbtElement e : nbt.getList("", NbtElement.COMPOUND_TYPE)) {
+        for (NbtElement e : nbt.getList("NodePositions", NbtElement.COMPOUND_TYPE)) {
             NbtCompound compound = (NbtCompound) e;
             BlockPos blockPos = new BlockPos(compound.getInt("X"), compound.getInt("Y"), compound.getInt("Z"));
             posList.add(blockPos);

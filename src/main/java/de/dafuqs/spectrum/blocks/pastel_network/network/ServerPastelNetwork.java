@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.networking.*;
@@ -7,7 +8,10 @@ import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
+import net.minecraft.nbt.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
@@ -20,11 +24,11 @@ import java.util.*;
 
 public class ServerPastelNetwork extends PastelNetwork {
 
-    protected final TransferLogic transferLogic;
+    protected final TransmissionLogic transmissionLogic;
 
     public ServerPastelNetwork(World world, @Nullable UUID uuid) {
         super(world, uuid);
-        this.transferLogic = new TransferLogic(this);
+        this.transmissionLogic = new TransmissionLogic(this);
     }
 
     public void checkNetworkMergesForNewNode(PastelNodeBlockEntity newNode) {
@@ -95,10 +99,10 @@ public class ServerPastelNetwork extends PastelNetwork {
     @Override
     public void tick() {
         super.tick();
-        this.transferLogic.tick();
+        this.transmissionLogic.tick();
     }
 
-    public static class TransferLogic {
+    public static class TransmissionLogic {
 
         public static final int MAX_TRANSFER_AMOUNT = 1;
         public static final int TRANSFER_TICKS_PER_NODE = 40;
@@ -106,7 +110,7 @@ public class ServerPastelNetwork extends PastelNetwork {
         private final TickLooper tickLooper = new TickLooper(TRANSFER_TICKS_PER_NODE);
         private final ServerPastelNetwork network;
 
-        public TransferLogic(ServerPastelNetwork network) {
+        public TransmissionLogic(ServerPastelNetwork network) {
             this.network = network;
         }
 
@@ -196,6 +200,37 @@ public class ServerPastelNetwork extends PastelNetwork {
             return paths.getPath(destination);
         }
 
+    }
+
+    public NbtCompound toNbt() {
+        NbtCompound compound = new NbtCompound();
+        compound.putUuid("UUID", this.uuid);
+        compound.putString("World", this.world.getRegistryKey().getValue().toString());
+
+        NbtList transmissionList = new NbtList();
+        for (Map.Entry<PastelTransmission, Integer> transmission : this.transmissions) {
+            NbtCompound transmissionCompound = new NbtCompound();
+            transmissionCompound.putInt("Delay", transmission.getValue());
+            transmissionCompound.put("Transmission", transmission.getKey().toNbt());
+            transmissionList.add(transmissionCompound);
+        }
+        compound.put("Transmissions", transmissionList);
+
+        return compound;
+    }
+
+    public static ServerPastelNetwork fromNbt(NbtCompound compound) {
+        World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(Registry.WORLD_KEY, Identifier.tryParse(compound.getString("World"))));
+        UUID uuid = compound.getUuid("UUID");
+        ServerPastelNetwork network = new ServerPastelNetwork(world, uuid);
+
+        for (NbtElement e : compound.getList("Transmissions", NbtElement.COMPOUND_TYPE)) {
+            NbtCompound t = (NbtCompound) e;
+            int delay = t.getInt("Delay");
+            PastelTransmission transmission = PastelTransmission.fromNbt(t.getCompound("Transmission"));
+            network.addTransmission(transmission, delay);
+        }
+        return network;
     }
 
 }

@@ -104,11 +104,23 @@ public class PastelNodeBlockEntity extends BlockEntity {
         return nbtCompound;
     }
 
+    // triggered when the chunk is unloaded, or the world quit
     @Override
     public void markRemoved() {
         super.markRemoved();
+        if (this.network != null && (this.world == null || this.world.isClient)) {
+            this.network.removeNode(this);
+            this.network = null;
+        }
+    }
+
+    public void onBroken() {
         if (this.network != null) {
             this.network.removeNode(this);
+            if (!network.hasNodes()) {
+                Pastel.getServerInstance().remove(network);
+            }
+            this.network = null;
         }
     }
 

@@ -2,7 +2,9 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import net.minecraft.block.entity.*;
 import net.minecraft.nbt.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
@@ -18,7 +20,7 @@ public class PastelNetwork {
     protected @Nullable Graph<PastelNodeBlockEntity, DefaultEdge> graph;
     protected World world;
     protected UUID uuid;
-    protected SchedulerMap<PastelTransfer> transfers = new SchedulerMap<>();
+    protected SchedulerMap<PastelTransmission> transfers = new SchedulerMap<>();
 
     public PastelNetwork(World world, @Nullable UUID uuid) {
         this.world = world;
@@ -26,6 +28,10 @@ public class PastelNetwork {
         for (PastelNodeType type : PastelNodeType.values()) {
             this.nodes.put(type, new HashSet<>());
         }
+    }
+
+    public World getWorld() {
+        return this.world;
     }
 
     public Graph<PastelNodeBlockEntity, DefaultEdge> getGraph() {
@@ -149,12 +155,13 @@ public class PastelNetwork {
         return this.uuid;
     }
 
-    public void addTransfer(PastelTransfer transfer, int travelTime) {
+    public void addTransmission(PastelTransmission transfer, int travelTime) {
+        transfer.setNetwork(this);
         this.transfers.put(transfer, travelTime);
     }
 
     public int getColor() {
-        return Color.getHSBColor((float) this.uuid.hashCode() / Integer.MAX_VALUE, 0.7F, 0.9F).getRGB() | 0xFF000000;
+        return Color.getHSBColor((float) this.uuid.hashCode() / Integer.MAX_VALUE, 0.7F, 0.9F).getRGB();
     }
 
     public NbtCompound toNbt() {
@@ -163,7 +170,7 @@ public class PastelNetwork {
         compound.putString("World", this.world.getRegistryKey().getValue().toString());
 
         NbtList list = new NbtList();
-        for (Map.Entry<PastelTransfer, Integer> transfer : this.transfers) {
+        for (Map.Entry<PastelTransmission, Integer> transfer : this.transfers) {
             NbtCompound transferCompound = new NbtCompound();
             transferCompound.putInt("Delay", transfer.getValue());
             transferCompound.put("Transfer", transfer.getKey().toNbt());
@@ -193,6 +200,14 @@ public class PastelNetwork {
                 getNodes(PastelNodeType.STORAGE).size() +
                 " - Conn: " +
                 getNodes(PastelNodeType.CONNECTION).size();
+    }
+
+    public PastelNodeBlockEntity getNodeAt(BlockPos blockPos) {
+        BlockEntity blockEntity = this.world.getBlockEntity(blockPos);
+        if (blockEntity instanceof PastelNodeBlockEntity pastelNodeBlockEntity) {
+            return pastelNodeBlockEntity;
+        }
+        return null;
     }
 
 }

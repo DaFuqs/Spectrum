@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.blocks.memory.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
@@ -137,25 +138,36 @@ public class SpectrumS2CPacketSender {
 		
 		if (optionalItemColor.isPresent()) {
 			buf.writeInt(optionalItemColor.get().ordinal());
-		} else {
-			buf.writeInt(DyeColor.LIGHT_GRAY.ordinal());
-		}
-		
-		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_FUSION_CRAFTING_FINISHED_PARTICLE_PACKET_ID, buf);
-		}
-	}
-	
-	public static void sendItemTransferPacket(ServerWorld world, @NotNull SimpleTransmission transfer) {
-		BlockPos blockPos = new BlockPos(transfer.getOrigin());
-		
-		PacketByteBuf buf = PacketByteBufs.create();
-		SimpleTransmission.writeToBuf(buf, transfer);
-		
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.ITEM_TRANSMISSION, buf);
-		}
+        } else {
+            buf.writeInt(DyeColor.LIGHT_GRAY.ordinal());
+        }
+
+        // Iterate over all players tracking a position in the world and send the packet to each player
+        for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
+            ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_FUSION_CRAFTING_FINISHED_PARTICLE_PACKET_ID, buf);
+        }
+    }
+
+    public static void sendPastelTransfer(PastelNetwork network, int travelTime, @NotNull PastelTransmission transfer) {
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeUuid(network.getUUID());
+        buf.writeInt(travelTime);
+        PastelTransmission.writeToBuf(buf, transfer);
+
+        for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) network.getWorld(), transfer.getStartPos())) {
+            ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_TRANSMISSION, buf);
+        }
+    }
+
+    public static void sendItemTransferPacket(ServerWorld world, @NotNull SimpleTransmission transfer) {
+        BlockPos blockPos = new BlockPos(transfer.getOrigin());
+
+        PacketByteBuf buf = PacketByteBufs.create();
+        SimpleTransmission.writeToBuf(buf, transfer);
+
+        for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
+            ServerPlayNetworking.send(player, SpectrumS2CPackets.ITEM_TRANSMISSION, buf);
+        }
 	}
 	
 	public static void playColorTransmission(ServerWorld world, @NotNull ColoredTransmission transfer) {

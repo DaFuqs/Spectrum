@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
 import de.dafuqs.spectrum.blocks.present.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
@@ -212,14 +213,26 @@ public class SpectrumS2CPacketReceiver {
 				PedestalBlockEntity.spawnCraftingStartParticles(client.world, position);
 			});
 		});
-		
+
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos pos = buf.readBlockPos();
 			if (client.world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity) {
 				((ParticleSpawnerBlockEntity) client.world.getBlockEntity(pos)).applySettings(buf);
 			}
 		});
-		
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_TRANSMISSION, (client, handler, buf, responseSender) -> {
+			UUID networkUUID = buf.readUuid();
+			int travelTime = buf.readInt();
+			PastelTransmission transmission = PastelTransmission.fromPacket(buf);
+			BlockPos spawnPos = transmission.getStartPos();
+
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				client.world.addParticle(new PastelTransmissionParticleEffect(transmission.getNodePositions(), transmission.getVariant().toStack(), travelTime), spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5, 0, 0, 0);
+			});
+		});
+
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.ITEM_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
 			client.execute(() -> {
@@ -227,7 +240,7 @@ public class SpectrumS2CPacketReceiver {
 				client.world.addImportantParticle(new ItemTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
 			});
 		});
-		
+
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.COLOR_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			ColoredTransmission transmission = ColoredTransmission.readFromBuf(buf);
 			client.execute(() -> {

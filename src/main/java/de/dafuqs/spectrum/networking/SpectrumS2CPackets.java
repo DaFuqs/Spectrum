@@ -19,11 +19,12 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_PRESENT_OPENING_PARTICLES = SpectrumCommon.locate("play_present_opening_particles");
 
 	// Complex particles
-	public static final Identifier ITEM_TRANSMISSION = SpectrumCommon.locate("initiate_item_transfer");
-	public static final Identifier COLOR_TRANSMISSION = SpectrumCommon.locate("initiate_transphere");
-	public static final Identifier EXPERIENCE_TRANSMISSION = SpectrumCommon.locate("initiate_experience_transfer");
-	public static final Identifier BLOCK_POS_EVENT_TRANSMISSION = SpectrumCommon.locate("block_pos_event_transfer");
-	public static final Identifier WIRELESS_REDSTONE_TRANSMISSION = SpectrumCommon.locate("initiate_wireless_redstone_transmission");
+	public static final Identifier ITEM_TRANSMISSION = SpectrumCommon.locate("item_transmission");
+	public static final Identifier COLOR_TRANSMISSION = SpectrumCommon.locate("color_transmission");
+	public static final Identifier EXPERIENCE_TRANSMISSION = SpectrumCommon.locate("experience_transmission");
+	public static final Identifier BLOCK_POS_EVENT_TRANSMISSION = SpectrumCommon.locate("block_pos_event_transmission");
+	public static final Identifier WIRELESS_REDSTONE_TRANSMISSION = SpectrumCommon.locate("wireless_redstone_transmission");
+	public static final Identifier PASTEL_TRANSMISSION = SpectrumCommon.locate("pastel_transmission");
 
 	// Sounds
 	public static final Identifier PLAY_BLOCK_BOUND_SOUND_INSTANCE = SpectrumCommon.locate("play_pedestal_crafting_sound_instance");

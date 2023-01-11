@@ -24,4 +24,13 @@ public abstract class PastelNetworkManager {
         }
     }
 
+    public @Nullable PastelNetwork getNetwork(UUID uuid) {
+        for (PastelNetwork network : networks) {
+            if (network.getUUID() == uuid) {
+                return network;
+            }
+        }
+        return null;
+    }
+
 }

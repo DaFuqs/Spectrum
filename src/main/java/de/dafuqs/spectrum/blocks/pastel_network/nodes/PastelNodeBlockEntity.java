@@ -23,13 +23,16 @@ public class PastelNodeBlockEntity extends BlockEntity {
     public static int RANGE = 16;
     protected PastelNetwork network;
     protected @Nullable UUID networkUUIDToMerge = null;
+    protected long lastTransferTick = 0;
+    protected long cachedRedstonePowerTick = 0;
+    protected boolean cachedNoRedstonePower = true;
 
     public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(SpectrumBlockEntities.PASTEL_NODE, blockPos, blockState);
     }
 
     public @Nullable Storage<ItemVariant> getConnectedStorage() {
-        BlockState state = world.getBlockState(pos);
+        BlockState state = this.getCachedState();
         if (state.getBlock() instanceof PastelNodeBlock) {
             Direction direction = state.get(PastelNodeBlock.FACING).getOpposite();
             return ItemStorage.SIDED.find(this.world, this.getPos().offset(direction), direction);
@@ -61,6 +64,22 @@ public class PastelNodeBlockEntity extends BlockEntity {
                 this.network = Pastel.getInstance(world.isClient).joinNetwork(this, networkUUID);
             }
         }
+        if (nbt.contains("LastTransferTick", NbtElement.LONG_TYPE)) {
+            this.lastTransferTick = nbt.getLong("LastTransferTick");
+        }
+    }
+
+    public boolean canTransfer() {
+        long time = this.world.getTime();
+        if (time > this.cachedRedstonePowerTick) {
+            this.cachedNoRedstonePower = world.getReceivedRedstonePower(this.pos) == 0;
+        }
+        return this.world.getTime() > lastTransferTick && this.cachedNoRedstonePower;
+    }
+
+    public void markTransferred() {
+        this.lastTransferTick = world.getTime();
+        this.markDirty();
     }
 
     @Override
@@ -69,6 +88,7 @@ public class PastelNodeBlockEntity extends BlockEntity {
         if (this.network != null) {
             nbt.putUuid("Network", this.network.getUUID());
         }
+        nbt.putLong("LastTransferTick", this.lastTransferTick);
     }
 
     @Nullable

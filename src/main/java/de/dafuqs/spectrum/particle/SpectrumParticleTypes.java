@@ -12,24 +12,25 @@ import org.jetbrains.annotations.*;
 import java.util.function.*;
 
 public class SpectrumParticleTypes {
-	
-	public static ParticleType<ParticleSpawnerParticleEffect> PARTICLE_SPAWNER;
-	public static ParticleType<ParticleSpawnerParticleEffectAlwaysShow> PARTICLE_SPAWNER_ALWAYS_SHOW;
-	public static ParticleType<ItemTransmissionParticleEffect> ITEM_TRANSMISSION;
-	public static ParticleType<ExperienceTransmissionParticleEffect> EXPERIENCE_TRANSMISSION;
-	public static ParticleType<WirelessRedstoneTransmissionParticleEffect> WIRELESS_REDSTONE_TRANSMISSION;
-	public static ParticleType<ColoredTransmissionParticleEffect> COLORED_TRANSMISSION;
-	public static ParticleType<BlockPosEventTransmissionParticleEffect> BLOCK_POS_EVENT_TRANSMISSION;
-	
-	public static DefaultParticleType DIVINITY;
-	
-	public static DefaultParticleType SHOOTING_STAR; // Dummy entry to get the sprite registered
-	public static DefaultParticleType SHIMMERSTONE_SPARKLE;
-	public static DefaultParticleType SHIMMERSTONE_SPARKLE_SMALL;
-	public static DefaultParticleType SHIMMERSTONE_SPARKLE_TINY;
-	public static DefaultParticleType VOID_FOG;
-	public static DefaultParticleType MUD_POP;
-	public static DefaultParticleType LIQUID_CRYSTAL_SPARKLE;
+
+    public static ParticleType<ParticleSpawnerParticleEffect> PARTICLE_SPAWNER;
+    public static ParticleType<ParticleSpawnerParticleEffectAlwaysShow> PARTICLE_SPAWNER_ALWAYS_SHOW;
+    public static ParticleType<ItemTransmissionParticleEffect> ITEM_TRANSMISSION;
+    public static ParticleType<ExperienceTransmissionParticleEffect> EXPERIENCE_TRANSMISSION;
+    public static ParticleType<WirelessRedstoneTransmissionParticleEffect> WIRELESS_REDSTONE_TRANSMISSION;
+    public static ParticleType<ColoredTransmissionParticleEffect> COLORED_TRANSMISSION;
+    public static ParticleType<BlockPosEventTransmissionParticleEffect> BLOCK_POS_EVENT_TRANSMISSION;
+    public static ParticleType<PastelTransmissionParticleEffect> PASTEL_TRANSMISSION;
+
+    public static DefaultParticleType DIVINITY;
+
+    public static DefaultParticleType SHOOTING_STAR; // Dummy entry to get the sprite registered
+    public static DefaultParticleType SHIMMERSTONE_SPARKLE;
+    public static DefaultParticleType SHIMMERSTONE_SPARKLE_SMALL;
+    public static DefaultParticleType SHIMMERSTONE_SPARKLE_TINY;
+    public static DefaultParticleType VOID_FOG;
+    public static DefaultParticleType MUD_POP;
+    public static DefaultParticleType LIQUID_CRYSTAL_SPARKLE;
 	public static DefaultParticleType BLUE_BUBBLE_POP;
 	public static DefaultParticleType GREEN_BUBBLE_POP;
 	public static DefaultParticleType SPIRIT_SALLOW;
@@ -177,23 +178,24 @@ public class SpectrumParticleTypes {
 	}
 	
 	public static void register() {
-		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerParticleEffect.FACTORY, (particleType) -> ParticleSpawnerParticleEffect.CODEC, false);
-		PARTICLE_SPAWNER_ALWAYS_SHOW = register("particle_spawner_always_show", ParticleSpawnerParticleEffectAlwaysShow.FACTORY, (particleType) -> ParticleSpawnerParticleEffectAlwaysShow.CODEC, true);
-		ITEM_TRANSMISSION = register("item_transfer", ItemTransmissionParticleEffect.FACTORY, (particleType) -> ItemTransmissionParticleEffect.CODEC, false);
-		EXPERIENCE_TRANSMISSION = register("experience_transfer", ExperienceTransmissionParticleEffect.FACTORY, (particleType) -> ExperienceTransmissionParticleEffect.CODEC, false);
-		WIRELESS_REDSTONE_TRANSMISSION = register("wireless_redstone_transmission", WirelessRedstoneTransmissionParticleEffect.FACTORY, (particleType) -> WirelessRedstoneTransmissionParticleEffect.CODEC, false);
-		COLORED_TRANSMISSION = register("transphere", ColoredTransmissionParticleEffect.FACTORY, (particleType) -> ColoredTransmissionParticleEffect.CODEC, false);
-		BLOCK_POS_EVENT_TRANSMISSION = register("block_pos_event_transfer", BlockPosEventTransmissionParticleEffect.FACTORY, (particleType) -> BlockPosEventTransmissionParticleEffect.CODEC, false);
-		
-		SHIMMERSTONE_SPARKLE = register("shimmerstone_sparkle", false);
-		SHIMMERSTONE_SPARKLE_SMALL = register("shimmerstone_sparkle_small", false);
-		SHIMMERSTONE_SPARKLE_TINY = register("shimmerstone_sparkle_tiny", false);
-		VOID_FOG = register("void_fog", false);
-		MUD_POP = register("mud_pop", false);
-		LIQUID_CRYSTAL_SPARKLE = register("liquid_crystal_sparkle", false);
-		BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
-		GREEN_BUBBLE_POP = register("green_bubble_pop", false);
-		SPIRIT_SALLOW = register("spirit_sallow", false);
+        PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerParticleEffect.FACTORY, (particleType) -> ParticleSpawnerParticleEffect.CODEC, false);
+        PARTICLE_SPAWNER_ALWAYS_SHOW = register("particle_spawner_always_show", ParticleSpawnerParticleEffectAlwaysShow.FACTORY, (particleType) -> ParticleSpawnerParticleEffectAlwaysShow.CODEC, true);
+        ITEM_TRANSMISSION = register("item_transfer", ItemTransmissionParticleEffect.FACTORY, (particleType) -> ItemTransmissionParticleEffect.CODEC, false);
+        EXPERIENCE_TRANSMISSION = register("experience_transfer", ExperienceTransmissionParticleEffect.FACTORY, (particleType) -> ExperienceTransmissionParticleEffect.CODEC, false);
+        WIRELESS_REDSTONE_TRANSMISSION = register("wireless_redstone_transmission", WirelessRedstoneTransmissionParticleEffect.FACTORY, (particleType) -> WirelessRedstoneTransmissionParticleEffect.CODEC, false);
+        COLORED_TRANSMISSION = register("transphere", ColoredTransmissionParticleEffect.FACTORY, (particleType) -> ColoredTransmissionParticleEffect.CODEC, false);
+        BLOCK_POS_EVENT_TRANSMISSION = register("block_pos_event_transfer", BlockPosEventTransmissionParticleEffect.FACTORY, (particleType) -> BlockPosEventTransmissionParticleEffect.CODEC, false);
+        PASTEL_TRANSMISSION = register("pastel_transmission", PastelTransmissionParticleEffect.FACTORY, (particleType) -> PastelTransmissionParticleEffect.CODEC, false);
+
+        SHIMMERSTONE_SPARKLE = register("shimmerstone_sparkle", false);
+        SHIMMERSTONE_SPARKLE_SMALL = register("shimmerstone_sparkle_small", false);
+        SHIMMERSTONE_SPARKLE_TINY = register("shimmerstone_sparkle_tiny", false);
+        VOID_FOG = register("void_fog", false);
+        MUD_POP = register("mud_pop", false);
+        LIQUID_CRYSTAL_SPARKLE = register("liquid_crystal_sparkle", false);
+        BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
+        GREEN_BUBBLE_POP = register("green_bubble_pop", false);
+        SPIRIT_SALLOW = register("spirit_sallow", false);
 		DECAY_PLACE = register("decay_place", false);
 		DIVINITY = register("divinity", false);
 		SHOOTING_STAR = register("shooting_star", false);

@@ -26,9 +26,9 @@ public class PastelPersistentState extends PersistentState {
         return Pastel.getServerInstance().toNbt(tag);
     }
 
-    public static PastelPersistentState fromNbt(NbtCompound tag) {
+    public static PastelPersistentState fromNbt(NbtCompound nbt) {
         PastelPersistentState state = new PastelPersistentState();
-        //Pastel.instanceFromNbt(false, tag);
+        //Pastel.serverInstanceFromNbt(false, nbt);
         return state;
     }
 

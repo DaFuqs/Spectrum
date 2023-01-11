@@ -92,7 +92,7 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
         PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
         if (player.getStackInHand(hand).isOf(SpectrumItems.PAINTBRUSH)) {
             return sendDebugMessage(world, player, blockEntity);
-        } else {
+        } else if (this.pastelNodeType.usesFilters()) {
             if (world.isClient) {
                 return ActionResult.SUCCESS;
             } else {
@@ -100,6 +100,7 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
                 return ActionResult.CONSUME;
             }
         }
+        return super.onUse(state, world, pos, player, hand, hit);
     }
 
     @NotNull

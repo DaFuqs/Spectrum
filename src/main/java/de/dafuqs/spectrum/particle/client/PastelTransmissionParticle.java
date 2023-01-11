@@ -8,6 +8,8 @@ import net.minecraft.client.util.math.*;
 import net.minecraft.client.world.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 
 import java.util.*;
@@ -35,6 +37,11 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle {
 
         this.itemEntity = new ItemEntity(world, x, y, z, stack);
         this.maxAge = travelTime;
+
+        // spawning sound & particles
+        Vec3d pos = vecList.get(0);
+        world.playSound(pos.getX(), pos.getY() + 0.25, pos.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F, true);
+        world.addParticle(ParticleTypes.BUBBLE_POP, pos.getX(), pos.getY() + 0.25, pos.getZ(), 0, 0, 0);
     }
 
     @Override
@@ -99,6 +106,10 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle {
 
         int startNodeID = (int) progress;
         if (startNodeID >= nodeCount - 1) {
+            Vec3d destination = this.travelNodes.get(this.travelNodes.size() - 1);
+            world.playSound(destination.getX(), destination.getY() + 0.25, destination.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F, true);
+            world.addParticle(ParticleTypes.BUBBLE_POP, destination.getX(), destination.getY() + 0.25, destination.getZ(), 0, 0, 0);
+
             this.markDead();
             return;
         }

@@ -28,7 +28,7 @@ public class PastelTransmissionParticleEffect implements ParticleEffect {
 			stringReader.expect(' ');
 			int travelTime = stringReader.readInt();
 
-			// TODO
+			// TODO I don't care, really
 			stringReader.expect(' ');
 			int x1 = stringReader.readInt();
 			stringReader.expect(' ');

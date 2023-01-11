@@ -9,6 +9,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -58,7 +59,8 @@ public class PastelTransmission implements SchedulerMap.Callback {
     private void arriveAtDestination() {
         BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
         PastelNodeBlockEntity destinationNode = this.network.getNodeAt(destinationPos);
-        if (!this.network.getWorld().isClient) {
+        World world = this.network.getWorld();
+        if (!world.isClient) {
             int inserted = 0;
             if (destinationNode != null) {
                 Storage<ItemVariant> destinationStorage = destinationNode.getConnectedStorage();
@@ -72,7 +74,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
                 }
             }
             if (inserted != amount) {
-                ItemScatterer.spawn(this.network.getWorld(), destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, variant.toStack(amount - inserted));
+                ItemScatterer.spawn(world, destinationPos.getX() + 0.5, destinationPos.getY() + 0.5, destinationPos.getZ() + 0.5, variant.toStack(amount - inserted));
             }
         }
     }

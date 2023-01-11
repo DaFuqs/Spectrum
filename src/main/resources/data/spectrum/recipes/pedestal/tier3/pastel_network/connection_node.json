@@ -16,7 +16,7 @@
   ],
   "key": {
     "S": {
-      "tag": "spectrum:gemstone_shards"
+      "item": "minecraft:quartz"
     },
     "X": {
       "item": "spectrum:polished_basalt"
@@ -35,5 +35,5 @@
     "item": "spectrum:connection_node",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/pastel_network/unlock_basic_nodes"
+  "required_advancement": "spectrum:progression/unlock_pastel_network"
 }

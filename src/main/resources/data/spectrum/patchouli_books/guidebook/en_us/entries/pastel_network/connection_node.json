@@ -12,7 +12,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/pastel_network/connection_node",
-      "text": "As all other Nodes, the Connection Node has a range of 16 Blocks."
+      "text": "As all other Nodes, the Connection Node has a range of 12 Blocks."
     }
   ]
 }

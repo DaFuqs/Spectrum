@@ -11,8 +11,6 @@ import java.util.*;
 
 public interface FilterConfigurable {
 
-    int getFilterCount();
-
     List<Item> getItemFilters();
 
     void setFilterItem(int slot, Item item);
@@ -53,6 +51,15 @@ public interface FilterConfigurable {
         for (Item filterItem : filterItems) {
             buf.writeIdentifier(Registry.ITEM.getId(filterItem));
         }
+    }
+
+    default boolean hasEmptyFilter() {
+        for (Item item : getItemFilters()) {
+            if (item != Items.AIR) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

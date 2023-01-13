@@ -32,7 +32,7 @@ import java.util.function.*;
 public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory {
 
     public static int ITEM_FILTER_COUNT = 5;
-    public static int RANGE = 16;
+    public static int RANGE = 12;
     protected PastelNetwork network;
     protected @Nullable UUID networkUUIDToMerge = null;
     protected long lastTransferTick = 0;
@@ -82,30 +82,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             this.cachedNoRedstonePower = world.getReceivedRedstonePower(this.pos) == 0;
         }
         return this.world.getTime() > lastTransferTick && this.cachedNoRedstonePower;
-    }
-
-    public Predicate<ItemVariant> getTransferFilterTo(PastelNodeBlockEntity other) {
-        if (this.getNodeType().usesFilters() && !this.hasEmptyFilter()) {
-            if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
-                // unionize both filters
-                return itemVariant -> filterItems.contains(itemVariant.getItem()) && other.filterItems.contains(itemVariant.getItem());
-            } else {
-                return itemVariant -> filterItems.contains(itemVariant.getItem());
-            }
-        } else if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
-            return itemVariant -> other.filterItems.contains(itemVariant.getItem());
-        } else {
-            return itemVariant -> true;
-        }
-    }
-
-    public boolean hasEmptyFilter() {
-        for (Item item : this.filterItems) {
-            if (item != Items.AIR) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public void markTransferred() {
@@ -213,11 +189,6 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     }
 
     @Override
-    public int getFilterCount() {
-        return getNodeType().usesFilters() ? ITEM_FILTER_COUNT : 0;
-    }
-
-    @Override
     public List<Item> getItemFilters() {
         return this.filterItems;
     }
@@ -225,6 +196,21 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     @Override
     public void setFilterItem(int slot, Item item) {
         this.filterItems.set(slot, item);
+    }
+
+    public Predicate<ItemVariant> getTransferFilterTo(PastelNodeBlockEntity other) {
+        if (this.getNodeType().usesFilters() && !this.hasEmptyFilter()) {
+            if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
+                // unionize both filters
+                return itemVariant -> filterItems.contains(itemVariant.getItem()) && other.filterItems.contains(itemVariant.getItem());
+            } else {
+                return itemVariant -> filterItems.contains(itemVariant.getItem());
+            }
+        } else if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
+            return itemVariant -> other.filterItems.contains(itemVariant.getItem());
+        } else {
+            return itemVariant -> true;
+        }
     }
 
     @Override

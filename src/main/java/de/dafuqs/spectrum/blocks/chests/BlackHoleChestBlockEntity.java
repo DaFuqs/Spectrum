@@ -95,7 +95,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			tag.putString("Filter" + i, Registry.ITEM.getId(this.filterItems.get(i)).toString());
 		}
 	}
-	
+
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		for (int i = 0; i < ITEM_FILTER_SLOTS; i++) {
@@ -104,7 +104,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			}
 		}
 	}
-	
+
 	@Override
 	public int size() {
 		return 27 + 1; // 3 rows, 1 knowledge gem, 5 item filters (they are not real slots, though)
@@ -184,19 +184,17 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public SoundEvent getCloseSound() {
 		return SpectrumSoundEvents.SUCKING_CHEST_CLOSE;
 	}
-	
+
 	@Override
 	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
 		buf.writeBlockPos(this.pos);
-		for (Item filterItem : this.filterItems) {
-			buf.writeIdentifier(Registry.ITEM.getId(filterItem));
-		}
+		FilterConfigurable.writeScreenOpeningData(buf, filterItems);
 	}
-	
+
 	public List<Item> getItemFilters() {
 		return this.filterItems;
 	}
-	
+
 	public void setFilterItem(int slot, Item item) {
 		this.filterItems.set(slot, item);
 		this.markDirty();

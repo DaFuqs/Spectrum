@@ -1185,7 +1185,7 @@
   "block.spectrum.connection_node": "§7Pastel Network Connection Node",
   "block.spectrum.interaction_node": "§fPastel Network Interaction Node",
   "block.spectrum.pastel_network_nodes.tooltip.placing": "Place against some form of inventory",
-  "block.spectrum.pastel_network_nodes.tooltip.range": "Connects to other nodes in a 16 block radius",
+  "block.spectrum.pastel_network_nodes.tooltip.range": "Connects to other nodes in a %d block radius",
   "block.spectrum.pastel_network_nodes.connection_debug": "This node is connected to:",
   "block.spectrum.sender_node.tooltip": "Sends items to Gather and Storage Nodes",
   "block.spectrum.gather_node.tooltip": "Gathers items from Sender, Provider and Storage Nodes",

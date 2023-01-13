@@ -83,7 +83,7 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
         super.appendTooltip(stack, world, tooltip, options);
         tooltip.add(this.pastelNodeType.getTooltip().formatted(Formatting.WHITE));
         tooltip.add(Text.translatable("block.spectrum.pastel_network_nodes.tooltip.placing").formatted(Formatting.GRAY));
-        tooltip.add(Text.translatable("block.spectrum.pastel_network_nodes.tooltip.range").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("block.spectrum.pastel_network_nodes.tooltip.range", PastelNodeBlockEntity.RANGE).formatted(Formatting.GRAY));
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {

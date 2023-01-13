@@ -6,20 +6,17 @@ import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.screen.slot.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
 public class FilteringScreen extends HandledScreen<FilteringScreenHandler> {
 
-    public static final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/container/black_hole_chest.png");
+    public static final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/container/filter.png");
 
     public FilteringScreen(FilteringScreenHandler handler, PlayerInventory playerInventory, Text title) {
         super(handler, playerInventory, title);
-        this.backgroundHeight = 193;
-    }
-
-    protected void init() {
-        super.init();
+        this.backgroundHeight = 133;
     }
 
     @Override
@@ -29,7 +26,7 @@ public class FilteringScreen extends HandledScreen<FilteringScreenHandler> {
         int titleY = 6;
         Text title = this.title;
         int inventoryX = 8;
-        int intInventoryY = 102;
+        int intInventoryY = 41;
 
         this.textRenderer.draw(matrices, title, titleX, titleY, 3289650);
         this.textRenderer.draw(matrices, this.playerInventoryTitle, inventoryX, intInventoryY, 3289650);
@@ -44,6 +41,11 @@ public class FilteringScreen extends HandledScreen<FilteringScreenHandler> {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+
+        for (int i = 0; i < handler.filterInventory.size(); i++) {
+            Slot s = handler.getSlot(i);
+            drawTexture(matrices, x + s.x - 1, y + s.y - 1, 176, 0, 18, 18);
+        }
     }
 
     @Override

@@ -1177,6 +1177,7 @@
   "item.spectrum.pedestal.tooltip.all_basic": "§bC§dM§eY§7 Variant",
   "item.spectrum.pedestal.tooltip.onyx": "§8Onyx§7 Variant",
   "item.spectrum.pedestal.tooltip.moonstone": "§fMoonstone§7 Variant",
+  "block.spectrum.pastel_node": "Pastel Node",
   "block.spectrum.provider_node": "§dPastel Network Provider Node",
   "block.spectrum.gather_node": "§8Pastel Network Gather Node",
   "block.spectrum.sender_node": "§ePastel Network Sender Node",

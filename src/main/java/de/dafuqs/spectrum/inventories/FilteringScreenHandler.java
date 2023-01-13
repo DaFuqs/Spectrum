@@ -13,83 +13,83 @@ import net.minecraft.world.*;
 
 public class FilteringScreenHandler extends ScreenHandler {
 
-    protected final World world;
-    protected FilterConfigurable filterConfigurable;
-    protected Inventory filterInventory;
+	protected final World world;
+	protected FilterConfigurable filterConfigurable;
+	protected Inventory filterInventory;
+	protected int firstFilterSlot;
 
-    public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packetByteBuf) {
-        this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, FilterConfigurable.getFilterInventoryFromPacket(packetByteBuf));
-    }
+	public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packetByteBuf) {
+		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, FilterConfigurable.getFilterInventoryFromPacket(packetByteBuf));
+	}
 
-    public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, FilterConfigurable filterConfigurable) { // called via PastelNodeBlockEntity
-        this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, FilterConfigurable.getFilterInventoryFromItems(filterConfigurable.getItemFilters()));
-        this.filterConfigurable = filterConfigurable;
-    }
+	public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, FilterConfigurable filterConfigurable) {
+		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, FilterConfigurable.getFilterInventoryFromItems(filterConfigurable.getItemFilters()));
+		this.filterConfigurable = filterConfigurable;
+	}
 
-    protected FilteringScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory filterInventory) {
-        super(type, syncId);
-        this.world = playerInventory.player.world;
-        this.filterInventory = filterInventory;
+	protected FilteringScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory filterInventory) {
+		super(type, syncId);
+		this.world = playerInventory.player.world;
+		this.filterInventory = filterInventory;
 
-        int i = -4 * 18;
+		int j;
+		int k;
 
-        // sucking chest slots
-        int j;
-        int k;
+		// filter slots
+		int startX = (176 / 2) - (filterInventory.size() - 1) * 9;
+		for (k = 0; k < filterInventory.size(); ++k) {
+			this.addSlot(new FilterSlot(filterInventory, k, startX + k * 23, 18));
+		}
 
-        // player inventory slots
-        for (j = 0; j < 3; ++j) {
-            for (k = 0; k < 9; ++k) {
-                this.addSlot(new Slot(playerInventory, k + j * 9 + 9, 8 + k * 18, 112 + 19 + j * 18 + i));
-            }
-        }
+		// player inventory slots
+		int i = 50;
+		for (j = 0; j < 3; ++j) {
+			for (k = 0; k < 9; ++k) {
+				this.addSlot(new Slot(playerInventory, k + j * 9 + 9, 8 + k * 18, j * 18 + i));
+			}
+		}
+		// player hotbar
+		for (j = 0; j < 9; ++j) {
+			this.addSlot(new Slot(playerInventory, j, 8 + j * 18, 58 + i));
+		}
 
-        // player hotbar
-        for (j = 0; j < 9; ++j) {
-            this.addSlot(new Slot(playerInventory, j, 8 + j * 18, 170 + 19 + i));
-        }
-
-        // filter slots
-        for (k = 0; k < filterInventory.size(); ++k) {
-            this.addSlot(new FilterSlot(filterInventory, k, 8 + k * 23, 18));
-        }
-    }
+	}
 
 
-    public boolean canUse(PlayerEntity player) {
-        return true;
-    }
+	public boolean canUse(PlayerEntity player) {
+		return true;
+	}
 
-    @Override
-    public ItemStack transferSlot(PlayerEntity player, int index) {
-        return ItemStack.EMPTY;
-    }
+	@Override
+	public ItemStack transferSlot(PlayerEntity player, int index) {
+		return ItemStack.EMPTY;
+	}
 
-    public Inventory getInventory() {
-        return null;
-    }
+	public Inventory getInventory() {
+		return null;
+	}
 
-    public void close(PlayerEntity player) {
-        super.close(player);
-    }
+	public void close(PlayerEntity player) {
+		super.close(player);
+	}
 
-    public FilterConfigurable getFilterConfigurable() {
-        return this.filterConfigurable;
-    }
+	public FilterConfigurable getFilterConfigurable() {
+		return this.filterConfigurable;
+	}
 
-    protected class FilterSlot extends ShadowSlot {
+	protected class FilterSlot extends ShadowSlot {
 
-        public FilterSlot(Inventory inventory, int index, int x, int y) {
-            super(inventory, index, x, y);
-        }
+		public FilterSlot(Inventory inventory, int index, int x, int y) {
+			super(inventory, index, x, y);
+		}
 
-        @Override
-        public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
-            if (!world.isClient && filterConfigurable != null) {
-                filterConfigurable.setFilterItem(getIndex(), heldStack.getItem());
-            }
-            return super.onClicked(heldStack, type, player);
-        }
-    }
+		@Override
+		public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
+			if (!world.isClient && filterConfigurable != null) {
+				filterConfigurable.setFilterItem(getIndex(), heldStack.getItem());
+			}
+			return super.onClicked(heldStack, type, player);
+		}
+	}
 
 }

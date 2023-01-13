@@ -9,7 +9,7 @@
     {
       "type": "patchouli:text",
       "title": "Pastel Network",
-      "text": "Your primitive ways of item transport like hopper arrays do not compare to the Pastel Network - that is what you called clusters of Azurite-based nodes. Placed in close proximity, nodes will connect wirelessly to one another and form an item transfer network.$(br)Nodes do not require line of sight."
+      "text": "Your primitive ways of item transport like hopper arrays do not compare to the Pastel Network - this is what you named clusters of Azurite-based nodes.$(br)Placed in close proximity, nodes will connect wirelessly to one another and form an item transfer network.$(br)Nodes do not require line of sight."
     },
     {
       "type": "patchouli:image",

@@ -57,8 +57,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             if (!(state.getBlock() instanceof PastelNodeBlock)) {
                 return null;
             }
-            cachedDirection = state.get(PastelNodeBlock.FACING).getOpposite();
-            connectedStorageCache = BlockApiCache.create(ItemStorage.SIDED, (ServerWorld) world, this.getPos().offset(cachedDirection));
+            cachedDirection = state.get(PastelNodeBlock.FACING);
+            connectedStorageCache = BlockApiCache.create(ItemStorage.SIDED, (ServerWorld) world, this.getPos().offset(cachedDirection.getOpposite()));
         }
         return connectedStorageCache.find(cachedDirection);
     }

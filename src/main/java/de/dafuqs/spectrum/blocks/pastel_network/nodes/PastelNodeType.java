@@ -3,22 +3,18 @@ package de.dafuqs.spectrum.blocks.pastel_network.nodes;
 import net.minecraft.text.*;
 
 public enum PastelNodeType {
-    CONNECTION("block.spectrum.connection_node.tooltip", false, false, false),
-    STORAGE("block.spectrum.storage_node.tooltip", true, true, true),
-    PROVIDER("block.spectrum.provider_node.tooltip", false, true, false),
-    SENDER("block.spectrum.sender_node.tooltip", false, true, false),
-    GATHER("block.spectrum.gather_node.tooltip", true, false, true);
+    CONNECTION("block.spectrum.connection_node.tooltip", false),
+    STORAGE("block.spectrum.storage_node.tooltip", true),
+    PROVIDER("block.spectrum.provider_node.tooltip", false),
+    SENDER("block.spectrum.sender_node.tooltip", false),
+    GATHER("block.spectrum.gather_node.tooltip", true);
 
     private final MutableText tooltip;
     private final boolean usesFilters;
-    private final boolean supportsExtracting;
-    private final boolean supportsInserting;
 
-    PastelNodeType(String tooltip, boolean usesFilters, boolean supportsExtracting, boolean supportsInserting) {
+    PastelNodeType(String tooltip, boolean usesFilters) {
         this.tooltip = Text.translatable(tooltip);
         this.usesFilters = usesFilters;
-        this.supportsExtracting = supportsExtracting;
-        this.supportsInserting = supportsInserting;
     }
 
     public MutableText getTooltip() {
@@ -27,14 +23,6 @@ public enum PastelNodeType {
 
     public boolean usesFilters() {
         return usesFilters;
-    }
-
-    public boolean isSupportsExtracting() {
-        return supportsExtracting;
-    }
-
-    public boolean isSupportsInserting() {
-        return supportsInserting;
     }
 
 }

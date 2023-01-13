@@ -17,11 +17,11 @@ import java.util.*;
 public class ServerPastelNetwork extends PastelNetwork {
 
     protected SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
-    protected final TransmissionLogic transmissionLogic;
+    protected final ServerPastelTransmissionLogic serverPastelTransmissionLogic;
 
     public ServerPastelNetwork(World world, @Nullable UUID uuid) {
         super(world, uuid);
-        this.transmissionLogic = new TransmissionLogic(this);
+        this.serverPastelTransmissionLogic = new ServerPastelTransmissionLogic(this);
     }
 
     public void checkNetworkMergesForNewNode(PastelNodeBlockEntity newNode) {
@@ -62,14 +62,14 @@ public class ServerPastelNetwork extends PastelNetwork {
             }
         }
         this.graph = null;
-        transmissionLogic.invalidateCache();
+        serverPastelTransmissionLogic.invalidateCache();
         Pastel.getInstance(networkToIncorporate.world.isClient).remove(networkToIncorporate);
     }
 
     @Override
     public void addNode(PastelNodeBlockEntity node) {
         super.addNode(node);
-        transmissionLogic.invalidateCache();
+        serverPastelTransmissionLogic.invalidateCache();
     }
 
     public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
@@ -81,7 +81,7 @@ public class ServerPastelNetwork extends PastelNetwork {
         if (this.graph != null) {
             // delete the now removed node from this networks graph
             this.graph.removeVertex(node);
-            transmissionLogic.invalidateCache();
+            serverPastelTransmissionLogic.invalidateCache();
         }
 
         if (hasNodes()) {
@@ -111,7 +111,7 @@ public class ServerPastelNetwork extends PastelNetwork {
 
     public void tick() {
         this.transmissions.tick();
-        this.transmissionLogic.tick();
+        this.serverPastelTransmissionLogic.tick();
     }
 
     public void addTransmission(PastelTransmission transmission, int travelTime) {

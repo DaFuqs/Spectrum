@@ -27,6 +27,7 @@ import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory {
 
@@ -79,6 +80,30 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             this.cachedNoRedstonePower = world.getReceivedRedstonePower(this.pos) == 0;
         }
         return this.world.getTime() > lastTransferTick && this.cachedNoRedstonePower;
+    }
+
+    public Predicate<ItemVariant> getTransferFilterTo(PastelNodeBlockEntity other) {
+        if (this.getNodeType().usesFilters() && !this.hasEmptyFilter()) {
+            if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
+                // unionize both filters
+                return itemVariant -> filterItems.contains(itemVariant.getItem()) && other.filterItems.contains(itemVariant.getItem());
+            } else {
+                return itemVariant -> filterItems.contains(itemVariant.getItem());
+            }
+        } else if (other.getNodeType().usesFilters() && !other.hasEmptyFilter()) {
+            return itemVariant -> other.filterItems.contains(itemVariant.getItem());
+        } else {
+            return itemVariant -> true;
+        }
+    }
+
+    public boolean hasEmptyFilter() {
+        for (Item item : this.filterItems) {
+            if (item != Items.AIR) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void markTransferred() {

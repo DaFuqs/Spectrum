@@ -16,7 +16,6 @@ public class FilteringScreenHandler extends ScreenHandler {
 	protected final World world;
 	protected FilterConfigurable filterConfigurable;
 	protected Inventory filterInventory;
-	protected int firstFilterSlot;
 
 	public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packetByteBuf) {
 		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, FilterConfigurable.getFilterInventoryFromPacket(packetByteBuf));
@@ -32,24 +31,21 @@ public class FilteringScreenHandler extends ScreenHandler {
 		this.world = playerInventory.player.world;
 		this.filterInventory = filterInventory;
 
-		int j;
-		int k;
-
 		// filter slots
-		int startX = (176 / 2) - (filterInventory.size() - 1) * 9;
-		for (k = 0; k < filterInventory.size(); ++k) {
+		int startX = (176 / 2) - (filterInventory.size() + 1) * 9;
+		for (int k = 0; k < filterInventory.size(); ++k) {
 			this.addSlot(new FilterSlot(filterInventory, k, startX + k * 23, 18));
 		}
 
 		// player inventory slots
-		int i = 50;
-		for (j = 0; j < 3; ++j) {
-			for (k = 0; k < 9; ++k) {
+		int i = 52;
+		for (int j = 0; j < 3; ++j) {
+			for (int k = 0; k < 9; ++k) {
 				this.addSlot(new Slot(playerInventory, k + j * 9 + 9, 8 + k * 18, j * 18 + i));
 			}
 		}
 		// player hotbar
-		for (j = 0; j < 9; ++j) {
+		for (int j = 0; j < 9; ++j) {
 			this.addSlot(new Slot(playerInventory, j, 8 + j * 18, 58 + i));
 		}
 

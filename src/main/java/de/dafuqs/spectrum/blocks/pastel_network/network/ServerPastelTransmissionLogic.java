@@ -16,7 +16,7 @@ import org.jgrapht.graph.*;
 
 import java.util.*;
 
-public class TransmissionLogic {
+public class ServerPastelTransmissionLogic {
 
     private enum TransferMode {
         PUSH,
@@ -25,15 +25,16 @@ public class TransmissionLogic {
     }
 
     public static final int MAX_TRANSFER_AMOUNT = 1;
-    public static final int TRANSFER_TICKS_PER_NODE = 40;
+    public static final int START_TRANSFER_EVERY_X_TICKS = 10;
+    public static final int TRANSFER_TICKS_PER_NODE = 30;
 
-    private final TickLooper tickLooper = new TickLooper(TRANSFER_TICKS_PER_NODE);
+    private final TickLooper tickLooper = new TickLooper(START_TRANSFER_EVERY_X_TICKS);
     private final ServerPastelNetwork network;
     private DijkstraShortestPath<PastelNodeBlockEntity, DefaultEdge> dijkstra;
     private Map<PastelNodeBlockEntity, Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>>> pathCache = new HashMap<>();
 
 
-    public TransmissionLogic(ServerPastelNetwork network) {
+    public ServerPastelTransmissionLogic(ServerPastelNetwork network) {
         this.network = network;
     }
 
@@ -115,7 +116,7 @@ public class TransmissionLogic {
 
     private boolean transferBetween(PastelNodeBlockEntity sourceNode, Storage<ItemVariant> sourceStorage, PastelNodeBlockEntity destinationNode, Storage<ItemVariant> destinationStorage, TransferMode transferMode) {
         try (Transaction transaction = Transaction.openOuter()) {
-            ResourceAmount<ItemVariant> resourceAmount = StorageUtil.findExtractableContent(sourceStorage, transaction);
+            ResourceAmount<ItemVariant> resourceAmount = StorageUtil.findExtractableContent(sourceStorage, sourceNode.getTransferFilterTo(destinationNode), transaction);
             if (resourceAmount != null) {
                 int validAmount = (int) Math.min(resourceAmount.amount(), MAX_TRANSFER_AMOUNT);
                 validAmount = (int) destinationStorage.simulateInsert(resourceAmount.resource(), validAmount, transaction);

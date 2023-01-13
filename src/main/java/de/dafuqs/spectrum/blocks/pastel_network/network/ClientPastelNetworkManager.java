@@ -14,14 +14,8 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
         this.networks.remove(network);
     }
 
-    public void tick() {
-        for (PastelNetwork network : networks) {
-            network.tick();
-        }
-    }
-
     public @Nullable PastelNetwork getNetwork(UUID uuid) {
-        for (PastelNetwork network : networks) {
+        for (PastelNetwork network : this.networks) {
             if (network.getUUID() == uuid) {
                 return network;
             }
@@ -32,14 +26,15 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
     public PastelNetwork joinNetwork(PastelNodeBlockEntity node, UUID uuid) {
         PastelNetwork foundNetwork = null;
         //noinspection ForLoopReplaceableByForEach
-        for (int i = 0; i < networks.size(); i++) {
-            PastelNetwork network = networks.get(i);
+        for (int i = 0; i < this.networks.size(); i++) {
+            PastelNetwork network = this.networks.get(i);
             if (network.getUUID().equals(uuid)) {
                 network.addNode(node);
                 foundNetwork = network;
             } else {
-                network.removeNode(node, NodeRemovalReason.MOVED);
-                i--;
+                if (network.removeNode(node, NodeRemovalReason.MOVED)) {
+                    i--;
+                }
                 // network empty => delete
                 if (!network.hasNodes()) {
                     remove(network);

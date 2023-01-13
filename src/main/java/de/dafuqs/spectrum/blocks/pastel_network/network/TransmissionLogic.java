@@ -42,7 +42,7 @@ public class TransmissionLogic {
         this.pathCache = new HashMap<>();
     }
 
-    public @Nullable GraphPath<PastelNodeBlockEntity, DefaultEdge> getPath(Graph graph, PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
+    public @Nullable GraphPath<PastelNodeBlockEntity, DefaultEdge> getPath(Graph<PastelNodeBlockEntity, DefaultEdge> graph, PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
         if (this.dijkstra == null) {
             this.dijkstra = new DijkstraShortestPath<>(graph);
         }
@@ -121,13 +121,13 @@ public class TransmissionLogic {
                 validAmount = (int) destinationStorage.simulateInsert(resourceAmount.resource(), validAmount, transaction);
                 if (validAmount > 0) {
                     sourceStorage.extract(resourceAmount.resource(), validAmount, transaction);
-                    Optional<PastelTransmission> transfer = buildTransfer(sourceNode, destinationNode, resourceAmount.resource(), validAmount);
-                    if (transfer.isPresent()) {
-                        PastelTransmission t = transfer.get();
-                        int verticesCount = t.getNodePositions().size() - 1;
+                    Optional<PastelTransmission> optionalTransmission = buildTransfer(sourceNode, destinationNode, resourceAmount.resource(), validAmount);
+                    if (optionalTransmission.isPresent()) {
+                        PastelTransmission transmission = optionalTransmission.get();
+                        int verticesCount = transmission.getNodePositions().size() - 1;
                         int travelTime = TRANSFER_TICKS_PER_NODE * verticesCount;
-                        this.network.addTransmission(t, travelTime);
-                        SpectrumS2CPacketSender.sendPastelTransfer(network, travelTime, t);
+                        this.network.addTransmission(transmission, travelTime);
+                        SpectrumS2CPacketSender.sendPastelTransmission(network, travelTime, transmission);
                         if (transferMode == TransferMode.PULL) {
                             destinationNode.markTransferred();
                         } else if (transferMode == TransferMode.PUSH) {

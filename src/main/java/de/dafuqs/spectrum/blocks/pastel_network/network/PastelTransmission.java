@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.pastel_network.network;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
@@ -25,6 +26,7 @@ public class PastelTransmission implements SchedulerMap.Callback {
         this.nodePositions = nodePositions;
         this.variant = variant;
         this.amount = amount;
+        SpectrumCommon.logInfo("Server: Started at " + SpectrumCommon.minecraftServer.getOverworld().getTime());
     }
 
     public void setNetwork(@NotNull PastelNetwork network) {
@@ -60,6 +62,8 @@ public class PastelTransmission implements SchedulerMap.Callback {
         if (nodePositions.size() == 0) {
             return;
         }
+
+        SpectrumCommon.logInfo("Server: Arrived at " + SpectrumCommon.minecraftServer.getOverworld().getTime());
 
         BlockPos destinationPos = nodePositions.get(nodePositions.size() - 1);
         PastelNodeBlockEntity destinationNode = this.network.getNodeAt(destinationPos);

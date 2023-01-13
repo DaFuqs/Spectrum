@@ -249,9 +249,11 @@ public class SpectrumCommon implements ModInitializer {
 			SpectrumCommon.minecraftServer = server;
 		});
 
-		ServerTickEvents.END_WORLD_TICK.register(world -> {
+		ServerTickEvents.END_SERVER_TICK.register(server -> {
 			Pastel.getServerInstance().tick();
+		});
 
+		ServerTickEvents.END_WORLD_TICK.register(world -> {
 			if (world.getTime() % 100 == 0) {
 				long timeOfDay = world.getTimeOfDay() % 24000;
 				if (timeOfDay > 13000 && timeOfDay < 22000) { // 90 chances in a night

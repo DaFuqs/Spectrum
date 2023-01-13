@@ -16,6 +16,7 @@ import java.util.*;
 
 public class ServerPastelNetwork extends PastelNetwork {
 
+    protected SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
     protected final TransmissionLogic transmissionLogic;
 
     public ServerPastelNetwork(World world, @Nullable UUID uuid) {
@@ -108,12 +109,15 @@ public class ServerPastelNetwork extends PastelNetwork {
         return false;
     }
 
-    @Override
     public void tick() {
-        super.tick();
+        this.transmissions.tick();
         this.transmissionLogic.tick();
     }
 
+    public void addTransmission(PastelTransmission transmission, int travelTime) {
+        transmission.setNetwork(this);
+        this.transmissions.put(transmission, travelTime);
+    }
 
     public NbtCompound toNbt() {
         NbtCompound compound = new NbtCompound();

@@ -54,13 +54,13 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
     }
 
     public void tick() {
-        for (PastelNetwork network : networks) {
+        for (ServerPastelNetwork network : this.networks) {
             network.tick();
         }
     }
 
     public @Nullable PastelNetwork getNetwork(UUID uuid) {
-        for (PastelNetwork network : networks) {
+        for (PastelNetwork network : this.networks) {
             if (network.getUUID() == uuid) {
                 return network;
             }
@@ -70,7 +70,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 
     public PastelNetwork joinNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid) {
         if (uuid == null) {
-            for (PastelNetwork network : networks) {
+            for (PastelNetwork network : this.networks) {
                 if (network.canConnect(node)) {
                     network.addNode(node);
                     ((ServerPastelNetwork) network).checkNetworkMergesForNewNode(node);
@@ -79,8 +79,8 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
             }
         } else {
             //noinspection ForLoopReplaceableByForEach
-            for (int i = 0; i < networks.size(); i++) {
-                PastelNetwork network = networks.get(i);
+            for (int i = 0; i < this.networks.size(); i++) {
+                PastelNetwork network = this.networks.get(i);
                 if (network.getUUID().equals(uuid)) {
                     network.addNode(node);
                     return network;

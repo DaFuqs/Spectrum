@@ -102,20 +102,18 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle {
     public void tick() {
         this.age++;
 
-        int nodeCount = this.travelNodes.size();
+        int vertexCount = this.travelNodes.size() - 1;
         float travelPercent = (float) this.age / this.maxAge;
-        float progress = travelPercent * nodeCount;
-
-        int startNodeID = (int) progress;
-        if (startNodeID >= nodeCount - 1) {
-            Vec3d destination = this.travelNodes.get(this.travelNodes.size() - 1);
+        if (travelPercent >= 1.0F) {
+            Vec3d destination = this.travelNodes.get(vertexCount);
             world.playSound(destination.getX(), destination.getY() + 0.25, destination.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F, true);
             world.addParticle(ParticleTypes.BUBBLE_POP, destination.getX(), destination.getY() + 0.25, destination.getZ(), 0, 0, 0);
-
             this.markDead();
             return;
         }
 
+        float progress = travelPercent * vertexCount;
+        int startNodeID = (int) progress;
         this.prevPosX = this.x;
         this.prevPosY = this.y;
         this.prevPosZ = this.z;

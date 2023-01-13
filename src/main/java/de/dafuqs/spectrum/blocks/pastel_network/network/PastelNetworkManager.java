@@ -14,8 +14,6 @@ public interface PastelNetworkManager {
 
     void remove(PastelNetwork network);
 
-    void tick();
-
     @Nullable PastelNetwork getNetwork(UUID uuid);
 
 }

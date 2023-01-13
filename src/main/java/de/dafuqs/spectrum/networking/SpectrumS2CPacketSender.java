@@ -148,16 +148,16 @@ public class SpectrumS2CPacketSender {
         }
     }
 
-    public static void sendPastelTransfer(PastelNetwork network, int travelTime, @NotNull PastelTransmission transfer) {
-        PacketByteBuf buf = PacketByteBufs.create();
-        buf.writeUuid(network.getUUID());
-        buf.writeInt(travelTime);
-        PastelTransmission.writeToBuf(buf, transfer);
+    public static void sendPastelTransmission(PastelNetwork network, int travelTime, @NotNull PastelTransmission transfer) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeUuid(network.getUUID());
+		buf.writeInt(travelTime);
+		PastelTransmission.writeToBuf(buf, transfer);
 
-        for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) network.getWorld(), transfer.getStartPos())) {
-            ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_TRANSMISSION, buf);
-        }
-    }
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) network.getWorld(), transfer.getStartPos())) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_TRANSMISSION, buf);
+		}
+	}
 
     public static void sendItemTransferPacket(ServerWorld world, @NotNull SimpleTransmission transfer) {
         BlockPos blockPos = new BlockPos(transfer.getOrigin());

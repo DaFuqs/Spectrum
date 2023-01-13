@@ -14,8 +14,8 @@ public class SchedulerMap<K> implements Iterable<Map.Entry<K, Integer>> {
         this.map = map;
     }
 
-    public void put(K val, int time) {
-        this.map.put(val, time);
+    public void put(K val, int ticks) {
+        this.map.put(val, ticks);
     }
 
     public void clear() {

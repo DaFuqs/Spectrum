@@ -61,7 +61,14 @@ public class ServerPastelNetwork extends PastelNetwork {
             }
         }
         this.graph = null;
+        transmissionLogic.invalidateCache();
         Pastel.getInstance(networkToIncorporate.world.isClient).remove(networkToIncorporate);
+    }
+
+    @Override
+    public void addNode(PastelNodeBlockEntity node) {
+        super.addNode(node);
+        transmissionLogic.invalidateCache();
     }
 
     public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
@@ -73,6 +80,7 @@ public class ServerPastelNetwork extends PastelNetwork {
         if (this.graph != null) {
             // delete the now removed node from this networks graph
             this.graph.removeVertex(node);
+            transmissionLogic.invalidateCache();
         }
 
         if (hasNodes()) {

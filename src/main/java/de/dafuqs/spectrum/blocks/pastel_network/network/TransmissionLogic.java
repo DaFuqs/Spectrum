@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.transfer.v1.storage.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.fabricmc.fabric.api.transfer.v1.transaction.*;
 import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.alg.interfaces.*;
 import org.jgrapht.alg.shortestpath.*;
@@ -28,9 +29,44 @@ public class TransmissionLogic {
 
     private final TickLooper tickLooper = new TickLooper(TRANSFER_TICKS_PER_NODE);
     private final ServerPastelNetwork network;
+    private DijkstraShortestPath<PastelNodeBlockEntity, DefaultEdge> dijkstra;
+    private Map<PastelNodeBlockEntity, Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>>> pathCache = new HashMap<>();
+
 
     public TransmissionLogic(ServerPastelNetwork network) {
         this.network = network;
+    }
+
+    public void invalidateCache() {
+        this.dijkstra = null;
+        this.pathCache = new HashMap<>();
+    }
+
+    public @Nullable GraphPath<PastelNodeBlockEntity, DefaultEdge> getPath(Graph graph, PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
+        if (this.dijkstra == null) {
+            this.dijkstra = new DijkstraShortestPath<>(graph);
+        }
+
+        // cache hit?
+        Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>> e = pathCache.getOrDefault(source, null);
+        if (e != null) {
+            if (e.containsKey(destination)) {
+                return e.get(destination);
+            }
+        }
+
+        // calculate and cache
+        ShortestPathAlgorithm.SingleSourcePaths<PastelNodeBlockEntity, DefaultEdge> paths = dijkstra.getPaths(source);
+        GraphPath<PastelNodeBlockEntity, DefaultEdge> path = paths.getPath(destination);
+        if (pathCache.containsKey(source)) {
+            pathCache.get(source).put(destination, path);
+        } else {
+            Map<PastelNodeBlockEntity, GraphPath<PastelNodeBlockEntity, DefaultEdge>> newMap = new HashMap<>();
+            newMap.put(destination, path);
+            pathCache.put(source, newMap);
+        }
+
+        return path;
     }
 
     public boolean tick() {
@@ -112,7 +148,7 @@ public class TransmissionLogic {
     }
 
     public Optional<PastelTransmission> buildTransfer(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, ItemVariant variant, int amount) {
-        GraphPath<PastelNodeBlockEntity, DefaultEdge> graphPath = getPath(source, destination);
+        GraphPath<PastelNodeBlockEntity, DefaultEdge> graphPath = getPath(network.getGraph(), source, destination);
         if (graphPath != null) {
             List<BlockPos> vertexPositions = new ArrayList<>();
             for (PastelNodeBlockEntity vertex : graphPath.getVertexList()) {
@@ -121,12 +157,6 @@ public class TransmissionLogic {
             return Optional.of(new PastelTransmission(vertexPositions, variant, amount));
         }
         return Optional.empty();
-    }
-
-    public GraphPath<PastelNodeBlockEntity, DefaultEdge> getPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
-        DijkstraShortestPath<PastelNodeBlockEntity, DefaultEdge> dijkstraShortestPath = new DijkstraShortestPath<>(this.network.getGraph());
-        ShortestPathAlgorithm.SingleSourcePaths<PastelNodeBlockEntity, DefaultEdge> paths = dijkstraShortestPath.getPaths(source);
-        return paths.getPath(destination);
     }
 
 }

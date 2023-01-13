@@ -119,7 +119,8 @@ public class ServerPastelTransmissionLogic {
             ResourceAmount<ItemVariant> resourceAmount = StorageUtil.findExtractableContent(sourceStorage, sourceNode.getTransferFilterTo(destinationNode), transaction);
             if (resourceAmount != null) {
                 int validAmount = (int) Math.min(resourceAmount.amount(), MAX_TRANSFER_AMOUNT);
-                validAmount = (int) destinationStorage.simulateInsert(resourceAmount.resource(), validAmount, transaction);
+                validAmount = (int) destinationStorage.simulateInsert(resourceAmount.resource(), validAmount + destinationNode.getItemCountUnderway(), transaction);
+                validAmount = validAmount - destinationNode.getItemCountUnderway(); // prevention to not overfill the container (send more transfers when the existing ones would fill it already)
                 if (validAmount > 0) {
                     sourceStorage.extract(resourceAmount.resource(), validAmount, transaction);
                     Optional<PastelTransmission> optionalTransmission = buildTransfer(sourceNode, destinationNode, resourceAmount.resource(), validAmount);
@@ -138,6 +139,7 @@ public class ServerPastelTransmissionLogic {
                             sourceNode.markTransferred();
                         }
 
+                        destinationNode.addItemCountUnderway(validAmount);
                         transaction.commit();
                         return true;
                     }

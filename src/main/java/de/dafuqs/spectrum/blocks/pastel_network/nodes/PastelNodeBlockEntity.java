@@ -39,6 +39,8 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     protected long cachedRedstonePowerTick = 0;
     protected boolean cachedNoRedstonePower = true;
 
+    protected int itemCountUnderway = 0;
+
     protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
     protected Direction cachedDirection = null;
 
@@ -193,6 +195,16 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
             updateInClientWorld();
             this.markDirty();
         }
+    }
+
+    public int getItemCountUnderway() {
+        return this.itemCountUnderway;
+    }
+
+    public void addItemCountUnderway(int count) {
+        this.itemCountUnderway += count;
+        this.itemCountUnderway = Math.max(0, this.itemCountUnderway);
+        this.markDirty();
     }
 
     // interaction methods

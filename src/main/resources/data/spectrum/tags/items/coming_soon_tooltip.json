@@ -7,30 +7,18 @@
     "spectrum:upgrade_speed3",
     "spectrum:upgrade_efficiency2",
     "spectrum:upgrade_yield2",
-
     "spectrum:inkwell",
     "spectrum:ink_duct",
     "spectrum:artists_palette",
-
     "spectrum:spectral_shard",
     "spectrum:spectral_shard_block",
     "spectrum:spectral_shard_storage_block",
-
+    "#spectrum:catkin",
     "spectrum:ominous_sapling",
     "spectrum:spirit_sallow_roots",
     "spectrum:spirit_sallow_log",
     "spectrum:spirit_sallow_leaves",
     "spectrum:spirit_sallow_heart",
-    "spectrum:vibrant_cyan_catkin",
-    "spectrum:vibrant_magenta_catkin",
-    "spectrum:vibrant_yellow_catkin",
-    "spectrum:vibrant_black_catkin",
-    "spectrum:vibrant_white_catkin",
-    "spectrum:lucid_cyan_catkin",
-    "spectrum:lucid_magenta_catkin",
-    "spectrum:lucid_yellow_catkin",
-    "spectrum:lucid_black_catkin",
-    "spectrum:lucid_white_catkin",
     "spectrum:sacred_soil",
     "spectrum:frigid_stardust"
   ]

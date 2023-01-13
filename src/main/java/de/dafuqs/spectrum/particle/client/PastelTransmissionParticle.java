@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.particle.client;
 
+import de.dafuqs.spectrum.*;
 import net.fabricmc.api.*;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.*;
@@ -40,7 +41,8 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle {
 
         // spawning sound & particles
         Vec3d pos = vecList.get(0);
-        world.playSound(pos.getX(), pos.getY() + 0.25, pos.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F, true);
+        world.playSound(pos.getX(), pos.getY() + 0.25, pos.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS,
+                0.25F * SpectrumCommon.CONFIG.BlockSoundVolume, 0.9F + world.random.nextFloat() * 0.2F, true);
         world.addParticle(ParticleTypes.BUBBLE_POP, pos.getX(), pos.getY() + 0.25, pos.getZ(), 0, 0, 0);
     }
 
@@ -106,7 +108,8 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle {
         float travelPercent = (float) this.age / this.maxAge;
         if (travelPercent >= 1.0F) {
             Vec3d destination = this.travelNodes.get(vertexCount);
-            world.playSound(destination.getX(), destination.getY() + 0.25, destination.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.3F, 0.9F + world.random.nextFloat() * 0.2F, true);
+            world.playSound(destination.getX(), destination.getY() + 0.25, destination.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS,
+                    0.25F * SpectrumCommon.CONFIG.BlockSoundVolume, 0.9F + world.random.nextFloat() * 0.2F, true);
             world.addParticle(ParticleTypes.BUBBLE_POP, destination.getX(), destination.getY() + 0.25, destination.getZ(), 0, 0, 0);
             this.markDead();
             return;

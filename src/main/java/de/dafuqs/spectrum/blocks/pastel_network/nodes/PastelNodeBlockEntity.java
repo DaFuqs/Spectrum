@@ -127,18 +127,15 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     @Override
     public void markRemoved() {
         super.markRemoved();
-        if (this.network != null && (this.world == null || this.world.isClient)) {
-            this.network.removeNode(this);
+        if (this.network != null && this.world != null) {
+            this.network.removeNode(this, NodeRemovalReason.UNLOADED);
             this.network = null;
         }
     }
 
     public void onBroken() {
         if (this.network != null) {
-            this.network.removeNode(this);
-            if (!network.hasNodes()) {
-                Pastel.getServerInstance().remove(network);
-            }
+            this.network.removeNode(this, NodeRemovalReason.BROKEN);
             this.network = null;
         }
     }

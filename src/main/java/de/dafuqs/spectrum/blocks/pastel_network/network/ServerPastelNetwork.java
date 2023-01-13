@@ -3,21 +3,13 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
-import de.dafuqs.spectrum.networking.*;
-import net.fabricmc.fabric.api.transfer.v1.item.*;
-import net.fabricmc.fabric.api.transfer.v1.storage.*;
-import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
-import net.fabricmc.fabric.api.transfer.v1.transaction.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.alg.connectivity.*;
-import org.jgrapht.alg.interfaces.*;
-import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
 
 import java.util.*;
@@ -72,8 +64,18 @@ public class ServerPastelNetwork extends PastelNetwork {
         Pastel.getInstance(networkToIncorporate.world.isClient).remove(networkToIncorporate);
     }
 
-    public boolean removeNode(PastelNodeBlockEntity node) {
-        if (super.removeNode(node) && hasNodes()) {
+    public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
+        boolean hadNode = this.nodes.get(node.getNodeType()).remove(node);
+        if (!hadNode) {
+            return false;
+        }
+
+        if (this.graph != null) {
+            // delete the now removed node from this networks graph
+            this.graph.removeVertex(node);
+        }
+
+        if (hasNodes()) {
             Graph<PastelNodeBlockEntity, DefaultEdge> graph = getGraph();
 
             // check if the removed node split the network into subnetworks
@@ -92,6 +94,8 @@ public class ServerPastelNetwork extends PastelNetwork {
                 }
             }
             return true;
+        } else if (reason == NodeRemovalReason.BROKEN || reason == NodeRemovalReason.MOVED) {
+            Pastel.getServerInstance().remove(this);
         }
         return false;
     }
@@ -102,105 +106,6 @@ public class ServerPastelNetwork extends PastelNetwork {
         this.transmissionLogic.tick();
     }
 
-    public static class TransmissionLogic {
-
-        public static final int MAX_TRANSFER_AMOUNT = 1;
-        public static final int TRANSFER_TICKS_PER_NODE = 40;
-
-        private final TickLooper tickLooper = new TickLooper(TRANSFER_TICKS_PER_NODE);
-        private final ServerPastelNetwork network;
-
-        public TransmissionLogic(ServerPastelNetwork network) {
-            this.network = network;
-        }
-
-        public boolean tick() {
-            tickLooper.tick();
-            if (!tickLooper.reachedCap()) {
-                return false;
-            }
-            tickLooper.reset();
-
-            transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER);
-            transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER);
-            transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER);
-            transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE);
-
-            return false;
-        }
-
-        private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType) {
-            for (PastelNodeBlockEntity sourceNode : network.getNodes(sourceType)) {
-                if (!sourceNode.canTransfer()) {
-                    continue;
-                }
-
-                Storage<ItemVariant> sourceStorage = sourceNode.getConnectedStorage();
-                if (sourceStorage != null && sourceStorage.supportsExtraction()) {
-                    tryTransferToType(sourceNode, sourceStorage, destinationType);
-                }
-            }
-        }
-
-        private void tryTransferToType(PastelNodeBlockEntity sourceNode, Storage<ItemVariant> sourceStorage, PastelNodeType type) {
-            for (PastelNodeBlockEntity destinationNode : this.network.getNodes(type)) {
-                if (!destinationNode.canTransfer()) {
-                    continue;
-                }
-
-                Storage<ItemVariant> destinationStorage = destinationNode.getConnectedStorage();
-                if (destinationStorage != null && destinationStorage.supportsInsertion()) {
-                    transferBetween(sourceNode, sourceStorage, destinationNode, destinationStorage);
-                    return;
-                }
-            }
-        }
-
-        private void transferBetween(PastelNodeBlockEntity sourceNode, Storage<ItemVariant> sourceStorage, PastelNodeBlockEntity destinationNode, Storage<ItemVariant> destinationStorage) {
-            try (Transaction transaction = Transaction.openOuter()) {
-                ResourceAmount<ItemVariant> resourceAmount = StorageUtil.findExtractableContent(sourceStorage, transaction);
-                if (resourceAmount == null) {
-                    return;
-                }
-                int validAmount = (int) Math.min(resourceAmount.amount(), MAX_TRANSFER_AMOUNT);
-                validAmount = (int) destinationStorage.simulateInsert(resourceAmount.resource(), validAmount, transaction);
-                if (validAmount > 0) {
-                    sourceStorage.extract(resourceAmount.resource(), validAmount, transaction);
-                    Optional<PastelTransmission> transfer = buildTransfer(sourceNode, destinationNode, resourceAmount.resource(), validAmount);
-                    if (transfer.isPresent()) {
-                        PastelTransmission t = transfer.get();
-                        int travelTime = TRANSFER_TICKS_PER_NODE * t.getNodePositions().size();
-                        this.network.addTransmission(t, travelTime);
-                        SpectrumS2CPacketSender.sendPastelTransfer(network, travelTime, t);
-                        transaction.commit();
-                        sourceNode.markTransferred();
-                        destinationNode.markTransferred();
-                    }
-                    return;
-                }
-                transaction.abort();
-            }
-        }
-
-        public Optional<PastelTransmission> buildTransfer(PastelNodeBlockEntity source, PastelNodeBlockEntity destination, ItemVariant variant, int amount) {
-            GraphPath<PastelNodeBlockEntity, DefaultEdge> graphPath = getPath(source, destination);
-            if (graphPath != null) {
-                List<BlockPos> vertexPositions = new ArrayList<>();
-                for (PastelNodeBlockEntity vertex : graphPath.getVertexList()) {
-                    vertexPositions.add(vertex.getPos());
-                }
-                return Optional.of(new PastelTransmission(vertexPositions, variant, amount));
-            }
-            return Optional.empty();
-        }
-
-        public GraphPath<PastelNodeBlockEntity, DefaultEdge> getPath(PastelNodeBlockEntity source, PastelNodeBlockEntity destination) {
-            DijkstraShortestPath<PastelNodeBlockEntity, DefaultEdge> dijkstraShortestPath = new DijkstraShortestPath<>(this.network.getGraph());
-            ShortestPathAlgorithm.SingleSourcePaths<PastelNodeBlockEntity, DefaultEdge> paths = dijkstraShortestPath.getPaths(source);
-            return paths.getPath(destination);
-        }
-
-    }
 
     public NbtCompound toNbt() {
         NbtCompound compound = new NbtCompound();

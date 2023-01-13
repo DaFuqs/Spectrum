@@ -54,13 +54,16 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
         return world.getBlockState(pos.offset(targetDirection)).getMaterial().isSolid();
     }
 
+
     @Override
-    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
-        super.onBroken(world, pos, state);
-        PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
-        if (blockEntity != null) {
-            blockEntity.onBroken();
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (!newState.isOf(state.getBlock())) {
+            PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
+            if (blockEntity != null) {
+                blockEntity.onBroken();
+            }
         }
+        super.onStateReplaced(state, world, pos, newState, moved);
     }
 
     @Override

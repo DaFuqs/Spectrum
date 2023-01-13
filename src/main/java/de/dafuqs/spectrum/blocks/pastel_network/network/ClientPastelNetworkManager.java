@@ -38,7 +38,8 @@ public class ClientPastelNetworkManager implements PastelNetworkManager {
                 network.addNode(node);
                 foundNetwork = network;
             } else {
-                network.removeNode(node);
+                network.removeNode(node, NodeRemovalReason.MOVED);
+                i--;
                 // network empty => delete
                 if (!network.hasNodes()) {
                     remove(network);

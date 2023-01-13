@@ -21,6 +21,7 @@ public class PastelNetwork {
     protected UUID uuid;
     protected SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
 
+
     public PastelNetwork(World world, @Nullable UUID uuid) {
         this.world = world;
         this.uuid = uuid == null ? UUID.randomUUID() : uuid;
@@ -80,7 +81,7 @@ public class PastelNetwork {
         }
     }
 
-    public boolean removeNode(PastelNodeBlockEntity node) {
+    public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
         boolean hadNode = this.nodes.get(node.getNodeType()).remove(node);
         if (!hadNode) {
             return false;
@@ -89,6 +90,10 @@ public class PastelNetwork {
         if (this.graph != null) {
             // delete the now removed node from this networks graph
             this.graph.removeVertex(node);
+        }
+
+        if (!this.hasNodes()) {
+            Pastel.getInstance(this.world.isClient).remove(this);
         }
         return true;
     }

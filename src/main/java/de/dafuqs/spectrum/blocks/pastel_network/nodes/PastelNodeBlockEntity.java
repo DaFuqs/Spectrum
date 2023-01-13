@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.lookup.v1.block.*;
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.fabric.api.transfer.v1.storage.*;
@@ -37,6 +38,9 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     protected long cachedRedstonePowerTick = 0;
     protected boolean cachedNoRedstonePower = true;
 
+    protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
+    protected Direction cachedDirection = null;
+
     private final List<Item> filterItems;
 
     public PastelNodeBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -45,12 +49,15 @@ public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigur
     }
 
     public @Nullable Storage<ItemVariant> getConnectedStorage() {
-        BlockState state = this.getCachedState();
-        if (state.getBlock() instanceof PastelNodeBlock) {
-            Direction direction = state.get(PastelNodeBlock.FACING).getOpposite();
-            return ItemStorage.SIDED.find(this.world, this.getPos().offset(direction), direction);
+        if (connectedStorageCache == null) {
+            BlockState state = this.getCachedState();
+            if (!(state.getBlock() instanceof PastelNodeBlock)) {
+                return null;
+            }
+            cachedDirection = state.get(PastelNodeBlock.FACING).getOpposite();
+            connectedStorageCache = BlockApiCache.create(ItemStorage.SIDED, (ServerWorld) world, this.getPos().offset(cachedDirection));
         }
-        return null;
+        return connectedStorageCache.find(cachedDirection);
     }
 
     @Override

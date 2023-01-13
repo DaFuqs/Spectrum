@@ -88,7 +88,8 @@ public class TransmissionLogic {
                     Optional<PastelTransmission> transfer = buildTransfer(sourceNode, destinationNode, resourceAmount.resource(), validAmount);
                     if (transfer.isPresent()) {
                         PastelTransmission t = transfer.get();
-                        int travelTime = TRANSFER_TICKS_PER_NODE * t.getNodePositions().size();
+                        int verticesCount = t.getNodePositions().size() - 1;
+                        int travelTime = TRANSFER_TICKS_PER_NODE * verticesCount;
                         this.network.addTransmission(t, travelTime);
                         SpectrumS2CPacketSender.sendPastelTransfer(network, travelTime, t);
                         if (transferMode == TransferMode.PULL) {

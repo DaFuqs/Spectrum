@@ -1,29 +1,24 @@
 package de.dafuqs.spectrum.blocks.ender;
 
-import de.dafuqs.spectrum.enums.ProgressionStage;
-import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.dispenser.DispenserBehavior;
-import net.minecraft.block.dispenser.ItemDispenserBehavior;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.mob.PiglinBrain;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EnderChestInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPointerImpl;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.inventories.*;
+import net.minecraft.block.*;
+import net.minecraft.block.dispenser.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class EnderDropperBlock extends DispenserBlock {
 	
@@ -99,4 +94,9 @@ public class EnderDropperBlock extends DispenserBlock {
 			}
 		}
 	}
+
+	public DispenserBehavior getDefaultBehaviorForItem(ItemStack stack) {
+		return super.getBehaviorForItem(stack);
+	}
+
 }

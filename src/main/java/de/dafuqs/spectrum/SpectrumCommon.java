@@ -1,70 +1,49 @@
 package de.dafuqs.spectrum;
 
-import com.google.common.collect.ImmutableMap;
-import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
-import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
-import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
-import de.dafuqs.spectrum.config.SpectrumConfig;
-import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader;
-import de.dafuqs.spectrum.data_loaders.ResonanceDropsDataLoader;
-import de.dafuqs.spectrum.deeper_down.DDDimension;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.entity.SpectrumTrackedDataHandlerRegistry;
-import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
-import de.dafuqs.spectrum.events.SpectrumGameEvents;
-import de.dafuqs.spectrum.events.SpectrumPositionSources;
-import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerIDs;
-import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
-import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
-import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
-import de.dafuqs.spectrum.items.magic_items.RadianceStaffItem;
-import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
-import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
-import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
-import de.dafuqs.spectrum.loot.SpectrumLootPoolModifiers;
-import de.dafuqs.spectrum.mixin.accessors.RecipeManagerAccessor;
-import de.dafuqs.spectrum.networking.SpectrumC2SPacketReceiver;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.blocks.chests.*;
+import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.config.*;
+import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.deeper_down.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.loot.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import de.dafuqs.spectrum.spells.InkSpellEffects;
-import de.dafuqs.spectrum.worldgen.SpectrumConfiguredFeatures;
-import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
-import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.block.Block;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.FluidBlock;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.ResourceType;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.World;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import de.dafuqs.spectrum.registries.color.*;
+import de.dafuqs.spectrum.spells.*;
+import de.dafuqs.spectrum.worldgen.*;
+import me.shedaniel.autoconfig.*;
+import me.shedaniel.autoconfig.serializer.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.entity.event.v1.*;
+import net.fabricmc.fabric.api.event.lifecycle.v1.*;
+import net.fabricmc.fabric.api.event.player.*;
+import net.fabricmc.fabric.api.resource.*;
+import net.minecraft.block.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.resource.*;
+import net.minecraft.server.*;
+import net.minecraft.server.network.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import org.slf4j.*;
 
 import java.util.*;
 
@@ -204,25 +183,20 @@ public class SpectrumCommon implements ModInitializer {
 		
 		logInfo("Registering Spell Effects...");
 		InkSpellEffects.register();
-		
+
 		logInfo("Initializing Item Groups...");
 		SpectrumItemGroups.ITEM_GROUP_GENERAL.initialize();
 		SpectrumItemGroups.ITEM_GROUP_BLOCKS.initialize();
-		
+
 		logInfo("Registering Special Recipes...");
 		SpectrumCustomRecipeSerializers.registerRecipeSerializers();
-		
+
 		logInfo("Registering Dispenser Behaviors...");
-		DispenserBlock.registerBehavior(SpectrumItems.BOTTOMLESS_BUNDLE, new BottomlessBundleItem.BottomlessBundlePlacementDispenserBehavior());
-		DispenserBlock.registerBehavior(SpectrumBlocks.COLORFUL_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
-		DispenserBlock.registerBehavior(SpectrumBlocks.FIERY_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
-		DispenserBlock.registerBehavior(SpectrumBlocks.GEMSTONE_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
-		DispenserBlock.registerBehavior(SpectrumBlocks.GLISTERING_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
-		DispenserBlock.registerBehavior(SpectrumBlocks.PRISTINE_SHOOTING_STAR.asItem(), new ShootingStarBlock.ShootingStarBlockDispenserBehavior());
-		
+		SpectrumDispenserBehaviors.register();
+
 		logInfo("Registering Resource Conditions...");
 		SpectrumResourceConditions.register();
-		
+
 		AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
 			if (!world.isClient && !player.isSpectator()) {
 				ItemStack mainHandStack = player.getMainHandStack();

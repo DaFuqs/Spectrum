@@ -76,6 +76,6 @@
   },
   "breaks": {
     "Dashloader": "<=3.0.9",
-    "healthoverlay": "<7.2.1"
+    "healthoverlay": "<7.2.3"
   }
 }

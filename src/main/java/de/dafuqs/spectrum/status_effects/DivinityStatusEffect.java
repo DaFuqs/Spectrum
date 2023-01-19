@@ -1,17 +1,18 @@
 package de.dafuqs.spectrum.status_effects;
 
-import de.dafuqs.spectrum.helpers.ParticleHelper;
-import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.ParticlePattern;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.progression.*;
+import net.fabricmc.loader.api.*;
+import net.minecraft.client.network.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.server.network.*;
+import net.minecraft.world.*;
 
 public class DivinityStatusEffect extends SpectrumStatusEffect {
 	
@@ -48,13 +49,24 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
 		return true;
 	}
-	
+
 	@Override
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onApplied(entity, attributes, amplifier);
 		if (entity instanceof ServerPlayerEntity player) {
 			SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
 		}
+		if (entity instanceof ClientPlayerEntity) {
+			FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", true);
+		}
 	}
-	
+
+	@Override
+	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+		super.onRemoved(entity, attributes, amplifier);
+		if (entity instanceof ClientPlayerEntity) {
+			FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", false);
+		}
+	}
+
 }

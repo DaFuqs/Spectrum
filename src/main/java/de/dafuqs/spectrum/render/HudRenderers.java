@@ -1,25 +1,22 @@
 package de.dafuqs.spectrum.render;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.cca.azure_dike.AzureDikeComponent;
-import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
-import de.dafuqs.spectrum.config.CompatibilitySettingAccessors;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.util.Window;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.MathHelper;
-import vazkii.patchouli.client.RenderHelper;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.cca.azure_dike.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.fabricmc.loader.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.hud.*;
+import net.minecraft.client.util.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
+import vazkii.patchouli.client.*;
 
-import static net.minecraft.client.gui.DrawableHelper.GUI_ICONS_TEXTURE;
+import static net.minecraft.client.gui.DrawableHelper.*;
 
 @Environment(EnvType.CLIENT)
 public class HudRenderers {
@@ -74,8 +71,8 @@ public class HudRenderers {
 			// Fit display to HealthOverlay renderer if present
 			if (FabricLoader.getInstance().isModLoaded("healthoverlay")) {
 				int i = 1;
-				if (CompatibilitySettingAccessors.INSTANCE.get(
-						"healthoverlay", "absorptionOverHealth", Boolean.class, false)) {
+				var overHealth = FabricLoader.getInstance().getObjectShare().get("healthoverlay:absorptionOverHealth");
+				if (overHealth instanceof Boolean && (boolean) overHealth) {
 					i = 0;
 				}
 				heartRows = 0;

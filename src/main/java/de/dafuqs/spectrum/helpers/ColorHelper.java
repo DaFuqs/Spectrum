@@ -1,24 +1,20 @@
 package de.dafuqs.spectrum.helpers;
 
-import de.dafuqs.spectrum.entity.entity.EggLayingWoolyPigEntity;
-import de.dafuqs.spectrum.items.PigmentItem;
-import de.dafuqs.spectrum.mixin.accessors.ShulkerEntityAccessor;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.mob.ShulkerEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.Vec3f;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
+import net.minecraft.entity.passive.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
 import java.awt.*;
-import java.util.Optional;
+import java.util.*;
 
 public class ColorHelper {
 	
@@ -95,7 +91,7 @@ public class ColorHelper {
 				sheepEntity.setColor(dyeColor);
 				return true;
 			}
-		} else if (entity instanceof EggLayingWoolyPigEntity woolyPig && woolyPig.isAlive() && !woolyPig.isSheared()) {
+		} else if (entity instanceof EggLayingWoolyPigEntity woolyPig && woolyPig.isAlive()) {
 			if (woolyPig.getColor() != dyeColor) {
 				woolyPig.world.playSoundFromEntity(user, woolyPig, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				woolyPig.setColor(dyeColor);

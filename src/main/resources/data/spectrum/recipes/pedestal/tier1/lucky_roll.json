@@ -21,7 +21,7 @@
       "item": "spectrum:four_leaf_clover"
     },
     "M": {
-      "item": "minecraft:milk_bucket"
+      "tag": "c:milk"
     },
     "S": {
       "item": "minecraft:sugar"

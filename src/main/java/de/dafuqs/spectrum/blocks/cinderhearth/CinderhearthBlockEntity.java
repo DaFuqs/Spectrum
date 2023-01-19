@@ -1,76 +1,61 @@
 package de.dafuqs.spectrum.blocks.cinderhearth;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.MultiblockCrafter;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.energy.InkStorage;
-import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
-import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.inventories.CinderhearthScreenHandler;
-import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.LockableContainerBlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.particle.ParticleTypes;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.cinderhearth.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.screenhandler.v1.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, RecipeInputProvider, Inventory, ExtendedScreenHandlerFactory, InkStorageBlockEntity<IndividualCappedInkStorage> {
-	
+public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, RecipeInputProvider, SidedInventory, ExtendedScreenHandlerFactory, InkStorageBlockEntity<IndividualCappedInkStorage> {
+
 	public static final int INVENTORY_SIZE = 11;
 	public static final int INPUT_SLOT_ID = 0;
 	public static final int INK_PROVIDER_SLOT_ID = 1;
 	public static final int EXPERIENCE_STORAGE_ITEM_SLOT_ID = 2;
 	public static final int FIRST_OUTPUT_SLOT_ID = 3;
-	public static final int LAST_OUTPUT_SLOT_ID = 11;
-	
+	public static final int LAST_OUTPUT_SLOT_ID = 10;
+	public static final int[] OUTPUT_SLOT_IDS = new int[]{3, 4, 5, 6, 7, 8, 9, 10, 10};
+
 	protected DefaultedList<ItemStack> inventory;
 	protected boolean inventoryChanged;
-	
+
 	public static final Set<InkColor> USED_INK_COLORS = Set.of(InkColors.ORANGE, InkColors.LIGHT_BLUE, InkColors.MAGENTA, InkColors.PURPLE, InkColors.BLACK);
 	public static final long INK_STORAGE_SIZE = 64 * 100;
 	protected IndividualCappedInkStorage inkStorage;
-	
+
 	private UUID ownerUUID;
 	private Map<UpgradeType, Float> upgrades;
 	private Recipe currentRecipe; // blasting & cinderhearth
@@ -78,17 +63,52 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	private int craftingTimeTotal;
 	protected boolean canTransferInk;
 	protected boolean inkDirty;
-	
+
 	protected CinderHearthStructureType structure = CinderHearthStructureType.NONE;
-	
+
 	protected final PropertyDelegate propertyDelegate;
-	
+
+	@Override
+	public int[] getAvailableSlots(Direction side) {
+		switch (side) {
+			case UP -> {
+				return new int[]{INPUT_SLOT_ID};
+			}
+			case DOWN -> {
+				return OUTPUT_SLOT_IDS;
+			}
+			default -> {
+				return new int[]{INK_PROVIDER_SLOT_ID, EXPERIENCE_STORAGE_ITEM_SLOT_ID};
+			}
+		}
+	}
+
+	@Override
+	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+		switch (slot) {
+			case INK_PROVIDER_SLOT_ID -> {
+				return stack.getItem() instanceof InkStorageItem inkStorageItem && (inkStorageItem.getDrainability() == InkStorageItem.Drainability.ALWAYS || inkStorageItem.getDrainability() == InkStorageItem.Drainability.MACHINE_ONLY);
+			}
+			case EXPERIENCE_STORAGE_ITEM_SLOT_ID -> {
+				return stack.getItem() instanceof ExperienceStorageItem;
+			}
+			default -> {
+				return true;
+			}
+		}
+	}
+
+	@Override
+	public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+		return slot >= FIRST_OUTPUT_SLOT_ID;
+	}
+
 	enum CinderHearthStructureType {
 		NONE,
 		WITH_LAVA,
 		WITHOUT_LAVA
 	}
-	
+
 	public CinderhearthBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.CINDERHEARTH, pos, state);
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);

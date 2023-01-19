@@ -1,35 +1,26 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.inventories.slots.DisabledSlot;
-import de.dafuqs.spectrum.inventories.slots.PedestalPreviewSlot;
-import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftingResultInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeInputProvider;
-import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.recipe.book.RecipeBookCategory;
+import de.dafuqs.spectrum.blocks.pedestal.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.*;
 import net.minecraft.screen.*;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.screen.slot.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
 	
 	protected final World world;
-	private final PlayerEntity player;
 	private final Inventory inventory;
 	private final PropertyDelegate propertyDelegate;
 	private final RecipeBookCategory category;
@@ -52,7 +43,6 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	
 	protected PedestalScreenHandler(ScreenHandlerType<?> type, ScreenHandlerContext context, RecipeBookCategory recipeBookCategory, int i, @NotNull PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate, int pedestalRecipeTier, int maxRecipeTier, BlockPos pedestalPos) {
 		super(type, i);
-		this.player = playerInventory.player;
 		this.inventory = inventory;
 		this.category = recipeBookCategory;
 		this.propertyDelegate = propertyDelegate;
@@ -190,7 +180,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	
 	// Shift-Clicking
 	// 0-8: crafting slots
-	// 9-13: spectrum slots
+	// 9-13: powder slots
 	// 14: crafting tablet
 	// 15: preview slot
 	// 16: hidden output slot
@@ -240,7 +230,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 			}
 			
 			// crafting grid
-			if (!this.insertItem(clickedStack, 0, 8, false)) {
+			if (!this.insertItem(clickedStack, 0, 9, false)) {
 				return ItemStack.EMPTY;
 			}
 			

@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import de.dafuqs.spectrum.helpers.TimeHelper;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.deeper_down.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.world.*;
+import net.minecraft.world.dimension.*;
 
 public enum FusionShrineRecipeWorldCondition {
 	DAY,
@@ -15,8 +17,12 @@ public enum FusionShrineRecipeWorldCondition {
 	CLEAR_SKY,
 	RAIN,
 	THUNDER,
-	NOT_THUNDER;
-	
+	NOT_THUNDER,
+	IS_OVERWORLD,
+	IS_NETHER,
+	IS_END,
+	IS_DEEPER_DOWN;
+
 	public boolean isMetCurrently(World world) {
 		switch (this) {
 			case DAY -> {
@@ -54,6 +60,18 @@ public enum FusionShrineRecipeWorldCondition {
 			}
 			case NOT_THUNDER -> {
 				return !world.isThundering();
+			}
+			case IS_OVERWORLD -> {
+				return world.getRegistryKey().getValue().equals(DimensionTypes.OVERWORLD_ID);
+			}
+			case IS_NETHER -> {
+				return world.getRegistryKey().getValue().equals(DimensionTypes.THE_NETHER_ID);
+			}
+			case IS_END -> {
+				return world.getRegistryKey().getValue().equals(DimensionTypes.THE_END_ID);
+			}
+			case IS_DEEPER_DOWN -> {
+				return world.getRegistryKey().equals(DDDimension.DEEPER_DOWN_DIMENSION_KEY);
 			}
 		}
 		return false;

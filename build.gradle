@@ -43,10 +43,6 @@ repositories {
 		}
 	}
 	maven {
-		name = "Shimmer"
-		url = 'https://maven.firstdarkdev.xyz/snapshots'
-	}
-	maven {
 		name = "Curse"
 		url = 'https://cfa2.cursemaven.com'
 	}
@@ -67,7 +63,7 @@ dependencies {
 	modImplementation "com.github.DaFuqs:Revelationary:${project.revelationary_version}"
 	modImplementation include("com.github.DaFuqs:AdditionalEntityAttributes:${project.additional_entity_attributes_version}")
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
-	modImplementation include("de.dafuqs:Reverb:${project.dimensional_reverb_version}")
+	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
 
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 	// we need a bit of concern

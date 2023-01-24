@@ -29,7 +29,7 @@
       "title": "Planting & Growing",
       "item": "spectrum:germinated_jade_vine_seeds",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "Palid, fragile but beautiful hanging plants, twining down wooden fences.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed directly to sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the way more soft, indirect light of the moon."
+      "text": "Palid, fragile but beautiful hanging plants, twining down wooden fences.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the way more soft, indirect light of the moon."
     },
     {
       "type": "patchouli:spotlight",
@@ -37,7 +37,7 @@
 	  "anchor": "jade_jelly",
       "item": "spectrum:jade_jelly",
       "advancement": "spectrum:hidden/collect_jade_jelly",
-      "text": "When you accidentally put one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with a new Bulb, but also this gel-like jelly.$(br2)$(italic)Unexpectedly tasty$()."
+      "text": "As you exposed one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with new Bulbs, but also this gel-like jelly.$(br2)$(italic)Unexpectedly tasty$()."
     },
     {
       "type": "spectrum:cinderhearth_smelting",
@@ -53,7 +53,7 @@
 	  "anchor": "petals",
       "item": "spectrum:jade_vine_petals",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "Shiny petals can be plucked carefully when partly grown.$(br)These Petals can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Rarely, when searching the petals, $(thing)another Bulb$() can be found."
+      "text": "Shiny petals can be plucked when partly grown.$(br)They can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Rarely, when searching the petals, $(thing)another Bulb$() can be found.(br)How will Jade Vines look when you let them grow further?"
     },
     {
       "type": "patchouli:spotlight",

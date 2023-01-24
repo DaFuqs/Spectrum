@@ -1,56 +1,43 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.IntProperty;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.loot.*;
+import net.minecraft.loot.context.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.*;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.state.property.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class JadeVinePlantBlock extends Block implements JadeVine {
-	
+
 	public static final EnumProperty<JadeVinesPlantPart> PART = EnumProperty.of("part", JadeVinesPlantPart.class);
 	public static final IntProperty AGE = Properties.AGE_7;
-	
+
 	public JadeVinePlantBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(PART, JadeVinesPlantPart.BASE).with(AGE, 1));
 	}
-	
+
 	public static List<ItemStack> getHarvestedStacks(BlockState state, ServerWorld world, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity entity, ItemStack stack, Identifier lootTableIdentifier) {
 		LootContext.Builder builder = (new LootContext.Builder(world)).random(world.random)
 				.parameter(LootContextParameters.BLOCK_STATE, state)
@@ -58,22 +45,22 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 				.parameter(LootContextParameters.TOOL, stack)
 				.optionalParameter(LootContextParameters.THIS_ENTITY, entity)
 				.optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity);
-		
+
 		LootTable lootTable = world.getServer().getLootManager().getTable(lootTableIdentifier);
 		return lootTable.generateLoot(builder.build(LootContextTypes.BLOCK));
 	}
-	
+
 	static void setHarvested(@NotNull BlockState blockState, @NotNull ServerWorld world, @NotNull BlockPos blockPos) {
 		BlockPos rootsPos = blockState.get(PART).getLowestRootsPos(blockPos);
 		if (world.getBlockState(rootsPos).getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
 			jadeVineRootsBlock.setPlantToAge(world, rootsPos, 1);
 		}
 	}
-	
+
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		
+
 		int age = state.get(AGE);
 		if (age == Properties.AGE_7_MAX) {
 			if (random.nextFloat() < 0.3) {
@@ -83,7 +70,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 			JadeVine.spawnParticlesClient(world, pos);
 		}
 	}
-	
+
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (!state.canPlaceAt(world, pos) || missingBottom(state, world.getBlockState(pos.down()))) {
@@ -91,14 +78,14 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		}
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
-	
+
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (!state.canPlaceAt(world, pos) || missingBottom(state, world.getBlockState(pos.down()))) {
 			world.breakBlock(pos, false);
 		}
 	}
-	
+
 	private boolean missingBottom(BlockState state, BlockState belowState) {
 		JadeVinesPlantPart part = state.get(PART);
 		if (part == JadeVinesPlantPart.TIP) {
@@ -107,11 +94,11 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 			return !(belowState.getBlock() instanceof JadeVinePlantBlock);
 		}
 	}
-	
+
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		JadeVinesGrowthStage growthStage = JadeVinesGrowthStage.fromAge(state.get(AGE));
-		
+
 		if (growthStage.isFullyGrown()) {
 			for (ItemStack handStack : player.getHandItems()) {
 				if (handStack.isOf(Items.GLASS_BOTTLE)) {
@@ -121,47 +108,59 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 						if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 							Criteria.ITEM_USED_ON_BLOCK.trigger(serverPlayerEntity, pos, handStack);
 						}
-						
+
 						handStack.decrement(1);
 						setHarvested(state, (ServerWorld) world, pos);
-						
+
 						List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, handStack, NECTAR_HARVESTING_LOOT_IDENTIFIER);
 						for (ItemStack harvestedStack : harvestedStacks) {
 							Support.givePlayer(player, harvestedStack);
 						}
-						
+
 						return ActionResult.CONSUME;
 					}
 				}
+			}
+
+			if (world.isClient) {
+				displayNeedBottleMessage();
+				return ActionResult.SUCCESS;
+			} else {
+				return ActionResult.CONSUME;
 			}
 		} else if (growthStage.canHarvestPetals()) {
 			if (world.isClient) {
 				return ActionResult.SUCCESS;
 			} else {
 				setHarvested(state, (ServerWorld) world, pos);
-				
+
 				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), PETAL_HARVESTING_LOOT_IDENTIFIER);
 				for (ItemStack harvestedStack : harvestedStacks) {
 					Support.givePlayer(player, harvestedStack);
 				}
-				
+
 				return ActionResult.CONSUME;
 			}
 		}
-		
+
 		return super.onUse(state, world, pos, player, hand, hit);
 	}
-	
+
+	@Environment(EnvType.CLIENT)
+	public static void displayNeedBottleMessage() {
+		MinecraftClient.getInstance().inGameHud.setOverlayMessage(Text.translatable("message.spectrum.needs_item_to_harvest").append(Items.GLASS_BOTTLE.getName()), false);
+	}
+
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
 		return SpectrumItems.GERMINATED_JADE_VINE_SEEDS.getDefaultStack();
 	}
-	
+
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return state.get(PART) == JadeVinesPlantPart.TIP ? TIP_SHAPE : SHAPE;
 	}
-	
+
 	@Override
 	public boolean canPlaceAt(@NotNull BlockState state, WorldView world, BlockPos pos) {
 		BlockState upState = world.getBlockState(pos.up());
@@ -175,12 +174,12 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 			return upBlock instanceof JadeVinePlantBlock && upState.get(PART) == JadeVinesPlantPart.MIDDLE;
 		}
 	}
-	
+
 	@Override
 	protected void appendProperties(StateManager.@NotNull Builder<Block, BlockState> builder) {
 		builder.add(PART, AGE);
 	}
-	
+
 	@Override
 	public boolean setToAge(World world, BlockPos blockPos, int age) {
 		BlockState currentState = world.getBlockState(blockPos);
@@ -193,22 +192,22 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		}
 		return false;
 	}
-	
+
 	enum JadeVinesPlantPart implements StringIdentifiable {
 		BASE,
 		MIDDLE,
 		TIP;
-		
+
 		@Contract(pure = true)
 		public @NotNull String toString() {
 			return this.asString();
 		}
-		
+
 		@Contract(pure = true)
 		public @NotNull String asString() {
 			return this == BASE ? "base" : this == MIDDLE ? "middle" : "tip";
 		}
-		
+
 		public BlockPos getLowestRootsPos(BlockPos blockPos) {
 			if (this == BASE) {
 				return blockPos.up();
@@ -218,15 +217,15 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 				return blockPos.up(3);
 			}
 		}
-		
+
 	}
-	
+
 	enum JadeVinesGrowthStage {
 		DEAD,
 		LEAVES,
 		PETALS,
 		BLOOM;
-		
+
 		public static JadeVinesGrowthStage fromAge(int age) {
 			if (age == 0) {
 				return DEAD;
@@ -238,19 +237,19 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 				return LEAVES;
 			}
 		}
-		
+
 		public static boolean isFullyGrown(int age) {
 			return age == Properties.AGE_7_MAX;
 		}
-		
+
 		public boolean isFullyGrown() {
 			return this == BLOOM;
 		}
-		
+
 		public boolean canHarvestPetals() {
 			return this == PETALS || this == BLOOM;
 		}
-		
+
 	}
-	
+
 }

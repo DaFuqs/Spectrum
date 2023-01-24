@@ -2,25 +2,24 @@
   "name": "Applied Energistics",
   "icon": "ae2:controller",
   "flag": "mod:ae2",
+  "advancement": "spectrum:place_pedestal",
   "category": "spectrum:mod_integration_category",
   "pages": [
     {
-      "type": "spectrum:anvil_crushing",
-      "advancement": "spectrum:place_pedestal",
-      "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
-      "text": "Lots of AE2's items can be crushed to dust using an anvil: Certus Quartz, Fluix, Skystone and Ender Pearls."
+      "type": "patchouli:text",
+      "text": "'Any technology advanced enough is indistinguishable from magic', you once heard.$(br)You are still not entirely sure how this storage system stores so many blocks in so little room, but since you're regularly running around with hundreds of m² dirt, you never cared to question it."
     },
     {
       "type": "spectrum:anvil_crushing",
-      "advancement": "spectrum:place_pedestal",
-      "recipe": "spectrum:mod_integration/ae2/anvil_crushing/fluix_dust",
-      "text": "$(italic)Why use that old handcrank, when your anvil can do the job?"
+      "title": "Anvil Crushing",
+      "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
+      "text": "Lots of AE2's items can be crushed to dust using an anvil: $(thing)Certus Quartz(), $(thing)Fluix(), $(thing)Skystone() and $(thing)Ender Pearls()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "advancement": "spectrum:midgame/collect_storm_stone",
       "recipe": "spectrum:mod_integration/ae2/fusion_shrine/charged_certus_quartz_crystal",
-      "text": "Desperately need $(thing)Charged Certus Quartz$()? Charge it up yourself, instead of relying on pure luck."
+      "text": "In desperate need of $(thing)Charged Certus Quartz$()? $(l:resources/storm_stone)Storm Stones$() will charge them up in a heartbeat."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

@@ -1,0 +1,25 @@
+{
+  "name": "Hex Casting",
+  "icon": "hexcasting:charged_amethyst",
+  "flag": "mod:hexcasting",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Unlike other gemstones, $(thing)Amethyst$() seems to have the ability to power spell casting wands. While this ability has broken your brain more than once, the results are impressive.$(br)What more is there?"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "recipe": "spectrum:mod_integration/hexcasting/fusion_shrine/charged_amethyst_from_amethyst_shard_fusion",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "recipe": "spectrum:mod_integration/hexcasting/potion_workshop_reacting/charged_amethyst",
+      "text": ""
+    }
+  ]
+}

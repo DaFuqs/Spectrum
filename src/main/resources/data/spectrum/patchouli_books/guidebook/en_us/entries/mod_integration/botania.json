@@ -2,14 +2,19 @@
   "name": "Botania",
   "icon": "botania:mana_pool",
   "flag": "mod:botania",
+  "advancement": "spectrum:place_pedestal",
   "category": "spectrum:mod_integration_category",
   "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You found a plethora of colorful flowers growing around forests and plains in small patches. What's up with those? Definitely worth a look if you haven't tinkered with them already."
+    },
     {
       "type": "spectrum:anvil_crushing",
       "title": "Crushing Petals",
       "advancement": "spectrum:place_pedestal",
       "recipe": "spectrum:mod_integration/botania/anvil_crushing/petals/magenta_mystical_flower_to_petals",
-      "text": "While crushing flowers seems a bit unorthodox, it $(italic)did$() seem to work. No problem plucking the petals from the flattened blossom after that."
+      "text": "While crushing flowers seems a bit unorthodox, it $(italic)did$() work. No problem plucking the petals from the flattened blossom after that."
     },
     {
       "type": "patchouli:spotlight",
@@ -17,13 +22,6 @@
       "advancement": "spectrum:midgame/place_color_picker",
       "item": "botania:magenta_petal",
       "text": "Having studied not only botany but also color theory, you definitely recognize some similarities. The colored flowers, resemble $(l:general/colored_trees)Color Trees$(/l) in more than just one point.$(br2)No wonder that their petals can also be used to create $(l:magic/ink)Ink$(/l)."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Enchanted Soil",
-      "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
-      "item": "botania:botania:enchanted_soil",
-      "text": "Enchanted Soil can be mined using tools enchanted with $(l:enchanting/resonance)Resonance$(/l)."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -55,7 +53,14 @@
       "type": "spectrum:spirit_instiller_crafting",
       "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
       "recipe": "spectrum:mod_integration/botania/spirit_instiller/overgrowth_seed",
-      "text": "Those elusive seeds you could only find in chests hidden around the world? While pricey - maybe not even worth the hassle - you finally found a way to replicate those."
+      "text": "Those elusive seeds you could only find in chests hidden around the world? Pricey - maybe not even worth the hassle - but you finally found a way to replicate them."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Enchanted Soil",
+      "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
+      "item": "botania:botania:enchanted_soil",
+      "text": "Enchanted Soil can be harvested using tools enchanted with $(l:enchanting/resonance)Resonance$(/l)."
     },
     {
       "type": "patchouli:spotlight",
@@ -90,7 +95,7 @@
       "title": "New Potion Reagent",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "item": "botania:pixie_dust",
-      "text": "Converts the Potions into Lingering Potions as a single reagent. This way it allows you to directly create Tipped Arrows, too!"
+      "text": "Converts the Potions into Lingering Potions as a single reagent. This way it allows you to directly create $(thing)Tipped Arrows$(), too!"
     }
   ]
 }

@@ -2,8 +2,13 @@
   "name": "Tech Reborn",
   "icon": "techreborn:grinder",
   "flag": "mod:techreborn",
+  "advancement": "spectrum:place_pedestal",
   "category": "spectrum:mod_integration_category",
   "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "There is this new thing, called $(italic)Electricity$(), you should check that out.$(br2)The factory must grow."
+    },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:amethyst_ore",

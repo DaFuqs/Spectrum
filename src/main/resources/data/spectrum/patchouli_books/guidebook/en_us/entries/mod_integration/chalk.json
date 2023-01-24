@@ -2,21 +2,34 @@
   "name": "Chalk",
   "icon": "chalk:chalk",
   "flag": "mod:chalk",
+  "advancement": "spectrum:place_pedestal",
   "category": "spectrum:mod_integration_category",
   "pages": [
     {
-      "type": "spectrum:pedestal_crafting",
-      "required_advancement": "spectrum:collect_pigment",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:mod_integration/chalk/pedestal/chalk",
-      "text": "The little pieces of chalk you colored before with plain dye always didn't last long. By using pigments instead, the $(thing)Chalk$() provides you with a never-ending supply."
+      "type": "patchouli:text",
+      "text": "Getting lost in the belows time and time again made you carry a bit of $(thing)Chalk$() with you, allowing you to mark your way back out. Sadly these little pieces of Calcite always do not last too long before breaking."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "required_advancement": "spectrum:collect_pigment",
-      "title": "Pedestal Recipe",
+      "title": "Unbreakable Chalk",
+      "recipe": "spectrum:mod_integration/chalk/pedestal/chalk",
+      "text": "By using Pigments instead of Dye, the $(thing)Chalk$() provides you with a never-ending supply of color."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "required_advancement": "spectrum:collect_pigment",
+      "title": "Unbr. Glow Chalk",
       "recipe": "spectrum:mod_integration/chalk/pedestal/glow_chalk",
       "text": "Of course you are able to create unbreakable $(thing)Glow Chalk$(), too."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "required_advancement": "spectrum:collect_pigment",
+      "flag": "mod:chalk-colorful-addon",
+      "title": "Chalk Colorful Addon",
+      "recipe": "spectrum:mod_integration/chalk/pedestal/red_chalk",
+      "text": "Oh, you thought about creating colored chalk, too? Of course those can be made unbreakable, too."
     }
   ]
 }

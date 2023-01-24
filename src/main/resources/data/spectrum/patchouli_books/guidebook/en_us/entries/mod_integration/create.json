@@ -1,0 +1,37 @@
+{
+  "name": "Create",
+  "icon": "create:crusher",
+  "flag": "mod:create",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Everywhere it rattles and fizzles, whistles and smokes. An ensemble of Assemblage.$(br2)Surely a few of those machines will come in handy."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "recipe": "spectrum:mod_integration/create/crushing/leaves/magenta_leaves_to_sapling",
+      "text": "$(thing)Colored Leaves$() can be crushed, yielding $(thing)Pigment$() and $(thing)Colored Saplings$()"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "recipe": "spectrum:mod_integration/create/crushing/logs/magenta_log",
+      "text": "Crushing $(thing)Colored Logs$() results in a nice yield of $(thing)Pigment$()."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:collect_quitoxic_reeds",
+      "recipe": "spectrum:mod_integration/create/milling/quitoxic_powder",
+      "text": "$(l:resources/quitoxic_reeds)Quitoxic Reeds$() can be ground into powder easily."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "recipe": "spectrum:mod_integration/create/milling/amethyst",
+      "text": "Milling $(thing)Gemstone Shards Yields$() results in a higher amount of $(thing)Gemstone Powder$() compared crushing them with an Anvil."
+    }
+  ]
+}

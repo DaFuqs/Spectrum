@@ -1,0 +1,20 @@
+{
+  "name": "Ecologics",
+  "icon": "ecologics:penguin_feather",
+  "flag": "mod:ecologics",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "New biomes bring new possibilities. But which?"
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Slippery Potions",
+      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "recipe": "spectrum:mod_integration/ecologics/potion_workshop_brewing/ecologics_slippery",
+      "text": ""
+    }
+  ]
+}

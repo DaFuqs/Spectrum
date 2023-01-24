@@ -2,8 +2,13 @@
   "name": "Gobber",
   "icon": "gobber2:gobber2_globette",
   "flag": "mod:gobber2",
+  "advancement": "spectrum:place_pedestal",
   "category": "spectrum:mod_integration_category",
   "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This material seems ridiculously powerful at first glance for how common it is. That's why you gave it such a funny name. Let's see what you can do with it."
+    },
     {
       "type": "spectrum:crystallarieum_growing",
       "recipe": "spectrum:mod_integration/gobber/crystallarieum/globette",

@@ -1,0 +1,27 @@
+{
+  "name": "Biome Makeover",
+  "icon": "biomemakeover:antidote",
+  "flag": "mod:biomemakeover",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You recently found new materials scattered across the landscape in new, beautiful terrain. You are sure you can make use of those in some way."
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Antidote Potions",
+      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "recipe": "spectrum:mod_integration/biomemakeover/biomemakeover_antidote",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Nocturnal Potions",
+      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "recipe": "spectrum:mod_integration/biomemakeover/biomemakeover_nocturnal",
+      "text": ""
+    }
+  ]
+}

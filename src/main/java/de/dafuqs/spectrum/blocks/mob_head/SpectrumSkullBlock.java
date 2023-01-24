@@ -1,34 +1,26 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.entity.render.EggLayingWoolyPigEntityRenderer;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.block.SkullBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.block.pattern.BlockPattern;
-import net.minecraft.block.pattern.BlockPatternBuilder;
-import net.minecraft.block.pattern.CachedBlockPosition;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.block.BlockStatePredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.function.MaterialPredicate;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.entity.render.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.block.pattern.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.block.*;
+import net.minecraft.server.network.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.util.function.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Locale;
+import java.util.*;
 
 public class SpectrumSkullBlock extends SkullBlock {
 	
@@ -143,6 +135,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 		SHEEP_RED(EntityType.SHEEP),
 		SHEEP_WHITE(EntityType.SHEEP),
 		SHEEP_YELLOW(EntityType.SHEEP),
+		SHULKER(EntityType.SHULKER),
 		SHULKER_BLACK(EntityType.SHULKER),
 		SHULKER_BLUE(EntityType.SHULKER),
 		SHULKER_BROWN(EntityType.SHULKER),

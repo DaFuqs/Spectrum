@@ -1,35 +1,27 @@
 package de.dafuqs.spectrum.loot.conditions;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.mob.ShulkerEntity;
-import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.condition.LootConditionType;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.JsonHelper;
+import com.google.gson.*;
+import de.dafuqs.spectrum.loot.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
+import net.minecraft.loot.condition.*;
+import net.minecraft.loot.context.*;
 import net.minecraft.util.JsonSerializer;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 public class ShulkerColorLootCondition implements LootCondition {
-	
-	@NotNull
-	DyeColor dyeColor;
-	
-	private ShulkerColorLootCondition(@NotNull DyeColor dyeColor) {
+
+	private final @Nullable DyeColor dyeColor;
+
+	private ShulkerColorLootCondition(@Nullable DyeColor dyeColor) {
 		this.dyeColor = dyeColor;
 	}
-	
+
 	public static Builder builder(DyeColor dyeColor) {
-		return () -> {
-			return new ShulkerColorLootCondition(dyeColor);
-		};
+		return () -> new ShulkerColorLootCondition(dyeColor);
 	}
-	
+
 	@Override
 	public LootConditionType getType() {
 		return SpectrumLootConditionTypes.SHULKER_COLOR_CONDITION;
@@ -39,11 +31,11 @@ public class ShulkerColorLootCondition implements LootCondition {
 	public boolean test(LootContext lootContext) {
 		Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
 		if (entity instanceof ShulkerEntity) {
-			DyeColor dyeColor = ((ShulkerEntity) entity).getColor();
-			if (dyeColor == null) {
-				return this.dyeColor.equals(DyeColor.PURPLE);
+			@Nullable DyeColor shulkerColor = ((ShulkerEntity) entity).getColor();
+			if (this.dyeColor == null) {
+				return shulkerColor == null;
 			} else {
-				return this.dyeColor.equals(dyeColor);
+				return this.dyeColor.equals(shulkerColor);
 			}
 		} else {
 			return false;
@@ -55,11 +47,16 @@ public class ShulkerColorLootCondition implements LootCondition {
 		}
 		
 		public void toJson(JsonObject jsonObject, ShulkerColorLootCondition shulkerColorLootCondition, JsonSerializationContext jsonSerializationContext) {
-			jsonObject.addProperty("color", shulkerColorLootCondition.dyeColor.getName());
+			if (shulkerColorLootCondition.dyeColor != null) {
+				jsonObject.addProperty("color", shulkerColorLootCondition.dyeColor.getName());
+			}
 		}
 		
 		public ShulkerColorLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
-			String dyeColorString = JsonHelper.getString(jsonObject, "color");
+			String dyeColorString = JsonHelper.getString(jsonObject, "color", "");
+			if (dyeColorString.isEmpty()) {
+				new ShulkerColorLootCondition(null);
+			}
 			return new ShulkerColorLootCondition(DyeColor.byName(dyeColorString, DyeColor.PURPLE));
 		}
 	}

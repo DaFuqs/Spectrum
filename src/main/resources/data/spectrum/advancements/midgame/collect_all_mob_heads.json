@@ -289,23 +289,75 @@
     },
     "has_sheep_red_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_red_head" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:sheep_red_head"
+            ]
+          }
+        ]
+      }
     },
     "has_sheep_white_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_white_head" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:sheep_white_head"
+            ]
+          }
+        ]
+      }
     },
     "has_sheep_yellow_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:sheep_yellow_head" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:sheep_yellow_head"
+            ]
+          }
+        ]
+      }
+    },
+    "has_shulker_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:shulker_head"
+            ]
+          }
+        ]
+      }
     },
     "has_shulker_black_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:shulker_black_head" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:shulker_black_head"
+            ]
+          }
+        ]
+      }
     },
     "has_shulker_blue_head": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:shulker_blue_head" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:shulker_blue_head"
+            ]
+          }
+        ]
+      }
     },
     "has_shulker_brown_head": {
       "trigger": "minecraft:inventory_changed",

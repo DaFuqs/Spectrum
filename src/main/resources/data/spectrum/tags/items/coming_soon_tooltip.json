@@ -33,12 +33,12 @@
     "spectrum:lucid_black_catkin",
     "spectrum:lucid_white_catkin",
     "spectrum:sacred_soil",
-
     "spectrum:connection_node",
     "spectrum:provider_node",
     "spectrum:storage_node",
     "spectrum:pusher_node",
     "spectrum:puller_node",
-    "spectrum:interaction_node"
+    "spectrum:interaction_node",
+    "spectrum:frigid_stardust"
   ]
 }

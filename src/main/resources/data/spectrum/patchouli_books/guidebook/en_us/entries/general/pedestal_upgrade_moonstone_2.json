@@ -4,7 +4,7 @@
   "sortnum": 17,
   "advancement": "spectrum:lategame/build_complex_pedestal_structure_without_moonstone",
   "category": "spectrum:general_category",
-  "turnin": "spectrum:midgame/build_complex_pedestal_structure",
+  "turnin": "spectrum:lategame/build_complex_pedestal_structure",
   "pages": [
     {
       "type": "patchouli:spotlight",

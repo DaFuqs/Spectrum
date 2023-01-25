@@ -1,41 +1,33 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.gravity.CloakedFloatItem;
-import de.dafuqs.spectrum.blocks.jade_vines.GerminatedJadeVineSeedsItem;
-import de.dafuqs.spectrum.blocks.rock_candy.RockCandy;
-import de.dafuqs.spectrum.blocks.rock_candy.RockCandyItem;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.gravity.*;
+import de.dafuqs.spectrum.blocks.jade_vines.*;
+import de.dafuqs.spectrum.blocks.rock_candy.*;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
-import de.dafuqs.spectrum.items.armor.GemstoneArmorItem;
+import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
-import de.dafuqs.spectrum.items.conditional.CloakedItemWithLoomPattern;
-import de.dafuqs.spectrum.items.conditional.GemstonePowderItem;
-import de.dafuqs.spectrum.items.conditional.StormStoneItem;
+import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.items.energy.*;
 import de.dafuqs.spectrum.items.food.*;
 import de.dafuqs.spectrum.items.food.beverages.*;
-import de.dafuqs.spectrum.items.item_frame.PhantomFrameItem;
-import de.dafuqs.spectrum.items.item_frame.PhantomGlowFrameItem;
+import de.dafuqs.spectrum.items.item_frame.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
-import de.dafuqs.spectrum.registries.color.ItemColors;
-import io.wispforest.owo.itemgroup.OwoItemGroup;
-import io.wispforest.owo.itemgroup.OwoItemSettings;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.EquipmentSlot;
+import de.dafuqs.spectrum.registries.color.*;
+import io.wispforest.owo.itemgroup.*;
+import net.fabricmc.fabric.api.registry.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
 import net.minecraft.item.*;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Rarity;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
-import java.util.Map;
+import java.util.*;
 
 import static de.dafuqs.spectrum.registries.SpectrumFluids.*;
 
@@ -176,7 +168,7 @@ public class SpectrumItems {
 	// no fractal non-moon variant?
 	public static final MalachiteBidentItem FRACTAL_GLASS_CREST_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()));
 	// right click ability: able to overload an already loaded arrow
-	public static final MalachiteCrossbowItem GLASS_CREST_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(GLASS_CREST.getDurability()));
+	public static final GlassCrestCrossbowItem GLASS_CREST_CROSSBOW = new GlassCrestCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(GLASS_CREST.getDurability()));
 
 	// able to pass through translucent blocks, like glass; render as rays of light
 	public static final ArrowItem MALACHITE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.MALACHITE);

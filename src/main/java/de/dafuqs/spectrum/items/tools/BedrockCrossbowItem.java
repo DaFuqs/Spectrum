@@ -1,15 +1,12 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.arrowhead.api.ArrowheadCrossbow;
-import de.dafuqs.spectrum.items.Preenchanted;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.CrossbowItem;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.collection.DefaultedList;
+import de.dafuqs.arrowhead.api.*;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
+import net.minecraft.util.collection.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted, ArrowheadCrossbow {
 	
@@ -43,19 +40,19 @@ public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted, A
 	public boolean isEnchantable(ItemStack stack) {
 		return true;
 	}
-	
+
 	@Override
-	public float getProjectileVelocityModifier() {
+	public float getProjectileVelocityModifier(ItemStack stack) {
 		return 1.5F;
 	}
-	
+
 	@Override
-	public float getPullTimeModifier() {
+	public float getPullTimeModifier(ItemStack stack) {
 		return 3.0F;
 	}
-	
+
 	@Override
-	public float getDivergenceMod() {
+	public float getDivergenceMod(ItemStack stack) {
 		return 0.8F;
 	}
 	

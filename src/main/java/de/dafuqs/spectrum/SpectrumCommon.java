@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum;
 
 import com.google.common.collect.*;
+import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.mob_blocks.*;
 import de.dafuqs.spectrum.config.*;
@@ -12,6 +13,7 @@ import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.loot.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
@@ -264,26 +266,32 @@ public class SpectrumCommon implements ModInitializer {
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
 			// If the player wears a Whispy Cirlcet and sleeps
 			// it gets fully healed and all negative status effects removed
-			
-			// When the sleep timer reached 100 the player is fully asleep
-			if (entity instanceof ServerPlayerEntity serverPlayerEntity
-					&& serverPlayerEntity.getSleepTimer() == 100
-					&& SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.WHISPY_CIRCLET)) {
-				
-				entity.setHealth(entity.getMaxHealth());
-				WhispyCircletItem.removeNegativeStatusEffects(entity);
-			}
-		});
-		
-		logInfo("Registering RecipeCache reload listener");
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final Identifier id = SpectrumCommon.locate("compacting_cache_clearer");
-			
-			@Override
-			public void reload(ResourceManager manager) {
-				CompactingChestBlockEntity.clearCache();
-				
-				if (minecraftServer != null) {
+
+            // When the sleep timer reached 100 the player is fully asleep
+            if (entity instanceof ServerPlayerEntity serverPlayerEntity
+                    && serverPlayerEntity.getSleepTimer() == 100
+                    && SpectrumTrinketItem.hasEquipped(entity, SpectrumItems.WHISPY_CIRCLET)) {
+
+                entity.setHealth(entity.getMaxHealth());
+                WhispyCircletItem.removeNegativeStatusEffects(entity);
+            }
+        });
+
+        CrossbowShootingCallback.register((world, shooter, hand, crossbow, projectile, projectileEntity) -> {
+            if (crossbow.getItem() instanceof GlassCrestCrossbowItem && GlassCrestCrossbowItem.isOvercharged(crossbow)) {
+                GlassCrestCrossbowItem.unOvercharge(crossbow);
+            }
+        });
+
+        logInfo("Registering RecipeCache reload listener");
+        ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
+            private final Identifier id = SpectrumCommon.locate("compacting_cache_clearer");
+
+            @Override
+            public void reload(ResourceManager manager) {
+                CompactingChestBlockEntity.clearCache();
+
+                if (minecraftServer != null) {
 					injectEnchantmentUpgradeRecipes(minecraftServer);
 					FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
 				}

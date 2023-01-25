@@ -1,20 +1,16 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.arrowhead.api.ArrowheadCrossbow;
-import de.dafuqs.spectrum.items.Preenchanted;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.CrossbowItem;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.util.collection.DefaultedList;
+import de.dafuqs.arrowhead.api.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.collection.*;
 
-import java.util.Map;
-import java.util.function.Predicate;
+import java.util.*;
+import java.util.function.*;
 
 public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted, ArrowheadCrossbow {
 	
@@ -56,21 +52,20 @@ public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted,
 	public Predicate<ItemStack> getProjectiles() {
 		return PROJECTILES;
 	}
-	
+
 	@Override
-	public float getProjectileVelocityModifier() {
+	public float getProjectileVelocityModifier(ItemStack stack) {
 		return 1.25F;
 	}
-	
+
 	@Override
-	public float getPullTimeModifier() {
+	public float getPullTimeModifier(ItemStack stack) {
 		return 1.0F;
 	}
-	
+
 	@Override
-	public float getDivergenceMod() {
+	public float getDivergenceMod(ItemStack stack) {
 		return 0.75F;
 	}
-	
 	
 }

@@ -158,6 +158,12 @@
       "spectrum:air_launch_belt_charging"
     ]
   },
+  "overcharging": {
+    "subtitle": "spectrum.subtitles.overcharging",
+    "sounds": [
+      "spectrum:overcharging"
+    ]
+  },
   "radiance_pin_trigger": {
     "subtitle": "spectrum.subtitles.radiance_pin_trigger",
     "sounds": [

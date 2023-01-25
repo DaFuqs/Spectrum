@@ -62,7 +62,8 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent EXCHANGING_STAFF_SELECT = register("exchanging_staff_select");
 	public static final SoundEvent RADIANCE_PIN_TRIGGER = register("radiance_pin_trigger");
 	public static final SoundEvent AIR_LAUNCH_BELT_CHARGING = register("air_launch_belt_charging");
-	public static final SoundEvent PUFF_CIRCLET_PFFT = register("puff_circlet");
+    public static final SoundEvent OVERCHARGING = register("overcharging");
+    public static final SoundEvent PUFF_CIRCLET_PFFT = register("puff_circlet");
 	public static final SoundEvent MIDNIGHT_ABERRATION_CRUMBLING = register("midnight_aberration_crumbling");
 	public static final SoundEvent STRUCTURE_SUCCESS = register("structure_success");
 	
@@ -168,10 +169,10 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SPECTRAL_BLOCK_HIT = register("block.spectral_block.hit");
 	public static final SoundEvent SPECTRAL_BLOCK_CHIME = register("block.spectral_block.chime");
 
-	private static SoundEvent register(String id) {
-		Identifier identifier = SpectrumCommon.locate(id);
-		return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));
-	}
+    private static SoundEvent register(String id) {
+        Identifier identifier = SpectrumCommon.locate(id);
+        return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));
+    }
 
 	public static void register() {
 		SpectrumCommon.logInfo("Registering Sound Events...");

@@ -1,34 +1,24 @@
 package de.dafuqs.spectrum.helpers;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.PlayerAdvancementTracker;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.ServerAdvancementLoader;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.text.*;
+import java.util.*;
 
 public class Support {
 	
@@ -78,18 +68,18 @@ public class Support {
 		add(new Vec3d(0.75D, 0, -0.5D));
 	}};
 	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/finish_progression");
-	private static final DecimalFormat df = new DecimalFormat("0.00");
-	private static final DecimalFormat df1 = new DecimalFormat("0.0");
-	private static final DecimalFormat df2 = new DecimalFormat("0");
-	
+	public static final DecimalFormat df = new DecimalFormat("0.00");
+	public static final DecimalFormat df1 = new DecimalFormat("0.0");
+	public static final DecimalFormat df2 = new DecimalFormat("0");
+
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
 		return blockState.streamTags().filter(tags::contains).findFirst();
 	}
-	
+
 	public static String getWithOneDecimalAfterComma(float number) {
 		return df1.format(number);
 	}
-	
+
 	public static String getShortenedNumberString(double number) {
 		if (number > 1000000000D) {
 			return df.format(number / 1000000000D) + "G";

@@ -1,23 +1,18 @@
 package de.dafuqs.spectrum.recipe.cinderhearth;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.util.collection.DefaultedList;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	
@@ -103,12 +98,20 @@ public class CinderhearthRecipe extends GatedSpectrumRecipe {
 		List<ItemStack> output = new ArrayList<>();
 		for (Pair<ItemStack, Float> possibleOutput : this.outputsWithChance) {
 			float chance = possibleOutput.getRight();
-			if (chance >= 1.0 || random.nextFloat() < chance) {
-				ItemStack stack = possibleOutput.getLeft().copy();
+			if (chance >= 1.0 || random.nextFloat() < chance * yieldMod) {
+				ItemStack currentOutputStack = possibleOutput.getLeft();
 				if (yieldMod > 1) {
-					stack.setCount(Math.min(stack.getMaxCount(), Support.getIntFromDecimalWithChance(stack.getCount() * yieldMod, random)));
+					int totalCount = Support.getIntFromDecimalWithChance(currentOutputStack.getCount() * yieldMod, random);
+					while (totalCount > 0) { // if the rolled count exceeds the max stack size we need to split them (unstackable items, counts > 64, ...)
+						int count = Math.min(totalCount, currentOutputStack.getMaxCount());
+						ItemStack outputStack = currentOutputStack.copy();
+						outputStack.setCount(count);
+						output.add(outputStack);
+						totalCount -= count;
+					}
+				} else {
+					output.add(currentOutputStack.copy());
 				}
-				output.add(stack);
 			}
 		}
 		return output;

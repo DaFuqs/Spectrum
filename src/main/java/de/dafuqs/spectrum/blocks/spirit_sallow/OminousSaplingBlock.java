@@ -1,27 +1,23 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.PlantBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.UUID;
+import java.util.*;
 
 public class OminousSaplingBlock extends PlantBlock implements BlockEntityProvider {
 	
@@ -34,9 +30,9 @@ public class OminousSaplingBlock extends PlantBlock implements BlockEntityProvid
 		if (!world.isClient()) {
 			OminousSaplingBlockEntity ominousSaplingBlockEntity = getBlockEntity(world, pos);
 			if (ominousSaplingBlockEntity != null) {
-				player.sendMessage(Text.of("Sapling UUID: " + ominousSaplingBlockEntity.getOwnerUUID()), false);
+				SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.of("Sapling owner UUID: " + ominousSaplingBlockEntity.getOwnerUUID()), false);
 			} else {
-				player.sendMessage(Text.of("Sapling block entity putt :("), false);
+				SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.of("Sapling block entity putt :("), false);
 			}
 		}
 		return ActionResult.SUCCESS;

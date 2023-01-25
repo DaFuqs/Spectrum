@@ -1,44 +1,33 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.fabricmc.fabric.mixin.transfer.BucketItemAccessor;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.mixin.transfer.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import net.minecraft.world.biome.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
-import static de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlock.BARREL_STATE;
+import static de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlock.*;
 
 public class TitrationBarrelBlockEntity extends BlockEntity {
 	
@@ -194,9 +183,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		if (optionalRecipe.isEmpty()) {
 			if (player != null) {
 				if (inventory.isEmpty() && storedFluid == Fluids.EMPTY) {
-					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.empty_when_tapping"), false);
+					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.empty_when_tapping"), false);
 				} else {
-					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), false);
+					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), false);
 				}
 			}
 		} else {
@@ -210,7 +199,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 						handStack.decrement(1);
 						canTap = true;
 					} else if (player != null) {
-						player.sendMessage(Text.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName()), false);
+						SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName()), false);
 					}
 				}
 				if (canTap) {
@@ -220,9 +209,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 				}
 			} else if (player != null) {
 				if (this.storedFluid == Fluids.EMPTY) {
-					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.missing_water_when_tapping"), false);
+					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.missing_water_when_tapping"), false);
 				} else {
-					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), false);
+					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), false);
 				}
 			}
 		}

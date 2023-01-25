@@ -1,25 +1,24 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.enums.ProgressionStage;
-import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
-import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.SidedInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.UUID;
+import java.util.*;
 
 public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements SidedInventory, PlayerOwnedWithName {
 	
@@ -36,8 +35,8 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		BlockState blockState = world.getBlockState(pos);
 		if (blockState.hasBlockEntity()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof PrivateChestBlockEntity) {
-				return ((PrivateChestBlockEntity) blockEntity).stateManager.getViewerCount();
+			if (blockEntity instanceof PrivateChestBlockEntity privateChestBlockEntity) {
+				return privateChestBlockEntity.stateManager.getViewerCount();
 			}
 		}
 		return 0;
@@ -140,7 +139,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		if (!isOwner && this.world != null) {
 			this.lastNonOwnerOpenedTick = this.world.getTime();
 			updateRedstone(this.pos, this.world.getBlockState(pos));
-			player.sendMessage(Text.translatable("block.spectrum.private_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName)), false);
+			SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.private_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName)), false);
 		}
 		
 		return isOwner;

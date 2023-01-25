@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.ender;
 
 import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.networking.*;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
 import net.minecraft.block.entity.*;
@@ -67,7 +68,7 @@ public class EnderDropperBlock extends DispenserBlock {
 					
 					PiglinBrain.onGuardedBlockInteracted(player, true);
 				} else {
-					player.sendMessage(Text.translatable("block.spectrum.ender_dropper_with_owner", enderDropperBlockEntity.getOwnerName()), false);
+					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.ender_dropper_with_owner", enderDropperBlockEntity.getOwnerName()), false);
 				}
 			}
 			return ActionResult.CONSUME;

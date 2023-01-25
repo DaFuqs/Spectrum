@@ -1,22 +1,20 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.networking.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityProvider {
 	
@@ -41,7 +39,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 				
 				String ownerName = getOwnerName(world, pos);
 				if (ownerName != null && !ownerName.equals("")) {
-					player.sendMessage(Text.translatable("block.spectrum.player_detector").append(Text.translatable("container.spectrum.owned_by_player", ownerName)), false);
+					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.player_detector").append(Text.translatable("container.spectrum.owned_by_player", ownerName)), false);
 				}
 				return ActionResult.CONSUME;
 			} else {

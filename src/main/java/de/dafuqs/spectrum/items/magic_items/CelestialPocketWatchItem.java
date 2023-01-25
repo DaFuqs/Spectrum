@@ -1,23 +1,19 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class CelestialPocketWatchItem extends Item {
 	
@@ -33,7 +29,7 @@ public class CelestialPocketWatchItem extends Item {
 		GameRules.BooleanRule doDaylightCycleRule = world.getGameRules().get(GameRules.DO_DAYLIGHT_CYCLE);
 		if (doDaylightCycleRule.get()) {
 			if (world.getDimension().hasFixedTime()) {
-				player.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), false);
+				SpectrumS2CPacketSender.sendHudMessage(player, Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), false);
 			} else {
 				SpectrumS2CPacketSender.startSkyLerping(world, TIME_STEP_TICKS);
 				long timeOfDay = world.getTimeOfDay();
@@ -41,7 +37,7 @@ public class CelestialPocketWatchItem extends Item {
 				return true;
 			}
 		} else {
-			player.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), false);
+			SpectrumS2CPacketSender.sendHudMessage(player, Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), false);
 		}
 		return false;
 	}

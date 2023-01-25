@@ -1,24 +1,29 @@
 package de.dafuqs.spectrum.config;
 
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
+import me.shedaniel.autoconfig.*;
+import me.shedaniel.autoconfig.annotation.*;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Config(name = "Spectrum")
 public class SpectrumConfig implements ConfigData {
-	
+
 	@Comment("The duration in milliseconds ingame recipe/unlock popups stay on the screen")
 	public long ToastTimeMilliseconds = 7500;
-	
+
+	@Comment("The reverb decay time for sound effects in Spectrum's dimension")
+	public float DimensionReverbDecayTime = 8.0F;
+
+	@Comment("The reverb density for sound effects in Spectrum's dimension")
+	public float DimensionReverbDensity = 0.5F;
+
 	@Comment("""
 			The vanilla anvil caps enchantment levels at the max level for the enchantment
 			So enchanted books that exceed the enchantments natural max level get capped
 			If true the bedrock anvil will not cap the enchantments level to it's natural max level""")
 	public boolean BedrockAnvilCanExceedMaxVanillaEnchantmentLevel = false;
-	
+
 	@Comment("""
 			The heights where citrine and topaz geodes will spawn
 			By default citrine will generate slightly below sea level (y=32-60)

@@ -1,20 +1,16 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.entity.BlockEntity;
+import de.dafuqs.spectrum.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.client.util.SpriteIdentifier;
-import net.minecraft.client.util.math.MatrixStack;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.block.entity.*;
+import net.minecraft.client.texture.*;
+import net.minecraft.client.util.*;
+import net.minecraft.client.util.math.*;
+import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends BlockEntity> implements BlockEntityRenderer<PedestalUpgradeBlockEntity> {
@@ -42,8 +38,8 @@ public class UpgradeBlockBlockEntityRenderer<PedestalUpgradeBlockEntity extends 
 			float upgradeMod = upgradeBlock.getUpgradeMod();
 			
 			VertexConsumer vertexConsumer = spriteIdentifier.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityCutout);
-			
-			float newYaw = (entity.getWorld().getTime() + tickDelta % 24000) / 25.0F;
+
+			float newYaw = (entity.getWorld().getTime() % 24000 + tickDelta) / 80.0F;
 			root.pivotY = 16.0F + (float) (Math.sin(newYaw) * 0.5);
 			disk.yaw = newYaw * upgradeMod * 4;
 			root.render(matrixStack, vertexConsumer, light, overlay);

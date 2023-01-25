@@ -18,6 +18,7 @@ import net.minecraft.particle.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.registry.*;
@@ -382,5 +383,12 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.MOONSTONE_BLAST, buf);
 		}
 	}
-	
+
+	public static void sendHudMessage(ServerPlayerEntity player, Text text, boolean tinted) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeText(text);
+		buf.writeBoolean(tinted);
+		ServerPlayNetworking.send(player, SpectrumS2CPackets.DISPLAY_HUD_MESSAGE, buf);
+	}
+
 }

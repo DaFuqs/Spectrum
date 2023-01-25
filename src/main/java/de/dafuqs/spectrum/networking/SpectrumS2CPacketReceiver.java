@@ -29,6 +29,7 @@ import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.screen.*;
 import net.minecraft.sound.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
@@ -394,13 +395,22 @@ public class SpectrumS2CPacketReceiver {
 			double playerVelocityX = buf.readDouble();
 			double playerVelocityY = buf.readDouble();
 			double playerVelocityZ = buf.readDouble();
-			
+
 			client.execute(() -> {
 				MoonstoneStrike.create(client.world, null, null, x, y, z, power);
 				player.setVelocity(player.getVelocity().add(playerVelocityX, playerVelocityY, playerVelocityZ));
 			});
 		});
-		
+
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.DISPLAY_HUD_MESSAGE, (client, handler, buf, responseSender) -> {
+			Text text = buf.readText();
+			boolean tinted = buf.readBoolean();
+
+			client.execute(() -> {
+				client.inGameHud.setOverlayMessage(text, tinted);
+			});
+		});
+
 	}
 	
 }

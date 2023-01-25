@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import net.minecraft.util.*;
 
 public class SpectrumS2CPackets {
 
@@ -39,5 +39,6 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_ASCENSION_APPLIED_EFFECTS = SpectrumCommon.locate("play_ascension_applied_effects");
 	public static final Identifier PLAY_DIVINITY_APPLIED_EFFECTS = SpectrumCommon.locate("play_divinity_applied_effects");
 	public static final Identifier MOONSTONE_BLAST = SpectrumCommon.locate("moonstone_blast");
+	public static final Identifier DISPLAY_HUD_MESSAGE = SpectrumCommon.locate("display_hud_message");
 
 }

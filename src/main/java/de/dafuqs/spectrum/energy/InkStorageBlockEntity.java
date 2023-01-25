@@ -32,7 +32,7 @@ public interface InkStorageBlockEntity<PStorage extends InkStorage> {
 	 */
 	default float drainInkForMod(float mod, InkColor inkColor, float efficiencyMod) {
 		if (mod > 1) {
-			int inkToDrain = (int) ((mod * mod - 1) / Math.pow(2, efficiencyMod));
+			int inkToDrain = (int) (1 / Math.pow(2, efficiencyMod - mod * mod));
 			if (getEnergyStorage().drainEnergy(inkColor, inkToDrain) == inkToDrain) {
 				return mod;
 			}

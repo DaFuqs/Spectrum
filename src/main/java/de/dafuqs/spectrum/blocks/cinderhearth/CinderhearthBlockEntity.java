@@ -342,11 +342,13 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				BlastingRecipe blastingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.BLASTING, cinderhearthBlockEntity, world).orElse(null);
 				if (blastingRecipe != null) {
 					cinderhearthBlockEntity.currentRecipe = blastingRecipe;
-					cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(blastingRecipe.getCookTime() / cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.getUpgradeValue(UpgradeType.SPEED), InkColors.MAGENTA, cinderhearthBlockEntity.getUpgradeValue(UpgradeType.EFFICIENCY)));
+					float speedModifier = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.getUpgradeValue(UpgradeType.SPEED), InkColors.MAGENTA, cinderhearthBlockEntity.getUpgradeValue(UpgradeType.EFFICIENCY));
+					cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(blastingRecipe.getCookTime() / speedModifier);
 				}
 			} else {
 				cinderhearthBlockEntity.currentRecipe = cinderhearthRecipe;
-				cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(cinderhearthRecipe.getCraftingTime() / cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.getUpgradeValue(UpgradeType.SPEED), InkColors.MAGENTA, cinderhearthBlockEntity.getUpgradeValue(UpgradeType.EFFICIENCY)));
+				float speedModifier = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.getUpgradeValue(UpgradeType.SPEED), InkColors.MAGENTA, cinderhearthBlockEntity.getUpgradeValue(UpgradeType.EFFICIENCY));
+				cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(cinderhearthRecipe.getCraftingTime() / speedModifier);
 			}
 		}
 	}
@@ -370,26 +372,35 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 
 	public static void craftBlastingRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull BlastingRecipe blastingRecipe) {
+		// calculate outputs
 		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-
-		float efficiencyMod = cinderhearth.getUpgradeValue(UpgradeType.EFFICIENCY);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth.getUpgradeValue(UpgradeType.YIELD), InkColors.LIGHT_BLUE, efficiencyMod);
-
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth.getUpgradeValue(UpgradeType.YIELD), InkColors.LIGHT_BLUE, cinderhearth.getUpgradeValue(UpgradeType.EFFICIENCY));
 		ItemStack output = blastingRecipe.getOutput().copy();
+		List<ItemStack> outputs = new ArrayList<>();
 		if (yieldMod > 1) {
-			output.setCount(Math.min(output.getMaxCount(), Support.getIntFromDecimalWithChance(output.getCount() * yieldMod, world.random)));
+			int outputCount = Support.getIntFromDecimalWithChance(output.getCount() * yieldMod, world.random);
+			while (outputCount > 0) { // if the rolled count exceeds the max stack size we need to split them (unstackable items, counts > 64, ...)
+				int count = Math.min(outputCount, output.getMaxCount());
+				ItemStack outputStack = output.copy();
+				outputStack.setCount(count);
+				outputs.add(outputStack);
+				outputCount -= count;
+			}
+		} else {
+			outputs.add(output.copy());
 		}
 
-		craftRecipe(cinderhearth, inputStack, List.of(output), blastingRecipe.getExperience());
+		// craft
+		craftRecipe(cinderhearth, inputStack, outputs, blastingRecipe.getExperience());
 	}
 
 	public static void craftCinderhearthRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull CinderhearthRecipe cinderhearthRecipe) {
+		// calculate outputs
 		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-
-		float efficiencyMod = cinderhearth.getUpgradeValue(UpgradeType.EFFICIENCY);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth.getUpgradeValue(UpgradeType.YIELD), InkColors.LIGHT_BLUE, efficiencyMod);
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth.getUpgradeValue(UpgradeType.YIELD), InkColors.LIGHT_BLUE, cinderhearth.getUpgradeValue(UpgradeType.EFFICIENCY));
 		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random, yieldMod);
 
+		// craft
 		craftRecipe(cinderhearth, inputStack, outputs, cinderhearthRecipe.getExperience());
 	}
 

@@ -1,20 +1,18 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import de.dafuqs.spectrum.blocks.fluid.MidnightSolutionFluidBlock;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LightningEntity;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.Heightmap;
+import de.dafuqs.spectrum.blocks.fluid.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.explosion.*;
 
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Effects that are played when crafting with the fusion shrine
@@ -29,8 +27,12 @@ public enum FusionShrineRecipeWorldEffect {
 	VISUAL_EXPLOSIONS_ON_SHRINE,
 	SINGLE_VISUAL_EXPLOSION_ON_SHRINE,
 	MAYBE_PLACE_MIDNIGHT_SOLUTION,
-	PLACE_MIDNIGHT_SOLUTION;
-	
+	PLACE_MIDNIGHT_SOLUTION,
+	EXPLOSIONS_AROUND_SHRINE,
+	EXPLOSIONS_AND_LIGHTNING_AROUND_SHRINE,
+	PLAY_GLASS_BREAKING_SOUND,
+	RIDICULOUSLY_SQUEAKY_FART;
+
 	public void doEffect(ServerWorld world, BlockPos shrinePos) {
 		switch (this) {
 			case WEATHER_CLEAR -> {
@@ -72,9 +74,40 @@ public enum FusionShrineRecipeWorldEffect {
 					SpectrumS2CPacketSender.playParticles(world, shrinePos.up(), ParticleTypes.EXPLOSION, 1);
 				}
 			}
+			case EXPLOSIONS_AROUND_SHRINE -> {
+				if (world.getRandom().nextFloat() < 0.1) {
+					float randomX = shrinePos.getX() + 0.5F + 10 - world.getRandom().nextInt(20);
+					float randomY = shrinePos.getY() + 0.5F + 1 - world.getRandom().nextInt(3);
+					float randomZ = shrinePos.getZ() + 0.5F + 10 - world.getRandom().nextInt(20);
+					world.createExplosion(null, randomX, randomY, randomZ, 4, Explosion.DestructionType.NONE);
+				}
+			}
+			case EXPLOSIONS_AND_LIGHTNING_AROUND_SHRINE -> {
+				if (world.getRandom().nextFloat() < 0.1) {
+					float randomX = shrinePos.getX() + 0.5F + 10 - world.getRandom().nextInt(20);
+					float randomY = shrinePos.getY() + 0.5F + 1 - world.getRandom().nextInt(3);
+					float randomZ = shrinePos.getZ() + 0.5F + 10 - world.getRandom().nextInt(20);
+					world.createExplosion(null, randomX, randomY, randomZ, 4, Explosion.DestructionType.NONE);
+				}
+				if (world.getRandom().nextFloat() < 0.05F) {
+					int randomX = shrinePos.getX() + 12 - world.getRandom().nextInt(24);
+					int randomZ = shrinePos.getZ() + 12 - world.getRandom().nextInt(24);
+
+					BlockPos randomTopPos = new BlockPos(randomX, world.getTopY(Heightmap.Type.WORLD_SURFACE, randomX, randomZ), randomZ);
+					LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
+					if (lightningEntity != null) {
+						lightningEntity.refreshPositionAfterTeleport(Vec3d.ofBottomCenter(randomTopPos));
+						lightningEntity.setCosmetic(false);
+						world.spawnEntity(lightningEntity);
+					}
+				}
+			}
 			case SINGLE_VISUAL_EXPLOSION_ON_SHRINE -> {
 				world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F);
 				SpectrumS2CPacketSender.playParticles(world, shrinePos, ParticleTypes.EXPLOSION, 1);
+			}
+			case PLAY_GLASS_BREAKING_SOUND -> {
+				world.playSound(null, shrinePos.up(), SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 			case PLACE_MIDNIGHT_SOLUTION, MAYBE_PLACE_MIDNIGHT_SOLUTION -> {
 				if (this == PLACE_MIDNIGHT_SOLUTION || world.getRandom().nextFloat() < 0.05F) {
@@ -85,6 +118,9 @@ public enum FusionShrineRecipeWorldEffect {
 					}
 				}
 			}
+			case RIDICULOUSLY_SQUEAKY_FART -> {
+				world.playSound(null, shrinePos.up(), SpectrumSoundEvents.SQUEAKER, SoundCategory.BLOCKS, 1.0F, 1.2F + world.random.nextFloat() * 0.4F);
+			}
 		}
 	}
 	
@@ -93,7 +129,9 @@ public enum FusionShrineRecipeWorldEffect {
 	 * Otherwise, it will be triggered each tick of the recipe
 	 */
 	public boolean isOneTimeEffect(FusionShrineRecipeWorldEffect effect) {
-		return effect == LIGHTNING_ON_SHRINE || effect == SINGLE_VISUAL_EXPLOSION_ON_SHRINE || effect == WEATHER_CLEAR || effect == WEATHER_RAIN || effect == WEATHER_THUNDER;
+		return effect == LIGHTNING_ON_SHRINE || effect == SINGLE_VISUAL_EXPLOSION_ON_SHRINE
+				|| effect == PLAY_GLASS_BREAKING_SOUND || effect == RIDICULOUSLY_SQUEAKY_FART
+				|| effect == WEATHER_CLEAR || effect == WEATHER_RAIN || effect == WEATHER_THUNDER;
 	}
 	
 	

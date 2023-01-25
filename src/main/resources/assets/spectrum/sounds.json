@@ -45,6 +45,12 @@
       "spectrum:ground_slam4"
     ]
   },
+  "squeaker": {
+    "subtitle": "spectrum.subtitles.squeaker",
+    "sounds": [
+      "spectrum:squeaker"
+    ]
+  },
   "ground_slam_charge": {
     "subtitle": "spectrum.subtitles.ground_slam_charge",
     "sounds": [

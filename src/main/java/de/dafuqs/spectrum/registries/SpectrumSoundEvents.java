@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import de.dafuqs.spectrum.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
 public class SpectrumSoundEvents {
 	
@@ -83,8 +83,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent FADING_PLACED = register("fading_placed");
 	public static final SoundEvent FAILING_PLACED = register("failing_placed");
 	public static final SoundEvent RUIN_PLACED = register("ruin_placed");
-	
+
 	public static final SoundEvent DEEPER_DOWN_PORTAL_OPEN = register("deeper_down_portal_open");
+	public static final SoundEvent SQUEAKER = register("squeaker");
 	
 	public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
 	
@@ -159,21 +160,21 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BLOCK_LARGE_MOONSTONE_BUD_BREAK = register("block.large_moonstone_bud.break");
 	public static final SoundEvent BLOCK_LARGE_MOONSTONE_BUD_PLACE = register("block.large_moonstone_bud.place");
 	public static final SoundEvent BLOCK_MOONSTONE_BLOCK_CHIME = register("block.moonstone_block.chime");
-	
+
 	public static final SoundEvent SPECTRAL_BLOCK_BREAK = register("block.spectral_block.break");
 	public static final SoundEvent SPECTRAL_BLOCK_STEP = register("block.spectral_block.step");
 	public static final SoundEvent SPECTRAL_BLOCK_PLACE = register("block.spectral_block.place");
 	public static final SoundEvent SPECTRAL_BLOCK_FALL = register("block.spectral_block.fall");
 	public static final SoundEvent SPECTRAL_BLOCK_HIT = register("block.spectral_block.hit");
 	public static final SoundEvent SPECTRAL_BLOCK_CHIME = register("block.spectral_block.chime");
-	
+
 	private static SoundEvent register(String id) {
 		Identifier identifier = SpectrumCommon.locate(id);
 		return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));
 	}
-	
+
 	public static void register() {
 		SpectrumCommon.logInfo("Registering Sound Events...");
 	}
-	
+
 }

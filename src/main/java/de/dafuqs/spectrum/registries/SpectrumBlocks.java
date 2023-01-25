@@ -621,15 +621,15 @@ public class SpectrumBlocks {
 	public static final Block STUCK_STORM_STONE = new StormStoneBlock(FabricBlockSettings.of(Material.SNOW_LAYER, MapColor.PALE_YELLOW).noCollision().breakInstantly().sounds(BlockSoundGroup.SMALL_AMETHYST_BUD));
 	public static final Block DEEPER_DOWN_PORTAL = new DeeperDownPortalBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL));
 
-	public static final Block UPGRADE_SPEED = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 0.5F, DyeColor.MAGENTA);
-	public static final Block UPGRADE_SPEED2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 2.0F, DyeColor.MAGENTA);
-	public static final Block UPGRADE_SPEED3 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 8.0F, DyeColor.MAGENTA);
-	public static final Block UPGRADE_EFFICIENCY = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EFFICIENCY, 0.05F, DyeColor.YELLOW);
-	public static final Block UPGRADE_EFFICIENCY2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EFFICIENCY, 0.25F, DyeColor.YELLOW);
-	public static final Block UPGRADE_YIELD = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.YIELD, 0.05F, DyeColor.CYAN);
-	public static final Block UPGRADE_YIELD2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.YIELD, 0.25F, DyeColor.CYAN);
-	public static final Block UPGRADE_EXPERIENCE = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EXPERIENCE, 1.0F, DyeColor.PURPLE);
-	public static final Block UPGRADE_EXPERIENCE2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EXPERIENCE, 4.0F, DyeColor.PURPLE);
+	public static final Block UPGRADE_SPEED = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 1, DyeColor.MAGENTA);
+	public static final Block UPGRADE_SPEED2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 2, DyeColor.MAGENTA);
+	public static final Block UPGRADE_SPEED3 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.SPEED, 8, DyeColor.MAGENTA);
+	public static final Block UPGRADE_EFFICIENCY = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EFFICIENCY, 1, DyeColor.YELLOW);
+	public static final Block UPGRADE_EFFICIENCY2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EFFICIENCY, 4, DyeColor.YELLOW);
+	public static final Block UPGRADE_YIELD = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.YIELD, 1, DyeColor.CYAN);
+	public static final Block UPGRADE_YIELD2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.YIELD, 4, DyeColor.CYAN);
+	public static final Block UPGRADE_EXPERIENCE = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EXPERIENCE, 1, DyeColor.PURPLE);
+	public static final Block UPGRADE_EXPERIENCE2 = new UpgradeBlock(FabricBlockSettings.copyOf(SpectrumBlocks.POLISHED_BASALT), Upgradeable.UpgradeType.EXPERIENCE, 4, DyeColor.PURPLE);
 
 	public static final Block REDSTONE_SAND = new RedstoneGravityBlock(FabricBlockSettings.copyOf(Blocks.SAND));
 	public static final Block ENDER_GLASS = new RedstoneTransparencyBlock(FabricBlockSettings.copyOf(Blocks.GLASS).nonOpaque()

@@ -40,7 +40,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, RecipeInputProvider, SidedInventory, ExtendedScreenHandlerFactory, InkStorageBlockEntity<IndividualCappedInkStorage> {
+public class CinderhearthBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory, InkStorageBlockEntity<IndividualCappedInkStorage> {
 
 	public static final int INVENTORY_SIZE = 11;
 	public static final int INPUT_SLOT_ID = 0;
@@ -58,7 +58,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	protected IndividualCappedInkStorage inkStorage;
 
 	private UUID ownerUUID;
-	private Map<UpgradeType, Float> upgrades;
+	private UpgradeHolder upgrades;
 	private Recipe currentRecipe; // blasting & cinderhearth
 	private int craftingTime;
 	private int craftingTimeTotal;
@@ -149,11 +149,6 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		this.markDirty();
 	}
 	
-	@Override
-	public float getUpgradeValue(UpgradeType upgradeType) {
-		return this.upgrades.get(upgradeType);
-	}
-	
 	public void updateInClientWorld() {
 		((ServerWorld) world).getChunkManager().markForUpdate(pos);
 	}
@@ -231,7 +226,9 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			this.currentRecipe = null;
 		}
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
-			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		} else {
+			this.upgrades = new UpgradeHolder();
 		}
 	}
 	
@@ -246,7 +243,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
 		nbt.putInt("Structure", this.structure.ordinal());
 		if (this.upgrades != null) {
-			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+			nbt.put("Upgrades", this.upgrades.toNbt());
 		}
 		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
@@ -296,8 +293,9 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			
 			if (cinderhearthBlockEntity.currentRecipe != null) {
 				if (world.getTime() % 20 == 0) {
-					int usedOrangeInk = (int) (4 / cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.getUpgradeValue(UpgradeType.EFFICIENCY), InkColors.BLACK));
-					if (cinderhearthBlockEntity.inkStorage.drainEnergy(InkColors.ORANGE, usedOrangeInk) != usedOrangeInk) {
+					float effectiveEfficiencyMod = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity, UpgradeType.EFFICIENCY, false);
+					int orangeInkToDrain = (int) (4 / effectiveEfficiencyMod);
+					if (cinderhearthBlockEntity.inkStorage.drainEnergy(InkColors.ORANGE, orangeInkToDrain) != orangeInkToDrain) {
 						cinderhearthBlockEntity.currentRecipe = null;
 						cinderhearthBlockEntity.craftingTime = 0;
 						cinderhearthBlockEntity.craftingTimeTotal = 0;
@@ -342,12 +340,12 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				BlastingRecipe blastingRecipe = world.getRecipeManager().getFirstMatch(RecipeType.BLASTING, cinderhearthBlockEntity, world).orElse(null);
 				if (blastingRecipe != null) {
 					cinderhearthBlockEntity.currentRecipe = blastingRecipe;
-					float speedModifier = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.getUpgradeValue(UpgradeType.SPEED), InkColors.MAGENTA, cinderhearthBlockEntity.getUpgradeValue(UpgradeType.EFFICIENCY));
+					float speedModifier = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity, UpgradeType.SPEED, true);
 					cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(blastingRecipe.getCookTime() / speedModifier);
 				}
 			} else {
 				cinderhearthBlockEntity.currentRecipe = cinderhearthRecipe;
-				float speedModifier = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity.getUpgradeValue(UpgradeType.SPEED), InkColors.MAGENTA, cinderhearthBlockEntity.getUpgradeValue(UpgradeType.EFFICIENCY));
+				float speedModifier = cinderhearthBlockEntity.drainInkForMod(cinderhearthBlockEntity, UpgradeType.SPEED, true);
 				cinderhearthBlockEntity.craftingTimeTotal = (int) Math.ceil(cinderhearthRecipe.getCraftingTime() / speedModifier);
 			}
 		}
@@ -374,7 +372,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static void craftBlastingRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull BlastingRecipe blastingRecipe) {
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth.getUpgradeValue(UpgradeType.YIELD), InkColors.LIGHT_BLUE, cinderhearth.getUpgradeValue(UpgradeType.EFFICIENCY));
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth, UpgradeType.YIELD, true);
 		ItemStack output = blastingRecipe.getOutput().copy();
 		List<ItemStack> outputs = new ArrayList<>();
 		if (yieldMod > 1) {
@@ -397,7 +395,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public static void craftCinderhearthRecipe(World world, @NotNull CinderhearthBlockEntity cinderhearth, @NotNull CinderhearthRecipe cinderhearthRecipe) {
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
-		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth.getUpgradeValue(UpgradeType.YIELD), InkColors.LIGHT_BLUE, cinderhearth.getUpgradeValue(UpgradeType.EFFICIENCY));
+		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth, UpgradeType.YIELD, true);
 		List<ItemStack> outputs = cinderhearthRecipe.getRolledOutputs(world.random, yieldMod);
 
 		// craft
@@ -432,11 +430,8 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			cinderhearth.craftingTime = 0;
 			cinderhearth.inventoryChanged();
 
-			float efficiencyMod = cinderhearth.getUpgradeValue(UpgradeType.EFFICIENCY);
-			cinderhearth.drainInkForMod(efficiencyMod, InkColors.BLACK);
-
 			// grant experience & advancements
-			float experienceMod = cinderhearth.drainInkForMod(cinderhearth.getUpgradeValue(UpgradeType.EXPERIENCE), InkColors.PURPLE, efficiencyMod);
+			float experienceMod = cinderhearth.drainInkForMod(cinderhearth, UpgradeType.EXPERIENCE, true);
 			int finalExperience = Support.getIntFromDecimalWithChance(experience * experienceMod, cinderhearth.world.random);
 			ExperienceStorageItem.addStoredExperience(cinderhearth.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), finalExperience);
 			cinderhearth.grantPlayerCinderhearthSmeltingAdvancement(inputStackCopy, outputs, finalExperience);
@@ -464,17 +459,15 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		Direction.Axis axis = null;
 		Direction direction = null;
 
-		for (Map.Entry<UpgradeType, Float> entry : cinderhearthBlockEntity.upgrades.entrySet()) {
-			float value = entry.getValue();
-			if (value > 1.0) {
+		for (Map.Entry<UpgradeType, Integer> entry : cinderhearthBlockEntity.upgrades.entrySet()) {
+			if (entry.getValue() > 1) {
 				if (axis == null) {
 					BlockState state = cinderhearthBlockEntity.world.getBlockState(cinderhearthBlockEntity.pos);
 					direction = state.get(CinderhearthBlock.FACING);
 					axis = direction.getAxis();
 				}
-				
+
 				double d = (double) cinderhearthBlockEntity.pos.getX() + 0.5D;
-				double e = cinderhearthBlockEntity.pos.getY() + 0.4;
 				double f = (double) cinderhearthBlockEntity.pos.getZ() + 0.5D;
 				double g2 = -3D / 16D;
 				double h2 = 4D / 16D;
@@ -542,29 +535,23 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		this.canTransferInk = true;
 		this.markDirty();
 	}
-	
+
 	@Override
 	public void clear() {
 		this.inventory.clear();
 		this.inventoryChanged();
 	}
-	
-	public Map<UpgradeType, Float> getUpgrades() {
+
+	@Override
+	public UpgradeHolder getUpgradeHolder() {
 		return this.upgrades;
 	}
-	
-	@Override
-	public void provideRecipeInputs(RecipeMatcher recipeMatcher) {
-		for (ItemStack itemStack : this.inventory) {
-			recipeMatcher.addInput(itemStack);
-		}
-	}
-	
+
 	@Override
 	public IndividualCappedInkStorage getEnergyStorage() {
 		return this.inkStorage;
 	}
-	
+
 	@Override
 	public void setInkDirty() {
 		this.inkDirty = true;

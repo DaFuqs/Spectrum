@@ -1,28 +1,24 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.MultiblockCrafter;
-import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
-import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.id.incubus_core.recipe.matchbook.Matchbook;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import java.util.Map;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.item_bowl.*;
+import de.dafuqs.spectrum.blocks.spirit_instiller.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.id.incubus_core.recipe.matchbook.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 	
@@ -65,8 +61,8 @@ public abstract class SpawnerChangeRecipe extends SpiritInstillerRecipe {
 					// Calculate and spawn experience
 					int awardedExperience = 0;
 					if (getExperience() > 0) {
-						Map<Upgradeable.UpgradeType, Float> upgrades = spiritInstillerBlockEntity.getUpgrades();
-						double experienceModifier = upgrades.get(Upgradeable.UpgradeType.EXPERIENCE);
+						Upgradeable.UpgradeHolder upgrades = spiritInstillerBlockEntity.getUpgradeHolder();
+						double experienceModifier = upgrades.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
 						float recipeExperienceBeforeMod = getExperience();
 						awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
 						MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);

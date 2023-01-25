@@ -1,29 +1,24 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.MultiblockCrafter;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.fusion_shrine.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.fluid.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	
@@ -219,8 +214,8 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 					}
 				}
 			}
-			
-			double efficiencyModifier = fusionShrineBlockEntity.getUpgrades().get(Upgradeable.UpgradeType.EFFICIENCY);
+
+			double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 			if (maxAmount > 0) {
 				for (IngredientStack ingredientStack : getIngredientStacks()) {
 					for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
@@ -240,7 +235,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 			}
 		} else {
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
-				double efficiencyModifier = fusionShrineBlockEntity.getUpgrades().get(Upgradeable.UpgradeType.EFFICIENCY);
+				double efficiencyModifier = fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 
 				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
 					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
@@ -260,21 +255,21 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount, noBenefitsFromYieldUpgrades, experience); // spawn results
 	}
-	
-	protected void spawnCraftingResultAndXP(@NotNull World world, @NotNull FusionShrineBlockEntity blockEntity, @NotNull ItemStack stack, int recipeCount, boolean yieldUpgradesDisabled, float experience) {
+
+	protected void spawnCraftingResultAndXP(@NotNull World world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount, boolean yieldUpgradesDisabled, float experience) {
 		int resultAmountBeforeMod = recipeCount * stack.getCount();
-		double yieldModifier = yieldUpgradesDisabled ? 1.0 : blockEntity.getUpgradeValue(Upgradeable.UpgradeType.YIELD);
+		double yieldModifier = yieldUpgradesDisabled ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
-		
+
 		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.random);
-		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.getPos().up(2), stack, resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
-		
+		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, fusionShrineBlockEntity.getPos().up(2), stack, resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
+
 		if (experience > 0) {
-			MultiblockCrafter.spawnExperience(world, blockEntity.getPos(), intExperience);
+			MultiblockCrafter.spawnExperience(world, fusionShrineBlockEntity.getPos(), intExperience);
 		}
 		
 		//only triggered on server side. Therefore, has to be sent to client via S2C packet
-		blockEntity.grantPlayerFusionCraftingAdvancement(this, intExperience);
+		fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(this, intExperience);
 	}
 	
 }

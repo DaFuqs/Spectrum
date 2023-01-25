@@ -25,15 +25,15 @@ public class CinderhearthSmeltingCriterion extends AbstractCriterion<Cinderheart
 		ItemPredicate input = ItemPredicate.fromJson(jsonObject.get("input"));
 		ItemPredicate output = ItemPredicate.fromJson(jsonObject.get("output"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("gained_experience"));
-		NumberRange.FloatRange speedMultiplierRange = NumberRange.FloatRange.fromJson(jsonObject.get("speed_multiplier"));
-		NumberRange.FloatRange yieldMultiplierRange = NumberRange.FloatRange.fromJson(jsonObject.get("yield_multiplier"));
-		NumberRange.FloatRange efficiencyMultiplierRange = NumberRange.FloatRange.fromJson(jsonObject.get("efficiency_multiplier"));
-		NumberRange.FloatRange experienceMultiplierRange = NumberRange.FloatRange.fromJson(jsonObject.get("experience_multiplier"));
+		NumberRange.IntRange speedMultiplierRange = NumberRange.IntRange.fromJson(jsonObject.get("speed_multiplier"));
+		NumberRange.IntRange yieldMultiplierRange = NumberRange.IntRange.fromJson(jsonObject.get("yield_multiplier"));
+		NumberRange.IntRange efficiencyMultiplierRange = NumberRange.IntRange.fromJson(jsonObject.get("efficiency_multiplier"));
+		NumberRange.IntRange experienceMultiplierRange = NumberRange.IntRange.fromJson(jsonObject.get("experience_multiplier"));
 
 		return new CinderhearthSmeltingCriterion.Conditions(extended, input, output, experienceRange, speedMultiplierRange, yieldMultiplierRange, efficiencyMultiplierRange, experienceMultiplierRange);
 	}
 
-	public void trigger(ServerPlayerEntity player, ItemStack input, List<ItemStack> outputs, int experience, Map<Upgradeable.UpgradeType, Float> upgrades) {
+	public void trigger(ServerPlayerEntity player, ItemStack input, List<ItemStack> outputs, int experience, Upgradeable.UpgradeHolder upgrades) {
 		this.trigger(player, (conditions) -> conditions.matches(input, outputs, experience, upgrades));
 	}
 
@@ -42,12 +42,12 @@ public class CinderhearthSmeltingCriterion extends AbstractCriterion<Cinderheart
 		private final ItemPredicate input;
 		private final ItemPredicate output;
 		private final NumberRange.IntRange experienceRange;
-		private final NumberRange.FloatRange speedMultiplierRange;
-		private final NumberRange.FloatRange yieldMultiplierRange;
-		private final NumberRange.FloatRange efficiencyMultiplierRange;
-		private final NumberRange.FloatRange experienceMultiplierRange;
+		private final NumberRange.IntRange speedMultiplierRange;
+		private final NumberRange.IntRange yieldMultiplierRange;
+		private final NumberRange.IntRange efficiencyMultiplierRange;
+		private final NumberRange.IntRange experienceMultiplierRange;
 
-		public Conditions(EntityPredicate.Extended player, ItemPredicate input, ItemPredicate output, NumberRange.IntRange experienceRange, NumberRange.FloatRange speedMultiplierRange, NumberRange.FloatRange yieldMultiplierRange, NumberRange.FloatRange efficiencyMultiplierRange, NumberRange.FloatRange experienceMultiplierRange) {
+		public Conditions(EntityPredicate.Extended player, ItemPredicate input, ItemPredicate output, NumberRange.IntRange experienceRange, NumberRange.IntRange speedMultiplierRange, NumberRange.IntRange yieldMultiplierRange, NumberRange.IntRange efficiencyMultiplierRange, NumberRange.IntRange experienceMultiplierRange) {
 			super(ID, player);
 			this.input = input;
 			this.output = output;
@@ -70,23 +70,23 @@ public class CinderhearthSmeltingCriterion extends AbstractCriterion<Cinderheart
 			return jsonObject;
 		}
 
-		public boolean matches(ItemStack input, List<ItemStack> outputs, int experience, Map<Upgradeable.UpgradeType, Float> upgrades) {
+		public boolean matches(ItemStack input, List<ItemStack> outputs, int experience, Upgradeable.UpgradeHolder upgrades) {
 			if (!this.input.test(input)) {
 				return false;
 			}
 			if (!this.experienceRange.test(experience)) {
 				return false;
 			}
-			if (!this.speedMultiplierRange.test(upgrades.get(Upgradeable.UpgradeType.SPEED))) {
+			if (!this.speedMultiplierRange.test(upgrades.getRawValue(Upgradeable.UpgradeType.SPEED))) {
 				return false;
 			}
-			if (!this.yieldMultiplierRange.test(upgrades.get(Upgradeable.UpgradeType.YIELD))) {
+			if (!this.yieldMultiplierRange.test(upgrades.getRawValue(Upgradeable.UpgradeType.YIELD))) {
 				return false;
 			}
-			if (!this.efficiencyMultiplierRange.test(upgrades.get(Upgradeable.UpgradeType.EFFICIENCY))) {
+			if (!this.efficiencyMultiplierRange.test(upgrades.getRawValue(Upgradeable.UpgradeType.EFFICIENCY))) {
 				return false;
 			}
-			if (!this.experienceMultiplierRange.test(upgrades.get(Upgradeable.UpgradeType.EXPERIENCE))) {
+			if (!this.experienceMultiplierRange.test(upgrades.getRawValue(Upgradeable.UpgradeType.EXPERIENCE))) {
 				return false;
 			}
 			if (this.output == ItemPredicate.ANY) {

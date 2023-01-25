@@ -1,46 +1,34 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.fusion_shrine.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.color.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.particle.*;
+import net.minecraft.recipe.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity implements PlayerOwned, Upgradeable {
 	
@@ -48,7 +36,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	
 	protected @NotNull Fluid storedFluid;
 	private UUID ownerUUID;
-	private Map<Upgradeable.UpgradeType, Float> upgrades;
+	private UpgradeHolder upgrades;
 	private FusionShrineRecipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
@@ -108,7 +96,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 				if (fusionShrineBlockEntity.currentRecipe == null) {
 					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) world, fusionShrineBlockEntity.pos);
 				} else {
-					fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(fusionShrineBlockEntity.currentRecipe.getCraftingTime() / fusionShrineBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
+					fusionShrineBlockEntity.craftingTimeTotal = (int) Math.ceil(fusionShrineBlockEntity.currentRecipe.getCraftingTime() / fusionShrineBlockEntity.upgrades.getEffectiveValue(Upgradeable.UpgradeType.SPEED));
 				}
 				
 				fusionShrineBlockEntity.updateInClientWorld();
@@ -181,20 +169,21 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		recipe.craft(world, fusionShrineBlockEntity);
 		fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
 		scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
-		
+
 		SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
 		fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
 	}
-	
-	public Map<UpgradeType, Float> getUpgrades() {
-		return this.upgrades;
+
+	@Override
+	public UpgradeHolder getUpgradeHolder() {
+		return upgrades;
 	}
-	
+
 	public static void scatterContents(World world, BlockPos pos, FusionShrineBlockEntity blockEntity) {
 		ItemScatterer.spawn(world, pos, blockEntity.getItems());
 		world.updateComparators(pos, world.getBlockState(pos).getBlock());
 	}
-	
+
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
@@ -217,9 +206,11 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 				}
 			}
 		}
-		
+
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
-			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		} else {
+			this.upgrades = new UpgradeHolder();
 		}
 	}
 	
@@ -230,7 +221,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		if (this.upgrades != null) {
-			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+			nbt.put("Upgrades", this.upgrades.toNbt());
 		}
 		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
@@ -291,11 +282,6 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	public void calculateUpgrades() {
 		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 2, 0, this.ownerUUID);
 		this.markDirty();
-	}
-	
-	@Override
-	public float getUpgradeValue(UpgradeType upgradeType) {
-		return this.upgrades.get(upgradeType);
 	}
 	
 	public void inventoryChanged() {

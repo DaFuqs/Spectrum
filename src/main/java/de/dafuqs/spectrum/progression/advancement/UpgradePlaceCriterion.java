@@ -1,27 +1,23 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.predicate.BlockPredicate;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.predicate.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriterion.Conditions> {
 	
 	static final Identifier ID = SpectrumCommon.locate("upgrade_place");
-	
-	public static UpgradePlaceCriterion.Conditions create(BlockPredicate blockPredicate, NumberRange.IntRange countRange, NumberRange.FloatRange speedRange, NumberRange.FloatRange experienceRange, NumberRange.FloatRange efficiencyRange, NumberRange.FloatRange yieldRange) {
+
+	public static UpgradePlaceCriterion.Conditions create(BlockPredicate blockPredicate, NumberRange.IntRange countRange, NumberRange.IntRange speedRange, NumberRange.IntRange experienceRange, NumberRange.IntRange efficiencyRange, NumberRange.IntRange yieldRange) {
 		return new UpgradePlaceCriterion.Conditions(EntityPredicate.Extended.EMPTY, blockPredicate, countRange, speedRange, experienceRange, efficiencyRange, yieldRange);
 	}
 	
@@ -32,26 +28,26 @@ public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriteri
 	public UpgradePlaceCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		BlockPredicate blockPredicate = BlockPredicate.fromJson(jsonObject.get("block"));
 		NumberRange.IntRange countRange = NumberRange.IntRange.fromJson(jsonObject.get("count"));
-		NumberRange.FloatRange speedRange = NumberRange.FloatRange.fromJson(jsonObject.get("speed_mod"));
-		NumberRange.FloatRange experienceRange = NumberRange.FloatRange.fromJson(jsonObject.get("experience_mod"));
-		NumberRange.FloatRange efficiencyRange = NumberRange.FloatRange.fromJson(jsonObject.get("efficiency_mod"));
-		NumberRange.FloatRange yieldRange = NumberRange.FloatRange.fromJson(jsonObject.get("yield_mod"));
+		NumberRange.IntRange speedRange = NumberRange.IntRange.fromJson(jsonObject.get("speed_mod"));
+		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("experience_mod"));
+		NumberRange.IntRange efficiencyRange = NumberRange.IntRange.fromJson(jsonObject.get("efficiency_mod"));
+		NumberRange.IntRange yieldRange = NumberRange.IntRange.fromJson(jsonObject.get("yield_mod"));
 		return new UpgradePlaceCriterion.Conditions(extended, blockPredicate, countRange, speedRange, experienceRange, efficiencyRange, yieldRange);
 	}
-	
-	public void trigger(ServerPlayerEntity player, ServerWorld world, BlockPos pos, int upgradeCount, Map<Upgradeable.UpgradeType, Float> upgradeModifiers) {
+
+	public void trigger(ServerPlayerEntity player, ServerWorld world, BlockPos pos, int upgradeCount, Map<Upgradeable.UpgradeType, Integer> upgradeModifiers) {
 		this.trigger(player, (conditions) -> conditions.matches(world, pos, upgradeCount, upgradeModifiers));
 	}
-	
+
 	public static class Conditions extends AbstractCriterionConditions {
 		private final BlockPredicate blockPredicate;
 		private final NumberRange.IntRange countRange;
-		private final NumberRange.FloatRange speedRange;
-		private final NumberRange.FloatRange experienceRange;
-		private final NumberRange.FloatRange efficiencyRange;
-		private final NumberRange.FloatRange yieldRange;
-		
-		public Conditions(EntityPredicate.Extended player, BlockPredicate blockPredicate, NumberRange.IntRange countRange, NumberRange.FloatRange speedRange, NumberRange.FloatRange experienceRange, NumberRange.FloatRange efficiencyRange, NumberRange.FloatRange yieldRange) {
+		private final NumberRange.IntRange speedRange;
+		private final NumberRange.IntRange experienceRange;
+		private final NumberRange.IntRange efficiencyRange;
+		private final NumberRange.IntRange yieldRange;
+
+		public Conditions(EntityPredicate.Extended player, BlockPredicate blockPredicate, NumberRange.IntRange countRange, NumberRange.IntRange speedRange, NumberRange.IntRange experienceRange, NumberRange.IntRange efficiencyRange, NumberRange.IntRange yieldRange) {
 			super(ID, player);
 			this.blockPredicate = blockPredicate;
 			this.countRange = countRange;
@@ -71,8 +67,8 @@ public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriteri
 			jsonObject.add("yield_mod", this.yieldRange.toJson());
 			return jsonObject;
 		}
-		
-		public boolean matches(ServerWorld world, BlockPos pos, int upgradeCount, Map<Upgradeable.UpgradeType, Float> upgradeModifiers) {
+
+		public boolean matches(ServerWorld world, BlockPos pos, int upgradeCount, Map<Upgradeable.UpgradeType, Integer> upgradeModifiers) {
 			return this.blockPredicate.test(world, pos)
 					&& this.countRange.test(upgradeCount)
 					&& this.speedRange.test(upgradeModifiers.get(Upgradeable.UpgradeType.SPEED))

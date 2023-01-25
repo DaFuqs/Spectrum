@@ -1,39 +1,27 @@
 package de.dafuqs.spectrum.recipe.pedestal;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockItem;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalVariant;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.pedestal.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import oshi.util.tuples.Triplet;
+import net.minecraft.world.*;
+import oshi.util.tuples.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	
@@ -236,7 +224,7 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 		
 		// -X for all the pigment inputs
 		for (BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
-			double efficiencyModifier = pedestal.getUpgradeValue(Upgradeable.UpgradeType.EFFICIENCY);
+			double efficiencyModifier = pedestal.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.EFFICIENCY);
 			int gemstonePowderAmount = this.getGemstonePowderAmount(gemstoneColor);
 			int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, pedestal.getWorld().random);
 			pedestal.getStack(PedestalBlockEntity.getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmountAfterMod);

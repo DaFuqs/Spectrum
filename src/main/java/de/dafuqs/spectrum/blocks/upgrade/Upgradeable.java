@@ -1,68 +1,124 @@
 package de.dafuqs.spectrum.blocks.upgrade;
 
-import com.google.common.collect.Maps;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import net.minecraft.block.Block;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.progression.*;
+import net.minecraft.block.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
 public interface Upgradeable {
-	
+
 	enum UpgradeType {
-		SPEED,      // faster crafting
-		EFFICIENCY, // chance to not use input resources (like gemstone powder)
-		YIELD,      // chance to increase output
-		EXPERIENCE  // increases XP output
+		SPEED(1, InkColors.MAGENTA),     // faster crafting
+		EFFICIENCY(16, InkColors.BLACK), // chance to not use input resources (like gemstone powder)
+		YIELD(16, InkColors.LIGHT_BLUE), // chance to increase output
+		EXPERIENCE(1, InkColors.PURPLE); // increases XP output
+
+		private final int effectivityDivisor; // multiplied on top of crafting speed, chance to double output, ...
+		private final InkColor inkColor;
+
+		UpgradeType(int effectivityDivisor, InkColor inkColor) {
+			this.effectivityDivisor = effectivityDivisor;
+			this.inkColor = inkColor;
+		}
+
+		public int getEffectivityDivisor() {
+			return effectivityDivisor;
+		}
+
+		public InkColor getInkColor() {
+			return inkColor;
+		}
 	}
-	
-	static NbtList toNbt(@NotNull Map<UpgradeType, Float> upgrades) {
-		NbtList nbtList = new NbtList();
-		if (!upgrades.isEmpty()) {
-			for (Map.Entry<UpgradeType, Float> upgrade : upgrades.entrySet()) {
-				NbtCompound upgradeCompound = new NbtCompound();
-				upgradeCompound.putString("Type", upgrade.getKey().toString());
-				upgradeCompound.putFloat("Power", upgrade.getValue());
-				nbtList.add(upgradeCompound);
+
+	class UpgradeHolder {
+
+		private final Map<Upgradeable.UpgradeType, Integer> upgrades;
+
+		public UpgradeHolder() {
+			this.upgrades = new HashMap<>();
+			for (UpgradeType upgradeType : UpgradeType.values()) {
+				this.upgrades.put(upgradeType, 0);
 			}
 		}
-		return nbtList;
-	}
-	
-	static Map<UpgradeType, Float> fromNbt(@NotNull NbtList nbtList) {
-		Map<UpgradeType, Float> map = Maps.newLinkedHashMap();
-		
-		for (int i = 0; i < nbtList.size(); ++i) {
-			NbtCompound nbtCompound = nbtList.getCompound(i);
-			
-			UpgradeType upgradeType = UpgradeType.valueOf(nbtCompound.getString("Type"));
-			float upgradeMod = nbtCompound.getFloat("Power");
-			map.put(upgradeType, upgradeMod);
+
+		public UpgradeHolder(Map<Upgradeable.UpgradeType, Integer> upgrades) {
+			this.upgrades = upgrades;
 		}
-		
-		return map;
+
+		public NbtList toNbt() {
+			NbtList nbtList = new NbtList();
+			if (!upgrades.isEmpty()) {
+				for (Map.Entry<UpgradeType, Integer> upgrade : upgrades.entrySet()) {
+					if (upgrade.getValue() > 0) {
+						NbtCompound upgradeCompound = new NbtCompound();
+						upgradeCompound.putString("Type", upgrade.getKey().toString());
+						upgradeCompound.putFloat("Power", upgrade.getValue());
+						nbtList.add(upgradeCompound);
+					}
+				}
+			}
+			return nbtList;
+		}
+
+		public static UpgradeHolder fromNbt(@NotNull NbtList nbtList) {
+			Map<UpgradeType, Integer> map = new HashMap<>();
+			for (UpgradeType upgradeType : UpgradeType.values()) {
+				map.put(upgradeType, 0);
+			}
+
+			for (int i = 0; i < nbtList.size(); ++i) {
+				NbtCompound nbtCompound = nbtList.getCompound(i);
+				UpgradeType upgradeType = UpgradeType.valueOf(nbtCompound.getString("Type"));
+				int upgradeMod = nbtCompound.getInt("Power");
+				map.put(upgradeType, upgradeMod);
+			}
+
+			return new UpgradeHolder(map);
+		}
+
+		public int getRawValue(UpgradeType upgradeType) {
+			return this.upgrades.get(upgradeType);
+		}
+
+		public float getEffectiveValue(UpgradeType upgradeType) {
+			return 1 + (this.upgrades.get(upgradeType) / (float) upgradeType.getEffectivityDivisor());
+		}
+
+		public long getEffectiveCost(UpgradeType upgradeType) {
+			return 1L << this.upgrades.get(upgradeType);
+		}
+
+		public long getEffectiveCostUsingEfficiency(UpgradeType upgradeType) {
+			int efficiencyMod = getRawValue(Upgradeable.UpgradeType.EFFICIENCY);
+			return 1L << Math.max(this.upgrades.get(upgradeType) - efficiencyMod, 0);
+		}
+
+		public Iterable<? extends Map.Entry<UpgradeType, Integer>> entrySet() {
+			return this.upgrades.entrySet();
+		}
+
 	}
-	
-	static @NotNull Map<UpgradeType, Float> calculateUpgradeMods4(World world, @NotNull BlockPos blockPos, int horizontalOffset, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
+
+	static @NotNull UpgradeHolder calculateUpgradeMods4(World world, @NotNull BlockPos blockPos, int horizontalOffset, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> posList = new ArrayList<>();
 		posList.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
 		posList.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
 		posList.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
 		posList.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
-		
+
 		return calculateUpgrades(world, blockPos, posList, advancementPlayerUUID);
 	}
-	
-	static @NotNull Map<UpgradeType, Float> calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffset, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
+
+	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffset, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> positions = new ArrayList<>();
 		switch (multiblockRotation) {
 			case NONE -> {
@@ -85,8 +141,8 @@ public interface Upgradeable {
 		
 		return calculateUpgrades(world, blockPos, positions, advancementPlayerUUID);
 	}
-	
-	static @NotNull Map<UpgradeType, Float> calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffsetX, int horizontalOffsetZ, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
+
+	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffsetX, int horizontalOffsetZ, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> positions = new ArrayList<>();
 		switch (multiblockRotation) {
 			case NONE -> {
@@ -109,62 +165,39 @@ public interface Upgradeable {
 		
 		return calculateUpgrades(world, blockPos, positions, advancementPlayerUUID);
 	}
-	
-	private static @NotNull Map<UpgradeType, Float> calculateUpgrades(World world, BlockPos blockPos, @NotNull List<BlockPos> positions, @Nullable UUID advancementPlayerUUID) {
+
+	private static @NotNull UpgradeHolder calculateUpgrades(World world, BlockPos blockPos, @NotNull List<BlockPos> positions, @Nullable UUID advancementPlayerUUID) {
 		// create a hash map of upgrade types and mods
-		HashMap<UpgradeType, List<Float>> upgradeMods = new HashMap<>();
+		HashMap<UpgradeType, Integer> upgradeMods = new HashMap<>();
+		for (UpgradeType upgradeType : UpgradeType.values()) {
+			upgradeMods.put(upgradeType, 0);
+		}
+
 		int upgradeCount = 0;
 		for (BlockPos offsetPos : positions) {
 			Block block = world.getBlockState(offsetPos).getBlock();
 			if (block instanceof UpgradeBlock upgradeBlock) {
 				UpgradeType upgradeType = upgradeBlock.getUpgradeType();
-				float upgradeMod = upgradeBlock.getUpgradeMod();
-				
-				if (upgradeMods.containsKey(upgradeType)) {
-					upgradeMods.get(upgradeType).add(upgradeMod);
-				} else {
-					ArrayList<Float> arrayList = new ArrayList<>();
-					arrayList.add(upgradeMod);
-					upgradeMods.put(upgradeType, arrayList);
-				}
-				
+				int upgradeMod = upgradeBlock.getUpgradeMod();
+				upgradeMods.put(upgradeType, upgradeMods.get(upgradeType) + upgradeMod);
 				upgradeCount++;
-			}
-		}
-		
-		// iterate through that hash map, sort the mods descending by power and apply mali, if an upgrade type is used more than once
-		Map<UpgradeType, Float> upgradeMap = Maps.newLinkedHashMap();
-		for (UpgradeType upgradeType : UpgradeType.values()) {
-			if (upgradeMods.containsKey(upgradeType)) {
-				List<Float> upgradeModList = upgradeMods.get(upgradeType);
-				Collections.sort(upgradeModList);
-				Collections.reverse(upgradeModList);
-				
-				float resultingMod = 0.0F;
-				for (int i = 0; i < upgradeModList.size(); i++) {
-					// highest mod counts times 1.0, second: 0.75, third: 0.5, fourth: 0.25
-					resultingMod += upgradeModList.get(i) * ((4.0F - i) / 4.0F);
-				}
-				upgradeMap.put(upgradeType, 1.0F + resultingMod);
-			} else {
-				upgradeMap.put(upgradeType, 1.0F);
 			}
 		}
 		
 		if (advancementPlayerUUID != null && !world.isClient) {
 			ServerPlayerEntity player = (ServerPlayerEntity) PlayerOwned.getPlayerEntityIfOnline(advancementPlayerUUID);
 			if (player != null) {
-				SpectrumAdvancementCriteria.UPGRADE_PLACING.trigger(player, (ServerWorld) world, blockPos, upgradeCount, upgradeMap);
+				SpectrumAdvancementCriteria.UPGRADE_PLACING.trigger(player, (ServerWorld) world, blockPos, upgradeCount, upgradeMods);
 			}
 		}
-		
-		return upgradeMap;
+
+		return new UpgradeHolder(upgradeMods);
 	}
 	
 	void resetUpgrades();
 	
 	void calculateUpgrades();
-	
-	float getUpgradeValue(UpgradeType upgradeType);
+
+	UpgradeHolder getUpgradeHolder();
 	
 }

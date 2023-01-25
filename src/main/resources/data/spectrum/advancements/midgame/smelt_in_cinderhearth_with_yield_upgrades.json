@@ -17,7 +17,7 @@
       "trigger": "spectrum:cinderhearth_smelting",
       "conditions": {
         "yield_multiplier": {
-          "min": 1.01
+          "min": 1
         }
       }
     },

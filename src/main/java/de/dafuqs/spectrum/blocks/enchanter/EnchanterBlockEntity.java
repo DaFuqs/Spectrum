@@ -72,7 +72,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	protected int virtualInventoryRecipeOrientation;
 	
 	protected boolean inventoryChanged;
-	private Map<UpgradeType, Float> upgrades;
+	private UpgradeHolder upgrades;
 	
 	private Recipe currentRecipe;
 	private int craftingTime;
@@ -185,7 +185,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				}
 				enchanterBlockEntity.markDirty();
 			} else if (enchanterBlockEntity.currentItemProcessingTime > -1) {
-				int speedTicks = Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.get(UpgradeType.SPEED), world.random);
+				int speedTicks = Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED), world.random);
 				enchanterBlockEntity.craftingTime += speedTicks;
 				if (world.getTime() % REQUIRED_TICKS_FOR_EACH_EXPERIENCE_POINT == 0) {
 					// in-code recipe for item + books => enchanted item
@@ -435,11 +435,11 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		// decrement stacks in item bowls
 		for (int i = 0; i < 8; i++) {
 			int resultAmountAfterEfficiencyMod = 1;
-			if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
-				double efficiencyModifier = 1.0 / enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
+			if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY) != 1.0) {
+				double efficiencyModifier = 1.0 / enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
 				resultAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(efficiencyModifier, enchanterBlockEntity.world.random);
 			}
-			
+
 			if (resultAmountAfterEfficiencyMod > 0) {
 				// since this recipe uses 1 item in each slot we can just iterate them all and decrement with 1
 				BlockPos itemBowlPos = enchanterBlockEntity.pos.add(getItemBowlPositionOffset(i, enchanterBlockEntity.virtualInventoryRecipeOrientation));
@@ -450,17 +450,17 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				}
 			}
 		}
-		
+
 		// if there is room: place the output on the table
 		// otherwise: pop it off
 		ItemStack resultStack = enchanterRecipe.getOutput().copy();
 		ItemStack existingCenterStack = enchanterBlockEntity.getStack(0);
-		
-		if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.get(UpgradeType.YIELD) != 1.0) {
-			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * enchanterBlockEntity.upgrades.get(UpgradeType.YIELD), world.random);
+
+		if (!enchanterRecipe.areYieldAndEfficiencyUpgradesDisabled() && enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD) != 1.0) {
+			int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD), world.random);
 			resultStack.setCount(resultCountMod);
 		}
-		
+
 		if (existingCenterStack.getCount() > 1) {
 			existingCenterStack.decrement(1);
 			MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, enchanterBlockEntity.pos, resultStack, resultStack.getCount(), MultiblockCrafter.RECIPE_STACK_VELOCITY);
@@ -479,21 +479,21 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	public static int tickEnchantmentUpgradeRecipe(World world, @NotNull EnchanterBlockEntity enchanterBlockEntity, @NotNull EnchantmentUpgradeRecipe enchantmentUpgradeRecipe, int itemsToConsumeLeft) {
-		int itemCountToConsume = Math.min(itemsToConsumeLeft, Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.get(UpgradeType.SPEED), world.random));
-		
+		int itemCountToConsume = Math.min(itemsToConsumeLeft, Support.getIntFromDecimalWithChance(enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED), world.random));
+
 		int consumedAmount = 0;
 		int bowlsChecked = 0;
 		int randomBowlPosition = world.random.nextInt(8);
-		
+
 		int itemCountToConsumeAfterMod = itemCountToConsume;
-		if (enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
-			itemCountToConsumeAfterMod = Support.getIntFromDecimalWithChance(itemCountToConsume / enchanterBlockEntity.upgrades.get(UpgradeType.EFFICIENCY), world.random);
+		if (enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY) != 1.0) {
+			itemCountToConsumeAfterMod = Support.getIntFromDecimalWithChance(itemCountToConsume / enchanterBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY), world.random);
 		}
-		
+
 		// cycle at least once for fancy particles
 		while ((consumedAmount < itemCountToConsumeAfterMod && bowlsChecked < 8) || (itemCountToConsumeAfterMod == 0 & consumedAmount == 0)) {
 			Vec3i bowlOffset = getItemBowlPositionOffset(randomBowlPosition + bowlsChecked, enchanterBlockEntity.virtualInventoryRecipeOrientation);
-			
+
 			BlockEntity blockEntity = world.getBlockEntity(enchanterBlockEntity.pos.add(bowlOffset));
 			if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
 				if (itemCountToConsumeAfterMod == 0) {
@@ -576,7 +576,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 					enchanterBlockEntity.currentRecipe = enchanterRecipe;
 					enchanterBlockEntity.virtualInventoryRecipeOrientation = orientation;
 					enchanterBlockEntity.virtualInventoryIncludingBowlStacks = recipeTestInventory;
-					enchanterBlockEntity.craftingTimeTotal = (int) Math.ceil(enchanterRecipe.getCraftingTime() / enchanterBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
+					enchanterBlockEntity.craftingTimeTotal = (int) Math.ceil(enchanterRecipe.getCraftingTime() / enchanterBlockEntity.upgrades.getEffectiveValue(Upgradeable.UpgradeType.SPEED));
 					break;
 				}
 			}
@@ -637,9 +637,11 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				}
 			}
 		}
-		
+
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
-			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		} else {
+			this.upgrades = new UpgradeHolder();
 		}
 	}
 	
@@ -657,7 +659,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			nbt.putString("item_facing", this.itemFacing.toString().toUpperCase(Locale.ROOT));
 		}
 		if (this.upgrades != null) {
-			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+			nbt.put("Upgrades", this.upgrades.toNbt());
 		}
 		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
@@ -701,7 +703,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		if (experienceProviderStack.getItem() instanceof ExperienceStorageItem experienceStorageItem) {
 			int currentStoredExperience = ExperienceStorageItem.getStoredExperience(experienceProviderStack);
 			if (currentStoredExperience > 0) {
-				int amountAfterExperienceMod = getExperienceWithMod(amount, this.upgrades.get(UpgradeType.EXPERIENCE), world.random);
+				int amountAfterExperienceMod = getExperienceWithMod(amount, this.upgrades.getEffectiveValue(UpgradeType.EXPERIENCE), world.random);
 				int drainedExperience = Math.min(currentStoredExperience, amountAfterExperienceMod);
 				
 				if (experienceStorageItem instanceof KnowledgeGemItem knowledgeGemItem) {
@@ -780,10 +782,10 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 3, 0, this.ownerUUID);
 		this.markDirty();
 	}
-	
+
 	@Override
-	public float getUpgradeValue(Upgradeable.UpgradeType upgradeType) {
-		return this.upgrades.get(upgradeType);
+	public UpgradeHolder getUpgradeHolder() {
+		return this.upgrades;
 	}
-	
+
 }

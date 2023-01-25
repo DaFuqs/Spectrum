@@ -1,70 +1,48 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.MultiblockCrafter;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
-import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
-import de.dafuqs.spectrum.items.CraftingTabletItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.HopperBlockEntity;
-import net.minecraft.block.entity.LockableContainerBlockEntity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SidedInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.particle.ParticleEffect;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.screenhandler.v1.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import vazkii.patchouli.api.IMultiblock;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.api.*;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, RecipeInputProvider, SidedInventory, ExtendedScreenHandlerFactory, Upgradeable {
-	
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, RecipeInputProvider, SidedInventory, ExtendedScreenHandlerFactory {
+
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
 	public static final int OUTPUT_SLOT_ID = 15;
@@ -80,7 +58,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	protected @Nullable Recipe currentRecipe;
 	protected PedestalRecipeTier cachedMaxPedestalTier;
 	protected long cachedMaxPedestalTierTick;
-	protected Map<UpgradeType, Float> upgrades;
+	protected UpgradeHolder upgrades;
 	protected boolean inventoryChanged;
 	
 	public PedestalBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -123,7 +101,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	public static void clientTick(@NotNull World world, BlockPos blockPos, BlockState blockState, PedestalBlockEntity pedestalBlockEntity) {
-		Recipe currentRecipe = pedestalBlockEntity.getCurrentRecipe();
+		Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 		if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
 			HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
 			
@@ -146,7 +124,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static void spawnCraftingStartParticles(@NotNull World world, BlockPos blockPos) {
 		BlockEntity blockEntity = world.getBlockEntity(blockPos);
 		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
-			Recipe currentRecipe = pedestalBlockEntity.getCurrentRecipe();
+			Recipe<?> currentRecipe = pedestalBlockEntity.getCurrentRecipe();
 			if (currentRecipe instanceof PedestalCraftingRecipe pedestalCraftingRecipe) {
 				HashMap<BuiltinGemstoneColor, Integer> gemstonePowderInputs = pedestalCraftingRecipe.getGemstonePowderInputs();
 				
@@ -183,17 +161,17 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		
 		// check recipe crafted last tick => performance
 		boolean shouldMarkDirty = false;
-		
-		Recipe calculatedRecipe = calculateRecipe(world, pedestalBlockEntity);
+
+		Recipe<?> calculatedRecipe = calculateRecipe(world, pedestalBlockEntity);
 		pedestalBlockEntity.inventoryChanged = false;
 		if (pedestalBlockEntity.currentRecipe != calculatedRecipe) {
 			pedestalBlockEntity.shouldCraft = false;
 			pedestalBlockEntity.currentRecipe = calculatedRecipe;
 			pedestalBlockEntity.craftingTime = 0;
 			if (calculatedRecipe instanceof PedestalCraftingRecipe calculatedPedestalCraftingRecipe) {
-				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(calculatedPedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
+				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(calculatedPedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED));
 			} else {
-				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks / pedestalBlockEntity.upgrades.get(UpgradeType.SPEED));
+				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks / pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED));
 			}
 			pedestalBlockEntity.markDirty();
 			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) pedestalBlockEntity.getWorld(), pedestalBlockEntity.getPos());
@@ -392,7 +370,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				pedestalBlockEntity.currentRecipe = null; // reset the recipe, otherwise pedestal would remember crafting the update
 			} else {
 				int resultAmountBeforeMod = recipeOutput.getCount();
-				double yieldModifier = recipe.areYieldUpgradesDisabled() ? 1.0 : pedestalBlockEntity.upgrades.get(UpgradeType.YIELD);
+				double yieldModifier = recipe.areYieldUpgradesDisabled() ? 1.0 : pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.YIELD);
 				int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, pedestalBlockEntity.world.random);
 				
 				// Not an upgrade recipe => Add output to output slot
@@ -409,7 +387,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 			
 			// Add recipe XP
-			double experienceModifier = pedestalBlockEntity.upgrades.get(UpgradeType.EXPERIENCE);
+			double experienceModifier = pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.EXPERIENCE);
 			float recipeExperienceBeforeMod = recipe.getExperience();
 			float experienceAfterMod = (float) (recipeExperienceBeforeMod * experienceModifier);
 			pedestalBlockEntity.storedXP += experienceAfterMod;
@@ -559,7 +537,9 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		}
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
-			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		} else {
+			this.upgrades = new UpgradeHolder();
 		}
 		if (nbt.contains("inventory_changed")) {
 			this.inventoryChanged = nbt.getBoolean("inventory_changed");
@@ -588,7 +568,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putBoolean("inventory_changed", this.inventoryChanged);
 		if (this.upgrades != null) {
-			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+			nbt.put("Upgrades", this.upgrades.toNbt());
 		}
 		if (this.currentRecipe != null) {
 			nbt.putString("CurrentRecipe", this.currentRecipe.getId().toString());
@@ -714,8 +694,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			if (inventory.get(slot).getCount() > 0) {
 				return false;
 			}
-			
-			Recipe storedRecipe = CraftingTabletItem.getStoredRecipe(this.world, craftingTabletItem);
+
+			Recipe<?> storedRecipe = CraftingTabletItem.getStoredRecipe(this.world, craftingTabletItem);
 			
 			int width = 3;
 			if (storedRecipe instanceof ShapedRecipe shapedRecipe) {
@@ -823,31 +803,33 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 					SpectrumAdvancementCriteria.COMPLETED_MULTIBLOCK.trigger((ServerPlayerEntity) this.getOwnerIfOnline(), multiblock);
 				}
 			}
-			
+
 			this.cachedMaxPedestalTier = highestAvailableRecipeTier;
 			this.cachedMaxPedestalTierTick = world.getTime();
 			return highestAvailableRecipeTier;
 		}
 	}
-	
+
+	@Override
 	public void resetUpgrades() {
 		this.upgrades = null;
 		this.markDirty();
 	}
-	
+
 	/**
 	 * Search for upgrades at valid positions and apply
 	 */
+	@Override
 	public void calculateUpgrades() {
 		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 3, 2, this.ownerUUID);
 		this.markDirty();
 	}
-	
+
 	@Override
-	public float getUpgradeValue(UpgradeType upgradeType) {
-		return this.upgrades.get(upgradeType);
+	public UpgradeHolder getUpgradeHolder() {
+		return this.upgrades;
 	}
-	
+
 	@Override
 	public void setOwner(PlayerEntity playerEntity) {
 		this.ownerUUID = playerEntity.getUuid();

@@ -1,34 +1,28 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.MultiblockCrafter;
-import de.dafuqs.spectrum.blocks.memory.MemoryItem;
-import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.memory.*;
+import de.dafuqs.spectrum.blocks.spirit_instiller.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 	
@@ -112,18 +106,18 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 	public ItemStack craft(Inventory inv) {
 		ItemStack resultStack = ItemStack.EMPTY;
 		if (inv instanceof SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-			Map<Upgradeable.UpgradeType, Float> upgrades = spiritInstillerBlockEntity.getUpgrades();
+			Upgradeable.UpgradeHolder upgradeHolder = spiritInstillerBlockEntity.getUpgradeHolder();
 			World world = spiritInstillerBlockEntity.getWorld();
 			BlockPos pos = spiritInstillerBlockEntity.getPos();
-			
+
 			resultStack = getOutput().copy();
-			
+
 			// Yield upgrade
-			if (!areYieldAndEfficiencyUpgradesDisabled() && upgrades.get(Upgradeable.UpgradeType.YIELD) != 1.0) {
-				int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * upgrades.get(Upgradeable.UpgradeType.YIELD), world.random);
+			if (!areYieldAndEfficiencyUpgradesDisabled() && upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD) != 1.0) {
+				int resultCountMod = Support.getIntFromDecimalWithChance(resultStack.getCount() * upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.YIELD), world.random);
 				resultStack.setCount(resultCountMod);
 			}
-			
+
 			if (resultStack.isOf(SpectrumBlocks.MEMORY.asItem())) {
 				boolean makeUnrecognizable = spiritInstillerBlockEntity.getStack(0).isIn(SpectrumItemTags.MEMORY_BONDING_AGENTS_CONCEALABLE);
 				if (makeUnrecognizable) {
@@ -134,7 +128,7 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 			// Calculate and spawn experience
 			int awardedExperience = 0;
 			if (getExperience() > 0) {
-				double experienceModifier = upgrades.get(Upgradeable.UpgradeType.EXPERIENCE);
+				double experienceModifier = upgradeHolder.getEffectiveValue(Upgradeable.UpgradeType.EXPERIENCE);
 				float recipeExperienceBeforeMod = getExperience();
 				awardedExperience = Support.getIntFromDecimalWithChance(recipeExperienceBeforeMod * experienceModifier, world.random);
 				MultiblockCrafter.spawnExperience(world, pos.up(), awardedExperience);

@@ -1,44 +1,35 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
-import de.dafuqs.spectrum.blocks.MultiblockCrafter;
-import de.dafuqs.spectrum.blocks.decoration.GemstoneChimeBlock;
-import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.registries.color.ItemColors;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.decoration.*;
+import de.dafuqs.spectrum.blocks.item_bowl.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.color.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.particle.*;
+import net.minecraft.recipe.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -58,7 +49,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	private final Inventory autoCraftingInventory; // 0: instiller stack; 1-2: item bowl stacks
 	private boolean inventoryChanged;
 	private UUID ownerUUID;
-	private Map<UpgradeType, Float> upgrades;
+	private UpgradeHolder upgrades;
 	private BlockRotation multiblockRotation = BlockRotation.NONE;
 	private SpiritInstillerRecipe currentRecipe;
 	private int craftingTime;
@@ -156,7 +147,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			SpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLING, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
 			if (spiritInstillerRecipe != null) {
 				spiritInstillerBlockEntity.currentRecipe = spiritInstillerRecipe;
-				spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.getCraftingTime() / spiritInstillerBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
+				spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.getCraftingTime() / spiritInstillerBlockEntity.upgrades.getEffectiveValue(Upgradeable.UpgradeType.SPEED));
 			}
 		}
 		
@@ -249,12 +240,12 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	
 	public static void decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		SpiritInstillerRecipe recipe = spiritInstillerBlockEntity.currentRecipe;
-		
+
 		double efficiencyModifier = 1.0;
-		if (!recipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
-			efficiencyModifier = 1.0 / spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
+		if (!recipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY) != 1.0) {
+			efficiencyModifier = 1.0 / spiritInstillerBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
 		}
-		
+
 		BlockEntity leftBowlBlockEntity = spiritInstillerBlockEntity.world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false));
 		BlockEntity rightBowlBlockEntity = spiritInstillerBlockEntity.world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true));
 		if (leftBowlBlockEntity instanceof ItemBowlBlockEntity leftBowl && rightBowlBlockEntity instanceof ItemBowlBlockEntity rightBowl) {
@@ -327,9 +318,11 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 				}
 			}
 		}
-		
+
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
-			this.upgrades = Upgradeable.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
+		} else {
+			this.upgrades = new UpgradeHolder();
 		}
 	}
 	
@@ -342,7 +335,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
 		nbt.putString("MultiblockRotation", this.multiblockRotation.toString());
 		if (this.upgrades != null) {
-			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
+			nbt.put("Upgrades", this.upgrades.toNbt());
 		}
 		if (this.ownerUUID != null) {
 			nbt.putUuid("OwnerUUID", this.ownerUUID);
@@ -439,12 +432,12 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, multiblockRotation, 4, 1, this.ownerUUID);
 		this.markDirty();
 	}
-	
+
 	@Override
-	public float getUpgradeValue(UpgradeType upgradeType) {
-		return this.upgrades.get(upgradeType);
+	public UpgradeHolder getUpgradeHolder() {
+		return this.upgrades;
 	}
-	
+
 	// PLAYER OWNED
 	// "owned" is not to be taken literally here. The owner
 	// is always set to the last player interacted with to trigger advancements
@@ -475,9 +468,5 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		this.autoCraftingInventory.clear();
 		markDirty();
 	}
-	
-	public Map<UpgradeType, Float> getUpgrades() {
-		return this.upgrades;
-	}
-	
+
 }

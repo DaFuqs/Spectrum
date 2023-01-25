@@ -1,12 +1,12 @@
 {
   "type": "spectrum:cinderhearth",
   "ingredient": {
-    "item": "minecraft:coal_ore"
+    "tag": "minecraft:coal_ores"
   },
   "results": [
     {
       "item": "minecraft:coal",
-      "count": 2
+      "count": 4
     },
     {
       "item": "minecraft:diamond",

@@ -1,12 +1,12 @@
 {
   "type": "spectrum:cinderhearth",
   "ingredient": {
-    "item": "minecraft:redstone_ore"
+    "tag": "minecraft:redstone_ores"
   },
   "results": [
     {
       "item": "minecraft:redstone",
-      "count": 2
+      "count": 4
     },
     {
       "item": "minecraft:glowstone_dust",

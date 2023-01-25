@@ -6,18 +6,18 @@
     },
     "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.doubled_output_in_cinderhearth.title"
+      "translate": "advancements.spectrum.smelt_in_cinderhearth_with_yield_upgrades.title"
     },
     "description": {
-      "translate": "advancements.spectrum.doubled_output_in_cinderhearth.description"
+      "translate": "advancements.spectrum.smelt_in_cinderhearth_with_yield_upgrades.description"
     }
   },
   "criteria": {
-    "smelted_in_cinderhearth": {
+    "smelted_in_cinderhearth_with_yield_upgrades": {
       "trigger": "spectrum:cinderhearth_smelting",
       "conditions": {
         "yield_multiplier": {
-          "min": 2.0
+          "min": 1.01
         }
       }
     },

@@ -36,6 +36,7 @@ import net.fabricmc.fabric.api.event.player.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
+import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.fluid.*;
@@ -344,6 +345,11 @@ public class SpectrumCommon implements ModInitializer {
 		ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.storage, SpectrumBlockEntities.BOTTOMLESS_BUNDLE);
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.FUSION_SHRINE);
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.TITRATION_BARREL);
+
+		// Should always be present as it's **this** mod.
+		FabricLoader.getInstance().getModContainer(SpectrumCommon.MOD_ID)
+				.map(container -> ResourceManagerHelper.registerBuiltinResourcePack(locate("jenny"), container, ResourcePackActivationType.NORMAL))
+				.filter(success -> !success).ifPresent(success -> LOGGER.warn("Could not register built-in resource pack."));
 
 		logInfo("Common startup completed!");
 	}

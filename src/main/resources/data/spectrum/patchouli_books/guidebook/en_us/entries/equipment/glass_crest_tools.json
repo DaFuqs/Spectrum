@@ -32,7 +32,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "advancement": "spectrum:progression/malachite/unlock_glass_crest_crossbow",
       "recipe": "spectrum:fusion_shrine/malachite/glass_crest_crossbow",
-      "text": "If an arrow is loaded, you can overcharge the shot to deal additional damage using $(k:use)."
+      "text": "If an arrow is loaded, you can overcharge the shot by holding $(k:sneak) + $(k:use) to increase your shots accuracy, speed and damage even further."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

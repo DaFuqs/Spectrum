@@ -66,13 +66,9 @@
   "suggests": {
     "chalk": "*",
     "chalk-colorful-addon": "*",
-    "colored_lights": "*",
     "paginatedadvancements": "*",
-    "paradise_lost": "*",
-    "limlib": "*",
     "ants": "*",
-    "bettercombat": "*",
-    "shimmer": "*"
+    "bettercombat": "*"
   },
   "breaks": {
     "Dashloader": "<=3.0.9",

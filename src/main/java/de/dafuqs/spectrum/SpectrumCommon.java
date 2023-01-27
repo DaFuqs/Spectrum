@@ -346,10 +346,13 @@ public class SpectrumCommon implements ModInitializer {
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.FUSION_SHRINE);
 		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.TITRATION_BARREL);
 
-		// Should always be present as it's **this** mod.
-		FabricLoader.getInstance().getModContainer(SpectrumCommon.MOD_ID)
-				.map(container -> ResourceManagerHelper.registerBuiltinResourcePack(locate("jenny"), container, ResourcePackActivationType.NORMAL))
-				.filter(success -> !success).ifPresent(success -> LOGGER.warn("Could not register built-in resource pack."));
+		// Builtin Resource Packs
+		Optional<ModContainer> modContainer = FabricLoader.getInstance().getModContainer(SpectrumCommon.MOD_ID);
+		if (modContainer.isPresent()) {
+			ResourceManagerHelper.registerBuiltinResourcePack(locate("jenny"), modContainer.get(), "Alternate Spectrum textures", ResourcePackActivationType.NORMAL);
+			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), "Spectrum's Programmer Art", ResourcePackActivationType.NORMAL);
+		}
+		;
 
 		logInfo("Common startup completed!");
 	}

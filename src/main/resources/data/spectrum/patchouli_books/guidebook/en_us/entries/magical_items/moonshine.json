@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "It's an exciting mix you've come up with.$(br)Lies wonderfully light in the mouth. A gentle, sweetish burn, which not only lets you forget your worries a bit: the things that worry you will forget you for a bit, too."
+      "text": "What an exciting mix you've come up with. Lies wonderfully light in the mouth. A gentle, sweetish burn, which lets you forget your worries for a bit.$(br2)$(italic)The things that worry you will forget you for a bit, too$()."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

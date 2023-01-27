@@ -10,13 +10,13 @@
     {
       "type": "patchouli:text",
       "title": "Creature Detector",
-      "text": "The gemstone built into the Mob Detector reacts to micro-vibrations in the ground. This gives the Mob Detector the ability to measure the number of creatures near it."
+      "text": "The gemstone built into the Entity Detector reacts to micro-vibrations in the ground. This gives it the ability to measure the number of creatures near it."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/detectors/entity_detector",
-      "text": "For each creature within a 10 block radius, the Mob Detector outputs an additional strength of 1."
+      "text": "Outputs a cumulative strength of 1 for each creature within a 10 block radius."
     }
   ]
 }

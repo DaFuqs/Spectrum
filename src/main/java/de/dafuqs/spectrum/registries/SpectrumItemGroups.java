@@ -1,31 +1,24 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
-import de.dafuqs.spectrum.items.food.beverages.BeverageItem;
-import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
-import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
-import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
-import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
-import io.wispforest.owo.itemgroup.Icon;
-import io.wispforest.owo.itemgroup.OwoItemGroup;
-import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.EnchantedBookItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
+import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.food.beverages.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import io.wispforest.owo.itemgroup.*;
+import io.wispforest.owo.itemgroup.gui.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class SpectrumItemGroups {
 	

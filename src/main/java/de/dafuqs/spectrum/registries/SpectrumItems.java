@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.blocks.rock_candy.*;

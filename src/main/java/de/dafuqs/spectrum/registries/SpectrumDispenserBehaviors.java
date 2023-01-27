@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
-import de.dafuqs.spectrum.items.magic_items.*;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.*;
 import net.minecraft.item.*;

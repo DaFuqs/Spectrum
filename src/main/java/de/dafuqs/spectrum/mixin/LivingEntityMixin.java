@@ -1,50 +1,39 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
-import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
-import de.dafuqs.spectrum.items.ApplyFoodEffectsCallback;
-import de.dafuqs.spectrum.items.armor.ArmorWithHitEffect;
-import de.dafuqs.spectrum.items.tools.SplitDamageItem;
-import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.cca.azure_dike.*;
+import de.dafuqs.spectrum.enchantments.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.items.armor.*;
+import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.status_effects.StackableStatusEffect;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.EntityDamageSource;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Pair;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import de.dafuqs.spectrum.status_effects.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.block.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.mob.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -110,17 +99,16 @@ public abstract class LivingEntityMixin {
 						int charges = AzureDikeProvider.getAzureDikeCharges(thisEntity);
 						if (charges > 0) {
 							AzureDikeProvider.absorbDamage(thisEntity, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
-							
+
 							thisEntity.fallDistance = 0;
 							thisEntity.setVelocity(thisEntity.getVelocity().x, 0.5, thisEntity.getVelocity().z);
-							// TODO: fix. This breaks on dedicated server
-							/*if (thisEntity.world.isClient) { // it is split here so the particles spawn immediately, without network lag
-								SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.EIGHT, 0.4);
-								SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, ParticlePattern.EIGHT_OFFSET, 0.5);
+							if (thisEntity.world.isClient) { // it is split here so the particles spawn immediately, without network lag
+								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.EIGHT, 0.4);
+								ParticleHelper.playParticleWithPatternAndVelocityClient(thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, ParticlePattern.EIGHT_OFFSET, 0.5);
 							} else if (thisEntity instanceof ServerPlayerEntity serverPlayerEntity) {
 								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.EIGHT, 0.4);
 								SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(serverPlayerEntity, (ServerWorld) thisEntity.getWorld(), thisEntity.getPos(), SpectrumParticleTypes.BLUE_CRAFTING, ParticlePattern.EIGHT_OFFSET, 0.5);
-							}*/
+							}
 							thisEntity.getWorld().playSound(null, thisEntity.getBlockPos(), SpectrumSoundEvents.PUFF_CIRCLET_PFFT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 						}
 					}

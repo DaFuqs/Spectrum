@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.block.entity.SkullBlockEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.block.entity.*;
+import net.minecraft.client.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class WardenHeadModel extends SkullBlockEntityModel {
@@ -19,7 +18,6 @@ public class WardenHeadModel extends SkullBlockEntityModel {
         ModelData modelData = new ModelData();
         ModelPartData root = modelData.getRoot();
 
-        // TODO: adding a bioluminescent layer that is shown when detecting sounds
         root.addChild("head", ModelPartBuilder.create()
                         .uv(0, 32).cuboid(-8.0F, -16.0F, -5.0F, 16.0F, 16.0F, 10.0F, new Dilation(0.0F))
                         .uv(58, 2).cuboid(8.0F, -21.0F, 0.0F, 10.0F, 16.0F, 0.0F, new Dilation(0.0F))

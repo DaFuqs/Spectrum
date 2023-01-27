@@ -1,46 +1,29 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.InWorldInteractionBlock;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.fabric.mixin.transfer.BucketItemAccessor;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BucketItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
-import vazkii.patchouli.api.IMultiblock;
-import vazkii.patchouli.api.PatchouliAPI;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.api.*;
 
 public class FusionShrineBlock extends InWorldInteractionBlock {
 	
@@ -135,44 +118,8 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
-				
 				ItemStack handStack = player.getStackInHand(hand);
-				if (handStack.getItem() instanceof BucketItem bucketItem) {
-					fusionShrineBlockEntity.setOwner(player);
-					
-					Fluid storedFluid = fusionShrineBlockEntity.getFluid();
-					Fluid bucketFluid = ((BucketItemAccessor) bucketItem).fabric_getFluid();
-					if (storedFluid == Fluids.EMPTY && bucketFluid != Fluids.EMPTY) {
-						fusionShrineBlockEntity.setFluid(bucketFluid);
-						if (!player.isCreative()) {
-							handStack.decrement(1);
-							player.setStackInHand(hand, handStack);
-							
-							Item remainderItem = bucketItem.getRecipeRemainder();
-							if (remainderItem != null) {
-								player.giveItemStack(remainderItem.getDefaultStack());
-							}
-						}
-						
-						fusionShrineBlockEntity.inventoryChanged();
-						if (bucketFluid.getBucketFillSound().isPresent()) {
-							world.playSound(null, player.getBlockPos(), bucketFluid.getBucketFillSound().get(), SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-						}
-					} else if (storedFluid != Fluids.EMPTY && bucketFluid == Fluids.EMPTY) {
-						fusionShrineBlockEntity.setFluid(Fluids.EMPTY);
-						if (!player.isCreative()) {
-							handStack.decrement(1);
-							player.setStackInHand(hand, handStack);
-							
-							player.giveItemStack(new ItemStack(storedFluid.getBucketItem()));
-						}
-						
-						fusionShrineBlockEntity.inventoryChanged();
-						if (storedFluid.getBucketFillSound().isPresent()) {
-							world.playSound(null, player.getBlockPos(), storedFluid.getBucketFillSound().get(), SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
-						}
-					}
-				} else {
+				if (!FluidStorageUtil.interactWithFluidStorage(fusionShrineBlockEntity.fluidStorage, player, hand)) {
 					// if the structure is valid the player can put / retrieve blocks into the shrine
 					if (player.isSneaking() || handStack.isEmpty()) {
 						// sneaking or empty hand: remove items

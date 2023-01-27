@@ -1,49 +1,34 @@
-package de.dafuqs.spectrum.items.magic_items;
+package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.items.InventoryInsertionAcceptor;
-import de.dafuqs.spectrum.items.tooltip.VoidBundleTooltipData;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.item.TooltipData;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.StackReference;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.items.tooltip.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
+import net.minecraft.block.dispenser.*;
+import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.stat.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPointer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class BottomlessBundleItem extends BundleItem implements InventoryInsertionAcceptor, EnchanterEnchantable {
 	
@@ -140,7 +125,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		ItemStack itemStack = new ItemStack(Registry.ITEM.get(new Identifier(storedItemCompound.getString("ID"))));
 		int stackAmount = Math.min(storedAmount, itemStack.getMaxCount());
 		itemStack.setCount(stackAmount);
-		
+
 		if (storedItemCompound.contains("Tag", 10)) {
 			itemStack.setNbt(storedItemCompound.getCompound("Tag"));
 		}
@@ -149,33 +134,59 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 		return itemStack;
 	}
-	
-	private static int bundleStack(ItemStack voidBundleStack, ItemStack storedItemStack) {
-		return bundleStack(voidBundleStack, storedItemStack, storedItemStack.getCount());
+
+	private static int bundleStack(ItemStack voidBundleStack, ItemStack stackToBundle) {
+		return bundleStack(voidBundleStack, stackToBundle, stackToBundle.getCount());
 	}
-	
-	private static int bundleStack(ItemStack voidBundleStack, ItemStack storedItemStack, int amount) {
+
+	private static int bundleStack(ItemStack voidBundleStack, ItemStack stackToBundle, int amount) {
 		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 		NbtCompound storedItemCompound = new NbtCompound();
-		
+
 		boolean hasVoiding = EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, voidBundleStack) > 0;
 		int maxStoredAmount = getMaxStoredAmount(voidBundleStack);
 		int newAmount = Math.min(maxStoredAmount, storedItemCompound.getInt("Count") + amount);
 		int overflowAmount = hasVoiding ? 0 : Math.max(0, amount - maxStoredAmount);
-		
-		Identifier identifier = Registry.ITEM.getId(storedItemStack.getItem());
+
+		Identifier identifier = Registry.ITEM.getId(stackToBundle.getItem());
 		storedItemCompound.putString("ID", identifier.toString());
 		storedItemCompound.putInt("Count", newAmount);
-		if (storedItemStack.getNbt() != null) {
-			storedItemCompound.put("Tag", storedItemStack.getNbt().copy());
+		if (stackToBundle.getNbt() != null) {
+			storedItemCompound.put("Tag", stackToBundle.getNbt().copy());
 		}
-		
+
 		voidBundleCompound.put("StoredStack", storedItemCompound);
 		voidBundleStack.setNbt(voidBundleCompound);
-		
+
 		return overflowAmount;
 	}
-	
+
+	protected static int setBundledStack(ItemStack voidBundleStack, ItemStack stackToBundle, int amount) {
+		if (stackToBundle.isEmpty() || amount <= 0) {
+			voidBundleStack.removeSubNbt("StoredStack");
+			return 0;
+		} else {
+			NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
+			NbtCompound storedItemCompound = new NbtCompound();
+			boolean hasVoiding = EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, voidBundleStack) > 0;
+			int maxStoredAmount = getMaxStoredAmount(voidBundleStack);
+			int newAmount = Math.min(maxStoredAmount, amount);
+			int overflowAmount = hasVoiding ? 0 : Math.max(0, amount - maxStoredAmount);
+
+			Identifier identifier = Registry.ITEM.getId(stackToBundle.getItem());
+			storedItemCompound.putString("ID", identifier.toString());
+			storedItemCompound.putInt("Count", newAmount);
+			if (stackToBundle.getNbt() != null) {
+				storedItemCompound.put("Tag", stackToBundle.getNbt().copy());
+			}
+
+			voidBundleCompound.put("StoredStack", storedItemCompound);
+			voidBundleStack.setNbt(voidBundleCompound);
+
+			return overflowAmount;
+		}
+	}
+
 	public static int getStoredAmount(ItemStack voidBundleStack) {
 		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 		if (voidBundleCompound.contains("StoredStack")) {

@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
@@ -33,13 +34,18 @@ import net.fabricmc.fabric.api.entity.event.v1.*;
 import net.fabricmc.fabric.api.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.event.player.*;
 import net.fabricmc.fabric.api.resource.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.projectile.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
 import net.minecraft.resource.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -279,8 +285,40 @@ public class SpectrumCommon implements ModInitializer {
 
         CrossbowShootingCallback.register((world, shooter, hand, crossbow, projectile, projectileEntity) -> {
             if (crossbow.getItem() instanceof GlassCrestCrossbowItem && GlassCrestCrossbowItem.isOvercharged(crossbow)) {
-                GlassCrestCrossbowItem.unOvercharge(crossbow);
-            }
+				if (!world.isClient) { // only fired on the client, but making sure mods aren't doing anything weird
+					Vec3d particleVelocity = projectileEntity.getVelocity().multiply(0.05);
+
+					if (GlassCrestCrossbowItem.getOvercharge(crossbow) > 0.99F) {
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
+								projectileEntity.getPos(), ParticleTypes.SCRAPE, 5,
+								Vec3d.ZERO, particleVelocity);
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
+								projectileEntity.getPos(), ParticleTypes.WAX_OFF, 5,
+								Vec3d.ZERO, particleVelocity);
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
+								projectileEntity.getPos(), ParticleTypes.WAX_ON, 5,
+								Vec3d.ZERO, particleVelocity);
+						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
+								projectileEntity.getPos(), ParticleTypes.GLOW, 5,
+								Vec3d.ZERO, particleVelocity);
+
+						if (shooter instanceof ServerPlayerEntity serverPlayerEntity) {
+							Support.grantAdvancementCriterion(serverPlayerEntity,
+									SpectrumCommon.locate("lategame/shoot_fully_overcharged_crossbow"),
+									"shot_fully_overcharged_crossbow");
+						}
+						if (projectileEntity instanceof PersistentProjectileEntity persistentProjectileEntity) {
+							persistentProjectileEntity.setDamage(persistentProjectileEntity.getDamage() * 1.5);
+						}
+					}
+
+					SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world,
+							projectileEntity.getPos(), ParticleTypes.FIREWORK, 10,
+							Vec3d.ZERO, particleVelocity);
+
+					GlassCrestCrossbowItem.unOvercharge(crossbow);
+				}
+			}
         });
 
         logInfo("Registering RecipeCache reload listener");
@@ -296,13 +334,17 @@ public class SpectrumCommon implements ModInitializer {
 					FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
 				}
 			}
-			
+
 			@Override
 			public Identifier getFabricId() {
 				return id;
 			}
 		});
-		
+
+		ItemStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.storage, SpectrumBlockEntities.BOTTOMLESS_BUNDLE);
+		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.FUSION_SHRINE);
+		FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, SpectrumBlockEntities.TITRATION_BARREL);
+
 		logInfo("Common startup completed!");
 	}
 	

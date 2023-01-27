@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
@@ -76,7 +77,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 							ItemStack handStack = player.getStackInHand(hand);
 							if (handStack.isEmpty()) {
 								int itemCount = InventoryHelper.countItemsInInventory(barrelEntity.inventory);
-								Fluid fluid = barrelEntity.storedFluid;
+								Fluid fluid = barrelEntity.fluidStorage.variant.getFluid();
 								if (fluid == Fluids.EMPTY) {
 									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
 										SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.content_count_without_fluid_full", itemCount), false);
@@ -94,7 +95,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 							} else {
 								if (handStack.isIn(SpectrumItemTags.COLORED_PLANKS)) {
 									Optional<ITitrationBarrelRecipe> optionalRecipe = barrelEntity.getRecipeForInventory(world);
-									if(optionalRecipe.isEmpty() || !optionalRecipe.get().canPlayerCraft(player)) {
+									if (optionalRecipe.isEmpty() || !optionalRecipe.get().canPlayerCraft(player)) {
 										SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.invalid_recipe"), false);
 										return ActionResult.CONSUME;
 									}
@@ -102,8 +103,16 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 										handStack.decrement(1);
 									}
 									sealBarrel(world, pos, state, barrelEntity, player);
-								} else if (handStack.getItem() instanceof BucketItem) {
-									barrelEntity.useBucket(world, pos, state, handStack, player, hand);
+								} else if (FluidStorageUtil.interactWithFluidStorage(barrelEntity.fluidStorage, player, hand)) {
+									if (barrelEntity.getFluidVariant().isBlank()) {
+										if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.inventory.isEmpty()) {
+											world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.EMPTY));
+										}
+									} else {
+										if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.EMPTY) {
+											world.setBlockState(pos, state.with(BARREL_STATE, TitrationBarrelBlock.BarrelState.FILLED));
+										}
+									}
 								} else {
 									int countBefore = handStack.getCount();
 									ItemStack leftoverStack = InventoryHelper.addToInventoryUpToSingleStackWithMaxTotalCount(handStack, barrelEntity.getInventory(), TitrationBarrelBlockEntity.MAX_ITEM_COUNT);

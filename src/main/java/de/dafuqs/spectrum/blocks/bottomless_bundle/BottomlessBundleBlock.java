@@ -1,29 +1,26 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumItems;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.entity.*;
+import net.minecraft.block.piston.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.loot.context.*;
+import net.minecraft.server.network.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class BottomlessBundleBlock extends BlockWithEntity {
 	
@@ -60,18 +57,31 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (!world.isClient && player.isSneaking()) {
-			world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
-				ItemStack itemStack = bottomlessBundleBlockEntity.retrieveVoidBundle();
-				
-				world.setBlockState(pos, Blocks.AIR.getDefaultState());
-				
-				ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, itemStack);
-				itemEntity.setToDefaultPickupDelay();
-				world.spawnEntity(itemEntity);
-				
-				itemEntity.onPlayerCollision(player); // auto pickup
-			});
+		if (!world.isClient) {
+			if (player.isSneaking()) {
+				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
+					ItemStack itemStack = bottomlessBundleBlockEntity.retrieveBundle();
+
+					world.setBlockState(pos, Blocks.AIR.getDefaultState());
+
+					ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, itemStack);
+					itemEntity.setToDefaultPickupDelay();
+					world.spawnEntity(itemEntity);
+
+					itemEntity.onPlayerCollision(player); // auto pickup
+				});
+			} else {
+				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
+					long amount = bottomlessBundleBlockEntity.storage.amount;
+					if (amount == 0) {
+						SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), false);
+					} else {
+						ItemVariant variant = bottomlessBundleBlockEntity.storage.variant;
+						long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.bottomlessBundleStack);
+						SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getName()), false);
+					}
+				});
+			}
 			return ActionResult.CONSUME;
 		}
 		return ActionResult.SUCCESS;
@@ -85,7 +95,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-			return List.of(bottomlessBundleBlockEntity.retrieveVoidBundle());
+			return List.of(bottomlessBundleBlockEntity.retrieveBundle());
 		} else {
 			return super.getDroppedStacks(state, builder);
 		}
@@ -96,7 +106,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 		if (!world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
-				bottomlessBundleBlockEntity.setVoidBundle(itemStack.copy());
+				bottomlessBundleBlockEntity.setBundle(itemStack.copy());
 			}
 		}
 	}

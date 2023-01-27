@@ -1,26 +1,19 @@
 package de.dafuqs.spectrum.blocks.fusion_shrine;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory.Context;
-import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.texture.Sprite;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3f;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.transfer.v1.client.fluid.*;
+import net.fabricmc.fabric.api.transfer.v1.fluid.*;
+import net.minecraft.client.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.block.entity.*;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory.*;
+import net.minecraft.client.render.model.json.*;
+import net.minecraft.client.texture.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.item.*;
+import net.minecraft.util.math.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> implements BlockEntityRenderer<T> {
@@ -57,18 +50,17 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 	
 	public void render(FusionShrineBlockEntity fusionShrineBlockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		// the fluid in the shrine
-		Fluid fluid = fusionShrineBlockEntity.getFluid();
-		if (fluid != Fluids.EMPTY) {
+		FluidVariant fluidVariant = fusionShrineBlockEntity.getFluidVariant();
+		if (!fluidVariant.isBlank()) {
 			matrixStack.push();
-			FluidVariant fluidVariant = FluidVariant.of(fluid);
 			Sprite sprite = FluidVariantRendering.getSprite(fluidVariant);
 			int color = FluidVariantRendering.getColor(fluidVariant, fusionShrineBlockEntity.getWorld(), fusionShrineBlockEntity.getPos());
 			int[] colors = unpackColor(color);
-			
+
 			renderFluid(vertexConsumerProvider.getBuffer(RenderLayer.getTranslucent()), matrixStack.peek().getPositionMatrix(), sprite, light, overlay, 0.125F, 0.875F, 0.9F, 0.125F, 0.875F, colors);
 			matrixStack.pop();
 		}
-		
+
 		if (!fusionShrineBlockEntity.isEmpty()) {
 			// the floating item stacks
 			List<ItemStack> inventoryStacks = new ArrayList<>();

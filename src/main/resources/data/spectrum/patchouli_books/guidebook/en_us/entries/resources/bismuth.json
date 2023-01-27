@@ -15,14 +15,14 @@
     {
       "type": "patchouli:text",
       "title": "Bismuth",
-      "text": "A metal that shimmers in all the colors of the rainbow.$(br)The small seedlings you collected are far too small to be used for any meaningful purpose.$(br)The shimmering metal seems to slowly grow larger by absorbing the energy of metallic blocks in it's vicinity."
+      "text": "A metal that shimmers in all the colors of the rainbow.$(br)The small seedlings you collected are far too small to be used for any meaningful purpose.$(br)How do they grow without a budding block? One thing you noticed: it slightly grew in proximity of other metals while you had both in your pocket."
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "advancement": "spectrum:progression/unlock_crystallarieum",
       "title": "Growing Bismuth",
       "recipe": "spectrum:crystallarieum/bismuth",
-      "text": "Instead of providing whole metal blocks, the $(l:magical_blocks/crystallarieum)Crystallarieum$() provides a controlled substrate as well as a finer and more efficient way to provide nutrients."
+      "text": "Instead of sacrificing whole metal blocks, the $(l:magical_blocks/crystallarieum)Crystallarieum$() provides a controlled substrate as well as a finer and more efficient way to provide nutrients."
     }
   ]
 }

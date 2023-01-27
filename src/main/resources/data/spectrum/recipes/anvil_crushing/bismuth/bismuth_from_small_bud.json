@@ -1,13 +1,13 @@
 {
   "type": "spectrum:anvil_crushing",
   "ingredient": {
-    "item": "spectrum:bismuth_cluster"
+    "item": "spectrum:small_bismuth_bud"
   },
   "crushedItemsPerPointOfDamage": 0.75,
-  "experience": 0.5,
+  "experience": 0.0,
   "result": {
     "item": "spectrum:bismuth_flake",
-    "count": 5
+    "count": 1
   },
   "particleEffectIdentifier": "enchanted_hit",
   "particleCount": 10,

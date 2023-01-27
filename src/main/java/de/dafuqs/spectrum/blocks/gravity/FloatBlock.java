@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.blocks.gravity;
 
-import de.dafuqs.spectrum.entity.entity.FloatBlockEntity;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.block.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 
 public class FloatBlock extends FallingBlock {
 	
@@ -41,23 +38,31 @@ public class FloatBlock extends FallingBlock {
 	
 	private void checkForLaunch(World world, BlockPos pos) {
 		if (!world.isClient) {
+			if (gravityMod == 0) {
+				launch(world, pos);
+			}
+
 			BlockPos collisionBlockPos;
 			if (gravityMod > 0) {
 				collisionBlockPos = pos.up();
 			} else {
 				collisionBlockPos = pos.down();
 			}
-			
+
 			if ((world.isAir(collisionBlockPos) || canFallThrough(world.getBlockState(collisionBlockPos)))) {
-				FloatBlockEntity blockEntity = new FloatBlockEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState(pos));
-				world.spawnEntity(blockEntity);
+				launch(world, pos);
 			}
 		}
 	}
-	
+
+	private static void launch(World world, BlockPos pos) {
+		FloatBlockEntity blockEntity = new FloatBlockEntity(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getBlockState(pos));
+		world.spawnEntity(blockEntity);
+	}
+
 	@Override
 	protected int getFallDelay() {
 		return 2;
 	}
-	
+
 }

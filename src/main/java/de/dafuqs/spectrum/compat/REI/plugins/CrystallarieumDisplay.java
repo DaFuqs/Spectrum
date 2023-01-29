@@ -1,21 +1,18 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.compat.REI.GatedSpectrumDisplay;
-import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumCatalyst;
-import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
-import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.recipe.crystallarieum.*;
+import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.entry.*;
+import me.shedaniel.rei.api.common.util.*;
+import net.minecraft.block.*;
+import net.minecraft.client.*;
+import net.minecraft.item.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	
@@ -26,8 +23,8 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	protected final int secondsPerStage;
 	
 	public CrystallarieumDisplay(@NotNull CrystallarieumRecipe recipe) {
-		super(recipe, Collections.singletonList(EntryIngredients.ofIngredient(recipe.getIngredientStack())), Collections.singletonList(EntryIngredients.of(recipe.getOutput())));
-		
+		super(recipe, inputs(recipe), outputs(recipe));
+
 		this.growthStages = new ArrayList<>();
 		for (BlockState state : recipe.getGrowthStages()) {
 			growthStages.add(EntryIngredients.of(state.getBlock().asItem()));
@@ -37,12 +34,39 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		this.growsWithoutCatalyst = recipe.growsWithoutCatalyst();
 		this.secondsPerStage = recipe.getSecondsPerGrowthStage();
 	}
-	
+
+	public static List<EntryIngredient> inputs(CrystallarieumRecipe recipe) {
+		List<EntryIngredient> inputs = new ArrayList<>();
+		inputs.add(EntryIngredients.ofIngredient(recipe.getIngredientStack()));
+
+		Item firstBlockStateItem = recipe.getGrowthStages().get(0).getBlock().asItem();
+		if (firstBlockStateItem != Items.AIR) {
+			inputs.add(EntryIngredients.of(firstBlockStateItem));
+		}
+		return inputs;
+	}
+
+	public static List<EntryIngredient> outputs(CrystallarieumRecipe recipe) {
+		List<EntryIngredient> outputs = new ArrayList<>();
+		outputs.add(EntryIngredients.of(recipe.getOutput()));
+		for (ItemStack additionalOutput : recipe.getAdditionalOutputs()) {
+			outputs.add(EntryIngredients.of(additionalOutput));
+		}
+
+		for (BlockState growthStageState : recipe.getGrowthStages()) {
+			Item blockStateItem = growthStageState.getBlock().asItem();
+			if (blockStateItem != Items.AIR) {
+				outputs.add(EntryIngredients.of(blockStateItem));
+			}
+		}
+		return outputs;
+	}
+
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.CRYSTALLARIEUM;
 	}
-	
+
 	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, CrystallarieumRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();

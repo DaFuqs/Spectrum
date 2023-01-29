@@ -1,30 +1,24 @@
 package de.dafuqs.spectrum.recipe.crystallarieum;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class CrystallarieumRecipe extends GatedSpectrumRecipe {
-	
+
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_crystallarieum");
-	
+
 	protected final Ingredient inputIngredient;
 	protected final List<BlockState> growthStages;
 	protected final int secondsPerGrowthStage;
@@ -32,13 +26,14 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	protected final int inkPerSecond;
 	protected final boolean growsWithoutCatalyst;
 	protected final List<CrystallarieumCatalyst> catalysts;
-	
+	protected final List<ItemStack> additionalOutputs; // these aren't actual outputs, but recipe managers will treat it as such, showing this recipe as a way to get them. Use for drops of the growth blocks, for example
+
 	protected final static Map<Ingredient, CrystallarieumRecipe> ingredientMap = new HashMap<>();
 	protected final static Map<BlockState, CrystallarieumRecipe> stateMap = new HashMap<>();
-	
-	public CrystallarieumRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts) {
+
+	public CrystallarieumRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Ingredient inputIngredient, List<BlockState> growthStages, int secondsPerGrowthStage, InkColor inkColor, int inkPerSecond, boolean growsWithoutCatalyst, List<CrystallarieumCatalyst> catalysts, List<ItemStack> additionalOutputs) {
 		super(id, group, secret, requiredAdvancementIdentifier);
-		
+
 		this.inputIngredient = inputIngredient;
 		this.growthStages = growthStages;
 		this.secondsPerGrowthStage = secondsPerGrowthStage;
@@ -46,6 +41,7 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 		this.inkPerSecond = inkPerSecond;
 		this.growsWithoutCatalyst = growsWithoutCatalyst;
 		this.catalysts = catalysts;
+		this.additionalOutputs = additionalOutputs;
 		
 		ingredientMap.put(inputIngredient, this);
 		for (BlockState growthStage : growthStages) {
@@ -156,13 +152,17 @@ public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 	public int getInkPerSecond() {
 		return inkPerSecond;
 	}
-	
+
 	public boolean growsWithoutCatalyst() {
 		return growsWithoutCatalyst;
 	}
-	
+
 	public List<CrystallarieumCatalyst> getCatalysts() {
 		return this.catalysts;
 	}
-	
+
+	public List<ItemStack> getAdditionalOutputs() {
+		return additionalOutputs;
+	}
+
 }

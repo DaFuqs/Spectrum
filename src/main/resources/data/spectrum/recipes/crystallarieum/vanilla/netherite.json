@@ -45,5 +45,8 @@
       "ink_consumption_mod": 0.125,
       "consume_chance_per_second": 0.02
     }
+  ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:pure_netherite"
   ]
 }

@@ -22,5 +22,8 @@
       "consume_chance_per_second": 0.04
     }
   ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:malachite_crystal"
+  ],
   "required_advancement": "spectrum:lategame/collect_malachite"
 }

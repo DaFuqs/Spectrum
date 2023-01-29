@@ -29,7 +29,7 @@
       "ink_consumption_mod": 0.25,
       "consume_chance_per_second": 0.02
     },
-	{
+    {
       "ingredient": {
         "item": "spectrum:moonstone_shard"
       },
@@ -37,5 +37,8 @@
       "ink_consumption_mod": 0.01,
       "consume_chance_per_second": 0.05
     }
+  ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:pure_glowstone"
   ]
 }

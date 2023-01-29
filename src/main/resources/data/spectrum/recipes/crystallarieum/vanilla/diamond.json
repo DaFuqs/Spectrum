@@ -37,5 +37,8 @@
       "ink_consumption_mod": 0.25,
       "consume_chance_per_second": 1.0
     }
+  ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:pure_diamond"
   ]
 }

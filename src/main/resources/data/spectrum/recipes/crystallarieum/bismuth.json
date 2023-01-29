@@ -37,5 +37,8 @@
       "ink_consumption_mod": 1.0,
       "consume_chance_per_second": 0.0
     }
+  ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:bismuth_crystal"
   ]
 }

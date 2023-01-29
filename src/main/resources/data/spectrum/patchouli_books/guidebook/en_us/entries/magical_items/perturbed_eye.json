@@ -1,35 +1,34 @@
 {
   "name": "End Portal Relocation",
-  "advancement": "spectrum:progression/unlock_end_portal_cracker",
+  "advancement": "spectrum:progression/unlock_perturbed_eye",
   "icon": "minecraft:end_portal_frame",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:end_portal_cracker": 0,
+    "spectrum:perturbed_eye": 0,
     "spectrum:cracked_end_portal_frame": 0
   },
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Every time you want to enter the realm of the Endermen you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.$(br2)Well, almost. You haven't yet figured out how to create such portals yourself, but pack them up and take them home? No problem."
+      "text": "Every time you want to enter the realm of the Endermen you have to travel half a world. Whoever created the portals to the End... you're so much more powerful than they are now.$(br2)$(italic)Well, almost. Probably.$(br)You haven't yet figured out how to create such portals yourself, but packing them up and take them home? No problem."
     },
     {
       "type": "patchouli:image",
-      "title": "End Portal Relocation",
       "images": [
         "spectrum:textures/gui/guidebook/end_portal.png"
       ],
       "border": true,
-      "text": "The end portal, like found in strongholds."
+      "text": "The End Portal, like found in Strongholds."
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "item": "spectrum:end_portal_cracker",
-      "text": "These modified Eye of Ender harbor extremely destructive potential. They need to be, to be able to manipulate the extremely robust portal frame.$(br)When used in an End Portal base, you should keep your distance quickly."
+      "recipe": "spectrum:pedestal/tier4/perturbed_eye",
+      "text": "Due to the extremely robust Portal Frames, those harbor quite the destructive potential. Best to keep a bit of distance after socketing."
     },
     {
       "type": "patchouli:multiblock",
-      "name": "Reconstructed End Portal",
+      "name": "Reconstructed Portal",
       "multiblock": {
         "pattern": [
           [
@@ -53,7 +52,7 @@
         ],
         "symmetrical": false
       },
-      "text": "You just put the portal back together the way it was initially, add Ender Pearls, done!"
+      "text": "You just put the portal back together the way it was, add Ender Pearls, done!"
     }
   ]
 }

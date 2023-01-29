@@ -10,23 +10,23 @@
   "experience": 4.0,
   "pattern": [
     "EPE",
-    "PQP",
+    "PRP",
     "EPE"
   ],
   "key": {
     "E": {
       "item": "minecraft:ender_eye"
     },
-    "Q": {
-      "item": "spectrum:star_fragment"
+    "R": {
+      "item": "spectrum:radiating_ender"
     },
     "P": {
       "item": "spectrum:paltaeria_fragments"
     }
   },
   "result": {
-    "item": "spectrum:end_portal_cracker",
+    "item": "spectrum:perturbed_eye",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/unlock_end_portal_cracker"
+  "required_advancement": "spectrum:progression/unlock_perturbed_eye"
 }

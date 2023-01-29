@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:perturbed_eye"
+    },
+    "title": {
+      "translate": "advancements.spectrum.use_perturbed_eye.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.use_perturbed_eye.description"
+    }
+  },
+  "parent": "spectrum:lategame/collect_paltaeria",
+  "criteria": {
+    "used": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:perturbed_eye"
+          ]
+        },
+        "location": {
+          "block": {
+            "blocks": [
+              "minecraft:end_portal_frame",
+              "spectrum:cracked_end_portal_frame"
+            ]
+          }
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_paltaeria"
+      }
+    }
+  }
+}

@@ -1,30 +1,22 @@
 package de.dafuqs.spectrum.blocks;
 
-import com.google.common.base.Predicates;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import com.google.common.base.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.pattern.BlockPattern;
-import net.minecraft.block.pattern.BlockPatternBuilder;
-import net.minecraft.block.pattern.CachedBlockPosition;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.predicate.block.BlockStatePredicate;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
+import net.minecraft.block.pattern.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.predicate.block.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import net.minecraft.world.explosion.*;
 
 public class CrackedEndPortalFrameBlock extends Block {
 	
@@ -213,7 +205,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	
 	public boolean isVolatile(BlockState blockState) {
 		EndPortalFrameEye endPortalFrameEye = blockState.get(EYE_TYPE);
-		return endPortalFrameEye.equals(EndPortalFrameEye.VANILLA_WITH_END_PORTAL_CRACKER) || endPortalFrameEye.equals(EndPortalFrameEye.WITH_END_PORTAL_CRACKER);
+		return endPortalFrameEye.equals(EndPortalFrameEye.VANILLA_WITH_PERTURBED_EYE) || endPortalFrameEye.equals(EndPortalFrameEye.WITH_PERTURBED_EYE);
 	}
 	
 	@Override
@@ -232,11 +224,11 @@ public class CrackedEndPortalFrameBlock extends Block {
 			// 10% chance to break portal
 			float randomFloat = random.nextFloat();
 			if (randomFloat < 0.05) {
-				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 2, Explosion.DestructionType.BREAK);
+				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 4, Explosion.DestructionType.DESTROY);
 				destroyPortals(world, pos);
 				world.breakBlock(pos, true);
 			} else if (randomFloat < 0.2) {
-				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1, Explosion.DestructionType.BREAK);
+				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3, Explosion.DestructionType.DESTROY);
 			} else {
 				double d = (double) pos.getX() + random.nextDouble();
 				double e = (double) pos.getY() + 0.8D;
@@ -246,19 +238,19 @@ public class CrackedEndPortalFrameBlock extends Block {
 		}
 		world.createAndScheduleBlockTick(pos, this, 10);
 	}
-	
+
 	public enum EndPortalFrameEye implements StringIdentifiable {
-		VANILLA_WITH_END_PORTAL_CRACKER("vanilla_cracker"),
+		VANILLA_WITH_PERTURBED_EYE("vanilla_cracker"),
 		NONE("none"),
 		WITH_EYE_OF_ENDER("ender"),
-		WITH_END_PORTAL_CRACKER("cracker");
-		
+		WITH_PERTURBED_EYE("cracker");
+
 		private final String name;
-		
+
 		EndPortalFrameEye(String name) {
 			this.name = name;
 		}
-		
+
 		public String toString() {
 			return this.name;
 		}

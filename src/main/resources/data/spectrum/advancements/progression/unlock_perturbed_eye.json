@@ -6,9 +6,11 @@
         "advancement_identifier": "spectrum:lategame/collect_paltaeria"
       }
     },
-    "collected_star_fragment": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_star_fragment" }
+    "collected_radiating_ender": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:get_radiating_ender"
+      }
     }
   }
 }

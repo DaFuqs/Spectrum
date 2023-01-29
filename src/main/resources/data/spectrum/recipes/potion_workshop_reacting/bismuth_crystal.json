@@ -1,0 +1,9 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:bismuth_crystal",
+  "modifiers": {
+    "flat_potency_bonus_positive_effects": 1.0,
+    "random_color": true
+  },
+  "required_advancement": "spectrum:lategame/collect_bismuth_crystal"
+}

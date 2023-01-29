@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import net.minecraft.util.*;
 
 public class SpectrumScreenHandlerIDs {
 	
@@ -14,7 +14,7 @@ public class SpectrumScreenHandlerIDs {
 	public static Identifier BEDROCK_ANVIL;
 	public static Identifier PARTICLE_SPAWNER;
 	public static Identifier COMPACTING_CHEST;
-	public static Identifier SUCKING_CHEST;
+	public static Identifier BLACK_HOLE_CHEST;
 	public static Identifier POTION_WORKSHOP;
 	public static Identifier COLOR_PICKER;
 	public static Identifier CINDERHEARTH;
@@ -41,7 +41,7 @@ public class SpectrumScreenHandlerIDs {
 		BEDROCK_ANVIL = SpectrumCommon.locate("bedrock_anvil");
 		PARTICLE_SPAWNER = SpectrumCommon.locate("particle_spawner");
 		COMPACTING_CHEST = SpectrumCommon.locate("compacting_chest");
-		SUCKING_CHEST = SpectrumCommon.locate("sucking_chest");
+		BLACK_HOLE_CHEST = SpectrumCommon.locate("sucking_chest");
 		POTION_WORKSHOP = SpectrumCommon.locate("potion_workshop");
 		COLOR_PICKER = SpectrumCommon.locate("color_picker");
 		CINDERHEARTH = SpectrumCommon.locate("cinderhearth");

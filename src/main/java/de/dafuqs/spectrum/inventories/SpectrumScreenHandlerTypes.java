@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.inventories;
 
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
-import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.fabricmc.fabric.api.screenhandler.v1.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.screen.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
 public class SpectrumScreenHandlerTypes {
 	
@@ -18,7 +17,7 @@ public class SpectrumScreenHandlerTypes {
 	public static ScreenHandlerType<BedrockAnvilScreenHandler> BEDROCK_ANVIL;
 	public static ScreenHandlerType<ParticleSpawnerScreenHandler> PARTICLE_SPAWNER;
 	public static ScreenHandlerType<CompactingChestScreenHandler> COMPACTING_CHEST;
-	public static ScreenHandlerType<SuckingChestScreenHandler> SUCKING_CHEST;
+	public static ScreenHandlerType<BlackHoleChestScreenHandler> BLACK_HOLE_CHEST;
 	public static ScreenHandlerType<PotionWorkshopScreenHandler> POTION_WORKSHOP;
 	public static ScreenHandlerType<ColorPickerScreenHandler> COLOR_PICKER;
 	public static ScreenHandlerType<CinderhearthScreenHandler> CINDERHEARTH;
@@ -52,7 +51,7 @@ public class SpectrumScreenHandlerTypes {
 		PEDESTAL = registerExtended(SpectrumScreenHandlerIDs.PEDESTAL, PedestalScreenHandler::new);
 		PARTICLE_SPAWNER = registerExtended(SpectrumScreenHandlerIDs.PARTICLE_SPAWNER, ParticleSpawnerScreenHandler::new);
 		COMPACTING_CHEST = registerExtended(SpectrumScreenHandlerIDs.COMPACTING_CHEST, CompactingChestScreenHandler::new);
-		SUCKING_CHEST = registerExtended(SpectrumScreenHandlerIDs.SUCKING_CHEST, SuckingChestScreenHandler::new);
+		BLACK_HOLE_CHEST = registerExtended(SpectrumScreenHandlerIDs.BLACK_HOLE_CHEST, BlackHoleChestScreenHandler::new);
 		COLOR_PICKER = registerExtended(SpectrumScreenHandlerIDs.COLOR_PICKER, ColorPickerScreenHandler::new);
 		CINDERHEARTH = registerExtended(SpectrumScreenHandlerIDs.CINDERHEARTH, CinderhearthScreenHandler::new);
 		
@@ -84,7 +83,7 @@ public class SpectrumScreenHandlerTypes {
 		HandledScreens.register(SpectrumScreenHandlerTypes.BEDROCK_ANVIL, BedrockAnvilScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.PARTICLE_SPAWNER, ParticleSpawnerScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.COMPACTING_CHEST, CompactingChestScreen::new);
-		HandledScreens.register(SpectrumScreenHandlerTypes.SUCKING_CHEST, SuckingChestScreen::new);
+		HandledScreens.register(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, BlackHoleChestScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.POTION_WORKSHOP, PotionWorkshopScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.COLOR_PICKER, ColorPickerScreen::new);
 		HandledScreens.register(SpectrumScreenHandlerTypes.CINDERHEARTH, CinderhearthScreen::new);

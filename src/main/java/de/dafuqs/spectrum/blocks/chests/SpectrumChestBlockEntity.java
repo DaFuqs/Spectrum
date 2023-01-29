@@ -1,28 +1,18 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.inventories.CompactingChestScreenHandler;
-import de.dafuqs.spectrum.inventories.RestockingChestScreenHandler;
-import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.api.EnvironmentInterface;
-import net.fabricmc.api.EnvironmentInterfaces;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
+import de.dafuqs.spectrum.inventories.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.GenericContainerScreenHandler;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 @EnvironmentInterfaces({@EnvironmentInterface(
 		value = EnvType.CLIENT,
@@ -62,8 +52,8 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 					inventory = ((GenericContainerScreenHandler) screenHandler).getInventory();
 				} else if (screenHandler instanceof RestockingChestScreenHandler restockingChestScreenHandler) {
 					inventory = restockingChestScreenHandler.getInventory();
-				} else if (screenHandler instanceof SuckingChestScreenHandler suckingChestScreenHandler) {
-					inventory = suckingChestScreenHandler.getInventory();
+				} else if (screenHandler instanceof BlackHoleChestScreenHandler blackHoleChestScreenHandler) {
+					inventory = blackHoleChestScreenHandler.getInventory();
 				} else if (screenHandler instanceof CompactingChestScreenHandler compactingChestScreenHandler) {
 					inventory = compactingChestScreenHandler.getInventory();
 				}

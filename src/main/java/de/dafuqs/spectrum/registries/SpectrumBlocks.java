@@ -568,7 +568,7 @@ public class SpectrumBlocks {
 	public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(-1.0F, 3600000.0F).sounds(BlockSoundGroup.STONE));
 	public static final Block COMPACTING_CHEST = new CompactingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
 	public static final Block RESTOCKING_CHEST = new RestockingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
-	public static final Block SUCKING_CHEST = new SuckingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
+	public static final Block BLACK_HOLE_CHEST = new BlackHoleChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
 	public static final Block PARTICLE_SPAWNER = new ParticleSpawnerBlock(FabricBlockSettings.of(Material.AMETHYST).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.AMETHYST_BLOCK).nonOpaque());
 	public static final Block CREATIVE_PARTICLE_SPAWNER = new CreativeParticleSpawnerBlock(FabricBlockSettings.copyOf(SpectrumBlocks.PARTICLE_SPAWNER).strength(-1.0F, 3600000.8F).dropsNothing().allowsSpawning(SpectrumBlocks::never));
 	public static final Block BEDROCK_ANVIL = new BedrockAnvilBlock(FabricBlockSettings.copyOf(Blocks.ANVIL).requiresTool().strength(8.0F, 8.0F).sounds(BlockSoundGroup.METAL));
@@ -1325,7 +1325,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("private_chest", PRIVATE_CHEST, settings, DyeColor.BLUE);
 		registerBlockWithItem("compacting_chest", COMPACTING_CHEST, settings, DyeColor.YELLOW);
 		registerBlockWithItem("restocking_chest", RESTOCKING_CHEST, settings, DyeColor.YELLOW);
-		registerBlockWithItem("sucking_chest", SUCKING_CHEST, settings, DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("sucking_chest", BLACK_HOLE_CHEST, settings, DyeColor.LIGHT_GRAY);
 		
 		registerBlockWithItem("ender_hopper", ENDER_HOPPER, settings, DyeColor.PURPLE);
 		registerBlockWithItem("ender_dropper", ENDER_DROPPER, settings, DyeColor.PURPLE);

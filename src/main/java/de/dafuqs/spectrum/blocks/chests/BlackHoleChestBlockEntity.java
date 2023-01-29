@@ -1,72 +1,54 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.events.SpectrumGameEvents;
-import de.dafuqs.spectrum.events.listeners.EventQueue;
-import de.dafuqs.spectrum.events.listeners.ExperienceOrbEventQueue;
-import de.dafuqs.spectrum.events.listeners.ItemAndExperienceEventQueue;
-import de.dafuqs.spectrum.events.listeners.ItemEntityEventQueue;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.inventories.SuckingChestScreenHandler;
-import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.SidedInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.event.BlockPositionSource;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.listener.GameEventListener;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.events.listeners.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.screenhandler.v1.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import net.minecraft.world.event.listener.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.*;
+import java.util.stream.*;
 
-public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory, EventQueue.Callback {
-	
+public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory, EventQueue.Callback {
+
 	public static final int INVENTORY_SIZE = 28;
 	public static final int ITEM_FILTER_SLOTS = 5;
 	public static final int EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT = 27;
 	private static final int RANGE = 12;
 	private final ItemAndExperienceEventQueue itemAndExperienceEventQueue;
 	private final List<Item> filterItems;
-	
-	public SuckingChestBlockEntity(BlockPos blockPos, BlockState blockState) {
-		super(SpectrumBlockEntities.SUCKING_CHEST, blockPos, blockState);
+
+	public BlackHoleChestBlockEntity(BlockPos blockPos, BlockState blockState) {
+		super(SpectrumBlockEntities.BLACK_HOLE_CHEST, blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.pos), RANGE, this);
 		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOTS, Items.AIR);
 	}
-	
-	public static void tick(@NotNull World world, BlockPos pos, BlockState state, SuckingChestBlockEntity blockEntity) {
+
+	public static void tick(@NotNull World world, BlockPos pos, BlockState state, BlackHoleChestBlockEntity blockEntity) {
 		if (world.isClient) {
 			blockEntity.lidAnimator.step();
 		} else {
@@ -76,15 +58,15 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 			}
 		}
 	}
-	
-	private static void searchForNearbyEntities(@NotNull SuckingChestBlockEntity blockEntity) {
+
+	private static void searchForNearbyEntities(@NotNull BlackHoleChestBlockEntity blockEntity) {
 		List<ItemEntity> itemEntities = blockEntity.world.getEntitiesByType(EntityType.ITEM, getBoxWithRadius(blockEntity.pos, RANGE), Entity::isAlive);
 		for (ItemEntity itemEntity : itemEntities) {
 			if (itemEntity.isAlive() && !itemEntity.getStack().isEmpty()) {
 				itemEntity.emitGameEvent(SpectrumGameEvents.ENTITY_SPAWNED);
 			}
 		}
-		
+
 		List<ExperienceOrbEntity> experienceOrbEntities = blockEntity.world.getEntitiesByType(EntityType.EXPERIENCE_ORB, getBoxWithRadius(blockEntity.pos, RANGE), Entity::isAlive);
 		for (ExperienceOrbEntity experienceOrbEntity : experienceOrbEntities) {
 			if (experienceOrbEntity.isAlive()) {
@@ -104,7 +86,7 @@ public class SuckingChestBlockEntity extends SpectrumChestBlockEntity implements
 	
 	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-		return new SuckingChestScreenHandler(syncId, playerInventory, this);
+		return new BlackHoleChestScreenHandler(syncId, playerInventory, this);
 	}
 	
 	public void writeNbt(NbtCompound tag) {

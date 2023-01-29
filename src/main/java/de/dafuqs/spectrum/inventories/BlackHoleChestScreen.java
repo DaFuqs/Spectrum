@@ -1,23 +1,23 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-public class SuckingChestScreen extends HandledScreen<SuckingChestScreenHandler> {
-	
+public class BlackHoleChestScreen extends HandledScreen<BlackHoleChestScreenHandler> {
+
 	public static final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/container/black_hole_chest.png");
-	
-	public SuckingChestScreen(SuckingChestScreenHandler handler, PlayerInventory playerInventory, Text title) {
+
+	public BlackHoleChestScreen(BlackHoleChestScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 193;
 	}
-	
+
 	protected void init() {
 		super.init();
 	}

@@ -3,6 +3,6 @@
   "ingredient": {
     "item": "minecraft:basalt"
   },
-  "result": "spectrum:basalt_slab",
+  "result": "spectrum:smooth_basalt_slab",
   "count": 2
 }

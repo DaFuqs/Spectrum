@@ -1,19 +1,16 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.items.magic_items.CelestialPocketWatchItem;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.entity.decoration.ItemFrameEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.decoration.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(ItemFrameEntity.class)
 public abstract class ItemFrameEntityMixin {
@@ -25,7 +22,7 @@ public abstract class ItemFrameEntityMixin {
 			at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/decoration/ItemFrameEntity;setRotation(I)V"))
 	public void interact(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
 		if (getHeldItemStack().isOf(SpectrumItems.CELESTIAL_POCKETWATCH) && (((ItemFrameEntity) (Object) this).world instanceof ServerWorld serverWorld)) {
-			CelestialPocketWatchItem.advanceTime((ServerPlayerEntity) player, serverWorld);
+			CelestialPocketWatchItem.tryAdvanceTime(serverWorld, (ServerPlayerEntity) player);
 		}
 	}
 	

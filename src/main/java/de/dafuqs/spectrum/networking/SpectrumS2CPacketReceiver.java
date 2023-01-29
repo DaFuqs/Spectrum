@@ -108,11 +108,15 @@ public class SpectrumS2CPacketReceiver {
 			DimensionType dimensionType = client.world.getDimension();
 			long sourceTime = buf.readLong();
 			long targetTime = buf.readLong();
-			SpectrumClient.skyLerper.trigger(dimensionType, sourceTime, client.getTickDelta(), targetTime);
-			
-			if (client.world.isSkyVisible(client.player.getBlockPos())) {
-				client.player.playSound(SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_FLY_BY, SoundCategory.NEUTRAL, 0.15F, 1.0F);
-			}
+
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				SpectrumClient.skyLerper.trigger(dimensionType, sourceTime, client.getTickDelta(), targetTime);
+				if (client.world.isSkyVisible(client.player.getBlockPos())) {
+					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_FLY_BY, SoundCategory.NEUTRAL, 0.15F, 1.0F, false);
+				}
+			});
+
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {

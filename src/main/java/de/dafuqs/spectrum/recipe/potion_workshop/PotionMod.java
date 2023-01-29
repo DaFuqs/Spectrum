@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import com.google.gson.JsonObject;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.JsonHelper;
+import com.google.gson.*;
+import net.minecraft.network.*;
+import net.minecraft.util.*;
 
 public class PotionMod {
 	public int flatDurationBonusTicks = 0;
@@ -19,22 +19,23 @@ public class PotionMod {
 	
 	public float chanceToAddLastEffect = 0.0F;
 	public float lastEffectPotencyModifier = 1.0F;
-	
+
 	public float flatYieldBonus = 0;
-	
+
 	public boolean makeSplashing = false;
 	public boolean makeLingering = false;
-	
+
 	public boolean noParticles = false;
 	public boolean unidentifiable = false;
 	public boolean makeEffectsPositive = false;
 	public boolean potentDecreasingEffect = false;
 	public boolean negateDecreasingDuration = false;
-	public boolean fastDrinkable = false;
-	
+	public boolean randomColor = false;
+	public int additionalDrinkDurationTicks = 0;
+
 	public static PotionMod fromJson(JsonObject jsonObject) {
 		PotionMod mod = new PotionMod();
-		
+
 		if (JsonHelper.hasNumber(jsonObject, "flat_duration_bonus_ticks")) {
 			mod.flatDurationBonusTicks += JsonHelper.getInt(jsonObject, "flat_duration_bonus_ticks");
 		}
@@ -89,10 +90,13 @@ public class PotionMod {
 		if (JsonHelper.hasBoolean(jsonObject, "negate_decreasing_duration")) {
 			mod.negateDecreasingDuration = JsonHelper.getBoolean(jsonObject, "negate_decreasing_duration");
 		}
-		if (JsonHelper.hasBoolean(jsonObject, "fast_drinkable")) {
-			mod.fastDrinkable = JsonHelper.getBoolean(jsonObject, "fast_drinkable");
+		if (JsonHelper.hasNumber(jsonObject, "additional_drink_duration_ticks")) {
+			mod.additionalDrinkDurationTicks = JsonHelper.getInt(jsonObject, "additional_drink_duration_ticks");
 		}
-		
+		if (JsonHelper.hasBoolean(jsonObject, "random_color")) {
+			mod.randomColor = JsonHelper.getBoolean(jsonObject, "random_color");
+		}
+
 		return mod;
 	}
 	
@@ -115,7 +119,8 @@ public class PotionMod {
 		packetByteBuf.writeBoolean(makeEffectsPositive);
 		packetByteBuf.writeBoolean(potentDecreasingEffect);
 		packetByteBuf.writeBoolean(negateDecreasingDuration);
-		packetByteBuf.writeBoolean(fastDrinkable);
+		packetByteBuf.writeInt(additionalDrinkDurationTicks);
+		packetByteBuf.writeBoolean(randomColor);
 	}
 	
 	public static PotionMod fromPacket(PacketByteBuf packetByteBuf) {
@@ -138,7 +143,8 @@ public class PotionMod {
 		potionMod.makeEffectsPositive = packetByteBuf.readBoolean();
 		potionMod.potentDecreasingEffect = packetByteBuf.readBoolean();
 		potionMod.negateDecreasingDuration = packetByteBuf.readBoolean();
-		potionMod.fastDrinkable = packetByteBuf.readBoolean();
+		potionMod.additionalDrinkDurationTicks = packetByteBuf.readInt();
+		potionMod.randomColor = packetByteBuf.readBoolean();
 		return potionMod;
 	}
 	
@@ -161,7 +167,8 @@ public class PotionMod {
 		potionMod.makeEffectsPositive |= this.makeEffectsPositive;
 		potionMod.potentDecreasingEffect |= this.potentDecreasingEffect;
 		potionMod.negateDecreasingDuration |= this.negateDecreasingDuration;
-		potionMod.fastDrinkable |= this.fastDrinkable;
+		potionMod.additionalDrinkDurationTicks += this.additionalDrinkDurationTicks;
+		potionMod.randomColor |= this.randomColor;
 		return potionMod;
 	}
 	

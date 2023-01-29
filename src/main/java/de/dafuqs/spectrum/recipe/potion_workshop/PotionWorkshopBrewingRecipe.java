@@ -1,37 +1,25 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.energy.InkCost;
-import de.dafuqs.spectrum.energy.InkPoweredStatusEffectInstance;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.items.PotionFillable;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumPotions;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.potion.Potions;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.util.collection.DefaultedList;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.potion.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.math.random.Random;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.awt.*;
 import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
@@ -235,15 +223,15 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
 			setCustomPotionEffects(itemStack, effects);
 		}
-		
-		if (potionMod.fastDrinkable) {
+
+		if (potionMod.additionalDrinkDurationTicks != 0) {
 			NbtCompound compound = itemStack.getOrCreateNbt();
-			compound.putBoolean("SpectrumFastDrinkable", true);
+			compound.putInt("SpectrumAdditionalDrinkDuration", potionMod.additionalDrinkDurationTicks);
 			itemStack.setNbt(compound);
 		}
 		
 		// potion color
-		setColor(itemStack, potionMod, effects.isEmpty());
+		setColor(itemStack, potionMod, effects.isEmpty(), random);
 		
 		return itemStack;
 	}
@@ -269,8 +257,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			PotionUtil.setPotion(itemStack, SpectrumPotions.PIGMENT_POTION);
 			setCustomPotionEffects(itemStack, effects);
 		}
-		
-		setColor(itemStack, potionMod, effects.isEmpty());
+
+		setColor(itemStack, potionMod, effects.isEmpty(), random);
 		
 		return itemStack;
 	}
@@ -296,9 +284,9 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			if (potionMod.potentDecreasingEffect) {
 				effects = applyPotentDecreasingEffect(effects, random);
 			}
-			
+
 			potionFillable.addOrUpgradeEffects(potionFillableStack, effects);
-			setColor(potionFillableStack, potionMod, effects.isEmpty());
+			setColor(potionFillableStack, potionMod, effects.isEmpty(), random);
 		}
 	}
 	
@@ -385,14 +373,21 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		}
 		return false;
 	}
-	
-	public void setColor(ItemStack itemStack, PotionMod potionMod, boolean empty) {
+
+	public void setColor(ItemStack itemStack, PotionMod potionMod, boolean potionWithNoEffects, Random random) {
 		NbtCompound nbtCompound = itemStack.getNbt();
+		boolean colored = false;
+		if (potionMod.randomColor) {
+			int randomColor = Color.getHSBColor(random.nextFloat(), 0.7F, 0.9F).getRGB();
+			nbtCompound.putInt("CustomPotionColor", randomColor);
+			colored = true;
+		}
 		if (potionMod.unidentifiable) {
-			nbtCompound.putInt("CustomPotionColor", 0x2f2f2f); // dark gray
+			if (!colored) {
+				nbtCompound.putInt("CustomPotionColor", 0x2f2f2f); // dark gray
+			}
 			nbtCompound.putBoolean("spectrum_unidentifiable", true); // used in PotionItemMixin
-			itemStack.setNbt(nbtCompound);
-		} else if (!empty) {
+		} else if (!colored && !potionWithNoEffects) {
 			nbtCompound.putInt("CustomPotionColor", getColor());
 		}
 	}

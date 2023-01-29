@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.mixin;
 
+import com.llamalad7.mixinextras.injector.*;
 import net.minecraft.client.item.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -14,16 +15,14 @@ import java.util.*;
 @Mixin(PotionItem.class)
 public abstract class PotionItemMixin {
 
-	@Inject(method = "getMaxUseTime(Lnet/minecraft/item/ItemStack;)I", at = @At("RETURN"), cancellable = true)
-	private void spectrum$applyFastDrink(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-		if (cir.getReturnValue() > 4) {
-			NbtCompound compound = stack.getNbt();
-			if (compound != null && compound.contains("SpectrumAdditionalDrinkDuration", NbtElement.INT_TYPE)) {
-				int additionalDrinkDuration = compound.getInt("SpectrumAdditionalDrinkDuration");
-				int newMaxUseTime = Math.max(4, cir.getReturnValue() + additionalDrinkDuration);
-				cir.setReturnValue(newMaxUseTime);
-			}
+	@ModifyReturnValue(method = "getMaxUseTime(Lnet/minecraft/item/ItemStack;)I", at = @At("RETURN"))
+	private int spectrum$modifyDrinkTime(int drinkTime, ItemStack stack) {
+		NbtCompound compound = stack.getNbt();
+		if (compound != null && compound.contains("SpectrumAdditionalDrinkDuration", NbtElement.INT_TYPE)) {
+			int additionalDrinkDuration = compound.getInt("SpectrumAdditionalDrinkDuration");
+			drinkTime += Math.max(4, drinkTime + additionalDrinkDuration);
 		}
+		return drinkTime;
 	}
 
 	@Inject(method = "appendTooltip(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Ljava/util/List;Lnet/minecraft/client/item/TooltipContext;)V", at = @At("TAIL"))

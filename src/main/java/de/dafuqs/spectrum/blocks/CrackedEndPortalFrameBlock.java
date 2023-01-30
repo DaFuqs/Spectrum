@@ -197,7 +197,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	@Override
 	@Deprecated
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-		// when placed via end portal cracker => fuse
+		// when placed via perturbed eye => fuse
 		if (isVolatile(state)) {
 			world.createAndScheduleBlockTick(pos, this, 40);
 		}

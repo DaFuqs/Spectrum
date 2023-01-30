@@ -4,7 +4,7 @@
   "textures": {
     "0": "spectrum:block/polished_calcite",
     "1": "spectrum:block/amethyst_storage_block",
-    "particle": "spectrum:block/polished_calcite"
+    "particle": "spectrum:block/pastel_line"
   },
   "elements": [
     {

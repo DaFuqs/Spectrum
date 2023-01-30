@@ -48,7 +48,7 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle {
 
     @Override
     public void buildGeometry(VertexConsumer vertexConsumer, Camera camera, float tickDelta) {
-        VertexConsumerProvider.Immediate immediate = this.bufferStorage.getEntityVertexConsumers();
+        VertexConsumerProvider.Immediate vertexConsumerProvider = this.bufferStorage.getEntityVertexConsumers();
         MatrixStack matrixStack = new MatrixStack();
         EntityRenderer entityRenderer = this.dispatcher.getRenderer(this.itemEntity);
         Vec3d positionOffset = entityRenderer.getPositionOffset(this.itemEntity, tickDelta);
@@ -57,38 +57,37 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle {
         float x = (float) (MathHelper.lerp(tickDelta, this.prevPosX, this.x) - cameraPos.getX() + positionOffset.getX());
         float y = (float) (MathHelper.lerp(tickDelta, this.prevPosY, this.y) - cameraPos.getY() + positionOffset.getY());
         float z = (float) (MathHelper.lerp(tickDelta, this.prevPosZ, this.z) - cameraPos.getZ() + positionOffset.getZ());
+        matrixStack.translate(x, y, z);
         int light = this.getBrightness(tickDelta);
 
-        matrixStack.translate(x, y, z);
-
         // TODO: rendering the ItemEntity 50 % translucent
-        entityRenderer.render(this.itemEntity, this.itemEntity.getYaw(), tickDelta, matrixStack, immediate, light);
-        immediate.draw();
+        entityRenderer.render(this.itemEntity, this.itemEntity.getYaw(), tickDelta, matrixStack, vertexConsumerProvider, light);
 
-        // TODO: fix me please
-        // this does not render unless the above code is removed o.O
-        /*
+
         Quaternion quaternion = camera.getRotation();
         Vec3f[] vec3fs = new Vec3f[]{new Vec3f(-1.0F, -1.0F, 0.0F), new Vec3f(-1.0F, 1.0F, 0.0F), new Vec3f(1.0F, 1.0F, 0.0F), new Vec3f(1.0F, -1.0F, 0.0F)};
-        float j = this.getSize(tickDelta);
+        float size = this.getSize(tickDelta);
 
-        for(int k = 0; k < 4; ++k) {
+        for (int k = 0; k < 4; ++k) {
             Vec3f vec3f2 = vec3fs[k];
             vec3f2.rotate(quaternion);
-            vec3f2.scale(j);
+            vec3f2.scale(size);
             vec3f2.add(x, y, z);
         }
 
-        float l = this.getMinU();
-        float m = this.getMaxU();
-        float n = this.getMinV();
-        float o = this.getMaxV();
-        int p = this.getBrightness(tickDelta);
-        vertexConsumer.vertex(vec3fs[0].getX(), vec3fs[0].getY(), vec3fs[0].getZ()).texture(m, o).color(this.red, this.green, this.blue, this.alpha).light(p).next();
-        vertexConsumer.vertex(vec3fs[1].getX(), vec3fs[1].getY(), vec3fs[1].getZ()).texture(m, n).color(this.red, this.green, this.blue, this.alpha).light(p).next();
-        vertexConsumer.vertex(vec3fs[2].getX(), vec3fs[2].getY(), vec3fs[2].getZ()).texture(l, n).color(this.red, this.green, this.blue, this.alpha).light(p).next();
-        vertexConsumer.vertex(vec3fs[3].getX(), vec3fs[3].getY(), vec3fs[3].getZ()).texture(l, o).color(this.red, this.green, this.blue, this.alpha).light(p).next();
-        */
+        // TODO: fix me please
+        // this does not render what it should o.O
+        float minU = getMinU();
+        float maxU = getMaxU();
+        float minV = getMinV();
+        float maxV = getMaxV();
+        VertexConsumer translucentConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getTranslucent());
+        translucentConsumer.vertex(vec3fs[0].getX(), vec3fs[0].getY(), vec3fs[0].getZ()).color(this.red, this.green, this.blue, this.alpha).texture(maxU, maxV).light(light).normal(0.0F, 0.0F, 0.0F).next();
+        translucentConsumer.vertex(vec3fs[1].getX(), vec3fs[1].getY(), vec3fs[1].getZ()).color(this.red, this.green, this.blue, this.alpha).texture(maxU, minV).light(light).normal(0.0F, 0.0F, 0.0F).next();
+        translucentConsumer.vertex(vec3fs[2].getX(), vec3fs[2].getY(), vec3fs[2].getZ()).color(this.red, this.green, this.blue, this.alpha).texture(minU, minV).light(light).normal(0.0F, 0.0F, 0.0F).next();
+        translucentConsumer.vertex(vec3fs[3].getX(), vec3fs[3].getY(), vec3fs[3].getZ()).color(this.red, this.green, this.blue, this.alpha).texture(minU, maxV).light(light).normal(0.0F, 0.0F, 0.0F).next();
+
+        vertexConsumerProvider.draw();
     }
 
     @Override
@@ -101,6 +100,7 @@ public class PastelTransmissionParticle extends SpriteBillboardParticle {
         return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
     }
 
+    @Override
     public void tick() {
         this.age++;
 

@@ -45,31 +45,18 @@ public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> impl
                 Vec3d offset = Vec3d.ofCenter(target.getPos()).subtract(Vec3d.of(entity.getPos()));
                 Vec3d normalized = offset.normalize();
 
-                VertexConsumer vertexConsumer = TEXTURE.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityTranslucent);
 
                 Matrix4f positionMatrix = matrixStack.peek().getPositionMatrix();
 
                 // TODO: fix me please
                 // this should render TEXTURE between the two nodes, colored in "color"
-                // but currently it only draws a wack black something
+                // but currently it only draws a wack something
+                //VertexConsumer vertexConsumer = TEXTURE.getVertexConsumer(vertexConsumerProvider, RenderLayer::getEntityTranslucent);
                 //renderTranslucentLine(vertexConsumer, positionMatrix, color, offset, normalized);
 
                 renderDebugLine(vertexConsumerProvider, color, offset, normalized, positionMatrix);
             }
         }
-    }
-
-    private static void renderDebugLine(VertexConsumerProvider vertexConsumerProvider, int color, Vec3d offset, Vec3d normalized, Matrix4f positionMatrix) {
-        vertexConsumerProvider.getBuffer(RenderLayer.getLines())
-                .vertex(positionMatrix, 0.5F, 0.5F, 0.5F)
-                .color(color)
-                .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
-                .next();
-        vertexConsumerProvider.getBuffer(RenderLayer.getLines())
-                .vertex(positionMatrix, (float) offset.x, (float) offset.y, (float) offset.z)
-                .color(color)
-                .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
-                .next();
     }
 
     private static void renderTranslucentLine(VertexConsumer vertexConsumer, Matrix4f positionMatrix, int color, Vec3d offset, Vec3d normalized) {
@@ -108,6 +95,19 @@ public class PastelNodeBlockEntityRenderer<T extends PastelNodeBlockEntity> impl
                 .texture(u1, v1)
                 .overlay(655360)
                 .light(240)
+                .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
+                .next();
+    }
+
+    private static void renderDebugLine(VertexConsumerProvider vertexConsumerProvider, int color, Vec3d offset, Vec3d normalized, Matrix4f positionMatrix) {
+        vertexConsumerProvider.getBuffer(RenderLayer.getLines())
+                .vertex(positionMatrix, 0.5F, 0.5F, 0.5F)
+                .color(color)
+                .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
+                .next();
+        vertexConsumerProvider.getBuffer(RenderLayer.getLines())
+                .vertex(positionMatrix, (float) offset.x, (float) offset.y, (float) offset.z)
+                .color(color)
                 .normal((float) normalized.x, (float) normalized.y, (float) normalized.z)
                 .next();
     }

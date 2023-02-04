@@ -46,7 +46,6 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<FusionShrineBlockEntity> FUSION_SHRINE;
 	public static BlockEntityType<EnchanterBlockEntity> ENCHANTER;
 	
-	//public static BlockEntityType<StonesettingWorkshopBlockEntity> STONESETTING_WORKSHOP;
 	public static BlockEntityType<ItemBowlBlockEntity> ITEM_BOWL;
 	public static BlockEntityType<ItemRoundelBlockEntity> ITEM_ROUNDEL;
 	public static BlockEntityType<PreservationRoundelBlockEntity> PRESERVATION_ROUNDEL;

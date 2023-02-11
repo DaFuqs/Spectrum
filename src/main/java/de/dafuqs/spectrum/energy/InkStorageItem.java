@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.energy;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 
 /**
  * Defines that an object holds a PigmentEnergyStorage
@@ -9,14 +9,14 @@ import net.minecraft.item.ItemStack;
  * @param <PStorage>
  */
 public interface InkStorageItem<PStorage extends InkStorage> {
-	
+
 	enum Drainability {
-		ALWAYS,
-		MACHINE_ONLY,
-		PLAYER_ONLY,
-		NEVER;
-		
-		boolean canDrain(boolean isPlayer) {
+		ALWAYS, // ink storage should be able to be used via both machines and players
+		MACHINE_ONLY, // ink storage should only be drained via machines (block entities)
+		PLAYER_ONLY, // ink storage should only be drained via a player (ink storage trinkets)
+		NEVER; // ink storage should never be drained, only filled (upgradeable trinkets)
+
+		public boolean canDrain(boolean isPlayer) {
 			switch (this) {
 				case NEVER -> {
 					return false;

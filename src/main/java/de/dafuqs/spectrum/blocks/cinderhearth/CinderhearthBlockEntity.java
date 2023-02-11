@@ -88,7 +88,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
 		switch (slot) {
 			case INK_PROVIDER_SLOT_ID -> {
-				return stack.getItem() instanceof InkStorageItem inkStorageItem && (inkStorageItem.getDrainability() == InkStorageItem.Drainability.ALWAYS || inkStorageItem.getDrainability() == InkStorageItem.Drainability.MACHINE_ONLY);
+				return stack.getItem() instanceof InkStorageItem inkStorageItem && (inkStorageItem.getDrainability().canDrain(false));
 			}
 			case EXPERIENCE_STORAGE_ITEM_SLOT_ID -> {
 				return stack.getItem() instanceof ExperienceStorageItem;

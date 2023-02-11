@@ -193,6 +193,20 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 		return false;
 	}
 
+	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		if (!world.isClient) {
+			if (!player.isCreative()) {
+				dropStacks(state, world, pos, null, player, player.getMainHandStack());
+			}
+		}
+
+		super.onBreak(world, pos, state, player);
+	}
+
+	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+		super.afterBreak(world, player, pos, Blocks.AIR.getDefaultState(), blockEntity, stack);
+	}
+
 	enum JadeVinesPlantPart implements StringIdentifiable {
 		BASE,
 		MIDDLE,

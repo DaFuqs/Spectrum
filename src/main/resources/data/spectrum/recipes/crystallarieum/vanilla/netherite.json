@@ -15,7 +15,7 @@
   "catalysts": [
     {
       "ingredient": {
-        "item": "minecraft:blaze_powder"
+        "item": "spectrum:fiery_powder"
       },
       "growth_acceleration_mod": 1.5,
       "ink_consumption_mod": 2.0,
@@ -31,7 +31,7 @@
     },
     {
       "ingredient": {
-        "item": "spectrum:fiery_powder"
+        "item": "minecraft:gold_ingot"
       },
       "growth_acceleration_mod": 16.0,
       "ink_consumption_mod": 2.5,

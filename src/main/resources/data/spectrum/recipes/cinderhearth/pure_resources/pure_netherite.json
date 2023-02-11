@@ -5,11 +5,11 @@
   },
   "results": [
     {
-      "item": "minecraft:netherite_scrap",
+      "item": "minecraft:netherite_ingot",
       "count": 2
     },
     {
-      "item": "minecraft:netherite_scrap",
+      "item": "minecraft:netherite_ingot",
       "count": 1,
       "chance": 0.25
     }

@@ -51,7 +51,7 @@ public class DDConfiguredFeatures {
 							BlockTags.FEATURES_CANNOT_REPLACE,
 							BlockTags.GEODE_INVALID_BLOCKS),
 					new GeodeLayerThicknessConfig(5.0D, 6.0D, 7.0D, 8.0D),
-					new GeodeCrackConfig(0.35D, 4.0D, 4),
+					new GeodeCrackConfig(0.15D, 4.0D, 4),
 					1.0D, 0.1D, true,
 					UniformIntProvider.create(8, 10),
 					UniformIntProvider.create(2, 3),

@@ -1,7 +1,9 @@
 {
   "replace": false,
   "values": [
+    "spectrum:bedrock_bow",
     "spectrum:bedrock_crossbow",
-    "spectrum:bedrock_bow"
+    "spectrum:malachite_crossbow",
+    "spectrum:glass_crest_crossbow"
   ]
 }

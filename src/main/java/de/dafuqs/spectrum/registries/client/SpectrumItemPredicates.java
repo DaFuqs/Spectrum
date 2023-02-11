@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries.client;
 
+import de.dafuqs.spectrum.blocks.present.PresentBlock;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
@@ -10,6 +11,7 @@ import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
 import de.dafuqs.spectrum.items.magic_items.PaintBrushItem;
 import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
 import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
+import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.client.render.model.json.ModelTransformation;
@@ -21,8 +23,10 @@ import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.util.Identifier;
 
+import java.util.Locale;
 import java.util.Optional;
 
 // Vanilla models see: ModelPredicateProviderRegistry
@@ -47,6 +51,8 @@ public class SpectrumItemPredicates {
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerDreamFlayerPredicates(SpectrumItems.DREAMFLAYER);
 		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
+		registerEnchantmentCanvasPrediates(SpectrumItems.ENCHANTMENT_CANVAS);
+		registerPresentPredicates(SpectrumBlocks.PRESENT.asItem());
 	}
 	
 	private static void registerColorPredicate(Item item) {
@@ -56,6 +62,17 @@ public class SpectrumItemPredicates {
 				return 0.0F;
 			}
 			return (1F + color.get().getDyeColor().getId()) / 100F;
+		});
+	}
+	
+	private static void registerPresentPredicates(Item item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("variant"), (itemStack, clientWorld, livingEntity, i) -> {
+			NbtCompound compound = itemStack.getNbt();
+			if(compound == null || !compound.contains("Variant", NbtElement.STRING_TYPE))
+				return 0.0F;
+			
+			PresentBlock.Variant variant = PresentBlock.Variant.valueOf(compound.getString("Variant").toUpperCase(Locale.ROOT));
+			return variant.ordinal() / 10F;
 		});
 	}
 	
@@ -72,7 +89,6 @@ public class SpectrumItemPredicates {
 				return 0.0F;
 			return compound.contains("StoredStack") ? 1.0F : 0.0F;
 		});
-		
 	}
 	
 	private static void registerMoonPhasePredicates(Item item) {
@@ -212,6 +228,16 @@ public class SpectrumItemPredicates {
 				long max = storage.getMaxTotal();
 				return (float) Math.max(0.01, (double) current / (double) max);
 			}
+		});
+	}
+	
+	private static void registerEnchantmentCanvasPrediates(Item item) {
+		FabricModelPredicateProviderRegistry.register(item, new Identifier("bound"), (itemStack, world, livingEntity, i) -> {
+			NbtCompound nbt = itemStack.getNbt();
+			if(nbt != null && nbt.contains("BoundItem", NbtElement.STRING_TYPE)) {
+				return 1;
+			}
+			return 0;
 		});
 	}
 	

@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:generate_ancient_ruins_loot",
+  "display": {
+    "icon": {
+      "item": "minecraft:bedrock"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.enter_wireless_redstone_puzzle_structure.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.enter_wireless_redstone_puzzle_structure.description"
+    }
+  },
+  "criteria": {
+    "code_triggered": {
+      "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:find_ancient_ruins" }
+    }
+  }
+}

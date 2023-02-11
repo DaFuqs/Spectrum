@@ -30,29 +30,29 @@ public class SpectrumContainers {
 	public static Identifier GENERIC_TIER3_3X3;
 	
 	public static void register() {
-		PAINTBRUSH = new Identifier(SpectrumCommon.MOD_ID, "paintbrush");
-		PEDESTAL = new Identifier(SpectrumCommon.MOD_ID, "pedestal");
-		CRAFTING_TABLET = new Identifier(SpectrumCommon.MOD_ID, "crafting_tablet");
-		RESTOCKING_CHEST = new Identifier(SpectrumCommon.MOD_ID, "restocking_chest");
-		BEDROCK_ANVIL = new Identifier(SpectrumCommon.MOD_ID, "bedrock_anvil");
-		PARTICLE_SPAWNER = new Identifier(SpectrumCommon.MOD_ID, "particle_spawner");
-		COMPACTING_CHEST = new Identifier(SpectrumCommon.MOD_ID, "compacting_chest");
-		SUCKING_CHEST = new Identifier(SpectrumCommon.MOD_ID, "sucking_chest");
-		POTION_WORKSHOP = new Identifier(SpectrumCommon.MOD_ID, "potion_workshop");
-		COLOR_PICKER = new Identifier(SpectrumCommon.MOD_ID, "color_picker");
-		CINDERHEARTH = new Identifier(SpectrumCommon.MOD_ID, "cinderhearth");
+		PAINTBRUSH = SpectrumCommon.locate("paintbrush");
+		PEDESTAL = SpectrumCommon.locate("pedestal");
+		CRAFTING_TABLET = SpectrumCommon.locate("crafting_tablet");
+		RESTOCKING_CHEST = SpectrumCommon.locate("restocking_chest");
+		BEDROCK_ANVIL = SpectrumCommon.locate("bedrock_anvil");
+		PARTICLE_SPAWNER = SpectrumCommon.locate("particle_spawner");
+		COMPACTING_CHEST = SpectrumCommon.locate("compacting_chest");
+		SUCKING_CHEST = SpectrumCommon.locate("sucking_chest");
+		POTION_WORKSHOP = SpectrumCommon.locate("potion_workshop");
+		COLOR_PICKER = SpectrumCommon.locate("color_picker");
+		CINDERHEARTH = SpectrumCommon.locate("cinderhearth");
 		
-		GENERIC_TIER1_9x3 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier1_9x3");
-		GENERIC_TIER2_9x3 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier2_9x3");
-		GENERIC_TIER3_9x3 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier3_9x3");
+		GENERIC_TIER1_9x3 = SpectrumCommon.locate("generic_tier1_9x3");
+		GENERIC_TIER2_9x3 = SpectrumCommon.locate("generic_tier2_9x3");
+		GENERIC_TIER3_9x3 = SpectrumCommon.locate("generic_tier3_9x3");
 		
-		GENERIC_TIER1_9x6 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier1_9x6");
-		GENERIC_TIER2_9x6 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier2_9x6");
-		GENERIC_TIER3_9x6 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier3_9x6");
+		GENERIC_TIER1_9x6 = SpectrumCommon.locate("generic_tier1_9x6");
+		GENERIC_TIER2_9x6 = SpectrumCommon.locate("generic_tier2_9x6");
+		GENERIC_TIER3_9x6 = SpectrumCommon.locate("generic_tier3_9x6");
 		
-		GENERIC_TIER1_3X3 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier1_3x3");
-		GENERIC_TIER2_3X3 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier2_3x3");
-		GENERIC_TIER3_3X3 = new Identifier(SpectrumCommon.MOD_ID, "generic_tier3_3x3");
+		GENERIC_TIER1_3X3 = SpectrumCommon.locate("generic_tier1_3x3");
+		GENERIC_TIER2_3X3 = SpectrumCommon.locate("generic_tier2_3x3");
+		GENERIC_TIER3_3X3 = SpectrumCommon.locate("generic_tier3_3x3");
 	}
 	
 }

@@ -33,4 +33,6 @@ public class SpectrumS2CPackets {
 	public static final Identifier INK_COLOR_SELECTED = SpectrumCommon.locate("ink_color_select");
 	public static final Identifier PLAY_INK_EFFECT_PARTICLES = SpectrumCommon.locate("play_ink_effect_particles");
 	public static final Identifier PLAY_PRESENT_OPENING_PARTICLES = SpectrumCommon.locate("play_present_opening_particles");
+	public static final Identifier PLAY_ASCENSION_APPLIED_EFFECTS = SpectrumCommon.locate("play_ascension_applied_effects");
+	public static final Identifier PLAY_DIVINITY_APPLIED_EFFECTS = SpectrumCommon.locate("play_divinity_applied_effects");
 }

@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:pure_quartz"
+  },
+  "results": [
+    {
+      "item": "minecraft:quartz",
+      "count": 4
+    },
+    {
+      "item": "minecraft:quartz",
+      "count": 2,
+      "chance": 0.5
+    }
+  ],
+  "experience": 0.5,
+  "time": 200
+}

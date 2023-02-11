@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BrewingRecipeRegistry.class)
-public class BrewingRecipeRegistryMixin {
+public abstract class BrewingRecipeRegistryMixin {
 	
 	@Inject(method = "hasRecipe(Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)Z", at = @At("HEAD"), cancellable = true)
 	private static void spectrum$disallowPigmentPotionInBrewingStand(ItemStack input, ItemStack ingredient, CallbackInfoReturnable<Boolean> cir) {

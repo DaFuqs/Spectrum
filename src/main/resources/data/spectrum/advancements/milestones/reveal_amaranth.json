@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "collected_amaranth_grains": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": [ "spectrum:amaranth_grains" ] }]
+      }
+    },
+    "collected_vegetal": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_vegetal" }
+    }
+  }
+}

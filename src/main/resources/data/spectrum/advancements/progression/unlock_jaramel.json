@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "unlocked_cinderhearth": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_cinderhearth" }
+    },
+    "collected_jade_jelly": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_jade_jelly" }
+    }
+  }
+}

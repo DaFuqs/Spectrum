@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.EndermanEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +31,11 @@ public class DisarmingEnchantment extends SpectrumEnchantment {
 			EquipmentSlot slot = EquipmentSlot.values()[randomSlot];
 			ItemStack equippedStack = player.getEquippedStack(slot);
 			if (!equippedStack.isEmpty()) {
-				player.dropStack(equippedStack);
+				ItemEntity itemEntity = new ItemEntity(player.world, player.getX(), player.getY(), player.getZ(), equippedStack);
+				itemEntity.setVelocity(player.world.random.nextGaussian() * 0.05000000074505806, player.world.random.nextGaussian() * 0.05000000074505806 + 0.20000000298023224, player.world.random.nextGaussian() * 0.05000000074505806);
+				itemEntity.setPickupDelay(120);
+				player.world.spawnEntity(itemEntity);
+				
 				player.equipStack(slot, ItemStack.EMPTY);
 				player.world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 				break;

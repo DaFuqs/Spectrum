@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.azure_dike.AzureDikeComponent;
-import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
+import de.dafuqs.spectrum.cca.azure_dike.AzureDikeComponent;
+import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;

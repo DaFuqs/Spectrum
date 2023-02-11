@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class SuckingChestScreen extends HandledScreen<SuckingChestScreenHandler> {
 	
-	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/black_hole_chest.png");
+	public static final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/container/black_hole_chest.png");
 	
 	public SuckingChestScreen(SuckingChestScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:pure_coal"
+  },
+  "result": "minecraft:coal",
+  "experience": 0.5,
+  "cookingtime": 100
+}

@@ -13,7 +13,6 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 
 import java.util.UUID;
 
@@ -23,7 +22,7 @@ public class SevenLeagueBootsItem extends SpectrumTrinketItem implements Enchant
 	private static final EntityAttributeModifier STEP_BOOST_MODIFIER = new EntityAttributeModifier(STEP_BOOST_UUID, "spectrum:speed_boots", 0.75, EntityAttributeModifier.Operation.ADDITION);
 	
 	public SevenLeagueBootsItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_seven_league_boots"));
+		super(settings, SpectrumCommon.locate("progression/unlock_seven_league_boots"));
 	}
 	
 	@Override

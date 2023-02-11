@@ -1,7 +1,12 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.entity.render.EggLayingWoolyPigEntityRenderer;
 import de.dafuqs.spectrum.helpers.Support;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.SkullBlock;
@@ -17,10 +22,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.function.MaterialPredicate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Locale;
 
 public class SpectrumSkullBlock extends SkullBlock {
 	
@@ -56,7 +64,7 @@ public class SpectrumSkullBlock extends SkullBlock {
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.onPlaced(world, pos, state, placer, itemStack);
 		
-		// Trigger advancement if player builds a wither structure with using wither skulls
+		// Trigger advancement if player builds a wither structure using wither skulls instead of wither skeleton skulls
 		if (getSkullType().equals(SpectrumSkullBlockType.WITHER) && placer instanceof ServerPlayerEntity serverPlayerEntity) {
 			if (pos.getY() >= world.getBottomY()) {
 				BlockPattern blockPattern = getWitherSkullPattern();
@@ -68,7 +76,6 @@ public class SpectrumSkullBlock extends SkullBlock {
 		}
 	}
 	
-	// TODO: differentiate parrot / fox / ... colors
 	public enum SpectrumSkullBlockType implements SkullBlock.SkullType {
 		AXOLOTL_BLUE(EntityType.AXOLOTL),
 		AXOLOTL_BROWN(EntityType.AXOLOTL),
@@ -170,12 +177,31 @@ public class SpectrumSkullBlock extends SkullBlock {
 		WOLF(EntityType.WOLF),
 		ZOGLIN(EntityType.ZOGLIN),
 		ZOMBIE_VILLAGER(EntityType.ZOMBIE_VILLAGER),
-		ZOMBIFIED_PIGLIN(EntityType.ZOMBIFIED_PIGLIN);
+		ZOMBIFIED_PIGLIN(EntityType.ZOMBIFIED_PIGLIN),
+		
+		EGG_LAYING_WOOLY_PIG(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG);
 		
 		public final EntityType entityType;
 		
 		SpectrumSkullBlockType(EntityType entityType) {
 			this.entityType = entityType;
+		}
+		
+		public SkullType getModelType() {
+			if(this == EGG_LAYING_WOOLY_PIG) {
+				return EGG_LAYING_WOOLY_PIG;
+			} else {
+				return Type.PLAYER;
+			}
+		}
+		
+		@Environment(EnvType.CLIENT)
+		public Identifier getTextureIdentifier() {
+			if(this == EGG_LAYING_WOOLY_PIG) {
+				return EggLayingWoolyPigEntityRenderer.TEXTURE;
+			} else {
+				return SpectrumCommon.locate("textures/entity/mob_head/" + this.toString().toLowerCase(Locale.ROOT) + ".png");
+			}
 		}
 		
 	}

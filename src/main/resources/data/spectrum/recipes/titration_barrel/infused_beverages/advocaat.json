@@ -1,0 +1,101 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat",
+      "count": 4
+    },
+    {
+      "item": "spectrum:clotted_cream",
+      "count": 1
+    },
+    {
+      "item": "minecraft:egg",
+      "count": 2
+    }
+  ],
+  "min_fermentation_time_hours": 24,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.25,
+    "effects": [
+      {
+        "id": "spectrum:nourishing",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 20,
+            "potency": 1
+          },
+          {
+            "min_alc": 25,
+            "potency": 2
+          },
+          {
+            "min_alc": 30,
+            "potency": 3
+          }
+        ]
+      },
+      {
+        "id": "minecraft:fire_resistance",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 25,
+            "min_thickness": 1.25
+          }
+        ]
+      },
+      {
+        "id": "minecraft:saturation",
+        "base_duration": 8,
+        "potency": [
+          {
+            "min_alc": 28
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:blindness",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 30
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"advocaat\", Color: 15191723 }"
+  },
+  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+}

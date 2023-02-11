@@ -65,7 +65,7 @@ public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, F
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_mermaids_brush");
+		return SpectrumCommon.locate("milestones/reveal_mermaids_brush");
 	}
 	
 	@Override
@@ -122,6 +122,7 @@ public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, F
 		builder.add(AGE, IN_LIQUID_CRYSTAL);
 	}
 	
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		int age = state.get(AGE);
 		if (age == 7) {

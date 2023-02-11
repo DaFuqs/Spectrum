@@ -11,9 +11,9 @@
     },
     "hidden": true
   },
-  "parent": "spectrum:enter_ancient_ruins",
+  "parent": "spectrum:find_ancient_ruins",
   "criteria": {
-    "open_ancient_ruins_treasure_chest": {
+    "opened_ancient_ruins_main_treasure_chest": {
       "trigger": "minecraft:player_generates_container_loot",
       "conditions": {
         "player": [
@@ -30,9 +30,53 @@
         "loot_table": "spectrum:chests/ancient_ruins_main"
       }
     },
+    "opened_color_combinations_cmy_treasure_chest": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "feature": "spectrum:ancient_ruins"
+              }
+            }
+          }
+        ],
+        "loot_table": "spectrum:chests/color_combinations_cmy"
+      }
+    },
+    "opened_wireless_redstone_main_treasure_chest": {
+      "trigger": "minecraft:player_generates_container_loot",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "feature": "spectrum:ancient_ruins"
+              }
+            }
+          }
+        ],
+        "loot_table": "spectrum:chests/wireless_redstone_main"
+      }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:enter_ancient_ruins" }
+      "conditions": { "advancement_identifier": "spectrum:find_ancient_ruins" }
     }
-  }
+  },
+  "requirements": [
+    [
+      "opened_ancient_ruins_main_treasure_chest",
+      "opened_wireless_redstone_main_treasure_chest",
+      "opened_color_combinations_cmy_treasure_chest"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

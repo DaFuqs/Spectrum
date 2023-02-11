@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 
 public class CinderhearthScreen extends HandledScreen<CinderhearthScreenHandler> {
 	
-	protected final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/cinderhearth.png");
+	protected final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/container/cinderhearth.png");
 	
 	protected InkMeterWidget inkMeterWidget;
 	

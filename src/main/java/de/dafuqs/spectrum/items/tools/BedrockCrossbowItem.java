@@ -24,7 +24,7 @@ public class BedrockCrossbowItem extends CrossbowItem implements Preenchanted, A
 	
 	@Override
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
-		return Map.of(Enchantments.QUICK_CHARGE, 3);
+		return Map.of(Enchantments.QUICK_CHARGE, 4);
 	}
 	
 	@Override

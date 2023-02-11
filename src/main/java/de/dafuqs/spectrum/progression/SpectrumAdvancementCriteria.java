@@ -31,6 +31,11 @@ public class SpectrumAdvancementCriteria {
 	public static CinderhearthSmeltingCriterion CINDERHEARTH_SMELTING;
 	public static InkProjectileKillingCriterion KILLED_BY_INK_PROJECTILE;
 	public static SpectrumFishingRodHookedCriterion FISHING_ROD_HOOKED;
+	public static TitrationBarrelTappingCriterion TITRATION_BARREL_TAPPING;
+	public static ConfirmationButtonPressedCriterion CONFIRMATION_BUTTON_PRESSED;
+	public static BloodOrchidPluckingCriterion BLOOD_ORCHID_PLUCKING;
+	public static DivinityTickCriterion DIVINITY_TICK;
+	public static ConsumedTeaWithSconeCriterion CONSUMED_TEA_WITH_SCONE;
 	
 	public static void register() {
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
@@ -59,6 +64,11 @@ public class SpectrumAdvancementCriteria {
 		CINDERHEARTH_SMELTING = CriteriaAccessor.callRegister(new CinderhearthSmeltingCriterion());
 		KILLED_BY_INK_PROJECTILE = CriteriaAccessor.callRegister(new InkProjectileKillingCriterion());
 		FISHING_ROD_HOOKED = CriteriaAccessor.callRegister(new SpectrumFishingRodHookedCriterion());
+		TITRATION_BARREL_TAPPING = CriteriaAccessor.callRegister(new TitrationBarrelTappingCriterion());
+		CONFIRMATION_BUTTON_PRESSED = CriteriaAccessor.callRegister(new ConfirmationButtonPressedCriterion());
+		BLOOD_ORCHID_PLUCKING = CriteriaAccessor.callRegister(new BloodOrchidPluckingCriterion());
+		DIVINITY_TICK = CriteriaAccessor.callRegister(new DivinityTickCriterion());
+		CONSUMED_TEA_WITH_SCONE = CriteriaAccessor.callRegister(new ConsumedTeaWithSconeCriterion());
 	}
 	
 }

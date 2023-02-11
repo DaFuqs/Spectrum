@@ -109,9 +109,8 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine {
 		if (hasRandomTicks(state)) {
 			// die in sunlight, or then the bulb / plant was destroyed
 			int age = getAge(world, pos, state);
-			if (JadeVine.doesDie(world, pos) || age < 0) {
-				setDead(world, pos);
-				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+			if (JadeVine.isExposedToSunlight(world, pos) || age < 0) {
+				exposedToSunlight(world, pos);
 			} else if (canGrow(world, pos)) {
 				if (world.random.nextBoolean() && tryGrowUpwards(state, world, pos)) {
 					rememberGrownTime(world, pos);
@@ -142,6 +141,18 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine {
 					}
 					rememberGrownTime(world, pos);
 				}
+			}
+		}
+	}
+	
+	private void exposedToSunlight(ServerWorld world, BlockPos pos) {
+		BlockEntity blockEntity = world.getBlockEntity(getLowestRootsPos(world, pos));
+		if (blockEntity instanceof JadeVineRootsBlockEntity jadeVineRootsBlockEntity) {
+			if (jadeVineRootsBlockEntity.wasExposedToSunlight()) {
+				setDead(world, pos);
+				world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 0.5F, 0.9F + 0.2F * world.random.nextFloat() * 0.2F);
+			} else {
+				jadeVineRootsBlockEntity.setExposedToSunlight(true);
 			}
 		}
 	}

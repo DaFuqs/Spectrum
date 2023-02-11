@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum;
 
 import com.google.common.collect.ImmutableMap;
-import de.dafuqs.revelationary.RevelationDataLoader;
 import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
 import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
 import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
@@ -9,9 +8,9 @@ import de.dafuqs.spectrum.config.SpectrumConfig;
 import de.dafuqs.spectrum.data_loaders.EntityFishingDataLoader;
 import de.dafuqs.spectrum.data_loaders.ResonanceDropsDataLoader;
 import de.dafuqs.spectrum.deeper_down.DDDimension;
-import de.dafuqs.spectrum.enchantments.ResonanceEnchantment;
 import de.dafuqs.spectrum.energy.color.InkColors;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
+import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
 import de.dafuqs.spectrum.events.SpectrumGameEvents;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
@@ -40,8 +39,9 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.EntitySleepEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.block.Block;
@@ -78,7 +78,6 @@ public class SpectrumCommon implements ModInitializer {
 	public static SpectrumConfig CONFIG;
 	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
 	public static MinecraftServer minecraftServer;
-	private static boolean serverLoadEventFired = false;
 	/**
 	 * Caches the luminance states from fluids as int
 	 * for blocks that react to the light level of fluids
@@ -122,6 +121,9 @@ public class SpectrumCommon implements ModInitializer {
 		ColorRegistry.registerColorRegistries();
 		
 		// Register ALL the stuff
+		logInfo("Registering Status Effects...");
+		SpectrumStatusEffects.register();
+		SpectrumStatusEffectTags.register();
 		logInfo("Registering Advancement Criteria...");
 		SpectrumAdvancementCriteria.register();
 		logInfo("Registering Particle Types...");
@@ -168,9 +170,6 @@ public class SpectrumCommon implements ModInitializer {
 		logInfo("Registering Screen Handler Types...");
 		SpectrumScreenHandlerTypes.register();
 		
-		// Status Effects
-		logInfo("Registering Status Effects...");
-		SpectrumStatusEffects.register();
 		
 		// Default enchantments for some items
 		logInfo("Registering Default Item Stack Damage Immunities...");
@@ -230,20 +229,27 @@ public class SpectrumCommon implements ModInitializer {
 				if (mainHandStack.isOf(SpectrumItems.EXCHANGE_STAFF)) {
 					Optional<Block> blockTarget = ExchangeStaffItem.getBlockTarget(player.getMainHandStack());
 					blockTarget.ifPresent(block -> ExchangeStaffItem.exchange(world, pos, player, block, player.getMainHandStack(), true));
-					return ActionResult.CONSUME;
+					return ActionResult.SUCCESS;
 				} else if (mainHandStack.isOf(SpectrumItems.RADIANCE_STAFF)) {
 					if (!world.getBlockState(pos).isOf(SpectrumBlocks.WAND_LIGHT_BLOCK)) { // those get destroyed instead
 						BlockPos targetPos = pos.offset(direction);
 						if (((RadianceStaffItem) mainHandStack.getItem()).placeLight(world, targetPos, (ServerPlayerEntity) player)) {
+							player.getItemCooldownManager().set(SpectrumItems.RADIANCE_STAFF, RadianceStaffItem.COOLDOWN_DURATION_TICKS);
 							RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayerEntity) player, world.random.nextInt(5), world.random.nextInt(5));
 						} else {
 							RadianceStaffItem.playDenySound(world, player);
 						}
-						return ActionResult.CONSUME;
+						return ActionResult.SUCCESS;
 					}
 				}
 			}
 			return ActionResult.PASS;
+		});
+		
+		PlayerBlockBreakEvents.AFTER.register((world, player, pos, state, blockEntity) -> {
+			if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+				SpectrumAdvancementCriteria.BLOCK_BROKEN.trigger(serverPlayerEntity, state);
+			}
 		});
 		
 		ServerLifecycleEvents.SERVER_STARTING.register(server -> {
@@ -251,23 +257,31 @@ public class SpectrumCommon implements ModInitializer {
 			SpectrumCommon.minecraftServer = server;
 		});
 		
-		ServerWorldEvents.LOAD.register((minecraftServer, serverWorld) -> {
-			SpectrumCommon.minecraftServer = minecraftServer;
-			if(!serverLoadEventFired) {
-				SpectrumCommon.logInfo("Querying fluid luminance...");
-				for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
-					Block block = it.next();
-					if (block instanceof FluidBlock fluidBlock) {
-						fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
+		ServerLifecycleEvents.SERVER_STOPPED.register(server -> SpectrumCommon.minecraftServer = null);
+		
+		ServerTickEvents.END_WORLD_TICK.register(world -> {
+			if (world.getTime() % 100 == 0) {
+				long timeOfDay = world.getTimeOfDay() % 24000;
+				if (timeOfDay > 13000 && timeOfDay < 22000) { // 90 chances in a night
+					if (SpectrumCommon.CONFIG.ShootingStarWorlds.contains(world.getRegistryKey().getValue().toString())) {
+						ShootingStarEntity.doShootingStarSpawnsForPlayers(world);
 					}
 				}
-				
-				SpectrumCommon.logInfo("Injecting additional recipes...");
-				FirestarterMobBlock.addBlockSmeltingRecipes(minecraftServer.getRecipeManager());
-				injectEnchantmentUpgradeRecipes(minecraftServer);
-				
-				serverLoadEventFired = true;
 			}
+		});
+		
+		ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
+			SpectrumCommon.logInfo("Querying fluid luminance...");
+			for (Iterator<Block> it = Registry.BLOCK.stream().iterator(); it.hasNext(); ) {
+				Block block = it.next();
+				if (block instanceof FluidBlock fluidBlock) {
+					fluidLuminance.put(fluidBlock.getFluidState(fluidBlock.getDefaultState()).getFluid(), fluidBlock.getDefaultState().getLuminance());
+				}
+			}
+			
+			SpectrumCommon.logInfo("Injecting additional recipes...");
+			FirestarterMobBlock.addBlockSmeltingRecipes(server.getRecipeManager());
+			injectEnchantmentUpgradeRecipes(server);
 		});
 		
 		EntitySleepEvents.STOP_SLEEPING.register((entity, sleepingPos) -> {
@@ -286,7 +300,7 @@ public class SpectrumCommon implements ModInitializer {
 		
 		logInfo("Registering RecipeCache reload listener");
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			private final Identifier id = new Identifier(SpectrumCommon.MOD_ID, "compacting_cache_clearer");
+			private final Identifier id = SpectrumCommon.locate("compacting_cache_clearer");
 			
 			@Override
 			public void reload(ResourceManager manager) {
@@ -326,7 +340,6 @@ public class SpectrumCommon implements ModInitializer {
 			
 			minecraftServer.getRecipeManager().setRecipes(newList);
 		}
-		EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject.clear();
 	}
 	
 }

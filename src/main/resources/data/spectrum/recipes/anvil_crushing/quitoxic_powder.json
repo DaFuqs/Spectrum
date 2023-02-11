@@ -11,5 +11,6 @@
   },
   "particleEffectIdentifier": "witch",
   "particleCount": 10,
-  "soundEventIdentifier": "block.grass.break"
+  "soundEventIdentifier": "block.grass.break",
+  "required_advancement": "spectrum:collect_quitoxic_reeds"
 }

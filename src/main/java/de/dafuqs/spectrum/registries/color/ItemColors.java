@@ -61,6 +61,7 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.GLASS_BOTTLE, DyeColor.LIGHT_GRAY);
 		put(Items.EMERALD, DyeColor.LIME);
 		put(Items.DIAMOND, DyeColor.LIGHT_BLUE);
+		put(Items.NETHER_STAR, DyeColor.BLACK);
 		
 		put(Items.NETHERITE_SCRAP, DyeColor.BROWN);
 		put(Items.NETHERITE_INGOT, DyeColor.BROWN);

@@ -5,16 +5,18 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.conditional.ColoredLeavesBlock;
 import de.dafuqs.spectrum.blocks.conditional.ColoredLogBlock;
 import de.dafuqs.spectrum.blocks.conditional.MermaidsBrushBlock;
+import de.dafuqs.spectrum.registries.SpectrumBiomeTags;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
 import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.tag.BiomeTags;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
@@ -27,7 +29,6 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
@@ -43,10 +44,8 @@ import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Predicate;
 
 import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;
 
@@ -123,10 +122,10 @@ public class SpectrumConfiguredFeatures {
 				SquarePlacementModifier.of() // spread through the chunk
 		);
 		
-		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, sparklestoneOreIdentifier));
-		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, azuriteOreIdentifier));
-		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, scarletOreIdentifier));
-		BiomeModifications.addFeature(BiomeSelectors.foundInTheEnd(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, paleturOreIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, sparklestoneOreIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, azuriteOreIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_NETHER), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, scarletOreIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_THE_END), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, paleturOreIdentifier));
 	}
 	
 	private static void registerColoredTree(@NotNull DyeColor dyeColor) {
@@ -200,20 +199,7 @@ public class SpectrumConfiguredFeatures {
 				SquarePlacementModifier.of()
 		);
 		
-		Predicate<BiomeSelectionContext> treeBiomes = BiomeSelectors.categories(
-				Biome.Category.PLAINS,
-				Biome.Category.EXTREME_HILLS,
-				Biome.Category.JUNGLE,
-				Biome.Category.FOREST,
-				Biome.Category.SWAMP,
-				Biome.Category.MESA,
-				Biome.Category.MOUNTAIN,
-				Biome.Category.DESERT,
-				Biome.Category.ICY,
-				Biome.Category.SAVANNA,
-				Biome.Category.TAIGA);
-		
-		BiomeModifications.addFeature(treeBiomes, GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.COLORED_TREES_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
 	}
 	
 	private static void registerGeodes() {
@@ -287,8 +273,8 @@ public class SpectrumConfiguredFeatures {
 				BiomePlacementModifier.of()
 		);
 		
-		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, CITRINE_GEODE_IDENTIFIER));
-		BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, TOPAZ_GEODE_IDENTIFIER));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, CITRINE_GEODE_IDENTIFIER));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, TOPAZ_GEODE_IDENTIFIER));
 	}
 	
 	private static void registerPlants() {
@@ -306,9 +292,9 @@ public class SpectrumConfiguredFeatures {
 				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
 		);
 
-		BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.IS_OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
 		
-		// QUITOXIC REED
+		// QUITOXIC REEDS
 		Identifier quitoxicReedsIdentifier = SpectrumCommon.locate("quitoxic_reeds");
 		registerConfiguredAndPlacedFeature(quitoxicReedsIdentifier,
 				Feature.BLOCK_COLUMN,
@@ -320,11 +306,7 @@ public class SpectrumConfiguredFeatures {
 				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
 		);
 		
-		Collection<RegistryKey<Biome>> swamps = new ArrayList<>();
-		for (String biomeString : SpectrumCommon.CONFIG.QuitoxicReedsGenerationBiomes) {
-			swamps.add(RegistryKey.of(Registry.BIOME_KEY, new Identifier(biomeString)));
-		}
-		BiomeModifications.addFeature(BiomeSelectors.includeByKey(swamps), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, quitoxicReedsIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.QUITOXIC_REEDS_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, quitoxicReedsIdentifier));
 		
 		// CLOVER
 		Identifier cloversIdentifier = SpectrumCommon.locate("clovers");
@@ -341,7 +323,7 @@ public class SpectrumConfiguredFeatures {
 				PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
 				BiomePlacementModifier.of()
 		);
-		BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, cloversIdentifier));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, cloversIdentifier));
 	}
 	
 	public static final class Rules {

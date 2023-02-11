@@ -21,7 +21,7 @@ import java.util.List;
 
 public class PageCinderhearthSmelting extends PageDoubleRecipeRegistry<CinderhearthRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/cinderhearth.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/cinderhearth.png");
 	
 	transient List<BookTextRenderer> chanceTextRenders = new ArrayList<>();
 	

@@ -1,0 +1,12 @@
+{
+  "type": "spectrum:underground_structures",
+  "config": {
+    "start_pool": "spectrum:pedestal_ruins_stone",
+    "min_y": 10,
+    "max_y": 64,
+    "size": 1
+  },
+  "biomes": "#spectrum:has_structure/underground_structures",
+  "adapt_noise": false,
+  "spawn_overrides": { }
+}

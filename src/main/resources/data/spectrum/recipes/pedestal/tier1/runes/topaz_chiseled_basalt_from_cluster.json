@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "topaz_runes",
+  "time": 80,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 0,
+  "cyan": 4,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "WWW",
+    "WXW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:polished_basalt"
+    },
+    "X": {
+      "item": "spectrum:topaz_cluster"
+    }
+  },
+  "result": {
+    "item": "spectrum:topaz_chiseled_basalt",
+    "count": 4
+  },
+  "required_advancement": "spectrum:create_onyx_shard"
+}

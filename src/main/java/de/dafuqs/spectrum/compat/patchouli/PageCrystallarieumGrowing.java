@@ -21,7 +21,7 @@ import java.util.Iterator;
 
 public class PageCrystallarieumGrowing extends PageDoubleRecipeRegistry<CrystallarieumRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/patchouli/crystallarieum.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
 	private static BookTextRenderer textRenderer;
 	
 	public PageCrystallarieumGrowing() {

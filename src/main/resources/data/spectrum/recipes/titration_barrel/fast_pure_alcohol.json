@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "tag": "spectrum:drinkable_spirits",
+      "count": 1
+    },
+	{
+      "item": "minecraft:blaze_powder",
+      "count": 4
+    },
+	{
+      "item": "spectrum:incandescent_amalgam",
+      "count": 2
+    }
+  ],
+  "fluid": "minecraft:water",
+  "min_fermentation_time_hours": 48,
+  "result": {
+    "item": "spectrum:pure_alcohol"
+  },
+  "required_advancement": "spectrum:progression/unlock_incandescent_amalgam"
+}

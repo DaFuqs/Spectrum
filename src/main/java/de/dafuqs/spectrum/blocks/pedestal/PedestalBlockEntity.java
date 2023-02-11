@@ -63,7 +63,7 @@ import vazkii.patchouli.api.IMultiblock;
 
 import java.util.*;
 
-public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, SidedInventory, ExtendedScreenHandlerFactory {
+public class PedestalBlockEntity extends LockableContainerBlockEntity implements MultiblockCrafter, RecipeInputProvider, SidedInventory, ExtendedScreenHandlerFactory, Upgradeable {
 	
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
@@ -376,38 +376,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	
 	private static boolean craftPedestalRecipe(PedestalBlockEntity pedestalBlockEntity, @Nullable PedestalCraftingRecipe recipe, DefaultedList<ItemStack> inventory, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
-			
-			// -1 for all crafting inputs
-			for (int i = 0; i < 9; i++) {
-				ItemStack itemStack = inventory.get(i);
-				if (!itemStack.isEmpty()) {
-					Item recipeReminderItem = recipe.skipRecipeRemainders() ? null : itemStack.getItem().getRecipeRemainder();
-					if (recipeReminderItem == null) {
-						itemStack.decrement(1);
-					} else {
-						if (inventory.get(i).getCount() == 1) {
-							inventory.set(i, new ItemStack(recipeReminderItem, 1));
-						} else {
-							inventory.get(i).decrement(1);
-							
-							ItemStack remainderStack = recipeReminderItem.getDefaultStack();
-							ItemEntity itemEntity = new ItemEntity(pedestalBlockEntity.world, pedestalBlockEntity.pos.getX() + 0.5, pedestalBlockEntity.pos.getY() + 1, pedestalBlockEntity.pos.getZ() + 0.5, remainderStack);
-							itemEntity.addVelocity(0, 0.05, 0);
-							pedestalBlockEntity.world.spawnEntity(itemEntity);
-						}
-					}
-				}
-			}
-			
-			// -X for all the pigment inputs
-			for (BuiltinGemstoneColor gemstoneColor : BuiltinGemstoneColor.values()) {
-				double efficiencyModifier = pedestalBlockEntity.upgrades.get(UpgradeType.EFFICIENCY);
-				int gemstonePowderAmount = recipe.getGemstonePowderAmount(gemstoneColor);
-				int gemstonePowderAmountAfterMod = Support.getIntFromDecimalWithChance(gemstonePowderAmount / efficiencyModifier, pedestalBlockEntity.world.random);
-				pedestalBlockEntity.inventory.get(getSlotForGemstonePowder(gemstoneColor)).decrement(gemstonePowderAmountAfterMod);
-			}
-			
-			ItemStack recipeOutput = recipe.getOutput();
+			ItemStack recipeOutput = recipe.craft(pedestalBlockEntity);
 			
 			// if it was a recipe to upgrade the pedestal itself
 			// => upgrade
@@ -429,9 +398,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				// Not an upgrade recipe => Add output to output slot
 				ItemStack existingOutput = inventory.get(OUTPUT_SLOT_ID);
 				if (existingOutput.isEmpty()) {
-					ItemStack resultStack = recipeOutput.copy();
-					resultStack.setCount(Math.min(existingOutput.getMaxCount(), resultAmountAfterMod));
-					inventory.set(OUTPUT_SLOT_ID, resultStack);
+					recipeOutput.setCount(Math.min(existingOutput.getMaxCount(), resultAmountAfterMod));
+					inventory.set(OUTPUT_SLOT_ID, recipeOutput);
 				} else {
 					// protection against stacks > max stack size
 					int finalAmount = Math.min(existingOutput.getMaxCount(), existingOutput.getCount() + resultAmountAfterMod);
@@ -672,6 +640,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			}
 			
 			ItemStack recipeOutput = recipe.getOutput();
+			PlayerEntity player = getOwnerIfOnline();
+			if(player != null) {
+				recipeOutput.onCraft(this.world, player, recipeOutput.getCount());
+			}
+			
 			ItemStack existingOutput = defaultedList.get(OUTPUT_SLOT_ID);
 			if (existingOutput.isEmpty()) {
 				defaultedList.set(OUTPUT_SLOT_ID, recipeOutput.copy());
@@ -860,6 +833,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public void calculateUpgrades() {
 		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 3, 2, this.ownerUUID);
 		this.markDirty();
+	}
+	
+	@Override
+	public float getUpgradeValue(UpgradeType upgradeType) {
+		return this.upgrades.get(upgradeType);
 	}
 	
 	@Override

@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "group": "demon_tea",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "color": 10027008,
+  "ingredient1": {
+    "item": "spectrum:jade_vine_petals"
+  },
+  "ingredient2": {
+    "item": "spectrum:bloodboil_syrup"
+  },
+  "ingredient3": {
+    "tag": "c:milk"
+  },
+  "result": {
+    "item": "spectrum:demon_tea",
+    "nbt": "{Milk:1b}"
+  },
+  "required_advancement": "spectrum:progression/unlock_demon_tea"
+}

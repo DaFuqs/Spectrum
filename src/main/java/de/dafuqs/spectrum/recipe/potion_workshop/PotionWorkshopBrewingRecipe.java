@@ -16,7 +16,6 @@ import net.minecraft.potion.Potions;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
@@ -54,8 +53,12 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	protected ItemStack cachedOutput;
 	
-	public PotionWorkshopBrewingRecipe(Identifier id, String group, int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect, int baseDurationTicks, float potencyModifier, int color, boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes, Identifier requiredAdvancementIdentifier) {
-		super(id, group, craftingTime, color, ingredient1, ingredient2, ingredient3, requiredAdvancementIdentifier);
+	public PotionWorkshopBrewingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
+	                                   int craftingTime, Ingredient ingredient1, Ingredient ingredient2, Ingredient ingredient3, StatusEffect statusEffect,
+	                                   int baseDurationTicks, float potencyModifier, int color,
+	                                   boolean applicableToPotions, boolean applicableToTippedArrows, boolean applicableToPotionFillabes) {
+		
+		super(id, group, secret, requiredAdvancementIdentifier, craftingTime, color, ingredient1, ingredient2, ingredient3);
 		this.statusEffect = statusEffect;
 		this.baseDurationTicks = baseDurationTicks;
 		this.potencyModifier = potencyModifier;
@@ -77,7 +80,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			}
 		}
 		
-		registerInToastManager(SpectrumRecipeTypes.POTION_WORKSHOP_BREWING, this);
+		registerInToastManager(getType(), this);
 	}
 	
 	@Override
@@ -418,6 +421,11 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	public StatusEffect getStatusEffect() {
 		return this.statusEffect;
+	}
+	
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.POTION_WORKSHOP_BREWING_ID;
 	}
 	
 }

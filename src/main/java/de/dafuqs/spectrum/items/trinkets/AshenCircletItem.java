@@ -18,7 +18,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -35,7 +34,7 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	public static final double LAVA_VIEW_DISTANCE_MOD = 24.0;
 	
 	public AshenCircletItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_ashen_circlet"));
+		super(settings, SpectrumCommon.locate("progression/unlock_ashen_circlet"));
 	}
 	
 	public static long getCooldownTicks(@NotNull ItemStack ashenCircletStack, @NotNull World world) {

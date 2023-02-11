@@ -25,6 +25,7 @@ import net.minecraft.resource.ResourceType;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockRenderView;
 
@@ -35,12 +36,17 @@ public class SpectrumFluids {
 	// LIQUID CRYSTAL
 	public static final FlowableFluid LIQUID_CRYSTAL = new LiquidCrystalFluid.StillLiquidCrystal();
 	public static final FlowableFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.FlowingLiquidCrystal();
+	public static final Vec3f LIQUID_CRYSTAL_COLOR = new Vec3f(0.7f, 0.67f, 0.81f);
+	
 	// MUD
 	public static final FlowableFluid MUD = new MudFluid.StillMud();
 	public static final FlowableFluid FLOWING_MUD = new MudFluid.FlowingMud();
+	public static final Vec3f MUD_COLOR = new Vec3f(0.26f, 0.14f, 0.01f);
+	
 	// MIDNIGHT SOLUTION
 	public static final FlowableFluid MIDNIGHT_SOLUTION = new MidnightSolutionFluid.StillMidnightSolution();
 	public static final FlowableFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.FlowingMidnightSolution();
+	public static final Vec3f MIDNIGHT_SOLUTION_COLOR = new Vec3f(0.07f, 0.07f, 0.2f);
 	
 	private static void registerFluid(String name, Fluid fluid, DyeColor dyeColor) {
 		Registry.register(Registry.FLUID, SpectrumCommon.locate(name), fluid);

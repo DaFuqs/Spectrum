@@ -1,8 +1,8 @@
 {
   "textures": [
-    "minecraft:splash_0",
-    "minecraft:splash_1",
-    "minecraft:splash_2",
-    "minecraft:splash_3"
+    "spectrum:lava_splash_0",
+    "spectrum:lava_splash_1",
+    "spectrum:lava_splash_2",
+    "spectrum:lava_splash_3"
   ]
 }

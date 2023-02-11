@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.blocks.spirit_instiller;
 
+import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
 import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.decoration.GemstoneChimeBlock;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
@@ -10,7 +10,7 @@ import de.dafuqs.spectrum.interfaces.PlayerOwned;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
+import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.registries.color.ItemColors;
@@ -18,17 +18,14 @@ import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -40,12 +37,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class SpiritInstillerBlockEntity extends BlockEntity implements MultiblockCrafter, Inventory {
+public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity implements MultiblockCrafter {
 	
+	protected static final int INVENTORY_SIZE = 1;
 	public static final List<Vec3i> itemBowlOffsetsHorizontal = new ArrayList<>() {{
 		add(new Vec3i(0, 0, 2));
 		add(new Vec3i(0, 0, -2));
@@ -55,21 +52,19 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		add(new Vec3i(2, 0, 0));
 		add(new Vec3i(-2, 0, 0));
 	}};
+	
 	private final Inventory autoCraftingInventory; // 0: instiller stack; 1-2: item bowl stacks
-	protected int INVENTORY_SIZE = 1;
-	protected SimpleInventory inventory;
-	protected boolean inventoryChanged;
+	private boolean inventoryChanged;
 	private UUID ownerUUID;
 	private Map<UpgradeType, Float> upgrades;
 	private BlockRotation multiblockRotation = BlockRotation.NONE;
-	private ISpiritInstillerRecipe currentRecipe;
+	private SpiritInstillerRecipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
 	private boolean canCraft;
 	
 	public SpiritInstillerBlockEntity(BlockPos pos, BlockState state) {
-		super(SpectrumBlockEntities.SPIRIT_INSTILLER, pos, state);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
+		super(SpectrumBlockEntities.SPIRIT_INSTILLER, pos, state, INVENTORY_SIZE);
 		this.autoCraftingInventory = new SimpleInventory(INVENTORY_SIZE + 2); // 2 item bowls
 	}
 	
@@ -139,24 +134,24 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		spiritInstillerBlockEntity.craftingTime = 0;
 		spiritInstillerBlockEntity.currentRecipe = null;
 		
-		ItemStack instillerStack = spiritInstillerBlockEntity.inventory.getStack(0);
+		ItemStack instillerStack = spiritInstillerBlockEntity.getStack(0);
 		if (!instillerStack.isEmpty()) {
 			spiritInstillerBlockEntity.autoCraftingInventory.setStack(0, instillerStack);
 			
 			// left item bowl
 			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, itemBowlBlockEntity.getInventory().getStack(0));
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, itemBowlBlockEntity.getStack(0));
 			} else {
 				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, ItemStack.EMPTY);
 			}
 			// right item bowl
 			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, itemBowlBlockEntity.getInventory().getStack(0));
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, itemBowlBlockEntity.getStack(0));
 			} else {
 				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, ItemStack.EMPTY);
 			}
 			
-			ISpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLING, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
+			SpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLING, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
 			if (spiritInstillerRecipe != null) {
 				spiritInstillerBlockEntity.currentRecipe = spiritInstillerRecipe;
 				spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerRecipe.getCraftingTime() / spiritInstillerBlockEntity.upgrades.get(Upgradeable.UpgradeType.SPEED));
@@ -169,7 +164,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			spiritInstillerBlockEntity.canCraft = spiritInstillerBlockEntity.currentRecipe.canCraftWithStacks(instillerStack, spiritInstillerBlockEntity.autoCraftingInventory.getStack(1), spiritInstillerBlockEntity.autoCraftingInventory.getStack(2));
 		}
 		
-		spiritInstillerBlockEntity.updateInClientWorld();
+		spiritInstillerBlockEntity.updateInClientWorld(world, spiritInstillerBlockEntity.pos);
 	}
 	
 	public static BlockPos getItemBowlPos(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, boolean right) {
@@ -222,7 +217,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		return canCraft;
 	}
 	
-	public static void testAndUnlockUnlockBossMemoryAdvancement(ServerPlayerEntity player, ISpiritInstillerRecipe spiritInstillerRecipe, boolean canActuallyCraft) {
+	public static void testAndUnlockUnlockBossMemoryAdvancement(ServerPlayerEntity player, SpiritInstillerRecipe spiritInstillerRecipe, boolean canActuallyCraft) {
 		boolean isBossMemory = spiritInstillerRecipe.getGroup() != null && spiritInstillerRecipe.getGroup().equals("boss_memories");
 		if (isBossMemory) {
 			if (canActuallyCraft) {
@@ -233,7 +228,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		}
 	}
 	
-	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull ISpiritInstillerRecipe spiritInstillerRecipe) {
+	public static void craftSpiritInstillerRecipe(World world, @NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity, @NotNull SpiritInstillerRecipe spiritInstillerRecipe) {
 		ItemStack resultStack = spiritInstillerRecipe.craft(spiritInstillerBlockEntity);
 		decrementItemsInInstillerAndBowls(spiritInstillerBlockEntity);
 		if (!resultStack.isEmpty()) {
@@ -241,7 +236,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			if (spiritInstillerBlockEntity.getStack(0).isEmpty()) {
 				spiritInstillerBlockEntity.setStack(0, resultStack);
 			} else {
-				EnchanterBlockEntity.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount());
+				MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, spiritInstillerBlockEntity.pos, resultStack, resultStack.getCount(), MultiblockCrafter.RECIPE_STACK_VELOCITY);
 			}
 		}
 		
@@ -250,8 +245,8 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		spiritInstillerBlockEntity.inventoryChanged();
 	}
 	
-	public static boolean decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
-		ISpiritInstillerRecipe recipe = spiritInstillerBlockEntity.currentRecipe;
+	public static void decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
+		SpiritInstillerRecipe recipe = spiritInstillerBlockEntity.currentRecipe;
 		
 		double efficiencyModifier = 1.0;
 		if (!recipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.get(UpgradeType.EFFICIENCY) != 1.0) {
@@ -262,42 +257,37 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		BlockEntity rightBowlBlockEntity = spiritInstillerBlockEntity.world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true));
 		if (leftBowlBlockEntity instanceof ItemBowlBlockEntity leftBowl && rightBowlBlockEntity instanceof ItemBowlBlockEntity rightBowl) {
 			// center ingredient
-			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.getIngredientStacks().get(2).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			int decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(recipe.getIngredientStacks().get(SpiritInstillerRecipe.CENTER_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
 			if (decreasedAmountAfterEfficiencyMod > 0) {
-				spiritInstillerBlockEntity.inventory.getStack(0).decrement(decreasedAmountAfterEfficiencyMod);
+				spiritInstillerBlockEntity.getStack(0).decrement(decreasedAmountAfterEfficiencyMod);
 			}
 			
 			List<IngredientStack> ingredientStacks = recipe.getIngredientStacks();
 			
 			// first side ingredient
-			decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(ingredientStacks.get(0).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
-			if (decreasedAmountAfterEfficiencyMod > 0) {
-				if (ingredientStacks.get(0).test(leftBowl.getInventory().getStack(0))) {
-					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
-				} else {
-					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
+			int amountAfterEfficiencyModFirst = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			int amountAfterEfficiencyModSecond = Support.getIntFromDecimalWithChance(ingredientStacks.get(SpiritInstillerRecipe.SECOND_INGREDIENT).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
+			boolean leftIsFirstIngredient = ingredientStacks.get(SpiritInstillerRecipe.FIRST_INGREDIENT).test(leftBowl.getStack(0));
+			if (leftIsFirstIngredient) {
+				if (amountAfterEfficiencyModFirst > 0) {
+					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModFirst, true);
+				}
+				if (amountAfterEfficiencyModSecond > 0) {
+					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModSecond, true);
+				}
+			} else {
+				if (amountAfterEfficiencyModFirst > 0) {
+					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModFirst, true);
+				}
+				if (amountAfterEfficiencyModSecond > 0) {
+					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, amountAfterEfficiencyModSecond, true);
 				}
 			}
-			
-			// second side ingredient
-			decreasedAmountAfterEfficiencyMod = Support.getIntFromDecimalWithChance(ingredientStacks.get(1).getCount() * efficiencyModifier, spiritInstillerBlockEntity.world.random);
-			if (decreasedAmountAfterEfficiencyMod > 0) {
-				if (ingredientStacks.get(1).test(leftBowl.getInventory().getStack(0))) {
-					leftBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
-				} else {
-					rightBowl.decrementBowlStack(spiritInstillerBlockEntity.pos, decreasedAmountAfterEfficiencyMod, true);
-				}
-			}
-			
-			return true;
-		} else {
-			return false;
 		}
 	}
 	
 	public static void playCraftingFinishedEffects(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		spiritInstillerBlockEntity.world.playSound(null, spiritInstillerBlockEntity.pos, SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING_FINISHED, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) spiritInstillerBlockEntity.world,
 				new Vec3d(spiritInstillerBlockEntity.pos.getX() + 0.5D, spiritInstillerBlockEntity.pos.getY() + 0.5, spiritInstillerBlockEntity.pos.getZ() + 0.5D),
 				SpectrumParticleTypes.LIGHT_BLUE_CRAFTING, 75, new Vec3d(0.5D, 0.5D, 0.5D),
@@ -307,8 +297,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-		this.inventory = new SimpleInventory(INVENTORY_SIZE);
-		this.inventory.readNbtList(nbt.getList("inventory", 10));
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
@@ -318,8 +306,12 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		} else {
 			this.ownerUUID = null;
 		}
-		if (nbt.contains("MulitblockRotation")) {
-			this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MulitblockRotation").toUpperCase(Locale.ROOT));
+		if (nbt.contains("MultiblockRotation")) {
+			try {
+				this.multiblockRotation = BlockRotation.valueOf(nbt.getString("MultiblockRotation").toUpperCase(Locale.ROOT));
+			} catch (Exception e) {
+				this.multiblockRotation = BlockRotation.NONE;
+			}
 		}
 		
 		this.currentRecipe = null;
@@ -327,7 +319,7 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 			String recipeString = nbt.getString("CurrentRecipe");
 			if (!recipeString.isEmpty() && world != null) {
 				Optional<? extends Recipe> optionalRecipe = world.getRecipeManager().get(new Identifier(recipeString));
-				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof ISpiritInstillerRecipe spiritInstillerRecipe) {
+				if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof SpiritInstillerRecipe spiritInstillerRecipe) {
 					this.currentRecipe = spiritInstillerRecipe;
 				}
 			}
@@ -341,12 +333,11 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
-		nbt.put("inventory", this.inventory.toNbtList());
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbt.putBoolean("CanCraft", this.canCraft);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
-		nbt.putString("MulitblockRotation", this.multiblockRotation.toString());
+		nbt.putString("MultiblockRotation", this.multiblockRotation.toString());
 		if (this.upgrades != null) {
 			nbt.put("Upgrades", Upgradeable.toNbt(this.upgrades));
 		}
@@ -358,11 +349,26 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		}
 	}
 	
+	
+	// Called when the chunk is first loaded to initialize this on the clients
+	@Override
+	public NbtCompound toInitialChunkDataNbt() {
+		NbtCompound nbtCompound = new NbtCompound();
+		Inventories.writeNbt(nbtCompound, this.getItems());
+		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
+		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
+		nbtCompound.putString("MultiblockRotation", this.multiblockRotation.toString());
+		if (this.currentRecipe != null && canCraft) {
+			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
+		}
+		return nbtCompound;
+	}
+	
 	private void doInstillerParticles(@NotNull World world) {
-		Random random = world.random;
-		Optional<DyeColor> stackColor = ItemColors.ITEM_COLORS.getMapping(this.inventory.getStack(0).getItem());
+		Optional<DyeColor> stackColor = ItemColors.ITEM_COLORS.getMapping(this.getStack(0).getItem());
 		
 		if (stackColor.isPresent()) {
+			Random random = world.random;
 			ParticleEffect particleEffect = SpectrumParticleTypes.getSparkleRisingParticle(stackColor.get());
 			world.addParticle(particleEffect,
 					pos.getX() + 0.25 + random.nextDouble() * 0.5,
@@ -400,13 +406,13 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		BlockPos itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(false).up());
 		BlockEntity blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.doEnchantingEffects(pos);
+			itemBowlBlockEntity.spawnSphereParticlesTo(pos);
 		}
 		
 		itemBowlPos = pos.add(getItemBowlHorizontalPositionOffset(true).up());
 		blockEntity = world.getBlockEntity(itemBowlPos);
 		if (blockEntity instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-			itemBowlBlockEntity.doEnchantingEffects(pos);
+			itemBowlBlockEntity.spawnSphereParticlesTo(pos);
 		}
 	}
 	
@@ -416,14 +422,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		} else {
 			return itemBowlOffsetsVertical.get(right ? 1 : 0);
 		}
-	}
-	
-	public Inventory getInventory() {
-		return this.inventory;
-	}
-	
-	public void updateInClientWorld() {
-		((ServerWorld) world).getChunkManager().markForUpdate(pos);
 	}
 	
 	// UPGRADEABLE
@@ -437,6 +435,11 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	public void calculateUpgrades() {
 		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, multiblockRotation, 4, 1, this.ownerUUID);
 		this.markDirty();
+	}
+	
+	@Override
+	public float getUpgradeValue(UpgradeType upgradeType) {
+		return this.upgrades.get(upgradeType);
 	}
 	
 	// PLAYER OWNED
@@ -453,30 +456,6 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 		this.markDirty();
 	}
 	
-	@Override
-	public void provideRecipeInputs(RecipeMatcher finder) {
-	
-	}
-	
-	// Called when the chunk is first loaded to initialize this be
-	public NbtCompound toInitialChunkDataNbt() {
-		NbtCompound nbtCompound = new NbtCompound();
-		nbtCompound.put("inventory", this.inventory.toNbtList());
-		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
-		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbtCompound.putString("MulitblockRotation", this.multiblockRotation.toString());
-		if (this.currentRecipe != null && canCraft) {
-			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
-		}
-		return nbtCompound;
-	}
-	
-	@Nullable
-	@Override
-	public Packet<ClientPlayPacketListener> toUpdatePacket() {
-		return BlockEntityUpdateS2CPacket.create(this);
-	}
-	
 	public BlockRotation getMultiblockRotation() {
 		return multiblockRotation;
 	}
@@ -488,55 +467,10 @@ public class SpiritInstillerBlockEntity extends BlockEntity implements Multibloc
 	}
 	
 	public void inventoryChanged() {
+		super.inventoryChanged();
 		this.inventoryChanged = true;
 		this.autoCraftingInventory.clear();
-		this.inventory.markDirty();
 		markDirty();
-		updateInClientWorld();
-	}
-	
-	@Override
-	public int size() {
-		return INVENTORY_SIZE;
-	}
-	
-	@Override
-	public boolean isEmpty() {
-		return this.inventory.isEmpty();
-	}
-	
-	@Override
-	public ItemStack getStack(int slot) {
-		return this.inventory.getStack(slot);
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot, int amount) {
-		this.inventoryChanged();
-		return this.inventory.removeStack(slot, amount);
-	}
-	
-	@Override
-	public ItemStack removeStack(int slot) {
-		this.inventoryChanged();
-		return this.inventory.removeStack(slot);
-	}
-	
-	@Override
-	public void setStack(int slot, ItemStack stack) {
-		this.inventoryChanged();
-		this.inventory.setStack(slot, stack);
-	}
-	
-	@Override
-	public boolean canPlayerUse(PlayerEntity player) {
-		return true;
-	}
-	
-	@Override
-	public void clear() {
-		this.inventoryChanged();
-		this.inventory.clear();
 	}
 	
 	public Map<UpgradeType, Float> getUpgrades() {

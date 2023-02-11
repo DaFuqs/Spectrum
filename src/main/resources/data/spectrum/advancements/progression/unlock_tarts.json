@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_amaranth_bushel": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth_bushel" }
+    },
+    "collected_jade_jelly": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:hidden/collect_jade_jelly" }
+    }
+  }
+}

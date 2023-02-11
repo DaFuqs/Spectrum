@@ -23,6 +23,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	
 	private BlockState fenceBlockState;
 	private long lastGrowthTick = -1;
+	private boolean wasExposedToSunlight = false;
 	
 	public JadeVineRootsBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.JADE_VINE_ROOTS, pos, state);
@@ -34,6 +35,9 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 		super.readNbt(nbt);
 		if (nbt.contains("LastGrowthTick", NbtElement.LONG_TYPE)) {
 			this.lastGrowthTick = nbt.getLong("LastGrowthTick");
+		}
+		if (nbt.contains("WasExposedToSunlight")) {
+			this.wasExposedToSunlight = nbt.getBoolean("WasExposedToSunlight");
 		}
 		if (nbt.contains("FenceBlockIdentifier", NbtElement.STRING_TYPE)) {
 			Identifier fenceBlockIdentifier = Identifier.tryParse(nbt.getString("FenceBlockIdentifier"));
@@ -48,6 +52,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.putLong("LastGrowthTick", this.lastGrowthTick);
+		nbt.putBoolean("WasExposedToSunlight", this.wasExposedToSunlight);
 		if (this.fenceBlockState != null) {
 			nbt.putString("FenceBlockIdentifier", Registry.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
 		}
@@ -66,6 +71,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	}
 	
 	public void setLastGrownTime(long time) {
+		this.wasExposedToSunlight = false;
 		this.lastGrowthTick = time;
 		this.markDirty();
 	}
@@ -78,6 +84,15 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 		this.fenceBlockState = fenceBlockState;
 		this.markDirty();
 		this.updateInClientWorld();
+	}
+	
+	public boolean wasExposedToSunlight() {
+		return wasExposedToSunlight;
+	}
+	
+	public void setExposedToSunlight(boolean wasExposedToSunlight) {
+		this.wasExposedToSunlight = wasExposedToSunlight;
+		this.markDirty();
 	}
 	
 	// Called when the chunk is first loaded to initialize this be

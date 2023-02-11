@@ -10,6 +10,16 @@ import java.util.List;
 @Config(name = "Spectrum")
 public class SpectrumConfig implements ConfigData {
 	
+	@Comment("The duration in milliseconds ingame recipe/unlock popups stay on the screen")
+	public long ToastTimeMilliseconds = 7500;
+	
+	@Comment("""
+			The vanilla anvil caps enchantment levels at the max level for the enchantment
+			So enchanted books that exceed the enchantments natural max level get capped
+			If true the bedrock anvil will not cap the enchantments level to it's natural max level
+            """)
+	public boolean BedrockAnvilCanExceedMaxVanillaEnchantmentLevel = false;
+	
 	@Comment("""
 			The heights where citrine and topaz geodes will spawn
 			By default citrine will generate slightly below sea level (y=32-60)
@@ -53,8 +63,6 @@ public class SpectrumConfig implements ConfigData {
 	
 	public int MermaidsBrushChanceChunk = 16;
 	public int QuitoxicReedsCountPerChunk = 25;
-	@Comment("The biomes where Quitoxic Reeds are growing (usually swamps)")
-	public List<String> QuitoxicReedsGenerationBiomes = new ArrayList<>();
 	
 	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
 	public int VanillaRecipeCraftingTimeTicks = 40;
@@ -149,6 +157,9 @@ public class SpectrumConfig implements ConfigData {
 	public float BedrockArmorToughness = 4.0F;
 	public float BedrockArmorKnockbackResistance = 0.4F;
 	
+	public int MaxLevelForEffectsInLesserPotionPendant = 3;
+	public int MaxLevelForEffectsInGreaterPotionPendant = 1;
+	
 	@Comment("By Default, Roughly Enough Items will show a 'recipe not unlocked yet' screen for not yet unlocked recipes. Setting this value to false will instead not show this screen, showing no recipes whatsoever, until unlocked")
 	public boolean REIListsRecipesAsNotUnlocked = true;
 	
@@ -202,6 +213,10 @@ public class SpectrumConfig implements ConfigData {
 		if (BigCatchMaxLevel <= 0) {
 			BigCatchMaxLevel = 3;
 		}
+		if (QuitoxicReedsCountPerChunk > 256) {
+			// 16x16 blocks in a chunk; else the worldgen feature would break
+			QuitoxicReedsCountPerChunk = 256;
+		}
 		
 		if (ShootingStarWorlds.isEmpty()) {
 			ShootingStarWorlds.add("minecraft:overworld");
@@ -210,13 +225,6 @@ public class SpectrumConfig implements ConfigData {
 		if (LightningStonesWorlds.isEmpty()) {
 			LightningStonesWorlds.add("minecraft:overworld");
 			LightningStonesWorlds.add("starry_sky:starry_sky");
-		}
-		if (QuitoxicReedsGenerationBiomes.isEmpty()) {
-			QuitoxicReedsGenerationBiomes.add("minecraft:swamp");
-			QuitoxicReedsGenerationBiomes.add("byg:bayou");
-			QuitoxicReedsGenerationBiomes.add("byg:cypress_swamplands");
-			QuitoxicReedsGenerationBiomes.add("terralith:orchid_swamp");
-			QuitoxicReedsGenerationBiomes.add("terralith:ice_marsh");
 		}
 	}
 	

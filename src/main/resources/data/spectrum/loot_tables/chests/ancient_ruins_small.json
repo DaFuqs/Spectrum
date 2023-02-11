@@ -9,94 +9,8 @@
       "bonus_rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "minecraft:amethyst_shard",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:small_amethyst_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:medium_amethyst_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:large_amethyst_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:amethyst_cluster"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "spectrum:citrine_shard",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:small_citrine_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:medium_citrine_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:large_citrine_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:citrine_cluster"
-        },
-        {
-          "type": "minecraft:item",
-          "weight": 5,
-          "name": "spectrum:topaz_shard",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:small_topaz_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:medium_topaz_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:large_topaz_bud"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:topaz_cluster"
+          "type": "minecraft:loot_table",
+          "name": "spectrum:chests/sub_tables/cmy_tier_gems_and_buds"
         }
       ]
     },
@@ -108,20 +22,8 @@
       "bonus_rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "spectrum:fanciful_stone_ring"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:fanciful_circlet"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:fanciful_belt"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:fanciful_pendant"
+          "type": "minecraft:loot_table",
+          "name": "spectrum:chests/sub_tables/fancyful_trinkets"
         }
       ]
     },
@@ -139,8 +41,7 @@
           "count": {
             "min": 6,
             "max": 8
-          },
-          "add": true
+          }
         }
       ]
     }

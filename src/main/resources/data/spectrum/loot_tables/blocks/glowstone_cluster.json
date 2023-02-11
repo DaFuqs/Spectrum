@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:native_glowstone",
+          "name": "spectrum:pure_glowstone",
           "functions": [
             {
               "function": "minecraft:set_count",

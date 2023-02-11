@@ -149,12 +149,16 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 			if (teleportTargetPos.isPresent()) {
 				RegistryKey<World> targetWorldKey = RegistryKey.of(Registry.WORLD_KEY, new Identifier(teleportTargetPos.get().getLeft()));
 				World targetWorld = world.getServer().getWorld(targetWorldKey);
-				teleportPlayerToPos(world, user, playerEntity, targetWorld, teleportTargetPos.get().getRight(), resonance);
+				if(teleportPlayerToPos(world, user, playerEntity, targetWorld, teleportTargetPos.get().getRight(), resonance)) {
+					decrementWithChance(itemStack, world, playerEntity);
+				}
 			} else {
 				// If UUID stored => Teleport to player, if online
 				Optional<UUID> teleportTargetPlayerUUID = getTeleportTargetPlayerUUID(itemStack);
 				if (teleportTargetPlayerUUID.isPresent()) {
-					teleportPlayerToPlayerWithUUID(world, user, playerEntity, teleportTargetPlayerUUID.get(), resonance);
+					if(teleportPlayerToPlayerWithUUID(world, user, playerEntity, teleportTargetPlayerUUID.get(), resonance)) {
+						decrementWithChance(itemStack, world, playerEntity);
+					}
 				} else {
 					// Nothing stored => Store current position
 					setTeleportTargetPos(itemStack, playerEntity.getEntityWorld(), playerEntity.getPos());
@@ -162,18 +166,20 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 				}
 			}
 			playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-			
-			if (!playerEntity.getAbilities().creativeMode) {
-				int unbreakingLevel = EnchantmentHelper.getLevel(Enchantments.UNBREAKING, itemStack);
-				if (unbreakingLevel == 0) {
-					itemStack.decrement(1);
-				} else {
-					itemStack.decrement(Support.getIntFromDecimalWithChance(1.0 / (1 + unbreakingLevel), world.random));
-				}
-			}
 		}
 		
 		return itemStack;
+	}
+	
+	private static void decrementWithChance(ItemStack itemStack, World world, ServerPlayerEntity playerEntity) {
+		if (!playerEntity.getAbilities().creativeMode) {
+			int unbreakingLevel = EnchantmentHelper.getLevel(Enchantments.UNBREAKING, itemStack);
+			if (unbreakingLevel == 0) {
+				itemStack.decrement(1);
+			} else {
+				itemStack.decrement(Support.getIntFromDecimalWithChance(1.0 / (1 + unbreakingLevel), world.random));
+			}
+		}
 	}
 	
 	@Environment(EnvType.CLIENT)
@@ -188,14 +194,15 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		}
 	}
 	
-	private void teleportPlayerToPlayerWithUUID(World world, LivingEntity user, PlayerEntity playerEntity, UUID targetPlayerUUID, boolean hasResonance) {
+	private boolean teleportPlayerToPlayerWithUUID(World world, LivingEntity user, PlayerEntity playerEntity, UUID targetPlayerUUID, boolean hasResonance) {
 		PlayerEntity targetPlayer = PlayerOwned.getPlayerEntityIfOnline(targetPlayerUUID);
 		if (targetPlayer != null) {
-			teleportPlayerToPos(targetPlayer.getEntityWorld(), user, playerEntity, targetPlayer.getEntityWorld(), targetPlayer.getPos(), hasResonance);
+			return teleportPlayerToPos(targetPlayer.getEntityWorld(), user, playerEntity, targetPlayer.getEntityWorld(), targetPlayer.getPos(), hasResonance);
 		}
+		return false;
 	}
 	
-	private void teleportPlayerToPos(World world, LivingEntity user, PlayerEntity playerEntity, World targetWorld, Vec3d targetPos, boolean hasResonance) {
+	private boolean teleportPlayerToPos(World world, LivingEntity user, PlayerEntity playerEntity, World targetWorld, Vec3d targetPos, boolean hasResonance) {
 		boolean isSameWorld = isSameWorld(user.getEntityWorld(), targetWorld);
 		Vec3d currentPos = playerEntity.getPos();
 		if (hasResonance || isSameWorld) {
@@ -213,9 +220,11 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 				((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SpectrumSoundEvents.PLAYER_TELEPORTS.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
 				((ServerPlayerEntity) playerEntity).networkHandler.sendPacket(new PlaySoundIdS2CPacket(SoundEvents.BLOCK_GLASS_BREAK.getId(), SoundCategory.PLAYERS, playerEntity.getPos(), 1.0F, 1.0F));
 			}
+			return true;
 		} else {
 			user.stopUsingItem();
 			world.playSound(null, currentPos.getX(), currentPos.getY(), currentPos.getZ(), SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+			return false;
 		}
 	}
 	

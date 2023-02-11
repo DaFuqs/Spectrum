@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:jade_jelly"
+  },
+  "results": [
+    {
+      "item": "spectrum:jaramel",
+      "count": 4
+    }
+  ],
+  "experience": 0.2,
+  "time": 100,
+  "required_advancement": "spectrum:hidden/collect_jade_jelly"
+}

@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "has_amaranth_bushel": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth_bushel" }
+    },
+    "has_stardust": {
+      "trigger":"revelationary:advancement_gotten",
+        "conditions": { "advancement_identifier": "spectrum:hidden/collect_stardust" }
+    }
+  }
+}

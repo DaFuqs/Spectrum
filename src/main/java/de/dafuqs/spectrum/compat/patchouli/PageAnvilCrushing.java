@@ -15,7 +15,7 @@ import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 public class PageAnvilCrushing extends PageDoubleRecipeRegistry<AnvilCrushingRecipe> {
 	
-	private static final Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/anvil_crushing.png");
+	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/anvil_crushing.png");
 	
 	public PageAnvilCrushing() {
 		super(SpectrumRecipeTypes.ANVIL_CRUSHING);

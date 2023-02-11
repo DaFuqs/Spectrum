@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "spectrum:pedestal_ruins_deepslate",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 16,
+    "separation": 10,
+    "salt": 44232661
+  }
+}

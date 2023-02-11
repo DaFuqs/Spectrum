@@ -20,7 +20,7 @@ import net.minecraft.util.math.Vec3f;
 @Environment(EnvType.CLIENT)
 public class PedestalBlockEntityRenderer<T extends PedestalBlockEntity> implements BlockEntityRenderer<T> {
 	
-	private final Identifier GROUND_MARK = new Identifier(SpectrumCommon.MOD_ID, "textures/misc/circle.png");
+	private final Identifier GROUND_MARK = SpectrumCommon.locate("textures/misc/circle.png");
 	private final ModelPart circle;
 	
 	public PedestalBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {

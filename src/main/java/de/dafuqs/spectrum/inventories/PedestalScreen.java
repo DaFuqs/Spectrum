@@ -19,10 +19,10 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	
-	public static final Identifier BACKGROUND1 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal1.png");
-	public static final Identifier BACKGROUND2 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal2.png");
-	public static final Identifier BACKGROUND3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal3.png");
-	public static final Identifier BACKGROUND4 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/pedestal4.png");
+	public static final Identifier BACKGROUND1 = SpectrumCommon.locate("textures/gui/container/pedestal1.png");
+	public static final Identifier BACKGROUND2 = SpectrumCommon.locate("textures/gui/container/pedestal2.png");
+	public static final Identifier BACKGROUND3 = SpectrumCommon.locate("textures/gui/container/pedestal3.png");
+	public static final Identifier BACKGROUND4 = SpectrumCommon.locate("textures/gui/container/pedestal4.png");
 	private final Identifier backgroundTexture;
 	private final PedestalRecipeTier maxPedestalRecipeTierForVariant;
 	private final boolean structureUpdateAvailable;

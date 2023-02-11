@@ -5,6 +5,7 @@ import de.dafuqs.revelationary.api.revelations.RevealingCallback;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliFlags;
 import de.dafuqs.spectrum.compat.patchouli.PatchouliPages;
 import de.dafuqs.spectrum.entity.SpectrumEntityRenderers;
+import de.dafuqs.spectrum.helpers.TooltipHelper;
 import de.dafuqs.spectrum.inventories.SpectrumContainers;
 import de.dafuqs.spectrum.inventories.SpectrumScreenHandlerTypes;
 import de.dafuqs.spectrum.networking.SpectrumS2CPacketReceiver;
@@ -22,6 +23,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.Item;
@@ -42,9 +44,14 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	@Environment(EnvType.CLIENT)
 	public static MinecraftClient minecraftClient;
 	
+	public static boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
+	
 	@Override
 	public void onInitializeClient() {
 		logInfo("Starting Client Startup");
+		
+		logInfo("Registering Model Layers...");
+		SpectrumModelLayers.register();
 		
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
@@ -86,13 +93,15 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		});
 		
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+			if(!foodEffectsTooltipsModLoaded && stack.isFood()) {
+				if(Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+					TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
+				}
+			}
 			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				lines.add(new TranslatableText("spectrum.tooltip.coming_soon"));
 			}
 		});
-
-		logInfo("Registering Model Layers...");
-		SpectrumModelLayers.register();
 
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();

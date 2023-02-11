@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(RandomChanceLootCondition.class)
-public class RandomChanceLootConditionMixin {
+public abstract class RandomChanceLootConditionMixin {
 	
 	@Shadow
 	@Final

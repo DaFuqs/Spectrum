@@ -11,13 +11,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -58,7 +56,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_quitoxic_reeds");
+		return SpectrumCommon.locate("milestones/reveal_quitoxic_reeds");
 	}
 	
 	@Override
@@ -75,10 +73,6 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.SUGAR_CANE.asItem());
-	}
-	
-	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-		super.afterBreak(world, player, pos, state, blockEntity, stack);
 	}
 	
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -145,6 +139,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 		builder.add(AGE, FLUIDLOGGED, ALWAYS_DROP);
 	}
 	
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (world.isAir(pos.up()) || (world.isWater(pos.up()) && world.isAir(pos.up(2)))) {
 			

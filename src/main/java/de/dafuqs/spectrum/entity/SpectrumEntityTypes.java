@@ -2,13 +2,10 @@ package de.dafuqs.spectrum.entity;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.entity.entity.*;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class SpectrumEntityTypes {
@@ -23,6 +20,8 @@ public class SpectrumEntityTypes {
 	public static EntityType LAGOON_FISHING_BOBBER;
 	public static EntityType MOLTEN_FISHING_BOBBER;
 	public static EntityType BEDROCK_FISHING_BOBBER;
+	public static EntityType<? extends ItemEntity> FIREPROOF_ITEM;
+	public static EntityType<EggLayingWoolyPigEntity> EGG_LAYING_WOOLY_PIG = register("egg_laying_wooly_pig", EntityType.Builder.create(EggLayingWoolyPigEntity::new, SpawnGroup.CREATURE).setDimensions(0.9F, 1.3F).maxTrackingRange(10));
 	
 	public static void register() {
 		LIVING_MARKER = register("living_marker", 0, 2147483647, false, EntityDimensions.changing(0F, 0F), true, LivingMarkerEntity::new);
@@ -35,6 +34,9 @@ public class SpectrumEntityTypes {
 		LAGOON_FISHING_BOBBER = register("lagoon_fishing_bobber", EntityType.Builder.create(LagoonFishingBobberEntity::new, SpawnGroup.MISC).disableSaving().disableSummon().makeFireImmune().setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(5));
 		MOLTEN_FISHING_BOBBER = register("molten_fishing_bobber", EntityType.Builder.create(MoltenFishingBobberEntity::new, SpawnGroup.MISC).disableSaving().disableSummon().makeFireImmune().setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(5));
 		BEDROCK_FISHING_BOBBER = register("bedrock_fishing_bobber", EntityType.Builder.create(BedrockFishingBobberEntity::new, SpawnGroup.MISC).disableSaving().disableSummon().makeFireImmune().setDimensions(0.25F, 0.25F).maxTrackingRange(4).trackingTickInterval(5));
+		FIREPROOF_ITEM = register("non_burnable_item_entity", 6, 20, true, EntityDimensions.changing(0.25F, 0.25F), true, FireproofItemEntity::new);
+		
+		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, int trackingDistance, int updateIntervalTicks, boolean alwaysUpdateVelocity, EntityDimensions size, boolean fireImmune, EntityType.EntityFactory<X> factory) {
@@ -42,15 +44,15 @@ public class SpectrumEntityTypes {
 		if (fireImmune) {
 			builder.fireImmune();
 		}
-		return Registry.register(Registry.ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), builder.build());
+		return Registry.register(Registry.ENTITY_TYPE, SpectrumCommon.locate(name), builder.build());
 	}
 	
 	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> type) {
-		return Registry.register(Registry.ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), type.build(name));
+		return Registry.register(Registry.ENTITY_TYPE, SpectrumCommon.locate(name), type.build(name));
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, SpawnGroup category, EntityDimensions size, EntityType.EntityFactory<X> factory) {
-		return Registry.register(Registry.ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, name), FabricEntityTypeBuilder.create(category, factory).dimensions(size).build());
+		return Registry.register(Registry.ENTITY_TYPE, SpectrumCommon.locate(name), FabricEntityTypeBuilder.create(category, factory).dimensions(size).build());
 	}
 	
 }

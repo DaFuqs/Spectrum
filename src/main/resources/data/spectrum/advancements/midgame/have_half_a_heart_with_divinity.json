@@ -1,0 +1,37 @@
+{
+  "parent": "spectrum:midgame/apply_divinity",
+  "display": {
+    "icon": {
+      "item": "spectrum:freigeist"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.have_half_a_heart_with_divinity.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.have_half_a_heart_with_divinity.description"
+    }
+  },
+  "rewards": {
+    "loot": [
+      "spectrum:advancement_reward/adv_have_half_a_heart_with_divinity"
+    ]
+  },
+  "criteria": {
+    "have_half_a_heart_with_divinity_active": {
+      "trigger": "spectrum:divinity_tick",
+      "conditions": {
+        "health": {
+          "min": 0.01,
+          "max": 0.99
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/apply_divinity"
+      }
+    }
+  }
+}

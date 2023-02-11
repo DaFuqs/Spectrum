@@ -1,0 +1,11 @@
+{
+  "values": [
+    "minecraft:plains",
+    "#minecraft:is_badlands",
+    "#minecraft:is_forest",
+    "#minecraft:is_hill",
+    "#minecraft:is_jungle",
+    "#minecraft:is_mountain",
+    "#minecraft:is_taiga"
+  ]
+}

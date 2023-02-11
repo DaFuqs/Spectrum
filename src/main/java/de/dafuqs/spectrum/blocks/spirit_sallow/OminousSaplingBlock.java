@@ -42,6 +42,7 @@ public class OminousSaplingBlock extends PlantBlock implements BlockEntityProvid
 		return ActionResult.SUCCESS;
 	}
 	
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (world.getLightLevel(pos.up()) >= 9 && random.nextInt(2) == 0) {
 			this.generateOminousTree(world, pos, state, random);

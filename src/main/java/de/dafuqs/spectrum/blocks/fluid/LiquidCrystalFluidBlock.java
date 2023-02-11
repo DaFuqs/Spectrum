@@ -1,31 +1,50 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
+import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.fluid_converting.LiquidCrystalConvertingRecipe;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.fluid.FlowableFluid;
+import net.minecraft.item.ItemStack;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.FluidTags;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
 import java.util.Random;
 
-public class LiquidCrystalFluidBlock extends FluidBlock {
+public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	
 	public LiquidCrystalFluidBlock(FlowableFluid fluid, Settings settings) {
 		super(fluid, settings);
+	}
+	
+	@Override
+	public DefaultParticleType getSplashParticle() {
+		return SpectrumParticleTypes.LIQUID_CRYSTAL_FISHING;
+	}
+	
+	@Override
+	public Pair<DefaultParticleType, DefaultParticleType> getFishingParticles() {
+		return new Pair<>(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, SpectrumParticleTypes.LIQUID_CRYSTAL_FISHING);
 	}
 	
 	@Override
@@ -53,14 +72,26 @@ public class LiquidCrystalFluidBlock extends FluidBlock {
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
-		if (entity instanceof LivingEntity livingEntity) {
-			
-			// just check every 100 ticks for performance and slow healing
-			if (world.getTime() % 200 == 0) {
-				StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
-				if (regenerationInstance == null) {
-					StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
-					livingEntity.addStatusEffect(newRegenerationInstance);
+		
+		if (!world.isClient) {
+			if (entity instanceof LivingEntity livingEntity) {
+				// just check every x ticks for performance and slow healing
+				if (world.getTime() % 200 == 0) {
+					StatusEffectInstance regenerationInstance = livingEntity.getStatusEffect(StatusEffects.REGENERATION);
+					if (regenerationInstance == null) {
+						StatusEffectInstance newRegenerationInstance = new StatusEffectInstance(StatusEffects.REGENERATION, 80);
+						livingEntity.addStatusEffect(newRegenerationInstance);
+					}
+				}
+			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
+				if (world.random.nextInt(200) == 0) {
+					ItemStack itemStack = itemEntity.getStack();
+					LiquidCrystalConvertingRecipe recipe = getConversionRecipeFor(SpectrumRecipeTypes.LIQUID_CRYSTAL_CONVERTING, world, itemStack);
+					if (recipe != null) {
+						world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+						MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount(), Vec3d.ZERO);
+						itemEntity.discard();
+					}
 				}
 			}
 		}

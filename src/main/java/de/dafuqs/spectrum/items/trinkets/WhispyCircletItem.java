@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffectTags;
 import dev.emi.trinkets.api.SlotReference;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -14,7 +14,6 @@ import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -23,11 +22,33 @@ import java.util.*;
 
 public class WhispyCircletItem extends SpectrumTrinketItem {
 	
-	private final int TRIGGER_EVERY_X_TICKS = 100;
-	private final int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
+	private final static int TRIGGER_EVERY_X_TICKS = 100;
+	private final static int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
 	
 	public WhispyCircletItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_whispy_circlet"));
+		super(settings, SpectrumCommon.locate("progression/unlock_whispy_circlet"));
+	}
+	
+	public static void removeSingleHarmfulStatusEffect(@NotNull LivingEntity entity) {
+		Collection<StatusEffectInstance> currentEffects = entity.getStatusEffects();
+		if(currentEffects.size() == 0) {
+			return;
+		}
+		
+		List<StatusEffectInstance> negativeEffects = new ArrayList<>();
+		for(StatusEffectInstance statusEffectInstance : currentEffects) {
+			StatusEffect effect = statusEffectInstance.getEffectType();
+			if(effect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(effect)) {
+				negativeEffects.add(statusEffectInstance);
+			}
+		}
+		
+		if(negativeEffects.size() == 0) {
+			return;
+		}
+		
+		int randomIndex = entity.world.random.nextInt(negativeEffects.size());
+		entity.removeStatusEffect(negativeEffects.get(randomIndex).getEffectType());
 	}
 	
 	public static void removeNegativeStatusEffects(@NotNull LivingEntity entity) {
@@ -70,7 +91,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	}
 	
 	public static boolean affects(StatusEffect statusEffect) {
-		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffects.isUncurable(statusEffect);
+		return statusEffect.getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(statusEffect);
 	}
 	
 	public static void preventPhantomSpawns(@NotNull ServerPlayerEntity serverPlayerEntity) {

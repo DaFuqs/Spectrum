@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "entered_liquid_crystal": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/enter_liquid_crystal" }
+    }
+  }
+}

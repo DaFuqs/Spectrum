@@ -27,7 +27,7 @@ public interface InkPowered {
 	/**
 	 * The advancement the player needs to have in order to use ink powered tools
 	 */
-	Identifier REQUIRED_ADVANCEMENT = new Identifier(SpectrumCommon.MOD_ID, "milestones/unlock_ink_use");
+	Identifier REQUIRED_ADVANCEMENT = SpectrumCommon.locate("milestones/unlock_ink_use");
 	
 	@Environment(EnvType.CLIENT)
 	static boolean canUseClient() {
@@ -136,10 +136,10 @@ public interface InkPowered {
 			}
 		}
 		
-		// trinket slot
+		// trinket slots
 		Optional<TrinketComponent> optionalTrinketComponent = TrinketsApi.getTrinketComponent(player);
 		if (optionalTrinketComponent.isPresent()) {
-			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorage);
+			List<Pair<SlotReference, ItemStack>> trinketInkStorages = optionalTrinketComponent.get().getEquipped(itemStack -> itemStack.getItem() instanceof InkStorageItem);
 			for (Pair<SlotReference, ItemStack> trinketEnergyStorageStack : trinketInkStorages) {
 				amount -= tryDrainEnergy(trinketEnergyStorageStack.getRight(), color, amount, true);
 				if (amount <= 0) {

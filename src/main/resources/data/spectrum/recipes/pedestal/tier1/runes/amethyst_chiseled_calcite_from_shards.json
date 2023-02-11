@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:pedestal",
+  "group": "amethyst_runes",
+  "time": 80,
+  "tier": "basic",
+  "magenta": 1,
+  "yellow": 0,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "WXW",
+    "XXX",
+    "WXW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:polished_calcite"
+    },
+    "X": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "result": {
+    "item": "spectrum:amethyst_chiseled_calcite",
+    "count": 1
+  },
+  "required_advancement": "spectrum:create_onyx_shard"
+}

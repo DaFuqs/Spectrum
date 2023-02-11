@@ -9,20 +9,31 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemWithTooltip extends Item {
 	
-	TranslatableText tooltipText;
+	private final List<TranslatableText> tooltipTexts = new ArrayList<>();
 	
 	public ItemWithTooltip(Settings settings, String tooltip) {
 		super(settings);
-		this.tooltipText = new TranslatableText(tooltip);
+		this.tooltipTexts.add(new TranslatableText(tooltip));
+	}
+	
+	public ItemWithTooltip(Settings settings, String[] tooltips) {
+		super(settings);
+		for(String tooltip : tooltips) {
+			this.tooltipTexts.add(new TranslatableText(tooltip));
+		}
 	}
 	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(tooltipText.formatted(Formatting.GRAY));
+		for(TranslatableText text : this.tooltipTexts) {
+			tooltip.add(text.formatted(Formatting.GRAY));
+		}
 	}
+	
 }

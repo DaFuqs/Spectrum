@@ -1,29 +1,23 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
+import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.blocks.MultiblockCrafter;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
 import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
+import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,10 +25,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
+public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	
-	protected final Identifier id;
-	protected final String group;
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("build_fusion_shrine");
 	
 	protected final List<IngredientStack> craftingInputs;
 	protected final Fluid fluidInput;
@@ -56,14 +49,12 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	@NotNull
 	protected final FusionShrineRecipeWorldEffect finishWorldEffect;
 	@Nullable
-	protected final Identifier requiredAdvancementIdentifier;
-	@Nullable
 	protected final Text description;
 	
-	public FusionShrineRecipe(Identifier id, String group, List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, Identifier requiredAdvancementIdentifier,
+	public FusionShrineRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
+	                          List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades,
 	                          List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
-		this.id = id;
-		this.group = group;
+		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.craftingInputs = craftingInputs;
 		this.fluidInput = fluidInput;
@@ -76,18 +67,9 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		this.startWorldEffect = startWorldEffect;
 		this.duringWorldEffects = duringWorldEffects;
 		this.finishWorldEffect = finishWorldEffect;
-		this.requiredAdvancementIdentifier = requiredAdvancementIdentifier;
 		this.description = description;
 		
-		registerInToastManager(SpectrumRecipeTypes.FUSION_SHRINE, this);
-	}
-	
-	@Override
-	public boolean equals(Object object) {
-		if (object instanceof FusionShrineRecipe) {
-			return ((FusionShrineRecipe) object).getId().equals(this.getId());
-		}
-		return false;
+		registerInToastManager(getType(), this);
 	}
 	
 	/**
@@ -95,36 +77,7 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	 */
 	@Override
 	public boolean matches(Inventory inv, World world) {
-		List<IngredientStack> ingredientStacks = this.getIngredientStacks();
-		if (inv.size() < ingredientStacks.size()) {
-			return false;
-		}
-		
-		int inputStackCount = 0;
-		for (int i = 0; i < inv.size(); i++) {
-			if (!inv.getStack(i).isEmpty()) {
-				inputStackCount++;
-			}
-		}
-		if (inputStackCount != ingredientStacks.size()) {
-			return false;
-		}
-		
-		
-		for (IngredientStack ingredientStack : ingredientStacks) {
-			boolean found = false;
-			for (int i = 0; i < inv.size(); i++) {
-				inputStackCount++;
-				if (ingredientStack.test(inv.getStack(i))) {
-					found = true;
-					break;
-				}
-			}
-			if (!found) {
-				return false;
-			}
-		}
-		return true;
+		return matchIngredientStacksExclusively(inv, getIngredientStacks());
 	}
 	
 	@Override
@@ -142,18 +95,9 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		return output;
 	}
 	
-	public boolean isIgnoredInRecipeBook() {
-		return true;
-	}
-	
 	@Override
 	public ItemStack createIcon() {
 		return new ItemStack(SpectrumBlocks.FUSION_SHRINE_BASALT);
-	}
-	
-	@Override
-	public Identifier getId() {
-		return this.id;
 	}
 	
 	@Override
@@ -166,7 +110,7 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		return SpectrumRecipeTypes.FUSION_SHRINE;
 	}
 	
-	// should not be used. Instead use getIngredientStacks(), which includes item counts
+	// should not be used. Instead, use getIngredientStacks(), which includes item counts
 	@Override
 	@Deprecated
 	public DefaultedList<Ingredient> getIngredients() {
@@ -179,16 +123,6 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	
 	public float getExperience() {
 		return experience;
-	}
-	
-	/**
-	 * The advancement the player has to have to let the recipe be craftable
-	 *
-	 * @return The advancement identifier. A null value means the player is always able to craft this recipe
-	 */
-	@Nullable
-	public Identifier getRequiredAdvancementIdentifier() {
-		return requiredAdvancementIdentifier;
 	}
 	
 	/**
@@ -254,18 +188,13 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 	}
 	
 	@Override
-	public boolean canPlayerCraft(PlayerEntity playerEntity) {
-		return AdvancementHelper.hasAdvancement(playerEntity, this.requiredAdvancementIdentifier);
+	public Identifier getRecipeTypeUnlockIdentifier() {
+		return UNLOCK_IDENTIFIER;
 	}
 	
 	@Override
-	public TranslatableText getSingleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.fusion_shrine_recipe_unlocked.title");
-	}
-	
-	@Override
-	public TranslatableText getMultipleUnlockToastString() {
-		return new TranslatableText("spectrum.toast.fusion_shrine_recipes_unlocked.title");
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.FUSION_SHRINE_ID;
 	}
 	
 	public void craft(World world, FusionShrineBlockEntity fusionShrineBlockEntity) {
@@ -273,8 +202,8 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 		if (!getOutput().isEmpty()) {
 			maxAmount = getOutput().getMaxCount();
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
-				for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.getInventory().getStack(i);
+				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
+					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
 					if (ingredientStack.test(currentStack)) {
 						int ingredientStackAmount = ingredientStack.getCount();
 						maxAmount = Math.min(maxAmount, currentStack.getCount() / ingredientStackAmount);
@@ -286,13 +215,13 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 			double efficiencyModifier = fusionShrineBlockEntity.getUpgrades().get(Upgradeable.UpgradeType.EFFICIENCY);
 			if (maxAmount > 0) {
 				for (IngredientStack ingredientStack : getIngredientStacks()) {
-					for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
-						ItemStack currentStack = fusionShrineBlockEntity.getInventory().getStack(i);
+					for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
+						ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
 						if (ingredientStack.test(currentStack)) {
 							int reducedAmount = maxAmount * ingredientStack.getCount();
 							int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(reducedAmount / efficiencyModifier, world.random);
 							if (currentStack.getCount() - reducedAmountAfterMod < 1) {
-								fusionShrineBlockEntity.getInventory().setStack(i, ItemStack.EMPTY);
+								fusionShrineBlockEntity.setStack(i, ItemStack.EMPTY);
 							} else {
 								currentStack.decrement(reducedAmountAfterMod);
 							}
@@ -305,8 +234,8 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 			for (IngredientStack ingredientStack : getIngredientStacks()) {
 				double efficiencyModifier = fusionShrineBlockEntity.getUpgrades().get(Upgradeable.UpgradeType.EFFICIENCY);
 				
-				for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
-					ItemStack currentStack = fusionShrineBlockEntity.getInventory().getStack(i);
+				for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
+					ItemStack currentStack = fusionShrineBlockEntity.getStack(i);
 					if (ingredientStack.test(currentStack)) {
 						int reducedAmountAfterMod = Support.getIntFromDecimalWithChance(ingredientStack.getCount() / efficiencyModifier, world.random);
 						currentStack.decrement(reducedAmountAfterMod);
@@ -316,8 +245,23 @@ public class FusionShrineRecipe implements Recipe<Inventory>, GatedRecipe {
 			}
 		}
 		
-		fusionShrineBlockEntity.setFluid(Fluids.EMPTY); // empty the shrine
-		FusionShrineBlockEntity.spawnCraftingResultAndXP(world, fusionShrineBlockEntity, this, maxAmount); // spawn results
+		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, getOutput().copy(), maxAmount, noBenefitsFromYieldUpgrades, experience); // spawn results
+	}
+	
+	protected void spawnCraftingResultAndXP(@NotNull World world, @NotNull FusionShrineBlockEntity blockEntity, @NotNull ItemStack stack, int recipeCount, boolean yieldUpgradesDisabled, float experience) {
+		int resultAmountBeforeMod = recipeCount * stack.getCount();
+		double yieldModifier = yieldUpgradesDisabled ? 1.0 : blockEntity.getUpgradeValue(Upgradeable.UpgradeType.YIELD);
+		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
+		
+		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.random);
+		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, blockEntity.getPos().up(2), stack, resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
+		
+		if (experience > 0) {
+			MultiblockCrafter.spawnExperience(world, blockEntity.getPos(), intExperience);
+		}
+		
+		//only triggered on server side. Therefore, has to be sent to client via S2C packet
+		blockEntity.grantPlayerFusionCraftingAdvancement(this, intExperience);
 	}
 	
 }

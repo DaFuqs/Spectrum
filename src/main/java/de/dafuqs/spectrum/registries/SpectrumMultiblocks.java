@@ -24,6 +24,8 @@ public class SpectrumMultiblocks {
 	public static Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_advanced_structure_place");
 	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_complex_structure_check");
 	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_complex_structure_place");
+	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_complex_structure_without_moonstone_check");
+	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_complex_structure_without_moonstone_place");
 	
 	public static Identifier FUSION_SHRINE_IDENTIFIER = SpectrumCommon.locate("fusion_shrine_structure");
 	public static Identifier ENCHANTER_IDENTIFIER = SpectrumCommon.locate("enchanter_structure");
@@ -174,7 +176,7 @@ public class SpectrumMultiblocks {
 		
 		String[][] withoutLavaStructure = {
 				{"C___C", "__H__", "_____", "_____" },
-				{"XcccX", "cG_Gc", "cGGGc", "_XXX_" },
+				{"Xc_cX", "cG_Gc", "cGGGc", "_XXX_" },
 				{"_XXX_", "X___X", "X___X", "_XXX_" },
 				{"_____", "_X0X_", "_XXX_", "_____" }
 		};
@@ -183,7 +185,7 @@ public class SpectrumMultiblocks {
 		String[][] structureUpgrades = {
 				{"U___U", "_____", "_____", "_____" },
 				{"C___C", "__H__", "_____", "_____" },
-				{"Xc cX", "cG_Gc", "cGGGc", "_XXX_" },
+				{"Xc_cX", "cG_Gc", "cGGGc", "_XXX_" },
 				{"_XXX_", "XLLLX", "XLLLX", "_XXX_" },
 				{"_____", "_X0X_", "_XXX_", "_____" }
 		};
@@ -265,6 +267,18 @@ public class SpectrumMultiblocks {
 		};
 		registerMultiBlock(PEDESTAL_IDENTIFIER_WITH_UPGRADES, tier2StructureUpgrades, targetBlocksPlace);
 		
+		
+		String[][] tier3StructureWithoutMoonstone = {
+				{"_____________", "____XtStX____", "_____________", "_____________", "_X__OtttO__X_", "_T__T___T__T_", "_S__T___T__S_", "_T__T___T__T_", "_X__OtttO__X_", "_____________", "_____________", "____XtStX____", "_____________"},
+				{"_____________", "_Sttr___rttS_", "_T__T___T__T_", "_T__T___T__T_", "_rttX___Xttr_", "_____________", "_____________", "_____________", "_rttX___Xttr_", "_T__T___T__T_", "_T__T___T__T_", "_Sttr___rttS_", "_____________"},
+				{"_____________", "_Q__Q___Q__Q_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_Q__Q___Q__Q_", "_____________"},
+				{"_____________", "_C__Q___Q__C_", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_____________", "_Q_________Q_", "_____________", "_____________", "_C__Q___Q__C_", "_____________"},
+				{"_____________", "_Q__L___L__Q_", "_____________", "___S_____S___", "_L_________L_", "_____________", "_____________", "_____________", "_L_________L_", "___S_____S___", "_____________", "_Q__L___L__Q_", "_____________"},
+				{"_____________", "_K__Q___Q__K_", "_____________", "___Q_____Q___", "_Q_________Q_", "_____________", "______4______", "_____________", "_Q_________Q_", "___Q_____Q___", "_____________", "_K__Q___Q__K_", "_____________"},
+				{"XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXrXrXXXXX", "XXXXrXXXrXXXX", "XXXXXX0XXXXXX", "XXXXrXXXrXXXX", "XXXXXrXrXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX", "XXXXXXXXXXXXX"}
+		};
+		registerMultiBlock(PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK, tier3StructureWithoutMoonstone, targetBlocksCheck);
+		registerMultiBlock(PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_PLACE, tier3StructureWithoutMoonstone, targetBlocksPlace);
 		
 		String[][] tier3Structure = {
 				{"_____________", "____XtStX____", "_____________", "_____________", "_X__OtttO__X_", "_T__T___T__T_", "_S__T___T__S_", "_T__T___T__T_", "_X__OtttO__X_", "_____________", "_____________", "____XtStX____", "_____________"},

@@ -1,0 +1,48 @@
+{
+  "name": "Rock Candy",
+  "advancement": "spectrum:progression/unlock_rock_candy",
+  "icon": "spectrum:rock_candy",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:sugar_stick": 0,
+    "spectrum:topaz_sugar_stick": 0,
+    "spectrum:amethyst_sugar_stick": 0,
+    "spectrum:citrine_sugar_stick": 0,
+    "spectrum:onyx_sugar_stick": 0,
+    "spectrum:moonstone_sugar_stick": 0,
+
+    "spectrum:rock_candy": 0,
+    "spectrum:topaz_rock_candy": 0,
+    "spectrum:amethyst_rock_candy": 0,
+    "spectrum:citrine_rock_candy": 0,
+    "spectrum:onyx_rock_candy": 0,
+    "spectrum:moonstone_rock_candy": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A stick with sugar on it.$(br2)...wait wait wait, there's more to it!$(br)If you place this stick so that its underside is immersed in $(l:magical_blocks/liquid_crystal)Liquid Crystal$(/l), you just have to slowly dissolve more sugar in the liquid until the stick turns into a sweet-crunchy candy stick."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/food/sugar_stick",
+      "text": "You might even be able to add more stuff than just plain Sugar when immersed? Liquid $(italic)Crystal$() and all that..."
+    },
+    {
+      "type": "patchouli:image",
+      "title": "Growing Rock Candy",
+      "images": [
+        "spectrum:textures/gui/manual/rock_candy_growing.png"
+      ],
+      "text": "$(thing)Silk Touch$() keeps their size for use as fancy lights, or just for storage."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:topaz_rock_candy",
+      "title": "Gemstone Rock Candy",
+      "advancement": "spectrum:midgame/collect_gemstone_rock_candy",
+      "text": "Dissolving $(l:general/gemstone_powder)Gemstone Powder$(/l) instead of Sugar in the liquid allowed the Rock Candy to take on the gemstone's typical color.$(br2)You always wanted to know what those taste like. Definitely seems like a healthier option than snorting them up your nose."
+    }
+  ]
+}

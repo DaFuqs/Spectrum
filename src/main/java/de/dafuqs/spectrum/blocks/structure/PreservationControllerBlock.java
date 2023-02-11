@@ -37,10 +37,9 @@ public class PreservationControllerBlock extends BlockWithEntity {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof PreservationControllerBlockEntity preservationControllerBlockEntity) {
 				if (player.isSneaking()) {
-					preservationControllerBlockEntity.yeetPlayer(player);
-					preservationControllerBlockEntity.toggleParticles();
-				} else {
 					preservationControllerBlockEntity.openExit();
+				} else {
+					preservationControllerBlockEntity.toggleParticles();
 				}
 			}
 		}

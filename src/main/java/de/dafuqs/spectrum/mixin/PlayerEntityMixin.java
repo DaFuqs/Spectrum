@@ -4,33 +4,45 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
+import de.dafuqs.spectrum.cca.LastKillComponent;
 import de.dafuqs.spectrum.enchantments.ImprovedCriticalEnchantment;
 import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
 import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
+import de.dafuqs.spectrum.items.ExperienceStorageItem;
 import de.dafuqs.spectrum.items.trinkets.AttackRingItem;
 import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
 import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.enchantment.EnchantmentHelper;
+import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityMixin implements PlayerEntityAccessor {
+public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
+	
+	@Shadow public abstract Iterable<ItemStack> getItemsHand();
+	
+	@Shadow public abstract void increaseStat(Identifier stat, int amount);
 	
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
@@ -79,25 +91,34 @@ public class PlayerEntityMixin implements PlayerEntityAccessor {
 		return this.spectrum$fishingBobber;
 	}
 	
-	/*
-	public float getBlockBreakingSpeed(BlockState block) {
-
+	@Inject(at = @At("HEAD"), method = "canFoodHeal()Z", cancellable = true)
+	public void canFoodHeal(CallbackInfoReturnable<Boolean> cir) {
+		PlayerEntity player = (PlayerEntity) (Object) this;
+		if(player.hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
+			cir.setReturnValue(false);
+		}
 	}
 	
-	public void slowMovement(BlockState state, Vec3d multiplier) {
-
+	// If the player holds an ExperienceStorageItem in their hands
+	// experience is tried to get put in there first
+	@ModifyVariable(at = @At("HEAD"), method = "addExperience(I)V", argsOnly = true)
+	public int addExperience(int experience) {
+		for(ItemStack stack : getItemsHand()) {
+			if(!((PlayerEntity)(Object) this).isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
+				experience = ExperienceStorageItem.addStoredExperience(stack, experience);
+				if(experience == 0) {
+					break;
+				}
+			}
+		}
+		return experience;
 	}
 	
-	public void addExhaustion(float exhaustion) {
-
+	@Inject(method = "onKilledOther", at = @At("HEAD"))
+	public void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfo ci) {
+		if(world != null && !world.isClient) {
+			LastKillComponent.rememberKillTick((PlayerEntity)(Object) this, world.getTime());
+		}
 	}
-	
-	public boolean isPushedByFluids() {
-
-	}
-	
-	public void setFireTicks(int ticks) {
-	
-	}*/
 	
 }

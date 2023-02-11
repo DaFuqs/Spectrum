@@ -19,7 +19,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
@@ -35,7 +34,7 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 	public static final long COOLDOWN_TICKS = 160;
 	
 	public GleamingPinItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_gleaming_pin"));
+		super(settings, SpectrumCommon.locate("progression/unlock_gleaming_pin"));
 	}
 	
 	public static void doGleamingPinEffect(@NotNull PlayerEntity player, @NotNull ServerWorld world, ItemStack gleamingPinStack) {

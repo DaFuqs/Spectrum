@@ -4,20 +4,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlock;
+import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<EnchantmentUpgradeRecipe> {
+public class EnchantmentUpgradeRecipeSerializer implements GatedRecipeSerializer<EnchantmentUpgradeRecipe> {
 	
 	public static List<EnchantmentUpgradeRecipe> enchantmentUpgradeRecipesToInject = new ArrayList<>();
 	
@@ -27,8 +25,16 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 		this.recipeFactory = recipeFactory;
 	}
 	
+	public interface RecipeFactory<EnchantmentUpgradeRecipe> {
+		EnchantmentUpgradeRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, Enchantment enchantment, int enchantmentDestinationLevel, int requiredExperience, Item requiredItem, int requiredItemCount);
+	}
+	
 	@Override
 	public EnchantmentUpgradeRecipe read(Identifier identifier, JsonObject jsonObject) {
+		String group = readGroup(jsonObject);
+		boolean secret = readSecret(jsonObject);
+		Identifier requiredAdvancementIdentifier = readRequiredAdvancementIdentifier(jsonObject);
+		
 		Identifier enchantmentIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "enchantment"));
 		
 		if (!Registry.ENCHANTMENT.containsId(enchantmentIdentifier)) {
@@ -36,13 +42,6 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 		}
 		
 		Enchantment enchantment = Registry.ENCHANTMENT.get(enchantmentIdentifier);
-		Identifier requiredAdvancementIdentifier = null;
-		if (JsonHelper.hasString(jsonObject, "required_advancement")) {
-			requiredAdvancementIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "required_advancement"));
-		} else {
-			// Recipe has no unlock advancement set. Will be set to the unlock advancement of the Enchanter itself
-			requiredAdvancementIdentifier = EnchanterBlock.UNLOCK_IDENTIFIER;
-		}
 		
 		JsonArray levelArray = JsonHelper.getArray(jsonObject, "levels");
 		int level;
@@ -57,7 +56,7 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 			requiredItem = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(currentElement, "item")));
 			requiredItemCount = JsonHelper.getInt(currentElement, "item_count");
 			
-			recipe = this.recipeFactory.create(new Identifier(SpectrumCommon.MOD_ID, identifier.getPath() + "_level_" + (i + 2)), enchantment, level, requiredExperience, requiredItem, requiredItemCount, requiredAdvancementIdentifier);
+			recipe = this.recipeFactory.create(SpectrumCommon.locate(identifier.getPath() + "_level_" + (i + 2)), group, secret, requiredAdvancementIdentifier, enchantment, level, requiredExperience, requiredItem, requiredItemCount);
 			if (!enchantmentUpgradeRecipesToInject.contains(recipe) && i < levelArray.size() - 1) { // we return the last one, no need to inject
 				enchantmentUpgradeRecipesToInject.add(recipe);
 			}
@@ -67,29 +66,31 @@ public class EnchantmentUpgradeRecipeSerializer implements RecipeSerializer<Ench
 	}
 	
 	@Override
-	public void write(PacketByteBuf packetByteBuf, EnchantmentUpgradeRecipe enchantmentUpgradeRecipe) {
-		packetByteBuf.writeIdentifier(Registry.ENCHANTMENT.getId(enchantmentUpgradeRecipe.enchantment));
-		packetByteBuf.writeInt(enchantmentUpgradeRecipe.enchantmentDestinationLevel);
-		packetByteBuf.writeInt(enchantmentUpgradeRecipe.requiredExperience);
-		packetByteBuf.writeIdentifier(Registry.ITEM.getId(enchantmentUpgradeRecipe.requiredItem));
-		packetByteBuf.writeInt(enchantmentUpgradeRecipe.requiredItemCount);
-		packetByteBuf.writeIdentifier(enchantmentUpgradeRecipe.requiredAdvancementIdentifier);
+	public void write(PacketByteBuf packetByteBuf, EnchantmentUpgradeRecipe recipe) {
+		packetByteBuf.writeString(recipe.group);
+		packetByteBuf.writeBoolean(recipe.secret);
+		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
+		
+		packetByteBuf.writeIdentifier(Registry.ENCHANTMENT.getId(recipe.enchantment));
+		packetByteBuf.writeInt(recipe.enchantmentDestinationLevel);
+		packetByteBuf.writeInt(recipe.requiredExperience);
+		packetByteBuf.writeIdentifier(Registry.ITEM.getId(recipe.requiredItem));
+		packetByteBuf.writeInt(recipe.requiredItemCount);
 	}
 	
 	@Override
 	public EnchantmentUpgradeRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
+		String group = packetByteBuf.readString();
+		boolean secret = packetByteBuf.readBoolean();
+		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
+		
 		Enchantment enchantment = Registry.ENCHANTMENT.get(packetByteBuf.readIdentifier());
 		int enchantmentDestinationLevel = packetByteBuf.readInt();
 		int requiredExperience = packetByteBuf.readInt();
 		Item requiredItem = Registry.ITEM.get(packetByteBuf.readIdentifier());
 		int requiredItemCount = packetByteBuf.readInt();
-		Identifier requiredAdvancementIdentifier = packetByteBuf.readIdentifier();
 		
-		return this.recipeFactory.create(identifier, enchantment, enchantmentDestinationLevel, requiredExperience, requiredItem, requiredItemCount, requiredAdvancementIdentifier);
-	}
-	
-	public interface RecipeFactory<EnchantmentUpgradeRecipe> {
-		EnchantmentUpgradeRecipe create(Identifier id, Enchantment enchantment, int enchantmentDestinationLevel, int requiredExperience, Item requiredItem, int requiredItemCount, @Nullable Identifier requiredAdvancementIdentifier);
+		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, enchantment, enchantmentDestinationLevel, requiredExperience, requiredItem, requiredItemCount);
 	}
 	
 }

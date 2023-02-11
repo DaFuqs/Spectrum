@@ -1,30 +1,20 @@
 package de.dafuqs.spectrum.items.tools;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.entity.BedrockFishingBobberEntity;
 import de.dafuqs.spectrum.entity.entity.MoltenFishingBobberEntity;
-import de.dafuqs.spectrum.items.Preenchanted;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import de.dafuqs.spectrum.registries.SpectrumFluidTags;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Map;
 
 public class MoltenRodItem extends SpectrumFishingRodItem {
 	

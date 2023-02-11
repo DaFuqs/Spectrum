@@ -19,7 +19,7 @@ import net.minecraft.util.Identifier;
 
 public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHandler> {
 	
-	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/compacting_chest.png");
+	public static final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/container/compacting_chest.png");
 	private AutoCompactingInventory.AutoCraftingMode autoCraftingMode;
 	
 	public CompactingChestScreen(CompactingChestScreenHandler handler, PlayerInventory playerInventory, Text title) {

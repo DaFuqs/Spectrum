@@ -31,17 +31,17 @@ import java.util.function.Predicate;
 @Environment(EnvType.CLIENT)
 public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHandler> {
 	
-	private static final Identifier GUI_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/particle_spawner.png");
+	private static final Identifier GUI_TEXTURE = SpectrumCommon.locate("textures/gui/container/particle_spawner.png");
 	// when adding new particles do not forget adding them both in
 	// - the texture file (for the gui)
 	// - the available particle list
-	private static final Identifier TEXTURE_PARTICLES = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/particle_spawner_particles.png");
+	private static final Identifier TEXTURE_PARTICLES = SpectrumCommon.locate("textures/gui/container/particle_spawner_particles.png");
 	private static final int PARTICLES_PER_PAGE = 6;
 	private static final List<Identifier> AVAILABLE_PARTICLES = new ArrayList<>() {{
-		add(new Identifier(SpectrumCommon.MOD_ID, "particle/sparklestone_sparkle"));
-		add(new Identifier(SpectrumCommon.MOD_ID, "particle/shooting_star"));
-		add(new Identifier(SpectrumCommon.MOD_ID, "particle/liquid_crystal_sparkle"));
-		add(new Identifier(SpectrumCommon.MOD_ID, "particle/void_fog"));
+		add(SpectrumCommon.locate("particle/sparklestone_sparkle"));
+		add(SpectrumCommon.locate("particle/shooting_star"));
+		add(SpectrumCommon.locate("particle/liquid_crystal_sparkle"));
+		add(SpectrumCommon.locate("particle/void_fog"));
 		add(new Identifier("particle/effect_5"));
 		add(new Identifier("particle/glint"));
 		add(new Identifier("particle/heart"));
@@ -268,10 +268,11 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	}
 	
 	private void navigationButtonPressed(ButtonWidget buttonWidget) {
+		int pageCount = ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE) + 1);
 		if (buttonWidget == forwardButton) {
-			activeParticlePage = (activeParticlePage + 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE) + 1);
+			activeParticlePage = (activeParticlePage + 1) % pageCount;
 		} else {
-			activeParticlePage = (activeParticlePage - 1) % ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE) + 1);
+			activeParticlePage = (activeParticlePage - 1 + pageCount) % pageCount;
 		}
 	}
 	
@@ -293,7 +294,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	}
 	
 	private @NotNull ButtonWidget addParticleButton(int x, int y) {
-		ButtonWidget button = new ButtonWidget(x, y, 20, 20, new LiteralText("asdfsd.asdfsd"), this::particleButtonPressed);
+		ButtonWidget button = new ButtonWidget(x, y, 20, 20, new LiteralText("Particles"), this::particleButtonPressed);
 		addSelectableChild(button);
 		return button;
 	}
@@ -302,7 +303,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		int buttonIndex = particleButtons.indexOf(buttonWidget);
 		int newIndex = PARTICLES_PER_PAGE * activeParticlePage + buttonIndex;
 		
-		if (newIndex < AVAILABLE_PARTICLES.size() - 1) {
+		if (newIndex < AVAILABLE_PARTICLES.size()) {
 			particleSelectionIndex = newIndex;
 			onValuesChanged();
 		}

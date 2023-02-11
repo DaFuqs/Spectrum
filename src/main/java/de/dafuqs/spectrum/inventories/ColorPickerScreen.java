@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 
 public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> implements Consumer<InkColor> {
 	
-	protected final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/color_picker.png");
+	protected final Identifier BACKGROUND = SpectrumCommon.locate("textures/gui/container/color_picker.png");
 	protected ColorSelectionWidget colorSelectionWidget;
 	protected InkGaugeWidget inkGaugeWidget;
 	protected StackedInkMeterWidget inkMeterWidget;

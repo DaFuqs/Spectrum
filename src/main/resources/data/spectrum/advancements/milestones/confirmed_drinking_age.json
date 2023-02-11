@@ -1,0 +1,8 @@
+{
+  "criteria": {
+    "confirmed_drinking_age": {
+      "trigger":"spectrum:confirmation_button_pressed",
+      "conditions": { "confirmation": "confirm_drinking_age" }
+    }
+  }
+}

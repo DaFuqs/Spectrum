@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "collected_sparklestone": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_sparklestone" }
+    },
+    "entered_color_mixing_puzzle_structure": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:enter_color_mixing_puzzle_structure" }
+    }
+  }
+}

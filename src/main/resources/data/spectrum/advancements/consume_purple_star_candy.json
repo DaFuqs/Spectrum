@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:purple_star_candy"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.consume_purple_star_candy.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.consume_purple_star_candy.description"
+    }
+  },
+  "parent": "spectrum:collect_amaranth_bushel",
+  "criteria": {
+    "consumed_purple_star_candy": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": { "items": [ "spectrum:purple_star_candy" ] }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth_bushel" }
+    }
+  }
+}

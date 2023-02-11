@@ -14,9 +14,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class Spectrum3x3ContainerScreen extends HandledScreen<Spectrum3x3ContainerScreenHandler> {
 	
-	private static final Identifier TIER_1_TEXTURE_3x3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_3x3_tier_1.png");
-	private static final Identifier TIER_2_TEXTURE_3x3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_3x3_tier_2.png");
-	private static final Identifier TIER_3_TEXTURE_3x3 = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/generic_3x3_tier_3.png");
+	private static final Identifier TIER_1_TEXTURE_3x3 = SpectrumCommon.locate("textures/gui/container/generic_3x3_tier_1.png");
+	private static final Identifier TIER_2_TEXTURE_3x3 = SpectrumCommon.locate("textures/gui/container/generic_3x3_tier_2.png");
+	private static final Identifier TIER_3_TEXTURE_3x3 = SpectrumCommon.locate("textures/gui/container/generic_3x3_tier_3.png");
 	
 	private final Identifier backgroundTexture;
 	

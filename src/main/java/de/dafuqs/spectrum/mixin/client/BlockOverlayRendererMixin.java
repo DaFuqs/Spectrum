@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Environment(EnvType.CLIENT)
 @Mixin(InGameOverlayRenderer.class)
-public class BlockOverlayRendererMixin {
+public abstract class BlockOverlayRendererMixin {
 	
 	// Since the hack in SpectrumFluid to allow swimming, sounds, particles for fluids
 	// this does now work because "isSubmergedIn()" only matches for water

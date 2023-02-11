@@ -1,0 +1,24 @@
+{
+  "parent": "spectrum:midgame/break_decayed_bedrock",
+  "display": {
+    "icon": {
+      "item": "spectrum:blood_orchid_petal"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_blood_orchid_petal.title"
+    },                                          
+    "description": {
+      "translate": "advancements.spectrum.collect_blood_orchid_petal.description"
+    }
+  },
+  "criteria": {
+    "collected_blood_orchid_petal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": { "items": [{ "items": [ "spectrum:blood_orchid_petal" ]}] }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
+    }
+  }
+}

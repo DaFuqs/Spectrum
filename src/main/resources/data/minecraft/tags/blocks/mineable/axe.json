@@ -4,6 +4,7 @@
     "#spectrum:spirit_sallow_wood",
     "#spectrum:colored_spore_blossoms",
     "#spectrum:detectors",
+    "#spectrum:sugar_sticks",
     "spectrum:fading",
     "spectrum:private_chest",
     "spectrum:glistering_melon",
@@ -14,6 +15,9 @@
     "spectrum:clover",
     "spectrum:glistering_melon_stem",
     "spectrum:attached_glistering_melon_stem",
-    "spectrum:bottomless_bundle"
+    "spectrum:bottomless_bundle",
+    "spectrum:amaranth",
+    "spectrum:amaranth_bushel",
+    "spectrum:titration_barrel"
   ]
 }

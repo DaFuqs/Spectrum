@@ -18,21 +18,22 @@ import de.dafuqs.spectrum.mixin.client.accessors.BossBarHudAccessor;
 import de.dafuqs.spectrum.particle.ParticlePattern;
 import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.registries.SpectrumItems;
 import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
 import de.dafuqs.spectrum.render.bossbar.SpectrumClientBossBar;
 import de.dafuqs.spectrum.sound.CraftingBlockSoundInstance;
+import de.dafuqs.spectrum.sound.DivinitySoundInstance;
 import de.dafuqs.spectrum.sound.TakeOffBeltSoundInstance;
 import de.dafuqs.spectrum.spells.InkSpellEffects;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.BossBarHud;
 import net.minecraft.client.gui.hud.ClientBossBar;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ItemStackParticleEffect;
 import net.minecraft.particle.ParticleEffect;
@@ -396,9 +397,8 @@ public class SpectrumS2CPacketReceiver {
 			});
 		});
 		
-		// TODO: was does a ServerPlayNetworking receiver here??
-		ServerPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INK_COLOR_SELECTED, (server, player, handler, buf, responseSender) -> {
-			ScreenHandler screenHandler = player.currentScreenHandler;
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.INK_COLOR_SELECTED, (client, handler, buf, responseSender) -> {
+			ScreenHandler screenHandler = MinecraftClient.getInstance().player.currentScreenHandler;
 			if(screenHandler instanceof InkColorSelectedPacketReceiver inkColorSelectedPacketReceiver) {
 				boolean isSelection = buf.readBoolean();
 				
@@ -440,6 +440,27 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				PresentBlock.spawnParticles(MinecraftClient.getInstance().world, pos, colors);
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_ASCENSION_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> {
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				MinecraftClient.getInstance().world.playSound(MinecraftClient.getInstance().player.getBlockPos(), SpectrumSoundEvents.FADING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+				SpectrumClient.minecraftClient.getSoundManager().play(new DivinitySoundInstance());
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_DIVINITY_APPLIED_EFFECTS, (client, handler, buf, responseSender) -> {
+			client.execute(() -> {
+				// Everything in this lambda is running on the render thread
+				ClientPlayerEntity player = MinecraftClient.getInstance().player;
+				client.particleManager.addEmitter(player, SpectrumParticleTypes.DIVINITY, 30);
+				MinecraftClient.getInstance().gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
+				MinecraftClient.getInstance().world.playSound(player.getBlockPos(), SpectrumSoundEvents.FAILING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
+				
+				SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
+				SpectrumS2CPacketReceiver.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
 			});
 		});
 	}

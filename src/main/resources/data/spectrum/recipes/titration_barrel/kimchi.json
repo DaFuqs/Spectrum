@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "tag": "c:vegetables",
+      "count": 4
+    },
+    {
+      "tag": "c:vegetables",
+      "count": 4
+    },
+    {
+      "tag": "c:vegetables",
+      "count": 4
+    }
+  ],
+  "fluid": "minecraft:water",
+  "min_fermentation_time_hours": 4,
+  "result": {
+    "item": "spectrum:kimchi",
+    "count": 8
+  }
+}

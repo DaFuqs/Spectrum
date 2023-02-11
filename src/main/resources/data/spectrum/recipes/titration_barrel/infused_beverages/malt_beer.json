@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:wheat",
+      "count": 4
+    },
+    {
+      "item": "minecraft:sugar",
+      "count": 2
+    }
+  ],
+  "min_fermentation_time_hours": 4,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.0,
+    "effects": [
+      {
+        "id": "minecraft:haste",
+        "base_duration": 9600
+      },
+      {
+        "id": "spectrum:nourishing",
+        "base_duration": 9600
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"malt_beer\", Color: 8272724 }"
+  }
+}

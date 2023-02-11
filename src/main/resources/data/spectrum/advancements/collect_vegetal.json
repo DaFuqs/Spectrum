@@ -12,7 +12,7 @@
   },
   "parent": "spectrum:craft_bottle_of_fading",
   "criteria": {
-    "has_black_spectrum": {
+    "has_vegetal": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:vegetal" ]}] }
     },

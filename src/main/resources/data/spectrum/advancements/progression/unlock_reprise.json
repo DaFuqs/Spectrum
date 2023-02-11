@@ -1,0 +1,18 @@
+{
+  "criteria": {
+    "unlocked_titration_barrel": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:progression/unlock_titration_barrel" }
+    },
+    "confirmed_drinking_age": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:milestones/confirmed_drinking_age" }
+    },
+    "collected_chorus_fruit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": [ "minecraft:chorus_fruit" ] }]
+      }
+    }
+  }
+}

@@ -59,7 +59,7 @@ public interface JadeVine {
 		SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(world, Vec3d.ofCenter(blockPos), SpectrumParticleTypes.JADE_VINES, amount, new Vec3d(0.6, 0.6, 0.6), new Vec3d(0.12, 0.12, 0.12));
 	}
 	
-	static boolean doesDie(@NotNull World world, @NotNull BlockPos blockPos) {
+	static boolean isExposedToSunlight(@NotNull World world, @NotNull BlockPos blockPos) {
 		return world.getLightLevel(LightType.SKY, blockPos) > 8 && TimeHelper.isBrightSunlight(world);
 	}
 	

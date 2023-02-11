@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:suspicious_brew"
+    },
+    "title": {
+      "translate": "advancements.spectrum.tap_suspicious_brew.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.tap_suspicious_brew.description"
+    }
+  },
+  "parent": "spectrum:tap_titration_barrel",
+  "criteria": {
+    "tapped_suspicious_brew": {
+      "trigger": "spectrum:titration_barrel_tapping",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:suspicious_brew"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:tap_titration_barrel" }
+    }
+  }
+}

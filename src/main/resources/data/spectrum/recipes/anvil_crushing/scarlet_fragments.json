@@ -10,5 +10,6 @@
     "count": 8
   },
   "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.glass.break"
+  "soundEventIdentifier": "block.glass.break",
+  "required_advancement": "spectrum:midgame/collect_scarlet"
 }

@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:glass_bottle"
+  },
+  "use_up_base_ingredient": true,
+  "color": 9128969,
+  "ingredient1": {
+    "tag": "c:milk"
+  },
+  "ingredient2": {
+    "item": "spectrum:fresh_chocolate"
+  },
+  "ingredient3": {
+    "item": "spectrum:clotted_cream"
+  },
+  "result": {
+    "item": "spectrum:hot_chocolate"
+  }
+}

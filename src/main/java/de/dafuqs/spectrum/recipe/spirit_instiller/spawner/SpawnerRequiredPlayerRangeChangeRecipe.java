@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
+import net.id.incubus_core.recipe.matchbook.Matchbook;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -16,12 +17,7 @@ public class SpawnerRequiredPlayerRangeChangeRecipe extends SpawnerChangeRecipe 
 	public static final RecipeSerializer<SpawnerRequiredPlayerRangeChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerRequiredPlayerRangeChangeRecipe::new);
 	
 	public SpawnerRequiredPlayerRangeChangeRecipe(Identifier identifier) {
-		super(identifier);
-	}
-	
-	@Override
-	public IngredientStack getIngredientStack() {
-		return IngredientStack.of(Ingredient.ofItems(SpectrumItems.SCARLET_GEM), 4);
+		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.SCARLET_GEM), Matchbook.empty(), null, 4));
 	}
 	
 	@Override

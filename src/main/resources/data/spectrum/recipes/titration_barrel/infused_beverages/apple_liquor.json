@@ -1,0 +1,87 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "fermentation_time_days": 2,
+  "ingredients": [
+    {
+      "item": "minecraft:apple",
+      "count": 6
+    },
+    {
+      "item": "minecraft:sugar",
+      "count": 4
+    }
+  ],
+  "min_fermentation_time_hours": 24,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.25,
+    "effects": [
+      {
+        "id": "minecraft:speed",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 16,
+            "potency": 1
+          },
+          {
+            "min_alc": 20,
+            "potency": 2
+          },
+          {
+            "min_alc": 24,
+            "potency": 3
+          },
+          {
+            "min_alc": 28,
+            "potency": 4
+          },
+          {
+            "min_alc": 32,
+            "potency": 5
+          }
+        ]
+      },
+      {
+        "id": "minecraft:weakness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 30
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"apple_liquor\", Color: 16729462 }"
+  },
+  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+}

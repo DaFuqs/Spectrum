@@ -26,7 +26,6 @@ public class PrintConfigCommand {
 		send(source, "LightningStonesWorlds: " + SpectrumCommon.CONFIG.LightningStonesWorlds);
 		send(source, "LightningStonesChance: " + SpectrumCommon.CONFIG.LightningStonesChance);
 		send(source, "ShootingStarChance: " + SpectrumCommon.CONFIG.ShootingStarChance);
-		send(source, "QuitoxicReedsGenerationBiomes: " + SpectrumCommon.CONFIG.QuitoxicReedsGenerationBiomes);
 		send(source, "VanillaRecipeCraftingTimeTicks: " + SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks);
 		
 		send(source, "Decay tick rates: " + SpectrumCommon.CONFIG.FadingDecayTickRate + ", " + SpectrumCommon.CONFIG.FailingDecayTickRate + ", " + SpectrumCommon.CONFIG.RuinDecayTickRate + ", " + SpectrumCommon.CONFIG.TerrorDecayTickRate);

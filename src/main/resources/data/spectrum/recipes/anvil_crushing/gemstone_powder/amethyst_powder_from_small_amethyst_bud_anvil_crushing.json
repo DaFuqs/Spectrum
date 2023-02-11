@@ -10,5 +10,7 @@
     "count": 4
   },
   "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "block.small_amethyst_bud.break"
+  "soundEventIdentifier": "block.small_amethyst_bud.break",
+  "group": "gemstone_crushing",
+  "required_advancement": "spectrum:hidden/collect_shards/collect_amethyst_shard"
 }

@@ -10,5 +10,7 @@
     "count": 6
   },
   "particleEffectIdentifier": "explosion",
-  "soundEventIdentifier": "spectrum:block.medium_onyx_bud.break"
+  "soundEventIdentifier": "spectrum:block.medium_onyx_bud.break",
+  "group": "gemstone_crushing",
+  "required_advancement": "spectrum:hidden/collect_shards/collect_onyx_shard"
 }

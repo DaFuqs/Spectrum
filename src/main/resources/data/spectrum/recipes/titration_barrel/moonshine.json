@@ -1,0 +1,102 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:glow_berries",
+      "count": 8
+    },
+    {
+      "item": "spectrum:moonstone_powder",
+      "count": 4
+    },
+	{
+      "item": "spectrum:stardust",
+      "count": 4
+    },
+    {
+      "item": "spectrum:paletur_fragments",
+      "count": 2
+    }
+  ],
+  "fluid": "spectrum:liquid_crystal",
+  "min_fermentation_time_hours": 24,
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.25,
+    "effects": [
+      {
+        "id": "minecraft:invisibility",
+        "base_duration": 1200
+      },
+      {
+        "id": "spectrum:lightweight",
+        "base_duration": 1200,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 30,
+            "potency": 1
+          },
+          {
+            "min_alc": 32,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:jump_boost",
+        "base_duration": 1200,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 30,
+            "potency": 1
+          },
+          {
+            "min_alc": 32,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:slowness",
+        "base_duration": 1200,
+        "potency": [
+          {
+            "potency": 2
+          },
+          {
+            "min_alc": 30,
+            "potency": 1
+          },
+          {
+            "min_alc": 32,
+            "potency": 0
+          }
+        ]
+      },
+      {
+        "id": "minecraft:nausea",
+        "base_duration": 200,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:moonshine",
+    "count": 4
+  },
+  "required_advancement": "spectrum:progression/unlock_moonshine"
+}

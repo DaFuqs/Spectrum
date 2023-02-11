@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 160,
+  "tier": "advanced",
+  "cyan": 2,
+  "magenta": 2,
+  "yellow": 2,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "JDJ",
+    "EME",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:amaranth_grains"
+    },
+    "J": {
+      "item": "spectrum:jaramel"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "M": {
+      "tag": "c:milk"
+    },
+    "D": {
+      "item": "minecraft:dragon_breath"
+    }
+  },
+  "result": {
+    "item": "spectrum:puff_tart",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_tarts"
+}

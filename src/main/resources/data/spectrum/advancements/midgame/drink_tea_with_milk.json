@@ -1,0 +1,34 @@
+{
+  "parent": "spectrum:midgame/plant_jade_vines",
+  "display": {
+    "icon": {
+      "item": "spectrum:restoration_tea"
+    },
+	"hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.drink_tea_with_milk.title"
+    },                                          
+    "description": {                            
+      "translate": "advancements.spectrum.drink_tea_with_milk.description"
+    }
+  },
+  "criteria": {
+    "drinking_restoration_tea_with_milk": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "spectrum:restoration_tea",
+            "spectrum:glistering_jelly_tea",
+            "spectrum:demon_tea"
+          ],
+          "nbt": "{Milk:1b}"
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:midgame/plant_jade_vines" }
+    }
+  }
+}

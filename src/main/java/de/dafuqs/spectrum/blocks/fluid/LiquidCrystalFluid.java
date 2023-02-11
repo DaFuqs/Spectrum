@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
 import de.dafuqs.spectrum.registries.SpectrumBlocks;
 import de.dafuqs.spectrum.registries.SpectrumFluids;
 import de.dafuqs.spectrum.registries.SpectrumItems;
@@ -13,7 +14,6 @@ import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -72,7 +72,12 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	
 	@Override
 	public ParticleEffect getParticle() {
-		return ParticleTypes.DRIPPING_WATER;
+		return SpectrumParticleTypes.DRIPPING_LIQUID_CRYSTAL;
+	}
+	
+	@Override
+	public ParticleEffect getSplashParticle() {
+		return SpectrumParticleTypes.LIQUID_CRYSTAL_SPLASH;
 	}
 	
 	public static class FlowingLiquidCrystal extends LiquidCrystalFluid {
@@ -92,7 +97,6 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		public boolean isStill(FluidState fluidState) {
 			return false;
 		}
-		
 	}
 	
 	public static class StillLiquidCrystal extends LiquidCrystalFluid {

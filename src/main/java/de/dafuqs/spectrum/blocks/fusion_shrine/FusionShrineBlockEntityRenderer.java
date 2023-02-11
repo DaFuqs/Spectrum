@@ -69,12 +69,12 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 			matrixStack.pop();
 		}
 		
-		if (!fusionShrineBlockEntity.getInventory().isEmpty()) {
+		if (!fusionShrineBlockEntity.isEmpty()) {
 			// the floating item stacks
 			List<ItemStack> inventoryStacks = new ArrayList<>();
 			
-			for (int i = 0; i < fusionShrineBlockEntity.getInventory().size(); i++) {
-				ItemStack stack = fusionShrineBlockEntity.getInventory().getStack(i);
+			for (int i = 0; i < fusionShrineBlockEntity.size(); i++) {
+				ItemStack stack = fusionShrineBlockEntity.getStack(i);
 				if (!stack.isEmpty()) {
 					inventoryStacks.add(stack);
 				}

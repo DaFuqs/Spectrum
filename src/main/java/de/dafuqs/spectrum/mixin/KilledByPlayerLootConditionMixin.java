@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(KilledByPlayerLootCondition.class)
-public class KilledByPlayerLootConditionMixin {
+public abstract class KilledByPlayerLootConditionMixin {
 	
 	@Inject(method = "test(Lnet/minecraft/loot/context/LootContext;)Z", at = @At(value = "RETURN"), cancellable = true)
 	private void spectrum$testDropPlayerLoot(LootContext lootContext, CallbackInfoReturnable<Boolean> cir) {

@@ -4,12 +4,13 @@ import de.dafuqs.spectrum.SpectrumCommon;
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlock;
 import de.dafuqs.spectrum.energy.color.InkColor;
 import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
+import de.dafuqs.spectrum.items.food.beverages.BeverageItem;
 import de.dafuqs.spectrum.items.magic_items.BottomlessBundleItem;
 import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
 import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
 import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipeSerializer;
-import de.dafuqs.spectrum.recipe.spirit_instiller.ISpiritInstillerRecipe;
+import de.dafuqs.spectrum.recipe.spirit_instiller.SpiritInstillerRecipe;
+import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
@@ -38,9 +39,9 @@ public class SpectrumItemGroups {
 			setCustomTexture(ITEM_GROUP_BACKGROUND_TEXTURE_IDENTIFIER);
 			
 			addTab(Icon.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST), "general", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
-			addTab(Icon.of(SpectrumItems.BEDROCK_PICKAXE), "tools", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
-			addTab(Icon.of(SpectrumBlocks.CITRINE_BLOCK), "worldgen", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
-			addTab(Icon.of(SpectrumItems.TOPAZ_SHARD), "items", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumItems.BEDROCK_PICKAXE), "equipment", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumItems.RESTORATION_TEA), "consumables", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
+			addTab(Icon.of(SpectrumBlocks.CITRINE_BLOCK), "resources", null, ITEM_GROUP_BUTTON_TEXTURE_IDENTIFIER);
 			
 			addButton(ItemGroupButton.discord("https://discord.com/invite/EXU9XFXT8a")); // TODO: Add item group background texture, as soon as owo supports it
 			addButton(ItemGroupButton.github("https://github.com/DaFuqs/Spectrum"));
@@ -112,30 +113,41 @@ public class SpectrumItemGroups {
 				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.SEVEN_LEAGUE_BOOTS, Enchantments.POWER));
 				stacks.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.TAKE_OFF_BELT, Enchantments.POWER, Enchantments.FEATHER_FALLING));
 				
-				// Enchanted books with the max upgrade level available via Enchantment Upgrading
-				HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
-				for (EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : EnchantmentUpgradeRecipeSerializer.enchantmentUpgradeRecipesToInject) {
-					Enchantment enchantment = enchantmentUpgradeRecipe.getEnchantment();
-					int destinationLevel = enchantmentUpgradeRecipe.getEnchantmentDestinationLevel();
-					if (highestEnchantmentLevels.containsKey(enchantment)) {
-						if (highestEnchantmentLevels.get(enchantment) < destinationLevel) {
+				// Infused Beverage Variants
+				if(SpectrumCommon.minecraftServer != null) {
+					for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
+						ItemStack output = recipe.getOutput().copy();
+						if (output.getItem() instanceof BeverageItem) {
+							output.setCount(1);
+							stacks.add(output);
+						}
+					}
+					
+					// Enchanted books with the max upgrade level available via Enchantment Upgrading
+					HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
+					for (EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
+						Enchantment enchantment = enchantmentUpgradeRecipe.getEnchantment();
+						int destinationLevel = enchantmentUpgradeRecipe.getEnchantmentDestinationLevel();
+						if (highestEnchantmentLevels.containsKey(enchantment)) {
+							if (highestEnchantmentLevels.get(enchantment) < destinationLevel) {
+								highestEnchantmentLevels.put(enchantment, destinationLevel);
+							}
+						} else {
 							highestEnchantmentLevels.put(enchantment, destinationLevel);
 						}
-					} else {
-						highestEnchantmentLevels.put(enchantment, destinationLevel);
 					}
-				}
-				for (Map.Entry<Enchantment, Integer> s : highestEnchantmentLevels.entrySet()) {
-					if (s.getValue() > s.getKey().getMaxLevel()) {
-						stacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(s.getKey(), s.getValue())));
+					for (Map.Entry<Enchantment, Integer> s : highestEnchantmentLevels.entrySet()) {
+						if (s.getValue() > s.getKey().getMaxLevel()) {
+							stacks.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(s.getKey(), s.getValue())));
+						}
 					}
-				}
-				
-				// all memories that have spirit instiller recipes
-				Item memoryItem = SpectrumBlocks.MEMORY.asItem();
-				for (ISpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
-					if (recipe.getOutput().isOf(memoryItem)) {
-						stacks.add(recipe.getOutput());
+					
+					// all memories that have spirit instiller recipes
+					Item memoryItem = SpectrumBlocks.MEMORY.asItem();
+					for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
+						if (recipe.getOutput().isOf(memoryItem)) {
+							stacks.add(recipe.getOutput());
+						}
 					}
 				}
 			}

@@ -63,7 +63,7 @@ public class LightningStoneBlock extends Block implements RevelationAware {
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_lightning_stones");
+		return SpectrumCommon.locate("milestones/reveal_lightning_stones");
 	}
 	
 	@Deprecated
@@ -97,6 +97,7 @@ public class LightningStoneBlock extends Block implements RevelationAware {
 	/**
 	 * If it gets ticked there is a chance to vanish
 	 */
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (random.nextFloat() < 0.1) {
 			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);

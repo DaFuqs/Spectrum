@@ -55,6 +55,8 @@ public class SpectrumParticleFactories {
 			return particle;
 		});
 		
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DIVINITY, HardcoreParticle.Factory::new);
+		
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SHOOTING_STAR, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SPARKLESTONE_SPARKLE, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SPARKLESTONE_SPARKLE_SMALL, LitParticle.Factory::new);
@@ -69,7 +71,27 @@ public class SpectrumParticleFactories {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.JADE_VINES, ZigZagParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.JADE_VINES_BLOOM, ZigZagParticle.Factory::new);
 		
-		// Fishing
+		// Fluid Splash
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MUD_SPLASH, WaterSplashParticle.SplashFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIQUID_CRYSTAL_SPLASH, WaterSplashParticle.SplashFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MIDNIGHT_SOLUTION_SPLASH, WaterSplashParticle.SplashFactory::new);
+		
+		// Fluid Dripping
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRIPPING_MUD, SpectrumBlockLeakParticles.DrippingMudFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRIPPING_LIQUID_CRYSTAL, SpectrumBlockLeakParticles.DrippingLiquidCrystalFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRIPPING_MIDNIGHT_SOLUTION, SpectrumBlockLeakParticles.DrippingMidnightSolutionFactory::new);
+
+		// Fluid Falling
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_MUD, SpectrumBlockLeakParticles.FallingMudFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_LIQUID_CRYSTAL, SpectrumBlockLeakParticles.FallingLiquidCrystalFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.FALLING_MIDNIGHT_SOLUTION, SpectrumBlockLeakParticles.FallingMidnightSolutionFactory::new);
+		
+		// Fluid Landing
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LANDING_MUD, SpectrumBlockLeakParticles.LandingMudFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LANDING_LIQUID_CRYSTAL, SpectrumBlockLeakParticles.LandingLiquidCrystalFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LANDING_MIDNIGHT_SOLUTION, SpectrumBlockLeakParticles.LandingMidnightSolutionFactory::new);
+		
+		// Fluid Fishing
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LAVA_FISHING, FishingParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MUD_FISHING, FishingParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIQUID_CRYSTAL_FISHING, FishingParticle.Factory::new);
@@ -93,7 +115,6 @@ public class SpectrumParticleFactories {
 		registerColoredSporeBlossomParticles(SpectrumParticleTypes.WHITE_FALLING_SPORE_BLOSSOM, SpectrumParticleTypes.WHITE_SPORE_BLOSSOM_AIR, 0.97F, 0.97F, 0.97F);
 		registerColoredSporeBlossomParticles(SpectrumParticleTypes.YELLOW_FALLING_SPORE_BLOSSOM, SpectrumParticleTypes.YELLOW_SPORE_BLOSSOM_AIR, 0.93F, 0.93F, 0.0F);
 		
-		// Used for Pigment Pedestal crafting
 		registerColoredCraftingParticle(SpectrumParticleTypes.BLACK_CRAFTING, 0.1F, 0.1F, 0.1F);
 		registerColoredCraftingParticle(SpectrumParticleTypes.BLUE_CRAFTING, 0.05F, 0.011F, 0.95F);
 		registerColoredCraftingParticle(SpectrumParticleTypes.BROWN_CRAFTING, 0.31F, 0.16F, 0.05F);
@@ -111,7 +132,6 @@ public class SpectrumParticleFactories {
 		registerColoredCraftingParticle(SpectrumParticleTypes.WHITE_CRAFTING, 0.97F, 0.97F, 0.97F);
 		registerColoredCraftingParticle(SpectrumParticleTypes.YELLOW_CRAFTING, 0.93F, 0.93F, 0.0F);
 		
-		// Used in the fusion shrine fluid animation while crafting
 		registerColoredRisingParticle(SpectrumParticleTypes.BLACK_FLUID_RISING, 0.1F, 0.1F, 0.1F);
 		registerColoredRisingParticle(SpectrumParticleTypes.BLUE_FLUID_RISING, 0.05F, 0.011F, 0.95F);
 		registerColoredRisingParticle(SpectrumParticleTypes.BROWN_FLUID_RISING, 0.31F, 0.16F, 0.05F);
@@ -129,7 +149,6 @@ public class SpectrumParticleFactories {
 		registerColoredRisingParticle(SpectrumParticleTypes.WHITE_FLUID_RISING, 0.97F, 0.97F, 0.97F);
 		registerColoredRisingParticle(SpectrumParticleTypes.YELLOW_FLUID_RISING, 0.93F, 0.93F, 0.0F);
 		
-		// Used in the item bowl
 		registerColoredRisingParticle(SpectrumParticleTypes.BLACK_SPARKLE_RISING, 0.1F, 0.1F, 0.1F);
 		registerColoredRisingParticle(SpectrumParticleTypes.BLUE_SPARKLE_RISING, 0.05F, 0.011F, 0.95F);
 		registerColoredRisingParticle(SpectrumParticleTypes.BROWN_SPARKLE_RISING, 0.31F, 0.16F, 0.05F);
@@ -147,7 +166,6 @@ public class SpectrumParticleFactories {
 		registerColoredRisingParticle(SpectrumParticleTypes.WHITE_SPARKLE_RISING, 0.97F, 0.97F, 0.97F);
 		registerColoredRisingParticle(SpectrumParticleTypes.YELLOW_SPARKLE_RISING, 0.93F, 0.93F, 0.0F);
 		
-		// Used in the item bowl
 		registerColoredExplosionParticle(SpectrumParticleTypes.BLACK_EXPLOSION, 0.1F, 0.1F, 0.1F);
 		registerColoredExplosionParticle(SpectrumParticleTypes.BLUE_EXPLOSION, 0.05F, 0.011F, 0.95F);
 		registerColoredExplosionParticle(SpectrumParticleTypes.BROWN_EXPLOSION, 0.31F, 0.16F, 0.05F);

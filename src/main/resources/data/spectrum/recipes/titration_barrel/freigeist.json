@@ -1,0 +1,34 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "spectrum:amaranth_grains",
+      "count": 4
+    },
+	{
+      "item": "spectrum:onyx_powder",
+      "count": 8
+    },
+	{
+      "item": "spectrum:blizzard_powder",
+      "count": 8
+    },
+	{
+      "item": "spectrum:bloodboil_syrup",
+      "count": 2
+    },
+	{
+      "item": "minecraft:nether_wart",
+      "count": 2
+    }
+  ],
+  "fluid": "spectrum:liquid_crystal",
+  "min_fermentation_time_hours": 48,
+  "tapping_item": "minecraft:glass_bottle",
+  "result": {
+    "item": "spectrum:freigeist",
+    "count": 2
+  },
+  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+}

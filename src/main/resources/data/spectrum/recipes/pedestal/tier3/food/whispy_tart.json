@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 160,
+  "tier": "advanced",
+  "cyan": 0,
+  "magenta": 4,
+  "yellow": 2,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "JGJ",
+    "EME",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:amaranth_grains"
+    },
+    "J": {
+      "item": "spectrum:jaramel"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    },
+    "M": {
+      "tag": "c:milk"
+    },
+    "G": {
+      "item": "minecraft:glow_berries"
+    }
+  },
+  "result": {
+    "item": "spectrum:whispy_tart",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_tarts"
+}

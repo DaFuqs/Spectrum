@@ -11,7 +11,6 @@ import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -48,7 +47,7 @@ public class TreasureChestBlock extends SpectrumChestBlock {
 	}
 	
 	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "entity/treasure_chest"));
+		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, SpectrumCommon.locate("entity/treasure_chest"));
 	}
 	
 }

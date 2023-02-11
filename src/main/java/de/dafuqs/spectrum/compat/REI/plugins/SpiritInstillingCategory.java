@@ -50,14 +50,14 @@ public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillin
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 13), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 6, startPoint.y + 23), new TranslatableText("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
 		} else {
-			List<EntryIngredient> output = display.getOutputEntries();
+			List<EntryIngredient> inputs = display.getInputEntries();
 			
 			// input slots
-			int ingredientSize = display.craftingInputs.size();
+			int ingredientSize = inputs.size();
 			int startX = Math.max(0, 10 - ingredientSize * 10);
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX, startPoint.y)).markInput().entries(display.craftingInputs.get(1)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 20, startPoint.y)).markInput().entries(display.craftingInputs.get(0)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 40, startPoint.y)).markInput().entries(display.craftingInputs.get(2)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX, startPoint.y)).markInput().entries(inputs.get(1)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 20, startPoint.y)).markInput().entries(inputs.get(0)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + startX + 40, startPoint.y)).markInput().entries(inputs.get(2)));
 			
 			widgets.add(Widgets.createSlot(new Point(startPoint.x, startPoint.y + 17)).entries(ITEM_BOWL_CALCITE).disableBackground());
 			widgets.add(Widgets.createSlot(new Point(startPoint.x + 20, startPoint.y + 17)).entries(SPIRIT_INSTILLER).disableBackground());
@@ -66,7 +66,7 @@ public class SpiritInstillingCategory implements DisplayCategory<SpiritInstillin
 			// output arrow and slot
 			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 9)).animationDurationTicks(display.craftingTime));
 			widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 9)));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 9)).markOutput().disableBackground().entries(output.get(0)));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 9)).markOutput().disableBackground().entries(display.getOutputEntries().get(0)));
 			
 			// description text
 			// special handling for "1 second". Looks nicer

@@ -1,0 +1,119 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:potato",
+      "count": 6
+    },
+    {
+      "item": "spectrum:mermaids_gem",
+      "count": 2
+    },
+    {
+      "item": "spectrum:clover",
+      "count": 1
+    },
+    {
+      "item": "minecraft:snowball",
+      "count": 4
+    }
+  ],
+  "min_fermentation_time_hours": 48,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.125,
+    "effects": [
+      {
+        "id": "minecraft:speed",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 35,
+            "potency": 1
+          },
+          {
+            "min_alc": 45,
+            "potency": 2
+          },
+          {
+            "min_alc": 55,
+            "potency": 3
+          },
+          {
+            "min_alc": 65,
+            "potency": 4
+          }
+        ]
+      },
+      {
+        "id": "spectrum:swiftness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 40,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 40,
+            "min_thickness": 2.0,
+            "potency": 1
+          },
+          {
+            "min_alc": 40,
+            "min_thickness": 2.5,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:fire_resistance",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 60
+          }
+        ]
+      },
+      {
+        "id": "minecraft:weakness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:poison",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 60
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"mint_schnapps\", Color: 1231480 }"
+  },
+  "required_advancement": "spectrum:progression/unlock_mint_beverages"
+}

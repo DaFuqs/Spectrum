@@ -35,16 +35,16 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		
-		long nextStepInk;
-		int pow = 0;
-		do {
-			nextStepInk = (long) (100 * Math.pow(8, pow));
-			pow++;
-		} while (storedInk > nextStepInk);
-		
-		if (nextStepInk == maxInk) {
+		if (storedInk == maxInk) {
 			tooltip.add(new TranslatableText("spectrum.tooltip.ink_drain.tooltip.maxed_out").formatted(Formatting.GRAY));
 		} else {
+			long nextStepInk;
+			int pow = 0;
+			do {
+				nextStepInk = (long) (100 * Math.pow(8, pow));
+				pow++;
+			} while (storedInk >= nextStepInk);
+			
 			tooltip.add(new TranslatableText("spectrum.tooltip.ink_drain.tooltip.ink_for_next_step." + inkStorage.getStoredColor().toString(), Support.getShortenedNumberString(nextStepInk - storedInk)).formatted(Formatting.GRAY));
 		}
 	}

@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 200,
+  "tier": "basic",
+  "magenta": 0,
+  "yellow": 2,
+  "cyan": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.5,
+  "pattern": [
+    "SCS",
+    "AMA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:amaranth_grains"
+    },
+    "C": {
+      "item": "spectrum:four_leaf_clover"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "result": {
+    "item": "spectrum:lucky_roll",
+    "count": 2
+  },
+  "required_advancement": "spectrum:progression/unlock_lucky_roll"
+}

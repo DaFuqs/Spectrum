@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +23,7 @@ import java.util.UUID;
 public class ExtraHealthRingItem extends InkDrainTrinketItem {
 	
 	public ExtraHealthRingItem(Settings settings) {
-		super(settings, new Identifier(SpectrumCommon.MOD_ID, "progression/unlock_heartsingers_reward"), InkColors.PINK, 13421772800L); // 20 extra hearts
+		super(settings, SpectrumCommon.locate("progression/unlock_heartsingers_reward"), InkColors.PINK, 13421772800L); // 20 extra hearts
 	}
 	
 	@Override

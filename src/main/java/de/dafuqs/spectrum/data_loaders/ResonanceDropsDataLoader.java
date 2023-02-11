@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.data_loaders;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import de.dafuqs.revelationary.Revelationary;
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.item.Item;

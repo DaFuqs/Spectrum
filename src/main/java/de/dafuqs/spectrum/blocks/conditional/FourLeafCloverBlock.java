@@ -21,7 +21,7 @@ public class FourLeafCloverBlock extends CloverBlock implements RevelationAware 
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_four_leaf_clover");
+		return SpectrumCommon.locate("milestones/reveal_four_leaf_clover");
 	}
 	
 	@Override

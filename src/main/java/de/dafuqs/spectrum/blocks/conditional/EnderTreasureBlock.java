@@ -21,7 +21,7 @@ public class EnderTreasureBlock extends Block implements RevelationAware {
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return new Identifier(SpectrumCommon.MOD_ID, "milestones/reveal_ender_treasure");
+		return SpectrumCommon.locate("milestones/reveal_ender_treasure");
 	}
 	
 	@Override

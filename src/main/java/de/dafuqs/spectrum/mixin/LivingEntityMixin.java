@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.azure_dike.AzureDikeProvider;
+import de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider;
 import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
 import de.dafuqs.spectrum.interfaces.ArmorWithHitEffect;
 import de.dafuqs.spectrum.items.ActivatableItem;
+import de.dafuqs.spectrum.items.ApplyFoodEffectsCallback;
 import de.dafuqs.spectrum.items.tools.DreamflayerItem;
 import de.dafuqs.spectrum.items.trinkets.PuffCircletItem;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.status_effects.StackableStatusEffect;
 import dev.emi.trinkets.api.SlotReference;
 import dev.emi.trinkets.api.TrinketComponent;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -21,16 +20,19 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.EntityDamageSource;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -64,7 +66,17 @@ public abstract class LivingEntityMixin {
 	@Shadow protected abstract void applyDamage(DamageSource source, float amount);
 	
 	@Shadow public abstract ItemStack getMainHandStack();
-
+	
+	@Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
+	
+	@Shadow public abstract boolean canHaveStatusEffect(StatusEffectInstance effect);
+	
+	@Shadow public abstract boolean removeStatusEffect(StatusEffect type);
+	
+	@Shadow public abstract boolean addStatusEffect(StatusEffectInstance effect);
+	
+	@Shadow protected abstract void initDataTracker();
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
@@ -111,11 +123,16 @@ public abstract class LivingEntityMixin {
 	
 	@ModifyVariable(at = @At("HEAD"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z", argsOnly = true)
 	public float spectrum$applyAzureDikeDamageProtection(float amount, DamageSource source) {
+		@Nullable StatusEffectInstance vulnerability = getStatusEffect(SpectrumStatusEffects.VULNERABILITY);
+		if(vulnerability != null) {
+			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
+		}
+		
 		if (source.isOutOfWorld() || source.isUnblockable() || this.blockedByShield(source) || amount <= 0 || ((Entity) (Object) this).isInvulnerableTo(source) || source.isFire() && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
 			return amount;
-		} else {
-			return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
 		}
+		
+		return AzureDikeProvider.absorbDamage((LivingEntity) (Object) this, amount);
 	}
 	
 	@Inject(at = @At("RETURN"), method = "damage(Lnet/minecraft/entity/damage/DamageSource;F)Z")
@@ -247,8 +264,47 @@ public abstract class LivingEntityMixin {
 	
 	@Inject(method = "canHaveStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;)Z", at = @At("RETURN"), cancellable = true)
 	public void spectrum$canHaveStatusEffect(StatusEffectInstance statusEffectInstance, CallbackInfoReturnable<Boolean> cir) {
-		if (cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && !SpectrumStatusEffects.isUncurable(statusEffectInstance.getEffectType())) {
+		if (cir.getReturnValue() && this.hasStatusEffect(SpectrumStatusEffects.IMMUNITY) && statusEffectInstance.getEffectType().getCategory() == StatusEffectCategory.HARMFUL && !SpectrumStatusEffectTags.isUncurable(statusEffectInstance.getEffectType())) {
 			cir.setReturnValue(false);
+		}
+	}
+	
+	@Inject(method = "setSprinting(Z)V", at = @At("HEAD"), cancellable = true)
+	public void setSprinting(boolean sprinting, CallbackInfo ci) {
+		if(sprinting && ((LivingEntity) (Object) this).hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
+			ci.cancel();
+		}
+	}
+	
+	@Inject(at = @At("TAIL"), method = "applyFoodEffects(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;)V")
+	public void eat(ItemStack stack, World world, LivingEntity targetEntity, CallbackInfo ci) {
+		Item item = stack.getItem();
+		if (item instanceof ApplyFoodEffectsCallback foodWithCallback) {
+			foodWithCallback.afterConsumption(world, stack, (LivingEntity)(Object) this);
+		}
+	}
+	
+	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true)
+	public void spectrum$addStackableStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+		if(effect.getEffectType() instanceof StackableStatusEffect) {
+			if(!SpectrumStatusEffects.effectsAreGettingStacked) {
+				if (this.canHaveStatusEffect(effect)) {
+					StatusEffectInstance existingInstance = getStatusEffect(effect.getEffectType());
+					if (existingInstance != null) {
+						SpectrumStatusEffects.effectsAreGettingStacked = true;
+						
+						int newAmplifier = 1 + existingInstance.getAmplifier() + effect.getAmplifier();
+						StatusEffectInstance newInstance = new StatusEffectInstance(existingInstance.getEffectType(), existingInstance.getDuration(), newAmplifier, existingInstance.isAmbient(), existingInstance.shouldShowParticles(), existingInstance.shouldShowIcon());
+						removeStatusEffect(existingInstance.getEffectType());
+						addStatusEffect(newInstance);
+						cir.cancel();
+					}
+				} else {
+					SpectrumStatusEffects.effectsAreGettingStacked = false;
+				}
+			} else {
+				SpectrumStatusEffects.effectsAreGettingStacked = false;
+			}
 		}
 	}
 	

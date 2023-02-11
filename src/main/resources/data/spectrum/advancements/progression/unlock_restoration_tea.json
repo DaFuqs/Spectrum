@@ -1,12 +1,16 @@
 {
   "criteria": {
-    "collected_jade_vine_petals": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_jade_vine_petals" }
+    "unlocked_potion_workshop": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:progression/unlock_potion_workshop"
+      }
     },
-    "brewed_potion_in_potion_workshop": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop" }
+    "collected_jade_vine_petals": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_jade_vine_petals"
+      }
     }
   }
 }

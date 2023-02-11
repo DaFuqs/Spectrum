@@ -18,7 +18,7 @@ import java.util.List;
 
 public abstract class PotionWorkshopCategory implements DisplayCategory<PotionWorkshopRecipeDisplay> {
 	
-	public final static Identifier BACKGROUND_TEXTURE = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/container/potion_workshop_3_slots.png");
+	public final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
 	
 	@Override
 	public Renderer getIcon() {

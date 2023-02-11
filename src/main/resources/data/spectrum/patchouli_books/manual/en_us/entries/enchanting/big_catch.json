@@ -1,6 +1,6 @@
 {
   "name": "Big Catch",
-  "icon": "spectrum:molten_rod",
+  "icon": "spectrum:lagoon_rod",
   "advancement": "spectrum:progression/enchantments/big_catch",
   "flag": "spectrum:enchantment_exists_spectrum_big_catch",
   "category": "spectrum:enchanting_category",
@@ -12,7 +12,7 @@
     {
       "type": "patchouli:spotlight",
       "title": "Characteristics",
-      "item": "spectrum:molten_rod{Enchantments: [{id: \"spectrum:big_catch\", lvl: 3s}]}",
+      "item": "spectrum:lagoon_rod{Enchantments: [{id: \"spectrum:big_catch\", lvl: 3s}]}",
       "text": "Increases the chance to reel in living creatures when fishing.$(br2)Max Level: 3$(br)Applicable to Spectrum's Fishing Rods."
     },
     {

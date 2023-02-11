@@ -1,0 +1,20 @@
+{
+  "criteria": {
+    "has_rock_candy": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:rock_candy"
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/enter_liquid_crystal"
+      }
+    }
+  }
+}

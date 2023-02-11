@@ -1,0 +1,11 @@
+{
+  "type": "spectrum:liquid_crystal_converting",
+  "required_advancement": "spectrum:midgame/collect_resonant_lily",
+  "ingredient": {
+    "tag": "minecraft:flowers"
+  },
+  "result": {
+    "item": "spectrum:resonant_lily",
+    "count": 1
+  }
+}

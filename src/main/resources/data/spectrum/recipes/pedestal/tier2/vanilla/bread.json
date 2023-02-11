@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 40,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 0.25,
+  "pattern": [
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "spectrum:amaranth_grains"
+    }
+  },
+  "result": {
+    "item": "minecraft:bread"
+  },
+  "required_advancement": "spectrum:collect_amaranth_bushel"
+}

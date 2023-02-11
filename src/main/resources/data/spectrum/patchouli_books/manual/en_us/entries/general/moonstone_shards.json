@@ -1,0 +1,21 @@
+{
+  "name": "Moonstone Shards",
+  "icon": "spectrum:moonstone_shard",
+  "sortnum": 15,
+  "secret": true,
+  "advancement": "spectrum:midgame/collect_moonstone_shard",
+  "category": "spectrum:general_category",
+  "extra_recipe_mappings": {
+    "spectrum:moonstone_shard": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You were quite simple-minded, weren't you? Thought you knew everything, but this everything was always merely half the truth.$(br)You know better now. This white, pure Gemstone you hold in your hand, shimmering in a soft, warm glow, is the monument to that."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You have never been remotely omnipotent, never will be. Not with all the magic in the world. No one is. But with a little humility, care and support, you can at least get a little closer.$(br2)$(bold)$(c_white)Purity."
+    }
+  ]
+}

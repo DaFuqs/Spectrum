@@ -77,12 +77,17 @@ public class Support {
 		add(new Vec3d(0.7D, 0, -0.7D));
 		add(new Vec3d(0.75D, 0, -0.5D));
 	}};
-	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = new Identifier(SpectrumCommon.MOD_ID, "lategame/finish_progression");
+	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/finish_progression");
 	private static final DecimalFormat df = new DecimalFormat("0.00");
+	private static final DecimalFormat df1 = new DecimalFormat("0.0");
 	private static final DecimalFormat df2 = new DecimalFormat("0");
 
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
 		return blockState.streamTags().filter(tags::contains).findFirst();
+	}
+	
+	public static String getWithOneDecimalAfterComma(float number) {
+		return df1.format(number);
 	}
 	
 	public static String getShortenedNumberString(double number) {
@@ -165,19 +170,26 @@ public class Support {
 		}
 	}
 	
-	public static BlockPos directionalOffset(BlockPos origin, Vec3i offset, @NotNull Direction horizontalFacing) {
+	/**
+	 * Returns a relative new BlockPos based on a facing direction and a vector
+	 * @param origin the source position
+	 * @param forwardUpRight a vector specifying the amount of blocks forward, up and right
+	 * @param horizontalFacing the facing direction
+	 * @return the blockpos with forwardUpRight offset from origin when facing horizontalFacing
+	 */
+	public static BlockPos directionalOffset(BlockPos origin, Vec3i forwardUpRight, @NotNull Direction horizontalFacing) {
 		switch (horizontalFacing) {
 			case NORTH -> {
-				return origin.add(offset.getZ(), offset.getY(), -offset.getX());
+				return origin.add(forwardUpRight.getZ(), forwardUpRight.getY(), -forwardUpRight.getX());
 			}
 			case EAST -> {
-				return origin.add(offset.getX(), offset.getY(), offset.getZ());
+				return origin.add(forwardUpRight.getX(), forwardUpRight.getY(), forwardUpRight.getZ());
 			}
 			case SOUTH -> {
-				return origin.add(offset.getZ(), offset.getY(), offset.getX());
+				return origin.add(-forwardUpRight.getZ(), forwardUpRight.getY(), forwardUpRight.getX());
 			}
 			case WEST -> {
-				return origin.add(-offset.getX(), offset.getY(), offset.getZ());
+				return origin.add(-forwardUpRight.getX(), forwardUpRight.getY(), -forwardUpRight.getZ());
 			}
 			default -> {
 				SpectrumCommon.logWarning("Called directionalOffset with facing" + horizontalFacing + " this is not supported.");
@@ -204,7 +216,7 @@ public class Support {
 	}
 	
 	public static void grantAdvancementCriterion(@NotNull ServerPlayerEntity serverPlayerEntity, String advancementString, String criterion) {
-		grantAdvancementCriterion(serverPlayerEntity, new Identifier(SpectrumCommon.MOD_ID, advancementString), criterion);
+		grantAdvancementCriterion(serverPlayerEntity, SpectrumCommon.locate(advancementString), criterion);
 	}
 	
 	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {
@@ -281,6 +293,10 @@ public class Support {
 			}
 		}
 		return Optional.empty();
+	}
+	
+	public static double logBase(double base, double logNumber) {
+		return Math.log(logNumber) / Math.log(base);
 	}
 	
 }

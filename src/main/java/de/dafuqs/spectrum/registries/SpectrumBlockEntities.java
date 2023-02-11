@@ -20,6 +20,8 @@ import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
 import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntity;
 import de.dafuqs.spectrum.blocks.item_bowl.ItemBowlBlockEntityRenderer;
+import de.dafuqs.spectrum.blocks.item_roundel.ItemRoundelBlockEntity;
+import de.dafuqs.spectrum.blocks.item_roundel.ItemRoundelBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVineRootsBlockEntity;
 import de.dafuqs.spectrum.blocks.jade_vines.JadeVineRootsBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
@@ -41,7 +43,9 @@ import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
 import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.spirit_sallow.OminousSaplingBlockEntity;
 import de.dafuqs.spectrum.blocks.structure.PreservationControllerBlockEntity;
+import de.dafuqs.spectrum.blocks.structure.PreservationRoundelBlockEntity;
 import de.dafuqs.spectrum.blocks.structure.TreasureChestBlockEntity;
+import de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlockEntity;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockBlockEntityRenderer;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockEntity;
@@ -53,7 +57,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
@@ -68,6 +71,8 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 
 	//public static BlockEntityType<StonesettingWorkshopBlockEntity> STONESETTING_WORKSHOP;
 	public static BlockEntityType<ItemBowlBlockEntity> ITEM_BOWL;
+	public static BlockEntityType<ItemRoundelBlockEntity> ITEM_ROUNDEL;
+	public static BlockEntityType<PreservationRoundelBlockEntity> PRESERVATION_ROUNDEL;
 	public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
 	public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
 	public static BlockEntityType<ParticleSpawnerBlockEntity> PARTICLE_SPAWNER;
@@ -99,6 +104,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<MemoryBlockEntity> MEMORY;
 	public static BlockEntityType<JadeVineRootsBlockEntity> JADE_VINE_ROOTS;
 	public static BlockEntityType<PresentBlockEntity> PRESENT;
+	public static BlockEntityType<TitrationBarrelBlockEntity> TITRATION_BARREL;
 	
 	public static BlockEntityType<PastelNetworkConnectionNode> CONNECTION_NODE;
 	public static BlockEntityType<PastelNetworkProviderNodeBlockEntity> PROVIDER_NODE;
@@ -109,7 +115,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
 	
 	private static <T extends BlockEntity> BlockEntityType<T> register(String id, FabricBlockEntityTypeBuilder.Factory<T> factory, Block... blocks) {
-		return Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(SpectrumCommon.MOD_ID, id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
+		return Registry.register(Registry.BLOCK_ENTITY_TYPE, SpectrumCommon.locate(id), FabricBlockEntityTypeBuilder.create(factory, blocks).build());
 	}
 	
 	public static void register() {
@@ -119,6 +125,8 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		ENCHANTER = register("enchanter_block_entity", EnchanterBlockEntity::new, SpectrumBlocks.ENCHANTER);
 		//STONESETTING_WORKSHOP = register("stonesetting_workshop", StonesettingWorkshopBlockEntity::new, SpectrumBlocks.STONESETTING_WORKSHOP);
 		ITEM_BOWL = register("item_bowl_block_entity", ItemBowlBlockEntity::new, SpectrumBlocks.ITEM_BOWL_BASALT, SpectrumBlocks.ITEM_BOWL_CALCITE);
+		ITEM_ROUNDEL = register("item_roundel", ItemRoundelBlockEntity::new, SpectrumBlocks.ITEM_ROUNDEL);
+		PRESERVATION_ROUNDEL = register("preservation_roundel", PreservationRoundelBlockEntity::new, SpectrumBlocks.PRESERVATION_ROUNDEL);
 		ENDER_DROPPER = register("ender_dropper", EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER);
 		ENDER_HOPPER = register("ender_hopper", EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER);
 		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER);
@@ -145,6 +153,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		COLOR_PICKER = register("color_picker", ColorPickerBlockEntity::new, SpectrumBlocks.COLOR_PICKER);
 		CINDERHEARTH = register("cinderhearth", CinderhearthBlockEntity::new, SpectrumBlocks.CINDERHEARTH);
 		PRESENT = register("present", PresentBlockEntity::new, SpectrumBlocks.PRESENT);
+		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
 		
 		// All the pastel network nodes
 		CONNECTION_NODE = register("connection_node", PastelNetworkConnectionNode::new, SpectrumBlocks.CONNECTION_NODE);
@@ -182,6 +191,8 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.FUSION_SHRINE, FusionShrineBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.ENCHANTER, EnchanterBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.ITEM_BOWL, ItemBowlBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.ITEM_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PRESERVATION_ROUNDEL, ItemRoundelBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.SKULL, SpectrumSkullBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.DEEPER_DOWN_PORTAL, DeeperDownPortalBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.SPIRIT_INSTILLER, SpiritInstillerBlockEntityRenderer::new);

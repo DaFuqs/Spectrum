@@ -20,12 +20,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
 	
 	public SpawnerCreatureChangeRecipe(Identifier identifier) {
-		super(identifier);
-	}
-	
-	@Override
-	public IngredientStack getIngredientStack() {
-		return IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.MOB_HEADS));
+		super(identifier, IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.MOB_HEADS)));
 	}
 	
 	@Override

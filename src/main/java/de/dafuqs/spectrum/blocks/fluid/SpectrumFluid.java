@@ -6,11 +6,16 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+
+import java.util.Optional;
 
 public abstract class SpectrumFluid extends FlowableFluid {
 	
@@ -35,9 +40,7 @@ public abstract class SpectrumFluid extends FlowableFluid {
 	}
 	
 	/**
-	 * Lava returns true if its FluidState is above a certain height and the
-	 * Fluid is Water.
-	 *
+	 * Lava returns true if its FluidState is above a certain height and the Fluid is Water.
 	 * @return if the given Fluid can flow into this FluidState?
 	 */
 	@Override
@@ -77,5 +80,11 @@ public abstract class SpectrumFluid extends FlowableFluid {
 	protected float getBlastResistance() {
 		return 100.0F;
 	}
+	
+	public Optional<SoundEvent> getBucketFillSound() {
+		return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
+	}
+	
+	public abstract ParticleEffect getSplashParticle();
 	
 }

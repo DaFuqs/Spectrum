@@ -115,7 +115,7 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	}
 	
 	public SpriteIdentifier getTexture() {
-		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, new Identifier(SpectrumCommon.MOD_ID, "entity/private_chest"));
+		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, SpectrumCommon.locate("entity/private_chest"));
 	}
 	
 }

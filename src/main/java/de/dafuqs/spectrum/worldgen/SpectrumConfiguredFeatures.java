@@ -1,51 +1,32 @@
 package de.dafuqs.spectrum.worldgen;
 
-import com.google.common.collect.ImmutableList;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.conditional.ColoredLeavesBlock;
-import de.dafuqs.spectrum.blocks.conditional.ColoredLogBlock;
-import de.dafuqs.spectrum.blocks.conditional.MermaidsBrushBlock;
-import de.dafuqs.spectrum.registries.SpectrumBiomeTags;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeatureConfig;
-import de.dafuqs.spectrum.worldgen.features.WeightedRandomFeaturePatchConfig;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.structure.rule.BlockMatchRuleTest;
-import net.minecraft.structure.rule.RuleTest;
-import net.minecraft.tag.BiomeTags;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DataPool;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.blockpredicate.BlockPredicate;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.conditional.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.worldgen.features.*;
+import net.fabricmc.fabric.api.biome.v1.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
+import net.minecraft.block.*;
+import net.minecraft.structure.rule.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.intprovider.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import net.minecraft.world.gen.*;
+import net.minecraft.world.gen.blockpredicate.*;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
-import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
+import net.minecraft.world.gen.feature.size.*;
+import net.minecraft.world.gen.foliage.*;
 import net.minecraft.world.gen.placementmodifier.*;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.stateprovider.RandomizedIntBlockStateProvider;
-import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.gen.stateprovider.*;
+import net.minecraft.world.gen.trunk.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;
 
@@ -90,8 +71,8 @@ public class SpectrumConfiguredFeatures {
 				shimmerstoneOreIdentifier,
 				Feature.ORE,
 				new OreFeatureConfig(shimmerstoneOreTargets, 8),
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.fixed(128)), // min and max height
 				CountPlacementModifier.of(9), // number of veins per chunk
+				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.fixed(128)), // min and max height
 				SquarePlacementModifier.of() // spread through the chunk
 		);
 		
@@ -99,8 +80,8 @@ public class SpectrumConfiguredFeatures {
 				azuriteOreIdentifier,
 				Feature.ORE,
 				new OreFeatureConfig(azuriteOreTargets, 5, 0.5F),
-				HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.aboveBottom(32)), // min and max height
 				CountPlacementModifier.of(6), // number of veins per chunk
+				HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.aboveBottom(32)), // min and max height
 				SquarePlacementModifier.of() // spread through the chunk
 		);
 		
@@ -108,17 +89,17 @@ public class SpectrumConfiguredFeatures {
 				stratineOreIdentifier,
 				Feature.ORE,
 				new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, stratineOre, 6),
+				CountPlacementModifier.of(12), // number of veins per chunk
 				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(64)), // min and max height
-				CountPlacementModifier.of(18), // number of veins per chunk
 				SquarePlacementModifier.of() // spread through the chunk
 		);
 		
 		registerConfiguredAndPlacedFeature(
 				paltaeriaOreIdentifier,
 				Feature.ORE,
-				new OreFeatureConfig(Rules.END_STONE, paltaeriaOre, 4, 0.3F),
+				new OreFeatureConfig(Rules.END_STONE, paltaeriaOre, 12, 0.3F),
+				CountPlacementModifier.of(4), // number of veins per chunk
 				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), // min and max height
-				CountPlacementModifier.of(16), // number of veins per chunk
 				SquarePlacementModifier.of() // spread through the chunk
 		);
 		

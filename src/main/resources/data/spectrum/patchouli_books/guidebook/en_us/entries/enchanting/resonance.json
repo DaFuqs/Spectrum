@@ -33,7 +33,7 @@
       "title": "Pure Resources",
       "item": "spectrum:pure_iron",
       "advancement": "spectrum:lategame/collect_pure_resource",
-      "text": "Breaking Ores with Resonance directly drops $(l:resources/pure_resources)Pure Resources$() instead of Raw Ores."
+      "text": "Breaking Ores with Resonance directly drops $(l:resources/pure_resources)Pure Resources$() instead of Raw Ores.$(br2)This would stack with Fortune... if you somehow could combine these 2 mutually exclusive Enchantments."
     },
     {
       "type": "patchouli:spotlight",

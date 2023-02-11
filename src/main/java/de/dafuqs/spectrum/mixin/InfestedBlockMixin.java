@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.InfestedBlock;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.mob.SilverfishEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(InfestedBlock.class)
 public abstract class InfestedBlockMixin {
@@ -30,6 +28,10 @@ public abstract class InfestedBlockMixin {
 			world.spawnEntity(silverfishEntity);
 			silverfishEntity.playSpawnEffects();
 			silverfishEntity.kill();
+
+			ExperienceOrbEntity experienceOrbEntity = new ExperienceOrbEntity(world, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 10);
+			world.spawnEntity(experienceOrbEntity);
+
 			ci.cancel();
 		}
 	}

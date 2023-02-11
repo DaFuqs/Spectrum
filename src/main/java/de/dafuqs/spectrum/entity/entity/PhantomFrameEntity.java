@@ -1,35 +1,32 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.decoration.ItemFrameEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.decoration.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class PhantomFrameEntity extends ItemFrameEntity {
-	
+
 	public PhantomFrameEntity(EntityType<? extends ItemFrameEntity> entityType, World world) {
 		super(entityType, world);
 	}
-	
+
 	public PhantomFrameEntity(World world, BlockPos pos, Direction facing) {
 		this(SpectrumEntityTypes.PHANTOM_FRAME, world, pos, facing);
 	}
-	
+
 	public PhantomFrameEntity(EntityType<? extends ItemFrameEntity> type, World world, BlockPos pos, Direction facing) {
 		super(type, world, pos, facing);
 	}
-	
+
 	@Override
 	public boolean isInvisible() {
 		if (this.getHeldItemStack().isEmpty()) {
@@ -38,12 +35,12 @@ public class PhantomFrameEntity extends ItemFrameEntity {
 			return true;
 		}
 	}
-	
+
 	@Override
 	protected ItemStack getAsItemStack() {
 		return new ItemStack(SpectrumItems.PHANTOM_FRAME);
 	}
-	
+
 	@Override
 	public void setHeldItemStack(ItemStack value, boolean update) {
 		super.setHeldItemStack(value, update);
@@ -52,7 +49,7 @@ public class PhantomFrameEntity extends ItemFrameEntity {
 			world.playSoundFromEntity(null, this, SpectrumSoundEvents.ENCHANTER_DING, SoundCategory.BLOCKS, 0.5F, 1.0F);
 		}
 	}
-	
+
 	@Override
 	public boolean damage(DamageSource source, float amount) {
 		boolean success = super.damage(source, amount);
@@ -62,5 +59,9 @@ public class PhantomFrameEntity extends ItemFrameEntity {
 		}
 		return success;
 	}
-	
+
+	public boolean isRedstonePowered() {
+		return this.getWorld().getReceivedRedstonePower(this.getBlockPos()) > 0;
+	}
+
 }

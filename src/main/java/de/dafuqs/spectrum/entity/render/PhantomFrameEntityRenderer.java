@@ -1,49 +1,44 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.TexturedRenderLayers;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.BlockRenderManager;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.ItemFrameEntityRenderer;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.BakedModelManager;
-import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.util.ModelIdentifier;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.decoration.ItemFrameEntity;
-import net.minecraft.item.FilledMapItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.map.MapState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.client.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.block.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.client.render.item.*;
+import net.minecraft.client.render.model.*;
+import net.minecraft.client.render.model.json.*;
+import net.minecraft.client.util.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.decoration.*;
+import net.minecraft.item.*;
+import net.minecraft.item.map.*;
+import net.minecraft.util.math.*;
 
-public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemFrameEntityRenderer<T> {
-	
+public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemFrameEntityRenderer<PhantomFrameEntity> {
+
 	public static final ModelIdentifier NORMAL_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=false");
 	public static final ModelIdentifier MAP_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=true");
 	public static final ModelIdentifier GLOW_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("glow_item_frame", "map=false");
 	public static final ModelIdentifier MAP_GLOW_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("glow_item_frame", "map=true");
-	
+
 	private final MinecraftClient client = MinecraftClient.getInstance();
 	private final ItemRenderer itemRenderer;
-	
+
 	public PhantomFrameEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);
 		this.itemRenderer = context.getItemRenderer();
 	}
-	
-	protected int getBlockLight(T itemFrameEntity, BlockPos blockPos) {
+
+	@Override
+	protected int getBlockLight(PhantomFrameEntity itemFrameEntity, BlockPos blockPos) {
 		return itemFrameEntity.getType() == SpectrumEntityTypes.GLOW_PHANTOM_FRAME ? Math.max(5, super.getBlockLight(itemFrameEntity, blockPos)) : super.getBlockLight(itemFrameEntity, blockPos);
 	}
-	
-	public void render(T itemFrameEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-		super.render(itemFrameEntity, f, g, matrixStack, vertexConsumerProvider, i);
+
+	@Override
+	public void render(PhantomFrameEntity itemFrameEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+		super.render(itemFrameEntity, f, g, matrixStack, vertexConsumerProvider, light);
 		matrixStack.push();
 		Direction direction = itemFrameEntity.getHorizontalFacing();
 		Vec3d vec3d = this.getPositionOffset(itemFrameEntity, g);
@@ -60,7 +55,7 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 			ModelIdentifier modelIdentifier = this.getModelId(itemFrameEntity, itemStack);
 			matrixStack.push();
 			matrixStack.translate(-0.5D, -0.5D, -0.5D);
-			blockRenderManager.getModelRenderer().render(matrixStack.peek(), vertexConsumerProvider.getBuffer(TexturedRenderLayers.getEntitySolid()), null, bakedModelManager.getModel(modelIdentifier), 1.0F, 1.0F, 1.0F, i, OverlayTexture.DEFAULT_UV);
+			blockRenderManager.getModelRenderer().render(matrixStack.peek(), vertexConsumerProvider.getBuffer(TexturedRenderLayers.getEntitySolid()), null, bakedModelManager.getModel(modelIdentifier), 1.0F, 1.0F, 1.0F, light, OverlayTexture.DEFAULT_UV);
 			matrixStack.pop();
 		}
 		
@@ -76,31 +71,33 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 			matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float) bakedModelManager * 360.0F / 8.0F));
 			if (blockRenderManager) {
 				matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180.0F));
-				float modelIdentifier = 0.0078125F;
-				matrixStack.scale(modelIdentifier, modelIdentifier, modelIdentifier);
+				float scale = 0.0078125F;
+				matrixStack.scale(scale, scale, scale);
 				matrixStack.translate(-64.0D, -64.0D, 0.0D);
-				Integer integer = FilledMapItem.getMapId(itemStack);
-				MapState mapState = FilledMapItem.getMapState(integer, itemFrameEntity.world);
+				Integer mapId = FilledMapItem.getMapId(itemStack);
+				MapState mapState = FilledMapItem.getMapState(mapId, itemFrameEntity.world);
 				matrixStack.translate(0.0D, 0.0D, -1.0D);
 				if (mapState != null) {
-					int j = this.getLight(itemFrameEntity, 15728850, i);
-					this.client.gameRenderer.getMapRenderer().draw(matrixStack, vertexConsumerProvider, integer, mapState, true, j);
+					int finalLight = this.getLight(itemFrameEntity, light);
+					this.client.gameRenderer.getMapRenderer().draw(matrixStack, vertexConsumerProvider, mapId, mapState, true, finalLight);
 				}
 			} else {
-				int modelIdentifier = this.getLight(itemFrameEntity, 15728880, i);
+				int finalLight = this.getLight(itemFrameEntity, light);
 				matrixStack.scale(0.5F, 0.5F, 0.5F);
-				this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.FIXED, modelIdentifier, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.getId());
+				this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.FIXED, finalLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.getId());
 			}
 		}
-		
+
 		matrixStack.pop();
 	}
-	
-	private int getLight(T itemFrame, int glowLight, int regularLight) {
-		return itemFrame.getType() == SpectrumEntityTypes.GLOW_PHANTOM_FRAME ? glowLight : regularLight;
+
+	private int getLight(PhantomFrameEntity itemFrame, int regularLight) {
+		boolean isGlowPhantomFrame = itemFrame.getType() == SpectrumEntityTypes.GLOW_PHANTOM_FRAME;
+		boolean isRedstonePowered = itemFrame.isRedstonePowered();
+		return isGlowPhantomFrame == isRedstonePowered ? regularLight : 15728850;
 	}
-	
-	private ModelIdentifier getModelId(T entity, ItemStack stack) {
+
+	private ModelIdentifier getModelId(PhantomFrameEntity entity, ItemStack stack) {
 		boolean bl = entity.getType() == SpectrumEntityTypes.GLOW_PHANTOM_FRAME;
 		if (stack.isOf(Items.FILLED_MAP)) {
 			return bl ? MAP_GLOW_FRAME_MODEL_IDENTIFIER : MAP_FRAME_MODEL_IDENTIFIER;
@@ -108,6 +105,6 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 			return bl ? GLOW_FRAME_MODEL_IDENTIFIER : NORMAL_FRAME_MODEL_IDENTIFIER;
 		}
 	}
-	
-	
+
+
 }

@@ -1,38 +1,32 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.entity.entity.InkProjectileEntity;
-import de.dafuqs.spectrum.helpers.BlockVariantHelper;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.inventories.PaintbrushScreenHandler;
-import de.dafuqs.spectrum.items.PigmentItem;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class PaintbrushItem extends Item {
 	
@@ -121,20 +115,21 @@ public class PaintbrushItem extends Item {
 		if (context.getPlayer() == null) {
 			return false;
 		}
-		
+
 		Optional<InkColor> optionalInkColor = getColor(context.getStack());
 		if (optionalInkColor.isEmpty()) {
 			return false;
 		}
-		
+
 		InkColor inkColor = optionalInkColor.get();
 		DyeColor dyeColor = inkColor.getDyeColor();
-		
+
+		BlockState newBlockState = BlockVariantHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
+		if (newBlockState.isAir()) {
+			return false;
+		}
+
 		if (payBlockColorCost(context.getPlayer(), inkColor)) {
-			BlockState newBlockState = BlockVariantHelper.getCursedBlockColorVariant(context.getWorld(), context.getBlockPos(), dyeColor);
-			if (newBlockState.isAir()) {
-				return false;
-			}
 			if (!context.getWorld().isClient) {
 				context.getWorld().setBlockState(context.getBlockPos(), newBlockState);
 				context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);

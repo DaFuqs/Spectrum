@@ -1,33 +1,23 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.helpers.BuildingHelper;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import oshi.util.tuples.Triplet;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.client.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import oshi.util.tuples.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class PlacementStaffItem extends BuildingStaffItem implements InkPowered {
 	
@@ -82,11 +72,11 @@ public class PlacementStaffItem extends BuildingStaffItem implements InkPowered 
 		World world = context.getWorld();
 		BlockPos pos = context.getBlockPos();
 		BlockState targetBlockState = world.getBlockState(pos);
-		
-		if ((player != null && (player.isCreative()) || !isBlacklisted(targetBlockState))) {
+
+		if ((player != null && (player.isCreative()) || canProcess(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
 			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlock.asItem();
-			
+
 			if (player != null && targetBlockItem != Items.AIR) {
 				int count;
 				if (player.isCreative()) {

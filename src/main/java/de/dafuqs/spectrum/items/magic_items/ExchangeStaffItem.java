@@ -1,51 +1,33 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.helpers.BuildingHelper;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import oshi.util.tuples.Triplet;
+import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.client.*;
+import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import oshi.util.tuples.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnchantable, InkPowered {
 	
@@ -200,7 +182,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		BlockState targetBlockState = world.getBlockState(pos);
 		
 		ActionResult result = ActionResult.FAIL;
-		if ((player != null && (player.isCreative()) || !isBlacklisted(targetBlockState))) {
+		if ((player != null && (player.isCreative()) || canProcess(targetBlockState, context.getWorld(), context.getBlockPos(), context.getPlayer()))) {
 			Block targetBlock = targetBlockState.getBlock();
 			Item targetBlockItem = targetBlockState.getBlock().asItem();
 			if (player != null && targetBlockItem != Items.AIR) {
@@ -208,7 +190,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 					if (world instanceof ServerWorld serverWorld) {
 						storeBlockAsTarget(context.getStack(), targetBlock);
 						world.playSound(null, player.getBlockPos(), SpectrumSoundEvents.EXCHANGING_STAFF_SELECT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-						
+
 						Direction side = context.getSide();
 						Vec3d sourcePos = new Vec3d(context.getHitPos().getX() + side.getOffsetX() * 0.1, context.getHitPos().getY() + side.getOffsetY() * 0.1, context.getHitPos().getZ() + side.getOffsetZ() * 0.1);
 						SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity(serverWorld, sourcePos, SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, 15, new Vec3d(0, 0, 0), new Vec3d(0.25, 0.25, 0.25));

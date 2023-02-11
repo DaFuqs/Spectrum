@@ -1,47 +1,30 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.helpers.BuildingHelper;
-import de.dafuqs.spectrum.items.magic_items.BuildingStaffItem;
-import de.dafuqs.spectrum.items.magic_items.ExchangeStaffItem;
-import de.dafuqs.spectrum.items.magic_items.PlacementStaffItem;
-import de.dafuqs.spectrum.mixin.accessors.WorldRendererAccessor;
-import de.dafuqs.spectrum.render.HudRenderers;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
+import de.dafuqs.spectrum.render.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.client.*;
+import net.minecraft.client.network.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.profiler.Profiler;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import oshi.util.tuples.Triplet;
+import net.minecraft.client.util.math.*;
+import net.minecraft.client.world.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.profiler.*;
+import net.minecraft.util.shape.*;
+import org.jetbrains.annotations.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
+import oshi.util.tuples.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
 @Mixin(value = WorldRenderer.class)
@@ -88,17 +71,17 @@ public abstract class WorldRendererMixin {
 		BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
 		
 		ClientPlayerEntity player = client.player;
-		if (player.isCreative() || !BuildingStaffItem.isBlacklisted(lookingAtState)) {
-			Block lookingAtBlock = lookingAtState.getBlock();
-			Item item = lookingAtBlock.asItem();
-			VoxelShape shape = VoxelShapes.empty();
-			
-			if (item != Items.AIR) {
-				int itemCountInInventory = Integer.MAX_VALUE;
-				int inkLimit = Integer.MAX_VALUE;
-				if (!player.isCreative()) {
-					Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
-					item = inventoryItemAndCount.getB();
+        if (player.isCreative() || BuildingStaffItem.canProcess(lookingAtState, this.world, lookingAtPos, player)) {
+            Block lookingAtBlock = lookingAtState.getBlock();
+            Item item = lookingAtBlock.asItem();
+            VoxelShape shape = VoxelShapes.empty();
+
+            if (item != Items.AIR) {
+                int itemCountInInventory = Integer.MAX_VALUE;
+                int inkLimit = Integer.MAX_VALUE;
+                if (!player.isCreative()) {
+                    Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
+                    item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
 					inkLimit = (int) InkPowered.getAvailableInk(player, PlacementStaffItem.USED_COLOR) / PlacementStaffItem.INK_COST_PER_BLOCK;
 				}
@@ -136,17 +119,17 @@ public abstract class WorldRendererMixin {
 		BlockState lookingAtState = this.world.getBlockState(lookingAtPos);
 		
 		ClientPlayerEntity player = client.player;
-		if (player.isCreative() || !BuildingStaffItem.isBlacklisted(lookingAtState)) {
-			Block lookingAtBlock = lookingAtState.getBlock();
-			Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
-			if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
-				Item exchangeBlockItem = exchangeBlock.get().asItem();
-				VoxelShape shape = VoxelShapes.empty();
-				
-				if (exchangeBlockItem != Items.AIR) {
-					int itemCountInInventory = Integer.MAX_VALUE;
-					int inkLimit = Integer.MAX_VALUE;
-					if (!player.isCreative()) {
+        if (player.isCreative() || BuildingStaffItem.canProcess(lookingAtState, this.world, lookingAtPos, player)) {
+            Block lookingAtBlock = lookingAtState.getBlock();
+            Optional<Block> exchangeBlock = ExchangeStaffItem.getBlockTarget(exchangeStaffItemStack);
+            if (exchangeBlock.isPresent() && exchangeBlock.get() != lookingAtBlock) {
+                Item exchangeBlockItem = exchangeBlock.get().asItem();
+                VoxelShape shape = VoxelShapes.empty();
+
+                if (exchangeBlockItem != Items.AIR) {
+                    int itemCountInInventory = Integer.MAX_VALUE;
+                    int inkLimit = Integer.MAX_VALUE;
+                    if (!player.isCreative()) {
 						itemCountInInventory = player.getInventory().count(exchangeBlockItem);
 						inkLimit = (int) InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
 					}

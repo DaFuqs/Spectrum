@@ -1,24 +1,16 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
-import de.dafuqs.spectrum.recipe.RecipeUtils;
-import net.id.incubus_core.json.RecipeParser;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
+import com.google.gson.*;
+import de.dafuqs.spectrum.recipe.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<FusionShrineRecipe> {
 	

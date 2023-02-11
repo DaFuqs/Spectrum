@@ -1,23 +1,16 @@
 package de.dafuqs.spectrum.recipe.pedestal;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.mixin.accessors.ShapedRecipeAccessor;
-import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
-import de.dafuqs.spectrum.recipe.RecipeUtils;
-import net.id.incubus_core.json.RecipeParser;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.collection.DefaultedList;
+import com.google.common.collect.*;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
+import de.dafuqs.spectrum.recipe.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 
 import java.util.*;
 

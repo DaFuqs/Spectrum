@@ -78,13 +78,12 @@ public class ServerPastelNetwork extends PastelNetwork {
             return false;
         }
 
-        if (this.graph != null) {
-            // delete the now removed node from this networks graph
-            this.graph.removeVertex(node);
-            serverPastelTransmissionLogic.invalidateCache();
-        }
-
         if (hasNodes()) {
+            if (this.graph != null) {
+                // delete the now removed node from this networks graph
+                this.graph.removeVertex(node);
+                serverPastelTransmissionLogic.invalidateCache();
+            }
             Graph<PastelNodeBlockEntity, DefaultEdge> graph = getGraph();
 
             // check if the removed node split the network into subnetworks

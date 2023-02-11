@@ -7,10 +7,6 @@
     "collected_bedrock_dust": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:midgame/break_decayed_bedrock" }
-    },
-    "collected_netherite": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_netherite_scrap" }
     }
   }
 }

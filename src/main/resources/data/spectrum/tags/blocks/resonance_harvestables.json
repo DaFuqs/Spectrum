@@ -5,10 +5,8 @@
     "#spectrum:infested_blocks",
     "#spectrum:spawners",
     "spectrum:black_materia",
-
     "minecraft:reinforced_deepslate",
     "minecraft:sculk_shrieker",
-
     {
       "id": "botania:enchanted_soil",
       "required": false

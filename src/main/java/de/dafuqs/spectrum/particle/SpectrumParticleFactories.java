@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.particle;
 
+import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.particle.client.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.particle.v1.*;
@@ -55,12 +56,13 @@ public class SpectrumParticleFactories {
             return particle;
         });
 
-        ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PASTEL_TRANSMISSION, provider -> (pastelTransmissionParticleEffect, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-            PastelTransmissionParticle particle = new PastelTransmissionParticle(MinecraftClient.getInstance().getEntityRenderDispatcher(), MinecraftClient.getInstance().getBufferBuilders(),
-                    world, x, y, z, pastelTransmissionParticleEffect.getNodePositions(), pastelTransmissionParticleEffect.getStack(), pastelTransmissionParticleEffect.getTravelTime());
-            particle.setSprite(provider);
-            return particle;
-        });
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PASTEL_TRANSMISSION, provider -> (pastelTransmissionParticleEffect, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			PastelTransmissionParticle particle = new PastelTransmissionParticle(MinecraftClient.getInstance().getItemRenderer(), world, x, y, z, pastelTransmissionParticleEffect.getNodePositions(), pastelTransmissionParticleEffect.getStack(), pastelTransmissionParticleEffect.getTravelTime());
+			particle.setSprite(provider);
+			float[] color = PastelRenderHelper.unpackNormalizedColor(pastelTransmissionParticleEffect.getColor());
+			particle.setColor(color[1], color[2], color[3]);
+			return particle;
+		});
 
         ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DIVINITY, HardcoreParticle.Factory::new);
 

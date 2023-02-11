@@ -60,6 +60,8 @@
     "accessors.TridentEntityAccessor"
   ],
   "client": [
+    "MixinParticleManager",
+    "MixinRenderLayers",
     "accessors.DimensionEffectsAccessor",
     "accessors.InGameHudAccessor",
     "accessors.WorldRendererAccessor",

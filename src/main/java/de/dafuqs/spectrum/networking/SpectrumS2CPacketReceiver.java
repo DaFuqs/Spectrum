@@ -226,10 +226,11 @@ public class SpectrumS2CPacketReceiver {
 			int travelTime = buf.readInt();
 			PastelTransmission transmission = PastelTransmission.fromPacket(buf);
 			BlockPos spawnPos = transmission.getStartPos();
+            int color = ColorHelper.getColorFromInt(networkUUID.hashCode());
 
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.world.addParticle(new PastelTransmissionParticleEffect(transmission.getNodePositions(), transmission.getVariant().toStack(), travelTime), spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5, 0, 0, 0);
+                client.world.addParticle(new PastelTransmissionParticleEffect(transmission.getNodePositions(), transmission.getVariant().toStack(), travelTime, color), spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5, 0, 0, 0);
 			});
 		});
 

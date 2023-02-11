@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.pastel_network.network;
 
 import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import net.minecraft.block.entity.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -9,8 +10,6 @@ import org.jetbrains.annotations.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 
-import java.awt.*;
-import java.util.List;
 import java.util.*;
 
 public class PastelNetwork {
@@ -160,7 +159,7 @@ public class PastelNetwork {
     }
 
     public int getColor() {
-        return Color.getHSBColor((float) this.uuid.hashCode() / Integer.MAX_VALUE, 0.7F, 0.9F).getRGB();
+        return ColorHelper.getColorFromInt(this.uuid.hashCode());
     }
 
     @Override

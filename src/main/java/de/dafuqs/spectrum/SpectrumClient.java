@@ -12,6 +12,7 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.particle.render.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.progression.toast.*;
 import de.dafuqs.spectrum.registries.*;
@@ -40,55 +41,59 @@ import java.util.*;
 import static de.dafuqs.spectrum.SpectrumCommon.*;
 
 public class SpectrumClient implements ClientModInitializer, RevealingCallback, ClientAdvancementPacketCallback {
-	
+
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
-	
+
 	public static boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
-	
+
+
+	public static boolean FORCE_TRANSLUCENT = false;
+
+
 	@Override
 	public void onInitializeClient() {
 		logInfo("Starting Client Startup");
-		
+
 		logInfo("Registering Model Layers...");
 		SpectrumModelLayers.register();
-		
+
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
-		
+
 		logInfo("Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();
-		
+
 		logInfo("Setting up GUIs...");
 		SpectrumScreenHandlerIDs.register();
 		SpectrumScreenHandlerTypes.registerClient();
-		
+
 		logInfo("Setting up ItemPredicates...");
 		SpectrumItemPredicates.registerClient();
-		
+
 		logInfo("Setting up Block Entity Renderers...");
 		SpectrumBlockEntities.registerClient();
 		logInfo("Setting up Entity Renderers...");
 		SpectrumEntityRenderers.registerClient();
-		
+
 		logInfo("Registering Server to Client Package Receivers...");
-        SpectrumS2CPacketReceiver.registerS2CReceivers();
-        logInfo("Registering Particle Factories...");
-        SpectrumParticleFactories.register();
+		SpectrumS2CPacketReceiver.registerS2CReceivers();
+		logInfo("Registering Particle Factories...");
+		SpectrumParticleFactories.register();
 
-        logInfo("Registering Overlays...");
-        HudRenderers.register();
+		logInfo("Registering Overlays...");
+		HudRenderers.register();
 
-        logInfo("Registering Item Tooltips...");
-        SpectrumTooltipComponents.registerTooltipComponents();
+		logInfo("Registering Item Tooltips...");
+		SpectrumTooltipComponents.registerTooltipComponents();
 
-        logInfo("Registering custom Patchouli Pages & Flags...");
-        PatchouliPages.register();
-        PatchouliFlags.register();
+		logInfo("Registering custom Patchouli Pages & Flags...");
+		PatchouliPages.register();
+		PatchouliFlags.register();
 
-        DimensionReverb.setup();
+		DimensionReverb.setup();
 
-        logInfo("Registering Event Listeners...");
+		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
 			SpectrumColorProviders.registerClient();
 		});
@@ -99,14 +104,6 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			}
 		});
 
-		logInfo("Registering Armor Renderers...");
-		SpectrumArmorRenderers.register();
-
-		RevealingCallback.register(this);
-		ClientAdvancementPacketCallback.registerCallback(this);
-
-		logInfo("Client startup completed!");
-
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
 				if (Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
@@ -116,6 +113,10 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
 				lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
 			}
+		});
+
+		WorldRenderEvents.AFTER_ENTITIES.register(context -> {
+			((ExtendedParticleManager) MinecraftClient.getInstance().particleManager).render(context.matrixStack(), context.consumers(), context.camera(), context.tickDelta());
 		});
 
 		WorldRenderEvents.AFTER_ENTITIES.register(context -> {

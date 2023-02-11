@@ -118,8 +118,8 @@ public class DDPlacedFeatures {
                 MOONSTONE_GEODE_IDENTIFIER,
                 DDConfiguredFeatures.MOONSTONE_GEODE,
                 RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.MoonstoneGeodeChunkChance),
-                SquarePlacementModifier.of(),
                 HeightRangePlacementModifier.uniform(YOffset.aboveBottom(16), YOffset.aboveBottom(128)),
+                SquarePlacementModifier.of(),
                 BiomePlacementModifier.of()
         );
 

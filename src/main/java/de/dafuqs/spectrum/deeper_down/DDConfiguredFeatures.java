@@ -1,24 +1,19 @@
 package de.dafuqs.spectrum.deeper_down;
 
-import com.google.common.collect.ImmutableList;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.worldgen.SpectrumFeatures;
-import de.dafuqs.spectrum.worldgen.features.RandomBudsFeaturesConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.GlowLichenBlock;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.structure.rule.AlwaysTrueRuleTest;
-import net.minecraft.structure.rule.RuleTest;
-import net.minecraft.structure.rule.TagMatchRuleTest;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.util.registry.RegistryEntryList;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.worldgen.*;
+import de.dafuqs.spectrum.worldgen.features.*;
+import net.minecraft.block.*;
+import net.minecraft.fluid.*;
+import net.minecraft.structure.rule.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.math.intprovider.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.*;
 
-import java.util.List;
+import java.util.*;
 
 public class DDConfiguredFeatures {
 	
@@ -55,10 +50,10 @@ public class DDConfiguredFeatures {
 							ImmutableList.of(SpectrumBlocks.MOONSTONE_CLUSTER.getDefaultState()), // forever untouched by man: generate with clusters only
 							BlockTags.FEATURES_CANNOT_REPLACE,
 							BlockTags.GEODE_INVALID_BLOCKS),
-					new GeodeLayerThicknessConfig(4.0D, 5.0D, 6.0D, 7.0D),
-					new GeodeCrackConfig(0.95D, 4.0D, 4),
+					new GeodeLayerThicknessConfig(5.0D, 6.0D, 7.0D, 8.0D),
+					new GeodeCrackConfig(0.35D, 4.0D, 4),
 					1.0D, 0.1D, true,
-					UniformIntProvider.create(4, 6),
+					UniformIntProvider.create(8, 10),
 					UniformIntProvider.create(2, 3),
 					UniformIntProvider.create(1, 2),
 					-16, 16, 0.05D, 1));

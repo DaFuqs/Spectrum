@@ -7,11 +7,11 @@ import net.fabricmc.api.*;
 public class Pastel {
 
     @Environment(EnvType.CLIENT)
-    private static PastelNetworkManager clientManager;
+    private static ClientPastelNetworkManager clientManager;
     private static ServerPastelNetworkManager serverManager;
 
     @Environment(EnvType.CLIENT)
-    public static PastelNetworkManager getClientInstance() {
+    public static ClientPastelNetworkManager getClientInstance() {
         if (clientManager == null) {
             clientManager = new ClientPastelNetworkManager();
         }

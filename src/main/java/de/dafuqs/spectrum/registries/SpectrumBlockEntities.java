@@ -161,7 +161,6 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.JADE_VINE_ROOTS, JadeVineRootsBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.CRYSTALLARIEUM, CrystallarieumBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(SpectrumBlockEntities.COLOR_PICKER, ColorPickerBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(SpectrumBlockEntities.PASTEL_NODE, PastelNodeBlockEntityRenderer::new);
 
 		registerTextureAtlasCallback();
 	}
@@ -178,6 +177,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		//Register textures in block atlas
 		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((texture, registry) -> {
 			registry.register(SpectrumCommon.locate("entity/pedestal_upgrade_speed"));
+			registry.register(SpectrumCommon.locate("entity/pastel_line"));
 		});
 	}
 	

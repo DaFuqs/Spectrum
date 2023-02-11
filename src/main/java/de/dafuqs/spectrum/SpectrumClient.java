@@ -3,6 +3,8 @@ package de.dafuqs.spectrum;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.blocks.pastel_network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.network.*;
+import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
 import de.dafuqs.spectrum.entity.*;
@@ -19,14 +21,19 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.network.*;
+import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.registry.*;
+import org.jgrapht.*;
+import org.jgrapht.graph.*;
 
 import java.util.*;
 
@@ -82,36 +89,73 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
         DimensionReverb.setup();
 
         logInfo("Registering Event Listeners...");
-        ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
-            SpectrumColorProviders.registerClient();
-        });
-        ClientPlayConnectionEvents.DISCONNECT.register(new ClientPlayConnectionEvents.Disconnect() {
-            @Override
-            public void onPlayDisconnect(ClientPlayNetworkHandler handler, MinecraftClient client) {
-                Pastel.clearClientInstance();
-            }
-        });
+		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
+			SpectrumColorProviders.registerClient();
+		});
+		ClientPlayConnectionEvents.DISCONNECT.register(new ClientPlayConnectionEvents.Disconnect() {
+			@Override
+			public void onPlayDisconnect(ClientPlayNetworkHandler handler, MinecraftClient client) {
+				Pastel.clearClientInstance();
+			}
+		});
 
-        ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
-            if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
-                if (Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
-                    TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
-                }
-            }
-            if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
-                lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
-            }
-        });
+		logInfo("Registering Armor Renderers...");
+		SpectrumArmorRenderers.register();
 
-        logInfo("Registering Armor Renderers...");
-        SpectrumArmorRenderers.register();
+		RevealingCallback.register(this);
+		ClientAdvancementPacketCallback.registerCallback(this);
 
-        RevealingCallback.register(this);
-        ClientAdvancementPacketCallback.registerCallback(this);
+		logInfo("Client startup completed!");
 
-        logInfo("Client startup completed!");
-    }
-	
+		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
+				if (Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+					TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
+				}
+			}
+			if (stack.isIn(SpectrumItemTags.COMING_SOON_TOOLTIP)) {
+				lines.add(Text.translatable("spectrum.tooltip.coming_soon"));
+			}
+		});
+
+		WorldRenderEvents.AFTER_ENTITIES.register(context -> {
+			ClientPastelNetworkManager networkManager = Pastel.getClientInstance();
+			for (PastelNetwork network : networkManager.getNetworks()) {
+				Graph<PastelNodeBlockEntity, DefaultEdge> graph = network.getGraph();
+				int color = network.getColor();
+				float[] colors = PastelRenderHelper.unpackNormalizedColor(color);
+
+				for (DefaultEdge edge : graph.edgeSet()) {
+					PastelNodeBlockEntity source = graph.getEdgeSource(edge);
+					PastelNodeBlockEntity target = graph.getEdgeTarget(edge);
+
+					final MatrixStack matrices = context.matrixStack();
+					final Vec3d pos = context.camera().getPos();
+					matrices.push();
+					matrices.translate(-pos.x, -pos.y, -pos.z);
+					PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source.getPos(), target.getPos());
+					PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, target.getPos(), source.getPos());
+
+					if (MinecraftClient.getInstance().options.debugEnabled) {
+						Vec3d offset = Vec3d.ofCenter(target.getPos()).subtract(Vec3d.of(source.getPos()));
+						Vec3d normalized = offset.normalize();
+						Matrix4f positionMatrix = context.matrixStack().peek().getPositionMatrix();
+						PastelRenderHelper.renderDebugLine(context.consumers(), color, offset, normalized, positionMatrix);
+					}
+					matrices.pop();
+				}
+			}
+		});
+
+		logInfo("Registering Armor Renderers...");
+		SpectrumArmorRenderers.register();
+
+		RevealingCallback.register(this);
+		ClientAdvancementPacketCallback.registerCallback(this);
+
+		logInfo("Client startup completed!");
+	}
+
 	@Override
 	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
 		if (!isJoinPacket) {

@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.$(br)If you hit the right frequency, you finally can hold some of them in your hands."
+      "text": "There have always been blocks that you were very interested in, but you could never carve them out of the ground carefully enough to retrieve them flawlessly. You noticed, however, that these blocks vibrate in a similar way to the gems you've been so concerned with lately.$(br)If you hit the right frequency, you finally can hold some of those blocks in your hands."
     },
     {
       "type": "patchouli:spotlight",
@@ -26,14 +26,14 @@
       "type": "patchouli:spotlight",
       "title": "Gemstone Buds",
       "item": "minecraft:medium_amethyst_bud",
-      "text": "The smaller gem buds are usually too fragile to be broken from their mother block.$(br2)However, if you hit the right frequency, the small bods will break from the stone almost by themselves."
+      "text": "The smaller gem buds are usually too fragile to be broken from their mother block.$(br2)However, if you hit the right frequency, the small bods will break from the stone almost by themselves, as if you used $(thing)Silk Touch$()."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Pure Resources",
       "item": "spectrum:pure_iron",
       "advancement": "spectrum:lategame/collect_pure_resource",
-      "text": "Breaking Ores with Resonance directly drops $(l:resources/pure_resources)Pure Resources$()."
+      "text": "Breaking Ores with Resonance directly drops $(l:resources/pure_resources)Pure Resources$() instead of Raw Ores."
     },
     {
       "type": "patchouli:spotlight",

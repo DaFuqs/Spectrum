@@ -13,12 +13,12 @@
     },
     {
       "type": "patchouli:image",
-      "title": "Transfer routes",
+      "title": "Transfer Routes",
       "images": [
         "spectrum:textures/gui/guidebook/pastel_travel.png"
       ],
       "border": false,
-      "text": "The way nodes will interact with one another."
+      "text": "The way nodes can interact with one another."
     }
   ]
 }

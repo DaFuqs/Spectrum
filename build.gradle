@@ -11,14 +11,14 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
-	mavenLocal()
+	//mavenLocal()
 	maven { url 'https://jitpack.io' }
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url "https://maven.terraformersmc.com" }
-	maven {
+	/*maven {
 		name = "Enchantment Descriptions"
 		url = 'https://maven.blamejared.com'
-	}
+	}*/
 	maven {
 		name = "Patchouli" // https://github.com/Vazkii/Patchouli
 		url = 'https://maven.blamejared.com'
@@ -28,14 +28,10 @@ repositories {
 		url = 'https://ladysnake.jfrog.io/artifactory/mods'
 	}
 	maven {
-		name "entity reach attribute"
-		url "https://maven.jamieswhiteshirt.com/libs-release/"
+		name = "entity reach attribute"
+		url = "https://maven.jamieswhiteshirt.com/libs-release/"
 	}
 	maven { url 'https://maven.wispforest.io/' } // owo lib
-	maven {
-		name = "ProgrammerArtInjector"
-		url = 'https://maven.extracraftx.com'
-	}
 	maven {
 		url = "https://api.modrinth.com/maven"
 		content {

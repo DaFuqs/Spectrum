@@ -7,24 +7,22 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:germinated_jade_vine_seeds",
-          "conditions": [
-            {
-              "condition": "minecraft:inverted",
-              "term": {
-                "condition": "minecraft:block_state_property",
-                "block": "spectrum:jade_vines",
-                "properties": {
-                  "age": "0"
-                }
-              }
-            }
-          ]
+          "name": "spectrum:germinated_jade_vine_seeds"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
+        },
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:block_state_property",
+            "block": "spectrum:jade_vines",
+            "properties": {
+              "age": "0"
+            }
+          }
         }
       ]
     },
@@ -43,21 +41,19 @@
                 "max": 3
               }
             }
-          ],
-          "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "spectrum:jade_vines",
-              "properties": {
-                "age": "0"
-              }
-            }
           ]
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:survives_explosion"
+        },
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "spectrum:jade_vines",
+          "properties": {
+            "age": "0"
+          }
         }
       ]
     },
@@ -78,25 +74,17 @@
             },
             {
               "function": "minecraft:explosion_decay"
-            },
-            {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "spectrum:resonance",
-              "formula": "minecraft:uniform_bonus_count",
-              "parameters": {
-                "bonusMultiplier": 2
-              }
-            }
-          ],
-          "conditions": [
-            {
-              "condition": "minecraft:block_state_property",
-              "block": "spectrum:jade_vines",
-              "properties": {
-                "age": "0"
-              }
             }
           ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "spectrum:jade_vines",
+          "properties": {
+            "age": "0"
+          }
         }
       ]
     }

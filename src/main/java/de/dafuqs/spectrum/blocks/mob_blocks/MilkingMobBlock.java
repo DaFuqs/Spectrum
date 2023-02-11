@@ -1,35 +1,23 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
-import de.dafuqs.spectrum.entity.entity.EggLayingWoolyPigEntity;
-import de.dafuqs.spectrum.mixin.accessors.MooshroomEntityAccessor;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.CowEntity;
-import net.minecraft.entity.passive.GoatEntity;
-import net.minecraft.entity.passive.MooshroomEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.SuspiciousStewItem;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.passive.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
-import static de.dafuqs.spectrum.helpers.InWorldInteractionHelper.findAndDecreaseClosestItemEntityOfItem;
+import static de.dafuqs.spectrum.helpers.InWorldInteractionHelper.*;
 
 public class MilkingMobBlock extends MobBlock {
 	
@@ -57,8 +45,8 @@ public class MilkingMobBlock extends MobBlock {
 				}
 			}
 		}
-		
-		// Cows
+
+		// Cows (includes Mooshrooms)
 		List<CowEntity> cowEntities = world.getNonSpectatingEntities(CowEntity.class, Box.of(Vec3d.ofCenter(blockPos), boxSize, boxSize, boxSize));
 		for (CowEntity cowEntity : cowEntities) {
 			if (!cowEntity.isBaby()) {

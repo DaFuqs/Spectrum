@@ -1,40 +1,36 @@
 package de.dafuqs.spectrum.blocks.gemstone;
 
-import de.dafuqs.spectrum.events.SpectrumGameEvents;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import net.minecraft.block.AmethystClusterBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BuddingAmethystBlock;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
+import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.*;
+import net.minecraft.fluid.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
 
-public class SpectrumBuddingBlock extends BuddingAmethystBlock {
-	
+public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
+
 	private static final Direction[] DIRECTIONS = Direction.values();
 	private final Block smallBlock;
 	private final Block mediumBlock;
 	private final Block largeBlock;
 	private final Block clusterBlock;
-	private final SoundEvent hitSoundEvent;
-	private final SoundEvent chimeSoundEvent;
-	
+
 	public SpectrumBuddingBlock(Settings settings, Block smallBlock, Block mediumBlock, Block largeBlock, Block clusterBlock, SoundEvent hitSoundEvent, SoundEvent chimeSoundEvent) {
-		super(settings);
-		
+		super(settings, hitSoundEvent, chimeSoundEvent);
+
 		this.smallBlock = smallBlock;
 		this.mediumBlock = mediumBlock;
 		this.largeBlock = largeBlock;
 		this.clusterBlock = clusterBlock;
-		
-		this.hitSoundEvent = hitSoundEvent;
-		this.chimeSoundEvent = chimeSoundEvent;
 	}
-	
+
+	public PistonBehavior getPistonBehavior(BlockState state) {
+		return PistonBehavior.DESTROY;
+	}
+
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (random.nextInt(5) == 0) {
@@ -53,9 +49,9 @@ public class SpectrumBuddingBlock extends BuddingAmethystBlock {
 			}
 			
 			if (block != null) {
-				BlockState blockState2 = (block.getDefaultState().with(AmethystClusterBlock.FACING, direction)).with(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getFluid() == Fluids.WATER);
-				world.setBlockState(blockPos, blockState2);
-				if (blockState2.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
+				BlockState newBlockState = block.getDefaultState().with(AmethystClusterBlock.FACING, direction).with(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getFluid() == Fluids.WATER);
+				world.setBlockState(blockPos, newBlockState);
+				if (newBlockState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 					world.emitGameEvent(null, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, blockPos);
 				}
 			}

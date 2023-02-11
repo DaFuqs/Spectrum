@@ -114,9 +114,10 @@ public class SpectrumLootPoolModifiers {
 			
 			// Dungeon loot
 			if (id.equals(new Identifier("chests/simple_dungeon"))) {
+				/* TODO: add lockets to the loot pool, once it has a use
 				tableBuilder.pool(new LootPool.Builder().rolls(ConstantLootNumberProvider.create(1))
 						.conditionally(RandomChanceLootCondition.builder(0.02F).build())
-						.with(ItemEntry.builder(SpectrumItems.MYSTERIOUS_LOCKET).build()));
+						.with(ItemEntry.builder(SpectrumItems.MYSTERIOUS_LOCKET).build()));*/
 				
 				// Treasure hunter pools
 			} else if (trophyHunterLootPools.containsKey(id)) {

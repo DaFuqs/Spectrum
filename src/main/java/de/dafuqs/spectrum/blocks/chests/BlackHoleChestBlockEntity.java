@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.chests;
 
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.events.*;
 import de.dafuqs.spectrum.events.listeners.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -36,7 +37,7 @@ import java.util.stream.*;
 public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implements ExtendedScreenHandlerFactory, SidedInventory, EventQueue.Callback {
 
 	public static final int INVENTORY_SIZE = 28;
-	public static final int ITEM_FILTER_SLOTS = 5;
+	public static final int ITEM_FILTER_SLOT_COUNT = 5;
 	public static final int EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT = 27;
 	private static final int RANGE = 12;
 	private final ItemAndExperienceEventQueue itemAndExperienceEventQueue;
@@ -45,7 +46,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public BlackHoleChestBlockEntity(BlockPos blockPos, BlockState blockState) {
 		super(SpectrumBlockEntities.BLACK_HOLE_CHEST, blockPos, blockState);
 		this.itemAndExperienceEventQueue = new ItemAndExperienceEventQueue(new BlockPositionSource(this.pos), RANGE, this);
-		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOTS, Items.AIR);
+		this.filterItems = DefaultedList.ofSize(ITEM_FILTER_SLOT_COUNT, Items.AIR);
 	}
 
 	public static void tick(@NotNull World world, BlockPos pos, BlockState state, BlackHoleChestBlockEntity blockEntity) {
@@ -81,7 +82,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	}
 	
 	protected Text getContainerName() {
-		return Text.translatable("block.spectrum.sucking_chest");
+		return Text.translatable("block.spectrum.black_hole_chest");
 	}
 	
 	@Override
@@ -91,14 +92,14 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
-		for (int i = 0; i < ITEM_FILTER_SLOTS; i++) {
+		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
 			tag.putString("Filter" + i, Registry.ITEM.getId(this.filterItems.get(i)).toString());
 		}
 	}
 
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
-		for (int i = 0; i < ITEM_FILTER_SLOTS; i++) {
+		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
 			if (tag.contains("Filter" + i, NbtElement.STRING_TYPE)) {
 				this.filterItems.set(i, Registry.ITEM.get(new Identifier(tag.getString("Filter" + i))));
 			}
@@ -177,12 +178,12 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 
 	@Override
 	public SoundEvent getOpenSound() {
-		return SpectrumSoundEvents.SUCKING_CHEST_OPEN;
+		return SpectrumSoundEvents.BLACK_HOLE_CHEST_OPEN;
 	}
 
 	@Override
 	public SoundEvent getCloseSound() {
-		return SpectrumSoundEvents.SUCKING_CHEST_CLOSE;
+		return SpectrumSoundEvents.BLACK_HOLE_CHEST_CLOSE;
 	}
 
 	@Override
@@ -206,7 +207,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		}
 		
 		boolean allAir = true;
-		for (int i = 0; i < ITEM_FILTER_SLOTS; i++) {
+		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
 			Item filterItem = this.filterItems.get(i);
 			if (filterItem.equals(itemStack.getItem())) {
 				return true;

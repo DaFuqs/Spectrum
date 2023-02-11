@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:sucking_chest"
+          "name": "spectrum:black_hole_chest"
         }
       ],
       "conditions": [

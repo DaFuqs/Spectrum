@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "spectrum:block/black_hole_chest"
+    },
+    "facing=east": {
+      "model": "spectrum:block/black_hole_chest",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "spectrum:block/black_hole_chest",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "spectrum:block/black_hole_chest",
+      "y": 270
+    }
+  }
+}

@@ -28,8 +28,8 @@
     }
   },
   "result": {
-    "item": "spectrum:sucking_chest",
+    "item": "spectrum:black_hole_chest",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_sucking_chest"
+  "required_advancement": "spectrum:progression/unlock_black_hole_chest"
 }

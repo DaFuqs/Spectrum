@@ -1,10 +1,10 @@
 {
   "name": "Black Hole Chest",
-  "advancement": "spectrum:progression/unlock_sucking_chest",
-  "icon": "spectrum:sucking_chest",
+  "advancement": "spectrum:progression/unlock_black_hole_chest",
+  "icon": "spectrum:black_hole_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
-    "spectrum:sucking_chest": 0
+    "spectrum:black_hole_chest": 0
   },
   "pages": [
     {
@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/sucking_chest",
+      "recipe": "spectrum:pedestal/tier3/black_hole_chest",
       "text": "Black Hole Chests have a radius of 12 blocks. You can disable them by placing a block on top. It offers filters to specify which items it should accept."
     }
   ]

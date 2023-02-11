@@ -201,16 +201,16 @@
       "spectrum:radiance_staff_break"
     ]
   },
-  "sucking_chest_open": {
-    "subtitle": "spectrum.subtitles.block.sucking_chest.open",
+  "black_hole_chest_open": {
+    "subtitle": "spectrum.subtitles.block.black_hole_chest.open",
     "sounds": [
-      "spectrum:block.sucking_chest.open"
+      "spectrum:block.black_hole_chest.open"
     ]
   },
-  "sucking_chest_close": {
-    "subtitle": "spectrum.subtitles.block.sucking_chest.close",
+  "black_hole_chest_close": {
+    "subtitle": "spectrum.subtitles.block.black_hole_chest.close",
     "sounds": [
-      "spectrum:block.sucking_chest.close"
+      "spectrum:block.black_hole_chest.close"
     ]
   },
   "fading_placed": {

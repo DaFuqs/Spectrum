@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.inventories;
 
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.inventories.slots.*;
 import de.dafuqs.spectrum.registries.*;
@@ -12,10 +13,7 @@ import net.minecraft.screen.*;
 import net.minecraft.screen.slot.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
-
-import java.util.*;
 
 public class BlackHoleChestScreenHandler extends ScreenHandler {
 
@@ -26,12 +24,11 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 	protected Inventory filterInventory;
 
 	public BlackHoleChestScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packetByteBuf) {
-		this(syncId, playerInventory, packetByteBuf.readBlockPos(), getFilterInventoryFromPacket(packetByteBuf));
+		this(syncId, playerInventory, packetByteBuf.readBlockPos(), FilterConfigurable.getFilterInventoryFromPacket(packetByteBuf));
 	}
 
-	public BlackHoleChestScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, Inventory filterInventory) {
-		this(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId, playerInventory, filterInventory);
-
+	private BlackHoleChestScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, Inventory filterInventory) {
+		this(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId, playerInventory, new SimpleInventory(BlackHoleChestBlockEntity.INVENTORY_SIZE), filterInventory);
 		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
 		if (blockEntity instanceof BlackHoleChestBlockEntity blackHoleChestBlockEntity) {
 			this.blackHoleChestBlockEntity = blackHoleChestBlockEntity;
@@ -39,13 +36,9 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 	}
 
 	public BlackHoleChestScreenHandler(int syncId, PlayerInventory playerInventory, BlackHoleChestBlockEntity blackHoleChestBlockEntity) {
-		this(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId, playerInventory, blackHoleChestBlockEntity, getFilterInventoryFromItems(blackHoleChestBlockEntity.getItemFilters()));
+		this(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId, playerInventory, blackHoleChestBlockEntity, FilterConfigurable.getFilterInventoryFromItems(blackHoleChestBlockEntity.getItemFilters()));
 		this.blackHoleChestBlockEntity = blackHoleChestBlockEntity;
-		this.filterInventory = getFilterInventoryFromItems(blackHoleChestBlockEntity.getItemFilters());
-	}
-
-	protected BlackHoleChestScreenHandler(ScreenHandlerType<?> type, int i, PlayerInventory playerInventory, Inventory filterInventory) {
-		this(type, i, playerInventory, new SimpleInventory(BlackHoleChestBlockEntity.INVENTORY_SIZE), filterInventory);
+		this.filterInventory = FilterConfigurable.getFilterInventoryFromItems(blackHoleChestBlockEntity.getItemFilters());
 	}
 
 	protected BlackHoleChestScreenHandler(ScreenHandlerType<?> type, int syncId, PlayerInventory playerInventory, Inventory inventory, Inventory filterInventory) {
@@ -84,25 +77,9 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 		this.addSlot(new StackFilterSlot(inventory, BlackHoleChestBlockEntity.EXPERIENCE_STORAGE_PROVIDER_ITEM_SLOT, 152, 18, SpectrumItems.KNOWLEDGE_GEM));
 		
 		// filter slots
-		for (k = 0; k < BlackHoleChestBlockEntity.ITEM_FILTER_SLOTS; ++k) {
+		for (k = 0; k < BlackHoleChestBlockEntity.ITEM_FILTER_SLOT_COUNT; ++k) {
 			this.addSlot(new SuckingChestFilterSlot(filterInventory, k, 8 + k * 23, 18));
 		}
-	}
-	
-	protected static Inventory getFilterInventoryFromPacket(PacketByteBuf packetByteBuf) {
-		Inventory inventory = new SimpleInventory(BlackHoleChestBlockEntity.ITEM_FILTER_SLOTS);
-		for (int i = 0; i < BlackHoleChestBlockEntity.ITEM_FILTER_SLOTS; i++) {
-			inventory.setStack(i, Registry.ITEM.get(packetByteBuf.readIdentifier()).getDefaultStack());
-		}
-		return inventory;
-	}
-	
-	protected static Inventory getFilterInventoryFromItems(List<Item> items) {
-		Inventory inventory = new SimpleInventory(BlackHoleChestBlockEntity.ITEM_FILTER_SLOTS);
-		for (int i = 0; i < BlackHoleChestBlockEntity.ITEM_FILTER_SLOTS; i++) {
-			inventory.setStack(i, items.get(i).getDefaultStack());
-		}
-		return inventory;
 	}
 	
 	public boolean canUse(PlayerEntity player) {

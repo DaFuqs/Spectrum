@@ -42,7 +42,7 @@ public class SpectrumScreenHandlerIDs {
         BEDROCK_ANVIL = SpectrumCommon.locate("bedrock_anvil");
         PARTICLE_SPAWNER = SpectrumCommon.locate("particle_spawner");
         COMPACTING_CHEST = SpectrumCommon.locate("compacting_chest");
-        BLACK_HOLE_CHEST = SpectrumCommon.locate("sucking_chest");
+        BLACK_HOLE_CHEST = SpectrumCommon.locate("black_hole_chest");
         POTION_WORKSHOP = SpectrumCommon.locate("potion_workshop");
         COLOR_PICKER = SpectrumCommon.locate("color_picker");
         CINDERHEARTH = SpectrumCommon.locate("cinderhearth");

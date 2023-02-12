@@ -40,12 +40,17 @@
   },
   "features": [
     [],
-    [],
+    [
+      "spectrum:lake_midnight_solution_underground"
+    ],
     [
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode"
     ],
-    [],
+    [
+      "minecraft:fossil_upper",
+      "minecraft:fossil_lower"
+    ],
     [],
     [],
     [
@@ -66,9 +71,7 @@
       "spectrum:dd_andesite",
       "spectrum:dd_stone"
     ],
-    [
-      "spectrum:dd_bismuth"
-    ],
+    [],
     [
       "spectrum:dd_springs"
     ],

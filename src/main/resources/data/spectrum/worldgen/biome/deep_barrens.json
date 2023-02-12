@@ -66,13 +66,13 @@
       "spectrum:dd_andesite",
       "spectrum:dd_stone"
     ],
-    [
-      "spectrum:dd_bismuth"
-    ],
+    [],
     [
       "spectrum:dd_springs"
     ],
     [
+      "minecraft:brown_mushroom_normal",
+      "minecraft:red_mushroom_normal",
       "spectrum:dd_lichen"
     ],
     []

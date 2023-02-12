@@ -45,7 +45,10 @@
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode"
     ],
-    [],
+    [
+      "minecraft:fossil_upper",
+      "minecraft:fossil_lower"
+    ],
     [],
     [],
     [
@@ -66,13 +69,13 @@
       "spectrum:dd_andesite",
       "spectrum:dd_stone"
     ],
-    [
-      "spectrum:dd_bismuth"
-    ],
+    [],
     [
       "spectrum:dd_springs"
     ],
     [
+      "minecraft:cave_vines",
+      "minecraft:classic_vines_cave_feature",
       "spectrum:dd_lichen"
     ],
     []

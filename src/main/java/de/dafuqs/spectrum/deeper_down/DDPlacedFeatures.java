@@ -156,7 +156,7 @@ public class DDPlacedFeatures {
         registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.GLOW_LICHEN, HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), CountPlacementModifier.of(UniformIntProvider.create(148, 240)), SquarePlacementModifier.of(), SurfaceThresholdFilterPlacementModifier.of(Heightmap.Type.OCEAN_FLOOR_WG, -2147483648, -64));
 
         id = SpectrumCommon.locate("dd_bismuth");
-        registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.BISMUTH_BUDS, HeightRangePlacementModifier.uniform(YOffset.aboveBottom(32), YOffset.aboveBottom(128)), RarityFilterPlacementModifier.of(6), CountPlacementModifier.of(UniformIntProvider.create(64, 96)), SquarePlacementModifier.of());
+        registerConfiguredAndPlacedFeature(id, DDConfiguredFeatures.BISMUTH_BUDS, HeightRangePlacementModifier.uniform(YOffset.aboveBottom(32), YOffset.aboveBottom(128)), CountPlacementModifier.of(UniformIntProvider.create(64, 96)), SquarePlacementModifier.of());
     }
 
 }

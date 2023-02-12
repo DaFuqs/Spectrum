@@ -31,12 +31,12 @@ public class DDConfiguredFeatures {
 	public static final ConfiguredFeature<OreFeatureConfig, ?> DOWNSTONE_DISK = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, SpectrumBlocks.DOWNSTONE.getDefaultState(), 40));
 	public static final ConfiguredFeature<OreFeatureConfig, ?> DOWNSTONE_DISK_SLOPED = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, SpectrumBlocks.DOWNSTONE.getDefaultState(), 40));
 	
-	public static final ConfiguredFeature<SpringFeatureConfig, ?> WATER_SPRING = new ConfiguredFeature<>(Feature.SPRING_FEATURE, new SpringFeatureConfig(Fluids.WATER.getDefaultState(), true, 4, 1, DD_BASE_BLOCKS));
+	public static final ConfiguredFeature<SpringFeatureConfig, ?> WATER_SPRING = new ConfiguredFeature<>(Feature.SPRING_FEATURE, new SpringFeatureConfig(Fluids.WATER.getDefaultState(), true, 3, 1, DD_BASE_BLOCKS));
 	public static final ConfiguredFeature<MultifaceGrowthFeatureConfig, ?> GLOW_LICHEN = new ConfiguredFeature<>(Feature.MULTIFACE_GROWTH, new MultifaceGrowthFeatureConfig((GlowLichenBlock) Blocks.GLOW_LICHEN, 20, false, true, true, 0.5F, DD_BASE_BLOCKS));
 	
 	
 	public static final ConfiguredFeature<RandomBudsFeaturesConfig, ?> BISMUTH_BUDS = new ConfiguredFeature<>(SpectrumFeatures.RANDOM_BUDS,
-			new RandomBudsFeaturesConfig(20, false, true, true, DD_BASE_BLOCKS,
+			new RandomBudsFeaturesConfig(12, false, true, true, DD_BASE_BLOCKS,
 					List.of(SpectrumBlocks.SMALL_BISMUTH_BUD.getDefaultState(), SpectrumBlocks.LARGE_BISMUTH_BUD.getDefaultState())));
 	
 	public static final ConfiguredFeature<GeodeFeatureConfig, ?> MOONSTONE_GEODE = new ConfiguredFeature<>(Feature.GEODE,

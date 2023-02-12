@@ -42,11 +42,17 @@
     [],
     [],
     [
+      "minecraft:basalt_pillar",
+      "minecraft:large_dripstone",
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode"
     ],
     [],
-    [],
+    [
+      "minecraft:delta",
+      "minecraft:small_basalt_columns",
+      "minecraft:large_basalt_columns"
+    ],
     [],
     [
       "spectrum:dd_downstone_disk",
@@ -67,7 +73,10 @@
       "spectrum:dd_stone"
     ],
     [
-      "spectrum:dd_bismuth"
+      "minecraft:dripstone_cluster",
+      "minecraft:pointed_dripstone",
+      "minecraft:basalt_blobs",
+      "minecraft:blackstone_blobs"
     ],
     [
       "spectrum:dd_springs"

@@ -23,26 +23,26 @@
     "barrier": {
       "type": "minecraft:noise",
       "noise": "spectrum:deeper_down_barrier",
-      "xz_scale": 1.0,
-      "y_scale": 1.0
+      "xz_scale": 1,
+      "y_scale": 1
     },
     "fluid_level_floodedness": {
       "type": "minecraft:noise",
       "noise": "minecraft:aquifer_fluid_level_floodedness",
-      "xz_scale": 1.0,
+      "xz_scale": 1,
       "y_scale": 0.67
     },
     "fluid_level_spread": {
       "type": "minecraft:noise",
       "noise": "minecraft:aquifer_fluid_level_spread",
-      "xz_scale": 1.0,
+      "xz_scale": 1,
       "y_scale": 0.7142857142857143
     },
     "lava": {
       "type": "minecraft:noise",
       "noise": "minecraft:aquifer_lava",
-      "xz_scale": 1.0,
-      "y_scale": 1.0
+      "xz_scale": 1,
+      "y_scale": 1
     },
     "temperature": {
       "type": "minecraft:shifted_noise",
@@ -63,8 +63,8 @@
       "shift_z": "minecraft:shift_z"
     },
     "continents": "minecraft:overworld/continents",
-    "depth": "minecraft:overworld/depth",
     "erosion": "minecraft:overworld/erosion",
+    "depth": "minecraft:overworld/depth",
     "ridges": "minecraft:overworld/ridges",
     "initial_density_without_jaggedness": 0,
     "final_density": {
@@ -271,12 +271,12 @@
         "type": "minecraft:condition",
         "if_true": {
           "type": "minecraft:vertical_gradient",
-          "false_at_and_above": {
-            "above_bottom": 5
-          },
           "random_name": "minecraft:bedrock_floor",
           "true_at_and_below": {
             "above_bottom": 0
+          },
+          "false_at_and_above": {
+            "above_bottom": 5
           }
         },
         "then_run": {
@@ -306,9 +306,27 @@
         }
       },
       {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:biome",
+          "biome_is": [
+            "spectrum:forlorm_caves"
+          ]
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "result_state": {
+            "Name": "spectrum:black_materia"
+          }
+        }
+      },
+      {
         "type": "minecraft:block",
         "result_state": {
-          "Name": "minecraft:deepslate"
+          "Name": "minecraft:deepslate",
+          "Properties": {
+            "axis": "y"
+          }
         }
       }
     ]

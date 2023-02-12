@@ -40,7 +40,9 @@
   },
   "features": [
     [],
-    [],
+    [
+      "spectrum:lake_liquid_crystal_underground"
+    ],
     [
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode"
@@ -70,6 +72,8 @@
       "spectrum:dd_bismuth"
     ],
     [
+      "minecraft:glowstone_extra",
+      "minecraft:glowstone",
       "spectrum:dd_springs"
     ],
     [

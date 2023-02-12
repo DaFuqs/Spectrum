@@ -66,6 +66,7 @@ dependencies {
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 	// we need a bit of concern
 
+
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}

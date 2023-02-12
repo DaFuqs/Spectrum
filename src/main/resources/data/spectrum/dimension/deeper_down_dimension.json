@@ -1,25 +1,169 @@
 {
   "type": "spectrum:deeper_down_type",
   "generator": {
-    "biome_source": {
-      "biomes": [
-        {
-          "parameters": {
-            "erosion": 0.0,
-            "depth": 0.0,
-            "weirdness": 0.0,
-            "offset": 0.0,
-            "temperature": 0.0,
-            "humidity": 0.0,
-            "continentalness": 0.0
-          },
-          "biome": "spectrum:deeper_down_biome"
-        }
-      ],
-      "type": "minecraft:multi_noise"
-    },
     "seed": 0,
     "settings": "spectrum:deeper_down_noise",
-    "type": "minecraft:noise"
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "spectrum:deep_barrens",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0.25,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:deep_barrens",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0.25,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:deep_barrens",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": -0.25,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:deep_barrens",
+          "parameters": {
+            "temperature": 0,
+            "humidity": 0,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0,
+            "depth": 0,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:dragonrot_swamp",
+          "parameters": {
+            "temperature": 0.2,
+            "humidity": 1,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0.25,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:dragonrot_swamp",
+          "parameters": {
+            "temperature": 0.8,
+            "humidity": 1,
+            "continentalness": 0,
+            "erosion": 0,
+            "weirdness": 0.25,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:forlorm_caves",
+          "parameters": {
+            "temperature": 0.25,
+            "humidity": 0.5,
+            "continentalness": 0.75,
+            "erosion": 0.6,
+            "weirdness": 0.6,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:forlorm_caves",
+          "parameters": {
+            "temperature": 0.8,
+            "humidity": 0.8,
+            "continentalness": 0.5,
+            "erosion": 0.25,
+            "weirdness": 0.25,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:crystal_garden",
+          "parameters": {
+            "temperature": 0.3,
+            "humidity": 0,
+            "continentalness": 1,
+            "erosion": 0,
+            "weirdness": 0.5,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:crystal_garden",
+          "parameters": {
+            "temperature": 0.6,
+            "humidity": 0,
+            "continentalness": 1,
+            "erosion": 0.5,
+            "weirdness": 0.5,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:crystal_garden",
+          "parameters": {
+            "temperature": 0.6,
+            "humidity": 0,
+            "continentalness": 0.5,
+            "erosion": 0.75,
+            "weirdness": 0.5,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:razor_edge",
+          "parameters": {
+            "temperature": 0.2,
+            "humidity": 0,
+            "continentalness": 0.5,
+            "erosion": 1,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        },
+        {
+          "biome": "spectrum:razor_edge",
+          "parameters": {
+            "temperature": 0.4,
+            "humidity": 0.2,
+            "continentalness": 1,
+            "erosion": 1,
+            "weirdness": 0,
+            "depth": 1,
+            "offset": 0
+          }
+        }
+      ]
+    }
   }
 }

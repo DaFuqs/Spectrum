@@ -59,7 +59,7 @@
       "type": "patchouli:spotlight",
       "title": "Enchanted Soil",
       "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
-      "item": "botania:botania:enchanted_soil",
+      "item": "botania:enchanted_soil",
       "text": "Enchanted Soil can be harvested using tools enchanted with $(l:enchanting/resonance)Resonance$(/l)."
     },
     {

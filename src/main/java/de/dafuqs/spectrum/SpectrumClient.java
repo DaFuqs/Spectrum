@@ -90,12 +90,11 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		logInfo("Registering custom Patchouli Pages & Flags...");
 		PatchouliPages.register();
 		PatchouliFlags.register();
-
+        DimensionReverb.setup();
 
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
 			SpectrumColorProviders.registerClient();
-			DimensionReverb.setup();
 		});
 		ClientPlayConnectionEvents.DISCONNECT.register(new ClientPlayConnectionEvents.Disconnect() {
 			@Override

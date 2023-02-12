@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:crystal_garden",
+    "spectrum:deep_barrens",
+    "spectrum:dragonrot_swamp",
+    "spectrum:forlorm_caves",
+    "spectrum:razor_edge"
+  ]
+}

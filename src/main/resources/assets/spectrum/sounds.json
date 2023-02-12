@@ -231,25 +231,25 @@
       "spectrum:block.ruin.place"
     ]
   },
-  "spectrum.music.spectrum_theme": {
+  "music.spectrum_theme": {
     "subtitle": "spectrum.subtitles.spectrum_theme_plays",
     "sounds": [
       "spectrum:spectrum_theme"
     ]
   },
-  "spectrum.music.boss_theme": {
+  "music.boss_theme": {
     "subtitle": "spectrum.subtitles.boss_theme_plays",
     "sounds": [
       "spectrum:radiarc_irrelevance_fading"
     ]
   },
-  "spectrum.music.deeper_down_theme": {
+  "music.deeper_down_theme": {
     "subtitle": "spectrum.subtitles.deeper_down_theme_plays",
     "sounds": [
       "spectrum:sunsette_darker_than_hell"
     ]
   },
-  "spectrum.music.divinity": {
+  "music.divinity": {
     "sounds": [
       "spectrum:proper_motions_everreflective"
     ]
@@ -312,7 +312,7 @@
       "spectrum:midnight_solution_ambient"
     ]
   },
-  "dimension_sounds": {
+  "ambient.dimension_sounds": {
     "subtitle": "spectrum.subtitles.dimension.ambient",
     "sounds": [
       "spectrum:dimension_ambient1",

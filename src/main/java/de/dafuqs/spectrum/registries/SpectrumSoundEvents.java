@@ -6,22 +6,22 @@ import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 
 public class SpectrumSoundEvents {
-	
-	// Music
-	public static final SoundEvent SPECTRUM_THEME = register("spectrum.music.spectrum_theme");
-	public static final SoundEvent BOSS_THEME = register("spectrum.music.boss_theme");
-	public static final SoundEvent DEEPER_DOWN_THEME = register("spectrum.music.deeper_down_theme");
-	public static final SoundEvent DIVINITY = register("spectrum.music.divinity");
-	
-	// Sounds
-	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");
-	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
-	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_AMETHYST = register("pedestal_crafting_finished_amethyst");
-	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_CITRINE = register("pedestal_crafting_finished_citrine");
-	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_TOPAZ = register("pedestal_crafting_finished_topaz");
-	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_ONYX = register("pedestal_crafting_finished_onyx");
-	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_MOONSTONE = register("pedestal_crafting_finished_moonstone");
-	public static final SoundEvent PEDESTAL_UPGRADE = register("pedestal_upgrade");
+
+    // Music
+    public static final SoundEvent SPECTRUM_THEME = register("music.spectrum_theme");
+    public static final SoundEvent BOSS_THEME = register("music.boss_theme");
+    public static final SoundEvent DEEPER_DOWN_THEME = register("music.deeper_down_theme");
+    public static final SoundEvent DIVINITY = register("music.divinity");
+
+    // Sounds
+    public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");
+    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
+    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_AMETHYST = register("pedestal_crafting_finished_amethyst");
+    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_CITRINE = register("pedestal_crafting_finished_citrine");
+    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_TOPAZ = register("pedestal_crafting_finished_topaz");
+    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_ONYX = register("pedestal_crafting_finished_onyx");
+    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_MOONSTONE = register("pedestal_crafting_finished_moonstone");
+    public static final SoundEvent PEDESTAL_UPGRADE = register("pedestal_upgrade");
 	
 	public static final SoundEvent FUSION_SHRINE_CRAFTING = register("fusion_shrine_crafting");
 	public static final SoundEvent FUSION_SHRINE_CRAFTING_FINISHED = register("fusion_shrine_crafting_finished");
@@ -52,9 +52,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");
 	public static final SoundEvent NEW_REVELATION = register("spectrum.ui.new_revelation");
-	public static final SoundEvent NEW_RECIPE = register("spectrum.ui.new_recipe");
-	public static final SoundEvent DIMENSION_SOUNDS = register("dimension_sounds");
-	public static final SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = register("armor_equip_glow_vision");
+    public static final SoundEvent NEW_RECIPE = register("spectrum.ui.new_recipe");
+    public static final SoundEvent DIMENSION_SOUNDS = register("ambient.dimension_sounds");
+    public static final SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = register("armor_equip_glow_vision");
 	public static final SoundEvent PLAYER_TELEPORTS = register("player_teleports");
 	public static final SoundEvent ENDER_SPLICE_CHARGES = register("ender_splice_charges");
 	public static final SoundEvent ENDER_SPLICE_BOUND = register("ender_splice_bound");

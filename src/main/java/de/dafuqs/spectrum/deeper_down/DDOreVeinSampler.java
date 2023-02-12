@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.deeper_down;
 
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.math.random.RandomSplitter;
-import net.minecraft.world.gen.chunk.ChunkNoiseSampler;
-import net.minecraft.world.gen.densityfunction.DensityFunction;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.gen.chunk.*;
+import net.minecraft.world.gen.densityfunction.*;
 
 public final class DDOreVeinSampler {
 	private static final float field_36620 = 0.4F;
@@ -88,6 +86,6 @@ public final class DDOreVeinSampler {
 											veinTypeSample < -0.3 ? DDOreVeinSampler.VeinType.LAPIS :
 													DDOreVeinSampler.VeinType.IRON;
 		}
-		
 	}
+
 }

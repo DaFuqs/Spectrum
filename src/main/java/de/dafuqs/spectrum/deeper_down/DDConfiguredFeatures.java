@@ -50,7 +50,7 @@ public class DDConfiguredFeatures {
 							ImmutableList.of(SpectrumBlocks.MOONSTONE_CLUSTER.getDefaultState()), // forever untouched by man: generate with clusters only
 							BlockTags.FEATURES_CANNOT_REPLACE,
 							BlockTags.GEODE_INVALID_BLOCKS),
-					new GeodeLayerThicknessConfig(5.0D, 6.0D, 7.0D, 8.0D),
+					new GeodeLayerThicknessConfig(5.0D, 6.6D, 7.4D, 8.8D),
 					new GeodeCrackConfig(0.15D, 4.0D, 4),
 					1.0D, 0.1D, true,
 					UniformIntProvider.create(8, 10),

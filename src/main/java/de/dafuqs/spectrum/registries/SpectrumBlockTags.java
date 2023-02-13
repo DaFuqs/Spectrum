@@ -1,19 +1,20 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.block.Block;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.registry.Registry;
+import de.dafuqs.spectrum.*;
+import net.minecraft.block.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.registry.*;
 
 public class SpectrumBlockTags {
-	
+
 	// PLANTS
 	public static TagKey<Block> MERMAIDS_BRUSH_PLANTABLE = getReference("mermaids_brush_plantable");
 	public static TagKey<Block> QUITOXIC_REEDS_PLANTABLE = getReference("quitoxic_reeds_plantable");
+	public static final TagKey<Block> PRIMORDIAL_FIRE_BASE_BLOCKS = getReference("primordial_fire_base_blocks");
 	public static TagKey<Block> BLACK_SLUDGE_BLOCKS = getReference("black_sludge_blocks");
-	
+
 	public static final TagKey<Block> BLACKSLAG_ORE_REPLACEABLES = getReference("blackslag_ore_replaceables");
-	
+
 	// DECAY
 	public static TagKey<Block> DECAY = getReference("decay");
 	public static TagKey<Block> DECAY_AWAY_CURABLES = getReference("decay_away_curables");

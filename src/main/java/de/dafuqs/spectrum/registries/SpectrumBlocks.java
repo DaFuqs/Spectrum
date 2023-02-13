@@ -168,16 +168,18 @@ public class SpectrumBlocks {
 	public static final Block CRACKED_BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
 	public static final Block POLISHED_BLACKSLAG_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
 	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
-	
+
 	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
 	public static final Block SAG_LEAF = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
 	public static final Block SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
 	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
-	
+
+	public static final PrimordialFireBlock PRIMORDIAL_FIRE = new PrimordialFireBlock(AbstractBlock.Settings.of(Material.FIRE, MapColor.PURPLE).noCollision().breakInstantly().luminance((state) -> 10).sounds(BlockSoundGroup.WOOL));
+
 	public static final Block SMOOTH_BASALT_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_STAIRS = new SpectrumStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
-	
+
 	public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F));
 	public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_CREST = new CardinalFacingBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -1144,6 +1146,7 @@ public class SpectrumBlocks {
 		registerBlock("sag_leaf", SAG_LEAF);
 		registerBlock("sag_bubble", SAG_BUBBLE);
 		registerBlock("small_sag_bubble", SMALL_SAG_BUBBLE);
+		registerBlock("primordial_fire", PRIMORDIAL_FIRE);
 		registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
 		registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
 		registerBlock("attached_glistering_melon_stem", ATTACHED_GLISTERING_MELON_STEM);

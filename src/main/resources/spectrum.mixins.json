@@ -34,6 +34,7 @@
     "LoomContainerPatternSlotMixin",
     "LoomScreenHandlerMixin",
     "MiningToolItemMixin",
+    "MixinAbstractFireBlock",
     "MobSpawnerBlockEntityMixin",
     "PiglinBrainMixin",
     "PlayerEntityMixin",

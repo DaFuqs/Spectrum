@@ -1,9 +1,6 @@
 package de.dafuqs.spectrum.render.armor;
 
-import net.minecraft.client.model.ModelData;
-import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.model.ModelPartBuilder;
-import net.minecraft.client.model.ModelTransform;
+import net.minecraft.client.model.*;
 
 public class BedrockArmorModel {
 	public final ModelPart head;
@@ -57,7 +54,7 @@ public class BedrockArmorModel {
 				ModelPartBuilder.create(),
 				ModelTransform.NONE
 		);
-		
+
 		var armorRightArm = rightArm.addChild(
 				"armor_right_arm",
 				ModelPartBuilder.create()
@@ -65,13 +62,13 @@ public class BedrockArmorModel {
 						.cuboid(-4.25F, -2.5F, -2.5F, 5.0F, 13.0F, 5.0F),
 				ModelTransform.pivot(1.0F, 0.0F, 0.0F)
 		);
-		
+
 		armorRightArm.addChild(
 				"armor_right_arm_extra",
 				ModelPartBuilder.create()
 						.uv(57, 45)
-						.cuboid(-4.0F, -1.5F, -3.0F, 6.0F, 4.0F, 6.0F),
-				ModelTransform.of(-1.5F, -1.5F, 0.0F, 0.0F, 0.0F, -0.4363F)
+						.cuboid(-4.0F, -1.5F, -3.0F, 6.0F, 4.0F, 6.0F, new Dilation(0.10F)),
+				ModelTransform.of(-1.5F, -2.0F, 0.0F, 0.0F, 0.0F, -0.4363F)
 		);
 		
 		var leftArm = root.addChild(
@@ -92,10 +89,10 @@ public class BedrockArmorModel {
 				"armor_left_arm_extra",
 				ModelPartBuilder.create()
 						.uv(62, 20)
-						.cuboid(-1.75F, -1.25F, -2.0F, 5.0F, 1.0F, 5.0F)
+						.cuboid(-1.75F, -1.25F, -2.0F, 5.0F, 1.0F, 5.0F, new Dilation(0.10F))
 						.uv(54, 12)
-						.cuboid(-1.75F, -0.25F, -2.5F, 6.0F, 2.0F, 6.0F),
-				ModelTransform.of(1.0F, -1.75F, -0.5F, 0.0F, 0.0F, 0.4363F)
+						.cuboid(-1.75F, -0.25F, -2.5F, 6.0F, 2.0F, 6.0F, new Dilation(0.10F)),
+				ModelTransform.of(1.0F, -2.25F, -0.5F, 0.0F, 0.0F, 0.4363F)
 		);
 		
 		var leftLeg = root.addChild(

@@ -20,30 +20,10 @@
     "size_vertical": 2
   },
   "noise_router": {
-    "barrier": {
-      "type": "minecraft:noise",
-      "noise": "spectrum:deeper_down_barrier",
-      "xz_scale": 1,
-      "y_scale": 1
-    },
-    "fluid_level_floodedness": {
-      "type": "minecraft:noise",
-      "noise": "minecraft:aquifer_fluid_level_floodedness",
-      "xz_scale": 1,
-      "y_scale": 0.67
-    },
-    "fluid_level_spread": {
-      "type": "minecraft:noise",
-      "noise": "minecraft:aquifer_fluid_level_spread",
-      "xz_scale": 1,
-      "y_scale": 0.7142857142857143
-    },
-    "lava": {
-      "type": "minecraft:noise",
-      "noise": "minecraft:aquifer_lava",
-      "xz_scale": 1,
-      "y_scale": 1
-    },
+    "barrier": 0,
+    "fluid_level_floodedness": 0,
+    "fluid_level_spread": 0,
+    "lava": 0,
     "temperature": {
       "type": "minecraft:shifted_noise",
       "noise": "minecraft:temperature",
@@ -203,7 +183,7 @@
         1
       ],
       "continentalness": [
-        -0.11,
+        -1,
         1
       ],
       "erosion": [
@@ -212,9 +192,12 @@
       ],
       "weirdness": [
         -1,
-        -0.16
+        1
       ],
-      "depth": 0,
+      "depth": [
+        -1,
+        1
+      ],
       "offset": 0
     },
     {
@@ -227,7 +210,7 @@
         1
       ],
       "continentalness": [
-        -0.11,
+        -1,
         1
       ],
       "erosion": [
@@ -235,10 +218,13 @@
         1
       ],
       "weirdness": [
-        0.16,
+        -1,
         1
       ],
-      "depth": 0,
+      "depth": [
+        -1,
+        1
+      ],
       "offset": 0
     }
   ],
@@ -289,6 +275,24 @@
       {
         "type": "minecraft:condition",
         "if_true": {
+          "type": "minecraft:biome",
+          "biome_is": [
+            "spectrum:forlorm_caves"
+          ]
+        },
+        "then_run": {
+          "type": "minecraft:block",
+          "result_state": {
+            "Name": "spectrum:black_materia",
+            "Properties": {
+              "age": "3"
+            }
+          }
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "if_true": {
           "type": "minecraft:vertical_gradient",
           "random_name": "minecraft:deepslate",
           "true_at_and_below": {
@@ -302,21 +306,6 @@
           "type": "minecraft:block",
           "result_state": {
             "Name": "spectrum:blackslag"
-          }
-        }
-      },
-      {
-        "type": "minecraft:condition",
-        "if_true": {
-          "type": "minecraft:biome",
-          "biome_is": [
-            "spectrum:forlorm_caves"
-          ]
-        },
-        "then_run": {
-          "type": "minecraft:block",
-          "result_state": {
-            "Name": "spectrum:black_materia"
           }
         }
       },

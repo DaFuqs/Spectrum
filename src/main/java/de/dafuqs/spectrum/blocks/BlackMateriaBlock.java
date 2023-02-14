@@ -1,25 +1,20 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 
 public class BlackMateriaBlock extends FallingBlock {
 	
 	public static final int PROPAGATION_TRIES = 3;
-	
-	public static final int MAX_AGE = 3;
+
+	public static final int MAX_AGE = Properties.AGE_3_MAX;
 	public static final IntProperty AGE = Properties.AGE_3;
 	
 	public BlackMateriaBlock(Settings settings) {
@@ -44,7 +39,7 @@ public class BlackMateriaBlock extends FallingBlock {
 	
 	@Override
 	public boolean hasRandomTicks(BlockState state) {
-		return state.get(AGE) != Properties.AGE_3_MAX;
+		return state.get(AGE) != MAX_AGE;
 	}
 	
 	@Override

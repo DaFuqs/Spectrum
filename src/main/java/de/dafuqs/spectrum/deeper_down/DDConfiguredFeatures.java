@@ -41,21 +41,21 @@ public class DDConfiguredFeatures {
 	
 	public static final ConfiguredFeature<GeodeFeatureConfig, ?> MOONSTONE_GEODE = new ConfiguredFeature<>(Feature.GEODE,
 			new GeodeFeatureConfig(
-					new GeodeLayerConfig(
-							BlockStateProvider.of(Blocks.AIR.getDefaultState()),
-							BlockStateProvider.of(SpectrumBlocks.MOONSTONE_BLOCK.getDefaultState()),
-							BlockStateProvider.of(SpectrumBlocks.BUDDING_MOONSTONE.getDefaultState()),
-							BlockStateProvider.of(Blocks.CALCITE.getDefaultState()),
-							BlockStateProvider.of(Blocks.SMOOTH_BASALT.getDefaultState()),
-							ImmutableList.of(SpectrumBlocks.MOONSTONE_CLUSTER.getDefaultState()), // forever untouched by man: generate with clusters only
-							BlockTags.FEATURES_CANNOT_REPLACE,
-							BlockTags.GEODE_INVALID_BLOCKS),
-					new GeodeLayerThicknessConfig(5.0D, 6.6D, 7.4D, 8.8D),
-					new GeodeCrackConfig(0.15D, 4.0D, 4),
-					1.0D, 0.1D, true,
-					UniformIntProvider.create(8, 10),
-					UniformIntProvider.create(2, 3),
-					UniformIntProvider.create(1, 2),
-					-16, 16, 0.05D, 1));
+                    new GeodeLayerConfig(
+                            BlockStateProvider.of(Blocks.AIR.getDefaultState()),
+                            BlockStateProvider.of(SpectrumBlocks.MOONSTONE_BLOCK.getDefaultState()),
+                            BlockStateProvider.of(SpectrumBlocks.BUDDING_MOONSTONE.getDefaultState()),
+                            BlockStateProvider.of(Blocks.CALCITE.getDefaultState()),
+                            BlockStateProvider.of(Blocks.SMOOTH_BASALT.getDefaultState()),
+                            ImmutableList.of(SpectrumBlocks.MOONSTONE_CLUSTER.getDefaultState()), // forever untouched by man: generate with clusters only
+                            BlockTags.FEATURES_CANNOT_REPLACE,
+                            BlockTags.GEODE_INVALID_BLOCKS),
+                    new GeodeLayerThicknessConfig(5.0D, 6.0D, 7.0D, 8.0D),
+                    new GeodeCrackConfig(0.15D, 4.0D, 4),
+                    1.0D, 0.1D, true,
+                    UniformIntProvider.create(8, 10),
+                    UniformIntProvider.create(2, 3),
+                    UniformIntProvider.create(1, 2),
+                    -16, 16, 0.05D, 1));
 	
 }

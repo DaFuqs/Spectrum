@@ -159,8 +159,8 @@ public class SpectrumConfiguredFeatures {
 		
 		List<PlacementModifier> treePlacementModifiers = List.of(
 				VegetationPlacedFeatures.NOT_IN_SURFACE_WATER_MODIFIER,
-				(PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP),
-				(BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(SpectrumBlocks.RED_SAPLING.getDefaultState(), BlockPos.ORIGIN)))
+				PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP,
+				BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(SpectrumBlocks.RED_SAPLING.getDefaultState(), BlockPos.ORIGIN))
 		);
 		
 		List<PlacedFeature> placedTreeFeatures = new ArrayList<>();

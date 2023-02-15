@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.worldgen.features;
 
-import com.mojang.serialization.Codec;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.OreFeature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import com.mojang.serialization.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.util.*;
 
 public class AirCheckDiskFeature extends OreFeature {
 	

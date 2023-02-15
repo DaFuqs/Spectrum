@@ -10,22 +10,55 @@
           "biome": "spectrum:deep_barrens",
           "parameters": {
             "temperature": [
-              0,
+              -1,
               1
+            ],
+            "humidity": [
+              -1,
+              1
+            ],
+            "continentalness": [
+              -1,
+              1
+            ],
+            "erosion": [
+              -1,
+              1
+            ],
+            "weirdness": [
+              -1,
+              1
+            ],
+            "depth": [
+              -1,
+              0.25
+            ],
+            "offset": 0
+          }
+        },
+        {
+          "biome": "minecraft:dripstone_caves",
+          "parameters": {
+            "temperature": [
+              -1,
+              0
             ],
             "humidity": [
               0,
               1
             ],
             "continentalness": [
-              -1,
-              0.5
+              0.6,
+              1
             ],
             "erosion": [
               0,
               1
             ],
-            "weirdness": 0,
+            "weirdness": [
+              -1,
+              1
+            ],
             "depth": [
               0,
               0.5
@@ -41,15 +74,15 @@
               1
             ],
             "humidity": [
-              0,
+              0.5,
               1
             ],
             "continentalness": [
-              -1,
+              0.5,
               1
             ],
             "erosion": [
-              -1,
+              -0.25,
               1
             ],
             "weirdness": [
@@ -57,8 +90,8 @@
               1
             ],
             "depth": [
-              0.5,
-              1
+              1,
+              1.1
             ],
             "offset": 0
           }
@@ -75,11 +108,11 @@
               0.6
             ],
             "continentalness": [
-              0.2,
-              0.7
+              -0.75,
+              0
             ],
             "erosion": [
-              0.2,
+              0,
               1
             ],
             "weirdness": [
@@ -87,8 +120,8 @@
               1
             ],
             "depth": [
-              0.5,
-              1
+              1,
+              1.1
             ],
             "offset": 0
           }
@@ -117,8 +150,8 @@
               -0.5
             ],
             "depth": [
-              0.5,
-              1
+              1,
+              1.1
             ],
             "offset": 0
           }
@@ -135,7 +168,7 @@
               0.2
             ],
             "continentalness": [
-              0.5,
+              0,
               1
             ],
             "erosion": [
@@ -147,38 +180,8 @@
               1
             ],
             "depth": [
-              0.5,
-              1
-            ],
-            "offset": 0
-          }
-        },
-        {
-          "biome": "minecraft:dripstone_caves",
-          "parameters": {
-            "temperature": [
-              -1,
-              0
-            ],
-            "humidity": [
-              0,
-              1
-            ],
-            "continentalness": [
-              0.9,
-              1
-            ],
-            "erosion": [
-              0,
-              1
-            ],
-            "weirdness": [
-              -1,
-              1
-            ],
-            "depth": [
-              0,
-              0.5
+              1,
+              1.1
             ],
             "offset": 0
           }
@@ -188,15 +191,15 @@
           "parameters": {
             "temperature": [
               -0.5,
-              0
+              0.5
             ],
             "humidity": [
               0,
-              0.5
+              0.75
             ],
             "continentalness": [
-              0,
-              0.25
+              -0.5,
+              0.5
             ],
             "erosion": [
               0,
@@ -207,8 +210,8 @@
               0
             ],
             "depth": [
-              0.5,
-              1
+              1,
+              1.1
             ],
             "offset": 0
           }

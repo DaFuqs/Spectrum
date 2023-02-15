@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.blocks.amphora.*;
 import de.dafuqs.spectrum.blocks.block_flooder.*;
@@ -10,6 +11,7 @@ import de.dafuqs.spectrum.blocks.cinderhearth.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.conditional.amaranth.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
+import de.dafuqs.spectrum.blocks.dd_deco.*;
 import de.dafuqs.spectrum.blocks.decay.*;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
@@ -170,6 +172,7 @@ public class SpectrumBlocks {
 	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
 
 	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
+	public static final Block BLACK_SLUDGE = new Block(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
 	public static final Block SAG_LEAF = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
 	public static final Block SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
 	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
@@ -450,15 +453,22 @@ public class SpectrumBlocks {
 	public static final Block YELLOW_FENCE_GATE = new ColoredFenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_FENCE_GATE), DyeColor.YELLOW);
 	public static final Block YELLOW_BUTTON = new ColoredWoodenButtonBlock(FabricBlockSettings.copyOf(Blocks.OAK_BUTTON), DyeColor.YELLOW);
 	public static final Block YELLOW_SLAB = new ColoredSlabBlock(FabricBlockSettings.copyOf(Blocks.OAK_SLAB), DyeColor.YELLOW);
-	
-	
+
+
 	public static FabricBlockSettings noxcap(MapColor color) {
 		return FabricBlockSettings.copyOf(Blocks.CRIMSON_STEM).mapColor(color).strength(4.0F);
 	}
-	
+
 	public static final ToIntFunction<BlockState> litProvider = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
-	
+
 	//DD FLORA
+	public static final Block SAWBLADE_GRASS = new Block(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK));
+	public static final Block ROTTEN_GROUND = new Block(AbstractBlock.Settings.copy(Blocks.PACKED_MUD));
+	public static final Block SHIMMEL = new MyceliumBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
+	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.OFF_WHITE).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
+		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate("slate_noxfungus")));
+	});
+
 	public static final PillarBlock SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final PillarBlock STRIPPED_SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXCAP_CAP = new Block(noxcap(MapColor.GRAY));
@@ -1134,18 +1144,20 @@ public class SpectrumBlocks {
 		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, Tab.RESOURCES.settings(), DyeColor.PURPLE);
 		registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, Tab.RESOURCES.settings(), DyeColor.LIGHT_BLUE);
 		registerBlockWithItem("radiating_ender", RADIATING_ENDER, Tab.RESOURCES.settings(), DyeColor.PURPLE);
-		
+
 		registerBlock("amaranth", AMARANTH);
 		registerBlockWithItem("amaranth_bushel", AMARANTH_BUSHEL, Tab.RESOURCES.settings(), DyeColor.RED);
 		registerBlock("potted_amaranth_bushel", POTTED_AMARANTH_BUSHEL);
-		
+
 		registerBlockWithItem("bedrock_anvil", BEDROCK_ANVIL, Tab.GENERAL.settings(), DyeColor.BLACK);
 		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, Tab.GENERAL.settings(), DyeColor.PURPLE);
-		
+
+		registerBlockWithItem("black_sludge", BLACK_SLUDGE, Tab.DECORATION.settings(), DyeColor.GRAY);
 		// Technical Blocks without items
 		registerBlock("sag_leaf", SAG_LEAF);
 		registerBlock("sag_bubble", SAG_BUBBLE);
 		registerBlock("small_sag_bubble", SMALL_SAG_BUBBLE);
+
 		registerBlock("primordial_fire", PRIMORDIAL_FIRE);
 		registerBlock("deeper_down_portal", DEEPER_DOWN_PORTAL);
 		registerBlock("glistering_melon_stem", GLISTERING_MELON_STEM);
@@ -1158,6 +1170,12 @@ public class SpectrumBlocks {
 	}
 	
 	private static void registerDDFlora(FabricItemSettings settings) {
+		registerBlockWithItem("sawblade_grass", SAWBLADE_GRASS, settings, DyeColor.LIME);
+		registerBlockWithItem("rotten_ground", ROTTEN_GROUND, settings, DyeColor.LIME);
+
+		registerBlockWithItem("shimmel", SHIMMEL, settings, DyeColor.LIME);
+		registerBlockWithItem("slate_noxshroom", SLATE_NOXSHROOM, settings, DyeColor.LIME);
+
 		registerBlockWithItem("slate_noxcap_cap", SLATE_NOXCAP_CAP, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxcap_stem", SLATE_NOXCAP_STEM, settings, DyeColor.LIME);
 		registerBlockWithItem("stripped_slate_noxcap_stem", STRIPPED_SLATE_NOXCAP_STEM, settings, DyeColor.LIME);

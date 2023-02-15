@@ -44,7 +44,7 @@
     },
     "continents": "minecraft:overworld/continents",
     "erosion": "minecraft:overworld/erosion",
-    "depth": "minecraft:overworld/depth",
+    "depth": "spectrum:deeper_down_depth",
     "ridges": "minecraft:overworld/ridges",
     "initial_density_without_jaggedness": 0,
     "final_density": {
@@ -277,17 +277,80 @@
         "if_true": {
           "type": "minecraft:biome",
           "biome_is": [
+            "spectrum:mushroom_forest"
+          ]
+        },
+        "then_run": {
+          "type": "minecraft:sequence",
+          "sequence": [
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:stone_depth",
+                "offset": 0,
+                "surface_type": "floor",
+                "add_surface_depth": false,
+                "secondary_depth_range": 0
+              },
+              "then_run": {
+                "type": "minecraft:block",
+                "result_state": {
+                  "Name": "spectrum:shimmel"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:biome",
+          "biome_is": [
             "spectrum:forlorm_caves"
           ]
         },
         "then_run": {
           "type": "minecraft:block",
           "result_state": {
-            "Name": "spectrum:black_materia",
-            "Properties": {
-              "age": "3"
-            }
+            "Name": "spectrum:black_sludge"
           }
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:biome",
+          "biome_is": [
+            "spectrum:dragonrot_swamp"
+          ]
+        },
+        "then_run": {
+          "type": "minecraft:sequence",
+          "sequence": [
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:stone_depth",
+                "offset": 0,
+                "surface_type": "floor",
+                "add_surface_depth": false,
+                "secondary_depth_range": 0
+              },
+              "then_run": {
+                "type": "minecraft:block",
+                "result_state": {
+                  "Name": "spectrum:rotten_ground"
+                }
+              }
+            },
+            {
+              "type": "minecraft:block",
+              "result_state": {
+                "Name": "minecraft:mud"
+              }
+            }
+          ]
         }
       },
       {

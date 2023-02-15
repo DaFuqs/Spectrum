@@ -71,7 +71,9 @@
       "spectrum:dd_andesite",
       "spectrum:dd_stone"
     ],
-    [],
+    [
+      "spectrum:sludge_vegetation"
+    ],
     [
       "spectrum:dd_springs"
     ],

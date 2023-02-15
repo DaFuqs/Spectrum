@@ -66,7 +66,14 @@
       "spectrum:dd_andesite",
       "spectrum:dd_stone"
     ],
-    [],
+    [
+      "spectrum:chestnut_noxfungus",
+      "spectrum:ebony_noxfungus",
+      "spectrum:slate_noxfungus",
+      "spectrum:ivory_noxfungus",
+      "spectrum:mushroom_forest_mushrooms",
+      "spectrum:mushroom_forest_vegetation"
+    ],
     [
       "spectrum:dd_springs"
     ],

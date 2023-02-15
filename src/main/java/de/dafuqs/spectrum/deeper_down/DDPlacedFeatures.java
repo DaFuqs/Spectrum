@@ -3,15 +3,22 @@ package de.dafuqs.spectrum.deeper_down;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.worldgen.*;
+import de.dafuqs.spectrum.worldgen.features.*;
 import net.minecraft.block.*;
 import net.minecraft.structure.rule.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.gen.*;
+import net.minecraft.world.gen.blockpredicate.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.heightprovider.*;
 import net.minecraft.world.gen.placementmodifier.*;
+
+import java.util.*;
 
 import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;
 import static net.minecraft.world.gen.feature.OreConfiguredFeatures.*;
@@ -25,11 +32,52 @@ public class DDPlacedFeatures {
         registerVanillaOres();
         registerGeodes();
         registerDecorators();
+        registerNoxshrooms();
     }
 
     public static void registerAndConfigureOreFeature(String identifier, OreFeatureConfig oreFeatureConfig, PlacementModifier... placementModifiers) {
         Identifier id = SpectrumCommon.locate(identifier);
         registerConfiguredAndPlacedFeature(id, Feature.ORE, oreFeatureConfig, placementModifiers);
+    }
+
+    private static void registerNoxshrooms() {
+        RegistryEntry chestnut = BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("chestnut_noxfungus"), DDConfiguredFeatures.CHESTNUT_NOXFUNGUS);
+        RegistryEntry ebony = BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("ebony_noxfungus"), DDConfiguredFeatures.EBONY_NOXFUNGUS);
+        RegistryEntry ivory = BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("ivory_noxfungus"), DDConfiguredFeatures.IVORY_NOXFUNGUS);
+        RegistryEntry slate = BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("slate_noxfungus"), DDConfiguredFeatures.SLATE_NOXFUNGUS);
+
+        // Black/White and brown variants are not found in the wild and have to be created by the player
+        List<RegistryEntry> treeList = new ArrayList<>();
+        treeList.add(chestnut);
+        treeList.add(ebony);
+        treeList.add(ivory);
+        treeList.add(slate);
+
+        List<Integer> weightList = new ArrayList<>();
+        weightList.add(1);
+        weightList.add(25);
+        weightList.add(25);
+        weightList.add(25);
+
+        List<PlacementModifier> placementModifiers = List.of(
+                VegetationPlacedFeatures.NOT_IN_SURFACE_WATER_MODIFIER,
+                PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP,
+                BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(SpectrumBlocks.RED_SAPLING.getDefaultState(), BlockPos.ORIGIN))
+        );
+
+        List<PlacedFeature> placedFeatures = new ArrayList<>();
+        for (RegistryEntry configuredFeature : treeList) {
+            placedFeatures.add(new PlacedFeature(configuredFeature, placementModifiers));
+        }
+
+        // every x chunks
+        registerConfiguredAndPlacedFeature(
+                SpectrumCommon.locate("mushroom_forest_mushrooms"),
+                SpectrumFeatures.WEIGHTED_RANDOM_FEATURE_PATCH,
+                new WeightedRandomFeaturePatchConfig(5, 4, 3, new WeightedRandomFeatureConfig(placedFeatures, weightList)),
+                CountMultilayerPlacementModifier.of(6),
+                BiomePlacementModifier.of()
+        );
     }
 
     public static void registerSpectrumOres() {

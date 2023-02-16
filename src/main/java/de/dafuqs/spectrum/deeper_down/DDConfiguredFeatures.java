@@ -5,40 +5,13 @@ import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.worldgen.*;
 import de.dafuqs.spectrum.worldgen.features.*;
 import net.minecraft.block.*;
-import net.minecraft.fluid.*;
-import net.minecraft.structure.rule.*;
 import net.minecraft.tag.*;
 import net.minecraft.util.math.intprovider.*;
-import net.minecraft.util.registry.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.stateprovider.*;
 
-import java.util.*;
-
 public class DDConfiguredFeatures {
-	
-	public static final RuleTest BASE_STONE_DD = new TagMatchRuleTest(SpectrumBlockTags.BASE_STONE_DEEPER_DOWN);
-	public static final AlwaysTrueRuleTest ALWAYS_TRUE = AlwaysTrueRuleTest.INSTANCE;
-	
-	public static final RegistryEntryList<Block> DD_BASE_BLOCKS = RegistryEntryList.of(Block::getRegistryEntry, Blocks.STONE, Blocks.DEEPSLATE, SpectrumBlocks.BLACKSLAG, Blocks.GRANITE, Blocks.DIORITE, Blocks.ANDESITE);
-	
-	public static final ConfiguredFeature<OreFeatureConfig, ?> STONE_DISK = new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(BASE_STONE_DD, Blocks.STONE.getDefaultState(), 33));
-	public static final ConfiguredFeature<OreFeatureConfig, ?> TUFF_DISK = new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(BASE_STONE_DD, Blocks.TUFF.getDefaultState(), 64));
-	public static final ConfiguredFeature<OreFeatureConfig, ?> GRAVEL_DISK = new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(BASE_STONE_DD, Blocks.GRAVEL.getDefaultState(), 33));
-	public static final ConfiguredFeature<OreFeatureConfig, ?> GRANITE_DISK = new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(BASE_STONE_DD, Blocks.GRANITE.getDefaultState(), 64));
-	public static final ConfiguredFeature<OreFeatureConfig, ?> DIORITE_DISK = new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(BASE_STONE_DD, Blocks.DIORITE.getDefaultState(), 64));
-	public static final ConfiguredFeature<OreFeatureConfig, ?> ANDESITE_DISK = new ConfiguredFeature<>(Feature.ORE, new OreFeatureConfig(BASE_STONE_DD, Blocks.ANDESITE.getDefaultState(), 64));
-	public static final ConfiguredFeature<OreFeatureConfig, ?> DOWNSTONE_DISK = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, SpectrumBlocks.DOWNSTONE.getDefaultState(), 40));
-	public static final ConfiguredFeature<OreFeatureConfig, ?> DOWNSTONE_DISK_SLOPED = new ConfiguredFeature<>(SpectrumFeatures.AIR_CHECK_DISK, new OreFeatureConfig(ALWAYS_TRUE, SpectrumBlocks.DOWNSTONE.getDefaultState(), 40));
-	
-	public static final ConfiguredFeature<SpringFeatureConfig, ?> WATER_SPRING = new ConfiguredFeature<>(Feature.SPRING_FEATURE, new SpringFeatureConfig(Fluids.WATER.getDefaultState(), true, 3, 1, DD_BASE_BLOCKS));
-	public static final ConfiguredFeature<MultifaceGrowthFeatureConfig, ?> GLOW_LICHEN = new ConfiguredFeature<>(Feature.MULTIFACE_GROWTH, new MultifaceGrowthFeatureConfig((GlowLichenBlock) Blocks.GLOW_LICHEN, 20, false, true, true, 0.5F, DD_BASE_BLOCKS));
-	
-	
-	public static final ConfiguredFeature<RandomBudsFeaturesConfig, ?> BISMUTH_BUDS = new ConfiguredFeature<>(SpectrumFeatures.RANDOM_BUDS,
-			new RandomBudsFeaturesConfig(12, false, true, true, DD_BASE_BLOCKS,
-					List.of(SpectrumBlocks.SMALL_BISMUTH_BUD.getDefaultState(), SpectrumBlocks.LARGE_BISMUTH_BUD.getDefaultState())));
-	
+
 	public static final ConfiguredFeature<GeodeFeatureConfig, ?> MOONSTONE_GEODE = new ConfiguredFeature<>(Feature.GEODE,
 			new GeodeFeatureConfig(
                     new GeodeLayerConfig(

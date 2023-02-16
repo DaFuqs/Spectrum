@@ -1,0 +1,22 @@
+{
+  "type": "spectrum:random_buds",
+  "config": {
+    "search_range": 12,
+    "can_place_on_floor": false,
+    "can_place_on_ceiling": true,
+    "can_place_on_wall": true,
+    "can_be_placed_on": [
+      "minecraft:stone",
+      "minecraft:granite",
+      "minecraft:diorite",
+      "minecraft:andesite",
+      "minecraft:deepslate",
+      "minecraft:dripstone_block",
+      "spectrum:blackslag"
+    ],
+    "blocks": [
+      "spectrum:small_bismuth_bud",
+      "spectrum:large_bismuth_bud"
+    ]
+  }
+}

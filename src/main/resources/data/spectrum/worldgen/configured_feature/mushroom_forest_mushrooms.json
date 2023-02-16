@@ -7,25 +7,25 @@
         {
           "weight": 50,
           "data": {
-            "Name": "spectrum:slate_noxshroom"
+            "Name": "spectrum:slate_noxfungus"
           }
         },
         {
           "weight": 50,
           "data": {
-            "Name": "spectrum:ebony_noxshroom"
+            "Name": "spectrum:ebony_noxfungus"
           }
         },
         {
           "weight": 50,
           "data": {
-            "Name": "spectrum:ivory_noxshroom"
+            "Name": "spectrum:ivory_noxfungus"
           }
         },
         {
           "weight": 1,
           "data": {
-            "Name": "spectrum:chestnut_noxshroom"
+            "Name": "spectrum:chestnut_noxfungus"
           }
         }
       ]

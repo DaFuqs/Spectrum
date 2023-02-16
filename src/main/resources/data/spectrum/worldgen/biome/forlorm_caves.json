@@ -54,13 +54,9 @@
     [],
     [],
     [
-      "spectrum:dd_downstone_disk",
-      "spectrum:dd_malachite_ore",
-      "spectrum:dd_shimmerstone_ore",
+      "spectrum:dd_downstone",
       "spectrum:dd_iron_ore",
-      "spectrum:dd_iron_ore2",
       "spectrum:dd_gold_ore",
-      "spectrum:dd_gold_ore2",
       "spectrum:dd_diamond_ore",
       "spectrum:dd_emerald_ore",
       "spectrum:dd_tuff",
@@ -75,10 +71,11 @@
       "spectrum:sludge_vegetation"
     ],
     [
-      "spectrum:dd_springs"
+      "spectrum:dd_water_springs",
+      "spectrum:dd_lava_springs"
     ],
     [
-      "spectrum:dd_lichen"
+      "spectrum:dd_glow_lichen"
     ],
     []
   ]

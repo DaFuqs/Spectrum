@@ -1,0 +1,17 @@
+{
+  "type": "spectrum:air_check_disk",
+  "config": {
+    "size": 40,
+    "discard_chance_on_air_exposure": 0,
+    "targets": [
+      {
+        "target": {
+          "predicate_type": "minecraft:always_true"
+        },
+        "state": {
+          "Name": "spectrum:downstone"
+        }
+      }
+    ]
+  }
+}

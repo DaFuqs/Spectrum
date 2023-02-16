@@ -49,13 +49,13 @@
     [],
     [],
     [
-      "spectrum:dd_downstone_disk",
+      "spectrum:dd_downstone",
       "spectrum:dd_malachite_ore",
       "spectrum:dd_shimmerstone_ore",
       "spectrum:dd_iron_ore",
-      "spectrum:dd_iron_ore2",
+      "spectrum:dd_iron_ore_extra",
       "spectrum:dd_gold_ore",
-      "spectrum:dd_gold_ore2",
+      "spectrum:dd_gold_ore_extra",
       "spectrum:dd_diamond_ore",
       "spectrum:dd_emerald_ore",
       "spectrum:dd_tuff",
@@ -68,12 +68,13 @@
     ],
     [],
     [
-      "spectrum:dd_springs"
+      "spectrum:dd_water_springs",
+      "spectrum:dd_lava_springs"
     ],
     [
       "minecraft:brown_mushroom_normal",
       "minecraft:red_mushroom_normal",
-      "spectrum:dd_lichen"
+      "spectrum:dd_glow_lichen"
     ],
     []
   ]

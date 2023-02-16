@@ -33,9 +33,7 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
         if (random.nextInt(12) == 0) {
             stemHeight *= 2;
         }
-
-        int j = chunkGenerator.getWorldHeight();
-        if (blockPos.getY() + stemHeight + 1 >= j) {
+        if (blockPos.getY() + stemHeight + 1 >= chunkGenerator.getWorldHeight()) {
             return false;
         }
 
@@ -56,11 +54,10 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         BlockState blockState = config.stemState;
         int i = 0;
-
-        for (int j = -i; j <= i; ++j) {
-            for (int k = -i; k <= i; ++k) {
-                for (int l = 0; l < stemHeight; ++l) {
-                    mutable.set(pos, j, l, k);
+        for (int x = -i; x <= i; ++x) {
+            for (int z = -i; z <= i; ++z) {
+                for (int y = 0; y < stemHeight; ++y) {
+                    mutable.set(pos, x, y, z);
                     if (isReplaceable(world, mutable, true)) {
                         this.setBlockState(world, mutable, blockState);
                     }
@@ -69,60 +66,42 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
         }
     }
 
-    private void generateHat(WorldAccess world, Random random, GilledFungusFeatureConfig config, BlockPos pos, int hatHeight) {
+    private void generateHat(WorldAccess world, Random random, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight) {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
-        int i = Math.min(random.nextInt(1 + hatHeight / 3) + 5, hatHeight);
-        int j = hatHeight - i;
+        int hatWidth = Math.min(random.nextInt(2 + stemHeight / 4) + 3, 4);
+        int currentHatWidth = hatWidth;
+        int outerThreshold = hatWidth / 2;
 
-        for (int k = j; k <= hatHeight; ++k) {
-            int l = k < hatHeight - random.nextInt(3) ? 2 : 1;
-            if (i > 8 && k < j + 4) {
-                l = 3;
-            }
+        for (int y = 0; y <= hatWidth; ++y) {
+            for (int x = -currentHatWidth; x <= currentHatWidth; ++x) {
+                for (int z = -currentHatWidth; z <= currentHatWidth; ++z) {
 
-            for (int m = -l; m <= l; ++m) {
-                for (int n = -l; n <= l; ++n) {
-                    boolean bl2 = m == -l || m == l;
-                    boolean bl3 = n == -l || n == l;
-                    boolean bl4 = !bl2 && !bl3 && k != hatHeight;
-                    boolean bl5 = bl2 && bl3;
-                    boolean bl6 = k < j + 3;
-                    mutable.set(pos, m, k, n);
+                    boolean isCorner = Math.abs(x) == currentHatWidth && Math.abs(z) == currentHatWidth;
+                    if (isCorner) {
+                        continue;
+                    }
+
+                    mutable.set(pos, x, stemHeight + y, z);
                     if (isReplaceable(world, mutable, false)) {
-                        if (bl6) {
-                            if (!bl4) {
-                                this.placeWithOptionalVines(world, random, mutable, config.capState);
+                        boolean isInnerCorner = Math.abs(x) == currentHatWidth - 1 && Math.abs(z) == currentHatWidth - 1;
+                        boolean isInner = Math.abs(x) < currentHatWidth && Math.abs(z) < currentHatWidth;
+                        boolean isLowestLevel = y == 0;
+
+                        if (x == 0 && z == 0) {
+                            this.setBlockState(world, mutable, currentHatWidth < 2 ? config.capState : config.stemState);
+                        } else if (isInner && !isInnerCorner) {
+                            if (!isLowestLevel || Math.abs(x) > outerThreshold || Math.abs(z) > outerThreshold) {
+                                BlockState gillsState = config.gillsState.with(PillarBlock.AXIS, Math.abs(x) < Math.abs(z) ? Direction.Axis.X : Direction.Axis.Z);
+                                this.setBlockState(world, mutable, gillsState);
                             }
-                        } else if (bl4) {
-                            this.placeHatBlock(world, random, config, mutable, 0.1F, 0.2F);
-                        } else if (bl5) {
-                            this.placeHatBlock(world, random, config, mutable, 0.01F, 0.7F);
                         } else {
-                            this.placeHatBlock(world, random, config, mutable, 5.0E-4F, 0.98F);
+                            this.setBlockState(world, mutable, config.capState);
                         }
                     }
                 }
             }
+            currentHatWidth -= 1;
         }
-
-    }
-
-    private void placeHatBlock(WorldAccess world, Random random, GilledFungusFeatureConfig config, BlockPos.Mutable pos, float decorationChance, float generationChance) {
-        if (random.nextFloat() < decorationChance) {
-            this.setBlockState(world, pos, config.gillsState);
-        } else if (random.nextFloat() < generationChance) {
-            this.setBlockState(world, pos, config.capState);
-        }
-
-    }
-
-    private void placeWithOptionalVines(WorldAccess world, Random random, BlockPos pos, BlockState state) {
-        if (world.getBlockState(pos.down()).isOf(state.getBlock())) {
-            this.setBlockState(world, pos, state);
-        } else if ((double) random.nextFloat() < 0.15) {
-            this.setBlockState(world, pos, state);
-        }
-
     }
 
 }

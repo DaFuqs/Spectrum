@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.CommandDispatcher;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
+import com.mojang.brigadier.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.server.command.*;
+import net.minecraft.text.*;
 
 
 public class PrintConfigCommand {
@@ -18,7 +17,7 @@ public class PrintConfigCommand {
 	private static int execute(ServerCommandSource source) {
 		send(source, "Citrine Geode AboveBottom: " + SpectrumCommon.CONFIG.CitrineGeodeMinAboveBottomGenerationHeight + " FixedMax: " + SpectrumCommon.CONFIG.CitrineGeodeFixedMaxGenerationHeight);
 		send(source, "Topaz Geode MinFixed: " + SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight + " MaxBelow: " + SpectrumCommon.CONFIG.TopazGeodeMaxBelowTopGenerationHeight);
-		send(source, "Geode Chunk Chances: Topaz: " + SpectrumCommon.CONFIG.TopazGeodeChunkChance + " Citrine: " + SpectrumCommon.CONFIG.CitrineGeodeChunkChance + " Moonstone: " + SpectrumCommon.CONFIG.MoonstoneGeodeChunkChance);
+		send(source, "Geode Chunk Chances: Topaz: " + SpectrumCommon.CONFIG.TopazGeodeChunkChance + " Citrine: " + SpectrumCommon.CONFIG.CitrineGeodeChunkChance);
 		
 		send(source, "ColoredTreePatchChanceChunk: " + SpectrumCommon.CONFIG.ColoredTreePatchChanceChunk);
 		send(source, "EndermanHoldingEnderTreasureChance: " + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance + " (" + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance + " in the End)");

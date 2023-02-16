@@ -453,7 +453,6 @@
   "text.autoconfig.Spectrum.option.TopazGeodeMaxBelowTopGenerationHeight": "Max Topaz geode generation height (from max y)",
   "text.autoconfig.Spectrum.option.TopazGeodeChunkChance": "Topaz Geode generation chance (chunks)",
   "text.autoconfig.Spectrum.option.CitrineGeodeChunkChance": "Citrine Geode generation chance (chunks)",
-  "text.autoconfig.Spectrum.option.MoonstoneGeodeChunkChance": "Moonstone Geode generation chance (chunks)",
   "text.autoconfig.Spectrum.option.EndermanHoldingEnderTreasureChance": "Chance for Endermen holding a special block",
   "text.autoconfig.Spectrum.option.EndermanHoldingEnderTreasureInEndChance": "Chance for Endermen holding a special block in the End",
   "text.autoconfig.Spectrum.option.ColoredTreePatchChanceChunk": "Try to generate Colored Trees all X chunks",

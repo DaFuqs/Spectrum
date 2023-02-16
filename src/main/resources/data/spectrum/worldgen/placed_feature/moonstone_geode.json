@@ -1,9 +1,9 @@
 {
-  "feature": "spectrum:dd_shimmerstone_ore",
+  "feature": "spectrum:moonstone_geode",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 24
+      "type": "minecraft:rarity_filter",
+      "chance": 20
     },
     {
       "type": "minecraft:in_square"
@@ -11,12 +11,12 @@
     {
       "type": "minecraft:height_range",
       "height": {
-        "type": "minecraft:trapezoid",
+        "type": "minecraft:uniform",
         "min_inclusive": {
-          "below_top": 256
+          "above_bottom": 16
         },
         "max_inclusive": {
-          "below_top": 64
+          "absolute": 112
         }
       }
     },

@@ -18,33 +18,30 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
     public boolean generate(FeatureContext<GilledFungusFeatureConfig> context) {
         StructureWorldAccess structureWorldAccess = context.getWorld();
         BlockPos blockPos = context.getOrigin();
-        Random random = context.getRandom();
-        ChunkGenerator chunkGenerator = context.getGenerator();
         GilledFungusFeatureConfig hugeFungusFeatureConfig = context.getConfig();
         Block validBaseBlock = hugeFungusFeatureConfig.validBaseBlock.getBlock();
         BlockState baseBlock = structureWorldAccess.getBlockState(blockPos.down());
 
-        BlockPos blockPos2 = null;
-        if (baseBlock.isOf(validBaseBlock)) {
-            blockPos2 = blockPos;
-        }
-        if (blockPos2 == null) {
+        if (!baseBlock.isOf(validBaseBlock)) {
             return false;
         }
 
-        int i = MathHelper.nextInt(random, 4, 13);
+        Random random = context.getRandom();
+        ChunkGenerator chunkGenerator = context.getGenerator();
+
+        int stemHeight = MathHelper.nextInt(random, 4, 9);
         if (random.nextInt(12) == 0) {
-            i *= 2;
+            stemHeight *= 2;
         }
 
         int j = chunkGenerator.getWorldHeight();
-        if (blockPos2.getY() + i + 1 >= j) {
+        if (blockPos.getY() + stemHeight + 1 >= j) {
             return false;
         }
 
         structureWorldAccess.setBlockState(blockPos, Blocks.AIR.getDefaultState(), 4);
-        this.generateStem(structureWorldAccess, hugeFungusFeatureConfig, blockPos2, i);
-        this.generateHat(structureWorldAccess, random, hugeFungusFeatureConfig, blockPos2, i);
+        this.generateStem(structureWorldAccess, hugeFungusFeatureConfig, blockPos, stemHeight);
+        this.generateHat(structureWorldAccess, random, hugeFungusFeatureConfig, blockPos, stemHeight);
         return true;
     }
 

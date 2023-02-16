@@ -1,36 +1,11 @@
 {
-  "type": "minecraft:nether_forest_vegetation",
+  "type": "minecraft:simple_random_selector",
   "config": {
-    "state_provider": {
-      "type": "minecraft:weighted_state_provider",
-      "entries": [
-        {
-          "weight": 50,
-          "data": {
-            "Name": "spectrum:slate_noxfungus"
-          }
-        },
-        {
-          "weight": 50,
-          "data": {
-            "Name": "spectrum:ebony_noxfungus"
-          }
-        },
-        {
-          "weight": 50,
-          "data": {
-            "Name": "spectrum:ivory_noxfungus"
-          }
-        },
-        {
-          "weight": 1,
-          "data": {
-            "Name": "spectrum:chestnut_noxfungus"
-          }
-        }
-      ]
-    },
-    "spread_width": 8,
-    "spread_height": 4
+    "features": [
+      "spectrum:chestnut_noxfungus",
+      "spectrum:ebony_noxfungus",
+      "spectrum:ivory_noxfungus",
+      "spectrum:slate_noxfungus"
+    ]
   }
 }

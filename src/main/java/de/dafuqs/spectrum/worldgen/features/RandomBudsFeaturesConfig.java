@@ -1,20 +1,15 @@
 package de.dafuqs.spectrum.worldgen.features;
 
-import com.google.common.collect.Lists;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.dynamic.Codecs;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryCodecs;
-import net.minecraft.util.registry.RegistryEntryList;
-import net.minecraft.world.gen.feature.FeatureConfig;
+import com.google.common.collect.*;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
+import net.minecraft.block.*;
+import net.minecraft.util.dynamic.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.gen.feature.*;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class RandomBudsFeaturesConfig implements FeatureConfig {
 	
@@ -29,8 +24,8 @@ public class RandomBudsFeaturesConfig implements FeatureConfig {
 			return config.placeOnWalls;
 		}), RegistryCodecs.entryList(Registry.BLOCK_KEY).fieldOf("can_be_placed_on").forGetter((config) -> {
 			return config.canPlaceOn;
-		}), Codecs.nonEmptyList(BlockState.CODEC.listOf()).fieldOf("blocks").forGetter((config) -> {
-			return config.blockStates;
+		}), Codecs.nonEmptyList(Registry.BLOCK.getCodec().listOf()).fieldOf("blocks").forGetter((config) -> {
+			return config.blocks;
 		})).apply(instance, RandomBudsFeaturesConfig::new);
 	});
 	public final int searchRange;
@@ -39,30 +34,26 @@ public class RandomBudsFeaturesConfig implements FeatureConfig {
 	public final boolean placeOnWalls;
 	public final RegistryEntryList<Block> canPlaceOn;
 	public final List<Direction> directions;
-	public final List<BlockState> blockStates;
-	
-	public RandomBudsFeaturesConfig(int searchRange, boolean placeOnFloor, boolean placeOnCeiling, boolean placeOnWalls, RegistryEntryList<Block> canPlaceOn, List<BlockState> blockStates) {
+	public final List<Block> blocks;
+
+	public RandomBudsFeaturesConfig(int searchRange, boolean placeOnFloor, boolean placeOnCeiling, boolean placeOnWalls, RegistryEntryList<Block> canPlaceOn, List<Block> blocks) {
 		this.searchRange = searchRange;
 		this.placeOnFloor = placeOnFloor;
 		this.placeOnCeiling = placeOnCeiling;
 		this.placeOnWalls = placeOnWalls;
 		this.canPlaceOn = canPlaceOn;
-		this.blockStates = blockStates;
+		this.blocks = blocks;
 		List<Direction> list = Lists.newArrayList();
 		if (placeOnCeiling) {
 			list.add(Direction.UP);
 		}
-		
 		if (placeOnFloor) {
 			list.add(Direction.DOWN);
 		}
-		
 		if (placeOnWalls) {
-			Direction.Type var10000 = Direction.Type.HORIZONTAL;
 			Objects.requireNonNull(list);
-			var10000.forEach(list::add);
+			Direction.Type.HORIZONTAL.forEach(list::add);
 		}
-		
 		this.directions = Collections.unmodifiableList(list);
 	}
 	

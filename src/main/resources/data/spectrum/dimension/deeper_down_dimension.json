@@ -30,14 +30,14 @@
               1
             ],
             "depth": [
-              -1,
-              -0.25
+              -2,
+              -1
             ],
             "offset": 0
           }
         },
         {
-          "biome": "minecraft:dripstone_caves",
+          "biome": "spectrum:deep_dripstone_caves",
           "parameters": {
             "temperature": [
               -1,

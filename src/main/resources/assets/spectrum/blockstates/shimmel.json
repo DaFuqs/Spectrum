@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=true": {
+      "model": "spectrum:block/shimmel_snow"
+    },
+    "snowy=false": {
+      "model": "spectrum:block/shimmel"
+    }
+  }
+}

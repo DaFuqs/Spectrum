@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "spectrum:block/blackslag_top",
+    "particle": "spectrum:block/blackslag_top",
+    "side": "spectrum:block/shimmel_snow",
+    "top": "spectrum:block/shimmel_top"
+  }
+}

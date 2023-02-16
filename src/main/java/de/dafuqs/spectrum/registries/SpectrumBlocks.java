@@ -462,11 +462,20 @@ public class SpectrumBlocks {
 	public static final ToIntFunction<BlockState> litProvider = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
 
 	//DD FLORA
-	public static final Block SAWBLADE_GRASS = new Block(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK));
+	public static final Block SAWBLADE_GRASS = new GrassBlock(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK));
 	public static final Block ROTTEN_GROUND = new Block(AbstractBlock.Settings.copy(Blocks.PACKED_MUD));
 	public static final Block SHIMMEL = new MyceliumBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
-	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.OFF_WHITE).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
+	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.GRAY).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
 		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate("slate_noxfungus")));
+	});
+	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.TERRACOTTA_BLACK).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
+		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate("ebony_noxfungus")));
+	});
+	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.OFF_WHITE).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
+		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate("ivory_noxfungus")));
+	});
+	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.DULL_RED).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
+		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate("chestnut_noxfungus")));
 	});
 
 	public static final PillarBlock SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));
@@ -1172,10 +1181,9 @@ public class SpectrumBlocks {
 	private static void registerDDFlora(FabricItemSettings settings) {
 		registerBlockWithItem("sawblade_grass", SAWBLADE_GRASS, settings, DyeColor.LIME);
 		registerBlockWithItem("rotten_ground", ROTTEN_GROUND, settings, DyeColor.LIME);
-
 		registerBlockWithItem("shimmel", SHIMMEL, settings, DyeColor.LIME);
-		registerBlockWithItem("slate_noxshroom", SLATE_NOXSHROOM, settings, DyeColor.LIME);
 
+		registerBlockWithItem("slate_noxshroom", SLATE_NOXSHROOM, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxcap_cap", SLATE_NOXCAP_CAP, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxcap_stem", SLATE_NOXCAP_STEM, settings, DyeColor.LIME);
 		registerBlockWithItem("stripped_slate_noxcap_stem", STRIPPED_SLATE_NOXCAP_STEM, settings, DyeColor.LIME);
@@ -1194,7 +1202,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("slate_noxwood_lantern", SLATE_NOXWOOD_LANTERN, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxwood_light", SLATE_NOXWOOD_LIGHT, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxwood_lamp", SLATE_NOXWOOD_LAMP, settings, DyeColor.LIME);
-		
+
+		registerBlockWithItem("ebony_noxshroom", EBONY_NOXSHROOM, settings, DyeColor.LIME);
 		registerBlockWithItem("ebony_noxcap_cap", EBONY_NOXCAP_CAP, settings, DyeColor.LIME);
 		registerBlockWithItem("ebony_noxcap_stem", EBONY_NOXCAP_STEM, settings, DyeColor.LIME);
 		registerBlockWithItem("stripped_ebony_noxcap_stem", STRIPPED_EBONY_NOXCAP_STEM, settings, DyeColor.LIME);
@@ -1213,7 +1222,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("ebony_noxwood_lantern", EBONY_NOXWOOD_LANTERN, settings, DyeColor.LIME);
 		registerBlockWithItem("ebony_noxwood_light", EBONY_NOXWOOD_LIGHT, settings, DyeColor.LIME);
 		registerBlockWithItem("ebony_noxwood_lamp", EBONY_NOXWOOD_LAMP, settings, DyeColor.LIME);
-		
+
+		registerBlockWithItem("ivory_noxshroom", IVORY_NOXSHROOM, settings, DyeColor.LIME);
 		registerBlockWithItem("ivory_noxcap_cap", IVORY_NOXCAP_CAP, settings, DyeColor.LIME);
 		registerBlockWithItem("ivory_noxcap_stem", IVORY_NOXCAP_STEM, settings, DyeColor.LIME);
 		registerBlockWithItem("stripped_ivory_noxcap_stem", STRIPPED_IVORY_NOXCAP_STEM, settings, DyeColor.LIME);
@@ -1232,7 +1242,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("ivory_noxwood_lantern", IVORY_NOXWOOD_LANTERN, settings, DyeColor.LIME);
 		registerBlockWithItem("ivory_noxwood_light", IVORY_NOXWOOD_LIGHT, settings, DyeColor.LIME);
 		registerBlockWithItem("ivory_noxwood_lamp", IVORY_NOXWOOD_LAMP, settings, DyeColor.LIME);
-		
+
+		registerBlockWithItem("chestnut_noxshroom", CHESTNUT_NOXSHROOM, settings, DyeColor.LIME);
 		registerBlockWithItem("chestnut_noxcap_cap", CHESTNUT_NOXCAP_CAP, settings, DyeColor.LIME);
 		registerBlockWithItem("chestnut_noxcap_stem", CHESTNUT_NOXCAP_STEM, settings, DyeColor.LIME);
 		registerBlockWithItem("stripped_chestnut_noxcap_stem", STRIPPED_CHESTNUT_NOXCAP_STEM, settings, DyeColor.LIME);

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=true": {
+      "model": "spectrum:block/sawblade_grass_snow"
+    },
+    "snowy=false": {
+      "model": "spectrum:block/sawblade_grass"
+    }
+  }
+}

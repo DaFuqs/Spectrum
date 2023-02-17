@@ -80,8 +80,8 @@
         "max_inclusive": 2
       }
     },
-    "min_gen_offset": -16,
-    "max_gen_offset": 16,
+    "min_gen_offset": -14,
+    "max_gen_offset": 14,
     "invalid_blocks_threshold": 1
   }
 }

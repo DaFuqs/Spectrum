@@ -1,0 +1,37 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 600,
+  "required_experience": 50,
+  "ingredients": [
+    {
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "spectrum:shimmerstone_block"
+    },
+    {
+      "item": "spectrum:shimmerstone_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "spectrum:shimmerstone_block"
+    },
+    {
+      "item": "spectrum:shimmerstone_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    },
+    {
+      "item": "minecraft:gold_block"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_golden_apple"
+  }
+}

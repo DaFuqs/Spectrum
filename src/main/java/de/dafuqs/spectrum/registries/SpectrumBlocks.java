@@ -814,17 +814,17 @@ public class SpectrumBlocks {
 	public static final Block RED_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.RED);
 	public static final Block WHITE_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.WHITE);
 	public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.YELLOW);
-	
+
 	// SHIMMERSTONE LIGHTS
 	private static final FabricBlockSettings shimmerstoneLightBlockSettings = FabricBlockSettings.of(Material.STONE).strength(1.0F, 1.0F).nonOpaque().luminance(15);
-	public static final Block BASALT_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block CALCITE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block STONE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block GRANITE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block DIORITE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block ANDESITE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
-	public static final Block DEEPSLATE_SHIMMERSTONE_LIGHT = new SparklestoneLightBlock(shimmerstoneLightBlockSettings);
-	
+	public static final Block BASALT_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block CALCITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block STONE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block GRANITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block DIORITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block ANDESITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
+	public static final Block DEEPSLATE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
+
 	// CRYSTALLARIEUM
 	public static final Block SMALL_COAL_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.0f).mapColor(Blocks.COAL_BLOCK.getDefaultMapColor()).requiresTool().nonOpaque(), CrystallarieumGrowableBlock.GrowthStage.SMALL);
 	public static final Block LARGE_COAL_BUD = new CrystallarieumGrowableBlock(FabricBlockSettings.copyOf(SMALL_COAL_BUD), CrystallarieumGrowableBlock.GrowthStage.LARGE);

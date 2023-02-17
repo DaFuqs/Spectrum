@@ -1,36 +1,29 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.particle.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-public class SparklestoneLightBlock extends Block {
-	
+public class ShimmerstoneLightBlock extends Block {
+
 	public static final DirectionProperty FACING = Properties.FACING;
-	
+
 	protected static final VoxelShape SHAPE_UP = Block.createCuboidShape(5.0D, 0.0D, 4.0D, 11.0D, 2.0D, 12.0D);
 	protected static final VoxelShape SHAPE_DOWN = Block.createCuboidShape(5.0D, 14.0D, 4.0D, 11.0D, 16.0D, 12.0D);
 	protected static final VoxelShape SHAPE_NORTH = Block.createCuboidShape(5.0D, 4.0D, 14.0D, 11.0D, 12.0D, 16.0D);
 	protected static final VoxelShape SHAPE_SOUTH = Block.createCuboidShape(5.0D, 4.0D, 0.0D, 11.0D, 12.0D, 2.0D);
 	protected static final VoxelShape SHAPE_EAST = Block.createCuboidShape(0.0D, 4.0D, 5.0D, 2.0D, 12.0D, 11.0D);
 	protected static final VoxelShape SHAPE_WEST = Block.createCuboidShape(14.0D, 4.0D, 5.0D, 16.0D, 12.0D, 11.0D);
-	
-	public SparklestoneLightBlock(Settings settings) {
+
+	public ShimmerstoneLightBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState(((this.stateManager.getDefaultState()).with(FACING, Direction.UP)));
 	}

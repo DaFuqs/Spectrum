@@ -1,41 +1,33 @@
 package de.dafuqs.spectrum.mixin;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.inventories.slots.SlotWithOnClickAction;
-import de.dafuqs.spectrum.mixin.accessors.ItemAccessor;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.ClickType;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
-import java.util.Map;
+import java.util.*;
 
 @Mixin(ItemStack.class)
 public abstract class ItemStackMixin {
-	
+
 	@Shadow
 	public abstract boolean isIn(TagKey<Item> tag);
-	
+
 	@Shadow
 	public abstract boolean isOf(Item item);
-	
+
 	// Injecting into onStackClicked instead of onClicked because onStackClicked is called first
 	@Inject(at = @At("HEAD"), method = "onStackClicked", cancellable = true)
 	public void spectrum$onStackClicked(Slot slot, ClickType clickType, PlayerEntity player, CallbackInfoReturnable<Boolean> cir) {
@@ -45,7 +37,7 @@ public abstract class ItemStackMixin {
 			}
 		}
 	}
-	
+
 	@Inject(at = @At("RETURN"), method = "getAttributeModifiers(Lnet/minecraft/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;", cancellable = true)
 	public void spectrum$applyTightGripEnchantment(EquipmentSlot slot, CallbackInfoReturnable<Multimap<EntityAttribute, EntityAttributeModifier>> cir) {
 		int tightGripLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.TIGHT_GRIP, (ItemStack) (Object) this);
@@ -53,23 +45,23 @@ public abstract class ItemStackMixin {
 			ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 			for (Map.Entry<EntityAttribute, EntityAttributeModifier> s : cir.getReturnValue().entries()) {
 				if (s.getKey().equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
-					double newSpeed = s.getValue().getValue() * Math.max(0.25, 1.0 - tightGripLevel * 0.25);
-					builder.put(s.getKey(), new EntityAttributeModifier(ItemAccessor.getAttackSpeedModifierId(), "Weapon modifier", newSpeed, EntityAttributeModifier.Operation.ADDITION));
+					double newAttackSpeed = s.getValue().getValue() * Math.max(0.25, 1 - tightGripLevel * SpectrumCommon.CONFIG.TightGripAttackSpeedBonusPercentPerLevel);
+					builder.put(s.getKey(), new EntityAttributeModifier(ItemAccessor.getAttackSpeedModifierId(), "Weapon modifier", newAttackSpeed, EntityAttributeModifier.Operation.ADDITION));
+					cir.setReturnValue(builder.build());
 				} else {
 					builder.put(s.getKey(), s.getValue());
 				}
 			}
-			cir.setReturnValue(builder.build());
 		}
 	}
-	
+
 	@Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getNbt()Lnet/minecraft/nbt/NbtCompound;"), method = "isDamageable()Z", cancellable = true)
 	public void spectrum$checkIndestructibleEnchantment(CallbackInfoReturnable<Boolean> cir) {
 		if (SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled && EnchantmentHelper.getLevel(SpectrumEnchantments.INDESTRUCTIBLE, (ItemStack) (Object) this) > 0) {
 			cir.setReturnValue(false);
 		}
 	}
-	
+
 	// thank you so, so much @williewillus / @Botania for this snippet of code
 	// https://github.com/VazkiiMods/Botania/blob/1.18.x/Fabric/src/main/java/vazkii/botania/fabric/mixin/FabricMixinItemStack.java
 	@Inject(at = @At("HEAD"), method = "isOf(Lnet/minecraft/item/Item;)Z", cancellable = true)
@@ -80,6 +72,6 @@ public abstract class ItemStackMixin {
 			}
 		}
 	}
-	
-	
+
+
 }

@@ -1,18 +1,17 @@
 package de.dafuqs.spectrum.blocks;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
 public abstract class InWorldInteractionBlockEntity extends BlockEntity implements ImplementedInventory {
 	
@@ -62,7 +61,7 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	@Override
 	public void inventoryChanged() {
 		this.markDirty();
-		if (!world.isClient) {
+		if (world != null && !world.isClient) {
 			updateInClientWorld();
 		}
 	}

@@ -1,8 +1,8 @@
 {
-	"parent": "spectrum:templates/sugar_stick1",
-	"textures": {
-		"0": "spectrum:block/moonstone_glass",
-		"1": "minecraft:block/oak_planks",
-		"particle": "spectrum:block/moonstone_glass"
-	}
+  "parent": "spectrum:templates/sugar_stick1",
+  "textures": {
+    "0": "spectrum:block/moonstone_glass",
+    "1": "minecraft:block/oak_planks",
+    "particle": "spectrum:block/moonstone_glass"
+  }
 }

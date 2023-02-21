@@ -1,8 +1,8 @@
 {
-	"parent": "spectrum:templates/sugar_stick2",
-	"textures": {
-		"0": "spectrum:block/sugar_stick",
-		"1": "minecraft:block/oak_planks",
-		"particle": "spectrum:block/sugar_stick"
-	}
+  "parent": "spectrum:templates/sugar_stick2",
+  "textures": {
+    "0": "spectrum:block/sugar_stick",
+    "1": "minecraft:block/oak_planks",
+    "particle": "spectrum:block/sugar_stick"
+  }
 }

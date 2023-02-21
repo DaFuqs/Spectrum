@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/wall_inventory",
-	"textures": {
-		"wall": "spectrum:block/basalt_tiles"
-	}
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "spectrum:block/basalt_tiles"
+  }
 }

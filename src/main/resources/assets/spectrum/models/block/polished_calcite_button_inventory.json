@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/button_inventory",
-	"textures": {
-		"texture": "spectrum:block/polished_calcite"
-	}
+  "parent": "minecraft:block/button_inventory",
+  "textures": {
+    "texture": "spectrum:block/polished_calcite"
+  }
 }

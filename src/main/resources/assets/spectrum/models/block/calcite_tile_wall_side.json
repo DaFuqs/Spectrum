@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/template_wall_side",
-	"textures": {
-		"wall": "spectrum:block/calcite_tiles"
-	}
+  "parent": "minecraft:block/template_wall_side",
+  "textures": {
+    "wall": "spectrum:block/calcite_tiles"
+  }
 }

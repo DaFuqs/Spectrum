@@ -1,7 +1,7 @@
 {
-    "parent": "minecraft:block/cube_column",
-    "textures": {
-        "end": "spectrum:block/blackslag_copper_ore_top",
-        "side": "spectrum:block/blackslag_copper_ore"
-    }
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/blackslag_copper_ore_top",
+    "side": "spectrum:block/blackslag_copper_ore"
+  }
 }

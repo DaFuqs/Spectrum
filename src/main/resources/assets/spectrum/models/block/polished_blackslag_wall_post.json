@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/template_wall_post",
-	"textures": {
-		"wall": "spectrum:block/polished_blackslag"
-	}
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "spectrum:block/polished_blackslag"
+  }
 }

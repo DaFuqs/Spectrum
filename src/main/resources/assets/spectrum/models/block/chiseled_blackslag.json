@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/cube_all",
-	"textures": {
-		"all": "spectrum:block/chiseled_blackslag"
-	}
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "spectrum:block/chiseled_blackslag"
+  }
 }

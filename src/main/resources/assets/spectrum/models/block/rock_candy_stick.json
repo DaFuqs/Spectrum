@@ -1,22 +1,78 @@
 {
-	"credit": "Made with Blockbench",
-	"textures": {
-		"particle": "spectrum:block/amethyst_glass"
-	},
-	"elements": [
-		{
-			"name": "stick",
-			"from": [8, 3, 8],
-			"to": [9, 16, 9],
-			"color": 2,
-			"faces": {
-				"north": {"uv": [0, 0, 1, 13], "texture": "#missing"},
-				"east": {"uv": [0, 0, 1, 13], "texture": "#missing"},
-				"south": {"uv": [0, 0, 1, 13], "texture": "#missing"},
-				"west": {"uv": [0, 0, 1, 13], "texture": "#missing"},
-				"up": {"uv": [0, 0, 1, 1], "texture": "#missing"},
-				"down": {"uv": [0, 0, 1, 1], "texture": "#missing"}
-			}
-		}
-	]
+  "credit": "Made with Blockbench",
+  "textures": {
+    "particle": "spectrum:block/amethyst_glass"
+  },
+  "elements": [
+    {
+      "name": "stick",
+      "from": [
+        8,
+        3,
+        8
+      ],
+      "to": [
+        9,
+        16,
+        9
+      ],
+      "color": 2,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            1,
+            13
+          ],
+          "texture": "#missing"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            1,
+            13
+          ],
+          "texture": "#missing"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            1,
+            13
+          ],
+          "texture": "#missing"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            1,
+            13
+          ],
+          "texture": "#missing"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "texture": "#missing"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "texture": "#missing"
+        }
+      }
+    }
+  ]
 }

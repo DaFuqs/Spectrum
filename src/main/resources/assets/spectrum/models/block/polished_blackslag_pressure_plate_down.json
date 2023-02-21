@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/pressure_plate_down",
-	"textures": {
-		"texture": "spectrum:block/polished_blackslag"
-	}
+  "parent": "minecraft:block/pressure_plate_down",
+  "textures": {
+    "texture": "spectrum:block/polished_blackslag"
+  }
 }

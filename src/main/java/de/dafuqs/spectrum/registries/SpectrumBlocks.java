@@ -318,7 +318,7 @@ public class SpectrumBlocks {
 	}
 
 	// FLUIDS
-	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, fluid(SpectrumBlockMaterials.LIQUID_CRYSTAL).luminance((state) -> 8));
+	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, fluid(SpectrumBlockMaterials.LIQUID_CRYSTAL).luminance((state) -> 11));
 	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, fluid(SpectrumBlockMaterials.MUD));
 	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, fluid(SpectrumBlockMaterials.MIDNIGHT_SOLUTION));
 	public static final Block DRAGONROT = new DragonrotFluidBlock(SpectrumFluids.DRAGONROT, fluid(SpectrumBlockMaterials.DRAGONROT));

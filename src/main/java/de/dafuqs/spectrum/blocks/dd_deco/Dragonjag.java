@@ -17,7 +17,7 @@ public interface Dragonjag {
     Dragonjag.Variant getVariant();
 
     static boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.getMaterial().isSolid();
+        return floor.isOpaqueFullCube(world, pos);
     }
 
 }

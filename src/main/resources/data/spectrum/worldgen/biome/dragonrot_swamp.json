@@ -76,11 +76,7 @@
       "minecraft:cave_vines",
       "minecraft:classic_vines_cave_feature",
       "spectrum:dd_glow_lichen",
-      "spectrum:green_dragonjags",
-      "spectrum:red_dragonjags",
-      "spectrum:pink_dragonjags",
-      "spectrum:purple_dragonjags",
-      "spectrum:black_dragonjags"
+      "spectrum:random_dragonjags"
     ],
     []
   ]

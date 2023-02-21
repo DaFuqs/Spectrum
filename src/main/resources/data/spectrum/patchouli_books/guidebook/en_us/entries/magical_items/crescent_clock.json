@@ -14,7 +14,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier2/crescent_clock",
+      "recipe": "spectrum:pedestal/tier3/crescent_clock",
       "text": "$(italic)If we shadows have offended, Know but this and all is mended.$(br)That you have but slumbered here, While these visions did appear.$(br)And this weak and idle theme, No more yielding, but a dream."
     }
   ]

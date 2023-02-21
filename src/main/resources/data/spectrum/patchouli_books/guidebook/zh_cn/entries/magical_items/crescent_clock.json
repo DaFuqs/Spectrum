@@ -5,10 +5,10 @@
 			"type":"patchouli:text"
 		},
 		{
-			"recipe":"spectrum:pedestal/tier2/crescent_clock",
-			"text":"$(italic)如果我们的影子冒犯了你，你要知道，但这一切都会得到弥补。$(br)当这些幻象出现的时候，你们只是在这里睡着了。$(br)而这个软弱而无聊的主题，不再屈服，而是一个梦想。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
+			"recipe": "spectrum:pedestal/tier3/crescent_clock",
+			"text": "$(italic)如果我们的影子冒犯了你，你要知道，但这一切都会得到弥补。$(br)当这些幻象出现的时候，你们只是在这里睡着了。$(br)而这个软弱而无聊的主题，不再屈服，而是一个梦想。",
+			"type": "spectrum:pedestal_crafting",
+			"title": "基座配方"
 		}
 	],
 	"advancement":"spectrum:progression/unlock_crescent_clock",

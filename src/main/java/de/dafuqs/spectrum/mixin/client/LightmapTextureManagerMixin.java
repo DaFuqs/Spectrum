@@ -14,7 +14,7 @@ public class LightmapTextureManagerMixin {
     @ModifyReturnValue(method = "getDarkness(Lnet/minecraft/entity/LivingEntity;FF)F", at = @At("RETURN"))
     private static float spectrum$getDarkness(float original) {
         if (DDDimension.DEEPER_DOWN_DIMENSION_KEY.equals(MinecraftClient.getInstance().player.world.getRegistryKey())) {
-            return Math.max(0.2F, original);
+            return Math.max(0.12F, original);
         }
         return original;
     }

@@ -1,6 +1,6 @@
 {
-  "temperature": 0.2,
-  "downfall": 0.2,
+  "temperature": 0.6,
+  "downfall": 0.8,
   "precipitation": "none",
   "creature_spawn_probability": 0,
   "effects": {
@@ -40,7 +40,10 @@
   },
   "features": [
     [],
-    [],
+    [
+      "spectrum:lake_mud_underground",
+      "spectrum:lake_dragonrot_underground"
+    ],
     [
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode"
@@ -72,7 +75,12 @@
     [
       "minecraft:cave_vines",
       "minecraft:classic_vines_cave_feature",
-      "spectrum:dd_glow_lichen"
+      "spectrum:dd_glow_lichen",
+      "spectrum:green_dragonjags",
+      "spectrum:red_dragonjags",
+      "spectrum:pink_dragonjags",
+      "spectrum:purple_dragonjags",
+      "spectrum:black_dragonjags"
     ],
     []
   ]

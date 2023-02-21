@@ -70,25 +70,26 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BLACK_HOLE_CHEST_OPEN = register("black_hole_chest_open");
 	public static final SoundEvent BLACK_HOLE_CHEST_CLOSE = register("black_hole_chest_close");
 
-	public static final SoundEvent DREAMFLAYER_ACTIVATE = register("dreamflayer_activate");
-	public static final SoundEvent DREAMFLAYER_DEACTIVATE = register("dreamflayer_deactivate");
+    public static final SoundEvent DREAMFLAYER_ACTIVATE = register("dreamflayer_activate");
+    public static final SoundEvent DREAMFLAYER_DEACTIVATE = register("dreamflayer_deactivate");
 
-	public static final SoundEvent RADIANCE_STAFF_CHARGING = register("radiance_staff_charging");
-	public static final SoundEvent RADIANCE_STAFF_PLACE = register("radiance_staff_place");
-	public static final SoundEvent RADIANCE_STAFF_BREAK = register("radiance_staff_break");
+    public static final SoundEvent RADIANCE_STAFF_CHARGING = register("radiance_staff_charging");
+    public static final SoundEvent RADIANCE_STAFF_PLACE = register("radiance_staff_place");
+    public static final SoundEvent RADIANCE_STAFF_BREAK = register("radiance_staff_break");
 
-	public static final SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
-	public static final SoundEvent MUD_AMBIENT = register("mud_ambient");
-	public static final SoundEvent MIDNIGHT_SOLUTION_AMBIENT = register("midnight_solution_ambient");
-	
-	public static final SoundEvent FADING_PLACED = register("fading_placed");
-	public static final SoundEvent FAILING_PLACED = register("failing_placed");
-	public static final SoundEvent RUIN_PLACED = register("ruin_placed");
+    public static final SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
+    public static final SoundEvent MUD_AMBIENT = register("mud_ambient");
+    public static final SoundEvent MIDNIGHT_SOLUTION_AMBIENT = register("midnight_solution_ambient");
+    public static final SoundEvent DRAGONROT_AMBIENT = register("dragonrot_ambient");
 
-	public static final SoundEvent DEEPER_DOWN_PORTAL_OPEN = register("deeper_down_portal_open");
-	public static final SoundEvent SQUEAKER = register("squeaker");
-	
-	public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
+    public static final SoundEvent FADING_PLACED = register("fading_placed");
+    public static final SoundEvent FAILING_PLACED = register("failing_placed");
+    public static final SoundEvent RUIN_PLACED = register("ruin_placed");
+
+    public static final SoundEvent DEEPER_DOWN_PORTAL_OPEN = register("deeper_down_portal_open");
+    public static final SoundEvent SQUEAKER = register("squeaker");
+
+    public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
 	
 	public static final SoundEvent BLOCK_CITRINE_BLOCK_BREAK = register("block.citrine_block.break");
 	public static final SoundEvent BLOCK_CITRINE_BLOCK_STEP = register("block.citrine_block.step");

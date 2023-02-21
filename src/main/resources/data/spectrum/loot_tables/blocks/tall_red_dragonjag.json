@@ -1,0 +1,85 @@
+{
+	"type": "minecraft:block",
+	"pools": [
+		{
+			"rolls": 1,
+			"bonus_rolls": 0,
+			"entries": [
+				{
+					"type": "minecraft:alternatives",
+					"children": [
+						{
+							"type": "minecraft:item",
+							"name": "spectrum:small_red_dragonjag"
+						}
+					]
+				}
+			],
+			"conditions": [
+				{
+					"condition": "minecraft:block_state_property",
+					"block": "spectrum:tall_red_dragonjag",
+					"properties": {
+						"half": "lower",
+						"dead": "false"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"offsetY": 1,
+					"predicate": {
+						"block": {
+							"blocks": [
+								"spectrum:tall_red_dragonjag"
+							],
+							"state": {
+								"half": "upper",
+								"dead": "false"
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"rolls": 1,
+			"bonus_rolls": 0,
+			"entries": [
+				{
+					"type": "minecraft:alternatives",
+					"children": [
+						{
+							"type": "minecraft:item",
+							"name": "spectrum:small_red_dragonjag"
+						}
+					]
+				}
+			],
+			"conditions": [
+				{
+					"condition": "minecraft:block_state_property",
+					"block": "spectrum:tall_red_dragonjag",
+					"properties": {
+						"half": "upper",
+						"dead": "false"
+					}
+				},
+				{
+					"condition": "minecraft:location_check",
+					"offsetY": -1,
+					"predicate": {
+						"block": {
+							"blocks": [
+								"spectrum:tall_red_dragonjag"
+							],
+							"state": {
+								"half": "lower",
+								"dead": "false"
+							}
+						}
+					}
+				}
+			]
+		}
+	]
+}

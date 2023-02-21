@@ -1,58 +1,60 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.fluid.LiquidCrystalFluid;
-import de.dafuqs.spectrum.blocks.fluid.MidnightSolutionFluid;
-import de.dafuqs.spectrum.blocks.fluid.MudFluid;
-import de.dafuqs.spectrum.registries.color.ItemColors;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.texture.Sprite;
-import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.fluid.FlowableFluid;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.resource.ResourceType;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3f;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.BlockRenderView;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.fluid.*;
+import de.dafuqs.spectrum.registries.color.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
+import net.fabricmc.fabric.api.client.render.fluid.v1.*;
+import net.fabricmc.fabric.api.event.client.*;
+import net.fabricmc.fabric.api.resource.*;
+import net.minecraft.client.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.texture.*;
+import net.minecraft.fluid.*;
+import net.minecraft.resource.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
 
-import java.util.function.Function;
+import java.util.function.*;
 
 public class SpectrumFluids {
-	
+
 	// LIQUID CRYSTAL
 	public static final FlowableFluid LIQUID_CRYSTAL = new LiquidCrystalFluid.StillLiquidCrystal();
 	public static final FlowableFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.FlowingLiquidCrystal();
 	public static final Vec3f LIQUID_CRYSTAL_COLOR = new Vec3f(0.7f, 0.67f, 0.81f);
-	
+	public static final Identifier LIQUID_CRYSTAL_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
+	public static final float LIQUID_CRYSTAL_OVERLAY_ALPHA = 0.6F;
+
 	// MUD
 	public static final FlowableFluid MUD = new MudFluid.StillMud();
 	public static final FlowableFluid FLOWING_MUD = new MudFluid.FlowingMud();
 	public static final Vec3f MUD_COLOR = new Vec3f(0.26f, 0.14f, 0.01f);
-	
+	public static final Identifier MUD_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/mud_overlay.png");
+	public static final float MUD_OVERLAY_ALPHA = 0.995F;
+
 	// MIDNIGHT SOLUTION
 	public static final FlowableFluid MIDNIGHT_SOLUTION = new MidnightSolutionFluid.StillMidnightSolution();
 	public static final FlowableFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.FlowingMidnightSolution();
 	public static final Vec3f MIDNIGHT_SOLUTION_COLOR = new Vec3f(0.07f, 0.07f, 0.2f);
-	
+	public static final Identifier MIDNIGHT_SOLUTION_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/midnight_solution_overlay.png");
+	public static final float MIDNIGHT_SOLUTION_OVERLAY_ALPHA = 0.995F;
+
+	// DRAGONROT
+	public static final FlowableFluid DRAGONROT = new DragonrotFluid.StillDragonrot();
+	public static final FlowableFluid FLOWING_DRAGONROT = new DragonrotFluid.FlowingDragonrot();
+	public static final Vec3f DRAGONROT_COLOR = new Vec3f(0.56f, 0.13f, 0.63f);
+	public static final Identifier DRAGONROT_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/dragonrot_overlay.png");
+	public static final float DRAGONROT_OVERLAY_ALPHA = 0.995F;
+
 	private static void registerFluid(String name, Fluid fluid, DyeColor dyeColor) {
 		Registry.register(Registry.FLUID, SpectrumCommon.locate(name), fluid);
 		ItemColors.FLUID_COLORS.registerColorMapping(fluid, dyeColor);
 	}
-	
+
 	public static void register() {
 		registerFluid("liquid_crystal", LIQUID_CRYSTAL, DyeColor.LIGHT_GRAY);
 		registerFluid("flowing_liquid_crystal", FLOWING_LIQUID_CRYSTAL, DyeColor.LIGHT_GRAY);
@@ -60,18 +62,23 @@ public class SpectrumFluids {
 		registerFluid("flowing_mud", FLOWING_MUD, DyeColor.BROWN);
 		registerFluid("midnight_solution", MIDNIGHT_SOLUTION, DyeColor.GRAY);
 		registerFluid("flowing_midnight_solution", FLOWING_MIDNIGHT_SOLUTION, DyeColor.GRAY);
+		registerFluid("dragonrot", DRAGONROT, DyeColor.PURPLE);
+		registerFluid("flowing_dragonrot", FLOWING_DRAGONROT, DyeColor.PURPLE);
 	}
 	
 	@Environment(EnvType.CLIENT)
 	public static void registerClient() {
 		setupFluidRendering(LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL, "liquid_crystal", 0xcbbbcb);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL);
-		
+
 		setupFluidRendering(MUD, FLOWING_MUD, "mud", 0x4e2e0a);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MUD, FLOWING_MUD);
-		
+
 		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, "midnight_solution", 0x11183b);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION);
+
+		setupFluidRendering(DRAGONROT, FLOWING_DRAGONROT, "dragonrot", 0x592b6f);
+		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), DRAGONROT, FLOWING_DRAGONROT);
 	}
 	
 	@Environment(EnvType.CLIENT)

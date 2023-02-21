@@ -1,21 +1,14 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.fluid.FlowableFluid;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.fluid.*;
+import net.minecraft.particle.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public abstract class SpectrumFluid extends FlowableFluid {
 	
@@ -87,5 +80,5 @@ public abstract class SpectrumFluid extends FlowableFluid {
 	}
 	
 	public abstract ParticleEffect getSplashParticle();
-	
+
 }

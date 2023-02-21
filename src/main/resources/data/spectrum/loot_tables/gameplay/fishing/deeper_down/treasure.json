@@ -14,10 +14,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:slime_ball"
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:book",
           "functions": [
             {

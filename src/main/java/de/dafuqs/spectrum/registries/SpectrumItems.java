@@ -222,27 +222,28 @@ public class SpectrumItems {
 	
 	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 	public static final Item MIDNIGHT_CHIP = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/create_midnight_aberration"), Items.GRAY_DYE);
-	
-	public static final Item BISMUTH_FLAKE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
-	public static final Item BISMUTH_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
-	
-	public static final Item RAW_MALACHITE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
-	public static final Item MALACHITE_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
-	
-	// Fluid Buckets
-	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-	public static final Item MUD_BUCKET = new BucketItem(MUD, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-	public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-	
-	// Decay bottles
-	public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, Tab.EQUIPMENT.settings(16));
-	public static final Item BOTTLE_OF_FAILING = new DecayPlacerItem(SpectrumBlocks.FAILING, Tab.EQUIPMENT.settings(16));
-	public static final Item BOTTLE_OF_RUIN = new DecayPlacerItem(SpectrumBlocks.RUIN, Tab.EQUIPMENT.settings(16));
-	public static final Item BOTTLE_OF_FORFEITURE = new DecayPlacerItem(SpectrumBlocks.FORFEITURE, Tab.EQUIPMENT.settings(16));
-	public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, Tab.EQUIPMENT.settings(16));
-	
-	// Resources
-	public static final CloakedItem SHIMMERSTONE_GEM = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.SHIMMERSTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE, SpectrumBannerPatterns.SHIMMERSTONE);
+
+    public static final Item BISMUTH_FLAKE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
+    public static final Item BISMUTH_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
+
+    public static final Item RAW_MALACHITE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
+    public static final Item MALACHITE_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
+
+    // Fluid Buckets
+    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
+    public static final Item MUD_BUCKET = new BucketItem(MUD, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
+    public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
+    public static final Item DRAGONROT_BUCKET = new BucketItem(DRAGONROT, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
+
+    // Decay bottles
+    public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, Tab.EQUIPMENT.settings(16));
+    public static final Item BOTTLE_OF_FAILING = new DecayPlacerItem(SpectrumBlocks.FAILING, Tab.EQUIPMENT.settings(16));
+    public static final Item BOTTLE_OF_RUIN = new DecayPlacerItem(SpectrumBlocks.RUIN, Tab.EQUIPMENT.settings(16));
+    public static final Item BOTTLE_OF_FORFEITURE = new DecayPlacerItem(SpectrumBlocks.FORFEITURE, Tab.EQUIPMENT.settings(16));
+    public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, Tab.EQUIPMENT.settings(16));
+
+    // Resources
+    public static final CloakedItem SHIMMERSTONE_GEM = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.SHIMMERSTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE, SpectrumBannerPatterns.SHIMMERSTONE);
 	public static final CloakedItem RAW_AZURITE = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE, SpectrumBannerPatterns.RAW_AZURITE);
 	public static final CloakedItem REFINED_AZURITE = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
 	public static final CloakedFloatItem STRATINE_FRAGMENTS = new CloakedFloatItem(Tab.RESOURCES.settings(64).fireproof(), 1.003F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
@@ -764,7 +765,8 @@ public class SpectrumItems {
 	public static void registerFluidBuckets() {
 		register("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET, DyeColor.LIGHT_GRAY);
 		register("mud_bucket", MUD_BUCKET, DyeColor.BROWN);
-		register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET, DyeColor.GRAY);
+        register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET, DyeColor.GRAY);
+        register("dragonrot_bucket", DRAGONROT_BUCKET, DyeColor.LIGHT_GRAY);
 	}
 	
 	public static void registerFuelRegistry() {

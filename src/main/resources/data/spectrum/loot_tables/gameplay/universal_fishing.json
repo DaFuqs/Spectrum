@@ -6,52 +6,6 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:alternatives",
-          "children": [
-            {
-              "type": "minecraft:loot_table",
-              "name": "spectrum:gameplay/fishing/deeper_down/fishing",
-              "conditions": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "dimension": "spectrum:deeper_down_dimension"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "minecraft:loot_table",
-              "name": "spectrum:gameplay/fishing/end/fishing",
-              "conditions": [
-                {
-                  "condition": "minecraft:location_check",
-                  "predicate": {
-                    "dimension": "minecraft:the_end"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "minecraft:loot_table",
-              "name": "minecraft:gameplay/fishing"
-            }
-          ],
-          "conditions": [
-            {
-              "condition": "minecraft:entity_properties",
-              "entity": "this",
-              "predicate": {
-                "location": {
-                  "fluid": {
-                    "tag": "minecraft:water"
-                  }
-                }
-              }
-            }
-          ]
-        },
-        {
           "type": "minecraft:loot_table",
           "name": "spectrum:gameplay/fishing/lava/fishing",
           "conditions": [
@@ -113,6 +67,69 @@
                 "location": {
                   "fluid": {
                     "tag": "spectrum:midnight_solution"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:loot_table",
+          "name": "spectrum:gameplay/fishing/dragonrot/fishing",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "location": {
+                  "fluid": {
+                    "tag": "spectrum:dragonrot"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:loot_table",
+              "name": "spectrum:gameplay/fishing/deeper_down/fishing",
+              "conditions": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "dimension": "spectrum:deeper_down_dimension"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:loot_table",
+              "name": "spectrum:gameplay/fishing/end/fishing",
+              "conditions": [
+                {
+                  "condition": "minecraft:location_check",
+                  "predicate": {
+                    "dimension": "minecraft:the_end"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:loot_table",
+              "name": "minecraft:gameplay/fishing"
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "location": {
+                  "fluid": {
+                    "tag": "minecraft:water"
                   }
                 }
               }

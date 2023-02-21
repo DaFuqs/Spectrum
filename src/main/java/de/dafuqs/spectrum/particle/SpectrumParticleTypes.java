@@ -27,10 +27,8 @@ public class SpectrumParticleTypes {
     public static DefaultParticleType SHOOTING_STAR; // Dummy entry to get the sprite registered
     public static DefaultParticleType SHIMMERSTONE_SPARKLE;
     public static DefaultParticleType SHIMMERSTONE_SPARKLE_SMALL;
-    public static DefaultParticleType SHIMMERSTONE_SPARKLE_TINY;
-    public static DefaultParticleType VOID_FOG;
-    public static DefaultParticleType MUD_POP;
-    public static DefaultParticleType LIQUID_CRYSTAL_SPARKLE;
+	public static DefaultParticleType SHIMMERSTONE_SPARKLE_TINY;
+	public static DefaultParticleType VOID_FOG;
 	public static DefaultParticleType BLUE_BUBBLE_POP;
 	public static DefaultParticleType GREEN_BUBBLE_POP;
 	public static DefaultParticleType SPIRIT_SALLOW;
@@ -39,28 +37,35 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType JADE_VINES_BLOOM;
 	public static DefaultParticleType MOONSTONE_STRIKE;
 
-	public static DefaultParticleType MUD_SPLASH;
-	public static DefaultParticleType LIQUID_CRYSTAL_SPLASH;
-	public static DefaultParticleType MIDNIGHT_SOLUTION_SPLASH;
-
-
-	public static DefaultParticleType LANDING_MUD;
-	public static DefaultParticleType LANDING_LIQUID_CRYSTAL;
-	public static DefaultParticleType LANDING_MIDNIGHT_SOLUTION;
-	
-	public static DefaultParticleType FALLING_MUD;
-	public static DefaultParticleType FALLING_LIQUID_CRYSTAL;
-	public static DefaultParticleType FALLING_MIDNIGHT_SOLUTION;
-	
-	public static DefaultParticleType DRIPPING_MUD;
-	public static DefaultParticleType DRIPPING_LIQUID_CRYSTAL;
-	public static DefaultParticleType DRIPPING_MIDNIGHT_SOLUTION;
-	
 	public static DefaultParticleType LAVA_FISHING;
+
+	public static DefaultParticleType MUD_SPLASH;
+	public static DefaultParticleType LANDING_MUD;
+	public static DefaultParticleType FALLING_MUD;
+	public static DefaultParticleType DRIPPING_MUD;
 	public static DefaultParticleType MUD_FISHING;
+	public static DefaultParticleType MUD_POP;
+
+	public static DefaultParticleType LIQUID_CRYSTAL_SPLASH;
+	public static DefaultParticleType FALLING_LIQUID_CRYSTAL;
+	public static DefaultParticleType DRIPPING_LIQUID_CRYSTAL;
+	public static DefaultParticleType LANDING_LIQUID_CRYSTAL;
 	public static DefaultParticleType LIQUID_CRYSTAL_FISHING;
+	public static DefaultParticleType LIQUID_CRYSTAL_SPARKLE;
+
+	public static DefaultParticleType MIDNIGHT_SOLUTION_SPLASH;
+	public static DefaultParticleType FALLING_MIDNIGHT_SOLUTION;
+	public static DefaultParticleType DRIPPING_MIDNIGHT_SOLUTION;
+	public static DefaultParticleType LANDING_MIDNIGHT_SOLUTION;
 	public static DefaultParticleType MIDNIGHT_SOLUTION_FISHING;
-	
+
+	public static DefaultParticleType DRAGONROT_SPLASH;
+	public static DefaultParticleType FALLING_DRAGONROT;
+	public static DefaultParticleType DRIPPING_DRAGONROT;
+	public static DefaultParticleType LANDING_DRAGONROT;
+	public static DefaultParticleType DRAGONROT_FISHING;
+	public static DefaultParticleType DRAGONROT;
+
 	public static DefaultParticleType BLACK_FALLING_SPORE_BLOSSOM;
 	public static DefaultParticleType BLUE_FALLING_SPORE_BLOSSOM;
 	public static DefaultParticleType BROWN_FALLING_SPORE_BLOSSOM;
@@ -191,11 +196,11 @@ public class SpectrumParticleTypes {
         SHIMMERSTONE_SPARKLE_SMALL = register("shimmerstone_sparkle_small", false);
         SHIMMERSTONE_SPARKLE_TINY = register("shimmerstone_sparkle_tiny", false);
         VOID_FOG = register("void_fog", false);
-        MUD_POP = register("mud_pop", false);
-        LIQUID_CRYSTAL_SPARKLE = register("liquid_crystal_sparkle", false);
+
         BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
-        GREEN_BUBBLE_POP = register("green_bubble_pop", false);
-        SPIRIT_SALLOW = register("spirit_sallow", false);
+		GREEN_BUBBLE_POP = register("green_bubble_pop", false);
+
+		SPIRIT_SALLOW = register("spirit_sallow", false);
 		DECAY_PLACE = register("decay_place", false);
 		DIVINITY = register("divinity", false);
 		SHOOTING_STAR = register("shooting_star", false);
@@ -203,27 +208,35 @@ public class SpectrumParticleTypes {
 		JADE_VINES_BLOOM = register("jade_vines_bloom", false);
 		MOONSTONE_STRIKE = register("moonstone_strike", false);
 
-		MUD_SPLASH = register("mud_splash", false);
-		LIQUID_CRYSTAL_SPLASH = register("liquid_crystal_splash", false);
-		MIDNIGHT_SOLUTION_SPLASH = register("midnight_solution_splash", false);
-
-		LANDING_MUD = register("landing_mud", false);
-		LANDING_LIQUID_CRYSTAL = register("landing_liquid_crystal", false);
-		LANDING_MIDNIGHT_SOLUTION = register("landing_midnight_solution", false);
-
-		FALLING_MUD = register("falling_mud", false);
-		FALLING_LIQUID_CRYSTAL = register("falling_liquid_crystal", false);
-		FALLING_MIDNIGHT_SOLUTION = register("falling_midnight_solution", false);
-		
-		DRIPPING_MUD = register("dripping_mud", false);
-		DRIPPING_LIQUID_CRYSTAL = register("dripping_liquid_crystal", false);
-		DRIPPING_MIDNIGHT_SOLUTION = register("dripping_midnight_solution", false);
-		
 		LAVA_FISHING = register("lava_fishing", false);
+
+		MUD_SPLASH = register("mud_splash", false);
+		DRIPPING_MUD = register("dripping_mud", false);
+		FALLING_MUD = register("falling_mud", false);
+		LANDING_MUD = register("landing_mud", false);
 		MUD_FISHING = register("mud_fishing", false);
+		MUD_POP = register("mud_pop", false);
+
+		LIQUID_CRYSTAL_SPLASH = register("liquid_crystal_splash", false);
+		DRIPPING_LIQUID_CRYSTAL = register("dripping_liquid_crystal", false);
+		FALLING_LIQUID_CRYSTAL = register("falling_liquid_crystal", false);
+		LANDING_LIQUID_CRYSTAL = register("landing_liquid_crystal", false);
 		LIQUID_CRYSTAL_FISHING = register("liquid_crystal_fishing", false);
+		LIQUID_CRYSTAL_SPARKLE = register("liquid_crystal_sparkle", false);
+
+		MIDNIGHT_SOLUTION_SPLASH = register("midnight_solution_splash", false);
+		DRIPPING_MIDNIGHT_SOLUTION = register("dripping_midnight_solution", false);
+		FALLING_MIDNIGHT_SOLUTION = register("falling_midnight_solution", false);
+		LANDING_MIDNIGHT_SOLUTION = register("landing_midnight_solution", false);
 		MIDNIGHT_SOLUTION_FISHING = register("midnight_solution_fishing", false);
-		
+		DRAGONROT = register("dragonrot", false);
+
+		DRAGONROT_SPLASH = register("dragonrot_splash", false);
+		DRIPPING_DRAGONROT = register("dripping_dragonrot", false);
+		FALLING_DRAGONROT = register("falling_dragonrot", false);
+		LANDING_DRAGONROT = register("landing_dragonrot", false);
+		DRAGONROT_FISHING = register("dragonrot_fishing", false);
+
 		BLACK_FALLING_SPORE_BLOSSOM = register("black_falling_spore_blossom", false);
 		BLUE_FALLING_SPORE_BLOSSOM = register("blue_falling_spore_blossom", false);
 		BROWN_FALLING_SPORE_BLOSSOM = register("brown_falling_spore_blossom", false);

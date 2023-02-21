@@ -1,21 +1,15 @@
 package de.dafuqs.spectrum.particle.client;
 
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumFluids;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.particle.BlockLeakParticle;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleFactory;
-import net.minecraft.client.particle.SpriteProvider;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.particle.*;
+import net.minecraft.client.world.*;
+import net.minecraft.particle.*;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumBlockLeakParticles {
-	
-	
-	@Environment(EnvType.CLIENT)
+
 	public static class LandingMudFactory implements ParticleFactory<DefaultParticleType> {
 		protected final SpriteProvider spriteProvider;
 		
@@ -60,8 +54,7 @@ public class SpectrumBlockLeakParticles {
 			return blockLeakParticle;
 		}
 	}
-	
-	@Environment(EnvType.CLIENT)
+
 	public static class LandingLiquidCrystalFactory implements ParticleFactory<DefaultParticleType> {
 		protected final SpriteProvider spriteProvider;
 		
@@ -106,8 +99,7 @@ public class SpectrumBlockLeakParticles {
 			return blockLeakParticle;
 		}
 	}
-	
-	@Environment(EnvType.CLIENT)
+
 	public static class LandingMidnightSolutionFactory implements ParticleFactory<DefaultParticleType> {
 		protected final SpriteProvider spriteProvider;
 		
@@ -144,7 +136,7 @@ public class SpectrumBlockLeakParticles {
 		public DrippingMidnightSolutionFactory(SpriteProvider spriteProvider) {
 			this.spriteProvider = spriteProvider;
 		}
-		
+
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Dripping(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION, SpectrumParticleTypes.FALLING_MIDNIGHT_SOLUTION);
 			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getX(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getY(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getZ());
@@ -152,5 +144,50 @@ public class SpectrumBlockLeakParticles {
 			return blockLeakParticle;
 		}
 	}
-	
+
+	public static class LandingDragonrotFactory implements ParticleFactory<DefaultParticleType> {
+		protected final SpriteProvider spriteProvider;
+
+		public LandingDragonrotFactory(SpriteProvider spriteProvider) {
+			this.spriteProvider = spriteProvider;
+		}
+
+		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
+			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Landing(clientWorld, d, e, f, SpectrumFluids.DRAGONROT);
+			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR.getX(), SpectrumFluids.DRAGONROT_COLOR.getY(), SpectrumFluids.DRAGONROT_COLOR.getZ());
+			blockLeakParticle.setSprite(this.spriteProvider);
+			return blockLeakParticle;
+		}
+	}
+
+	public static class FallingDragonrotFactory implements ParticleFactory<DefaultParticleType> {
+		protected final SpriteProvider spriteProvider;
+
+		public FallingDragonrotFactory(SpriteProvider spriteProvider) {
+			this.spriteProvider = spriteProvider;
+		}
+
+		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
+			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.ContinuousFalling(clientWorld, d, e, f, SpectrumFluids.DRAGONROT, SpectrumParticleTypes.LANDING_DRAGONROT);
+			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR.getX(), SpectrumFluids.DRAGONROT_COLOR.getY(), SpectrumFluids.DRAGONROT_COLOR.getZ());
+			blockLeakParticle.setSprite(this.spriteProvider);
+			return blockLeakParticle;
+		}
+	}
+
+	public static class DrippingDragonrotFactory implements ParticleFactory<DefaultParticleType> {
+		protected final SpriteProvider spriteProvider;
+
+		public DrippingDragonrotFactory(SpriteProvider spriteProvider) {
+			this.spriteProvider = spriteProvider;
+		}
+
+		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
+			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Dripping(clientWorld, d, e, f, SpectrumFluids.DRAGONROT, SpectrumParticleTypes.FALLING_DRAGONROT);
+			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR.getX(), SpectrumFluids.DRAGONROT_COLOR.getY(), SpectrumFluids.DRAGONROT_COLOR.getZ());
+			blockLeakParticle.setSprite(this.spriteProvider);
+			return blockLeakParticle;
+		}
+	}
+
 }

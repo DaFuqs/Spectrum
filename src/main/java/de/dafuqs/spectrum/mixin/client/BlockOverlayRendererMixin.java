@@ -1,41 +1,33 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumFluidTags;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.hud.InGameOverlayRenderer;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.hud.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Matrix4f;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import net.minecraft.client.util.math.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Environment(EnvType.CLIENT)
 @Mixin(InGameOverlayRenderer.class)
 public abstract class BlockOverlayRendererMixin {
-	
-	// Since the hack in SpectrumFluid to allow swimming, sounds, particles for fluids
-	// this does now work because "isSubmergedIn()" only matches for water
-	private static final Identifier TEXTURE_IN_LIQUID_CRYSTAL = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
-	private static final Identifier TEXTURE_IN_MUD = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/mud_overlay.png");
-	private static final Identifier TEXTURE_IN_MIDNIGHT_SOLUTION = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/midnight_solution_overlay.png");
-	
+
 	@Inject(method = "renderOverlays(Lnet/minecraft/client/MinecraftClient;Lnet/minecraft/client/util/math/MatrixStack;)V", at = @At("TAIL"), locals = LocalCapture.CAPTURE_FAILSOFT)
-	private static void blockOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci) {
+	private static void spectrum$renderFluidOverlay(MinecraftClient minecraftClient, MatrixStack matrixStack, CallbackInfo ci) {
 		if (!minecraftClient.player.isSpectator()) {
 			if (minecraftClient.player.isSubmergedIn(SpectrumFluidTags.LIQUID_CRYSTAL)) {
-				renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_LIQUID_CRYSTAL, 0.6F);
+				renderOverlay(minecraftClient, matrixStack, SpectrumFluids.LIQUID_CRYSTAL_OVERLAY_TEXTURE, SpectrumFluids.LIQUID_CRYSTAL_OVERLAY_ALPHA);
 			} else if (minecraftClient.player.isSubmergedIn(SpectrumFluidTags.MUD)) {
-				renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_MUD, 0.995F);
+				renderOverlay(minecraftClient, matrixStack, SpectrumFluids.MUD_OVERLAY_TEXTURE, SpectrumFluids.MUD_OVERLAY_ALPHA);
 			} else if (minecraftClient.player.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
-				renderOverlay(minecraftClient, matrixStack, TEXTURE_IN_MIDNIGHT_SOLUTION, 0.995F);
+				renderOverlay(minecraftClient, matrixStack, SpectrumFluids.MIDNIGHT_SOLUTION_OVERLAY_TEXTURE, SpectrumFluids.MIDNIGHT_SOLUTION_OVERLAY_ALPHA);
+			} else if (minecraftClient.player.isSubmergedIn(SpectrumFluidTags.DRAGONROT)) {
+				renderOverlay(minecraftClient, matrixStack, SpectrumFluids.DRAGONROT_OVERLAY_TEXTURE, SpectrumFluids.DRAGONROT_OVERLAY_ALPHA);
 			}
 		}
 	}

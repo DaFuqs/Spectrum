@@ -72,6 +72,7 @@ import net.minecraft.util.math.intprovider.*;
 import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
+import net.minecraft.world.gen.feature.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -81,7 +82,7 @@ import static de.dafuqs.spectrum.SpectrumCommon.*;
 import static de.dafuqs.spectrum.registries.SpectrumItems.*;
 
 public class SpectrumBlocks {
-	
+
 	// PEDESTALS
 	private static final FabricBlockSettings PEDESTAL_SETTINGS = FabricBlockSettings.of(Material.STONE).sounds(BlockSoundGroup.AMETHYST_BLOCK).strength(5.0F, 20.0F).solidBlock(SpectrumBlocks::never).blockVision(SpectrumBlocks::never).nonOpaque();
 	public static final Block PEDESTAL_BASIC_TOPAZ = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.BASIC_TOPAZ);
@@ -90,7 +91,7 @@ public class SpectrumBlocks {
 	public static final Block PEDESTAL_ALL_BASIC = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.CMY);
 	public static final Block PEDESTAL_ONYX = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.ONYX);
 	public static final Block PEDESTAL_MOONSTONE = new PedestalBlock(PEDESTAL_SETTINGS, BuiltinPedestalVariant.MOONSTONE);
-	
+
 	private static final FabricBlockSettings FUSION_SHINE_BLOCK_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(5.0F, 20.0F).requiresTool().nonOpaque().luminance(value -> value.get(FusionShrineBlock.LIGHT_LEVEL));
 	public static final Block FUSION_SHRINE_BASALT = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
 	public static final Block FUSION_SHRINE_CALCITE = new FusionShrineBlock(FUSION_SHINE_BLOCK_SETTINGS);
@@ -303,7 +304,7 @@ public class SpectrumBlocks {
 	public static final Block BOTTOMLESS_BUNDLE = new BottomlessBundleBlock(FabricBlockSettings.of(Material.WOOL, MapColor.PALE_PURPLE).hardness(1.0F).nonOpaque());
 	public static final Block WAND_LIGHT_BLOCK = new WandLightBlock(FabricBlockSettings.copyOf(Blocks.LIGHT).sounds(SpectrumBlockSoundGroups.WAND_LIGHT).breakInstantly());
 	public static final Block DECAYING_LIGHT_BLOCK = new DecayingLightBlock(FabricBlockSettings.copyOf(WAND_LIGHT_BLOCK).ticksRandomly());
-	
+
 	// DECAY
 	public static final Block FADING = new FadingBlock(FabricBlockSettings.of(SpectrumBlockMaterials.DECAY, MapColor.BLACK).ticksRandomly().strength(0.5F, 0.5F).allowsSpawning((state, world, pos, type) -> false), SpectrumBlockTags.FADING_CONVERSIONS, null, 1, 1F);
 	public static final Block FAILING = new FailingBlock(FabricBlockSettings.copyOf(FADING).strength(20.0F, 50.0F), null, SpectrumBlockTags.FAILING_SAFE, 2, 2.5F);
@@ -311,13 +312,16 @@ public class SpectrumBlocks {
 	public static final Block FORFEITURE = new ForfeitureBlock(FabricBlockSettings.copyOf(FADING).strength(100.0F, 3600000.0F), null, SpectrumBlockTags.FORFEITURE_SAFE, 4, 7.5F);
 	public static final Block DECAY_AWAY = new DecayAwayBlock(FabricBlockSettings.copyOf(Blocks.DIRT));
 
+
+	private static AbstractBlock.Settings fluid(Material material) {
+		return AbstractBlock.Settings.of(material).noCollision().strength(100.0F).dropsNothing();
+	}
+
 	// FLUIDS
-	public static final Material LIQUID_CRYSTAL_MATERIAL = (new FabricMaterialBuilder(MapColor.LIGHT_GRAY)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().build();
-	public static final Material MUD_MATERIAL = (new FabricMaterialBuilder(MapColor.TERRACOTTA_BROWN)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().build();
-	public static final Material MIDNIGHT_SOLUTION_MATERIAL = (new FabricMaterialBuilder(MapColor.DARK_AQUA)).allowsMovement().lightPassesThrough().notSolid().destroyedByPiston().replaceable().liquid().build();
-	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, AbstractBlock.Settings.of(LIQUID_CRYSTAL_MATERIAL).noCollision().strength(100.0F).dropsNothing().luminance((state) -> 8));
-	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, AbstractBlock.Settings.of(MUD_MATERIAL).noCollision().strength(100.0F).dropsNothing());
-	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, AbstractBlock.Settings.of(MIDNIGHT_SOLUTION_MATERIAL).noCollision().strength(100.0F).dropsNothing());
+	public static final Block LIQUID_CRYSTAL = new LiquidCrystalFluidBlock(SpectrumFluids.LIQUID_CRYSTAL, fluid(SpectrumBlockMaterials.LIQUID_CRYSTAL).luminance((state) -> 8));
+	public static final Block MUD = new MudFluidBlock(SpectrumFluids.MUD, fluid(SpectrumBlockMaterials.MUD));
+	public static final Block MIDNIGHT_SOLUTION = new MidnightSolutionFluidBlock(SpectrumFluids.MIDNIGHT_SOLUTION, fluid(SpectrumBlockMaterials.MIDNIGHT_SOLUTION));
+	public static final Block DRAGONROT = new DragonrotFluidBlock(SpectrumFluids.DRAGONROT, fluid(SpectrumBlockMaterials.DRAGONROT));
 
 	// ROCK CANDY
 	public static final Block SUGAR_STICK = new SugarStickBlock(FabricBlockSettings.copyOf(Blocks.SMALL_AMETHYST_BUD).hardness(0.5F).luminance((state) -> 8 + state.get(Properties.AGE_2) * 3).ticksRandomly(), RockCandy.RockCandyVariant.SUGAR);
@@ -333,7 +337,6 @@ public class SpectrumBlocks {
 	public static final Block STORAGE_NODE = new PastelNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.TOPAZ_CLUSTER), PastelNodeType.STORAGE);
 	public static final Block SENDER_NODE = new PastelNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.CITRINE_CLUSTER), PastelNodeType.SENDER);
 	public static final Block GATHER_NODE = new PastelNodeBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.ONYX_CLUSTER), PastelNodeType.GATHER);
-	//public static final Block INTERACTION_NODE = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(5.0F).nonOpaque().requiresTool().sounds(SpectrumBlockSoundGroups.MOONSTONE_CLUSTER));
 
 	// ENERGY
 	public static final Block COLOR_PICKER = new ColorPickerBlock(FabricBlockSettings.of(Material.STONE).hardness(3.0F).nonOpaque());
@@ -459,24 +462,24 @@ public class SpectrumBlocks {
 		return FabricBlockSettings.copyOf(Blocks.CRIMSON_STEM).mapColor(color).strength(4.0F);
 	}
 
-	public static final ToIntFunction<BlockState> litProvider = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
+	public static AbstractBlock.Settings fungus(MapColor color) {
+		return AbstractBlock.Settings.of(Material.PLANT, color).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS);
+	}
+
+	private static RegistryEntry<ConfiguredFeature<?, ?>> getConfiguredFeatureRegistryEntry(String chestnut_noxfungus) {
+		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate(chestnut_noxfungus)));
+	}
+
+	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
 
 	//DD FLORA
 	public static final Block SAWBLADE_GRASS = new GrassBlock(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK));
 	public static final Block ROTTEN_GROUND = new Block(AbstractBlock.Settings.copy(Blocks.PACKED_MUD));
 	public static final Block SHIMMEL = new MyceliumBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
-	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.GRAY).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
-		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate("slate_noxfungus")));
-	});
-	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.TERRACOTTA_BLACK).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
-		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate("ebony_noxfungus")));
-	});
-	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.OFF_WHITE).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
-		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate("ivory_noxfungus")));
-	});
-	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.DULL_RED).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS), () -> {
-		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate("chestnut_noxfungus")));
-	});
+	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), () -> getConfiguredFeatureRegistryEntry("slate_noxfungus"));
+	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), () -> getConfiguredFeatureRegistryEntry("ebony_noxfungus"));
+	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), () -> getConfiguredFeatureRegistryEntry("ivory_noxfungus"));
+	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.DULL_RED), () -> getConfiguredFeatureRegistryEntry("chestnut_noxfungus"));
 
 	public static final PillarBlock SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final PillarBlock STRIPPED_SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));
@@ -493,7 +496,7 @@ public class SpectrumBlocks {
 	public static final Block SLATE_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.GRAY));
-	public static final Block SLATE_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.GRAY).luminance(litProvider));
+	public static final Block SLATE_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.GRAY).luminance(LIT_PROVIDER));
 	public static final Block SLATE_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.GRAY).luminance(15));
 	public static final Block SLATE_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.GRAY).luminance(13));
 	
@@ -512,7 +515,7 @@ public class SpectrumBlocks {
 	public static final Block EBONY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final Block EBONY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(litProvider));
+	public static final Block EBONY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(LIT_PROVIDER));
 	public static final Block EBONY_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(15));
 	public static final Block EBONY_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(13));
 	
@@ -531,7 +534,7 @@ public class SpectrumBlocks {
 	public static final Block IVORY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.OFF_WHITE));
-	public static final Block IVORY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.OFF_WHITE).luminance(litProvider));
+	public static final Block IVORY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.OFF_WHITE).luminance(LIT_PROVIDER));
 	public static final Block IVORY_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.OFF_WHITE).luminance(15));
 	public static final Block IVORY_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.OFF_WHITE).luminance(13));
 	
@@ -550,17 +553,34 @@ public class SpectrumBlocks {
 	public static final Block CHESTNUT_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.DULL_RED));
-	public static final Block CHESTNUT_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.DULL_RED).luminance(litProvider));
+	public static final Block CHESTNUT_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.DULL_RED).luminance(LIT_PROVIDER));
 	public static final Block CHESTNUT_NOXWOOD_LIGHT = new PillarBlock(noxcap(MapColor.DULL_RED).luminance(15));
 	public static final Block CHESTNUT_NOXWOOD_LAMP = new FlexLanternBlock(noxcap(MapColor.DULL_RED).luminance(13));
-	
+
+
+	public static AbstractBlock.Settings dragonjag(MapColor color) {
+		return AbstractBlock.Settings.of(Material.PLANT, color).hardness(1.0F).sounds(BlockSoundGroup.GRASS);
+	}
+
+	public static final Block SMALL_RED_DRAGONJAG = new SmallDragonjagBlock(dragonjag(MapColor.DARK_RED), Dragonjag.Variant.RED);
+	public static final Block SMALL_GREEN_DRAGONJAG = new SmallDragonjagBlock(dragonjag(MapColor.PALE_GREEN), Dragonjag.Variant.GREEN);
+	public static final Block SMALL_PINK_DRAGONJAG = new SmallDragonjagBlock(dragonjag(MapColor.DARK_DULL_PINK), Dragonjag.Variant.PINK);
+	public static final Block SMALL_PURPLE_DRAGONJAG = new SmallDragonjagBlock(dragonjag(MapColor.PURPLE), Dragonjag.Variant.PURPLE);
+	public static final Block SMALL_BLACK_DRAGONJAG = new SmallDragonjagBlock(dragonjag(MapColor.TERRACOTTA_BLACK), Dragonjag.Variant.BLACK);
+
+	public static final Block TALL_RED_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.DARK_RED), Dragonjag.Variant.RED);
+	public static final Block TALL_GREEN_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.PALE_GREEN), Dragonjag.Variant.GREEN);
+	public static final Block TALL_PINK_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.DARK_DULL_PINK), Dragonjag.Variant.PINK);
+	public static final Block TALL_PURPLE_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.PURPLE), Dragonjag.Variant.PURPLE);
+	public static final Block TALL_BLACK_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.TERRACOTTA_BLACK), Dragonjag.Variant.BLACK);
+
 	// JADE VINES
 	public static final Block JADE_VINE_ROOTS = new JadeVineRootsBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL).ticksRandomly().luminance((state) -> state.get(JadeVineRootsBlock.DEAD) ? 0 : 4).nonOpaque());
 	public static final Block JADE_VINE_BULB = new JadeVineBulbBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).luminance((state) -> state.get(JadeVineBulbBlock.DEAD) ? 0 : 5).nonOpaque());
 	public static final Block JADE_VINES = new JadeVinePlantBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).luminance((state) -> state.get(JadeVinePlantBlock.AGE) == 0 ? 0 : 5).nonOpaque());
 	public static final Block JADE_VINE_PETAL_BLOCK = new JadeVinePetalBlock(FabricBlockSettings.of(Material.LEAVES, MapColor.PALE_GREEN).strength(0.1F).nonOpaque().sounds(BlockSoundGroup.WOOL).luminance(3));
 	public static final Block JADE_VINE_PETAL_CARPET = new CarpetBlock(FabricBlockSettings.of(Material.CARPET, MapColor.PALE_GREEN).strength(0.1F).nonOpaque().sounds(BlockSoundGroup.WOOL).luminance(3));
-	
+
 	// ORES
 	public static final Block SHIMMERSTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.STONE.getDefaultState());
 	public static final Block DEEPSLATE_SHIMMERSTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.DEEPSLATE.getDefaultState());
@@ -1134,12 +1154,13 @@ public class SpectrumBlocks {
 		registerBlock("ruin", RUIN);
 		registerBlock("forfeiture", FORFEITURE);
 		registerBlock("decay_away", DECAY_AWAY);
-		
+
 		// Fluids + Products
 		registerBlock("mud", MUD);
 		registerBlock("liquid_crystal", LIQUID_CRYSTAL);
 		registerBlock("midnight_solution", MIDNIGHT_SOLUTION);
-		
+		registerBlock("dragonrot", DRAGONROT);
+
 		registerBlockWithItem("black_materia", BLACK_MATERIA, Tab.GENERAL.settings(), DyeColor.GRAY);
 		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, Tab.GENERAL.settings(), DyeColor.LIGHT_BLUE);
 		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, Tab.GENERAL.settings(), DyeColor.ORANGE);
@@ -1262,6 +1283,17 @@ public class SpectrumBlocks {
 		registerBlockWithItem("chestnut_noxwood_lantern", CHESTNUT_NOXWOOD_LANTERN, settings, DyeColor.LIME);
 		registerBlockWithItem("chestnut_noxwood_light", CHESTNUT_NOXWOOD_LIGHT, settings, DyeColor.LIME);
 		registerBlockWithItem("chestnut_noxwood_lamp", CHESTNUT_NOXWOOD_LAMP, settings, DyeColor.LIME);
+
+		registerBlockWithItem("small_red_dragonjag", SMALL_RED_DRAGONJAG, settings, DyeColor.LIME);
+		registerBlockWithItem("small_green_dragonjag", SMALL_GREEN_DRAGONJAG, settings, DyeColor.LIME);
+		registerBlockWithItem("small_pink_dragonjag", SMALL_PINK_DRAGONJAG, settings, DyeColor.LIME);
+		registerBlockWithItem("small_purple_dragonjag", SMALL_PURPLE_DRAGONJAG, settings, DyeColor.LIME);
+		registerBlockWithItem("small_black_dragonjag", SMALL_BLACK_DRAGONJAG, settings, DyeColor.LIME);
+		registerBlock("tall_red_dragonjag", TALL_RED_DRAGONJAG);
+		registerBlock("tall_green_dragonjag", TALL_GREEN_DRAGONJAG);
+		registerBlock("tall_pink_dragonjag", TALL_PINK_DRAGONJAG);
+		registerBlock("tall_purple_dragonjag", TALL_PURPLE_DRAGONJAG);
+		registerBlock("tall_black_dragonjag", TALL_BLACK_DRAGONJAG);
 	}
 	
 	private static void registerCrystallarieumGrowingBlocks(FabricItemSettings settings) {
@@ -2393,10 +2425,27 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GLOBETTE_NETHER_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_GLOBETTE_NETHER_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.GLOBETTE_NETHER_CLUSTER, RenderLayer.getCutout());
-		
+
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_MALACHITE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.LARGE_MALACHITE_BUD, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.MALACHITE_CLUSTER, RenderLayer.getCutout());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_GREEN_DRAGONJAG, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_RED_DRAGONJAG, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_PINK_DRAGONJAG, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_PURPLE_DRAGONJAG, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SMALL_BLACK_DRAGONJAG, RenderLayer.getCutout());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TALL_GREEN_DRAGONJAG, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TALL_RED_DRAGONJAG, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TALL_PINK_DRAGONJAG, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TALL_PURPLE_DRAGONJAG, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TALL_BLACK_DRAGONJAG, RenderLayer.getCutout());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SLATE_NOXSHROOM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.IVORY_NOXSHROOM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.EBONY_NOXSHROOM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.CHESTNUT_NOXSHROOM, RenderLayer.getCutout());
 	}
 	
 }

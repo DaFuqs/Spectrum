@@ -42,16 +42,15 @@
     [],
     [],
     [
-      "minecraft:basalt_pillar",
+      "spectrum:dd_andesite_pillar",
       "minecraft:large_dripstone",
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode"
     ],
     [],
     [
-      "minecraft:delta",
-      "minecraft:small_basalt_columns",
-      "minecraft:large_basalt_columns"
+      "spectrum:dd_sawblade_delta",
+      "spectrum:dd_small_andesite_columns"
     ],
     [],
     [
@@ -71,10 +70,7 @@
       "spectrum:dd_stone"
     ],
     [
-      "minecraft:dripstone_cluster",
-      "minecraft:pointed_dripstone",
-      "minecraft:basalt_blobs",
-      "minecraft:blackstone_blobs"
+      "minecraft:pointed_dripstone"
     ],
     [
       "spectrum:dd_water_springs",

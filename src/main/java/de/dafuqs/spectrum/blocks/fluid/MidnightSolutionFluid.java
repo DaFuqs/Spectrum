@@ -44,7 +44,8 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 	
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
-		if (random.nextInt(1000) == 0) {
+		BlockPos topPos = pos.up();
+		if (world.getBlockState(topPos).isAir() && !world.getBlockState(topPos).isOpaqueFullCube(world, topPos) && random.nextInt(2000) == 0) {
 			world.playSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.MIDNIGHT_SOLUTION_AMBIENT, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
 		}
 	}

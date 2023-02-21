@@ -32,6 +32,10 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
         return SHAPE;
     }
 
+    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+        return Dragonjag.canPlantOnTop(floor, world, pos);
+    }
+
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HALF, DEAD);
     }

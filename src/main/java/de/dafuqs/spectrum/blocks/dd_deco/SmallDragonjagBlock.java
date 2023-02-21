@@ -26,6 +26,10 @@ public class SmallDragonjagBlock extends PlantBlock implements Dragonjag, Fertil
         return SHAPE;
     }
 
+    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+        return Dragonjag.canPlantOnTop(floor, world, pos);
+    }
+
     @Override
     public Variant getVariant() {
         return variant;

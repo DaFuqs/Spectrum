@@ -307,6 +307,36 @@
         "if_true": {
           "type": "minecraft:biome",
           "biome_is": [
+            "spectrum:razor_edge"
+          ]
+        },
+        "then_run": {
+          "type": "minecraft:sequence",
+          "sequence": [
+            {
+              "type": "minecraft:condition",
+              "if_true": {
+                "type": "minecraft:stone_depth",
+                "offset": 0,
+                "surface_type": "ceiling",
+                "add_surface_depth": false,
+                "secondary_depth_range": 0
+              },
+              "then_run": {
+                "type": "minecraft:block",
+                "result_state": {
+                  "Name": "spectrum:sawblade_grass"
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "minecraft:condition",
+        "if_true": {
+          "type": "minecraft:biome",
+          "biome_is": [
             "spectrum:forlorm_caves"
           ]
         },
@@ -325,14 +355,14 @@
               "then_run": {
                 "type": "minecraft:block",
                 "result_state": {
-                  "Name": "spectrum:black_materia"
+                  "Name": "spectrum:rotten_ground"
                 }
               }
             },
             {
               "type": "minecraft:block",
               "result_state": {
-                "Name": "spectrum:blackslag"
+                "Name": "spectrum:black_materia"
               }
             }
           ]

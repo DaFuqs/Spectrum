@@ -78,6 +78,7 @@
     "client.HeadFeatureRendererMixin",
     "client.ItemFrameEntityRendererMixin",
     "client.ItemRendererMixin",
+    "client.LightmapTextureManagerMixin",
     "client.MinecraftClientMixin",
     "client.PotionItemClientMixin",
     "client.TranslationStorageMixin",

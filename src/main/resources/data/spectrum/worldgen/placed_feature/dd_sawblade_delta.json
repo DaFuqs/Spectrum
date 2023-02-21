@@ -1,0 +1,12 @@
+{
+  "feature": "spectrum:dd_sawblade_delta",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 40
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

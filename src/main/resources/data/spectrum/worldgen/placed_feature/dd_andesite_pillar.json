@@ -1,9 +1,9 @@
 {
-  "feature": "spectrum:moonstone_geode",
+  "feature": "spectrum:dd_andesite_pillar",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 20
+      "type": "minecraft:count",
+      "count": 10
     },
     {
       "type": "minecraft:in_square"
@@ -13,10 +13,10 @@
       "height": {
         "type": "minecraft:uniform",
         "min_inclusive": {
-          "above_bottom": 16
+          "above_bottom": 0
         },
         "max_inclusive": {
-          "above_bottom": 96
+          "below_top": 0
         }
       }
     },

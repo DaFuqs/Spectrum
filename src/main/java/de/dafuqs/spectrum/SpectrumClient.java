@@ -26,7 +26,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
-import net.minecraft.client.network.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
@@ -44,12 +43,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 	@Environment(EnvType.CLIENT)
 	public static final SkyLerper skyLerper = new SkyLerper();
-
 	public static boolean foodEffectsTooltipsModLoaded = FabricLoader.getInstance().isModLoaded("foodeffecttooltips");
-
-
 	public static boolean FORCE_TRANSLUCENT = false;
-
 
 	@Override
 	public void onInitializeClient() {
@@ -96,11 +91,8 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
 			SpectrumColorProviders.registerClient();
 		});
-		ClientPlayConnectionEvents.DISCONNECT.register(new ClientPlayConnectionEvents.Disconnect() {
-			@Override
-			public void onPlayDisconnect(ClientPlayNetworkHandler handler, MinecraftClient client) {
-				Pastel.clearClientInstance();
-			}
+		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> {
+			Pastel.clearClientInstance();
 		});
 
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {

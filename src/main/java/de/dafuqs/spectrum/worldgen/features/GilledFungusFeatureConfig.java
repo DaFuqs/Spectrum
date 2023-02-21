@@ -18,6 +18,7 @@ public class GilledFungusFeatureConfig implements FeatureConfig {
             return config.stemState;
         })).apply(instance, GilledFungusFeatureConfig::new);
     });
+
     public final BlockState validBaseBlock;
     public final BlockState capState;
     public final BlockState gillsState;

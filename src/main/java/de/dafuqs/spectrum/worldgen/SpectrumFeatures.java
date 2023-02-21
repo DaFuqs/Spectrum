@@ -13,6 +13,8 @@ public class SpectrumFeatures {
 	public static Feature<RandomBudsFeaturesConfig> RANDOM_BUDS;
 	public static Feature<OreFeatureConfig> AIR_CHECK_DISK;
 	public static Feature<GilledFungusFeatureConfig> GILLED_FUNGUS;
+	public static Feature<BlockStateFeatureConfig> PILLAR;
+	public static Feature<ColumnsFeatureConfig> COLUMNS;
 
 	public static void register() {
 		WEIGHTED_RANDOM_FEATURE = registerFeature("weighted_random_feature", new WeightedRandomFeature(WeightedRandomFeatureConfig.CODEC));
@@ -21,6 +23,8 @@ public class SpectrumFeatures {
 		RANDOM_BUDS = registerFeature("random_buds", new RandomBudsFeature(RandomBudsFeaturesConfig.CODEC));
 		AIR_CHECK_DISK = registerFeature("air_check_disk", new AirCheckDiskFeature(OreFeatureConfig.CODEC));
 		GILLED_FUNGUS = registerFeature("gilled_fungus", new GilledFungusFeature(GilledFungusFeatureConfig.CODEC));
+		PILLAR = registerFeature("pillar", new PillarFeature(BlockStateFeatureConfig.CODEC));
+		COLUMNS = registerFeature("columns", new ColumnsFeature(ColumnsFeatureConfig.CODEC));
 	}
 	
 }

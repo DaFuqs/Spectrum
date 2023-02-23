@@ -3,6 +3,7 @@
   "time": 1200,
   "experience": 16.0,
   "fluid": "spectrum:midnight_solution",
+  "copy_nbt": true,
   "ingredients": [
     {
       "item": "minecraft:golden_boots"

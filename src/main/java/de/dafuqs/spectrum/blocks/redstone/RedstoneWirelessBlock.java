@@ -1,49 +1,35 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.AbstractRedstoneGateBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.event.listener.GameEventListener;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.listener.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider, ColorableBlock {
 
-public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements BlockEntityProvider {
-	
 	public static final BooleanProperty SENDER = BooleanProperty.of("sender");
 	public static final EnumProperty<DyeColor> CHANNEL = EnumProperty.of("channel", DyeColor.class);
-	
+
 	public RedstoneWirelessBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(SENDER, true).with(CHANNEL, DyeColor.RED));
 	}
-	
+
 	@Nullable
 	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
 		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
@@ -65,17 +51,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
 		} else {
-			ItemStack handStack = player.getStackInHand(hand);
-			Optional<DyeColor> itemInHandColor = ColorHelper.getDyeColorOfItemStack(handStack);
-			if (itemInHandColor.isPresent()) {
-				DyeColor currentChannel = state.get(CHANNEL);
-				if (itemInHandColor.get() != currentChannel) {
-					world.setBlockState(pos, world.getBlockState(pos).with(CHANNEL, itemInHandColor.get()));
-					if (!player.isCreative()) {
-						handStack.decrement(1);
-					}
-				}
-			} else {
+			if (!tryColorUsingStackInHand(world, pos, player, hand)) {
 				toggleSendingMode(world, pos, state);
 			}
 			return ActionResult.CONSUME;
@@ -152,7 +128,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(POWERED)) {
@@ -162,5 +138,20 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 			world.addParticle(DustParticleEffect.DEFAULT, x, y, z, 0.0D, 0.0D, 0.0D);
 		}
 	}
-	
+
+	@Override
+	public boolean color(World world, BlockPos pos, DyeColor color) {
+		BlockState currentState = world.getBlockState(pos);
+		if (getColor(currentState) == color) {
+			return false;
+		}
+		world.setBlockState(pos, currentState.with(CHANNEL, color));
+		return true;
+	}
+
+	@Override
+	public DyeColor getColor(BlockState state) {
+		return state.get(CHANNEL);
+	}
+
 }

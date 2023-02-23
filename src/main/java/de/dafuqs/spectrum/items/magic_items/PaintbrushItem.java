@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -102,15 +103,39 @@ public class PaintbrushItem extends Item {
 		}
 		return Optional.empty();
 	}
-	
+
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
-		if (canColor(context.getPlayer()) && cursedColor(context)) {
+		if (canColor(context.getPlayer()) && tryColorBlock(context)) {
 			return ActionResult.success(context.getWorld().isClient);
 		}
 		return super.useOnBlock(context);
 	}
-	
+
+	private boolean tryColorBlock(ItemUsageContext context) {
+		Optional<InkColor> inkColor = getColor(context.getStack());
+		if (inkColor.isEmpty()) {
+			return false;
+		}
+		DyeColor dyeColor = inkColor.get().getDyeColor();
+
+		World world = context.getWorld();
+		BlockPos pos = context.getBlockPos();
+		BlockState state = world.getBlockState(pos);
+		if (state.getBlock() instanceof ColorableBlock colorableBlock) {
+			if (!colorableBlock.isColor(state, dyeColor)) {
+				if (payBlockColorCost(context.getPlayer(), inkColor.get()) && colorableBlock.color(world, pos, dyeColor)) {
+					context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_PAINT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				} else {
+					context.getWorld().playSound(null, context.getBlockPos(), SpectrumSoundEvents.USE_FAIL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				}
+			}
+			return false;
+		}
+
+		return cursedColor(context);
+	}
+
 	private boolean cursedColor(ItemUsageContext context) {
 		if (context.getPlayer() == null) {
 			return false;
@@ -144,6 +169,9 @@ public class PaintbrushItem extends Item {
 	}
 	
 	private boolean payBlockColorCost(PlayerEntity player, InkColor inkColor) {
+		if (player == null) {
+			return false;
+		}
 		return player.isCreative()
 				|| InkPowered.tryDrainEnergy(player, inkColor, BLOCK_COLOR_COST)
 				|| InventoryHelper.removeFromInventoryWithRemainders(player, PigmentItem.byColor(inkColor.getDyeColor()).getDefaultStack());

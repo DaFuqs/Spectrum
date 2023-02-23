@@ -1,40 +1,30 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.helpers.BlockVariantHelper;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.ProtectionEnchantment;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.TntEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.packet.s2c.play.GameStateChangeS2CPacket;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.explosion.Explosion;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.data.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import net.minecraft.world.explosion.*;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class InkProjectileEntity extends MagicProjectileEntity {
 
@@ -196,6 +186,10 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			DyeColor dyeColor = DyeColor.byId(colorOrdinal);
 			
 			for (BlockPos blockPos : BlockPos.iterateOutwards(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
+				if (world.getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
+					colorableBlock.color(world, blockPos, dyeColor);
+					continue;
+				}
 				BlockState coloredBlockState = BlockVariantHelper.getCursedBlockColorVariant(this.world, blockPos, dyeColor);
 				if (!coloredBlockState.isAir()) {
 					this.world.setBlockState(blockPos, coloredBlockState);

@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.status_effects.AscensionStatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.FoodComponent;
+import de.dafuqs.spectrum.status_effects.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
 
 public class SpectrumFoodComponents {
 	
@@ -227,10 +226,32 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 1200), 0.2F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 1200), 0.2F)
 			.build();
-	
+
 	public static final FoodComponent DEMON_TRIFLE = new FoodComponent.Builder()
 			.hunger(10).saturationModifier(0.2F)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 1200), 2.0F / 3.0F)
 			.build();
-	
+
+	public static final FoodComponent MYCEYLON_APPLE_JUICE = new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build();
+
+	public static final FoodComponent MYCEYLON_APPLE_PIE = new FoodComponent.Builder().hunger(10).saturationModifier(0.3F).build();
+
+	public static final FoodComponent MYCEYLON_PUMPKIN_PIE = new FoodComponent.Builder().hunger(10).saturationModifier(0.3F).build();
+
+	public static final FoodComponent MYCEYLON_COOKIE = new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build();
+
+	public static final FoodComponent ALOE_LEAF = new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build();
+
+	public static final FoodComponent PRICKLY_BAYLEAF = new FoodComponent.Builder().hunger(1).saturationModifier(0.3F)
+			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 0, 0), 0.6F)
+			.build();
+
+	public static final FoodComponent SPIKED_POTATOES = new FoodComponent.Builder().hunger(8).saturationModifier(0.8F).build();
+
+	public static final FoodComponent TRIPLE_MEAT_POT_STEW = new FoodComponent.Builder()
+			.hunger(20).saturationModifier(1.2F).meat()
+			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100), 1.0f)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 12000, 1), 1.0f)
+			.build();
+
 }

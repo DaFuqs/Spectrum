@@ -1,29 +1,34 @@
 {
   "type": "spectrum:titration_barrel",
   "group": "infused_beverages",
+  "fermentation_time_days": 2,
   "ingredients": [
     {
-      "item": "minecraft:grass",
+      "item": "minecraft:sweet_berries",
       "count": 6
     },
     {
-      "item": "minecraft:fern",
-      "count": 2
+      "item": "spectrum:myceylon",
+      "count": 4
+    },
+    {
+      "item": "spectrum:prickly_bayleaf",
+      "count": 4
     },
     {
       "item": "minecraft:sugar",
       "count": 4
     }
   ],
-  "min_fermentation_time_hours": 24,
+  "min_fermentation_time_hours": 48,
   "fluid": "minecraft:water",
   "tapping_item": "minecraft:glass_bottle",
   "fermentation_data": {
     "fermentation_speed_mod": 0.25,
     "effects": [
       {
-        "id": "minecraft:regeneration",
-        "base_duration": 800,
+        "id": "minecraft:speed",
+        "base_duration": 9600,
         "potency": [
           {
             "potency": 0
@@ -39,31 +44,20 @@
         ]
       },
       {
-        "id": "minecraft:speed",
-        "base_duration": 9600,
+        "id": "spectrum:immunity",
+        "base_duration": 2400,
         "potency": [
           {
-            "min_alc": 25,
-            "min_thickness": 1.5
-          },
-          {
-            "min_alc": 25,
-            "min_thickness": 2.0,
-            "potency": 1
-          },
-          {
-            "min_alc": 25,
-            "min_thickness": 2.5,
-            "potency": 2
+            "min_alc": 22
           }
         ]
       },
       {
-        "id": "minecraft:luck",
-        "base_duration": 9600,
+        "id": "minecraft:resistance",
+        "base_duration": 2400,
         "potency": [
           {
-            "min_alc": 28
+            "min_alc": 25
           }
         ]
       },
@@ -101,7 +95,7 @@
   "result": {
     "item": "spectrum:infused_beverage",
     "count": 4,
-    "nbt": "{Variant: \"artemisa\", Color: 8055418 }"
+    "nbt": "{Variant: \"spiked_mullet_wine\", Color: 10365209 }"
   },
-  "required_advancement": "spectrum:milestones/confirmed_drinking_age"
+  "required_advancement": "spectrum:progression/unlock_spiked_mullet_wine"
 }

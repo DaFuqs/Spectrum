@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_prickly_bayleaf": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_prickly_bayleaf"
+      }
+    },
+    "unlocked_titration_barrel": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:progression/unlock_titration_barrel"
+      }
+    }
+  }
+}

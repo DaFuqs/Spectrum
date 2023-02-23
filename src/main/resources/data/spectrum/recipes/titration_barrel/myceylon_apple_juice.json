@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:apple",
+      "count": 4
+    },
+    {
+      "item": "spectrum:myceylon",
+      "count": 8
+    }
+  ],
+  "fluid": "minecraft:water",
+  "min_fermentation_time_hours": 1,
+  "tapping_item": "minecraft:glass_bottle",
+  "result": {
+    "item": "spectrum:myceylon_apple_juice",
+    "count": 4
+  },
+  "required_advancement": "spectrum:lategame/collect_myceylon"
+}

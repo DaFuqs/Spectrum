@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 120,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 1.0,
+  "pattern": [
+    "B",
+    "P"
+  ],
+  "key": {
+    "B": {
+      "item": "spectrum:prickly_bayleaf"
+    },
+    "P": {
+      "item": "minecraft:potato"
+    }
+  },
+  "result": {
+    "item": "spectrum:spiked_potatoes",
+    "count": 1
+  },
+  "required_advancement": "spectrum:lategame/collect_prickly_bayleaf"
+}

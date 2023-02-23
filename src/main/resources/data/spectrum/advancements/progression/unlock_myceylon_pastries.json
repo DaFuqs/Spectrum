@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_myceylon": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_myceylon"
+      }
+    },
+    "collected_amaranth": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_amaranth"
+      }
+    }
+  }
+}

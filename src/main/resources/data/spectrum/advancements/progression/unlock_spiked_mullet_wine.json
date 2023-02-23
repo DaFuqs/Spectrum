@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "unlocked_titration_barrel": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:progression/unlock_titration_barrel"
+      }
+    },
+    "collected_myceylon": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_myceylon"
+      }
+    },
+    "collected_prickly_bayleaf": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_prickly_bayleaf"
+      }
+    },
+    "confirmed_drinking_age": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/confirmed_drinking_age"
+      }
+    }
+  }
+}

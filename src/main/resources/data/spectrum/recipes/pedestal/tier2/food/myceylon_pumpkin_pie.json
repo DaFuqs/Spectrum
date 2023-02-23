@@ -1,0 +1,38 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 120,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "YPY",
+    "SMS",
+    "AAA"
+  ],
+  "key": {
+    "Y": {
+      "item": "spectrum:myceylon"
+    },
+    "M": {
+      "tag": "c:milks"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "P": {
+      "item": "minecraft:apple"
+    },
+    "A": {
+      "item": "spectrum:amaranth_grains"
+    }
+  },
+  "result": {
+    "item": "spectrum:myceylon_apple_pie",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_myceylon_pastries"
+}

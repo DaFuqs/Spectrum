@@ -1,0 +1,32 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "spectrum:myceylon"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_myceylon.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_myceylon.description"
+    }
+  },
+  "criteria": {
+    "has_pure_resource": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "spectrum:myceylon"
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

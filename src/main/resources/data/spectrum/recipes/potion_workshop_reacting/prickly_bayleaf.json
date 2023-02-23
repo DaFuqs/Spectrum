@@ -1,0 +1,8 @@
+{
+  "type": "spectrum:potion_workshop_reacting",
+  "item": "spectrum:prickly_bayleaf",
+  "modifiers": {
+    "flat_potency_bonus_negative_effects": -2.0
+  },
+  "required_advancement": "spectrum:lategame/collect_prickly_bayleaf"
+}

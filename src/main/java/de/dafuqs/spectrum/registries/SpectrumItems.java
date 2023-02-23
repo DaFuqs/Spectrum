@@ -310,20 +310,32 @@ public class SpectrumItems {
 	public static final Item WEEPING_TART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.WEEPING_TART));
 	public static final Item WHISPY_TART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.WHISPY_TART));
 	public static final Item PUFF_TART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PUFF_TART));
-	
+
 	public static final Item JARAMEL_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.JARAMEL_TRIFLE));
 	public static final Item SALTED_JARAMEL_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SALTED_JARAMEL_TRIFLE));
 	public static final Item MONSTER_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MONSTER_TRIFLE));
 	public static final Item DEMON_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DEMON_TRIFLE));
-	
+
+	public static final Item MYCEYLON = new Item(Tab.CONSUMABLES.settings());
+	public static final Item MYCEYLON_APPLE_JUICE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_JUICE));
+	public static final Item MYCEYLON_LIQUOR = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
+	public static final Item SPIKED_MULLET_WINE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
+	public static final Item MYCEYLON_APPLE_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
+	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
+	public static final Item MYCEYLON_COOKIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_COOKIE));
+	public static final Item ALOE_LEAF = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ALOE_LEAF));
+	public static final Item PRICKLY_BAYLEAF = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PRICKLY_BAYLEAF));
+	public static final Item SPIKED_POTATOES = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SPIKED_POTATOES));
+	public static final Item TRIPLE_MEAT_POT_STEW = new StewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW));
+
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, Tab.RESOURCES.settings());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, Tab.RESOURCES.settings());
-	
+
 	// Banner Patterns
 	public static final Item LOGO_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), SpectrumBannerPatterns.SPECTRUM_LOGO_TAG, "item.spectrum.logo_banner_pattern.desc");
 	public static final Item AMETHYST_SHARD_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1), SpectrumBannerPatterns.AMETHYST_SHARD_TAG, "item.minecraft.amethyst_shard");
 	public static final Item AMETHYST_CLUSTER_BANNER_PATTERN = new SpectrumBannerPatternItem(Tab.EQUIPMENT.settings(1), SpectrumBannerPatterns.AMETHYST_CLUSTER_TAG, "block.minecraft.amethyst_cluster");
-	
+
 	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x4e3842, 0xffe6c2, (new Item.Settings()).group(ItemGroup.MISC));
 	
 	// Magical Tools
@@ -707,12 +719,24 @@ public class SpectrumItems {
 		register("weeping_tart", WEEPING_TART, DyeColor.PINK);
 		register("whispy_tart", WHISPY_TART, DyeColor.PINK);
 		register("puff_tart", PUFF_TART, DyeColor.PINK);
-		
+
 		register("jaramel_trifle", JARAMEL_TRIFLE, DyeColor.PINK);
 		register("salted_jaramel_trifle", SALTED_JARAMEL_TRIFLE, DyeColor.PINK);
 		register("monster_trifle", MONSTER_TRIFLE, DyeColor.PINK);
 		register("demon_trifle", DEMON_TRIFLE, DyeColor.PINK);
-		
+
+		register("myceylon", MYCEYLON, DyeColor.PINK);
+		register("myceylon_apple_juice", MYCEYLON_APPLE_JUICE, DyeColor.PINK);
+		register("myceylon_liquor", MYCEYLON_LIQUOR, DyeColor.PINK);
+		register("spiked_mullet_wine", SPIKED_MULLET_WINE, DyeColor.PINK);
+		register("myceylon_apple_pie", MYCEYLON_APPLE_PIE, DyeColor.PINK);
+		register("myceylon_pumpkin_pie", MYCEYLON_PUMPKIN_PIE, DyeColor.PINK);
+		register("myceylon_cookie", MYCEYLON_COOKIE, DyeColor.PINK);
+		register("aloe_leaf", ALOE_LEAF, DyeColor.PINK);
+		register("prickly_bayleaf", PRICKLY_BAYLEAF, DyeColor.PINK);
+		register("spiked_potatoes", SPIKED_POTATOES, DyeColor.PINK);
+		register("triple_meat_pot_stew", TRIPLE_MEAT_POT_STEW, DyeColor.PINK);
+
 		register("infused_beverage", INFUSED_BEVERAGE, DyeColor.PINK);
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);
 		register("reprise", REPRISE, DyeColor.PINK);

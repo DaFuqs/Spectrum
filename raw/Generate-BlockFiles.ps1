@@ -1,28 +1,6 @@
 ﻿$leaves = @("black_leaves", "blue_leaves", "brown_leaves", "cyan_leaves", "gray_leaves", "green_leaves", "light_blue_leaves", "light_gray_leaves", "lime_leaves", "magenta_leaves", "orange_leaves", "pink_leaves", "purple_leaves", "red_leaves", "white_leaves", "yellow_leaves")
 
-$new = @(   "cobbled_blackslag",
-            "cobbled_blackslag_stairs",
-            "cobbled_blackslag_slab",
-            "cobbled_blackslag_wall",
-            "polished_blackslag",
-            "polished_blackslag_stairs",
-            "polished_blackslag_slab",
-            "polished_blackslag_wall",
-            "blackslag_tiles",
-            "blackslag_tile_stairs",
-            "blackslag_tile_slab",
-            "blackslag_tile_wall",
-            "blackslag_bricks",
-            "blackslag_brick_stairs",
-            "blackslag_brick_slab",
-            "blackslag_brick_wall",
-            "chiseled_blackslag",
-            "cracked_blackslag_bricks",
-            "cracked_blackslag_tiles",
-            "polished_blackslag_button",
-            "polished_blackslag_pressure_plate",
-            "polished_calcite_pressure_plate",
-            "polished_basalt_pressure_plate"
+$new = @(   "blackslag_azurite_ore", "blackslag_shimmerstone_light"
 )
 
 enum BlockType {
@@ -1064,4 +1042,4 @@ Function Generate-BlockFiles {
 }
 
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::PressurePlate)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Default)

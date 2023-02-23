@@ -1,20 +1,16 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.GeodeFeature;
-import net.minecraft.world.gen.feature.GeodeFeatureConfig;
-import net.minecraft.world.gen.feature.util.FeatureContext;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.util.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(GeodeFeature.class)
 public abstract class GeodesGenerateWithGemstoneOresMixin {
@@ -36,6 +32,7 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 		if (gemBlock != null) {
 			BlockState oreBlockState = getGemstoneOreForGeodeBlock(gemBlock);
 			if (oreBlockState != null) { // do not handle other modded geodes
+				BlockState blackslagOreBlockState = getGemstoneBlackslagOreForGeodeBlock(gemBlock);
 				BlockState deepslateOreBlockState = getGemstoneDeepslateOreForGeodeBlock(gemBlock);
 				StructureWorldAccess world = context.getWorld();
 				Random random = context.getRandom();
@@ -46,12 +43,14 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 						int xOffset = (random.nextInt(distance + 1) * 2 - distance);
 						int yOffset = (random.nextInt(distance + 1) * 2 - distance);
 						int zOffset = (random.nextInt(distance + 1) * 2 - distance);
-						
+
 						BlockPos pos = context.getOrigin().add(xOffset, yOffset, zOffset);
 						BlockState state = world.getBlockState(pos);
-						if (state.isOf(Blocks.DEEPSLATE)) {
+						if (state.isIn(SpectrumBlockTags.BLACKSLAG_ORE_REPLACEABLES)) {
+							world.setBlockState(pos, blackslagOreBlockState, 3);
+						} else if (state.isIn(BlockTags.DEEPSLATE_ORE_REPLACEABLES)) {
 							world.setBlockState(pos, deepslateOreBlockState, 3);
-						} else if (world.getBlockState(pos).isIn(BlockTags.BASE_STONE_OVERWORLD)) {
+						} else if (world.getBlockState(pos).isIn(BlockTags.STONE_ORE_REPLACEABLES)) {
 							world.setBlockState(pos, oreBlockState, 3);
 						}
 					}
@@ -105,5 +104,28 @@ public abstract class GeodesGenerateWithGemstoneOresMixin {
 		}
 		return null;
 	}
-	
+
+	/**
+	 * Returns a matching ore block for a gemstone block
+	 * Aka amethyst_block => amethyst_ore
+	 *
+	 * @param blockState The blockstate the geode generates with
+	 * @return the matching ore for that block state. Does return null if no matching ore exists. For example if another mod adds additional geodes
+	 */
+	private BlockState getGemstoneBlackslagOreForGeodeBlock(BlockState blockState) {
+		Block block = blockState.getBlock();
+		if (block.equals(Blocks.AMETHYST_BLOCK)) {
+			return SpectrumBlocks.BLACKSLAG_AMETHYST_ORE.getDefaultState();
+		} else if (block.equals(SpectrumBlocks.CITRINE_BLOCK)) {
+			return SpectrumBlocks.BLACKSLAG_CITRINE_ORE.getDefaultState();
+		} else if (block.equals(SpectrumBlocks.TOPAZ_BLOCK)) {
+			return SpectrumBlocks.BLACKSLAG_TOPAZ_ORE.getDefaultState();
+		} else if (block.equals(SpectrumBlocks.ONYX_BLOCK)) {
+			return SpectrumBlocks.BLACKSLAG_ONYX_ORE.getDefaultState();
+		} else if (block.equals(SpectrumBlocks.MOONSTONE_BLOCK)) {
+			return SpectrumBlocks.BLACKSLAG_MOONSTONE_ORE.getDefaultState();
+		}
+		return null;
+	}
+
 }

@@ -10,7 +10,8 @@
     "spectrum:deepslate_shimmerstone_light": 0,
     "spectrum:diorite_shimmerstone_light": 0,
     "spectrum:granite_shimmerstone_light": 0,
-    "spectrum:stone_shimmerstone_light": 0
+    "spectrum:stone_shimmerstone_light": 0,
+    "spectrum:blackslag_shimmerstone_light": 0
   },
   "pages": [
     {
@@ -22,6 +23,12 @@
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/basalt_shimmerstone_light",
       "text": "You can use Polished Basalt, Polished Calcite, Smooth Stone, Polished Deepslate, Polished Diorite, Polished Andesite or Polished Granite as a base."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:progression/unlock_blackslag_shimmerstone_light",
+      "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag_shimmerstone_light",
+      "text": "Blackslag can be used, too, resulting in a especially dark variant."
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_shimmerstone_lights": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:progression/unlock_shimmerstone_lights"
+      }
+    },
+    "collected_blackslag": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_blackslag"
+      }
+    }
+  }
+}

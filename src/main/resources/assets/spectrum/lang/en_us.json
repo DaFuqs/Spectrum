@@ -657,6 +657,7 @@
   "block.spectrum.shimmerstone_block": "Shimmerstone Block",
   "block.spectrum.azurite_ore": "Azurite Ore",
   "block.spectrum.deepslate_azurite_ore": "Deepslate Azurite Ore",
+  "block.spectrum.blackslag_azurite_ore": "Blackslag Azurite Ore",
   "block.spectrum.azurite_block": "Azurite Block",
   "block.spectrum.quitoxic_reeds": "Quitoxic Reeds",
   "block.spectrum.mermaids_brush": "Mermaids Brush",
@@ -697,6 +698,7 @@
   "block.spectrum.blazing_crystal": "Blazing Crystal",
   "block.spectrum.frostbite_crystal": "Frostbite Crystal",
   "block.spectrum.resonant_lily": "Resonant Lily",
+
   "block.spectrum.player_detector": "Player Detector",
   "block.spectrum.item_detector": "Item Detector",
   "block.spectrum.weather_detector": "Weather Detector",
@@ -738,6 +740,7 @@
   "block.spectrum.diorite_shimmerstone_light": "Diorite Shimmerstone Light",
   "block.spectrum.andesite_shimmerstone_light": "Andesite Shimmerstone Light",
   "block.spectrum.deepslate_shimmerstone_light": "Deepslate Shimmerstone Light",
+  "block.spectrum.blackslag_shimmerstone_light": "Blackslag Shimmerstone Light",
   "block.spectrum.amethyst_storage_block": "Polished Amethyst",
   "block.spectrum.citrine_storage_block": "Polished Citrine",
   "block.spectrum.topaz_storage_block": "Polished Topaz",

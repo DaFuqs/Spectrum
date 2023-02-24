@@ -15,6 +15,6 @@
   },
   "result": {
     "item": "spectrum:memory",
-    "nbt": "{EntityTag: {id: \"minecraft:vindicator\"}, TicksToManifest: 80}"
+    "nbt": "{EntityTag: {id: \"minecraft:vindicator\"}, TicksToManifest: 16}"
   }
 }

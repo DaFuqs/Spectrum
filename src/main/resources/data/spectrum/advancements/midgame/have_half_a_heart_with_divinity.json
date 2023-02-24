@@ -2,7 +2,7 @@
   "parent": "spectrum:midgame/apply_divinity",
   "display": {
     "icon": {
-      "item": "spectrum:freigeist"
+      "item": "spectrum:divination_heart"
     },
     "frame": "challenge",
     "title": {

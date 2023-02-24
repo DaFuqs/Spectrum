@@ -3,6 +3,7 @@
     "#minecraft:water",
     "#minecraft:lava",
     "#spectrum:mud",
-    "#spectrum:liquid_crystal"
+    "#spectrum:liquid_crystal",
+    "#spectrum:dragonrot"
   ]
 }

@@ -9,21 +9,21 @@ import net.fabricmc.api.*;
 import net.minecraft.text.*;
 
 @Environment(EnvType.CLIENT)
-public class MidnightSolutionConvertingCategory extends FluidConvertingCategory<MidnightSolutionConvertingDisplay> {
+public class DragonrotConvertingCategory extends FluidConvertingCategory<DragonrotConvertingDisplay> {
 
 	@Override
-	public CategoryIdentifier<? extends MidnightSolutionConvertingDisplay> getCategoryIdentifier() {
-		return SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING;
+	public CategoryIdentifier<? extends FluidConvertingDisplay> getCategoryIdentifier() {
+		return SpectrumPlugins.DRAGONROT_CONVERTING;
 	}
 
 	@Override
 	public Renderer getIcon() {
-		return EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
+		return EntryStacks.of(SpectrumItems.DRAGONROT_BUCKET);
 	}
 
 	@Override
 	public Text getTitle() {
-		return Text.translatable("container.spectrum.rei.midnight_solution_converting.title");
+		return Text.translatable("container.spectrum.rei.dragonrot_converting.title");
 	}
 
 }

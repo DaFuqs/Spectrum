@@ -317,9 +317,9 @@ public class SpectrumItems {
 	public static final Item DEMON_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DEMON_TRIFLE));
 
 	public static final Item MYCEYLON = new Item(Tab.CONSUMABLES.settings());
-	public static final Item MYCEYLON_APPLE_JUICE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_JUICE));
-	public static final Item MYCEYLON_LIQUOR = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
-	public static final Item SPIKED_MULLET_WINE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
+	public static final Item MYCEYLON_APPLE_JUICE = new InfusedBeverageItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
+	public static final Item MYCEYLON_LIQUOR = new InfusedBeverageItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
+	public static final Item SPIKED_MULLET_WINE = new InfusedBeverageItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
 	public static final Item MYCEYLON_APPLE_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
 	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
 	public static final Item MYCEYLON_COOKIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_COOKIE));

@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:apple",
+      "count": 4
+    },
+    {
+      "item": "spectrum:myceylon",
+      "count": 8
+    }
+  ],
+  "min_fermentation_time_hours": 4,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.0,
+    "effects": [
+      {
+        "id": "minecraft:absorption",
+        "base_duration": 9600
+      },
+      {
+        "id": "spectrum:nourishing",
+        "base_duration": 9600
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"myceylon_apple_juice\", Color: 12018987 }"
+  },
+  "required_advancement": "spectrum:lategame/collect_myceylon"
+}

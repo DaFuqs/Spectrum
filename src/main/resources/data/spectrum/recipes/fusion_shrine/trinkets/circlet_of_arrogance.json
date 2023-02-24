@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 600,
+  "experience": 2.0,
+  "fluid": "spectrum:liquid_crystal",
+  "ingredients": [
+    {
+      "item": "spectrum:fanciful_circlet"
+    },
+    {
+      "item": "spectrum:malachite_crystal",
+      "count": 8
+    },
+    {
+      "item": "spectrum:blood_orchid_petal",
+      "count": 4
+    },
+    {
+      "item": "spectrum:moonstone_powder",
+      "count": 8
+    },
+    {
+      "item": "spectrum:red_pigment",
+      "count": 16
+    }
+  ],
+  "result": {
+    "item": "spectrum:circlet_of_arrogance"
+  },
+  "required_advancement": "spectrum:progression/unlock_ashen_circlet",
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

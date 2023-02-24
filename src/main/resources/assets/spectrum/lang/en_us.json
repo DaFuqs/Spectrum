@@ -2114,6 +2114,8 @@
   "item.spectrum.whispy_circlet.tooltip": "§7Prevents Spawning of Phantoms",
   "item.spectrum.whispy_circlet.tooltip2": "§7Reduces the duration of Negative Effects",
   "item.spectrum.whispy_circlet.tooltip3": "§7Sleeping fully heals",
+  "item.spectrum.circlet_of_arrogance": "Circlet of Arrogance",
+  "item.spectrum.circlet_of_arrogance.tooltip": "§7Grants you immense stat boosts at great cost if you die",
   "item.spectrum.heartsingers_reward": "Heartsinger's Reward",
   "item.spectrum.heartsingers_reward.tooltip": "Grants you extra Hearts",
   "item.spectrum.gloves_of_dawns_grasp": "Gloves of Dawn's Grasp",

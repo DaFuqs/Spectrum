@@ -317,13 +317,9 @@ public class SpectrumItems {
 	public static final Item DEMON_TRIFLE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DEMON_TRIFLE));
 
 	public static final Item MYCEYLON = new Item(Tab.CONSUMABLES.settings());
-	public static final Item MYCEYLON_APPLE_JUICE = new InfusedBeverageItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
-	public static final Item MYCEYLON_LIQUOR = new InfusedBeverageItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
-	public static final Item SPIKED_MULLET_WINE = new InfusedBeverageItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE));
 	public static final Item MYCEYLON_APPLE_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
 	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
 	public static final Item MYCEYLON_COOKIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_COOKIE));
-	public static final Item ALOE_LEAF = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ALOE_LEAF));
 	public static final Item PRICKLY_BAYLEAF = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PRICKLY_BAYLEAF));
 	public static final Item SPIKED_POTATOES = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SPIKED_POTATOES));
 	public static final Item TRIPLE_MEAT_POT_STEW = new StewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW));
@@ -404,7 +400,7 @@ public class SpectrumItems {
 	public static final ExtraHealthRingItem HEARTSINGERS_REWARD_RING = new ExtraHealthRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final ExtraReachGlovesItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final ExtraMiningSpeedRingItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	
+
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(Tab.EQUIPMENT.settings(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(Tab.EQUIPMENT.settings(1), 64 * 100);
 	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 64 * 64 * 100);
@@ -418,6 +414,7 @@ public class SpectrumItems {
 	public static final Item WEEPING_CIRCLET = new TidalCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item CIRCLET_OF_ARROGANCE = new CircletOfArroganceItem(Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	public static final Item NEAT_RING = new NeatRingItem(Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	
 	// Pure Clusters
@@ -726,13 +723,9 @@ public class SpectrumItems {
 		register("demon_trifle", DEMON_TRIFLE, DyeColor.PINK);
 
 		register("myceylon", MYCEYLON, DyeColor.PINK);
-		register("myceylon_apple_juice", MYCEYLON_APPLE_JUICE, DyeColor.PINK);
-		register("myceylon_liquor", MYCEYLON_LIQUOR, DyeColor.PINK);
-		register("spiked_mullet_wine", SPIKED_MULLET_WINE, DyeColor.PINK);
 		register("myceylon_apple_pie", MYCEYLON_APPLE_PIE, DyeColor.PINK);
 		register("myceylon_pumpkin_pie", MYCEYLON_PUMPKIN_PIE, DyeColor.PINK);
 		register("myceylon_cookie", MYCEYLON_COOKIE, DyeColor.PINK);
-		register("aloe_leaf", ALOE_LEAF, DyeColor.PINK);
 		register("prickly_bayleaf", PRICKLY_BAYLEAF, DyeColor.PINK);
 		register("spiked_potatoes", SPIKED_POTATOES, DyeColor.PINK);
 		register("triple_meat_pot_stew", TRIPLE_MEAT_POT_STEW, DyeColor.PINK);
@@ -783,6 +776,7 @@ public class SpectrumItems {
 		register("weeping_circlet", WEEPING_CIRCLET, DyeColor.LIGHT_BLUE);
 		register("puff_circlet", PUFF_CIRCLET, DyeColor.WHITE);
 		register("whispy_circlet", WHISPY_CIRCLET, DyeColor.BROWN);
+		register("circlet_of_arrogance", CIRCLET_OF_ARROGANCE, DyeColor.RED);
 		register("neat_ring", NEAT_RING, DyeColor.GREEN);
 	}
 	

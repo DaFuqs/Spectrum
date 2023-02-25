@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/spiked_mullet_wine"
+    "layer0": "spectrum:block/aloe4"
   }
 }

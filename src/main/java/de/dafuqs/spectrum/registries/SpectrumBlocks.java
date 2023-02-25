@@ -473,7 +473,7 @@ public class SpectrumBlocks {
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
 
 	//DD FLORA
-	public static final Block SAWBLADE_GRASS = new GrassBlock(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK));
+	public static final Block SAWBLADE_GRASS = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.PODZOL));
 	public static final Block ROTTEN_GROUND = new Block(AbstractBlock.Settings.copy(Blocks.PACKED_MUD));
 	public static final Block SHIMMEL = new MyceliumBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
 	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), () -> getConfiguredFeatureRegistryEntry("slate_noxfungus"));

@@ -1,0 +1,49 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "spectrum:dragonrot_bucket"
+    },
+    "title": {
+      "translate": "advancements.spectrum.interact_with_dragonrot.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.interact_with_dragonrot.description"
+    }
+  },
+  "criteria": {
+    "enter_dragonrot": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "spectrum:dragonrot"
+      }
+    },
+    "get_dragonrot_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:dragonrot_bucket"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "enter_dragonrot",
+      "get_dragonrot_bucket"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
+}

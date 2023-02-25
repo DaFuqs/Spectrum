@@ -33,7 +33,7 @@
       "tag": "spectrum:drinkable_spirits"
     },
     "B": {
-      "tag": "minecraft:bowl"
+      "item": "minecraft:bowl"
     }
   },
   "result": {

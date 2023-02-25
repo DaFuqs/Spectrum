@@ -1,0 +1,39 @@
+{
+  "name": "Myceylon",
+  "advancement": "spectrum:lategame/collect_myceylon",
+  "icon": "spectrum:myceylon",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:myceylon": 0,
+    "spectrum:myceylon_apple_pie": 0,
+    "spectrum:myceylon_pumpkin_pie": 0,
+    "spectrum:myceylon_cookie": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Myceylon",
+      "text": "Using an $(thing)Axe$() or $(l:equipment/multitool)Multitool$() you could strip small, but unexpectedly sturdy pieces of the noxshrooms. Those where both unexpectedly sturdy for a mushroom and... tasty."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Myceylon adds great flavor to baked goods and $(l:magical_items/infused_beverage)drinks$().$(br2)$(italic)Why would you peel Mushrooms?$(br)So you can enjoy the peel later."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/food/myceylon_apple_pie",
+      "recipe2": "spectrum:pedestal/tier2/food/myceylon_pumpkin_pie",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/food/myceylon_pumpkin_pie",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "recipe": "spectrum:pedestal/tier2/food/myceylon_cookie",
+      "text": ""
+    }
+  ]
+}

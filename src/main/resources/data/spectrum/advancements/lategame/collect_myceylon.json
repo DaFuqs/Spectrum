@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "has_pure_resource": {
+    "has_myceylon": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

@@ -1,15 +1,9 @@
 {
-  "feature": "spectrum:dd_gravel",
+  "feature": "spectrum:hummingstone_crystal_formation",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": {
-        "type": "minecraft:uniform",
-        "value": {
-          "min_inclusive": 128,
-          "max_inclusive": 156
-        }
-      }
+      "count": 180
     },
     {
       "type": "minecraft:in_square"
@@ -22,7 +16,7 @@
           "above_bottom": 0
         },
         "max_inclusive": {
-          "above_bottom": 128
+          "below_top": 0
         }
       }
     },

@@ -1,26 +1,29 @@
 package de.dafuqs.spectrum.events;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.event.GameEvent;
+import de.dafuqs.spectrum.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.event.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class SpectrumGameEvents {
-	
+
 	public static GameEvent ENTITY_SPAWNED;
 	public static GameEvent CRYSTAL_APOTHECARY_HARVESTABLE_GROWN;
-	
+
+	public static GameEvent HUMMINGSTONE_HUMMING;
+	public static GameEvent HUMMINGSTONE_HYMN;
+
 	public static HashMap<DyeColor, List<RedstoneTransferGameEvent>> WIRELESS_REDSTONE_SIGNALS = new HashMap<>(); // a list of 16 * 16 events, meaning redstone strength 0-15 with each dye color
-	
+
 	public static void register() {
 		ENTITY_SPAWNED = register("entity_spawned");
 		CRYSTAL_APOTHECARY_HARVESTABLE_GROWN = register("crystal_apothecary_harvestable_grown");
-		
+
+		HUMMINGSTONE_HUMMING = register("hummingstone_humming");
+		HUMMINGSTONE_HYMN = register("hummingstone_hymn");
+
 		for (DyeColor dyeColor : DyeColor.values()) {
 			List<RedstoneTransferGameEvent> list = new ArrayList<>();
 			for (int power = 0; power < 16; power++) {

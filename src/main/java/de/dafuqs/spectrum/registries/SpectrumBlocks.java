@@ -148,7 +148,7 @@ public class SpectrumBlocks {
 	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
 	
 	// DD BLOCKS
-	public static final Block BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(5.0F, 7.0F));
+	public static final Block BLACKSLAG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(5.0F, 7.0F));
 	public static final Block INFESTED_BLACKSLAG = new InfestedBlock(BLACKSLAG, AbstractBlock.Settings.of(Material.ORGANIC_PRODUCT));
 	public static final Block COBBLED_BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(6.0F, 7.0F));
 	public static final Block COBBLED_BLACKSLAG_STAIRS = new StairsBlock(COBBLED_BLACKSLAG.getDefaultState(), AbstractBlock.Settings.copy(COBBLED_BLACKSLAG));
@@ -582,8 +582,8 @@ public class SpectrumBlocks {
 
 	public static final Block ALOE = new AloeBlock(dragonjag(MapColor.DARK_GREEN).noCollision().ticksRandomly().breakInstantly());
 
-	public static final Block HUMMINGSTONE = new HummingstoneBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(3.0F, 10.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).requiresTool().ticksRandomly());
-	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(3.0F, 10.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).requiresTool());
+	public static final Block HUMMINGSTONE = new HummingstoneBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).requiresTool().ticksRandomly());
+	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).requiresTool());
 
 	// JADE VINES
 	public static final Block JADE_VINE_ROOTS = new JadeVineRootsBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL).ticksRandomly().luminance((state) -> state.get(JadeVineRootsBlock.DEAD) ? 0 : 4).nonOpaque());

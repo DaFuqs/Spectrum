@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#spectrum:hummingstones",
     "spectrum:ender_glass",
     "spectrum:topaz_glass",
     "spectrum:amethyst_glass",
@@ -8,7 +9,6 @@
     "spectrum:onyx_glass",
     "spectrum:moonstone_glass",
     "spectrum:glowing_glass",
-
     "spectrum:vanilla_semi_permeable_glass",
     "spectrum:tinted_semi_permeable_glass",
     "spectrum:glowing_semi_permeable_glass",

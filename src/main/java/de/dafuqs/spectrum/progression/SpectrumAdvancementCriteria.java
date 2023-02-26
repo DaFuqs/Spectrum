@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.progression;
 
 import de.dafuqs.spectrum.progression.advancement.*;
-import net.fabricmc.fabric.mixin.object.builder.CriteriaAccessor;
+import net.fabricmc.fabric.mixin.object.builder.*;
 
 public class SpectrumAdvancementCriteria {
-	
+
 	public static PedestalCraftingCriterion PEDESTAL_CRAFTING;
 	public static FusionShrineCraftingCriterion FUSION_SHRINE_CRAFTING;
 	public static CompletedMultiblockCriterion COMPLETED_MULTIBLOCK;
@@ -36,6 +36,7 @@ public class SpectrumAdvancementCriteria {
 	public static BloodOrchidPluckingCriterion BLOOD_ORCHID_PLUCKING;
 	public static DivinityTickCriterion DIVINITY_TICK;
 	public static ConsumedTeaWithSconeCriterion CONSUMED_TEA_WITH_SCONE;
+	public static HummingstoneHymnCriterion CREATE_HUMMINGSTONE_HYMN;
 	
 	public static void register() {
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
@@ -69,6 +70,7 @@ public class SpectrumAdvancementCriteria {
 		BLOOD_ORCHID_PLUCKING = CriteriaAccessor.callRegister(new BloodOrchidPluckingCriterion());
 		DIVINITY_TICK = CriteriaAccessor.callRegister(new DivinityTickCriterion());
 		CONSUMED_TEA_WITH_SCONE = CriteriaAccessor.callRegister(new ConsumedTeaWithSconeCriterion());
+		CREATE_HUMMINGSTONE_HYMN = CriteriaAccessor.callRegister(new HummingstoneHymnCriterion());
 	}
 	
 }

@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.bottomless_bundle.*;
 import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.cinderhearth.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
+import de.dafuqs.spectrum.blocks.dd_deco.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
 import de.dafuqs.spectrum.blocks.ender.*;
 import de.dafuqs.spectrum.blocks.energy.*;
@@ -40,12 +41,12 @@ import net.minecraft.util.registry.*;
 import java.util.*;
 
 public class SpectrumBlockEntities<T extends BlockEntity> {
-	
+
 	public static BlockEntityType<OminousSaplingBlockEntity> OMINOUS_SAPLING;
 	public static BlockEntityType<PedestalBlockEntity> PEDESTAL;
 	public static BlockEntityType<FusionShrineBlockEntity> FUSION_SHRINE;
 	public static BlockEntityType<EnchanterBlockEntity> ENCHANTER;
-	
+
 	public static BlockEntityType<ItemBowlBlockEntity> ITEM_BOWL;
 	public static BlockEntityType<ItemRoundelBlockEntity> ITEM_ROUNDEL;
 	public static BlockEntityType<PreservationRoundelBlockEntity> PRESERVATION_ROUNDEL;
@@ -82,6 +83,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<PresentBlockEntity> PRESENT;
 	public static BlockEntityType<TitrationBarrelBlockEntity> TITRATION_BARREL;
 	public static BlockEntityType<PastelNodeBlockEntity> PASTEL_NODE;
+	public static BlockEntityType<HummingstoneBlockEntity> HUMMINGSTONE;
 
 	public static BlockEntityType<PreservationControllerBlockEntity> PRESERVATION_CONTROLLER;
 
@@ -126,6 +128,7 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		TITRATION_BARREL = register("titration_barrel", TitrationBarrelBlockEntity::new, SpectrumBlocks.TITRATION_BARREL);
 		PASTEL_NODE = register("pastel_node", PastelNodeBlockEntity::new, SpectrumBlocks.CONNECTION_NODE, SpectrumBlocks.PROVIDER_NODE, SpectrumBlocks.STORAGE_NODE, SpectrumBlocks.SENDER_NODE, SpectrumBlocks.GATHER_NODE);
 		PRESERVATION_CONTROLLER = register("preservation_controller", PreservationControllerBlockEntity::new, SpectrumBlocks.PRESERVATION_CONTROLLER);
+		HUMMINGSTONE = register("hummingstone", HummingstoneBlockEntity::new, SpectrumBlocks.HUMMINGSTONE);
 
 		// All the upgrades
 		List<Block> upgradeBlocksList = UpgradeBlock.getUpgradeBlocks();

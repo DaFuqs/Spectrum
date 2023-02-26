@@ -1,22 +1,19 @@
 package de.dafuqs.spectrum.events.listeners;
 
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.PositionSource;
-import net.minecraft.world.event.listener.GameEventListener;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import net.minecraft.world.event.listener.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public abstract class EventQueue<D> implements GameEventListener {
 	
 	protected final PositionSource positionSource;
 	protected final int range;
 	protected final EventQueue.Callback<D> callback;
-	private final Map<D, Integer> eventQueue;
+	protected final Map<D, Integer> eventQueue;
 	
 	public EventQueue(PositionSource positionSource, int range, EventQueue.Callback<D> listener) {
 		this.positionSource = positionSource;
@@ -39,15 +36,19 @@ public abstract class EventQueue<D> implements GameEventListener {
 			}
 		}
 	}
-	
+
 	public PositionSource getPositionSource() {
 		return this.positionSource;
 	}
-	
+
 	public int getRange() {
 		return this.range;
 	}
-	
+
+	public int getQueuedEventCount() {
+		return this.eventQueue.size();
+	}
+
 	@Override
 	public boolean listen(ServerWorld world, GameEvent.Message event) {
 		Optional<Vec3d> positionSourcePosOptional = this.positionSource.getPos(world);

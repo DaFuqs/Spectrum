@@ -1,7 +1,7 @@
 {
-  "name": "Aloe",
+  "name": "Hummingstone",
   "advancement": "spectrum:hidden/collect_hummingstone",
-  "icon": "spectrum:aloe",
+  "icon": "spectrum:hummingstone",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:hummingstone": 0,
@@ -16,7 +16,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:hummingstone_glass",
-      "text": "Very blast resistant for glass"
+      "text": "Very sturdy, blast resistant glass"
     }
   ]
 }

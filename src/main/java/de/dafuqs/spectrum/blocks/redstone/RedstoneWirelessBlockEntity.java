@@ -1,23 +1,17 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import de.dafuqs.spectrum.events.RedstoneTransferGameEvent;
-import de.dafuqs.spectrum.events.SpectrumGameEvents;
-import de.dafuqs.spectrum.events.listeners.WirelessRedstoneSignalEventQueue;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.BlockPositionSource;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.listener.GameEventListener;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.events.listeners.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.nbt.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import net.minecraft.world.event.listener.*;
+import org.jetbrains.annotations.*;
 
 public class RedstoneWirelessBlockEntity extends BlockEntity implements WirelessRedstoneSignalEventQueue.Callback {
 	
@@ -78,10 +72,10 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 	
 	@Override
 	public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message message, Vec3d sourcePos) {
-		if (message.getEvent() instanceof RedstoneTransferGameEvent redstoneTransferGameEvent) {
-			return !isSender(this.world, this.pos) && redstoneTransferGameEvent.getDyeColor() == getChannel(this.world, this.pos);
-		}
-		return false;
+		return !this.isRemoved()
+				&& message.getEvent() instanceof RedstoneTransferGameEvent redstoneTransferGameEvent
+				&& !isSender(this.world, this.pos)
+				&& redstoneTransferGameEvent.getDyeColor() == getChannel(this.world, this.pos);
 	}
 	
 	@Override

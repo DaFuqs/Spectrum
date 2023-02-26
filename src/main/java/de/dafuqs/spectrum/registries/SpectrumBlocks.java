@@ -606,6 +606,8 @@ public class SpectrumBlocks {
 	public static final FloatBlock PALTAERIA_FRAGMENT_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.LIGHT_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.2F);
 	public static final FloatBlock STRATINE_FRAGMENT_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.DARK_RED).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), -0.2F);
 	public static final FloatBlock HOVER_BLOCK = new FloatBlock(FabricBlockSettings.of(Material.METAL, MapColor.DIAMOND_BLUE).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL), 0.0F);
+	public static final Block DRAGONBONE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.OBSIDIAN).sounds(BlockSoundGroup.BONE));
+
 
 	public static final Block BLACKSLAG_COAL_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COAL_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(0, 2));
 	public static final Block BLACKSLAG_COPPER_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COPPER_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
@@ -1526,6 +1528,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("stratine_fragment_block", STRATINE_FRAGMENT_BLOCK, new FloatBlockItem(STRATINE_FRAGMENT_BLOCK, settingsFireproof, 1.02F), DyeColor.RED);
 		registerBlockWithItem("paltaeria_fragment_block", PALTAERIA_FRAGMENT_BLOCK, new FloatBlockItem(PALTAERIA_FRAGMENT_BLOCK, settings, 0.98F), DyeColor.CYAN);
 		registerBlockWithItem("hover_block", HOVER_BLOCK, new FloatBlockItem(HOVER_BLOCK, settings, 0.996F), DyeColor.GREEN);
+		registerBlockWithItem("dragonbone", DRAGONBONE, Tab.DECORATION.settings().rarity(Rarity.UNCOMMON), DyeColor.GREEN);
 	}
 	
 	private static void registerColoredLamps(FabricItemSettings settings) {

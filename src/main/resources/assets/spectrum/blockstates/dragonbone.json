@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=x": {
+			"model": "spectrum:block/dragonbone",
+			"x": 90,
+			"y": 90
+		},
+		"axis=y": {
+			"model": "spectrum:block/dragonbone"
+		},
+		"axis=z": {
+			"model": "spectrum:block/dragonbone",
+			"x": 90
+		}
+	}
+}

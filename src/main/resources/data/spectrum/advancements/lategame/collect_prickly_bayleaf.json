@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "has_pure_resource": {
+    "has_prickly_bayleaf": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [

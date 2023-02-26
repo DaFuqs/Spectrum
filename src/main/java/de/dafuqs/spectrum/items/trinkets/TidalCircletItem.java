@@ -1,31 +1,25 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import dev.emi.trinkets.api.SlotReference;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.passive.AxolotlEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.passive.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TidalCircletItem extends SpectrumTrinketItem {
 	
@@ -39,7 +33,7 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 	public TidalCircletItem(Settings settings) {
 		super(settings, SpectrumCommon.locate("progression/unlock_weeping_circlet"));
 	}
-	
+
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
@@ -47,34 +41,32 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 		tooltip.add(Text.translatable("item.spectrum.weeping_circlet.tooltip2").formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.weeping_circlet.tooltip3").formatted(Formatting.GRAY));
 	}
+
+	@Override
+	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		super.onEquip(stack, slot, entity);
+		doEffects(entity);
+	}
 	
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
-		
+		doEffects(entity);
+	}
+
+	private void doEffects(LivingEntity entity) {
 		if (!entity.getWorld().isClient) {
 			long time = entity.getWorld().getTime();
 			if (entity.isSubmergedInWater()) {
 				if (time % TRIGGER_EVERY_X_TICKS == 0) {
-					giveEffects(entity);
+					entity.setAir(entity.getMaxAir());
+					entity.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, EFFECT_DURATION, 1, true, true));
+					entity.addStatusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, EFFECT_DURATION, 0, true, true));
 				}
 				if (time % HEAL_AXOLOTLS_EVERY_X_TICKS == 0 && entity instanceof ServerPlayerEntity serverPlayerEntity) {
 					healLovingAxolotls(serverPlayerEntity);
 				}
 			}
-		}
-	}
-	
-	private void giveEffects(@NotNull LivingEntity entity) {
-		entity.setAir(entity.getMaxAir());
-		Map<StatusEffect, StatusEffectInstance> effects = entity.getActiveStatusEffects();
-		if (!effects.containsKey(StatusEffects.DOLPHINS_GRACE) || effects.get(StatusEffects.DOLPHINS_GRACE).getDuration() < TRIGGER_EVERY_X_TICKS) {
-			entity.removeStatusEffect(StatusEffects.DOLPHINS_GRACE);
-			entity.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, EFFECT_DURATION, 1, true, true));
-		}
-		if (!effects.containsKey(StatusEffects.CONDUIT_POWER) || effects.get(StatusEffects.CONDUIT_POWER).getDuration() < TRIGGER_EVERY_X_TICKS) {
-			entity.removeStatusEffect(StatusEffects.CONDUIT_POWER);
-			entity.addStatusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, EFFECT_DURATION, 0, true, true));
 		}
 	}
 	

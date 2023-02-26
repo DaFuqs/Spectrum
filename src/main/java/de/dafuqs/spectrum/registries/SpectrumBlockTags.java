@@ -7,19 +7,21 @@ import net.minecraft.util.registry.*;
 
 public class SpectrumBlockTags {
 
-	// PLANTS
-	public static TagKey<Block> MERMAIDS_BRUSH_PLANTABLE = getReference("mermaids_brush_plantable");
-	public static TagKey<Block> QUITOXIC_REEDS_PLANTABLE = getReference("quitoxic_reeds_plantable");
-	public static final TagKey<Block> PRIMORDIAL_FIRE_BASE_BLOCKS = getReference("primordial_fire_base_blocks");
-	public static TagKey<Block> BLACK_SLUDGE_BLOCKS = getReference("black_sludge_blocks");
+    // PLANTS
+    public static TagKey<Block> MERMAIDS_BRUSH_PLANTABLE = getReference("mermaids_brush_plantable");
+    public static TagKey<Block> QUITOXIC_REEDS_PLANTABLE = getReference("quitoxic_reeds_plantable");
+    public static TagKey<Block> ALOE_PLANTABLE = getReference("aloe_plantable");
+    public static TagKey<Block> ALOE_CONVERTED = getReference("aloe_converted");
+    public static final TagKey<Block> PRIMORDIAL_FIRE_BASE_BLOCKS = getReference("primordial_fire_base_blocks");
+    public static TagKey<Block> BLACK_SLUDGE_BLOCKS = getReference("black_sludge_blocks");
 
-	public static final TagKey<Block> BLACKSLAG_ORE_REPLACEABLES = getReference("blackslag_ore_replaceables");
+    public static final TagKey<Block> BLACKSLAG_ORE_REPLACEABLES = getReference("blackslag_ore_replaceables");
 
-	// DECAY
-	public static TagKey<Block> DECAY = getReference("decay");
-	public static TagKey<Block> DECAY_AWAY_CURABLES = getReference("decay_away_curables");
-	public static TagKey<Block> FADING_CONVERSIONS = getReference("fading_conversions");
-	public static TagKey<Block> FADING_SPECIAL_CONVERSIONS = getReference("fading_special_conversions");
+    // DECAY
+    public static TagKey<Block> DECAY = getReference("decay");
+    public static TagKey<Block> DECAY_AWAY_CURABLES = getReference("decay_away_curables");
+    public static TagKey<Block> FADING_CONVERSIONS = getReference("fading_conversions");
+    public static TagKey<Block> FADING_SPECIAL_CONVERSIONS = getReference("fading_special_conversions");
 	public static TagKey<Block> FAILING_SAFE = getReference("failing_safe");
 	public static TagKey<Block> FAILING_CONVERSIONS = getReference("failing_conversions");
 	public static TagKey<Block> FAILING_SPECIAL_CONVERSIONS = getReference("failing_special_conversions");

@@ -154,6 +154,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:prickly_bayleaf",
+      "anchor": "prickly_bayleaf",
       "advancement": "spectrum:lategame/collect_prickly_bayleaf",
       "text": "Greatly reduces the potency of negative effects or removes them entirely."
     }

@@ -66,11 +66,10 @@
       "spectrum:dd_stone"
     ],
     [
+      "spectrum:hummingstone_crystal_formations",
       "spectrum:dd_bismuth"
     ],
     [
-      "minecraft:glowstone_extra",
-      "minecraft:glowstone",
       "spectrum:dd_water_springs",
       "spectrum:dd_lava_springs"
     ],

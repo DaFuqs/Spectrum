@@ -1,0 +1,30 @@
+{
+  "type": "spectrum:crystal_formation",
+  "config": {
+    "iterations": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 400,
+        "max_inclusive": 800
+      }
+    },
+    "state_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:andesite"
+      }
+    },
+    "can_start_on": [
+      "minecraft:diorite",
+      "minecraft:granite",
+      "minecraft:dripstone_block",
+      "minecraft:calcite",
+      "minecraft:tuff",
+      "minecraft:deepslate",
+      "spectrum:blackslag"
+    ],
+    "can_extend_on": [
+      "minecraft:andesite"
+    ]
+  }
+}

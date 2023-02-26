@@ -24,6 +24,13 @@
       "text": "Malt beer is both filling and tastes both sweet and savory. What a nice combination."
     },
     {
+      "type": "spectrum:titration_barrel_fermenting",
+      "title": "Myceylon Apple Juice",
+      "advancement": "spectrum:lategame/collect_myceylon",
+      "recipe": "spectrum:titration_barrel/infused_beverages/myceylon_apple_juice",
+      "text": "Sweet with a Cinnamon finish"
+    },
+    {
       "type": "spectrum:confirmation_button",
       "title": "Safety Question",
       "checked_advancement": "spectrum:milestones/confirmed_drinking_age",
@@ -32,7 +39,7 @@
       "confirmation": "confirm_drinking_age",
       "text": "The $(thing)Titration Barrel$() is capable of brewing alcoholic drinks. If you are old enough to consume alcohol in your country, you can press the button below to unlock these recipes.$(br)If not don't worry - you won't miss anything important."
     },
-	{
+    {
       "type": "spectrum:titration_barrel_fermenting",
       "advancement": "spectrum:milestones/confirmed_drinking_age",
       "title": "Beers",
@@ -98,7 +105,7 @@
       "title": "Berry Liquor",
       "recipe": "spectrum:titration_barrel/infused_beverages/berry_liquor",
       "recipe2": "spectrum:titration_barrel/infused_beverages/glow_berry_liquor",
-      "text": "Berries can also be used for liquor. Way more viscous and sweet and stronger, but takes longer to ferment."
+      "text": "Berries can also be used for liquor. Way more viscous, sweet and strong, but takes longer to ferment."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -138,6 +145,20 @@
       "title": "Tequila",
       "recipe": "spectrum:titration_barrel/infused_beverages/tequila",
       "text": "Does only get stronger with age. Tastes like a bar fight."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:progression/unlock_myceylon_liquor",
+      "title": "Myceylon Liquor",
+      "recipe": "spectrum:titration_barrel/infused_beverages/myceylon_liquor",
+      "text": "More spicy than it looks."
+    },
+    {
+      "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:progression/unlock_spiked_mullet_wine",
+      "title": "Spiked Mullet Wine",
+      "recipe": "spectrum:titration_barrel/infused_beverages/spiked_mullet_wine",
+      "text": "An interesting combination of all things Deeper Down. Best drunk when still hot!"
     },
     {
       "type": "patchouli:spotlight",

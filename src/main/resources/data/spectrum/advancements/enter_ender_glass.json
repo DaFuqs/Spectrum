@@ -12,7 +12,7 @@
     }
   },
   "criteria": {
-    "enter_liquid_crystal": {
+    "enter_ender_glass": {
       "trigger": "minecraft:enter_block",
       "conditions": {
         "block": "spectrum:ender_glass"

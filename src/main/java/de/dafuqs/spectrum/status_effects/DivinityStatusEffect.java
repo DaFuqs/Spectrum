@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.client.network.*;
 import net.minecraft.entity.*;
@@ -31,7 +32,7 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 				SpectrumAdvancementCriteria.DIVINITY_TICK.trigger((ServerPlayerEntity) player);
 			}
 			if(world.getTime() % 20 == 0) {
-				player.getHungerManager().add(1, 0.25F);
+				player.getHungerManager().add(1 + amplifier, 0.25F);
 			}
 		}
 
@@ -53,10 +54,9 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onApplied(entity, attributes, amplifier);
-		if (entity instanceof ServerPlayerEntity player) {
+		if (entity instanceof ServerPlayerEntity player && entity.getStatusEffect(SpectrumStatusEffects.DIVINITY) == null) {
 			SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
-		}
-		if (entity instanceof ClientPlayerEntity) {
+		} else if (entity instanceof ClientPlayerEntity) {
 			FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", true);
 		}
 	}

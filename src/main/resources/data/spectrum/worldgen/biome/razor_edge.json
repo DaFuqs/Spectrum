@@ -42,10 +42,10 @@
     [],
     [],
     [
-      "spectrum:dd_andesite_pillar",
-      "minecraft:large_dripstone",
       "spectrum:dd_downstone_sloped",
-      "spectrum:moonstone_geode"
+      "spectrum:moonstone_geode",
+      "spectrum:dd_large_dripstone",
+      "spectrum:dd_andesite_pillar"
     ],
     [],
     [
@@ -70,13 +70,15 @@
       "spectrum:dd_stone"
     ],
     [
-      "minecraft:pointed_dripstone"
+      "spectrum:dd_pointed_dripstone"
     ],
     [
       "spectrum:dd_water_springs",
-      "spectrum:dd_lava_springs"
+      "spectrum:dd_lava_springs",
+      "spectrum:andesite_crystal_formations"
     ],
     [
+      "spectrum:aloe_patch",
       "spectrum:dd_glow_lichen"
     ],
     []

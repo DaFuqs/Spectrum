@@ -5,20 +5,20 @@
       "Name": "spectrum:sawblade_grass"
     },
     "rim": {
-      "Name": "minecraft:diorite"
+      "Name": "spectrum:sawblade_grass"
     },
     "size": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 3,
-        "max_inclusive": 7
+        "min_inclusive": 5,
+        "max_inclusive": 10
       }
     },
     "rim_size": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 0,
-        "max_inclusive": 2
+        "min_inclusive": 1,
+        "max_inclusive": 3
       }
     }
   }

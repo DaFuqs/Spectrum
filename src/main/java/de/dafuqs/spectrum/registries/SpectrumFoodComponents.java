@@ -232,8 +232,6 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 1200), 2.0F / 3.0F)
 			.build();
 
-	public static final FoodComponent MYCEYLON_APPLE_JUICE = new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build();
-
 	public static final FoodComponent MYCEYLON_APPLE_PIE = new FoodComponent.Builder().hunger(10).saturationModifier(0.3F).build();
 
 	public static final FoodComponent MYCEYLON_PUMPKIN_PIE = new FoodComponent.Builder().hunger(10).saturationModifier(0.3F).build();

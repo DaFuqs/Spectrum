@@ -1,13 +1,18 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.fluid.*;
+import net.minecraft.item.*;
 import net.minecraft.particle.*;
+import net.minecraft.sound.*;
 import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -40,12 +45,23 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		super.onEntityCollision(state, world, pos, entity);
+
 		if (entity instanceof LivingEntity livingEntity) {
 			// just check every 20 ticks for performance
 			if (world.getTime() % 20 == 0) {
 				StatusEffectInstance milleniaDisease = livingEntity.getStatusEffect(SpectrumStatusEffects.MILLENIA_DISEASE);
 				if (milleniaDisease == null || milleniaDisease.getDuration() < 200) {
 					livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.MILLENIA_DISEASE, 220, 0));
+				}
+			}
+		} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {
+			if (world.random.nextInt(200) == 0) {
+				ItemStack itemStack = itemEntity.getStack();
+				DragonrotConvertingRecipe recipe = getConversionRecipeFor(SpectrumRecipeTypes.DRAGONROT_CONVERTING, world, itemStack);
+				if (recipe != null) {
+					world.playSound(null, itemEntity.getBlockPos(), SoundEvents.BLOCK_WOOL_BREAK, SoundCategory.NEUTRAL, 1.0F, 0.9F + world.getRandom().nextFloat() * 0.2F);
+					MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, itemEntity.getPos(), recipe.getOutput(), recipe.getOutput().getCount() * itemStack.getCount(), Vec3d.ZERO);
+					itemEntity.discard();
 				}
 			}
 		}

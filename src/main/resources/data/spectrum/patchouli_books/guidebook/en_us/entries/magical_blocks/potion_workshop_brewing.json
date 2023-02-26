@@ -73,6 +73,13 @@
       "advancement": "spectrum:progression/potions/unlock_wither_potion",
       "recipe": "spectrum:potion_workshop_brewing/wither",
       "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Darkness",
+      "advancement": "spectrum:progression/potions/unlock_darkness_potion",
+      "recipe": "spectrum:potion_workshop_brewing/darkness",
+      "text": ""
     }
   ]
 }

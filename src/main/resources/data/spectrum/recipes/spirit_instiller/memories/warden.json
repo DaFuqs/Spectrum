@@ -15,7 +15,7 @@
   },
   "result": {
     "item": "spectrum:memory",
-    "nbt": "{EntityTag: {id: \"minecraft:warden\"}, TicksToManifest: 40}"
+    "nbt": "{EntityTag: {id: \"minecraft:warden\"}, TicksToManifest: 8}"
   },
   "required_advancement": "spectrum:milestones/unlock_remembering_boss_memories"
 }

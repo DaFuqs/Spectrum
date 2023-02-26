@@ -1,0 +1,21 @@
+{
+  "name": "Aloe",
+  "advancement": "spectrum:hidden/collect_aloe",
+  "icon": "spectrum:aloe",
+  "category": "spectrum:resources_category",
+  "extra_recipe_mappings": {
+    "spectrum:aloe": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Aloe",
+      "text": "These drought-loving plants are able to grow almost everywhere. Only too much light and nutrients they can not handle, ironically."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:aloe",
+      "text": "You can break off individual leaves and replant them. Over time, they grow into a full-fledged new plant.$(br)The leaves retain a lot of moisture and are quite nutritious."
+    }
+  ]
+}

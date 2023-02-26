@@ -1,0 +1,45 @@
+{
+  "type": "spectrum:crystal_formation",
+  "config": {
+    "iterations": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 1200,
+        "max_inclusive": 1800
+      }
+    },
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 1,
+          "data": {
+            "Name": "spectrum:hummingstone"
+          }
+        },
+        {
+          "weight": 15,
+          "data": {
+            "Name": "spectrum:hummingstone_glass"
+          }
+        }
+      ]
+    },
+    "can_start_on": [
+      "minecraft:andesite",
+      "minecraft:diorite",
+      "minecraft:granite",
+      "minecraft:dripstone_block",
+      "minecraft:calcite",
+      "minecraft:tuff",
+      "minecraft:deepslate",
+      "spectrum:blackslag"
+    ],
+    "can_extend_on": [
+      "spectrum:hummingstone_glass",
+      "minecraft:dripstone_block",
+      "minecraft:calcite",
+      "minecraft:tuff"
+    ]
+  }
+}

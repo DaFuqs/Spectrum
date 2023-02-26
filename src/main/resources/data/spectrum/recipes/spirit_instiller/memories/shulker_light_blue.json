@@ -15,6 +15,6 @@
   },
   "result": {
     "item": "spectrum:memory",
-    "nbt": "{EntityTag: {id: \"minecraft:shulker\", Color:3}, TicksToManifest: 80}"
+    "nbt": "{EntityTag: {id: \"minecraft:shulker\", Color:3}, TicksToManifest: 16}"
   }
 }

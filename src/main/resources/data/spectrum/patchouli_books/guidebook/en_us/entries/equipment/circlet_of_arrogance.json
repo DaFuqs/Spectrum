@@ -1,0 +1,21 @@
+{
+  "name": "Circlet of Arrogance",
+  "advancement": "spectrum:progression/unlock_circlet_of_arrogance",
+  "icon": "spectrum:circlet_of_arrogance",
+  "category": "spectrum:equipment_category",
+  "extra_recipe_mappings": {
+    "spectrum:circlet_of_arrogance": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "That's it: the ultimate buff in wearable form.$(br)If it weren't for your life should you ever get hit too hard - a very expensive price to pay - you would not hesitate for a second.$(br)Should you really...?$(br2)Of course."
+    },
+    {
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "Fusion Recipe",
+      "recipe": "spectrum:fusion_shrine/trinkets/circlet_of_arrogance",
+      "text": "$(italic)Pride comes before a fall."
+    }
+  ]
+}

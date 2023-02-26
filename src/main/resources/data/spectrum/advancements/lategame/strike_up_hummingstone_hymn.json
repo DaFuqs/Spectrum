@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:hummingstone"
+    },
+    "title": {
+      "translate": "advancements.spectrum.strike_up_hummingstone_hymn.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.strike_up_hummingstone_hymn.description"
+    }
+  },
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "criteria": {
+    "struck_up_hummingstone_hymn": {
+      "trigger": "spectrum:hummingstone_hymn",
+      "conditions": {}
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

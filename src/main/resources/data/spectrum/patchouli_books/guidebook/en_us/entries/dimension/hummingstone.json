@@ -1,7 +1,7 @@
 {
-  "name": "Aloe",
+  "name": "Hummingstone",
   "advancement": "spectrum:hidden/collect_hummingstone",
-  "icon": "spectrum:aloe",
+  "icon": "spectrum:hummingstone",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
     "spectrum:hummingstone": 0,

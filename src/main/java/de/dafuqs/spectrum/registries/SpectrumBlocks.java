@@ -582,7 +582,7 @@ public class SpectrumBlocks {
 
 	public static final Block ALOE = new AloeBlock(dragonjag(MapColor.DARK_GREEN).noCollision().ticksRandomly().breakInstantly());
 
-	public static final Block HUMMINGSTONE = new HummingstoneBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(3.0F, 10.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).requiresTool());
+	public static final Block HUMMINGSTONE = new HummingstoneBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(3.0F, 10.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).requiresTool().ticksRandomly());
 	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(3.0F, 10.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).requiresTool());
 
 	// JADE VINES

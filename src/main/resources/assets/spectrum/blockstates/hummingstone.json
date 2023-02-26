@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "humming=false": {
       "model": "spectrum:block/hummingstone"
+    },
+    "humming=true": {
+      "model": "spectrum:block/hummingstone_humming"
     }
   }
 }

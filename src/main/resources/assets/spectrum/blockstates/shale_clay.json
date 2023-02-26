@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=x": {
+			"model": "spectrum:block/shale_clay",
+			"x": 90,
+			"y": 90
+		},
+		"axis=y": {
+			"model": "spectrum:block/shale_clay"
+		},
+		"axis=z": {
+			"model": "spectrum:block/shale_clay",
+			"x": 90
+		}
+	}
+}

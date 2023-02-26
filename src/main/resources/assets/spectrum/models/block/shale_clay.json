@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "spectrum:block/shale_clay_top",
+    "side": "spectrum:block/shale_clay_side"
+  }
+}

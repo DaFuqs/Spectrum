@@ -6,20 +6,30 @@
     },
     "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.craft_pigment_palette.title"
+      "translate": "advancements.spectrum.equip_pigment_palette.title"
     },
     "description": {
-      "translate": "advancements.spectrum.craft_pigment_palette.description"
+      "translate": "advancements.spectrum.equip_pigment_palette.description"
     }
   },
   "criteria": {
-    "crafted_pigment_palette": {
-  	  "trigger": "spectrum:crafted_with_pedestal",
-  	  "conditions": { "items": [{ "items": [ "spectrum:pigment_palette" ]}] }
+    "equipped_pigment_palette": {
+      "trigger": "spectrum:trinket_change",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:pigment_palette"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
-  	  "trigger":"revelationary:advancement_gotten",
-  	  "conditions": { "advancement_identifier": "spectrum:midgame/create_refined_azurite" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_refined_azurite"
+      }
     }
   }
 }

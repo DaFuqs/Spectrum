@@ -16,6 +16,7 @@ public class SpectrumFeatures {
 	public static Feature<BlockStateFeatureConfig> PILLAR;
 	public static Feature<ColumnsFeatureConfig> COLUMNS;
     public static Feature<CrystalFormationFeatureFeatureConfig> BLOB;
+	public static Feature<RandomBlockCheckingPatchFeatureConfig> RANDOM_BLOCK_CHECKING_PATCH;
 
 	public static void register() {
 		WEIGHTED_RANDOM_FEATURE = registerFeature("weighted_random_feature", new WeightedRandomFeature(WeightedRandomFeatureConfig.CODEC));
@@ -26,7 +27,8 @@ public class SpectrumFeatures {
 		GILLED_FUNGUS = registerFeature("gilled_fungus", new GilledFungusFeature(GilledFungusFeatureConfig.CODEC));
 		PILLAR = registerFeature("pillar", new PillarFeature(BlockStateFeatureConfig.CODEC));
         COLUMNS = registerFeature("columns", new ColumnsFeature(ColumnsFeatureConfig.CODEC));
-        BLOB = registerFeature("crystal_formation", new CrystalFormationFeature(CrystalFormationFeatureFeatureConfig.CODEC));
+		BLOB = registerFeature("crystal_formation", new CrystalFormationFeature(CrystalFormationFeatureFeatureConfig.CODEC));
+		RANDOM_BLOCK_CHECKING_PATCH = registerFeature("random_block_checking_patch", new RandomBlockCheckingPatchFeature(RandomBlockCheckingPatchFeatureConfig.CODEC));
 	}
 	
 }

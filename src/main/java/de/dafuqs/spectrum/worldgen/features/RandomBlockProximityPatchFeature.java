@@ -9,14 +9,14 @@ import net.minecraft.world.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.util.*;
 
-public class RandomBlockCheckingPatchFeature extends Feature<RandomBlockCheckingPatchFeatureConfig> {
+public class RandomBlockProximityPatchFeature extends Feature<RandomBlockProximityPatchFeatureConfig> {
 
-	public RandomBlockCheckingPatchFeature(Codec<RandomBlockCheckingPatchFeatureConfig> codec) {
+	public RandomBlockProximityPatchFeature(Codec<RandomBlockProximityPatchFeatureConfig> codec) {
 		super(codec);
 	}
 
-	public boolean generate(FeatureContext<RandomBlockCheckingPatchFeatureConfig> context) {
-		RandomBlockCheckingPatchFeatureConfig randomPatchFeatureConfig = context.getConfig();
+	public boolean generate(FeatureContext<RandomBlockProximityPatchFeatureConfig> context) {
+		RandomBlockProximityPatchFeatureConfig randomPatchFeatureConfig = context.getConfig();
 		Random random = context.getRandom();
 		BlockPos blockPos = context.getOrigin();
 		StructureWorldAccess structureWorldAccess = context.getWorld();

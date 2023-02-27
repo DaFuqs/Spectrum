@@ -1,5 +1,5 @@
 {
-  "type": "spectrum:random_block_checking_patch",
+  "type": "spectrum:random_block_proximity_patch",
   "config": {
     "tries": 64,
     "xz_spread": 7,

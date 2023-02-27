@@ -5,19 +5,19 @@
       "type": "minecraft:weighted_state_provider",
       "entries": [
         {
-          "weight": 50,
+          "weight": 100,
           "data": {
             "Name": "spectrum:slate_noxshroom"
           }
         },
         {
-          "weight": 50,
+          "weight": 100,
           "data": {
             "Name": "spectrum:ebony_noxshroom"
           }
         },
         {
-          "weight": 50,
+          "weight": 100,
           "data": {
             "Name": "spectrum:ivory_noxshroom"
           }

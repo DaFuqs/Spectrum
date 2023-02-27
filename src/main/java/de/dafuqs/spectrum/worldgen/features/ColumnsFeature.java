@@ -35,7 +35,7 @@ public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
         if (!canPlaceAt(structureWorldAccess, i, blockPos.mutableCopy())) {
             return false;
         } else {
-            int j = config.getHeight().get(random);
+            int j = config.height().get(random);
             boolean bl = random.nextFloat() < 0.9F;
             int k = Math.min(j, bl ? field_31495 : field_31497);
             int l = bl ? field_31496 : field_31498;
@@ -44,7 +44,7 @@ public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
             for (BlockPos blockPos2 : BlockPos.iterateRandomly(random, l, blockPos.getX() - k, blockPos.getY(), blockPos.getZ() - k, blockPos.getX() + k, blockPos.getY(), blockPos.getZ() + k)) {
                 int m = j - blockPos2.getManhattanDistance(blockPos);
                 if (m >= 0) {
-                    bl2 |= this.placeColumn(structureWorldAccess, i, blockPos2, m, config.getReach().get(random), config.getBlockState());
+                    bl2 |= this.placeColumn(structureWorldAccess, i, blockPos2, m, config.reach().get(random), config.blockState());
                 }
             }
 

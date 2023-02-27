@@ -19,7 +19,7 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
         StructureWorldAccess structureWorldAccess = context.getWorld();
         BlockPos blockPos = context.getOrigin();
         GilledFungusFeatureConfig hugeFungusFeatureConfig = context.getConfig();
-        Block validBaseBlock = hugeFungusFeatureConfig.validBaseBlock.getBlock();
+        Block validBaseBlock = hugeFungusFeatureConfig.validBaseBlock().getBlock();
         BlockState baseBlock = structureWorldAccess.getBlockState(blockPos.down());
 
         if (!baseBlock.isOf(validBaseBlock)) {
@@ -52,7 +52,7 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
 
     private void generateStem(WorldAccess world, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight) {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
-        BlockState blockState = config.stemState;
+        BlockState blockState = config.stemState();
         int i = 0;
         for (int x = -i; x <= i; ++x) {
             for (int z = -i; z <= i; ++z) {
@@ -88,14 +88,14 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
                         boolean isLowestLevel = y == 0;
 
                         if (x == 0 && z == 0) {
-                            this.setBlockState(world, mutable, currentHatWidth < 2 ? config.capState : config.stemState);
+                            this.setBlockState(world, mutable, currentHatWidth < 2 ? config.capState() : config.stemState());
                         } else if (isInner && !isInnerCorner) {
                             if (!isLowestLevel || Math.abs(x) > outerThreshold || Math.abs(z) > outerThreshold) {
-                                BlockState gillsState = config.gillsState.with(PillarBlock.AXIS, Math.abs(x) < Math.abs(z) ? Direction.Axis.X : Direction.Axis.Z);
+                                BlockState gillsState = config.gillsState().with(PillarBlock.AXIS, Math.abs(x) < Math.abs(z) ? Direction.Axis.X : Direction.Axis.Z);
                                 this.setBlockState(world, mutable, gillsState);
                             }
                         } else {
-                            this.setBlockState(world, mutable, config.capState);
+                            this.setBlockState(world, mutable, config.capState());
                         }
                     }
                 }

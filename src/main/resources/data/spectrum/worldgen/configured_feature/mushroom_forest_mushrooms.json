@@ -1,11 +1,35 @@
 {
-  "type": "minecraft:simple_random_selector",
+  "type": "spectrum:weighted_random_feature",
   "config": {
     "features": [
-      "spectrum:chestnut_noxfungus",
-      "spectrum:ebony_noxfungus",
-      "spectrum:ivory_noxfungus",
-      "spectrum:slate_noxfungus"
+      {
+        "data": {
+          "feature": "spectrum:slate_noxfungus",
+          "placement": []
+        },
+        "weight": 100
+      },
+      {
+        "data": {
+          "feature": "spectrum:ebony_noxfungus",
+          "placement": []
+        },
+        "weight": 100
+      },
+      {
+        "data": {
+          "feature": "spectrum:ivory_noxfungus",
+          "placement": []
+        },
+        "weight": 100
+      },
+      {
+        "data": {
+          "feature": "spectrum:chestnut_noxfungus",
+          "placement": []
+        },
+        "weight": 1
+      }
     ]
   }
 }

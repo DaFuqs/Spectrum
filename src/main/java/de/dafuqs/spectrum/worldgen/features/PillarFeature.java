@@ -21,7 +21,7 @@ public class PillarFeature extends Feature<BlockStateFeatureConfig> {
         StructureWorldAccess structureWorldAccess = context.getWorld();
         Random random = context.getRandom();
         if (structureWorldAccess.isAir(blockPos) && !structureWorldAccess.isAir(blockPos.up())) {
-            BlockState blockState = context.getConfig().blockState;
+            BlockState blockState = context.getConfig().blockState();
 
             BlockPos.Mutable mutable = blockPos.mutableCopy();
             BlockPos.Mutable mutable2 = blockPos.mutableCopy();

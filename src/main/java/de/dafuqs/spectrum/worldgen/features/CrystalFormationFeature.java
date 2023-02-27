@@ -22,11 +22,11 @@ public class CrystalFormationFeature extends Feature<CrystalFormationFeatureFeat
             return false;
         } else {
             CrystalFormationFeatureFeatureConfig config = context.getConfig();
-            if (!structureWorldAccess.getBlockState(blockPos.up()).isIn(config.canStartOnBlocks) && !structureWorldAccess.getBlockState(blockPos.down()).isIn(config.canStartOnBlocks)) {
+            if (!structureWorldAccess.getBlockState(blockPos.up()).isIn(config.canStartOnBlocks()) && !structureWorldAccess.getBlockState(blockPos.down()).isIn(config.canStartOnBlocks())) {
                 return false;
             } else {
-                BlockStateProvider stateProvider = config.blockStateProvider;
-                int iterations = config.iterationCountProvider.get(random);
+                BlockStateProvider stateProvider = config.blockStateProvider();
+                int iterations = config.iterationCountProvider().get(random);
 
                 structureWorldAccess.setBlockState(blockPos, stateProvider.getBlockState(random, blockPos), 2);
 
@@ -35,7 +35,7 @@ public class CrystalFormationFeature extends Feature<CrystalFormationFeatureFeat
                     if (structureWorldAccess.getBlockState(offsetPos).isAir()) {
                         int directionTries = 0;
                         for (Direction direction : Direction.values()) {
-                            if (structureWorldAccess.getBlockState(offsetPos.offset(direction)).isIn(config.canExtendOnBlocks)) {
+                            if (structureWorldAccess.getBlockState(offsetPos.offset(direction)).isIn(config.canExtendOnBlocks())) {
                                 ++directionTries;
                             }
                             if (directionTries > 1) {

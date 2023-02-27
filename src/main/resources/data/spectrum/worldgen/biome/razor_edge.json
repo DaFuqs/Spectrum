@@ -45,12 +45,13 @@
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode",
       "spectrum:dd_large_dripstone",
-      "spectrum:dd_andesite_pillar"
+      "spectrum:dd_shale_clay_pillar",
+      "spectrum:blackslag_pile"
     ],
     [],
     [
       "spectrum:dd_sawblade_delta",
-      "spectrum:dd_small_andesite_columns"
+      "spectrum:dd_small_shale_clay_columns"
     ],
     [],
     [
@@ -75,7 +76,7 @@
     [
       "spectrum:dd_water_springs",
       "spectrum:dd_lava_springs",
-      "spectrum:andesite_crystal_formations"
+      "spectrum:dd_shale_clay_crystal_formations"
     ],
     [
       "spectrum:aloe_patch",

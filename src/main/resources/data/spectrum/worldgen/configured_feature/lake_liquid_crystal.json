@@ -13,7 +13,7 @@
     "barrier": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "spectrum:blackslag"
+        "Name": "spectrum:overgrown_blackslag"
       }
     }
   }

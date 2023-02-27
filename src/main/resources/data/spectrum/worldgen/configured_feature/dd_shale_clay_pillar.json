@@ -2,7 +2,7 @@
   "type": "spectrum:pillar",
   "config": {
     "state": {
-      "Name": "minecraft:andesite"
+      "Name": "spectrum:shale_clay"
     }
   }
 }

@@ -1,0 +1,79 @@
+{
+  "type": "spectrum:random_block_checking_patch",
+  "config": {
+    "tries": 64,
+    "xz_spread": 7,
+    "y_spread": 3,
+    "block_scan_range": 2,
+    "blocks_to_find": [
+      "spectrum:liquid_crystal"
+    ],
+    "close_to_block_feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "spectrum:resonant_lily"
+            }
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    },
+    "fallback_feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "weight": 4,
+                "data": {
+                  "Name": "minecraft:pink_tulip"
+                }
+              },
+              {
+                "weight": 3,
+                "data": {
+                  "Name": "minecraft:red_tulip"
+                }
+              },
+              {
+                "weight": 2,
+                "data": {
+                  "Name": "minecraft:orange_tulip"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "minecraft:white_tulip"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    }
+  }
+}

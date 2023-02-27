@@ -43,7 +43,10 @@
     [],
     [
       "spectrum:dd_downstone_sloped",
-      "spectrum:moonstone_geode"
+      "spectrum:moonstone_geode",
+      "spectrum:blackslag_pile",
+      "spectrum:stone_pile",
+      "spectrum:deepslate_pile"
     ],
     [],
     [],

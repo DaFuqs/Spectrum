@@ -2,7 +2,7 @@
   "type": "spectrum:columns",
   "config": {
     "state": {
-      "Name": "minecraft:andesite"
+      "Name": "spectrum:shale_clay"
     },
     "reach": 1,
     "height": {

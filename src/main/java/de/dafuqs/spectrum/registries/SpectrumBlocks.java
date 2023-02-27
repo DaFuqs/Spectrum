@@ -484,7 +484,8 @@ public class SpectrumBlocks {
 	//DD FLORA
 	public static final Block SAWBLADE_GRASS = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.PODZOL));
 	public static final Block ROTTEN_GROUND = new Block(AbstractBlock.Settings.copy(Blocks.PACKED_MUD));
-	public static final Block SHIMMEL = new MyceliumBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
+	public static final Block SHIMMEL = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
+	public static final Block OVERGROWN_BLACKSLAG = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.PODZOL));
 	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), () -> getConfiguredFeatureRegistryEntry("slate_noxfungus"));
 	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), () -> getConfiguredFeatureRegistryEntry("ebony_noxfungus"));
 	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), () -> getConfiguredFeatureRegistryEntry("ivory_noxfungus"));
@@ -1229,6 +1230,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("sawblade_grass", SAWBLADE_GRASS, settings, DyeColor.LIME);
 		registerBlockWithItem("rotten_ground", ROTTEN_GROUND, settings, DyeColor.LIME);
 		registerBlockWithItem("shimmel", SHIMMEL, settings, DyeColor.LIME);
+		registerBlockWithItem("overgrown_blackslag", OVERGROWN_BLACKSLAG, settings, DyeColor.LIME);
 
 		registerBlockWithItem("slate_noxshroom", SLATE_NOXSHROOM, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxcap_cap", SLATE_NOXCAP_CAP, settings, DyeColor.LIME);

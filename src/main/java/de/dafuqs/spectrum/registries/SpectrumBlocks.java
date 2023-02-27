@@ -166,7 +166,10 @@ public class SpectrumBlocks {
 	public static final Block BLACKSLAG_BRICK_STAIRS = new StairsBlock(BLACKSLAG_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block BLACKSLAG_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block BLACKSLAG_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
+	public static final Block BLACKSLAG_PILLAR = new PillarBlock(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+
 	public static final Block CHISELED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block ANCIENT_CHISELED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
 	public static final Block CRACKED_BLACKSLAG_BRICKS = new Block(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block CRACKED_BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
 	public static final Block POLISHED_BLACKSLAG_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
@@ -1674,8 +1677,10 @@ public class SpectrumBlocks {
 		registerBlockWithItem("blackslag_brick_slab", BLACKSLAG_BRICK_SLAB, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_brick_wall", BLACKSLAG_BRICK_WALL, settings, DyeColor.BLACK);
 		registerBlockWithItem("cracked_blackslag_bricks", CRACKED_BLACKSLAG_BRICKS, settings, DyeColor.BLACK);
-		
+
+		registerBlockWithItem("blackslag_pillar", BLACKSLAG_PILLAR, settings, DyeColor.BLACK);
 		registerBlockWithItem("chiseled_blackslag", CHISELED_BLACKSLAG, settings, DyeColor.BLACK);
+		registerBlockWithItem("ancient_chiseled_blackslag", ANCIENT_CHISELED_BLACKSLAG, new FabricItemSettings().rarity(Rarity.UNCOMMON), DyeColor.BLACK);
 		registerBlockWithItem("polished_blackslag_button", POLISHED_BLACKSLAG_BUTTON, settings, DyeColor.BLACK);
 		registerBlockWithItem("polished_blackslag_pressure_plate", POLISHED_BLACKSLAG_PRESSURE_PLATE, settings, DyeColor.BLACK);
 		registerBlockWithItem("infested_blackslag", INFESTED_BLACKSLAG, settings, DyeColor.BLACK);

@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.items.food.beverages.properties;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-import java.util.List;
+import java.util.*;
 
 // wrapper for beverage itemstack nbt
-// individual for each beverage
+// unique for each beverage
 public class BeverageProperties {
 	
 	public long ageDays = 0;

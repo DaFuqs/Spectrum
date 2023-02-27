@@ -286,21 +286,21 @@ public class SpectrumItems {
 	public static final Item BODACIOUS_BERRY_BAR = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR));
 	public static final Item DEMON_TEA = new TeaItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DEMON_TEA), SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS);
 	public static final Item SCONE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SCONE));
-	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.INFUSED_BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item REPRISE = new RepriseItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.INFUSED_BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SUSPICIOUS_BREW).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item JADE_WINE = new JadeWineItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.JADE_WINE).recipeRemainder(Items.GLASS_BOTTLE));
+
+	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item REPRISE = new RepriseItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item PURE_ALCOHOL = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item MOONSHINE = new InfusedBeverageItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSHINE).recipeRemainder(Items.GLASS_BOTTLE));
-	public static final Item CHRYSOCOLLA = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.CHRYSOCOLLA).recipeRemainder(Items.GLASS_BOTTLE));
-	
+	public static final Item JADE_WINE = new JadeWineItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item CHRYSOCOLLA = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE));
+
 	public static final Item HONEY_PASTRY = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.HONEY_PASTRY));
 	public static final Item LUCKY_ROLL = new Item(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.LUCKY_ROLL));
 	public static final Item TRIPLE_MEAT_POT_PIE = new CustomUseTimeItem(Tab.CONSUMABLES.settings(8).food(SpectrumFoodComponents.TRIPLE_MEAT_POT_PIE), 96);
 	public static final Item GLISTERING_JELLY_TEA = new TeaItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.GLISTERING_JELLY_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.GLISTERING_JELLY_TEA_SCONE_BONUS);
 	public static final Item FREIGEIST = new FreigeistItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.FREIGEIST).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item DIVINATION_HEART = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DIVINATION_HEART));
-	
+
 	public static final Item STAR_CANDY = new StarCandyItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.STAR_CANDY));
 	public static final Item PURPLE_STAR_CANDY = new EnchantedStarCandyItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURPLE_STAR_CANDY));
 	
@@ -740,7 +740,6 @@ public class SpectrumItems {
 		register("suspicious_brew", SUSPICIOUS_BREW, DyeColor.LIME);
 		register("jade_wine", JADE_WINE, DyeColor.LIME);
 		register("chrysocolla", CHRYSOCOLLA, DyeColor.LIME);
-		register("moonshine", MOONSHINE, DyeColor.WHITE);
 		register("freigeist", FREIGEIST, DyeColor.RED);
 		register("divination_heart", DIVINATION_HEART, DyeColor.RED);
 	}

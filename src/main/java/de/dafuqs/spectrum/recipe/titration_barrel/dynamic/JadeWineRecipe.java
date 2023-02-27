@@ -1,31 +1,22 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.items.food.beverages.BeverageItem;
-import de.dafuqs.spectrum.items.food.beverages.properties.JadeWineBeverageProperties;
-import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.id.incubus_core.recipe.matchbook.Matchbook;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.food.beverages.properties.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.id.incubus_core.recipe.matchbook.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.fluid.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class JadeWineRecipe extends TitrationBarrelRecipe {
 	
@@ -43,13 +34,12 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	public JadeWineRecipe(Identifier identifier) {
 		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.075F, 0.1F, List.of()));
 	}
-	
+
 	@Override
-	public ItemStack getOutput() {
-		ItemStack tappedStack = tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
-		BeverageItem.setPreviewStack(tappedStack);
-		tappedStack.setCount(OUTPUT_STACK.getCount());
-		return tappedStack;
+	public ItemStack getDefaultTap(int timeMultiplier) {
+		ItemStack stack = tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F, 0.8F); // downfall & temperature are for plains
+		stack.setCount(this.outputItemStack.getCount());
+		return stack;
 	}
 	
 	@Override
@@ -61,7 +51,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 		float thickness = getThickness(bulbCount, petalCount);
 		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall, temperature);
 	}
-	
+
 	public ItemStack tapWith(int bulbCount, int petalCount, boolean nectar, float thickness, long secondsFermented, float downfall, float temperature) {
 		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
 			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
@@ -74,7 +64,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 		}
 		double alcPercent = getAlcPercentWithBloominess(ageIngameDays, downfall, bloominess, thickness);
 		if (alcPercent >= 100) {
-			return PURE_ALCOHOL_STACK;
+			return getPureAlcohol(ageIngameDays);
 		} else {
 			List<StatusEffectInstance> effects = new ArrayList<>();
 			
@@ -127,7 +117,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 			return new JadeWineBeverageProperties((long) ageIngameDays, (int) alcPercent, thickness, (float) bloominess, nectar, effects).getStack(outputStack);
 		}
 	}
-	
+
 	// bloominess reduces the possibility of negative effects to trigger (better on the tongue)
 	// but also reduces the potency of positive effects a bit
 	protected static double getBloominess(int bulbCount, int petalCount) {

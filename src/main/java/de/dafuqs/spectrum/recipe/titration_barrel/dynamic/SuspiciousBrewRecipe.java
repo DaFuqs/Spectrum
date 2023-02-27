@@ -1,28 +1,22 @@
 package de.dafuqs.spectrum.recipe.titration_barrel.dynamic;
 
-import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.items.food.beverages.BeverageItem;
-import de.dafuqs.spectrum.items.food.beverages.properties.StatusEffectBeverageProperties;
-import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.block.Block;
-import net.minecraft.block.FlowerBlock;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.food.beverages.*;
+import de.dafuqs.spectrum.items.food.beverages.properties.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.fluid.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
@@ -44,12 +38,12 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	public SuspiciousBrewRecipe(Identifier identifier) {
 		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(1.0F, 0.1F, List.of()));
 	}
-	
+
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getDefaultTap(int timeMultiplier) {
 		ItemStack flowerStack = Items.POPPY.getDefaultStack();
 		flowerStack.setCount(4);
-		ItemStack tappedStack = tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
+		ItemStack tappedStack = tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F, 0.8F); // downfall & temperature are for plains
 		BeverageItem.setPreviewStack(tappedStack);
 		tappedStack.setCount(OUTPUT_STACK.getCount());
 		return tappedStack;
@@ -78,7 +72,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
 		double alcPercent = getAlcPercent(thickness, downfall, ageIngameDays);
 		if (alcPercent >= 100) {
-			return PURE_ALCOHOL_STACK;
+			return getPureAlcohol(ageIngameDays);
 		} else {
 			// add up all stew effects with their durations from the input stacks
 			Map<StatusEffect, Integer> stewEffects = new HashMap<>();
@@ -86,7 +80,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 				Optional<Pair<StatusEffect, Integer>> stewEffect = getStewEffectFrom(stack);
 				if (stewEffect.isPresent()) {
 					StatusEffect effect = stewEffect.get().getLeft();
-					int duration = stewEffect.get().getRight() * stack.getCount();
+					int duration = (int) (stewEffect.get().getRight() * (1 + Support.logBase(stack.getCount(), 2)));
 					if (stewEffects.containsKey(effect)) {
 						stewEffects.put(effect, stewEffects.get(effect) + duration);
 					} else {
@@ -98,7 +92,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 			List<StatusEffectInstance> finalStatusEffects = new ArrayList<>();
 			double cappedAlcPercent = Math.min(alcPercent, 20D);
 			for (Map.Entry<StatusEffect, Integer> entry : stewEffects.entrySet()) {
-				int finalDurationTicks = (int) Math.pow(entry.getValue(), 1 + cappedAlcPercent * 0.075);
+				int finalDurationTicks = (int) (entry.getValue() * Math.pow(2, 1 + cappedAlcPercent));
 				finalStatusEffects.add(new StatusEffectInstance(entry.getKey(), finalDurationTicks, 0));
 			}
 			

@@ -95,8 +95,9 @@
     ]
   },
   "result": {
-    "item": "spectrum:moonshine",
-    "count": 4
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"moonshine\", Color: 14151663 }"
   },
   "required_advancement": "spectrum:progression/unlock_moonshine"
 }

@@ -1,29 +1,32 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.compat.REI.GatedSpectrumDisplay;
-import de.dafuqs.spectrum.compat.REI.REIHelper;
-import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.recipe.titration_barrel.ITitrationBarrelRecipe;
-import de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe;
-import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Items;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
+import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.entry.*;
+import me.shedaniel.rei.api.common.util.*;
+import net.minecraft.client.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
-	
+
+	private static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
+		add(1);
+		add(10);
+		add(100);
+	}};
+
 	protected final EntryIngredient tappingIngredient;
 	protected final int minFermentationTimeHours;
 	protected final TitrationBarrelRecipe.FermentationData fermentationData;
-	
+
 	public TitrationBarrelDisplay(@NotNull ITitrationBarrelRecipe recipe) {
-		super(recipe, buildInputs(recipe), recipe.getOutput());
+		super(recipe, buildInputs(recipe), List.of(buildOutputs(recipe)));
 		if (recipe.getTappingItem() == Items.AIR) {
 			this.tappingIngredient = EntryIngredient.empty();
 		} else {
@@ -32,7 +35,15 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 		this.minFermentationTimeHours = recipe.getMinFermentationTimeHours();
 		this.fermentationData = recipe.getFermentationData();
 	}
-	
+
+	private static EntryIngredient buildOutputs(ITitrationBarrelRecipe recipe) {
+		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
+			return EntryIngredients.ofItemStacks(titrationBarrelRecipe.getOutputVariations(FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS));
+		} else {
+			return EntryIngredients.of(recipe.getOutput());
+		}
+	}
+
 	public static List<EntryIngredient> buildInputs(ITitrationBarrelRecipe recipe) {
 		List<EntryIngredient> inputs = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
 		if (recipe.getFluid() != Fluids.EMPTY) {
@@ -40,7 +51,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 		}
 		return inputs;
 	}
-	
+
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.TITRATION_BARREL;

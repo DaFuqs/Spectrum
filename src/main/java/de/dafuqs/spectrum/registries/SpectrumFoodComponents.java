@@ -74,34 +74,15 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.FRENZY, 800, 0), 1.0F)
 			.build();
 	
-	public static final FoodComponent INFUSED_BEVERAGE = new FoodComponent.Builder()
-			.hunger(2).saturationModifier(0.2F)
-			.build();
-	
-	public static final FoodComponent SUSPICIOUS_BREW = new FoodComponent.Builder()
-			.hunger(2).saturationModifier(0.2F)
-			.build();
-	
-	public static final FoodComponent JADE_WINE = new FoodComponent.Builder()
-			.hunger(2).saturationModifier(0.2F).alwaysEdible()
-			.build();
+	public static final FoodComponent BEVERAGE = new FoodComponent.Builder()
+            .hunger(2).saturationModifier(0.2F)
+            .build();
 	
 	public static final FoodComponent PURE_ALCOHOL = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.statusEffect(new StatusEffectInstance(StatusEffects.POISON, 20 * 15, 4), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 30, 2), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 60, 2), 1.0F)
-			.build();
-	
-	public static final FoodComponent CHRYSOCOLLA = new FoodComponent.Builder()
-			.hunger(2).saturationModifier(0.2F).alwaysEdible()
-			.statusEffect(new StatusEffectInstance(StatusEffects.POISON, 20 * 15, 4), 1.0F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.NAUSEA, 20 * 30, 2), 1.0F)
-			.statusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 60, 2), 1.0F)
-			.build();
-	
-	public static final FoodComponent MOONSHINE = new FoodComponent.Builder()
-			.hunger(2).saturationModifier(0.2F).alwaysEdible()
 			.build();
 	
 	public static final FoodComponent KIMCHI = new FoodComponent.Builder()

@@ -1,20 +1,17 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
-import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.fluid.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * In contrast to most other Minecraft things, the titration barrel also counts the fermenting time
@@ -75,6 +72,5 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	int getMinFermentationTimeHours();
 	
 	TitrationBarrelRecipe.FermentationData getFermentationData();
-	
-	
+
 }

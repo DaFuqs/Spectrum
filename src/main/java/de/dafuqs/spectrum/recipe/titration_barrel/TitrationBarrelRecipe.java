@@ -1,44 +1,31 @@
 package de.dafuqs.spectrum.recipe.titration_barrel;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
-import de.dafuqs.spectrum.items.food.beverages.BeverageItem;
-import de.dafuqs.spectrum.items.food.beverages.properties.BeverageProperties;
-import de.dafuqs.spectrum.items.food.beverages.properties.VariantBeverageProperties;
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.food.beverages.*;
+import de.dafuqs.spectrum.items.food.beverages.properties.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.fluid.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitrationBarrelRecipe {
 	
 	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
-	public static final ItemStack PURE_ALCOHOL_STACK = SpectrumItems.PURE_ALCOHOL.getDefaultStack();
 	
 	protected final List<IngredientStack> inputStacks;
 	protected final ItemStack outputItemStack;
@@ -194,28 +181,41 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	public int getMinFermentationTimeHours() {
 		return this.minFermentationTimeHours;
 	}
-	
+
 	@Override
 	public FermentationData getFermentationData() {
 		return this.fermentationData;
 	}
-	
+
 	@Override
 	public ItemStack craft(Inventory inventory) {
 		return ItemStack.EMPTY;
 	}
-	
-	@Override
-	public ItemStack getOutput() {
-		ItemStack stack = tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L, 0.4F, 0.8F); // downfall & temperature are for plains
+
+	public ItemStack getDefaultTap(int timeMultiplier) {
+		ItemStack stack = tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F, 0.8F); // downfall & temperature are for plains
 		stack.setCount(this.outputItemStack.getCount());
 		return stack;
 	}
-	
+
+	@Override
+	public ItemStack getOutput() {
+		return getDefaultTap(1);
+	}
+
+	// used for display mods like REI to show recipe outputs with a few example fermentation times
+	public Collection<ItemStack> getOutputVariations(List<Integer> timeMultipliers) {
+		List<ItemStack> list = new ArrayList<>();
+		for (int timeMultiplier : timeMultipliers) {
+			list.add(getDefaultTap(timeMultiplier));
+		}
+		return list;
+	}
+
 	public Fluid getFluid() {
 		return fluid;
 	}
-	
+
 	@Override
 	public float getAngelsSharePerMcDay() {
 		if (this.fermentationData == null) {
@@ -250,7 +250,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 			}
 			
 			if (alcPercent >= 100) {
-				return PURE_ALCOHOL_STACK;
+				return getPureAlcohol(ageIngameDays);
 			}
 			
 			BeverageProperties properties;
@@ -278,21 +278,29 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 						effects.add(new StatusEffectInstance(entry.statusEffect, (int) (durationTicks * durationMultiplier), potency));
 					}
 				}
-				
+
 				variantBeverageProperties.statusEffects = effects;
 			}
-			
+
 			properties.alcPercent = (int) alcPercent;
 			properties.ageDays = (long) ageIngameDays;
 			properties.thickness = thickness;
 			return properties.getStack(stack);
 		}
 	}
-	
+
+	protected static ItemStack getPureAlcohol(float ageIngameDays) {
+		ItemStack stack = SpectrumItems.PURE_ALCOHOL.getDefaultStack();
+		BeverageProperties properties = BeverageProperties.getFromStack(stack);
+		properties.ageDays = (long) ageIngameDays;
+		properties.getStack(stack);
+		return stack;
+	}
+
 	protected double getAlcPercent(float thickness, float downfall, float ageIngameDays) {
 		return Support.logBase(1 + this.fermentationData.fermentationSpeedMod, ageIngameDays * (0.5D + thickness / 2D) * (0.5D + downfall / 2D));
 	}
-	
+
 	protected float getThickness(int contentCount) {
 		int inputStacksCount = 0;
 		for (IngredientStack stack : inputStacks) {

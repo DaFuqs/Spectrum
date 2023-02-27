@@ -2,7 +2,7 @@
   "name": "Aloe",
   "advancement": "spectrum:hidden/collect_aloe",
   "icon": "spectrum:aloe",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:aloe": 0
   },

@@ -2,7 +2,7 @@
   "name": "Dragonrot",
   "advancement": "spectrum:lategame/interact_with_dragonrot",
   "icon": "spectrum:dragonrot_bucket",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:dragonrot_bucket": 0
   },

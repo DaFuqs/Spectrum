@@ -2,7 +2,7 @@
   "name": "Myceylon",
   "advancement": "spectrum:lategame/collect_myceylon",
   "icon": "spectrum:myceylon",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:myceylon": 0,
     "spectrum:myceylon_apple_pie": 0,

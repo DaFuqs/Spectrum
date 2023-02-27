@@ -2,7 +2,7 @@
   "name": "Hummingstone",
   "advancement": "spectrum:hidden/collect_hummingstone",
   "icon": "spectrum:hummingstone",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:hummingstone": 0,
     "spectrum:hummingstone_glass": 0

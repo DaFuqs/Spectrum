@@ -2,7 +2,7 @@
   "name": "Prickly Bayleaf",
   "advancement": "spectrum:lategame/collect_prickly_bayleaf",
   "icon": "spectrum:prickly_bayleaf",
-  "category": "spectrum:resources_category",
+  "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:prickly_bayleaf": 0,
     "spectrum:spiked_potatoes": 0,

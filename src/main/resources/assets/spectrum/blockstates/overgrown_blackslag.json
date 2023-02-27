@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "snowy=true": {
+      "model": "spectrum:block/overgrown_blackslag_snow"
+    },
+    "snowy=false": {
+      "model": "spectrum:block/overgrown_blackslag"
+    }
+  }
+}

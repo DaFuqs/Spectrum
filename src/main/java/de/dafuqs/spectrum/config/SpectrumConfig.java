@@ -204,9 +204,6 @@ public class SpectrumConfig implements ConfigData {
 		if (RuinDecayTickRate <= 0.1) {
 			RuinDecayTickRate = 1.0F;
 		}
-		if (ForfeitureDecayTickRate <= 0.1) {
-			ForfeitureDecayTickRate = 1.0F;
-		}
 		if (ShootingStarChance <= 0.001) {
 			ShootingStarChance = 0.01F;
 		}

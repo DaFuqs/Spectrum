@@ -58,6 +58,11 @@ public class FadingBlock extends DecayBlock {
 	}
 	
 	@Override
+	protected boolean canSpreadToBlockEntities() {
+		return SpectrumCommon.CONFIG.FadingCanDestroyBlockEntities;
+	}
+	
+	@Override
 	protected boolean canSpread(BlockState blockState) {
 		return true;
 	}

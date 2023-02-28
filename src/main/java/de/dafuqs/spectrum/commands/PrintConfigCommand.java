@@ -29,6 +29,8 @@ public class PrintConfigCommand {
 		send(source, "VanillaRecipeCraftingTimeTicks: " + SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks);
 		
 		send(source, "Decay tick rates: " + SpectrumCommon.CONFIG.FadingDecayTickRate + ", " + SpectrumCommon.CONFIG.FailingDecayTickRate + ", " + SpectrumCommon.CONFIG.RuinDecayTickRate + ", " + SpectrumCommon.CONFIG.ForfeitureDecayTickRate);
+		send(source, "Decay pickup ability: " + SpectrumCommon.CONFIG.CanPickUpFading + ", " + SpectrumCommon.CONFIG.CanPickUpFailing + ", " + SpectrumCommon.CONFIG.CanPickUpRuin + ", " + SpectrumCommon.CONFIG.CanPickUpForfeiture);
+		send(source, "Decay can destroy block entities: " + SpectrumCommon.CONFIG.FadingCanDestroyBlockEntities + ", " + SpectrumCommon.CONFIG.FailingCanDestroyBlockEntities + ", " + SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities + ", " + SpectrumCommon.CONFIG.ForfeitureCanDestroyBlockEntities);
 		
 		String disabledEnchantments = "";
 		if (!SpectrumCommon.CONFIG.AutoSmeltEnchantmentEnabled) {

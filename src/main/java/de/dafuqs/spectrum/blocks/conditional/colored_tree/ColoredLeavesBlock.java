@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.conditional;
+package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import com.google.common.collect.Maps;
 import de.dafuqs.revelationary.api.revelations.RevelationAware;

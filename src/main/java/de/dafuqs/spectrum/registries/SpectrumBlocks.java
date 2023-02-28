@@ -10,6 +10,8 @@ import de.dafuqs.spectrum.blocks.chests.*;
 import de.dafuqs.spectrum.blocks.cinderhearth.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.conditional.amaranth.*;
+import de.dafuqs.spectrum.blocks.conditional.blood_orchid.*;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import de.dafuqs.spectrum.blocks.dd_deco.*;
 import de.dafuqs.spectrum.blocks.decay.*;
@@ -54,6 +56,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
 import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock.Settings;
 import net.minecraft.client.render.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
@@ -643,7 +646,6 @@ public class SpectrumBlocks {
 	public static final Block RADIATING_ENDER = new EnderTreasureBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
 	public static final Block AMARANTH = new AmaranthCropBlock(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
 	public static final Block AMARANTH_BUSHEL = new AmaranthBushelBlock(FabricBlockSettings.of(Material.PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.CROP));
-	public static final Block POTTED_AMARANTH_BUSHEL = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL, AbstractBlock.Settings.of(Material.DECORATION).breakInstantly().nonOpaque());
 	
 	public static final Block CRACKED_END_PORTAL_FRAME = new CrackedEndPortalFrameBlock(FabricBlockSettings.copyOf(Blocks.END_PORTAL_FRAME));
 	public static final Block LAVA_SPONGE = new LavaSpongeBlock(FabricBlockSettings.copyOf(Blocks.SPONGE));
@@ -784,6 +786,27 @@ public class SpectrumBlocks {
 	public static final Block RED_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.RED);
 	public static final Block WHITE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.WHITE);
 	public static final Block YELLOW_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.YELLOW);
+	
+	// POTTED PLANTS
+	private static final Settings POTTED_PLANT_SETTINGS = AbstractBlock.Settings.of(Material.DECORATION).breakInstantly().nonOpaque();
+	public static final Block POTTED_AMARANTH_BUSHEL    = new PottedAmaranthBushelBlock(AMARANTH_BUSHEL,    POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_BLOOD_ORCHID       = new PottedBloodOrchidBlock   (BLOOD_ORCHID,       POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_BLACK_SAPLING      = new PottedColoredSaplingBlock(BLACK_SAPLING,      POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_BLUE_SAPLING       = new PottedColoredSaplingBlock(BLUE_SAPLING,       POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_BROWN_SAPLING      = new PottedColoredSaplingBlock(BROWN_SAPLING,      POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_CYAN_SAPLING       = new PottedColoredSaplingBlock(CYAN_SAPLING,       POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_GRAY_SAPLING       = new PottedColoredSaplingBlock(GRAY_SAPLING,       POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_GREEN_SAPLING      = new PottedColoredSaplingBlock(GREEN_SAPLING,      POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_LIGHT_BLUE_SAPLING = new PottedColoredSaplingBlock(LIGHT_BLUE_SAPLING, POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_LIGHT_GRAY_SAPLING = new PottedColoredSaplingBlock(LIGHT_GRAY_SAPLING, POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_LIME_SAPLING       = new PottedColoredSaplingBlock(LIME_SAPLING,       POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_MAGENTA_SAPLING    = new PottedColoredSaplingBlock(MAGENTA_SAPLING,    POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_ORANGE_SAPLING     = new PottedColoredSaplingBlock(ORANGE_SAPLING,     POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_PINK_SAPLING       = new PottedColoredSaplingBlock(PINK_SAPLING,       POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_PURPLE_SAPLING     = new PottedColoredSaplingBlock(PURPLE_SAPLING,     POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_RED_SAPLING        = new PottedColoredSaplingBlock(RED_SAPLING,        POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_WHITE_SAPLING      = new PottedColoredSaplingBlock(WHITE_SAPLING,      POTTED_PLANT_SETTINGS);
+	public static final Block POTTED_YELLOW_SAPLING     = new PottedColoredSaplingBlock(YELLOW_SAPLING,     POTTED_PLANT_SETTINGS);
 	
 	// FLAT COLORED BLOCKS
 	private static final FabricBlockSettings flatColoredBlockBlockSettings = FabricBlockSettings.of(Material.STONE).hardness(2.5F).requiresTool().luminance(1).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always);
@@ -1181,21 +1204,23 @@ public class SpectrumBlocks {
 		registerBlock("ruin", RUIN);
 		registerBlock("forfeiture", FORFEITURE);
 		registerBlock("decay_away", DECAY_AWAY);
-
+		
 		// Fluids + Products
 		registerBlock("mud", MUD);
 		registerBlock("liquid_crystal", LIQUID_CRYSTAL);
 		registerBlock("midnight_solution", MIDNIGHT_SOLUTION);
 		registerBlock("dragonrot", DRAGONROT);
-
+		
 		registerBlockWithItem("black_materia", BLACK_MATERIA, Tab.GENERAL.settings(), DyeColor.GRAY);
 		registerBlockWithItem("frostbite_crystal", FROSTBITE_CRYSTAL, Tab.GENERAL.settings(), DyeColor.LIGHT_BLUE);
 		registerBlockWithItem("blazing_crystal", BLAZING_CRYSTAL, Tab.GENERAL.settings(), DyeColor.ORANGE);
 		registerBlockWithItem("resonant_lily", RESONANT_LILY, Tab.GENERAL.settings(), DyeColor.GREEN);
 		registerBlockWithItem("clover", CLOVER, Tab.RESOURCES.settings(), DyeColor.LIME);
 		registerBlockWithItem("four_leaf_clover", FOUR_LEAF_CLOVER, new FourLeafCloverItem(FOUR_LEAF_CLOVER, Tab.RESOURCES.settings(), locate("milestones/reveal_four_leaf_clover"), CLOVER.asItem()), DyeColor.LIME);
-		registerBlockWithItem("blood_orchid", BLOOD_ORCHID, Tab.RESOURCES.settings(), DyeColor.RED);
 		registerBlockWithItem("incandescent_amalgam", INCANDESCENT_AMALGAM, new IncandescentAmalgamItem(INCANDESCENT_AMALGAM, Tab.EQUIPMENT.settings(16).food(SpectrumFoodComponents.INCANDESCENT_AMALGAM)), DyeColor.RED);
+		
+		registerBlockWithItem("blood_orchid", BLOOD_ORCHID, Tab.RESOURCES.settings(), DyeColor.RED);
+		registerBlock("potted_blood_orchid", POTTED_BLOOD_ORCHID);
 		
 		// Worldgen
 		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, Tab.RESOURCES.settings(), DyeColor.PURPLE);
@@ -1772,6 +1797,23 @@ public class SpectrumBlocks {
 		registerBlockWithItem("red_sapling", RED_SAPLING, settings, DyeColor.RED);
 		registerBlockWithItem("black_sapling", BLACK_SAPLING, settings, DyeColor.BLACK);
 		
+		registerBlock("potted_white_sapling",      POTTED_WHITE_SAPLING);
+		registerBlock("potted_orange_sapling",     POTTED_ORANGE_SAPLING);
+		registerBlock("potted_magenta_sapling",    POTTED_MAGENTA_SAPLING);
+		registerBlock("potted_light_blue_sapling", POTTED_LIGHT_BLUE_SAPLING);
+		registerBlock("potted_yellow_sapling",     POTTED_YELLOW_SAPLING);
+		registerBlock("potted_lime_sapling",       POTTED_LIME_SAPLING);
+		registerBlock("potted_pink_sapling",       POTTED_PINK_SAPLING);
+		registerBlock("potted_gray_sapling",       POTTED_GRAY_SAPLING);
+		registerBlock("potted_light_gray_sapling", POTTED_LIGHT_GRAY_SAPLING);
+		registerBlock("potted_cyan_sapling",       POTTED_CYAN_SAPLING);
+		registerBlock("potted_purple_sapling",     POTTED_PURPLE_SAPLING);
+		registerBlock("potted_blue_sapling",       POTTED_BLUE_SAPLING);
+		registerBlock("potted_brown_sapling",      POTTED_BROWN_SAPLING);
+		registerBlock("potted_green_sapling",      POTTED_GREEN_SAPLING);
+		registerBlock("potted_red_sapling",        POTTED_RED_SAPLING);
+		registerBlock("potted_black_sapling",      POTTED_BLACK_SAPLING);
+		
 		registerBlockWithItem("white_planks", WHITE_PLANKS, settings, DyeColor.WHITE);
 		registerBlockWithItem("orange_planks", ORANGE_PLANKS, settings, DyeColor.ORANGE);
 		registerBlockWithItem("magenta_planks", MAGENTA_PLANKS, settings, DyeColor.MAGENTA);
@@ -2264,6 +2306,24 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.WHITE_SAPLING, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.YELLOW_SAPLING, RenderLayer.getCutout());
 		
+		// Potted Saplings
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLACK_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLUE_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BROWN_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_CYAN_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_GRAY_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_GREEN_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_LIGHT_BLUE_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_LIGHT_GRAY_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_LIME_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_MAGENTA_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_ORANGE_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_PINK_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_PURPLE_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_RED_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_WHITE_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_YELLOW_SAPLING, RenderLayer.getCutout());
+		
 		// Spore Blossoms
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLACK_SPORE_BLOSSOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLUE_SPORE_BLOSSOM, RenderLayer.getCutout());
@@ -2338,6 +2398,7 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_AMARANTH_BUSHEL, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BLOOD_ORCHID, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.POTTED_BLOOD_ORCHID, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DIKE_GATE, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.INVISIBLE_WALL, RenderLayer.getTranslucent());

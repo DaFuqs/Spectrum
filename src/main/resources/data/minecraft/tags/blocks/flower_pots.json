@@ -1,6 +1,23 @@
 {
   "replace": false,
   "values": [
-    "spectrum:potted_amaranth_bushel"
+    "spectrum:potted_amaranth_bushel",
+    "spectrum:potted_blood_orchid",
+    "spectrum:potted_white_sapling",
+    "spectrum:potted_orange_sapling",
+    "spectrum:potted_magenta_sapling",
+    "spectrum:potted_light_blue_sapling",
+    "spectrum:potted_yellow_sapling",
+    "spectrum:potted_lime_sapling",
+    "spectrum:potted_pink_sapling",
+    "spectrum:potted_gray_sapling",
+    "spectrum:potted_light_gray_sapling",
+    "spectrum:potted_cyan_sapling",
+    "spectrum:potted_purple_sapling",
+    "spectrum:potted_blue_sapling",
+    "spectrum:potted_brown_sapling",
+    "spectrum:potted_green_sapling",
+    "spectrum:potted_red_sapling",
+    "spectrum:potted_black_sapling"
   ]
 }

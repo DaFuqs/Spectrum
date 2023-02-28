@@ -151,18 +151,24 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 	private boolean receiveNeighborFluids(World world, BlockPos pos, BlockState state) {
 		for (Direction direction : Direction.values()) {
 			BlockPos neighborPos = pos.offset(direction);
-			if (world.getFluidState(neighborPos).isIn(FluidTags.LAVA)) {
+			FluidState neighborFluidState = world.getFluidState(neighborPos);
+			if (neighborFluidState.isIn(FluidTags.LAVA)) {
 				world.setBlockState(pos, Blocks.TERRACOTTA.getDefaultState());
 				playExtinguishSound(world, pos);
 				return false;
 			}
-			
-			FluidState neighborFluidState = world.getFluidState(neighborPos);
-			boolean neighborIsOtherFluid = !neighborFluidState.isEmpty() && !neighborFluidState.isOf(this.fluid);
-			if (neighborIsOtherFluid && !neighborFluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED)) {
-				if (!world.getBlockState(neighborPos).isOf(this)) {
-					world.setBlockState(neighborPos, SPREAD_BLOCKSTATE);
-					playExtinguishSound(world, neighborPos);
+
+			boolean isNeighborFluidBlock = world.getBlockState(neighborPos).getBlock() instanceof FluidBlock;
+			// spread to the fluid
+			if (!neighborFluidState.isEmpty()) {
+				if (!isNeighborFluidBlock) {
+					world.setBlockState(pos, SPREAD_BLOCKSTATE);
+					playExtinguishSound(world, pos);
+				} else {
+					if (!neighborFluidState.isOf(this.fluid) && !neighborFluidState.isIn(SpectrumFluidTags.MIDNIGHT_SOLUTION_CONVERTED) && !world.getBlockState(neighborPos).isOf(this)) {
+						world.setBlockState(neighborPos, SPREAD_BLOCKSTATE);
+						playExtinguishSound(world, neighborPos);
+					}
 				}
 			}
 		}

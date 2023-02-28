@@ -79,13 +79,25 @@ public class SpectrumConfig implements ConfigData {
 			Fading and Failing do no real harm to the world. If you turn up these values too high players
 			may lack the feedback they need that what they are doing is correct
 			
-			1.0: every random tick (default)
+			1.0: Every random tick (default)
 			0.5: Every second random tick
-			0.0: never (forbidden - players would be unable to progress)""")
+			0.0: Never (forbidden - players would be unable to progress)""")
 	public float FadingDecayTickRate = 1.0F;
 	public float FailingDecayTickRate = 1.0F;
 	public float RuinDecayTickRate = 1.0F;
 	public float ForfeitureDecayTickRate = 1.0F;
+	
+	@Comment("Whether bottles can be used to pick up decay. Default is true.")
+	public boolean CanPickUpFading = true;
+	public boolean CanPickUpFailing = true;
+	public boolean CanPickUpRuin = true;
+	public boolean CanPickUpForfeiture = true;
+	
+	@Comment("Whether decay can take over block entities. Defaults to true.")
+	public boolean FadingCanDestroyBlockEntities = true;
+	public boolean FailingCanDestroyBlockEntities = true;
+	public boolean RuinCanDestroyBlockEntities = true;
+	public boolean ForfeitureCanDestroyBlockEntities = true;
 	
 	@Comment("The audio volume for Spectrums crafting blocks. Set to 0.0 to turn those sounds off completely.")
 	public float BlockSoundVolume = 0.75F;

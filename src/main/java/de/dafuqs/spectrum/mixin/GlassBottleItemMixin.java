@@ -39,28 +39,46 @@ public abstract class GlassBottleItemMixin {
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	public void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult> cir, List list, ItemStack handStack, HitResult areaEffectCloudEntity, BlockPos blockPos) {
 		BlockState blockState = world.getBlockState(blockPos);
-		if (blockState.isOf(SpectrumBlocks.FADING) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_fading"))) {
+		
+		if (blockState.isOf(SpectrumBlocks.FADING)
+				&& SpectrumCommon.CONFIG.CanPickUpFading
+				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_fading"))) {
+			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FADING.getDefaultStack()), world.isClient()));
-		} else if (blockState.isOf(SpectrumBlocks.FAILING) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_failing"))) {
+			
+		} else if (blockState.isOf(SpectrumBlocks.FAILING)
+				&& SpectrumCommon.CONFIG.CanPickUpFailing
+				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_failing"))) {
+			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FAILING.getDefaultStack()), world.isClient()));
-		} else if (blockState.isOf(SpectrumBlocks.RUIN) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_ruin"))) {
+			
+		} else if (blockState.isOf(SpectrumBlocks.RUIN)
+				&& SpectrumCommon.CONFIG.CanPickUpRuin
+				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_ruin"))) {
+			
 			if (blockState.get(RuinBlock.DECAY_STATE) == RuinBlock.DecayConversion.BEDROCK) {
 				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
 			} else {
 				world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			}
+			
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_RUIN.getDefaultStack()), world.isClient()));
-		} else if (blockState.isOf(SpectrumBlocks.FORFEITURE) && AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_forfeiture"))) {
+			
+		} else if (blockState.isOf(SpectrumBlocks.FORFEITURE)
+				&& SpectrumCommon.CONFIG.CanPickUpForfeiture
+				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_forfeiture"))) {
+			
 			if (blockState.get(ForfeitureBlock.DECAY_STATE) == ForfeitureBlock.DecayConversion.BEDROCK) {
 				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
 			} else {
 				world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			}
+			
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			cir.setReturnValue(TypedActionResult.success(this.fill(handStack, user, SpectrumItems.BOTTLE_OF_FORFEITURE.getDefaultStack()), world.isClient()));
 		}

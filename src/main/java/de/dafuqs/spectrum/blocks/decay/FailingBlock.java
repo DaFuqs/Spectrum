@@ -77,6 +77,11 @@ public class FailingBlock extends DecayBlock {
 	}
 	
 	@Override
+	protected boolean canSpreadToBlockEntities() {
+		return SpectrumCommon.CONFIG.FailingCanDestroyBlockEntities;
+	}
+	
+	@Override
 	protected BlockState getSpreadState(BlockState previousState) {
 		return this.getDefaultState().with(AGE, previousState.get(AGE) + 1);
 	}

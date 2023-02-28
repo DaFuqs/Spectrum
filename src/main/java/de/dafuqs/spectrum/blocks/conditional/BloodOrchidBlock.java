@@ -1,5 +1,8 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
+import java.util.Hashtable;
+import java.util.Map;
+
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -18,11 +21,10 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 
-import java.util.*;
-
-public class BloodOrchidBlock extends FlowerBlock implements RevelationAware {
+public class BloodOrchidBlock extends FlowerBlock implements Fertilizable, RevelationAware {
 	
 	public static final IntProperty AGE = Properties.AGE_5;
 	
@@ -37,16 +39,16 @@ public class BloodOrchidBlock extends FlowerBlock implements RevelationAware {
 		builder.add(AGE);
 	}
 	
+	private void growOnce(BlockState state, ServerWorld world, BlockPos pos) {
+		BlockState newState = state.with(AGE, state.get(AGE) + 1);
+		world.setBlockState(pos, newState);
+		world.playSound(null, pos, state.getSoundGroup().getPlaceSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+	}
+	
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
-		int age = state.get(AGE);
-		if (age < Properties.AGE_5_MAX) {
-			if (random.nextFloat() > 0.25) {
-				return;
-			}
-			BlockState newState = state.with(AGE, age + 1);
-			world.setBlockState(pos, newState);
-			world.playSound(null, pos, state.getSoundGroup().getPlaceSound(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		if (state.get(AGE) < Properties.AGE_5_MAX && random.nextFloat() <= 0.25) {
+			growOnce(state, world, pos);
 		}
 	}
 	
@@ -86,6 +88,21 @@ public class BloodOrchidBlock extends FlowerBlock implements RevelationAware {
 	@Override
 	public Pair<Item, Item> getItemCloak() {
 		return new Pair<>(this.asItem(), Blocks.RED_TULIP.asItem());
+	}
+	
+	@Override
+	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+		return state.get(AGE) < Properties.AGE_5_MAX;
+	}
+	
+	@Override
+	public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+		return true;
+	}
+	
+	@Override
+	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+		growOnce(state, world, pos);
 	}
 	
 }

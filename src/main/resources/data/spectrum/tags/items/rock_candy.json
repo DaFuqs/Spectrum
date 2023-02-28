@@ -1,0 +1,11 @@
+{
+  "replace": "false",
+  "values": [
+    "spectrum:rock_candy",
+    "spectrum:topaz_rock_candy",
+    "spectrum:amethyst_rock_candy",
+    "spectrum:citrine_rock_candy",
+    "spectrum:onyx_rock_candy",
+    "spectrum:moonstone_rock_candy"
+  ]
+}

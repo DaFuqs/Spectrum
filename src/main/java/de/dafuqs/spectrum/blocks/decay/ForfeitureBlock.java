@@ -17,5 +17,8 @@ public class ForfeitureBlock extends RuinBlock {
 		return SpectrumCommon.CONFIG.ForfeitureDecayTickRate;
 	}
 	
-	
+	@Override
+	protected boolean canSpreadToBlockEntities() {
+		return SpectrumCommon.CONFIG.ForfeitureCanDestroyBlockEntities;
+	}
 }

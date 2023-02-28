@@ -96,7 +96,8 @@ public abstract class DecayBlock extends Block {
 		if (canPlaceAt(targetBlockState, world, targetBlockPos)) {
 			BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
 			
-			if (blockEntity == null && !targetBlockState.isIn(SpectrumBlockTags.DECAY) // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
+			if ((canSpreadToBlockEntities() || blockEntity == null)
+			      && !targetBlockState.isIn(SpectrumBlockTags.DECAY) // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
 					&& (whiteListBlockTag == null || targetBlockState.isIn(whiteListBlockTag))
 					&& (blackListBlockTag == null || !targetBlockState.isIn(blackListBlockTag))
 					// bedrock is ok, but not other modded unbreakable blocks
@@ -134,9 +135,11 @@ public abstract class DecayBlock extends Block {
 	@Override
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block previousBlock, BlockPos fromPos, boolean notify) {
 		super.neighborUpdate(state, world, pos, previousBlock, fromPos, notify);
+		
 		if (previousBlock == Blocks.AIR) {
 			BlockState updatedBlockState = world.getBlockState(fromPos);
 			Block updatedBlock = updatedBlockState.getBlock();
+			
 			if (!(updatedBlock instanceof DecayBlock) && !(updatedBlock instanceof DecayAwayBlock) && canSpread(state)) {
 				for (TagKey<Block> blockTag : decayConversionsList) {
 					if (updatedBlockState.isIn(blockTag)) {
@@ -167,6 +170,8 @@ public abstract class DecayBlock extends Block {
 	protected abstract float getSpreadChance();
 	
 	protected abstract boolean canSpread(BlockState blockState);
+	
+	protected abstract boolean canSpreadToBlockEntities();
 	
 	protected abstract BlockState getSpreadState(BlockState previousState);
 	

@@ -70,6 +70,11 @@ public class RuinBlock extends DecayBlock {
 	}
 	
 	@Override
+	protected boolean canSpreadToBlockEntities() {
+		return SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities;
+	}
+	
+	@Override
 	protected BlockState getSpreadState(BlockState previousState) {
 		return this.getDefaultState();
 	}

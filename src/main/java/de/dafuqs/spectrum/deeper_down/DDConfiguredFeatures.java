@@ -29,4 +29,7 @@ public class DDConfiguredFeatures extends WorldgenHelper {
 	public static final ConfiguredFeature<RandomPatchFeatureConfig, ?> BLACK_DRAGONJAGS = new ConfiguredFeature<>(Feature.RANDOM_PATCH,
 			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.SMALL_BLACK_DRAGONJAG.getDefaultState()))));
 
+	public static final ConfiguredFeature<RandomPatchFeatureConfig, ?> BRISTLE_SPROUTS = new ConfiguredFeature<>(Feature.RANDOM_PATCH,
+			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.BRISTLE_SPROUTS.getDefaultState()))));
+
 }

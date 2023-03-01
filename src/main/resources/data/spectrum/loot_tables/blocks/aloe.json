@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:aloe"
+              "name": "spectrum:aloe_leaf"
             }
           ],
           "functions": [

@@ -322,6 +322,8 @@ public class SpectrumItems {
 	public static final Item MYCEYLON_APPLE_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
 	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
 	public static final Item MYCEYLON_COOKIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_COOKIE));
+	public static final Item ALOE_LEAF = new AliasedBlockItem(SpectrumBlocks.ALOE, Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ALOE_LEAF));
+	public static final Item SAWBLADE_HOLLY_BERRY = new AliasedBlockItem(SpectrumBlocks.SAWBLADE_HOLLY_BUSH, Tab.CONSUMABLES.settings().food(FoodComponents.SWEET_BERRIES));
 	public static final Item PRICKLY_BAYLEAF = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PRICKLY_BAYLEAF));
 	public static final Item SPIKED_POTATOES = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SPIKED_POTATOES));
 	public static final Item TRIPLE_MEAT_POT_STEW = new StewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW));
@@ -730,6 +732,8 @@ public class SpectrumItems {
 		register("myceylon_apple_pie", MYCEYLON_APPLE_PIE, DyeColor.PINK);
 		register("myceylon_pumpkin_pie", MYCEYLON_PUMPKIN_PIE, DyeColor.PINK);
 		register("myceylon_cookie", MYCEYLON_COOKIE, DyeColor.PINK);
+		register("aloe_leaf", ALOE_LEAF, DyeColor.PINK);
+		register("sawblade_holly_berry", SAWBLADE_HOLLY_BERRY, DyeColor.PINK);
 		register("prickly_bayleaf", PRICKLY_BAYLEAF, DyeColor.PINK);
 		register("spiked_potatoes", SPIKED_POTATOES, DyeColor.PINK);
 		register("triple_meat_pot_stew", TRIPLE_MEAT_POT_STEW, DyeColor.PINK);

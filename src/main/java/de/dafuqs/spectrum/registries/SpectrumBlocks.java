@@ -56,7 +56,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.*;
 import net.minecraft.block.*;
-import net.minecraft.block.AbstractBlock.Settings;
+import net.minecraft.block.AbstractBlock.*;
 import net.minecraft.client.render.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
@@ -591,6 +591,8 @@ public class SpectrumBlocks {
 	public static final Block TALL_BLACK_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.TERRACOTTA_BLACK), Dragonjag.Variant.BLACK);
 
 	public static final Block ALOE = new AloeBlock(dragonjag(MapColor.DARK_GREEN).noCollision().ticksRandomly().breakInstantly());
+	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(dragonjag(MapColor.TERRACOTTA_GREEN).noCollision().ticksRandomly().breakInstantly());
+	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(dragonjag(MapColor.PALE_GREEN).noCollision().breakInstantly());
 
 	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).luminance((state) -> 12).requiresTool());
 	public static final Block HUMMINGSTONE = new HummingstoneBlock(AbstractBlock.Settings.copy(HUMMINGSTONE_GLASS).ticksRandomly());
@@ -1351,7 +1353,9 @@ public class SpectrumBlocks {
 		registerBlock("tall_purple_dragonjag", TALL_PURPLE_DRAGONJAG);
 		registerBlock("tall_black_dragonjag", TALL_BLACK_DRAGONJAG);
 
-		registerBlockWithItem("aloe", ALOE, new AliasedBlockItem(ALOE, Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ALOE_LEAF)), DyeColor.LIME);
+		registerBlock("aloe", ALOE);
+		registerBlock("sawblade_holly_bush", SAWBLADE_HOLLY_BUSH);
+		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
 
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
 		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
@@ -2558,6 +2562,8 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.TALL_BLACK_DRAGONJAG, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ALOE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SAWBLADE_HOLLY_BUSH, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BRISTLE_SPROUTS, RenderLayer.getCutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SLATE_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.IVORY_NOXSHROOM, RenderLayer.getCutout());

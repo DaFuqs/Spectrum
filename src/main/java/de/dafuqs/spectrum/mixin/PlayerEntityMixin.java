@@ -1,40 +1,28 @@
 package de.dafuqs.spectrum.mixin;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
-import de.dafuqs.spectrum.cca.LastKillComponent;
-import de.dafuqs.spectrum.enchantments.ImprovedCriticalEnchantment;
-import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
-import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
-import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
-import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.items.trinkets.AttackRingItem;
-import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.google.common.collect.*;
+import de.dafuqs.additionalentityattributes.*;
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.enchantments.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
@@ -101,6 +89,11 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	// experience is tried to get put in there first
 	@ModifyVariable(at = @At("HEAD"), method = "addExperience(I)V", argsOnly = true)
 	public int addExperience(int experience) {
+		if (experience < 0) { // draining XP, like Botanias Rosa Arcana
+			return experience;
+		}
+
+		// if the player has a ExperienceStorageItem in hand add the XP to that
 		for (ItemStack stack : getHandItems()) {
 			if (!((PlayerEntity) (Object) this).isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
 				experience = ExperienceStorageItem.addStoredExperience(stack, experience);

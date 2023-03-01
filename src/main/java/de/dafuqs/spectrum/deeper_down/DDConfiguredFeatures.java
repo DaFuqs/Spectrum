@@ -7,6 +7,8 @@ import de.dafuqs.spectrum.worldgen.features.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.stateprovider.*;
 
+import java.util.*;
+
 public class DDConfiguredFeatures extends WorldgenHelper {
 
 	public static final ConfiguredFeature<GilledFungusFeatureConfig, ?> CHESTNUT_NOXFUNGUS = new ConfiguredFeature<>(SpectrumFeatures.GILLED_FUNGUS,
@@ -30,6 +32,6 @@ public class DDConfiguredFeatures extends WorldgenHelper {
 			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.SMALL_BLACK_DRAGONJAG.getDefaultState()))));
 
 	public static final ConfiguredFeature<RandomPatchFeatureConfig, ?> BRISTLE_SPROUTS = new ConfiguredFeature<>(Feature.RANDOM_PATCH,
-			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.BRISTLE_SPROUTS.getDefaultState()))));
+			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.BRISTLE_SPROUTS.getDefaultState())), List.of(SpectrumBlocks.SAWBLADE_GRASS), 144));
 
 }

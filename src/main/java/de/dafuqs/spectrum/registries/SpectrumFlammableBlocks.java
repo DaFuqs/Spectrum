@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.blocks.conditional.ColoredLeavesBlock;
-import de.dafuqs.spectrum.blocks.conditional.ColoredLogBlock;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.ColoredLeavesBlock;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.ColoredLogBlock;
 import de.dafuqs.spectrum.blocks.decoration.*;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.util.DyeColor;

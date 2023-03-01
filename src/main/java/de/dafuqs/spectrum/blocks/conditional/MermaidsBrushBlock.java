@@ -39,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Hashtable;
 import java.util.Map;
 
-public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, FluidFillable {
+public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, RevelationAware, FluidFillable {
 	
 	public static final BooleanProperty IN_LIQUID_CRYSTAL = BooleanProperty.of("in_liquid_crystal");
 	public static final IntProperty AGE = Properties.AGE_7;
@@ -132,7 +132,7 @@ public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, F
 		} else {
 			float chance = state.get(IN_LIQUID_CRYSTAL) ? 1.0F : 0.5F;
 			if (random.nextFloat() < chance) {
-				world.setBlockState(pos, state.with(AGE, age + 1), 3);
+				world.setBlockState(pos, state.with(AGE, age + 1), Block.NOTIFY_NEIGHBORS | Block.NOTIFY_LISTENERS);
 			}
 		}
 	}
@@ -149,6 +149,31 @@ public class MermaidsBrushBlock extends PlantBlock implements RevelationAware, F
 	
 	public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
 		return false;
+	}
+	
+	@Override
+	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+		return true;
+	}
+	
+	@Override
+	public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+		return true;
+	}
+	
+	@Override
+	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+		int age = state.get(AGE);
+		int attempts = 7;
+		float chance = state.get(IN_LIQUID_CRYSTAL) ? 1.0F : 0.5F;
+		int nextAge = age + random.nextBetween(1, (int)Math.ceil(attempts*chance));
+		
+		if (nextAge >= 7) {
+			ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(SpectrumItems.MERMAIDS_GEM, 1));
+			world.spawnEntity(pearlEntity);
+		}
+		
+		world.setBlockState(pos, state.with(AGE, nextAge % 8), Block.NOTIFY_NEIGHBORS | Block.NOTIFY_LISTENERS);
 	}
 	
 }

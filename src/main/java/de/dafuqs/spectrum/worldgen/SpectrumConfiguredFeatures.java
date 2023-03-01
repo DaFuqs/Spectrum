@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.worldgen;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.conditional.*;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.worldgen.features.*;
 import net.fabricmc.fabric.api.biome.v1.*;

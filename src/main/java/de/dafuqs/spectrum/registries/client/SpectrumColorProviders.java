@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.registries.client;
 
 import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.conditional.ColoredLeavesBlock;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.ColoredLeavesBlock;
 import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
 import de.dafuqs.spectrum.blocks.memory.MemoryItem;
 import de.dafuqs.spectrum.energy.storage.SingleInkStorage;

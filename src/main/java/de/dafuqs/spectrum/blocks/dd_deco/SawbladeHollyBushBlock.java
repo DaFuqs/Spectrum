@@ -20,8 +20,8 @@ import net.minecraft.world.event.*;
 
 public class SawbladeHollyBushBlock extends TallCropBlock {
 
-    protected static final Identifier SAWBLADE_HOLLY_HARVESTING_IDENTIFIER = SpectrumCommon.locate("gameplay/sawblade_holly_harvesting");
-    protected static final Identifier SAWBLADE_HOLLY_SHEARING_IDENTIFIER = SpectrumCommon.locate("gameplay/sawblade_holly_shearing");
+    public static final Identifier SAWBLADE_HOLLY_HARVESTING_IDENTIFIER = SpectrumCommon.locate("gameplay/sawblade_holly_harvesting");
+    public static final Identifier SAWBLADE_HOLLY_SHEARING_IDENTIFIER = SpectrumCommon.locate("gameplay/sawblade_holly_shearing");
 
     protected static final int LAST_SINGLE_BLOCK_AGE = 2;
     protected static final int MAX_AGE = 7;
@@ -60,7 +60,7 @@ public class SawbladeHollyBushBlock extends TallCropBlock {
         int age = state.get(AGE);
 
         ItemStack handStack = player.getStackInHand(hand);
-        if (age > LAST_SINGLE_BLOCK_AGE + 1 && handStack.isIn(ConventionalItemTags.SHEARS)) {
+        if (canBeSheared(age) && handStack.isIn(ConventionalItemTags.SHEARS)) {
             if (!world.isClient) {
                 for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), SAWBLADE_HOLLY_SHEARING_IDENTIFIER)) {
                     dropStack(world, pos, stack);
@@ -69,9 +69,9 @@ public class SawbladeHollyBushBlock extends TallCropBlock {
                     p.sendToolBreakStatus(hand);
                 });
             }
-            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-            BlockState newState = setAge(state, world, pos, age - 1);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, newState));
+            world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+            setAge(state, world, pos, age - 1);
+            world.emitGameEvent(null, GameEvent.SHEAR, pos);
             return ActionResult.success(world.isClient);
         } else if (age == MAX_AGE) {
             if (!world.isClient) {
@@ -88,18 +88,22 @@ public class SawbladeHollyBushBlock extends TallCropBlock {
         }
     }
 
-    private BlockState setAge(BlockState state, World world, BlockPos pos, int newAge) {
+    public static boolean canBeSheared(int age) {
+        return age > LAST_SINGLE_BLOCK_AGE + 1;
+    }
+
+    public static BlockState setAge(BlockState state, World world, BlockPos pos, int newAge) {
         BlockState newState = state.with(AGE, newAge);
         if (state.get(HALF) == DoubleBlockHalf.LOWER) {
             world.setBlockState(pos, newState, 2);
             BlockState upState = world.getBlockState(pos.up());
-            if (upState.isOf(this)) {
+            if (upState.isOf(state.getBlock())) {
                 world.setBlockState(pos.up(), upState.with(AGE, newAge), 2);
             }
         } else {
             world.setBlockState(pos, newState, 2);
             BlockState downState = world.getBlockState(pos.down());
-            if (downState.isOf(this)) {
+            if (downState.isOf(state.getBlock())) {
                 world.setBlockState(pos.down(), downState.with(AGE, newAge), 2);
             }
         }

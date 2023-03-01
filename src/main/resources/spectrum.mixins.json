@@ -48,6 +48,7 @@
     "ServerPlayerGameModeFabricMixin",
     "ServerPlayerInteractionManagerMixin",
     "ServerWorldMixin",
+    "ShearsDispenserBehaviorMixin",
     "WitherEntityMixin",
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",

@@ -180,6 +180,9 @@ public class SpectrumBlocks {
 
 
 	public static final Block SHALE_CLAY = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
+	public static final Block CLEAN_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY).sounds(BlockSoundGroup.MUD_BRICKS));
+	public static final Block POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY).sounds(BlockSoundGroup.MUD_BRICKS));
+	public static final Block DIRTY_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY).sounds(BlockSoundGroup.MUD_BRICKS));
 
 
 	public static final Block SLUSH = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
@@ -1713,6 +1716,9 @@ public class SpectrumBlocks {
 		registerBlockWithItem("infested_blackslag", INFESTED_BLACKSLAG, settings, DyeColor.BLACK);
 
 		registerBlockWithItem("shale_clay", SHALE_CLAY, settings, DyeColor.BROWN);
+		registerBlockWithItem("clean_polished_shale_clay", CLEAN_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
+		registerBlockWithItem("polished_shale_clay", POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
+		registerBlockWithItem("dirty_polished_shale_clay", DIRTY_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
 
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);
 	}

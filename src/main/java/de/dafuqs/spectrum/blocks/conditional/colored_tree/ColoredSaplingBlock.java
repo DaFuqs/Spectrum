@@ -1,4 +1,4 @@
-package de.dafuqs.spectrum.blocks.conditional;
+package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import com.google.common.collect.Maps;
 import de.dafuqs.revelationary.api.revelations.RevelationAware;
@@ -17,6 +17,7 @@ import java.util.Map;
 
 public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware {
 	
+	public static final Identifier ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_colored_saplings");
 	private static final Map<DyeColor, ColoredSaplingBlock> SAPLINGS = Maps.newEnumMap(DyeColor.class);
 	protected final DyeColor color;
 	
@@ -29,7 +30,7 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return SpectrumCommon.locate("milestones/reveal_colored_saplings");
+		return ADVANCEMENT_IDENTIFIER;
 	}
 	
 	@Override

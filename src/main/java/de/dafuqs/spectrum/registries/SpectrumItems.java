@@ -252,6 +252,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final Item DRAGONBONE_SHARD = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item DRAGONBONE_NEEDLE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
+	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 
 	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final CloakedItem STORM_STONE = new StormStoneItem(Tab.RESOURCES.settings(16), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
@@ -572,6 +573,7 @@ public class SpectrumItems {
 		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
 		register("dragonbone_shard", DRAGONBONE_SHARD, DyeColor.GRAY);
 		register("dragonbone_needle", DRAGONBONE_NEEDLE, DyeColor.GRAY);
+		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
 
 		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);
 		register("mermaids_gem", MERMAIDS_GEM, DyeColor.LIGHT_BLUE);

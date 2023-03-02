@@ -6,18 +6,6 @@
         "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
       }
     },
-    "built_enchanting_structure": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:midgame/build_enchanting_structure"
-      }
-    },
-    "broken_budding_block_with_resonance_tool": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:lategame/break_budding_block_with_resonance_tool"
-      }
-    },
     "created_hummingstone_hymn": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {

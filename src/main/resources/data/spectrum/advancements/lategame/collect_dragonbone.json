@@ -2,24 +2,27 @@
   "parent": "spectrum:lategame/spectrum_lategame",
   "display": {
     "icon": {
-      "item": "spectrum:myceylon"
+      "item": "spectrum:dragonbone_needle"
     },
+    "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.collect_myceylon.title"
+      "translate": "advancements.spectrum.collect_dragonbone.title"
     },
     "description": {
-      "translate": "advancements.spectrum.collect_myceylon.description"
+      "translate": "advancements.spectrum.collect_dragonbone.description"
     }
   },
   "criteria": {
-    "has_myceylon": {
+    "has_dragonbone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "conditions": {
           "items": [
             {
               "items": [
-                "spectrum:myceylon"
+                "spectrum:dragonbone",
+                "spectrum:dragonbone_shard",
+                "spectrum:dragonbone_needle"
               ]
             }
           ]

@@ -2667,6 +2667,8 @@
   "advancements.spectrum.create_big_pastel_network.description": "Create a giant Pastel Network spanning over 32 nodes",
   "advancements.spectrum.visit_all_deeper_down_biomes.title": "Biomes Below Bedrock",
   "advancements.spectrum.visit_all_deeper_down_biomes.description": "Visit each of the biomes in the Deeper Down",
+  "advancements.spectrum.collect_dragonbone.title": "The Dragon lies Bleeding",
+  "advancements.spectrum.collect_dragonbone.description": "Crack and break Dragonbone",
 
   "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",

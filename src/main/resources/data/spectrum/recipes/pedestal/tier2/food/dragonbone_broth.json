@@ -1,0 +1,35 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 120,
+  "tier": "simple",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "black": 0,
+  "white": 0,
+  "experience": 2.0,
+  "pattern": [
+    "YYY",
+    "DDD",
+    "VBV"
+  ],
+  "key": {
+    "Y": {
+      "item": "spectrum:prickly_bayleaf"
+    },
+    "D": {
+      "item": "spectrum:dragonbone_shard"
+    },
+    "V": {
+      "tag": "c:vegetables"
+    },
+    "B": {
+      "item": "minecraft:bowl"
+    }
+  },
+  "result": {
+    "item": "spectrum:dragonbone_broth",
+    "count": 1
+  },
+  "required_advancement": "spectrum:progression/unlock_dragonbone_broth"
+}

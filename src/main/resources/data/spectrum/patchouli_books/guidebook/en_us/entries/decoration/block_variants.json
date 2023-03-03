@@ -69,38 +69,38 @@
     {
       "type": "patchouli:crafting",
       "title": "Slabs & Stairs",
-      "recipe": "spectrum:crafting_table/stone_deco/polished_basalt_slab",
-      "recipe2": "spectrum:crafting_table/stone_deco/polished_calcite_stairs"
+      "recipe": "spectrum:crafting_table/basalt/polished_basalt_slab",
+      "recipe2": "spectrum:crafting_table/calcite/polished_calcite_stairs"
     },
     {
       "type": "patchouli:crafting",
       "title": "Pillars & Crests",
-      "recipe": "spectrum:crafting_table/stone_deco/polished_basalt_pillar",
-      "recipe2": "spectrum:crafting_table/stone_deco/polished_calcite_crest"
+      "recipe": "spectrum:crafting_table/basalt/polished_basalt_pillar",
+      "recipe2": "spectrum:crafting_table/calcite/polished_calcite_crest"
     },
     {
       "type": "patchouli:crafting",
       "title": "Chiseled & Notched",
-      "recipe": "spectrum:crafting_table/stone_deco/chiseled_polished_basalt",
-      "recipe2": "spectrum:crafting_table/stone_deco/notched_polished_calcite"
+      "recipe": "spectrum:crafting_table/basalt/chiseled_polished_basalt",
+      "recipe2": "spectrum:crafting_table/calcite/notched_polished_calcite"
     },
     {
       "type": "patchouli:crafting",
       "title": "Brick & Tile Variants",
-      "recipe": "spectrum:crafting_table/stone_deco/basalt_brick_stairs",
-      "recipe2": "spectrum:crafting_table/stone_deco/calcite_tile_stairs"
+      "recipe": "spectrum:crafting_table/basalt/basalt_brick_stairs",
+      "recipe2": "spectrum:crafting_table/calcite/calcite_tile_stairs"
     },
     {
       "type": "patchouli:crafting",
       "title": "Walls",
-      "recipe": "spectrum:crafting_table/stone_deco/polished_basalt_wall",
-      "recipe2": "spectrum:crafting_table/stone_deco/calcite_tile_wall"
+      "recipe": "spectrum:crafting_table/basalt/polished_basalt_wall",
+      "recipe2": "spectrum:crafting_table/calcite/calcite_tile_wall"
     },
     {
       "type": "patchouli:crafting",
       "title": "Buttons & Pressure Pl.",
-      "recipe": "spectrum:crafting_table/stone_deco/polished_basalt_button",
-      "recipe2": "spectrum:crafting_table/stone_deco/polished_calcite_pressure_plate"
+      "recipe": "spectrum:crafting_table/basalt/polished_basalt_button",
+      "recipe2": "spectrum:crafting_table/calcite/polished_calcite_pressure_plate"
     },
     {
       "type": "spectrum:anvil_crushing",
@@ -111,14 +111,14 @@
     {
       "type": "patchouli:crafting",
       "title": "Raw Variants",
-      "recipe": "spectrum:crafting_table/stone_deco/basalt_stairs",
-      "recipe2": "spectrum:crafting_table/stone_deco/calcite_slab"
+      "recipe": "spectrum:crafting_table/basalt/basalt_stairs",
+      "recipe2": "spectrum:crafting_table/calcite/calcite_slab"
     },
     {
       "type": "patchouli:smelting",
       "title": "Smelting them back",
-      "recipe": "spectrum:smelting/stone_deco_unsmelting/basalt_brick_stairs_to_polished_basalt",
-      "recipe2": "spectrum:smelting/stone_deco_unsmelting/chiseled_polished_calcite_to_polished_calcite",
+      "recipe": "spectrum:smelting/basalt_unsmelting/basalt_brick_stairs_to_polished_basalt",
+      "recipe2": "spectrum:smelting/calcite_unsmelting/chiseled_polished_calcite_to_polished_calcite",
       "text": "By applying heat, all blocks can be converted back to their polished versions again."
     }
   ]

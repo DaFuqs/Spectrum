@@ -169,10 +169,10 @@ public class SpectrumBlocks {
 	public static final Block BLACKSLAG_BRICK_STAIRS = new StairsBlock(BLACKSLAG_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block BLACKSLAG_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block BLACKSLAG_BRICK_WALL = new WallBlock(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
-	public static final Block BLACKSLAG_PILLAR = new PillarBlock(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block POLISHED_BLACKSLAG_PILLAR = new PillarBlock(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
 
-	public static final Block CHISELED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
-	public static final Block ANCIENT_CHISELED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block CHISELED_POLISHED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
+	public static final Block ANCIENT_CHISELED_POLISHED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
 	public static final Block CRACKED_BLACKSLAG_BRICKS = new Block(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block CRACKED_BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
 	public static final Block POLISHED_BLACKSLAG_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
@@ -180,9 +180,12 @@ public class SpectrumBlocks {
 
 
 	public static final Block SHALE_CLAY = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
-	public static final Block CLEAN_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block DIRTY_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WAXED_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WAXED_EXPOSED_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WAXED_WEATHERED_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
 
 
 	public static final Block SLUSH = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
@@ -1705,25 +1708,28 @@ public class SpectrumBlocks {
 		registerBlockWithItem("blackslag_tile_slab", BLACKSLAG_TILE_SLAB, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_tile_wall", BLACKSLAG_TILE_WALL, settings, DyeColor.BLACK);
 		registerBlockWithItem("cracked_blackslag_tiles", CRACKED_BLACKSLAG_TILES, settings, DyeColor.BLACK);
-		
+
 		registerBlockWithItem("blackslag_bricks", BLACKSLAG_BRICKS, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_brick_stairs", BLACKSLAG_BRICK_STAIRS, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_brick_slab", BLACKSLAG_BRICK_SLAB, settings, DyeColor.BLACK);
 		registerBlockWithItem("blackslag_brick_wall", BLACKSLAG_BRICK_WALL, settings, DyeColor.BLACK);
 		registerBlockWithItem("cracked_blackslag_bricks", CRACKED_BLACKSLAG_BRICKS, settings, DyeColor.BLACK);
 
-		registerBlockWithItem("blackslag_pillar", BLACKSLAG_PILLAR, settings, DyeColor.BLACK);
-		registerBlockWithItem("chiseled_blackslag", CHISELED_BLACKSLAG, settings, DyeColor.BLACK);
-		registerBlockWithItem("ancient_chiseled_blackslag", ANCIENT_CHISELED_BLACKSLAG, new FabricItemSettings().rarity(Rarity.UNCOMMON), DyeColor.BLACK);
+		registerBlockWithItem("polished_blackslag_pillar", POLISHED_BLACKSLAG_PILLAR, settings, DyeColor.BLACK);
+		registerBlockWithItem("chiseled_polished_blackslag", CHISELED_POLISHED_BLACKSLAG, settings, DyeColor.BLACK);
+		registerBlockWithItem("ancient_chiseled_polished_blackslag", ANCIENT_CHISELED_POLISHED_BLACKSLAG, new FabricItemSettings().rarity(Rarity.UNCOMMON), DyeColor.BLACK);
 		registerBlockWithItem("polished_blackslag_button", POLISHED_BLACKSLAG_BUTTON, settings, DyeColor.BLACK);
 		registerBlockWithItem("polished_blackslag_pressure_plate", POLISHED_BLACKSLAG_PRESSURE_PLATE, settings, DyeColor.BLACK);
 		registerBlockWithItem("infested_blackslag", INFESTED_BLACKSLAG, settings, DyeColor.BLACK);
 
 
 		registerBlockWithItem("shale_clay", SHALE_CLAY, settings, DyeColor.BROWN);
-		registerBlockWithItem("clean_polished_shale_clay", CLEAN_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_shale_clay", POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
-		registerBlockWithItem("dirty_polished_shale_clay", DIRTY_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
+		registerBlockWithItem("exposed_polished_shale_clay", EXPOSED_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
+		registerBlockWithItem("weathered_polished_shale_clay", WEATHERED_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
+		registerBlockWithItem("waxed_polished_shale_clay", WAXED_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
+		registerBlockWithItem("waxed_exposed_polished_shale_clay", WAXED_EXPOSED_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
+		registerBlockWithItem("waxed_weathered_polished_shale_clay", WAXED_WEATHERED_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
 
 
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);

@@ -1,0 +1,24 @@
+{
+  "name": "Shale Clay",
+  "advancement": "spectrum:shale_clay",
+  "icon": "spectrum:shale_clay",
+  "category": "spectrum:decoration_category",
+  "extra_recipe_mappings": {
+    "spectrum:shale_clay": 0,
+    "spectrum:polished_shale_clay": 0,
+    "spectrum:exposed_polished_shale_clay": 0,
+    "spectrum:weathered_polished_shale_clay": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Polished Shale-Clay",
+      "recipe": "spectrum:crafting_table/shale-clay/polished_shale_clay",
+      "text": ""
+    }
+  ]
+}

@@ -135,21 +135,21 @@ public class SpectrumBlocks {
 	public static final Block BUDDING_MOONSTONE = new SpectrumBuddingBlock(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).ticksRandomly().sounds(SpectrumBlockSoundGroups.MOONSTONE_BLOCK).requiresTool(), SMALL_MOONSTONE_BUD, MEDIUM_MOONSTONE_BUD, LARGE_MOONSTONE_BUD, MOONSTONE_CLUSTER, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 	public static final Block MOONSTONE_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.WHITE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.MOONSTONE_BLOCK).requiresTool(), SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_HIT, SpectrumSoundEvents.BLOCK_MOONSTONE_BLOCK_CHIME);
 	public static final Block SPECTRAL_SHARD_BLOCK = new SpectrumGemstoneBlock(FabricBlockSettings.of(Material.AMETHYST, MapColor.DIAMOND_BLUE).hardness(1.5F).sounds(SpectrumBlockSoundGroups.SPECTRAL_BLOCK).requiresTool(), SpectrumSoundEvents.SPECTRAL_BLOCK_HIT, SpectrumSoundEvents.SPECTRAL_BLOCK_CHIME);
-	
+
 	public static final Block BEDROCK_STORAGE_BLOCK = new BlockWithTooltip(FabricBlockSettings.of(Material.METAL, MapColor.GRAY).requiresTool().strength(100.0F, 3600.0F), Text.translatable("spectrum.tooltip.dragon_and_wither_immune"));
-	
+
 	public static final Block BISMUTH_CLUSTER = new BismuthClusterBlock(9, 3, null, FabricBlockSettings.of(Material.AMETHYST).mapColor(MapColor.DARK_AQUA).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block LARGE_BISMUTH_BUD = new BismuthClusterBlock(5, 3, BISMUTH_CLUSTER.getDefaultState(), FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
 	public static final Block SMALL_BISMUTH_BUD = new BismuthClusterBlock(3, 4, LARGE_BISMUTH_BUD.getDefaultState(), FabricBlockSettings.copyOf(TOPAZ_CLUSTER).mapColor(MapColor.DARK_AQUA).sounds(BlockSoundGroup.CHAIN));
 	public static final Block BISMUTH_BLOCK = new Block(FabricBlockSettings.of(Material.METAL, MapColor.DARK_AQUA).strength(20.0F).sounds(BlockSoundGroup.CHAIN));
-	
-	public static final Block MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
-	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
+
+	public static final Block MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.STONE.getDefaultState());
+	public static final Block DEEPSLATE_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), Blocks.DEEPSLATE.getDefaultState());
 	public static final Block MALACHITE_CLUSTER = new AmethystClusterBlock(7, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block LARGE_MALACHITE_BUD = new AmethystClusterBlock(5, 3, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block SMALL_MALACHITE_BUD = new AmethystClusterBlock(3, 4, FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).nonOpaque().sounds(BlockSoundGroup.CHAIN));
 	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
-	
+
 	// DD BLOCKS
 	public static final Block BLACKSLAG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(5.0F, 7.0F));
 	public static final Block INFESTED_BLACKSLAG = new InfestedBlock(BLACKSLAG, AbstractBlock.Settings.of(Material.ORGANIC_PRODUCT));
@@ -180,9 +180,9 @@ public class SpectrumBlocks {
 
 
 	public static final Block SHALE_CLAY = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
-	public static final Block CLEAN_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY).sounds(BlockSoundGroup.MUD_BRICKS));
-	public static final Block POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY).sounds(BlockSoundGroup.MUD_BRICKS));
-	public static final Block DIRTY_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY).sounds(BlockSoundGroup.MUD_BRICKS));
+	public static final Block CLEAN_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block DIRTY_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
 
 
 	public static final Block SLUSH = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
@@ -199,7 +199,7 @@ public class SpectrumBlocks {
 	public static final Block SMOOTH_BASALT_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF));
 	public static final Block SMOOTH_BASALT_STAIRS = new SpectrumStairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF));
 
-	public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F));
+	public static final Block POLISHED_BASALT = new Block(FabricBlockSettings.of(Material.STONE).strength(2.0F, 5.0F).requiresTool());
 	public static final Block POLISHED_BASALT_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block POLISHED_BASALT_CREST = new CardinalFacingBlock(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block CHISELED_POLISHED_BASALT = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
@@ -488,10 +488,10 @@ public class SpectrumBlocks {
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
 
 	//DD FLORA
-	public static final Block SAWBLADE_GRASS = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.PODZOL));
+	public static final Block SAWBLADE_GRASS = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).requiresTool());
 	public static final Block ROTTEN_GROUND = new MudBlock(AbstractBlock.Settings.copy(Blocks.MUD));
-	public static final Block SHIMMEL = new MyceliumBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
-	public static final Block OVERGROWN_BLACKSLAG = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.PODZOL));
+	public static final Block SHIMMEL = new MyceliumBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).requiresTool());
+	public static final Block OVERGROWN_BLACKSLAG = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).requiresTool());
 	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), () -> getConfiguredFeatureRegistryEntry("slate_noxfungus"));
 	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), () -> getConfiguredFeatureRegistryEntry("ebony_noxfungus"));
 	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), () -> getConfiguredFeatureRegistryEntry("ivory_noxfungus"));
@@ -621,17 +621,17 @@ public class SpectrumBlocks {
 	public static final Block DRAGONBONE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.OBSIDIAN).sounds(BlockSoundGroup.BONE));
 
 
-	public static final Block BLACKSLAG_COAL_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COAL_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(0, 2));
-	public static final Block BLACKSLAG_COPPER_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COPPER_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
-	public static final Block BLACKSLAG_IRON_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
-	public static final Block BLACKSLAG_GOLD_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_GOLD_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
-	public static final Block BLACKSLAG_LAPIS_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 5));
-	public static final Block BLACKSLAG_DIAMOND_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(3, 7));
-	public static final Block BLACKSLAG_REDSTONE_ORE = new RedstoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_REDSTONE_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
-	public static final Block BLACKSLAG_EMERALD_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_EMERALD_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_COAL_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COAL_ORE).strength(6.0F, 5.0F), UniformIntProvider.create(0, 2));
+	public static final Block BLACKSLAG_COPPER_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COPPER_ORE).strength(6.0F, 5.0F));
+	public static final Block BLACKSLAG_IRON_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).strength(6.0F, 5.0F));
+	public static final Block BLACKSLAG_GOLD_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_GOLD_ORE).strength(6.0F, 5.0F));
+	public static final Block BLACKSLAG_LAPIS_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).strength(6.0F, 5.0F), UniformIntProvider.create(2, 5));
+	public static final Block BLACKSLAG_DIAMOND_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).strength(6.0F, 5.0F), UniformIntProvider.create(3, 7));
+	public static final Block BLACKSLAG_REDSTONE_ORE = new RedstoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_REDSTONE_ORE).strength(6.0F, 5.0F));
+	public static final Block BLACKSLAG_EMERALD_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_EMERALD_ORE).strength(6.0F, 5.0F));
 	public static final Block BLACKSLAG_SHIMMERSTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_SHIMMERSTONE_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), BLACKSLAG.getDefaultState());
 	public static final Block BLACKSLAG_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_MALACHITE_ORE), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), BLACKSLAG.getDefaultState());
-	
+
 	// FUNCTIONAL BLOCKS
 	public static final Block PRIVATE_CHEST = new PrivateChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(-1.0F, 3600000.0F).sounds(BlockSoundGroup.STONE));
 	public static final Block COMPACTING_CHEST = new CompactingChestBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(4.0F, 4.0F).sounds(BlockSoundGroup.STONE));
@@ -890,7 +890,7 @@ public class SpectrumBlocks {
 	public static final Block YELLOW_SPORE_BLOSSOM = new ColoredSporeBlossomBlock(sporeBlossomBlockSettings, DyeColor.YELLOW);
 
 	// SHIMMERSTONE LIGHTS
-	private static final FabricBlockSettings shimmerstoneLightBlockSettings = FabricBlockSettings.of(Material.STONE).strength(1.0F, 1.0F).nonOpaque().luminance(15);
+	private static final FabricBlockSettings shimmerstoneLightBlockSettings = FabricBlockSettings.of(Material.STONE).strength(1.0F, 1.0F).nonOpaque().requiresTool().luminance(15);
 	public static final Block BASALT_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
 	public static final Block CALCITE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
 	public static final Block STONE_SHIMMERSTONE_LIGHT = new ShimmerstoneLightBlock(shimmerstoneLightBlockSettings);
@@ -972,25 +972,25 @@ public class SpectrumBlocks {
 	public static final Block PURE_GLOBETTE_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
 	public static final Block PURE_GLOBETTE_NETHER_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
 	public static final Block PURE_GLOBETTE_END_BLOCK = new Block(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK));
-	
+
 	// STRUCTURE BLOCKS
-	private static final AbstractBlock.Settings preservationBlockSettings = FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(SpectrumBlocks::never);
-	
+	private static final AbstractBlock.Settings PRESERVATION_BLOCK_SETTINGS = FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().allowsSpawning(SpectrumBlocks::never);
+
 	public static final Block PRESERVATION_CONTROLLER = new PreservationControllerBlock(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 1).emissiveLighting(SpectrumBlocks::always).postProcess(SpectrumBlocks::always));
 	public static final Block DIKE_GATE = new DikeGateBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block INVISIBLE_WALL = new InvisibleWallBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().luminance(value -> 3).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block TREASURE_CHEST = new TreasureChestBlock(FabricBlockSettings.copyOf(Blocks.CHEST).strength(-1.0F, 3600000.0F));
-	
-	public static final Block DOWNSTONE = new Block(preservationBlockSettings); // "raw" preservation stone, used in the Deeper Down bottom in place of bedrock
-	public static final Block PRESERVATION_STONE = new Block(preservationBlockSettings);
+
+	public static final Block DOWNSTONE = new Block(PRESERVATION_BLOCK_SETTINGS); // "raw" preservation stone, used in the Deeper Down bottom in place of bedrock
+	public static final Block PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
 	public static final Block POWDER_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(2));
 	public static final Block DIKE_CHISELED_PRESERVATION_STONE = new Block(FabricBlockSettings.copyOf(PRESERVATION_STONE).luminance(6));
-	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(preservationBlockSettings);
-	public static final Block PRESERVATION_BRICKS = new Block(preservationBlockSettings);
-	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(preservationBlockSettings).luminance(5));
-	public static final Block COURIER_STATUE = new StatueBlock(preservationBlockSettings);
-	private static final AbstractBlock.Settings preservationGlassBlockSettings = FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never);
-	public static final Block PRESERVATION_GLASS = new GlassBlock(preservationGlassBlockSettings);
+	public static final Block DIKE_GATE_FOUNTAIN = new SpectrumFacingBlock(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block PRESERVATION_BRICKS = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(PRESERVATION_BLOCK_SETTINGS).luminance(5));
+	public static final Block COURIER_STATUE = new StatueBlock(PRESERVATION_BLOCK_SETTINGS);
+
+	public static final Block PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).strength(Float.MAX_VALUE, 3600000.0F));
 	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE).nonOpaque());
 
@@ -1719,10 +1719,12 @@ public class SpectrumBlocks {
 		registerBlockWithItem("polished_blackslag_pressure_plate", POLISHED_BLACKSLAG_PRESSURE_PLATE, settings, DyeColor.BLACK);
 		registerBlockWithItem("infested_blackslag", INFESTED_BLACKSLAG, settings, DyeColor.BLACK);
 
+
 		registerBlockWithItem("shale_clay", SHALE_CLAY, settings, DyeColor.BROWN);
 		registerBlockWithItem("clean_polished_shale_clay", CLEAN_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
 		registerBlockWithItem("polished_shale_clay", POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
 		registerBlockWithItem("dirty_polished_shale_clay", DIRTY_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
+
 
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);
 	}

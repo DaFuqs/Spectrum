@@ -1,0 +1,16 @@
+{
+  "name": "Forlorm Caves",
+  "advancement": "spectrum:hidden/visit_dd_biomes/forlorm_caves",
+  "icon": "spectrum:black_materia",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:black_sludge": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:black_sludge",
+      "text": ""
+    }
+  ]
+}

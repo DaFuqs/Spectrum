@@ -16,17 +16,15 @@
     "has_dragonbone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "conditions": {
-          "items": [
-            {
-              "items": [
-                "spectrum:dragonbone",
-                "spectrum:dragonbone_shard",
-                "spectrum:dragonbone_needle"
-              ]
-            }
-          ]
-        }
+        "items": [
+          {
+            "items": [
+              "spectrum:dragonbone",
+              "spectrum:dragonbone_shard",
+              "spectrum:dragonbone_needle"
+            ]
+          }
+        ]
       }
     },
     "gotten_previous": {

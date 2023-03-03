@@ -1,0 +1,13 @@
+{
+  "name": "Dragonrot Swamp",
+  "advancement": "spectrum:hidden/visit_dd_biomes/dragonrot_swamp",
+  "icon": "spectrum:dragonrot_bucket",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

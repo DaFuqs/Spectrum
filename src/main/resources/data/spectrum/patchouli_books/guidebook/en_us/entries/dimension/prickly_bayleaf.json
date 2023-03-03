@@ -29,6 +29,12 @@
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier2/food/triple_meat_pot_stew",
       "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:lategame/collect_dragonbone",
+      "recipe": "spectrum:pedestal/tier2/food/dragonbone_broth",
+      "text": ""
     }
   ]
 }

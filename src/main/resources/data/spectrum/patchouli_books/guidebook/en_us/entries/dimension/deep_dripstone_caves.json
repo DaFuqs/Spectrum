@@ -1,0 +1,13 @@
+{
+  "name": "Deep Dripstone Caves",
+  "advancement": "spectrum:hidden/visit_dd_biomes/deep_dripstone_caves",
+  "icon": "spectrum:dripstone",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

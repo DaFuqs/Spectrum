@@ -2659,11 +2659,22 @@
   "advancements.spectrum.collect_myceylon.description": "Use an Axe to scrap the bark off of a Noxwood Mushroom",
   "advancements.spectrum.collect_prickly_bayleaf.title": "Pain Flavored",
   "advancements.spectrum.collect_prickly_bayleaf.description": "Pluck a Leaf off of a Prickly Bayleaf plant. They smell amazing in stews, but aren't too great to eat raw.",
+  "advancements.spectrum.create_pastel_network.title": "Pastel Linked",
+  "advancements.spectrum.create_pastel_network.description": "Create a Pastel Network by Linking two Pastel Nodes",
+  "advancements.spectrum.create_pastel_network_using_every_node_type.title": "Pastel Network Engineer",
+  "advancements.spectrum.create_pastel_network_using_every_node_type.description": "Use at each type of Pastel Node in a single Network",
+  "advancements.spectrum.create_big_pastel_network.title": "Global Pastel Dispatcher",
+  "advancements.spectrum.create_big_pastel_network.description": "Create a giant Pastel Network spanning over 32 nodes",
+  "advancements.spectrum.visit_all_deeper_down_biomes.title": "Biomes Below Bedrock",
+  "advancements.spectrum.visit_all_deeper_down_biomes.description": "Visit each of the biomes in the Deeper Down",
+
   "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",
   "spectrum.food.whenEaten": "When Eaten:",
+
   "______name_changes_for_vanilla_blocks": "Changes:",
   "block.minecraft.polished_basalt": "Basalt Pillar",
+
   "______vanilla_additions": "Additions:",
   "potion.potency.6": "VI",
   "potion.potency.7": "VII",

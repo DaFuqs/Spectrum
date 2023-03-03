@@ -37,7 +37,8 @@ public class SpectrumAdvancementCriteria {
 	public static DivinityTickCriterion DIVINITY_TICK;
 	public static ConsumedTeaWithSconeCriterion CONSUMED_TEA_WITH_SCONE;
 	public static HummingstoneHymnCriterion CREATE_HUMMINGSTONE_HYMN;
-	
+	public static PastelNetworkCreatingCriterion PASTEL_NETWORK_CREATING;
+
 	public static void register() {
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
 		FUSION_SHRINE_CRAFTING = CriteriaAccessor.callRegister(new FusionShrineCraftingCriterion());
@@ -71,6 +72,7 @@ public class SpectrumAdvancementCriteria {
 		DIVINITY_TICK = CriteriaAccessor.callRegister(new DivinityTickCriterion());
 		CONSUMED_TEA_WITH_SCONE = CriteriaAccessor.callRegister(new ConsumedTeaWithSconeCriterion());
 		CREATE_HUMMINGSTONE_HYMN = CriteriaAccessor.callRegister(new HummingstoneHymnCriterion());
+		PASTEL_NETWORK_CREATING = CriteriaAccessor.callRegister(new PastelNetworkCreatingCriterion());
 	}
 	
 }

@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:connection_node"
+    },
+    "title": {
+      "translate": "advancements.spectrum.create_pastel_network.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_pastel_network.description"
+    }
+  },
+  "parent": "spectrum:midgame/collect_azurite",
+  "criteria": {
+    "created_2_node_pastel_network": {
+      "trigger": "spectrum:pastel_network_creation",
+      "conditions": {
+        "total_nodes": {
+          "min": 2
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_azurite"
+      }
+    }
+  }
+}

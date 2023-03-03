@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:sender_node"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.create_big_pastel_network.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_big_pastel_network.description"
+    }
+  },
+  "parent": "spectrum:midgame/create_pastel_network",
+  "criteria": {
+    "created_16_node_pastel_network": {
+      "trigger": "spectrum:pastel_network_creation",
+      "conditions": {
+        "total_nodes": {
+          "min": 32
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_pastel_network"
+      }
+    }
+  }
+}

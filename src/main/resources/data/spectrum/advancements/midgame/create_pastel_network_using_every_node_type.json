@@ -1,0 +1,43 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:gather_node"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.create_pastel_network_using_every_node_type.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.create_pastel_network_using_every_node_type.description"
+    }
+  },
+  "parent": "spectrum:midgame/create_pastel_network",
+  "criteria": {
+    "created_pastel_network_using_every_node_type": {
+      "trigger": "spectrum:pastel_network_creation",
+      "conditions": {
+        "connection_nodes": {
+          "min": 1
+        },
+        "provider_nodes": {
+          "min": 1
+        },
+        "storage_nodes": {
+          "min": 1
+        },
+        "sender_nodes": {
+          "min": 1
+        },
+        "gather_nodes": {
+          "min": 1
+        }
+      }
+    }
+  },
+  "gotten_previous": {
+    "trigger": "revelationary:advancement_gotten",
+    "conditions": {
+      "advancement_identifier": "spectrum:midgame/create_pastel_network"
+    }
+  }
+}

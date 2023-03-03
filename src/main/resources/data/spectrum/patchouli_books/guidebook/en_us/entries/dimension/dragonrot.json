@@ -16,8 +16,7 @@
       "type": "spectrum:dragonrot_converting",
       "title": "Item Conversion",
       "recipe": "spectrum:dragonrot_converting/blackstone",
-      "text": "Throwing some items into the liquid seems to corrupt them up to a point they turn into something else entirely.",
-
+      "text": "Throwing some items into the liquid seems to corrupt them up to a point they turn into something else entirely."
     }
   ]
 }

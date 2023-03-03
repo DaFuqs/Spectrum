@@ -1735,7 +1735,8 @@ public class SpectrumBlocks {
 		registerBlockWithItem("waxed_polished_shale_clay", WAXED_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
 		registerBlockWithItem("waxed_exposed_polished_shale_clay", WAXED_EXPOSED_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
 		registerBlockWithItem("waxed_weathered_polished_shale_clay", WAXED_WEATHERED_POLISHED_SHALE_CLAY, settings, DyeColor.BROWN);
-		registerBlockWithItem("clean_shale_clay_bricks", CLEAN_SHALE_CLAY_BRICKS, settings, DyeColor.BROWN);
+
+		registerBlockWithItem("clean_shale_clay_bricks", CLEAN_SHALE_CLAY_BRICKS, settings, DyeColor.BROWN); // TODO: rename to exposed / weathered
 		registerBlockWithItem("shale_clay_bricks", SHALE_CLAY_BRICKS, settings, DyeColor.BROWN);
 		registerBlockWithItem("dirty_shale_clay_bricks", DIRTY_SHALE_CLAY_BRICKS, settings, DyeColor.BROWN);
 		registerBlockWithItem("clean_shale_clay_tiles", CLEAN_SHALE_CLAY_TILES, settings, DyeColor.BROWN);

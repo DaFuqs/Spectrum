@@ -6,8 +6,32 @@
   "extra_recipe_mappings": {
     "spectrum:shale_clay": 0,
     "spectrum:polished_shale_clay": 0,
+    "spectrum:shale_clay_bricks": 0,
+    "spectrum:shale_clay_tiles": 0,
+    "spectrum:shale_clay_brick_slab": 0,
+    "spectrum:shale_clay_brick_stairs": 0,
+    "spectrum:polished_shale_clay_slab": 0,
+    "spectrum:polished_shale_clay_stairs": 0,
+    "spectrum:shale_clay_tile_slab": 0,
+    "spectrum:shale_clay_tile_stairs": 0,
     "spectrum:exposed_polished_shale_clay": 0,
-    "spectrum:weathered_polished_shale_clay": 0
+    "spectrum:exposed_polished_shale_clay_slab": 0,
+    "spectrum:exposed_polished_shale_clay_stairs": 0,
+    "spectrum:exposed_shale_clay_brick_slab": 0,
+    "spectrum:exposed_shale_clay_brick_stairs": 0,
+    "spectrum:exposed_shale_clay_bricks": 0,
+    "spectrum:exposed_shale_clay_tile_slab": 0,
+    "spectrum:exposed_shale_clay_tile_stairs": 0,
+    "spectrum:exposed_shale_clay_tiles": 0,
+    "spectrum:weathered_polished_shale_clay": 0,
+    "spectrum:weathered_polished_shale_clay_slab": 0,
+    "spectrum:weathered_polished_shale_clay_stairs": 0,
+    "spectrum:weathered_shale_clay_brick_slab": 0,
+    "spectrum:weathered_shale_clay_brick_stairs": 0,
+    "spectrum:weathered_shale_clay_bricks": 0,
+    "spectrum:weathered_shale_clay_tile_slab": 0,
+    "spectrum:weathered_shale_clay_tile_stairs": 0,
+    "spectrum:weathered_shale_clay_tiles": 0
   },
   "pages": [
     {
@@ -19,6 +43,11 @@
       "title": "Polished Shale-Clay",
       "recipe": "spectrum:crafting_table/shale-clay/polished_shale_clay",
       "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Weathering",
+      "text": "Weatheres when exposed to the elements (sun, rain)"
     }
   ]
 }

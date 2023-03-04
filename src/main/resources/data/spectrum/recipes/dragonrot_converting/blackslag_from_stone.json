@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": {
+    "tag": "minecraft:base_stone_overworld"
+  },
+  "result": {
+    "item": "spectrum:blackslag",
+    "count": 1
+  }
+}

@@ -84,6 +84,10 @@ import de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlock;
 import de.dafuqs.spectrum.blocks.upgrade.UpgradeBlockItem;
 import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
+import de.dafuqs.spectrum.blocks.weathering.Weathering;
+import de.dafuqs.spectrum.blocks.weathering.WeatheringBlock;
+import de.dafuqs.spectrum.blocks.weathering.WeatheringSlabBlock;
+import de.dafuqs.spectrum.blocks.weathering.WeatheringStairsBlock;
 import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
 import de.dafuqs.spectrum.entity.entity.LivingMarkerEntity;
 import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
@@ -232,44 +236,44 @@ public class SpectrumBlocks {
 
 	public static final Block SHALE_CLAY = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
 
-	public static final Block POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_POLISHED_SHALE_CLAY = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block POLISHED_SHALE_CLAY_STAIRS = new StairsBlock(POLISHED_SHALE_CLAY.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block POLISHED_SHALE_CLAY_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_POLISHED_SHALE_CLAY_STAIRS = new StairsBlock(EXPOSED_POLISHED_SHALE_CLAY.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_POLISHED_SHALE_CLAY_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_POLISHED_SHALE_CLAY_STAIRS = new StairsBlock(WEATHERED_POLISHED_SHALE_CLAY.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_POLISHED_SHALE_CLAY_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_POLISHED_SHALE_CLAY = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block POLISHED_SHALE_CLAY_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, POLISHED_SHALE_CLAY.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block POLISHED_SHALE_CLAY_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_POLISHED_SHALE_CLAY_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.EXPOSED, EXPOSED_POLISHED_SHALE_CLAY.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_POLISHED_SHALE_CLAY_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_POLISHED_SHALE_CLAY_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_POLISHED_SHALE_CLAY.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_POLISHED_SHALE_CLAY_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
 
-	public static final Block SHALE_CLAY_BRICKS = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_BRICKS = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_BRICKS = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block SHALE_CLAY_BRICK_STAIRS = new StairsBlock(SHALE_CLAY_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block SHALE_CLAY_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_BRICK_STAIRS = new StairsBlock(EXPOSED_SHALE_CLAY_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_BRICK_STAIRS = new StairsBlock(WEATHERED_SHALE_CLAY_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_BRICK_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_BRICKS = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_BRICKS = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_BRICKS = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_BRICK_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, SHALE_CLAY_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_BRICK_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_BRICK_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.EXPOSED, EXPOSED_SHALE_CLAY_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_BRICK_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_BRICK_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_BRICKS.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_BRICK_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
 
-	public static final Block SHALE_CLAY_TILES = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_TILES = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_TILES = new Block(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block SHALE_CLAY_TILE_STAIRS = new StairsBlock(SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block SHALE_CLAY_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_TILE_STAIRS = new StairsBlock(EXPOSED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block EXPOSED_SHALE_CLAY_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new StairsBlock(WEATHERED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
-	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new SlabBlock(AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_TILES = new WeatheringBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_TILES = new WeatheringBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_TILES = new WeatheringBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.UNAFFECTED, SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.UNAFFECTED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.EXPOSED, EXPOSED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block EXPOSED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
+	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
 
 
 	public static final Block SLUSH = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
 
 	public static final Block BLACK_MATERIA = new BlackMateriaBlock(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
 	public static final Block BLACK_SLUDGE = new Block(FabricBlockSettings.copyOf(Blocks.SAND).ticksRandomly().breakInstantly());
-	public static final Block SAG_LEAF = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
-	public static final Block SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
-	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.POPPY));
+	public static final Block SAG_LEAF = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
+	public static final Block SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
+	public static final Block SMALL_SAG_BUBBLE = new BlackSludgePlantBlock(FabricBlockSettings.copyOf(Blocks.GRASS).mapColor(MapColor.TERRACOTTA_BLACK));
 
 	public static final PrimordialFireBlock PRIMORDIAL_FIRE = new PrimordialFireBlock(AbstractBlock.Settings.of(Material.FIRE, MapColor.PURPLE).noCollision().breakInstantly().luminance((state) -> 10).sounds(BlockSoundGroup.WOOL));
 

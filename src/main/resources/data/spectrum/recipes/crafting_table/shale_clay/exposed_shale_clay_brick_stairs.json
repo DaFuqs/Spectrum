@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W  ",
+    "WW ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:exposed_shale_clay_bricks"
+    }
+  },
+  "result": {
+    "item": "spectrum:exposed_shale_clay_brick_stairs",
+    "count": 6
+  }
+}

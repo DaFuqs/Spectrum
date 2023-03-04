@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:shale_clay_bricks"
+    }
+  },
+  "result": {
+    "item": "spectrum:shale_clay_tiles",
+    "count": 4
+  }
+}

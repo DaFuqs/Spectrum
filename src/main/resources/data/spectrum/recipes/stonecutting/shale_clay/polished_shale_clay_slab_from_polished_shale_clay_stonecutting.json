@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:polished_shale_clay"
+  },
+  "result": "spectrum:polished_shale_clay_slab",
+  "count": 2
+}

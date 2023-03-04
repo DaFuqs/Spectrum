@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:weathered_polished_shale_clay"
+  },
+  "result": "spectrum:weathered_shale_clay_tiles",
+  "count": 2
+}

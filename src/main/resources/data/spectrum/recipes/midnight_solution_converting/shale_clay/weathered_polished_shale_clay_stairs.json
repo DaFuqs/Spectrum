@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": {
+    "item": "spectrum:exposed_polished_shale_clay_stairs"
+  },
+  "result": {
+    "item": "spectrum:weathered_polished_shale_clay_stairs",
+    "count": 1
+  }
+}

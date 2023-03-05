@@ -1,0 +1,138 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:polished_blackslag"
+    },
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.visit_all_deeper_down_biomes.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.visit_all_deeper_down_biomes.description"
+    }
+  },
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "criteria": {
+    "crystal_garden": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "spectrum:crystal_garden"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "deep_barrens": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "spectrum:deep_barrens"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "deep_dripstone_caves": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "spectrum:deep_dripstone_caves"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "dragonrot_swamp": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "spectrum:dragonrot_swamp"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "forlorm_caves": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "spectrum:forlorm_caves"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "mushroom_forest": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "spectrum:mushroom_forest"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "razor_edge": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "spectrum:razor_edge"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  },
+  "rewards": {
+    "experience": 500
+  }
+}

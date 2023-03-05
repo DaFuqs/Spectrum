@@ -1,0 +1,15 @@
+{
+  "name": "Downstone",
+  "advancement": "spectrum:hidden/interact_with_downstone",
+  "icon": "spectrum:downstone",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:downstone": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

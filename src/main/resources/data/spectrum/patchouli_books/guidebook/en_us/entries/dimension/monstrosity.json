@@ -12,6 +12,12 @@
     },
     {
       "type": "patchouli:text",
+      "advancement": "spectrum:hidden/killed_by_monstrosity",
+      "title": "Loss?",
+      "text": "This being is powerful. Very powerful. Whatever it may be, it's not a good idea to face this thing unprepared."
+    },
+    {
+      "type": "patchouli:text",
       "advancement": "spectrum:lategame/killed_monstrosity",
       "title": "Victory?",
       "text": "It's dead.$(br2)$(italic)You think$()."

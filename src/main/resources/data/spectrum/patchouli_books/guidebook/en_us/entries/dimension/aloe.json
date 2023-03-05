@@ -1,10 +1,10 @@
 {
   "name": "Aloe",
   "advancement": "spectrum:hidden/collect_aloe",
-  "icon": "spectrum:aloe",
+  "icon": "spectrum:aloe_leaf",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
-    "spectrum:aloe": 0
+    "spectrum:aloe_leaf": 0
   },
   "pages": [
     {
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:aloe",
+      "item": "spectrum:aloe_leaf",
       "text": "You can break off individual leaves and replant them. Over time, they grow into a full-fledged new plant.$(br)The leaves retain a lot of moisture and are quite nutritious."
     }
   ]

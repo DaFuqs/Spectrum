@@ -60,7 +60,7 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodComponent BODACIOUS_BERRY_BAR = new FoodComponent.Builder()
-			.hunger(8).saturationModifier(0.5F)
+			.hunger(8).saturationModifier(0.6F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 2), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1800, 4), 1.0F)
 			.build();
@@ -231,6 +231,11 @@ public class SpectrumFoodComponents {
 			.hunger(20).saturationModifier(1.2F).meat()
 			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100), 1.0f)
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.NOURISHING, 12000, 1), 1.0f)
+			.build();
+
+	public static final FoodComponent DRAGONBONE_BROTH = new FoodComponent.Builder()
+			.hunger(6).saturationModifier(0.6F).meat()
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.MAGIC_ANNULATION, 2400, 1), 1.0f)
 			.build();
 
 }

@@ -1,6 +1,15 @@
 ﻿$leaves = @("black_leaves", "blue_leaves", "brown_leaves", "cyan_leaves", "gray_leaves", "green_leaves", "light_blue_leaves", "light_gray_leaves", "lime_leaves", "magenta_leaves", "orange_leaves", "pink_leaves", "purple_leaves", "red_leaves", "white_leaves", "yellow_leaves")
 
-$new = @(   "blackslag_azurite_ore", "blackslag_shimmerstone_light"
+$new = @(
+"shale_clay_brick_slab",
+"polished_shale_clay_slab",
+"shale_clay_tile_slab",
+"exposed_polished_shale_clay_slab",
+"exposed_shale_clay_brick_slab",
+"exposed_shale_clay_tile_slab",
+"weathered_polished_shale_clay_slab",
+"weathered_shale_clay_brick_slab",
+"weathered_shale_clay_tile_slab"
 )
 
 enum BlockType {
@@ -10,6 +19,7 @@ enum BlockType {
     Upgrade
     Crystallarieum
     Stairs
+    Slab
     Wall
     Button
     PressurePlate
@@ -59,7 +69,13 @@ Function Generate-BlockFiles {
 
         function Get-LangEntries([string[]] $Names) {
             $Names | Foreach-Object {
-                "`"block.spectrum.$_`": `"$_`","
+                $words = $_ -split "_"
+                $resultingWords = @()
+                foreach($word in $words) {
+                  $resultingWords += ([string] $word[0]).ToUpper() + $word.Substring(1)
+                }
+                $translation = $resultingWords -join " "
+                "`"block.spectrum.$_`": `"$translation`","
             }
         }
 
@@ -139,6 +155,24 @@ Function Generate-BlockFiles {
 "@
 }
 
+
+function Get-BlockStateSlab($Name) {
+  Write-Output @"
+  {
+    "variants": {
+      "type=bottom": {
+        "model": "spectrum:block/$Name`"
+      },
+      "type=double": {
+        "model": "spectrum:block/$Name`"
+      },
+      "type=top": {
+        "model": "spectrum:block/$Name`_top"
+      }
+    }
+  }
+"@
+}
 
         function Get-BlockStateCrystallarieum($Name) {
             Write-Output @"
@@ -699,6 +733,32 @@ Function Generate-BlockFiles {
 "@
         }
 
+        function Get-BlockModelSlab($Name) {
+          Write-Output @"
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "spectrum:block/$Name",
+    "top": "spectrum:block/$Name",
+    "side": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
+        function Get-BlockModelSlabTop($Name) {
+          Write-Output @"
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "spectrum:block/$Name",
+    "top": "spectrum:block/$Name",
+    "side": "spectrum:block/$Name"
+  }
+}
+"@
+        }
+
         function Get-BlockModelStairs($Name) {
             Write-Output @"
 {
@@ -884,6 +944,45 @@ Function Generate-BlockFiles {
 "@
         }
 
+        function Get-LootTableSlab($Name) {
+            Write-Output @"
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "spectrum:$Name",
+                  "properties": {
+                    "type": "double"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "add": false
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "spectrum:$Name"
+        }
+      ]
+    }
+  ]
+}
+"@
+        }
+
 
         ####################################
         #endregion LOOT TABLE              #
@@ -922,7 +1021,7 @@ Function Generate-BlockFiles {
         Get-LangEntries -Names $BlockNames
         Write-Output ""
         Write-Output "- Mineable Block tags"
-        Write-Output "- Manual Entry"
+        Write-Output "- Guidebook Entry"
         Write-Output "- Recipes"
 
         $BlockNames | ForEach-Object {
@@ -946,7 +1045,9 @@ Function Generate-BlockFiles {
                 $blockState = Get-BlockStateButton -Name $_
             } elseif ($blockType -eq [BlockType]::PressurePlate) {
                 $blockState = Get-BlockStatePressurePlate -Name $_
-            }
+            } elseif ($blockType -eq [BlockType]::Slab) {
+              $blockState = Get-BlockStateSlab -Name $_
+          }
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\blockstates\") -Name "$_`.json" -ItemType File -Force -Value $blockState | Out-Null
     
             # BLOCK MODELS
@@ -986,7 +1087,11 @@ Function Generate-BlockFiles {
                 $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelPressurePlate -Name $textureName) | Out-Null
                 New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_down.json" -ItemType File -Force -Value $(Get-BlockModelPressurePlateDown -Name $textureName) | Out-Null
-            }
+            } elseif ($blockType -eq [BlockType]::Slab) {
+              $textureName = $_.Substring(0, $_.LastIndexOf("_")) + "s"
+              New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`.json" -ItemType File -Force -Value $(Get-BlockModelSlab -Name $textureName) | Out-Null
+              New-Item -Path $(Join-Path -Path $destination -ChildPath "\resources\assets\spectrum\models\block\") -Name "$_`_top.json" -ItemType File -Force -Value $(Get-BlockModelSlabTop -Name $textureName) | Out-Null
+          }
 
             # ITEM MODEL
             if($blockType -eq [BlockType]::Upgrade) {
@@ -1031,8 +1136,13 @@ Function Generate-BlockFiles {
 
             # LOOT TABLE
             # To make your block drop items when broken, you will need a loot table. The following file will cause your block to drop its respective item form when broken
-            $lootTable = Get-LootTable -Name $_
+            if($blockType -eq [BlockType]::Slab) {
+              $lootTable = Get-LootTableSlab -Name $_
+            } else {
+              $lootTable = Get-LootTable -Name $_
+            }
             New-Item -Path $(Join-Path -Path $destination -ChildPath "\data\spectrum\loot_tables\blocks\") -Name "$_`.json" -ItemType File -Force -Value $lootTable | Out-Null
+          
         }
     }
 
@@ -1042,4 +1152,4 @@ Function Generate-BlockFiles {
 }
 
 
-Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Default)
+Generate-BlockFiles -BlockNames $new -BlockType ([BlockType]::Slab)

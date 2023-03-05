@@ -252,6 +252,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final Item DRAGONBONE_SHARD = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item DRAGONBONE_NEEDLE = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
+	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 
 	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final CloakedItem STORM_STONE = new StormStoneItem(Tab.RESOURCES.settings(16), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
@@ -322,9 +323,12 @@ public class SpectrumItems {
 	public static final Item MYCEYLON_APPLE_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_APPLE_PIE));
 	public static final Item MYCEYLON_PUMPKIN_PIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_PUMPKIN_PIE));
 	public static final Item MYCEYLON_COOKIE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.MYCEYLON_COOKIE));
+	public static final Item ALOE_LEAF = new AliasedBlockItem(SpectrumBlocks.ALOE, Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.ALOE_LEAF));
+	public static final Item SAWBLADE_HOLLY_BERRY = new AliasedBlockItem(SpectrumBlocks.SAWBLADE_HOLLY_BUSH, Tab.CONSUMABLES.settings().food(FoodComponents.SWEET_BERRIES));
 	public static final Item PRICKLY_BAYLEAF = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.PRICKLY_BAYLEAF));
 	public static final Item SPIKED_POTATOES = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SPIKED_POTATOES));
 	public static final Item TRIPLE_MEAT_POT_STEW = new StewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW));
+	public static final Item DRAGONBONE_BROTH = new StewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DRAGONBONE_BROTH));
 
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, Tab.RESOURCES.settings());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, Tab.RESOURCES.settings());
@@ -570,6 +574,7 @@ public class SpectrumItems {
 		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
 		register("dragonbone_shard", DRAGONBONE_SHARD, DyeColor.GRAY);
 		register("dragonbone_needle", DRAGONBONE_NEEDLE, DyeColor.GRAY);
+		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
 
 		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);
 		register("mermaids_gem", MERMAIDS_GEM, DyeColor.LIGHT_BLUE);
@@ -730,9 +735,12 @@ public class SpectrumItems {
 		register("myceylon_apple_pie", MYCEYLON_APPLE_PIE, DyeColor.PINK);
 		register("myceylon_pumpkin_pie", MYCEYLON_PUMPKIN_PIE, DyeColor.PINK);
 		register("myceylon_cookie", MYCEYLON_COOKIE, DyeColor.PINK);
+		register("aloe_leaf", ALOE_LEAF, DyeColor.PINK);
+		register("sawblade_holly_berry", SAWBLADE_HOLLY_BERRY, DyeColor.PINK);
 		register("prickly_bayleaf", PRICKLY_BAYLEAF, DyeColor.PINK);
 		register("spiked_potatoes", SPIKED_POTATOES, DyeColor.PINK);
 		register("triple_meat_pot_stew", TRIPLE_MEAT_POT_STEW, DyeColor.PINK);
+		register("dragonbone_broth", DRAGONBONE_BROTH, DyeColor.GRAY);
 
 		register("infused_beverage", INFUSED_BEVERAGE, DyeColor.PINK);
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);

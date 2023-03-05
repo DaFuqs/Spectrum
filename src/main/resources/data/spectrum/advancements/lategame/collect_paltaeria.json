@@ -13,29 +13,23 @@
     "hidden": true
   },
   "criteria": {
-    "has_ore": {
+    "has_paltaeria": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:paltaeria_ore" ]}] }
-    },
-    "has_fragments": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:paltaeria_fragments" ]}] }
-    },
-    "has_gem": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "items": [ "spectrum:paltaeria_gem" ]}] }
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:paltaeria_ore",
+              "spectrum:paltaeria_gem",
+              "spectrum:paltaeria_fragments"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
     }
-  },
-  "requirements": [
-    [
-      "has_ore",
-      "has_fragments",
-      "has_gem"
-    ],
-    [ "gotten_previous" ]
-  ]
+  }
 }

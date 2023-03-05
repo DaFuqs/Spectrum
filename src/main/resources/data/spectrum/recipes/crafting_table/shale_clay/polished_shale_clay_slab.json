@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:polished_shale_clay"
+    }
+  },
+  "result": {
+    "item": "spectrum:polished_shale_clay_slab",
+    "count": 6
+  }
+}

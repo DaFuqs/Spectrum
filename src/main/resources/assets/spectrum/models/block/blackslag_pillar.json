@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "spectrum:block/chiseled_blackslag",
-    "side": "spectrum:block/blackslag_pillar"
-  }
-}

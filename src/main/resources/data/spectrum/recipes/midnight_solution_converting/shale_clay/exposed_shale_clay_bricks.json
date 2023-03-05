@@ -1,0 +1,10 @@
+{
+  "type": "spectrum:midnight_solution_converting",
+  "ingredient": {
+    "item": "spectrum:shale_clay_bricks"
+  },
+  "result": {
+    "item": "spectrum:exposed_shale_clay_bricks",
+    "count": 1
+  }
+}

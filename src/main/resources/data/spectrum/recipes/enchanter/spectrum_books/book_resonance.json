@@ -7,28 +7,28 @@
       "item": "minecraft:book"
     },
     {
-      "item": "spectrum:cyan_pigment"
+      "item": "spectrum:white_pigment"
     },
     {
-      "item": "spectrum:cyan_pigment"
-    },
-    {
-      "item": "spectrum:paltaeria_gem"
-    },
-    {
-      "item": "spectrum:moonstone_cluster"
-    },
-    {
-      "item": "spectrum:cyan_pigment"
-    },
-    {
-      "item": "spectrum:cyan_pigment"
+      "item": "spectrum:white_pigment"
     },
     {
       "item": "spectrum:paltaeria_gem"
     },
     {
-      "item": "spectrum:moonstone_cluster"
+      "item": "spectrum:resonance_shard"
+    },
+    {
+      "item": "spectrum:white_pigment"
+    },
+    {
+      "item": "spectrum:white_pigment"
+    },
+    {
+      "item": "spectrum:paltaeria_gem"
+    },
+    {
+      "item": "spectrum:resonance_shard"
     }
   ],
   "result": {

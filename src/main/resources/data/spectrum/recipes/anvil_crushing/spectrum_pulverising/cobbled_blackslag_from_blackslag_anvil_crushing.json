@@ -1,0 +1,14 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:blackslag"
+  },
+  "crushedItemsPerPointOfDamage": 0.8,
+  "experience": 0,
+  "result": {
+    "item": "spectrum:cobbled_blackslag",
+    "count": 1
+  },
+  "particleEffectIdentifier": "cloud",
+  "soundEventIdentifier": "block.deepslate.break"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Deep Barrens",
+  "advancement": "spectrum:hidden/visit_dd_biomes/deep_barrens",
+  "icon": "spectrum:blackslag",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

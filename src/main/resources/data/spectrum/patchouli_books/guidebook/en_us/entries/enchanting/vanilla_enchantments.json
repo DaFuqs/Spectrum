@@ -3,7 +3,7 @@
   "icon": "spectrum:multitool",
   "priority": true,
   "sortnum": 6,
-  "advancement": "spectrum:progression/enchantments/disarming",
+  "advancement": "spectrum:midgame/enter_liquid_crystal",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

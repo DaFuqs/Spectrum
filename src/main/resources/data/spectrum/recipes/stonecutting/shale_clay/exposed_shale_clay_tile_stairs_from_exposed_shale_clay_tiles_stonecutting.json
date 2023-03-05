@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:exposed_shale_clay_tiles"
+  },
+  "result": "spectrum:exposed_shale_clay_tile_stairs",
+  "count": 2
+}

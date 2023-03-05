@@ -1,0 +1,37 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "spectrum:dragonbone_needle"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.collect_dragonbone.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_dragonbone.description"
+    }
+  },
+  "criteria": {
+    "has_dragonbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:dragonbone",
+              "spectrum:dragonbone_shard",
+              "spectrum:dragonbone_needle"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

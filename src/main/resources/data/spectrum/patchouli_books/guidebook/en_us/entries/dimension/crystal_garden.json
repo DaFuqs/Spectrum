@@ -1,0 +1,16 @@
+{
+  "name": "Crystal Garden",
+  "advancement": "spectrum:hidden/visit_dd_biomes/crystal_garden",
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:overgrown_blackslag": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:overgrown_blackslag",
+      "text": ""
+    }
+  ]
+}

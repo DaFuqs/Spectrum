@@ -47,7 +47,7 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	
 	@Override
 	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isIn(SpectrumBlockTags.DOOM_BLOOM_PLANTABLE);
+		return floor.isIn(SpectrumBlockTags.DOOMBLOOM_PLANTABLE);
 	}
 	
 	@Override

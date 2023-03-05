@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:doombloom",
+              "name": "spectrum:snapping_ivy",
               "conditions": [
                 {
                   "condition": "minecraft:alternative",

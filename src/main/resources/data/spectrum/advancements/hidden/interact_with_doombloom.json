@@ -12,11 +12,33 @@
         }
       }
     },
+    "has_doombloom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:doombloom",
+              "spectrum:doombloom_seed"
+            ]
+          }
+        ]
+      }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:lategame/spectrum_lategame"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "interacted_with_doombloom",
+      "has_doombloom"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
 }

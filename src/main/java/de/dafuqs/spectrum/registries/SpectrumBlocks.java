@@ -618,10 +618,11 @@ public class SpectrumBlocks {
 	public static final Block TALL_PURPLE_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.PURPLE), Dragonjag.Variant.PURPLE);
 	public static final Block TALL_BLACK_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.TERRACOTTA_BLACK), Dragonjag.Variant.BLACK);
 	
-	public static final Block ALOE = new AloeBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.DARK_GREEN).hardness(1.0F).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly());
-	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.TERRACOTTA_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().breakInstantly());
-	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly());
-	public static final Block DOOMBLOOM = new DoomBloomBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly());
+	public static final Block ALOE = new AloeBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.DARK_GREEN).hardness(1.0F).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().nonOpaque());
+	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.TERRACOTTA_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().breakInstantly().nonOpaque());
+	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly().nonOpaque());
+	public static final Block DOOMBLOOM = new DoomBloomBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly().nonOpaque());
+	public static final Block SNAPPING_IVY = new SnappingIvyBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).hardness(3.0F).noCollision().sounds(BlockSoundGroup.GRASS).nonOpaque());
 	
 	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).luminance((state) -> 12).requiresTool());
 	public static final Block HUMMINGSTONE = new HummingstoneBlock(AbstractBlock.Settings.copy(HUMMINGSTONE_GLASS).ticksRandomly());
@@ -1387,6 +1388,7 @@ public class SpectrumBlocks {
 		registerBlock("sawblade_holly_bush", SAWBLADE_HOLLY_BUSH);
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
 		registerBlockWithItem("doombloom", DOOMBLOOM, settings, DyeColor.BLACK);
+		registerBlockWithItem("snapping_ivy", SNAPPING_IVY, settings, DyeColor.RED);
 		
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
 		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIME);
@@ -2626,6 +2628,8 @@ public class SpectrumBlocks {
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.ALOE, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SAWBLADE_HOLLY_BUSH, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.BRISTLE_SPROUTS, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.DOOMBLOOM, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SNAPPING_IVY, RenderLayer.getCutout());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.SLATE_NOXSHROOM, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(SpectrumBlocks.IVORY_NOXSHROOM, RenderLayer.getCutout());

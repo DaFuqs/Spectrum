@@ -2,23 +2,12 @@
   "feature": "spectrum:blackslag_pile",
   "placement": [
     {
+      "type": "minecraft:count_on_every_layer",
+      "count": 1
+    },
+    {
       "type": "minecraft:rarity_filter",
-      "chance": 2
-    },
-    {
-      "type": "minecraft:in_square"
-    },
-    {
-      "type": "minecraft:height_range",
-      "height": {
-        "type": "minecraft:uniform",
-        "min_inclusive": {
-          "above_bottom": 0
-        },
-        "max_inclusive": {
-          "below_top": 0
-        }
-      }
+      "chance": 4
     },
     {
       "type": "minecraft:biome"

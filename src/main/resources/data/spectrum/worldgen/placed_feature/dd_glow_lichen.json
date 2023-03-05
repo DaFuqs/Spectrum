@@ -27,12 +27,6 @@
       "type": "minecraft:in_square"
     },
     {
-      "type": "minecraft:surface_relative_threshold_filter",
-      "heightmap": "OCEAN_FLOOR_WG",
-      "min_inclusive": -448,
-      "max_inclusive": -64
-    },
-    {
       "type": "minecraft:biome"
     }
   ]

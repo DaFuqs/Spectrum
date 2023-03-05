@@ -478,8 +478,8 @@ public class SpectrumBlocks {
 		return AbstractBlock.Settings.of(Material.PLANT, color).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS);
 	}
 
-	private static RegistryEntry<ConfiguredFeature<?, ?>> getConfiguredFeatureRegistryEntry(String chestnut_noxfungus) {
-		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate(chestnut_noxfungus)));
+	private static RegistryEntry<ConfiguredFeature<?, ?>> getConfiguredFeatureRegistryEntry(String id) {
+		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate(id)));
 	}
 
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);

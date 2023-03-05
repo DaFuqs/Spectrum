@@ -48,7 +48,9 @@
       "spectrum:dd_shale_clay_pillar",
       "spectrum:blackslag_pile"
     ],
-    [],
+    [
+		"spectrum:buried_dragon_fossil"
+	],
     [
       "spectrum:dd_sawblade_delta",
       "spectrum:dd_small_shale_clay_columns"

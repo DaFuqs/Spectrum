@@ -20,8 +20,8 @@ import net.minecraft.world.event.*;
 
 public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
-    protected static final EnumProperty<Direction.Axis> AXIS = Properties.HORIZONTAL_AXIS;
-    protected static final BooleanProperty SNAPPED = BooleanProperty.of("snapped");
+    public static final EnumProperty<Direction.Axis> AXIS = Properties.HORIZONTAL_AXIS;
+    public static final BooleanProperty SNAPPED = BooleanProperty.of("snapped");
     
     protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
     protected static final Vec3d MOVEMENT_SLOWDOWN_VECTOR = new Vec3d(0.5, 0.75, 0.5);
@@ -58,7 +58,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        DDConfiguredFeatures.SNAPPING_IVY.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
+        DDConfiguredFeatures.SNAPPING_IVY_PATCH.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
     }
     
     @Override
@@ -93,7 +93,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
         if (entity instanceof LivingEntity livingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.slowMovement(state, MOVEMENT_SLOWDOWN_VECTOR);
             if (!snapped) {
-                entity.damage(DamageSource.SWEET_BERRY_BUSH, 3.0F);
+                entity.damage(DamageSource.SWEET_BERRY_BUSH, 5.0F);
                 livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 1));
                 
                 BlockState newState = state.with(SNAPPED, true);

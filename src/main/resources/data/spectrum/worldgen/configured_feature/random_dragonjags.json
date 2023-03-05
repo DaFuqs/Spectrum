@@ -5,54 +5,7 @@
     "xz_spread": 7,
     "y_spread": 3,
     "feature": {
-      "feature": {
-        "type": "minecraft:simple_block",
-        "config": {
-          "to_place": {
-            "type": "minecraft:noise_provider",
-            "seed": 2345,
-            "noise": {
-              "firstOctave": 0,
-              "amplitudes": [
-                1
-              ]
-            },
-            "scale": 0.020833334,
-            "states": [
-              {
-                "Name": "spectrum:small_black_dragonjag"
-              },
-              {
-                "Name": "spectrum:small_red_dragonjag"
-              },
-              {
-                "Name": "spectrum:small_green_dragonjag"
-              },
-              {
-                "Name": "spectrum:small_pink_dragonjag"
-              },
-              {
-                "Name": "spectrum:small_purple_dragonjag"
-              },
-              {
-                "Name": "spectrum:tall_black_dragonjag"
-              },
-              {
-                "Name": "spectrum:tall_red_dragonjag"
-              },
-              {
-                "Name": "spectrum:tall_green_dragonjag"
-              },
-              {
-                "Name": "spectrum:tall_pink_dragonjag"
-              },
-              {
-                "Name": "spectrum:tall_purple_dragonjag"
-              }
-            ]
-          }
-        }
-      },
+      "feature": "spectrum:random_dragonjag",
       "placement": [
         {
           "type": "minecraft:block_predicate_filter",

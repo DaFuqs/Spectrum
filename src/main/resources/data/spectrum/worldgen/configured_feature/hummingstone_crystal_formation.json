@@ -4,8 +4,8 @@
     "iterations": {
       "type": "minecraft:uniform",
       "value": {
-        "min_inclusive": 1200,
-        "max_inclusive": 1800
+        "min_inclusive": 1800,
+        "max_inclusive": 2400
       }
     },
     "state_provider": {
@@ -40,6 +40,8 @@
       "minecraft:dripstone_block",
       "minecraft:calcite",
       "minecraft:tuff"
-    ]
+    ],
+    "can_grow_upwards": true,
+    "can_grow_downwards": true
   }
 }

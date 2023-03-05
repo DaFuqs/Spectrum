@@ -1,14 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.item.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class SpectrumItemStackDamageImmunities {
 	
@@ -29,6 +25,12 @@ public class SpectrumItemStackDamageImmunities {
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.WET_LAVA_SPONGE.asItem(), DamageSource.IN_FIRE);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.WET_LAVA_SPONGE.asItem(), DamageSource.ON_FIRE);
 		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.WET_LAVA_SPONGE.asItem(), DamageSource.LAVA);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.DOOMBLOOM.asItem(), DamageSource.IN_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.DOOMBLOOM.asItem(), DamageSource.ON_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumBlocks.DOOMBLOOM.asItem(), DamageSource.LAVA);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.IN_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.ON_FIRE);
+		SpectrumItemStackDamageImmunities.addImmunity(SpectrumItems.DOOMBLOOM_SEED, DamageSource.LAVA);
 	}
 	
 	public static void addImmunity(Item item, DamageSource damageSource) {

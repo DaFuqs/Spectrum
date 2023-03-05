@@ -20,16 +20,18 @@ import java.util.function.*;
 import java.util.stream.*;
 
 public class PrimordialFireBlock extends AbstractFireBlock {
-
-    public static final BooleanProperty NORTH = ConnectingBlock.NORTH;
-    public static final BooleanProperty EAST = ConnectingBlock.EAST;
-    public static final BooleanProperty SOUTH = ConnectingBlock.SOUTH;
-    public static final BooleanProperty WEST = ConnectingBlock.WEST;
-    public static final BooleanProperty UP = ConnectingBlock.UP;
-    private static final Map<Direction, BooleanProperty> DIRECTION_PROPERTIES = ConnectingBlock.FACING_PROPERTIES.entrySet().stream().filter((entry) -> entry.getKey() != Direction.DOWN).collect(Util.toMap());
-    private static final VoxelShape UP_SHAPE = Block.createCuboidShape(0.0, 15.0, 0.0, 16.0, 16.0, 16.0);
-    private static final VoxelShape WEST_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 1.0, 16.0, 16.0);
-    private static final VoxelShape EAST_SHAPE = Block.createCuboidShape(15.0, 0.0, 0.0, 16.0, 16.0, 16.0);
+	
+	public static boolean EXPLOSION_CAUSES_PRIMORDIAL_FIRE_FLAG = false;
+	
+	public static final BooleanProperty NORTH = ConnectingBlock.NORTH;
+	public static final BooleanProperty EAST = ConnectingBlock.EAST;
+	public static final BooleanProperty SOUTH = ConnectingBlock.SOUTH;
+	public static final BooleanProperty WEST = ConnectingBlock.WEST;
+	public static final BooleanProperty UP = ConnectingBlock.UP;
+	private static final Map<Direction, BooleanProperty> DIRECTION_PROPERTIES = ConnectingBlock.FACING_PROPERTIES.entrySet().stream().filter((entry) -> entry.getKey() != Direction.DOWN).collect(Util.toMap());
+	private static final VoxelShape UP_SHAPE = Block.createCuboidShape(0.0, 15.0, 0.0, 16.0, 16.0, 16.0);
+	private static final VoxelShape WEST_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 1.0, 16.0, 16.0);
+	private static final VoxelShape EAST_SHAPE = Block.createCuboidShape(15.0, 0.0, 0.0, 16.0, 16.0, 16.0);
     private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 1.0);
     private static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(0.0, 0.0, 15.0, 16.0, 16.0, 16.0);
 

@@ -1,0 +1,26 @@
+{
+  "name": "Doomblooms",
+  "advancement": "spectrum:hidden/interact_with_doombloom",
+  "icon": "spectrum:doombloom",
+  "category": "spectrum:dimension_category",
+  "extra_recipe_mappings": {
+    "spectrum:doombloom": 0,
+    "spectrum:doombloom_seed": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This plant has a rather... unusual way to dispense it's seed: When not being cautious around this flower, be it touching it a bit too harshly, you risk converting your surroundings into a burning crater."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:doombloom_seed",
+      "text": "When fully grown, interacting with it yields gunpowder. Harvesting it without blowing it up requires a Silk Touch tool."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Primordial Fire",
+      "text": "Much more aggressive than common $(thing)Fire$() started by $(thing)Flint & Steel$(), the $(thing)Primordial Fire$() started by exploding Doomblooms seems to burn with blazing heat."
+    }
+  ]
+}

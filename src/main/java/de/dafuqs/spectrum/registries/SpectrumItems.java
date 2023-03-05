@@ -329,6 +329,7 @@ public class SpectrumItems {
 	public static final Item SPIKED_POTATOES = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SPIKED_POTATOES));
 	public static final Item TRIPLE_MEAT_POT_STEW = new StewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.TRIPLE_MEAT_POT_STEW));
 	public static final Item DRAGONBONE_BROTH = new StewItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DRAGONBONE_BROTH));
+	public static final Item DOOMBLOOM_SEED = new AliasedBlockItem(SpectrumBlocks.DOOMBLOOM, Tab.RESOURCES.settings());
 
 	public static final Item GLISTERING_MELON_SEEDS = new AliasedBlockItem(SpectrumBlocks.GLISTERING_MELON_STEM, Tab.RESOURCES.settings());
 	public static final Item AMARANTH_GRAINS = new AliasedBlockItem(SpectrumBlocks.AMARANTH, Tab.RESOURCES.settings());
@@ -741,6 +742,7 @@ public class SpectrumItems {
 		register("spiked_potatoes", SPIKED_POTATOES, DyeColor.PINK);
 		register("triple_meat_pot_stew", TRIPLE_MEAT_POT_STEW, DyeColor.PINK);
 		register("dragonbone_broth", DRAGONBONE_BROTH, DyeColor.GRAY);
+		register("doombloom_seed", DOOMBLOOM_SEED, DyeColor.BLACK);
 
 		register("infused_beverage", INFUSED_BEVERAGE, DyeColor.PINK);
 		register("pure_alcohol", PURE_ALCOHOL, DyeColor.WHITE);

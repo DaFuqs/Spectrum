@@ -18,6 +18,7 @@
     "EntityApplyFluidsMixin",
     "EntityMixin",
     "EntityTypeMixin",
+    "ExplosionMixin",
     "FarmlandBlockMixin",
     "FirstStrikeEnchantmentMixin",
     "FishingHookPredicateMixin",

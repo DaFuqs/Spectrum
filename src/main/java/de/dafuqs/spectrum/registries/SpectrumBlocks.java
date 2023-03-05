@@ -618,9 +618,10 @@ public class SpectrumBlocks {
 	public static final Block TALL_PURPLE_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.PURPLE), Dragonjag.Variant.PURPLE);
 	public static final Block TALL_BLACK_DRAGONJAG = new TallDragonjagBlock(dragonjag(MapColor.TERRACOTTA_BLACK), Dragonjag.Variant.BLACK);
 	
-	public static final Block ALOE = new AloeBlock(dragonjag(MapColor.DARK_GREEN).noCollision().ticksRandomly().breakInstantly());
-	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(dragonjag(MapColor.TERRACOTTA_GREEN).noCollision().ticksRandomly().breakInstantly());
-	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(dragonjag(MapColor.PALE_GREEN).noCollision().breakInstantly());
+	public static final Block ALOE = new AloeBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.DARK_GREEN).hardness(1.0F).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly());
+	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.TERRACOTTA_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().breakInstantly());
+	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly());
+	public static final Block DOOMBLOOM = new DoomBloomBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly());
 	
 	public static final Block HUMMINGSTONE_GLASS = new GlassBlock(AbstractBlock.Settings.of(Material.GLASS, MapColor.PALE_YELLOW).strength(5.0F, 100.0F).nonOpaque().sounds(BlockSoundGroup.GLASS).luminance((state) -> 12).requiresTool());
 	public static final Block HUMMINGSTONE = new HummingstoneBlock(AbstractBlock.Settings.copy(HUMMINGSTONE_GLASS).ticksRandomly());
@@ -1268,6 +1269,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("cracked_end_portal_frame", CRACKED_END_PORTAL_FRAME, Tab.GENERAL.settings(), DyeColor.PURPLE);
 		
 		registerBlockWithItem("black_sludge", BLACK_SLUDGE, Tab.DECORATION.settings(), DyeColor.GRAY);
+		
 		// Technical Blocks without items
 		registerBlock("sag_leaf", SAG_LEAF);
 		registerBlock("sag_bubble", SAG_BUBBLE);
@@ -1384,6 +1386,7 @@ public class SpectrumBlocks {
 		registerBlock("aloe", ALOE);
 		registerBlock("sawblade_holly_bush", SAWBLADE_HOLLY_BUSH);
 		registerBlockWithItem("bristle_sprouts", BRISTLE_SPROUTS, settings, DyeColor.LIME);
+		registerBlockWithItem("doombloom", DOOMBLOOM, settings, DyeColor.BLACK);
 		
 		registerBlockWithItem("hummingstone", HUMMINGSTONE, settings, DyeColor.LIME);
 		registerBlockWithItem("hummingstone_glass", HUMMINGSTONE_GLASS, settings, DyeColor.LIME);

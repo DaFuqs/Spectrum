@@ -47,7 +47,9 @@
       "spectrum:dd_downstone_sloped",
       "spectrum:moonstone_geode"
     ],
-    [],
+    [
+		"spectrum:buried_dragon_fossil"
+	],
     [],
     [],
     [

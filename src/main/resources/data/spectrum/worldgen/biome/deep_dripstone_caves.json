@@ -47,7 +47,9 @@
       "spectrum:dd_large_dripstone",
       "spectrum:blackslag_pile"
     ],
-    [],
+    [
+		"spectrum:buried_dragon_fossil"
+	],
     [],
     [],
     [

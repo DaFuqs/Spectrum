@@ -1,0 +1,27 @@
+{
+	"feature": "spectrum:dragon_fossil",
+	"placement": [
+		{
+			"type": "rarity_filter",
+			"chance": 32
+		},
+		{
+			"type": "height_range",
+			"height": {
+				"type": "uniform",
+				"min_inclusive": {
+					"above_bottom": 8
+				},
+				"max_inclusive": {
+					"below_top": 16
+				}
+			}
+		},
+		{
+			"type": "in_square"
+		},
+		{
+			"type": "biome"
+		}
+	]
+}

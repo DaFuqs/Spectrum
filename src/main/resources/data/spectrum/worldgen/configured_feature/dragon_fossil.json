@@ -1,0 +1,20 @@
+{
+	"type": "fossil",
+	"config": {
+		"fossil_structures": [
+			"spectrum:dragon_fossil/spine_1",
+			"spectrum:dragon_fossil/spine_2",
+			"spectrum:dragon_fossil/spine_3",
+			"spectrum:dragon_fossil/spine_4"
+		],
+		"overlay_structures": [
+			"spectrum:dragon_fossil/spine_1",
+			"spectrum:dragon_fossil/spine_2",
+			"spectrum:dragon_fossil/spine_3",
+			"spectrum:dragon_fossil/spine_4"
+		],
+		"fossil_processors": "minecraft:fossil_rot",
+		"overlay_processors": "minecraft:empty",
+		"max_empty_corners_allowed": 4
+	}
+}

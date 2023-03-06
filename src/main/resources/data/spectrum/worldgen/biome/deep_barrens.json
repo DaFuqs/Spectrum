@@ -48,7 +48,9 @@
       "spectrum:stone_pile",
       "spectrum:deepslate_pile"
     ],
-    [],
+    [
+		"spectrum:buried_dragon_fossil"
+	],
     [],
     [],
     [

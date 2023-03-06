@@ -26,6 +26,8 @@
     ],
     "can_extend_on": [
       "spectrum:shale_clay"
-    ]
+    ],
+    "can_grow_upwards": true,
+    "can_grow_downwards": false
   }
 }

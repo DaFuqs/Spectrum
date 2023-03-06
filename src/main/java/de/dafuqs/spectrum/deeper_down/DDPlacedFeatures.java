@@ -19,6 +19,7 @@ public class DDPlacedFeatures extends WorldgenHelper {
         registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("black_dragonjags"), DDConfiguredFeatures.BLACK_DRAGONJAGS);
 
         registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("bristle_sprouts"), DDConfiguredFeatures.BRISTLE_SPROUTS);
+        registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("snapping_ivy_patch"), DDConfiguredFeatures.SNAPPING_IVY_PATCH);
     }
 
 }

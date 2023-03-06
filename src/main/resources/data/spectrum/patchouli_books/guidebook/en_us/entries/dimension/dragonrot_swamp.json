@@ -3,10 +3,17 @@
   "advancement": "spectrum:hidden/visit_dd_biomes/dragonrot_swamp",
   "icon": "spectrum:dragonrot_bucket",
   "category": "spectrum:dimension_category",
-  "extra_recipe_mappings": {},
+  "extra_recipe_mappings": {
+    "spectrum:snapping_ivy": 0
+  },
   "pages": [
     {
       "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:snapping_ivy",
       "text": ""
     }
   ]

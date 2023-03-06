@@ -1,13 +1,13 @@
 {
-  "feature": "spectrum:random_dragonjags",
+  "feature": "spectrum:snapping_ivy_patch",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
       "count": {
-        "type": "minecraft:uniform",
+        "type": "minecraft:biased_to_bottom",
         "value": {
           "min_inclusive": 0,
-          "max_inclusive": 2
+          "max_inclusive": 1
         }
       }
     },

@@ -1,5 +1,5 @@
 {
-  "feature": "spectrum:random_dragonjags",
+  "feature": "spectrum:doombloom_patch",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
@@ -7,7 +7,7 @@
         "type": "minecraft:uniform",
         "value": {
           "min_inclusive": 0,
-          "max_inclusive": 2
+          "max_inclusive": 1
         }
       }
     },

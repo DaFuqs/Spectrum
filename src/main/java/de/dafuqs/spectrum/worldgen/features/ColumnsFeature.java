@@ -12,8 +12,9 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-
-// a version of BasaltColumnsFeature with configurable block state
+/**
+ * a BasaltColumnsFeature with configurable block state
+ */
 public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
 
     private static final ImmutableList<Block> CANNOT_REPLACE_BLOCKS = ImmutableList.of(Blocks.LAVA, Blocks.BEDROCK, Blocks.MAGMA_BLOCK, Blocks.SOUL_SAND, Blocks.NETHER_BRICKS, Blocks.NETHER_BRICK_FENCE, Blocks.NETHER_BRICK_STAIRS, Blocks.NETHER_WART, Blocks.CHEST, Blocks.SPAWNER);

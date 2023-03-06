@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "axis=x,snapped=false": {
+      "model": "spectrum:block/snapping_ivy"
+    },
+    "axis=x,snapped=true": {
+      "model": "spectrum:block/snapping_ivy_snapped"
+    },
+    "axis=z,snapped=false": {
+      "model": "spectrum:block/snapping_ivy",
+      "y": 90
+    },
+    "axis=z,snapped=true": {
+      "model": "spectrum:block/snapping_ivy_snapped",
+      "y": 90
+    }
+  }
+}

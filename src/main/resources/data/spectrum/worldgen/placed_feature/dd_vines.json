@@ -1,15 +1,12 @@
 {
-  "feature": "minecraft:glow_lichen",
+  "feature": "minecraft:vines",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": {
-        "type": "minecraft:uniform",
-        "value": {
-          "min_inclusive": 148,
-          "max_inclusive": 240
-        }
-      }
+      "count": 256
+    },
+    {
+      "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:height_range",
@@ -19,12 +16,9 @@
           "above_bottom": 0
         },
         "max_inclusive": {
-          "below_top": 0
+          "absolute": 256
         }
       }
-    },
-    {
-      "type": "minecraft:in_square"
     },
     {
       "type": "minecraft:biome"

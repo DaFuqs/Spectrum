@@ -1,0 +1,18 @@
+{
+	"feature": "spectrum:dragon_fossil",
+	"placement": [
+		{
+			"type": "in_square"
+		},
+		{
+			"type": "dragon_fossil"
+		},
+		{
+			"type": "biome"
+		},
+		{
+			"type": "rarity_filter",
+			"chance": 16
+		}
+	]
+}

@@ -46,7 +46,9 @@
       "spectrum:moonstone_geode",
       "spectrum:blackslag_pile"
     ],
-    [],
+    [
+		"spectrum:buried_dragon_fossil"
+	],
     [],
     [],
     [

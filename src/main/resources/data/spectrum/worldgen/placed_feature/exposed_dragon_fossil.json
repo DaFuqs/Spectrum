@@ -1,18 +1,30 @@
 {
-	"feature": "spectrum:dragon_fossil",
-	"placement": [
-		{
-			"type": "in_square"
-		},
-		{
-			"type": "dragon_fossil"
-		},
-		{
-			"type": "biome"
-		},
-		{
-			"type": "rarity_filter",
-			"chance": 16
-		}
-	]
+  "feature": "spectrum:dragon_fossil",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 8
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "uniform",
+        "min_inclusive": {
+          "above_bottom": 8
+        },
+        "max_inclusive": {
+          "below_top": 16
+        }
+      }
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "spectrum:dragon_fossil"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
 }

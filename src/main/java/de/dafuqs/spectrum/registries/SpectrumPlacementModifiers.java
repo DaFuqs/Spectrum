@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.registries;
 
-import com.mojang.serialization.Codec;
-
-import de.dafuqs.spectrum.deeper_down.DragonFossilPlacementModifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.deeper_down.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.gen.placementmodifier.*;
 
 public class SpectrumPlacementModifiers {
 	public static PlacementModifierType<DragonFossilPlacementModifier> DRAGON_FOSSIL;
@@ -15,6 +14,6 @@ public class SpectrumPlacementModifiers {
 	}
 	
 	private static <P extends PlacementModifier> PlacementModifierType<P> register(String id, Codec<P> codec) {
-		return Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, id, () -> codec);
+		return Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, SpectrumCommon.locate(id), () -> codec);
 	}
 }

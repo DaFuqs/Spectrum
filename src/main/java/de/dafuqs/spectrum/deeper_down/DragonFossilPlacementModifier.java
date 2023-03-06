@@ -1,22 +1,16 @@
 package de.dafuqs.spectrum.deeper_down;
 
-import java.util.stream.Stream;
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.fluid.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.placementmodifier.*;
 
-import com.mojang.serialization.Codec;
-
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumFluids;
-import de.dafuqs.spectrum.registries.SpectrumPlacementModifiers;
-import net.minecraft.block.BlockState;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3i;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.FeaturePlacementContext;
-import net.minecraft.world.gen.placementmodifier.PlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
+import java.util.stream.*;
 
 public class DragonFossilPlacementModifier extends PlacementModifier {
 	private static final DragonFossilPlacementModifier INSTANCE = new DragonFossilPlacementModifier();
@@ -31,10 +25,13 @@ public class DragonFossilPlacementModifier extends PlacementModifier {
 			BlockState state = context.getBlockState(mutable);
 			FluidState fstate = state.getFluidState();
 			
-			if (state.isOf(SpectrumBlocks.ROTTEN_GROUND) || fstate.isOf(SpectrumFluids.DRAGONROT) || fstate.isOf(SpectrumFluids.FLOWING_DRAGONROT)) {
+			if (state.isOf(SpectrumBlocks.ROTTEN_GROUND) || fstate.isIn(SpectrumFluidTags.DRAGONROT)) {
 				// The Fossil feature places at Y - 15 - rand[0..10], so we add 15 to make up for that.
 				// We should probably make a custom Feature for that, but it might not be worth it.
 				mutable.move(new Vec3i(0, 15, 0));
+				if (structureWorldAccess.isOutOfHeightLimit(mutable)) {
+					return Stream.of(new BlockPos[0]);
+				}
 				return Stream.of(mutable);
 			}
 			

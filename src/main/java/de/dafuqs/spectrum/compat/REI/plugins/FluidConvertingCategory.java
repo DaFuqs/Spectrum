@@ -10,13 +10,14 @@ import net.minecraft.text.*;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-public abstract class FluidConvertingCategory<T extends FluidConvertingDisplay> implements DisplayCategory {
-
-	public List<Widget> setupDisplay(T display, Rectangle bounds) {
+public abstract class FluidConvertingCategory<T extends FluidConvertingDisplay> implements DisplayCategory<FluidConvertingDisplay> {
+	
+	@Override
+	public List<Widget> setupDisplay(FluidConvertingDisplay display, Rectangle bounds) {
 		Point startPoint = new Point(bounds.getCenterX() - 41, bounds.getCenterY() - 13);
 		List<Widget> widgets = Lists.newArrayList();
 		widgets.add(Widgets.createRecipeBase(bounds));
-
+		
 		if (!display.isUnlocked()) {
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 4), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1")).leftAligned().color(0x3f3f3f).noShadow());
 			widgets.add(Widgets.createLabel(new Point(startPoint.x - 23, startPoint.y + 14), Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2")).leftAligned().color(0x3f3f3f).noShadow());
@@ -28,10 +29,10 @@ public abstract class FluidConvertingCategory<T extends FluidConvertingDisplay> 
 		}
 		return widgets;
 	}
-
+	
 	@Override
 	public int getDisplayHeight() {
 		return 36;
 	}
-
+	
 }

@@ -91,21 +91,6 @@ public class REIClientIntegration implements REIClientPlugin {
 		registry.addWorkstations(BuiltinPlugin.BLASTING, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstations(SpectrumPlugins.CINDERHEARTH, EntryStacks.of(SpectrumBlocks.CINDERHEARTH));
 		registry.addWorkstations(SpectrumPlugins.TITRATION_BARREL, EntryStacks.of(SpectrumBlocks.TITRATION_BARREL));
-		
-		// For item crushing and others are in-world recipes there is no gui to fill
-		// therefore the plus button is obsolete
-		
-		// this is getting removed for... whatever reason
-		// registry.removePlusButton(SpectrumPlugins.ANVIL_CRUSHING);
-		// registry.removePlusButton(SpectrumPlugins.FUSION_SHRINE);
-		// registry.removePlusButton(SpectrumPlugins.NATURES_STAFF);
-		// registry.removePlusButton(SpectrumPlugins.POTION_WORKSHOP_REACTING);
-		// registry.removePlusButton(SpectrumPlugins.ENCHANTER);
-		// registry.removePlusButton(SpectrumPlugins.ENCHANTMENT_UPGRADE);
-		// registry.removePlusButton(SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING);
-		// registry.removePlusButton(SpectrumPlugins.SPIRIT_INSTILLER);
-		// registry.removePlusButton(SpectrumPlugins.HEATING);
-		// registry.removePlusButton(SpectrumPlugins.FREEZING);
 	}
 	
 	@Override

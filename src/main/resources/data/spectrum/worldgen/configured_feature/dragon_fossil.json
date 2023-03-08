@@ -1,5 +1,5 @@
 {
-	"type": "fossil",
+	"type": "spectrum:exposed_fossil",
 	"config": {
 		"fossil_structures": [
 			"spectrum:dragon_fossil/spine_1",

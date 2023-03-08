@@ -2,18 +2,18 @@
   "feature": "spectrum:dragon_fossil",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 8
+      "type": "minecraft:count",
+      "count": 2
     },
     {
       "type": "minecraft:height_range",
       "height": {
-        "type": "uniform",
+        "type": "minecraft:uniform",
         "min_inclusive": {
-          "above_bottom": 8
+          "above_bottom": 16
         },
         "max_inclusive": {
-          "below_top": 16
+          "below_top": 32
         }
       }
     },
@@ -21,7 +21,24 @@
       "type": "minecraft:in_square"
     },
     {
-      "type": "spectrum:dragon_fossil"
+      "type": "minecraft:environment_scan",
+      "direction_of_search": "down",
+      "max_steps": 18,
+      "target_condition": {
+        "type": "minecraft:matching_blocks",
+        "offset": [
+          0,
+          -1,
+          0
+        ],
+        "blocks": [
+          "spectrum:dragonrot",
+          "spectrum:rotten_ground"
+        ]
+      },
+      "allowed_search_condition": {
+        "type": "minecraft:replaceable"
+      }
     },
     {
       "type": "minecraft:biome"

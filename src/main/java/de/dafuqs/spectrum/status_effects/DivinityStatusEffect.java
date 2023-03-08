@@ -7,7 +7,6 @@ import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.client.network.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
@@ -54,17 +53,19 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	@Override
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onApplied(entity, attributes, amplifier);
-		if (entity instanceof ServerPlayerEntity player && entity.getStatusEffect(SpectrumStatusEffects.DIVINITY) == null) {
-			SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
-		} else if (entity instanceof ClientPlayerEntity) {
-			FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", true);
+		if (entity instanceof PlayerEntity) {
+			if (entity instanceof ServerPlayerEntity player && entity.getStatusEffect(SpectrumStatusEffects.DIVINITY) == null) {
+				SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
+			} else if (entity.world.isClient) {
+				FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", true);
+			}
 		}
 	}
 
 	@Override
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onRemoved(entity, attributes, amplifier);
-		if (entity instanceof ClientPlayerEntity) {
+		if (entity instanceof PlayerEntity && entity.world.isClient) {
 			FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", false);
 		}
 	}

@@ -1,25 +1,17 @@
 package de.dafuqs.spectrum.helpers;
 
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.entity.Entity;
+import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.enchantments.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.nbt.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class SpectrumEnchantmentHelper {
 	
@@ -107,7 +99,7 @@ public class SpectrumEnchantmentHelper {
 	}
 	
 	public static Map<Enchantment, Integer> collectHighestEnchantments(List<ItemStack> itemStacks) {
-		Map<Enchantment, Integer> enchantmentLevelMap = new HashMap<>();
+		Map<Enchantment, Integer> enchantmentLevelMap = new LinkedHashMap<>();
 		
 		for (ItemStack itemStack : itemStacks) {
 			Map<Enchantment, Integer> itemStackEnchantments = EnchantmentHelper.get(itemStack);

@@ -1,5 +1,5 @@
 {
-  "name": "Blackslag Variants",
+  "name": "Blackslag",
   "advancement": "spectrum:spectrum",
   "icon": "spectrum:blackslag",
   "category": "spectrum:dimension_category",
@@ -36,6 +36,10 @@
     "spectrum:cracked_blackslag_tiles": 0
   },
   "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "TODO"
+    },
     {
       "type": "patchouli:smelting",
       "title": "Blackslag Variants",

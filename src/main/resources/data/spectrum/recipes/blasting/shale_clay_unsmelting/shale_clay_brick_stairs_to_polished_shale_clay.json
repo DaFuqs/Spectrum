@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spectrum:shale_clay_brick_stairs"
+  },
+  "result": "spectrum:polished_shale_clay",
+  "experience": 0.1,
+  "cookingtime": 100
+}

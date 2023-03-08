@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "spectrum:exposed_shale_clay_tile_stairs"
+  },
+  "result": "spectrum:exposed_polished_shale_clay",
+  "experience": 0.1,
+  "cookingtime": 200
+}

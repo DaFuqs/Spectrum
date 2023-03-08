@@ -1,7 +1,7 @@
 {
-  "name": "Dragonrot",
+  "name": "Dragonbone",
   "icon": "spectrum:dragonbone",
-  "advancement": "spectrum:lategame/interact_with_dragonrot",
+  "advancement": "spectrum:lategame/collect_dragonbone",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:dragonbone": 0,
@@ -11,6 +11,11 @@
   "pages": [
     {
       "type": "patchouli:text",
+      "text": ""
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:dragonbone_shard",
       "text": ""
     },
     {

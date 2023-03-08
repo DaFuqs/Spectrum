@@ -1,65 +1,42 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.MultiblockCrafter;
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
-import de.dafuqs.spectrum.inventories.PedestalScreenHandler;
-import de.dafuqs.spectrum.items.CraftingTabletItem;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.HopperBlockEntity;
-import net.minecraft.block.entity.LockableContainerBlockEntity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SidedInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.particle.ParticleEffect;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.screenhandler.v1.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import vazkii.patchouli.api.IMultiblock;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.api.*;
 
 import java.util.*;
 
@@ -377,6 +354,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	private static boolean craftPedestalRecipe(PedestalBlockEntity pedestalBlockEntity, @Nullable PedestalCraftingRecipe recipe, DefaultedList<ItemStack> inventory, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
 			ItemStack recipeOutput = recipe.craft(pedestalBlockEntity);
+			ItemStack recipeOutputCopy = recipeOutput.copy();
 			
 			// if it was a recipe to upgrade the pedestal itself
 			// => upgrade
@@ -415,7 +393,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			pedestalBlockEntity.storedXP += experienceAfterMod;
 			
 			// if the recipe unlocks an advancement unlock it
-			pedestalBlockEntity.grantPlayerPedestalCraftingAdvancement(recipe, (int) experienceAfterMod);
+			pedestalBlockEntity.grantPlayerPedestalCraftingAdvancement(recipeOutputCopy, (int) experienceAfterMod);
 			
 			pedestalBlockEntity.markDirty();
 			pedestalBlockEntity.inventoryChanged = true;
@@ -659,10 +637,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 	
-	private void grantPlayerPedestalCraftingAdvancement(PedestalCraftingRecipe recipe, int experience) {
+	private void grantPlayerPedestalCraftingAdvancement(ItemStack output, int experience) {
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(), experience);
+			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, output, experience);
 		}
 	}
 	

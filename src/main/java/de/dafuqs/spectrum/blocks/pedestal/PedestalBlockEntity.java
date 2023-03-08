@@ -355,6 +355,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	private static boolean craftPedestalRecipe(PedestalBlockEntity pedestalBlockEntity, @Nullable PedestalCraftingRecipe recipe, DefaultedList<ItemStack> inventory, int maxCountPerStack) {
 		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
 			ItemStack recipeOutput = recipe.craftAndDecrement(pedestalBlockEntity);
+			ItemStack recipeOutputCopy = recipeOutput.copy();
 			
 			// if it was a recipe to upgrade the pedestal itself
 			// => upgrade
@@ -393,7 +394,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			pedestalBlockEntity.storedXP += experienceAfterMod;
 			
 			// if the recipe unlocks an advancement unlock it
-			pedestalBlockEntity.grantPlayerPedestalCraftingAdvancement(recipe, (int) experienceAfterMod);
+			pedestalBlockEntity.grantPlayerPedestalCraftingAdvancement(recipeOutputCopy, (int) experienceAfterMod);
 			
 			pedestalBlockEntity.markDirty();
 			pedestalBlockEntity.inventoryChanged = true;
@@ -643,10 +644,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 	
-	private void grantPlayerPedestalCraftingAdvancement(PedestalCraftingRecipe recipe, int experience) {
+	private void grantPlayerPedestalCraftingAdvancement(ItemStack output, int experience) {
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, recipe.getOutput(), experience);
+			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, output, experience);
 		}
 	}
 	

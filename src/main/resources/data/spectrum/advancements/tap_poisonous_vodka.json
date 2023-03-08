@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:infused_beverage",
+      "nbt": "{Variant: \"poisonous_vodka\", Color: 14938088 }"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.tap_poisonous_vodka.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.tap_poisonous_vodka.description"
+    }
+  },
+  "parent": "spectrum:tap_titration_barrel",
+  "criteria": {
+    "tapped_poisonous_vodka": {
+      "trigger": "spectrum:titration_barrel_tapping",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:infused_beverage"
+            ]
+          }
+        ],
+        "nbt": "{Variant: \"poisonous_vodka\"}"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:tap_titration_barrel"
+      }
+    }
+  }
+}

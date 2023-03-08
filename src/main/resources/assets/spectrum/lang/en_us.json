@@ -2708,6 +2708,8 @@
   "advancements.spectrum.visit_all_deeper_down_biomes.description": "Visit each of the biomes in the Deeper Down",
   "advancements.spectrum.collect_dragonbone.title": "The Dragon lies Bleeding",
   "advancements.spectrum.collect_dragonbone.description": "Crack and break Dragonbone",
+  "advancements.spectrum.tap_poisonous_vodka.title": "Tastes like Organ Failure",
+  "advancements.spectrum.tap_poisonous_vodka.description": "Tap Poisonous Vodka. Cheers!",
 
   "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",

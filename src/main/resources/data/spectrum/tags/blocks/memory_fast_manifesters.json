@@ -1,5 +1,6 @@
 {
   "values": [
-    "minecraft:magma_block"
+    "minecraft:magma_block",
+    "spectrum:wet_lava_sponge"
   ]
 }

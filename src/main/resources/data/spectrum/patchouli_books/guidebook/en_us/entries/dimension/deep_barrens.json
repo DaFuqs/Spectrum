@@ -7,6 +7,10 @@
   "pages": [
     {
       "type": "patchouli:text",
+      "text": "A dark, stony wasteland. At first glance, there is not much to see here, and yet it is worth a visit. You'll see ores smiling at you from every corner - as far as you can see (which isn't far, to be honest)."
+    },
+    {
+      "type": "patchouli:text",
       "text": ""
     }
   ]

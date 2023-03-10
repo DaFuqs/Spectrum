@@ -9,12 +9,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "It is not water that gives the biome its distinctive name. Lakes of $(l:dimension/dragonrot)Dragonrot$(/l) pervades the swamp-like thicket here. An acidic smell lingers in the air."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:snapping_ivy",
-      "text": ""
+      "text": "These small plants spread over the ground like ivy. In small clusters they grow in a clump of snapping green. When you fertilize them, they spread even further."
     }
   ]
 }

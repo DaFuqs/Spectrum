@@ -10,12 +10,12 @@
     {
       "type": "patchouli:text",
       "title": "Aloe",
-      "text": "These drought-loving plants are able to grow almost everywhere. Only too much light and nutrients they can not handle, ironically."
+      "text": "These drought-loving plants are able to grow almost everywhere. Ironically, as sturdy as they are, they can not handle too much light and nutrient-rich soil. Down there, there was simply no reason to adapt to that."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:aloe_leaf",
-      "text": "You can break off individual leaves and replant them. Over time, they grow into a full-fledged new plant.$(br)The leaves retain a lot of moisture and are quite nutritious."
+      "text": "You can break off individual leaves.$(br)The leaves retain a lot of moisture and are quite nutritious.$(br)Planted, they will grow into a full-fledged new plant over time."
     }
   ]
 }

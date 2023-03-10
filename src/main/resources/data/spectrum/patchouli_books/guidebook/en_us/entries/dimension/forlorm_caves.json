@@ -8,9 +8,14 @@
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:black_sludge",
-      "text": ""
+      "type": "patchouli:text",
+      "text": "$(l:magical_blocks/midnight_solution)Midnight Solution$(/l), everywhere. What must have happened here to turn whole swaths of land into this dead wasteland? Some terrible accident, for sure. Whatever - or whoever - was responsible for this might have gone through a similar path as yourself.... only much more tragic."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The "
+      things
+      " that grow here - to call them plants would be an outrage even to $(thing)Dead Bushes$() - look anything but healthy."
     }
   ]
 }

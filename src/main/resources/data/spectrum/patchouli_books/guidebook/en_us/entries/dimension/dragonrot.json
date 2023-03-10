@@ -1,7 +1,7 @@
 {
   "name": "Dragonrot",
   "icon": "spectrum:dragonrot_bucket",
-  "advancement": "spectrum:lategame/interact_with_dragonrot",
+  "advancement": "spectrum:hidden/interact_with_dragonrot",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:dragonrot_bucket": 0

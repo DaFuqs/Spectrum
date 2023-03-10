@@ -9,7 +9,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "At the deepest parts of the Deeper Down, this stone was waiting for you. Visually, it reminds you a bit of $(thing)Preservation Stone$().$(br2)$(italic)Bedrock 2: Electroc Boogaloo"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "spectrum:lategame/find_excavation_site",
+      "text": "Looks like whoever came before you used giant machines for harvesting this stone. The same building the $(thing)Preservation Structures$() in the Overworld?"
     }
   ]
 }

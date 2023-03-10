@@ -85,12 +85,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:shimmel",
-      "text": ""
+      "text": "A weird mix between Trees and Mushrooms is towering over this biome."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:ebony_noxcap_stem",
-      "text": "A weird mixture between Trees and Mushrooms is towering over this biome."
+      "text": ""
     }
   ]
 }

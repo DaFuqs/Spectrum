@@ -12,7 +12,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:hummingstone_glass",
-      "text": "This very sturdy, very blast resistant glass is scattered all around $(l:dimension/crystal_garden)Crystal Gardens."
+      "text": "This very sturdy, very blast resistant glass is scattered all around the $(l:dimension/crystal_gardens)Crystal Gardens$(/l)."
     },
     {
       "type": "patchouli:spotlight",
@@ -23,7 +23,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:lategame/create_hummingstone_hymn",
       "item": "spectrum:resonance_shard",
-      "text": "It turned out that those pretty sounds Hummingstones make can build each other up until they shatter into a final anthem.$(br)The broken crystals here never seem to stop vibrating, as if they continue to have inherent energy."
+      "text": "It turned out that those pretty sounds Hummingstones make can build each other up until they shatter an a final anthem.$(br)The broken remains never seem to stop vibrating, as if they retain some form of inherent energy."
     }
   ]
 }

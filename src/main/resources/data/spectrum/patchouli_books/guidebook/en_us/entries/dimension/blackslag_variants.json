@@ -1,6 +1,6 @@
 {
   "name": "Blackslag",
-  "advancement": "spectrum:spectrum",
+  "advancement": "spectrum:hidden/collect_blackslag",
   "icon": "spectrum:blackslag",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
@@ -38,26 +38,26 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "TODO"
+      "text": "A common, darkish and sturdy stone that constitutes a large part of the lower levels of the Deeper Down."
     },
     {
       "type": "patchouli:smelting",
-      "title": "Blackslag Variants",
+      "title": "Polishing",
       "recipe": "spectrum:smelting/cobbled_blackslag_to_blackslag",
       "recipe2": "spectrum:smelting/blackslag_to_polished_blackslag",
-      "text": "You can also do all these recipes in the $(thing)Blast Furnace$()"
-    },
-    {
-      "type": "patchouli:crafting",
-      "title": "Chiseled Blackslag",
-      "recipe": "spectrum:crafting_table/blackslag/chiseled_polished_blackslag",
-      "text": "Includes slab, stair & wall variants."
+      "text": "The $(thing)Blast Furnace$() is even faster for smelting these stones."
     },
     {
       "type": "patchouli:crafting",
       "title": "Bricks & Tiles",
       "recipe": "spectrum:crafting_table/blackslag/blackslag_bricks",
       "recipe2": "spectrum:crafting_table/blackslag/blackslag_tiles"
+    },
+    {
+      "type": "patchouli:crafting",
+      "title": "Chiseled Blackslag",
+      "recipe": "spectrum:crafting_table/blackslag/chiseled_polished_blackslag",
+      "text": "All include slab, stair & wall variants."
     },
     {
       "type": "patchouli:crafting",
@@ -86,14 +86,14 @@
       "type": "spectrum:anvil_crushing",
       "title": "Cracked Variants",
       "recipe": "spectrum:anvil_crushing/spectrum_pulverising/cracked_blackslag_bricks",
-      "text": "You can crack Bricks & Tiles."
+      "text": "Bricks & Tiles can get cracked."
     },
     {
       "type": "patchouli:smelting",
       "title": "Smelting them back",
       "recipe": "spectrum:smelting/blackslag_unsmelting/blackslag_brick_stairs_to_polished_blackslag",
       "recipe2": "spectrum:smelting/blackslag_unsmelting/chiseled_polished_blackslag_to_polished_blackslag",
-      "text": "By applying heat, all blocks can be converted back to their polished versions again."
+      "text": "By applying heat, all blocks can be converted back to their polished variant again."
     }
   ]
 }

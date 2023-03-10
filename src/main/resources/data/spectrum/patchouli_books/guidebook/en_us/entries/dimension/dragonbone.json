@@ -5,23 +5,19 @@
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:dragonbone": 0,
-    "spectrum:dragonbone_shard": 0,
-    "spectrum:dragonbone_needle": 0
+    "spectrum:cracked_dragonbone": 0,
+    "spectrum:dragonbone_chunk": 0
   },
   "pages": [
     {
       "type": "patchouli:text",
-      "text": ""
+      "text": "Is it really dragons these giant remains come from?$(br)You don't know, honestly. But judging by the size, it could very well be! Even now, these blocks are surrounded by a magical aura, protecting it from blatant destruction. Still, you had a blast just running your fingers over their rough surface."
     },
     {
       "type": "patchouli:spotlight",
-      "item": "spectrum:dragonbone_shard",
-      "text": ""
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:dragonbone_needle",
-      "text": ""
+      "advancement": "spectrum:lategame/collect_dragonbone",
+      "item": "spectrum:dragonbone_chunk",
+      "text": "Damaging Dragonbone using $(thing)Explosions$() seems to breeze away most of the magical protective aura, making you able to finally mine it.$(br)The dropped pieces still retained some of that ancient, magical aura."
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "name": "Crystal Garden",
-  "advancement": "spectrum:hidden/visit_dd_biomes/crystal_garden",
+  "name": "Crystal Gardens",
+  "advancement": "spectrum:hidden/visit_dd_biomes/crystal_gardens",
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
@@ -8,9 +8,13 @@
   },
   "pages": [
     {
+      "type": "patchouli:text",
+      "text": "The many natural light sources in this biome allow plants to grow here that you might find on the surface, unlike most other biomes.$(br)Lakes of $(l:magical_blocks/liquid_crystal)Liquid Crystal$() and giant $(l:dimension/hummingstone)crystalline structures$() define it's look."
+    },
+    {
       "type": "patchouli:spotlight",
       "item": "spectrum:overgrown_blackslag",
-      "text": ""
+      "text": "This stone is covered with a small layer of Soil. Not much, but enough that flora is able to grow on it."
     }
   ]
 }

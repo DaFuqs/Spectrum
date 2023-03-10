@@ -1,97 +1,43 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.sound.NaturesStaffUseSoundInstance;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.*;
+import net.fabricmc.api.*;
 import net.minecraft.block.*;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.client.*;
+import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.particle.BlockStateParticleEffect;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.tag.FluidTags;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.particle.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.tag.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import net.minecraft.world.biome.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkPowered {
 	
 	public static final InkColor USED_COLOR = InkColors.LIME;
 	public static final int BASE_COST = 20;
-	public static ItemStack COST = new ItemStack(SpectrumItems.VEGETAL, 1);
-	
-	public static final Map<Block, BlockState> BLOCK_CONVERSIONS = new HashMap<>() {{
-		// BLOCKS
-		put(Blocks.DIRT, Blocks.GRASS_BLOCK.getDefaultState());
-		put(Blocks.DIRT_PATH, Blocks.DIRT.getDefaultState());
-		put(Blocks.ROOTED_DIRT, Blocks.DIRT.getDefaultState());
-		put(Blocks.COARSE_DIRT, Blocks.DIRT.getDefaultState());
-		put(Blocks.COBBLESTONE, Blocks.MOSSY_COBBLESTONE.getDefaultState());
-		put(Blocks.STONE_BRICKS, Blocks.MOSSY_STONE_BRICKS.getDefaultState());
-		put(Blocks.INFESTED_STONE_BRICKS, Blocks.INFESTED_MOSSY_STONE_BRICKS.getDefaultState());
-		
-		// VEGETATION
-		put(Blocks.AZALEA_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES.getDefaultState().with(LeavesBlock.PERSISTENT, true));
-		put(Blocks.DEAD_BUSH, Blocks.ACACIA_SAPLING.getDefaultState());
-		
-		// CORALS
-		put(Blocks.DEAD_BRAIN_CORAL, Blocks.BRAIN_CORAL.getDefaultState());
-		put(Blocks.DEAD_BRAIN_CORAL_BLOCK, Blocks.BRAIN_CORAL_BLOCK.getDefaultState());
-		put(Blocks.DEAD_BRAIN_CORAL_FAN, Blocks.BRAIN_CORAL_FAN.getDefaultState());
-		put(Blocks.DEAD_BRAIN_CORAL_WALL_FAN, Blocks.BRAIN_CORAL_WALL_FAN.getDefaultState());
-		put(Blocks.DEAD_BUBBLE_CORAL, Blocks.BUBBLE_CORAL.getDefaultState());
-		put(Blocks.DEAD_BUBBLE_CORAL_BLOCK, Blocks.BUBBLE_CORAL_BLOCK.getDefaultState());
-		put(Blocks.DEAD_BUBBLE_CORAL_FAN, Blocks.BUBBLE_CORAL_FAN.getDefaultState());
-		put(Blocks.DEAD_BUBBLE_CORAL_WALL_FAN, Blocks.BUBBLE_CORAL_WALL_FAN.getDefaultState());
-		put(Blocks.DEAD_FIRE_CORAL, Blocks.FIRE_CORAL.getDefaultState());
-		put(Blocks.DEAD_FIRE_CORAL_BLOCK, Blocks.FIRE_CORAL_BLOCK.getDefaultState());
-		put(Blocks.DEAD_FIRE_CORAL_FAN, Blocks.FIRE_CORAL_FAN.getDefaultState());
-		put(Blocks.DEAD_FIRE_CORAL_WALL_FAN, Blocks.FIRE_CORAL_WALL_FAN.getDefaultState());
-		put(Blocks.DEAD_HORN_CORAL, Blocks.HORN_CORAL.getDefaultState());
-		put(Blocks.DEAD_HORN_CORAL_BLOCK, Blocks.HORN_CORAL_BLOCK.getDefaultState());
-		put(Blocks.DEAD_HORN_CORAL_FAN, Blocks.HORN_CORAL_FAN.getDefaultState());
-		put(Blocks.DEAD_HORN_CORAL_WALL_FAN, Blocks.HORN_CORAL_WALL_FAN.getDefaultState());
-		put(Blocks.DEAD_TUBE_CORAL, Blocks.TUBE_CORAL.getDefaultState());
-		put(Blocks.DEAD_TUBE_CORAL_BLOCK, Blocks.TUBE_CORAL_BLOCK.getDefaultState());
-		put(Blocks.DEAD_TUBE_CORAL_FAN, Blocks.TUBE_CORAL_FAN.getDefaultState());
-		put(Blocks.DEAD_TUBE_CORAL_WALL_FAN, Blocks.TUBE_CORAL_WALL_FAN.getDefaultState());
-	}};
+	public static ItemStack ITEM_COST = new ItemStack(SpectrumItems.VEGETAL, 1);
 	
 	public NaturesStaffItem(Settings settings) {
 		super(settings);
@@ -238,7 +184,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 			BlockPos blockPos = context.getBlockPos();
 			
 			if (world.isClient) {
-				if (context.getPlayer().isCreative() || InkPowered.hasAvailableInk(user, USED_COLOR, getInkCost(context.getStack())) || context.getPlayer().getInventory().contains(COST)) {
+				if (context.getPlayer().isCreative() || InkPowered.hasAvailableInk(user, USED_COLOR, getInkCost(context.getStack())) || context.getPlayer().getInventory().contains(ITEM_COST)) {
 					BlockState blockState = world.getBlockState(blockPos);
 					if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
 						int i = 0;
@@ -262,15 +208,15 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 				}
 				if (!paid) {  // try pay with item
 					int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, context.getStack());
-					paid = (efficiencyLevel == 0 && InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), COST)) || (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), COST));
+					paid = (efficiencyLevel == 0 && InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), ITEM_COST)) || (context.getWorld().random.nextFloat() > (2.0 / (2 + efficiencyLevel)) || InventoryHelper.removeFromInventoryWithRemainders(context.getPlayer(), ITEM_COST));
 				}
 				
 				if (paid) {
 					BlockState blockState = world.getBlockState(blockPos);
 					
-					// hardcoded as convertible? => convert
-					if (BLOCK_CONVERSIONS.containsKey(blockState.getBlock())) {
-						BlockState destinationState = BLOCK_CONVERSIONS.get(blockState.getBlock());
+					// loaded as convertible? => convert
+					BlockState destinationState = NaturesStaffConversionDataLoader.getConvertedBlockState(blockState.getBlock());
+					if (destinationState != null) {
 						if (destinationState.getBlock() instanceof Waterloggable) {
 							if ((world.getFluidState(blockPos.north()).isIn(FluidTags.WATER)
 									|| world.getFluidState(blockPos.east()).isIn(FluidTags.WATER)

@@ -179,6 +179,7 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumC2SPacketReceiver.registerC2SReceivers();
 		
 		logInfo("Registering Data Loaders...");
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(NaturesStaffConversionDataLoader.INSTANCE);
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(ResonanceDropsDataLoader.INSTANCE);
 		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(EntityFishingDataLoader.INSTANCE);
 		

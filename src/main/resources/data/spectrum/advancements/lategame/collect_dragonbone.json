@@ -2,7 +2,7 @@
   "parent": "spectrum:lategame/spectrum_lategame",
   "display": {
     "icon": {
-      "item": "spectrum:dragonbone_fragment"
+      "item": "spectrum:dragonbone_chunk"
     },
     "hidden": true,
     "title": {
@@ -21,7 +21,7 @@
             "items": [
               "spectrum:dragonbone",
               "spectrum:cracked_dragonbone",
-              "spectrum:dragonbone_fragment"
+              "spectrum:dragonbone_chunk"
             ]
           }
         ]

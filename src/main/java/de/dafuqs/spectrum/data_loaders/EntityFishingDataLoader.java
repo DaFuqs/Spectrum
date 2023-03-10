@@ -1,29 +1,20 @@
 package de.dafuqs.spectrum.data_loaders;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
-import net.minecraft.entity.EntityType;
-import net.minecraft.predicate.FluidPredicate;
-import net.minecraft.resource.JsonDataLoader;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.collection.DataPool;
-import net.minecraft.util.collection.Weighted;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.profiler.Profiler;
-import net.minecraft.util.registry.Registry;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.fabricmc.fabric.api.resource.*;
+import net.minecraft.entity.*;
+import net.minecraft.predicate.*;
+import net.minecraft.resource.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.profiler.*;
+import net.minecraft.util.registry.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.*;
+import java.util.concurrent.atomic.*;
 
 public class EntityFishingDataLoader extends JsonDataLoader implements IdentifiableResourceReloadListener {
 	
@@ -32,8 +23,8 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 	
 	protected static final List<EntityFishingEntry> ENTITY_FISHING_ENTRIES = new ArrayList<>();
 	
-	public record EntityFishingEntry(FluidPredicate fluidPredicate, float entityChance, int weightSum,
-	                                 DataPool<EntityType> weightedEntityTypes) {
+	public record EntityFishingEntry(FluidPredicate fluidPredicate, float entityChance,
+									 DataPool<EntityType<?>> weightedEntityTypes) {
 		
 	}
 	
@@ -51,11 +42,11 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 			JsonArray entityArray = JsonHelper.getArray(jsonObject, "entities");
 			
 			AtomicInteger weightSum = new AtomicInteger();
-			DataPool.Builder<EntityType> entityTypesList = DataPool.builder();
+			DataPool.Builder<EntityType<?>> entityTypesList = DataPool.builder();
 			entityArray.forEach(entryElement -> {
 				JsonObject entryObject = entryElement.getAsJsonObject();
 				
-				EntityType entityType = Registry.ENTITY_TYPE.get(new Identifier(JsonHelper.getString(entryObject, "id")));
+				EntityType<?> entityType = Registry.ENTITY_TYPE.get(new Identifier(JsonHelper.getString(entryObject, "id")));
 				int weight = 1;
 				if (JsonHelper.hasNumber(jsonObject, "weight")) {
 					weight = JsonHelper.getInt(entryObject, "weight");
@@ -64,7 +55,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 				entityTypesList.add(entityType, weight);
 			});
 			
-			ENTITY_FISHING_ENTRIES.add(new EntityFishingEntry(fluidPredicate, chance, weightSum.get(), entityTypesList.build()));
+			ENTITY_FISHING_ENTRIES.add(new EntityFishingEntry(fluidPredicate, chance, entityTypesList.build()));
 		});
 	}
 	
@@ -73,11 +64,11 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 		return SpectrumCommon.locate(ID);
 	}
 	
-	public static Optional<EntityType> tryCatchEntity(ServerWorld world, BlockPos pos, int bigCatchLevel) {
+	public static Optional<EntityType<?>> tryCatchEntity(ServerWorld world, BlockPos pos, int bigCatchLevel) {
 		for (EntityFishingEntry entry : ENTITY_FISHING_ENTRIES) {
 			if (entry.fluidPredicate.test(world, pos)) {
 				if (world.random.nextFloat() < entry.entityChance * (1 + bigCatchLevel)) {
-					Optional<Weighted.Present<EntityType>> x = entry.weightedEntityTypes.getOrEmpty(world.random);
+					Optional<Weighted.Present<EntityType<?>>> x = entry.weightedEntityTypes.getOrEmpty(world.random);
 					if (x.isPresent()) {
 						return Optional.of(x.get().getData());
 					}

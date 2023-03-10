@@ -15,25 +15,25 @@
     "revived_sag_leaf": {
       "trigger": "spectrum:natures_staff_conversion",
       "conditions": {
-        "source_block": "minecraft:sag_leaf"
+        "source_block": "spectrum:sag_leaf"
       }
     },
     "revived_sag_bubble": {
       "trigger": "spectrum:natures_staff_conversion",
       "conditions": {
-        "source_block": "minecraft:sag_bubble"
+        "source_block": "spectrum:sag_bubble"
       }
     },
     "revived_small_sag_bubble": {
       "trigger": "spectrum:natures_staff_conversion",
       "conditions": {
-        "source_block": "minecraft:small_sag_bubble"
+        "source_block": "spectrum:small_sag_bubble"
       }
     },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:collect_all_basic_pigments"
+        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
       }
     }
   },

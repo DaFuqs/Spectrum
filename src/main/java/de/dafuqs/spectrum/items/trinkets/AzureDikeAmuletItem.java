@@ -1,24 +1,23 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.energy.storage.FixedSingleInkStorage;
-import dev.emi.trinkets.api.SlotReference;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import dev.emi.trinkets.api.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem {
 	
 	public AzureDikeAmuletItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_shieldgrasp_amulet"), InkColors.BLUE, 100L * (long) Math.pow(8, 18)); // 20 extra hearts (pretty much unobtainable)
+		super(settings, SpectrumCommon.locate("progression/unlock_shieldgrasp_amulet"), InkColors.BLUE);
 	}
 	
 	@Environment(EnvType.CLIENT)
@@ -71,7 +70,7 @@ public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDik
 		if (storedInk < 100) {
 			return 0;
 		} else {
-			return 2 + (int) (Math.log(storedInk / 100) / Math.log(8));
+			return 1 + (int) (Math.log(storedInk / 100) / Math.log(8));
 		}
 	}
 	

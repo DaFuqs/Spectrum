@@ -668,6 +668,7 @@
 
   "block.spectrum.slush": "Slush",
   "block.spectrum.dragonbone": "Dragonbone",
+  "block.spectrum.cracked_dragonbone": "Cracked Dragonbone",
   "block.spectrum.polished_calcite_button": "Polished Calcite Button",
   "block.spectrum.polished_calcite_pressure_plate": "Polished Calcite Pressure Plate",
   "block.spectrum.polished_basalt_button": "Polished Basalt Button",
@@ -1817,8 +1818,7 @@
   "block.spectrum.malachite_cluster": "Malachite Cluster",
   "block.spectrum.malachite_block": "Block of Malachite",
   "item.spectrum.malachite_crystal": "Refined Malachite",
-  "item.spectrum.dragonbone_shard": "Dragonbone Shard",
-  "item.spectrum.dragonbone_needle": "Cannula Bone Needle",
+  "item.spectrum.dragonbone_chunk": "Dragonbone Chunk",
   "item.spectrum.resonance_shard": "Resonance Shard",
   "item.spectrum.logo_banner_pattern": "Banner Pattern",
   "item.spectrum.logo_banner_pattern.desc": "Color Theory",

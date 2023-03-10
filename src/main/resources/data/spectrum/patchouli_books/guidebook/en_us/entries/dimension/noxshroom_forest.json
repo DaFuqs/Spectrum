@@ -85,12 +85,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:shimmel",
-      "text": "A weird mix between Trees and Mushrooms is towering over this biome."
+      "text": "A weird mix between Trees and Mushrooms is towering over this biome, growing on top of a thin layer of Mycelium."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:ebony_noxcap_stem",
-      "text": ""
+      "text": "The stems can be stripped with an $(thing)Axe$()."
     }
   ]
 }

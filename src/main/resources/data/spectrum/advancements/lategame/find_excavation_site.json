@@ -1,0 +1,39 @@
+{
+  "parent": "spectrum:spectrum",
+  "display": {
+    "icon": {
+      "item": "spectrum:preservation_stone"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.find_excavation_site.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.find_excavation_site.description"
+    }
+  },
+  "criteria": {
+    "in_excavation_site": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "spectrum:excavation_site"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:resonant_lily"
+    },
+    "title": {
+      "translate": "advancements.spectrum.revive_black_sludge_plant.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.revive_black_sludge_plant.description"
+    }
+  },
+  "parent": "spectrum:endgame/spectrum_endgame",
+  "criteria": {
+    "revived_sag_leaf": {
+      "trigger": "spectrum:natures_staff_conversion",
+      "conditions": {
+        "source_block": "minecraft:sag_leaf"
+      }
+    },
+    "revived_sag_bubble": {
+      "trigger": "spectrum:natures_staff_conversion",
+      "conditions": {
+        "source_block": "minecraft:sag_bubble"
+      }
+    },
+    "revived_small_sag_bubble": {
+      "trigger": "spectrum:natures_staff_conversion",
+      "conditions": {
+        "source_block": "minecraft:small_sag_bubble"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_all_basic_pigments"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "revived_sag_leaf",
+      "revived_sag_bubble",
+      "revived_small_sag_bubble"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
+}

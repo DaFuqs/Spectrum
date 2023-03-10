@@ -4,15 +4,15 @@
         "item": "spectrum:natures_staff"
     },
     "title": {
-      "translate": "advancements.spectrum.use_natures_staff_on_dead_bush.title"
+      "translate": "advancements.spectrum.revive_dead_bush.title"
     },
     "description": {
-      "translate": "advancements.spectrum.use_natures_staff_on_dead_bush.description"
+      "translate": "advancements.spectrum.revive_dead_bush.description"
     }
   },
   "parent": "spectrum:collect_all_basic_pigments",
   "criteria": {
-    "used_natures_staff_on_dead_bush": {
+    "revived_dead_bush": {
       "trigger": "spectrum:natures_staff_conversion",
       "conditions": {
         "source_block": "minecraft:dead_bush"

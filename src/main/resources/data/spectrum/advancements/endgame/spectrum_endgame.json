@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "item": "spectrum:pedestal_moonstone"
+    },
+    "title": {
+      "translate": "advancements.spectrum.spectrum_endgame.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.spectrum_endgame.description"
+    },
+    "background": "spectrum:textures/gui/advancement_background_endgame.png"
+  },
+  "criteria": {
+    "finished_lategame": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/visit_each_dd_biome"
+      }
+    },
+    "found_city_below": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "spectrum:city_below"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+}

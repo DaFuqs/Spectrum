@@ -1,16 +1,4 @@
 {
-  "parent": "spectrum:lategame/spectrum_lategame",
-  "display": {
-    "icon": {
-      "item": "spectrum:dragonrot_bucket"
-    },
-    "title": {
-      "translate": "advancements.spectrum.interact_with_dragonrot.title"
-    },
-    "description": {
-      "translate": "advancements.spectrum.interact_with_dragonrot.description"
-    }
-  },
   "criteria": {
     "enter_dragonrot": {
       "trigger": "minecraft:enter_block",
@@ -30,10 +18,10 @@
         ]
       }
     },
-    "gotten_previous": {
+    "entered_dragonrot_swamp": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+        "advancement_identifier": "spectrum:visit_dd_biomes/dragonrot_swamp"
       }
     }
   },
@@ -43,7 +31,7 @@
       "get_dragonrot_bucket"
     ],
     [
-      "gotten_previous"
+      "entered_dragonrot_swamp"
     ]
   ]
 }

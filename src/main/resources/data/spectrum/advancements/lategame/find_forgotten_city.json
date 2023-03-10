@@ -1,0 +1,39 @@
+{
+  "parent": "spectrum:spectrum",
+  "display": {
+    "icon": {
+      "item": "spectrum:preservation_stone"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.find_forgotten_city.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.find_forgotten_city.description"
+    }
+  },
+  "criteria": {
+    "in_forgotten_city": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "spectrum:forgotten_city"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "criteria": {
+    "visit_deep_barrens": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "spectrum:deep_barrens"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

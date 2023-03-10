@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
+import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
@@ -75,18 +76,21 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumS2CPacketReceiver.registerS2CReceivers();
 		logInfo("Registering Particle Factories...");
 		SpectrumParticleFactories.register();
-
+		
 		logInfo("Registering Overlays...");
 		HudRenderers.register();
-
+		
 		logInfo("Registering Item Tooltips...");
 		SpectrumTooltipComponents.registerTooltipComponents();
-
+		
 		logInfo("Registering custom Patchouli Pages & Flags...");
 		PatchouliPages.register();
 		PatchouliFlags.register();
-        DimensionReverb.setup();
-
+		
+		logInfo("Registering Dimension Effects...");
+		DDDimension.registerClient();
+		DimensionReverb.setup();
+		
 		logInfo("Registering Event Listeners...");
 		ClientLifecycleEvents.CLIENT_STARTED.register(minecraftClient -> {
 			SpectrumColorProviders.registerClient();

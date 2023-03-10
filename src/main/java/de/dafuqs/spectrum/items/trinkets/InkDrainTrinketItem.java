@@ -1,31 +1,31 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.storage.FixedSingleInkStorage;
-import de.dafuqs.spectrum.helpers.Support;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStorageItem<FixedSingleInkStorage> {
 	
+	/**
+	 * TODO: set to the original value again, once ink networking is in. Currently the original max value cannot be achieved.
+	 * Players WILL grind out that amount of pigment in some way and will then complain
+	 */
+	public static final int MAX_INK = 3276800; // 1677721600;
 	public final InkColor inkColor;
-	public final long maxInk;
 	
-	public InkDrainTrinketItem(Settings settings, Identifier unlockIdentifier, InkColor inkColor, long maxInk) {
+	public InkDrainTrinketItem(Settings settings, Identifier unlockIdentifier, InkColor inkColor) {
 		super(settings, unlockIdentifier);
 		this.inkColor = inkColor;
-		this.maxInk = maxInk;
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
 		
-		if (storedInk == maxInk) {
+		if (storedInk >= MAX_INK) {
 			tooltip.add(new TranslatableText("spectrum.tooltip.ink_drain.tooltip.maxed_out").formatted(Formatting.GRAY));
 		} else {
 			long nextStepInk;
@@ -51,20 +51,18 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 	
 	@Override
 	public boolean hasGlint(ItemStack stack) {
+		return isMaxedOut(stack);
+	}
+	
+	private boolean isMaxedOut(ItemStack stack) {
 		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
 		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
-		return storedInk == maxInk;
+		return storedInk >= MAX_INK;
 	}
 	
 	@Override
 	public Rarity getRarity(ItemStack stack) {
-		FixedSingleInkStorage inkStorage = getEnergyStorage(stack);
-		long storedInk = inkStorage.getEnergy(inkStorage.getStoredColor());
-		if (storedInk == maxInk) {
-			return Rarity.EPIC;
-		} else {
-			return super.getRarity(stack);
-		}
+		return isMaxedOut(stack) ? Rarity.EPIC : super.getRarity(stack);
 	}
 	
 	// Omitting this would crash outside the dev env o.O
@@ -84,7 +82,7 @@ public class InkDrainTrinketItem extends SpectrumTrinketItem implements InkStora
 		if (compound != null && compound.contains("EnergyStore")) {
 			return FixedSingleInkStorage.fromNbt(compound.getCompound("EnergyStore"));
 		}
-		return new FixedSingleInkStorage(maxInk, inkColor);
+		return new FixedSingleInkStorage(MAX_INK, inkColor);
 	}
 	
 	@Override

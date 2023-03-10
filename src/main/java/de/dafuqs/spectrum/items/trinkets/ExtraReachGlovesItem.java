@@ -1,29 +1,26 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import com.google.common.collect.Multimap;
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.energy.storage.FixedSingleInkStorage;
-import dev.emi.trinkets.api.SlotReference;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import com.google.common.collect.*;
+import com.jamieswhiteshirt.reachentityattributes.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 	
 	public ExtraReachGlovesItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE, 1677721600); // 5 blocks of extra reach
+		super(settings, SpectrumCommon.locate("progression/unlock_gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE);
 	}
 	
 	@Override
@@ -51,7 +48,7 @@ public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 		if (storedInk < 100) {
 			return 0;
 		} else {
-			return 1 + roundHalf(Math.log(storedInk / 100) / Math.log(64));
+			return 0.5 + roundHalf(Math.log(storedInk / 100) / Math.log(64));
 		}
 	}
 	

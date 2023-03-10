@@ -107,19 +107,14 @@ public class PedestalCraftingRecipeSerializer implements GatedRecipeSerializer<P
 	
 	static Map<String, IngredientStack> readIngredientStackSymbols(JsonObject json) {
 		Map<String, IngredientStack> map = Maps.newHashMap();
-		Iterator var2 = json.entrySet().iterator();
-		
-		while (var2.hasNext()) {
-			Map.Entry<String, JsonElement> entry = (Map.Entry) var2.next();
-			if (entry.getKey().length() != 1) {
-				throw new JsonSyntaxException("Invalid key entry: '" + entry.getKey() + "' is an invalid symbol (must be 1 character only).");
+		for (Map.Entry<String, JsonElement> stringJsonElementEntry : json.entrySet()) {
+			if (stringJsonElementEntry.getKey().length() != 1) {
+				throw new JsonSyntaxException("Invalid key entry: '" + stringJsonElementEntry.getKey() + "' is an invalid symbol (must be 1 character only).");
 			}
-			
-			if (" ".equals(entry.getKey())) {
+			if (" ".equals(stringJsonElementEntry.getKey())) {
 				throw new JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.");
 			}
-			
-			map.put(entry.getKey(), RecipeParser.ingredientStackFromJson((JsonObject) entry.getValue()));
+			map.put(stringJsonElementEntry.getKey(), RecipeParser.ingredientStackFromJson((JsonObject) stringJsonElementEntry.getValue()));
 		}
 		
 		map.put(" ", IngredientStack.EMPTY);

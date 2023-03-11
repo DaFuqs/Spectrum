@@ -12,10 +12,10 @@
     "background": "spectrum:textures/gui/advancement_background_endgame.png"
   },
   "criteria": {
-    "finished_lategame": {
+    "visited_all_deeper_down_biomes": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/visit_each_dd_biome"
+        "advancement_identifier": "spectrum:lategame/visit_all_deeper_down_biomes"
       }
     },
     "found_city_below": {

@@ -1,4 +1,5 @@
 {
+  "parent": "spectrum:midgame/create_pastel_network",
   "display": {
     "icon": {
       "item": "spectrum:gather_node"
@@ -11,7 +12,6 @@
       "translate": "advancements.spectrum.create_pastel_network_using_every_node_type.description"
     }
   },
-  "parent": "spectrum:midgame/create_pastel_network",
   "criteria": {
     "created_pastel_network_using_every_node_type": {
       "trigger": "spectrum:pastel_network_creation",
@@ -32,12 +32,12 @@
           "min": 1
         }
       }
-    }
-  },
-  "gotten_previous": {
-    "trigger": "revelationary:advancement_gotten",
-    "conditions": {
-      "advancement_identifier": "spectrum:midgame/create_pastel_network"
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_pastel_network"
+      }
     }
   }
 }

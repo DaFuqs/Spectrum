@@ -4,10 +4,10 @@
       "trigger":"revelationary:advancement_gotten",
       "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
     },
-    "collected_paltaeria_gem": {
+    "struck_up_hummingstone_hymn": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:hidden/collect_paltaeria_gem"
+        "advancement_identifier": "spectrum:lategame/strike_up_hummingstone_hymn"
       }
     }
   }

@@ -18,10 +18,10 @@
         "advancement_identifier": "spectrum:lategame/break_budding_block_with_resonance_tool"
       }
     },
-    "created_hummingstone_hymn": {
+    "struck_up_hummingstone_hymn": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/create_hummingstone_hymn"
+        "advancement_identifier": "spectrum:lategame/strike_up_hummingstone_hymn"
       }
     }
   }

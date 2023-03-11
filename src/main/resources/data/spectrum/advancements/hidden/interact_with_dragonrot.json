@@ -21,7 +21,7 @@
     "entered_dragonrot_swamp": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:visit_dd_biomes/dragonrot_swamp"
+        "advancement_identifier": "spectrum:hidden/visit_dd_biomes/dragonrot_swamp"
       }
     }
   },

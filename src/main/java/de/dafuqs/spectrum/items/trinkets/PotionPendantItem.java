@@ -1,26 +1,25 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.InkPoweredStatusEffectInstance;
-import de.dafuqs.spectrum.items.PotionFillable;
-import dev.emi.trinkets.api.SlotReference;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.items.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.potion.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class PotionPendantItem extends SpectrumTrinketItem implements PotionFillable {
 	
-	private final static int TRIGGER_EVERY_X_TICKS = 200;
-	private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
+	private final static int TRIGGER_EVERY_X_TICKS = 300;
+	private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 220; // always keeps the effect active & prevents the 10 seconds of screen flashing when night vision runs out
 	
 	private final int maxEffectCount;
 	private final int maxAmplifier;

@@ -24,53 +24,45 @@ public class RandomBudsFeature extends Feature<RandomBudsFeaturesConfig> {
         BlockPos blockPos = context.getOrigin();
         Random random = context.getRandom();
         RandomBudsFeaturesConfig randomBudsFeaturesConfig = (RandomBudsFeaturesConfig) context.getConfig();
-        if (!isAirOrWater(structureWorldAccess.getBlockState(blockPos))) {
-            return false;
-        } else {
+    
+        int placedCount = 0;
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        int j = randomBudsFeaturesConfig.xzSpread + 1;
+        int k = randomBudsFeaturesConfig.ySpread + 1;
+    
+        for (int l = 0; l < randomBudsFeaturesConfig.tries; ++l) {
+            mutable.set(blockPos, random.nextInt(j) - random.nextInt(j), random.nextInt(k) - random.nextInt(k), random.nextInt(j) - random.nextInt(j));
             List<Direction> directions = shuffleDirections(randomBudsFeaturesConfig, random);
-            if (generate(structureWorldAccess, blockPos, structureWorldAccess.getBlockState(blockPos), randomBudsFeaturesConfig, random, directions)) {
-                return true;
-            } else {
-                BlockPos.Mutable mutable = blockPos.mutableCopy();
-
-                for (Direction direction : directions) {
-                    mutable.set(blockPos);
-                    List<Direction> list2 = shuffleDirections(randomBudsFeaturesConfig, random, direction.getOpposite());
-
-                    for (int i = 0; i < randomBudsFeaturesConfig.searchRange; ++i) {
-                        mutable.set(blockPos, direction);
-                        BlockState blockState = structureWorldAccess.getBlockState(mutable);
-                        if (!isAirOrWater(blockState) && !blockState.isOf(Blocks.GLOW_LICHEN)) {
-                            break;
-                        }
-
-                        if (generate(structureWorldAccess, mutable, blockState, randomBudsFeaturesConfig, random, list2)) {
-                            return true;
-                        }
-                    }
-                }
-
-                return false;
+            BlockState state = structureWorldAccess.getBlockState(mutable);
+            boolean waterlogged = false;
+            if (state.isOf(Blocks.WATER)) {
+                waterlogged = true;
+            } else if (!state.isAir()) {
+                continue;
+            }
+            if (generate(structureWorldAccess, mutable, randomBudsFeaturesConfig, random, directions, waterlogged)) {
+                ++placedCount;
             }
         }
+    
+        return placedCount > 0;
     }
-
-    public static boolean generate(StructureWorldAccess world, BlockPos pos, BlockState state, RandomBudsFeaturesConfig config, Random random, List<Direction> directions) {
-        BlockPos.Mutable mutable = pos.mutableCopy();
-
-        Iterator<Direction> var7 = directions.iterator();
+    
+    public static boolean generate(StructureWorldAccess world, BlockPos pos, RandomBudsFeaturesConfig config, Random random, List<Direction> directions, boolean waterlogged) {
+        BlockPos.Mutable mutablePos = pos.mutableCopy();
+        
+        Iterator<Direction> directionIterator = directions.iterator();
         Direction direction;
         BlockState blockState;
         do {
-            if (!var7.hasNext()) {
+            if (!directionIterator.hasNext()) {
                 return false;
             }
-
-            direction = var7.next();
-            blockState = world.getBlockState(mutable.set(pos, direction));
+            direction = directionIterator.next();
+            blockState = world.getBlockState(mutablePos.set(pos, direction));
         } while (!blockState.isIn(config.canPlaceOn));
-
-        BlockState stateToPlace = config.blocks.get(random.nextInt(config.blocks.size())).getDefaultState().with(Properties.FACING, Direction.random(random));
+        
+        BlockState stateToPlace = config.blocks.get(random.nextInt(config.blocks.size())).getDefaultState().with(Properties.FACING, direction.getOpposite()).with(Properties.WATERLOGGED, waterlogged);
         if (stateToPlace.canPlaceAt(world, pos)) {
             world.setBlockState(pos, stateToPlace, 3);
             world.getChunk(pos).markBlockForPostProcessing(pos);
@@ -79,16 +71,8 @@ public class RandomBudsFeature extends Feature<RandomBudsFeaturesConfig> {
         return false;
     }
 
-    private static boolean isAirOrWater(BlockState state) {
-        return state.isAir() || state.isOf(Blocks.WATER);
-    }
-
     public static List<Direction> shuffleDirections(RandomBudsFeaturesConfig config, Random random) {
         return Util.copyShuffled(config.directions.stream(), random);
-    }
-
-    public static List<Direction> shuffleDirections(RandomBudsFeaturesConfig config, Random random, Direction excluded) {
-        return Util.copyShuffled(config.directions.stream().filter((direction) -> direction != excluded), random);
     }
 
 }

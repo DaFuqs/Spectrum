@@ -1,13 +1,13 @@
 {
-  "feature": "spectrum:dd_gravel",
+  "feature": "spectrum:dd_bismuth",
   "placement": [
     {
       "type": "minecraft:count",
       "count": {
         "type": "minecraft:uniform",
         "value": {
-          "min_inclusive": 128,
-          "max_inclusive": 156
+          "min_inclusive": 8,
+          "max_inclusive": 12
         }
       }
     },
@@ -22,7 +22,7 @@
           "above_bottom": 0
         },
         "max_inclusive": {
-          "above_bottom": 128
+          "above_bottom": 256
         }
       }
     },

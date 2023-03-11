@@ -1,12 +1,14 @@
 package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import dev.emi.trinkets.api.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
+import net.minecraft.server.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
@@ -27,21 +29,22 @@ public class CircletOfArroganceItem extends SpectrumTrinketItem {
     public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
         super.onEquip(stack, slot, entity);
         giveEffect(entity);
+        if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
+            SpectrumS2CPacketSender.playDivinityAppliedEffects(serverPlayerEntity);
+        }
     }
 
     @Override
     public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
         super.tick(stack, slot, entity);
-        giveEffect(entity);
+        World world = entity.getWorld();
+        if (!world.isClient && world.getTime() % TRIGGER_EVERY_X_TICKS == 0) {
+            giveEffect(entity);
+        }
     }
 
     private static void giveEffect(LivingEntity entity) {
-        World world = entity.getWorld();
-        if (!world.isClient) {
-            if (world.getTime() % TRIGGER_EVERY_X_TICKS == 0) {
-                entity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, EFFECT_DURATION, 0, true, true));
-            }
-        }
+        entity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DIVINITY, EFFECT_DURATION, 0, true, true));
     }
 
     @Override

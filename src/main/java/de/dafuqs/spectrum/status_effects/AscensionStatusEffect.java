@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.status_effects;
 
-import de.dafuqs.spectrum.helpers.ParticleHelper;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.ParticlePattern;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.server.network.ServerPlayerEntity;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.server.network.*;
 
 public class AscensionStatusEffect extends SpectrumStatusEffect {
 	
@@ -22,14 +20,14 @@ public class AscensionStatusEffect extends SpectrumStatusEffect {
 	
 	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-		if (entity.world.isClient && entity.world.getTime() % 4 == 0) {
+		if (entity.world.isClient) {
 			ParticleHelper.playParticleWithPatternAndVelocityClient(entity.world, entity.getPos(), SpectrumParticleTypes.WHITE_SPARKLE_RISING, ParticlePattern.EIGHT, 0.2);
 		}
 	}
 	
 	@Override
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
-		return true;
+		return duration % 4 == 0;
 	}
 	
 	@Override

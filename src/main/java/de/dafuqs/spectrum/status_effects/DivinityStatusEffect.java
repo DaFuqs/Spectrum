@@ -54,8 +54,11 @@ public class DivinityStatusEffect extends SpectrumStatusEffect {
 	public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		super.onApplied(entity, attributes, amplifier);
 		if (entity instanceof PlayerEntity) {
-			if (entity instanceof ServerPlayerEntity player && entity.getStatusEffect(SpectrumStatusEffects.DIVINITY) == null) {
-				SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
+			if (entity instanceof ServerPlayerEntity player) {
+				StatusEffectInstance instance = entity.getStatusEffect(SpectrumStatusEffects.DIVINITY);
+				if (instance != null && !instance.isAmbient()) {
+					SpectrumS2CPacketSender.playDivinityAppliedEffects(player);
+				}
 			} else if (entity.world.isClient) {
 				FabricLoader.getInstance().getObjectShare().put("healthoverlay:forceHardcoreHearts", true);
 			}

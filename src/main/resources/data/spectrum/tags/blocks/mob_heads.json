@@ -109,6 +109,7 @@
     "spectrum:allay_head",
     "spectrum:warden_head",
     "spectrum:tadpole_head",
+
     "spectrum:egg_laying_wooly_pig_wall_head",
     "spectrum:axolotl_blue_wall_head",
     "spectrum:axolotl_brown_wall_head",
@@ -176,6 +177,7 @@
     "spectrum:sheep_red_wall_head",
     "spectrum:sheep_white_wall_head",
     "spectrum:sheep_yellow_wall_head",
+    "spectrum:shulker_wall_head",
     "spectrum:shulker_black_wall_head",
     "spectrum:shulker_blue_wall_head",
     "spectrum:shulker_brown_wall_head",

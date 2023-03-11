@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
@@ -137,11 +136,8 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	// => creative players can easily break it without causing an explosion
 	@Override
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
-		if (EnchantmentHelper.getLevel(SpectrumEnchantments.RESONANCE, stack) > 0) {
-			super.afterBreak(world, player, pos, state, blockEntity, stack);
-		} else {
-			explode(world, pos, state);
-		}
+		super.afterBreak(world, player, pos, state, blockEntity, stack);
+		explode(world, pos, state);
 	}
 	
 	protected static void explode(World world, BlockPos pos, BlockState state) {

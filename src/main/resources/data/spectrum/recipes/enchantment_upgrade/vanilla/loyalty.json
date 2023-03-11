@@ -4,17 +4,17 @@
   "enchantment": "minecraft:loyalty",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:brown_pigment",
       "item_count": 8
     },
     {
-      "experience": 400,
+      "experience": 800,
       "item": "spectrum:brown_pigment",
       "item_count": 32
     },
     {
-      "experience": 1600,
+      "experience": 3200,
       "item": "spectrum:brown_pigment",
       "item_count": 128
     }

@@ -4,27 +4,27 @@
   "enchantment": "minecraft:thorns",
   "levels": [
     {
-      "experience": 50,
+      "experience": 100,
       "item": "spectrum:red_pigment",
       "item_count": 8
     },
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:red_pigment",
       "item_count": 32
     },
     {
-      "experience": 1000,
+      "experience": 2000,
       "item": "spectrum:red_pigment",
       "item_count": 128
     },
     {
-      "experience": 2500,
+      "experience": 5000,
       "item": "spectrum:red_pigment",
       "item_count": 256
     },
     {
-      "experience": 5000,
+      "experience": 10000,
       "item": "spectrum:red_pigment",
       "item_count": 512
     }

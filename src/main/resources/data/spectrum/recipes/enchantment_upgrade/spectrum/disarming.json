@@ -3,17 +3,17 @@
   "enchantment": "spectrum:disarming",
   "levels": [
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:red_pigment",
       "item_count": 32
     },
     {
-      "experience": 1000,
+      "experience": 2000,
       "item": "spectrum:red_pigment",
       "item_count": 128
     },
     {
-      "experience": 5000,
+      "experience": 10000,
       "item": "spectrum:red_pigment",
       "item_count": 512
     }

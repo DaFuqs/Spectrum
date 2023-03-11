@@ -4,22 +4,22 @@
   "enchantment": "minecraft:punch",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:red_pigment",
       "item_count": 8
     },
     {
-      "experience": 800,
+      "experience": 1600,
       "item": "spectrum:red_pigment",
       "item_count": 32
     },
     {
-      "experience": 1600,
+      "experience": 3200,
       "item": "spectrum:red_pigment",
       "item_count": 128
     },
     {
-      "experience": 3200,
+      "experience": 6400,
       "item": "spectrum:red_pigment",
       "item_count": 256
     }

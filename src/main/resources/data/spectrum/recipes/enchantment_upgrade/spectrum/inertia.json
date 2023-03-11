@@ -3,22 +3,22 @@
   "enchantment": "spectrum:inertia",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:brown_pigment",
       "item_count": 8
     },
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:brown_pigment",
       "item_count": 32
     },
     {
-      "experience": 100,
+      "experience": 2000,
       "item": "spectrum:brown_pigment",
       "item_count": 128
     },
     {
-      "experience": 5000,
+      "experience": 10000,
       "item": "spectrum:brown_pigment",
       "item_count": 512
     }

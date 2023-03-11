@@ -4,12 +4,12 @@
   "enchantment": "minecraft:depth_strider",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:blue_pigment",
       "item_count": 8
     },
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:blue_pigment",
       "item_count": 32
     }

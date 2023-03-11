@@ -3,27 +3,27 @@
   "enchantment": "spectrum:clovers_favor",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:light_blue_pigment",
       "item_count": 8
     },
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:light_blue_pigment",
       "item_count": 32
     },
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:light_blue_pigment",
       "item_count": 128
     },
     {
-      "experience": 5000,
+      "experience": 10000,
       "item": "spectrum:light_blue_pigment",
       "item_count": 512
     },
     {
-      "experience": 20000,
+      "experience": 40000,
       "item": "spectrum:light_blue_pigment",
       "item_count": 512
     }

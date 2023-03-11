@@ -4,22 +4,22 @@
   "enchantment": "minecraft:lure",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:blue_pigment",
       "item_count": 8
     },
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:blue_pigment",
       "item_count": 32
     },
     {
-      "experience": 1000,
+      "experience": 2000,
       "item": "spectrum:blue_pigment",
       "item_count": 128
     },
     {
-      "experience": 2000,
+      "experience": 4000,
       "item": "spectrum:blue_pigment",
       "item_count": 512
     }

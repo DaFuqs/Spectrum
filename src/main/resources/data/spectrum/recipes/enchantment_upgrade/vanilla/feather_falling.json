@@ -4,27 +4,27 @@
   "enchantment": "minecraft:feather_falling",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:blue_pigment",
       "item_count": 8
     },
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:blue_pigment",
       "item_count": 16
     },
     {
-      "experience": 400,
+      "experience": 800,
       "item": "spectrum:blue_pigment",
       "item_count": 32
     },
     {
-      "experience": 800,
+      "experience": 1600,
       "item": "spectrum:blue_pigment",
       "item_count": 64
     },
     {
-      "experience": 2400,
+      "experience": 4800,
       "item": "spectrum:blue_pigment",
       "item_count": 256
     }

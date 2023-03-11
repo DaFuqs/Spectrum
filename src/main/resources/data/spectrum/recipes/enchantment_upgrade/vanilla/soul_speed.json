@@ -4,17 +4,17 @@
   "enchantment": "minecraft:soul_speed",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:light_gray_pigment",
       "item_count": 8
     },
     {
-      "experience": 1200,
+      "experience": 2400,
       "item": "spectrum:light_gray_pigment",
       "item_count": 32
     },
     {
-      "experience": 5000,
+      "experience": 10000,
       "item": "spectrum:light_gray_pigment",
       "item_count": 128
     }

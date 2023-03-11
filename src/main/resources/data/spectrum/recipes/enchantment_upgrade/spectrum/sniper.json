@@ -3,22 +3,22 @@
   "enchantment": "spectrum:sniper",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:green_pigment",
       "item_count": 8
     },
     {
-      "experience": 500,
+      "experience": 1000,
       "item": "spectrum:green_pigment",
       "item_count": 32
     },
     {
-      "experience": 2500,
+      "experience": 5000,
       "item": "spectrum:green_pigment",
       "item_count": 128
     },
     {
-      "experience": 5000,
+      "experience": 10000,
       "item": "spectrum:green_pigment",
       "item_count": 512
     }

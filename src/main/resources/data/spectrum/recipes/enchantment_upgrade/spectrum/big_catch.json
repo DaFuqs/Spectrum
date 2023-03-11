@@ -3,12 +3,12 @@
   "enchantment": "spectrum:big_catch",
   "levels": [
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:light_blue_pigment",
       "item_count": 32
     },
     {
-      "experience": 400,
+      "experience": 800,
       "item": "spectrum:light_blue_pigment",
       "item_count": 128
     }

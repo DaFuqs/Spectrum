@@ -4,37 +4,37 @@
   "enchantment": "minecraft:sharpness",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:black_pigment",
       "item_count": 8
     },
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:black_pigment",
       "item_count": 16
     },
     {
-      "experience": 300,
+      "experience": 600,
       "item": "spectrum:black_pigment",
       "item_count": 32
     },
     {
-      "experience": 400,
+      "experience": 800,
       "item": "spectrum:black_pigment",
       "item_count": 64
     },
     {
-      "experience": 800,
+      "experience": 1600,
       "item": "spectrum:black_pigment",
       "item_count": 128
     },
     {
-      "experience": 2000,
+      "experience": 4000,
       "item": "spectrum:black_pigment",
       "item_count": 256
     },
     {
-      "experience": 4000,
+      "experience": 8000,
       "item": "spectrum:black_pigment",
       "item_count": 512
     }

@@ -4,17 +4,17 @@
   "enchantment": "minecraft:fire_aspect",
   "levels": [
     {
-      "experience": 100,
+      "experience": 200,
       "item": "spectrum:red_pigment",
       "item_count": 8
     },
     {
-      "experience": 1000,
+      "experience": 2000,
       "item": "spectrum:red_pigment",
       "item_count": 32
     },
     {
-      "experience": 4000,
+      "experience": 8000,
       "item": "spectrum:red_pigment",
       "item_count": 128
     }

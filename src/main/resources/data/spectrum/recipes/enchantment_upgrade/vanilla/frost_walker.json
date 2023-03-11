@@ -4,17 +4,17 @@
   "enchantment": "minecraft:frost_walker",
   "levels": [
     {
-      "experience": 200,
+      "experience": 400,
       "item": "spectrum:light_gray_pigment",
       "item_count": 8
     },
     {
-      "experience": 800,
+      "experience": 1600,
       "item": "spectrum:light_gray_pigment",
       "item_count": 32
     },
     {
-      "experience": 1600,
+      "experience": 3200,
       "item": "spectrum:light_gray_pigment",
       "item_count": 128
     }

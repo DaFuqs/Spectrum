@@ -1,30 +1,24 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
-import de.dafuqs.spectrum.sound.HintRevelationSoundInstance;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.resource.language.I18n;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import vazkii.patchouli.api.IVariable;
-import vazkii.patchouli.client.base.PersistentData;
-import vazkii.patchouli.client.book.BookContentsBuilder;
-import vazkii.patchouli.client.book.BookEntry;
-import vazkii.patchouli.client.book.BookPage;
-import vazkii.patchouli.client.book.gui.BookTextRenderer;
-import vazkii.patchouli.client.book.gui.GuiBook;
-import vazkii.patchouli.client.book.gui.GuiBookEntry;
-import vazkii.patchouli.common.book.Book;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.sound.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.resource.language.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.recipe.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import vazkii.patchouli.api.*;
+import vazkii.patchouli.client.base.*;
+import vazkii.patchouli.client.book.*;
+import vazkii.patchouli.client.book.gui.*;
+import vazkii.patchouli.common.book.*;
 
-import java.util.List;
+import java.util.*;
 
 public class PageHint extends BookPage {
 	
@@ -107,6 +101,10 @@ public class PageHint extends BookPage {
 	
 	@Environment(EnvType.CLIENT)
 	protected void paymentButtonClicked(ButtonWidget button) {
+		if (revealProgress > -1) {
+			// has already been paid
+			return;
+		}
 		if (MinecraftClient.getInstance().player.isCreative() || InventoryHelper.hasInInventory(List.of(ingredient), MinecraftClient.getInstance().player.getInventory())) {
 			// mark as complete in book data
 			PersistentData.BookData data = PersistentData.data.getBookData(parent.book);

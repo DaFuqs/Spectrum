@@ -1,31 +1,26 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.*;
 import com.mojang.datafixers.util.Pair;
-import de.dafuqs.spectrum.interfaces.PotionFillable;
-import dev.emi.trinkets.api.SlotReference;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.text.LiteralText;
-import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.interfaces.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.potion.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PotionPendantItem extends SpectrumTrinketItem implements PotionFillable {
 	
-	private final int TRIGGER_EVERY_X_TICKS = 200;
-	private final int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
+	private final static int TRIGGER_EVERY_X_TICKS = 300;
+	private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 220; // always keeps the effect active & prevents the 10 seconds of screen flashing when night vision runs out
 	
 	int maxEffectCount;
 	int maxAmplifier;
@@ -125,4 +120,5 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 			entity.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));
 		}
 	}
+	
 }

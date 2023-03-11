@@ -3,7 +3,7 @@
   "icon": "spectrum:black_materia",
   "priority": true,
   "sortnum": 1,
-  "advancement": "spectrum:lategame/visit_each_dd_biome",
+  "advancement": "spectrum:endgame/spectrum_endgame",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {},
   "pages": [

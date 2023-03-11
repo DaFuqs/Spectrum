@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:lategame/create_hummingstone_hymn",
+      "advancement": "spectrum:lategame/strike_up_hummingstone_hymn",
       "item": "spectrum:resonance_shard",
       "text": "It turned out that those pretty sounds Hummingstones make can build each other up until they shatter an a final anthem.$(br)The broken remains never seem to stop vibrating, as if they retain some form of inherent energy."
     }

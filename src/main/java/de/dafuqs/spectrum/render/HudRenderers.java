@@ -37,10 +37,11 @@ public class HudRenderers {
 	
 	// this is run in InGameHudMixin instead to render behind the chat and other gui elements
 	public static void renderAzureDike(MatrixStack matrixStack, int scaledWidth, int scaledHeight, PlayerEntity cameraPlayer) {
-		int charges = AzureDikeProvider.getAzureDikeCharges(cameraPlayer);
-		if (charges > 0) {
+		AzureDikeComponent azureDikeComponent = AzureDikeProvider.getAzureDikeComponent(cameraPlayer);
+		int maxCharges = azureDikeComponent.getMaxProtection();
+		if (azureDikeComponent.getMaxProtection() > 0) {
+			int charges = azureDikeComponent.getProtection();
 			int absorptionAmount = MathHelper.ceil(cameraPlayer.getAbsorptionAmount());
-			int maxCharges = AzureDikeProvider.getMaxAzureDikeCharges(cameraPlayer);
 			boolean blink = false;
 			if (cameraPlayer.getRecentDamageSource() != null && cameraPlayer.getWorld() != null) {
 				blink = (cameraPlayer.getWorld().getTime() >> 2) % 2 == 0;
@@ -49,7 +50,7 @@ public class HudRenderers {
 			int fullCanisters = charges / 20;
 			int emptyCanisters = (maxCharges / 20) - fullCanisters;
 			int displayedHearts = charges % 20;
-			if (displayedHearts == 0) { // if the row is full render it as full instead of wrapping over
+			if (displayedHearts == 0 && charges > 0) { // if the row is full render it as full instead of wrapping over
 				displayedHearts = 20;
 				fullCanisters--;
 				emptyCanisters++;

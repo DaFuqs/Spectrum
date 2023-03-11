@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.cca.azure_dike;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import dev.onyxstudios.cca.api.v3.component.ComponentKey;
-import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
-import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
-import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
-import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
-import net.minecraft.entity.LivingEntity;
+import de.dafuqs.spectrum.*;
+import dev.onyxstudios.cca.api.v3.component.*;
+import dev.onyxstudios.cca.api.v3.entity.*;
+import net.minecraft.entity.*;
 
 public class AzureDikeProvider implements EntityComponentInitializer {
 	
@@ -29,6 +26,10 @@ public class AzureDikeProvider implements EntityComponentInitializer {
 	
 	public static int getMaxAzureDikeCharges(LivingEntity provider) {
 		return AZURE_DIKE_COMPONENT.get(provider).getMaxProtection();
+	}
+	
+	public static AzureDikeComponent getAzureDikeComponent(LivingEntity provider) {
+		return AZURE_DIKE_COMPONENT.get(provider);
 	}
 	
 	@Override

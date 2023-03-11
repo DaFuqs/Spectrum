@@ -1,7 +1,9 @@
 {
   "replace": false,
   "values": [
+    "#spectrum:deep_soils",
+
     "spectrum:sacred_soil",
-    "#spectrum:deep_soils"
+    "spectrum:rotten_ground"
   ]
 }

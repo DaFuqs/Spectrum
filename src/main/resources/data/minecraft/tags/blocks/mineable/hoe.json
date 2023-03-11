@@ -5,11 +5,14 @@
     "#spectrum:colored_leaves",
     "#spectrum:spirit_sallow_vines",
     "#spectrum:dragonjags",
+
     "spectrum:fading",
     "spectrum:lava_sponge",
     "spectrum:wet_lava_sponge",
     "spectrum:spirit_sallow_leaves",
     "spectrum:jade_vine_petal_block",
-    "spectrum:jade_vine_petal_carpet"
+    "spectrum:jade_vine_petal_carpet",
+    "spectrum:aloe",
+    "spectrum:snapping_ivy"
   ]
 }

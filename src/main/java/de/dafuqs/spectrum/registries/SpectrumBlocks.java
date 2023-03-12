@@ -508,7 +508,7 @@ public class SpectrumBlocks {
 	public static AbstractBlock.Settings fungus(MapColor color) {
 		return AbstractBlock.Settings.of(Material.PLANT, color).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS);
 	}
-
+	
 	private static RegistryEntry<ConfiguredFeature<?, ?>> getConfiguredFeatureRegistryEntry(String id) {
 		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate(id)));
 	}
@@ -516,10 +516,11 @@ public class SpectrumBlocks {
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
 	
 	//DD FLORA
-	public static final Block SAWBLADE_GRASS = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.PODZOL));
+	public static final Block SAWBLADE_GRASS = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).ticksRandomly(), BLACKSLAG);
+	public static final Block SHIMMEL = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).ticksRandomly(), BLACKSLAG);
+	public static final Block OVERGROWN_BLACKSLAG = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).ticksRandomly(), BLACKSLAG);
 	public static final Block ROTTEN_GROUND = new MudBlock(AbstractBlock.Settings.copy(Blocks.MUD));
-	public static final Block SHIMMEL = new MyceliumBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM));
-	public static final Block OVERGROWN_BLACKSLAG = new SnowyBlock(AbstractBlock.Settings.copy(Blocks.PODZOL));
+	
 	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), () -> getConfiguredFeatureRegistryEntry("slate_noxfungus"));
 	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), () -> getConfiguredFeatureRegistryEntry("ebony_noxfungus"));
 	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), () -> getConfiguredFeatureRegistryEntry("ivory_noxfungus"));

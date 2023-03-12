@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.util.ActionResult;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public class OminousSaplingBlockItem extends BlockItem {
 	
@@ -17,8 +16,7 @@ public class OminousSaplingBlockItem extends BlockItem {
 		ActionResult actionResult = super.place(context);
 		
 		BlockEntity blockEntity = context.getWorld().getBlockEntity(context.getBlockPos());
-		if (blockEntity instanceof OminousSaplingBlockEntity) {
-			OminousSaplingBlockEntity ominousSaplingBlockEntity = (OminousSaplingBlockEntity) blockEntity;
+		if (blockEntity instanceof OminousSaplingBlockEntity ominousSaplingBlockEntity) {
 			if (context.getPlayer() != null) {
 				ominousSaplingBlockEntity.setOwner(context.getPlayer());
 			}

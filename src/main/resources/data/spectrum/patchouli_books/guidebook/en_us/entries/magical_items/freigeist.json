@@ -4,7 +4,8 @@
   "advancement": "spectrum:progression/unlock_freigeist",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
-    "spectrum:freigeist": 0
+    "spectrum:freigeist": 0,
+    "spectrum:divination_heart": 0
   },
   "pages": [
     {

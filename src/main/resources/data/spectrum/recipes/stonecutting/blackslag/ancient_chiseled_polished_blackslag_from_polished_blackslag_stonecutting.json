@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "spectrum:polished_blackslag"
-  },
-  "result": "spectrum:ancient_chiseled_polished_blackslag",
-  "count": 1
-}

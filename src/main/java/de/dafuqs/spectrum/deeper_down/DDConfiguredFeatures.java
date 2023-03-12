@@ -49,6 +49,6 @@ public class DDConfiguredFeatures extends WorldgenHelper {
 	
 	public static final ConfiguredFeature<VegetationPatchFeatureConfig, ?> SNAPPING_IVY_PATCH = new ConfiguredFeature<>(Feature.VEGETATION_PATCH,
 			new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE, BlockStateProvider.of(SpectrumBlocks.ROTTEN_GROUND),
-					PlacedFeatures.createEntry(SNAPPING_IVY), VerticalSurfaceType.FLOOR, ConstantIntProvider.create(1), 0.0F, 5, 0.8F, UniformIntProvider.create(4, 7), 0.3F));
+					PlacedFeatures.createEntry(SNAPPING_IVY), VerticalSurfaceType.FLOOR, ConstantIntProvider.create(1), 0.0F, 5, 0.8F, UniformIntProvider.create(3, 5), 0.3F));
 	
 }

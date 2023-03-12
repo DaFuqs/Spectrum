@@ -62,7 +62,7 @@ public final class DDOreVeinSampler {
 		DIAMOND(SpectrumBlocks.BLACKSLAG_DIAMOND_ORE.getDefaultState(), Blocks.COAL_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -400, -256),
 		REDSTONE(SpectrumBlocks.BLACKSLAG_REDSTONE_ORE.getDefaultState(), Blocks.REDSTONE_BLOCK.getDefaultState(), Blocks.GRANITE.getDefaultState(), -256, -96),
 		LAPIS(SpectrumBlocks.BLACKSLAG_LAPIS_ORE.getDefaultState(), Blocks.LAPIS_BLOCK.getDefaultState(), Blocks.TUFF.getDefaultState(), -384, -128),
-		EMERALD(SpectrumBlocks.BLACKSLAG_EMERALD_ORE.getDefaultState(), Blocks.DEEPSLATE_EMERALD_ORE.getDefaultState(), Blocks.DIORITE.getDefaultState(), -400, -128);
+		EMERALD(SpectrumBlocks.BLACKSLAG_EMERALD_ORE.getDefaultState(), SpectrumBlocks.BLACKSLAG.getDefaultState(), Blocks.DIORITE.getDefaultState(), -400, -128);
 		
 		final BlockState ore;
 		final BlockState rawOreBlock;

@@ -53,6 +53,7 @@
     [],
     [],
     [
+      "spectrum:dd_disk_grass",
       "spectrum:dd_downstone",
       "spectrum:dd_shimmerstone_ore",
       "spectrum:dd_iron_ore",
@@ -76,6 +77,7 @@
       "spectrum:dd_lava_springs"
     ],
     [
+      "spectrum:dd_patch_grass_normal",
       "minecraft:cave_vines",
       "spectrum:dd_glow_lichen",
       "spectrum:dd_liquid_crystal_flower_patch"

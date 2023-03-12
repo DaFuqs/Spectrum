@@ -50,8 +50,8 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 			// just check every 20 ticks for performance
 			if (world.getTime() % 20 == 0) {
 				StatusEffectInstance milleniaDisease = livingEntity.getStatusEffect(SpectrumStatusEffects.MILLENIA_DISEASE);
-				if (milleniaDisease == null || milleniaDisease.getDuration() < 200) {
-					livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.MILLENIA_DISEASE, 220, 0));
+				if (milleniaDisease == null || milleniaDisease.getDuration() < 1000) {
+					livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.MILLENIA_DISEASE, 2000, 0));
 				}
 			}
 		} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {

@@ -39,7 +39,9 @@
     "air": "minecraft:cave"
   },
   "features": [
-    [],
+    [
+      "spectrum:lake_lava_underground"
+    ],
     [],
     [
       "spectrum:dd_downstone_sloped",
@@ -49,7 +51,7 @@
       "spectrum:deepslate_pile"
     ],
     [
-		"spectrum:buried_dragon_fossil"
+      "spectrum:buried_dragon_fossil"
 	],
     [],
     [],

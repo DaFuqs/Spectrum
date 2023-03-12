@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "spectrum:block/ebony_noxshroom_type_3"
+  }
+}

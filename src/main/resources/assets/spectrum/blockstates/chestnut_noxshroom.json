@@ -1,7 +1,15 @@
 {
   "variants": {
-    "": {
-      "model": "spectrum:block/chestnut_noxshroom"
-    }
+    "": [
+      {
+        "model": "spectrum:block/chestnut_noxshroom_type_1"
+      },
+      {
+        "model": "spectrum:block/chestnut_noxshroom_type_2"
+      },
+      {
+        "model": "spectrum:block/chestnut_noxshroom_type_3"
+      }
+    ]
   }
 }

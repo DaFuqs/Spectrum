@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "spectrum:block/chestnut_noxshroom_type_1"
+  }
+}

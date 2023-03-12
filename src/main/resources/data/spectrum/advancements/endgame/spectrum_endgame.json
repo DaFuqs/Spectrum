@@ -9,7 +9,7 @@
     "description": {
       "translate": "advancements.spectrum.spectrum_endgame.description"
     },
-    "background": "spectrum:textures/gui/advancement_background_endgame.png"
+    "background": "spectrum:textures/gui/advancement_background_lategame.png"
   },
   "criteria": {
     "visited_all_deeper_down_biomes": {

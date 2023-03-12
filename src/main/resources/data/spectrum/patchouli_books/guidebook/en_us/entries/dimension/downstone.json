@@ -1,6 +1,6 @@
 {
   "name": "Downstone",
-  "advancement": "spectrum:hidden/interact_with_downstone",
+  "advancement": "spectrum:lategame/reached_dd_floor",
   "icon": "spectrum:downstone",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {

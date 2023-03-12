@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:black_glowblock"
     },
+    "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.enter_dimension.title"
     },

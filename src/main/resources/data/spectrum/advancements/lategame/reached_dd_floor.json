@@ -1,0 +1,43 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "spectrum:downstone"
+    },
+    "title": {
+      "translate": "advancements.spectrum.reached_dd_floor.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.reached_dd_floor.description"
+    }
+  },
+  "criteria": {
+    "reached_dd_floor": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "position": {
+                  "y": {
+                    "max": -443
+                  }
+                },
+                "dimension": "spectrum:deeper_down"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

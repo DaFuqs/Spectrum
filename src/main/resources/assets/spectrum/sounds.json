@@ -257,7 +257,15 @@
   "dimension_ambient": {
     "subtitle": "spectrum.subtitles.dimension_ambient",
     "sounds": [
-      "spectrum:dimension_ambient"
+      "spectrum:dimension_ambient",
+      "spectrum:dimension_ambient2",
+      "spectrum:dimension_ambient3",
+      "spectrum:dimension_ambient4",
+      "spectrum:dimension_ambient5",
+      "spectrum:dimension_ambient6",
+      "spectrum:dimension_ambient7",
+      "spectrum:dimension_ambient8",
+      "spectrum:dimension_ambient9"
     ]
   },
   "spectrum.ui.new_revelation": {
@@ -297,7 +305,11 @@
   "mud_ambient": {
     "subtitle": "spectrum.subtitles.block.mud.ambient",
     "sounds": [
-      "spectrum:mud_ambient"
+      "spectrum:mud_ambient",
+      "spectrum:mud_ambient2",
+      "spectrum:mud_ambient3",
+      "spectrum:mud_ambient4",
+      "spectrum:mud_ambient5"
     ]
   },
   "liquid_crystal_ambient": {
@@ -309,7 +321,12 @@
   "midnight_solution_ambient": {
     "subtitle": "spectrum.subtitles.block.midnight_solution.ambient",
     "sounds": [
-      "spectrum:midnight_solution_ambient"
+      "spectrum:midnight_solution_ambient",
+      "spectrum:midnight_solution_ambient2",
+      "spectrum:midnight_solution_ambient3",
+      "spectrum:midnight_solution_ambient4",
+      "spectrum:midnight_solution_ambient5",
+      "spectrum:midnight_solution_ambient6"
     ]
   },
   "dragonrot_ambient": {

@@ -40,20 +40,20 @@
   },
   "features": [
     [],
-    [],
     [
-      "spectrum:dd_downstone_sloped",
-      "spectrum:moonstone_geode",
-      "spectrum:blackslag_pile"
+      "spectrum:lake_liquid_crystal_underground"
     ],
     [
-		"spectrum:buried_dragon_fossil"
-	],
+      "spectrum:dd_downstone_sloped",
+      "spectrum:moonstone_geode"
+    ],
+    [
+      "spectrum:buried_dragon_fossil"
+    ],
     [],
     [],
     [
       "spectrum:dd_downstone",
-      "spectrum:dd_malachite_ore",
       "spectrum:dd_shimmerstone_ore",
       "spectrum:dd_iron_ore",
       "spectrum:dd_gold_ore",
@@ -61,26 +61,24 @@
       "spectrum:dd_emerald_ore",
       "spectrum:dd_tuff",
       "spectrum:dd_gravel",
+      "spectrum:dd_infested",
       "spectrum:dd_granite",
       "spectrum:dd_diorite",
       "spectrum:dd_andesite",
       "spectrum:dd_stone"
     ],
     [
-      "spectrum:chestnut_noxfungus",
-      "spectrum:ebony_noxfungus",
-      "spectrum:slate_noxfungus",
-      "spectrum:ivory_noxfungus",
-      "spectrum:mushroom_forest_mushrooms",
-      "spectrum:mushroom_forest_vegetation"
+      "spectrum:hummingstone_crystal_formations",
+      "spectrum:dd_bismuth"
     ],
     [
-      "spectrum:dd_water_springs"
+      "spectrum:dd_water_springs",
+      "spectrum:dd_lava_springs"
     ],
     [
-      "minecraft:brown_mushroom_nether",
-      "minecraft:red_mushroom_nether",
-      "spectrum:dd_glow_lichen"
+      "minecraft:cave_vines",
+      "spectrum:dd_glow_lichen",
+      "spectrum:dd_liquid_crystal_flower_patch"
     ],
     []
   ]

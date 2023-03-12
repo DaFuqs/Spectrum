@@ -127,7 +127,7 @@
           }
         },
         {
-          "biome": "spectrum:crystal_garden",
+          "biome": "spectrum:crystal_gardens",
           "parameters": {
             "temperature": [
               -1,
@@ -187,7 +187,7 @@
           }
         },
         {
-          "biome": "spectrum:mushroom_forest",
+          "biome": "spectrum:noxshroom_forest",
           "parameters": {
             "temperature": [
               -0.5,

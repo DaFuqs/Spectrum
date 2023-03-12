@@ -277,7 +277,7 @@
         "if_true": {
           "type": "minecraft:biome",
           "biome_is": [
-            "spectrum:mushroom_forest"
+            "spectrum:noxshroom_forest"
           ]
         },
         "then_run": {
@@ -307,7 +307,7 @@
         "if_true": {
           "type": "minecraft:biome",
           "biome_is": [
-            "spectrum:crystal_garden"
+            "spectrum:crystal_gardens"
           ]
         },
         "then_run": {

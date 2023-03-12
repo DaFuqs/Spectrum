@@ -6,7 +6,7 @@ import net.minecraft.world.biome.*;
 
 public class DDBiomeKeys {
 
-    public static final RegistryKey<Biome> CRYSTAL_GARDEN = getReference("crystal_garden");
+    public static final RegistryKey<Biome> CRYSTAL_GARDENS = getReference("crystal_gardens");
     public static final RegistryKey<Biome> DEEP_BARRENS = getReference("deep_barrens");
     public static final RegistryKey<Biome> DRAGONROT_SWAMP = getReference("dragonrot_swamp");
     public static final RegistryKey<Biome> FORLORM_CAVES = getReference("forlorm_caves");

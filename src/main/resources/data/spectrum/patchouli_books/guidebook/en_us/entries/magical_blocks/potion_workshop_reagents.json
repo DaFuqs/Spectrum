@@ -149,7 +149,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:malachite_crystal",
       "advancement": "spectrum:lategame/grow_malachite_in_crystallarieum",
-      "text": "x3 multiplicative Duration bonus, but makes the Potion much slower to drink."
+      "text": "x2 multiplicative Duration bonus, but makes the Potion much slower to drink."
     },
     {
       "type": "patchouli:spotlight",

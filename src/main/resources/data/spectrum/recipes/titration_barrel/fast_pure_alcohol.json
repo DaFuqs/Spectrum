@@ -6,13 +6,13 @@
       "tag": "spectrum:drinkable_spirits",
       "count": 1
     },
-	{
+    {
       "item": "minecraft:blaze_powder",
       "count": 4
     },
-	{
+    {
       "item": "spectrum:incandescent_amalgam",
-      "count": 2
+      "count": 1
     }
   ],
   "fluid": "minecraft:water",

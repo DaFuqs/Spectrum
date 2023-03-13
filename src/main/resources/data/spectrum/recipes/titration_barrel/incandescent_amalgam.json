@@ -6,17 +6,21 @@
       "tag": "spectrum:drinkable_spirits",
       "count": 1
     },
-	{
+    {
       "item": "spectrum:fiery_powder",
       "count": 32
     },
-	{
+    {
       "item": "minecraft:honeycomb",
       "count": 2
     },
-	{
+    {
       "item": "spectrum:quitoxic_powder",
       "count": 16
+    },
+    {
+      "item": "spectrum:doombloom_seed",
+      "count": 4
     }
   ],
   "fluid": "spectrum:midnight_solution",

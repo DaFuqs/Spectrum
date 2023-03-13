@@ -42,11 +42,11 @@ public class TrinketChangeCriterion extends AbstractCriterion<TrinketChangeCrite
 	
 	public void trigger(ServerPlayerEntity player) {
 		this.trigger(player, (conditions) -> {
-			Optional<TrinketComponent> trinketComponent = TrinketsApi.getTrinketComponent(player);
-			if (trinketComponent.isPresent()) {
+			Optional<TrinketComponent> trinketComponent = TrinketsApi.TRINKET_COMPONENT.getNullable(player);
+			if (trinketComponent != null) {
 				List<ItemStack> equippedStacks = new ArrayList<>();
 				int spectrumStacks = 0;
-				for (Pair<SlotReference, ItemStack> t : trinketComponent.get().getAllEquipped()) {
+				for (Pair<SlotReference, ItemStack> t : trinketComponent.getAllEquipped()) {
 					equippedStacks.add(t.getRight());
 					if (t.getRight().getItem() instanceof SpectrumTrinketItem) {
 						spectrumStacks++;

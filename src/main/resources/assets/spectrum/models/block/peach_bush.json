@@ -1,0 +1,56 @@
+{
+	"texture_size": [32, 16],
+	"textures": {
+		"0": "block/peach_bush",
+		"particle": "block/peach_bush"
+	},
+	"elements": [
+		{
+			"name": "stem",
+			"from": [7, 0, 7],
+			"to": [9, 9, 9],
+			"faces": {
+				"north": {"uv": [9, 2, 10, 11], "texture": "#0"},
+				"east": {"uv": [9, 2, 10, 11], "texture": "#0"},
+				"south": {"uv": [9, 2, 10, 11], "texture": "#0"},
+				"west": {"uv": [9, 2, 10, 11], "texture": "#0"},
+				"up": {"uv": [9, 0, 10, 2], "texture": "#0"},
+				"down": {"uv": [9, 0, 10, 2], "texture": "#0"}
+			}
+		},
+		{
+			"name": "leaves1",
+			"from": [3, 4, 3],
+			"to": [13, 14, 13],
+			"faces": {
+				"north": {"uv": [0, 0, 5, 10], "texture": "#0"},
+				"east": {"uv": [0, 0, 5, 10], "texture": "#0"},
+				"south": {"uv": [0, 0, 5, 10], "texture": "#0"},
+				"west": {"uv": [0, 0, 5, 10], "texture": "#0", "cullface": "down"},
+				"up": {"uv": [10.5, 1, 15.5, 11], "texture": "#0", "cullface": "down"}
+			}
+		},
+		{
+			"name": "leaves2",
+			"from": [2, 6, 2],
+			"to": [14, 13, 14],
+			"faces": {
+				"north": {"uv": [10, 2, 16, 9], "texture": "#0"},
+				"east": {"uv": [10, 2, 16, 9], "texture": "#0"},
+				"south": {"uv": [10, 2, 16, 9], "texture": "#0"},
+				"west": {"uv": [10, 2, 16, 9], "texture": "#0"},
+				"up": {"uv": [10, 0, 16, 12], "texture": "#0"},
+				"down": {"uv": [10, 0, 16, 12], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		0,
+		{
+			"name": "leaves",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [1, 2]
+		}
+	]
+}

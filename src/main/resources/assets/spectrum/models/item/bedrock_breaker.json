@@ -1,0 +1,117 @@
+{
+	"textures": {
+		"0": "spectrum:item/bedrock_breaker",
+		"particle": "spectrum:item/bedrock_breaker"
+	},
+	"elements": [
+		{
+			"name": "handle",
+			"from": [7, 3, 7],
+			"to": [9, 18, 9],
+			"faces": {
+				"north": {"uv": [2, 0, 0, 15], "texture": "#0"},
+				"east": {"uv": [0, 0, 2, 15], "texture": "#0"},
+				"south": {"uv": [2, 0, 0, 15], "texture": "#0"},
+				"west": {"uv": [0, 0, 2, 15], "texture": "#0"},
+				"up": {"uv": [3, 14, 5, 16], "texture": "#0"},
+				"down": {"uv": [3, 14, 5, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "base1",
+			"from": [6, 0, 6],
+			"to": [10, 2, 10],
+			"faces": {
+				"north": {"uv": [2, 6, 6, 8], "texture": "#0"},
+				"east": {"uv": [2, 6, 6, 8], "texture": "#0"},
+				"south": {"uv": [2, 6, 6, 8], "texture": "#0"},
+				"west": {"uv": [2, 6, 6, 8], "texture": "#0"},
+				"up": {"uv": [2, 8, 6, 12], "texture": "#0"},
+				"down": {"uv": [2, 8, 6, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "base2",
+			"from": [6, 3, 6],
+			"to": [10, 5, 10],
+			"faces": {
+				"north": {"uv": [6, 0, 10, 2], "texture": "#0"},
+				"east": {"uv": [6, 0, 10, 2], "texture": "#0"},
+				"south": {"uv": [6, 0, 10, 2], "texture": "#0"},
+				"west": {"uv": [6, 0, 10, 2], "texture": "#0"},
+				"up": {"uv": [6, 2, 10, 6], "texture": "#0"},
+				"down": {"uv": [6, 2, 10, 6], "texture": "#0"}
+			}
+		},
+		{
+			"name": "base3",
+			"from": [6, 14, 6],
+			"to": [10, 16, 10],
+			"faces": {
+				"north": {"uv": [6, 0, 2, 2], "texture": "#0"},
+				"east": {"uv": [2, 0, 6, 2], "texture": "#0"},
+				"south": {"uv": [6, 0, 2, 2], "texture": "#0"},
+				"west": {"uv": [2, 0, 6, 2], "texture": "#0"},
+				"up": {"uv": [2, 2, 6, 6], "texture": "#0"},
+				"down": {"uv": [2, 2, 6, 6], "texture": "#0"}
+			}
+		},
+		{
+			"name": "tip",
+			"from": [7.5, 18, 7.5],
+			"to": [8.5, 20, 8.5],
+			"faces": {
+				"north": {"uv": [2, 14, 3, 16], "texture": "#0"},
+				"east": {"uv": [2, 14, 3, 16], "texture": "#0"},
+				"south": {"uv": [2, 14, 3, 16], "texture": "#0"},
+				"west": {"uv": [2, 14, 3, 16], "texture": "#0"},
+				"up": {"uv": [2, 13, 3, 14], "texture": "#0"},
+				"down": {"uv": [2, 13, 3, 14], "texture": "#0"}
+			}
+		},
+		{
+			"name": "gem",
+			"from": [7, 2, 7],
+			"to": [9, 3, 9],
+			"faces": {
+				"north": {"uv": [0, 15, 2, 16], "texture": "#0"},
+				"east": {"uv": [0, 15, 2, 16], "texture": "#0"},
+				"south": {"uv": [0, 15, 2, 16], "texture": "#0"},
+				"west": {"uv": [0, 15, 2, 16], "texture": "#0"},
+				"up": {"uv": [14, 14, 16, 16], "texture": "#0"},
+				"down": {"uv": [14, 14, 16, 16], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, -3.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, -3.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"rotation": [-30, 0, 0]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-30, 0, 0]
+		},
+		"ground": {
+			"rotation": [45, 0, 0],
+			"translation": [0, 4, 0]
+		},
+		"gui": {
+			"rotation": [58, 31, -45],
+			"translation": [-0.5, -0.5, 0],
+			"scale": [0.9, 0.9, 0.9]
+		},
+		"head": {
+			"rotation": [-90, 0, 132],
+			"translation": [0.75, 8.25, -1.25]
+		},
+		"fixed": {
+			"translation": [0, -1.75, 0],
+			"scale": [0.9, 0.9, 0.9]
+		}
+	}
+}

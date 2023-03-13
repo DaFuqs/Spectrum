@@ -385,6 +385,7 @@ public class SpectrumItems {
 	
 	// Lore
 	public static final Item MYSTERIOUS_LOCKET = new ItemWithTooltip(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), new String[]{"item.spectrum.mysterious_locket.tooltip", "item.spectrum.mysterious_locket.tooltip2"});
+	public static final Item MYSTERIOUS_COMPASS = new Item(Tab.EQUIPMENT.settings(1, Rarity.RARE));
 	
 	// Trinkets
 	public static final Item FANCIFUL_BELT = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
@@ -685,6 +686,7 @@ public class SpectrumItems {
 		register("crescent_clock", CRESCENT_CLOCK, DyeColor.MAGENTA);
 		
 		register("mysterious_locket", MYSTERIOUS_LOCKET, DyeColor.GRAY);
+		register("mysterious_compass", MYSTERIOUS_COMPASS, DyeColor.GRAY);
 	}
 	
 	public static void registerConsumables() {

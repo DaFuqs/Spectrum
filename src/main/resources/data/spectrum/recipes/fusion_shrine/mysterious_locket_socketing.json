@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:fusion_shrine",
+  "time": 1200,
+  "experience": 16.0,
+  "fluid": "spectrum:liquid_crystal",
+  "ingredients": [
+    {
+      "item": "spectrum:mysterious_locket"
+    },
+    {
+      "item": "spectrum:moonstone_core"
+    },
+    {
+      "item": "spectrum:white_pigment",
+      "count": 16
+    }
+  ],
+  "result": {
+    "item": "spectrum:mysterious_locket",
+    "nbt": "{Socketed: 1b}"
+  },
+  "required_advancement": "spectrum:progression/unlock_mysterious_locket_socketing",
+  "world_conditions": [],
+  "start_crafting_effect": "nothing",
+  "during_crafting_effects": [],
+  "finish_crafting_effect": "single_visual_explosion_on_shrine"
+}

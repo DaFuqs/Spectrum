@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "collected_mysterious_locket": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_mysterious_locket"
+      }
+    },
+    "reached_endgame": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
+      }
+    }
+  }
+}

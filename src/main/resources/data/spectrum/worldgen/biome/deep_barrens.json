@@ -36,7 +36,9 @@
   },
   "spawn_costs": {},
   "carvers": {
-    "air": "minecraft:cave"
+    "air": [
+      "spectrum:dd_cave"
+    ]
   },
   "features": [
     [

@@ -254,20 +254,6 @@
       "spectrum:proper_motions_everreflective"
     ]
   },
-  "dimension_ambient": {
-    "subtitle": "spectrum.subtitles.dimension_ambient",
-    "sounds": [
-      "spectrum:dimension_ambient",
-      "spectrum:dimension_ambient2",
-      "spectrum:dimension_ambient3",
-      "spectrum:dimension_ambient4",
-      "spectrum:dimension_ambient5",
-      "spectrum:dimension_ambient6",
-      "spectrum:dimension_ambient7",
-      "spectrum:dimension_ambient8",
-      "spectrum:dimension_ambient9"
-    ]
-  },
   "spectrum.ui.new_revelation": {
     "sounds": [
       "spectrum:new_revelation"
@@ -338,9 +324,15 @@
   "ambient.dimension_sounds": {
     "subtitle": "spectrum.subtitles.dimension.ambient",
     "sounds": [
-      "spectrum:dimension_ambient1",
+      "spectrum:dimension_ambient",
       "spectrum:dimension_ambient2",
-      "spectrum:dimension_ambient3"
+      "spectrum:dimension_ambient3",
+      "spectrum:dimension_ambient4",
+      "spectrum:dimension_ambient5",
+      "spectrum:dimension_ambient6",
+      "spectrum:dimension_ambient7",
+      "spectrum:dimension_ambient8",
+      "spectrum:dimension_ambient9"
     ]
   },
   "pedestal_crafting": {

@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "created_spectral_shard": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/create_spectral_shard" }
+    "reached_endgame": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
+      }
     }
   }
 }

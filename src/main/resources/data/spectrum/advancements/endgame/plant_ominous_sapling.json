@@ -1,8 +1,8 @@
 {
-  "parent": "spectrum:lategame/build_complex_pedestal_structure",
+  "parent": "spectrum:endgame/spectrum_endgame",
   "display": {
     "icon": {
-        "item": "spectrum:ominous_sapling"
+      "item": "spectrum:ominous_sapling"
     },
     "hidden": true,
     "title": {
@@ -23,7 +23,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure" }
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
+      }
     }
   }
 }

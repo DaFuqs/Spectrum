@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.finish_progression.description"
     }
   },
-  "parent": "spectrum:lategame/create_spectral_shard",
+  "parent": "spectrum:endgame/spectrum_endgame",
   "criteria": {
     "completed_spectrum": {
       "trigger": "revelationary:advancement_gotten",
@@ -20,8 +20,10 @@
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/create_spectral_shard" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
+      }
     }
   },
   "rewards": {

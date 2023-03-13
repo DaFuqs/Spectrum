@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.create_spectral_shard.description"
     }
   },
-  "parent": "spectrum:lategame/grow_ominous_sapling",
+  "parent": "spectrum:endgame/spectrum_endgame",
   "criteria": {
     "created_spectral_shard": {
       "trigger": "spectrum:crafted_with_fusion_shrine",
@@ -28,7 +28,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/grow_ominous_sapling"
+        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
       }
     }
   },

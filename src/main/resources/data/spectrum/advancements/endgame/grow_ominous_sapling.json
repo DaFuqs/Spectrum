@@ -1,8 +1,8 @@
 {
-  "parent": "spectrum:lategame/plant_ominous_sapling",
+  "parent": "spectrum:endgame/plant_ominous_sapling",
   "display": {
     "icon": {
-        "item": "minecraft:dead_bush"
+      "item": "minecraft:dead_bush"
     },
     "hidden": true,
     "title": {
@@ -18,7 +18,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:lategame/plant_ominous_sapling" }
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/plant_ominous_sapling"
+      }
     }
   }
 }

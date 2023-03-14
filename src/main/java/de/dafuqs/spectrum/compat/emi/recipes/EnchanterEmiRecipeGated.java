@@ -18,18 +18,18 @@ import net.minecraft.util.*;
 
 import java.util.stream.*;
 
-public class EnchanterEmiRecipe extends SpectrumEmiRecipe<GatedSpectrumRecipe> {
+public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectrumRecipe> {
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/enchanter.png");
 	private final Text description;
 	private final int craftingTime;
-
-	public EnchanterEmiRecipe(EmiRecipeCategory category, EnchanterRecipe recipe) {
+	
+	public EnchanterEmiRecipeGated(EmiRecipeCategory category, EnchanterRecipe recipe) {
 		this(category, recipe, getCraftingTimeText(recipe.getCraftingTime()), recipe.getCraftingTime());
 		input = Stream.concat(input.stream(), Stream.of(EmiStack.of(
-			KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true)))).toList();
+				KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true)))).toList();
 	}
-
-	public EnchanterEmiRecipe(EmiRecipeCategory category, EnchantmentUpgradeRecipe recipe) {
+	
+	public EnchanterEmiRecipeGated(EmiRecipeCategory category, EnchantmentUpgradeRecipe recipe) {
 		this(category, recipe, Text.translatable("container.spectrum.rei.enchantment_upgrade.required_item_count", recipe.getRequiredItemCount()), 0);
 		input = Lists.newArrayList();
 		input.add(EmiIngredient.of(recipe.getIngredients().get(0))); // the center stack
@@ -41,8 +41,8 @@ public class EnchanterEmiRecipe extends SpectrumEmiRecipe<GatedSpectrumRecipe> {
 		}
 		input.add(EmiStack.of(KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true)));
 	}
-
-	private EnchanterEmiRecipe(EmiRecipeCategory category, GatedSpectrumRecipe recipe, Text description, int craftingTime) {
+	
+	private EnchanterEmiRecipeGated(EmiRecipeCategory category, GatedSpectrumRecipe recipe, Text description, int craftingTime) {
 		super(category, EnchanterRecipe.UNLOCK_IDENTIFIER, recipe, 132, 95);
 		this.craftingTime = craftingTime;
 		this.description = description;

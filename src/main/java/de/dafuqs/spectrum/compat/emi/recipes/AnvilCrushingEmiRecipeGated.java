@@ -11,13 +11,13 @@ import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 
-public class AnvilCrushingEmiRecipe extends SpectrumEmiRecipe<AnvilCrushingRecipe> {
+public class AnvilCrushingEmiRecipeGated extends GatedSpectrumEmiRecipe<AnvilCrushingRecipe> {
 	private final static Identifier WALL_TEXTURE = SpectrumCommon.locate("textures/gui/container/anvil_crushing.png");
-
-	public AnvilCrushingEmiRecipe(AnvilCrushingRecipe recipe) {
+	
+	public AnvilCrushingEmiRecipeGated(AnvilCrushingRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.ANVIL_CRUSHING, recipe, 116, 64);
 	}
-
+	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(EmiStack.of(Items.ANVIL), 21, 10).drawBack(false);

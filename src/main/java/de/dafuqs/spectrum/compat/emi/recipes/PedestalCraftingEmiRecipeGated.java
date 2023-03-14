@@ -13,10 +13,10 @@ import net.minecraft.util.*;
 
 import java.util.*;
 
-public class PedestalCraftingEmiRecipe extends SpectrumEmiRecipe<PedestalCraftingRecipe> {
+public class PedestalCraftingEmiRecipeGated extends GatedSpectrumEmiRecipe<PedestalCraftingRecipe> {
 	private static final int GEMSTONE_SLOTS = 9;
-
-	public PedestalCraftingEmiRecipe(PedestalCraftingRecipe recipe) {
+	
+	public PedestalCraftingEmiRecipeGated(PedestalCraftingRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, recipe, 124, 90);
 		input = getIngredients(recipe);
 	}

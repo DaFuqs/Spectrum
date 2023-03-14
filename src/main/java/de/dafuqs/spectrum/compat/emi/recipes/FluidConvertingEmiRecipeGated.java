@@ -7,9 +7,9 @@ import dev.emi.emi.api.render.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.util.*;
 
-public class FluidConvertingEmiRecipe extends SpectrumEmiRecipe<FluidConvertingRecipe> {
+public class FluidConvertingEmiRecipeGated extends GatedSpectrumEmiRecipe<FluidConvertingRecipe> {
 	
-	public FluidConvertingEmiRecipe(EmiRecipeCategory category, FluidConvertingRecipe recipe, Identifier recipeTypeUnlockIdentifier) {
+	public FluidConvertingEmiRecipeGated(EmiRecipeCategory category, FluidConvertingRecipe recipe, Identifier recipeTypeUnlockIdentifier) {
 		super(category, recipeTypeUnlockIdentifier, recipe, 78, 26);
 	}
 	

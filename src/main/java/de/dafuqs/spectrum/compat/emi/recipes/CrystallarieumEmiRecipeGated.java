@@ -12,20 +12,20 @@ import net.minecraft.util.*;
 import java.util.*;
 import java.util.stream.*;
 
-public class CrystallarieumEmiRecipe extends SpectrumEmiRecipe<CrystallarieumRecipe> {
+public class CrystallarieumEmiRecipeGated extends GatedSpectrumEmiRecipe<CrystallarieumRecipe> {
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
-
-	public CrystallarieumEmiRecipe(CrystallarieumRecipe recipe) {
+	
+	public CrystallarieumEmiRecipeGated(CrystallarieumRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, CrystallarieumRecipe.UNLOCK_IDENTIFIER, recipe, 124, 100);
 		input = List.of(
 				EmiIngredient.of(recipe.getIngredientStack()),
 				EmiStack.of(recipe.getGrowthStages().get(0).getBlock())
 		);
 		output = Stream.concat(
-			Stream.concat(
-				Stream.of(recipe.getOutput()),
-				recipe.getAdditionalOutputs().stream())
-			.map(EmiStack::of),
+				Stream.concat(
+								Stream.of(recipe.getOutput()),
+								recipe.getAdditionalOutputs().stream())
+						.map(EmiStack::of),
 			recipe.getGrowthStages().stream().map(s -> EmiStack.of(s.getBlock())).filter(s -> !s.isEmpty())
 		).toList();
 	}

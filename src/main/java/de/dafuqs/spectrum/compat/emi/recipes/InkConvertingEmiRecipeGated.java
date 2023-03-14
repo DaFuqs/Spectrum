@@ -6,16 +6,16 @@ import dev.emi.emi.api.render.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.text.*;
 
-public class InkConvertingEmiRecipe extends SpectrumEmiRecipe<InkConvertingRecipe> {
-
-	public InkConvertingEmiRecipe(InkConvertingRecipe recipe) {
+public class InkConvertingEmiRecipeGated extends GatedSpectrumEmiRecipe<InkConvertingRecipe> {
+	
+	public InkConvertingEmiRecipeGated(InkConvertingRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.INK_CONVERTING, InkConvertingRecipe.UNLOCK_IDENTIFIER, recipe, 136, 20);
 	}
-
+	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(input.get(0), 0, 1);
-
+		
 		widgets.addTexture(EmiTexture.EMPTY_ARROW, 22, 1);
 
 		// output amount & required time

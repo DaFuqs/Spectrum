@@ -6,13 +6,13 @@ import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.*;
 
-public class SpiritInstillingEmiRecipe extends SpectrumEmiRecipe<SpiritInstillerRecipe> {
-
-	public SpiritInstillingEmiRecipe(SpiritInstillerRecipe recipe) {
+public class SpiritInstillingEmiRecipeGated extends GatedSpectrumEmiRecipe<SpiritInstillerRecipe> {
+	
+	public SpiritInstillingEmiRecipeGated(SpiritInstillerRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.SPIRIT_INSTILLER, SpiritInstillerRecipe.UNLOCK_IDENTIFIER, recipe, 116, 48);
 		input = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList();
 	}
-
+	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(input.get(0), 0, 0);

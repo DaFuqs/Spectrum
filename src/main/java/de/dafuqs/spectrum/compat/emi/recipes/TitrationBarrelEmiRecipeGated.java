@@ -7,12 +7,12 @@ import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.text.*;
 
-public class TitrationBarrelEmiRecipe extends SpectrumEmiRecipe<ITitrationBarrelRecipe> {
-
-	public TitrationBarrelEmiRecipe(ITitrationBarrelRecipe recipe) {
+public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitrationBarrelRecipe> {
+	
+	public TitrationBarrelEmiRecipeGated(ITitrationBarrelRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, TitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER, recipe, 136, 50);
 	}
-
+	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		// input slots

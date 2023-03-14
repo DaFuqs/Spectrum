@@ -1,7 +1,7 @@
 {
   "type": "spectrum:dragonrot_converting",
   "ingredient": {
-    "tag": "minecraft:base_stone_overworld"
+    "item": "minecraft:deepslate"
   },
   "result": {
     "item": "spectrum:blackslag",

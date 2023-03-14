@@ -11,10 +11,10 @@ import net.minecraft.text.*;
 
 import java.util.*;
 
-public class FusionShrineEmiRecipe extends SpectrumEmiRecipe<FusionShrineRecipe> {
+public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShrineRecipe> {
 	private final List<OrderedText> texts;
-
-	public FusionShrineEmiRecipe(FusionShrineRecipe recipe) {
+	
+	public FusionShrineEmiRecipeGated(FusionShrineRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, FusionShrineRecipe.UNLOCK_IDENTIFIER, recipe, 134, 60);
 		if (recipe.getDescription().isPresent()) {
 			MinecraftClient client = MinecraftClient.getInstance();

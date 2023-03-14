@@ -41,8 +41,8 @@ public class PotionWorkshopReactingEmiRecipe extends EmiInfoRecipe {
 	@Override
 	public void addWidgets(WidgetHolder widgets) {
 		if (!isUnlocked()) {
-			widgets.addText(SpectrumBaseEmiRecipe.HIDDEN_LINE_1, getDisplayWidth() / 2, getDisplayHeight() / 2 - 8, 0x3f3f3f, false).horizontalAlign(Alignment.CENTER);
-			widgets.addText(SpectrumBaseEmiRecipe.HIDDEN_LINE_2, getDisplayWidth() / 2, getDisplayHeight() / 2 + 2, 0x3f3f3f, false).horizontalAlign(Alignment.CENTER);
+			widgets.addText(SpectrumEmiRecipe.HIDDEN_LINE_1, getDisplayWidth() / 2, getDisplayHeight() / 2 - 8, 0x3f3f3f, false).horizontalAlign(Alignment.CENTER);
+			widgets.addText(SpectrumEmiRecipe.HIDDEN_LINE_2, getDisplayWidth() / 2, getDisplayHeight() / 2 + 2, 0x3f3f3f, false).horizontalAlign(Alignment.CENTER);
 		} else {
 			super.addWidgets(widgets);
 		}

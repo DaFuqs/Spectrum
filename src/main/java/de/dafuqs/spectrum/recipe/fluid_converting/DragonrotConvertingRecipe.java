@@ -12,7 +12,7 @@ import java.util.*;
 
 public class DragonrotConvertingRecipe extends FluidConvertingRecipe {
 
-    public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("lategame/interact_with_dragonrot");
+    public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("hidden/interact_with_dragonrot");
     private static final Set<Item> outputItems = new HashSet<>();
 
     public DragonrotConvertingRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, @NotNull Ingredient inputIngredient, ItemStack outputItemStack) {

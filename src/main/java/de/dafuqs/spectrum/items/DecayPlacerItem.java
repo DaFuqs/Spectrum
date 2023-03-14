@@ -1,23 +1,23 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
 import net.minecraft.item.*;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.TickPriority;
-import net.minecraft.world.World;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public class DecayPlacerItem extends AliasedBlockItem {
 	
-	public DecayPlacerItem(Block block, Settings settings) {
+	protected final List<Text> tooltips;
+	
+	public DecayPlacerItem(Block block, Settings settings, List<Text> tooltips) {
 		super(block, settings);
+		this.tooltips = tooltips;
 	}
 	
 	@Override
@@ -41,17 +41,7 @@ public class DecayPlacerItem extends AliasedBlockItem {
 	@Override
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		
-		Item item = itemStack.getItem();
-		if (item.equals(SpectrumItems.BOTTLE_OF_FADING)) {
-			tooltip.add(Text.translatable("item.spectrum.bottle_of_fading.tooltip"));
-		} else if (item.equals(SpectrumItems.BOTTLE_OF_FAILING)) {
-			tooltip.add(Text.translatable("item.spectrum.bottle_of_failing.tooltip"));
-		} else if (item.equals(SpectrumItems.BOTTLE_OF_RUIN)) {
-			tooltip.add(Text.translatable("item.spectrum.bottle_of_ruin.tooltip"));
-		} else if (item.equals(SpectrumItems.BOTTLE_OF_DECAY_AWAY)) {
-			tooltip.add(Text.translatable("item.spectrum.bottle_of_decay_away.tooltip"));
-		}
+		tooltip.addAll(tooltips);
 	}
 	
 }

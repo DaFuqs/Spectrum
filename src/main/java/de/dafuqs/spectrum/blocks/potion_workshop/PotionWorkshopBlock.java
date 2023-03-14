@@ -9,6 +9,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
@@ -67,6 +68,16 @@ public class PotionWorkshopBlock extends BlockWithEntity {
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
+	
+	@Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+	
+	@Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+    }
 	
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!(newState.getBlock() instanceof PotionWorkshopBlock)) {

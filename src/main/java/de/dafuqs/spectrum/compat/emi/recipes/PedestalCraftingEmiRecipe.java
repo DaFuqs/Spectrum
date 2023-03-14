@@ -1,27 +1,23 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.dafuqs.spectrum.blocks.pedestal.*;
+import de.dafuqs.spectrum.compat.emi.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import dev.emi.emi.api.stack.*;
+import dev.emi.emi.api.widget.TextWidget.*;
+import dev.emi.emi.api.widget.*;
+import net.minecraft.client.*;
+import net.minecraft.util.*;
 
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
-import de.dafuqs.spectrum.compat.emi.SpectrumRecipeCategories;
-import de.dafuqs.spectrum.compat.emi.SpectrumEmiRecipe;
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.inventories.PedestalScreen;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import dev.emi.emi.api.stack.EmiIngredient;
-import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.widget.TextWidget.Alignment;
-import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.Identifier;
+import java.util.*;
 
 public class PedestalCraftingEmiRecipe extends SpectrumEmiRecipe<PedestalCraftingRecipe> {
 	private static final int GEMSTONE_SLOTS = 9;
 
 	public PedestalCraftingEmiRecipe(PedestalCraftingRecipe recipe) {
-		super(SpectrumRecipeCategories.PEDESTAL_CRAFTING, recipe, 124, 90);
+		super(SpectrumEmiRecipeCategories.PEDESTAL_CRAFTING, recipe, 124, 90);
 		input = getIngredients(recipe);
 	}
 	

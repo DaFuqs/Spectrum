@@ -1,42 +1,39 @@
 package de.dafuqs.spectrum.compat.emi;
 
-import java.util.List;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
+import dev.emi.emi.api.recipe.*;
+import dev.emi.emi.api.stack.*;
+import dev.emi.emi.api.widget.TextWidget.*;
+import dev.emi.emi.api.widget.*;
+import net.minecraft.client.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
-import org.jetbrains.annotations.Nullable;
-
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import dev.emi.emi.api.recipe.EmiRecipe;
-import dev.emi.emi.api.recipe.EmiRecipeCategory;
-import dev.emi.emi.api.stack.EmiIngredient;
-import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.widget.TextWidget.Alignment;
-import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import java.util.*;
 
 public abstract class SpectrumBaseEmiRecipe implements EmiRecipe {
-	private static final Text HIDDEN_LINE_1 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1");
-	private static final Text HIDDEN_LINE_2 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2");
+	public static final Text HIDDEN_LINE_1 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_1");
+	public static final Text HIDDEN_LINE_2 = Text.translatable("container.spectrum.rei.pedestal_crafting.recipe_not_unlocked_line_2");
 	public final EmiRecipeCategory category;
-	public final Identifier unlock, id;
+	public final Identifier unlockAdvancementIdentifier, recipeIdentifier;
 	public final int width, height;
+	public final boolean secret;
 	public List<EmiIngredient> input = List.of();
 	public List<EmiStack> output = List.of();
-
-	public SpectrumBaseEmiRecipe(EmiRecipeCategory category, Identifier unlock, Identifier id, int width, int height) {
+	
+	public SpectrumBaseEmiRecipe(EmiRecipeCategory category, Identifier unlockAdvancementIdentifier, boolean secret, Identifier recipeIdentifier, int width, int height) {
 		this.category = category;
-		this.unlock = unlock;
-		this.id = id;
+		this.unlockAdvancementIdentifier = unlockAdvancementIdentifier;
+		this.secret = secret;
+		this.recipeIdentifier = recipeIdentifier;
 		this.width = width;
 		this.height = height;
 	}
 
 	public boolean isUnlocked() {
-		if (unlock != null && !hasAdvancement(unlock)) {
-			return false;
-		}
-		return true;
+		return unlockAdvancementIdentifier == null || hasAdvancement(unlockAdvancementIdentifier);
 	}
 
 	public boolean hasAdvancement(Identifier advancement) {
@@ -70,7 +67,7 @@ public abstract class SpectrumBaseEmiRecipe implements EmiRecipe {
 
 	@Override
 	public @Nullable Identifier getId() {
-		return id;
+		return recipeIdentifier;
 	}
 
 	@Override
@@ -111,9 +108,14 @@ public abstract class SpectrumBaseEmiRecipe implements EmiRecipe {
 			addUnlockedWidgets(widgets);
 		}
 	}
-
+	
 	@Override
 	public boolean supportsRecipeTree() {
 		return EmiRecipe.super.supportsRecipeTree() && isUnlocked();
+	}
+	
+	@Override
+	public boolean hideCraftable() {
+		return secret || (SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked && !isUnlocked());
 	}
 }

@@ -1,23 +1,21 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import java.util.List;
+import de.dafuqs.spectrum.compat.emi.*;
+import de.dafuqs.spectrum.recipe.fusion_shrine.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.emi.api.stack.*;
+import dev.emi.emi.api.widget.TextWidget.*;
+import dev.emi.emi.api.widget.*;
+import net.minecraft.client.*;
+import net.minecraft.text.*;
 
-import de.dafuqs.spectrum.compat.emi.SpectrumRecipeCategories;
-import de.dafuqs.spectrum.compat.emi.SpectrumEmiRecipe;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import dev.emi.emi.api.stack.EmiIngredient;
-import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.widget.TextWidget.Alignment;
-import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.OrderedText;
+import java.util.*;
 
 public class FusionShrineEmiRecipe extends SpectrumEmiRecipe<FusionShrineRecipe> {
 	private final List<OrderedText> texts;
 
 	public FusionShrineEmiRecipe(FusionShrineRecipe recipe) {
-		super(SpectrumRecipeCategories.FUSION_SHRINE, FusionShrineRecipe.UNLOCK_IDENTIFIER, recipe, 134, 60);
+		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, FusionShrineRecipe.UNLOCK_IDENTIFIER, recipe, 134, 60);
 		if (recipe.getDescription().isPresent()) {
 			MinecraftClient client = MinecraftClient.getInstance();
 			texts = client.textRenderer.wrapLines(recipe.getDescription().get(), width);

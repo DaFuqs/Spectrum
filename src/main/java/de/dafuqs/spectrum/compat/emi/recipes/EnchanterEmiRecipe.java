@@ -1,24 +1,22 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import java.util.stream.Stream;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.emi.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.enchanter.*;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.emi.api.recipe.*;
+import dev.emi.emi.api.render.*;
+import dev.emi.emi.api.stack.*;
+import dev.emi.emi.api.widget.TextWidget.*;
+import dev.emi.emi.api.widget.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-import com.google.common.collect.Lists;
-
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.emi.SpectrumEmiRecipe;
-import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import dev.emi.emi.api.recipe.EmiRecipeCategory;
-import dev.emi.emi.api.render.EmiTexture;
-import dev.emi.emi.api.stack.EmiIngredient;
-import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.widget.TextWidget.Alignment;
-import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import java.util.stream.*;
 
 public class EnchanterEmiRecipe extends SpectrumEmiRecipe<GatedSpectrumRecipe> {
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/enchanter.png");
@@ -32,8 +30,7 @@ public class EnchanterEmiRecipe extends SpectrumEmiRecipe<GatedSpectrumRecipe> {
 	}
 
 	public EnchanterEmiRecipe(EmiRecipeCategory category, EnchantmentUpgradeRecipe recipe) {
-		this(category, recipe, Text.translatable("container.spectrum.rei.enchantment_upgrade.required_item_count",
-			recipe.getRequiredItemCount()), 0);
+		this(category, recipe, Text.translatable("container.spectrum.rei.enchantment_upgrade.required_item_count", recipe.getRequiredItemCount()), 0);
 		input = Lists.newArrayList();
 		input.add(EmiIngredient.of(recipe.getIngredients().get(0))); // the center stack
 		int requiredItemCountSplit = recipe.getRequiredItemCount() / 8;

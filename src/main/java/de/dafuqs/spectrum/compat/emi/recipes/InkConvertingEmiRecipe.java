@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import de.dafuqs.spectrum.compat.emi.SpectrumRecipeCategories;
-import de.dafuqs.spectrum.compat.emi.SpectrumEmiRecipe;
-import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
-import dev.emi.emi.api.render.EmiTexture;
-import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.text.Text;
+import de.dafuqs.spectrum.compat.emi.*;
+import de.dafuqs.spectrum.recipe.ink_converting.*;
+import dev.emi.emi.api.render.*;
+import dev.emi.emi.api.widget.*;
+import net.minecraft.text.*;
 
 public class InkConvertingEmiRecipe extends SpectrumEmiRecipe<InkConvertingRecipe> {
 
 	public InkConvertingEmiRecipe(InkConvertingRecipe recipe) {
-		super(SpectrumRecipeCategories.INK_CONVERTING, InkConvertingRecipe.UNLOCK_IDENTIFIER, recipe, 136, 20);
+		super(SpectrumEmiRecipeCategories.INK_CONVERTING, InkConvertingRecipe.UNLOCK_IDENTIFIER, recipe, 136, 20);
 	}
 
 	@Override

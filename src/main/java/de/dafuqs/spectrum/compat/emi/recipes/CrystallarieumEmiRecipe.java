@@ -1,28 +1,25 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import java.util.List;
-import java.util.stream.Stream;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.emi.*;
+import de.dafuqs.spectrum.recipe.crystallarieum.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.emi.api.stack.*;
+import dev.emi.emi.api.widget.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.emi.SpectrumRecipeCategories;
-import de.dafuqs.spectrum.compat.emi.SpectrumEmiRecipe;
-import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumCatalyst;
-import de.dafuqs.spectrum.recipe.crystallarieum.CrystallarieumRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import dev.emi.emi.api.stack.EmiIngredient;
-import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import java.util.*;
+import java.util.stream.*;
 
 public class CrystallarieumEmiRecipe extends SpectrumEmiRecipe<CrystallarieumRecipe> {
 	private final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/crystallarieum.png");
 
 	public CrystallarieumEmiRecipe(CrystallarieumRecipe recipe) {
-		super(SpectrumRecipeCategories.CRYSTALLARIEUM, CrystallarieumRecipe.UNLOCK_IDENTIFIER, recipe, 124, 100);
+		super(SpectrumEmiRecipeCategories.CRYSTALLARIEUM, CrystallarieumRecipe.UNLOCK_IDENTIFIER, recipe, 124, 100);
 		input = List.of(
-			EmiIngredient.of(recipe.getIngredientStack()),
-			EmiStack.of(recipe.getGrowthStages().get(0).getBlock())
+				EmiIngredient.of(recipe.getIngredientStack()),
+				EmiStack.of(recipe.getGrowthStages().get(0).getBlock())
 		);
 		output = Stream.concat(
 			Stream.concat(

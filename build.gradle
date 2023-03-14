@@ -78,8 +78,18 @@ dependencies {
 
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
+	
+	// https://github.com/emilyploszaj/emi
+	modCompileOnly "dev.emi:emi:${emi_version}:api"
+	//modCompileOnly "dev.emi:emi:${emi_version}:api"
+
+	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
+		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
+		case "emi": modLocalRuntime("dev.emi:emi:$emi_version"); break
+		case "disabled": break
+		default: println("Unknown recipe viewer specified: $recipe_viewer. Must be EMI, REI or disabled.")
+	}
 
 	// https://github.com/emilyploszaj/trinkets
 	modImplementation "dev.emi:trinkets:${project.trinkets_version}"

@@ -34,6 +34,9 @@
     "rei_client": [
       "de.dafuqs.spectrum.compat.REI.REIClientIntegration"
     ],
+    "emi": [
+      "de.dafuqs.spectrum.compat.emi.SpectrumEmiPlugin"
+    ],
     "cardinal-components": [
       "de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider",
       "de.dafuqs.spectrum.cca.HardcoreDeathComponent",

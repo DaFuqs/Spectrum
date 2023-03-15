@@ -22,10 +22,7 @@ import java.util.List;
 
 public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPowered {
 	
-	// White makes more sense, as it's the color of life, _light_, and
-	// purity, but it's not acquired for a bit. Also, glow ink is blue.
-	// public static final InkColor USED_COLOR = InkColors.WHITE;
-	public static final InkColor USED_COLOR = InkColors.BLUE;
+	public static final InkColor USED_COLOR = InkColors.LIGHT_BLUE;
 	public static final int INK_COST = 20;
 	public static ItemStack ITEM_COST = new ItemStack(Items.GLOW_INK_SAC, 1);
 	

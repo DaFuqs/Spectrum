@@ -12,7 +12,7 @@ import java.util.*;
 public class BlockToBlockWithChanceEmiRecipe extends SpectrumEmiRecipe {
 	
 	public BlockToBlockWithChanceEmiRecipe(EmiRecipeCategory category, Identifier id, EmiIngredient in, EmiStack out, Identifier unlock) {
-		super(category, unlock, false, id, 78, 26);
+		super(category, unlock, id, 78, 26);
 		this.input = List.of(in);
 		this.output = List.of(out);
 	}

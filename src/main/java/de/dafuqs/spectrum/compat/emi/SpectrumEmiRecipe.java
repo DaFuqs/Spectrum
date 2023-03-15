@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.compat.emi;
 
 import de.dafuqs.revelationary.api.advancements.*;
-import de.dafuqs.spectrum.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
@@ -112,8 +111,4 @@ public abstract class SpectrumEmiRecipe implements EmiRecipe {
 		return EmiRecipe.super.supportsRecipeTree() && isUnlocked();
 	}
 	
-	@Override
-	public boolean hideCraftable() {
-		return SpectrumCommon.CONFIG.REIListsRecipesAsNotUnlocked && !isUnlocked();
-	}
 }

@@ -140,7 +140,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	}
 	
 	private boolean isEmpty(float temperature, int extractedBottles, ITitrationBarrelRecipe recipe) {
-		if (recipe.isEmpty() || !getFluidVariant().isOf(recipe.getFluid())) {
+		if (recipe.isEmpty() || !getFluidVariant().isOf(recipe.getFluidInput())) {
 			return true;
 		}
 		return extractedBottles >= recipe.getOutputCountAfterAngelsShare(temperature, getSealSeconds());
@@ -166,9 +166,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			}
 		} else {
 			ITitrationBarrelRecipe recipe = optionalRecipe.get();
-			if (this.getFluidVariant().isOf(recipe.getFluid()) && recipe.canPlayerCraft(player)) {
+			if (this.getFluidVariant().isOf(recipe.getFluidInput()) && recipe.canPlayerCraft(player)) {
 				Item tappingItem = recipe.getTappingItem();
-
+				
 				boolean canTap = tappingItem == Items.AIR;
 				if (!canTap) {
 					if (handStack.isOf(tappingItem)) {

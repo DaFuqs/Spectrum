@@ -27,7 +27,7 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	Item getTappingItem();
 	
-	Fluid getFluid();
+	Fluid getFluidInput();
 	
 	float getAngelsSharePerMcDay();
 	

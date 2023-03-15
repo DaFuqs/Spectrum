@@ -15,12 +15,6 @@ import java.util.*;
 
 public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 
-	private static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
-		add(1);
-		add(10);
-		add(100);
-	}};
-
 	protected final EntryIngredient tappingIngredient;
 	protected final int minFermentationTimeHours;
 	protected final TitrationBarrelRecipe.FermentationData fermentationData;
@@ -38,7 +32,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 
 	private static EntryIngredient buildOutputs(ITitrationBarrelRecipe recipe) {
 		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
-			return EntryIngredients.ofItemStacks(titrationBarrelRecipe.getOutputVariations(FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS));
+			return EntryIngredients.ofItemStacks(titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS));
 		} else {
 			return EntryIngredients.of(recipe.getOutput());
 		}
@@ -46,8 +40,8 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 
 	public static List<EntryIngredient> buildInputs(ITitrationBarrelRecipe recipe) {
 		List<EntryIngredient> inputs = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
-		if (recipe.getFluid() != Fluids.EMPTY) {
-			inputs.add(EntryIngredients.of(recipe.getFluid().getBucketItem()));
+		if (recipe.getFluidInput() != Fluids.EMPTY) {
+			inputs.add(EntryIngredients.of(recipe.getFluidInput().getBucketItem()));
 		}
 		return inputs;
 	}

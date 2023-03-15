@@ -26,6 +26,11 @@ import java.util.*;
 public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitrationBarrelRecipe {
 	
 	public static final ItemStack NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK = Items.POTION.getDefaultStack();
+	public static final List<Integer> FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS = new ArrayList<>() {{
+		add(1);
+		add(10);
+		add(100);
+	}};
 	
 	protected final List<IngredientStack> inputStacks;
 	protected final ItemStack outputItemStack;
@@ -211,8 +216,8 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		}
 		return list;
 	}
-
-	public Fluid getFluid() {
+	
+	public Fluid getFluidInput() {
 		return fluid;
 	}
 

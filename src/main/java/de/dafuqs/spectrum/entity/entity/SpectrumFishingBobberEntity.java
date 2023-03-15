@@ -39,7 +39,7 @@ import java.util.*;
 
 // yeah, this pretty much is a full reimplementation. Sadge
 // I wanted to use more of FishingBobberEntity for mod compat,
-// but most methods are either private or are tricky to extend
+// but most of FishingRod's methods are either private or are tricky to extend
 public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	private static final Logger LOGGER = LogUtils.getLogger();
@@ -105,6 +105,15 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		this.setPitch((float) (MathHelper.atan2(vec3d.y, vec3d.horizontalLength()) * 57.2957763671875D));
 		this.prevYaw = this.getYaw();
 		this.prevPitch = this.getPitch();
+	}
+	
+	@Override
+	public boolean shouldRender(double distance) {
+		return distance < 4096.0;
+	}
+	
+	@Override
+	public void updateTrackedPositionAndAngles(double x, double y, double z, float yaw, float pitch, int interpolationSteps, boolean interpolate) {
 	}
 	
 	public boolean isAblaze() {
@@ -249,6 +258,16 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	}
 	
 	protected void hookedEntityTick(Entity hookedEntity) {
+	}
+	
+	@Override
+	protected Entity.MoveEffect getMoveEffect() {
+		return MoveEffect.NONE;
+	}
+	
+	@Override
+	public boolean canUsePortals() {
+		return false;
 	}
 	
 	public ItemStack getFishingRod(PlayerEntity player) {
@@ -547,17 +566,16 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	@Override
 	public void handleStatus(byte status) {
-		if (status == 31 && this.world.isClient && this.hookedEntity instanceof PlayerEntity && ((PlayerEntity) this.hookedEntity).isMainPlayer()) {
-			this.pullHookedEntity(this.hookedEntity);
+		if (status == 31 && this.world.isClient && this.hookedEntity instanceof PlayerEntity player && player.isMainPlayer()) {
+			this.pullHookedEntity(player);
 		}
-		
 		super.handleStatus(status);
 	}
 	
 	public void pullHookedEntity(Entity entity) {
-		Entity entity2 = this.getOwner();
-		if (entity2 != null) {
-			Vec3d vec3d = (new Vec3d(entity2.getX() - this.getX(), entity2.getY() - this.getY(), entity2.getZ() - this.getZ())).multiply(0.1D);
+		Entity owner = this.getOwner();
+		if (owner != null) {
+			Vec3d vec3d = (new Vec3d(owner.getX() - this.getX(), owner.getY() - this.getY(), owner.getZ() - this.getZ())).multiply(0.1D);
 			entity.setVelocity(entity.getVelocity().add(vec3d));
 		}
 	}
@@ -589,7 +607,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	@Nullable
 	public PlayerEntity getPlayerOwner() {
 		Entity entity = this.getOwner();
-		return entity instanceof PlayerEntity ? (PlayerEntity) entity : null;
+		return entity instanceof PlayerEntity player ? player : null;
 	}
 	
 	@Nullable
@@ -601,20 +619,19 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	public void onSpawnPacket(EntitySpawnS2CPacket packet) {
 		super.onSpawnPacket(packet);
 		if (this.getPlayerOwner() == null) {
-			int i = packet.getEntityData();
-			LOGGER.error("Failed to recreate fishing hook on client. {} (id: {}) is not a valid owner.", this.world.getEntityById(i), i);
+			int entityData = packet.getEntityData();
+			LOGGER.error("Failed to recreate fishing hook on client. {} (id: {}) is not a valid owner.", this.world.getEntityById(entityData), entityData);
 			this.kill();
 		}
-		
 	}
 	
-	enum State {
+	protected enum State {
 		FLYING,
 		HOOKED_IN_ENTITY,
 		BOBBING
 	}
 	
-	private enum PositionType {
+	protected enum PositionType {
 		ABOVE_FLUID,
 		INSIDE_FLUID,
 		INVALID

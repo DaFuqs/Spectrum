@@ -40,7 +40,7 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:hidden/collect_vanilla/collect_phantom_membrane",
       "recipe": "spectrum:pedestal/tier2/gemstone_armor/sylph_leggings",
-      "text": "Gives you a short burst of Regeneration on hit, making you get right back up after each hit."
+      "text": "Gives you a short burst of Regeneration on hit, making you get right back up, ready to strike back."
     },
     {
       "type": "spectrum:pedestal_crafting",

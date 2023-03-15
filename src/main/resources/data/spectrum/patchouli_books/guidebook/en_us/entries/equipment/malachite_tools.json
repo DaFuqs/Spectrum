@@ -63,7 +63,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/onyx_glass_arrow",
-      "text": "Deals damage regardless of your targets invisibility frames and resets them. Deals additional damage to armor and shields."
+      "text": "Deals damage regardless of your targets invincibility frames and resets them. Deals additional damage to armor and shields."
     },
     {
       "type": "spectrum:pedestal_crafting",

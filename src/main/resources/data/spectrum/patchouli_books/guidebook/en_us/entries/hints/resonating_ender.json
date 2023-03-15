@@ -11,7 +11,7 @@
       "title": "Where to find",
       "completion_advancement": "spectrum:get_radiating_ender",
       "cost": "minecraft:ender_pearl#4",
-      "text": "Not every block that an Enderman carries seems to be what it looks like at first glance."
+      "text": "Not every block an Enderman carries is what it looks like at first glance."
     },
     {
       "type": "spectrum:hint",

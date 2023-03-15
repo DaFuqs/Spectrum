@@ -88,7 +88,7 @@ public class SpectrumStatusEffects {
 			.addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, "5af92757-cdf2-4443-856c-9f5eb633b1ef", 5.0D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, "924896a5-8538-4b83-a510-509bccf0a897", 2.0D, EntityAttributeModifier.Operation.ADDITION)
 			.addAttributeModifier(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, "9812c88f-dc8e-47d1-a092-38339da9891e", 5.0D, EntityAttributeModifier.Operation.ADDITION)
-			.addAttributeModifier(AdditionalEntityAttributes.WATER_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.25D, EntityAttributeModifier.Operation.ADDITION));
+			.addAttributeModifier(AdditionalEntityAttributes.WATER_SPEED, "9812c88f-dc8e-47d1-a092-38339da9891e", 0.1D, EntityAttributeModifier.Operation.ADDITION));
 	
 	/**
 	 * damage, attack speed, speed & knockback resistance are buffed the more the player kills.

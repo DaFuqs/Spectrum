@@ -11,7 +11,6 @@ import de.dafuqs.spectrum.registries.*;
 import dev.emi.emi.api.recipe.*;
 import dev.emi.emi.api.render.*;
 import dev.emi.emi.api.stack.*;
-import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -43,7 +42,7 @@ public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectru
 	}
 	
 	private EnchanterEmiRecipeGated(EmiRecipeCategory category, GatedSpectrumRecipe recipe, Text description, int craftingTime) {
-		super(category, EnchanterRecipe.UNLOCK_IDENTIFIER, recipe, 132, 95);
+		super(category, EnchanterRecipe.UNLOCK_IDENTIFIER, recipe, 132, 80);
 		this.craftingTime = craftingTime;
 		this.description = description;
 	}
@@ -76,7 +75,7 @@ public class EnchanterEmiRecipeGated extends GatedSpectrumEmiRecipe<GatedSpectru
 		} else {
 			widgets.addTexture(EmiTexture.EMPTY_ARROW, 80, 31);
 		}
-
-		widgets.addText(description, width / 2, 85, 0x3f3f3f, false).horizontalAlign(Alignment.CENTER);
+		
+		widgets.addText(description, 67, 70, 0x3f3f3f, false);
 	}
 }

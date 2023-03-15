@@ -5,12 +5,28 @@ import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import dev.emi.emi.api.stack.*;
 import dev.emi.emi.api.widget.TextWidget.*;
 import dev.emi.emi.api.widget.*;
+import net.minecraft.fluid.*;
 import net.minecraft.text.*;
+
+import java.util.*;
 
 public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitrationBarrelRecipe> {
 	
 	public TitrationBarrelEmiRecipeGated(ITitrationBarrelRecipe recipe) {
 		super(SpectrumEmiRecipeCategories.TITRATION_BARREL, TitrationBarrelRecipe.UNLOCK_ADVANCEMENT_IDENTIFIER, recipe, 136, 50);
+		if (recipe.getFluidInput() != Fluids.EMPTY) {
+			input = new ArrayList<>();
+			input.add(EmiIngredient.of(List.of(FluidEmiStack.of(recipe.getFluidInput()))));
+			input.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
+		}
+		output = buildOutputs(recipe);
+	}
+	
+	private static List<EmiStack> buildOutputs(ITitrationBarrelRecipe recipe) {
+		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
+			return titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS).stream().map(EmiStack::of).toList();
+		}
+		return List.of(EmiStack.of(recipe.getOutput()));
 	}
 	
 	@Override

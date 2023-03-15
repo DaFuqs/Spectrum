@@ -15,14 +15,15 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 	private final List<OrderedText> texts;
 	
 	public FusionShrineEmiRecipeGated(FusionShrineRecipe recipe) {
-		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, FusionShrineRecipe.UNLOCK_IDENTIFIER, recipe, 134, 60);
+		super(SpectrumEmiRecipeCategories.FUSION_SHRINE, FusionShrineRecipe.UNLOCK_IDENTIFIER, recipe, 138, 60);
 		if (recipe.getDescription().isPresent()) {
-			MinecraftClient client = MinecraftClient.getInstance();
-			texts = client.textRenderer.wrapLines(recipe.getDescription().get(), width);
+			texts = MinecraftClient.getInstance().textRenderer.wrapLines(recipe.getDescription().get(), width);
 		} else {
 			texts = List.of();
 		}
-		input = recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList();
+		input = new ArrayList<>();
+		input.add(EmiIngredient.of(List.of(FluidEmiStack.of(recipe.getFluidInput()))));
+		input.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
 		output = List.of(EmiStack.of(recipe.getOutput()));
 	}
 
@@ -40,13 +41,13 @@ public class FusionShrineEmiRecipeGated extends GatedSpectrumEmiRecipe<FusionShr
 		// shrine + fluid
 		if (!input.get(0).isEmpty()) {
 			widgets.addSlot(EmiStack.of(SpectrumBlocks.FUSION_SHRINE_BASALT), 10, 25).drawBack(false);
-			widgets.addSlot(input.get(0), 30, 25).drawBack(false);
+			widgets.addSlot(input.get(0), 30, 25);
 		} else {
 			widgets.addSlot(EmiStack.of(SpectrumBlocks.FUSION_SHRINE_BASALT), 20, 25).drawBack(false);
 		}
 
 		// input slots
-		int startX = Math.max(-10, 20 - input.size() * 10);
+		int startX = Math.max(-20, 20 - input.size() * 10);
 		for (int i = 1; i < input.size(); i++) {
 			widgets.addSlot(input.get(i), startX + i * 20, 0);
 		}

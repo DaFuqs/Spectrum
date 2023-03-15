@@ -235,7 +235,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 					float fcurr = blockEntity.fluidStorage.amount;
 					float fmax = blockEntity.fluidStorage.getCapacity();
 					
-					return MathHelper.floor(icurr / imax * 13.0f + fcurr / fmax) + isNotEmpty;
+					return MathHelper.floor(((icurr / imax) + (fcurr / fmax)) / 2.0f * 14.0f) + isNotEmpty;
 				}
 				
 				case SEALED: {

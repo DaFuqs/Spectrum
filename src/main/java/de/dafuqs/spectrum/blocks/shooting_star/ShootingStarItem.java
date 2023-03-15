@@ -1,24 +1,19 @@
 package de.dafuqs.spectrum.blocks.shooting_star;
 
-import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.stat.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class ShootingStarItem extends BlockItem {
 	
@@ -39,13 +34,15 @@ public class ShootingStarItem extends BlockItem {
 	}
 	
 	public static @NotNull ItemStack getWithRemainingHits(@NotNull ShootingStarItem shootingStarItem, int remainingHits, boolean hardened) {
-		ItemStack stack = shootingStarItem.getDefaultStack();
-		NbtCompound nbtCompound = new NbtCompound();
-		nbtCompound.putInt("remaining_hits", remainingHits);
+		return getWithRemainingHits(shootingStarItem.getDefaultStack(), remainingHits, hardened);
+	}
+	
+	public static @NotNull ItemStack getWithRemainingHits(@NotNull ItemStack stack, int remainingHits, boolean hardened) {
+		NbtCompound nbt = stack.getOrCreateNbt();
+		nbt.putInt("remaining_hits", remainingHits);
 		if (hardened) {
-			nbtCompound.putBoolean("Hardened", true);
+			nbt.putBoolean("Hardened", true);
 		}
-		stack.setNbt(nbtCompound);
 		return stack;
 	}
 	

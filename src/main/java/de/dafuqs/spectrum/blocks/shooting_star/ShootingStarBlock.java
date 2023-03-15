@@ -1,31 +1,22 @@
 package de.dafuqs.spectrum.blocks.shooting_star;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.entity.ShootingStarEntity;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.dispenser.ItemDispenserBehavior;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPointer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.dispenser.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class ShootingStarBlock extends BlockWithEntity {
 	
@@ -67,7 +58,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 		if (!world.isClient && !player.isCreative()) {
 			ItemStack itemStack = this.shootingStarType.getBlock().asItem().getDefaultStack();
 			world.getBlockEntity(pos, SpectrumBlockEntities.SHOOTING_STAR).ifPresent((blockEntity) -> {
-				blockEntity.setStackNbt(itemStack);
+				ShootingStarItem.getWithRemainingHits(itemStack, blockEntity.remainingHits, blockEntity.hardened);
 			});
 			
 			ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, itemStack);
@@ -83,7 +74,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 		if (!world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof ShootingStarBlockEntity shootingStarBlockEntity) {
-				shootingStarBlockEntity.setRemainingHits(ShootingStarItem.getRemainingHits(itemStack));
+				shootingStarBlockEntity.setData(ShootingStarItem.getRemainingHits(itemStack), ShootingStarItem.isHardened(itemStack));
 			}
 		}
 	}

@@ -22,92 +22,92 @@ import java.util.*;
 
 public class Support {
 	
-	public static final List<Vec3d> VECTORS_4 = new ArrayList<>() {{
-		add(new Vec3d(1.0D, 0, 0.0D));
-		add(new Vec3d(0.0D, 0, 1.0D));
-		add(new Vec3d(-1.0, 0, 0.0D));
-		add(new Vec3d(0.0D, 0, -1.0D));
-	}};
-	public static final List<Vec3d> VECTORS_8 = new ArrayList<>() {{
-		add(new Vec3d(1.0D, 0, 0.0D));
-		add(new Vec3d(0.7D, 0, 0.7D));
-		add(new Vec3d(0.0D, 0, 1.0D));
-		add(new Vec3d(-0.7D, 0, 0.7D));
-		add(new Vec3d(-1.0D, 0, 0.0D));
-		add(new Vec3d(-0.7D, 0, -0.7D));
-		add(new Vec3d(0.0D, 0, -1.0D));
-		add(new Vec3d(0.7D, 0, -0.7D));
-	}};
+	public static final List<Vec3d> VECTORS_4 = List.of(
+			new Vec3d(1.0D, 0, 0.0D),
+			new Vec3d(0.0D, 0, 1.0D),
+			new Vec3d(-1.0, 0, 0.0D),
+			new Vec3d(0.0D, 0, -1.0D)
+	);
+	public static final List<Vec3d> VECTORS_8 = List.of(
+			new Vec3d(1.0D, 0, 0.0D),
+			new Vec3d(0.7D, 0, 0.7D),
+			new Vec3d(0.0D, 0, 1.0D),
+			new Vec3d(-0.7D, 0, 0.7D),
+			new Vec3d(-1.0D, 0, 0.0D),
+			new Vec3d(-0.7D, 0, -0.7D),
+			new Vec3d(0.0D, 0, -1.0D),
+			new Vec3d(0.7D, 0, -0.7D)
+	);
 	// Like eight, just turned clockwise
-	public static final List<Vec3d> VECTORS_8_OFFSET = new ArrayList<>() {{
-		add(new Vec3d(0.75D, 0, 0.5D));
-		add(new Vec3d(0.5D, 0, 0.75D));
-		add(new Vec3d(-0.5D, 0, 0.75D));
-		add(new Vec3d(-0.75D, 0, 0.5D));
-		add(new Vec3d(-0.75D, 0, 0.5D));
-		add(new Vec3d(-0.5D, 0, -0.75D));
-		add(new Vec3d(0.5D, 0, -0.75D));
-		add(new Vec3d(0.75D, 0, -0.5D));
-	}};
-	public static final List<Vec3d> VECTORS_16 = new ArrayList<>() {{
-		add(new Vec3d(1.0D, 0, 0.0D));
-		add(new Vec3d(0.75D, 0, 0.5D));
-		add(new Vec3d(0.7D, 0, 0.7D));
-		add(new Vec3d(0.5D, 0, 0.75D));
-		add(new Vec3d(0.0D, 0, 1.0D));
-		add(new Vec3d(-0.5D, 0, 0.75D));
-		add(new Vec3d(-0.7D, 0, 0.7D));
-		add(new Vec3d(-0.75D, 0, 0.5D));
-		add(new Vec3d(-1.0D, 0, 0.0D));
-		add(new Vec3d(-0.75D, 0, 0.5D));
-		add(new Vec3d(-0.7D, 0, -0.7D));
-		add(new Vec3d(-0.5D, 0, -0.75D));
-		add(new Vec3d(0.0D, 0, -1.0D));
-		add(new Vec3d(0.5D, 0, -0.75D));
-		add(new Vec3d(0.7D, 0, -0.7D));
-		add(new Vec3d(0.75D, 0, -0.5D));
-	}};
-	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/finish_progression");
-	public static final DecimalFormat df = new DecimalFormat("0.00");
-	public static final DecimalFormat df1 = new DecimalFormat("0.0");
-	public static final DecimalFormat df2 = new DecimalFormat("0");
-
+	public static final List<Vec3d> VECTORS_8_OFFSET = List.of(
+			new Vec3d(0.75D, 0, 0.5D),
+			new Vec3d(0.5D, 0, 0.75D),
+			new Vec3d(-0.5D, 0, 0.75D),
+			new Vec3d(-0.75D, 0, 0.5D),
+			new Vec3d(-0.75D, 0, 0.5D),
+			new Vec3d(-0.5D, 0, -0.75D),
+			new Vec3d(0.5D, 0, -0.75D),
+			new Vec3d(0.75D, 0, -0.5D)
+	);
+	public static final List<Vec3d> VECTORS_16 = List.of(
+			new Vec3d(1.0D, 0, 0.0D),
+			new Vec3d(0.75D, 0, 0.5D),
+			new Vec3d(0.7D, 0, 0.7D),
+			new Vec3d(0.5D, 0, 0.75D),
+			new Vec3d(0.0D, 0, 1.0D),
+			new Vec3d(-0.5D, 0, 0.75D),
+			new Vec3d(-0.7D, 0, 0.7D),
+			new Vec3d(-0.75D, 0, 0.5D),
+			new Vec3d(-1.0D, 0, 0.0D),
+			new Vec3d(-0.75D, 0, 0.5D),
+			new Vec3d(-0.7D, 0, -0.7D),
+			new Vec3d(-0.5D, 0, -0.75D),
+			new Vec3d(0.0D, 0, -1.0D),
+			new Vec3d(0.5D, 0, -0.75D),
+			new Vec3d(0.7D, 0, -0.7D),
+			new Vec3d(0.75D, 0, -0.5D)
+	);
+	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("endgame/finish_progression");
+	public static final DecimalFormat DF = new DecimalFormat("0");
+	public static final DecimalFormat DF1 = new DecimalFormat("0.0");
+	public static final DecimalFormat DF2 = new DecimalFormat("0.00");
+	
 	public static @NotNull Optional<TagKey<Block>> getFirstMatchingBlockTag(@NotNull BlockState blockState, @NotNull List<TagKey<Block>> tags) {
 		return blockState.streamTags().filter(tags::contains).findFirst();
 	}
-
+	
 	public static String getWithOneDecimalAfterComma(float number) {
-		return df1.format(number);
+		return DF1.format(number);
 	}
-
+	
 	public static String getShortenedNumberString(double number) {
 		if (number > 1000000000D) {
-			return df.format(number / 1000000000D) + "G";
+			return DF2.format(number / 1000000000D) + "G";
 		} else if (number > 1000000D) {
-			return df.format(number / 1000000D) + "M";
+			return DF2.format(number / 1000000D) + "M";
 		} else if (number > 1000D) {
-			return df.format(number / 1000D) + "K";
+			return DF2.format(number / 1000D) + "K";
 		} else {
-			return df2.format(number);
+			return DF.format(number);
 		}
 	}
 	
 	public static String getShortenedNumberString(long number) {
 		if (number > 1000000000L) {
-			return df.format(number / 1000000000D) + "G";
+			return DF2.format(number / 1000000000D) + "G";
 		} else if (number > 1000000L) {
-			return df.format(number / 1000000D) + "M";
+			return DF2.format(number / 1000000D) + "M";
 		} else if (number > 1000L) {
-			return df.format(number / 1000D) + "K";
+			return DF2.format(number / 1000D) + "K";
 		} else {
-			return df2.format(number);
+			return DF.format(number);
 		}
 	}
 	
 	/**
 	 * Calculates the percentage of x / y from 0-100, but in a way it feels logical to players
-	 * If x > 0 the result is always at least 1,
-	 * If it approaches 100 %, but is not yet still there, returns 99
+	 * If x > 0 the result is always at least 1%,
+	 * If it approaches 100%, but is not exactly 100%, returns 99
 	 */
 	public static String getSensiblePercent(long x, long y) {
 		if (y == 0) {
@@ -120,7 +120,7 @@ public class Support {
 		} else if (result > 0.99 && x != y) {
 			return "99";
 		} else {
-			return df2.format(Math.round(result * 100L));
+			return DF.format(Math.round(result * 100L));
 		}
 	}
 	

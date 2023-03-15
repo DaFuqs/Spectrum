@@ -70,7 +70,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
                     overcharge(stack, overcharge);
                     if (user instanceof ServerPlayerEntity serverPlayerEntity) {
                         SpectrumS2CPacketSender.sendHudMessage(serverPlayerEntity,
-                                Text.translatable("item.spectrum.glass_crest_crossbow.message.charge", Support.df2.format(overcharge * 100)), false);
+                                Text.translatable("item.spectrum.glass_crest_crossbow.message.charge", Support.DF.format(overcharge * 100)), false);
                     }
                 }
             }
@@ -111,7 +111,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
         if (overcharge == 0) {
             tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.how_to_overcharge"));
         } else {
-            tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.overcharged", Support.df2.format(overcharge * 100)));
+            tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.overcharged", Support.DF.format(overcharge * 100)));
         }
     }
 

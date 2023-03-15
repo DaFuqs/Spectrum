@@ -21,6 +21,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.biome.Biome;
+
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -122,6 +124,8 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 										world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 										if (barrelState == BarrelState.EMPTY) {
 											world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.FILLED));
+										} else {
+											world.updateComparators(pos, this);
 										}
 									}
 								}
@@ -174,7 +178,11 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 			barrelEntity.markDirty();
 			if (barrelEntity.inventory.isEmpty()) {
 				world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.EMPTY));
+			} else {
+				// They'll get updated if the block state changes anyway
+				world.updateComparators(pos, this);
 			}
+			
 			world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
 	}
@@ -213,13 +221,40 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	@Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
 		if(world.getBlockEntity(pos) instanceof TitrationBarrelBlockEntity blockEntity) {
-			float icurr = InventoryHelper.countItemsInInventory(blockEntity.inventory);
-			float imax = TitrationBarrelBlockEntity.MAX_ITEM_COUNT;
+			switch(state.get(BARREL_STATE)) {
+				case EMPTY: {
+					return 0;
+				}
+				
+				case FILLED: {
+					int isNotEmpty = blockEntity.inventory.isEmpty() ? 0 : 1;
+					
+					float icurr = InventoryHelper.countItemsInInventory(blockEntity.inventory);
+					float imax = TitrationBarrelBlockEntity.MAX_ITEM_COUNT;
+					
+					float fcurr = blockEntity.fluidStorage.amount;
+					float fmax = blockEntity.fluidStorage.getCapacity();
+					
+					return MathHelper.floor(icurr / imax * 13.0f + fcurr / fmax) + isNotEmpty;
+				}
+				
+				case SEALED: {
+					return 15;
+				}
+				
+				case TAPPED: {
+					Biome biome = world.getBiome(pos).value();
+					Optional<ITitrationBarrelRecipe> recipe = blockEntity.getRecipeForInventory(world);
+					if(recipe.isEmpty()) return 0;
+					
+					float curr = blockEntity.extractedBottles;
+					float max = recipe.get().getOutputCountAfterAngelsShare(biome.getTemperature(), blockEntity.getSealSeconds());
+					
+					return MathHelper.floor((1.0f - curr / max) * 15.0f);
+				}
+			}
 			
-			float fcurr = blockEntity.fluidStorage.amount;
-			float fmax = blockEntity.fluidStorage.getCapacity();
 			
-			return MathHelper.floor(icurr / imax * 13.0f + fcurr / fmax) + (blockEntity.inventory.isEmpty() ? 0 : 1);
 		}
 		
 		return 0;

@@ -11,6 +11,7 @@ import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -204,12 +205,34 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 		builder.add(FACING, BARREL_STATE);
 	}
 	
+	@Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+	
+	@Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		if(world.getBlockEntity(pos) instanceof TitrationBarrelBlockEntity blockEntity) {
+			float icurr = InventoryHelper.countItemsInInventory(blockEntity.inventory);
+			float imax = TitrationBarrelBlockEntity.MAX_ITEM_COUNT;
+			
+			float fcurr = blockEntity.fluidStorage.amount;
+			float fmax = blockEntity.fluidStorage.getCapacity();
+			
+			return MathHelper.floor(icurr / imax * 13.0f + fcurr / fmax) + (blockEntity.inventory.isEmpty() ? 0 : 1);
+		}
+		
+		return 0;
+    }
+	
 	// drop all currently stored items
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!newState.isOf(this) && state.get(BARREL_STATE) == BarrelState.FILLED) {
 			scatterContents(world, pos);
+			world.updateComparators(pos, this);
 		}
+		
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 	

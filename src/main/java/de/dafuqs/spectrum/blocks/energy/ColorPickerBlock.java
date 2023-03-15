@@ -16,6 +16,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -81,6 +82,28 @@ public class ColorPickerBlock extends BlockWithEntity {
 			player.openHandledScreen(colorPickerBlockEntity);
 		}
 	}
+	
+	@Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+	
+	@Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		if(world.getBlockEntity(pos) instanceof ColorPickerBlockEntity blockEntity) {
+			int i = 0;
+			float f = 0.0f;
+			for (int j = 0; j < blockEntity.inventory.size(); ++j) {
+				ItemStack itemStack = blockEntity.inventory.get(j);
+				if (itemStack.isEmpty()) continue;
+				f += (float)itemStack.getCount() / (float)itemStack.getMaxCount();
+				++i;
+			}
+			return MathHelper.floor((f /= (float)blockEntity.inventory.size()) * 14.0f) + (i > 0 ? 1 : 0);
+		}
+		
+		return 0;
+    }
 	
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {

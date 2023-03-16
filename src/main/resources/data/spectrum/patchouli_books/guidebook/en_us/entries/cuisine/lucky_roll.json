@@ -2,7 +2,7 @@
   "name": "Lucky Roll",
   "advancement": "spectrum:unlocks/food/lucky_roll",
   "icon": "spectrum:lucky_roll",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:cuisine_category",
   "extra_recipe_mappings": {
     "spectrum:lucky_roll": 0
   },

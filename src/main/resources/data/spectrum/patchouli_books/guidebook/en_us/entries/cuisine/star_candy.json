@@ -2,7 +2,7 @@
   "name": "Star Candies",
   "advancement": "spectrum:unlocks/food/star_candy",
   "icon": "spectrum:star_candy",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:cuisine_category",
   "extra_recipe_mappings": {
     "spectrum:star_candy": 0,
     "spectrum:purple_star_candy": 0

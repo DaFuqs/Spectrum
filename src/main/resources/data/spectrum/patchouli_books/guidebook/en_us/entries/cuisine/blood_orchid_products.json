@@ -2,7 +2,7 @@
   "name": "Blood Orchid Products",
   "icon": "spectrum:bloodboil_syrup",
   "advancement": "spectrum:midgame/collect_blood_orchid_petal",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:cuisine_category",
   "extra_recipe_mappings": {
     "spectrum:bloodboil_syrup": 0,
     "spectrum:demon_tea": 0,

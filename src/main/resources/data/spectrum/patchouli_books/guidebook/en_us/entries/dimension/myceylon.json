@@ -17,7 +17,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Myceylon adds great flavor to baked goods and $(l:magical_items/infused_beverage)drinks$().$(br2)$(italic)Why would you peel Mushrooms?$(br)So you can enjoy the peel later."
+      "text": "Myceylon adds great flavor to baked goods and $(l:cuisine/infused_beverage)drinks$().$(br2)$(italic)Why would you peel Mushrooms?$(br)So you can enjoy the peel later."
     },
     {
       "type": "spectrum:pedestal_crafting",

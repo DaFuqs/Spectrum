@@ -2,7 +2,7 @@
   "name": "Freigeist",
   "icon": "spectrum:freigeist",
   "advancement": "spectrum:unlocks/food/freigeist",
-  "category": "spectrum:magical_items_category",
+  "category": "spectrum:cuisine_category",
   "extra_recipe_mappings": {
     "spectrum:freigeist": 0,
     "spectrum:divination_heart": 0

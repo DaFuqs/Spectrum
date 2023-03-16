@@ -1,17 +1,15 @@
 package de.dafuqs.spectrum.compat.emi;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import dev.emi.emi.api.recipe.EmiRecipeCategory;
-import dev.emi.emi.api.recipe.EmiRecipeSorting;
-import dev.emi.emi.api.render.EmiRenderable;
-import dev.emi.emi.api.stack.EmiStack;
-import net.minecraft.block.Blocks;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.emi.api.recipe.*;
+import dev.emi.emi.api.render.*;
+import dev.emi.emi.api.stack.*;
+import net.minecraft.block.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-public class SpectrumRecipeCategories {
+public class SpectrumEmiRecipeCategories {
 	public static final EmiRecipeCategory PEDESTAL_CRAFTING = new SpectrumCategory(SpectrumCommon.locate("pedestal_crafting"), EmiStack.of(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST));
 	public static final EmiRecipeCategory ANVIL_CRUSHING = new SpectrumCategory(SpectrumCommon.locate("anvil_crushing"), EmiStack.of(Blocks.ANVIL));
 	public static final EmiRecipeCategory FUSION_SHRINE = new SpectrumCategory(SpectrumCommon.locate("fusion_shrine"), EmiStack.of(SpectrumBlocks.FUSION_SHRINE_CALCITE), "block.spectrum.fusion_shrine");

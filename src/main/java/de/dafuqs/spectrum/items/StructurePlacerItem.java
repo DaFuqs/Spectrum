@@ -1,14 +1,17 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Identifier;
-import vazkii.patchouli.api.IMultiblock;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.api.*;
 
-public class StructurePlacerItem extends Item {
+import java.util.*;
+
+public class StructurePlacerItem extends Item implements CreativeOnlyItem {
 	
 	Identifier multiBlockIdentifier;
 	
@@ -44,5 +47,10 @@ public class StructurePlacerItem extends Item {
 		return ActionResult.PASS;
 	}
 	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		CreativeOnlyItem.appendTooltip(tooltip);
+	}
 	
 }

@@ -1,7 +1,7 @@
 {
   "name": "Deep Dripstone Caves",
   "advancement": "spectrum:hidden/visit_dd_biomes/deep_dripstone_caves",
-  "icon": "spectrum:dripstone",
+  "icon": "minecraft:dripstone",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {},
   "pages": [

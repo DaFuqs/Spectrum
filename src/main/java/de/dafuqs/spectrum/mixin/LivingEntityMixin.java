@@ -159,7 +159,7 @@ public abstract class LivingEntityMixin {
 			return;
 		}
 
-		// If this entity is hit with a SplitDamageItem, damage() get's called recursively for each type of damage dealt
+		// If this entity is hit with a SplitDamageItem, damage() gets called recursively for each type of damage dealt
 		if (!SpectrumDamageSources.recursiveDamage && amount > 0 && source instanceof EntityDamageSource && source.getSource() instanceof LivingEntity livingSource) {
 			ItemStack mainHandStack = livingSource.getMainHandStack();
 			if (mainHandStack.getItem() instanceof SplitDamageItem splitDamageItem) {
@@ -232,14 +232,14 @@ public abstract class LivingEntityMixin {
 	}
 	
 	@Inject(method = "setSprinting(Z)V", at = @At("HEAD"), cancellable = true)
-	public void setSprinting(boolean sprinting, CallbackInfo ci) {
+	public void spectrum$setSprinting(boolean sprinting, CallbackInfo ci) {
 		if (sprinting && ((LivingEntity) (Object) this).hasStatusEffect(SpectrumStatusEffects.SCARRED)) {
 			ci.cancel();
 		}
 	}
 	
 	@Inject(at = @At("TAIL"), method = "applyFoodEffects(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;)V")
-	public void eat(ItemStack stack, World world, LivingEntity targetEntity, CallbackInfo ci) {
+	public void spectrum$eat(ItemStack stack, World world, LivingEntity targetEntity, CallbackInfo ci) {
 		Item item = stack.getItem();
 		if (item instanceof ApplyFoodEffectsCallback foodWithCallback) {
 			foodWithCallback.afterConsumption(world, stack, (LivingEntity) (Object) this);

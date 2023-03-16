@@ -59,7 +59,7 @@
     "fabric-api": ">=0.48.0",
     "minecraft": ">=1.19.2",
     "java": ">=17",
-    "revelationary": ">=1.3.0",
+    "revelationary": ">=1.3.2",
     "arrowhead": "*",
     "cloth-config": ">=8.2.88",
     "patchouli": "*",

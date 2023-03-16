@@ -1,17 +1,12 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowerPotBlock;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.revelationary.api.revelations.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 public class PottedColoredSaplingBlock extends FlowerPotBlock implements RevelationAware {
 	
@@ -34,7 +29,7 @@ public class PottedColoredSaplingBlock extends FlowerPotBlock implements Revelat
 	
 	@Override
 	public @Nullable Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this.asItem(), Blocks.POTTED_OAK_SAPLING.asItem());
+		return null; // does not exist in item form
 	}
 	
 }

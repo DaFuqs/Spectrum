@@ -4,6 +4,6 @@
     "spectrum:indestructible_blacklisted",
     "spectrum:no_cinderhearth_doubling",
     "spectrum:trinkets",
-    "spectrum:hardening_catalyst_blacklist"
+    "things:hardening_catalyst_blacklist"
   ]
 }

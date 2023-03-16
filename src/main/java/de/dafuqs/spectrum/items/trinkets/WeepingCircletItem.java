@@ -21,7 +21,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class TidalCircletItem extends SpectrumTrinketItem {
+public class WeepingCircletItem extends SpectrumTrinketItem {
 	
 	private final static int TRIGGER_EVERY_X_TICKS = 40;
 	private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
@@ -30,7 +30,7 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 	private final static int MAX_AXOLOTL_DISTANCE = 12;
 	private final static int AXOLOTL_HEALING = 2;
 	
-	public TidalCircletItem(Settings settings) {
+	public WeepingCircletItem(Settings settings) {
 		super(settings, SpectrumCommon.locate("progression/unlock_weeping_circlet"));
 	}
 
@@ -45,25 +45,25 @@ public class TidalCircletItem extends SpectrumTrinketItem {
 	@Override
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.onEquip(stack, slot, entity);
-		doEffects(entity);
+		doEffects(entity, true);
 	}
 	
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
-		doEffects(entity);
+		doEffects(entity, false);
 	}
-
-	private void doEffects(LivingEntity entity) {
+	
+	private void doEffects(LivingEntity entity, boolean always) {
 		if (!entity.getWorld().isClient) {
 			long time = entity.getWorld().getTime();
-			if (entity.isSubmergedInWater()) {
-				if (time % TRIGGER_EVERY_X_TICKS == 0) {
+			if (entity.isSubmergedIn(SpectrumFluidTags.ACTIVATES_WEEPING_CIRCLET)) {
+				if (always || time % TRIGGER_EVERY_X_TICKS == 0) {
 					entity.setAir(entity.getMaxAir());
 					entity.addStatusEffect(new StatusEffectInstance(StatusEffects.DOLPHINS_GRACE, EFFECT_DURATION, 1, true, true));
 					entity.addStatusEffect(new StatusEffectInstance(StatusEffects.CONDUIT_POWER, EFFECT_DURATION, 0, true, true));
 				}
-				if (time % HEAL_AXOLOTLS_EVERY_X_TICKS == 0 && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+				if ((always || time % HEAL_AXOLOTLS_EVERY_X_TICKS == 0) && entity instanceof ServerPlayerEntity serverPlayerEntity) {
 					healLovingAxolotls(serverPlayerEntity);
 				}
 			}

@@ -2121,6 +2121,8 @@
   "trinkets.slot.chest.pin": "Pin",
   "trinkets.slot.head.crown": "Crown",
   "trinkets.slot.legs.pigment_palette": "Pigment Palette",
+
+  "item.spectrum.creative_only": "Creative Exclusive",
   "item.spectrum.fanciful_stone_ring": "Fanciful Tuff Ring",
   "item.spectrum.fanciful_belt": "Fanciful Belt",
   "item.spectrum.fanciful_pendant": "Fanciful Pendant",
@@ -2505,7 +2507,7 @@
   "tag.trinkets.legs/pigment_palette": "Pigment Palette Trinkets",
 
   "advancements.spectrum.break_decayed_bedrock.title": "Groundbreaking",
-  "advancements.spectrum.break_decayed_bedrock.description": "Break Decayed Bedrock using a Netherite Pickaxe",
+  "advancements.spectrum.break_decayed_bedrock.description": "Break Decayed Bedrock",
   "advancements.spectrum.break_budding_block_with_resonance_tool.title": "Budding Friendship",
   "advancements.spectrum.break_budding_block_with_resonance_tool.description": "Break a Budding Block using a Resonance Tool",
   "advancements.spectrum.break_infested_block_with_resonance_tool.title": "Not today, old friend",

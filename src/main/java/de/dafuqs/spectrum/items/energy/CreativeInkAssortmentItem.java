@@ -1,24 +1,21 @@
 package de.dafuqs.spectrum.items.energy;
 
-import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
-import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.energy.storage.CreativeInkStorage;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.items.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
-public class CreativeInkAssortmentItem extends Item implements InkStorageItem<CreativeInkStorage> {
+public class CreativeInkAssortmentItem extends Item implements InkStorageItem<CreativeInkStorage>, CreativeOnlyItem {
 	
 	public CreativeInkAssortmentItem(Settings settings) {
 		super(settings);
@@ -66,6 +63,7 @@ public class CreativeInkAssortmentItem extends Item implements InkStorageItem<Cr
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
+		CreativeOnlyItem.appendTooltip(tooltip);
 		getEnergyStorage(stack).addTooltip(tooltip, true);
 	}
 	

@@ -1,20 +1,20 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.emi.SpectrumEmiRecipe;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe;
-import dev.emi.emi.api.recipe.EmiRecipeCategory;
-import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.emi.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
+import dev.emi.emi.api.recipe.*;
+import dev.emi.emi.api.widget.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-public class PotionWorkshopEmiRecipe extends SpectrumEmiRecipe<PotionWorkshopRecipe> {
+public class PotionWorkshopEmiRecipeGated extends GatedSpectrumEmiRecipe<PotionWorkshopRecipe> {
 	public final static Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/container/potion_workshop_3_slots.png");
-
-	public PotionWorkshopEmiRecipe(EmiRecipeCategory category, PotionWorkshopRecipe recipe) {
+	
+	public PotionWorkshopEmiRecipeGated(EmiRecipeCategory category, PotionWorkshopRecipe recipe) {
 		super(category, PotionWorkshopRecipe.UNLOCK_IDENTIFIER, recipe, 112, 66);
 	}
-
+	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		widgets.addSlot(input.get(0), 18, 48);

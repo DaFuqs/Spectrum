@@ -1,22 +1,19 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
-public class CreativeParticleSpawnerBlock extends ParticleSpawnerBlock {
+public class CreativeParticleSpawnerBlock extends ParticleSpawnerBlock implements CreativeOnlyItem {
 	
 	public CreativeParticleSpawnerBlock(Settings settings) {
 		super(settings);
@@ -26,6 +23,7 @@ public class CreativeParticleSpawnerBlock extends ParticleSpawnerBlock {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
 		super.appendTooltip(stack, world, tooltip, options);
+		CreativeOnlyItem.appendTooltip(tooltip);
 		tooltip.add(Text.translatable("block.spectrum.creative_particle_spawner.tooltip"));
 	}
 	

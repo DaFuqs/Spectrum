@@ -1,52 +1,36 @@
 package de.dafuqs.spectrum.commands;
 
-import com.mojang.brigadier.CommandDispatcher;
-import de.dafuqs.revelationary.RevelationRegistry;
-import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
-import de.dafuqs.spectrum.enchantments.SpectrumEnchantment;
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.mixin.accessors.LootTableAccessor;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.color.ColorRegistry;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementCriterion;
-import net.minecraft.advancement.criterion.CriterionConditions;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.LootTables;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeManager;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.ServerAdvancementLoader;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import org.apache.commons.lang3.StringUtils;
+import com.mojang.brigadier.*;
+import de.dafuqs.revelationary.*;
+import de.dafuqs.revelationary.advancement_criteria.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.enchantments.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.anvil_crushing.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.color.*;
+import net.minecraft.advancement.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
+import net.minecraft.loot.*;
+import net.minecraft.recipe.*;
+import net.minecraft.server.*;
+import net.minecraft.server.command.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.tag.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
+import org.apache.commons.lang3.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SanityCommand {
 	
@@ -149,15 +133,13 @@ public class SanityCommand {
 			   despite being of a low tier, like black colored lamps.
 			   While the player does not have access to that yet it is no problem at all
 			   To exclude those recipes in these warnings there is a boolean flag in the recipe jsons
-			 */
+			*/
 			if (pedestalRecipe.getTier() == PedestalRecipeTier.BASIC || pedestalRecipe.getTier() == PedestalRecipeTier.SIMPLE) {
 				if (pedestalRecipe.getGemstonePowderInputs().getOrDefault(BuiltinGemstoneColor.BLACK, 0) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using onyx powder as input! Players will not have access to Onyx at that tier");
 				}
-				if (pedestalRecipe.getGemstonePowderInputs().getOrDefault(BuiltinGemstoneColor.WHITE, 0) > 0) {
-					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
-				}
-			} else if (pedestalRecipe.getTier() == PedestalRecipeTier.ADVANCED) {
+			}
+			if (pedestalRecipe.getTier() != PedestalRecipeTier.COMPLEX) {
 				if (pedestalRecipe.getGemstonePowderInputs().getOrDefault(BuiltinGemstoneColor.WHITE, 0) > 0) {
 					SpectrumCommon.logWarning("[SANITY: Pedestal Recipe Ingredients] Pedestal recipe '" + pedestalRecipe.getId() + "' of tier '" + pedestalRecipe.getTier() + "' is using moonstone powder as input! Players will not have access to Moonstone at that tier");
 				}
@@ -195,16 +177,24 @@ public class SanityCommand {
 			}
 		}
 		
-		// "has advancement" criteria with nonexistent advancements
 		for (Advancement advancement : advancementLoader.getAdvancements()) {
 			for (AdvancementCriterion criterion : advancement.getCriteria().values()) {
 				CriterionConditions conditions = criterion.getConditions();
-				Identifier id = conditions.getId();
-				if (id.equals(AdvancementGottenCriterion.ID) && conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
+				
+				// "has advancement" criteria with nonexistent advancements
+				if (conditions instanceof AdvancementGottenCriterion.Conditions hasAdvancementConditions) {
 					Identifier advancementIdentifier = hasAdvancementConditions.getAdvancementIdentifier();
 					Advancement advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
 					if (advancementCriterionAdvancement == null) {
 						SpectrumCommon.logWarning("[SANITY: Has_Advancement Criteria] Advancement '" + advancement.getId() + "' references advancement '" + advancementIdentifier + "' that does not exist");
+					}
+					// "advancement count" criteria with nonexistent advancements
+				} else if (conditions instanceof AdvancementCountCriterion.Conditions hasAdvancementConditions) {
+					for (Identifier advancementIdentifier : hasAdvancementConditions.getAdvancementIdentifiers()) {
+						Advancement advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
+						if (advancementCriterionAdvancement == null) {
+							SpectrumCommon.logWarning("[SANITY: Advancement_Count Criteria] Advancement '" + advancement.getId() + "' references advancement '" + advancementIdentifier + "' that does not exist");
+						}
 					}
 				}
 			}

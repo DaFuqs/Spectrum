@@ -1,20 +1,19 @@
 package de.dafuqs.spectrum.compat.emi.recipes;
 
-import de.dafuqs.spectrum.compat.emi.SpectrumRecipeCategories;
-import de.dafuqs.spectrum.compat.emi.SpectrumEmiRecipe;
-import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
-import dev.emi.emi.api.render.EmiTexture;
-import dev.emi.emi.api.stack.EmiStack;
-import dev.emi.emi.api.widget.WidgetHolder;
-import dev.emi.emi.api.widget.TextWidget.Alignment;
+import de.dafuqs.spectrum.compat.emi.*;
+import de.dafuqs.spectrum.recipe.cinderhearth.*;
+import dev.emi.emi.api.render.*;
+import dev.emi.emi.api.stack.*;
+import dev.emi.emi.api.widget.TextWidget.*;
+import dev.emi.emi.api.widget.*;
 
-public class CinderhearthEmiRecipe extends SpectrumEmiRecipe<CinderhearthRecipe> {
-
-	public CinderhearthEmiRecipe(CinderhearthRecipe recipe) {
-		super(SpectrumRecipeCategories.CINDERHEARTH, CinderhearthRecipe.UNLOCK_IDENTIFIER, recipe, 112, 48);
+public class CinderhearthEmiRecipeGated extends GatedSpectrumEmiRecipe<CinderhearthRecipe> {
+	
+	public CinderhearthEmiRecipeGated(CinderhearthRecipe recipe) {
+		super(SpectrumEmiRecipeCategories.CINDERHEARTH, CinderhearthRecipe.UNLOCK_IDENTIFIER, recipe, 112, 48);
 		output = recipe.getOutputsWithChance().stream().map(p -> EmiStack.of(p.getLeft()).setChance(p.getRight())).toList();
 	}
-
+	
 	@Override
 	public void addUnlockedWidgets(WidgetHolder widgets) {
 		int xOff = 5;

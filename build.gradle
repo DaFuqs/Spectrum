@@ -63,8 +63,8 @@ dependencies {
 	modImplementation include("com.github.DaFuqs:Arrowhead:${project.arrowhead_version}")
 	modImplementation include("com.github.DaFuqs:DimensionalReverb:${project.dimensional_reverb_version}")
 
-	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 	// we need a bit of concern
+	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {

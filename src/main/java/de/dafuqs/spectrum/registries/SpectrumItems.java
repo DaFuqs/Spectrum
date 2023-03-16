@@ -26,6 +26,7 @@ import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 
@@ -226,25 +227,25 @@ public class SpectrumItems {
 
     public static final Item BISMUTH_FLAKE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
     public static final Item BISMUTH_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
-
-    public static final Item RAW_MALACHITE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
-    public static final Item MALACHITE_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
-
-    // Fluid Buckets
-    public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-    public static final Item MUD_BUCKET = new BucketItem(MUD, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-    public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-    public static final Item DRAGONROT_BUCKET = new BucketItem(DRAGONROT, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
-
-    // Decay bottles
-    public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, Tab.EQUIPMENT.settings(16));
-    public static final Item BOTTLE_OF_FAILING = new DecayPlacerItem(SpectrumBlocks.FAILING, Tab.EQUIPMENT.settings(16));
-    public static final Item BOTTLE_OF_RUIN = new DecayPlacerItem(SpectrumBlocks.RUIN, Tab.EQUIPMENT.settings(16));
-    public static final Item BOTTLE_OF_FORFEITURE = new DecayPlacerItem(SpectrumBlocks.FORFEITURE, Tab.EQUIPMENT.settings(16));
-    public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, Tab.EQUIPMENT.settings(16));
-
-    // Resources
-    public static final CloakedItem SHIMMERSTONE_GEM = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.SHIMMERSTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE, SpectrumBannerPatterns.SHIMMERSTONE);
+	
+	public static final Item RAW_MALACHITE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
+	public static final Item MALACHITE_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
+	
+	// Fluid Buckets
+	public static final Item LIQUID_CRYSTAL_BUCKET = new BucketItem(LIQUID_CRYSTAL, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
+	public static final Item MUD_BUCKET = new BucketItem(MUD, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
+	public static final Item MIDNIGHT_SOLUTION_BUCKET = new BucketItem(MIDNIGHT_SOLUTION, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
+	public static final Item DRAGONROT_BUCKET = new BucketItem(DRAGONROT, Tab.EQUIPMENT.settings(1).recipeRemainder(Items.BUCKET));
+	
+	// Decay bottles
+	public static final Item BOTTLE_OF_FADING = new DecayPlacerItem(SpectrumBlocks.FADING, Tab.EQUIPMENT.settings(16), List.of(Text.translatable("item.spectrum.bottle_of_fading.tooltip")));
+	public static final Item BOTTLE_OF_FAILING = new DecayPlacerItem(SpectrumBlocks.FAILING, Tab.EQUIPMENT.settings(16), List.of(Text.translatable("item.spectrum.bottle_of_failing.tooltip")));
+	public static final Item BOTTLE_OF_RUIN = new DecayPlacerItem(SpectrumBlocks.RUIN, Tab.EQUIPMENT.settings(16), List.of(Text.translatable("item.spectrum.bottle_of_ruin.tooltip")));
+	public static final Item BOTTLE_OF_FORFEITURE = new DecayPlacerItem(SpectrumBlocks.FORFEITURE, Tab.EQUIPMENT.settings(16), List.of(CreativeOnlyItem.DESCRIPTION, Text.translatable("item.spectrum.bottle_of_forfeiture.tooltip")));
+	public static final Item BOTTLE_OF_DECAY_AWAY = new DecayPlacerItem(SpectrumBlocks.DECAY_AWAY, Tab.EQUIPMENT.settings(16), List.of(Text.translatable("item.spectrum.bottle_of_decay_away.tooltip")));
+	
+	// Resources
+	public static final CloakedItem SHIMMERSTONE_GEM = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.SHIMMERSTONE_ORE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE, SpectrumBannerPatterns.SHIMMERSTONE);
 	public static final CloakedItem RAW_AZURITE = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE, SpectrumBannerPatterns.RAW_AZURITE);
 	public static final CloakedItem REFINED_AZURITE = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.AZURITE_ORE).getCloakAdvancementIdentifier(), Items.BLUE_DYE);
 	public static final CloakedFloatItem STRATINE_FRAGMENTS = new CloakedFloatItem(Tab.RESOURCES.settings(64).fireproof(), 1.003F, ((RevelationAware) SpectrumBlocks.STRATINE_ORE).getCloakAdvancementIdentifier(), Items.RED_DYE);
@@ -421,7 +422,7 @@ public class SpectrumItems {
 	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 1, SpectrumCommon.CONFIG.MaxLevelForEffectsInLesserPotionPendant - 1, SpectrumCommon.locate("progression/unlock_lesser_potion_pendant"));
 	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 3, SpectrumCommon.CONFIG.MaxLevelForEffectsInGreaterPotionPendant - 1, SpectrumCommon.locate("progression/unlock_greater_potion_pendant"));
 	public static final Item ASHEN_CIRCLET = new AshenCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).fireproof());
-	public static final Item WEEPING_CIRCLET = new TidalCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item WEEPING_CIRCLET = new WeepingCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item WHISPY_CIRCLET = new WhispyCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item CIRCLET_OF_ARROGANCE = new CircletOfArroganceItem(Tab.EQUIPMENT.settings(1, Rarity.RARE));

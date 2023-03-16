@@ -39,6 +39,5 @@
     "visual_explosions_on_shrine",
     "nothing"
   ],
-  "finish_crafting_effect": "lightning_on_shrine",
-  "description": "spectrum.recipe.fusion_shrine.explanation.nightfalls_blade"
+  "finish_crafting_effect": "lightning_on_shrine"
 }

@@ -42,6 +42,10 @@ public class SpectrumConfiguredFeatures {
 	public static final Identifier TOPAZ_GEODE_IDENTIFIER = SpectrumCommon.locate("topaz_geode");
 	public static RegistryEntry<PlacedFeature> TOPAZ_GEODE;
 	public static RegistryEntry<PlacedFeature> CITRINE_GEODE;
+
+	public static RegistryEntry<ConfiguredFeature<NephriteBlossomFeatureConfig, ?>> NEPHRITE_BLOSSOM_BULB;
+
+
 	
 	// Deeper Down
 	
@@ -287,6 +291,12 @@ public class SpectrumConfiguredFeatures {
 				BiomePlacementModifier.of()
 		);
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, cloversIdentifier));
+
+		NEPHRITE_BLOSSOM_BULB = registerConfiguredFeature(
+				SpectrumCommon.locate("nephrite_blossom_bulb"),
+				new NephriteBlossomFeature(NephriteBlossomFeatureConfig.CODEC),
+				new NephriteBlossomFeatureConfig(false)
+		);
 	}
 	
 	public static final class Rules {

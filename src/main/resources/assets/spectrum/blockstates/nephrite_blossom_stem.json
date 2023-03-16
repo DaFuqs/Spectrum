@@ -1,0 +1,36 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "spectrum:block/nephrite_blossom_stem_bottom"
+      },
+      "when": {
+        "part": "stem"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/nephrite_blossom_stem_top"
+      },
+      "when": {
+        "part": "stemalt"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/nephrite_blossom_base"
+      },
+      "when": {
+        "part": "base"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/nephrite_blossom_stem_bottom"
+      },
+      "when": {
+        "part": "base"
+      }
+    }
+  ]
+}

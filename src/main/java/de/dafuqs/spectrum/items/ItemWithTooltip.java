@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ItemWithTooltip extends Item {
@@ -23,9 +24,9 @@ public class ItemWithTooltip extends Item {
 	
 	public ItemWithTooltip(Settings settings, String[] tooltips) {
 		super(settings);
-		for (String tooltip : tooltips) {
-			this.tooltipTexts.add(Text.translatable(tooltip));
-		}
+		Arrays.stream(tooltips)
+				.map(Text::translatable)
+				.forEach(tooltipTexts::add);
 	}
 	
 	@Override

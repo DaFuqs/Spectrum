@@ -11,6 +11,7 @@ import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -20,6 +21,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.biome.Biome;
+
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -121,6 +124,8 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 										world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 										if (barrelState == BarrelState.EMPTY) {
 											world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.FILLED));
+										} else {
+											world.updateComparators(pos, this);
 										}
 									}
 								}
@@ -173,7 +178,11 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 			barrelEntity.markDirty();
 			if (barrelEntity.inventory.isEmpty()) {
 				world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.EMPTY));
+			} else {
+				// They'll get updated if the block state changes anyway
+				world.updateComparators(pos, this);
 			}
+			
 			world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		}
 	}
@@ -204,12 +213,61 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 		builder.add(FACING, BARREL_STATE);
 	}
 	
+	@Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+	
+	@Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		if(world.getBlockEntity(pos) instanceof TitrationBarrelBlockEntity blockEntity) {
+			switch(state.get(BARREL_STATE)) {
+				case EMPTY: {
+					return 0;
+				}
+				
+				case FILLED: {
+					int isNotEmpty = blockEntity.inventory.isEmpty() ? 0 : 1;
+					
+					float icurr = InventoryHelper.countItemsInInventory(blockEntity.inventory);
+					float imax = TitrationBarrelBlockEntity.MAX_ITEM_COUNT;
+					
+					float fcurr = blockEntity.fluidStorage.amount;
+					float fmax = blockEntity.fluidStorage.getCapacity();
+					
+					return MathHelper.floor(((icurr / imax) + (fcurr / fmax)) / 2.0f * 14.0f) + isNotEmpty;
+				}
+				
+				case SEALED: {
+					return 15;
+				}
+				
+				case TAPPED: {
+					Biome biome = world.getBiome(pos).value();
+					Optional<ITitrationBarrelRecipe> recipe = blockEntity.getRecipeForInventory(world);
+					if(recipe.isEmpty()) return 0;
+					
+					float curr = blockEntity.extractedBottles;
+					float max = recipe.get().getOutputCountAfterAngelsShare(biome.getTemperature(), blockEntity.getSealSeconds());
+					
+					return MathHelper.floor((1.0f - curr / max) * 15.0f);
+				}
+			}
+			
+			
+		}
+		
+		return 0;
+    }
+	
 	// drop all currently stored items
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!newState.isOf(this) && state.get(BARREL_STATE) == BarrelState.FILLED) {
 			scatterContents(world, pos);
+			world.updateComparators(pos, this);
 		}
+		
 		super.onStateReplaced(state, world, pos, newState, moved);
 	}
 	

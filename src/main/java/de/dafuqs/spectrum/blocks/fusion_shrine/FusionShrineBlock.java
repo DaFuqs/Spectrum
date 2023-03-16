@@ -18,6 +18,7 @@ import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
@@ -94,6 +95,31 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new FusionShrineBlockEntity(pos, state);
 	}
+	
+	@Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		if(world.getBlockEntity(pos) instanceof FusionShrineBlockEntity blockEntity) {
+			DefaultedList<ItemStack> inventory = blockEntity.getItems();
+			
+			int i = 0;
+	        float f = 0.0f;
+	        for (int j = 0; j < inventory.size(); ++j) {
+	            ItemStack itemStack = blockEntity.getStack(j);
+	            if (itemStack.isEmpty()) continue;
+	            f += (float)itemStack.getCount() / (float)Math.min(blockEntity.getMaxCountPerStack(), itemStack.getMaxCount());
+	            ++i;
+	        }
+			
+			if (blockEntity.fluidStorage.amount > 0) {
+				f += (float)blockEntity.fluidStorage.amount / (float)blockEntity.fluidStorage.getCapacity();
+				++i;
+			}
+			
+	        return MathHelper.floor((f /= ((float)inventory.size()+1)) * 14.0f) + (i > 0 ? 1 : 0);
+		}
+		
+		return 0;
+    }
 	
 	@Override
 	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {

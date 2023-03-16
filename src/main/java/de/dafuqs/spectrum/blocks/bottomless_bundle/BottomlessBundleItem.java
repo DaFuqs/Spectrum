@@ -223,12 +223,12 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			if (compound.contains("Locked")) {
 				compound.remove("Locked");
 				if (world.isClient) {
-					plaZipSound(user, 0.8F);
+					playZipSound(user, 0.8F);
 				}
 			} else {
 				compound.putBoolean("Locked", true);
 				if (world.isClient) {
-					plaZipSound(user, 1.0F);
+					playZipSound(user, 1.0F);
 				}
 			}
 			return TypedActionResult.success(itemStack, world.isClient());
@@ -470,7 +470,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		entity.playSound(SoundEvents.ITEM_BUNDLE_DROP_CONTENTS, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
 	}
 	
-	private void plaZipSound(Entity entity, float basePitch) {
+	private void playZipSound(Entity entity, float basePitch) {
 		entity.playSound(SpectrumSoundEvents.BOTTOMLESS_BUNDLE_ZIP, 0.8F, basePitch + entity.getWorld().getRandom().nextFloat() * 0.4F);
 	}
 	

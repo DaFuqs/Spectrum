@@ -2,8 +2,8 @@
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
     "bottom": "spectrum:block/blackslag_top",
-    "particle": "spectrum:block/blackslag_top",
-    "side": "spectrum:block/sawblade_grass_snow",
-    "top": "spectrum:block/sawblade_grass_top"
+    "particle": "spectrum:block/snowy_sawblade_grass_top",
+    "side": "spectrum:block/snowy_sawblade_grass_side",
+    "top": "spectrum:block/snowy_sawblade_grass_top"
   }
 }

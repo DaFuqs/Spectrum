@@ -18,6 +18,7 @@ import de.dafuqs.spectrum.items.food.beverages.*;
 import de.dafuqs.spectrum.items.item_frame.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.items.tooltip.BlockItemWithTooltip;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.color.*;
 import io.wispforest.owo.itemgroup.*;
@@ -263,6 +264,7 @@ public class SpectrumItems {
 	public static final ItemWithTooltip FRIGID_STARDUST = new ItemWithTooltip(Tab.RESOURCES.settings(), "item.spectrum.frigid_stardust.tooltip");
 	public static final Item HIBERNATING_JADE_VINE_SEEDS = new ItemWithTooltip(Tab.RESOURCES.settings(16), "item.spectrum.hibernating_jade_vine_seeds.tooltip");
 	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
+	public static final Item NEPHRITE_BLOSSOM_SEEDS = new BlockItemWithTooltip(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB, Tab.RESOURCES.settings(16), "item.spectrum.jade_vine_parents.tooltip");
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
 	
 	public static final Item BLOOD_ORCHID_PETAL = new Item(Tab.RESOURCES.settings());
@@ -279,6 +281,7 @@ public class SpectrumItems {
 	// Food & drinks
 	public static final Item MOONSTRUCK_NECTAR = new MoonstruckNectarItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.MOONSTRUCK_NECTAR).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item JADE_JELLY = new ItemWithTooltip(Tab.CONSUMABLES.settings(Rarity.UNCOMMON).food(SpectrumFoodComponents.JADE_JELLY), "item.spectrum.jade_jelly.tooltip");
+	public static final Item GLASS_PEACH = new ItemWithTooltip(Tab.CONSUMABLES.settings(Rarity.UNCOMMON).food(SpectrumFoodComponents.GLASS_PEACH), "item.spectrum.glass_peach.tooltip");
 	public static final Item RESTORATION_TEA = new RestorationTeaItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.RESTORATION_TEA).recipeRemainder(Items.GLASS_BOTTLE), SpectrumFoodComponents.RESTORATION_TEA_SCONE_BONUS);
 	public static final Item KIMCHI = new KimchiItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.KIMCHI));
 	public static final Item CLOTTED_CREAM = new ClottedCreamItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"});
@@ -588,6 +591,8 @@ public class SpectrumItems {
 		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_SEEDS, DyeColor.GRAY);
 		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS, DyeColor.LIME);
 		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
+
+		register("nephrite_blossom_bulb", NEPHRITE_BLOSSOM_SEEDS, DyeColor.PINK);
 		
 		register("vegetal", VEGETAL, DyeColor.LIME);
 		register("neolith", NEOLITH, DyeColor.PINK);
@@ -709,10 +714,11 @@ public class SpectrumItems {
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);
 		register("glistering_jelly_tea", GLISTERING_JELLY_TEA, DyeColor.PINK);
 		register("demon_tea", DEMON_TEA, DyeColor.RED);
-		
+
 		register("jade_jelly", JADE_JELLY, DyeColor.LIME);
 		register("jaramel", JARAMEL, DyeColor.PINK);
 		register("moonstruck_nectar", MOONSTRUCK_NECTAR, DyeColor.LIME);
+		register("glass_peach", GLASS_PEACH, DyeColor.PINK);
 		register("bloodboil_syrup", BLOODBOIL_SYRUP, DyeColor.RED);
 		
 		register("scone", SCONE, DyeColor.PINK);

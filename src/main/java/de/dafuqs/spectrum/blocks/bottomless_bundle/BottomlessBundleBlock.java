@@ -102,11 +102,41 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 	}
 	
 	@Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+	
+	@Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		BlockEntity blockEntity = world.getBlockEntity(pos);
+		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
+			float curr = bottomlessBundleBlockEntity.storage.amount;
+			float max = bottomlessBundleBlockEntity.storage.getCapacity();
+			return MathHelper.floor(curr / max * 14.0f) + curr > 0 ? 1 : 0;
+		}
+		
+		return 0;
+    }
+	
+	@Override
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		if (!state.isOf(newState.getBlock())) {
+			BlockEntity blockEntity = world.getBlockEntity(pos);
+			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
+				world.updateComparators(pos, this);
+			}
+			
+			super.onStateReplaced(state, world, pos, newState, moved);
+		}
+	}
+	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		if (!world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {
 				bottomlessBundleBlockEntity.setBundle(itemStack.copy());
+				world.updateComparators(pos, this);
 			}
 		}
 	}

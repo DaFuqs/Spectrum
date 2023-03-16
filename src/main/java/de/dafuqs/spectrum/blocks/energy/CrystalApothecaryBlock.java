@@ -12,6 +12,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -72,6 +73,16 @@ public class CrystalApothecaryBlock extends BlockWithEntity {
 			return ActionResult.CONSUME;
 		}
 	}
+	
+	@Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+	
+	@Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+    }
 	
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {

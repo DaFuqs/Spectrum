@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_liquid_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
+      }
+    },
+    "filled_ink_container": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/fill_ink_container"
+      }
+    },
+    "collected_neolith": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_neolith"
+      }
+    }
+  }
+}

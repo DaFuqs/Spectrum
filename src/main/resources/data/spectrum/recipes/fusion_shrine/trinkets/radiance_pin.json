@@ -23,7 +23,7 @@
   "result": {
     "item": "spectrum:radiance_pin"
   },
-  "required_advancement": "spectrum:progression/unlock_radiance_pin",
+  "required_advancement": "spectrum:unlocks/trinkets/radiance_pin",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_malachite_tools": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/malachite/glass_crest_tools"
+      }
+    },
+    "broken_budding_block_with_resonance_tool": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/break_budding_block_with_resonance_tool"
+      }
+    },
+    "collected_bismuth_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_bismuth_crystal"
+      }
+    }
+  }
+}

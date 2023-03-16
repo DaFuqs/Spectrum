@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_liquid_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
+      }
+    },
+    "filled_ink_container": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/fill_ink_container"
+      }
+    },
+    "collected_four_leaf_clover": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_four_leaf_clover"
+      }
+    }
+  }
+}

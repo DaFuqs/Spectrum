@@ -1,28 +1,28 @@
 {
-	"pages":[
-		{
-			"text":"从A到B很乏味。$(br)特别是在$(l:resources/geodes)晶洞$(/l)的情况下，它们通常很远，因此在那里的旅程需要相当长的时间。$(br)有了这些神奇的靴子，你的移动能力比以前大得多。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/seven_league_boots",
-			"text":"提高移动速度和跳跃高度。",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		},
-		{
-			"item":"spectrum:seven_league_boots{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
-			"advancement":"spectrum:progression/enchantments/vanilla_projectile",
-			"text":"力量附魔进一步增加移动速度加成。",
-			"type":"patchouli:spotlight",
-			"title":"力量"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_seven_league_boots",
-	"extra_recipe_mappings":{
-		"spectrum:seven_league_boots":0
-	},
-	"name":"飞跃靴",
-	"icon":"spectrum:seven_league_boots",
-	"category":"spectrum:magical_items_category"
+  "pages": [
+    {
+      "text": "从A到B很乏味。$(br)特别是在$(l:resources/geodes)晶洞$(/l)的情况下，它们通常很远，因此在那里的旅程需要相当长的时间。$(br)有了这些神奇的靴子，你的移动能力比以前大得多。",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:fusion_shrine/trinkets/seven_league_boots",
+      "text": "提高移动速度和跳跃高度。",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "融合配方"
+    },
+    {
+      "item": "spectrum:seven_league_boots{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
+      "advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
+      "text": "力量附魔进一步增加移动速度加成。",
+      "type": "patchouli:spotlight",
+      "title": "力量"
+    }
+  ],
+  "advancement": "spectrum:unlocks/trinkets/seven_league_boots",
+  "extra_recipe_mappings": {
+    "spectrum:seven_league_boots": 0
+  },
+  "name": "飞跃靴",
+  "icon": "spectrum:seven_league_boots",
+  "category": "spectrum:magical_items_category"
 }

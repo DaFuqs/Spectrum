@@ -1,28 +1,26 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import dev.emi.trinkets.api.SlotReference;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public class GlowVisionGogglesItem extends SpectrumTrinketItem {
 	
 	public static ItemStack COST = new ItemStack(Items.GLOW_INK_SAC, 1);
 	
 	public GlowVisionGogglesItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_glow_vision_goggles"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/glow_vision_goggles"));
 	}
 	
 	@Override

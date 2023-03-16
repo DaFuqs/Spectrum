@@ -1,7 +1,7 @@
 {
   "name": "Controle de Pragas",
   "icon": "minecraft:iron_pickaxe",
-  "advancement": "spectrum:progression/enchantments/pest_control",
+  "advancement": "spectrum:unlocks/enchantments/pest_control",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

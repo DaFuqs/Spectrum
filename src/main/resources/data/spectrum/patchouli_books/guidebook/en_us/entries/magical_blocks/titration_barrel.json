@@ -1,7 +1,7 @@
 {
   "name": "Titration Barrel",
   "icon": "spectrum:titration_barrel",
-  "advancement": "spectrum:progression/unlock_titration_barrel",
+  "advancement": "spectrum:unlocks/blocks/titration_barrel",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
     "spectrum:titration_barrel": 0,
@@ -46,7 +46,7 @@
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Bodacious Berry Bar",
-      "advancement": "spectrum:progression/unlock_bodacious_berry_bar",
+      "advancement": "spectrum:unlocks/food/bodacious_berry_bar",
       "anchor": "bodacious_berry_bar",
       "recipe": "spectrum:pedestal/tier2/food/bodacious_berry_bar",
       "text": "A elaborate to create feast of flavor that guarantees to make your mouth water."
@@ -54,7 +54,7 @@
     {
       "type": "spectrum:potion_workshop_crafting",
       "title": "Hot Chocolate",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "anchor": "hot_chocolate",
       "recipe": "spectrum:potion_workshop_crafting/hot_chocolate",
       "text": "Perfect to come to the calm and in the cold season."

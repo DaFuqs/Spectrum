@@ -19,7 +19,7 @@
   "result": {
     "item": "spectrum:artists_palette"
   },
-  "required_advancement": "spectrum:progression/unlock_artists_palette",
+  "required_advancement": "spectrum:unlocks/trinkets/artists_palette",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

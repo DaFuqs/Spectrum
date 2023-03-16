@@ -1,31 +1,29 @@
 package de.dafuqs.spectrum.items.energy;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.energy.storage.PigmentPaletteInkStorage;
-import de.dafuqs.spectrum.items.LoomPatternProvider;
-import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
-import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
-import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class PigmentPaletteItem extends SpectrumTrinketItem implements InkStorageItem<PigmentPaletteInkStorage>, LoomPatternProvider {
 	
 	private final long maxEnergyPerColor;
 	
 	public PigmentPaletteItem(Settings settings, long maxEnergyPerColor) {
-		super(settings, SpectrumCommon.locate("progression/unlock_pigment_palette"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/pigment_palette"));
 		this.maxEnergyPerColor = maxEnergyPerColor;
 	}
 	

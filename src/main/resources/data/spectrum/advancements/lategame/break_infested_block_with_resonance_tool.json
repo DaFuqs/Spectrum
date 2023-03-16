@@ -31,7 +31,7 @@
             },
             "player": {
               "advancements": {
-                "spectrum:progression/enchantments/resonance": true
+                "spectrum:unlocks/enchantments/resonance": true
               }
             }
           }

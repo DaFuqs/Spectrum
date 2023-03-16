@@ -1,6 +1,6 @@
 {
   "name": "Molten Rod",
-  "advancement": "spectrum:progression/unlock_molten_rod",
+  "advancement": "spectrum:unlocks/equipment/molten_rod",
   "icon": "spectrum:molten_rod",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

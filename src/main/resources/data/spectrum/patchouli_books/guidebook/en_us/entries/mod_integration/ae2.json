@@ -29,7 +29,7 @@
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "advancement": "spectrum:progression/unlock_crystallarieum",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
       "recipe": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal",
       "text": "Being crystalline structures, $(thing)Certus Quartz$() and $(thing)Fluix Crystals$() can be grown in the Crystallarieum."
     }

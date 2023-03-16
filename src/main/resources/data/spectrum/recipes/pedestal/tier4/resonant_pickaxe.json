@@ -29,5 +29,5 @@
     "nbt": "{Enchantments: [{id: \"spectrum:resonance\", lvl: 1s}]}",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/tools/unlock_resonant_pickaxe"
+  "required_advancement": "spectrum:unlocks/equipment/resonant_pickaxe"
 }

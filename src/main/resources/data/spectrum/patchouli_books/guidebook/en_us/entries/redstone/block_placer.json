@@ -1,6 +1,6 @@
 {
   "name": "Block Placer",
-  "advancement": "spectrum:progression/unlock_block_placer",
+  "advancement": "spectrum:unlocks/redstone/block_placer",
   "icon": "spectrum:block_placer",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

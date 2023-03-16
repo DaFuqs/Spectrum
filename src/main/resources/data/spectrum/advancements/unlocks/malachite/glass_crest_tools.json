@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "unlocked_malachite_tools": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/malachite/malachite_tools"
+      }
+    },
+    "collected_moonstone_core": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
+      }
+    }
+  }
+}

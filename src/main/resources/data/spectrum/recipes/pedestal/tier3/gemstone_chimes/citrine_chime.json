@@ -35,5 +35,5 @@
     "item": "spectrum:citrine_chime",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/gemstone_chimes/unlock_citrine_chime"
+  "required_advancement": "spectrum:unlocks/gemstone_chimes/citrine_chime"
 }

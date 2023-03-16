@@ -15,7 +15,7 @@
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
-  "required_advancement": "spectrum:progression/potions/unlock_darkness_potion",
+  "required_advancement": "spectrum:unlocks/potions/darkness_potion",
   "ink_color": "black",
   "ink_cost": 8
 }

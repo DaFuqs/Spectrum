@@ -19,7 +19,7 @@
     },
     {
       "type": "spectrum:crystallarieum_growing",
-      "advancement": "spectrum:progression/unlock_crystallarieum",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
       "title": "Growing Bismuth",
       "recipe": "spectrum:crystallarieum/bismuth",
       "text": "Instead of sacrificing whole metal blocks, the $(l:magical_blocks/crystallarieum)Crystallarieum$() provides a controlled substrate as well as a finer and more efficient way to provide nutrients."

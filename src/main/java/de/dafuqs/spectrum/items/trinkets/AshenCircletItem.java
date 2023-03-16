@@ -1,28 +1,22 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import com.google.common.collect.Multimap;
-import de.dafuqs.additionalentityattributes.AdditionalEntityAttributes;
-import de.dafuqs.spectrum.SpectrumCommon;
-import dev.emi.trinkets.api.SlotReference;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.google.common.collect.*;
+import de.dafuqs.additionalentityattributes.*;
+import de.dafuqs.spectrum.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class AshenCircletItem extends SpectrumTrinketItem {
 	
@@ -33,7 +27,7 @@ public class AshenCircletItem extends SpectrumTrinketItem {
 	public static final double LAVA_VIEW_DISTANCE_MOD = 24.0;
 	
 	public AshenCircletItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_ashen_circlet"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/ashen_circlet"));
 	}
 	
 	public static long getCooldownTicks(@NotNull ItemStack ashenCircletStack, @NotNull World world) {

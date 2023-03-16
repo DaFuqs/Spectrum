@@ -15,5 +15,5 @@
   "result": {
     "item": "spectrum:blood_orchid"
   },
-  "required_advancement": "spectrum:progression/unlock_blood_orchid"
+  "required_advancement": "spectrum:unlocks/blocks/blood_orchid"
 }

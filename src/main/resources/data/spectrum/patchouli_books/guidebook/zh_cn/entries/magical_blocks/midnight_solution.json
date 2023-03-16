@@ -17,33 +17,33 @@
 			"text":"使用这种液体杀死生物所获得的额外掉落，你可以创造更多的滴水。如果你仔细想想的话，那真是太病态了。",
 			"type":"spectrum:potion_workshop_crafting",
 			"title":"午夜溶液桶"
-		},
-		{
-			"recipe":"spectrum:midnight_solution_converting/blackstone",
-			"text":"把一些物品扔进液体中似乎会把它们腐蚀到完全变成其他东西的程度。",
-			"type":"spectrum:midnight_solution_converting",
-			"title":"物品转换"
-		},
-		{
-			"text":"更重要的是，如果你把附魔物品扔进去，它们的特殊能力就会被剥夺。剩下的只是普通的物品和一堆经验。",
-			"type":"patchouli:text",
-			"title":"觉醒"
-		},
-		{
-			"item":"spectrum:black_materia",
-			"advancement":"spectrum:hidden/break_black_materia",
-			"text":"在午夜溶液池周围形成的一种看似无用的物质。",
-			"type":"patchouli:spotlight",
-			"title":"黑色材料"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_midnight_solution",
-	"extra_recipe_mappings":{
-		"spectrum:midnight_chip":0,
-		"spectrum:midnight_solution_bucket":0,
-		"spectrum:black_materia":0
-	},
-	"name":"午夜溶液",
-	"icon":"spectrum:midnight_solution_bucket",
-	"category":"spectrum:magical_blocks_category"
+        },
+      {
+        "recipe": "spectrum:midnight_solution_converting/blackstone",
+        "text": "把一些物品扔进液体中似乎会把它们腐蚀到完全变成其他东西的程度。",
+        "type": "spectrum:midnight_solution_converting",
+        "title": "物品转换"
+      },
+      {
+        "text": "更重要的是，如果你把附魔物品扔进去，它们的特殊能力就会被剥夺。剩下的只是普通的物品和一堆经验。",
+        "type": "patchouli:text",
+        "title": "觉醒"
+      },
+      {
+        "item": "spectrum:black_materia",
+        "advancement": "spectrum:hidden/break_black_materia",
+        "text": "在午夜溶液池周围形成的一种看似无用的物质。",
+        "type": "patchouli:spotlight",
+        "title": "黑色材料"
+      }
+    ],
+  "advancement": "spectrum:unlocks/blocks/midnight_solution",
+  "extra_recipe_mappings": {
+    "spectrum:midnight_chip": 0,
+    "spectrum:midnight_solution_bucket": 0,
+    "spectrum:black_materia": 0
+  },
+  "name": "午夜溶液",
+  "icon": "spectrum:midnight_solution_bucket",
+  "category": "spectrum:magical_blocks_category"
 }

@@ -36,5 +36,5 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:binding_curse\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/vanilla_curses"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_curses"
 }

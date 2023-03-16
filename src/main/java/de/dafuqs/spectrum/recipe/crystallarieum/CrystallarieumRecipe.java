@@ -17,7 +17,7 @@ import java.util.*;
 
 public class CrystallarieumRecipe extends GatedSpectrumRecipe {
 
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_crystallarieum");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/crystallarieum");
 
 	protected final Ingredient inputIngredient;
 	protected final List<BlockState> growthStages;

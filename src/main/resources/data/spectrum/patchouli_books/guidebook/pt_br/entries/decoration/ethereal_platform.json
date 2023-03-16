@@ -1,6 +1,6 @@
 {
   "name": "Plataforma Etérea",
-  "advancement": "spectrum:progression/unlock_ethereal_platform",
+  "advancement": "spectrum:unlocks/blocks/ethereal_platform",
   "icon": "spectrum:ethereal_platform",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

@@ -1,6 +1,6 @@
 {
   "name": "Glow Vision Goggles",
-  "advancement": "spectrum:progression/unlock_glow_vision_goggles",
+  "advancement": "spectrum:unlocks/trinkets/glow_vision_goggles",
   "icon": "spectrum:glow_vision_goggles",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

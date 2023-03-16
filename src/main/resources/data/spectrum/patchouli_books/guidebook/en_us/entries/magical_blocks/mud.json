@@ -1,6 +1,6 @@
 {
   "name": "Mud",
-  "advancement": "spectrum:progression/unlock_mud_bucket",
+  "advancement": "spectrum:unlocks/blocks/mud",
   "icon": "spectrum:mud_bucket",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

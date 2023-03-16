@@ -36,7 +36,7 @@
     "item": "spectrum:glass_crest_workstaff",
     "nbt": "{Enchantments: [{id: \"minecraft:fortune\", lvl: 4s}]}"
   },
-  "required_advancement": "spectrum:progression/malachite/unlock_glass_crest_workstaff",
+  "required_advancement": "spectrum:unlocks/malachite/glass_crest_workstaff",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

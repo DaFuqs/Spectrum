@@ -1,6 +1,6 @@
 {
   "name": "Rock Candy",
-  "advancement": "spectrum:progression/unlock_rock_candy",
+  "advancement": "spectrum:unlocks/food/rock_candy",
   "icon": "spectrum:rock_candy",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

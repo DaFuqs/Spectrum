@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "unlocked_liquid_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
+      }
+    },
+    "unlocked_advanced_crafting": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure"
+      }
+    },
+    "collected_four_leaf_clover": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_four_leaf_clover"
+      }
+    },
+    "collected_phantom_membrane": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_phantom_membrane"
+      }
+    }
+  }
+}

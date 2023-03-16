@@ -1,7 +1,7 @@
 {
   "name": "Maldição do Vazio",
   "icon": "minecraft:wooden_pickaxe",
-  "advancement": "spectrum:progression/tools/unlock_oblivion_pickaxe",
+  "advancement": "spectrum:unlocks/equipment/oblivion_pickaxe",
   "category": "spectrum:enchanting_category",
   "pages": [
     {
@@ -18,7 +18,7 @@
       "type": "spectrum:enchanter_crafting",
       "title": "Receitar de Encantador",
       "recipe": "spectrum:enchanter/spectrum_books/book_voiding",
-      "advancement": "spectrum:progression/enchantments/voiding",
+      "advancement": "spectrum:unlocks/enchantments/voiding",
       "text": "Você pode infusionar um livro comum com Maldição do Vazio rodeando seu Encantador com Pigmento e outros materiais necessários."
     }
   ]

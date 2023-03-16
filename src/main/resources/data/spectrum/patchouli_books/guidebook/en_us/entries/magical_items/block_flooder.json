@@ -1,6 +1,6 @@
 {
   "name": "Block Flooder",
-  "advancement": "spectrum:progression/unlock_block_flooder",
+  "advancement": "spectrum:unlocks/blocks/block_flooder",
   "icon": "spectrum:block_flooder",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

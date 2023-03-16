@@ -1,26 +1,26 @@
 {
-	"pages":[
-		{
-			"text":"这两块高的装饰石代表着你的珍贵发现。$(br2)它们给人留下了深刻的印象。",
-			"type":"patchouli:text",
-			"title":"摆件"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/decostones/topaz_decostone",
-			"text":"摆件有多种宝石颜色供您选择。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/decostones/unlock_any_decostone",
-	"extra_recipe_mappings":{
-		"spectrum:topaz_decostone":0,
-		"spectrum:citrine_decostone":0,
-		"spectrum:onyx_decostone":0,
-		"spectrum:moonstone_decostone":0,
-		"spectrum:amethyst_decostone":0
-	},
-	"name":"摆件",
-	"icon":"spectrum:amethyst_decostone",
-	"category":"spectrum:decoration_category"
+  "pages": [
+    {
+      "text": "这两块高的装饰石代表着你的珍贵发现。$(br2)它们给人留下了深刻的印象。",
+      "type": "patchouli:text",
+      "title": "摆件"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier1/decostones/topaz_decostone",
+      "text": "摆件有多种宝石颜色供您选择。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/decostones/any_decostone",
+  "extra_recipe_mappings": {
+    "spectrum:topaz_decostone": 0,
+    "spectrum:citrine_decostone": 0,
+    "spectrum:onyx_decostone": 0,
+    "spectrum:moonstone_decostone": 0,
+    "spectrum:amethyst_decostone": 0
+  },
+  "name": "摆件",
+  "icon": "spectrum:amethyst_decostone",
+  "category": "spectrum:decoration_category"
 }

@@ -26,5 +26,5 @@
     "item": "spectrum:red_glowblock",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/glowblocks/unlock_red_glowblock"
+  "required_advancement": "spectrum:unlocks/glowblocks/red_glowblock"
 }

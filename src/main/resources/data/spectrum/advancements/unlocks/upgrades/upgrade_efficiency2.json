@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "crafted_previous_upgrade": {
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": { "items": [{ "items": [ "spectrum:upgrade_efficiency" ]}] }
+    },
+    "collected_moonstone_shard": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/create_spectral_shard"
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "name": "Inércia",
   "icon": "minecraft:iron_pickaxe",
-  "advancement": "spectrum:progression/enchantments/inertia",
+  "advancement": "spectrum:unlocks/enchantments/inertia",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

@@ -1,6 +1,6 @@
 {
   "name": "Lagoon Rod",
-  "advancement": "spectrum:progression/unlock_lagoon_rod",
+  "advancement": "spectrum:unlocks/equipment/lagoon_rod",
   "icon": "spectrum:lagoon_rod",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

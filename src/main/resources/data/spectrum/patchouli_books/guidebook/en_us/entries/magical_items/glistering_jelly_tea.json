@@ -1,6 +1,6 @@
 {
   "name": "Glistering Jelly Tea",
-  "advancement": "spectrum:progression/unlock_glistering_jelly_tea",
+  "advancement": "spectrum:unlocks/food/glistering_jelly_tea",
   "icon": "spectrum:glistering_jelly_tea",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

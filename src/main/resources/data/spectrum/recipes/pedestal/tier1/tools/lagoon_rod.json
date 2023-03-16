@@ -29,5 +29,5 @@
     "nbt": "{Enchantments: [{id: \"minecraft:lure\", lvl: 3s}]}",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_lagoon_rod"
+  "required_advancement": "spectrum:unlocks/equipment/lagoon_rod"
 }

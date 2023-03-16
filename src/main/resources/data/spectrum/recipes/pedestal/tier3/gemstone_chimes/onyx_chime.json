@@ -35,5 +35,5 @@
     "item": "spectrum:onyx_chime",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/gemstone_chimes/unlock_onyx_chime"
+  "required_advancement": "spectrum:unlocks/gemstone_chimes/onyx_chime"
 }

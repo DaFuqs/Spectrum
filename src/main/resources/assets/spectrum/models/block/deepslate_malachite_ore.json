@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "minecraft:block/deepslate"
+    "all": "spectrum:block/deepslate_malachite_ore"
   }
 }

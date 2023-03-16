@@ -27,7 +27,7 @@
     "item": "spectrum:glass_crest_ultra_greatsword",
     "nbt": "{Enchantments: [{id: \"minecraft:sweeping_edge\", lvl: 4s}]}"
   },
-  "required_advancement": "spectrum:progression/malachite/unlock_glass_crest_ultra_greatsword",
+  "required_advancement": "spectrum:unlocks/malachite/glass_crest_ultra_greatsword",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

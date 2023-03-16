@@ -34,5 +34,5 @@
     "item": "spectrum:particle_spawner",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_particle_spawner"
+  "required_advancement": "spectrum:unlocks/blocks/particle_spawner"
 }

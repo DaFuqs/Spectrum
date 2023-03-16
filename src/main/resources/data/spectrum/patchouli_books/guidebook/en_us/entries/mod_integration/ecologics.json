@@ -12,7 +12,7 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Slippery Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/ecologics/potion_workshop_brewing/ecologics_slippery",
       "text": ""
     }

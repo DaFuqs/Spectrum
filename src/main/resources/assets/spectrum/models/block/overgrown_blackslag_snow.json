@@ -1,9 +1,9 @@
 {
 	"parent": "spectrum:block/overgrown_base",
 	"textures": {
-		"side": "spectrum:block/snowy_overgrown_blackslag_side",
-		"top": "spectrum:block/snowy_overgrown_blackslag_top",
-		"fronds": "spectrum:block/snowy_overgrown_blackslag_fronds",
-		"bottom": "spectrum:block/blackslag_top"
-	}
+      "side": "spectrum:block/snowy_overgrown_blackslag",
+      "top": "spectrum:block/snowy_overgrown_blackslag_top",
+      "fronds": "spectrum:block/snowy_overgrown_blackslag_fronds",
+      "bottom": "spectrum:block/blackslag_top"
+    }
 }

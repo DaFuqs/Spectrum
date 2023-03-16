@@ -1,6 +1,6 @@
 {
   "name": "Enchantment Canvas",
-  "advancement": "spectrum:progression/unlock_enchantment_canvas",
+  "advancement": "spectrum:unlocks/items/enchantment_canvas",
   "icon": "spectrum:enchantment_canvas",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

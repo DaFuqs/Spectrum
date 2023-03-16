@@ -1,21 +1,18 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffectTags;
-import dev.emi.trinkets.api.SlotReference;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.stat.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -25,7 +22,7 @@ public class WhispyCircletItem extends SpectrumTrinketItem {
 	private final static int NEGATIVE_EFFECT_SHORTENING_TICKS = 200;
 	
 	public WhispyCircletItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_whispy_circlet"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/whispy_circlet"));
 	}
 	
 	public static void removeSingleStatusEffect(@NotNull LivingEntity entity, StatusEffectCategory category) {

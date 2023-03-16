@@ -27,7 +27,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final int MIN_FERMENTATION_TIME_HOURS = 4;
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.SUSPICIOUS_BREW, 4);
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_suspicious_brew");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/suspicious_brew");
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
 		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
 		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));

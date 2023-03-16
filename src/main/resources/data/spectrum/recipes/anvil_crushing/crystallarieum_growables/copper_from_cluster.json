@@ -12,5 +12,5 @@
   "particleEffectIdentifier": "explosion",
   "soundEventIdentifier": "block.amethyst_cluster.break",
   "group": "crystallarieum_growable_crushing",
-  "required_advancement": "spectrum:progression/unlock_crystallarieum"
+  "required_advancement": "spectrum:unlocks/blocks/crystallarieum"
 }

@@ -34,5 +34,5 @@
     "item": "spectrum:myceylon_pumpkin_pie",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_myceylon_pastries"
+  "required_advancement": "spectrum:unlocks/food/myceylon_pastries"
 }

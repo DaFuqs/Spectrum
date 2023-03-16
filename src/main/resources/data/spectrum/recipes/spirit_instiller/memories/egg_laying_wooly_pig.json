@@ -17,5 +17,5 @@
     "item": "spectrum:memory",
     "nbt": "{EntityTag: {id: \"spectrum:egg_laying_wooly_pig\"}, TicksToManifest: 8}"
   },
-  "required_advancement": "spectrum:progression/unlock_egg_laying_wooly_pig_head"
+  "required_advancement": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head"
 }

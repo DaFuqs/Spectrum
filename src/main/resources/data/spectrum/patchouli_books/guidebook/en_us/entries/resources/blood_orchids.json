@@ -16,7 +16,7 @@
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
-      "advancement": "spectrum:progression/unlock_blood_orchid",
+      "advancement": "spectrum:unlocks/blocks/blood_orchid",
       "title": "Blood Orchid Plants",
       "recipe": "spectrum:spirit_instiller/blood_orchid",
       "text": "$(l:magical_blocks/liquid_crystal#resonant_lily)Resonant Lilies$(/l)! Truly an elusive flower - and seemingly related to Blood Orchids. Though the Blood Orchids energy very quickly takes over.$(br)Whelp, worst thing that can happen is you ending up with a true plant that you can pluck additional petals of."

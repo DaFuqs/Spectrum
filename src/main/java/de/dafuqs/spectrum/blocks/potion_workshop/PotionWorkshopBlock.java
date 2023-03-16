@@ -1,30 +1,24 @@
 package de.dafuqs.spectrum.blocks.potion_workshop;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.screen.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class PotionWorkshopBlock extends BlockWithEntity {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_potion_workshop");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
 	
 	public static final BooleanProperty HAS_CONTENT = BooleanProperty.of("has_content");
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);

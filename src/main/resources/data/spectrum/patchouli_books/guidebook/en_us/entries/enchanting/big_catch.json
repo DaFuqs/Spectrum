@@ -1,7 +1,7 @@
 {
   "name": "Big Catch",
   "icon": "spectrum:lagoon_rod",
-  "advancement": "spectrum:progression/enchantments/big_catch",
+  "advancement": "spectrum:unlocks/enchantments/big_catch",
   "flag": "spectrum:enchantment_exists_spectrum_big_catch",
   "category": "spectrum:enchanting_category",
   "pages": [

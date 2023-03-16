@@ -1,6 +1,6 @@
 {
   "name": "Nature's Staff",
-  "advancement": "spectrum:progression/unlock_natures_staff",
+  "advancement": "spectrum:unlocks/items/natures_staff",
   "icon": "spectrum:natures_staff",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

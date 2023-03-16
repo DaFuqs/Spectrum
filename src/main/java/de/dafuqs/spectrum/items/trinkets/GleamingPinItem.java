@@ -1,29 +1,25 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnchantable {
 	
@@ -33,7 +29,7 @@ public class GleamingPinItem extends SpectrumTrinketItem implements EnchanterEnc
 	public static final long COOLDOWN_TICKS = 160;
 	
 	public GleamingPinItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_gleaming_pin"));
+		super(settings, SpectrumCommon.locate("unlocks/gleaming_pin"));
 	}
 	
 	public static void doGleamingPinEffect(@NotNull PlayerEntity player, @NotNull ServerWorld world, ItemStack gleamingPinStack) {

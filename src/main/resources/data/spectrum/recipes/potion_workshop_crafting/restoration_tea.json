@@ -16,5 +16,5 @@
     "item": "spectrum:restoration_tea",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_restoration_tea"
+  "required_advancement": "spectrum:unlocks/food/restoration_tea"
 }

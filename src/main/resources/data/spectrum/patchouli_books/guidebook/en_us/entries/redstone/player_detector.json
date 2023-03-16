@@ -1,6 +1,6 @@
 {
   "name": "Player Detector",
-  "advancement": "spectrum:progression/detectors/unlock_player_detector",
+  "advancement": "spectrum:unlocks/redstone/player_detector",
   "icon": "spectrum:player_detector",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

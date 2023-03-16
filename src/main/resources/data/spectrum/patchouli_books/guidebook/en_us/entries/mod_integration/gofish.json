@@ -11,7 +11,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:progression/unlock_molten_rod",
+      "advancement": "spectrum:unlocks/equipment/molten_rod",
       "title": "Lava Fishing",
       "item": "spectrum:molten_rod",
       "text": "Your magical fishing rods are able to fish lava and end dwelling fish, like the Go Fish fishing rods.$(br)Crates can also be fished, as long as you are in the open."

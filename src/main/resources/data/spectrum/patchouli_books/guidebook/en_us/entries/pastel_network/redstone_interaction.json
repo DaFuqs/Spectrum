@@ -1,7 +1,7 @@
 {
   "name": "Redstone Interaction",
   "icon": "minecraft:redstone",
-  "advancement": "spectrum:progression/unlock_pastel_network",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
   "category": "spectrum:pastel_network_category",
   "priority": true,
   "sortnum": 1,

@@ -1,6 +1,6 @@
 {
   "name": "Lesser Potion Pendant",
-  "advancement": "spectrum:progression/unlock_lesser_potion_pendant",
+  "advancement": "spectrum:unlocks/trinkets/lesser_potion_pendant",
   "icon": "spectrum:lesser_potion_pendant",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

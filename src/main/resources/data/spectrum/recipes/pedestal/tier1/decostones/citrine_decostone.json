@@ -29,5 +29,5 @@
     "item": "spectrum:citrine_decostone",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/decostones/unlock_citrine_decostone"
+  "required_advancement": "spectrum:unlocks/decostones/citrine_decostone"
 }

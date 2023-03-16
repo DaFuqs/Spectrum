@@ -28,5 +28,5 @@
     "item": "spectrum:perturbed_eye",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/unlock_perturbed_eye"
+  "required_advancement": "spectrum:unlocks/items/perturbed_eye"
 }

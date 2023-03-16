@@ -1,6 +1,6 @@
 {
   "name": "Ring of Pursuit",
-  "advancement": "spectrum:progression/unlock_ring_of_pursuit",
+  "advancement": "spectrum:unlocks/trinkets/ring_of_pursuit",
   "icon": "spectrum:ring_of_pursuit",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

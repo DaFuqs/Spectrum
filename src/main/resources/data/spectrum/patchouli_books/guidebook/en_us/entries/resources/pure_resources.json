@@ -56,7 +56,7 @@
     },
     {
       "type": "spectrum:cinderhearth_smelting",
-      "advancement": "spectrum:progression/unlock_cinderhearth",
+      "advancement": "spectrum:unlocks/blocks/cinderhearth",
       "title": "Cinderhearth Smelting",
       "recipe": "spectrum:cinderhearth/pure_resources/pure_iron",
       "recipe2": "spectrum:cinderhearth/pure_resources/pure_gold",

@@ -24,7 +24,7 @@
   "result": {
     "item": "spectrum:puff_circlet"
   },
-  "required_advancement": "spectrum:progression/unlock_puff_circlet",
+  "required_advancement": "spectrum:unlocks/trinkets/puff_circlet",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

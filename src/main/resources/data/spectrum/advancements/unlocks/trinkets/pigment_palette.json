@@ -1,0 +1,24 @@
+{
+  "criteria": {
+    "unlocked_liquid_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
+      }
+    },
+    "refined_azurite": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_refined_azurite"
+      }
+    },
+    "equipped_three_trinkets": {
+      "trigger": "spectrum:trinket_change",
+      "conditions": {
+        "spectrum_count": {
+          "min": 3
+        }
+      }
+    }
+  }
+}

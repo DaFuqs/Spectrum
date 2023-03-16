@@ -97,5 +97,5 @@
     "count": 4,
     "nbt": "{Variant: \"spiked_mullet_wine\", Color: 10365209 }"
   },
-  "required_advancement": "spectrum:progression/unlock_spiked_mullet_wine"
+  "required_advancement": "spectrum:unlocks/food/spiked_mullet_wine"
 }

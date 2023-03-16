@@ -1,6 +1,6 @@
 {
   "name": "Azure Dike Equipment",
-  "advancement": "spectrum:progression/unlock_any_azure_dike_equipment",
+  "advancement": "spectrum:unlocks/trinkets/any_azure_dike_equipment",
   "icon": "spectrum:azure_dike_ring",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

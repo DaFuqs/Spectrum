@@ -1,6 +1,6 @@
 {
   "name": "Color Picker",
-  "advancement": "spectrum:progression/unlock_color_picker",
+  "advancement": "spectrum:unlocks/blocks/color_picker",
   "icon": "spectrum:color_picker",
   "category": "spectrum:magic_category",
   "pages": [

@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "unlocked_liquid_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
+      }
+    },
+    "built_complex_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    },
+    "collected_magenta_pigment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/collect_magenta_pigment"
+      }
+    },
+    "collected_bismuth": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_bismuth"
+      }
+    }
+  }
+}

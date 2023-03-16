@@ -20,5 +20,5 @@
     "item": "spectrum:reprise",
     "count": 2
   },
-  "required_advancement": "spectrum:progression/unlock_reprise"
+  "required_advancement": "spectrum:unlocks/food/reprise"
 }

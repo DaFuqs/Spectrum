@@ -11,12 +11,12 @@
 			"title":"基座配方"
 		},
 		{
-			"advancement":"spectrum:progression/unlock_upgrade_efficiency2",
-			"recipe":"spectrum:pedestal/tier4/upgrade_efficiency2",
-			"text":"这种“升级的升级”进一步减少了输入材料的消耗。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"第2层"
-		}
+          "advancement": "spectrum:unlocks/upgrades/upgrade_efficiency2",
+          "recipe": "spectrum:pedestal/tier4/upgrade_efficiency2",
+          "text": "这种“升级的升级”进一步减少了输入材料的消耗。",
+          "type": "spectrum:pedestal_crafting",
+          "title": "第2层"
+        }
 	],
 	"advancement":"spectrum:midgame/create_refined_azurite",
 	"extra_recipe_mappings":{

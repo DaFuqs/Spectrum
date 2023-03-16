@@ -1,6 +1,6 @@
 {
   "name": "Ink Assortment",
-  "advancement": "spectrum:progression/unlock_ink_assortment",
+  "advancement": "spectrum:unlocks/items/ink_assortment",
   "icon": "spectrum:ink_assortment",
   "category": "spectrum:magic_category",
   "extra_recipe_mappings": {

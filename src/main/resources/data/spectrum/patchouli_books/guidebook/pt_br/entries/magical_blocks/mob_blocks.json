@@ -1,6 +1,6 @@
 {
   "name": "Idols",
-  "advancement": "spectrum:progression/unlock_mob_blocks",
+  "advancement": "spectrum:unlocks/blocks/mob_blocks",
   "icon": "spectrum:fox_mob_block",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

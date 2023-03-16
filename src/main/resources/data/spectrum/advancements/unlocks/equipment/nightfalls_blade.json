@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "collected_refined_azurite": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_refined_azurite"
+      }
+    },
+    "created_midnight_aberration": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_midnight_aberration"
+      }
+    },
+    "collected_quitoxic_reeds": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_quitoxic_reeds"
+      }
+    }
+  }
+}

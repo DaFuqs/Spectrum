@@ -1,6 +1,6 @@
 {
   "name": "Light Level Detector",
-  "advancement": "spectrum:progression/detectors/unlock_light_level_detector",
+  "advancement": "spectrum:unlocks/redstone/light_level_detector",
   "icon": "spectrum:player_detector",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

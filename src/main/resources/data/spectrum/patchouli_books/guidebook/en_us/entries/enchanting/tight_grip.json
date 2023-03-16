@@ -1,7 +1,7 @@
 {
   "name": "Tight Grip",
   "icon": "minecraft:iron_sword",
-  "advancement": "spectrum:progression/enchantments/tight_grip",
+  "advancement": "spectrum:unlocks/enchantments/tight_grip",
   "flag": "spectrum:enchantment_exists_spectrum_tight_grip",
   "category": "spectrum:enchanting_category",
   "pages": [

@@ -1,6 +1,6 @@
 {
   "name": "Knowledge Gem",
-  "advancement": "spectrum:progression/unlock_knowledge_gem",
+  "advancement": "spectrum:unlocks/items/knowledge_gem",
   "icon": "spectrum:knowledge_gem{stored_experience:500}",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

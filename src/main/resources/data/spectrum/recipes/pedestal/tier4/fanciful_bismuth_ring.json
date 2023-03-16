@@ -22,5 +22,5 @@
     "item": "spectrum:fanciful_bismuth_ring",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_fanciful_bismuth_ring"
+  "required_advancement": "spectrum:unlocks/trinkets/fanciful_bismuth_ring"
 }

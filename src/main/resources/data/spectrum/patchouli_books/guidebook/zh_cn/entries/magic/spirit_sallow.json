@@ -6,11 +6,11 @@
 			"type":"patchouli:spotlight"
 		},
 		{
-			"advancement":"spectrum:lategame/grow_ominous_sapling",
-			"text":"待办事项",
-			"type":"patchouli:text",
-			"title":"灵魂木"
-		}
+          "advancement": "spectrum:endgame/grow_ominous_sapling",
+          "text": "待办事项",
+          "type": "patchouli:text",
+          "title": "灵魂木"
+        }
 	],
 	"advancement":"spectrum:lategame/spectrum_lategame",
 	"extra_recipe_mappings":{

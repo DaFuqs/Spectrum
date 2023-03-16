@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"镀金的书籍是《附魔》（$(l:enchanting/enchanter)注魔基座$(/l)）中普通书籍的替代品。更容易接受魔法，附魔的过程将更快、更便宜。$(br)更重要的是，它们甚至可以用于将注魔基座周围物品基座中各种物品的魔法复制到自身（而不仅仅是其他附魔书籍）。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/gilded_book",
-			"text":"$(italic)闪光的未必都是金子。$(br)然而，这些书是。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_gilded_book",
-	"extra_recipe_mappings":{
-		"spectrum:gilded_book":0
-	},
-	"name":"镀金的书",
-	"icon":"spectrum:gilded_book",
-	"category":"spectrum:enchanting_category"
+  "pages": [
+    {
+      "text": "镀金的书籍是《附魔》（$(l:enchanting/enchanter)注魔基座$(/l)）中普通书籍的替代品。更容易接受魔法，附魔的过程将更快、更便宜。$(br)更重要的是，它们甚至可以用于将注魔基座周围物品基座中各种物品的魔法复制到自身（而不仅仅是其他附魔书籍）。",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier3/gilded_book",
+      "text": "$(italic)闪光的未必都是金子。$(br)然而，这些书是。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/items/gilded_book",
+  "extra_recipe_mappings": {
+    "spectrum:gilded_book": 0
+  },
+  "name": "镀金的书",
+  "icon": "spectrum:gilded_book",
+  "category": "spectrum:enchanting_category"
 }

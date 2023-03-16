@@ -23,7 +23,7 @@
   "result": {
     "item": "spectrum:ring_of_pursuit"
   },
-  "required_advancement": "spectrum:progression/unlock_ring_of_pursuit",
+  "required_advancement": "spectrum:unlocks/trinkets/ring_of_pursuit",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

@@ -1,6 +1,6 @@
 {
   "name": "Redstone Timer",
-  "advancement": "spectrum:progression/unlock_redstone_timer",
+  "advancement": "spectrum:unlocks/redstone/redstone_timer",
   "icon": "spectrum:redstone_timer",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

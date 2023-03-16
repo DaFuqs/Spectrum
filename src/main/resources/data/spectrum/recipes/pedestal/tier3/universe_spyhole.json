@@ -28,5 +28,5 @@
     "item": "spectrum:universe_spyhole",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/unlock_universe_spyhole"
+  "required_advancement": "spectrum:unlocks/blocks/universe_spyhole"
 }

@@ -1,7 +1,7 @@
 {
   "name": "Whispy Circlet",
   "icon": "spectrum:whispy_circlet",
-  "advancement": "spectrum:progression/unlock_whispy_circlet",
+  "advancement": "spectrum:unlocks/trinkets/whispy_circlet",
   "category": "spectrum:magical_items_category",
   "pages": [
     {

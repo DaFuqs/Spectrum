@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "unlocked_liquid_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
+      }
+    },
+    "collected_mermaids_gem": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_mermaids_gem"
+      }
+    },
+    "has_heart_of_the_sea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:heart_of_the_sea"
+            ]
+          }
+        ]
+      }
+    },
+    "built_advanced_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure"
+      }
+    }
+  }
+}

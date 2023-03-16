@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"随身携带足够的墨水来维护你的魔法装备已经成为你库存中的一项杂务和一个太空猪。$(br2)现在是一个新的创造：颜料调色板。它能够储存相当数量的墨水，以供应你所有的魔法装置和设备。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/pigment_palette",
-			"text":"$(italic)现在你是一个真正的色彩艺术家。",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_pigment_palette",
-	"extra_recipe_mappings":{
-		"spectrum:pigment_palette":0
-	},
-	"name":"颜料调色板",
-	"icon":"spectrum:pigment_palette",
-	"category":"spectrum:magic_category"
+  "pages": [
+    {
+      "text": "随身携带足够的墨水来维护你的魔法装备已经成为你库存中的一项杂务和一个太空猪。$(br2)现在是一个新的创造：颜料调色板。它能够储存相当数量的墨水，以供应你所有的魔法装置和设备。",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:fusion_shrine/trinkets/pigment_palette",
+      "text": "$(italic)现在你是一个真正的色彩艺术家。",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "融合配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/trinkets/pigment_palette",
+  "extra_recipe_mappings": {
+    "spectrum:pigment_palette": 0
+  },
+  "name": "颜料调色板",
+  "icon": "spectrum:pigment_palette",
+  "category": "spectrum:magic_category"
 }

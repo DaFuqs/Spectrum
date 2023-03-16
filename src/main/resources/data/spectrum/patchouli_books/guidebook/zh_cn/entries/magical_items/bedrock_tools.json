@@ -30,39 +30,39 @@
 			"type":"spectrum:fusion_shrine_crafting"
 		},
 		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_bow",
-			"text":"基岩弓配有$(bold)力量VI$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_crossbow",
-			"text":"基岩弩配备$(bold)快速装填III$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_shears",
-			"text":"基岩剪具有$(bold)精准采集$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_fishing_rod",
-			"text":"基岩钓竿带有$(bold)海之眷顾IV$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_bedrock_tools",
-	"extra_recipe_mappings":{
-		"spectrum:bedrock_axe":0,
-		"spectrum:bedrock_hoe":0,
-		"spectrum:bedrock_shovel":0,
-		"spectrum:bedrock_bow":0,
-		"spectrum:bedrock_sword":0,
-		"spectrum:bedrock_crossbow":0,
-		"spectrum:bedrock_pickaxe":0,
-		"spectrum:bedrock_shears":0,
-		"spectrum:bedrock_fishing_rod":0
-	},
-	"name":"基岩工具",
-	"icon":"spectrum:bedrock_pickaxe",
-	"category":"spectrum:magical_items_category"
+          "recipe": "spectrum:fusion_shrine/bedrock/bedrock_bow",
+          "text": "基岩弓配有$(bold)力量VI$()。",
+          "type": "spectrum:fusion_shrine_crafting"
+        },
+      {
+        "recipe": "spectrum:fusion_shrine/bedrock/bedrock_crossbow",
+        "text": "基岩弩配备$(bold)快速装填III$()。",
+        "type": "spectrum:fusion_shrine_crafting"
+      },
+      {
+        "recipe": "spectrum:fusion_shrine/bedrock/bedrock_shears",
+        "text": "基岩剪具有$(bold)精准采集$()。",
+        "type": "spectrum:fusion_shrine_crafting"
+      },
+      {
+        "recipe": "spectrum:fusion_shrine/bedrock/bedrock_fishing_rod",
+        "text": "基岩钓竿带有$(bold)海之眷顾IV$()。",
+        "type": "spectrum:fusion_shrine_crafting"
+      }
+    ],
+  "advancement": "spectrum:unlocks/equipment/bedrock_tools",
+  "extra_recipe_mappings": {
+    "spectrum:bedrock_axe": 0,
+    "spectrum:bedrock_hoe": 0,
+    "spectrum:bedrock_shovel": 0,
+    "spectrum:bedrock_bow": 0,
+    "spectrum:bedrock_sword": 0,
+    "spectrum:bedrock_crossbow": 0,
+    "spectrum:bedrock_pickaxe": 0,
+    "spectrum:bedrock_shears": 0,
+    "spectrum:bedrock_fishing_rod": 0
+  },
+  "name": "基岩工具",
+  "icon": "spectrum:bedrock_pickaxe",
+  "category": "spectrum:magical_items_category"
 }

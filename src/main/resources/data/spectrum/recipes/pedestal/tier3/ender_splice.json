@@ -31,5 +31,5 @@
     "item": "spectrum:ender_splice",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/unlock_ender_splice"
+  "required_advancement": "spectrum:unlocks/items/ender_splice"
 }

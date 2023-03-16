@@ -11,13 +11,13 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "item": "spectrum:magenta_leaves",
       "text": "$(thing)Colored Leaves$() can be crushed, yielding $(thing)Pigment$() and $(thing)Colored Saplings$()"
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "item": "spectrum:magenta_log",
       "text": "Crushing $(thing)Colored Logs$() results in a nice yield of $(thing)Pigment$()."
     },
@@ -29,7 +29,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "item": "minecraft:amethyst_shard",
       "text": "Milling $(thing)Gemstone Shards Yields$() results in a higher amount of $(thing)Gemstone Powder$() compared crushing them with an Anvil."
     }

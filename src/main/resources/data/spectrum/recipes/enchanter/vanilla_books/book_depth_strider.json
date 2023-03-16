@@ -36,5 +36,5 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:depth_strider\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/vanilla_water"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_water"
 }

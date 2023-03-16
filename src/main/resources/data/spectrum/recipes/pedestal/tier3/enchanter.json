@@ -31,5 +31,5 @@
     "item": "spectrum:enchanter",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_enchanter"
+  "required_advancement": "spectrum:unlocks/blocks/enchanter"
 }

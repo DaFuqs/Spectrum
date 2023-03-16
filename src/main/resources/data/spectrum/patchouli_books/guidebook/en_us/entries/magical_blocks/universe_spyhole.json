@@ -1,6 +1,6 @@
 {
   "name": "Universe Spyhole",
-  "advancement": "spectrum:progression/unlock_universe_spyhole",
+  "advancement": "spectrum:unlocks/blocks/universe_spyhole",
   "icon": "spectrum:universe_spyhole",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

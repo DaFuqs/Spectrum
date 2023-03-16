@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "collected_amaranth_bushel": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_amaranth_bushel" }
+    },
+    "unlocked_titration_barrel": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/titration_barrel"
+      }
+    }
+  }
+}

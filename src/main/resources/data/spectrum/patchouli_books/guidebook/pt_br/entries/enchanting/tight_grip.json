@@ -1,7 +1,7 @@
 {
   "name": "Aperto Firme",
   "icon": "minecraft:iron_sword",
-  "advancement": "spectrum:progression/enchantments/tight_grip",
+  "advancement": "spectrum:unlocks/enchantments/tight_grip",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

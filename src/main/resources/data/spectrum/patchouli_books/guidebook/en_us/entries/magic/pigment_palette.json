@@ -1,6 +1,6 @@
 {
   "name": "Pigment Palette",
-  "advancement": "spectrum:progression/unlock_pigment_palette",
+  "advancement": "spectrum:unlocks/trinkets/pigment_palette",
   "icon": "spectrum:pigment_palette",
   "category": "spectrum:magic_category",
   "extra_recipe_mappings": {

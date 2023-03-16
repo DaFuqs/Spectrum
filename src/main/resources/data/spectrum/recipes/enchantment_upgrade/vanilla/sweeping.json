@@ -34,5 +34,5 @@
       "item_count": 512
     }
   ],
-  "required_advancement": "spectrum:progression/enchantments/vanilla_damage"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_damage"
 }

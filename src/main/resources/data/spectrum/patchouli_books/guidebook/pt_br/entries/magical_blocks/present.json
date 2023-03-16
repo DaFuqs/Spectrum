@@ -1,6 +1,6 @@
 {
   "name": "Present",
-  "advancement": "spectrum:progression/unlock_present",
+  "advancement": "spectrum:unlocks/blocks/present",
   "icon": "spectrum:present",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

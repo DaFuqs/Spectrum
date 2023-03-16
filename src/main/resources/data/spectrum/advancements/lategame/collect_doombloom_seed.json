@@ -1,0 +1,34 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "spectrum:doombloom_seed"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_doombloom_seed.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_doombloom_seed.description"
+    }
+  },
+  "criteria": {
+    "collected_doombloom_seed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:doombloom_seed"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

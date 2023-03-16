@@ -1,6 +1,6 @@
 {
   "name": "Lava Sponge",
-  "advancement": "spectrum:progression/unlock_lava_sponge",
+  "advancement": "spectrum:unlocks/blocks/lava_sponge",
   "icon": "spectrum:lava_sponge",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

@@ -1,7 +1,7 @@
 {
   "name": "Sender Node",
   "icon": "spectrum:sender_node",
-  "advancement": "spectrum:progression/unlock_pastel_network",
+  "advancement": "spectrum:unlocks/blocks/pastel_network",
   "category": "spectrum:pastel_network_category",
   "pages": [
     {

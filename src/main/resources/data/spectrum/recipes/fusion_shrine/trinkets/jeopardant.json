@@ -22,7 +22,7 @@
   "result": {
     "item": "spectrum:jeopardant"
   },
-  "required_advancement": "spectrum:progression/unlock_jeopardant",
+  "required_advancement": "spectrum:unlocks/trinkets/jeopardant",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

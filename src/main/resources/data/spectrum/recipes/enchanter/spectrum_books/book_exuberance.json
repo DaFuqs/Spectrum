@@ -35,7 +35,7 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:exuberance\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/exuberance",
+  "required_advancement": "spectrum:unlocks/enchantments/exuberance",
   "fabric:load_conditions": [
     {
       "condition": "spectrum:enchantments_exist",

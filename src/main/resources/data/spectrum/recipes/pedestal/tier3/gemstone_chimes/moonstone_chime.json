@@ -35,5 +35,5 @@
     "item": "spectrum:moonstone_chime",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/gemstone_chimes/unlock_moonstone_chime"
+  "required_advancement": "spectrum:unlocks/gemstone_chimes/moonstone_chime"
 }

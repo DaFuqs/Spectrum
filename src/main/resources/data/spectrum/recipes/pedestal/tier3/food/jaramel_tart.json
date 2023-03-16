@@ -31,5 +31,5 @@
     "item": "spectrum:jaramel_tart",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_tarts"
+  "required_advancement": "spectrum:unlocks/food/tarts"
 }

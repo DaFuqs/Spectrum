@@ -1,7 +1,7 @@
 {
   "name": "Livro Dourado",
   "icon": "spectrum:gilded_book",
-  "advancement": "spectrum:progression/unlock_gilded_book",
+  "advancement": "spectrum:unlocks/items/gilded_book",
   "category": "spectrum:enchanting_category",
   "extra_recipe_mappings": {
     "spectrum:gilded_book": 0

@@ -2,32 +2,32 @@
 	"pages":[
 		{
 			"text":"结合$(l:resources/azurite)蓝铜矿$(/l)和$(l:general/pigment#blue)蓝色颜料$(/l)的保护性能的结果真的激发了你的兴趣。这种材料似乎被一种透明的光环包围着，当你伸手去拿肿块时，这种光环需要一些努力才能穿透。$(br2)$(italic)这会很有趣。。。",
-			"type":"patchouli:text"
-		},
-		{
-			"text":"魔法光环环绕着你的身体，保护你免受伤害。$(br)缓慢充电至特定量。$(br2)每件蔚蓝防御装备都会增加最大防护量。",
-			"type":"patchouli:text",
-			"title":"蔚蓝防御"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/azure_dike_ring",
-			"text":"授予你$(c_green)4$()点$(c_blue)蔚蓝防御$()积分。",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"蔚蓝防御环"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/azure_dike_belt",
-			"text":"授予你$(c_green)6$()点$(c_blue)蔚蓝防御$()积分。",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"蔚蓝防御带"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_any_azure_dike_equipment",
-	"extra_recipe_mappings":{
-		"spectrum:azure_dike_belt":0,
-		"spectrum:azure_dike_ring":0
-	},
-	"name":"蔚蓝防御设备",
-	"icon":"spectrum:azure_dike_ring",
-	"category":"spectrum:magical_items_category"
+          "type": "patchouli:text"
+        },
+      {
+        "text": "魔法光环环绕着你的身体，保护你免受伤害。$(br)缓慢充电至特定量。$(br2)每件蔚蓝防御装备都会增加最大防护量。",
+        "type": "patchouli:text",
+        "title": "蔚蓝防御"
+      },
+      {
+        "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_ring",
+        "text": "授予你$(c_green)4$()点$(c_blue)蔚蓝防御$()积分。",
+        "type": "spectrum:fusion_shrine_crafting",
+        "title": "蔚蓝防御环"
+      },
+      {
+        "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_belt",
+        "text": "授予你$(c_green)6$()点$(c_blue)蔚蓝防御$()积分。",
+        "type": "spectrum:fusion_shrine_crafting",
+        "title": "蔚蓝防御带"
+      }
+    ],
+  "advancement": "spectrum:unlocks/trinkets/any_azure_dike_equipment",
+  "extra_recipe_mappings": {
+    "spectrum:azure_dike_belt": 0,
+    "spectrum:azure_dike_ring": 0
+  },
+  "name": "蔚蓝防御设备",
+  "icon": "spectrum:azure_dike_ring",
+  "category": "spectrum:magical_items_category"
 }

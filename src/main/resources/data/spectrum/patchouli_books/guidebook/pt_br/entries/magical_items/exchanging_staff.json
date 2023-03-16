@@ -1,6 +1,6 @@
 {
   "name": "Exchanging Staff",
-  "advancement": "spectrum:progression/unlock_exchanging_staff",
+  "advancement": "spectrum:unlocks/items/exchanging_staff",
   "icon": "spectrum:exchanging_staff",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

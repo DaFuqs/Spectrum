@@ -1,7 +1,7 @@
 {
   "name": "Exuberance",
   "icon": "spectrum:multitool",
-  "advancement": "spectrum:progression/enchantments/exuberance",
+  "advancement": "spectrum:unlocks/enchantments/exuberance",
   "flag": "spectrum:enchantment_exists_spectrum_exuberance",
   "category": "spectrum:enchanting_category",
   "pages": [

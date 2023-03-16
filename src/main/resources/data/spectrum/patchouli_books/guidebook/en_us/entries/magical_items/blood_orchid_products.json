@@ -27,19 +27,19 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_demon_trifle",
+      "advancement": "spectrum:unlocks/food/demon_trifle",
       "recipe": "spectrum:pedestal/tier3/food/demon_trifle",
       "text": "The $(thing)Frenzy$() effect you may get is starts out low, but lasts a bit longer."
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "advancement": "spectrum:progression/unlock_demon_tea",
+      "advancement": "spectrum:unlocks/food/demon_tea",
       "recipe": "spectrum:potion_workshop_crafting/demon_tea",
       "text": "The $(thing)Frenzy$() effect you may get is relatively short, but starts out quite high."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "advancement": "spectrum:progression/unlock_rabbit_poison",
+      "advancement": "spectrum:unlocks/food/rabbit_poison",
       "title": "Rabbit Poison",
       "recipe": "spectrum:titration_barrel/infused_beverages/rabbit_poison",
       "text": "A truly nasty brew. Tastes like you would imagine and the effects are similar."

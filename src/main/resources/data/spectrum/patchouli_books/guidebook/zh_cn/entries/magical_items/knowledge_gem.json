@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)每当你捡起一个每当你杀死敌人时出现的绿色小球，你就会变得更聪明——据说。$(br2)然而，不可避免的笨拙死亡意味着你总是很快失去这种经验。结晶并安全存放在您的箱子里，然而，它们将尽可能安全。$()",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/knowledge_gem",
-			"text":"一颗宝石最多可以容纳10000经验。$(bold)效率$()$(l:enchanting/enchanting_items)附魔$()增加了这个限制，$(bold)快速装填$()提高了XP的推拉速度。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_knowledge_gem",
-	"extra_recipe_mappings":{
-		"spectrum:knowledge_gem":0
-	},
-	"name":"知识宝石",
-	"icon":"spectrum:knowledge_gem{stored_experience:500}",
-	"category":"spectrum:magical_items_category"
+  "pages": [
+    {
+      "text": "$(italic)每当你捡起一个每当你杀死敌人时出现的绿色小球，你就会变得更聪明——据说。$(br2)然而，不可避免的笨拙死亡意味着你总是很快失去这种经验。结晶并安全存放在您的箱子里，然而，它们将尽可能安全。$()",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier3/knowledge_gem",
+      "text": "一颗宝石最多可以容纳10000经验。$(bold)效率$()$(l:enchanting/enchanting_items)附魔$()增加了这个限制，$(bold)快速装填$()提高了XP的推拉速度。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/items/knowledge_gem",
+  "extra_recipe_mappings": {
+    "spectrum:knowledge_gem": 0
+  },
+  "name": "知识宝石",
+  "icon": "spectrum:knowledge_gem{stored_experience:500}",
+  "category": "spectrum:magical_items_category"
 }

@@ -22,7 +22,7 @@
     {
       "type": "patchouli:text",
       "title": "A Challenge?",
-      "advancement": "spectrum:lategame/learn_dreiton",
+      "advancement": "spectrum:endgame/learn_dreiton",
       "text": "Now that you understand Dreiton tongue, it is easy for you to decipher the inscription on the back:$(br2)$(italic)Don't be silly Asteras - the moon can't glow, it can only reflect the sun's light."
     },
     {

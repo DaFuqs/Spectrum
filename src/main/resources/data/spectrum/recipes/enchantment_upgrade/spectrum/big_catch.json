@@ -13,7 +13,7 @@
       "item_count": 128
     }
   ],
-  "required_advancement": "spectrum:progression/enchantments/big_catch",
+  "required_advancement": "spectrum:unlocks/enchantments/big_catch",
   "fabric:load_conditions": [
     {
       "condition": "spectrum:enchantments_exist",

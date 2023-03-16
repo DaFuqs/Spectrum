@@ -29,5 +29,5 @@
     "item": "spectrum:onyx_calcite_lamp",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/gemstone_lamps/unlock_onyx_lamps"
+  "required_advancement": "spectrum:unlocks/gemstone_lamps/onyx_lamps"
 }

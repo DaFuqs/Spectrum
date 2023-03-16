@@ -21,7 +21,7 @@ import java.util.*;
  */
 public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
-	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("progression/unlock_titration_barrel");
+	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/titration_barrel");
 	
 	ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature);
 	

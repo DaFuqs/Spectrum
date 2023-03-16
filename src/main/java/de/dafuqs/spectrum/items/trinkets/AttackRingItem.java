@@ -1,33 +1,26 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
-import de.dafuqs.spectrum.SpectrumCommon;
-import dev.emi.trinkets.api.SlotReference;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.*;
+import dev.emi.trinkets.api.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class AttackRingItem extends SpectrumTrinketItem {
 	
 	public static final UUID ATTACK_RING_DAMAGE_UUID = UUID.fromString("15d1fb68-6440-404a-aa31-7bf3310d3f52");
 	
 	public AttackRingItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_jeopardant"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/jeopardant"));
 	}
 	
 	public static double getAttackModifierForEntity(LivingEntity entity) {

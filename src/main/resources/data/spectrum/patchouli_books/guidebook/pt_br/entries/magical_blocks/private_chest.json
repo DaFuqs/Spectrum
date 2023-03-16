@@ -1,6 +1,6 @@
 {
   "name": "Heartbound Chest",
-  "advancement": "spectrum:progression/unlock_private_chest",
+  "advancement": "spectrum:unlocks/blocks/private_chest",
   "icon": "spectrum:private_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

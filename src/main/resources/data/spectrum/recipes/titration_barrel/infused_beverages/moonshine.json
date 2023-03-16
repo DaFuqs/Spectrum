@@ -99,5 +99,5 @@
     "count": 4,
     "nbt": "{Variant: \"moonshine\", Color: 14151663 }"
   },
-  "required_advancement": "spectrum:progression/unlock_moonshine"
+  "required_advancement": "spectrum:unlocks/food/moonshine"
 }

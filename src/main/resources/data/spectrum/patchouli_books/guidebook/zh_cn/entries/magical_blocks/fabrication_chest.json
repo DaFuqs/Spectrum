@@ -1,22 +1,22 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:restocking_chest",
-			"text":"$(italic)颜料基座非常适合自动创建物品。但是如果你一遍又一遍地需要同样的几件物品，你必须重新安排你的整个结构。$(br2)当然，你已经找到了一个更合适的解决方案。",
-			"type":"patchouli:spotlight"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/restocking_chest",
-			"text":"制作箱有四个槽用于制作平板电脑。你在这些配方中定义的配方总是有库存的——只要箱子里的成分允许。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_restocking_chest",
-	"extra_recipe_mappings":{
-		"spectrum:restocking_chest":0
-	},
-	"name":"预制箱",
-	"icon":"spectrum:restocking_chest",
-	"category":"spectrum:magical_blocks_category"
+  "pages": [
+    {
+      "item": "spectrum:restocking_chest",
+      "text": "$(italic)颜料基座非常适合自动创建物品。但是如果你一遍又一遍地需要同样的几件物品，你必须重新安排你的整个结构。$(br2)当然，你已经找到了一个更合适的解决方案。",
+      "type": "patchouli:spotlight"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier3/restocking_chest",
+      "text": "制作箱有四个槽用于制作平板电脑。你在这些配方中定义的配方总是有库存的——只要箱子里的成分允许。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/blocks/restocking_chest",
+  "extra_recipe_mappings": {
+    "spectrum:restocking_chest": 0
+  },
+  "name": "预制箱",
+  "icon": "spectrum:restocking_chest",
+  "category": "spectrum:magical_blocks_category"
 }

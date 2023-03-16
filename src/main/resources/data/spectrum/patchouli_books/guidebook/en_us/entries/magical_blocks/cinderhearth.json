@@ -1,7 +1,7 @@
 {
   "name": "Cinderhearth",
   "icon": "spectrum:cinderhearth",
-  "advancement": "spectrum:progression/unlock_cinderhearth",
+  "advancement": "spectrum:unlocks/blocks/cinderhearth",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
     "spectrum:cinderhearth": 0

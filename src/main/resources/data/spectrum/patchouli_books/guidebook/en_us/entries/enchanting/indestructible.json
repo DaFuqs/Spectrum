@@ -2,7 +2,7 @@
   "name": "Indestructible",
   "icon": "spectrum:multitool",
   "secret": true,
-  "advancement": "spectrum:progression/enchantments/indestructible",
+  "advancement": "spectrum:unlocks/enchantments/indestructible",
   "flag": "spectrum:enchantment_exists_spectrum_indestructible",
   "category": "spectrum:enchanting_category",
   "pages": [

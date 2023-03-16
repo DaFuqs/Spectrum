@@ -19,7 +19,7 @@
   "result": {
     "item": "spectrum:heartsingers_reward"
   },
-  "required_advancement": "spectrum:progression/unlock_heartsingers_reward",
+  "required_advancement": "spectrum:unlocks/trinkets/heartsingers_reward",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

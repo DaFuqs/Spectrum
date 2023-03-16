@@ -1,7 +1,7 @@
 {
   "name": "Creating Life",
   "icon": "minecraft:egg",
-  "advancement": "spectrum:progression/unlock_bottle_of_fading",
+  "advancement": "spectrum:unlocks/items/bottle_of_fading",
   "category": "spectrum:creating_life_category",
   "priority": true,
   "pages": [

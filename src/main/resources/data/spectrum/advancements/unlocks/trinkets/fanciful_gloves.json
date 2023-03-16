@@ -1,0 +1,15 @@
+{
+  "criteria": {
+    "unlocked_gloves_of_dawns_grasp": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/gloves_of_dawns_grasp"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "unlocked_gloves_of_dawns_grasp"
+    ]
+  ]
+}

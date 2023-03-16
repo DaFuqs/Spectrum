@@ -1,6 +1,6 @@
 {
   "name": "Bag of Holding",
-  "advancement": "spectrum:progression/unlock_bag_of_holding",
+  "advancement": "spectrum:unlocks/items/bag_of_holding",
   "icon": "spectrum:bag_of_holding",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

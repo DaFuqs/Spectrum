@@ -1,35 +1,35 @@
 {
 	"pages":[
 		{
-			"text":"爬山或畸形的洞穴总是非常耗时。如果你看不到攀爬畸形岩架的选择，你别无选择，只能在岩石上开辟一条路。$(br)使用新的蓄能腰带，你可以在身后保持巨大的垂直距离，节省时间，保护你美丽的天性免受破坏。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/take_off_belt",
-			"text":"潜行来蓄力跳高，潜行时间越长，力量越大。$(br2)$(italic)尽管名字暗示着，请不要脱掉它。",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		},
-		{
-			"item":"spectrum:take_off_belt{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
-			"advancement":"spectrum:progression/enchantments/vanilla_projectile",
-			"text":"力量附魔进一步增加跳跃高度。",
-			"type":"patchouli:spotlight",
-			"title":"力量"
-		},
-		{
-			"item":"spectrum:take_off_belt{Enchantments: [{id: \"minecraft:feather_falling\", lvl: 4s}]}",
-			"advancement":"spectrum:progression/enchantments/vanilla_quitoxic",
-			"text":"羽落会给你一个短暂的缓降效果，让你更好地导航到你想要降落的地方。事实上，高水平的羽落可能是一种非常可行的方法，可以再次安全地从悬崖上坠落。",
-			"type":"patchouli:spotlight",
-			"title":"羽落"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_take_off_belt",
-	"extra_recipe_mappings":{
-		"spectrum:take_off_belt":0
-	},
-	"name":"蓄能腰带",
-	"icon":"spectrum:take_off_belt",
-	"category":"spectrum:magical_items_category"
+          "text": "爬山或畸形的洞穴总是非常耗时。如果你看不到攀爬畸形岩架的选择，你别无选择，只能在岩石上开辟一条路。$(br)使用新的蓄能腰带，你可以在身后保持巨大的垂直距离，节省时间，保护你美丽的天性免受破坏。",
+          "type": "patchouli:text"
+        },
+      {
+        "recipe": "spectrum:fusion_shrine/trinkets/take_off_belt",
+        "text": "潜行来蓄力跳高，潜行时间越长，力量越大。$(br2)$(italic)尽管名字暗示着，请不要脱掉它。",
+        "type": "spectrum:fusion_shrine_crafting",
+        "title": "融合配方"
+      },
+      {
+        "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
+        "advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
+        "text": "力量附魔进一步增加跳跃高度。",
+        "type": "patchouli:spotlight",
+        "title": "力量"
+      },
+      {
+        "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:feather_falling\", lvl: 4s}]}",
+        "advancement": "spectrum:unlocks/enchantments/vanilla_quitoxic",
+        "text": "羽落会给你一个短暂的缓降效果，让你更好地导航到你想要降落的地方。事实上，高水平的羽落可能是一种非常可行的方法，可以再次安全地从悬崖上坠落。",
+        "type": "patchouli:spotlight",
+        "title": "羽落"
+      }
+    ],
+  "advancement": "spectrum:unlocks/trinkets/take_off_belt",
+  "extra_recipe_mappings": {
+    "spectrum:take_off_belt": 0
+  },
+  "name": "蓄能腰带",
+  "icon": "spectrum:take_off_belt",
+  "category": "spectrum:magical_items_category"
 }

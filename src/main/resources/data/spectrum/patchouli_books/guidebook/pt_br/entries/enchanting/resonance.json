@@ -1,7 +1,7 @@
 {
   "name": "Ressonância",
   "icon": "minecraft:diamond_pickaxe",
-  "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
+  "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

@@ -1,6 +1,6 @@
 {
   "name": "Jeopardant",
-  "advancement": "spectrum:progression/unlock_jeopardant",
+  "advancement": "spectrum:unlocks/trinkets/jeopardant",
   "icon": "spectrum:jeopardant",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

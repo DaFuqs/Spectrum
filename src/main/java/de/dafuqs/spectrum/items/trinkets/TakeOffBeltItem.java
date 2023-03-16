@@ -1,34 +1,29 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterEnchantable;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import dev.emi.trinkets.api.SlotReference;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.trinkets.api.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnchantable {
 	
@@ -38,7 +33,7 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 	private static final HashMap<LivingEntity, Long> sneakingTimes = new HashMap<>();
 	
 	public TakeOffBeltItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_take_off_belt"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/take_off_belt"));
 	}
 	
 	public static int getJumpBoostAmplifier(int sneakTime, int powerEnchantmentLevel) {

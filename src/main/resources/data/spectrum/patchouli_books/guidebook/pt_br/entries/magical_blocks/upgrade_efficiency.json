@@ -20,7 +20,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_efficiency2",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_efficiency2",
       "title": "Tier 2",
       "recipe": "spectrum:pedestal/tier4/upgrade_efficiency2",
       "text": "This 'upgrade of the upgrade' further reduces the consumption of input materials."

@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cube_column_mirrored",
   "textures": {
     "end": "spectrum:block/blackslag_top",
-    "side": "spectrum:block/blackslag_side"
+    "side": "spectrum:block/blackslag"
   }
 }

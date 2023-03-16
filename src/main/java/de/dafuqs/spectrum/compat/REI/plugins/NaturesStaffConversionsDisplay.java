@@ -14,7 +14,7 @@ import java.util.*;
 
 public class NaturesStaffConversionsDisplay extends BasicDisplay implements GatedRecipeDisplay {
 	
-	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("progression/unlock_natures_staff");
+	public static final Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/items/natures_staff");
 	private final @Nullable Identifier requiredAdvancementIdentifier;
 	
 	public NaturesStaffConversionsDisplay(EntryStack<?> in, EntryStack<?> out, @Nullable Identifier requiredAdvancementIdentifier) {

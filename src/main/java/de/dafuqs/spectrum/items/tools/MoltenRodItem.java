@@ -1,23 +1,22 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.entity.MoltenFishingBobberEntity;
-import de.dafuqs.spectrum.registries.SpectrumFluidTags;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class MoltenRodItem extends SpectrumFishingRodItem {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_molten_rod");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/equipment/molten_rod");
 	
 	public MoltenRodItem(Settings settings) {
 		super(settings);

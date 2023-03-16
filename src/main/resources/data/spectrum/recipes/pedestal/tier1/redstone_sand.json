@@ -25,5 +25,5 @@
     "item": "spectrum:redstone_sand",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_redstone_sand"
+  "required_advancement": "spectrum:unlocks/redstone/redstone_sand"
 }

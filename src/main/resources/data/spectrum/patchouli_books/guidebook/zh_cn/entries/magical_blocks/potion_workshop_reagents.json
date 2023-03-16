@@ -151,16 +151,16 @@
         "type": "patchouli:spotlight",
         "title": "月相花蜜"
       },
-		{
-			"item":"spectrum:bedrock_dust",
-			"advancement":"spectrum:midgame/break_decayed_bedrock",
-			"text":"以持续时间为代价，使药剂效力加倍",
-			"type":"patchouli:spotlight",
-			"title":"基岩粉末"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_potion_workshop",
-	"name":"药剂效果：试剂",
-	"icon":"spectrum:potion_workshop",
-	"category":"spectrum:magical_blocks_category"
+      {
+        "item": "spectrum:bedrock_dust",
+        "advancement": "spectrum:midgame/break_decayed_bedrock",
+        "text": "以持续时间为代价，使药剂效力加倍",
+        "type": "patchouli:spotlight",
+        "title": "基岩粉末"
+      }
+    ],
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "name": "药剂效果：试剂",
+  "icon": "spectrum:potion_workshop",
+  "category": "spectrum:magical_blocks_category"
 }

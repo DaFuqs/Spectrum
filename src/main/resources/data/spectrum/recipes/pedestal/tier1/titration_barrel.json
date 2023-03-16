@@ -28,5 +28,5 @@
     "item": "spectrum:titration_barrel",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_titration_barrel"
+  "required_advancement": "spectrum:unlocks/blocks/titration_barrel"
 }

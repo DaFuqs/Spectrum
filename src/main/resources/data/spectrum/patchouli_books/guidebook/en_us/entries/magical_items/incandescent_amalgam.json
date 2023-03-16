@@ -1,6 +1,6 @@
 {
   "name": "Incandescent Amalgam",
-  "advancement": "spectrum:progression/unlock_incandescent_amalgam",
+  "advancement": "spectrum:unlocks/items/incandescent_amalgam",
   "icon": "spectrum:incandescent_amalgam",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

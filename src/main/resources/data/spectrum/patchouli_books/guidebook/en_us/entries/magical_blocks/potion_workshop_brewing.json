@@ -1,7 +1,7 @@
 {
   "name": "Potion Works.: Brewing",
   "icon": "spectrum:potion_workshop",
-  "advancement": "spectrum:progression/unlock_potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
     "minecraft:potion": 0
@@ -49,35 +49,35 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Levitation",
-      "advancement": "spectrum:progression/potions/unlock_levitation_potion",
+      "advancement": "spectrum:unlocks/potions/levitation_potion",
       "recipe": "spectrum:potion_workshop_brewing/levitation",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Luck",
-      "advancement": "spectrum:progression/potions/unlock_luck_potion",
+      "advancement": "spectrum:unlocks/potions/luck_potion",
       "recipe": "spectrum:potion_workshop_brewing/luck",
       "text": "Adding a Fermented Spider Eye will change the Effect to $(bold)Bad Luck$() instead."
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Resistance",
-      "advancement": "spectrum:progression/potions/unlock_resistance_potion",
+      "advancement": "spectrum:unlocks/potions/resistance_potion",
       "recipe": "spectrum:potion_workshop_brewing/resistance",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Wither",
-      "advancement": "spectrum:progression/potions/unlock_wither_potion",
+      "advancement": "spectrum:unlocks/potions/wither_potion",
       "recipe": "spectrum:potion_workshop_brewing/wither",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Darkness",
-      "advancement": "spectrum:progression/potions/unlock_darkness_potion",
+      "advancement": "spectrum:unlocks/potions/darkness_potion",
       "recipe": "spectrum:potion_workshop_brewing/darkness",
       "text": ""
     }

@@ -2,7 +2,7 @@
   "name": "Melhoria CMY de Pedestal",
   "icon": "spectrum:pedestal_all_basic",
   "sortnum": 8,
-  "advancement": "spectrum:progression/unlock_cmy_pedestal",
+  "advancement": "spectrum:unlocks/blocks/cmy_pedestal",
   "category": "spectrum:general_category",
   "turnin": "spectrum:build_basic_pedestal_structure",
   "extra_recipe_mappings": {

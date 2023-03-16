@@ -12,42 +12,42 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Combustion Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_combustion",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Concentration Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_concentration",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Crumbling Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_crumbling",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Detection Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_detection",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Fuse Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_fuse",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Gravity Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_gravity",
       "text": ""
     },
@@ -55,63 +55,63 @@
       "type": "spectrum:potion_workshop_brewing",
       "title": "Growing Potions",
       "flag": "mod:pekhui",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_growing",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Learning Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_learning",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Magnetism Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_magnetism",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Pacifism Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_pacifism",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Photosynthesis Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_photosynthesis",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Piper Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_piper",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Recall Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_recall",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Returning Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_returning",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Sails Potions",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_sails",
       "text": ""
     },
@@ -119,7 +119,7 @@
       "type": "spectrum:potion_workshop_brewing",
       "title": "Shrinking Potions",
       "flag": "mod:pekhui",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/extraalchemy/potion_workshop_brewing/extraalchemy_shrinking",
       "text": ""
     }

@@ -27,28 +27,28 @@
 			"text":"较小的宝石芽通常太脆弱，无法从母亲的方块上折断。$(br2)然而，如果你点击正确的频率，较小的宝石芽几乎会自己从石头上摔下来。",
 			"type":"patchouli:spotlight",
 			"title":"宝石芽"
-		},
-		{
-			"item":"spectrum:orange_leaves",
-			"text":"彩色叶子受到刺激，释放出更多的树苗。$(br2)应用到锄头上，它将最终成为你获得再生$(l:general/colored_trees)彩色树苗$()的关键。",
-			"type":"patchouli:spotlight",
-			"title":"彩色叶子"
-		},
-		{
-			"item":"minecraft:spawner",
-			"text":"在深处，你会发现笼子里似乎吐出了无数的敌人。是哪个疯子把他们放在那里的，他们的目的是什么，这些努力是否真的值得，对你来说都是个谜。然而，你肯定可以找到一些使用这些。无论制造商是谁，都不会错过你打包的。",
-			"type":"patchouli:spotlight",
-			"title":"收获怪物笼"
-		},
-		{
-			"item":"minecraft:infested_stone_bricks",
-			"text":"轻柔的振动使躲在方块里的蠢虫安静下来。$(br2)你可以把包括蠢虫在内的积木打包带走，而不让它们知道发生了什么。$(br)甜蜜，甜蜜的复仇？",
-			"type":"patchouli:spotlight",
-			"title":"受感染的方块"
-		}
-	],
-	"advancement":"spectrum:progression/tools/unlock_resonant_pickaxe",
-	"name":"共振",
-	"icon":"minecraft:diamond_pickaxe",
-	"category":"spectrum:enchanting_category"
+        },
+      {
+        "item": "spectrum:orange_leaves",
+        "text": "彩色叶子受到刺激，释放出更多的树苗。$(br2)应用到锄头上，它将最终成为你获得再生$(l:general/colored_trees)彩色树苗$()的关键。",
+        "type": "patchouli:spotlight",
+        "title": "彩色叶子"
+      },
+      {
+        "item": "minecraft:spawner",
+        "text": "在深处，你会发现笼子里似乎吐出了无数的敌人。是哪个疯子把他们放在那里的，他们的目的是什么，这些努力是否真的值得，对你来说都是个谜。然而，你肯定可以找到一些使用这些。无论制造商是谁，都不会错过你打包的。",
+        "type": "patchouli:spotlight",
+        "title": "收获怪物笼"
+      },
+      {
+        "item": "minecraft:infested_stone_bricks",
+        "text": "轻柔的振动使躲在方块里的蠢虫安静下来。$(br2)你可以把包括蠢虫在内的积木打包带走，而不让它们知道发生了什么。$(br)甜蜜，甜蜜的复仇？",
+        "type": "patchouli:spotlight",
+        "title": "受感染的方块"
+      }
+    ],
+  "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
+  "name": "共振",
+  "icon": "minecraft:diamond_pickaxe",
+  "category": "spectrum:enchanting_category"
 }

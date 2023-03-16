@@ -31,5 +31,5 @@
     "item": "spectrum:natures_staff",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_natures_staff"
+  "required_advancement": "spectrum:unlocks/items/natures_staff"
 }

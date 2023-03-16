@@ -1,6 +1,6 @@
 {
   "name": "Ink Flask",
-  "advancement": "spectrum:progression/unlock_ink_flask",
+  "advancement": "spectrum:unlocks/blocks/ink_flask",
   "icon": "spectrum:ink_flask",
   "category": "spectrum:magic_category",
   "extra_recipe_mappings": {

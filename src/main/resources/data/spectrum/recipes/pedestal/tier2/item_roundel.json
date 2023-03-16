@@ -28,5 +28,5 @@
     "item": "spectrum:item_roundel",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_item_roundel"
+  "required_advancement": "spectrum:unlocks/blocks/item_roundel"
 }

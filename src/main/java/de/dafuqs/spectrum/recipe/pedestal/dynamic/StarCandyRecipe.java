@@ -1,32 +1,27 @@
 package de.dafuqs.spectrum.recipe.pedestal.dynamic;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.pedestal.PedestalBlockEntity;
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import oshi.util.tuples.Triplet;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.pedestal.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import oshi.util.tuples.*;
 
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class StarCandyRecipe extends PedestalCraftingRecipe {
 	
 	public static final RecipeSerializer<StarCandyRecipe> SERIALIZER = new SpecialRecipeSerializer<>(StarCandyRecipe::new);
 	public static final Random RANDOM = new Random();
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_star_candy");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/star_candy");
 	public static final float PURPLE_STAR_CANDY_CHANCE = 0.0025F;
 	public static final HashMap<BuiltinGemstoneColor, Integer> GEMSTONE_POWDER_INPUTS = new HashMap<>() {{
 		put(BuiltinGemstoneColor.YELLOW, 1);

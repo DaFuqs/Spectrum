@@ -40,5 +40,5 @@
     "item": "spectrum:triple_meat_pot_stew",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_triple_meat_pot_stew"
+  "required_advancement": "spectrum:unlocks/food/triple_meat_pot_stew"
 }

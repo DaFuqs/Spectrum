@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"你已经用了很多铁砧（准确地说，很多铁砧）。然而，无论是物品$(l:general/anvil_crushing)破碎$(/l)、修复还是附魔工具都会很快对其造成损坏，以至于无法修复。$(br)使铁砧更耐用——甚至不可摧毁——基岩似乎是完美的选择。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/bedrock/bedrock_anvil",
-			"text":"允许您免费重命名物品，并且没有最大修复限制。$(br)$(italic)此外，您还可以为物品添加描述。提示：键入将文本拆分为多行。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_bedrock_tools",
-	"extra_recipe_mappings":{
-		"spectrum:bedrock_anvil":0
-	},
-	"name":"基岩砧",
-	"icon":"spectrum:bedrock_anvil",
-	"category":"spectrum:magical_blocks_category"
+  "pages": [
+    {
+      "text": "你已经用了很多铁砧（准确地说，很多铁砧）。然而，无论是物品$(l:general/anvil_crushing)破碎$(/l)、修复还是附魔工具都会很快对其造成损坏，以至于无法修复。$(br)使铁砧更耐用——甚至不可摧毁——基岩似乎是完美的选择。",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier3/bedrock/bedrock_anvil",
+      "text": "允许您免费重命名物品，并且没有最大修复限制。$(br)$(italic)此外，您还可以为物品添加描述。提示：键入将文本拆分为多行。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/equipment/bedrock_tools",
+  "extra_recipe_mappings": {
+    "spectrum:bedrock_anvil": 0
+  },
+  "name": "基岩砧",
+  "icon": "spectrum:bedrock_anvil",
+  "category": "spectrum:magical_blocks_category"
 }

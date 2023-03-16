@@ -28,5 +28,5 @@
     "item": "spectrum:crescent_clock",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_crescent_clock"
+  "required_advancement": "spectrum:unlocks/items/crescent_clock"
 }

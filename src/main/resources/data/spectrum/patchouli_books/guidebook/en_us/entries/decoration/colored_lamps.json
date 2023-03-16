@@ -1,7 +1,7 @@
 {
   "name": "Colored Lamps",
   "icon": "spectrum:cyan_lamp",
-  "advancement": "spectrum:progression/colored_lamps/unlock_any_colored_lamp",
+  "advancement": "spectrum:unlocks/colored_lamps/any_colored_lamp",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:black_lamp": 0,

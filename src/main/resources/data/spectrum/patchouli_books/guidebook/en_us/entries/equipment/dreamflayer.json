@@ -1,6 +1,6 @@
 {
   "name": "Dreamflayer",
-  "advancement": "spectrum:progression/unlock_dreamflayer",
+  "advancement": "spectrum:unlocks/equipment/dreamflayer",
   "icon": "spectrum:dreamflayer",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

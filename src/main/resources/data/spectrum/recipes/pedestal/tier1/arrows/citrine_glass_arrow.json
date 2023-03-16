@@ -32,5 +32,5 @@
     "item": "spectrum:citrine_glass_arrow",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/malachite/unlock_malachite_tools"
+  "required_advancement": "spectrum:unlocks/malachite/malachite_tools"
 }

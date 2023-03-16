@@ -29,5 +29,5 @@
     "nbt": "{Enchantments: [{id: \"spectrum:voiding\", lvl: 1s}]}",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/tools/unlock_oblivion_pickaxe"
+  "required_advancement": "spectrum:unlocks/equipment/oblivion_pickaxe"
 }

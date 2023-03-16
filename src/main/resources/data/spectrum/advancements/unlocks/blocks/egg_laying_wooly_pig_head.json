@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "created_midnight_aberration": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/create_midnight_aberration"
+      }
+    },
+    "collected_any_mob_head_using_treasure_hunter": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_mob_head_using_treasure_hunter"
+      }
+    }
+  }
+}

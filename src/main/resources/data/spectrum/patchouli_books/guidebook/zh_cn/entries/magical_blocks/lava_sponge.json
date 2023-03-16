@@ -1,28 +1,28 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)当你手里拿着一块湿漉漉的海绵时，你认为一定也有对应的岩浆。即使你还没有偶然发现一个，当然这并没有阻止你发明一个。$(br2)这将使在世界深处以及地狱之门之外的导航变得更加容易。",
-			"type":"patchouli:text",
-			"title":"熔岩海绵"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/lava_sponge",
-			"text":"...或者你是这么想的，直到你意识到岩浆浸泡的海绵也有一个$(italic)不幸$()的副作用。$(br)你应该猜到的。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		},
-		{
-			"text":"熔岩海绵可用作熔炉中的高效燃料，在此过程中使其干燥。",
-			"type":"patchouli:text",
-			"title":"熔炉燃料"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_lava_sponge",
-	"extra_recipe_mappings":{
-		"spectrum:wet_lava_sponge":0,
-		"spectrum:lava_sponge":0
-	},
-	"name":"熔岩海绵",
-	"icon":"spectrum:lava_sponge",
-	"category":"spectrum:magical_blocks_category"
+  "pages": [
+    {
+      "text": "$(italic)当你手里拿着一块湿漉漉的海绵时，你认为一定也有对应的岩浆。即使你还没有偶然发现一个，当然这并没有阻止你发明一个。$(br2)这将使在世界深处以及地狱之门之外的导航变得更加容易。",
+      "type": "patchouli:text",
+      "title": "熔岩海绵"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier1/lava_sponge",
+      "text": "...或者你是这么想的，直到你意识到岩浆浸泡的海绵也有一个$(italic)不幸$()的副作用。$(br)你应该猜到的。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    },
+    {
+      "text": "熔岩海绵可用作熔炉中的高效燃料，在此过程中使其干燥。",
+      "type": "patchouli:text",
+      "title": "熔炉燃料"
+    }
+  ],
+  "advancement": "spectrum:unlocks/blocks/lava_sponge",
+  "extra_recipe_mappings": {
+    "spectrum:wet_lava_sponge": 0,
+    "spectrum:lava_sponge": 0
+  },
+  "name": "熔岩海绵",
+  "icon": "spectrum:lava_sponge",
+  "category": "spectrum:magical_blocks_category"
 }

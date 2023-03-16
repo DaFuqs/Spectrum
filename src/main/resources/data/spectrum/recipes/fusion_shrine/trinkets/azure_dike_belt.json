@@ -18,7 +18,7 @@
   "result": {
     "item": "spectrum:azure_dike_belt"
   },
-  "required_advancement": "spectrum:progression/unlock_azure_dike_belt",
+  "required_advancement": "spectrum:unlocks/trinkets/azure_dike_belt",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

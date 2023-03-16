@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"不死图腾虽然有强大的效果，但有一个显著的缺点，那就是你总是不得不把它们握在手中。$(br)使用$(l:general/pigment#blue)蓝色颜料$(/l)的保护功能作为焦点，即使戴在脖子上，也可以保持其救生效果。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/totem_pendant",
-			"text":"一次性死亡保护。触发后，会碎裂成粉末。",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_totem_pendant",
-	"extra_recipe_mappings":{
-		"spectrum:totem_pendant":0
-	},
-	"name":"图腾吊坠",
-	"icon":"spectrum:totem_pendant",
-	"category":"spectrum:magical_items_category"
+  "pages": [
+    {
+      "text": "不死图腾虽然有强大的效果，但有一个显著的缺点，那就是你总是不得不把它们握在手中。$(br)使用$(l:general/pigment#blue)蓝色颜料$(/l)的保护功能作为焦点，即使戴在脖子上，也可以保持其救生效果。",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:fusion_shrine/trinkets/totem_pendant",
+      "text": "一次性死亡保护。触发后，会碎裂成粉末。",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "融合配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/trinkets/totem_pendant",
+  "extra_recipe_mappings": {
+    "spectrum:totem_pendant": 0
+  },
+  "name": "图腾吊坠",
+  "icon": "spectrum:totem_pendant",
+  "category": "spectrum:magical_items_category"
 }

@@ -31,5 +31,5 @@
     "item": "spectrum:light_level_detector",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/detectors/unlock_light_level_detector"
+  "required_advancement": "spectrum:unlocks/redstone/light_level_detector"
 }

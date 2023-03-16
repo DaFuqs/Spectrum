@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)你已经走了这么远，但你仍然需要面对这样一个事实，即你的常用工具，如燧石和钢，一旦使用太多次就会不断破碎。你有足够多的设备，这些设备以前太脆弱，无法长期使用。$(br)既然你有了基岩粉末？没问题。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"spectrum:multitool{Enchantments: [{id: \"spectrum:indestructible\", lvl: 1s}]}",
-			"text":"使工具完全牢不可破，不再受到损坏。$(br2)最大级别：1$(br)适用于所有工具。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"recipe":"spectrum:enchanter/spectrum_books/book_indestructible",
-			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，让普通的书充满坚不可摧。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/indestructible",
-	"name":"坚不可摧",
-	"icon":"spectrum:multitool",
-	"category":"spectrum:enchanting_category"
+  "pages": [
+    {
+      "text": "$(italic)你已经走了这么远，但你仍然需要面对这样一个事实，即你的常用工具，如燧石和钢，一旦使用太多次就会不断破碎。你有足够多的设备，这些设备以前太脆弱，无法长期使用。$(br)既然你有了基岩粉末？没问题。",
+      "type": "patchouli:text"
+    },
+    {
+      "item": "spectrum:multitool{Enchantments: [{id: \"spectrum:indestructible\", lvl: 1s}]}",
+      "text": "使工具完全牢不可破，不再受到损坏。$(br2)最大级别：1$(br)适用于所有工具。",
+      "type": "patchouli:spotlight",
+      "title": "特点"
+    },
+    {
+      "recipe": "spectrum:enchanter/spectrum_books/book_indestructible",
+      "text": "你可以用颜料和其他必要的材料包围你的注魔基座，让普通的书充满坚不可摧。",
+      "type": "spectrum:enchanter_crafting",
+      "title": "注魔基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/enchantments/indestructible",
+  "name": "坚不可摧",
+  "icon": "spectrum:multitool",
+  "category": "spectrum:enchanting_category"
 }

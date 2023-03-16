@@ -1,6 +1,6 @@
 {
   "name": "Bottomless Bundle",
-  "advancement": "spectrum:progression/unlock_bottomless_bundle",
+  "advancement": "spectrum:unlocks/items/bottomless_bundle",
   "icon": "spectrum:bottomless_bundle",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

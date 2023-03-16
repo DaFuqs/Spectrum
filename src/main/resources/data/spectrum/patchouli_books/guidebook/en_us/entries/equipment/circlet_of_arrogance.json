@@ -1,6 +1,6 @@
 {
   "name": "Circlet of Arrogance",
-  "advancement": "spectrum:progression/unlock_circlet_of_arrogance",
+  "advancement": "spectrum:unlocks/trinkets/circlet_of_arrogance",
   "icon": "spectrum:circlet_of_arrogance",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

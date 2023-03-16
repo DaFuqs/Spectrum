@@ -8,7 +8,7 @@
       "item": "minecraft:sunflower"
     }
   ],
-  "required_advancement": "spectrum:progression/weather/weather_clear",
+  "required_advancement": "spectrum:unlocks/weather/weather_clear",
   "world_conditions": [
     "rain"
   ],

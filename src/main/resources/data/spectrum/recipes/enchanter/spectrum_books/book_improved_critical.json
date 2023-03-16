@@ -35,7 +35,7 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:improved_critical\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/improved_critical",
+  "required_advancement": "spectrum:unlocks/enchantments/improved_critical",
   "fabric:load_conditions": [
     {
       "condition": "spectrum:enchantments_exist",

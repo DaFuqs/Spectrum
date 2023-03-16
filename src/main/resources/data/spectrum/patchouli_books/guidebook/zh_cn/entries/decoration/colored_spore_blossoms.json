@@ -1,36 +1,36 @@
 {
-	"pages":[
-		{
-			"text":"当你漫步在一个绿树成荫的山洞时，你注意到许多花瓣在空中飘扬。$(br)你被这一景象迷住了，于是开始设计自己的多彩变体。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier2/colored_spore_blossoms/orange_spore_blossom",
-			"text":"通过使用不同的颜料，你可以给花瓣涂上多种颜色。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_colored_spore_blossoms",
-	"extra_recipe_mappings":{
-		"spectrum:magenta_spore_blossom":0,
-		"spectrum:pink_spore_blossom":0,
-		"spectrum:lime_spore_blossom":0,
-		"spectrum:blue_spore_blossom":0,
-		"spectrum:yellow_spore_blossom":0,
-		"spectrum:light_gray_spore_blossom":0,
-		"spectrum:black_spore_blossom":0,
-		"spectrum:brown_spore_blossom":0,
-		"spectrum:green_spore_blossom":0,
-		"spectrum:gray_spore_blossom":0,
-		"spectrum:white_spore_blossom":0,
-		"spectrum:orange_spore_blossom":0,
-		"spectrum:light_blue_spore_blossom":0,
-		"spectrum:red_spore_blossom":0,
-		"spectrum:purple_spore_blossom":0,
-		"spectrum:cyan_spore_blossom":0
-	},
-	"name":"彩色孢子花",
-	"icon":"spectrum:orange_spore_blossom",
+  "pages": [
+    {
+      "text": "当你漫步在一个绿树成荫的山洞时，你注意到许多花瓣在空中飘扬。$(br)你被这一景象迷住了，于是开始设计自己的多彩变体。",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier2/colored_spore_blossoms/orange_spore_blossom",
+      "text": "通过使用不同的颜料，你可以给花瓣涂上多种颜色。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/blocks/colored_spore_blossoms",
+  "extra_recipe_mappings": {
+    "spectrum:magenta_spore_blossom": 0,
+    "spectrum:pink_spore_blossom": 0,
+    "spectrum:lime_spore_blossom": 0,
+    "spectrum:blue_spore_blossom": 0,
+    "spectrum:yellow_spore_blossom": 0,
+    "spectrum:light_gray_spore_blossom": 0,
+    "spectrum:black_spore_blossom": 0,
+    "spectrum:brown_spore_blossom": 0,
+    "spectrum:green_spore_blossom": 0,
+    "spectrum:gray_spore_blossom": 0,
+    "spectrum:white_spore_blossom": 0,
+    "spectrum:orange_spore_blossom": 0,
+    "spectrum:light_blue_spore_blossom": 0,
+    "spectrum:red_spore_blossom": 0,
+    "spectrum:purple_spore_blossom": 0,
+    "spectrum:cyan_spore_blossom": 0
+  },
+  "name": "彩色孢子花",
+  "icon": "spectrum:orange_spore_blossom",
 	"category":"spectrum:decoration_category"
 }

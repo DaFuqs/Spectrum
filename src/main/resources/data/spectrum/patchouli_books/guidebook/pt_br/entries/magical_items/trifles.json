@@ -1,7 +1,7 @@
 {
   "name": "Trifles",
   "icon": "spectrum:jaramel_trifle",
-  "advancement": "spectrum:progression/unlock_trifles",
+  "advancement": "spectrum:unlocks/food/trifles",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:jaramel_trifle": 0,

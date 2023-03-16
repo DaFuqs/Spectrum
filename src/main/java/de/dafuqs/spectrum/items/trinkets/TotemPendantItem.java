@@ -1,21 +1,20 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class TotemPendantItem extends SpectrumTrinketItem {
 	
 	public TotemPendantItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_neat_ring"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/neat_ring"));
 	}
 	
 	@Environment(EnvType.CLIENT)

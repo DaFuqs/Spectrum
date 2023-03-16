@@ -1,6 +1,6 @@
 {
   "name": "Radiance Pin",
-  "advancement": "spectrum:progression/unlock_radiance_pin",
+  "advancement": "spectrum:unlocks/trinkets/radiance_pin",
   "icon": "spectrum:radiance_pin",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

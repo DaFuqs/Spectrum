@@ -34,7 +34,7 @@
   "result": {
     "item": "spectrum:dreamflayer"
   },
-  "required_advancement": "spectrum:progression/unlock_dreamflayer",
+  "required_advancement": "spectrum:unlocks/equipment/dreamflayer",
   "world_conditions": [],
   "start_crafting_effect": "single_visual_explosion_on_shrine",
   "during_crafting_effects": [

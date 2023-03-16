@@ -1,8 +1,0 @@
-{
-  "criteria": {
-    "collected_stratine_gem": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:hidden/collect_stratine_gem" }
-    }
-  }
-}

@@ -21,14 +21,14 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_speed2",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed2",
       "title": "Tier 2",
       "recipe": "spectrum:pedestal/tier3/upgrade_speed2",
       "text": "The Pedestal Accelerator T2 improves all aspects of the previous variant. Making your crafting even more rapid."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_speed3",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed3",
       "title": "Tier 3",
       "recipe": "spectrum:pedestal/tier4/upgrade_speed3",
       "text": "Tier 3 leaves nothing to be desired - at least in terms of crafting speed."

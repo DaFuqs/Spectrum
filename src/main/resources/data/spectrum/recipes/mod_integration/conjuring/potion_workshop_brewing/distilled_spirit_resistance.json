@@ -13,7 +13,7 @@
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
-  "required_advancement": "spectrum:progression/potions/unlock_resistance_potion",
+  "required_advancement": "spectrum:unlocks/potions/resistance_potion",
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

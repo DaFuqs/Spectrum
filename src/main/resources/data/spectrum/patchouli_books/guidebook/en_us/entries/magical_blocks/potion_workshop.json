@@ -1,7 +1,7 @@
 {
   "name": "Potion Workshop",
   "icon": "spectrum:potion_workshop",
-  "advancement": "spectrum:progression/unlock_potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
     "spectrum:potion_workshop": 0

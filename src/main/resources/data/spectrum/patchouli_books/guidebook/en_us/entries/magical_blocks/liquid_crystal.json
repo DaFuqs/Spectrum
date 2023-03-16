@@ -1,6 +1,6 @@
 {
   "name": "Liquid Crystal",
-  "advancement": "spectrum:progression/unlock_liquid_crystal_bucket",
+  "advancement": "spectrum:unlocks/blocks/liquid_crystal",
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:magical_blocks_category",
   "turnin": "spectrum:midgame/enter_liquid_crystal",

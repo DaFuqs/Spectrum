@@ -25,7 +25,7 @@
   "result": {
     "item": "spectrum:weeping_circlet"
   },
-  "required_advancement": "spectrum:progression/unlock_weeping_circlet",
+  "required_advancement": "spectrum:unlocks/trinkets/weeping_circlet",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

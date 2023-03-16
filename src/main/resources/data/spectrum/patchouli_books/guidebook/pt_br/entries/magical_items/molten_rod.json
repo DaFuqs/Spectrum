@@ -1,6 +1,6 @@
 {
   "name": "Molten Rod",
-  "advancement": "spectrum:progression/unlock_molten_rod",
+  "advancement": "spectrum:unlocks/equipment/molten_rod",
   "secret": true,
   "icon": "spectrum:molten_rod",
   "category": "spectrum:magical_items_category",

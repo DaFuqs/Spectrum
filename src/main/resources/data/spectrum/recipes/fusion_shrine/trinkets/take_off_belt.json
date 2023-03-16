@@ -22,7 +22,7 @@
   "result": {
     "item": "spectrum:take_off_belt"
   },
-  "required_advancement": "spectrum:progression/unlock_take_off_belt",
+  "required_advancement": "spectrum:unlocks/trinkets/take_off_belt",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

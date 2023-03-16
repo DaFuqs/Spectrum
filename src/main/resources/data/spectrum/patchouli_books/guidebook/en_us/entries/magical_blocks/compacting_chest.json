@@ -1,6 +1,6 @@
 {
   "name": "Compacting Chest",
-  "advancement": "spectrum:progression/unlock_compacting_chest",
+  "advancement": "spectrum:unlocks/blocks/compacting_chest",
   "icon": "spectrum:compacting_chest",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

@@ -24,8 +24,8 @@
   "result": {
     "item": "spectrum:egg_laying_wooly_pig_head"
   },
-  "required_advancement": "spectrum:progression/unlock_egg_laying_wooly_pig_head",
-  "world_conditions": [ ],
+  "required_advancement": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head",
+  "world_conditions": [],
   "start_crafting_effect": "single_visual_explosion_on_shrine",
   "during_crafting_effects": [
     "nothing",

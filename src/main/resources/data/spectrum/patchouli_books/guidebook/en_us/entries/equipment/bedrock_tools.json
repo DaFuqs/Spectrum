@@ -1,6 +1,6 @@
 {
   "name": "Bedrock Tools",
-  "advancement": "spectrum:progression/unlock_bedrock_tools",
+  "advancement": "spectrum:unlocks/equipment/bedrock_tools",
   "icon": "spectrum:bedrock_pickaxe",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

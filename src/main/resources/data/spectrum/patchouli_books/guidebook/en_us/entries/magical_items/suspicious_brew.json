@@ -1,6 +1,6 @@
 {
   "name": "Suspicious Brew",
-  "advancement": "spectrum:progression/unlock_suspicious_brew",
+  "advancement": "spectrum:unlocks/food/suspicious_brew",
   "icon": "spectrum:suspicious_brew",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

@@ -16,5 +16,5 @@
     "item": "spectrum:glistering_jelly_tea",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_glistering_jelly_tea"
+  "required_advancement": "spectrum:unlocks/food/glistering_jelly_tea"
 }

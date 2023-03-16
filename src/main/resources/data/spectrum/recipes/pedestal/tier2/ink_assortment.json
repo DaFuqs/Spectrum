@@ -31,5 +31,5 @@
     "item": "spectrum:ink_assortment",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_ink_assortment"
+  "required_advancement": "spectrum:unlocks/items/ink_assortment"
 }

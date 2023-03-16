@@ -48,7 +48,7 @@
       "type": "patchouli:multiblock"
     }
   ],
-  "advancement": "spectrum:progression/unlock_perturbed_eye",
+  "advancement": "spectrum:unlocks/items/perturbed_eye",
   "extra_recipe_mappings": {
     "spectrum:cracked_end_portal_frame": 0,
     "spectrum:perturbed_eye": 0

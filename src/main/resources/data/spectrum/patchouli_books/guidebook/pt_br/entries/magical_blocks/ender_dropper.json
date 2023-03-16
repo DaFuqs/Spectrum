@@ -1,6 +1,6 @@
 {
   "name": "Ender Dropper",
-  "advancement": "spectrum:progression/unlock_ender_blocks",
+  "advancement": "spectrum:unlocks/blocks/ender_blocks",
   "icon": "spectrum:ender_dropper",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

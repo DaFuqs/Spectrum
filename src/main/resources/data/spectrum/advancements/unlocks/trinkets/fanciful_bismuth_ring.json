@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_ring_of_pursuit": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/ring_of_pursuit"
+      }
+    },
+    "unlocked_neat_ring": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/neat_ring"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "unlocked_ring_of_pursuit",
+      "unlocked_neat_ring"
+    ]
+  ]
+}

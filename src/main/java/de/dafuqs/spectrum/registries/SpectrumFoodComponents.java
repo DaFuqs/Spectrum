@@ -59,7 +59,7 @@ public class SpectrumFoodComponents {
 			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, 1800), 1.0F)
 			.build();
 	
-	public static final FoodComponent BODACIOUS_BERRY_BAR = new FoodComponent.Builder()
+	public static final FoodComponent BOCACIOUS_BERRY_BAR = new FoodComponent.Builder()
 			.hunger(8).saturationModifier(0.6F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 600, 2), 1.0F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1800, 4), 1.0F)

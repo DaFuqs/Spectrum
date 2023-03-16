@@ -1,6 +1,6 @@
 {
   "name": "Celestial Pocketwatch",
-  "advancement": "spectrum:progression/unlock_celestial_pocketwatch",
+  "advancement": "spectrum:unlocks/items/celestial_pocketwatch",
   "icon": "spectrum:celestial_pocketwatch",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

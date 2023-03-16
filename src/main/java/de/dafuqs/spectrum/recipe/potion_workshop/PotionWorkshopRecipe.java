@@ -1,26 +1,20 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public abstract class PotionWorkshopRecipe extends GatedSpectrumRecipe {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_potion_workshop");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/potion_workshop");
 	public static final int[] INGREDIENT_SLOTS = new int[]{2, 3, 4};
 	
 	protected final int craftingTime;

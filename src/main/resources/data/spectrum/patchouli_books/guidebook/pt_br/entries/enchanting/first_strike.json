@@ -1,7 +1,7 @@
 {
   "name": "Primeiro Ataque",
   "icon": "minecraft:iron_sword",
-  "advancement": "spectrum:progression/enchantments/first_strike",
+  "advancement": "spectrum:unlocks/enchantments/first_strike",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

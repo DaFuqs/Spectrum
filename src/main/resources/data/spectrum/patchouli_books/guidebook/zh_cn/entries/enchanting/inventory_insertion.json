@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)如果你每次开采矿石时都有一块土方块，它正好落入熔岩中，你就会有很多土。$(br2)不知道你会用这么多土做什么。也许把它给一个刚到这里的朋友，他第一天晚上需要庇护？$(br)无论如何，把东西丢进熔岩的事情必须停止。",
-			"type":"patchouli:text"
-		},
-		{
-			"item":"minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}",
-			"text":"把破碎的方块直接放进你的库存中，而不是把它们扔到地上。$(br2)最大级别：1$(br)适用于采矿工具。",
-			"type":"patchouli:spotlight",
-			"title":"特点"
-		},
-		{
-			"recipe":"spectrum:enchanter/spectrum_books/book_inventory_insertion",
-			"text":"你可以用颜料和其他必要的材料包围你的注魔基座，在一本普通的书附上自动收集。",
-			"type":"spectrum:enchanter_crafting",
-			"title":"注魔基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/inventory_insertion",
-	"name":"自动收集",
-	"icon":"minecraft:iron_pickaxe",
-	"category":"spectrum:enchanting_category"
+  "pages": [
+    {
+      "text": "$(italic)如果你每次开采矿石时都有一块土方块，它正好落入熔岩中，你就会有很多土。$(br2)不知道你会用这么多土做什么。也许把它给一个刚到这里的朋友，他第一天晚上需要庇护？$(br)无论如何，把东西丢进熔岩的事情必须停止。",
+      "type": "patchouli:text"
+    },
+    {
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}",
+      "text": "把破碎的方块直接放进你的库存中，而不是把它们扔到地上。$(br2)最大级别：1$(br)适用于采矿工具。",
+      "type": "patchouli:spotlight",
+      "title": "特点"
+    },
+    {
+      "recipe": "spectrum:enchanter/spectrum_books/book_inventory_insertion",
+      "text": "你可以用颜料和其他必要的材料包围你的注魔基座，在一本普通的书附上自动收集。",
+      "type": "spectrum:enchanter_crafting",
+      "title": "注魔基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/enchantments/inventory_insertion",
+  "name": "自动收集",
+  "icon": "minecraft:iron_pickaxe",
+  "category": "spectrum:enchanting_category"
 }

@@ -3,31 +3,31 @@
 		{
 			"text":"用你收集的所有知识创造，你创造了灵魂注入器。它能够连接两个物体的能量，并借助第三个物体将其绑定。$(br)一个近乎灵魂上的的过程。",
 			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/spirit_instiller",
-			"text":"灵魂注入器需要一个专注结构来工作。要按您想要的方向旋转结构全息图，请单击放置的“灵魂注入器”。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		},
-		{
-			"multiblock_id":"spectrum:spirit_instiller_structure",
-			"name":"注入式结构",
-			"text":"为了通过升级提升灵魂注入器的能力，请将其放置在两个玛瑙凿块上。",
-			"type":"patchouli:multiblock",
-			"enable_visualize":true
-		},
-		{
-			"text":"$(li)1 灵魂注入器 $(li)2磨制宝石块$(li)2物品球$(li)2錾制磨制块$(li)2玛瑙凿块$(li)6磨制柱$(li)17磨制板条$(li)116磨制块$(li)2宝石编钟",
-			"type":"patchouli:text",
-			"title":"方块检查表"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_spirit_instiller",
-	"extra_recipe_mappings":{
-		"spectrum:spirit_instiller":0
-	},
-	"name":"灵魂注入器",
-	"icon":"spectrum:spirit_instiller",
-	"category":"spectrum:creating_life_category"
+        },
+      {
+        "recipe": "spectrum:pedestal/tier3/spirit_instiller",
+        "text": "灵魂注入器需要一个专注结构来工作。要按您想要的方向旋转结构全息图，请单击放置的“灵魂注入器”。",
+        "type": "spectrum:pedestal_crafting",
+        "title": "基座配方"
+      },
+      {
+        "multiblock_id": "spectrum:spirit_instiller_structure",
+        "name": "注入式结构",
+        "text": "为了通过升级提升灵魂注入器的能力，请将其放置在两个玛瑙凿块上。",
+        "type": "patchouli:multiblock",
+        "enable_visualize": true
+      },
+      {
+        "text": "$(li)1 灵魂注入器 $(li)2磨制宝石块$(li)2物品球$(li)2錾制磨制块$(li)2玛瑙凿块$(li)6磨制柱$(li)17磨制板条$(li)116磨制块$(li)2宝石编钟",
+        "type": "patchouli:text",
+        "title": "方块检查表"
+      }
+    ],
+  "advancement": "spectrum:unlocks/blocks/spirit_instiller",
+  "extra_recipe_mappings": {
+    "spectrum:spirit_instiller": 0
+  },
+  "name": "灵魂注入器",
+  "icon": "spectrum:spirit_instiller",
+  "category": "spectrum:creating_life_category"
 }

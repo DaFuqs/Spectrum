@@ -23,7 +23,7 @@
   "result": {
     "item": "spectrum:greater_potion_pendant"
   },
-  "required_advancement": "spectrum:progression/unlock_greater_potion_pendant",
+  "required_advancement": "spectrum:unlocks/trinkets/greater_potion_pendant",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

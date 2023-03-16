@@ -27,7 +27,7 @@
   "result": {
     "item": "spectrum:circlet_of_arrogance"
   },
-  "required_advancement": "spectrum:progression/unlock_ashen_circlet",
+  "required_advancement": "spectrum:unlocks/trinkets/ashen_circlet",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

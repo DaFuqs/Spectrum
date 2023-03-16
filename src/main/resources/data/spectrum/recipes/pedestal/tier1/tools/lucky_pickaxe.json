@@ -29,5 +29,5 @@
     "nbt": "{Enchantments: [{id: \"minecraft:fortune\", lvl: 3s}]}",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/tools/unlock_lucky_pickaxe"
+  "required_advancement": "spectrum:unlocks/equipment/lucky_pickaxe"
 }

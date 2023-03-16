@@ -1,6 +1,6 @@
 {
   "name": "Radiance Staff",
-  "advancement": "spectrum:progression/unlock_radiance_staff",
+  "advancement": "spectrum:unlocks/items/radiance_staff",
   "icon": "spectrum:radiance_staff",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

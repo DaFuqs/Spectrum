@@ -1,6 +1,6 @@
 {
   "name": "Gemstone Armor",
-  "advancement": "spectrum:progression/unlock_gemstone_armor_category",
+  "advancement": "spectrum:unlocks/equipment/gemstone_armor_category",
   "icon": "spectrum:ferocious_chestplate",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

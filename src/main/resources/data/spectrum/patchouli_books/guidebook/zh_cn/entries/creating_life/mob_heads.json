@@ -1,33 +1,33 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:cow_head",
-			"text":"使用你的新$(l:enchanting/treasure_hunter)灵魂猎手$(/l)魔法，你可以从各种生物那里收集人头。$(br)虽然它们很好地展示了你的小收获，但它们仍然继承了这种生物存在的一点火花。",
-			"type":"patchouli:spotlight",
-			"title":"生物头颅"
-		}
-	],
-	"advancement":"spectrum:progression/enchantments/treasure_hunter",
-	"extra_recipe_mappings":{
-		"spectrum:sheep_purple_head":0,
-		"spectrum:horse_head":0,
-		"spectrum:fox_arctic_head":0,
-		"spectrum:goat_head":0,
-		"spectrum:bee_head":0,
-		"spectrum:vindicator_head":0,
-		"spectrum:slime_head":0,
-		"spectrum:salmon_head":0,
-		"spectrum:wolf_head":0,
-		"spectrum:fox_head":0,
-		"spectrum:parrot_cyan_head":0,
-		"spectrum:wandering_trader_head":0,
-		"spectrum:husk_head":0,
-		"spectrum:sheep_lime_head":0,
-		"spectrum:pig_head":0,
-		"spectrum:shulker_pink_head":0,
-		"spectrum:axolotl_blue_head":0,
-		"spectrum:parrot_gray_head":0,
-		"spectrum:rabbit_head":0,
+  "pages": [
+    {
+      "item": "spectrum:cow_head",
+      "text": "使用你的新$(l:enchanting/treasure_hunter)灵魂猎手$(/l)魔法，你可以从各种生物那里收集人头。$(br)虽然它们很好地展示了你的小收获，但它们仍然继承了这种生物存在的一点火花。",
+      "type": "patchouli:spotlight",
+      "title": "生物头颅"
+    }
+  ],
+  "advancement": "spectrum:unlocks/enchantments/treasure_hunter",
+  "extra_recipe_mappings": {
+    "spectrum:sheep_purple_head": 0,
+    "spectrum:horse_head": 0,
+    "spectrum:fox_arctic_head": 0,
+    "spectrum:goat_head": 0,
+    "spectrum:bee_head": 0,
+    "spectrum:vindicator_head": 0,
+    "spectrum:slime_head": 0,
+    "spectrum:salmon_head": 0,
+    "spectrum:wolf_head": 0,
+    "spectrum:fox_head": 0,
+    "spectrum:parrot_cyan_head": 0,
+    "spectrum:wandering_trader_head": 0,
+    "spectrum:husk_head": 0,
+    "spectrum:sheep_lime_head": 0,
+    "spectrum:pig_head": 0,
+    "spectrum:shulker_pink_head": 0,
+    "spectrum:axolotl_blue_head": 0,
+    "spectrum:parrot_gray_head": 0,
+    "spectrum:rabbit_head": 0,
 		"spectrum:vex_head":0,
 		"spectrum:cow_head":0,
 		"spectrum:shulker_yellow_head":0,

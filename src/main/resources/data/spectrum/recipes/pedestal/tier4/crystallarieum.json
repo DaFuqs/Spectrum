@@ -34,5 +34,5 @@
     "item": "spectrum:crystallarieum",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_crystallarieum"
+  "required_advancement": "spectrum:unlocks/blocks/crystallarieum"
 }

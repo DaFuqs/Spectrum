@@ -1,7 +1,7 @@
 {
   "name": "Curse of the Void",
   "icon": "minecraft:wooden_pickaxe",
-  "advancement": "spectrum:progression/tools/unlock_oblivion_pickaxe",
+  "advancement": "spectrum:unlocks/equipment/oblivion_pickaxe",
   "flag": "spectrum:enchantment_exists_spectrum_voiding",
   "category": "spectrum:enchanting_category",
   "pages": [
@@ -19,7 +19,7 @@
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_voiding",
-      "advancement": "spectrum:progression/enchantments/voiding",
+      "advancement": "spectrum:unlocks/enchantments/voiding",
       "text": "You can infuse a common Book with Curse of the Void by surrounding your Enchanter with Pigment and the other required materials."
     }
   ]

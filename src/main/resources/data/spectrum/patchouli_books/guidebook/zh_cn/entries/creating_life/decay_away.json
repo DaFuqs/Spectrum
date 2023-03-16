@@ -1,23 +1,23 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:bottle_of_decay_away",
-			"text":"你上次的实验不仅危险，而且很难摆脱。$(br)为了防止任何事情失控，您创建了这个修改的变体。不过，这次是为了治愈而不是淹没你的基地。$(br2)是的，那可能更好。",
-			"title":"清理微生物",
-			"type":"patchouli:spotlight"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/bottle_of_decay_away",
-			"text":"去除99%的自我复制微生物。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_bottle_of_decay_away",
-	"extra_recipe_mappings":{
-		"spectrum:bottle_of_decay_away":0
-	},
-	"name":"清理微生物",
-	"icon":"spectrum:bottle_of_decay_away",
-	"category":"spectrum:creating_life_category"
+  "pages": [
+    {
+      "item": "spectrum:bottle_of_decay_away",
+      "text": "你上次的实验不仅危险，而且很难摆脱。$(br)为了防止任何事情失控，您创建了这个修改的变体。不过，这次是为了治愈而不是淹没你的基地。$(br2)是的，那可能更好。",
+      "title": "清理微生物",
+      "type": "patchouli:spotlight"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier3/bottle_of_decay_away",
+      "text": "去除99%的自我复制微生物。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/items/bottle_of_decay_away",
+  "extra_recipe_mappings": {
+    "spectrum:bottle_of_decay_away": 0
+  },
+  "name": "清理微生物",
+  "icon": "spectrum:bottle_of_decay_away",
+  "category": "spectrum:creating_life_category"
 }

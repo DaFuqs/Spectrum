@@ -1,6 +1,6 @@
 {
   "name": "Restoration Tea",
-  "advancement": "spectrum:progression/unlock_restoration_tea",
+  "advancement": "spectrum:unlocks/food/restoration_tea",
   "icon": "spectrum:restoration_tea",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

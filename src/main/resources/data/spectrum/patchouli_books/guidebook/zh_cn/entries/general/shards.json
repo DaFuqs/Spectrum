@@ -60,7 +60,7 @@
     {
       "type": "patchouli:spotlight",
       "anchor": "spectral",
-      "advancement": "spectrum:lategame/create_spectral_shard",
+      "advancement": "spectrum:endgame/create_spectral_shard",
       "title": "光谱碎片",
       "item": "spectrum:spectral_shard",
       "text": "光谱碎片在彩虹的所有颜色中闪耀。"

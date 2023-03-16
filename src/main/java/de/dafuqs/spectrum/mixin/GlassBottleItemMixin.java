@@ -1,31 +1,22 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.decay.ForfeitureBlock;
-import de.dafuqs.spectrum.blocks.decay.RuinBlock;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.GlassBottleItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.decay.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
-import java.util.List;
+import java.util.*;
 
 @Mixin(GlassBottleItem.class)
 public abstract class GlassBottleItemMixin {
@@ -42,7 +33,7 @@ public abstract class GlassBottleItemMixin {
 		
 		if (blockState.isOf(SpectrumBlocks.FADING)
 				&& SpectrumCommon.CONFIG.CanPickUpFading
-				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_fading"))) {
+				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_fading"))) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -50,7 +41,7 @@ public abstract class GlassBottleItemMixin {
 			
 		} else if (blockState.isOf(SpectrumBlocks.FAILING)
 				&& SpectrumCommon.CONFIG.CanPickUpFailing
-				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_failing"))) {
+				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_failing"))) {
 			
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BOTTLE_FILL_DRAGONBREATH, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -58,7 +49,7 @@ public abstract class GlassBottleItemMixin {
 			
 		} else if (blockState.isOf(SpectrumBlocks.RUIN)
 				&& SpectrumCommon.CONFIG.CanPickUpRuin
-				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_ruin"))) {
+				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_ruin"))) {
 			
 			if (blockState.get(RuinBlock.DECAY_STATE) == RuinBlock.DecayConversion.BEDROCK) {
 				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
@@ -71,7 +62,7 @@ public abstract class GlassBottleItemMixin {
 			
 		} else if (blockState.isOf(SpectrumBlocks.FORFEITURE)
 				&& SpectrumCommon.CONFIG.CanPickUpForfeiture
-				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("progression/unlock_bottle_of_forfeiture"))) {
+				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_forfeiture"))) {
 			
 			if (blockState.get(ForfeitureBlock.DECAY_STATE) == ForfeitureBlock.DecayConversion.BEDROCK) {
 				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());

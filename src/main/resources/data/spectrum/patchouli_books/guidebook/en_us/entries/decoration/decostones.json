@@ -1,7 +1,7 @@
 {
   "name": "Decostones",
   "icon": "spectrum:amethyst_decostone",
-  "advancement": "spectrum:progression/decostones/unlock_any_decostone",
+  "advancement": "spectrum:unlocks/decostones/any_decostone",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:topaz_decostone": 0,

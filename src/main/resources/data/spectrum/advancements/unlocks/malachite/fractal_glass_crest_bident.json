@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_malachite_tools": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/malachite/glass_crest_tools"
+      }
+    },
+    "collected_echo_shard": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_echo_shard"
+      }
+    },
+    "collected_bismuth_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_bismuth_crystal"
+      }
+    }
+  }
+}

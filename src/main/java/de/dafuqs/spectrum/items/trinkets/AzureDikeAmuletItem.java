@@ -17,7 +17,7 @@ import java.util.*;
 public class AzureDikeAmuletItem extends InkDrainTrinketItem implements AzureDikeItem {
 	
 	public AzureDikeAmuletItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_shieldgrasp_amulet"), InkColors.BLUE);
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/shieldgrasp_amulet"), InkColors.BLUE);
 	}
 	
 	@Environment(EnvType.CLIENT)

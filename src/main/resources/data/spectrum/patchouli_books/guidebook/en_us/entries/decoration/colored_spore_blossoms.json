@@ -1,6 +1,6 @@
 {
   "name": "Colored Spore Blossoms",
-  "advancement": "spectrum:progression/unlock_colored_spore_blossoms",
+  "advancement": "spectrum:unlocks/blocks/colored_spore_blossoms",
   "icon": "spectrum:orange_spore_blossom",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

@@ -1,7 +1,7 @@
 {
   "name": "Egg Laying Wooly Pigs",
   "icon": "spectrum:egg_laying_wooly_pig_head",
-  "advancement": "spectrum:progression/unlock_egg_laying_wooly_pig_head",
+  "advancement": "spectrum:unlocks/blocks/egg_laying_wooly_pig_head",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:egg_laying_wooly_pig_head": 0

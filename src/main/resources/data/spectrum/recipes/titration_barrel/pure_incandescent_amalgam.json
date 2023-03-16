@@ -28,5 +28,5 @@
     "item": "spectrum:incandescent_amalgam",
     "count": 8
   },
-  "required_advancement": "spectrum:progression/unlock_incandescent_amalgam"
+  "required_advancement": "spectrum:unlocks/items/incandescent_amalgam"
 }

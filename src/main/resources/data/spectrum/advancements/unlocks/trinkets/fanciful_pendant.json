@@ -1,0 +1,29 @@
+{
+  "criteria": {
+    "unlocked_totem_pendant": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/totem_pendant"
+      }
+    },
+    "unlocked_lesser_potion_pendant": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/lesser_potion_pendant"
+      }
+    },
+    "unlocked_greater_potion_pendant": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/greater_potion_pendant"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "unlocked_totem_pendant",
+      "unlocked_lesser_potion_pendant",
+      "unlocked_greater_potion_pendant"
+    ]
+  ]
+}

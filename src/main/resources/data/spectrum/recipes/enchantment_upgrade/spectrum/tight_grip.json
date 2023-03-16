@@ -18,7 +18,7 @@
       "item_count": 512
     }
   ],
-  "required_advancement": "spectrum:progression/enchantments/tight_grip",
+  "required_advancement": "spectrum:unlocks/enchantments/tight_grip",
   "fabric:load_conditions": [
     {
       "condition": "spectrum:enchantments_exist",

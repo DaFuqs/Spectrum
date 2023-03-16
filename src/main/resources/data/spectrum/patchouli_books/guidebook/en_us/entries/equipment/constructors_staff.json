@@ -1,6 +1,6 @@
 {
   "name": "Constructors' Staff",
-  "advancement": "spectrum:progression/unlock_constructors_staff",
+  "advancement": "spectrum:unlocks/items/constructors_staff",
   "icon": "spectrum:constructors_staff",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

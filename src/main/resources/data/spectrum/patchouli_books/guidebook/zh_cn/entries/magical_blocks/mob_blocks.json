@@ -201,47 +201,47 @@
 			"type":"spectrum:pedestal_crafting"
 		},
 		{
-			"recipe":"spectrum:pedestal/tier3/mob_blocks/witch_mob_block",
-			"text":"让人感到一阵虚弱。",
-			"type":"spectrum:pedestal_crafting"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/mob_blocks/wither_mob_block",
-			"text":"造成巨大爆炸。",
-			"type":"spectrum:pedestal_crafting"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/mob_blocks/wither_skeleton_mob_block",
-			"text":"发出一阵枯萎。",
-			"type":"spectrum:pedestal_crafting"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/mob_blocks/zombie_mob_block",
-			"text":"发出短暂的饥饿感。",
-			"type":"spectrum:pedestal_crafting"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_mob_blocks",
-	"extra_recipe_mappings":{
-		"spectrum:bee_mob_block":0,
-		"spectrum:cow_mob_block":0,
-		"spectrum:goat_mob_block":0,
-		"spectrum:pufferfish_mob_block":0,
-		"spectrum:ghast_mob_block":0,
-		"spectrum:spider_mob_block":0,
-		"spectrum:enderman_mob_block":0,
-		"spectrum:slime_mob_block":0,
-		"spectrum:phantom_mob_block":0,
-		"spectrum:illusioner_mob_block":0,
-		"spectrum:snow_golem_mob_block":0,
-		"spectrum:zombie_mob_block":0,
-		"spectrum:piglin_mob_block":0,
-		"spectrum:guardian_mob_block":0,
-		"spectrum:ocelot_mob_block":0,
-		"spectrum:axolotl_mob_block":0,
-		"spectrum:pig_mob_block":0,
-		"spectrum:shulker_mob_block":0,
-		"spectrum:turtle_mob_block":0,
+          "recipe": "spectrum:pedestal/tier3/mob_blocks/witch_mob_block",
+          "text": "让人感到一阵虚弱。",
+          "type": "spectrum:pedestal_crafting"
+        },
+      {
+        "recipe": "spectrum:pedestal/tier3/mob_blocks/wither_mob_block",
+        "text": "造成巨大爆炸。",
+        "type": "spectrum:pedestal_crafting"
+      },
+      {
+        "recipe": "spectrum:pedestal/tier3/mob_blocks/wither_skeleton_mob_block",
+        "text": "发出一阵枯萎。",
+        "type": "spectrum:pedestal_crafting"
+      },
+      {
+        "recipe": "spectrum:pedestal/tier3/mob_blocks/zombie_mob_block",
+        "text": "发出短暂的饥饿感。",
+        "type": "spectrum:pedestal_crafting"
+      }
+    ],
+  "advancement": "spectrum:unlocks/blocks/mob_blocks",
+  "extra_recipe_mappings": {
+    "spectrum:bee_mob_block": 0,
+    "spectrum:cow_mob_block": 0,
+    "spectrum:goat_mob_block": 0,
+    "spectrum:pufferfish_mob_block": 0,
+    "spectrum:ghast_mob_block": 0,
+    "spectrum:spider_mob_block": 0,
+    "spectrum:enderman_mob_block": 0,
+    "spectrum:slime_mob_block": 0,
+    "spectrum:phantom_mob_block": 0,
+    "spectrum:illusioner_mob_block": 0,
+    "spectrum:snow_golem_mob_block": 0,
+    "spectrum:zombie_mob_block": 0,
+    "spectrum:piglin_mob_block": 0,
+    "spectrum:guardian_mob_block": 0,
+    "spectrum:ocelot_mob_block": 0,
+    "spectrum:axolotl_mob_block": 0,
+    "spectrum:pig_mob_block": 0,
+    "spectrum:shulker_mob_block": 0,
+    "spectrum:turtle_mob_block": 0,
 		"spectrum:chicken_mob_block":0,
 		"spectrum:horse_mob_block":0,
 		"spectrum:wither_mob_block":0,

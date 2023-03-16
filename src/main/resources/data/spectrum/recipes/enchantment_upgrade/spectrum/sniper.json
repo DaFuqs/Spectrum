@@ -23,7 +23,7 @@
       "item_count": 512
     }
   ],
-  "required_advancement": "spectrum:progression/enchantments/sniper",
+  "required_advancement": "spectrum:unlocks/enchantments/sniper",
   "fabric:load_conditions": [
     {
       "condition": "spectrum:enchantments_exist",

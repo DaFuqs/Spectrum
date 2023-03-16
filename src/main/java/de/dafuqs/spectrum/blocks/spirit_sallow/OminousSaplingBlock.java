@@ -51,7 +51,7 @@ public class OminousSaplingBlock extends PlantBlock implements BlockEntityProvid
 			UUID ownerUUID = ominousSaplingBlockEntity.getOwnerUUID();
 			PlayerEntity playerEntity = PlayerOwned.getPlayerEntityIfOnline(ownerUUID);
 			if (playerEntity instanceof ServerPlayerEntity serverPlayerEntity) {
-				Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/grow_ominous_sapling", "grow");
+				Support.grantAdvancementCriterion(serverPlayerEntity, "endgame/grow_ominous_sapling", "grow");
 			}
 		}
 		

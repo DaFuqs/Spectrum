@@ -29,7 +29,7 @@
     "item": "spectrum:bedrock_boots",
     "nbt": "{Enchantments: [{id: \"minecraft:fire_protection\", lvl: 5s}]}"
   },
-  "required_advancement": "spectrum:progression/unlock_bedrock_tools",
+  "required_advancement": "spectrum:unlocks/equipment/bedrock_tools",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

@@ -29,5 +29,5 @@
     "item": "spectrum:moonstone_semi_permeable_glass",
     "count": 6
   },
-  "required_advancement": "spectrum:progression/unlock_moonstone_semi_permeable_glass"
+  "required_advancement": "spectrum:unlocks/blocks/moonstone_semi_permeable_glass"
 }

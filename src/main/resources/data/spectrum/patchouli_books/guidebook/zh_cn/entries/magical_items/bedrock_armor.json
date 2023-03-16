@@ -5,34 +5,34 @@
 			"type":"patchouli:text"
 		},
 		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_helmet",
-			"text":"基岩头盔配有$(bold)弹射物保护V$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_chestplate",
-			"text":"基岩胸板带有$(bold)保护V$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_leggings",
-			"text":"基岩护腿配有$(bold)爆炸保护V$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/bedrock/bedrock_boots",
-			"text":"基岩靴配有$(bold)火焰保护V$()。",
-			"type":"spectrum:fusion_shrine_crafting"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_bedrock_tools",
-	"extra_recipe_mappings":{
-		"spectrum:bedrock_leggings":0,
-		"spectrum:bedrock_boots":0,
-		"spectrum:bedrock_chestplate":0,
-		"spectrum:bedrock_helmet":0
-	},
-	"name":"基岩护甲",
-	"icon":"spectrum:bedrock_chestplate",
-	"category":"spectrum:magical_items_category"
+          "recipe": "spectrum:fusion_shrine/bedrock/bedrock_helmet",
+          "text": "基岩头盔配有$(bold)弹射物保护V$()。",
+          "type": "spectrum:fusion_shrine_crafting"
+        },
+      {
+        "recipe": "spectrum:fusion_shrine/bedrock/bedrock_chestplate",
+        "text": "基岩胸板带有$(bold)保护V$()。",
+        "type": "spectrum:fusion_shrine_crafting"
+      },
+      {
+        "recipe": "spectrum:fusion_shrine/bedrock/bedrock_leggings",
+        "text": "基岩护腿配有$(bold)爆炸保护V$()。",
+        "type": "spectrum:fusion_shrine_crafting"
+      },
+      {
+        "recipe": "spectrum:fusion_shrine/bedrock/bedrock_boots",
+        "text": "基岩靴配有$(bold)火焰保护V$()。",
+        "type": "spectrum:fusion_shrine_crafting"
+      }
+    ],
+  "advancement": "spectrum:unlocks/equipment/bedrock_tools",
+  "extra_recipe_mappings": {
+    "spectrum:bedrock_leggings": 0,
+    "spectrum:bedrock_boots": 0,
+    "spectrum:bedrock_chestplate": 0,
+    "spectrum:bedrock_helmet": 0
+  },
+  "name": "基岩护甲",
+  "icon": "spectrum:bedrock_chestplate",
+  "category": "spectrum:magical_items_category"
 }

@@ -1,7 +1,7 @@
 {
   "name": "Treasure Hunter",
   "icon": "minecraft:iron_axe",
-  "advancement": "spectrum:progression/enchantments/treasure_hunter",
+  "advancement": "spectrum:unlocks/enchantments/treasure_hunter",
   "flag": "spectrum:enchantment_exists_spectrum_treasure_hunter",
   "category": "spectrum:enchanting_category",
   "pages": [

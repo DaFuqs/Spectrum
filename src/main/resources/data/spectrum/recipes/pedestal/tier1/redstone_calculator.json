@@ -30,5 +30,5 @@
     "item": "spectrum:redstone_calculator",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_redstone_calculator"
+  "required_advancement": "spectrum:unlocks/redstone/redstone_calculator"
 }

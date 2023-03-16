@@ -29,5 +29,5 @@
     "item": "spectrum:amethyst_decostone",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/decostones/unlock_amethyst_decostone"
+  "required_advancement": "spectrum:unlocks/decostones/amethyst_decostone"
 }

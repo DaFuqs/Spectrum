@@ -17,5 +17,5 @@
   "result": {
     "item": "spectrum:midnight_solution_bucket"
   },
-  "required_advancement": "spectrum:progression/unlock_midnight_solution"
+  "required_advancement": "spectrum:unlocks/blocks/midnight_solution"
 }

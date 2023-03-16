@@ -1,7 +1,7 @@
 {
   "name": "Crystallarieum",
   "icon": "spectrum:crystallarieum",
-  "advancement": "spectrum:progression/unlock_crystallarieum",
+  "advancement": "spectrum:unlocks/blocks/crystallarieum",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
     "spectrum:crystallarieum": 0,

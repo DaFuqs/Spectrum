@@ -20,7 +20,7 @@ import java.util.*;
 public class ExtraReachGlovesItem extends InkDrainTrinketItem {
 	
 	public ExtraReachGlovesItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE);
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/gloves_of_dawns_grasp"), InkColors.LIGHT_BLUE);
 	}
 	
 	@Override

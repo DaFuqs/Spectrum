@@ -1,6 +1,6 @@
 {
   "name": "Gerador de Particulas",
-  "advancement": "spectrum:progression/unlock_particle_spawner",
+  "advancement": "spectrum:unlocks/blocks/particle_spawner",
   "icon": "spectrum:particle_spawner",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

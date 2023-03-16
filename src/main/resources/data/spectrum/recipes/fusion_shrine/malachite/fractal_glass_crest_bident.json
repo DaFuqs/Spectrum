@@ -24,7 +24,7 @@
     "item": "spectrum:fractal_glass_crest_bident",
     "nbt": "{Enchantments: [{id: \"minecraft:impaling\", lvl: 6s}]}"
   },
-  "required_advancement": "spectrum:progression/malachite/unlock_fractal_glass_crest_bident",
+  "required_advancement": "spectrum:unlocks/malachite/fractal_glass_crest_bident",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

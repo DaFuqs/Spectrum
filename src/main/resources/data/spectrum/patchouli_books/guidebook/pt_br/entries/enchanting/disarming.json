@@ -1,7 +1,7 @@
 {
   "name": "Desarmamento",
   "icon": "minecraft:iron_sword",
-  "advancement": "spectrum:progression/enchantments/disarming",
+  "advancement": "spectrum:unlocks/enchantments/disarming",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

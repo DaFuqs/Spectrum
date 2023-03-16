@@ -1,7 +1,7 @@
 {
   "name": "Tarts",
   "icon": "spectrum:ashen_tart",
-  "advancement": "spectrum:progression/unlock_tarts",
+  "advancement": "spectrum:unlocks/food/tarts",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:jaramel_tart": 0,

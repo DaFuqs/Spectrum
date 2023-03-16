@@ -1,6 +1,6 @@
 {
   "name": "Inkwell",
-  "advancement": "spectrum:progression/unlock_inkwell",
+  "advancement": "spectrum:unlocks/blocks/inkwell",
   "secret": true,
   "icon": "spectrum:inkwell",
   "category": "spectrum:magic_category",

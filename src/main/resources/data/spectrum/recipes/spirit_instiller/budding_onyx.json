@@ -14,5 +14,5 @@
   "result": {
     "item": "spectrum:budding_onyx"
   },
-  "required_advancement": "spectrum:progression/unlock_budding_onyx"
+  "required_advancement": "spectrum:unlocks/blocks/budding_onyx"
 }

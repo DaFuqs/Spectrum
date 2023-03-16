@@ -60,7 +60,7 @@
     {
       "type": "patchouli:spotlight",
       "anchor": "spectral",
-      "advancement": "spectrum:lategame/create_spectral_shard",
+      "advancement": "spectrum:endgame/create_spectral_shard",
       "title": "Fragmentos Espectrais",
       "item": "spectrum:spectral_shard",
       "text": "Fragmentos Espectrais brilham em todas as cores do arco-íris."

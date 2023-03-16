@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_enchanter": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/enchanter"
+      }
+    },
+    "unlocked_spirit_instiller": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/spirit_instiller"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "unlocked_enchanter",
+      "unlocked_spirit_instiller"
+    ]
+  ]
+}

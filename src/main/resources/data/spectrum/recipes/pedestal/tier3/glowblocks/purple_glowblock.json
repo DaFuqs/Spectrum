@@ -26,5 +26,5 @@
     "item": "spectrum:purple_glowblock",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/glowblocks/unlock_purple_glowblock"
+  "required_advancement": "spectrum:unlocks/glowblocks/purple_glowblock"
 }

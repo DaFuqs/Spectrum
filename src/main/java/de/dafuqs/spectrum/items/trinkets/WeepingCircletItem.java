@@ -31,7 +31,7 @@ public class WeepingCircletItem extends SpectrumTrinketItem {
 	private final static int AXOLOTL_HEALING = 2;
 	
 	public WeepingCircletItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_weeping_circlet"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/weeping_circlet"));
 	}
 
 	@Override

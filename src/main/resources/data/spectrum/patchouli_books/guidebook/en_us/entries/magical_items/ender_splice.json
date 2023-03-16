@@ -1,6 +1,6 @@
 {
   "name": "Ender Splice",
-  "advancement": "spectrum:progression/unlock_ender_splice",
+  "advancement": "spectrum:unlocks/items/ender_splice",
   "icon": "spectrum:ender_splice",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

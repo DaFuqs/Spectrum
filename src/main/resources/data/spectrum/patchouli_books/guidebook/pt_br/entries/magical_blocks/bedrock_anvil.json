@@ -1,6 +1,6 @@
 {
   "name": "Bedrock Anvil",
-  "advancement": "spectrum:progression/unlock_bedrock_tools",
+  "advancement": "spectrum:unlocks/equipment/bedrock_tools",
   "icon": "spectrum:bedrock_anvil",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {

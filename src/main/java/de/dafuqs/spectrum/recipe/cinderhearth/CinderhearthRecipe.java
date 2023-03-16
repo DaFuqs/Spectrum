@@ -16,7 +16,7 @@ import java.util.*;
 
 public class CinderhearthRecipe extends GatedSpectrumRecipe {
 	
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_cinderhearth");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/cinderhearth");
 	
 	protected final Ingredient inputIngredient;
 	protected final int time;

@@ -1,6 +1,6 @@
 {
   "name": "Gloves of Dawn's Grasp",
-  "advancement": "spectrum:progression/unlock_gloves_of_dawns_grasp",
+  "advancement": "spectrum:unlocks/trinkets/gloves_of_dawns_grasp",
   "icon": "spectrum:gloves_of_dawns_grasp",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

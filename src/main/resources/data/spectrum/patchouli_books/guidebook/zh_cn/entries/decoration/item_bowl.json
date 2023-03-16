@@ -1,24 +1,24 @@
 {
-	"pages":[
-		{
-			"item":"spectrum:item_bowl_basalt",
-			"text":"$(italic)有一件物品你在挖矿时总是忘记，比如一支粉笔，用来标记返回地面的路。放在这个装饰性的物品碗里应该是一个很好的提醒。$()$(br2)它包括磨制玄武岩和磨制方解石变体。",
-			"type":"patchouli:spotlight",
-			"title":"物品基座"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier3/item_bowl_calcite",
-			"text":"物品基座呈现一个漂浮在其上方的单个物品堆栈。$(br)点击一个物品到基座里，或者把它扔到上面把它放进去。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement": "spectrum:progression/unlock_item_bowl",
-	"extra_recipe_mappings":{
-		"spectrum:item_bowl_calcite":0,
-		"spectrum:item_bowl_basalt":0
-	},
-	"name":"物品基座",
-	"icon":"spectrum:item_bowl_basalt",
-	"category":"spectrum:decoration_category"
+  "pages": [
+    {
+      "item": "spectrum:item_bowl_basalt",
+      "text": "$(italic)有一件物品你在挖矿时总是忘记，比如一支粉笔，用来标记返回地面的路。放在这个装饰性的物品碗里应该是一个很好的提醒。$()$(br2)它包括磨制玄武岩和磨制方解石变体。",
+      "type": "patchouli:spotlight",
+      "title": "物品基座"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier3/item_bowl_calcite",
+      "text": "物品基座呈现一个漂浮在其上方的单个物品堆栈。$(br)点击一个物品到基座里，或者把它扔到上面把它放进去。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/blocks/item_bowl",
+  "extra_recipe_mappings": {
+    "spectrum:item_bowl_calcite": 0,
+    "spectrum:item_bowl_basalt": 0
+  },
+  "name": "物品基座",
+  "icon": "spectrum:item_bowl_basalt",
+  "category": "spectrum:decoration_category"
 }

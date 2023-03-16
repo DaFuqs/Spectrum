@@ -22,21 +22,21 @@
 
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_speed",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/upgrade_speed",
       "text": "The crafting time of the $(l:general/pedestal)Pigment Pedestal$(/l) increases a lot when using complex components. This will help you bring back the times to an acceptable level."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_speed2",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed2",
       "title": "Tier 2",
       "recipe": "spectrum:pedestal/tier3/upgrade_speed2",
       "text": "The Pedestal Accelerator T2 improves all aspects of the previous variant. Making your crafting even more rapid."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_speed3",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_speed3",
       "title": "Tier 3",
       "recipe": "spectrum:pedestal/tier4/upgrade_speed3",
       "text": "Tier 3 leaves nothing to be desired - at least in terms of crafting speed."
@@ -44,14 +44,14 @@
 
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_experience",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_experience",
       "title": "Knowledge Focus",
       "recipe": "spectrum:pedestal/tier3/upgrade_experience",
       "text": "For the most part the experience $(l:general/pedestal)Pigment Pedestal$(/l) crafting rewards is pretty much negligible. But using this Focus you could dramatically increase the amount gained."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_experience2",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_experience2",
       "title": "Tier 2",
       "recipe": "spectrum:pedestal/tier3/upgrade_experience2",
       "text": "This improved Knowledge Focus increases the generated XP even more."
@@ -59,14 +59,14 @@
 
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_efficiency",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_efficiency",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/upgrade_efficiency",
       "text": "The $(l:general/pedestal)Pigment Pedestal$(/l) devours vast amounts of Gemstone Powder.$(br)Now you should be able to cushion the consumption of your structures a little."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_efficiency2",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_efficiency2",
       "title": "Tier 2",
       "recipe": "spectrum:pedestal/tier4/upgrade_efficiency2",
       "text": "This 'upgrade of the upgrade' further reduces the consumption of input materials."
@@ -74,14 +74,14 @@
 
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_yield",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_yield",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/upgrade_yield",
       "text": "This is an interesting one. Although the chance is very small, you can increase the # of your crafting outputs.$(br)$(italic)More bang for your buck!"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_yield2",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_yield2",
       "title": "Tier 2",
       "recipe": "spectrum:pedestal/tier4/upgrade_yield2",
       "text": "This upgraded version is much more potent, allowing you to get even more output for your crafting."
@@ -111,7 +111,7 @@
     },
     {
       "type": "patchouli:multiblock",
-      "advancement": "spectrum:progression/unlock_cinderhearth",
+      "advancement": "spectrum:unlocks/blocks/cinderhearth",
       "name": "Cinderhearth Placement",
       "multiblock_id": "spectrum:cinderhearth_structure_with_upgrades",
       "enable_visualize": false,
@@ -119,7 +119,7 @@
     },
     {
       "type": "patchouli:multiblock",
-      "advancement": "spectrum:progression/unlock_spirit_instiller",
+      "advancement": "spectrum:unlocks/blocks/spirit_instiller",
       "name": "Spirit Instiller Placement",
       "multiblock_id": "spectrum:spirit_instiller_structure_with_upgrades",
       "enable_visualize": false,

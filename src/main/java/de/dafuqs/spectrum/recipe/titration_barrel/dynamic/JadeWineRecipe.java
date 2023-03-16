@@ -21,7 +21,7 @@ import java.util.*;
 public class JadeWineRecipe extends TitrationBarrelRecipe {
 	
 	public static final RecipeSerializer<JadeWineRecipe> SERIALIZER = new SpecialRecipeSerializer<>(JadeWineRecipe::new);
-	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_jade_wine");
+	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/jade_wine");
 	
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.JADE_WINE, 4);

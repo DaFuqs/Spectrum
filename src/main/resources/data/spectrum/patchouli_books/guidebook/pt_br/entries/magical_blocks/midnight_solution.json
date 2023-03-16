@@ -1,7 +1,7 @@
 {
   "name": "Midnight Solution",
   "icon": "spectrum:midnight_solution_bucket",
-  "advancement": "spectrum:progression/unlock_midnight_solution",
+  "advancement": "spectrum:unlocks/blocks/midnight_solution",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
     "spectrum:midnight_solution_bucket": 0,

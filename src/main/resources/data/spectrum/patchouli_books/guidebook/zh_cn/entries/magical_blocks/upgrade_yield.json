@@ -11,12 +11,12 @@
 			"title":"基座配方"
 		},
 		{
-			"advancement":"spectrum:progression/unlock_upgrade_yield2",
-			"recipe":"spectrum:pedestal/tier4/upgrade_yield2",
-			"text":"这个升级版本更强大，让你的手工艺获得更多的输出。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"第2层"
-		}
+          "advancement": "spectrum:unlocks/upgrades/upgrade_yield2",
+          "recipe": "spectrum:pedestal/tier4/upgrade_yield2",
+          "text": "这个升级版本更强大，让你的手工艺获得更多的输出。",
+          "type": "spectrum:pedestal_crafting",
+          "title": "第2层"
+        }
 	],
 	"advancement":"spectrum:lategame/collect_paltaeria",
 	"extra_recipe_mappings":{

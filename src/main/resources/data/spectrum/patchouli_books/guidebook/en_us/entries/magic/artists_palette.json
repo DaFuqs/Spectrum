@@ -1,6 +1,6 @@
 {
   "name": "Artists Palette",
-  "advancement": "spectrum:progression/unlock_artists_palette",
+  "advancement": "spectrum:unlocks/trinkets/artists_palette",
   "secret": true,
   "icon": "spectrum:artists_palette",
   "category": "spectrum:magic_category",

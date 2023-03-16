@@ -1,6 +1,6 @@
 {
   "name": "Preenchanted Tools",
-  "advancement": "spectrum:progression/tools/unlock_any_preenchanted_tool",
+  "advancement": "spectrum:unlocks/equipment/any_preenchanted_tool",
   "icon": "spectrum:lucky_pickaxe",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
@@ -21,38 +21,38 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/tools/unlock_tender_pickaxe",
+      "advancement": "spectrum:unlocks/equipment/tender_pickaxe",
       "recipe": "spectrum:pedestal/tier1/tools/tender_pickaxe",
       "text": "The ends of this pickaxe are studded with Topaz to cut even the most delicate material from stone.$(br)The Tender Pickaxe comes pre-enchanted with $(c_cyan)$(bold)Silk Touch$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/tools/unlock_lucky_pickaxe",
+      "advancement": "spectrum:unlocks/equipment/lucky_pickaxe",
       "recipe": "spectrum:pedestal/tier1/tools/lucky_pickaxe",
       "text": "Infused with the power of $(c_yellow)energy$(), it allows you to carve out every last bit of ore from every vein. The Lucky Pickaxe comes pre-enchanted with $(c_yellow)$(bold)Fortune III$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/tools/unlock_razor_falchion",
+      "advancement": "spectrum:unlocks/equipment/razor_falchion",
       "recipe": "spectrum:pedestal/tier1/tools/razor_falchion",
       "text": "The short, razor-sharp blade makes this item a deadly weapon - but at the cost of durability.$(br)The Razor Falchion comes pre-enchanted with $(c_magenta)$(bold)Looting III$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/tools/unlock_oblivion_pickaxe",
+      "advancement": "spectrum:unlocks/equipment/oblivion_pickaxe",
       "recipe": "spectrum:pedestal/tier2/oblivion_pickaxe",
       "text": "As an outsider in the group, the Oblivion Pickaxe has a large amount of durability and mining speed. However, all mined blocks $(l:enchanting/curse_of_the_void)are destroyed$()."
     },
     {
       "type": "patchouli:text",
       "title": "Resonant Pickaxe",
-      "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe",
+      "advancement": "spectrum:unlocks/equipment/resonant_pickaxe",
       "text": "This bright blue pickaxe matches its own gentle inherent vibration to that of its surroundings. This allows you to keep blocks intact that would otherwise be irreparably destroyed by force.$(br)The Resonant Pickaxe comes pre-enchanted with $(l:enchanting/resonance)Resonance$(/l)."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier4/resonant_pickaxe",
-      "advancement": "spectrum:progression/tools/unlock_resonant_pickaxe"
+      "advancement": "spectrum:unlocks/equipment/resonant_pickaxe"
     }
   ]
 }

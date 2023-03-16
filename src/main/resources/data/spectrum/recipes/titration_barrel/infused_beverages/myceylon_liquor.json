@@ -97,5 +97,5 @@
     "count": 4,
     "nbt": "{Variant: \"myceylon_liquor\", Color: 16040760 }"
   },
-  "required_advancement": "spectrum:progression/unlock_myceylon_liquor"
+  "required_advancement": "spectrum:unlocks/food/myceylon_liquor"
 }

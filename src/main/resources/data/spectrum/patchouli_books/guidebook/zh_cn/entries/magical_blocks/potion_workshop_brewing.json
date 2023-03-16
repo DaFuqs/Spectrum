@@ -46,29 +46,29 @@
 			"advancement":"spectrum:collect_four_leaf_clover",
 			"recipe":"spectrum:potion_workshop_brewing/luck",
 			"text":"加上发酵过的蜘蛛眼，效果反而会变为$(bold)厄运$()。",
-			"type":"spectrum:potion_workshop_brewing",
-			"title":"好运"
-		},
-		{
-          "advancement": "spectrum:lategame/collect_moonstone_shard",
-          "recipe": "spectrum:potion_workshop_brewing/resistance",
-          "text": "",
           "type": "spectrum:potion_workshop_brewing",
-          "title": "抗性提升"
+          "title": "好运"
         },
-		{
-			"advancement":"spectrum:midgame/craft_midnight_chip",
-			"recipe":"spectrum:potion_workshop_brewing/wither",
-			"text":"",
-			"type":"spectrum:potion_workshop_brewing",
-			"title":"凋零"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_potion_workshop",
-	"extra_recipe_mappings":{
-		"minecraft:potion":0
-	},
-	"name":"药剂效果：酿造",
-	"icon":"spectrum:potion_workshop",
-	"category":"spectrum:magical_blocks_category"
+      {
+        "advancement": "spectrum:lategame/collect_moonstone_shard",
+        "recipe": "spectrum:potion_workshop_brewing/resistance",
+        "text": "",
+        "type": "spectrum:potion_workshop_brewing",
+        "title": "抗性提升"
+      },
+      {
+        "advancement": "spectrum:midgame/craft_midnight_chip",
+        "recipe": "spectrum:potion_workshop_brewing/wither",
+        "text": "",
+        "type": "spectrum:potion_workshop_brewing",
+        "title": "凋零"
+      }
+    ],
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "extra_recipe_mappings": {
+    "minecraft:potion": 0
+  },
+  "name": "药剂效果：酿造",
+  "icon": "spectrum:potion_workshop",
+  "category": "spectrum:magical_blocks_category"
 }

@@ -31,5 +31,5 @@
     "item": "spectrum:dragonbone_broth",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_dragonbone_broth"
+  "required_advancement": "spectrum:unlocks/food/dragonbone_broth"
 }

@@ -20,5 +20,5 @@
     "item": "spectrum:spectral_shard",
     "count": 4
   },
-  "required_advancement": "spectrum:lategame/create_spectral_shard"
+  "required_advancement": "spectrum:endgame/create_spectral_shard"
 }

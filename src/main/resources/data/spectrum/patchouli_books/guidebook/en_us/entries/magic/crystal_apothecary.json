@@ -1,6 +1,6 @@
 {
   "name": "Crystal Apothecary",
-  "advancement": "spectrum:progression/unlock_crystal_apothecary",
+  "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
   "icon": "spectrum:crystal_apothecary",
   "category": "spectrum:magic_category",
   "extra_recipe_mappings": {

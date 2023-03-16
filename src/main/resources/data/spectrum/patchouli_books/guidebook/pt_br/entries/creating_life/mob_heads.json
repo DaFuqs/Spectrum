@@ -1,6 +1,6 @@
 {
   "name": "Cabeças de Monstros",
-  "advancement": "spectrum:progression/enchantments/treasure_hunter",
+  "advancement": "spectrum:unlocks/enchantments/treasure_hunter",
   "icon": "minecraft:wither_skeleton_skull",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {

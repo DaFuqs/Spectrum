@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"这些充满敌意的水下寺庙是一个难以驾驭的地方。幸运的是，在你寻找宝藏的过程中，你偶然发现了一个大海之心。$(br)这个头箍让你在水下生活和采矿，就好像它是有史以来最自然的东西一样。你游得更快，我也游得更快，不需要空气，而且能看得更清楚。$(br)它还可以治愈你的小亲密的Axolotl朋友♥",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/weeping_circlet",
-			"text":"$(italic)你想过水下生活吗？$(br)不不管怎样，现在你可以了。$(br)是时候建造一个水下基地了！",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_weeping_circlet",
-	"extra_recipe_mappings":{
-		"spectrum:weeping_circlet":0
-	},
-	"name":"哭泣头箍",
-	"icon":"spectrum:weeping_circlet",
-	"category":"spectrum:magical_items_category"
+  "pages": [
+    {
+      "text": "这些充满敌意的水下寺庙是一个难以驾驭的地方。幸运的是，在你寻找宝藏的过程中，你偶然发现了一个大海之心。$(br)这个头箍让你在水下生活和采矿，就好像它是有史以来最自然的东西一样。你游得更快，我也游得更快，不需要空气，而且能看得更清楚。$(br)它还可以治愈你的小亲密的Axolotl朋友♥",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:fusion_shrine/trinkets/weeping_circlet",
+      "text": "$(italic)你想过水下生活吗？$(br)不不管怎样，现在你可以了。$(br)是时候建造一个水下基地了！",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "融合配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/trinkets/weeping_circlet",
+  "extra_recipe_mappings": {
+    "spectrum:weeping_circlet": 0
+  },
+  "name": "哭泣头箍",
+  "icon": "spectrum:weeping_circlet",
+  "category": "spectrum:magical_items_category"
 }

@@ -1,6 +1,6 @@
 {
   "name": "Star Candies",
-  "advancement": "spectrum:progression/unlock_star_candy",
+  "advancement": "spectrum:unlocks/food/star_candy",
   "icon": "spectrum:star_candy",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

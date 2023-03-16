@@ -13,34 +13,34 @@
 			"recipe":"spectrum:pedestal/tier2/gemstone_armor/fetchling_helmet",
 			"text":"让攻击者在攻击你时变得软弱和缓慢，让你像影子一样穿过他们的爪子。",
 			"type":"spectrum:pedestal_crafting"
-		},
-		{
-			"advancement":"spectrum:hidden/collect_vanilla/collect_nautilus_shell",
-			"recipe":"spectrum:pedestal/tier2/gemstone_armor/ferocious_chestplate",
-			"text":"当你被击中时，给予伤害吸收和即时生命，使你成为强大的近战战士。",
-			"type":"spectrum:pedestal_crafting"
-		},
-		{
-			"advancement":"spectrum:hidden/collect_vanilla/collect_phantom_membrane",
-			"recipe":"spectrum:pedestal/tier2/gemstone_armor/sylph_leggings",
-			"text":"当你被击中时，给予短暂的速度和隐形爆发，给你一个撤退的机会。非常适合远程作战。",
-			"type":"spectrum:pedestal_crafting"
-		},
-		{
-			"advancement":"spectrum:hidden/collect_vanilla/collect_ghast_tear",
-			"recipe":"spectrum:pedestal/tier2/gemstone_armor/oread_boots",
-			"text":"在命中时给予你短暂的抵抗力爆发和再生，使你在短时间内成为一堵巨大的墙。",
-			"type":"spectrum:pedestal_crafting"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_gemstone_armor_category",
-	"extra_recipe_mappings":{
-		"spectrum:sylph_leggings":0,
-		"spectrum:fetchling_helmet":0,
-		"spectrum:oread_boots":0,
-		"spectrum:ferocious_chestplate":0
-	},
-	"name":"宝石护甲",
-	"icon":"spectrum:ferocious_chestplate",
-	"category":"spectrum:magical_items_category"
+        },
+      {
+        "advancement": "spectrum:hidden/collect_vanilla/collect_nautilus_shell",
+        "recipe": "spectrum:pedestal/tier2/gemstone_armor/ferocious_chestplate",
+        "text": "当你被击中时，给予伤害吸收和即时生命，使你成为强大的近战战士。",
+        "type": "spectrum:pedestal_crafting"
+      },
+      {
+        "advancement": "spectrum:hidden/collect_vanilla/collect_phantom_membrane",
+        "recipe": "spectrum:pedestal/tier2/gemstone_armor/sylph_leggings",
+        "text": "当你被击中时，给予短暂的速度和隐形爆发，给你一个撤退的机会。非常适合远程作战。",
+        "type": "spectrum:pedestal_crafting"
+      },
+      {
+        "advancement": "spectrum:hidden/collect_vanilla/collect_ghast_tear",
+        "recipe": "spectrum:pedestal/tier2/gemstone_armor/oread_boots",
+        "text": "在命中时给予你短暂的抵抗力爆发和再生，使你在短时间内成为一堵巨大的墙。",
+        "type": "spectrum:pedestal_crafting"
+      }
+    ],
+  "advancement": "spectrum:unlocks/equipment/gemstone_armor_category",
+  "extra_recipe_mappings": {
+    "spectrum:sylph_leggings": 0,
+    "spectrum:fetchling_helmet": 0,
+    "spectrum:oread_boots": 0,
+    "spectrum:ferocious_chestplate": 0
+  },
+  "name": "宝石护甲",
+  "icon": "spectrum:ferocious_chestplate",
+  "category": "spectrum:magical_items_category"
 }

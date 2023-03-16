@@ -1,6 +1,6 @@
 {
   "name": "Ashen Circlet",
-  "advancement": "spectrum:progression/unlock_ashen_circlet",
+  "advancement": "spectrum:unlocks/trinkets/ashen_circlet",
   "icon": "spectrum:ashen_circlet",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

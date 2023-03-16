@@ -1,6 +1,6 @@
 {
   "name": "Greater Potion Pendant",
-  "advancement": "spectrum:progression/unlock_greater_potion_pendant",
+  "advancement": "spectrum:unlocks/trinkets/greater_potion_pendant",
   "secret": true,
   "icon": "spectrum:greater_potion_pendant",
   "category": "spectrum:equipment_category",

@@ -31,5 +31,5 @@
     "item": "spectrum:ender_dropper",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_ender_blocks"
+  "required_advancement": "spectrum:unlocks/blocks/ender_blocks"
 }

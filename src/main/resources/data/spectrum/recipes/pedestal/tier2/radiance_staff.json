@@ -28,5 +28,5 @@
     "item": "spectrum:radiance_staff",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_radiance_staff"
+  "required_advancement": "spectrum:unlocks/items/radiance_staff"
 }

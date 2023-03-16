@@ -19,7 +19,7 @@ import java.util.*;
 public class ExtraHealthRingItem extends InkDrainTrinketItem {
 	
 	public ExtraHealthRingItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_heartsingers_reward"), InkColors.PINK);
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/heartsingers_reward"), InkColors.PINK);
 	}
 	
 	@Override

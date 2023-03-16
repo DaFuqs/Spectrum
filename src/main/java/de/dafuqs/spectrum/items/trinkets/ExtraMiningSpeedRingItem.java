@@ -20,7 +20,7 @@ import java.util.*;
 public class ExtraMiningSpeedRingItem extends InkDrainTrinketItem {
 	
 	public ExtraMiningSpeedRingItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_ring_of_pursuit"), InkColors.MAGENTA);
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/ring_of_pursuit"), InkColors.MAGENTA);
 	}
 	
 	@Override

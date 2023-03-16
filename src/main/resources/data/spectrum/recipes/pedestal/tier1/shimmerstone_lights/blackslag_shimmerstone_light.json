@@ -26,5 +26,5 @@
     "item": "spectrum:blackslag_shimmerstone_light",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/unlock_blackslag_shimmerstone_light"
+  "required_advancement": "spectrum:unlocks/blocks/blackslag_shimmerstone_light"
 }

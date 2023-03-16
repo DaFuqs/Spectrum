@@ -1,6 +1,6 @@
 {
   "name": "Seven League Boots",
-  "advancement": "spectrum:progression/unlock_seven_league_boots",
+  "advancement": "spectrum:unlocks/trinkets/seven_league_boots",
   "icon": "spectrum:seven_league_boots",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {
@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:progression/enchantments/vanilla_projectile",
+      "advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
       "title": "Power",
       "item": "spectrum:seven_league_boots{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
       "text": "The Power enchantment increases the movement speed bonus further."

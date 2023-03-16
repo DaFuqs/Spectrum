@@ -1,7 +1,7 @@
 {
   "name": "Caçador de Tesouros",
   "icon": "minecraft:iron_sword",
-  "advancement": "spectrum:progression/enchantments/treasure_hunter",
+  "advancement": "spectrum:unlocks/enchantments/treasure_hunter",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

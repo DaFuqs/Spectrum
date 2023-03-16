@@ -20,5 +20,5 @@
   "result": {
     "item": "spectrum:pure_alcohol"
   },
-  "required_advancement": "spectrum:progression/unlock_incandescent_amalgam"
+  "required_advancement": "spectrum:unlocks/items/incandescent_amalgam"
 }

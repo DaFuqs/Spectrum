@@ -22,7 +22,7 @@ public class CircletOfArroganceItem extends SpectrumTrinketItem {
     private final static int EFFECT_DURATION = TRIGGER_EVERY_X_TICKS + 10;
 
     public CircletOfArroganceItem(Settings settings) {
-        super(settings, SpectrumCommon.locate("progression/unlock_circlet_of_arrogance"));
+        super(settings, SpectrumCommon.locate("unlocks/circlet_of_arrogance"));
     }
 
     @Override

@@ -28,5 +28,5 @@
     "item": "spectrum:exchanging_staff",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_exchanging_staff"
+  "required_advancement": "spectrum:unlocks/items/exchanging_staff"
 }

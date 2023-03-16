@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "unlocked_titration_barrel": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/titration_barrel"
+      }
+    },
+    "confirmed_drinking_age": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:milestones/confirmed_drinking_age" }
+    },
+    "collected_four_leaf_clover": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_four_leaf_clover" }
+    },
+    "collected_mermaids_gem": {
+      "trigger":"revelationary:advancement_gotten",
+      "conditions": { "advancement_identifier": "spectrum:collect_mermaids_gem" }
+    }
+  }
+}

@@ -1,25 +1,25 @@
 {
-	"pages":[
-		{
-			"text":"维护你的魔法装备本身就是一项任务。随身携带你需要的各种颜料也是你库存中的一大消耗。$(br)既然你已经熟悉了颜料，你就没有理由像中世纪那样拖着它到处走了。你积累了那么多知识，经受了那么多艰难困苦！",
-			"type":"patchouli:text"
-		},
-		{
-			"text":"现在是一个新的创造：颜料调色板。现在你是一个真正的色彩艺术家。$(br)颜料调色板能够吸收、压缩和存储$(l:general/pigment)颜料$(/l)的元素魔法。颜料调色板作为一个单独的设备，能够为你的所有魔法装置和设备提供合适的颜料。$(br2)唯一的缺点是：失去了它们的世俗形态，没有办法将色素转化回物理形态。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/pigment_palette",
-			"text":"",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_pigment_palette",
-	"extra_recipe_mappings":{
-		"spectrum:pigment_palette":0
-	},
-	"name":"颜料调色板",
-	"icon":"spectrum:pigment_palette",
-	"category":"spectrum:magical_items_category"
+  "pages": [
+    {
+      "text": "维护你的魔法装备本身就是一项任务。随身携带你需要的各种颜料也是你库存中的一大消耗。$(br)既然你已经熟悉了颜料，你就没有理由像中世纪那样拖着它到处走了。你积累了那么多知识，经受了那么多艰难困苦！",
+      "type": "patchouli:text"
+    },
+    {
+      "text": "现在是一个新的创造：颜料调色板。现在你是一个真正的色彩艺术家。$(br)颜料调色板能够吸收、压缩和存储$(l:general/pigment)颜料$(/l)的元素魔法。颜料调色板作为一个单独的设备，能够为你的所有魔法装置和设备提供合适的颜料。$(br2)唯一的缺点是：失去了它们的世俗形态，没有办法将色素转化回物理形态。",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:fusion_shrine/trinkets/pigment_palette",
+      "text": "",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "融合配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/trinkets/pigment_palette",
+  "extra_recipe_mappings": {
+    "spectrum:pigment_palette": 0
+  },
+  "name": "颜料调色板",
+  "icon": "spectrum:pigment_palette",
+  "category": "spectrum:magical_items_category"
 }

@@ -1,8 +1,0 @@
-{
-  "criteria": {
-    "created_refined_azurite": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/create_refined_azurite" }
-    }
-  }
-}

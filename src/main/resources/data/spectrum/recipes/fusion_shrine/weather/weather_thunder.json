@@ -8,7 +8,7 @@
       "item": "spectrum:storm_stone"
     }
   ],
-  "required_advancement": "spectrum:progression/weather/weather_thunder",
+  "required_advancement": "spectrum:unlocks/weather/weather_thunder",
   "world_conditions": [
     "not_thunder"
   ],

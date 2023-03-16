@@ -1,21 +1,21 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)你已经厌倦了为你储藏室里堆积如山的煤、铁、铜和黄金创造新的储藏空间。然后，一次又一次地将这些东西组装成更紧凑的块也不好玩。$(br2)所以你想出了一个紧凑的箱子，它可以让你摆脱单调的工作。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:pedestal/tier1/compacting_chest",
-			"text":"名字说明了一切。$(br)压缩箱将尝试以3x3、2x2或1x1模板制作您放入其中的所有东西，可以在其GUI中切换。",
-			"type":"spectrum:pedestal_crafting",
-			"title":"基座配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_compacting_chest",
-	"extra_recipe_mappings":{
-		"spectrum:compacting_chest":0
-	},
-	"name":"压缩箱",
-	"icon":"spectrum:compacting_chest",
-	"category":"spectrum:magical_blocks_category"
+  "pages": [
+    {
+      "text": "$(italic)你已经厌倦了为你储藏室里堆积如山的煤、铁、铜和黄金创造新的储藏空间。然后，一次又一次地将这些东西组装成更紧凑的块也不好玩。$(br2)所以你想出了一个紧凑的箱子，它可以让你摆脱单调的工作。",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:pedestal/tier1/compacting_chest",
+      "text": "名字说明了一切。$(br)压缩箱将尝试以3x3、2x2或1x1模板制作您放入其中的所有东西，可以在其GUI中切换。",
+      "type": "spectrum:pedestal_crafting",
+      "title": "基座配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/blocks/compacting_chest",
+  "extra_recipe_mappings": {
+    "spectrum:compacting_chest": 0
+  },
+  "name": "压缩箱",
+  "icon": "spectrum:compacting_chest",
+  "category": "spectrum:magical_blocks_category"
 }

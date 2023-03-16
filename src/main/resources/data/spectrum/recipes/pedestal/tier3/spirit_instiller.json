@@ -28,5 +28,5 @@
     "item": "spectrum:spirit_instiller",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_spirit_instiller"
+  "required_advancement": "spectrum:unlocks/blocks/spirit_instiller"
 }

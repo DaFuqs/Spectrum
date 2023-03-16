@@ -1,18 +1,18 @@
 {
-	"pages":[
-		{
-			"text":"创造人工生命一直是人们的梦想。$(br)既然你现在自己在处理魔法宝石，它们似乎有魔力，这应该是小菜一碟。",
-			"type":"patchouli:text",
-			"title":"创造生命"
-		},
-		{
-			"text":"由宝石捆绑的原始魔法力量是此类研究的最佳起点。$(br2)既然你看起来是不朽的，你就有世界上所有的时间去思考它。$(br)（上次一头直立行走的绿猪让你大吃一惊，第二天早上你在床上醒来）$(br2)是时候。。。实验！",
-			"type":"patchouli:text"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_bottle_of_fading",
-	"name":"创造生命",
-	"icon":"minecraft:egg",
-	"category":"spectrum:creating_life_category",
-	"priority":true
+  "pages": [
+    {
+      "text": "创造人工生命一直是人们的梦想。$(br)既然你现在自己在处理魔法宝石，它们似乎有魔力，这应该是小菜一碟。",
+      "type": "patchouli:text",
+      "title": "创造生命"
+    },
+    {
+      "text": "由宝石捆绑的原始魔法力量是此类研究的最佳起点。$(br2)既然你看起来是不朽的，你就有世界上所有的时间去思考它。$(br)（上次一头直立行走的绿猪让你大吃一惊，第二天早上你在床上醒来）$(br2)是时候。。。实验！",
+      "type": "patchouli:text"
+    }
+  ],
+  "advancement": "spectrum:unlocks/items/bottle_of_fading",
+  "name": "创造生命",
+  "icon": "minecraft:egg",
+  "category": "spectrum:creating_life_category",
+  "priority": true
 }

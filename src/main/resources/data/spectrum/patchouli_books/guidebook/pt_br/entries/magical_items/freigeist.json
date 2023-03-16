@@ -1,7 +1,7 @@
 {
   "name": "Freigeist",
   "icon": "spectrum:freigeist",
-  "advancement": "spectrum:progression/unlock_freigeist",
+  "advancement": "spectrum:unlocks/food/freigeist",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:freigeist": 0

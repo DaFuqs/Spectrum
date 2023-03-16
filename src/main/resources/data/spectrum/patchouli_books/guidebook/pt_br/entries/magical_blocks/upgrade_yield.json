@@ -20,7 +20,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_yield2",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_yield2",
       "title": "Tier 2",
       "recipe": "spectrum:pedestal/tier4/upgrade_yield2",
       "text": "This upgraded version is much more potent, allowing you to get even more output for your crafting."

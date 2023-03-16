@@ -1,7 +1,7 @@
 {
   "name": "Spirit Instiller",
   "icon": "spectrum:spirit_instiller",
-  "advancement": "spectrum:progression/unlock_spirit_instiller",
+  "advancement": "spectrum:unlocks/blocks/spirit_instiller",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:spirit_instiller": 0

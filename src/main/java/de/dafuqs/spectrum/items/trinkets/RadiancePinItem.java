@@ -1,28 +1,24 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import dev.emi.trinkets.api.SlotReference;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LightBlock;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class RadiancePinItem extends SpectrumTrinketItem {
 	
@@ -32,7 +28,7 @@ public class RadiancePinItem extends SpectrumTrinketItem {
 	public static final BlockState LIGHT_BLOCK_STATE_WATER = SpectrumBlocks.DECAYING_LIGHT_BLOCK.getDefaultState().with(LightBlock.LEVEL_15, 15).with(LightBlock.WATERLOGGED, true);
 	
 	public RadiancePinItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_radiance_pin"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/radiance_pin"));
 	}
 	
 	@Override

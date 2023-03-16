@@ -1,7 +1,7 @@
 {
   "name": "Experimento #3: Ruína",
   "icon": "spectrum:bottle_of_ruin",
-  "advancement": "spectrum:progression/unlock_bottle_of_ruin",
+  "advancement": "spectrum:unlocks/items/bottle_of_ruin",
   "category": "spectrum:creating_life_category",
   "turnin": "spectrum:midgame/break_decayed_bedrock",
   "extra_recipe_mappings": {

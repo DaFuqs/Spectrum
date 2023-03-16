@@ -12,7 +12,7 @@
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
-  "required_advancement": "spectrum:progression/potions/unlock_levitation_potion",
+  "required_advancement": "spectrum:unlocks/potions/levitation_potion",
   "ink_color": "brown",
   "ink_cost": 4
 }

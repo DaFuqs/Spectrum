@@ -35,7 +35,7 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:big_catch\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/big_catch",
+  "required_advancement": "spectrum:unlocks/enchantments/big_catch",
   "fabric:load_conditions": [
     {
       "condition": "spectrum:enchantments_exist",

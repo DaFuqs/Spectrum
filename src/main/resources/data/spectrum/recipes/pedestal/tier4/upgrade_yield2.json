@@ -24,5 +24,5 @@
     "item": "spectrum:upgrade_yield2",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_upgrade_yield2"
+  "required_advancement": "spectrum:unlocks/upgrades/upgrade_yield2"
 }

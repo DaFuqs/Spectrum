@@ -172,5 +172,5 @@
     "count": 4,
     "nbt": "{Variant: \"rabbit_poison\", Color: 9518003 }"
   },
-  "required_advancement": "spectrum:progression/unlock_rabbit_poison"
+  "required_advancement": "spectrum:unlocks/food/rabbit_poison"
 }

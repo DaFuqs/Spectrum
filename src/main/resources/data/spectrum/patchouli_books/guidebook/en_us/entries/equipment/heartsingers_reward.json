@@ -1,6 +1,6 @@
 {
   "name": "Heartsinger's Reward",
-  "advancement": "spectrum:progression/unlock_heartsingers_reward",
+  "advancement": "spectrum:unlocks/trinkets/heartsingers_reward",
   "icon": "spectrum:heartsingers_reward",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

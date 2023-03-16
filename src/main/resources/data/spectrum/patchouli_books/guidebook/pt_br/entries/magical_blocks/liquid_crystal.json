@@ -1,26 +1,26 @@
 {
-    "name": "Liquid Crystal",
-    "advancement": "spectrum:progression/unlock_liquid_crystal_bucket",
-    "icon": "spectrum:liquid_crystal_bucket",
-    "category": "spectrum:magical_blocks_category",
-    "extra_recipe_mappings": {
-        "spectrum:liquid_crystal_bucket": 0,
-        "spectrum:blazing_crystal": 0,
-        "spectrum:frostbite_crystal": 0,
-        "spectrum:resonant_lily": 0
+  "name": "Liquid Crystal",
+  "advancement": "spectrum:unlocks/blocks/liquid_crystal",
+  "icon": "spectrum:liquid_crystal_bucket",
+  "category": "spectrum:magical_blocks_category",
+  "extra_recipe_mappings": {
+    "spectrum:liquid_crystal_bucket": 0,
+    "spectrum:blazing_crystal": 0,
+    "spectrum:frostbite_crystal": 0,
+    "spectrum:resonant_lily": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:liquid_crystal_bucket",
+      "text": "$(italic)The pure energy of gemstones in their liquid form. It is said to have a healing effect."
     },
-    "pages": [
-        {
-            "type": "patchouli:spotlight",
-            "item": "spectrum:liquid_crystal_bucket",
-            "text": "$(italic)The pure energy of gemstones in their liquid form. It is said to have a healing effect."
-        },
-        {
-            "type": "spectrum:pedestal_crafting",
-            "title": "Pedestal Recipe",
-            "recipe": "spectrum:pedestal/tier3/liquid_crystal_bucket",
-            "text": "Combining it with various other liquids results in all kinds of weird looking materials to form. Best to try it in the nether, too!"
-        },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/liquid_crystal_bucket",
+      "text": "Combining it with various other liquids results in all kinds of weird looking materials to form. Best to try it in the nether, too!"
+    },
 		{
             "type": "patchouli:spotlight",
             "item": "minecraft:clay",

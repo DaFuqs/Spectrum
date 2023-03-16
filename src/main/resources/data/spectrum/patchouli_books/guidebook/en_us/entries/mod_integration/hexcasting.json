@@ -11,13 +11,13 @@
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/hexcasting/fusion_shrine/charged_amethyst_from_amethyst_shard_fusion",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
-      "advancement": "spectrum:progression/unlock_potion_workshop",
+      "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/hexcasting/potion_workshop_reacting/charged_amethyst",
       "text": ""
     }

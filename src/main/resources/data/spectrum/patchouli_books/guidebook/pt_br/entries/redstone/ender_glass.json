@@ -1,6 +1,6 @@
 {
   "name": "Ender Glass",
-  "advancement": "spectrum:progression/unlock_ender_glass",
+  "advancement": "spectrum:unlocks/blocks/ender_glass",
   "icon": "spectrum:ender_glass",
   "category": "spectrum:redstone_category",
   "extra_recipe_mappings": {

@@ -31,5 +31,5 @@
     "item": "spectrum:ethereal_platform",
     "count": 8
   },
-  "required_advancement": "spectrum:progression/unlock_ethereal_platform"
+  "required_advancement": "spectrum:unlocks/blocks/ethereal_platform"
 }

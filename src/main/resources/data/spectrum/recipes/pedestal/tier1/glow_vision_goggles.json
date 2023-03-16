@@ -24,5 +24,5 @@
     "item": "spectrum:glow_vision_goggles",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_glow_vision_goggles"
+  "required_advancement": "spectrum:unlocks/trinkets/glow_vision_goggles"
 }

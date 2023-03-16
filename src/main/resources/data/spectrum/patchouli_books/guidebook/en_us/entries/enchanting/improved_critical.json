@@ -1,7 +1,7 @@
 {
   "name": "Improved Critical",
   "icon": "minecraft:iron_sword",
-  "advancement": "spectrum:progression/enchantments/improved_critical",
+  "advancement": "spectrum:unlocks/enchantments/improved_critical",
   "flag": "spectrum:enchantment_exists_spectrum_improved_critical",
   "category": "spectrum:enchanting_category",
   "pages": [

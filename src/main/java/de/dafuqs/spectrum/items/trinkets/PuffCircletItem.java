@@ -15,7 +15,7 @@ public class PuffCircletItem extends AzureDikeTrinketItem {
 	public static final float FALL_DAMAGE_NEGATING_COST = 2;
 
 	public PuffCircletItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_ashen_circlet"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/ashen_circlet"));
 	}
 
 	@Override

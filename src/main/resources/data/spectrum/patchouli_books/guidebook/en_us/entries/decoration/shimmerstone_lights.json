@@ -1,7 +1,7 @@
 {
   "name": "Shimmerstone Lights",
   "icon": "spectrum:basalt_shimmerstone_light",
-  "advancement": "spectrum:progression/unlock_shimmerstone_lights",
+  "advancement": "spectrum:unlocks/blocks/shimmerstone_lights",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:andesite_shimmerstone_light": 0,
@@ -26,7 +26,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_blackslag_shimmerstone_light",
+      "advancement": "spectrum:unlocks/blocks/blackslag_shimmerstone_light",
       "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/blackslag_shimmerstone_light",
       "text": "Blackslag can be used, too, resulting in a especially dark variant."
     }

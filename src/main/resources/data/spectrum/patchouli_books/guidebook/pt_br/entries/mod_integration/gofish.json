@@ -2,7 +2,7 @@
   "name": "Go Fish",
   "icon": "gofish:starry_salmon",
   "flag": "mod:go-fish",
-  "advancement": "spectrum:progression/unlock_molten_rod",
+  "advancement": "spectrum:unlocks/equipment/molten_rod",
   "category": "spectrum:mod_integration_category",
   "pages": [
     {

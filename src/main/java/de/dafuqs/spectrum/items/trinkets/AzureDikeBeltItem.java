@@ -1,20 +1,19 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class AzureDikeBeltItem extends AzureDikeTrinketItem {
 	
 	public AzureDikeBeltItem(Settings settings) {
-		super(settings, SpectrumCommon.locate("progression/unlock_azure_dike_ring"));
+		super(settings, SpectrumCommon.locate("unlocks/trinkets/azure_dike_ring"));
 	}
 	
 	@Environment(EnvType.CLIENT)

@@ -1,7 +1,7 @@
 {
   "name": "Luzes de Pedra Cintilante",
   "icon": "spectrum:basalt_shimmerstone_light",
-  "advancement": "spectrum:progression/unlock_shimmerstone_lights",
+  "advancement": "spectrum:unlocks/blocks/shimmerstone_lights",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:andesite_shimmerstone_light": 0,

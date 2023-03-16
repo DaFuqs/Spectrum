@@ -1,31 +1,27 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.InkPoweredStatusEffectInstance;
-import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.items.PotionFillable;
-import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.particle.effect.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.potion.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class NightfallsBladeItem extends SwordItem implements PotionFillable {
 	
 	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = Identifier.tryParse("effect");
-	private static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("progression/unlock_nightfalls_blade");
+	private static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/equipment/nightfalls_blade");
 	
 	public NightfallsBladeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
 		super(material, attackDamage, attackSpeed, settings);

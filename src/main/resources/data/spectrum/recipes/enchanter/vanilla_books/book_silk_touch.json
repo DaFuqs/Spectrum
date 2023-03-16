@@ -36,5 +36,5 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/vanilla_silk_touch"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_silk_touch"
 }

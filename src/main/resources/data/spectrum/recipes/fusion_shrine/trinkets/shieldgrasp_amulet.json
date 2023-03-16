@@ -18,7 +18,7 @@
   "result": {
     "item": "spectrum:shieldgrasp_amulet"
   },
-  "required_advancement": "spectrum:progression/unlock_shieldgrasp_amulet",
+  "required_advancement": "spectrum:unlocks/trinkets/shieldgrasp_amulet",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

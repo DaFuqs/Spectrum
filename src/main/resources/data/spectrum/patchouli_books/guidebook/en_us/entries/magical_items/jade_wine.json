@@ -1,6 +1,6 @@
 {
   "name": "Jade Wine",
-  "advancement": "spectrum:progression/unlock_jade_wine",
+  "advancement": "spectrum:unlocks/food/jade_wine",
   "icon": "spectrum:jade_wine",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

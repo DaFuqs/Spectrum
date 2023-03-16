@@ -3,6 +3,6 @@
   "textures": {
     "bottom": "spectrum:block/blackslag_top",
     "top": "spectrum:block/blackslag_top",
-    "side": "spectrum:block/blackslag_side"
+    "side": "spectrum:block/blackslag"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "Carrilhões de Pedra Preciosa",
   "icon": "spectrum:amethyst_chime",
-  "advancement": "spectrum:progression/gemstone_chimes/unlock_any_chime",
+  "advancement": "spectrum:unlocks/gemstone_chimes/any_chime",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {
     "spectrum:topaz_chime": 0,

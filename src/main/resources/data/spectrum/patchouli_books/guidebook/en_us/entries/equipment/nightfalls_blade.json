@@ -1,6 +1,6 @@
 {
   "name": "Nightfall's Blade",
-  "advancement": "spectrum:progression/unlock_nightfalls_blade",
+  "advancement": "spectrum:unlocks/equipment/nightfalls_blade",
   "icon": "spectrum:nightfalls_blade",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

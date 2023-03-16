@@ -284,7 +284,7 @@ public class SpectrumItems {
 	public static final Item CLOTTED_CREAM = new ClottedCreamItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.CLOTTED_CREAM), new String[]{"item.spectrum.clotted_cream.tooltip", "item.spectrum.clotted_cream.tooltip2"});
 	public static final Item FRESH_CHOCOLATE = new CustomUseTimeItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.FRESH_CHOCOLATE), 10);
 	public static final Item HOT_CHOCOLATE = new TeaItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.HOT_CHOCOLATE), SpectrumFoodComponents.HOT_CHOCOLATE_SCONE_BONUS);
-	public static final Item BODACIOUS_BERRY_BAR = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BODACIOUS_BERRY_BAR));
+	public static final Item BOCACIOUS_BERRY_BAR = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.BOCACIOUS_BERRY_BAR));
 	public static final Item DEMON_TEA = new TeaItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DEMON_TEA), SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS);
 	public static final Item SCONE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SCONE));
 
@@ -408,7 +408,7 @@ public class SpectrumItems {
 	public static final ExtraHealthRingItem HEARTSINGERS_REWARD_RING = new ExtraHealthRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final ExtraReachGlovesItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final ExtraMiningSpeedRingItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-
+	
 	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(Tab.EQUIPMENT.settings(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
 	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(Tab.EQUIPMENT.settings(1), 64 * 100);
 	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 64 * 64 * 100);
@@ -416,8 +416,8 @@ public class SpectrumItems {
 	public static final CreativeInkAssortmentItem CREATIVE_INK_ASSORTMENT = new CreativeInkAssortmentItem(Tab.EQUIPMENT.settings(1, Rarity.EPIC));
 	
 	public static final Item GLEAMING_PIN = new GleamingPinItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 1, SpectrumCommon.CONFIG.MaxLevelForEffectsInLesserPotionPendant - 1, SpectrumCommon.locate("progression/unlock_lesser_potion_pendant"));
-	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 3, SpectrumCommon.CONFIG.MaxLevelForEffectsInGreaterPotionPendant - 1, SpectrumCommon.locate("progression/unlock_greater_potion_pendant"));
+	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 1, SpectrumCommon.CONFIG.MaxLevelForEffectsInLesserPotionPendant - 1, SpectrumCommon.locate("unlocks/trinkets/lesser_potion_pendant"));
+	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 3, SpectrumCommon.CONFIG.MaxLevelForEffectsInGreaterPotionPendant - 1, SpectrumCommon.locate("unlocks/trinkets/greater_potion_pendant"));
 	public static final Item ASHEN_CIRCLET = new AshenCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).fireproof());
 	public static final Item WEEPING_CIRCLET = new WeepingCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item PUFF_CIRCLET = new PuffCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
@@ -703,7 +703,7 @@ public class SpectrumItems {
 		
 		register("clotted_cream", CLOTTED_CREAM, DyeColor.PINK);
 		register("fresh_chocolate", FRESH_CHOCOLATE, DyeColor.PINK);
-		register("bodacious_berry_bar", BODACIOUS_BERRY_BAR, DyeColor.PINK);
+		register("bodacious_berry_bar", BOCACIOUS_BERRY_BAR, DyeColor.PINK);
 		
 		register("hot_chocolate", HOT_CHOCOLATE, DyeColor.PINK);
 		register("restoration_tea", RESTORATION_TEA, DyeColor.PINK);

@@ -28,5 +28,5 @@
     "item": "spectrum:bag_of_holding",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_bag_of_holding"
+  "required_advancement": "spectrum:unlocks/items/bag_of_holding"
 }

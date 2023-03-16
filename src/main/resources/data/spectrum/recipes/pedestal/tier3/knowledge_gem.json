@@ -28,5 +28,5 @@
     "item": "spectrum:knowledge_gem",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_knowledge_gem"
+  "required_advancement": "spectrum:unlocks/items/knowledge_gem"
 }

@@ -1,7 +1,7 @@
 {
   "name": "Insersão de Inventário",
   "icon": "minecraft:iron_pickaxe",
-  "advancement": "spectrum:progression/enchantments/inventory_insertion",
+  "advancement": "spectrum:unlocks/enchantments/inventory_insertion",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

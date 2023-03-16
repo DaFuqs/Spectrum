@@ -1,22 +1,22 @@
 {
-	"pages":[
-		{
-			"text":"$(italic)我只是觉得它们很整洁。",
-			"type":"patchouli:text"
-		},
-		{
-			"recipe":"spectrum:fusion_shrine/trinkets/neat_ring",
-			"text":"",
-			"type":"spectrum:fusion_shrine_crafting",
-			"title":"融合配方"
-		}
-	],
-	"advancement":"spectrum:progression/unlock_neat_ring",
-	"extra_recipe_mappings":{
-		"spectrum:neat_ring":0
-	},
-	"name":"整齐的戒指 ",
-	"icon":"spectrum:neat_ring",
-	"secret":true,
-	"category":"spectrum:magical_items_category"
+  "pages": [
+    {
+      "text": "$(italic)我只是觉得它们很整洁。",
+      "type": "patchouli:text"
+    },
+    {
+      "recipe": "spectrum:fusion_shrine/trinkets/neat_ring",
+      "text": "",
+      "type": "spectrum:fusion_shrine_crafting",
+      "title": "融合配方"
+    }
+  ],
+  "advancement": "spectrum:unlocks/trinkets/neat_ring",
+  "extra_recipe_mappings": {
+    "spectrum:neat_ring": 0
+  },
+  "name": "整齐的戒指 ",
+  "icon": "spectrum:neat_ring",
+  "secret": true,
+  "category": "spectrum:magical_items_category"
 }

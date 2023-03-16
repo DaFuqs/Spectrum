@@ -1,6 +1,6 @@
 {
   "name": "Item Roundel",
-  "advancement": "spectrum:progression/unlock_item_roundel",
+  "advancement": "spectrum:unlocks/blocks/item_roundel",
   "icon": "spectrum:item_roundel",
   "category": "spectrum:decoration_category",
   "extra_recipe_mappings": {

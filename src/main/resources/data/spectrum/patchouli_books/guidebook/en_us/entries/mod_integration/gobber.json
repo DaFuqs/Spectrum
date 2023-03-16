@@ -12,19 +12,19 @@
     {
       "type": "spectrum:crystallarieum_growing",
       "recipe": "spectrum:mod_integration/gobber/crystallarieum/globette",
-      "advancement": "spectrum:progression/unlock_crystallarieum",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
       "text": "It grows!"
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "recipe": "spectrum:mod_integration/gobber/crystallarieum/globette_nether",
-      "advancement": "spectrum:progression/unlock_crystallarieum",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
       "text": "It also grows!"
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "recipe": "spectrum:mod_integration/gobber/crystallarieum/globette_end",
-      "advancement": "spectrum:progression/unlock_crystallarieum",
+      "advancement": "spectrum:unlocks/blocks/crystallarieum",
       "text": "You are not going to believe this"
     }
   ]

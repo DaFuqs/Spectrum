@@ -1,6 +1,6 @@
 {
   "name": "Take-Off Belt",
-  "advancement": "spectrum:progression/unlock_take_off_belt",
+  "advancement": "spectrum:unlocks/trinkets/take_off_belt",
   "icon": "spectrum:take_off_belt",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
@@ -19,14 +19,14 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:progression/enchantments/vanilla_projectile",
+      "advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
       "title": "Power",
       "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:power\", lvl: 5s}]}",
       "text": "The Power enchantment increases the jump height even further."
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:progression/enchantments/vanilla_quitoxic",
+      "advancement": "spectrum:unlocks/enchantments/vanilla_quitoxic",
       "title": "Feather Falling",
       "item": "spectrum:take_off_belt{Enchantments: [{id: \"minecraft:feather_falling\", lvl: 4s}]}",
       "text": "Feather Falling will grant you a short slow fall effect, allowing you to better navigate to where you want to land. A high level of Feather Falling may be a very viable way to safely descend down those cliffs again, actually."

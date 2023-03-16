@@ -47,5 +47,5 @@
     "item": "spectrum:bodacious_berry_bar",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/unlock_bodacious_berry_bar"
+  "required_advancement": "spectrum:unlocks/food/bodacious_berry_bar"
 }

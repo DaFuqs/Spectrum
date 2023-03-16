@@ -1,7 +1,7 @@
 {
   "name": "Infused Beverages",
   "icon": "spectrum:infused_beverage",
-  "advancement": "spectrum:progression/unlock_titration_barrel",
+  "advancement": "spectrum:unlocks/blocks/titration_barrel",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:infused_beverage": 0,
@@ -50,7 +50,7 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "advancement": "spectrum:progression/unlock_gin",
+      "advancement": "spectrum:unlocks/food/gin",
       "title": "Gin",
       "recipe": "spectrum:titration_barrel/infused_beverages/gin",
       "text": "Made from $(l:resources/amaranth)Amaranth$(/l), grants $(thing)Luck$() and $(thing)Haste$()."
@@ -102,7 +102,7 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
-      "advancement": "spectrum:progression/unlock_mint_beverages",
+      "advancement": "spectrum:unlocks/food/mint_beverages",
       "title": "Mint Drinks",
       "recipe": "spectrum:titration_barrel/infused_beverages/mint_cream",
       "recipe2": "spectrum:titration_barrel/infused_beverages/mint_schnapps",

@@ -1,7 +1,7 @@
 {
   "name": "Indestrutível",
   "icon": "spectrum:multitool",
-  "advancement": "spectrum:progression/enchantments/indestructible",
+  "advancement": "spectrum:unlocks/enchantments/indestructible",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

@@ -1,6 +1,6 @@
 {
   "name": "Weeping Circlet",
-  "advancement": "spectrum:progression/unlock_weeping_circlet",
+  "advancement": "spectrum:unlocks/trinkets/weeping_circlet",
   "icon": "spectrum:weeping_circlet",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

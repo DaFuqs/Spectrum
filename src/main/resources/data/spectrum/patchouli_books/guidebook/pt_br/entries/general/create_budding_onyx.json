@@ -2,7 +2,7 @@
   "name": "Criando Drusa de Ônix",
   "icon": "spectrum:onyx_cluster",
   "sortnum": 14,
-  "advancement": "spectrum:progression/unlock_budding_onyx",
+  "advancement": "spectrum:unlocks/blocks/budding_onyx",
   "turnin": "spectrum:midgame/create_budding_onyx",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

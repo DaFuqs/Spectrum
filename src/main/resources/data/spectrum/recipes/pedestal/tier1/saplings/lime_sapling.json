@@ -29,5 +29,5 @@
     "item": "spectrum:lime_sapling",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/colored_saplings/unlock_lime_sapling"
+  "required_advancement": "spectrum:unlocks/colored_saplings/lime_sapling"
 }

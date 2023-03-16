@@ -23,7 +23,7 @@
   "result": {
     "item": "spectrum:midnight_aberration"
   },
-  "required_advancement": "spectrum:progression/unlock_midnight_aberration",
+  "required_advancement": "spectrum:unlocks/blocks/midnight_aberration",
   "world_conditions": [
     "day",
     "clear_sky"

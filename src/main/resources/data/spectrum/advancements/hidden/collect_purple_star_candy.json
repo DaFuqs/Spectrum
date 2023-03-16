@@ -1,8 +1,10 @@
 {
   "criteria": {
     "unlocked_star_candy": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:progression/unlock_star_candy" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/food/star_candy"
+      }
     },
     "collected_purple_star_candy": {
       "trigger": "minecraft:inventory_changed",

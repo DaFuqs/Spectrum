@@ -35,7 +35,7 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"spectrum:autosmelt\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:progression/enchantments/autosmelt",
+  "required_advancement": "spectrum:unlocks/enchantments/autosmelt",
   "fabric:load_conditions": [
     {
       "condition": "spectrum:enchantments_exist",

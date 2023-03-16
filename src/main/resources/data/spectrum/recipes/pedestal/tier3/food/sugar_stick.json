@@ -25,5 +25,5 @@
     "item": "spectrum:sugar_stick",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/unlock_rock_candy"
+  "required_advancement": "spectrum:unlocks/food/rock_candy"
 }

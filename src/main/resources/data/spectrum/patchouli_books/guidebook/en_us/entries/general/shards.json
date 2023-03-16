@@ -60,7 +60,7 @@
     {
       "type": "patchouli:spotlight",
       "anchor": "spectral",
-      "advancement": "spectrum:lategame/create_spectral_shard",
+      "advancement": "spectrum:endgame/create_spectral_shard",
       "title": "Spectral Shards",
       "item": "spectrum:spectral_shard",
       "text": "Spectral Shards shine in all colors of the rainbow."

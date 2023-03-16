@@ -1,6 +1,6 @@
 {
   "name": "Malachite Tools",
-  "advancement": "spectrum:progression/malachite/unlock_malachite_tools",
+  "advancement": "spectrum:unlocks/malachite/malachite_tools",
   "icon": "spectrum:malachite_ultra_greatsword",
   "category": "spectrum:equipment_category",
   "extra_recipe_mappings": {

@@ -1,6 +1,6 @@
 {
   "name": "Reprise",
-  "advancement": "spectrum:progression/unlock_reprise",
+  "advancement": "spectrum:unlocks/food/reprise",
   "icon": "spectrum:reprise",
   "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {

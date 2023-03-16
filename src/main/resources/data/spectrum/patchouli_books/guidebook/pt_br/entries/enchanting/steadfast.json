@@ -1,7 +1,7 @@
 {
   "name": "Steadfast",
   "icon": "spectrum:multitool",
-  "advancement": "spectrum:progression/enchantments/steadfast",
+  "advancement": "spectrum:unlocks/enchantments/steadfast",
   "category": "spectrum:enchanting_category",
   "pages": [
     {

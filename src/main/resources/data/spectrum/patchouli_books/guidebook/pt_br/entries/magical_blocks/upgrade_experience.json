@@ -1,6 +1,6 @@
 {
   "name": "Knowledge Focus",
-  "advancement": "spectrum:progression/unlock_upgrade_experience",
+  "advancement": "spectrum:unlocks/upgrades/upgrade_experience",
   "icon": "spectrum:upgrade_experience",
   "category": "spectrum:magical_blocks_category",
   "extra_recipe_mappings": {
@@ -20,7 +20,7 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "advancement": "spectrum:progression/unlock_upgrade_experience2",
+      "advancement": "spectrum:unlocks/upgrades/upgrade_experience2",
       "title": "Tier 2",
       "recipe": "spectrum:pedestal/tier3/upgrade_experience2",
       "text": "This improved Knowledge Focus increases the generated XP even more."

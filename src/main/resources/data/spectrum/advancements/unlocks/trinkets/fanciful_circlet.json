@@ -1,0 +1,43 @@
+{
+  "criteria": {
+    "unlocked_ashen_circlet": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/ashen_circlet"
+      }
+    },
+    "unlocked_weeping_circlet": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/weeping_circlet"
+      }
+    },
+    "unlocked_puff_circlet": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/puff_circlet"
+      }
+    },
+    "unlocked_whispy_circlet": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/whispy_circlet"
+      }
+    },
+    "unlocked_circlet_of_arrogance": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/circlet_of_arrogance"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "unlocked_ashen_circlet",
+      "unlocked_weeping_circlet",
+      "unlocked_puff_circlet",
+      "unlocked_whispy_circlet",
+      "unlocked_circlet_of_arrogance"
+    ]
+  ]
+}

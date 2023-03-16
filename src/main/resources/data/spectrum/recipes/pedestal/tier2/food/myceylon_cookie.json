@@ -24,5 +24,5 @@
     "item": "spectrum:myceylon_cookie",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/unlock_myceylon_pastries"
+  "required_advancement": "spectrum:unlocks/food/myceylon_pastries"
 }

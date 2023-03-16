@@ -29,5 +29,5 @@
     "item": "spectrum:purple_lamp",
     "count": 2
   },
-  "required_advancement": "spectrum:progression/colored_lamps/unlock_purple_lamp"
+  "required_advancement": "spectrum:unlocks/colored_lamps/purple_lamp"
 }

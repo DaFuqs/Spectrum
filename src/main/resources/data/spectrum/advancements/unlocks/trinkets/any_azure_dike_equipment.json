@@ -1,0 +1,29 @@
+{
+  "criteria": {
+	"unlocked_azure_dike_belt": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/azure_dike_belt"
+      }
+    },
+    "unlocked_azure_dike_ring": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/azure_dike_ring"
+      }
+    },
+    "unlocked_shieldgrasp_amulet": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/shieldgrasp_amulet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "unlocked_azure_dike_belt",
+      "unlocked_azure_dike_ring",
+      "unlocked_shieldgrasp_amulet"
+    ]
+  ]
+}

@@ -26,5 +26,5 @@
     "item": "spectrum:andesite_shimmerstone_light",
     "count": 4
   },
-  "required_advancement": "spectrum:progression/unlock_shimmerstone_lights"
+  "required_advancement": "spectrum:unlocks/blocks/shimmerstone_lights"
 }

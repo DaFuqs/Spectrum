@@ -29,5 +29,5 @@
     "nbt": "{Enchantments: [{id: \"minecraft:silk_touch\", lvl: 1s}]}",
     "count": 1
   },
-  "required_advancement": "spectrum:progression/tools/unlock_tender_pickaxe"
+  "required_advancement": "spectrum:unlocks/equipment/tender_pickaxe"
 }

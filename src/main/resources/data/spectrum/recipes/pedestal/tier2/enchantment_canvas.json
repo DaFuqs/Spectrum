@@ -27,5 +27,5 @@
   "result": {
     "item": "spectrum:enchantment_canvas"
   },
-  "required_advancement": "spectrum:progression/unlock_enchantment_canvas"
+  "required_advancement": "spectrum:unlocks/items/enchantment_canvas"
 }

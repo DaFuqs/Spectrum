@@ -1,82 +1,60 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.fabric.api.mininglevel.v1.FabricMineableTags;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Fertilizable;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 
 public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertilizable {
-
-    public static final IntProperty AGE = Properties.AGE_3;
-    public static final BooleanProperty COLLAPSING = BooleanProperty.of("collapsing");
-
+    
+    public static final IntProperty AGE = Properties.AGE_2;
+    public static final int MAX_AGE = Properties.AGE_2_MAX;
+    
     public NephriteBlossomLeavesBlock(Settings settings) {
         super(settings);
+        setDefaultState(getDefaultState().with(AGE, 0));
     }
-
+    
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (state.get(AGE) == 2) {
-            var handStack = player.getStackInHand(hand);
-            var fortune = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, handStack) / 2;
-
-            var peach = new ItemStack(SpectrumItems.GLASS_PEACH, world.getRandom().nextInt(fortune + 1) + 1);
-
-            if (handStack.isEmpty()) {
-                player.setStackInHand(hand, peach);
-            }
-            else {
-                player.giveItemStack(peach);
-            }
-
+        if (state.get(AGE) == MAX_AGE) {
+            ItemStack handStack = player.getStackInHand(hand);
+            int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, handStack) / 2;
+            Support.givePlayer(player, new ItemStack(SpectrumItems.GLASS_PEACH, 1 + world.getRandom().nextInt(fortuneLevel + 1)));
+            
             world.setBlockState(pos, state.with(AGE, 0));
             player.playSound(SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1, 1 + player.getRandom().nextFloat() * 0.25F);
             return ActionResult.success(world.isClient());
         }
-
+        
         return super.onUse(state, world, pos, player, hand, hit);
     }
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        var age = state.get(AGE);
-        var leafSum = 0;
-
+        int age = state.get(AGE);
+        int leafSum = 0;
+    
         if (state.get(PERSISTENT)) {
             super.randomTick(state, world, pos, random);
             return;
         }
-
+    
         for (BlockPos iPos : BlockPos.iterate(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
             var leafState = world.getBlockState(iPos);
-
             if (leafState.isOf(this)) {
                 leafSum += (leafState.get(AGE).byteValue() + 1) * 3;
             }
@@ -90,14 +68,15 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
         }
 
         if (age == 2) {
-            var drop = new ItemStack(SpectrumItems.GLASS_PEACH);
-            var dropPos = pos.mutableCopy();
-            while(world.getBlockState(dropPos).isOf(this) && pos.getY() - dropPos.getY() < 32) {
+            BlockPos.Mutable dropPos = pos.mutableCopy();
+            while (world.getBlockState(dropPos).isOf(this) && pos.getY() - dropPos.getY() < 32) {
                 dropPos.move(0, -1, 0);
             }
-            var entity = new ItemEntity(world, dropPos.getX() + 0.5, dropPos.getY() + 0.15, dropPos.getZ() + 0.5, drop);
-            world.spawnEntity(entity);
-            world.setBlockState(pos, state.with(AGE, 0));
+            ItemStack drop = new ItemStack(SpectrumItems.GLASS_PEACH);
+            world.spawnEntity(new ItemEntity(world, dropPos.getX() + 0.5, dropPos.getY() + 0.15, dropPos.getZ() + 0.5, drop));
+            BlockState newState = state.with(AGE, 0);
+            world.setBlockState(pos, newState);
+            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
         }
         else {
             world.setBlockState(pos, state.with(AGE, age + 1));
@@ -108,13 +87,13 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
 
     @Override
     public boolean hasRandomTicks(BlockState state) {
-        return true;
+        return state.get(AGE) != MAX_AGE;
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(AGE);
         super.appendProperties(builder);
+        builder.add(AGE);
     }
 
     @Override
@@ -129,11 +108,10 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        var age = state.get(AGE) + 1;
-
-        if(age > 2)
+        var age = state.get(AGE);
+        if (age == MAX_AGE)
             return;
-
-        world.setBlockState(pos, state.with(AGE, age));
+    
+        world.setBlockState(pos, state.with(AGE, age + 1));
     }
 }

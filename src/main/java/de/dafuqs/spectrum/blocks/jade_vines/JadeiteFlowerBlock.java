@@ -1,34 +1,23 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.blocks.decoration.SpectrumFacingBlock;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
+import de.dafuqs.spectrum.blocks.decoration.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.tag.convention.v1.*;
 import net.minecraft.block.*;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 
 public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterloggable {
 
@@ -49,9 +38,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-
         world.createAndScheduleBlockTick(pos, this, 1);
-
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
 
@@ -72,15 +59,15 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
         var random = world.getRandom();
 
         if (handStack.isIn(ConventionalItemTags.SHEARS)) {
-
-            var roll = random.nextInt(EnchantmentHelper.getLevel(Enchantments.FORTUNE, handStack) * 3 + 2)  + 1;
-
-            for (int i = roll; i > 0; i--) {
+            int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, handStack);
+            int itemCount = random.nextInt(fortuneLevel * 3 + 2) + 1;
+    
+            for (int i = itemCount; i > 0; i--) {
                 ItemScatterer.spawn(world, pos.getX() + random.nextFloat() * 0.6 + 0.2, pos.getY() + random.nextFloat() * 0.6 + 0.2, pos.getZ() + random.nextFloat() * 0.6 + 0.2, new ItemStack(SpectrumItems.MOONSTRUCK_PETALS));
             }
-
+    
             world.breakBlock(pos, false);
-
+    
             var amount = random.nextInt(32) + 16;
             for (int i = 0; i < amount; i++) {
                 var xOffset = MathHelper.clamp(MathHelper.nextGaussian(random, 0.5F, 2F), -9F, 9F) + 0.5F;
@@ -108,17 +95,18 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
             world.addImportantParticle(ParticleTypes.END_ROD, pos.getX() + xOffset, pos.getY() + yOffset, pos.getZ() + zOffset, random.nextFloat() * 0.05 - 0.025, random.nextFloat() * 0.05 - 0.025, random.nextFloat() * 0.05 - 0.025);
         }
     }
-
+    
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED);
         super.appendProperties(builder);
     }
-
+    
+    @Override
     public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
-
+    
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (!canPlaceAt(state, world, pos))

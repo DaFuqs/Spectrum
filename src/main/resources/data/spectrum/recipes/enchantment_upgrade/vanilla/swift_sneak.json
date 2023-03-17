@@ -1,0 +1,28 @@
+{
+  "type": "spectrum:enchantment_upgrade",
+  "group": "vanilla",
+  "enchantment": "minecraft:swift_sneak",
+  "levels": [
+    {
+      "experience": 200,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 8
+    },
+    {
+      "experience": 600,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 32
+    },
+    {
+      "experience": 2000,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 128
+    },
+    {
+      "experience": 5000,
+      "item": "spectrum:light_blue_pigment",
+      "item_count": 256
+    }
+  ],
+  "required_advancement": "spectrum:unlocks/enchantments/swift_sneak"
+}

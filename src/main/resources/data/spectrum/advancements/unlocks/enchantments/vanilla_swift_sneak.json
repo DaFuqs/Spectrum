@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "built_enchanting_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/build_enchanting_structure"
+      }
+    },
+    "collected_neolith": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_neolith"
+      }
+    }
+  }
+}

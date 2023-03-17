@@ -44,6 +44,7 @@ public class SpectrumConfiguredFeatures {
 	public static RegistryEntry<PlacedFeature> CITRINE_GEODE;
 
 	public static RegistryEntry<ConfiguredFeature<NephriteBlossomFeatureConfig, ?>> NEPHRITE_BLOSSOM_BULB;
+	public static RegistryEntry<ConfiguredFeature<JadeiteLotusFeatureConfig, ?>> JADEITE_LOTUS_BULB;
 
 
 	
@@ -296,6 +297,12 @@ public class SpectrumConfiguredFeatures {
 				SpectrumCommon.locate("nephrite_blossom_bulb"),
 				new NephriteBlossomFeature(NephriteBlossomFeatureConfig.CODEC),
 				new NephriteBlossomFeatureConfig(false)
+		);
+
+		JADEITE_LOTUS_BULB = registerConfiguredFeature(
+				SpectrumCommon.locate("jadeite_lotus_bulb"),
+				new JadeiteLotusFeature(JadeiteLotusFeatureConfig.CODEC),
+				new JadeiteLotusFeatureConfig(false)
 		);
 	}
 	

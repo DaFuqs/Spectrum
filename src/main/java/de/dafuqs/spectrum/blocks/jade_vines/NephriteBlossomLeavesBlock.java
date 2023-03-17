@@ -47,7 +47,7 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
             var handStack = player.getStackInHand(hand);
             var fortune = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, handStack) / 2;
 
-            var peach = new ItemStack(SpectrumItems.GLASS_PEACH, world.getRandom().nextInt(fortune) + 1);
+            var peach = new ItemStack(SpectrumItems.GLASS_PEACH, world.getRandom().nextInt(fortune + 1) + 1);
 
             if (handStack.isEmpty()) {
                 player.setStackInHand(hand, peach);

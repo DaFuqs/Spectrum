@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:pigments",
+    "#spectrum:pigment_storage_blocks"
+  ]
+}

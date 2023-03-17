@@ -1,29 +1,26 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import dev.emi.trinkets.api.SlotReference;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.trinkets.api.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
 
 import java.util.*;
 
 public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPowered {
 	
-	public static final InkColor USED_COLOR = InkColors.LIGHT_BLUE;
-	public static final int INK_COST = 20;
+	public static final InkCost INK_COST = new InkCost(InkColors.LIGHT_BLUE, 20);
 	public static ItemStack ITEM_COST = new ItemStack(Items.GLOW_INK_SAC, 1);
 	
 	public GlowVisionGogglesItem(Settings settings) {
@@ -46,7 +43,7 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 						
 						boolean paid = serverPlayerEntity.isCreative();
 						if (!paid) { // try pay with ink
-							paid = InkPowered.tryDrainEnergy(serverPlayerEntity, USED_COLOR, INK_COST);
+							paid = InkPowered.tryDrainEnergy(serverPlayerEntity, INK_COST);
 						}
 						if (!paid) {  // try pay with item
 							paid = InventoryHelper.removeFromInventoryWithRemainders(serverPlayerEntity, ITEM_COST);
@@ -64,13 +61,18 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 	}
 	
 	@Override
+	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
 		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
-		tooltip.add(Text.translatable("item.spectrum.glow_vision_goggles.tooltip"));
+		if (InkPowered.canUseClient()) {
+			tooltip.add(Text.translatable("item.spectrum.glow_vision_goggles.tooltip_with_ink"));
+		} else {
+			tooltip.add(Text.translatable("item.spectrum.glow_vision_goggles.tooltip"));
+		}
 	}
 	
 	@Override
 	public List<InkColor> getUsedColors() {
-		return List.of(USED_COLOR);
+		return List.of(INK_COST.getColor());
 	}
 }

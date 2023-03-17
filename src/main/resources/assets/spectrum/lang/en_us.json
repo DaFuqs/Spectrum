@@ -1625,6 +1625,7 @@
   "item.spectrum.molten_rod.tooltip2": "Set's your catch on fire - and anything else it touches",
   "item.spectrum.glow_vision_goggles": "Glow Vision Goggles",
   "item.spectrum.glow_vision_goggles.tooltip": "§7Powered by §bGlow Ink Sacs",
+  "item.spectrum.glow_vision_goggles.tooltip_with_ink": "§7Powered by §bGlow Ink Sacs§r or §3Light Blue Ink§r",
   "item.spectrum.ender_splice": "Ender Splice",
   "item.spectrum.ender_splice.tooltip.unbound": "§7Use to bind to your current position",
   "item.spectrum.ender_splice.tooltip.bound_pos": "§7Bound to %d %d %d §7in %s§7. Use to teleport",

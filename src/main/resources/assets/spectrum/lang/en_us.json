@@ -692,6 +692,9 @@
   "block.spectrum.nephrite_blossom_stem": "Nephrite Blossom Stem",
   "block.spectrum.nephrite_blossom_leaves": "Nephrite Blossom Leaves",
   "block.spectrum.nephrite_blossom_bulb": "Nephrite Blossom Bulb",
+  "block.spectrum.jadeite_lotus_stem": "Jadeite Lotus Stem",
+  "block.spectrum.jadeite_lotus_flower": "Jadeite Lotus",
+  "block.spectrum.jadeite_lotus_bulb": "Jadeite Lotus Bulb",
   "message.spectrum.needs_item_to_harvest": "Harvesting requires a ",
   "block.spectrum.jade_vine_roots": "Jade Vine Roots",
   "block.spectrum.jade_vine_bulb": "Jade Vine Bulb",
@@ -2217,6 +2220,7 @@
   "item.spectrum.germinated_jade_vine_seeds.tooltip2": "§7Only grows when exposed to §fMoonlight",
   "item.spectrum.germinated_jade_vine_seeds.tooltip3": "§e⚠ Dies in Sunlight",
   "item.spectrum.jade_vine_petals": "Jade Petals",
+  "item.spectrum.moonstruck_petals": "Moonstruck Petals",
 
   "item.spectrum.moonstruck_nectar": "Moonstruck Nectar",
   "item.spectrum.moonstruck_nectar.tooltip": "Restorative properties allow repairing any damaged tool",

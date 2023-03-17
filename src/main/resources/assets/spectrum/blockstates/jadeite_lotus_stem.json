@@ -1,0 +1,47 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "spectrum:block/jadeite_lotus_stem_bottom"
+      },
+      "when": {
+        "part": "stem"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/jadeite_lotus_stem_top"
+      },
+      "when": {
+        "part": "stemalt"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/jadeite_lotus_stem_bottom"
+      },
+      "when": {
+        "part": "base"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/jadeite_lotus_base"
+      },
+      "when": {
+        "part": "base",
+        "inverted": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "spectrum:block/jadeite_lotus_base",
+        "x": 180
+      },
+      "when": {
+        "part": "base",
+        "inverted": "true"
+      }
+    }
+  ]
+}

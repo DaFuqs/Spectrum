@@ -14,6 +14,7 @@ public class SpectrumFeatures {
 	public static Feature<OreFeatureConfig> AIR_CHECK_DISK;
 	public static Feature<GilledFungusFeatureConfig> GILLED_FUNGUS;
 	public static Feature<NephriteBlossomFeatureConfig> NEPHRITE_BLOSSOM;
+	public static Feature<JadeiteLotusFeatureConfig> JADEITE_LOTUS;
 	public static Feature<BlockStateFeatureConfig> PILLAR;
 	public static Feature<ColumnsFeatureConfig> COLUMNS;
     public static Feature<CrystalFormationFeatureFeatureConfig> BLOB;
@@ -28,6 +29,7 @@ public class SpectrumFeatures {
 		AIR_CHECK_DISK = registerFeature("air_check_disk", new AirCheckDiskFeature(OreFeatureConfig.CODEC));
 		GILLED_FUNGUS = registerFeature("gilled_fungus", new GilledFungusFeature(GilledFungusFeatureConfig.CODEC));
 		NEPHRITE_BLOSSOM = registerFeature("nephrite_blossom", new NephriteBlossomFeature(NephriteBlossomFeatureConfig.CODEC));
+		JADEITE_LOTUS = registerFeature("jadeite_lotus", new JadeiteLotusFeature(JadeiteLotusFeatureConfig.CODEC));
 		PILLAR = registerFeature("pillar", new PillarFeature(BlockStateFeatureConfig.CODEC));
         COLUMNS = registerFeature("columns", new ColumnsFeature(ColumnsFeatureConfig.CODEC));
 		BLOB = registerFeature("crystal_formation", new CrystalFormationFeature(CrystalFormationFeatureFeatureConfig.CODEC));

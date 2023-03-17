@@ -265,7 +265,10 @@ public class SpectrumItems {
 	public static final Item HIBERNATING_JADE_VINE_SEEDS = new ItemWithTooltip(Tab.RESOURCES.settings(16), "item.spectrum.hibernating_jade_vine_seeds.tooltip");
 	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
 	public static final Item NEPHRITE_BLOSSOM_SEEDS = new BlockItemWithTooltip(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB, Tab.RESOURCES.settings(16), "item.spectrum.jade_vine_parents.tooltip");
+	public static final Item JADEITE_LOTUS_SEEDS = new BlockItemWithTooltip(SpectrumBlocks.JADEITE_LOTUS_BULB, Tab.RESOURCES.settings(16), "item.spectrum.jade_vine_parents.tooltip");
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
+	public static final Item MOONSTRUCK_PETALS = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
+
 	
 	public static final Item BLOOD_ORCHID_PETAL = new Item(Tab.RESOURCES.settings());
 	
@@ -590,9 +593,12 @@ public class SpectrumItems {
 		
 		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_SEEDS, DyeColor.GRAY);
 		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS, DyeColor.LIME);
-		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
-
 		register("nephrite_blossom_bulb", NEPHRITE_BLOSSOM_SEEDS, DyeColor.PINK);
+		register("jadeite_lotus_bulb", JADEITE_LOTUS_SEEDS, DyeColor.BROWN);
+
+		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
+		register("moonstruck_petals", MOONSTRUCK_PETALS, DyeColor.BROWN);
+
 		
 		register("vegetal", VEGETAL, DyeColor.LIME);
 		register("neolith", NEOLITH, DyeColor.PINK);

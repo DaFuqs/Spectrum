@@ -19,7 +19,7 @@ public class TitrationBarrelEmiRecipeGated extends GatedSpectrumEmiRecipe<ITitra
 			input.add(EmiIngredient.of(List.of(FluidEmiStack.of(recipe.getFluidInput()))));
 			input.addAll(recipe.getIngredientStacks().stream().map(s -> EmiIngredient.of(s.getStacks().stream().map(EmiStack::of).toList())).toList());
 		}
-		output = buildOutputs(recipe);
+		output = buildOutputs(recipe); // TODO: only the first ever will be shown `output.get(0)`
 	}
 	
 	private static List<EmiStack> buildOutputs(ITitrationBarrelRecipe recipe) {

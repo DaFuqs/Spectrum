@@ -250,7 +250,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 			lastEffectMod.potencyMultiplier = potionMod.lastEffectPotencyMultiplier;
 			lastEffectMod.durationMultiplier = potionMod.lastEffectDurationMultiplier;
 			lastEffectMod.modifyFrom(potionMod);
-			lastRecipe.addEffect(potionMod, random, effects);
+			lastRecipe.addEffect(lastEffectMod, random, effects);
 		}
 	}
 	

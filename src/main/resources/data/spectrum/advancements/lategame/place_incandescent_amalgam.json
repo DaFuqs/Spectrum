@@ -11,7 +11,7 @@
       "translate": "advancements.spectrum.place_incandescent_amalgam.description"
     }
   },
-  "parent": "spectrum:midgame/collect_midnight_chip",
+  "parent": "spectrum:lategame/collect_doombloom_seed",
   "criteria": {
     "placed_incandescent_amalgam": {
       "trigger": "minecraft:placed_block",
@@ -20,8 +20,10 @@
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/collect_midnight_chip" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_doombloom_seed"
+      }
     }
   }
 }

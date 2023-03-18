@@ -32,29 +32,42 @@ public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPow
 		super.tick(stack, slot, entity);
 		
 		World world = entity.getWorld();
-		if (world != null && world.getTimeOfDay() % 20 == 0) {
+		if (world != null && !world.isClient && world.getTimeOfDay() % 20 == 0) {
 			if (entity instanceof ServerPlayerEntity serverPlayerEntity) {
-				int lightLevelAtPlayerPos = world.getLightLevel(serverPlayerEntity.getBlockPos());
+				giveEffect(world, serverPlayerEntity);
+			}
+		}
+	}
+	
+	@Override
+	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		super.onEquip(stack, slot, entity);
+		World world = entity.getWorld();
+		if (world != null && !world.isClient && entity instanceof ServerPlayerEntity serverPlayerEntity) {
+			giveEffect(world, serverPlayerEntity);
+		}
+	}
+	
+	private static void giveEffect(World world, ServerPlayerEntity serverPlayerEntity) {
+		int lightLevelAtPlayerPos = world.getLightLevel(serverPlayerEntity.getBlockPos());
+		
+		if (lightLevelAtPlayerPos < 7) {
+			StatusEffectInstance nightVisionInstance = serverPlayerEntity.getStatusEffect(StatusEffects.NIGHT_VISION);
+			if (nightVisionInstance == null || nightVisionInstance.getDuration() < 10 * 20) { // prevent "night vision running out" flashing
+				// no / short night vision => search for glow ink sac and add night vision if found
 				
-				if (lightLevelAtPlayerPos < 7) {
-					StatusEffectInstance nightVisionInstance = serverPlayerEntity.getStatusEffect(StatusEffects.NIGHT_VISION);
-					if (nightVisionInstance == null || nightVisionInstance.getDuration() < 10 * 20) { // prevent "night vision running out" flashing
-						// no / short night vision => search for glow ink sac and add night vision if found
-						
-						boolean paid = serverPlayerEntity.isCreative();
-						if (!paid) { // try pay with ink
-							paid = InkPowered.tryDrainEnergy(serverPlayerEntity, INK_COST);
-						}
-						if (!paid) {  // try pay with item
-							paid = InventoryHelper.removeFromInventoryWithRemainders(serverPlayerEntity, ITEM_COST);
-						}
-						
-						if (paid) {
-							StatusEffectInstance newNightVisionInstance = new StatusEffectInstance(StatusEffects.NIGHT_VISION, 20 * SpectrumCommon.CONFIG.GlowVisionGogglesDuration);
-							serverPlayerEntity.addStatusEffect(newNightVisionInstance);
-							world.playSoundFromEntity(null, serverPlayerEntity, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundCategory.PLAYERS, 0.2F, 1.0F);
-						}
-					}
+				boolean paid = serverPlayerEntity.isCreative();
+				if (!paid) { // try pay with ink
+					paid = InkPowered.tryDrainEnergy(serverPlayerEntity, INK_COST);
+				}
+				if (!paid) {  // try pay with item
+					paid = InventoryHelper.removeFromInventoryWithRemainders(serverPlayerEntity, ITEM_COST);
+				}
+				
+				if (paid) {
+					StatusEffectInstance newNightVisionInstance = new StatusEffectInstance(StatusEffects.NIGHT_VISION, 20 * SpectrumCommon.CONFIG.GlowVisionGogglesDuration);
+					serverPlayerEntity.addStatusEffect(newNightVisionInstance);
+					world.playSoundFromEntity(null, serverPlayerEntity, SpectrumSoundEvents.ITEM_ARMOR_EQUIP_GLOW_VISION, SoundCategory.PLAYERS, 0.2F, 1.0F);
 				}
 			}
 		}

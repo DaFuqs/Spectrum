@@ -1,20 +1,14 @@
 package de.dafuqs.spectrum.energy;
 
-import com.google.common.collect.Lists;
-import de.dafuqs.spectrum.helpers.Support;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectUtil;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Pair;
-import org.jetbrains.annotations.Nullable;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
@@ -22,10 +16,12 @@ public class InkPoweredStatusEffectInstance {
 	
 	private final StatusEffectInstance statusEffectInstance;
 	private final InkCost cost;
+	private final int customColor; // -1: use effect default
 	
-	public InkPoweredStatusEffectInstance(StatusEffectInstance statusEffectInstance, InkCost cost) {
+	public InkPoweredStatusEffectInstance(StatusEffectInstance statusEffectInstance, InkCost cost, int customColor) {
 		this.statusEffectInstance = statusEffectInstance;
 		this.cost = cost;
+		this.customColor = customColor;
 	}
 	
 	public StatusEffectInstance getStatusEffectInstance() {
@@ -40,13 +36,20 @@ public class InkPoweredStatusEffectInstance {
 		NbtCompound nbt = new NbtCompound();
 		this.statusEffectInstance.writeNbt(nbt);
 		this.cost.writeNbt(nbt);
+		if (customColor != -1) {
+			nbt.putInt("CustomColor", this.customColor);
+		}
 		return nbt;
 	}
 	
 	public static InkPoweredStatusEffectInstance fromNbt(NbtCompound nbt) {
 		StatusEffectInstance statusEffectInstance = StatusEffectInstance.fromNbt(nbt);
 		InkCost cost = InkCost.fromNbt(nbt);
-		return new InkPoweredStatusEffectInstance(statusEffectInstance, cost);
+		int customColor = -1;
+		if (nbt.contains("CustomColor")) {
+			customColor = nbt.getInt("CustomColor");
+		}
+		return new InkPoweredStatusEffectInstance(statusEffectInstance, cost, customColor);
 	}
 	
 	public static List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
@@ -129,6 +132,13 @@ public class InkPoweredStatusEffectInstance {
 				}
 			}
 		}
+	}
+	
+	public int getColor() {
+		if (this.customColor == -1) {
+			return statusEffectInstance.getEffectType().getColor();
+		}
+		return this.customColor;
 	}
 	
 }

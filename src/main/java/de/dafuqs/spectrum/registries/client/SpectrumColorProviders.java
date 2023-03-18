@@ -1,30 +1,25 @@
 package de.dafuqs.spectrum.registries.client;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.conditional.colored_tree.ColoredLeavesBlock;
-import de.dafuqs.spectrum.blocks.memory.MemoryBlockEntity;
-import de.dafuqs.spectrum.blocks.memory.MemoryItem;
-import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
-import de.dafuqs.spectrum.helpers.ColorHelper;
-import de.dafuqs.spectrum.items.energy.InkFlaskItem;
-import de.dafuqs.spectrum.progression.ToggleableBlockColorProvider;
-import de.dafuqs.spectrum.progression.ToggleableItemColorProvider;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.color.block.BlockColorProvider;
-import net.minecraft.client.color.item.ItemColorProvider;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.util.DyeColor;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
+import de.dafuqs.spectrum.blocks.memory.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.minecraft.block.*;
+import net.minecraft.client.color.block.*;
+import net.minecraft.client.color.item.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.potion.*;
+import net.minecraft.util.*;
 
-import java.util.List;
+import java.util.*;
 
 public class SpectrumColorProviders {
 	
@@ -113,26 +108,15 @@ public class SpectrumColorProviders {
 	}
 	
 	private static void registerPotionPentants() {
-		ColorProviderRegistry.ITEM.register(SpectrumColorProviders::potionColor, SpectrumItems.LESSER_POTION_PENDANT);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
-			if (tintIndex != 0 && tintIndex < 4) {
-				List<StatusEffectInstance> effects = PotionUtil.getPotionEffects(stack);
-				if (tintIndex == 1) {
-					if (effects.size() > 0) {
-						return effects.get(0).getEffectType().getColor();
-					}
-				} else if (tintIndex == 2) {
-					if (effects.size() > 1) {
-						return effects.get(1).getEffectType().getColor();
-					}
-				} else {
-					if (effects.size() > 2) {
-						return effects.get(2).getEffectType().getColor();
-					}
+			if (tintIndex > 0) {
+				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
+				if (effects.size() > tintIndex - 1) {
+					return effects.get(tintIndex - 1).getColor();
 				}
 			}
 			return -1;
-		}, SpectrumItems.GREATER_POTION_PENDANT);
+		}, SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT);
 	}
 	
 	private static void registerMemory() {
@@ -140,12 +124,9 @@ public class SpectrumColorProviders {
 			if (world == null) {
 				return 0x0;
 			}
-			
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof MemoryBlockEntity memoryBlockEntity) {
+			if (world.getBlockEntity(pos) instanceof MemoryBlockEntity memoryBlockEntity) {
 				return memoryBlockEntity.getEggColor(tintIndex);
 			}
-			
 			return 0x0;
 		}, SpectrumBlocks.MEMORY);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MemoryItem.getEggColor(stack.getNbt(), tintIndex), SpectrumBlocks.MEMORY.asItem());

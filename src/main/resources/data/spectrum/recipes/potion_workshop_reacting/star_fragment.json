@@ -3,7 +3,7 @@
   "item": "spectrum:star_fragment",
   "modifiers": {
     "chance_to_add_last_effect": 1.0,
-    "last_effect_potency_modifier": 0.75
+    "last_effect_potency_modifier": 0.5
   },
   "required_advancement": "spectrum:collect_star_fragment"
 }

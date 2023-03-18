@@ -1,25 +1,19 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import de.dafuqs.spectrum.recipe.DescriptiveGatedRecipe;
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements DescriptiveGatedRecipe {
 	
@@ -38,6 +32,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 		registerInToastManager(getType(), this);
 	}
 	
+	@Override
 	public boolean matches(@NotNull Inventory inv, World world) {
 		return false;
 	}
@@ -62,10 +57,12 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 		return SpectrumBlocks.POTION_WORKSHOP.asItem().getDefaultStack();
 	}
 	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.POTION_WORKSHOP_REACTING_SERIALIZER;
 	}
 	
+	@Override
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.POTION_WORKSHOP_REACTING;
 	}
@@ -82,34 +79,33 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 		return PotionWorkshopRecipe.UNLOCK_IDENTIFIER;
 	}
 	
-	public static boolean isReagent(Item item) {
-		return reagents.containsKey(item);
+	@Override
+	public String getRecipeTypeShortID() {
+		return SpectrumRecipeTypes.POTION_WORKSHOP_REACTING_ID;
 	}
 	
+	@Override
 	public Text getDescription() {
 		Identifier identifier = Registry.ITEM.getId(this.item);
 		return Text.translatable("spectrum.rei.potion_workshop_reacting." + identifier.getNamespace() + "." + identifier.getPath());
 	}
 	
+	@Override
 	public Item getItem() {
 		return this.item;
 	}
 	
-	public static PotionMod modify(Item item, PotionMod potionMod, Random random) {
-		if (reagents.containsKey(item)) {
-			List<PotionMod> mod = reagents.get(item);
-			if (mod.size() == 1) {
-				return mod.get(0).modify(potionMod);
-			} else {
-				return mod.get(random.nextInt(mod.size())).modify(potionMod);
-			}
-		}
-		return potionMod;
+	public static boolean isReagent(Item item) {
+		return reagents.containsKey(item);
 	}
 	
-	@Override
-	public String getRecipeTypeShortID() {
-		return SpectrumRecipeTypes.POTION_WORKSHOP_REACTING_ID;
+	public static PotionMod combine(PotionMod potionMod, ItemStack reagentStack, Random random) {
+		Item reagent = reagentStack.getItem();
+		List<PotionMod> reagentMods = reagents.getOrDefault(reagent, null);
+		if (reagentMods != null) {
+			potionMod.modifyFrom(reagentMods.get(random.nextInt(reagentMods.size())));
+		}
+		return potionMod;
 	}
 	
 }

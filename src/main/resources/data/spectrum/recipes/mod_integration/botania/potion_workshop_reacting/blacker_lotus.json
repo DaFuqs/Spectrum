@@ -3,7 +3,7 @@
   "item": "botania:blacker_lotus",
   "modifiers": {
     "additional_random_positive_effect_count": 3.0,
-    "additional_random_negative_effect_count": 0.25,
+    "additional_random_negative_effect_count": 0.5,
     "unidentifiable": true
   },
   "fabric:load_conditions": [

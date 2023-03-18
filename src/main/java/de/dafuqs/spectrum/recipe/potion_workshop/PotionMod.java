@@ -3,56 +3,68 @@ package de.dafuqs.spectrum.recipe.potion_workshop;
 import com.google.gson.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.random.*;
+
+import java.awt.*;
 
 public class PotionMod {
 	public int flatDurationBonusTicks = 0;
 	public float flatPotencyBonus = 0.0F;
 	
-	public float multiplicativeDurationModifier = 1.0F;
-	public float multiplicativePotencyModifier = 1.0F;
+	public float durationMultiplier = 1.0F;
+	public float potencyMultiplier = 1.0F;
 	
 	public float flatPotencyBonusPositiveEffects = 0.0F;
 	public float flatPotencyBonusNegativeEffects = 0.0F;
+	public int flatDurationBonusPositiveEffects = 0;
+	public int flatDurationBonusNegativeEffects = 0;
 	
 	public float additionalRandomPositiveEffectCount = 0;
 	public float additionalRandomNegativeEffectCount = 0;
 	
 	public float chanceToAddLastEffect = 0.0F;
-	public float lastEffectPotencyModifier = 1.0F;
-
-	public float flatYieldBonus = 0;
-
+	public float lastEffectDurationMultiplier = 0.0F;
+	public float lastEffectPotencyMultiplier = 0.0F;
+	
+	public float yield = 0;
+	public int additionalDrinkDurationTicks = 0;
+	
 	public boolean makeSplashing = false;
 	public boolean makeLingering = false;
-
+	
 	public boolean noParticles = false;
 	public boolean unidentifiable = false;
 	public boolean makeEffectsPositive = false;
 	public boolean potentDecreasingEffect = false;
 	public boolean negateDecreasingDuration = false;
 	public boolean randomColor = false;
-	public int additionalDrinkDurationTicks = 0;
 
 	public static PotionMod fromJson(JsonObject jsonObject) {
 		PotionMod mod = new PotionMod();
-
+		
 		if (JsonHelper.hasNumber(jsonObject, "flat_duration_bonus_ticks")) {
 			mod.flatDurationBonusTicks += JsonHelper.getInt(jsonObject, "flat_duration_bonus_ticks");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "flat_potency_bonus")) {
 			mod.flatPotencyBonus += JsonHelper.getFloat(jsonObject, "flat_potency_bonus");
 		}
-		if (JsonHelper.hasNumber(jsonObject, "multiplicative_duration_modifier")) {
-			mod.multiplicativeDurationModifier = JsonHelper.getFloat(jsonObject, "multiplicative_duration_modifier");
+		if (JsonHelper.hasNumber(jsonObject, "duration_multiplier")) {
+			mod.durationMultiplier = JsonHelper.getFloat(jsonObject, "duration_multiplier");
 		}
-		if (JsonHelper.hasNumber(jsonObject, "multiplicative_potency_modifier")) {
-			mod.multiplicativePotencyModifier = JsonHelper.getFloat(jsonObject, "multiplicative_potency_modifier");
+		if (JsonHelper.hasNumber(jsonObject, "potency_multiplier")) {
+			mod.potencyMultiplier = JsonHelper.getFloat(jsonObject, "potency_multiplier");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "flat_potency_bonus_positive_effects")) {
 			mod.flatPotencyBonusPositiveEffects += JsonHelper.getFloat(jsonObject, "flat_potency_bonus_positive_effects");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "flat_potency_bonus_negative_effects")) {
 			mod.flatPotencyBonusNegativeEffects += JsonHelper.getFloat(jsonObject, "flat_potency_bonus_negative_effects");
+		}
+		if (JsonHelper.hasNumber(jsonObject, "flat_duration_bonus_positive_effects")) {
+			mod.flatDurationBonusPositiveEffects += JsonHelper.getInt(jsonObject, "flat_duration_bonus_positive_effects");
+		}
+		if (JsonHelper.hasNumber(jsonObject, "flat_duration_bonus_negative_effects")) {
+			mod.flatDurationBonusNegativeEffects += JsonHelper.getInt(jsonObject, "flat_duration_bonus_negative_effects");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "additional_random_positive_effect_count")) {
 			mod.additionalRandomPositiveEffectCount += JsonHelper.getFloat(jsonObject, "additional_random_positive_effect_count");
@@ -64,10 +76,13 @@ public class PotionMod {
 			mod.chanceToAddLastEffect += JsonHelper.getFloat(jsonObject, "chance_to_add_last_effect");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "last_effect_potency_modifier")) {
-			mod.lastEffectPotencyModifier = JsonHelper.getFloat(jsonObject, "last_effect_potency_modifier");
+			mod.lastEffectPotencyMultiplier = JsonHelper.getFloat(jsonObject, "last_effect_potency_modifier");
+		}
+		if (JsonHelper.hasNumber(jsonObject, "last_effect_duration_modifier")) {
+			mod.lastEffectDurationMultiplier = JsonHelper.getFloat(jsonObject, "last_effect_duration_modifier");
 		}
 		if (JsonHelper.hasNumber(jsonObject, "flat_yield_bonus")) {
-			mod.flatYieldBonus += JsonHelper.getFloat(jsonObject, "flat_yield_bonus");
+			mod.yield += JsonHelper.getFloat(jsonObject, "flat_yield_bonus");
 		}
 		if (JsonHelper.hasBoolean(jsonObject, "make_splashing")) {
 			mod.makeSplashing = JsonHelper.getBoolean(jsonObject, "make_splashing");
@@ -103,15 +118,18 @@ public class PotionMod {
 	public void write(PacketByteBuf packetByteBuf) {
 		packetByteBuf.writeInt(flatDurationBonusTicks);
 		packetByteBuf.writeFloat(flatPotencyBonus);
-		packetByteBuf.writeFloat(multiplicativeDurationModifier);
-		packetByteBuf.writeFloat(multiplicativePotencyModifier);
+		packetByteBuf.writeFloat(durationMultiplier);
+		packetByteBuf.writeFloat(potencyMultiplier);
 		packetByteBuf.writeFloat(flatPotencyBonusPositiveEffects);
 		packetByteBuf.writeFloat(flatPotencyBonusNegativeEffects);
+		packetByteBuf.writeInt(flatDurationBonusPositiveEffects);
+		packetByteBuf.writeInt(flatDurationBonusNegativeEffects);
 		packetByteBuf.writeFloat(additionalRandomPositiveEffectCount);
 		packetByteBuf.writeFloat(additionalRandomNegativeEffectCount);
 		packetByteBuf.writeFloat(chanceToAddLastEffect);
-		packetByteBuf.writeFloat(lastEffectPotencyModifier);
-		packetByteBuf.writeFloat(flatYieldBonus);
+		packetByteBuf.writeFloat(lastEffectDurationMultiplier);
+		packetByteBuf.writeFloat(lastEffectPotencyMultiplier);
+		packetByteBuf.writeFloat(yield);
 		packetByteBuf.writeBoolean(makeSplashing);
 		packetByteBuf.writeBoolean(makeLingering);
 		packetByteBuf.writeBoolean(noParticles);
@@ -127,15 +145,18 @@ public class PotionMod {
 		PotionMod potionMod = new PotionMod();
 		potionMod.flatDurationBonusTicks = packetByteBuf.readInt();
 		potionMod.flatPotencyBonus = packetByteBuf.readFloat();
-		potionMod.multiplicativeDurationModifier = packetByteBuf.readFloat();
-		potionMod.multiplicativePotencyModifier = packetByteBuf.readFloat();
+		potionMod.durationMultiplier = packetByteBuf.readFloat();
+		potionMod.potencyMultiplier = packetByteBuf.readFloat();
 		potionMod.flatPotencyBonusPositiveEffects = packetByteBuf.readFloat();
 		potionMod.flatPotencyBonusNegativeEffects = packetByteBuf.readFloat();
+		potionMod.flatDurationBonusPositiveEffects = packetByteBuf.readInt();
+		potionMod.flatDurationBonusNegativeEffects = packetByteBuf.readInt();
 		potionMod.additionalRandomPositiveEffectCount = packetByteBuf.readFloat();
 		potionMod.additionalRandomNegativeEffectCount = packetByteBuf.readFloat();
 		potionMod.chanceToAddLastEffect = packetByteBuf.readFloat();
-		potionMod.lastEffectPotencyModifier = packetByteBuf.readFloat();
-		potionMod.flatYieldBonus = packetByteBuf.readFloat();
+		potionMod.lastEffectDurationMultiplier = packetByteBuf.readFloat();
+		potionMod.lastEffectPotencyMultiplier = packetByteBuf.readFloat();
+		potionMod.yield = packetByteBuf.readFloat();
 		potionMod.makeSplashing = packetByteBuf.readBoolean();
 		potionMod.makeLingering = packetByteBuf.readBoolean();
 		potionMod.noParticles = packetByteBuf.readBoolean();
@@ -148,28 +169,35 @@ public class PotionMod {
 		return potionMod;
 	}
 	
-	public PotionMod modify(PotionMod potionMod) {
-		potionMod.flatDurationBonusTicks += this.flatDurationBonusTicks;
-		potionMod.flatPotencyBonus += this.flatPotencyBonus;
-		potionMod.multiplicativeDurationModifier *= this.multiplicativeDurationModifier;
-		potionMod.multiplicativePotencyModifier *= this.multiplicativePotencyModifier;
-		potionMod.flatPotencyBonusPositiveEffects += this.flatPotencyBonusPositiveEffects;
-		potionMod.flatPotencyBonusNegativeEffects += this.flatPotencyBonusNegativeEffects;
-		potionMod.additionalRandomPositiveEffectCount += this.additionalRandomPositiveEffectCount;
-		potionMod.additionalRandomNegativeEffectCount += this.additionalRandomNegativeEffectCount;
-		potionMod.chanceToAddLastEffect += this.chanceToAddLastEffect;
-		potionMod.lastEffectPotencyModifier *= this.lastEffectPotencyModifier;
-		potionMod.flatYieldBonus += this.flatYieldBonus;
-		potionMod.makeSplashing |= this.makeSplashing;
-		potionMod.makeLingering |= this.makeLingering;
-		potionMod.noParticles |= this.noParticles;
-		potionMod.unidentifiable |= this.unidentifiable;
-		potionMod.makeEffectsPositive |= this.makeEffectsPositive;
-		potionMod.potentDecreasingEffect |= this.potentDecreasingEffect;
-		potionMod.negateDecreasingDuration |= this.negateDecreasingDuration;
-		potionMod.additionalDrinkDurationTicks += this.additionalDrinkDurationTicks;
-		potionMod.randomColor |= this.randomColor;
-		return potionMod;
+	public void modifyFrom(PotionMod potionMod) {
+		this.flatDurationBonusTicks += potionMod.flatDurationBonusTicks;
+		this.flatPotencyBonus += potionMod.flatPotencyBonus;
+		this.durationMultiplier += potionMod.durationMultiplier - 1;
+		this.potencyMultiplier += potionMod.potencyMultiplier - 1;
+		this.flatPotencyBonusPositiveEffects += potionMod.flatPotencyBonusPositiveEffects;
+		this.flatPotencyBonusNegativeEffects += potionMod.flatPotencyBonusNegativeEffects;
+		this.flatDurationBonusPositiveEffects += potionMod.flatDurationBonusPositiveEffects;
+		this.flatDurationBonusNegativeEffects += potionMod.flatDurationBonusNegativeEffects;
+		this.additionalRandomPositiveEffectCount += potionMod.additionalRandomPositiveEffectCount;
+		this.additionalRandomNegativeEffectCount += potionMod.additionalRandomNegativeEffectCount;
+		this.chanceToAddLastEffect += potionMod.chanceToAddLastEffect;
+		this.lastEffectPotencyMultiplier += potionMod.lastEffectPotencyMultiplier;
+		this.lastEffectDurationMultiplier += potionMod.lastEffectDurationMultiplier;
+		this.yield += potionMod.yield;
+		this.additionalDrinkDurationTicks += potionMod.additionalDrinkDurationTicks;
+		this.makeSplashing |= potionMod.makeSplashing;
+		this.makeLingering |= potionMod.makeLingering;
+		this.noParticles |= potionMod.noParticles;
+		this.unidentifiable |= potionMod.unidentifiable;
+		this.makeEffectsPositive |= potionMod.makeEffectsPositive;
+		this.potentDecreasingEffect |= potionMod.potentDecreasingEffect;
+		this.negateDecreasingDuration |= potionMod.negateDecreasingDuration;
+		this.randomColor |= potionMod.randomColor;
 	}
+	
+	public int getColor(Random random) {
+		return this.randomColor ? Color.getHSBColor(random.nextFloat(), 0.7F, 0.9F).getRGB() : this.unidentifiable ? 0x2f2f2f : -1; // dark gray
+	}
+	
 	
 }

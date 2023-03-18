@@ -6,13 +6,13 @@
       "flat_duration_bonus_ticks": 1200
     },
     {
-      "flat_potency_bonus": 2.0
+      "flat_potency_bonus": 1.0
     },
     {
-      "multiplicative_duration_modifier": 2.0
+      "duration_multiplier": 2.0
     },
     {
-      "multiplicative_potency_modifier": 2.0
+      "potency_multiplier": 2.0
     },
     {
       "flat_yield_bonus": 2.0

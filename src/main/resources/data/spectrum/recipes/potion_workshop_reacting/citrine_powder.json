@@ -2,7 +2,7 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:citrine_powder",
   "modifiers": {
-    "multiplicative_potency_modifier": 0.25
+    "potency_multiplier": 1.25
   },
   "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_citrine_powder"
 }

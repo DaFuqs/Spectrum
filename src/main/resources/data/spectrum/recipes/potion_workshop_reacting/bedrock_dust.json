@@ -2,8 +2,9 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:bedrock_dust",
   "modifiers": {
-    "multiplicative_duration_modifier": 0.25,
-    "multiplicative_potency_modifier": 2.0
+    "duration_multiplier": 0.25,
+    "potency_multiplier": 1.5,
+    "flat_yield_bonus": -1.0
   },
   "required_advancement": "spectrum:midgame/break_decayed_bedrock"
 }

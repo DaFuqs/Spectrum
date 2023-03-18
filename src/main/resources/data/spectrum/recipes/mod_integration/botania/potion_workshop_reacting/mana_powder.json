@@ -2,7 +2,7 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "botania:mana_powder",
   "modifiers": {
-    "multiplicative_duration_modifier": 1.25,
+    "duration_multiplier": 1.25,
     "chance_to_add_last_effect": 0.15
   },
   "fabric:load_conditions": [

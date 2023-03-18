@@ -52,15 +52,26 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 	}
 	
 	@Override
+	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		super.onEquip(stack, slot, entity);
+		if (!entity.getWorld().isClient && entity instanceof PlayerEntity player) {
+			grantEffects(stack, player);
+		}
+	}
+	
+	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
-		
 		if (!entity.getWorld().isClient && entity.getWorld().getTime() % TRIGGER_EVERY_X_TICKS == 0 && entity instanceof PlayerEntity player) {
-			for (InkPoweredStatusEffectInstance inkPoweredEffect : InkPoweredStatusEffectInstance.getEffects(stack)) {
-				if(InkPowered.tryDrainEnergy(player, inkPoweredEffect.getInkCost())) {
-					StatusEffectInstance effect = inkPoweredEffect.getStatusEffectInstance();
-					player.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));
-				}
+			grantEffects(stack, player);
+		}
+	}
+	
+	private static void grantEffects(ItemStack stack, PlayerEntity player) {
+		for (InkPoweredStatusEffectInstance inkPoweredEffect : InkPoweredStatusEffectInstance.getEffects(stack)) {
+			if (InkPowered.tryDrainEnergy(player, inkPoweredEffect.getInkCost())) {
+				StatusEffectInstance effect = inkPoweredEffect.getStatusEffectInstance();
+				player.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));
 			}
 		}
 	}

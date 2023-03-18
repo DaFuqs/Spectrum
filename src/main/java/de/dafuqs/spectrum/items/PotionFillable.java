@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.energy.InkCost;
-import de.dafuqs.spectrum.energy.InkPoweredStatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.energy.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Items with this interface should support Potion nbt like
@@ -45,7 +43,7 @@ public interface PotionFillable {
 				
 				// calculate the final cost of this effect and add it
 				InkCost adjustedCost = new InkCost(newEffect.getInkCost().getColor(), adjustFinalCostFor(newEffect));
-				InkPoweredStatusEffectInstance modifiedInstance = new InkPoweredStatusEffectInstance(statusEffectInstance, adjustedCost);
+				InkPoweredStatusEffectInstance modifiedInstance = new InkPoweredStatusEffectInstance(statusEffectInstance, adjustedCost, newEffect.getColor());
 				existingEffects.add(modifiedInstance);
 			}
 			
@@ -63,6 +61,7 @@ public interface PotionFillable {
 	
 	default void removeEffects(ItemStack itemStack) {
 		itemStack.removeSubNbt("InkPoweredStatusEffects");
+		itemStack.removeSubNbt("spectrum_unidentifiable");
 	}
 	
 	default void appendPotionFillableTooltip(ItemStack stack, List<Text> tooltip, MutableText attributeModifierText, boolean showDuration) {

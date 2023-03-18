@@ -11,7 +11,6 @@ import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -21,8 +20,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.Biome;
-
+import net.minecraft.world.biome.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -176,7 +174,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 		if (stack.isPresent()) {
 			Support.givePlayer(player, stack.get());
 			barrelEntity.markDirty();
-			if (barrelEntity.inventory.isEmpty()) {
+			if (barrelEntity.inventory.isEmpty() && barrelEntity.getFluidVariant().isBlank()) {
 				world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.EMPTY));
 			} else {
 				// They'll get updated if the block state changes anyway

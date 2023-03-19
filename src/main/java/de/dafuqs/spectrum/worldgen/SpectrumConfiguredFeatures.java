@@ -42,13 +42,6 @@ public class SpectrumConfiguredFeatures {
 	public static final Identifier TOPAZ_GEODE_IDENTIFIER = SpectrumCommon.locate("topaz_geode");
 	public static RegistryEntry<PlacedFeature> TOPAZ_GEODE;
 	public static RegistryEntry<PlacedFeature> CITRINE_GEODE;
-
-	public static RegistryEntry<ConfiguredFeature<NephriteBlossomFeatureConfig, ?>> NEPHRITE_BLOSSOM_BULB;
-	public static RegistryEntry<ConfiguredFeature<JadeiteLotusFeatureConfig, ?>> JADEITE_LOTUS_BULB;
-
-
-	
-	// Deeper Down
 	
 	public static void register() {
 		registerGeodes();
@@ -103,7 +96,7 @@ public class SpectrumConfiguredFeatures {
 		registerConfiguredAndPlacedFeature(
 				paltaeriaOreIdentifier,
 				Feature.ORE,
-				new OreFeatureConfig(Rules.END_STONE, paltaeriaOre, 12, 0.3F),
+				new OreFeatureConfig(new BlockMatchRuleTest(Blocks.END_STONE), paltaeriaOre, 12, 0.3F),
 				CountPlacementModifier.of(4), // number of veins per chunk
 				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), // min and max height
 				SquarePlacementModifier.of() // spread through the chunk
@@ -292,26 +285,6 @@ public class SpectrumConfiguredFeatures {
 				BiomePlacementModifier.of()
 		);
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, cloversIdentifier));
-
-		NEPHRITE_BLOSSOM_BULB = registerConfiguredFeature(
-				SpectrumCommon.locate("nephrite_blossom_bulb"),
-				new NephriteBlossomFeature(NephriteBlossomFeatureConfig.CODEC),
-				new NephriteBlossomFeatureConfig(false)
-		);
-
-		JADEITE_LOTUS_BULB = registerConfiguredFeature(
-				SpectrumCommon.locate("jadeite_lotus_bulb"),
-				new JadeiteLotusFeature(JadeiteLotusFeatureConfig.CODEC),
-				new JadeiteLotusFeatureConfig(false)
-		);
-	}
-	
-	public static final class Rules {
-		public static final RuleTest END_STONE;
-		
-		static {
-			END_STONE = new BlockMatchRuleTest(Blocks.END_STONE);
-		}
 	}
 	
 }

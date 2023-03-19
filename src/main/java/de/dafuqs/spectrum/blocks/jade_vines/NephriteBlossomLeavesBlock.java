@@ -32,26 +32,31 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(AGE) == MAX_AGE) {
             ItemStack handStack = player.getStackInHand(hand);
-            int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, handStack) / 2;
-            Support.givePlayer(player, new ItemStack(SpectrumItems.GLASS_PEACH, 1 + world.getRandom().nextInt(fortuneLevel + 1)));
-            
-            world.setBlockState(pos, state.with(AGE, 0));
-            player.playSound(SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1, 1 + player.getRandom().nextFloat() * 0.25F);
-            return ActionResult.success(world.isClient());
-        }
-        
-        return super.onUse(state, world, pos, player, hand, hit);
-    }
-
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int age = state.get(AGE);
-        int leafSum = 0;
-    
-        if (state.get(PERSISTENT)) {
-            super.randomTick(state, world, pos, random);
-            return;
-        }
+			int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, handStack) / 2;
+			Support.givePlayer(player, new ItemStack(SpectrumItems.GLASS_PEACH, 1 + world.getRandom().nextInt(fortuneLevel + 1)));
+	
+			world.setBlockState(pos, state.with(AGE, 0));
+			player.playSound(SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1, 1 + player.getRandom().nextFloat() * 0.25F);
+			return ActionResult.success(world.isClient());
+		}
+	
+		return super.onUse(state, world, pos, player, hand, hit);
+	}
+	
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return SpectrumItems.NEPHRITE_BLOSSOM_SEEDS.getDefaultStack();
+	}
+	
+	@Override
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		int age = state.get(AGE);
+		int leafSum = 0;
+		
+		if (state.get(PERSISTENT)) {
+			super.randomTick(state, world, pos, random);
+			return;
+		}
     
         for (BlockPos iPos : BlockPos.iterate(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
             var leafState = world.getBlockState(iPos);

@@ -629,7 +629,6 @@ public class SpectrumBlocks {
 	public static final Block HUMMINGSTONE = new HummingstoneBlock(AbstractBlock.Settings.copy(HUMMINGSTONE_GLASS).ticksRandomly());
 	
 	// JADE VINES
-
 	public static final Block JADE_VINE_ROOTS = new JadeVineRootsBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).sounds(BlockSoundGroup.WOOL).ticksRandomly().luminance((state) -> state.get(JadeVineRootsBlock.DEAD) ? 0 : 4).nonOpaque());
 	public static final Block JADE_VINE_BULB = new JadeVineBulbBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).luminance((state) -> state.get(JadeVineBulbBlock.DEAD) ? 0 : 5).nonOpaque());
 	public static final Block JADE_VINES = new JadeVinePlantBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).strength(0.1F).noCollision().sounds(BlockSoundGroup.WOOL).luminance((state) -> state.get(JadeVinePlantBlock.AGE) == 0 ? 0 : 5).nonOpaque());
@@ -642,11 +641,8 @@ public class SpectrumBlocks {
 
 	public static final Block JADEITE_LOTUS_STEM = new JadeiteLotusStemBlock(FabricBlockSettings.of(Material.PLANT, MapColor.BLACK).strength(2F).sounds(BlockSoundGroup.WOOL).nonOpaque().noCollision());
 	public static final Block JADEITE_LOTUS_FLOWER = new JadeiteFlowerBlock(FabricBlockSettings.copyOf(JADEITE_LOTUS_STEM).mapColor(MapColor.WHITE).luminance(14).postProcess(SpectrumBlocks::always).emissiveLighting(SpectrumBlocks::always));
-
 	public static final Block JADEITE_LOTUS_BULB = new JadeiteLotusBulbBlock(FabricBlockSettings.copyOf(JADEITE_LOTUS_STEM));
-
-
-
+	
 	// ORES
 	public static final Block SHIMMERSTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.STONE.getDefaultState());
 	public static final Block DEEPSLATE_SHIMMERSTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).requiresTool(), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), Blocks.DEEPSLATE.getDefaultState());

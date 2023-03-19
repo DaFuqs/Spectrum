@@ -27,7 +27,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
         super(settings);
         setDefaultState(getDefaultState().with(WATERLOGGED, false));
     }
-
+    
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         var facing = state.get(FACING);
@@ -35,13 +35,18 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
         var supportBlock = world.getBlockState(root);
         return (facing.getAxis().isVertical() && supportBlock.isOf(SpectrumBlocks.JADEITE_LOTUS_STEM)) || supportBlock.isSideSolid(world, root, facing, SideShapeType.CENTER);
     }
-
+    
+    @Override
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        return SpectrumItems.JADEITE_LOTUS_SEEDS.getDefaultStack();
+    }
+    
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         world.createAndScheduleBlockTick(pos, this, 1);
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
-
+    
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         var amount = random.nextInt(18) + 9;

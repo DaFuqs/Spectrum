@@ -51,4 +51,8 @@ public class DDConfiguredFeatures extends WorldgenHelper {
 			new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE, BlockStateProvider.of(SpectrumBlocks.ROTTEN_GROUND),
 					PlacedFeatures.createEntry(SNAPPING_IVY), VerticalSurfaceType.FLOOR, ConstantIntProvider.create(1), 0.0F, 5, 0.8F, UniformIntProvider.create(3, 5), 0.3F));
 	
+	// Deeper Down
+	public static ConfiguredFeature<NephriteBlossomFeatureConfig, ?> NEPHRITE_BLOSSOM_BULB = new ConfiguredFeature<>(SpectrumFeatures.NEPHRITE_BLOSSOM, new NephriteBlossomFeatureConfig(false));
+	public static ConfiguredFeature<JadeiteLotusFeatureConfig, ?> JADEITE_LOTUS_BULB = new ConfiguredFeature<>(SpectrumFeatures.JADEITE_LOTUS, new JadeiteLotusFeatureConfig(false));
+	
 }

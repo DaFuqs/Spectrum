@@ -21,28 +21,33 @@ import org.jetbrains.annotations.*;
 public class NephriteBlossomStemBlock extends PlantBlock implements Waterloggable {
 
     public static final EnumProperty<StemComponent> STEM_PART = StemComponent.PROPERTY;
-
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-
-    public NephriteBlossomStemBlock(Settings settings) {
-        super(settings);
-        setDefaultState(getDefaultState().with(STEM_PART, StemComponent.BASE).with(WATERLOGGED, false));
-    }
-
-    public static BlockState getStemVariant(boolean top) {
-        return SpectrumBlocks.NEPHRITE_BLOSSOM_STEM.getDefaultState().with(STEM_PART, top ? StemComponent.STEMALT : StemComponent.STEM);
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        var handStack = player.getStackInHand(hand);
-
-        if (handStack.isIn(ConventionalItemTags.SHEARS) && state.get(STEM_PART) == StemComponent.BASE) {
-            BlockState newState = state.with(STEM_PART, StemComponent.STEM);
-            world.setBlockState(pos, newState);
-            player.playSound(SoundEvents.ENTITY_MOOSHROOM_SHEAR, SoundCategory.BLOCKS, 1, 0.9F + player.getRandom().nextFloat() * 0.2F);
-            handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
+	
+	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+	
+	public NephriteBlossomStemBlock(Settings settings) {
+		super(settings);
+		setDefaultState(getDefaultState().with(STEM_PART, StemComponent.BASE).with(WATERLOGGED, false));
+	}
+	
+	public static BlockState getStemVariant(boolean top) {
+		return SpectrumBlocks.NEPHRITE_BLOSSOM_STEM.getDefaultState().with(STEM_PART, top ? StemComponent.STEMALT : StemComponent.STEM);
+	}
+	
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return SpectrumItems.NEPHRITE_BLOSSOM_SEEDS.getDefaultStack();
+	}
+	
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		var handStack = player.getStackInHand(hand);
+		
+		if (handStack.isIn(ConventionalItemTags.SHEARS) && state.get(STEM_PART) == StemComponent.BASE) {
+			BlockState newState = state.with(STEM_PART, StemComponent.STEM);
+			world.setBlockState(pos, newState);
+			player.playSound(SoundEvents.ENTITY_MOOSHROOM_SHEAR, SoundCategory.BLOCKS, 1, 0.9F + player.getRandom().nextFloat() * 0.2F);
+			handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
+			world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
     
             return ActionResult.success(world.isClient());
         }
@@ -63,7 +68,6 @@ public class NephriteBlossomStemBlock extends PlantBlock implements Waterloggabl
             return null;
 
         if (floor.isOf(this) ) {
-
             if (floor.get(STEM_PART) != StemComponent.STEMALT) {
                 state = state.with(STEM_PART, StemComponent.STEMALT);
             }

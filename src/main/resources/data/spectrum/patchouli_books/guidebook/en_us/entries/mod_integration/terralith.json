@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "So your modpack has Terralith, congrats!$(br)Sadly, with the way Terralith modifies the terrain and replacecs biomes, it makes some of Spectrum's worldgen near-impossible to generate, because the terrain does not have the required layout anymore."
+      "text": "So your modpack has Terralith, congrats!$(br)Sadly, with the way Terralith modifies the terrain and replaces biomes, it makes some of Spectrum's worldgen near-impossible to generate, because the terrain does not have the required layout anymore."
     },
     {
       "type": "patchouli:text",

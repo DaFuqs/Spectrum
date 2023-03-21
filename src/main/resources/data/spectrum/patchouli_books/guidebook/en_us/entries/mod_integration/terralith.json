@@ -1,0 +1,17 @@
+{
+  "name": "Terralith",
+  "icon": "minecraft:grass_block",
+  "flag": "mod:terralith",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "So your modpack has Terralith, congrats!$(br)Sadly, with the way Terralith modifies the terrain and replacecs biomes, it makes some of Spectrum's worldgen near-impossible to generate, because the terrain does not have the required layout anymore."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Rest assured, you will not be locked out of anything. If the book calls for you to look out for Swamps, just disregard that to spare you the hastle. There is another way to get that resource once you require it."
+    }
+  ]
+}

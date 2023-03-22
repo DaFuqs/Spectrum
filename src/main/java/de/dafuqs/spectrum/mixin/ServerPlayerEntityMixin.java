@@ -1,31 +1,23 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.cca.HardcoreDeathComponent;
-import de.dafuqs.spectrum.enchantments.DisarmingEnchantment;
-import de.dafuqs.spectrum.enchantments.TreasureHunterEnchantment;
-import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
-import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
-import de.dafuqs.spectrum.items.trinkets.GleamingPinItem;
-import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.enchantments.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
-import java.util.Optional;
+import java.util.*;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
@@ -34,9 +26,6 @@ public abstract class ServerPlayerEntityMixin {
 	
 	@Shadow
 	public abstract ServerWorld getWorld();
-	
-	@Shadow
-	public abstract void playerTick();
 	
 	@Inject(at = @At("HEAD"), method = "onDeath(Lnet/minecraft/entity/damage/DamageSource;)V")
 	protected void spectrum$dropPlayerHeadWithTreasureHunt(DamageSource source, CallbackInfo ci) {

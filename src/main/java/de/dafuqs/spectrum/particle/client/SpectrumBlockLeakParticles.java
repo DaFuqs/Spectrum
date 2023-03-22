@@ -19,7 +19,7 @@ public class SpectrumBlockLeakParticles {
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Landing(clientWorld, d, e, f, SpectrumFluids.MUD);
-			blockLeakParticle.setColor(SpectrumFluids.MUD_COLOR.getX(), SpectrumFluids.MUD_COLOR.getY(), SpectrumFluids.MUD_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.MUD_COLOR_VEC.getX(), SpectrumFluids.MUD_COLOR_VEC.getY(), SpectrumFluids.MUD_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -34,7 +34,7 @@ public class SpectrumBlockLeakParticles {
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.ContinuousFalling(clientWorld, d, e, f, SpectrumFluids.MUD, SpectrumParticleTypes.LANDING_MUD);
-			blockLeakParticle.setColor(SpectrumFluids.MUD_COLOR.getX(), SpectrumFluids.MUD_COLOR.getY(), SpectrumFluids.MUD_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.MUD_COLOR_VEC.getX(), SpectrumFluids.MUD_COLOR_VEC.getY(), SpectrumFluids.MUD_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -49,7 +49,7 @@ public class SpectrumBlockLeakParticles {
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Dripping(clientWorld, d, e, f, SpectrumFluids.MUD, SpectrumParticleTypes.FALLING_MUD);
-			blockLeakParticle.setColor(SpectrumFluids.MUD_COLOR.getX(), SpectrumFluids.MUD_COLOR.getY(), SpectrumFluids.MUD_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.MUD_COLOR_VEC.getX(), SpectrumFluids.MUD_COLOR_VEC.getY(), SpectrumFluids.MUD_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -64,7 +64,7 @@ public class SpectrumBlockLeakParticles {
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Landing(clientWorld, d, e, f, SpectrumFluids.LIQUID_CRYSTAL);
-			blockLeakParticle.setColor(SpectrumFluids.LIQUID_CRYSTAL_COLOR.getX(), SpectrumFluids.LIQUID_CRYSTAL_COLOR.getY(), SpectrumFluids.LIQUID_CRYSTAL_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.getX(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.getY(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -79,7 +79,7 @@ public class SpectrumBlockLeakParticles {
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.ContinuousFalling(clientWorld, d, e, f, SpectrumFluids.LIQUID_CRYSTAL, SpectrumParticleTypes.LANDING_LIQUID_CRYSTAL);
-			blockLeakParticle.setColor(SpectrumFluids.LIQUID_CRYSTAL_COLOR.getX(), SpectrumFluids.LIQUID_CRYSTAL_COLOR.getY(), SpectrumFluids.LIQUID_CRYSTAL_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.getX(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.getY(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -94,7 +94,7 @@ public class SpectrumBlockLeakParticles {
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Dripping(clientWorld, d, e, f, SpectrumFluids.LIQUID_CRYSTAL, SpectrumParticleTypes.FALLING_LIQUID_CRYSTAL);
-			blockLeakParticle.setColor(SpectrumFluids.LIQUID_CRYSTAL_COLOR.getX(), SpectrumFluids.LIQUID_CRYSTAL_COLOR.getY(), SpectrumFluids.LIQUID_CRYSTAL_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.getX(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.getY(), SpectrumFluids.LIQUID_CRYSTAL_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -109,7 +109,7 @@ public class SpectrumBlockLeakParticles {
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Landing(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION);
-			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getX(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getY(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.getX(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.getY(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -124,7 +124,7 @@ public class SpectrumBlockLeakParticles {
 		
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.ContinuousFalling(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION, SpectrumParticleTypes.LANDING_MIDNIGHT_SOLUTION);
-			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getX(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getY(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.getX(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.getY(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -139,7 +139,7 @@ public class SpectrumBlockLeakParticles {
 
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Dripping(clientWorld, d, e, f, SpectrumFluids.MIDNIGHT_SOLUTION, SpectrumParticleTypes.FALLING_MIDNIGHT_SOLUTION);
-			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getX(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getY(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.getX(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.getY(), SpectrumFluids.MIDNIGHT_SOLUTION_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -154,7 +154,7 @@ public class SpectrumBlockLeakParticles {
 
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Landing(clientWorld, d, e, f, SpectrumFluids.DRAGONROT);
-			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR.getX(), SpectrumFluids.DRAGONROT_COLOR.getY(), SpectrumFluids.DRAGONROT_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR_VEC.getX(), SpectrumFluids.DRAGONROT_COLOR_VEC.getY(), SpectrumFluids.DRAGONROT_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -169,7 +169,7 @@ public class SpectrumBlockLeakParticles {
 
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.ContinuousFalling(clientWorld, d, e, f, SpectrumFluids.DRAGONROT, SpectrumParticleTypes.LANDING_DRAGONROT);
-			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR.getX(), SpectrumFluids.DRAGONROT_COLOR.getY(), SpectrumFluids.DRAGONROT_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR_VEC.getX(), SpectrumFluids.DRAGONROT_COLOR_VEC.getY(), SpectrumFluids.DRAGONROT_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}
@@ -184,7 +184,7 @@ public class SpectrumBlockLeakParticles {
 
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			BlockLeakParticle blockLeakParticle = new BlockLeakParticle.Dripping(clientWorld, d, e, f, SpectrumFluids.DRAGONROT, SpectrumParticleTypes.FALLING_DRAGONROT);
-			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR.getX(), SpectrumFluids.DRAGONROT_COLOR.getY(), SpectrumFluids.DRAGONROT_COLOR.getZ());
+			blockLeakParticle.setColor(SpectrumFluids.DRAGONROT_COLOR_VEC.getX(), SpectrumFluids.DRAGONROT_COLOR_VEC.getY(), SpectrumFluids.DRAGONROT_COLOR_VEC.getZ());
 			blockLeakParticle.setSprite(this.spriteProvider);
 			return blockLeakParticle;
 		}

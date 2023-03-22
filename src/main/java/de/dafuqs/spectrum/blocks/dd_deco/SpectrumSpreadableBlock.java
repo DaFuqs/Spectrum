@@ -11,9 +11,9 @@ import net.minecraft.world.chunk.light.*;
 public class SpectrumSpreadableBlock extends SnowyBlock {
 	
 	protected final Block blockAbleToSpreadTo;
-	private final Block deadState;
+	private final BlockState deadState;
 	
-	public SpectrumSpreadableBlock(Settings settings, Block blockAbleToSpreadTo, Block deadState) {
+	public SpectrumSpreadableBlock(Settings settings, Block blockAbleToSpreadTo, BlockState deadState) {
 		super(settings);
 		this.blockAbleToSpreadTo = blockAbleToSpreadTo;
 		this.deadState = deadState;
@@ -26,7 +26,7 @@ public class SpectrumSpreadableBlock extends SnowyBlock {
 	
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (!canSurvive(state, world, pos)) {
-			world.setBlockState(pos, deadState.getDefaultState());
+			world.setBlockState(pos, deadState);
 		} else {
 			if (world.getLightLevel(pos.up()) >= 9) {
 				BlockState blockState = this.getDefaultState();

@@ -519,7 +519,7 @@ public class SpectrumBlocks {
 	public static final Block SAWBLADE_GRASS = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly(), BLACKSLAG, BLACKSLAG.getDefaultState());
 	public static final Block SHIMMEL = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly(), BLACKSLAG, BLACKSLAG.getDefaultState());
 	public static final Block OVERGROWN_BLACKSLAG = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly(), BLACKSLAG, BLACKSLAG.getDefaultState());
-	public static final Block ROTTEN_GROUND = new GodawfulMudBlock(AbstractBlock.Settings.copy(Blocks.MUD).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
+	public static final Block ROTTEN_GROUND = new RottenGroundBlock(AbstractBlock.Settings.copy(Blocks.MUD).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
 	
 	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), () -> getConfiguredFeatureRegistryEntry("slate_noxfungus"));
 	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), () -> getConfiguredFeatureRegistryEntry("ebony_noxfungus"));

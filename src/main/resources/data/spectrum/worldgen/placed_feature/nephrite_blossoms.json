@@ -3,7 +3,7 @@
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 188
+      "count": 16
     },
     {
       "type": "minecraft:in_square"
@@ -23,10 +23,10 @@
     {
       "type": "minecraft:environment_scan",
       "direction_of_search": "down",
-      "max_steps": 24,
+      "max_steps": 18,
       "target_condition": {
         "type": "minecraft:has_sturdy_face",
-        "direction": "down"
+        "direction": "up"
       },
       "allowed_search_condition": {
         "type": "minecraft:matching_blocks",
@@ -36,7 +36,7 @@
     {
       "type": "minecraft:random_offset",
       "xz_spread": 0,
-      "y_spread": -1
+      "y_spread": 1
     },
     {
       "type": "minecraft:biome"

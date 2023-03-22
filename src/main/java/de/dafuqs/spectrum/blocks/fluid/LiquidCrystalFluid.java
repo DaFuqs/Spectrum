@@ -46,7 +46,8 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
 		BlockPos topPos = pos.up();
-		if (world.getBlockState(topPos).isAir() && !world.getBlockState(topPos).isOpaqueFullCube(world, topPos) && random.nextInt(1000) == 0) {
+		BlockState topState = world.getBlockState(topPos);
+		if (topState.isAir() && !topState.isOpaqueFullCube(world, topPos) && random.nextInt(1000) == 0) {
 			world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.LIQUID_CRYSTAL_AMBIENT, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
 		}
 	}

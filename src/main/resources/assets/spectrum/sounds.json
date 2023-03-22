@@ -315,12 +315,6 @@
       "spectrum:midnight_solution_ambient6"
     ]
   },
-  "dragonrot_ambient": {
-    "subtitle": "spectrum.subtitles.block.dragonrot.ambient",
-    "sounds": [
-      "spectrum:dragonrot_ambient"
-    ]
-  },
   "ambient.dimension_sounds": {
     "subtitle": "spectrum.subtitles.dimension.ambient",
     "sounds": [

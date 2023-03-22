@@ -27,7 +27,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	public static final ItemStack OUTPUT_STACK = getDefaultStackWithCount(SpectrumItems.JADE_WINE, 4);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
 	public static final List<IngredientStack> INGREDIENT_STACKS = new ArrayList<>() {{
-		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)));
+		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.GERMINATED_JADE_VINE_BULB)));
 		add(IngredientStack.of(Ingredient.ofItems(SpectrumItems.JADE_VINE_PETALS), Matchbook.empty(), null, 3));
 	}};
 	
@@ -44,7 +44,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	
 	@Override
 	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature) {
-		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GERMINATED_JADE_VINE_SEEDS);
+		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GERMINATED_JADE_VINE_BULB);
 		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADE_VINE_PETALS);
 		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
 		
@@ -152,7 +152,7 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 			if (stack.isEmpty()) {
 				continue;
 			}
-			if (stack.isOf(SpectrumItems.GERMINATED_JADE_VINE_SEEDS)) {
+			if (stack.isOf(SpectrumItems.GERMINATED_JADE_VINE_BULB)) {
 				bulbsFound = true;
 			} else if (!stack.isOf(SpectrumItems.JADE_VINE_PETALS) && !stack.isOf(SpectrumItems.MOONSTRUCK_NECTAR)) {
 				return false;

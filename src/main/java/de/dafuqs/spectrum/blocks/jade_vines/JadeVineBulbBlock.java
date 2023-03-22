@@ -1,23 +1,16 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class JadeVineBulbBlock extends Block implements JadeVine {
 	
@@ -58,7 +51,7 @@ public class JadeVineBulbBlock extends Block implements JadeVine {
 	
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return SpectrumItems.GERMINATED_JADE_VINE_SEEDS.getDefaultStack();
+		return SpectrumItems.GERMINATED_JADE_VINE_BULB.getDefaultStack();
 	}
 	
 	@Override

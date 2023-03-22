@@ -1,0 +1,19 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 200,
+  "experience": 2.0,
+  "secret": true,
+  "ingredient1": {
+    "item": "spectrum:nephrite_blossom_bulb"
+  },
+  "ingredient2": {
+    "item": "spectrum:jadeite_lotus_bulb"
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal",
+    "count": 8
+  },
+  "result": {
+    "item": "spectrum:germinated_jade_vine_bulb"
+  }
+}

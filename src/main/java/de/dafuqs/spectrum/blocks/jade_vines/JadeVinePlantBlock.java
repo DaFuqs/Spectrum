@@ -153,7 +153,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return SpectrumItems.GERMINATED_JADE_VINE_SEEDS.getDefaultStack();
+		return SpectrumItems.GERMINATED_JADE_VINE_BULB.getDefaultStack();
 	}
 
 	@Override

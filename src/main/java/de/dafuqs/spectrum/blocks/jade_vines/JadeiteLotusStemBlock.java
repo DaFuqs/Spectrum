@@ -36,7 +36,7 @@ public class JadeiteLotusStemBlock extends PlantBlock implements Waterloggable {
 	
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return SpectrumItems.JADEITE_LOTUS_SEEDS.getDefaultStack();
+		return SpectrumItems.JADEITE_LOTUS_BULB.getDefaultStack();
 	}
 	
 	@Override

@@ -35,7 +35,7 @@ public class NephriteBlossomStemBlock extends PlantBlock implements Waterloggabl
 	
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-		return SpectrumItems.NEPHRITE_BLOSSOM_SEEDS.getDefaultStack();
+		return SpectrumItems.NEPHRITE_BLOSSOM_BULB.getDefaultStack();
 	}
 	
 	@Override

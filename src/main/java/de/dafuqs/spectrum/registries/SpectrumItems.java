@@ -18,7 +18,7 @@ import de.dafuqs.spectrum.items.food.beverages.*;
 import de.dafuqs.spectrum.items.item_frame.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.items.tooltip.BlockItemWithTooltip;
+import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.registries.color.*;
 import io.wispforest.owo.itemgroup.*;
@@ -254,7 +254,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final Item DRAGONBONE_CHUNK = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
-
+	
 	public static final CloakedItem QUITOXIC_POWDER = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
 	public static final CloakedItem STORM_STONE = new StormStoneItem(Tab.RESOURCES.settings(16), ((RevelationAware) SpectrumBlocks.STUCK_STORM_STONE).getCloakAdvancementIdentifier(), Items.YELLOW_DYE);
 	public static final CloakedItem MERMAIDS_GEM = new CloakedItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("craft_using_pedestal"), Items.LIGHT_BLUE_DYE);
@@ -262,13 +262,13 @@ public class SpectrumItems {
 	public static final CloakedItem STARDUST = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("milestones/unlock_shooting_stars"), Items.PURPLE_DYE, SpectrumBannerPatterns.SHIMMER);
 	
 	public static final ItemWithTooltip FRIGID_STARDUST = new ItemWithTooltip(Tab.RESOURCES.settings(), "item.spectrum.frigid_stardust.tooltip");
-	public static final Item HIBERNATING_JADE_VINE_SEEDS = new ItemWithTooltip(Tab.RESOURCES.settings(16), "item.spectrum.hibernating_jade_vine_seeds.tooltip");
-	public static final CloakedItem GERMINATED_JADE_VINE_SEEDS = new GerminatedJadeVineSeedsItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
-	public static final Item NEPHRITE_BLOSSOM_SEEDS = new BlockItemWithTooltip(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB, Tab.RESOURCES.settings(16), "item.spectrum.jade_vine_parents.tooltip");
-	public static final Item JADEITE_LOTUS_SEEDS = new BlockItemWithTooltip(SpectrumBlocks.JADEITE_LOTUS_BULB, Tab.RESOURCES.settings(16), "item.spectrum.jade_vine_parents.tooltip");
+	public static final Item HIBERNATING_JADE_VINE_BULB = new ItemWithTooltip(Tab.RESOURCES.settings(16), "item.spectrum.hibernating_jade_vine_seeds.tooltip");
+	public static final CloakedItem GERMINATED_JADE_VINE_BULB = new GerminatedJadeVineBulbItem(Tab.RESOURCES.settings(16), SpectrumCommon.locate("hidden/collect_hibernating_jade_vine_seeds"), Items.LIME_DYE);
+	public static final Item NEPHRITE_BLOSSOM_BULB = new BlockItemWithTooltip(SpectrumBlocks.NEPHRITE_BLOSSOM_BULB, Tab.RESOURCES.settings(16), "item.spectrum.jade_vine_parents.tooltip");
+	public static final Item JADEITE_LOTUS_BULB = new BlockItemWithTooltip(SpectrumBlocks.JADEITE_LOTUS_BULB, Tab.RESOURCES.settings(16), "item.spectrum.jade_vine_parents.tooltip");
 	public static final CloakedItem JADE_VINE_PETALS = new CloakedItemWithLoomPattern(Tab.RESOURCES.settings(), SpectrumCommon.locate("midgame/build_spirit_instiller_structure"), Items.LIME_DYE, SpectrumBannerPatterns.JADE_VINE);
 	public static final Item MOONSTRUCK_PETALS = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
-
+	
 	
 	public static final Item BLOOD_ORCHID_PETAL = new Item(Tab.RESOURCES.settings());
 	
@@ -582,7 +582,7 @@ public class SpectrumItems {
 		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
 		register("dragonbone_chunk", DRAGONBONE_CHUNK, DyeColor.GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
-
+		
 		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);
 		register("mermaids_gem", MERMAIDS_GEM, DyeColor.LIGHT_BLUE);
 		register("storm_stone", STORM_STONE, DyeColor.YELLOW);
@@ -591,14 +591,14 @@ public class SpectrumItems {
 		register("frigid_stardust", FRIGID_STARDUST, DyeColor.PURPLE);
 		register("blood_orchid_petal", BLOOD_ORCHID_PETAL, DyeColor.RED);
 		
-		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_SEEDS, DyeColor.GRAY);
-		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_SEEDS, DyeColor.LIME);
-		register("nephrite_blossom_bulb", NEPHRITE_BLOSSOM_SEEDS, DyeColor.PINK);
-		register("jadeite_lotus_bulb", JADEITE_LOTUS_SEEDS, DyeColor.BROWN);
-
+		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_BULB, DyeColor.GRAY); // TODO: rename seeds to bulb on next major update
+		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_BULB, DyeColor.LIME);
+		register("nephrite_blossom_bulb", NEPHRITE_BLOSSOM_BULB, DyeColor.PINK);
+		register("jadeite_lotus_bulb", JADEITE_LOTUS_BULB, DyeColor.BROWN);
+		
 		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
 		register("moonstruck_petals", MOONSTRUCK_PETALS, DyeColor.BROWN);
-
+		
 		
 		register("vegetal", VEGETAL, DyeColor.LIME);
 		register("neolith", NEOLITH, DyeColor.PINK);

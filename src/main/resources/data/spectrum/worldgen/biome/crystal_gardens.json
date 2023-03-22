@@ -6,10 +6,10 @@
   "effects": {
     "sky_color": 0,
     "fog_color": 0,
-    "water_color": 13880241,
-    "water_fog_color": 7629410,
-    "grass_color": 7241038,
-    "foliage_color": 3819567,
+    "water_color": 16764130,
+    "water_fog_color": 15436478,
+    "grass_color": 5614202,
+    "foliage_color": 3706492,
     "grass_color_modifier": "none",
     "mood_sound": {
       "sound": "spectrum:ambient.dimension_sounds",

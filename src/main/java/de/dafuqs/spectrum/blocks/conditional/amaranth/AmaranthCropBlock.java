@@ -1,28 +1,20 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
-import net.id.incubus_core.block.TallCropBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.TallPlantBlock;
-import net.minecraft.block.enums.DoubleBlockHalf;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.client.*;
+import net.id.incubus_core.block.*;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 public class AmaranthCropBlock extends TallCropBlock implements RevelationAware {
 	
@@ -67,10 +59,10 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 		BlockState largeFernUpper = Blocks.LARGE_FERN.getDefaultState().with(TallPlantBlock.HALF, DoubleBlockHalf.UPPER);
 		
 		Map<BlockState, BlockState> map = new Hashtable<>();
-		for (int age = 0; age < LAST_SINGLE_BLOCK_AGE; age++) {
+		for (int age = 0; age <= LAST_SINGLE_BLOCK_AGE; age++) {
 			map.put(this.withAge(age), smallFern);
 		}
-		for (int age = LAST_SINGLE_BLOCK_AGE; age < MAX_AGE; age++) {
+		for (int age = LAST_SINGLE_BLOCK_AGE + 1; age <= MAX_AGE; age++) {
 			map.put(this.withAgeAndHalf(age, DoubleBlockHalf.LOWER), largeFernLower);
 			map.put(this.withAgeAndHalf(age, DoubleBlockHalf.UPPER), largeFernUpper);
 		}

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
+import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
@@ -21,40 +22,44 @@ import net.minecraft.world.*;
 import java.util.function.*;
 
 public class SpectrumFluids {
-
+	
 	// LIQUID CRYSTAL
 	public static final FlowableFluid LIQUID_CRYSTAL = new LiquidCrystalFluid.StillLiquidCrystal();
 	public static final FlowableFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.FlowingLiquidCrystal();
-	public static final Vec3f LIQUID_CRYSTAL_COLOR = new Vec3f(0.7f, 0.67f, 0.81f);
+	public static final int LIQUID_CRYSTAL_COLOR = 0xcbbbcb;
+	public static final Vec3f LIQUID_CRYSTAL_COLOR_VEC = new Vec3f(0.7f, 0.67f, 0.81f);
 	public static final Identifier LIQUID_CRYSTAL_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
 	public static final float LIQUID_CRYSTAL_OVERLAY_ALPHA = 0.6F;
-
+	
 	// MUD
 	public static final FlowableFluid MUD = new MudFluid.StillMud();
 	public static final FlowableFluid FLOWING_MUD = new MudFluid.FlowingMud();
-	public static final Vec3f MUD_COLOR = new Vec3f(0.26f, 0.14f, 0.01f);
+	public static final int MUD_COLOR = 0x4e2e0a;
+	public static final Vec3f MUD_COLOR_VEC = new Vec3f(0.26f, 0.14f, 0.01f);
 	public static final Identifier MUD_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/mud_overlay.png");
 	public static final float MUD_OVERLAY_ALPHA = 0.995F;
-
+	
 	// MIDNIGHT SOLUTION
 	public static final FlowableFluid MIDNIGHT_SOLUTION = new MidnightSolutionFluid.StillMidnightSolution();
 	public static final FlowableFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.FlowingMidnightSolution();
-	public static final Vec3f MIDNIGHT_SOLUTION_COLOR = new Vec3f(0.07f, 0.07f, 0.2f);
+	public static final int MIDNIGHT_SOLUTION_COLOR = 0x11183b;
+	public static final Vec3f MIDNIGHT_SOLUTION_COLOR_VEC = new Vec3f(0.07f, 0.07f, 0.2f);
 	public static final Identifier MIDNIGHT_SOLUTION_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/midnight_solution_overlay.png");
 	public static final float MIDNIGHT_SOLUTION_OVERLAY_ALPHA = 0.995F;
-
+	
 	// DRAGONROT
 	public static final FlowableFluid DRAGONROT = new DragonrotFluid.StillDragonrot();
 	public static final FlowableFluid FLOWING_DRAGONROT = new DragonrotFluid.FlowingDragonrot();
-	public static final Vec3f DRAGONROT_COLOR = new Vec3f(0.56f, 0.13f, 0.63f);
+	public static final int DRAGONROT_COLOR = 0xe3772f;
+	public static final Vec3f DRAGONROT_COLOR_VEC = ColorHelper.colorIntToVec(DRAGONROT_COLOR);
 	public static final Identifier DRAGONROT_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/dragonrot_overlay.png");
-	public static final float DRAGONROT_OVERLAY_ALPHA = 0.995F;
-
+	public static final float DRAGONROT_OVERLAY_ALPHA = 0.98F;
+	
 	private static void registerFluid(String name, Fluid fluid, DyeColor dyeColor) {
 		Registry.register(Registry.FLUID, SpectrumCommon.locate(name), fluid);
 		ItemColors.FLUID_COLORS.registerColorMapping(fluid, dyeColor);
 	}
-
+	
 	public static void register() {
 		registerFluid("liquid_crystal", LIQUID_CRYSTAL, DyeColor.LIGHT_GRAY);
 		registerFluid("flowing_liquid_crystal", FLOWING_LIQUID_CRYSTAL, DyeColor.LIGHT_GRAY);
@@ -68,16 +73,16 @@ public class SpectrumFluids {
 	
 	@Environment(EnvType.CLIENT)
 	public static void registerClient() {
-		setupFluidRendering(LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL, "liquid_crystal", 0xcbbbcb);
+		setupFluidRendering(LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL, "liquid_crystal", LIQUID_CRYSTAL_COLOR);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), LIQUID_CRYSTAL, FLOWING_LIQUID_CRYSTAL);
-
-		setupFluidRendering(MUD, FLOWING_MUD, "mud", 0x4e2e0a);
+		
+		setupFluidRendering(MUD, FLOWING_MUD, "mud", MUD_COLOR);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MUD, FLOWING_MUD);
-
-		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, "midnight_solution", 0x11183b);
+		
+		setupFluidRendering(MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION, "midnight_solution", MIDNIGHT_SOLUTION_COLOR);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), MIDNIGHT_SOLUTION, FLOWING_MIDNIGHT_SOLUTION);
-
-		setupFluidRendering(DRAGONROT, FLOWING_DRAGONROT, "dragonrot", 0x592b6f);
+		
+		setupFluidRendering(DRAGONROT, FLOWING_DRAGONROT, "dragonrot", DRAGONROT_COLOR);
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), DRAGONROT, FLOWING_DRAGONROT);
 	}
 	

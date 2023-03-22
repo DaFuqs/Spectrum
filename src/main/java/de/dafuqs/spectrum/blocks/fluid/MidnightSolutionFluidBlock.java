@@ -81,8 +81,8 @@ public class MidnightSolutionFluidBlock extends SpectrumFluidBlock {
 		
 		if (!world.isClient) {
 			if (entity instanceof LivingEntity livingEntity) {
-				if (!livingEntity.isDead()) {
-					if (livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION) && world.getTime() % 20 == 0) {
+				if (!livingEntity.isDead() && world.getTime() % 20 == 0) {
+					if (livingEntity.isSubmergedIn(SpectrumFluidTags.MIDNIGHT_SOLUTION)) {
 						livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0));
 						livingEntity.damage(SpectrumDamageSources.MIDNIGHT_SOLUTION, 2);
 					} else {

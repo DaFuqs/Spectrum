@@ -195,6 +195,7 @@
   "death.attack.spectrum_floatblock": "%s was smashed by a Floating Block",
   "death.attack.spectrum_shooting_star": "%s was smitten by a Shooting Star. Make a Wish!",
   "death.attack.spectrum_midnight_solution": "%s was lost in Translation",
+  "death.attack.spectrum_dragonrot": "%s came to nothing",
   "death.attack.spectrum_dike_gate": "%s was not invited, but understood too late",
   "death.attack.spectrum_incandescence": "%s became grossly incandescent",
   "death.attack.spectrum_incandescence.player": "%1$s witnessed %2&s become a star and drew too close - more kindling for the flame!",

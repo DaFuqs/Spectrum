@@ -43,6 +43,8 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		put(StatusEffects.UNLUCK, StatusEffects.LUCK);
 		put(StatusEffects.WEAKNESS, StatusEffects.STRENGTH);
 		put(StatusEffects.WITHER, StatusEffects.REGENERATION);
+		put(SpectrumStatusEffects.STIFFNESS, SpectrumStatusEffects.SWIFTNESS);
+		put(SpectrumStatusEffects.DENSITY, SpectrumStatusEffects.LIGHTWEIGHT);
 	}};
 	
 	public static @Nullable PotionWorkshopBrewingRecipe getPositiveRecipe(@NotNull StatusEffect statusEffect) {

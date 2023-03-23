@@ -175,7 +175,7 @@ public class SpectrumFoodComponents {
 	
 	public static final FoodComponent ASHEN_TART = new FoodComponent.Builder()
 			.hunger(8).saturationModifier(0.2F)
-			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.BLAZING, 20 * 30), 1.0F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.LAVA_GLIDING, 20 * 30), 1.0F)
 			.build();
 	
 	public static final FoodComponent WEEPING_TART = new FoodComponent.Builder()

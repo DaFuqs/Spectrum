@@ -18,7 +18,7 @@
     "fermentation_speed_mod": 1.25,
     "effects": [
       {
-        "id": "spectrum:blazing",
+        "id": "spectrum:lava_gliding",
         "base_duration": 9600,
         "potency": [
           {

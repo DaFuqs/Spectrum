@@ -4,7 +4,15 @@
   "icon": "spectrum:liquid_crystal_bucket",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
-    "spectrum:overgrown_blackslag": 0
+    "spectrum:overgrown_blackslag": 0,
+    "spectrum:nephrite_blossom_bulb": 0,
+    "spectrum:nephrite_blossom_leaves": 0,
+    "spectrum:nephrite_blossom_stem": 0,
+    "spectrum:jadeite_lotus_stem": 0,
+    "spectrum:jadeite_lotus_flower": 0,
+    "spectrum:jadeite_lotus_bulb": 0,
+    "spectrum:glass_peach": 0,
+    "spectrum:jadeite_petals": 0
   },
   "pages": [
     {
@@ -14,7 +22,29 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:overgrown_blackslag",
-      "text": "This stone is covered with a small layer of Soil. Not much, but enough that flora is able to grow on it."
+      "text": "Stone covered with a small layer of Soil. Not much, but more than enough to be covered with a thick carpet of moss."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Nephrite Blossoms",
+      "text": "Small little trees, as big as they get down here. Actually it's more like a big bush.$(br)...or giant shrub.$(br2)Eeeeh, details.$(br)Anyways, they look pretty."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_glass_peach",
+      "item": "spectrum:glass_peach",
+      "text": "No, they are not made out of glass, but very much shimmer like they are. They are very much edible, and tasty, too.$(br)Eating one will give you a short burst of $(thing)Toughness$(), which will decrease the damage hard-hitting attacks deal to you. They can also be $(l:magical_items/infused_beverages)fermented$() and $(l:magical_blocks/potion_workshop_brewing)used to brew Potions$()."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Jadeite Blossoms",
+      "text": "Imposing vines are hanging from the high ceiling and break through the darkness with their light."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:hidden/collect_jadeite_petals",
+      "item": "spectrum:jadeite_petals",
+      "text": "They act as $(l:magical_blocks/potion_workshop_reagents)act as Potion Reagent$()"
     }
   ]
 }

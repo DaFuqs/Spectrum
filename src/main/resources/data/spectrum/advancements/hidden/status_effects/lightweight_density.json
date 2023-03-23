@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "lightweight": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:lightweight": {}
+        }
+      }
+    },
+    "density": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:density": {}
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "lightweight",
+      "density"
+    ]
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "swiftness": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:swiftness": {}
+        }
+      }
+    },
+    "stiffness": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:stiffness": {}
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "swiftness",
+      "stiffness"
+    ]
+  ]
+}

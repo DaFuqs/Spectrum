@@ -1,0 +1,18 @@
+{
+  "name": "Immunity",
+  "advancement": "spectrum:hidden/status_effects/immunity",
+  "icon": "spectrum:",
+  "category": "spectrum:status_effects_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:immunity",
+      "text": "Removes all negative status effects, when applied. Also prevents you from getting any new ones, as long as Immunity is active"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Some effects seem to be powerful enough to resist your immunity."
+    }
+  ]
+}

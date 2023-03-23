@@ -1,0 +1,18 @@
+{
+  "name": "Magic Annulation",
+  "advancement": "spectrum:hidden/status_effects/magic_annulation",
+  "icon": "spectrum:",
+  "category": "spectrum:status_effects_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:magic_annulation",
+      "text": "$(thing)Reduces incoming magic damage$() by 1 point per level. While minor damage will be less dangerous to you, big hitters will still very much pose a threat to you regardless."
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

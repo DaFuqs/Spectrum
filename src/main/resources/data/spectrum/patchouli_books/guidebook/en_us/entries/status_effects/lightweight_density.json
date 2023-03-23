@@ -1,0 +1,19 @@
+{
+  "name": "Lightweight / Density",
+  "advancement": "spectrum:hidden/status_effects/lightweight_density",
+  "icon": "spectrum:",
+  "category": "spectrum:status_effects_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:lightweight",
+      "text": "$(thing)Makes you a bit lighter$() with every level. You noticed being able to jump a bit further and you fell slower.$(br)High levels will make you not take $(thing)Fall Damage$() anymore."
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:density",
+      "text": "$(thing)Makes you heavier$() with every level, preventing you to make long jumps and take increased fall damage."
+    }
+  ]
+}

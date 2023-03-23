@@ -1,0 +1,19 @@
+{
+  "name": "Ascension / Divinity",
+  "advancement": "spectrum:hidden/status_effects/ascension_divinity",
+  "icon": "spectrum:",
+  "category": "spectrum:status_effects_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:ascension",
+      "text": ""
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:divinity",
+      "text": ""
+    }
+  ]
+}

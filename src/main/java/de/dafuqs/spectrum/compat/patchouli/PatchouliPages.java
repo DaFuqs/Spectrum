@@ -21,6 +21,7 @@ public class PatchouliPages {
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("cinderhearth_smelting"), PageCinderhearthSmelting.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("titration_barrel_fermenting"), PageTitrationBarrelFermenting.class);
 
+		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("status_effect"), PageStatusEffect.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("hint"), PageHint.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("checklist"), PageChecklist.class);
 		ClientBookRegistry.INSTANCE.pageTypes.put(SpectrumCommon.locate("confirmation_button"), PageConfirmationButton.class);

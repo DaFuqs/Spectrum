@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "ascension": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:ascension": {}
+        }
+      }
+    },
+    "divinity": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:divinity": {}
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ascension",
+      "divinity"
+    ]
+  ]
+}

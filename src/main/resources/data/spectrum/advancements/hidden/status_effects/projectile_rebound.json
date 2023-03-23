@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "projectile_rebound": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:projectile_rebound": {}
+        }
+      }
+    }
+  }
+}

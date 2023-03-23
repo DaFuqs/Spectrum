@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "scarred": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:scarred": {}
+        }
+      }
+    }
+  }
+}

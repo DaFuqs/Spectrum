@@ -1,0 +1,18 @@
+{
+  "name": "Millenia Disease",
+  "advancement": "spectrum:hidden/status_effects/millenia_disease",
+  "icon": "spectrum:",
+  "category": "spectrum:status_effects_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:millenia_disease",
+      "text": "Not technically a disease that you could transmit to other creatures, Millenia Disease is a horrible thing that turned your stomach around.$(br)It slowly $(thing)decreases your max hitpoints$(), leaving you very vulnerable even against miniscule hits."
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

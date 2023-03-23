@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "immunity": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "spectrum:immunity": {}
+        }
+      }
+    }
+  }
+}

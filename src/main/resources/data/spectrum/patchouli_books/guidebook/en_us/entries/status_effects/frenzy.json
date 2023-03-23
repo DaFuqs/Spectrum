@@ -1,0 +1,19 @@
+{
+  "name": "Frenzy",
+  "advancement": "spectrum:hidden/status_effects/frenzy",
+  "icon": "spectrum:",
+  "category": "spectrum:status_effects_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:frenzy",
+      "text": "Damage, Attack Speed, Speed & Knockback Resistance are buffed the more you kill."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Stacking Effect",
+      "text": "Getting a level of Frenzy will instead stack the new Level on top of the old one, increasing the effects Potency instead of resetting it's duration."
+    }
+  ]
+}

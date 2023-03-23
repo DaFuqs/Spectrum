@@ -1,0 +1,19 @@
+{
+  "name": "Swiftness / Stiffness",
+  "advancement": "spectrum:hidden/status_effects/swiftness_stiffness",
+  "icon": "spectrum:",
+  "category": "spectrum:status_effects_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:swiftness",
+      "text": "$(thing)Increases your attack speed$() with every level.$(br)Allows you to repeatedly attack at lightning speed without giving your opponents a chance to attack you."
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:stiffness",
+      "text": "$(thing)Decreases your attack speed$() with every level instead."
+    }
+  ]
+}

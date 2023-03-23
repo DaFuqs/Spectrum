@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spectrum:item/moonstruck_petals"
+    "layer0": "spectrum:item/jadeite_petals"
   }
 }

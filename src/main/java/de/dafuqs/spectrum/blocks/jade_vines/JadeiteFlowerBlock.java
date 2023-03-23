@@ -68,7 +68,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
             int itemCount = random.nextInt(fortuneLevel * 3 + 2) + 1;
     
             for (int i = itemCount; i > 0; i--) {
-                ItemScatterer.spawn(world, pos.getX() + random.nextFloat() * 0.6 + 0.2, pos.getY() + random.nextFloat() * 0.6 + 0.2, pos.getZ() + random.nextFloat() * 0.6 + 0.2, new ItemStack(SpectrumItems.MOONSTRUCK_PETALS));
+                ItemScatterer.spawn(world, pos.getX() + random.nextFloat() * 0.6 + 0.2, pos.getY() + random.nextFloat() * 0.6 + 0.2, pos.getZ() + random.nextFloat() * 0.6 + 0.2, new ItemStack(SpectrumItems.JADEITE_PETALS));
             }
     
             world.breakBlock(pos, false);

@@ -1,7 +1,6 @@
 {
   "type": "spectrum:titration_barrel",
   "group": "infused_beverages",
-  "fermentation_time_days": 2,
   "ingredients": [
     {
       "item": "minecraft:apple",

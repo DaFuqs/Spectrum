@@ -1,0 +1,18 @@
+{
+  "name": "Effect Prolonging",
+  "advancement": "spectrum:hidden/status_effects/effect_prolonging",
+  "icon": "spectrum:",
+  "category": "spectrum:status_effects_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:effect_prolonging",
+      "text": ""
+    },
+    {
+      "type": "patchouli:text",
+      "text": ""
+    }
+  ]
+}

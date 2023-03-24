@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "reached_lategame": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    },
+    "has_jadeite_petals": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:jadeite_petals"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

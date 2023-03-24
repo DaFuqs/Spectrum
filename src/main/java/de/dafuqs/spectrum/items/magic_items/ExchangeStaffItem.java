@@ -88,7 +88,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 		BlockState targetBlockState = targetBlock.getDefaultState();
 		BlockState placedBlockState = targetBlockState;
 		
-		int exchangedForBlockItemCount;
+		long exchangedForBlockItemCount;
 		if (player.isCreative()) {
 			exchangedForBlockItemCount = Integer.MAX_VALUE;
 		} else {
@@ -104,7 +104,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 			exchangedForBlockItemCount = Math.min(1, exchangedForBlockItemCount);
 		} else {
 			if (!player.isCreative()) {
-				int inkForBlocksAvailableAmount = 1 + (int) InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK;
+				long inkForBlocksAvailableAmount = 1 + InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK;
 				if (InkPowered.canUse(player)) {
 					exchangedForBlockItemCount = Math.min(exchangedForBlockItemCount, inkForBlocksAvailableAmount);
 				} else {

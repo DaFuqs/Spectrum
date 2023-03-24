@@ -78,12 +78,12 @@ public abstract class WorldRendererMixin {
 
             if (item != Items.AIR) {
                 int itemCountInInventory = Integer.MAX_VALUE;
-                int inkLimit = Integer.MAX_VALUE;
+				long inkLimit = Long.MAX_VALUE;
                 if (!player.isCreative()) {
                     Triplet<Block, Item, Integer> inventoryItemAndCount = BuildingHelper.getBuildingItemCountInInventoryIncludingSimilars(player, lookingAtBlock);
                     item = inventoryItemAndCount.getB();
 					itemCountInInventory = inventoryItemAndCount.getC();
-					inkLimit = (int) InkPowered.getAvailableInk(player, PlacementStaffItem.USED_COLOR) / PlacementStaffItem.INK_COST_PER_BLOCK;
+					inkLimit = InkPowered.getAvailableInk(player, PlacementStaffItem.USED_COLOR) / PlacementStaffItem.INK_COST_PER_BLOCK;
 				}
 				
 				boolean sneaking = player.isSneaking();
@@ -92,7 +92,7 @@ public abstract class WorldRendererMixin {
 				} else if (inkLimit == 0) {
 					HudRenderers.setItemStackToRender(new ItemStack(item), 1, true);
 				} else {
-					int usableCount = Math.min(itemCountInInventory, inkLimit);
+					long usableCount = Math.min(itemCountInInventory, inkLimit);
 					List<BlockPos> positions = BuildingHelper.calculateBuildingStaffSelection(world, lookingAtPos, hitResult.getSide(), usableCount, PlacementStaffItem.getRange(player), !sneaking);
 					if (positions.size() > 0) {
 						for (BlockPos newPosition : positions) {
@@ -127,11 +127,11 @@ public abstract class WorldRendererMixin {
                 VoxelShape shape = VoxelShapes.empty();
 
                 if (exchangeBlockItem != Items.AIR) {
-                    int itemCountInInventory = Integer.MAX_VALUE;
-                    int inkLimit = Integer.MAX_VALUE;
+					int itemCountInInventory = Integer.MAX_VALUE;
+					long inkLimit = Integer.MAX_VALUE;
                     if (!player.isCreative()) {
 						itemCountInInventory = player.getInventory().count(exchangeBlockItem);
-						inkLimit = (int) InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
+						inkLimit = InkPowered.getAvailableInk(player, ExchangeStaffItem.USED_COLOR) / ExchangeStaffItem.INK_COST_PER_BLOCK;
 					}
 					
 					if (itemCountInInventory == 0) {
@@ -139,7 +139,7 @@ public abstract class WorldRendererMixin {
 					} else if (inkLimit == 0) {
 						HudRenderers.setItemStackToRender(new ItemStack(exchangeBlockItem), 1, true);
 					} else {
-						int usableCount = Math.min(itemCountInInventory, inkLimit);
+						long usableCount = Math.min(itemCountInInventory, inkLimit);
 						List<BlockPos> positions = BuildingHelper.getConnectedBlocks(world, lookingAtPos, usableCount, ExchangeStaffItem.getRange(player));
 						for (BlockPos newPosition : positions) {
 							if (this.world.getWorldBorder().contains(newPosition)) {

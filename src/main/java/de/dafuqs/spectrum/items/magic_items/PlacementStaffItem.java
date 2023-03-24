@@ -78,7 +78,7 @@ public class PlacementStaffItem extends BuildingStaffItem implements InkPowered 
 			Item targetBlockItem = targetBlock.asItem();
 
 			if (player != null && targetBlockItem != Items.AIR) {
-				int count;
+				long count;
 				if (player.isCreative()) {
 					count = Integer.MAX_VALUE;
 				} else {
@@ -90,7 +90,7 @@ public class PlacementStaffItem extends BuildingStaffItem implements InkPowered 
 					count = inventoryItemAndCount.getC();
 					
 					if (InkPowered.canUse(player)) {
-						count = Math.min(count, 1 + (int) InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK);
+						count = Math.min(count, 1 + InkPowered.getAvailableInk(player, USED_COLOR) / INK_COST_PER_BLOCK);
 					} else {
 						count = 0;
 					}
@@ -98,8 +98,8 @@ public class PlacementStaffItem extends BuildingStaffItem implements InkPowered 
 				
 				if (count > 0) {
 					Direction side = context.getSide();
-					
-					int range = Math.min(getRange(player), player.isCreative() ? getRange(player) : count);
+					int maxRange = getRange(player);
+					int range = (int) Math.min(maxRange, player.isCreative() ? maxRange : count);
 					boolean sneaking = player.isSneaking();
 					List<BlockPos> targetPositions = BuildingHelper.calculateBuildingStaffSelection(world, pos, side, count, range, !sneaking);
 					if (targetPositions.isEmpty()) {

@@ -1,18 +1,12 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AliasedBlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import oshi.util.tuples.Triplet;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import oshi.util.tuples.*;
 
 import java.util.*;
 
@@ -69,7 +63,7 @@ public class BuildingHelper {
 	/**
 	 * A simple implementation of a breadth first search
 	 */
-	public static @NotNull List<BlockPos> getConnectedBlocks(@NotNull World world, @NotNull BlockPos blockPos, int maxCount, int maxRange) {
+	public static @NotNull List<BlockPos> getConnectedBlocks(@NotNull World world, @NotNull BlockPos blockPos, long maxCount, int maxRange) {
 		BlockState originState = world.getBlockState(blockPos);
 		Block originBlock = originState.getBlock();
 		
@@ -107,7 +101,7 @@ public class BuildingHelper {
 		return connectedPositions;
 	}
 	
-	public static @NotNull List<BlockPos> calculateBuildingStaffSelection(@NotNull World world, @NotNull BlockPos originPos, Direction direction, int maxCount, int maxRange, boolean sameBlockOnly) {
+	public static @NotNull List<BlockPos> calculateBuildingStaffSelection(@NotNull World world, @NotNull BlockPos originPos, Direction direction, long maxCount, int maxRange, boolean sameBlockOnly) {
 		BlockPos offsetPos = originPos.offset(direction);
 		BlockState originState = world.getBlockState(originPos);
 		

@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "spectrum:black_fence_gate",
+    "spectrum:blue_fence_gate",
+    "spectrum:brown_fence_gate",
+    "spectrum:cyan_fence_gate",
+    "spectrum:gray_fence_gate",
+    "spectrum:green_fence_gate",
+    "spectrum:light_blue_fence_gate",
+    "spectrum:light_gray_fence_gate",
+    "spectrum:lime_fence_gate",
+    "spectrum:magenta_fence_gate",
+    "spectrum:orange_fence_gate",
+    "spectrum:pink_fence_gate",
+    "spectrum:purple_fence_gate",
+    "spectrum:red_fence_gate",
+    "spectrum:white_fence_gate",
+    "spectrum:yellow_fence_gate"
+  ]
+}

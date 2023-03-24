@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:colored_leaves"
+    "#spectrum:colored_leaves",
+    "spectrum:nephrite_blossom_leaves",
+    "spectrum:spirit_sallow_leaves"
   ]
 }

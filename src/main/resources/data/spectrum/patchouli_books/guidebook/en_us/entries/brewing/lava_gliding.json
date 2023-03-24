@@ -2,7 +2,7 @@
   "name": "Lava Gliding",
   "advancement": "spectrum:hidden/status_effects/lava_gliding",
   "icon": "spectrum:",
-  "category": "spectrum:status_effects_category",
+  "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [
     {

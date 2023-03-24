@@ -1,8 +1,8 @@
 {
   "name": "Another Roll",
   "advancement": "spectrum:hidden/status_effects/another_roll",
-  "icon": "spectrum:",
-  "category": "spectrum:status_effects_category",
+  "icon": "spectrum:four_leaf_clover",
+  "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [
     {

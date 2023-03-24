@@ -1,8 +1,8 @@
 {
   "name": "Projectile Rebound",
   "advancement": "spectrum:hidden/status_effects/projectile_rebound",
-  "icon": "spectrum:",
-  "category": "spectrum:status_effects_category",
+  "icon": "minecraft:arrow",
+  "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [
     {

@@ -1,11 +1,14 @@
 {
-  "name": "Potion Works.: Reagents",
+  "name": "Using Reagents",
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:unlocks/blocks/potion_workshop",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:brewing_category",
+  "priority": true,
+  "sortnum": 1,
   "pages": [
     {
       "type": "patchouli:text",
+      "name": "Reagents",
       "title": "Using Reagents",
       "text": "Using Mermaids Gems as a Base instead of Blaze Powder results in a much more reactive potion. Not only does this allow you to add your new range of additional magical ingredients to your Potions, but also use some of them as additional Reagent. Each of those Reagents modifies the resulting properties of your Potions. Each Reagent can only be used once per recipe."
     },
@@ -162,6 +165,13 @@
       "anchor": "prickly_bayleaf",
       "advancement": "spectrum:lategame/collect_prickly_bayleaf",
       "text": "Greatly reduces the Potency of negative effects or nullifies them entirely."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:jadeite_petals",
+      "anchor": "jadeite_petals",
+      "advancement": "spectrum:hidden/collect_jadeite_petals",
+      "text": "Add 60 seconds duration to positive effects."
     }
   ]
 }

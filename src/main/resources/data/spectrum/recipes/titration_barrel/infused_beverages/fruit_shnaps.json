@@ -47,7 +47,7 @@
         ]
       },
       {
-        "id": "spectrum:health_boost",
+        "id": "minecraft:health_boost",
         "base_duration": 9600,
         "potency": [
           {

@@ -1,14 +1,14 @@
 {
   "name": "Deadly Poison",
   "advancement": "spectrum:hidden/status_effects/deadly_poison",
-  "icon": "spectrum:",
-  "category": "spectrum:status_effects_category",
+  "icon": "minecraft:poisonous_potato",
+  "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:deadly_poison",
-      "text": ""
+      "text": "Normally, poison was something you had to be careful of, but there was never the possibility of being carried away by it. This more potent variant, on the other hand, $(italic)does$() seek your life."
     },
     {
       "type": "patchouli:text",

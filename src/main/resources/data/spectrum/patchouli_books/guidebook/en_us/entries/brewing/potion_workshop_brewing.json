@@ -1,8 +1,10 @@
 {
-  "name": "Potion Works.: Brewing",
+  "name": "Brewing Potions",
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:unlocks/blocks/potion_workshop",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:brewing_category",
+  "priority": true,
+  "sortnum": 0,
   "extra_recipe_mappings": {
     "minecraft:potion": 0
   },
@@ -16,7 +18,7 @@
       "type": "spectrum:potion_workshop_brewing",
       "title": "Vanilla Potion Variants",
       "recipe": "spectrum:potion_workshop_brewing/fire_resistance",
-      "text": "The process of creating Potions with the same effects that you could use before use the same ingredients. Unlike using the Brewing Stand, you can use $(l:magical_blocks/potion_workshop_reagents)Reagents$(/l) to enhance their effects even further."
+      "text": "The process of creating Potions with the same effects that you could use before use the same ingredients. Unlike using the Brewing Stand, you can use $(l:brewing/potion_workshop_reagents)Reagents$(/l) to enhance their effects even further."
     },
     {
       "type": "spectrum:potion_workshop_brewing",
@@ -49,36 +51,43 @@
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Levitation",
-      "advancement": "spectrum:unlocks/potions/levitation_potion",
+      "advancement": "spectrum:unlocks/potions/levitation",
       "recipe": "spectrum:potion_workshop_brewing/levitation",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Luck",
-      "advancement": "spectrum:unlocks/potions/luck_potion",
+      "advancement": "spectrum:unlocks/potions/luck",
       "recipe": "spectrum:potion_workshop_brewing/luck",
       "text": "Adding a Fermented Spider Eye will change the Effect to $(bold)Bad Luck$() instead."
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Resistance",
-      "advancement": "spectrum:unlocks/potions/resistance_potion",
+      "advancement": "spectrum:unlocks/potions/resistance",
       "recipe": "spectrum:potion_workshop_brewing/resistance",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Wither",
-      "advancement": "spectrum:unlocks/potions/wither_potion",
+      "advancement": "spectrum:unlocks/potions/wither",
       "recipe": "spectrum:potion_workshop_brewing/wither",
       "text": ""
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Darkness",
-      "advancement": "spectrum:unlocks/potions/darkness_potion",
+      "advancement": "spectrum:unlocks/potions/darkness",
       "recipe": "spectrum:potion_workshop_brewing/darkness",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_brewing",
+      "title": "Toughness",
+      "advancement": "spectrum:unlocks/potions/toughness",
+      "recipe": "spectrum:potion_workshop_brewing/toughness",
       "text": ""
     }
   ]

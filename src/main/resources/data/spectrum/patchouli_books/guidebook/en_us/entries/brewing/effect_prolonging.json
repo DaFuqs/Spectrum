@@ -1,8 +1,8 @@
 {
-  "name": "Effect Prolonging",
+  "name": "Effect Prolonging (Stacking)",
   "advancement": "spectrum:hidden/status_effects/effect_prolonging",
   "icon": "spectrum:",
-  "category": "spectrum:status_effects_category",
+  "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [
     {
@@ -12,7 +12,8 @@
     },
     {
       "type": "patchouli:text",
-      "text": ""
+      "title": "Stacking Effect",
+      "text": "Getting a level of Effect Prolonging will instead stack additional Levels on top of existing ones, increasing the effects Potency instead of resetting it's duration."
     }
   ]
 }

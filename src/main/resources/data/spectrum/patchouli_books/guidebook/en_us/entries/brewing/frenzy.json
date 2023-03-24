@@ -1,8 +1,8 @@
 {
-  "name": "Frenzy",
+  "name": "Frenzy (Stacking)",
   "advancement": "spectrum:hidden/status_effects/frenzy",
-  "icon": "spectrum:",
-  "category": "spectrum:status_effects_category",
+  "icon": "spectrum:blood_orchid_petal",
+  "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [
     {
@@ -13,7 +13,7 @@
     {
       "type": "patchouli:text",
       "title": "Stacking Effect",
-      "text": "Getting a level of Frenzy will instead stack the new Level on top of the old one, increasing the effects Potency instead of resetting it's duration."
+      "text": "Getting a level of Frenzy will instead stack additional Levels on top of existing ones, increasing the effects Potency instead of resetting it's duration."
     }
   ]
 }

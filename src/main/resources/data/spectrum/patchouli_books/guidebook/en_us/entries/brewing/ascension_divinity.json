@@ -1,0 +1,19 @@
+{
+  "name": "Ascension / Divinity",
+  "advancement": "spectrum:hidden/status_effects/ascension_divinity",
+  "icon": "spectrum:divination_heart",
+  "category": "spectrum:brewing_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:ascension",
+      "text": "The call of heaven, or something like that. A glorious, gathering of forces before $(thing)Divinity$() kicks in."
+    },
+    {
+      "type": "spectrum:status_effect",
+      "status_effect_id": "spectrum:divinity",
+      "text": "Gives you major buffs to all your main attributes.$(br)At the ($(l:creating_life/hardcore_player_revival)close to$(/l)) irreversible cost of your life, should you die."
+    }
+  ]
+}

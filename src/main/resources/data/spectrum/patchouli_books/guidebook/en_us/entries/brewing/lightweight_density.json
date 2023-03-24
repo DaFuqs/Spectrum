@@ -1,8 +1,8 @@
 {
   "name": "Lightweight / Density",
   "advancement": "spectrum:hidden/status_effects/lightweight_density",
-  "icon": "spectrum:",
-  "category": "spectrum:status_effects_category",
+  "icon": "minecraft:feather",
+  "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [
     {

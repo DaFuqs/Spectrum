@@ -18,7 +18,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:prickly_bayleaf",
-      "text": "Harvest by shearing a Sawblade Holly Bush. Can be used as a $(l:magical_blocks/potion_workshop_reagents#prickly_bayleaf)Potion Reagent$() and in cooking."
+      "text": "Harvest by shearing a Sawblade Holly Bush. Can be used as a $(l:brewing/potion_workshop_reagents#prickly_bayleaf)Potion Reagent$() and in cooking."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -14,7 +14,7 @@
       "type": "spectrum:spirit_instiller_crafting",
       "title": "Spirit Inst. Recipe",
       "recipe": "spectrum:spirit_instiller/hardcore_player_revival",
-      "text": "To revive a Player that died in Hardcore, you will need their head, a hefty sum of resources and a bit of time."
+      "text": "To revive a Player that died in Hardcore, you will need $(thing)their individual player head$(), a hefty sum of resources and a bit of time."
     }
   ]
 }

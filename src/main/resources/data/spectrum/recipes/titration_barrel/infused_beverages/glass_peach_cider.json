@@ -14,7 +14,7 @@
     "fermentation_speed_mod": 1.25,
     "effects": [
       {
-        "id": "minecraft:toughness",
+        "id": "spectrum:toughness",
         "base_duration": 9600,
         "potency": [
           {

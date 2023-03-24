@@ -1,8 +1,10 @@
 {
-  "name": "Potion Works.: Crafting",
+  "name": "Workshop Crafting",
   "icon": "spectrum:potion_workshop",
   "advancement": "spectrum:unlocks/blocks/potion_workshop",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:brewing_category",
+  "priority": true,
+  "sortnum": 1,
   "extra_recipe_mappings": {
     "minecraft:water_bucket": 0,
     "minecraft:lava_bucket": 0,
@@ -14,8 +16,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "Workshop Crafting",
-      "text": "As the name implies the Potion Workshops main focus is the creation of powerful Potions.$(br)But you found great utility creating other things, too. With the help of the filigree and granular adjustable switches and valves you could also recreate the creation of Mud and Liquid Crystal here - way more efficient than before.$(br)$()All these recipes do not use $(l:magical_blocks/potion_workshop_reagents)Reagents$(/l)."
+      "text": "As the name implies the Potion Workshops main focus is the creation of powerful Potions.$(br)But you found great utility in it for creating other things, too.$(br)With the help of the filigree and granular adjustable switches and valves you could also recreate the creation of Mud and Liquid Crystal here - way more efficient than before.$(br)$()All these recipes do not use $(l:brewing/potion_workshop_reagents)Reagents$(/l)."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

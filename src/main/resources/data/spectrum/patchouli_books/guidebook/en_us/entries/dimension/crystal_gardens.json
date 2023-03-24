@@ -33,7 +33,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_glass_peach",
       "item": "spectrum:glass_peach",
-      "text": "No, they are not made out of glass, but very much shimmer like they are. They are very much edible, and tasty, too.$(br)Eating one will give you a short burst of $(thing)Toughness$(), which will decrease the damage hard-hitting attacks deal to you. They can also be $(l:magical_items/infused_beverages)fermented$() and $(l:magical_blocks/potion_workshop_brewing)used to brew Potions$()."
+      "text": "No, they are not made out of glass, but very much shimmer like they are. They are very much edible, and tasty, too.$(br)Eating one will give you a short burst of $(thing)Toughness$(), which will decrease the damage hard-hitting attacks deal to you. They can also be $(l:magical_items/infused_beverages)fermented$() and $(l:brewing/potion_workshop_brewing)used to brew Potions$()."
     },
     {
       "type": "patchouli:text",
@@ -44,7 +44,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_jadeite_petals",
       "item": "spectrum:jadeite_petals",
-      "text": "They act as $(l:magical_blocks/potion_workshop_reagents)act as Potion Reagent$()"
+      "text": "They act as $(l:brewing/potion_workshop_reagents)act as Potion Reagent$()"
     }
   ]
 }

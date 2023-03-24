@@ -1,8 +1,8 @@
 {
   "name": "Swiftness / Stiffness",
   "advancement": "spectrum:hidden/status_effects/swiftness_stiffness",
-  "icon": "spectrum:",
-  "category": "spectrum:status_effects_category",
+  "icon": "minecraft:iron_sword",
+  "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [
     {

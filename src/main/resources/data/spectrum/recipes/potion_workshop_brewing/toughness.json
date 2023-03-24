@@ -1,0 +1,18 @@
+{
+  "type": "spectrum:potion_workshop_brewing",
+  "ingredient1": {
+    "item": "minecraft:nether_wart"
+  },
+  "ingredient2": {
+    "item": "spectrum:glass_peach"
+  },
+  "effect": "spectrum:toughness",
+  "base_duration_ticks": 1200,
+  "potency_modifier": 0.5,
+  "applicable_to_potions": true,
+  "applicable_to_tipped_arrows": true,
+  "applicable_to_potion_fillables": true,
+  "ink_color": "pink",
+  "ink_cost": 8,
+  "required_advancement": "spectrum:hidden/collect_glass_peach"
+}

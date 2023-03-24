@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
+import net.minecraft.block.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
 public class JadeVinePetalBlock extends Block {
 	
@@ -14,10 +12,12 @@ public class JadeVinePetalBlock extends Block {
 	}
 	
 	// makes blocks like torches being unable to be placed against it
+	@Override
 	public VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
 		return VoxelShapes.empty();
 	}
 	
+	@Override
 	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
 		return 1;
 	}

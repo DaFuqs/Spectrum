@@ -62,19 +62,24 @@ public class SpectrumStatusEffects {
 	 */
 	public static StatusEffect STIFFNESS = registerStatusEffect("stiffness", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x7e7549))
 			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "91e58b5a-d8d9-4037-a520-18c3d7230502", 2 * -0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-
+	
 	/**
 	 * Reduces incoming magic damage by 1 point / level
 	 */
 	public static StatusEffect MAGIC_ANNULATION = registerStatusEffect("magic_annulation", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x7a1082))
 			.addAttributeModifier(AdditionalEntityAttributes.MAGIC_PROTECTION, "2d307e1f-fcc5-4c53-9821-3a7da4a6ef19", 1, EntityAttributeModifier.Operation.ADDITION);
-
+	
+	/**
+	 * Like poison, but is able to kill
+	 */
+	public static StatusEffect DEADLY_POISON = registerStatusEffect("deadly_poison", new DeadlyPoisonStatusEffect(StatusEffectCategory.HARMFUL, 5149489));
+	
 	/**
 	 * Ouch.
 	 */
 	public static StatusEffect MILLENIA_DISEASE = registerStatusEffect("millenia_disease", new MilleniaDiseaseStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222)
 			.addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, MilleniaDiseaseStatusEffect.ATTRIBUTE_UUID_STRING, -1.0, EntityAttributeModifier.Operation.ADDITION));
-
+	
 	/**
 	 * Gives loads of buffs, but the player will be handled as if they were playing hardcore
 	 */

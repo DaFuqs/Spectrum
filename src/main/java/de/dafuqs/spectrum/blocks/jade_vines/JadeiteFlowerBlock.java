@@ -66,11 +66,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
         if (handStack.isIn(ConventionalItemTags.SHEARS)) {
             int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, handStack);
             int itemCount = random.nextInt(fortuneLevel * 3 + 2) + 1;
-    
-            for (int i = itemCount; i > 0; i--) {
-                ItemScatterer.spawn(world, pos.getX() + random.nextFloat() * 0.6 + 0.2, pos.getY() + random.nextFloat() * 0.6 + 0.2, pos.getZ() + random.nextFloat() * 0.6 + 0.2, new ItemStack(SpectrumItems.JADEITE_PETALS));
-            }
-    
+            player.getInventory().offerOrDrop(new ItemStack(SpectrumItems.JADEITE_PETALS, itemCount));
             world.breakBlock(pos, false);
     
             var amount = random.nextInt(32) + 16;

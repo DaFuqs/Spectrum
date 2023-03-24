@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.*;
@@ -86,7 +85,7 @@ public class AloeBlock extends PlantBlock implements Fertilizable {
                 return ActionResult.SUCCESS;
             } else {
                 world.setBlockState(pos, state.with(AGE, age - 1));
-                Support.givePlayer(player, this.asItem().getDefaultStack());
+                player.getInventory().offerOrDrop(this.asItem().getDefaultStack());
                 world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
                 return ActionResult.CONSUME;
             }

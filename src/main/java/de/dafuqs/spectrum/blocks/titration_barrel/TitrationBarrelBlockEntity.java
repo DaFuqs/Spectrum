@@ -218,7 +218,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			if (remainderItem != null) {
 				ItemStack remainderStack = remainderItem.getDefaultStack();
 				remainderStack.setCount(stack.getCount());
-				Support.givePlayer(player, remainderStack);
+				player.getInventory().offerOrDrop(remainderStack);
 			}
 		}
 	}

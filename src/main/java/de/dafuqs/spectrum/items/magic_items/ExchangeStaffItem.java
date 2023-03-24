@@ -144,7 +144,7 @@ public class ExchangeStaffItem extends BuildingStaffItem implements EnchanterEnc
 					Item finalExchangedForBlockItem = exchangedForBlockItem;
 					player.getInventory().remove(stack -> stack.getItem().equals(finalExchangedForBlockItem), targetPositions.size(), player.getInventory());
 					for (ItemStack stack : stacks) {
-						Support.givePlayer(player, stack);
+						player.getInventory().offerOrDrop(stack);
 					}
 					InkPowered.tryDrainEnergy(player, USED_COLOR, (long) targetPositions.size() * INK_COST_PER_BLOCK);
 				}

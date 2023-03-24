@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -156,7 +155,7 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 			} else {
 				world.setBlockState(pos, state.with(AGE, 0));
 				int randomCount = world.random.nextBetween(2, 3);
-				Support.givePlayer(player, new ItemStack(Items.GUNPOWDER, randomCount));
+				player.getInventory().offerOrDrop(new ItemStack(Items.GUNPOWDER, randomCount));
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 0.9F + world.random.nextFloat() * 0.2F);
 				return ActionResult.CONSUME;
 			}

@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
@@ -31,9 +30,10 @@ public class NephriteBlossomLeavesBlock extends LeavesBlock implements Fertiliza
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(AGE) == MAX_AGE) {
-            ItemStack handStack = player.getStackInHand(hand);
+			ItemStack handStack = player.getStackInHand(hand);
 			int fortuneLevel = EnchantmentHelper.getLevel(Enchantments.FORTUNE, handStack) / 2;
-			Support.givePlayer(player, new ItemStack(SpectrumItems.GLASS_PEACH, 1 + world.getRandom().nextInt(fortuneLevel + 1)));
+			int count = 1 + world.getRandom().nextInt(fortuneLevel + 1);
+			player.getInventory().offerOrDrop(new ItemStack(SpectrumItems.GLASS_PEACH, count));
 	
 			world.setBlockState(pos, state.with(AGE, 0));
 			player.playSound(SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1, 1 + player.getRandom().nextFloat() * 0.25F);

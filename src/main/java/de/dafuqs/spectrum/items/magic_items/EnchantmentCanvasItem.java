@@ -79,7 +79,7 @@ public class EnchantmentCanvasItem extends Item {
 			canvasStack = canvasStack.split(1);
 			SpectrumEnchantmentHelper.setStoredEnchantments(targetEnchantments, canvasStack);
 			EnchantmentHelper.set(canvasEnchantments, targetStack);
-			Support.givePlayer(player, canvasStack);
+			player.getInventory().offerOrDrop(canvasStack);
 		}
 
 		return true;

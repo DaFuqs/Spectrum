@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.entity.entity;
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.entity.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.id.incubus_core.blocklikeentities.api.*;
@@ -112,7 +111,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 			} else {
 				Item item = this.blockState.getBlock().asItem();
 				if (item != null) {
-					Support.givePlayer(player, item.getDefaultStack());
+					player.getInventory().offerOrDrop(item.getDefaultStack());
 				}
 				this.discard();
 				return ActionResult.CONSUME;

@@ -123,18 +123,19 @@ public class JadeiteLotusStemBlock extends PlantBlock implements Waterloggable {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        var floor = state.get(INVERTED) ? pos.down() : pos.up();
-        if (!canPlantOnTop(world.getBlockState(floor), world, floor))
-            world.breakBlock(pos, true);
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(STEM_PART, INVERTED, WATERLOGGED);
-        super.appendProperties(builder);
-    }
-
-    public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
-    }
+		var floor = state.get(INVERTED) ? pos.down() : pos.up();
+		if (!canPlantOnTop(world.getBlockState(floor), world, floor))
+			world.breakBlock(pos, true);
+	}
+	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(STEM_PART, INVERTED, WATERLOGGED);
+		super.appendProperties(builder);
+	}
+	
+	@Override
+	public FluidState getFluidState(BlockState state) {
+		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+	}
 }

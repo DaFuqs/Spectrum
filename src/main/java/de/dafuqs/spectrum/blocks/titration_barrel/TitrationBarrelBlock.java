@@ -157,7 +157,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 						} else {
 							ItemStack harvestedStack = barrelEntity.tryHarvest(world, pos, state, player.getStackInHand(hand), player);
 							if (!harvestedStack.isEmpty()) {
-								Support.givePlayer(player, harvestedStack);
+								player.getInventory().offerOrDrop(harvestedStack);
 								world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 							}
 						}
@@ -172,7 +172,7 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	private void tryExtractLastStack(BlockState state, World world, BlockPos pos, PlayerEntity player, TitrationBarrelBlockEntity barrelEntity) {
 		Optional<ItemStack> stack = InventoryHelper.extractLastStack(barrelEntity.inventory);
 		if (stack.isPresent()) {
-			Support.givePlayer(player, stack.get());
+			player.getInventory().offerOrDrop(stack.get());
 			barrelEntity.markDirty();
 			if (barrelEntity.inventory.isEmpty() && barrelEntity.getFluidVariant().isBlank()) {
 				world.setBlockState(pos, state.with(BARREL_STATE, BarrelState.EMPTY));

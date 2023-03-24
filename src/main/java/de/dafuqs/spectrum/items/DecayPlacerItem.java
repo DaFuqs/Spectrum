@@ -33,7 +33,7 @@ public class DecayPlacerItem extends AliasedBlockItem {
 			}
 		}
 		if (!context.getWorld().isClient && actionResult.isAccepted() && context.getPlayer() != null && !context.getPlayer().isCreative()) {
-			context.getPlayer().giveItemStack(Items.GLASS_BOTTLE.getDefaultStack());
+			context.getPlayer().getInventory().offerOrDrop(Items.GLASS_BOTTLE.getDefaultStack());
 		}
 		return actionResult;
 	}

@@ -5,7 +5,6 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.fluid.*;
 import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.enchantments.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.particle.*;
@@ -544,7 +543,7 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 			int experienceAmount = this.random.nextInt((int) (6 * exuberanceMod) + 1);
 			
 			if (this.inventoryInsertion) {
-				Support.givePlayer(playerEntity, itemStack);
+				playerEntity.getInventory().offerOrDrop(itemStack);
 				playerEntity.addExperience(experienceAmount);
 			} else {
 				// fireproof item, so it does not burn when fishing in lava

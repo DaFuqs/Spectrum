@@ -1,27 +1,19 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public abstract class InWorldInteractionBlock extends BlockWithEntity {
 	
@@ -93,7 +85,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		if (player.isSneaking()) {
 			ItemStack retrievedStack = blockEntity.removeStack(slot);
 			if (!retrievedStack.isEmpty()) {
-				player.giveItemStack(retrievedStack);
+				player.getInventory().offerOrDrop(retrievedStack);
 				itemsChanged = true;
 			}
 		} else {
@@ -110,7 +102,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 				}
 				if (!currentStack.isEmpty()) {
 					blockEntity.setStack(slot, ItemStack.EMPTY);
-					player.giveItemStack(currentStack);
+					player.getInventory().offerOrDrop(currentStack);
 					itemsChanged = true;
 				}
 			}
@@ -130,7 +122,7 @@ public abstract class InWorldInteractionBlock extends BlockWithEntity {
 		if (player.getStackInHand(hand).isEmpty()) {
 			player.setStackInHand(hand, retrievedStack);
 		} else {
-			Support.givePlayer(player, retrievedStack);
+			player.getInventory().offerOrDrop(retrievedStack);
 		}
 		world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.8F, 0.8F + world.random.nextFloat() * 0.6F);
 		return true;

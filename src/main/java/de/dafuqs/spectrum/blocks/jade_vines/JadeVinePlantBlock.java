@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.advancement.criterion.*;
@@ -114,7 +113,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 
 						List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, handStack, NECTAR_HARVESTING_LOOT_IDENTIFIER);
 						for (ItemStack harvestedStack : harvestedStacks) {
-							Support.givePlayer(player, harvestedStack);
+							player.getInventory().offerOrDrop(harvestedStack);
 						}
 
 						return ActionResult.CONSUME;
@@ -136,7 +135,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 
 				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), PETAL_HARVESTING_LOOT_IDENTIFIER);
 				for (ItemStack harvestedStack : harvestedStacks) {
-					Support.givePlayer(player, harvestedStack);
+					player.getInventory().offerOrDrop(harvestedStack);
 				}
 
 				return ActionResult.CONSUME;

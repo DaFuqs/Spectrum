@@ -4,12 +4,9 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import net.minecraft.advancement.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
 import net.minecraft.server.*;
 import net.minecraft.server.network.*;
-import net.minecraft.sound.*;
 import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -121,33 +118,6 @@ public class Support {
 			return "99";
 		} else {
 			return DF.format(Math.round(result * 100L));
-		}
-	}
-	
-	/**
-	 * Adds a stack to the players inventory.
-	 * If there is not enough room drop it on the ground instead
-	 *
-	 * @param playerEntity The player to give the stack to
-	 * @param itemStack    The item stack
-	 */
-	public static void givePlayer(PlayerEntity playerEntity, ItemStack itemStack) {
-		boolean insertInventorySuccess = playerEntity.getInventory().insertStack(itemStack);
-		if (insertInventorySuccess && itemStack.isEmpty()) {
-			itemStack.setCount(1);
-			ItemEntity itemEntity = playerEntity.dropItem(itemStack, false);
-			if (itemEntity != null) {
-				itemEntity.setDespawnImmediately();
-			}
-			
-			playerEntity.world.playSound(null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((playerEntity.getRandom().nextFloat() - playerEntity.getRandom().nextFloat()) * 0.7F + 1.0F) * 2.0F);
-			playerEntity.currentScreenHandler.sendContentUpdates();
-		} else {
-			ItemEntity itemEntity = playerEntity.dropItem(itemStack, false);
-			if (itemEntity != null) {
-				itemEntity.resetPickupDelay();
-				itemEntity.setOwner(playerEntity.getUuid());
-			}
 		}
 	}
 	

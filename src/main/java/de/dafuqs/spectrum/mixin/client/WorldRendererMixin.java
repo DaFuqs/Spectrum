@@ -27,7 +27,7 @@ import oshi.util.tuples.*;
 import java.util.*;
 
 @Environment(EnvType.CLIENT)
-@Mixin(value = WorldRenderer.class)
+@Mixin(WorldRenderer.class)
 public abstract class WorldRendererMixin {
 	
 	@Shadow

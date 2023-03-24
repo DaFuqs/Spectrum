@@ -1,39 +1,28 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.inventories.CraftingTabletScreenHandler;
-import de.dafuqs.spectrum.items.tooltip.CraftingTabletTooltipData;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.item.TooltipData;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.tooltip.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.recipe.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class CraftingTabletItem extends Item implements LoomPatternProvider {
 	
@@ -107,10 +96,10 @@ public class CraftingTabletItem extends Item implements LoomPatternProvider {
 			List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(ingredients, playerInventory);
 			
 			ItemStack craftingResult = recipe.getOutput().copy();
-			Support.givePlayer(serverPlayerEntity, craftingResult);
+			serverPlayerEntity.getInventory().offerOrDrop(craftingResult);
 			
 			for (ItemStack remainder : remainders) {
-				Support.givePlayer(serverPlayerEntity, remainder);
+				serverPlayerEntity.getInventory().offerOrDrop(remainder);
 			}
 		}
 	}

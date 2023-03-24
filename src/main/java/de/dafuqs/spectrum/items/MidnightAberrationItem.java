@@ -1,24 +1,19 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.items.conditional.CloakedItem;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.items.conditional.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class MidnightAberrationItem extends CloakedItem {
 	
@@ -39,7 +34,7 @@ public class MidnightAberrationItem extends CloakedItem {
 			// check if it's a real stack in the player's inventory or just a proxy item (like from the Bottomless Bundle)
 			if (playerEntity.getInventory().getStack(slot).getItem() instanceof MidnightAberrationItem && world.random.nextFloat() < 0.2F) {
 				stack.decrement(1);
-				Support.givePlayer(playerEntity, Items.GUNPOWDER.getDefaultStack());
+				playerEntity.getInventory().offerOrDrop(Items.GUNPOWDER.getDefaultStack());
 				world.playSoundFromEntity(null, playerEntity, SpectrumSoundEvents.MIDNIGHT_ABERRATION_CRUMBLING, SoundCategory.PLAYERS, 0.5F, 1.0F);
 			}
 		}

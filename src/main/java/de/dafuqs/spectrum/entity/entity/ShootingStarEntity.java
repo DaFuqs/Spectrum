@@ -1,59 +1,41 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarBlock;
-import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffectAlwaysShow;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.Packet;
-import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.data.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.loot.*;
+import net.minecraft.loot.context.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.particle.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.stat.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockLocating;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.*;
 
 public class ShootingStarEntity extends Entity {
 	
@@ -336,7 +318,7 @@ public class ShootingStarEntity extends Entity {
 			
 			ItemStack itemStack = this.getShootingStarType().getBlock().asItem().getDefaultStack();
 			int i = itemStack.getCount();
-			Support.givePlayer(player, itemStack);
+			player.getInventory().offerOrDrop(itemStack);
 			
 			Support.grantAdvancementCriterion((ServerPlayerEntity) player, "catch_shooting_star", "catch");
 			player.increaseStat(Stats.PICKED_UP.getOrCreateStat(itemStack.getItem()), i);
@@ -543,7 +525,7 @@ public class ShootingStarEntity extends Entity {
 	public ActionResult interact(PlayerEntity player, Hand hand) {
 		if (!this.world.isClient && player.isSneaking()) {
 			world.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
-			Support.givePlayer(player, ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits, this.dataTracker.get(HARDENED)));
+			player.getInventory().offerOrDrop(ShootingStarItem.getWithRemainingHits((ShootingStarItem) this.asItem(), this.availableHits, this.dataTracker.get(HARDENED)));
 			this.discard();
 			return ActionResult.CONSUME;
 		} else {

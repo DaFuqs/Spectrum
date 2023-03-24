@@ -23,8 +23,8 @@ import org.jetbrains.annotations.*;
 
 public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 	
-	protected static final IntProperty AGE = Properties.AGE_4;
-	protected static final int AGE_MAX = Properties.AGE_4_MAX;
+	public static final IntProperty AGE = Properties.AGE_4;
+	public static final int AGE_MAX = Properties.AGE_4_MAX;
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 9.0, 12.0);
 	protected static final double GROW_CHANCE = 0.2;
 	

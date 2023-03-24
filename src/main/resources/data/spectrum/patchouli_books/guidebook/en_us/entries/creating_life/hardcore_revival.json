@@ -1,0 +1,20 @@
+{
+  "name": "Hardcore Revival",
+  "icon": "spectrum:divination_heart",
+  "advancement": "spectrum:midgame/build_spirit_instiller_structure",
+  "category": "spectrum:creating_life_category",
+  "extra_recipe_mappings": {},
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "title": "Hardcore Player Revival",
+      "text": "TODO"
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "title": "Spirit Inst. Recipe",
+      "recipe": "spectrum:spirit_instiller/hardcore_player_revival",
+      "text": "To revive a Player that died in Hardcore, you will need their head, a hefty sum of resources and a bit of time."
+    }
+  ]
+}

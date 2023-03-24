@@ -1,0 +1,126 @@
+{
+  "type": "spectrum:titration_barrel",
+  "group": "infused_beverages",
+  "ingredients": [
+    {
+      "item": "minecraft:apple",
+      "count": 4
+    },
+    {
+      "item": "spectrum:glass_peach",
+      "count": 4
+    },
+    {
+      "item": "minecraft:sweet_berries",
+      "count": 2
+    }
+  ],
+  "min_fermentation_time_hours": 24,
+  "fluid": "minecraft:water",
+  "tapping_item": "minecraft:glass_bottle",
+  "fermentation_data": {
+    "fermentation_speed_mod": 0.125,
+    "effects": [
+      {
+        "id": "minecraft:speed",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "potency": 0
+          },
+          {
+            "min_alc": 35,
+            "potency": 1
+          },
+          {
+            "min_alc": 45,
+            "potency": 2
+          },
+          {
+            "min_alc": 55,
+            "potency": 3
+          },
+          {
+            "min_alc": 65,
+            "potency": 4
+          }
+        ]
+      },
+      {
+        "id": "spectrum:health_boost",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 40,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 40,
+            "min_thickness": 2.0,
+            "potency": 1
+          },
+          {
+            "min_alc": 40,
+            "min_thickness": 2.5,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "spectrum:toughness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_alc": 40,
+            "min_thickness": 1.5
+          },
+          {
+            "min_alc": 40,
+            "min_thickness": 2.0,
+            "potency": 1
+          },
+          {
+            "min_alc": 40,
+            "min_thickness": 2.5,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:weakness",
+        "base_duration": 9600,
+        "potency": [
+          {
+            "min_thickness": 2
+          },
+          {
+            "min_thickness": 3,
+            "potency": 1
+          },
+          {
+            "min_thickness": 4,
+            "potency": 2
+          }
+        ]
+      },
+      {
+        "id": "minecraft:poison",
+        "base_duration": 600,
+        "potency": [
+          {
+            "min_thickness": 3
+          },
+          {
+            "min_alc": 60
+          }
+        ]
+      }
+    ]
+  },
+  "result": {
+    "item": "spectrum:infused_beverage",
+    "count": 4,
+    "nbt": "{Variant: \"fruit_shnaps\", Color: 14450014 }"
+  },
+  "required_advancement": "spectrum:unlocks/items/unlock_glass_peach_titration"
+}

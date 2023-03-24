@@ -15,11 +15,10 @@ public class SpectrumFoodComponents {
 			.hunger(4).saturationModifier(0.6F)
 			.statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 2), 0.2F)
 			.build();
-
+	
 	public static final FoodComponent GLASS_PEACH = new FoodComponent.Builder()
-			.hunger(4).saturationModifier(1F)
-			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.IMMUNITY, 100, 0), 0.05F)
-			.snack()
+			.hunger(3).saturationModifier(0.6F)
+			.statusEffect(new StatusEffectInstance(SpectrumStatusEffects.TOUGHNESS, 300, 0), 0.05F)
 			.build();
 	
 	public static final FoodComponent STAR_CANDY = new FoodComponent.Builder()

@@ -60,6 +60,7 @@
     "accessors.ShapedRecipeAccessor",
     "accessors.ShulkerEntityAccessor",
     "accessors.SlimeEntityAccessor",
+    "accessors.StatusEffectInstanceAccessor",
     "accessors.TridentEntityAccessor"
   ],
   "client": [

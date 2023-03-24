@@ -8,6 +8,7 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -247,8 +248,9 @@ public abstract class LivingEntityMixin {
 	}
 	
 	@Inject(method = "addStatusEffect(Lnet/minecraft/entity/effect/StatusEffectInstance;Lnet/minecraft/entity/Entity;)Z", at = @At(value = "INVOKE", target = "Ljava/util/Map;get(Ljava/lang/Object;)Ljava/lang/Object;"), cancellable = true)
-	public void spectrum$addStackableStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
-		if (effect.getEffectType() instanceof StackableStatusEffect) {
+	public void spectrum$addStatusEffect(StatusEffectInstance effect, Entity source, CallbackInfoReturnable<Boolean> cir) {
+		StatusEffect effectType = effect.getEffectType();
+		if (effectType instanceof StackableStatusEffect) {
 			if (!SpectrumStatusEffects.effectsAreGettingStacked) {
 				if (this.canHaveStatusEffect(effect)) {
 					StatusEffectInstance existingInstance = getStatusEffect(effect.getEffectType());
@@ -266,6 +268,11 @@ public abstract class LivingEntityMixin {
 				}
 			} else {
 				SpectrumStatusEffects.effectsAreGettingStacked = false;
+			}
+		} else if (EffectProlongingStatusEffect.canBeExtended(effectType)) {
+			StatusEffectInstance effectProlongingInstance = this.getStatusEffect(SpectrumStatusEffects.EFFECT_PROLONGING);
+			if (effectProlongingInstance != null) {
+				((StatusEffectInstanceAccessor) effect).setDuration(EffectProlongingStatusEffect.getExtendedDuration(effect.getDuration(), effectProlongingInstance.getAmplifier()));
 			}
 		}
 	}

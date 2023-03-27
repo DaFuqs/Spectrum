@@ -46,29 +46,37 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 		BlockPos topPos = pos.up();
 		BlockState topState = world.getBlockState(topPos);
 		if (topState.isAir() && !topState.isOpaqueFullCube(world, topPos)) {
-			float soundRandom = random.nextFloat();
-			if (soundRandom < 0.0003F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_HONEY_BOTTLE_DRINK, SoundCategory.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat() * 0.2F, false);
-			} else if (soundRandom < 0.0004F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.MUD_AMBIENT, SoundCategory.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat() * 0.2F, false);
-			} else if (soundRandom < 0.0006F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_HONEY_BLOCK_SLIDE, SoundCategory.AMBIENT, random.nextFloat() * 0.4F + 0.25F, random.nextFloat() * 0.5F + 0.1F, false);
-			} else if (soundRandom < 0.0007F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_FROG_AMBIENT, SoundCategory.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.3F + 0.01F, false);
-			} else if (soundRandom < 0.0009F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_SCULK_PLACE, SoundCategory.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.4F + 0.2F, false);
-			} else if (soundRandom < 0.001F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_HONEY_BLOCK_STEP, SoundCategory.AMBIENT, random.nextFloat() * 2F, 0.1F, false);
-			} else if (soundRandom < 0.0011F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_VILLAGER_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
-			} else if (soundRandom < 0.0012F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_PARROT_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
-			} else if (soundRandom < 0.0013F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_CAT_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
-			} else if (soundRandom < 0.0014F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WOLF_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.3F + 0.1F, 1F, false);
-			} else if (soundRandom < 0.00141F) {
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_SCULK_SHRIEKER_SHRIEK, SoundCategory.AMBIENT, 2F, 0.1F, false);
+			for (int i = 0; i < random.nextInt(4); i++) {
+
+				// Daf. I blame you for this. Why did you set the conditions up such that it is such a pain in the ass to finetune them
+
+				float soundRandom = random.nextFloat();
+				if (soundRandom < 0.000075F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ITEM_HONEY_BOTTLE_DRINK, SoundCategory.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat() * 0.2F, false);
+				} else if (soundRandom < 0.00012F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.MUD_AMBIENT, SoundCategory.AMBIENT, random.nextFloat() * 0.65F + 0.25F, random.nextFloat() * 0.2F, false);
+				} else if (soundRandom < 0.00015F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_HONEY_BLOCK_SLIDE, SoundCategory.AMBIENT, random.nextFloat() * 0.4F + 0.25F, random.nextFloat() * 0.5F + 0.1F, false);
+				} else if (soundRandom < 0.0002F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_FROG_AMBIENT, SoundCategory.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.3F + 0.01F, false);
+				} else if (soundRandom < 0.00025F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_SCULK_PLACE, SoundCategory.AMBIENT, random.nextFloat() + 0.25F, random.nextFloat() * 0.4F + 0.2F, false);
+				} else if (soundRandom < 0.00035F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_HONEY_BLOCK_STEP, SoundCategory.AMBIENT, random.nextFloat() * 2F, 0.1F, false);
+				} else if (soundRandom < 0.00036F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_VILLAGER_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
+				} else if (soundRandom < 0.00037F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_PARROT_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
+				} else if (soundRandom < 0.00038F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_CAT_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.334F + 0.1F, 1F, false);
+				} else if (soundRandom < 0.00039F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WOLF_DEATH, SoundCategory.AMBIENT, random.nextFloat() * 0.3F + 0.1F, 1F, false);
+				} else if (soundRandom < 0.000391F) {
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_SCULK_SHRIEKER_SHRIEK, SoundCategory.AMBIENT, 2F, 0.1F, false);
+				}
+
+				//whyyyyyyyyyyyyy
+
 			}
 		}
 	}

@@ -81,12 +81,12 @@ public class DoomBloomBlock extends PlantBlock implements Fertilizable {
 		super.randomDisplayTick(state, world, pos, random);
 		if (state.get(AGE) == AGE_MAX) {
 			int r = random.nextInt(100);
-			if (r < 10) {
+			if (r < 16) {
 				double posX = (double) pos.getX() + 0.25D + random.nextDouble() * 0.5D;
 				double posY = (double) pos.getY() + random.nextDouble() * 0.5D;
 				double posZ = (double) pos.getZ() + 0.25D + random.nextDouble() * 0.5D;
 				world.addParticle(ParticleTypes.LAVA, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
-				if (r == 0) {
+				if (r < 2) {
 					world.playSound(posX, posY, posZ, SoundEvents.BLOCK_LAVA_POP, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.2F, 0.9F + random.nextFloat() * 0.15F, false);
 				}
 			}

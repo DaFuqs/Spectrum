@@ -1569,6 +1569,7 @@
   "block.spectrum.line_teleporting_mob_block.tooltip": "§7Teleports you on top of the next block of this type ",
   "block.spectrum.line_teleporting_mob_block.tooltip2": "§7in a straight line within %d blocks",
   "block.spectrum.feeding_mob_block.tooltip": "§7Feeds animals in a range of %d§7 blocks using food on the ground",
+  "block.spectrum.villager_converting_mob_block.tooltip": "§7Converts Villagers to Zombie Villagers",
   "block.spectrum.incandescent_amalgam": "Incandescent Amalgam",
   "block.spectrum.incandescent_amalgam.tooltip": "§6⚠§r High yield magical explosive, handle with care",
   "item.spectrum.tooltip.loom_pattern_available": "✿ Usable as Banner Pattern",

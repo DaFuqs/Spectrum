@@ -1138,7 +1138,7 @@ public class SpectrumBlocks {
 	public static final Block WITCH_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITCH_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT, StatusEffects.WEAKNESS, 0, 200);
 	public static final Block WITHER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_MOB_BLOCK), ParticleTypes.EXPLOSION, 7.0F, true, Explosion.DestructionType.BREAK);
 	public static final Block WITHER_SKELETON_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_SKELETON_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT, StatusEffects.WITHER, 0, 100);
-	public static final Block ZOMBIE_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ZOMBIE_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT, StatusEffects.HUNGER, 7, 200);
+	public static final Block ZOMBIE_MOB_BLOCK = new VillagerConvertingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ZOMBIE_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT);
 	
 	private static boolean never(BlockState state, BlockView world, BlockPos pos, EntityType<?> type) {
 		return false;

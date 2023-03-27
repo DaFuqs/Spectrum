@@ -1,22 +1,18 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class StatusEffectMobBlock extends MobBlock {
 	
@@ -51,6 +47,5 @@ public class StatusEffectMobBlock extends MobBlock {
 		}
 		return false;
 	}
-	
 	
 }

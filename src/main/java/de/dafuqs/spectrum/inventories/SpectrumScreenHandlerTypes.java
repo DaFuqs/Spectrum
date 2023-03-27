@@ -22,6 +22,7 @@ public class SpectrumScreenHandlerTypes {
     public static ScreenHandlerType<ColorPickerScreenHandler> COLOR_PICKER;
     public static ScreenHandlerType<CinderhearthScreenHandler> CINDERHEARTH;
     public static ScreenHandlerType<FilteringScreenHandler> FILTERING;
+	public static ScreenHandlerType<BagOfHoldingScreenHandler> BAG_OF_HOLDING;
 
     public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER1_9X3;
     public static ScreenHandlerType<GenericSpectrumContainerScreenHandler> GENERIC_TIER2_9X3;
@@ -55,7 +56,8 @@ public class SpectrumScreenHandlerTypes {
         BLACK_HOLE_CHEST = registerExtended(SpectrumScreenHandlerIDs.BLACK_HOLE_CHEST, BlackHoleChestScreenHandler::new);
         COLOR_PICKER = registerExtended(SpectrumScreenHandlerIDs.COLOR_PICKER, ColorPickerScreenHandler::new);
         CINDERHEARTH = registerExtended(SpectrumScreenHandlerIDs.CINDERHEARTH, CinderhearthScreenHandler::new);
-        FILTERING = registerExtended(SpectrumScreenHandlerIDs.FILTERING, FilteringScreenHandler::new);
+		FILTERING = registerExtended(SpectrumScreenHandlerIDs.FILTERING, FilteringScreenHandler::new);
+		BAG_OF_HOLDING = registerSimple(SpectrumScreenHandlerIDs.BAG_OF_HOLDING, BagOfHoldingScreenHandler::new);
 
         CRAFTING_TABLET = registerSimple(SpectrumScreenHandlerIDs.CRAFTING_TABLET, CraftingTabletScreenHandler::new);
         RESTOCKING_CHEST = registerSimple(SpectrumScreenHandlerIDs.RESTOCKING_CHEST, RestockingChestScreenHandler::new);
@@ -89,7 +91,8 @@ public class SpectrumScreenHandlerTypes {
         HandledScreens.register(SpectrumScreenHandlerTypes.POTION_WORKSHOP, PotionWorkshopScreen::new);
         HandledScreens.register(SpectrumScreenHandlerTypes.COLOR_PICKER, ColorPickerScreen::new);
         HandledScreens.register(SpectrumScreenHandlerTypes.CINDERHEARTH, CinderhearthScreen::new);
-        HandledScreens.register(SpectrumScreenHandlerTypes.FILTERING, FilteringScreen::new);
+		HandledScreens.register(SpectrumScreenHandlerTypes.FILTERING, FilteringScreen::new);
+		HandledScreens.register(SpectrumScreenHandlerTypes.BAG_OF_HOLDING, GenericContainerScreen::new);
 
         HandledScreens.register(SpectrumScreenHandlerTypes.GENERIC_TIER1_9X3, SpectrumGenericContainerScreen::new);
         HandledScreens.register(SpectrumScreenHandlerTypes.GENERIC_TIER2_9X3, SpectrumGenericContainerScreen::new);

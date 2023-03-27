@@ -19,6 +19,7 @@ public class SpectrumScreenHandlerIDs {
     public static Identifier COLOR_PICKER;
     public static Identifier CINDERHEARTH;
     public static Identifier FILTERING;
+	public static Identifier BAG_OF_HOLDING;
 
     public static Identifier GENERIC_TIER1_9x3;
     public static Identifier GENERIC_TIER2_9x3;
@@ -46,7 +47,8 @@ public class SpectrumScreenHandlerIDs {
         POTION_WORKSHOP = SpectrumCommon.locate("potion_workshop");
         COLOR_PICKER = SpectrumCommon.locate("color_picker");
         CINDERHEARTH = SpectrumCommon.locate("cinderhearth");
-        FILTERING = SpectrumCommon.locate("filtering");
+		FILTERING = SpectrumCommon.locate("filtering");
+		BAG_OF_HOLDING = SpectrumCommon.locate("bag_of_holding");
 
         GENERIC_TIER1_9x3 = SpectrumCommon.locate("generic_tier1_9x3");
         GENERIC_TIER2_9x3 = SpectrumCommon.locate("generic_tier2_9x3");

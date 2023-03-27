@@ -350,7 +350,7 @@ public class SpectrumItems {
 	public static final Item EGG_LAYING_WOOLY_PIG_SPAWN_EGG = new SpawnEggItem(SpectrumEntityTypes.EGG_LAYING_WOOLY_PIG, 0x4e3842, 0xffe6c2, (new Item.Settings()).group(ItemGroup.MISC));
 	
 	// Magical Tools
-	public static final Item BAG_OF_HOLDING = new EnderBagItem(Tab.EQUIPMENT.settings(1));
+	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(Tab.EQUIPMENT.settings(1));
 	public static final Item RADIANCE_STAFF = new RadianceStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item NATURES_STAFF = new NaturesStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item CONSTRUCTORS_STAFF = new PlacementStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));

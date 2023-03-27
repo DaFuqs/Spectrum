@@ -1,19 +1,17 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EnderChestInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.GenericContainerScreenHandler;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.inventories.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-public class EnderBagItem extends Item {
+public class BagOfHoldingItem extends Item {
 	
-	public EnderBagItem(Settings settings) {
+	public BagOfHoldingItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -24,7 +22,7 @@ public class EnderBagItem extends Item {
 		EnderChestInventory enderChestInventory = user.getEnderChestInventory();
 		if (enderChestInventory != null) {
 			user.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, playerx) -> {
-				return GenericContainerScreenHandler.createGeneric9x3(syncId, inventory, enderChestInventory);
+				return new BagOfHoldingScreenHandler(syncId, playerx.getInventory(), playerx.getEnderChestInventory());
 			}, Text.translatable("container.enderchest")));
 			
 			return TypedActionResult.consume(itemStack);

@@ -26,13 +26,13 @@ public class DDConfiguredFeatures extends WorldgenHelper {
 			new GilledFungusFeatureConfig(SpectrumBlocks.SHIMMEL.getDefaultState(), SpectrumBlocks.IVORY_NOXCAP_CAP.getDefaultState(), SpectrumBlocks.IVORY_NOXCAP_GILLS.getDefaultState(), SpectrumBlocks.IVORY_NOXCAP_STEM.getDefaultState()));
 	public static final ConfiguredFeature<GilledFungusFeatureConfig, ?> SLATE_NOXFUNGUS = new ConfiguredFeature<>(SpectrumFeatures.GILLED_FUNGUS,
 			new GilledFungusFeatureConfig(SpectrumBlocks.SHIMMEL.getDefaultState(), SpectrumBlocks.SLATE_NOXCAP_CAP.getDefaultState(), SpectrumBlocks.SLATE_NOXCAP_GILLS.getDefaultState(), SpectrumBlocks.SLATE_NOXCAP_STEM.getDefaultState()));
-
+	
 	public static final ConfiguredFeature<RandomPatchFeatureConfig, ?> RED_DRAGONJAGS = new ConfiguredFeature<>(Feature.RANDOM_PATCH,
 			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.SMALL_RED_DRAGONJAG.getDefaultState()))));
 	public static final ConfiguredFeature<RandomPatchFeatureConfig, ?> PINK_DRAGONJAGS = new ConfiguredFeature<>(Feature.RANDOM_PATCH,
 			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.SMALL_PINK_DRAGONJAG.getDefaultState()))));
-	public static final ConfiguredFeature<RandomPatchFeatureConfig, ?> GREEN_DRAGONJAGS = new ConfiguredFeature<>(Feature.RANDOM_PATCH,
-			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.SMALL_GREEN_DRAGONJAG.getDefaultState()))));
+	public static final ConfiguredFeature<RandomPatchFeatureConfig, ?> YELLOW_DRAGONJAGS = new ConfiguredFeature<>(Feature.RANDOM_PATCH,
+			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.SMALL_YELLOW_DRAGONJAG.getDefaultState()))));
 	public static final ConfiguredFeature<RandomPatchFeatureConfig, ?> PURPLE_DRAGONJAGS = new ConfiguredFeature<>(Feature.RANDOM_PATCH,
 			ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(SimpleBlockStateProvider.of(SpectrumBlocks.SMALL_PURPLE_DRAGONJAG.getDefaultState()))));
 	public static final ConfiguredFeature<RandomPatchFeatureConfig, ?> BLACK_DRAGONJAGS = new ConfiguredFeature<>(Feature.RANDOM_PATCH,

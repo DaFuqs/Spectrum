@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.blocks.dd_deco;
 import de.dafuqs.spectrum.deeper_down.*;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
+import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -14,12 +15,15 @@ import net.minecraft.world.*;
 import java.util.*;
 
 public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fertilizable {
-
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
+    
+    protected static final VoxelShape SHAPE_UPPER = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 7.0, 14.0);
+    protected static final VoxelShape SHAPE_UPPER_DEAD = Block.createCuboidShape(2.0, 0.0, 2.0, 10.0, 3.0, 14.0);
+    protected static final VoxelShape SHAPE_LOWER = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
+    
     public static final BooleanProperty DEAD = BooleanProperty.of("dead");
     protected static final Map<Dragonjag.Variant, TallDragonjagBlock> VARIANTS = new HashMap<>();
     protected final Dragonjag.Variant variant;
-
+    
     public TallDragonjagBlock(Settings settings, Dragonjag.Variant variant) {
         super(settings);
         this.variant = variant;
@@ -29,22 +33,30 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
+        if (state.get(HALF) == DoubleBlockHalf.UPPER) {
+            return state.get(DEAD) ? SHAPE_UPPER_DEAD : SHAPE_UPPER;
+        }
+        return SHAPE_LOWER;
     }
-
+    
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
         return Dragonjag.canPlantOnTop(floor, world, pos);
     }
-
+    
+    @Override
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        return SmallDragonjagBlock.getBlockForVariant(this.variant).getPickStack(world, pos, state);
+    }
+    
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HALF, DEAD);
     }
-
+    
     @Override
     public Dragonjag.Variant getVariant() {
         return variant;
     }
-
+    
     public static TallDragonjagBlock getBlockForVariant(Variant variant) {
         return VARIANTS.get(variant);
     }
@@ -72,8 +84,8 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
             case BLACK -> {
                 success = DDConfiguredFeatures.BLACK_DRAGONJAGS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
             }
-            case GREEN -> {
-                success = DDConfiguredFeatures.GREEN_DRAGONJAGS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
+            case YELLOW -> {
+                success = DDConfiguredFeatures.YELLOW_DRAGONJAGS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
             }
             case PURPLE -> {
                 success = DDConfiguredFeatures.PURPLE_DRAGONJAGS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());

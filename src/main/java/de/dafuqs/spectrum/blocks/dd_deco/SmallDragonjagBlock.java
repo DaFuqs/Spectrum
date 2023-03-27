@@ -11,7 +11,7 @@ import java.util.*;
 
 public class SmallDragonjagBlock extends PlantBlock implements Dragonjag, Fertilizable {
 
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 12.0, 13.0, 14.0);
+    protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0);
     protected static final Map<Dragonjag.Variant, Block> VARIANTS = new HashMap<>();
     protected final Dragonjag.Variant variant;
 

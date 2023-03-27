@@ -12,7 +12,7 @@ public class DDPlacedFeatures extends WorldgenHelper {
         registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("ivory_noxfungus"), DDConfiguredFeatures.IVORY_NOXFUNGUS);
 		registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("slate_noxfungus"), DDConfiguredFeatures.SLATE_NOXFUNGUS);
 	
-		registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("green_dragonjags"), DDConfiguredFeatures.GREEN_DRAGONJAGS);
+		registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("yellow_dragonjags"), DDConfiguredFeatures.YELLOW_DRAGONJAGS);
 		registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("red_dragonjags"), DDConfiguredFeatures.RED_DRAGONJAGS);
 		registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("purple_dragonjags"), DDConfiguredFeatures.PURPLE_DRAGONJAGS);
 		registerConfiguredFeature(BuiltinRegistries.CONFIGURED_FEATURE, SpectrumCommon.locate("pink_dragonjags"), DDConfiguredFeatures.PINK_DRAGONJAGS);

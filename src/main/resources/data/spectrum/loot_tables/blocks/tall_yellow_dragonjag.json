@@ -10,7 +10,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:small_green_dragonjag"
+              "name": "spectrum:small_yellow_dragonjag"
             }
           ]
         }
@@ -18,7 +18,7 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "spectrum:tall_green_dragonjag",
+          "block": "spectrum:tall_yellow_dragonjag",
           "properties": {
             "half": "lower",
             "dead": "false"
@@ -30,7 +30,7 @@
           "predicate": {
             "block": {
               "blocks": [
-                "spectrum:tall_green_dragonjag"
+                "spectrum:tall_yellow_dragonjag"
               ],
               "state": {
                 "half": "upper",
@@ -50,7 +50,7 @@
           "children": [
             {
               "type": "minecraft:item",
-              "name": "spectrum:small_green_dragonjag"
+              "name": "spectrum:small_yellow_dragonjag"
             }
           ]
         }
@@ -58,7 +58,7 @@
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "spectrum:tall_green_dragonjag",
+          "block": "spectrum:tall_yellow_dragonjag",
           "properties": {
             "half": "upper",
             "dead": "false"
@@ -70,7 +70,7 @@
           "predicate": {
             "block": {
               "blocks": [
-                "spectrum:tall_green_dragonjag"
+                "spectrum:tall_yellow_dragonjag"
               ],
               "state": {
                 "half": "lower",

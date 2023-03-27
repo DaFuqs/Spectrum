@@ -1,3 +1,6 @@
 {
-  "parent": "spectrum:block/small_pink_dragonjag"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:block/small_pink_dragonjag"
+  }
 }

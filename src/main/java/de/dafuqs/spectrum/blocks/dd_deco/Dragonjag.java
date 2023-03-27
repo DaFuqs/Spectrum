@@ -7,7 +7,7 @@ import net.minecraft.world.*;
 public interface Dragonjag {
 
     enum Variant {
-        GREEN,
+        YELLOW,
         RED,
         PINK,
         PURPLE,

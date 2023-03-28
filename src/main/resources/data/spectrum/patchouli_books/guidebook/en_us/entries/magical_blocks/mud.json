@@ -11,13 +11,13 @@
       "title": "Mud",
       "type": "patchouli:spotlight",
       "item": "spectrum:mud_bucket",
-      "text": "$(italic)Mud. It is mud. Not particularly interesting in itself. But what is practical is the collision of the mud with water or lava. This creates dirt or coarse dirt, respectively."
+      "text": "$(italic)Mud. It is mud. Not particularly interesting in itself. What is practical is the collision of the mud with other liquids, like $(thing)Water$() or $(thing)Lava$(). This creates $(thing)Dirt$() or $(thing)Coarse Dirt$(), respectively."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/mud_bucket",
-      "text": "While a mud bath sounds like wellness it is not advised."
+      "text": "$(italic)While a mud bath sounds like wellness, it is not advised."
     }
   ]
 }

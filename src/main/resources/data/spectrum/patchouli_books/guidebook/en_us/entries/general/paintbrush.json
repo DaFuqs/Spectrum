@@ -17,7 +17,7 @@
       "type": "patchouli:crafting",
       "title": "Crafting Recipe",
       "recipe": "spectrum:crafting_table/paintbrush",
-      "text": "Give the $(l:general/pedestal)Pigment Pedestal$(/l) a hearty wack with it to make it start crafting."
+      "text": "Give the $(l:general/pedestal)Pigment Pedestal$(/l) a hearty whack with it to make it start crafting."
     },
     {
       "type": "patchouli:text",

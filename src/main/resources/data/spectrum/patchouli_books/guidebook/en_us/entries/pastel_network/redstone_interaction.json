@@ -8,7 +8,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "When you expose a $(thing)Pastel Node$() to a $(thing)Redstone signal$(), it loses it's link to the connected inventory."
+      "text": "When you expose a $(thing)Pastel Node$() to a $(thing)Redstone signal$(), it loses its link to the connected inventory."
     },
     {
       "type": "patchouli:text",

@@ -1,7 +1,7 @@
 {
   "name": "Node Coloring",
   "icon": "minecraft:red_dye",
-  "advancement": "spectrum:progression/__todo_unlock_pastel_node_coloring",
+  "advancement": "spectrum:unlocks/milestones/__todo_unlock_pastel_node_coloring",
   "category": "spectrum:pastel_network_category",
   "priority": true,
   "sortnum": 2,
@@ -11,7 +11,7 @@
       "type": "patchouli:spotlight",
       "title": "Node Coloring",
       "item": "spectrum:purple_pigment",
-      "text": "You can use $(l:general/pigment)Pigment$(/l) on Pastel Network Nodes to dye them.$(br2)Each node can only transfer items to nodes of the same color and colors it composites into, but not the other way around (Cyan nodes can transfer to Blue ones, but not Blue nodes to Cyan)."
+      "text": "Using $(l:general/pigment)Pigment$(/l) on Pastel Network Nodes dyes them.$(br2)Each node will only be ablt to transfer items to nodes of the same color or ones it composites into, but not the other way around ($(c_cyan)Cyan$() nodes will transfer to $(c_blue)Blue$() ones, but not $(c_blue)Blue$() nodes to $(c_cyan)Cyan$())."
     },
     {
       "type": "patchouli:image",
@@ -20,13 +20,7 @@
         "spectrum:textures/gui/guidebook/composite_colors.png"
       ],
       "border": true,
-      "text": ""
-    },
-    {
-      "type": "patchouli:spotlight",
-      "title": "Colored Nodes",
-      "item": "spectrum:red_pigment",
-      "text": "Using Pigment you can very finely adjust which Nodes can interact with others, allowing you to build complex transfer chains.$(br2)The default $(bold)White$() nodes, lacking all forms of color are only able to connect to other white nodes."
+      "text": "You can very finely adjust which Nodes can interact with others, allowing you to build complex transfer chains. $(bold)White$() nodes are only able to connect to other Whites."
     },
     {
       "type": "patchouli:spotlight",
@@ -38,7 +32,7 @@
       "type": "patchouli:spotlight",
       "title": "",
       "item": "spectrum:purple_pigment",
-      "text": "Using a $(l:resources/mermaids_brush)Mermaids Gem$(/l) on a node will change it to a Fluid Node.$(br)It will behave very similar than before - but will transfer liquid instead of items."
+      "text": "Using a $(l:resources/mermaids_brush)Mermaids Gem$(/l) on a Node will change it to a Fluid Node.$(br)It will transfer liquid instead of items."
     }
   ]
 }

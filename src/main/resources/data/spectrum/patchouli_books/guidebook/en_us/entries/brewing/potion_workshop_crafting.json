@@ -16,7 +16,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "As the name implies the Potion Workshops main focus is the creation of powerful Potions.$(br)But you found great utility in it for creating other things, too.$(br)With the help of the filigree and granular adjustable switches and valves you could also recreate the creation of Mud and Liquid Crystal here - way more efficient than before.$(br)$()All these recipes do not use $(l:brewing/potion_workshop_reagents)Reagents$(/l)."
+      "text": "As the name implies the Potion Workshops main focus is the creation of powerful Potions.$(br)But with the help of all of the filigree and granular adjustable switches and valves you found great utility in it for creating other things, too.$(br)$()All these recipes do not use $(l:brewing/potion_workshop_reagents)Reagents$(/l)."
     },
     {
       "type": "spectrum:potion_workshop_crafting",
@@ -47,6 +47,13 @@
       "title": "Midnight Solution",
       "advancement": "spectrum:midgame/collect_midnight_chip",
       "recipe": "spectrum:potion_workshop_crafting/midnight_solution_bucket",
+      "text": ""
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "title": "Dragonrot",
+      "advancement": "spectrum:unlocks/blocks/dragonrot_bucket",
+      "recipe": "spectrum:potion_workshop_crafting/dragonrot_bucket",
       "text": ""
     },
     {

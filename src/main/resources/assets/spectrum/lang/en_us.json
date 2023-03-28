@@ -2161,7 +2161,7 @@
   "item.spectrum.total_capped_simple_pigment_energy_storage.tooltip": "§7Stores up to %d§7 Ink in total",
   "item.spectrum.pigment_palette": "Pigment Palette",
   "item.spectrum.pigment_palette.tooltip": "§7Stores up to %d§7 Ink per type",
-  "item.spectrum.artists_palette": "Artists Palette",
+  "item.spectrum.artists_palette": "Artist's Palette",
   "item.spectrum.artists_palette.tooltip": "§7Stores up to %d§7 of elemental Ink in total",
   "item.spectrum.artists_palette.tooltip.mix_on_demand": "§7Mixes other types of Ink on demand",
   "item.spectrum.ink_flask": "Ink Flask",

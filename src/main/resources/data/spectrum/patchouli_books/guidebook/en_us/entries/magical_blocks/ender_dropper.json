@@ -11,13 +11,13 @@
       "type": "patchouli:spotlight",
       "title": "Ender Dropper",
       "item": "spectrum:ender_dropper",
-      "text": "The Ender Dropper is the counterpart to the Ender Hopper. With every redstone push it ejects an item from your personal Ender Chest.$(br2)Beware: The Ender Dropper only works as long as you are online. And who is stopping anyone from placing a button next to it and emptying your Ender Chest?"
+      "text": "The Ender Dropper is the counterpart to the $(l:magical_blocks/ender_hopper)Ender Hopper$(). With every redstone push it ejects an item from your personal $(thing)Ender Chest$().$(br2)Beware: Who's stopping anyone from placing a button next to it and emptying your $(thing)Ender Chest$()?"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/ender_dropper",
-      "text": ""
+      "text": "The Ender Dropper only works while you are online."
     }
   ]
 }

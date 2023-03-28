@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Some of Spectrum's ores can be used as fuel for the Alloy Forge, or have increased output when smelted in it. You will find these here, as soon as you discovered them.$(br2)Tell Noaaan I said hi!"
+      "text": "Some of Spectrum's ores can be used as fuel for the Alloy Forge, or have increased output when smelted in it. You will find these here, as soon as you discover them.$(br2)Tell Noaaan I said hi!"
     },
     {
       "type": "patchouli:spotlight",

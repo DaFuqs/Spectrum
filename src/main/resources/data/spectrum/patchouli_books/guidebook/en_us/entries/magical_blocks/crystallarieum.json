@@ -61,25 +61,25 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With Budding Blocks in mind you designed the Crystallarieum: an ink-powered apparatus, which could automatically grow resources from raw ore or crystals on it's top.$(br)While, even after all your efforts, you could not get it to grow actual $(l:general/shards)Gemstone Shards$(/l), you quickly recognised it's potential for growing all kinds of other resources."
+      "text": "With Budding Blocks in mind you designed the Crystallarieum: an ink-powered apparatus, which grow resources from raw ore or crystals on it's top.$(br)While, even after all your efforts, you failed to get it to grow actual $(l:general/shards)Gemstones$(/l), you quickly recognised it's potential for growing all kinds of other resources instead."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier4/crystallarieum",
-      "text": "It can fit a stack of catalysts, which it uses to enhance the growth process. For a few rare materials that even may be required."
+      "text": "It fits a stack of catalysts, which it uses to enhance the growth process. For a few rare materials that even may be required."
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "title": "Iron Growing",
       "recipe": "spectrum:crystallarieum/vanilla/iron",
-      "text": "Metallic resources can be grown by throwing unrefined materials, like $(thing)Raw Iron$() on top of it. Result is a small iron bud that steadily grows until it reaches maturity and can safely be harvested."
+      "text": "Metallic resources can be grown by throwing unrefined materials, like $(thing)Raw Iron$() on top of it, resulting in a small $(thing)Iron Bud$() that steadily grows until it reaches maturity and can safely be harvested."
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "title": "Diamond Growing",
       "recipe": "spectrum:crystallarieum/vanilla/diamond",
-      "text": "Crystal-like blocks, like $(thing)Diamonds$() can be grown, too! Albeit most requiring more Ink than metal ones, their crystal nature allows you to grow them again and again - $(thing)Diamond Clusters$() yielding $(thing)Diamonds$()."
+      "text": "Crystal-like blocks, like $(thing)Diamonds$() can be grown, too! Albeit most require more Ink than metal ones, their crystal-like nature allows you to grow them again and again - $(thing)Diamond Clusters$() yielding $(thing)Diamonds$()."
     },
     {
       "type": "spectrum:crystallarieum_growing",

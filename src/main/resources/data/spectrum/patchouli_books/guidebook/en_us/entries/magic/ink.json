@@ -7,12 +7,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Now that you're familiar with Pigment, you see no reason to lug it around like you did in the Middle Ages. You have found a way to convert Pigment into a higher form of energy.$(br)You called it $(c_cyan)I$(c_magenta)n$(c_yellow)k$()."
+      "text": "Now that you're familiar with Pigment, you see no reason to lug it around like you did in the Middle Ages. You have found a way to convert Pigment into a higher form of energy!$(br)You called it $(c_cyan)I$(c_magenta)n$(c_yellow)k$()."
     },
     {
       "type": "patchouli:text",
       "title": "Producing & Storing",
-      "text": "Pigment can be converted to Ink using the $(l:magic/color_picker)Color Picker$(/l) and then extracted into containers, like $(l:magic/ink_flask)Ink Flasks$(/l).$(br2)Only drawback: deprived of it's physical form, there is no way to transform Ink back into Pigment."
+      "text": "Pigment can be converted to Ink using the $(l:magic/color_picker)Color Picker$(/l) and then extracted into containers, like $(l:magic/ink_flask)Ink Flasks$(/l).$(br2)The only drawback: deprived of it's physical form, there is no way to transform Ink back into Pigment."
     },
     {
       "type": "patchouli:image",

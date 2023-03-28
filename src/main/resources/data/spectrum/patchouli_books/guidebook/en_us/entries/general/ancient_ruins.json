@@ -30,7 +30,7 @@
       "type": "patchouli:text",
       "title": "A Challenge?",
       "advancement": "spectrum:generate_ancient_ruins_loot",
-      "text": "Until now, you thought you were alone in your creative endeavour with the gems and pigments. From the looks of it, you were wrong. So very, very wrong.$(br)Whoever built these structures, they obviously followed the same path as you, but were miles ahead.$(br)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br2)$(italic)YOU are still alive."
+      "text": "Until now, you thought you were alone in your creative endeavour with the gems and pigments. From the looks of it, you were wrong. So very, very wrong.$(br)Whoever built these structures obviously followed a similar path as you, but were miles ahead.$(br)Still, anyway. You accept the challenge, of course. You have one huge advantage:$(br)$(italic)YOU are still alive."
     },
     {
       "type": "patchouli:image",

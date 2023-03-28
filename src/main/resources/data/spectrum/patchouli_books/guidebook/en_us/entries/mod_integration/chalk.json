@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Getting lost in the belows time and time again made you carry a bit of $(thing)Chalk$() with you, allowing you to mark your way back out. Sadly these little pieces of Calcite always do not last too long before breaking."
+      "text": "Getting lost in the belows time and time again made you carry a bit of $(thing)Chalk$() with you, allowing you to mark your way back out. Sadly these little pieces of Calcite never last long before breaking."
     },
     {
       "type": "spectrum:pedestal_crafting",

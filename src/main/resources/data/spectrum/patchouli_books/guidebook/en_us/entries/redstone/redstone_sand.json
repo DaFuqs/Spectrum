@@ -10,17 +10,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:redstone_sand",
-      "text": "$(italic)You think back happily to the days when you set little traps for your friends. Touching the wrong block, they were completely buried by sand.$(br)By now, your friends aren't so easily fooled.$(br2)Seems like modern problems require modern solutions."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "By adding redstone and a bit of magic to sand, it gains an interesting property: like other blocks, it stays in the air until the Gemstone Powder inside it starts vibrating.$(br2)Redstone Sand behaves like a solid block until it gets a Redstone signal.$(br)The Redstone trigger propagates through all connected blocks, destabilizing them and laws of gravity force it to drop."
+      "text": "$(italic)You think back to the good old times  when you used to set little traps for your friends: if they touched the wrong block, they were completely buried by the sand. By now, your friends are not so easily fooled.$(br2)modern problems require modern solutions."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/redstone_sand",
-      "text": "$(italic)So much room for possibilities"
+      "text": "Redstone Sand behaves like a solid block until it gets a Redstone signal.$(br)The Redstone trigger propagates through all connected blocks, destabilizing them and laws of gravity force it to drop.$(br)$(italic)So much room for possibilities"
     }
   ]
 }

@@ -23,7 +23,7 @@
       "advancement": "spectrum:hidden/collect_shards/collect_topaz_shard",
       "title": "Topaz Shards",
       "item": "spectrum:topaz_shard",
-      "text": "Topaz Shards lie surprisingly heavy in your hand. Fragile at first glance, this gemstone quickly turned out to be one of the most robust materials, which you were ever getting a hold of - perhaps only surpassed by diamond. Topaz is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br)The Topaz represents $(bold)$(c_cyan)MATTER.$()"
+      "text": "Topaz Shards lie surprisingly heavy in your hand. This gemstone quickly turned out to be one of the most robust materials you could ever get your hands on - perhaps only surpassed by diamond. Topaz is found in geodes at the very top of steep hills and on the tops of sky-high mountains.$(br)The Topaz represents $(bold)$(c_cyan)MATTER.$()"
     },
     {
       "type": "patchouli:spotlight",

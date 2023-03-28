@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:ender_glass",
-      "text": "$(italic)You already thought that the moment you put the recipe on paper that this creation wil be something special.$(br2)The combination of the power of The End, redstone and magic gives it very strange properties."
+      "text": "$(italic)You already thought that the moment you put the recipe on paper that this creation will be something special.$(br2)The combination of the power of The End, redstone and magic gives it very strange properties."
     },
     {
       "type": "patchouli:text",

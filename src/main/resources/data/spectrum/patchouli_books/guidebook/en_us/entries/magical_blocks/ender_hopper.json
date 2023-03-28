@@ -11,13 +11,13 @@
       "type": "patchouli:spotlight",
       "title": "Ender Hopper",
       "item": "spectrum:ender_hopper",
-      "text": "Designed resembling an ordinary hopper in form and function, the Ender Hopper has the special ability to put all items above it and from inventories directly into your Ender Chest.$(br2)The Ender Hopper only works while you are online."
+      "text": "Designed to resemble an ordinary hopper in form and function, the Ender Hopper has the special ability to put items directly into your $(thing)Ender Chest$(). Counterpart to the $(l:magical_blocks/ender_dropper)Ender Dropper$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/ender_hopper",
-      "text": ""
+      "text": "The Ender Hopper only works while you are online."
     }
   ]
 }

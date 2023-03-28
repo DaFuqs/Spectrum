@@ -14,13 +14,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:liquid_crystal_bucket",
-      "text": "$(italic)The pure energy of gemstones in their liquid form. It is said to have a healing effect."
+      "text": "$(italic)The pure energy of gemstones in liquid form. It is said to have a healing effect."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/liquid_crystal_bucket",
-      "text": "Combining it with various other liquids results in all kinds of weird looking materials to form. Best to try it in the nether, too!"
+      "text": "Combining it with various other liquids results in all kinds of interesting looking materials. Best to try it in the nether, too!"
     },
     {
       "type": "patchouli:spotlight",
@@ -37,14 +37,14 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_frostbite_crystal",
       "item": "spectrum:frostbite_crystal",
-      "text": "As Water tried to flow to a full block of Liquid Crystal the crystal turned solid.$(br)Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal"
+      "text": "As Water tried to flow to a full block of Liquid Crystal the crystal turned solid.$(br)Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal."
     },
     {
       "type": "spectrum:liquid_crystal_converting",
       "advancement": "spectrum:midgame/collect_resonant_lily",
       "anchor": "resonant_lily",
       "recipe": "spectrum:liquid_crystal_converting/resonant_lily",
-      "text": "This is an interesting one. The roots of flowers absorb this magical liquid, turning into elusive plants. But even then the cannot withstand the raw energy of the liquid, making them pop."
+      "text": "This is an interesting one. When Flowers absorb this magical liquid through their roots, they turn into those elusive plants."
     }
   ]
 }

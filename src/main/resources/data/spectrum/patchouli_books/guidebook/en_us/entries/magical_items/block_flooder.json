@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Like a caveman, you've always run around manually illuminating, or closing unsightly looking cave exits in your immediate vicinity. To relieve you of this work you took the self-replicating abilities of $(l:creating_life/fading)Fading$(/l) as an inspiration to develop the Block Flooder.$(br)Thrown into a cave entrance, pond or ravine, they are filled - in 5% of the cases the result even looks acceptable!"
+      "text": "Like a caveman, you've always run around manually illuminating caves, or closing their unsightly entries in your immediate vicinity. To relieve you of this work you took the self-replicating abilities of $(l:creating_life/fading)Fading$(/l) as an inspiration and developed the Block Flooder.$(br)Thrown into a narrow path, pond or ravine, they get filled - in 5% of the cases the result even looks acceptable!"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/block_flooder",
-      "text": "To fill the gaps it pulls matching blocks directly from your inventory. If you don't have any matching blocks it will fall back to Cobblestone."
+      "text": "Pulls matching blocks directly from your inventory to fill the gaps. If you don't have any matching ones, it will fall back to Cobblestone."
     }
   ]
 }

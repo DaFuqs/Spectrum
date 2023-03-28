@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Carrying around enough Ink with you to maintain your magical equipment has become both a chore and a space hog in your inventory.$(br2)It's time for a new creation: the Pigment Palette. It is capable of storing sizable amounts of Ink to supply all your magical devices and equipment."
+      "text": "Carrying around enough Ink with you to maintain your magical equipment has become both a chore and a space hog in your inventory.$(br)Now that you're familiar with Ink, it's time for a new creation: the Pigment Palette."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/pigment_palette",
-      "text": "$(italic)Now you are a true Artist of Color."
+      "text": "Capable of storing sizable amounts of Ink, making you able to supply all your magical devices and equipment.$(br)$(italic)Now you are a true Artist of Color."
     }
   ]
 }

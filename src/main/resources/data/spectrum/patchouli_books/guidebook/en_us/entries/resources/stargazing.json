@@ -27,14 +27,14 @@
       "advancement": "spectrum:collect_star_fragment",
       "title": "Shooting Stars",
       "item": "spectrum:shooting_star_glistering",
-      "text": "The small Shooting Stars are made of a material unknown to you thus far.$(br2)Can you catch one right off the sky?$(br2)$(italic)Tip: Shooting Stars are much easier to spot when using a Telescope or Night Vision.$()"
+      "text": "The small Shooting Stars are made of a material unknown to you thus far.$(br2)Can you catch one right out of the sky?$(br2)$(italic)Tip: Shooting Stars are much easier to spot when using a Telescope or Night Vision.$()"
     },
     {
       "type": "patchouli:spotlight",
       "advancement": "spectrum:collect_star_fragment",
       "title": "Star Fragments",
       "item": "spectrum:star_fragment",
-      "text": "Shooting Stars yield precious resources, including this rare Star Fragment, Stardust and a whole lot of other rare materials.$(br2)Picking up a Shooting Star by crouching and $(l:general/anvil_crushing)smashing it via an Anvil$(/l) will yield double the Star Fragments, albeit at the cost of the other materials."
+      "text": "Shooting Stars yield precious resources: this Star Fragment, Stardust and a whole lot of other rare materials.$(br2)Picking up a Shooting Star by crouching and $(l:general/anvil_crushing)smashing it via an Anvil$(/l) will yield double the Star Fragments, albeit at the cost of the other materials."
     },
     {
       "type": "patchouli:spotlight",

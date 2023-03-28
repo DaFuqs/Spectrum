@@ -15,12 +15,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Most recipes in your pedestal require Gemstone Powder as a source of magical energy.$(br2)Gemstone Powder comes in various colors and can be acquired by pulverizing gemstone shards via $(l:general/anvil_crushing)Item Crushing$()."
+      "text": "Most recipes in your pedestal require some amount of Gemstone Powder as a source of magical energy.$(br)It comes in various colors and can be acquired by pulverizing $(l:general/shards)Gemstone Shards$() via $(l:general/anvil_crushing)Item Crushing$()."
     },
     {
       "type": "patchouli:text",
       "title": "Mixing Colors",
-      "text": "There is nothing more important to an upcoming artist than mixing the right paint.$(br)Unfortunately, you found that in the case of Gemstone Powder, its not nearly as easy as it initially seemed: The powders don't quite want to mix. The result is always just a multicolored mass.$(br2)Maybe you can come up with something later?"
+      "text": "There is nothing more important to an upcoming artist than mixing the right paint.$(br)Unfortunately, you found that in the case of Gemstone Powder, it's not nearly as easy as it initially seemed. The powders don't quite want to mix, the result being just a multicolored mass.$(br2)Maybe you can come up with something later?"
     }
   ]
 }

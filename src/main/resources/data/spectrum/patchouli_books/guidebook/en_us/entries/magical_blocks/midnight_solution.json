@@ -12,7 +12,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You stumbled about this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$(). Pity, really, but look what you have now.$(br)Creatures that touch it seem to get their life drained out of them. Interesting...$(br)Better not get caught in it yourself."
+      "text": "You stumbled upon this bizarre liquid as a direct result of $(l:general/midnight_aberration)your failed fusion experiment$(). Pity, really, but look what you have now.$(br)Creatures that touch it seem to get their life drained out of them. Interesting...$(br)Better not get caught in it yourself."
     },
     {
       "type": "patchouli:spotlight",

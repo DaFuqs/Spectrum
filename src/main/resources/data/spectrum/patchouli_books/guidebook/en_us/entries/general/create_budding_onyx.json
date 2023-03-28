@@ -16,7 +16,7 @@
     {
       "type": "patchouli:text",
       "title": "Creating Budding Onyx",
-      "text": "Crafting onyx was always very nerdy, as it depended on the current phase of the moon, despite the $(l:magical_items/crescent_clock)Crescent Clock$(/l).$(br)By making Onyx farmable like the other gems, will save you a huge amount of time.$(br2)$(italic)Strangely, the same procedure does not seem to work for other colored gems?"
+      "text": "Crafting onyx was always very tricky, as it depended on the current phase of the moon. Despite the $(l:magical_items/crescent_clock)Crescent Clock$(/l) being a thing, you often missed that short time window.$(br)Making Onyx growable like the other gems will save you a huge amount of time.$(br2)$(italic)Strangely, the same procedure does not seem to work for the others?"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",

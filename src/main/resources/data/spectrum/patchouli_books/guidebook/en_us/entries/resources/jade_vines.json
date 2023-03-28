@@ -23,14 +23,14 @@
       "title": "Germinating",
       "advancement": "spectrum:midgame/build_spirit_instiller_structure",
       "recipe": "spectrum:spirit_instiller/germinated_jade_vine_seeds",
-      "text": "Once almost a lost cause you now have an ace up your sleeve:$(br)With the help of the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l) you are sure that you can breathe life back into the little bulb."
+      "text": "Once almost a lost cause, you now have an ace up your sleeve:$(br)With the help of the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l) you are sure that you can breathe life back into the little bulb."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Planting & Growing",
       "item": "spectrum:germinated_jade_vine_seeds",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "Palid, fragile but beautiful hanging plants, twining down wooden fences.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the way more soft, indirect light of the moon."
+      "text": "Pallid, fragile but beautiful hanging plants, twining down wooden fences.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
     },
     {
       "type": "patchouli:spotlight",

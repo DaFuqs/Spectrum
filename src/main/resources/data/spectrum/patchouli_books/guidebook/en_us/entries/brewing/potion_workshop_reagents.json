@@ -10,7 +10,7 @@
       "type": "patchouli:text",
       "name": "Reagents",
       "title": "Using Reagents",
-      "text": "Using Mermaids Gems as a Base instead of Blaze Powder results in a much more reactive potion. Not only does this allow you to add your new range of additional magical ingredients to your Potions, but also use some of them as additional Reagent. Each of those Reagents modifies the resulting properties of your Potions. Each Reagent can only be used once per recipe."
+      "text": "Using Mermaids Gems as a Base instead of Blaze Powder results in a much more reactive potion. Not only does this allow you to add your personal range of additional magical ingredients, but also use some of them as additional Reagent. Each of those Reagents has a unique effect on the Potion. Each Reagent can only be used once per recipe."
     },
     {
       "type": "patchouli:text",
@@ -157,7 +157,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:malachite_crystal",
       "advancement": "spectrum:lategame/grow_malachite_in_crystallarieum",
-      "text": "Doubles the Potions duration, but makes the Potion much slower to drink."
+      "text": "Doubles the Potion's duration, but makes the Potion much slower to drink."
     },
     {
       "type": "patchouli:spotlight",

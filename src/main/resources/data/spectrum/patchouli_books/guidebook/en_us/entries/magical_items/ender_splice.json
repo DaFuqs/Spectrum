@@ -10,18 +10,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:ender_splice",
-      "text": "$(italic)The most interesting thing about the Endermen is, without question, their teleportation ability. You were pretty successful replicating it! However, to determine the destination of the teleport, you must first take a snapshot of the position.$(br)Endermen don't have to do that - why?"
+      "text": "$(italic)The most interesting thing about the Endermen is, without question, their teleportation ability. You were pretty successful replicating it! However, to determine the destination of your teleport, you must first take a snapshot of the position.$(br)Endermen don't have to do that, it seems. Why?"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/ender_splice",
-      "text": "A Limitation of the Ender Splice is, that is can only be used in the same dimension it was bound to."
-    },
-    {
-      "type": "patchouli:text",
-      "title": "Usage",
-      "text": "By charging it as if you would want to charge a crossbow, you bind it to your current position.$(br2)The second use will teleport you back to that original location. Can even be used on other players."
+      "text": "By charging it you bind it to your current position.$(br2)The second use will teleport you back to that location. Can even be used on other players. A notable limitation is, that is can only be used in the same dimension it was bound to."
     },
     {
       "type": "patchouli:spotlight",

@@ -67,7 +67,7 @@
       "title": "New Potion Reagent",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "item": "botania:black_lotus",
-      "text": "Infuses the Potion with a huge amount of additional positive as well as negative, effects, but it's black color also makes it completely unidentifiable. What might you get?"
+      "text": "Infuses the Potion with a huge amount of additional positive as well as negative, effects, but its black color also makes it completely unidentifiable. What might you get?"
     },
     {
       "type": "patchouli:spotlight",
@@ -81,7 +81,7 @@
       "title": "New Potion Reagent",
       "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
       "item": "botania:life_essence",
-      "text": "Makes your Potions much more potent, but at a huge loss of duration. If the duration will get too short the potion might end up useless altogether..."
+      "text": "Makes your Potions much more potent, but at a huge loss of duration. If the duration gets too short the potion might end up useless altogether..."
     },
     {
       "type": "patchouli:spotlight",

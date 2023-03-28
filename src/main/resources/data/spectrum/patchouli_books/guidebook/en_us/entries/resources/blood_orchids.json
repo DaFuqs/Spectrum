@@ -12,14 +12,14 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:blood_orchid_petal",
       "title": "Blood Orchid Petals",
-      "text": "These leaves seem to belong to a flower you don't know. Did it once bloom here, was it once grown by those who came before you? Perhaps a souvenir from a world you yourself have never entered? Yet it looks like it was plucked just 5 minutes ago.$(br)You feel something whenever you touch the petal: restlessness."
+      "text": "These leaves seem to belong to a flower you don't know. Did it once bloom here? Was it once grown by ones who came before you? Perhaps a souvenir from a world you have never entered yourself? Yet it looks like it was plucked just 5 minutes ago.$(br)You feel something whenever you touch the petal: Restlessness."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "advancement": "spectrum:unlocks/blocks/blood_orchid",
       "title": "Blood Orchid Plants",
       "recipe": "spectrum:spirit_instiller/blood_orchid",
-      "text": "$(l:magical_blocks/liquid_crystal#resonant_lily)Resonant Lilies$(/l)! Truly an elusive flower - and seemingly related to Blood Orchids. Though the Blood Orchids energy very quickly takes over.$(br)Whelp, worst thing that can happen is you ending up with a true plant that you can pluck additional petals of."
+      "text": "$(l:magical_blocks/liquid_crystal#resonant_lily)Resonant Lilies$(/l)! Truly an elusive flower - and seemingly related to Blood Orchids. Though the Blood Orchids energy very quickly takes over.$(br)Whelp, worst thing that can happen is you ending up with another plant that you can pluck additional petals of."
     }
   ]
 }

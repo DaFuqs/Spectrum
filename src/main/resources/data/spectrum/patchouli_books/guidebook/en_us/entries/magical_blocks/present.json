@@ -9,22 +9,23 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. The bit of little $(l:resources/sparklestone)Shimmerstone$(/l) allows you to explode the package in a colorful shower of particles.$(br2)(Or, you know, you can always gift your future self!)"
+      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. A pinch of $(l:resources/sparklestone)Shimmerstone$(/l) allows the package to explode in a colorful shower of particles.$(br)Click the Present onto the items you want to gift, wrap it in a $(thing)Crafting Table$(), then all you have to do is place it down for the recipient to open it and watch them jump of joy."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/present",
-      "text": "Click the Present onto the items you want to gift.$(br)Then all you have to do is place it down for the recipient to open it and watch them jump of joy."
+      "text": "$(italic)(Or, you know, you can always gift your future self!)"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "spectrum:crafting_table/special/wrap_present",
-      "title": "Wrapping",
-      "text": "Place a filled Present in a crafting grid to wrap it.$(br2)You can additionally add:$(li)$(l:general/pigment)Pigments$() for a colorful particle shower in those pigments colors."
+      "title": "Adding Color",
+      "text": "Place a filled Present in a crafting grid to wrap it.$(br2)You can additionally add:$(li)$(l:general/pigment)Pigment$() for a colorful particle shower in those pigments colors."
     },
     {
       "type": "patchouli:text",
+      "title": "Wrapping Papers",
       "text": "$(li)Special ingredients to choose from a variety of wrapping papers:$(li2)Red Dye: Red$(li2)Blue Dye: Blue$(li2)Cyan Dye: Cyan$(li2)Green Dye: Green$(li2)Purple Dye: Purple$(li2)Cake: Cake$(li2)Flower: Stripes$(li2)Firework Star: Starry$(li2)Sapling: Winter$(li2)Spore Blossom: Rainbow"
     }
   ]

@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:potion_workshop_crafting",
+  "base_ingredient": {
+    "item": "minecraft:bucket"
+  },
+  "use_up_base_ingredient": true,
+  "color": 14907183,
+  "ingredient1": {
+    "item": "spectrum:light_gray_pigment"
+  },
+  "ingredient2": {
+    "item": "spectrum:gray_pigment"
+  },
+  "ingredient3": {
+    "item": "spectrum:dragonbone_chunk"
+  },
+  "result": {
+    "item": "spectrum:dragonrot_bucket"
+  },
+  "required_advancement": "spectrum:unlocks/blocks/dragonrot_bucket"
+}

@@ -36,5 +36,5 @@
     "item": "minecraft:enchanted_book",
     "nbt": "{StoredEnchantments: [{id: \"minecraft:swift_sneak\", lvl: 1s}]}"
   },
-  "required_advancement": "spectrum:unlocks/enchantments/swift_sneak"
+  "required_advancement": "spectrum:unlocks/enchantments/vanilla_swift_sneak"
 }

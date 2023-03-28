@@ -80,5 +80,5 @@
     "count": 4,
     "nbt": "{Variant: \"glass_peach_cider\", Color: 15573110 }"
   },
-  "required_advancement": "spectrum:unlocks/items/unlock_glass_peach_titration"
+  "required_advancement": "spectrum:unlocks/food/glass_peach_titration"
 }

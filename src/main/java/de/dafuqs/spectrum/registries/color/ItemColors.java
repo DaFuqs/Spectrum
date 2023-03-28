@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.registries.color;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 
 public class ItemColors extends ColorRegistry<Item> {
 	
@@ -108,6 +105,12 @@ public class ItemColors extends ColorRegistry<Item> {
 		put(Items.PRISMARINE_SHARD, DyeColor.LIGHT_BLUE);
 		put(Items.RABBIT_FOOT, DyeColor.BROWN);
 		put(Items.TOTEM_OF_UNDYING, DyeColor.PINK);
+		
+		put(Items.SCULK, DyeColor.BLACK);
+		put(Items.SCULK_CATALYST, DyeColor.BLACK);
+		put(Items.SCULK_SENSOR, DyeColor.BLACK);
+		put(Items.SCULK_VEIN, DyeColor.BLACK);
+		put(Items.SCULK_SHRIEKER, DyeColor.BLACK);
 		
 		put(Blocks.ICE.asItem(), DyeColor.LIGHT_BLUE);
 		put(Blocks.PACKED_ICE.asItem(), DyeColor.LIGHT_BLUE);

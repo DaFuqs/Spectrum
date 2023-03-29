@@ -161,7 +161,7 @@
       "type": "spectrum:enchanter_crafting",
       "title": "Swift Sneak",
       "advancement": "spectrum:unlocks/enchantments/vanilla_swift_sneak",
-      "recipe": "spectrum:enchanter/vanilla_books/swift_sneak",
+      "recipe": "spectrum:enchanter/vanilla_books/book_swift_sneak",
       "text": ""
     },
     {

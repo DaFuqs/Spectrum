@@ -1,22 +1,17 @@
 package de.dafuqs.spectrum.worldgen.features;
 
-import com.mojang.serialization.Codec;
-import de.dafuqs.spectrum.blocks.jade_vines.NephriteBlossomLeavesBlock;
-import de.dafuqs.spectrum.blocks.jade_vines.NephriteBlossomStemBlock;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
-import net.minecraft.tag.BlockTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
+import com.mojang.serialization.*;
+import de.dafuqs.spectrum.blocks.jade_vines.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.world.*;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig> {
 
@@ -76,7 +71,7 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
         for (int i = 0; i < leafHeight; i++) {
             for(int leaf = 0; leaf < 4; leaf++) {
                 leafPointer.move(leafDirection);
-                world.setBlockState(leafPointer, getLeafState(random, flowering), 3);
+                setBlockStateWithoutUpdatingNeighbors(world, leafPointer, getLeafState(random, flowering));
                 leafDirection = cycleDirections(leafDirection, 1);
             }
 
@@ -84,33 +79,33 @@ public class NephriteBlossomFeature extends Feature<NephriteBlossomFeatureConfig
                 leafDirection = leafDirection.getOpposite();
                 for(int leaf = 0; leaf < 4; leaf++) {
                     leafPointer.move(leafDirection);
-                    world.setBlockState(leafPointer, getLeafState(random, flowering), 3);
+                    setBlockStateWithoutUpdatingNeighbors(world, leafPointer, getLeafState(random, flowering));
                     leafDirection = cycleDirections(leafDirection, 1);
                 }
                 leafDirection = leafDirection.getOpposite();
             }
-
+    
             leafPointer.move(0, 1, 0);
             if (random.nextBoolean() ^ i % 3 == 0)
                 leafDirection = cycleDirections(leafDirection, random.nextInt(3) - 1);
         }
     }
-
+    
+    private static void setBlockStateWithoutUpdatingNeighbors(ModifiableWorld world, BlockPos pos, BlockState state) {
+        world.setBlockState(pos, state, 19);
+    }
+    
     private BlockState getLeafState(Random random, boolean allowFlowering) {
-        var state = SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES.getDefaultState();
-
+        var state = SpectrumBlocks.NEPHRITE_BLOSSOM_LEAVES.getDefaultState().with(NephriteBlossomLeavesBlock.DISTANCE, 1);
         if (!allowFlowering) {
             return state;
         }
-
         if (random.nextBoolean()) {
             return state.with(NephriteBlossomLeavesBlock.AGE, 1);
         }
-
         if (random.nextBoolean()) {
             return state.with(NephriteBlossomLeavesBlock.AGE, 2);
         }
-
         return state;
     }
 

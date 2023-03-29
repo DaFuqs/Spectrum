@@ -1,13 +1,13 @@
 {
-  "feature": "minecraft:glow_lichen",
+  "feature": "spectrum:dd_glow_lichen",
   "placement": [
     {
       "type": "minecraft:count",
       "count": {
         "type": "minecraft:uniform",
         "value": {
-          "min_inclusive": 148,
-          "max_inclusive": 240
+          "min_inclusive": 92,
+          "max_inclusive": 148
         }
       }
     },

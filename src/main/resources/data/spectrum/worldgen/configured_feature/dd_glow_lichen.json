@@ -13,7 +13,9 @@
       "minecraft:diorite",
       "minecraft:granite",
       "minecraft:dripstone_block",
-      "minecraft:deepslate"
+      "minecraft:deepslate",
+      "spectrum:blackslag",
+      "spectrum:shale_clay"
     ]
   }
 }

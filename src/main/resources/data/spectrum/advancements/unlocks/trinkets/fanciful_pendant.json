@@ -17,13 +17,20 @@
       "conditions": {
         "advancement_identifier": "spectrum:unlocks/trinkets/greater_potion_pendant"
       }
+    },
+    "unlocked_shieldgrasp_amulet": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/trinkets/shieldgrasp_amulet"
+      }
     }
   },
   "requirements": [
     [
       "unlocked_totem_pendant",
       "unlocked_lesser_potion_pendant",
-      "unlocked_greater_potion_pendant"
+      "unlocked_greater_potion_pendant",
+      "unlocked_shieldgrasp_amulet"
     ]
   ]
 }

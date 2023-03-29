@@ -67,6 +67,7 @@ public class PillarFeature extends Feature<BlockStateFeatureConfig> {
                         }
 
                         if (!structureWorldAccess.isAir(mutable2.set(mutable3, Direction.DOWN))) {
+                            structureWorldAccess.setBlockState(mutable3, blockState, 2);
                         }
                     }
                 }

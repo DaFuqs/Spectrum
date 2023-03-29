@@ -1,7 +1,7 @@
 {
   "name": "Scarred",
   "advancement": "spectrum:hidden/status_effects/scarred",
-  "icon": "spectrum:",
+  "icon": "minecraft:fire_charge",
   "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [

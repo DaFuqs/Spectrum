@@ -1,7 +1,7 @@
 {
   "name": "Effect Prolonging (Stacking)",
   "advancement": "spectrum:hidden/status_effects/effect_prolonging",
-  "icon": "spectrum:",
+  "icon": "minecraft:clock",
   "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [

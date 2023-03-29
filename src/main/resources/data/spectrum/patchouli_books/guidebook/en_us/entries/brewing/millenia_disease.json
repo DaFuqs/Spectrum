@@ -1,7 +1,7 @@
 {
   "name": "Millenia Disease",
   "advancement": "spectrum:hidden/status_effects/millenia_disease",
-  "icon": "spectrum:",
+  "icon": "minecraft:rotten_flesh",
   "category": "spectrum:brewing_category",
   "extra_recipe_mappings": {},
   "pages": [

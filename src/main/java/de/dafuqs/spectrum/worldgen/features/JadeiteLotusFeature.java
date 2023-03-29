@@ -34,17 +34,17 @@ public class JadeiteLotusFeature extends Feature<JadeiteLotusFeatureConfig> {
         BlockPos.Mutable mutablePos = origin.mutableCopy();
         for (int i = 0; i < stemHeight + 2; i++) {
             if (inverted) { // growing up
+                mutablePos.move(Direction.UP);
                 if (mutablePos.getY() > chunkGen.getWorldHeight() || !isReplaceable(world, mutablePos)) {
                     stemHeight = i - 2 - random.nextInt(2);
                     break;
                 }
-                mutablePos.move(Direction.UP);
             } else {
+                mutablePos.move(Direction.DOWN);
                 if (mutablePos.getY() < chunkGen.getMinimumY() || !isReplaceable(world, mutablePos)) {
                     stemHeight = i - 2 - random.nextInt(2);
                     break;
                 }
-                mutablePos.move(Direction.DOWN);
             }
         }
     

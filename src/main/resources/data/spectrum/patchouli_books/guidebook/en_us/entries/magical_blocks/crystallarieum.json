@@ -61,7 +61,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With Budding Blocks in mind you designed the Crystallarieum: an ink-powered apparatus, which grow resources from raw ore or crystals on it's top.$(br)While, even after all your efforts, you failed to get it to grow actual $(l:general/shards)Gemstones$(/l), you quickly recognised it's potential for growing all kinds of other resources instead."
+      "text": "With Budding Blocks in mind you designed the Crystallarieum: an Ink-powered apparatus, which grow resources from raw ore or crystals on it's top.$(br)While, even after all your efforts, you failed to get it to grow actual $(l:general/shards)Gemstones$(/l), you quickly recognised it's potential for growing all kinds of other resources instead."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -9,12 +9,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A truly exceptional weapon, it embodies the definition of \"offense is the best defense.\"$(br)The Dreamflayer is in its nature to balance power:$(br)The more armored your opponent is compared to you, the more damage you do."
+      "text": "A truly exceptional weapon, it embodies the definition of \"offense is the best defense.\"$(br)It is the nature of the Dreamflayer to balance forces:$(br)The more armored your opponent is compared to you, the more damage you do."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/dreamflayer",
-      "text": "$(italic)If you ever needed a reason to go rampage lightly clad, here it is$()$(br2)$(k:sneak) + $(k:use) to empower it, making it consume $(c_red)Red Ink$() at an alarming rate, allowing it to slice even though the most sturdy of armors."
+      "text": "$(italic)If you ever needed a reason to go rampage lightly clad, here it is$()$(br2)$(k:sneak) + $(k:use) to empower it, allowing it to slice even though the most sturdy of armors, while consuming $(c_red)Red Ink$() at an alarming rate"
     }
   ]
 }

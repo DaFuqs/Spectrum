@@ -1,5 +1,5 @@
 {
-  "name": "Take-Off Belt",
+  "name": "Takeoff Belt",
   "advancement": "spectrum:unlocks/trinkets/take_off_belt",
   "icon": "spectrum:take_off_belt",
   "category": "spectrum:equipment_category",
@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Climbing mountains or misshapen caves is always very time-consuming. If you don't see an option to scramble up over misshapen ledges, you have no choice but to carve a path into the rock.$(br)Using your new Take-Off Belt you are able to put great vertical distances behind you, saving time and sparing your beautiful nature from destruction."
+      "text": "Climbing mountains or misshapen caves is always very time-consuming. If you don't see an option to scramble up over misshapen ledges, you have no choice but to carve a path into the rock.$(br)Using your new Takeoff Belt you are able to put great vertical distances behind you, saving time and sparing your beautiful nature from destruction."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/take_off_belt",
-      "text": "Sneak to charge a high jump, getting more powerful the longer you charge$(br2)$(italic)Although the name implies, please don't take it off."
+      "text": "Sneak to charge a high jump, getting more powerful the longer you charge$(br2)$(italic)Even if the name implies, please don't take it off."
     },
     {
       "type": "patchouli:spotlight",

@@ -32,7 +32,7 @@
       "type": "patchouli:spotlight",
       "title": "",
       "item": "spectrum:purple_pigment",
-      "text": "Using a $(l:resources/mermaids_brush)Mermaids Gem$(/l) on a Node will change it to a Fluid Node.$(br)It will transfer liquid instead of items."
+      "text": "Using a $(l:resources/mermaids_brush)Mermaid's Gem$(/l) on a Node will change it to a Fluid Node.$(br)It will transfer liquid instead of items."
     }
   ]
 }

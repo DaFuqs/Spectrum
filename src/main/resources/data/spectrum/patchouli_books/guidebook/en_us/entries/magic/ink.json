@@ -24,7 +24,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(br)When two objects that store ink are connected - such as a Color Picker and an Ink Flask - the Ink between the two containers slowly evens out.$(br)The greater the difference, the faster the Flask is getting filled."
+      "text": "$(br)When two objects that store Ink are connected - such as a Color Picker and an Ink Flask - the Ink between the two containers slowly evens out.$(br)The greater the difference, the faster the Flask is getting filled."
     }
   ]
 }

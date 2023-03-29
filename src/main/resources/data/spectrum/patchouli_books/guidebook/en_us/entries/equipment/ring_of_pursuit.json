@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Mining is your game. It's almost a miracle that you're only now coming around to the idea of upgrading not only your tools, but your proficiency in general. Just like you he grows with your capabilities."
+      "text": "Mining is your game. It's almost a miracle that you're only now coming around to the idea of upgrading not only your tools, but your mining proficiency in general. This ring will grow with your abilities."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/ring_of_pursuit",
-      "text": "Infuse it with $(l:magic/ink)Magenta Ink$(/l) to increase your Mining Speed."
+      "text": "Infuse it with $(l:magic/ink)Magenta Ink$(/l) in a $(l:magic/color_picker)Color Picker$() to increase your Mining Speed."
     }
   ]
 }

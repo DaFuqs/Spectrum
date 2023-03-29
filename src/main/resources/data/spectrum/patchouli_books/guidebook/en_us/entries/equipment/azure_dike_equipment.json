@@ -37,7 +37,7 @@
       "title": "Shieldgrasp Amulet",
       "advancement": "spectrum:unlocks/trinkets/shieldgrasp_amulet",
       "recipe": "spectrum:fusion_shrine/trinkets/shieldgrasp_amulet",
-      "text": "Infuse it with $(l:magic/ink)Blue Ink$(/l) to increase the amount of $(c_blue)Azure Dike$() provided.$(br)While cheap at first, the required energy to press more power into this amulet increases exponentially."
+      "text": "Infuse it with $(l:magic/ink)Blue Ink$(/l) in a $(l:magic/color_picker)Color Picker$() to increase the amount of $(c_blue)Azure Dike$() provided.$(br)Cheap at first, the required energy to infuse more power into this amulet increases exponentially."
     }
   ]
 }

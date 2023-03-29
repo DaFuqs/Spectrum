@@ -12,7 +12,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/potion_workshop",
-      "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaids Gems. Main advantage is that you don't have to fill your bottles with water before."
+      "text": "Instead of Blaze Powder, the Potion Workshop runs on Mermaid's Gems. Main advantage is that you don't have to fill your bottles with water before."
     }
   ]
 }

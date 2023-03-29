@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "These hostile underwater temples are a hell to maneuver. Luckily, in your search for treasure you stumbled upon a Heart of The Sea.$(br)This circlet allows you to live and mine under water as if it were the most natural thing ever. You swim and mine faster, require no air and are able to see better.$(br)It also heals your little close by Axolotl friends ♥"
+      "text": "These hostile underwater temples are hell to maneuver. Luckily, in your search for treasure, you stumbled upon a $(thing)Heart of The Sea$().$(br)This circlet allows you to live and mine underwater as if it were the most natural thing ever. You swim and mine faster, require no air and are able to see better.$(br)It also heals your little close by Axolotl friends ♥"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

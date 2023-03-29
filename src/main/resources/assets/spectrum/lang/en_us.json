@@ -176,6 +176,7 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.stratine_fragments": "Flat +1 Potency, at the cost of adding a random negative Effect. Lowers Yield.",
   "spectrum.rei.potion_workshop_reacting.spectrum.topaz_powder": "Makes effects not show any particles when active.",
   "spectrum.rei.potion_workshop_reacting.spectrum.vegetal": "Doubles the potions Duration at the cost of Potency.",
+  "spectrum.rei.potion_workshop_reacting.spectrum.jadeite_petals": "Add 60 seconds duration to positive effects.",
 
   "spectrum.rei.potion_workshop_reacting.botania.pixie_dust": "Converts the Potions into Lingering Potions as a single reagent. This way it allows you to directly create Tipped Arrows, too!",
   "spectrum.rei.potion_workshop_reacting.botania.black_lotus": "Infuses the Potion with a huge amount of additional positive as well as negative, effects, but it's black color also makes it completely unidentifiable. What might you get?",

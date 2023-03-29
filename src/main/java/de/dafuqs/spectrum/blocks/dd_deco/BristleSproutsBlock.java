@@ -51,4 +51,8 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
         DDConfiguredFeatures.BRISTLE_SPROUTS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
     }
 
+    @Override
+    public float getMaxHorizontalModelOffset() {
+        return 0.265F;
+    }
 }

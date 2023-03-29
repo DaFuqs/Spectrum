@@ -1,7 +1,18 @@
 {
   "variants": {
-    "": {
-      "model": "spectrum:block/bristle_sprouts"
-    }
+    "": [
+      {
+        "model": "spectrum:block/bristle_sprouts_1"
+      },
+      {
+        "model": "spectrum:block/bristle_sprouts_2"
+      },
+      {
+        "model": "spectrum:block/bristle_sprouts_3"
+      },
+      {
+        "model": "spectrum:block/bristle_sprouts_4"
+      }
+    ]
   }
 }

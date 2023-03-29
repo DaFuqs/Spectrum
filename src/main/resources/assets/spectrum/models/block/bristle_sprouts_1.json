@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "spectrum:block/bristle_sprouts"
+    "cross": "spectrum:block/bristle_sprouts_1"
   }
 }

@@ -76,7 +76,8 @@
     ],
     [
       "spectrum:dd_water_springs",
-      "spectrum:dd_lava_springs"
+      "spectrum:dd_lava_springs",
+      "spectrum:dd_liquid_crystal_springs"
     ],
     [
       "spectrum:dd_patch_grass_normal",

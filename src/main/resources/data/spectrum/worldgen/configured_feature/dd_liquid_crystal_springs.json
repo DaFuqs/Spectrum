@@ -2,7 +2,7 @@
   "type": "minecraft:spring_feature",
   "config": {
     "state": {
-      "Name": "minecraft:lava",
+      "Name": "spectrum:liquid_crystal",
       "Properties": {
         "falling": "true"
       }

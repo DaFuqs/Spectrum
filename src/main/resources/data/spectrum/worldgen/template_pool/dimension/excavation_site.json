@@ -1,12 +1,12 @@
 {
-  "name": "spectrum:city_below",
+  "name": "spectrum:excavation_site",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "spectrum:city_below/pedestal",
+        "location": "spectrum:dimension/excavation_site",
         "projection": "rigid",
         "processors": "minecraft:empty"
       }

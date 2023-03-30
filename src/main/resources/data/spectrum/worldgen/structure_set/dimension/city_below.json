@@ -1,7 +1,7 @@
 {
   "structures": [
     {
-      "structure": "spectrum:city_below",
+      "structure": "spectrum:dimension/city_below",
       "weight": 1
     }
   ],

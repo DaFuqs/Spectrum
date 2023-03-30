@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#spectrum:budding_blocks",
-    "#spectrum:structure_blocks"
+    "#spectrum:structure_blocks",
+    "spectrum:downstone"
   ]
 }

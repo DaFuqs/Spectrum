@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:budding_blocks"
+    "#spectrum:budding_blocks",
+    "spectrum:downstone"
   ]
 }

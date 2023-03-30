@@ -25,7 +25,8 @@ public class TransmissionParticle extends SpriteBillboardParticle {
 	
 	public TransmissionParticle(ClientWorld world, double x, double y, double z, PositionSource positionSource, int maxAge) {
 		super(world, x, y, z, 0.0D, 0.0D, 0.0D);
-		this.scale = 0.3F;
+		this.scale = 0.175F;
+		this.alpha = 0.8F;
 		this.positionSource = positionSource;
 		this.maxAge = maxAge;
 	}

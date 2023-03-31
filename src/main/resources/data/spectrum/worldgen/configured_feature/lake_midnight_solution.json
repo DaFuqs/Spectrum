@@ -13,7 +13,7 @@
     "barrier": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "spectrum:black_materia"
+        "Name": "minecraft:air"
       }
     }
   }

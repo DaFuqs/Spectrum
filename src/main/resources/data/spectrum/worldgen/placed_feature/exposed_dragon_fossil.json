@@ -3,7 +3,7 @@
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 2
+      "count": 4
     },
     {
       "type": "minecraft:height_range",
@@ -22,8 +22,8 @@
     },
     {
       "type": "minecraft:environment_scan",
-      "direction_of_search": "down",
-      "max_steps": 18,
+      "direction_of_search": "up",
+      "max_steps": 12,
       "target_condition": {
         "type": "minecraft:matching_blocks",
         "offset": [
@@ -33,11 +33,12 @@
         ],
         "blocks": [
           "spectrum:dragonrot",
-          "spectrum:rotten_ground"
+          "spectrum:rotten_ground",
+          "spectrum:black_sludge"
         ]
       },
       "allowed_search_condition": {
-        "type": "minecraft:replaceable"
+        "type": "minecraft:solid"
       }
     },
     {

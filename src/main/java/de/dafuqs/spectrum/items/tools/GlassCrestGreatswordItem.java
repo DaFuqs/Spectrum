@@ -1,61 +1,53 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.sound.GreatswordChargingSoundInstance;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.enchantment.ProtectionEnchantment;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.TntEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.sound.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.stat.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.explosion.Explosion;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import net.minecraft.world.explosion.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDamageItem {
-
-	public final float magicDamageShare = 0.25F;
+	
+	private static final InkCost GROUND_SLAM_COST_PER_TICK = new InkCost(InkColors.WHITE, 10);
+	public static final float MAGIC_DAMAGE_SHARE = 0.25F;
 	public final int groundSlamChargeTicks;
 	public final int baseGroundSlamStrength;
-
+	
 	public GlassCrestGreatswordItem(ToolMaterial material, int attackDamage, float attackSpeed, float extraReach, int groundSlamChargeTicks, int baseGroundSlamStrength, Settings settings) {
 		super(material, attackDamage, attackSpeed, extraReach, settings);
 		this.groundSlamChargeTicks = groundSlamChargeTicks;
 		this.baseGroundSlamStrength = baseGroundSlamStrength;
 	}
-
+	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip", (int) (this.magicDamageShare * 100)));
+		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip", (int) (MAGIC_DAMAGE_SHARE * 100)));
 		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip2"));
+		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white"));
 	}
 
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -76,7 +68,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	@Override
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		super.usageTick(world, user, stack, remainingUseTicks);
-		if (world.isClient && this.baseGroundSlamStrength > 0) {
+		if (world.isClient && this.baseGroundSlamStrength > 0 && user instanceof PlayerEntity player && InkPowered.tryDrainEnergy(player, GROUND_SLAM_COST_PER_TICK)) {
 			Random random = world.random;
 			for (int i = 0; i < (groundSlamChargeTicks - remainingUseTicks) / 8; i++) {
 				world.addParticle(ParticleTypes.INSTANT_EFFECT,
@@ -164,8 +156,8 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	@Override
 	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
 		DamageComposition composition = new DamageComposition();
-		composition.addPlayerOrEntity(attacker, damage * (1 - this.magicDamageShare));
-		composition.add(DamageSource.magic(attacker, attacker), damage * this.magicDamageShare);
+		composition.addPlayerOrEntity(attacker, damage * (1 - this.MAGIC_DAMAGE_SHARE));
+		composition.add(DamageSource.magic(attacker, attacker), damage * this.MAGIC_DAMAGE_SHARE);
 		return composition;
 	}
 

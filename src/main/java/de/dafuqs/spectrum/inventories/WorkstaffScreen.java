@@ -1,19 +1,16 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.items.tools.RangedWorkstaffItem;
-import de.dafuqs.spectrum.items.tools.WorkstaffItem;
-import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
 
 import java.awt.*;
 
@@ -46,13 +43,13 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 		} else {
 			rightClickGridEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(128, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_RIGHT_CLICK_ACTIONS));
 		}
-
-		if (mainHandStack.getItem() instanceof RangedWorkstaffItem) {
-
-			GridEntry projectileEntry = RangedWorkstaffItem.canShoot(mainHandStack.getNbt())
+		
+		if (mainHandStack.getItem() instanceof GlassCrestWorkstaffItem) {
+			
+			GridEntry projectileEntry = GlassCrestWorkstaffItem.canShoot(mainHandStack.getNbt())
 					? GridEntry.of(InkColors.GRAY.getColor(), new Point(176, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_PROJECTILES))
 					: GridEntry.of(InkColors.GRAY.getColor(), new Point(160, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_PROJECTILES));
-
+			
 			gridStack.push(new Grid(
 					GridEntry.CLOSE,
 					GridEntry.of(InkColors.GRAY.getColor(), new Point(112, 38), (screen) -> screen.selectGrid(RANGE_GRID)),

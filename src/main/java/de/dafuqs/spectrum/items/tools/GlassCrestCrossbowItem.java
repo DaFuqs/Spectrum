@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.items.tools;
 
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
@@ -21,7 +23,8 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
-
+    
+    private static final InkCost OVERCHARGE_COST = new InkCost(InkColors.WHITE, 1000);
     private static final int OVERCHARGE_DURATION_MAX_TICKS = 20 * 6; // 6 seconds
 
     public GlassCrestCrossbowItem(Settings settings) {
@@ -31,7 +34,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        if (user.isSneaking() && isCharged(itemStack) && !isOvercharged(itemStack)) {
+        if (user.isSneaking() && isCharged(itemStack) && !isOvercharged(itemStack) && InkPowered.tryDrainEnergy(user, OVERCHARGE_COST)) {
             if (world.isClient) {
                 startSoundInstance(user);
             }
@@ -110,6 +113,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
         float overcharge = getOvercharge(itemStack);
         if (overcharge == 0) {
             tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.how_to_overcharge"));
+            tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white"));
         } else {
             tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.overcharged", Support.DF.format(overcharge * 100)));
         }

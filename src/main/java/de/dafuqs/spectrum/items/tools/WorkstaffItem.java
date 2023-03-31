@@ -1,41 +1,32 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.inventories.WorkstaffScreenHandler;
-import de.dafuqs.spectrum.items.Preenchanted;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.*;
+import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Preenchanted {
-
+	
+	protected static final InkCost BASE_COST_PER_AOE_MINING_RANGE_INCREMENT = new InkCost(InkColors.WHITE, 10);
+	
 	public enum GUIToggle {
 		SELECT_SILK_TOUCH("item.spectrum.workstaff.message.silk_touch"),
 		SELECT_FORTUNE("item.spectrum.workstaff.message.fortune"),
@@ -119,10 +110,21 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	@Override
 	public int getRange(ItemStack stack) {
 		NbtCompound nbt = stack.getNbt();
-		if(nbt == null || !nbt.contains(RANGE_NBT_STRING, NbtElement.INT_TYPE)) {
+		if (nbt == null || !nbt.contains(RANGE_NBT_STRING, NbtElement.INT_TYPE)) {
 			return 0;
 		}
 		return nbt.getInt(RANGE_NBT_STRING);
+	}
+	
+	@Override
+	public boolean canMineAtRange(PlayerEntity player, ItemStack stack) {
+		int range = getRange(stack);
+		if (range <= 0) {
+			return true;
+		}
+		
+		int costForRange = (int) Math.pow(BASE_COST_PER_AOE_MINING_RANGE_INCREMENT.getCost(), range);
+		return InkPowered.tryDrainEnergy(player, BASE_COST_PER_AOE_MINING_RANGE_INCREMENT.getColor(), costForRange);
 	}
 	
 	public static void applyToggle(PlayerEntity player, ItemStack stack, GUIToggle toggle) {

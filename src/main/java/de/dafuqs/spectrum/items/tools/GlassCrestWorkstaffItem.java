@@ -1,33 +1,29 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.energy.InkCost;
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.entity.entity.MiningProjectileEntity;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
-public class RangedWorkstaffItem extends WorkstaffItem {
-
+public class GlassCrestWorkstaffItem extends WorkstaffItem {
+    
     public static final int COOLDOWN_DURATION_TICKS = 10;
     public static final InkCost PROJECTILE_COST = new InkCost(InkColors.WHITE, 250);
-
-    public RangedWorkstaffItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
+    
+    public GlassCrestWorkstaffItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
     }
-
+    
     public static boolean canShoot(NbtCompound nbt) {
         return nbt == null || !nbt.getBoolean(WorkstaffItem.PROJECTILES_DISABLED_NBT_STRING);
     }

@@ -93,8 +93,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 				if (optionalFluidColor.isPresent()) {
 					ParticleEffect particleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalFluidColor.get());
 					
-					float randomX = 0.25F + world.getRandom().nextFloat() * 0.5F;
-					float randomZ = 0.25F + world.getRandom().nextFloat() * 0.5F;
+					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
+					float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
 					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 1, blockPos.getZ() + randomZ, 0.0D, 0.1D, 0.0D);
 				}
 			}

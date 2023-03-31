@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.events.listeners;
 
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.effect.SimpleTransmission;
-import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.PositionSource;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.effect.*;
+import net.minecraft.entity.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 
 public class ExperienceOrbEventQueue extends EventQueue<ExperienceOrbEventQueue.EventEntry> {
 	
@@ -23,7 +21,7 @@ public class ExperienceOrbEventQueue extends EventQueue<ExperienceOrbEventQueue.
 			EventEntry eventEntry = new EventEntry(event.getEvent(), experienceOrbEntity, MathHelper.floor(pos.distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			SpectrumS2CPacketSender.playExperienceTransmission((ServerWorld) world, new SimpleTransmission(pos, this.positionSource, delay));
+			SpectrumS2CPacketSender.playTransmissionParticle((ServerWorld) world, new SimpleTransmissionParticleEffect(pos, this.positionSource, delay, SimpleTransmissionParticleEffect.Variant.EXPERIENCE));
 		}
 	}
 	

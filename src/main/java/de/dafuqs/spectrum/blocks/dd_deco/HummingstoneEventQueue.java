@@ -5,17 +5,16 @@ import de.dafuqs.spectrum.events.listeners.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import net.minecraft.server.world.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 
-class HummingEventQueue extends EventQueue<HummingEventQueue.EventEntry> {
-
-    public HummingEventQueue(PositionSource positionSource, int range, Callback<EventEntry> listener) {
+class HummingstoneEventQueue extends EventQueue<HummingstoneEventQueue.EventEntry> {
+    
+    public HummingstoneEventQueue(PositionSource positionSource, int range, Callback<EventEntry> listener) {
         super(positionSource, range, listener);
     }
-
+    
     @Override
     public void acceptEvent(World world, GameEvent.Message message, Vec3d sourcePos) {
         Vec3d pos = message.getEmitterPos();
@@ -24,7 +23,7 @@ class HummingEventQueue extends EventQueue<HummingEventQueue.EventEntry> {
         this.schedule(eventEntry, delay);
 
         if (message.getEvent() == SpectrumGameEvents.HUMMINGSTONE_HUMMING) {
-            SpectrumS2CPacketSender.playColorTransmission((ServerWorld) world, new ColoredTransmission(pos, this.positionSource, delay, DyeColor.LIME)); // TODO: customize
+            SpectrumS2CPacketSender.playTransmissionParticle((ServerWorld) world, new SimpleTransmissionParticleEffect(pos, this.positionSource, delay, SimpleTransmissionParticleEffect.Variant.HUMMINGSTONE));
             if (getQueuedEventCount() > 20) {
                 world.emitGameEvent(message.getEmitter().sourceEntity(), SpectrumGameEvents.HUMMINGSTONE_HYMN, pos);
             }

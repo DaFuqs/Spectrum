@@ -1,18 +1,15 @@
 package de.dafuqs.spectrum.events.listeners;
 
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.effect.SimpleTransmission;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.PositionSource;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.effect.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 
 public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry> {
 	
-	public BlockPosEventQueue(PositionSource positionSource, int range, Callback listener) {
+	public BlockPosEventQueue(PositionSource positionSource, int range, Callback<EventEntry> listener) {
 		super(positionSource, range, listener);
 	}
 	
@@ -23,7 +20,7 @@ public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry
 			EventEntry eventEntry = new EventEntry(event.getEvent(), new BlockPos(emitterPos.x, emitterPos.y, emitterPos.z), MathHelper.floor(event.getEmitterPos().distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			SpectrumS2CPacketSender.playBlockPosEventTransmission((ServerWorld) world, new SimpleTransmission(emitterPos, this.positionSource, delay));
+			SpectrumS2CPacketSender.playTransmissionParticle((ServerWorld) world, new SimpleTransmissionParticleEffect(emitterPos, this.positionSource, delay, SimpleTransmissionParticleEffect.Variant.BLOCK_POS));
 		}
 	}
 	

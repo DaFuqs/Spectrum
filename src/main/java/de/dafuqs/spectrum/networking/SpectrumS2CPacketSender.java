@@ -158,17 +158,6 @@ public class SpectrumS2CPacketSender {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_TRANSMISSION, buf);
 		}
 	}
-
-    public static void sendItemTransferPacket(ServerWorld world, @NotNull SimpleTransmission transfer) {
-        BlockPos blockPos = new BlockPos(transfer.getOrigin());
-
-        PacketByteBuf buf = PacketByteBufs.create();
-        SimpleTransmission.writeToBuf(buf, transfer);
-
-        for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
-            ServerPlayNetworking.send(player, SpectrumS2CPackets.ITEM_TRANSMISSION, buf);
-        }
-	}
 	
 	public static void playColorTransmission(ServerWorld world, @NotNull ColoredTransmission transfer) {
 		BlockPos blockPos = new BlockPos(transfer.getOrigin());
@@ -181,25 +170,14 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
-	public static void playExperienceTransmission(ServerWorld world, @NotNull SimpleTransmission transfer) {
-		BlockPos blockPos = new BlockPos(transfer.getOrigin());
+	public static void playTransmissionParticle(ServerWorld world, @NotNull SimpleTransmissionParticleEffect transmission) {
+		BlockPos blockPos = new BlockPos(transmission.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
-		SimpleTransmission.writeToBuf(buf, transfer);
+		SimpleTransmissionParticleEffect.writeToBuf(buf, transmission);
 		
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.EXPERIENCE_TRANSMISSION, buf);
-		}
-	}
-	
-	public static void playBlockPosEventTransmission(ServerWorld world, @NotNull SimpleTransmission transfer) {
-		BlockPos blockPos = new BlockPos(transfer.getOrigin());
-		
-		PacketByteBuf buf = PacketByteBufs.create();
-		SimpleTransmission.writeToBuf(buf, transfer);
-		
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.BLOCK_POS_EVENT_TRANSMISSION, buf);
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.SIMPLE_TRANSMISSION, buf);
 		}
 	}
 	

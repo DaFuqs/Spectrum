@@ -52,7 +52,7 @@ public class SpectrumS2CPacketReceiver {
 			if (particleType instanceof ParticleEffect particleEffect) {
 				client.execute(() -> {
 					// Everything in this lambda is running on the render thread
-
+					
 					Random random = client.world.random;
 					
 					for (int i = 0; i < amount; i++) {
@@ -62,7 +62,7 @@ public class SpectrumS2CPacketReceiver {
 						double randomVelocityX = randomVelocity.x - random.nextDouble() * randomVelocity.x * 2;
 						double randomVelocityY = randomVelocity.y - random.nextDouble() * randomVelocity.y * 2;
 						double randomVelocityZ = randomVelocity.z - random.nextDouble() * randomVelocity.z * 2;
-
+						
 						client.world.addParticle(particleEffect,
 								position.getX() + randomOffsetX, position.getY() + randomOffsetY, position.getZ() + randomOffsetZ,
 								randomVelocityX, randomVelocityY, randomVelocityZ);
@@ -70,7 +70,7 @@ public class SpectrumS2CPacketReceiver {
 				});
 			}
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_WITH_EXACT_VELOCITY, (client, handler, buf, responseSender) -> {
 			double posX = buf.readDouble();
 			double posY = buf.readDouble();
@@ -109,7 +109,7 @@ public class SpectrumS2CPacketReceiver {
 			DimensionType dimensionType = client.world.getDimension();
 			long sourceTime = buf.readLong();
 			long targetTime = buf.readLong();
-
+			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				SpectrumClient.skyLerper.trigger(dimensionType, sourceTime, client.getTickDelta(), targetTime);
@@ -117,7 +117,7 @@ public class SpectrumS2CPacketReceiver {
 					client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_FLY_BY, SoundCategory.NEUTRAL, 0.15F, 1.0F, false);
 				}
 			});
-
+			
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PEDESTAL_CRAFTING_FINISHED_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
@@ -213,56 +213,58 @@ public class SpectrumS2CPacketReceiver {
 				PedestalBlockEntity.spawnCraftingStartParticles(client.world, position);
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos pos = buf.readBlockPos();
 			if (client.world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity) {
 				((ParticleSpawnerBlockEntity) client.world.getBlockEntity(pos)).applySettings(buf);
 			}
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PASTEL_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			UUID networkUUID = buf.readUuid();
 			int travelTime = buf.readInt();
 			PastelTransmission transmission = PastelTransmission.fromPacket(buf);
 			BlockPos spawnPos = transmission.getStartPos();
-            int color = ColorHelper.getColorFromInt(networkUUID.hashCode());
-
+			int color = ColorHelper.getColorFromInt(networkUUID.hashCode());
+			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-                client.world.addParticle(new PastelTransmissionParticleEffect(transmission.getNodePositions(), transmission.getVariant().toStack(), travelTime, color), spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5, 0, 0, 0);
+				client.world.addParticle(new PastelTransmissionParticleEffect(transmission.getNodePositions(), transmission.getVariant().toStack(), travelTime, color), spawnPos.getX() + 0.5, spawnPos.getY() + 0.5, spawnPos.getZ() + 0.5, 0, 0, 0);
 			});
 		});
-
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.ITEM_TRANSMISSION, (client, handler, buf, responseSender) -> {
-			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.SIMPLE_TRANSMISSION, (client, handler, buf, responseSender) -> {
+			SimpleTransmissionParticleEffect transmission = SimpleTransmissionParticleEffect.readFromBuf(buf);
+			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
-				client.world.addImportantParticle(new ItemTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+				switch (transmission.getVariant()) {
+					case BLOCK_POS -> {
+						client.world.addImportantParticle(new BlockPosEventTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+						
+					}
+					case ITEM -> {
+						client.world.addImportantParticle(new ItemTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+						
+					}
+					case EXPERIENCE -> {
+						client.world.addImportantParticle(new ExperienceTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+						
+					}
+					case HUMMINGSTONE -> {
+						client.world.addImportantParticle(new HummingstoneTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
+						
+					}
+				}
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.COLOR_TRANSMISSION, (client, handler, buf, responseSender) -> {
 			ColoredTransmission transmission = ColoredTransmission.readFromBuf(buf);
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				client.world.addImportantParticle(new ColoredTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks(), transmission.getDyeColor()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-			});
-		});
-		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.EXPERIENCE_TRANSMISSION, (client, handler, buf, responseSender) -> {
-			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
-			client.execute(() -> {
-				// Everything in this lambda is running on the render thread
-				client.world.addImportantParticle(new ExperienceTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
-			});
-		});
-		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.BLOCK_POS_EVENT_TRANSMISSION, (client, handler, buf, responseSender) -> {
-			SimpleTransmission transmission = SimpleTransmission.readFromBuf(buf);
-			client.execute(() -> {
-				// Everything in this lambda is running on the render thread
-				client.world.addImportantParticle(new BlockPosEventTransmissionParticleEffect(transmission.getDestination(), transmission.getArrivalInTicks()), true, transmission.getOrigin().getX(), transmission.getOrigin().getY(), transmission.getOrigin().getZ(), 0.0D, 0.0D, 0.0D);
 			});
 		});
 		
@@ -413,22 +415,22 @@ public class SpectrumS2CPacketReceiver {
 			double playerVelocityX = buf.readDouble();
 			double playerVelocityY = buf.readDouble();
 			double playerVelocityZ = buf.readDouble();
-
+			
 			client.execute(() -> {
 				MoonstoneStrike.create(client.world, null, null, x, y, z, power);
 				player.setVelocity(player.getVelocity().add(playerVelocityX, playerVelocityY, playerVelocityZ));
 			});
 		});
-
+		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.DISPLAY_HUD_MESSAGE, (client, handler, buf, responseSender) -> {
 			Text text = buf.readText();
 			boolean tinted = buf.readBoolean();
-
+			
 			client.execute(() -> {
 				client.inGameHud.setOverlayMessage(text, tinted);
 			});
 		});
-
+		
 	}
 	
 }

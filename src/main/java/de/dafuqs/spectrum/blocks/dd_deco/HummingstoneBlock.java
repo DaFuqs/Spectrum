@@ -42,7 +42,8 @@ public class HummingstoneBlock extends BlockWithEntity {
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         super.randomDisplayTick(state, world, pos, random);
-        if (state.get(HUMMING) && random.nextFloat() < 0.3F) {
+        float r = random.nextFloat();
+        if (state.get(HUMMING) && r < 0.3F || r < 0.01) {
             Direction direction = Direction.random(random);
             if (direction != Direction.DOWN) {
                 BlockPos blockPos = pos.offset(direction);
@@ -54,7 +55,7 @@ public class HummingstoneBlock extends BlockWithEntity {
                     world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0D, 0.05D, 0.0D);
                 }
                 float pitch = 0.4F + 0.4F * pos.getX() % 8 + 0.4F * pos.getY() % 8 + 0.4F * pos.getZ() % 8;
-                world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.BLOCK_NOTE_BLOCK_HARP, SoundCategory.BLOCKS, 0.2F + random.nextFloat() * 0.1F, pitch, false); // TODO: customize
+                world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SpectrumSoundEvents.HUMMINGSTONE_HUM, SoundCategory.BLOCKS, 0.4F + random.nextFloat() * 0.1F, pitch, false);
             }
         }
     }
@@ -65,6 +66,10 @@ public class HummingstoneBlock extends BlockWithEntity {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!state.get(HUMMING)) {
+            startHumming(world, pos, state, player, false);
+            return ActionResult.success(world.isClient);
+        }
         return super.onUse(state, world, pos, player, hand, hit);
     }
 
@@ -108,8 +113,8 @@ public class HummingstoneBlock extends BlockWithEntity {
         if (!(state.getBlock() instanceof HummingstoneBlock)) {
             return;
         }
-
-        world.playSound(null, pos, SoundEvents.BLOCK_NOTE_BLOCK_PLING, SoundCategory.BLOCKS, 1.0F, 1.0F);
+    
+        world.playSound(null, pos, SpectrumSoundEvents.HUMMINGSTONE_HUM, SoundCategory.BLOCKS, 0.75F, 1.0F);
         if (!state.get(HUMMING)) {
             world.setBlockState(pos, state.with(HUMMING, true));
         }

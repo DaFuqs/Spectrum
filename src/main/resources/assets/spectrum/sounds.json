@@ -45,6 +45,12 @@
       "spectrum:ground_slam4"
     ]
   },
+  "hummingstone_hum": {
+    "subtitle": "spectrum.subtitles.hummingstone_hum",
+    "sounds": [
+      "spectrum:hummingstone_hum"
+    ]
+  },
   "squeaker": {
     "subtitle": "spectrum.subtitles.squeaker",
     "sounds": [

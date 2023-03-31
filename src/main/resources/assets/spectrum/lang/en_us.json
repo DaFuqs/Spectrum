@@ -361,7 +361,9 @@
   "enchantment.spectrum.indestructible.desc": "Makes the tool fully unbreakable",
   "enchantment.spectrum.big_catch": "Big Catch",
   "enchantment.spectrum.big_catch.desc": "Higher chance to reel in living creatures",
+
   "spectrum.subtitles.overcharging": "Overcharging",
+  "spectrum.subtitles.hummingstone_hum": "Hummingstone hums",
   "spectrum.subtitles.ground_slam": "Sword slamming ground",
   "spectrum.subtitles.ground_slam_charge": "Ground Slam charging",
   "spectrum.subtitles.paintbrush_trigger": "Paintbrush activation",
@@ -407,10 +409,12 @@
   "spectrum.subtitles.dreamflayer_activates": "Dreamflayer activates",
   "spectrum.subtitles.dreamflayer_deactivates": "Dreamflayer deactivates",
   "spectrum.subtitles.deeper_down_portal_open": "Portal opens",
+
   "subtitles.block.citrine_block.chime": "Citrine chimes",
   "subtitles.block.topaz_block.chime": "Topaz chimes",
   "subtitles.block.onyx_block.chime": "Onyx chimes",
   "subtitles.block.moonstone_block.chime": "Moonstone chimes",
+
   "spectrum.toast.revelation.title": "You gained knowledge about the world",
   "spectrum.toast.revelation.text": "New things reveal themselves to you",
   "spectrum.toast.anvil_crushing_recipe_unlocked.title": "New Crushing recipe:",

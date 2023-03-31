@@ -13,7 +13,7 @@
     "grass_color_modifier": "none",
     "mood_sound": {
       "sound": "spectrum:ambient.dimension_sounds",
-      "tick_delay": 6000,
+      "tick_delay": 4000,
       "block_search_extent": 8,
       "offset": 2
     },
@@ -83,6 +83,7 @@
     [
       "minecraft:brown_mushroom_nether",
       "minecraft:red_mushroom_nether",
+      "spectrum:dd_lush_caves_clay",
       "spectrum:dd_glow_lichen"
     ],
     []

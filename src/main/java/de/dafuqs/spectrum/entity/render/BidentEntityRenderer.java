@@ -31,7 +31,7 @@ public class BidentEntityRenderer extends EntityRenderer<BidentEntity> {
     }
 
     private void renderAsItemStack(BidentEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
-        SpectrumItemPredicates.currentItemRenderMode = ModelTransformation.Mode.NONE;
+        SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformation.Mode.NONE;
         BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
 
         matrixStack.push();

@@ -433,6 +433,12 @@
       "spectrum:natures_staff_use"
     ]
   },
+  "unlock": {
+    "subtitle": "spectrum.subtitles.unlock",
+    "sounds": [
+      "spectrum:unlock"
+    ]
+  },
   "block.citrine_block.break": {
     "subtitle": "subtitles.block.generic.break",
     "sounds": [

@@ -66,6 +66,7 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent PUFF_CIRCLET_PFFT = register("puff_circlet");
 	public static final SoundEvent MIDNIGHT_ABERRATION_CRUMBLING = register("midnight_aberration_crumbling");
 	public static final SoundEvent STRUCTURE_SUCCESS = register("structure_success");
+	public static final SoundEvent UNLOCK = register("unlock");
 
 	public static final SoundEvent BLACK_HOLE_CHEST_OPEN = register("black_hole_chest_open");
 	public static final SoundEvent BLACK_HOLE_CHEST_CLOSE = register("black_hole_chest_close");

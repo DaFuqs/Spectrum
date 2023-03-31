@@ -393,8 +393,8 @@ public class SpectrumItems {
 	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	
 	// Lore
-	public static final Item MYSTERIOUS_LOCKET = new ItemWithTooltip(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), new String[]{"item.spectrum.mysterious_locket.tooltip", "item.spectrum.mysterious_locket.tooltip2"});
-	public static final Item MYSTERIOUS_COMPASS = new Item(Tab.EQUIPMENT.settings(1, Rarity.RARE));
+	public static final Item MYSTERIOUS_LOCKET = new MysteriousLocketItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item MYSTERIOUS_COMPASS = new StructureCompassItem(Tab.EQUIPMENT.settings(1, Rarity.RARE), SpectrumStructureTags.MYSTERIOUS_COMPASS_LOCATED);
 	
 	// Trinkets
 	public static final Item FANCIFUL_BELT = new Item(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));

@@ -1,34 +1,28 @@
 package de.dafuqs.spectrum.registries.client;
 
-import de.dafuqs.spectrum.blocks.present.PresentBlock;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.storage.SingleInkStorage;
-import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
-import de.dafuqs.spectrum.items.ActivatableItem;
-import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import de.dafuqs.spectrum.items.energy.InkFlaskItem;
-import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
-import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
-import de.dafuqs.spectrum.items.tools.MalachiteCrossbowItem;
-import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
-import de.dafuqs.spectrum.items.trinkets.AshenCircletItem;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.client.item.ModelPredicateProviderRegistry;
-import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import de.dafuqs.spectrum.blocks.present.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.items.energy.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.client.render.model.json.*;
+import net.minecraft.client.world.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.util.Identifier;
+import net.minecraft.nbt.*;
+import net.minecraft.util.*;
 
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 // Vanilla models see: ModelPredicateProviderRegistry
-public class SpectrumItemPredicates {
+public class SpectrumModelPredicateProviders {
 	
 	public static ModelTransformation.Mode currentItemRenderMode;
 	
@@ -49,7 +43,7 @@ public class SpectrumItemPredicates {
 		registerMoonPhasePredicates(SpectrumItems.CRESCENT_CLOCK);
 		registerActivatableItemPredicate(SpectrumItems.DREAMFLAYER);
 		registerOversizedItemPredicate(SpectrumItems.DREAMFLAYER);
-
+		
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_WORKSTAFF);
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_ULTRA_GREATSWORD);
 		registerOversizedItemPredicate(SpectrumItems.MALACHITE_CROSSBOW);
@@ -59,17 +53,22 @@ public class SpectrumItemPredicates {
 		registerOversizedItemPredicate(SpectrumItems.GLASS_CREST_CROSSBOW);
 		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
 		registerOversizedItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
-
+		
 		registerThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT);
 		registerThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
 		registerThrowingItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
-
+		
 		registerMalachiteCrossbowPredicates(SpectrumItems.MALACHITE_CROSSBOW);
 		registerMalachiteCrossbowPredicates(SpectrumItems.GLASS_CREST_CROSSBOW);
-
+		
 		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
 		registerEnchantmentCanvasPrediates(SpectrumItems.ENCHANTMENT_CANVAS);
 		registerPresentPredicates(SpectrumBlocks.PRESENT.asItem());
+		registerStructureCompassPredicates(SpectrumItems.MYSTERIOUS_COMPASS);
+	}
+	
+	private static void registerStructureCompassPredicates(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("angle"), new CompassAnglePredicateProvider((world, stack, entity) -> StructureCompassItem.getStructurePos(stack)));
 	}
 	
 	private static void registerMalachiteCrossbowPredicates(MalachiteCrossbowItem crossbowItem) {

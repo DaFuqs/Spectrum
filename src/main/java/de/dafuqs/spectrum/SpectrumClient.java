@@ -65,7 +65,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 		SpectrumScreenHandlerTypes.registerClient();
 
 		logInfo("Setting up ItemPredicates...");
-		SpectrumItemPredicates.registerClient();
+		SpectrumModelPredicateProviders.registerClient();
 
 		logInfo("Setting up Block Entity Renderers...");
 		SpectrumBlockEntities.registerClient();

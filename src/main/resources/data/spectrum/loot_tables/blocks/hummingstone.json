@@ -12,17 +12,35 @@
       ],
       "conditions": [
         {
-          "condition": "minecraft:match_tool",
-          "predicate": {
-            "enchantments": [
-              {
-                "enchantment": "spectrum:resonance",
-                "levels": {
-                  "min": 1
-                }
+          "condition": "minecraft:alternative",
+          "terms": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "enchantments": [
+                  {
+                    "enchantment": "minecraft:silk_touch",
+                    "levels": {
+                      "min": 1
+                    }
+                  }
+                ]
               }
-            ]
-          }
+            },
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "enchantments": [
+                  {
+                    "enchantment": "spectrum:resonance",
+                    "levels": {
+                      "min": 1
+                    }
+                  }
+                ]
+              }
+            }
+          ]
         }
       ]
     }

@@ -40,11 +40,11 @@ public class MysteriousLocketItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(Text.translatable("item.spectrum.mysterious_locket.tooltip").formatted(Formatting.GRAY));
 		if (isSocketed(stack)) {
-			tooltip.add(Text.translatable("item.spectrum.mysterious_locket.tooltip_socketed"));
+			tooltip.add(Text.translatable("item.spectrum.mysterious_locket.tooltip_socketed").formatted(Formatting.GRAY));
 		} else {
-			tooltip.add(Text.translatable("item.spectrum.mysterious_locket.tooltip_empty"));
-			tooltip.add(Text.translatable("item.spectrum.mysterious_locket.tooltip_empty2"));
+			tooltip.add(Text.translatable("item.spectrum.mysterious_locket.tooltip_empty").formatted(Formatting.GRAY));
 		}
 	}
 	

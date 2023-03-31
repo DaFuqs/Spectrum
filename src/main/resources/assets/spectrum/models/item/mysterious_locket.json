@@ -1,6 +1,14 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "item/generated",
   "textures": {
     "layer0": "spectrum:item/mysterious_locket"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "socketed": 1.0
+      },
+      "model": "spectrum:item/mysterious_locket_socketed"
+    }
+  ]
 }

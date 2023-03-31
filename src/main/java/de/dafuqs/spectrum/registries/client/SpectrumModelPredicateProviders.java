@@ -64,7 +64,12 @@ public class SpectrumModelPredicateProviders {
 		registerBottomlessBundlePredicates(SpectrumItems.BOTTOMLESS_BUNDLE);
 		registerEnchantmentCanvasPrediates(SpectrumItems.ENCHANTMENT_CANVAS);
 		registerPresentPredicates(SpectrumBlocks.PRESENT.asItem());
+		registerMysteriousLocketPredicates(SpectrumItems.MYSTERIOUS_LOCKET);
 		registerStructureCompassPredicates(SpectrumItems.MYSTERIOUS_COMPASS);
+	}
+	
+	private static void registerMysteriousLocketPredicates(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("socketed"), (itemStack, clientWorld, livingEntity, i) -> MysteriousLocketItem.isSocketed(itemStack) ? 1.0F : 0.0F);
 	}
 	
 	private static void registerStructureCompassPredicates(Item item) {
@@ -154,7 +159,6 @@ public class SpectrumModelPredicateProviders {
 				return 0.0F;
 			return compound.contains("StoredStack") ? 1.0F : 0.0F;
 		});
-		
 	}
 	
 	private static void registerMoonPhasePredicates(Item item) {

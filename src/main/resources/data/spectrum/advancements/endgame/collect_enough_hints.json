@@ -13,9 +13,6 @@
   },
   "parent": "spectrum:endgame/spectrum_endgame",
   "criteria": {
-    "coming_soon": {
-      "trigger": "minecraft:impossible"
-    },
     "has_collected_enough_hints": {
       "trigger": "revelationary:advancement_count",
       "conditions": {
@@ -32,6 +29,12 @@
           "spectrum:lategame/visit_all_deeper_down_biomes",
           "spectrum:lategame/collect_moonstone_shard"
         ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
       }
     }
   }

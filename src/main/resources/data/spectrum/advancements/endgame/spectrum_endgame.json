@@ -22,7 +22,7 @@
           "min": 4
         },
         "advancement_identifiers": [
-          "spectrum:endgame/revive_black_sludge_plant",
+          "spectrum:lategame/revive_black_sludge_plant",
           "spectrum:lategame/collect_dragonbone",
           "spectrum:lategame/find_excavation_site",
           "spectrum:lategame/find_forgotten_city",

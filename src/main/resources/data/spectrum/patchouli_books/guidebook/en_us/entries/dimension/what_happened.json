@@ -15,13 +15,13 @@
       "type": "spectrum:checklist",
       "title": "Where to look",
       "checklist": {
-        "spectrum:endgame/revive_black_sludge_plant": "What happened in the Forlorn Caves?"
+        "spectrum:lategame/revive_black_sludge_plant": "What happened in the Forlorn Caves?"
       },
       "text": ""
     },
     {
       "type": "patchouli:text",
-      "advancement": "spectrum:endgame/revive_black_sludge_plant",
+      "advancement": "spectrum:lategame/revive_black_sludge_plant",
       "title": "Clue: Forlorm Caves",
       "text": "The remains growing in $(l:dimension/forlorm_caves)Forlorm Caves$(/l) were actually Resonant Lilies, once. What happened here? Does that mean..."
     }

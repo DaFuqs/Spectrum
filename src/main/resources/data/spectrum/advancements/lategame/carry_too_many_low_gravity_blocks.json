@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:paltaeria_fragment_block"
     },
+    "hidden": true,
     "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.carry_too_many_low_gravity_blocks.title"

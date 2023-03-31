@@ -11,18 +11,12 @@
       "translate": "advancements.spectrum.finish_progression.description"
     }
   },
-  "parent": "spectrum:endgame/spectrum_endgame",
+  "parent": "spectrum:endgame/defeat_paintlich",
   "criteria": {
-    "completed_spectrum": {
-      "trigger": "revelationary:advancement_gotten",
-      "conditions": {
-        "advancement_identifier": "spectrum:endgame/create_spectral_shard"
-      }
-    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
+        "advancement_identifier": "spectrum:endgame/defeat_paintlich"
       }
     }
   },

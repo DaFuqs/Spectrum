@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:endgame/spectrum_endgame",
+  "parent": "spectrum:endgame/create_spectral_shard",
   "display": {
     "icon": {
       "item": "minecraft:enchanted_book"
@@ -24,7 +24,7 @@
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
+        "advancement_identifier": "spectrum:endgame/create_spectral_shard"
       }
     }
   }

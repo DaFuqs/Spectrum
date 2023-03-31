@@ -1,0 +1,39 @@
+{
+  "parent": "spectrum:endgame/create_mysterious_compass",
+  "display": {
+    "icon": {
+      "item": "spectrum:preservation_stone"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.find_forsaken_cathedral.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.find_forsaken_cathedral.description"
+    }
+  },
+  "criteria": {
+    "in_forsaken_cathedral": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "spectrum:dimension/forsaken_cathedral"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:endgame/create_mysterious_compass"
+      }
+    }
+  }
+}

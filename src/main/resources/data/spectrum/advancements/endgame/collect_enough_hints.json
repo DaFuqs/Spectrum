@@ -4,13 +4,14 @@
       "item": "spectrum:pedestal_moonstone"
     },
     "title": {
-      "translate": "advancements.spectrum.spectrum_endgame.title"
+      "translate": "advancements.spectrum.collect_enough_hints.title"
     },
     "description": {
-      "translate": "advancements.spectrum.spectrum_endgame.description"
+      "translate": "advancements.spectrum.collect_enough_hints.description"
     },
     "background": "spectrum:textures/gui/advancement_background_lategame.png"
   },
+  "parent": "spectrum:endgame/spectrum_endgame",
   "criteria": {
     "coming_soon": {
       "trigger": "minecraft:impossible"
@@ -19,10 +20,10 @@
       "trigger": "revelationary:advancement_count",
       "conditions": {
         "count": {
-          "min": 4
+          "min": 8
         },
         "advancement_identifiers": [
-          "spectrum:endgame/revive_black_sludge_plant",
+          "spectrum:lategame/revive_black_sludge_plant",
           "spectrum:lategame/collect_dragonbone",
           "spectrum:lategame/find_excavation_site",
           "spectrum:lategame/find_forgotten_city",

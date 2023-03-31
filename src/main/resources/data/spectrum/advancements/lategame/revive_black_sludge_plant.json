@@ -10,7 +10,7 @@
       "translate": "advancements.spectrum.revive_black_sludge_plant.description"
     }
   },
-  "parent": "spectrum:endgame/spectrum_endgame",
+  "parent": "spectrum:lategame/spectrum_lategame",
   "criteria": {
     "revived_sag_leaf": {
       "trigger": "spectrum:natures_staff_conversion",
@@ -33,7 +33,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
       }
     }
   },

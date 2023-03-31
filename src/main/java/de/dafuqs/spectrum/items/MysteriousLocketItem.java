@@ -24,7 +24,8 @@ public class MysteriousLocketItem extends Item {
 		if (!world.isClient) {
 			ItemStack handStack = user.getStackInHand(hand);
 			if (isSocketed(handStack)) {
-				ItemUsage.exchangeStack(handStack, user, SpectrumItems.MYSTERIOUS_COMPASS.getDefaultStack());
+				handStack.decrement(1);
+				user.getInventory().offerOrDrop(SpectrumItems.MYSTERIOUS_COMPASS.getDefaultStack());
 				world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.UNLOCK, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			}
 		}

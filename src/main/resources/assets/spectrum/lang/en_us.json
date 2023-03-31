@@ -2345,7 +2345,7 @@
   "item.spectrum.enchantment_canvas.tooltip.not_bound2": "§7The Canvas will be bound to items of that type",
   "item.spectrum.mysterious_locket": "Mysterious Locket",
   "item.spectrum.mysterious_locket.tooltip": "Softly glows with pale white color",
-  "item.spectrum.mysterious_locket.tooltip_socketed": "Socketed with a Moonstone Core",
+  "item.spectrum.mysterious_locket.tooltip_socketed": "Socketed with a §fMoonstone Core",
   "item.spectrum.mysterious_locket.tooltip_empty": "Features a small empty notch",
   "item.spectrum.mysterious_compass": "Mysterious Compass",
   "item.spectrum.bottle_of_fading": "Bottle of Fading",

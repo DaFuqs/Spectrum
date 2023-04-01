@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.particle.effect;
 
-import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.event.BlockPositionSource;
-import net.minecraft.world.event.PositionSource;
-import net.minecraft.world.event.PositionSourceType;
+import com.mojang.brigadier.*;
+import com.mojang.brigadier.exceptions.*;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
+import de.dafuqs.spectrum.particle.*;
+import net.minecraft.network.*;
+import net.minecraft.particle.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.event.*;
 
-public class ExperienceTransmissionParticleEffect extends TransmissionParticleEffect {
+public class ExperienceTransmissionParticleEffect extends SimpleTransmissionParticleEffect {
 	
 	public static final Codec<ExperienceTransmissionParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> {

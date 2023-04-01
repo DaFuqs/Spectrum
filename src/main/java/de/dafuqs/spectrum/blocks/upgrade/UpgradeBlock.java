@@ -124,7 +124,7 @@ public class UpgradeBlock extends BlockWithEntity {
 				SpectrumParticleTypes.getSparkleRisingParticle(particleColor),
 				10, new Vec3d(0.5, 0.5, 0.5),
 				new Vec3d(0.1, 0.1, 0.1));
-		SpectrumS2CPacketSender.playColorTransmission(
+		SpectrumS2CPacketSender.playColorTransmissionParticle(
 				world,
 				new ColoredTransmission(
 						new Vec3d(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D),

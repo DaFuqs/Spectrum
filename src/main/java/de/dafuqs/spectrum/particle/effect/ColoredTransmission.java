@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.particle.effect;
 
-import com.mojang.datafixers.util.Function4;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.event.PositionSource;
-import net.minecraft.world.event.PositionSourceType;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
+import net.minecraft.network.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.event.*;
 
-public class ColoredTransmission {
+public class ColoredTransmission extends SimpleTransmission {
 	
 	public static final Codec<ColoredTransmission> CODEC = RecordCodecBuilder.create((instance) -> {
 		return instance.group(Vec3d.CODEC.fieldOf("origin").forGetter((coloredTransmission) -> {
@@ -20,17 +18,13 @@ public class ColoredTransmission {
 			return coloredTransmission.dyeColor.getId();
 		}), Codec.INT.fieldOf("arrival_in_ticks").forGetter((coloredTransmission) -> {
 			return coloredTransmission.arrivalInTicks;
-		})).apply(instance, (Function4) (ColoredTransmission::new));
+		})).apply(instance, ColoredTransmission::new);
 	});
-	private final Vec3d origin;
-	private final PositionSource destination;
-	private final int arrivalInTicks;
-	private final DyeColor dyeColor;
+	
+	protected final DyeColor dyeColor;
 	
 	public ColoredTransmission(Vec3d origin, PositionSource destination, int arrivalInTicks, DyeColor dyeColor) {
-		this.origin = origin;
-		this.destination = destination;
-		this.arrivalInTicks = arrivalInTicks;
+		super(origin, destination, arrivalInTicks);
 		this.dyeColor = dyeColor;
 	}
 	
@@ -53,18 +47,6 @@ public class ColoredTransmission {
 		PositionSourceType.write(transfer.destination, buf);
 		buf.writeVarInt(transfer.arrivalInTicks);
 		buf.writeVarInt(transfer.dyeColor.getId());
-	}
-	
-	public int getArrivalInTicks() {
-		return this.arrivalInTicks;
-	}
-	
-	public Vec3d getOrigin() {
-		return this.origin;
-	}
-	
-	public PositionSource getDestination() {
-		return this.destination;
 	}
 	
 	public DyeColor getDyeColor() {

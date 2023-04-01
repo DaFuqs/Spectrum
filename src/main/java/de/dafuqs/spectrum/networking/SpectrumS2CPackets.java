@@ -19,9 +19,8 @@ public class SpectrumS2CPackets {
 	public static final Identifier PLAY_PRESENT_OPENING_PARTICLES = SpectrumCommon.locate("play_present_opening_particles");
 
 	// Complex particles
-	public static final Identifier SIMPLE_TRANSMISSION = SpectrumCommon.locate("item_transmission");
+	public static final Identifier TYPED_TRANSMISSION = SpectrumCommon.locate("typed_transmission");
 	public static final Identifier COLOR_TRANSMISSION = SpectrumCommon.locate("color_transmission");
-	public static final Identifier WIRELESS_REDSTONE_TRANSMISSION = SpectrumCommon.locate("wireless_redstone_transmission");
 	public static final Identifier PASTEL_TRANSMISSION = SpectrumCommon.locate("pastel_transmission");
 
 	// Sounds

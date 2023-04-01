@@ -129,7 +129,7 @@ public class ServerPastelTransmissionLogic {
                         int verticesCount = transmission.getNodePositions().size() - 1;
                         int travelTime = TRANSFER_TICKS_PER_NODE * verticesCount;
                         this.network.addTransmission(transmission, travelTime);
-                        SpectrumS2CPacketSender.sendPastelTransmission(network, travelTime, transmission);
+						SpectrumS2CPacketSender.sendPastelTransmissionParticle(network, travelTime, transmission);
                         if (transferMode == TransferMode.PULL) {
                             destinationNode.markTransferred();
                         } else if (transferMode == TransferMode.PUSH) {

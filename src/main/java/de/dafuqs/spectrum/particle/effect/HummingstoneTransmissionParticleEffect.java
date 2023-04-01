@@ -10,7 +10,7 @@ import net.minecraft.particle.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.event.*;
 
-public class HummingstoneTransmissionParticleEffect extends TransmissionParticleEffect {
+public class HummingstoneTransmissionParticleEffect extends SimpleTransmissionParticleEffect {
 	
 	public static final Codec<HummingstoneTransmissionParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
 			PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination),

@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.events.listeners;
 
-import de.dafuqs.spectrum.events.RedstoneTransferGameEvent;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.effect.WirelessRedstoneTransmission;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.PositionSource;
+import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.effect.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 
 public class WirelessRedstoneSignalEventQueue extends EventQueue<WirelessRedstoneSignalEventQueue.EventEntry> {
 	
@@ -23,7 +21,7 @@ public class WirelessRedstoneSignalEventQueue extends EventQueue<WirelessRedston
 			WirelessRedstoneSignalEventQueue.EventEntry eventEntry = new WirelessRedstoneSignalEventQueue.EventEntry(redstoneTransferEvent, MathHelper.floor(pos.distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			SpectrumS2CPacketSender.playWirelessRedstoneTransmission((ServerWorld) world, new WirelessRedstoneTransmission(pos, this.positionSource, delay));
+			SpectrumS2CPacketSender.playTransmissionParticle((ServerWorld) world, new TypedTransmission(pos, this.positionSource, delay, TypedTransmission.Variant.REDSTONE));
 		}
 	}
 	

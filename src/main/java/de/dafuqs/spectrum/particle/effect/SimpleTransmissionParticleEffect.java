@@ -1,78 +1,44 @@
 package de.dafuqs.spectrum.particle.effect;
 
-import com.mojang.datafixers.util.*;
-import com.mojang.serialization.*;
-import com.mojang.serialization.codecs.*;
 import net.minecraft.network.*;
+import net.minecraft.particle.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.world.event.*;
 
-public class SimpleTransmissionParticleEffect {
+import java.util.*;
+
+public abstract class SimpleTransmissionParticleEffect implements ParticleEffect {
 	
-	public enum Variant {
-		BLOCK_POS,
-		ITEM,
-		EXPERIENCE,
-		HUMMINGSTONE
-	}
+	protected final PositionSource destination;
+	protected final int arrivalInTicks;
 	
-	public static final Codec<SimpleTransmissionParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(Vec3d.CODEC.fieldOf("origin").forGetter((itemTransfer) -> {
-			return itemTransfer.origin;
-		}), PositionSource.CODEC.fieldOf("destination").forGetter((itemTransfer) -> {
-			return itemTransfer.destination;
-		}), Codec.INT.fieldOf("arrival_in_ticks").forGetter((itemTransfer) -> {
-			return itemTransfer.arrivalInTicks;
-		}), Codec.INT.fieldOf("variant").forGetter((itemTransfer) -> {
-			return itemTransfer.variant.ordinal();
-		})).apply(instance, (Function4) (SimpleTransmissionParticleEffect::new));
-	});
-	private final Vec3d origin;
-	private final PositionSource destination;
-	private final int arrivalInTicks;
-	private final Variant variant;
-	
-	public SimpleTransmissionParticleEffect(Vec3d origin, PositionSource destination, int arrivalInTicks, Variant variant) {
-		this.origin = origin;
-		this.destination = destination;
+	public SimpleTransmissionParticleEffect(PositionSource positionSource, int arrivalInTicks) {
+		this.destination = positionSource;
 		this.arrivalInTicks = arrivalInTicks;
-		this.variant = variant;
 	}
 	
-	public SimpleTransmissionParticleEffect(Object origin, Object destination, Object arrivalInTicks, Object variant) {
-		this((Vec3d) origin, (PositionSource) destination, (int) arrivalInTicks, (Variant) variant);
+	@Override
+	public void write(PacketByteBuf buf) {
+		PositionSourceType.write(this.destination, buf);
+		buf.writeVarInt(this.arrivalInTicks);
 	}
 	
-	public static SimpleTransmissionParticleEffect readFromBuf(PacketByteBuf buf) {
-		Vec3d origin = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
-		PositionSource positionSource = PositionSourceType.read(buf);
-		int arrivalInTicks = buf.readVarInt();
-		Variant variant = Variant.values()[buf.readVarInt()];
-		return new SimpleTransmissionParticleEffect(origin, positionSource, arrivalInTicks, variant);
-	}
-	
-	public static void writeToBuf(PacketByteBuf buf, SimpleTransmissionParticleEffect transfer) {
-		buf.writeDouble(transfer.origin.x);
-		buf.writeDouble(transfer.origin.y);
-		buf.writeDouble(transfer.origin.z);
-		PositionSourceType.write(transfer.destination, buf);
-		buf.writeVarInt(transfer.arrivalInTicks);
-		buf.writeVarInt(transfer.variant.ordinal());
-	}
-	
-	public int getArrivalInTicks() {
-		return this.arrivalInTicks;
-	}
-	
-	public Vec3d getOrigin() {
-		return this.origin;
+	@Override
+	public String asString() {
+		Vec3d vec3d = this.destination.getPos(null).get();
+		double d = vec3d.getX();
+		double e = vec3d.getY();
+		double f = vec3d.getZ();
+		return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %d", Registry.PARTICLE_TYPE.getId(this.getType()), d, e, f, this.arrivalInTicks);
 	}
 	
 	public PositionSource getDestination() {
 		return this.destination;
 	}
 	
-	public Variant getVariant() {
-		return this.variant;
+	public int getArrivalInTicks() {
+		return this.arrivalInTicks;
 	}
+	
 }

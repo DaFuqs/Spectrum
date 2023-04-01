@@ -148,18 +148,18 @@ public class SpectrumS2CPacketSender {
         }
     }
 
-    public static void sendPastelTransmission(PastelNetwork network, int travelTime, @NotNull PastelTransmission transfer) {
+    public static void sendPastelTransmissionParticle(PastelNetwork network, int travelTime, @NotNull PastelTransmission transfer) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeUuid(network.getUUID());
 		buf.writeInt(travelTime);
 		PastelTransmission.writeToBuf(buf, transfer);
-
+	
 		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) network.getWorld(), transfer.getStartPos())) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PASTEL_TRANSMISSION, buf);
 		}
 	}
 	
-	public static void playColorTransmission(ServerWorld world, @NotNull ColoredTransmission transfer) {
+	public static void playColorTransmissionParticle(ServerWorld world, @NotNull ColoredTransmission transfer) {
 		BlockPos blockPos = new BlockPos(transfer.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
@@ -170,25 +170,14 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
-	public static void playTransmissionParticle(ServerWorld world, @NotNull SimpleTransmissionParticleEffect transmission) {
+	public static void playTransmissionParticle(ServerWorld world, @NotNull TypedTransmission transmission) {
 		BlockPos blockPos = new BlockPos(transmission.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
-		SimpleTransmissionParticleEffect.writeToBuf(buf, transmission);
+		TypedTransmission.writeToBuf(buf, transmission);
 		
 		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.SIMPLE_TRANSMISSION, buf);
-		}
-	}
-	
-	public static void playWirelessRedstoneTransmission(ServerWorld world, @NotNull WirelessRedstoneTransmission wirelessRedstoneTransmission) {
-		BlockPos blockPos = new BlockPos(wirelessRedstoneTransmission.getOrigin());
-		
-		PacketByteBuf buf = PacketByteBufs.create();
-		WirelessRedstoneTransmission.writeToBuf(buf, wirelessRedstoneTransmission);
-		
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, blockPos)) {
-			ServerPlayNetworking.send(player, SpectrumS2CPackets.WIRELESS_REDSTONE_TRANSMISSION, buf);
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.TYPED_TRANSMISSION, buf);
 		}
 	}
 	

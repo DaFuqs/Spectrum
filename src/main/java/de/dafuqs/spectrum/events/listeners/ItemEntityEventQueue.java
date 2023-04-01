@@ -21,7 +21,7 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 			EventEntry eventEntry = new EventEntry(event.getEvent(), itemEntity, MathHelper.floor(pos.distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
-			SpectrumS2CPacketSender.playTransmissionParticle((ServerWorld) world, new SimpleTransmissionParticleEffect(pos, this.positionSource, delay, SimpleTransmissionParticleEffect.Variant.ITEM));
+			SpectrumS2CPacketSender.playTransmissionParticle((ServerWorld) world, new TypedTransmission(pos, this.positionSource, delay, TypedTransmission.Variant.ITEM));
 		}
 	}
 	

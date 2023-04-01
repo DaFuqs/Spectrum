@@ -23,7 +23,7 @@ class HummingstoneEventQueue extends EventQueue<HummingstoneEventQueue.EventEntr
         this.schedule(eventEntry, delay);
 
         if (message.getEvent() == SpectrumGameEvents.HUMMINGSTONE_HUMMING) {
-            SpectrumS2CPacketSender.playTransmissionParticle((ServerWorld) world, new SimpleTransmissionParticleEffect(pos, this.positionSource, delay, SimpleTransmissionParticleEffect.Variant.HUMMINGSTONE));
+            SpectrumS2CPacketSender.playTransmissionParticle((ServerWorld) world, new TypedTransmission(pos, this.positionSource, delay, TypedTransmission.Variant.HUMMINGSTONE));
             if (getQueuedEventCount() > 20) {
                 world.emitGameEvent(message.getEmitter().sourceEntity(), SpectrumGameEvents.HUMMINGSTONE_HYMN, pos);
             }

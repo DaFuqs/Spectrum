@@ -117,6 +117,16 @@ public class HummingstoneBlock extends BlockWithEntity {
 		return null;
 	}
 	
+	@Override
+	public boolean emitsRedstonePower(BlockState state) {
+		return state.get(HUMMING);
+	}
+	
+	@Override
+	public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+		return state.get(HUMMING) ? 15 : 0;
+	}
+	
 	public static void startHumming(World world, BlockPos pos, BlockState state, @Nullable Entity entity, boolean causedByOtherHum) {
 		if (!(state.getBlock() instanceof HummingstoneBlock)) {
 			return;

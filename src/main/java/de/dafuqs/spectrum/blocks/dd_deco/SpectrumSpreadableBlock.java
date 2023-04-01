@@ -7,13 +7,14 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
 import net.minecraft.world.chunk.light.*;
+import org.jetbrains.annotations.*;
 
 public class SpectrumSpreadableBlock extends SnowyBlock {
 	
-	protected final Block blockAbleToSpreadTo;
+	protected final @Nullable Block blockAbleToSpreadTo;
 	private final BlockState deadState;
 	
-	public SpectrumSpreadableBlock(Settings settings, Block blockAbleToSpreadTo, BlockState deadState) {
+	public SpectrumSpreadableBlock(Settings settings, @Nullable Block blockAbleToSpreadTo, BlockState deadState) {
 		super(settings);
 		this.blockAbleToSpreadTo = blockAbleToSpreadTo;
 		this.deadState = deadState;
@@ -33,7 +34,7 @@ public class SpectrumSpreadableBlock extends SnowyBlock {
 				
 				for (int i = 0; i < 4; ++i) {
 					BlockPos blockPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-					if (world.getBlockState(blockPos).isOf(blockAbleToSpreadTo) && canSpread(blockState, world, blockPos)) {
+					if (blockAbleToSpreadTo != null && world.getBlockState(blockPos).isOf(blockAbleToSpreadTo) && canSpread(blockState, world, blockPos)) {
 						world.setBlockState(blockPos, blockState.with(SNOWY, world.getBlockState(blockPos.up()).isOf(Blocks.SNOW)));
 					}
 				}

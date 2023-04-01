@@ -11,8 +11,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.network.*;
 import net.minecraft.state.*;
-import net.minecraft.state.property.Properties;
-import net.minecraft.state.property.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
@@ -25,7 +23,6 @@ import java.util.*;
 
 public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider {
 
-    public static final DirectionProperty FACING = Properties.FACING;
     public static final Map<Direction, VoxelShape> SHAPES = new HashMap<>() {{
         put(Direction.UP, Block.createCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D));
         put(Direction.DOWN, Block.createCuboidShape(4.0D, 8.0D, 4.0D, 12.0D, 16.0D, 12.0D));
@@ -36,26 +33,27 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
     }};
 
     protected final PastelNodeType pastelNodeType;
-
-    public PastelNodeBlock(Settings settings, PastelNodeType pastelNodeType) {
-        super(settings);
-        this.pastelNodeType = pastelNodeType;
-    }
-
-    @Nullable
-    protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
-        return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
-    }
-
-    public BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
-    }
-
-    @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        Direction targetDirection = state.get(FACING).getOpposite();
-        return world.getBlockState(pos.offset(targetDirection)).getMaterial().isSolid();
-    }
+	
+	public PastelNodeBlock(Settings settings, PastelNodeType pastelNodeType) {
+		super(settings);
+		this.pastelNodeType = pastelNodeType;
+	}
+	
+	@Nullable
+	protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+		return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
+	}
+	
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.MODEL;
+	}
+	
+	@Override
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		Direction targetDirection = state.get(FACING).getOpposite();
+		return world.getBlockState(pos.offset(targetDirection)).getMaterial().isSolid();
+	}
 
 
     @Override
@@ -89,27 +87,28 @@ public class PastelNodeBlock extends FacingBlock implements BlockEntityProvider 
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        super.appendTooltip(stack, world, tooltip, options);
-        tooltip.add(this.pastelNodeType.getTooltip().formatted(Formatting.WHITE));
-        tooltip.add(Text.translatable("block.spectrum.pastel_network_nodes.tooltip.placing").formatted(Formatting.GRAY));
-        tooltip.add(Text.translatable("block.spectrum.pastel_network_nodes.tooltip.range", PastelNodeBlockEntity.RANGE).formatted(Formatting.GRAY));
-    }
-
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        return !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : state;
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
-        if (player.getStackInHand(hand).isOf(SpectrumItems.PAINTBRUSH)) {
-            return sendDebugMessage(world, player, blockEntity);
-        } else if (this.pastelNodeType.usesFilters()) {
+		builder.add(FACING);
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
+		super.appendTooltip(stack, world, tooltip, options);
+		tooltip.add(this.pastelNodeType.getTooltip().formatted(Formatting.WHITE));
+		tooltip.add(Text.translatable("block.spectrum.pastel_network_nodes.tooltip.placing").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("block.spectrum.pastel_network_nodes.tooltip.range", PastelNodeBlockEntity.RANGE).formatted(Formatting.GRAY));
+	}
+	
+	@Override
+	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+		return !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : state;
+	}
+	
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+		PastelNodeBlockEntity blockEntity = getBlockEntity(world, pos);
+		if (player.getStackInHand(hand).isOf(SpectrumItems.PAINTBRUSH)) {
+			return sendDebugMessage(world, player, blockEntity);
+		} else if (this.pastelNodeType.usesFilters()) {
             if (world.isClient) {
                 return ActionResult.SUCCESS;
             } else {

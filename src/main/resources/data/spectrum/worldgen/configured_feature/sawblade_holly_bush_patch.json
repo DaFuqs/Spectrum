@@ -1,9 +1,9 @@
 {
   "type": "minecraft:random_patch",
   "config": {
-    "tries": 20,
+    "tries": 8,
     "xz_spread": 4,
-    "y_spread": 0,
+    "y_spread": 1,
     "feature": {
       "feature": {
         "type": "minecraft:block_column",
@@ -20,7 +20,7 @@
               "provider": {
                 "type": "minecraft:simple_state_provider",
                 "state": {
-                  "Name": "spectrum:razor_holly",
+                  "Name": "spectrum:sawblade_holly_bush",
                   "Properties": {
                     "age": "7",
                     "half": "lower"
@@ -33,9 +33,10 @@
               "provider": {
                 "type": "minecraft:simple_state_provider",
                 "state": {
-                  "Name": "spectrum:razor_holly",
+                  "Name": "spectrum:sawblade_holly_bush",
                   "Properties": {
-                    "half": "upper"
+                    "half": "upper",
+                    "age": "7"
                   }
                 }
               }
@@ -65,9 +66,10 @@
               {
                 "type": "minecraft:would_survive",
                 "state": {
-                  "Name": "spectrum:razor_holly",
+                  "Name": "spectrum:sawblade_holly_bush",
                   "Properties": {
-                    "age": "0"
+                    "half": "lower",
+                    "age": "7"
                   }
                 }
               }

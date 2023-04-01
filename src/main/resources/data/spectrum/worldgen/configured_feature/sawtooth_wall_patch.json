@@ -1,0 +1,29 @@
+{
+  "type": "spectrum:wall_patch",
+  "config": {
+    "block": "spectrum:sawtooth",
+    "width": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 3,
+        "max_inclusive": 8
+      }
+    },
+    "height": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 0,
+        "max_inclusive": 2
+      }
+    },
+    "can_place_on_floor": false,
+    "can_place_on_ceiling": false,
+    "can_place_on_wall": true,
+    "can_be_placed_on": [
+      "minecraft:deepslate",
+      "minecraft:dripstone_block",
+      "spectrum:blackslag",
+      "spectrum:shale_clay"
+    ]
+  }
+}

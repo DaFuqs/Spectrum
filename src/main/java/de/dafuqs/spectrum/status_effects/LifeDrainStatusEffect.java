@@ -1,19 +1,17 @@
 package de.dafuqs.spectrum.status_effects;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.effect.*;
 
-import java.util.UUID;
+import java.util.*;
 
-public class MilleniaDiseaseStatusEffect extends SpectrumStatusEffect {
+public class LifeDrainStatusEffect extends SpectrumStatusEffect {
 	
 	public static final String ATTRIBUTE_UUID_STRING = "28f9e619-20bf-4b2c-9646-06fbf714c00c";
 	public static final UUID ATTRIBUTE_UUID = UUID.fromString(ATTRIBUTE_UUID_STRING);
 	
-	public MilleniaDiseaseStatusEffect(StatusEffectCategory category, int color) {
+	public LifeDrainStatusEffect(StatusEffectCategory category, int color) {
 		super(category, color);
 	}
 	

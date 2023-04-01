@@ -1,10 +1,10 @@
 {
   "criteria": {
-    "millenia_disease": {
+    "life_drain": {
       "trigger": "minecraft:effects_changed",
       "conditions": {
         "effects": {
-          "spectrum:millenia_disease": {}
+          "spectrum:life_drain": {}
         }
       }
     }

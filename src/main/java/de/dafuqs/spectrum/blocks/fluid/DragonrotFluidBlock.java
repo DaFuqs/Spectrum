@@ -56,9 +56,9 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 						livingEntity.damage(SpectrumDamageSources.DRAGONROT, 3);
 					}
 					if (!livingEntity.isDead()) {
-						StatusEffectInstance milleniaDisease = livingEntity.getStatusEffect(SpectrumStatusEffects.MILLENIA_DISEASE);
-						if (milleniaDisease == null || milleniaDisease.getDuration() < 1000) {
-							livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.MILLENIA_DISEASE, 2000, 0));
+						StatusEffectInstance existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.LIFE_DRAIN);
+						if (existingEffect == null || existingEffect.getDuration() < 1000) {
+							livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 2000, 0));
 						}
 					}
 				}

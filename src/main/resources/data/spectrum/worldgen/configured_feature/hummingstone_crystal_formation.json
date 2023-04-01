@@ -33,11 +33,11 @@
       "minecraft:calcite",
       "minecraft:tuff",
       "minecraft:deepslate",
-      "spectrum:blackslag"
+      "spectrum:blackslag",
+      "spectrum:overgrown_blackslag"
     ],
     "can_extend_on": [
       "spectrum:hummingstone_glass",
-      "minecraft:dripstone_block",
       "minecraft:calcite",
       "minecraft:tuff"
     ],

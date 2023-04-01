@@ -3,7 +3,13 @@
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
-      "count": 2
+      "count": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 1,
+          "max_inclusive": 2
+        }
+      }
     },
     {
       "type": "minecraft:biome"

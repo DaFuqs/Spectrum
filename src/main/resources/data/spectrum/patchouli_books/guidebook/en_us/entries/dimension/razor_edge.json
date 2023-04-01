@@ -16,7 +16,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bristle_sprouts",
-      "text": "Little mean plants that sting immensely when you make contact with them. "
+      "text": "Little mean plants that sting immensely when you make contact with them."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:sawtooth",
+      "text": "$(italic)Those are tearing you apart.$()$(br)Well, your clothes, for the most part. But still."
     }
   ]
 }

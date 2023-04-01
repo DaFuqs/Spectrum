@@ -6,7 +6,8 @@
     "targets": [
       {
         "target": {
-          "predicate_type": "minecraft:always_true"
+          "predicate_type": "minecraft:tag_match",
+          "tag": "spectrum:downstone_patch_replaceables"
         },
         "state": {
           "Name": "spectrum:downstone"

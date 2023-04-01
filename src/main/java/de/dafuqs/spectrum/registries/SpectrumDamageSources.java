@@ -7,9 +7,9 @@ import net.minecraft.entity.damage.*;
 import org.jetbrains.annotations.*;
 
 public class SpectrumDamageSources {
-
+	
 	public static boolean recursiveDamage = false;
-
+	
 	public static final DamageSource DECAY = new SpectrumDamageSource("spectrum_decay");
 	public static final DamageSource FLOATBLOCK = new SpectrumDamageSource("spectrum_floatblock").setFromFalling().setNeutral();
 	public static final DamageSource SHOOTING_STAR = new SpectrumDamageSource("spectrum_shooting_star").setFromFalling().setNeutral().setProjectile();
@@ -18,21 +18,23 @@ public class SpectrumDamageSources {
 	public static final DamageSource DIKE_GATE = new SpectrumDamageSource("spectrum_dike_gate").setNeutral();
 	public static final DamageSource DEADLY_POISON = new SpectrumDamageSource("spectrum_deadly_poison").setBypassesArmor().setUsesMagic();
 	public static final DamageSource INCANDESCENCE = new SpectrumDamageSource("spectrum_incandescence").setNeutral().setUsesMagic().setExplosive();
-
+	public static final DamageSource BRISTLE_SPROUTS = new SpectrumDamageSource("spectrum_bristle_sprouts");
+	public static final DamageSource SAWTOOTH = new SpectrumDamageSource("spectrum_sawtooth");
+	
 	public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
 		return (new ProjectileDamageSource("spectrum_ink_projectile", projectile, attacker)).setProjectile();
 	}
-
+	
 	public static DamageSource moonstoneBlast(@Nullable MoonstoneStrike moonstoneStrike) {
 		return moonstoneBlast(moonstoneStrike != null ? moonstoneStrike.getCausingEntity() : null);
 	}
-
+	
 	public static DamageSource moonstoneBlast(@Nullable LivingEntity attacker) {
-		return attacker != null ? (new EntityDamageSource("moonstone_blast.player", attacker).setExplosive()) : (new DamageSource("moonstone_blast").setExplosive());
+		return attacker != null ? (new EntityDamageSource("spectrum_moonstone_blast.player", attacker).setExplosive()) : (new DamageSource("moonstone_blast").setExplosive());
 	}
 
 	public static DamageSource setHealth(LivingEntity attacker) {
-		return new SetHealthDamageSource("set_health", attacker);
+		return new SetHealthDamageSource("spectrum_set_health", attacker);
 	}
 
 	public static class SetHealthDamageSource extends EntityDamageSource {

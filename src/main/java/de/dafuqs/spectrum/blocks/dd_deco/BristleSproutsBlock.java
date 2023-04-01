@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
 import de.dafuqs.spectrum.deeper_down.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
@@ -30,7 +30,7 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
                 double difX = Math.abs(entity.getX() - entity.lastRenderX);
                 double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
                 if (difX >= 0.003 || difZ >= 0.003) {
-                    entity.damage(DamageSource.SWEET_BERRY_BUSH, 1.0F);
+                    entity.damage(SpectrumDamageSources.BRISTLE_SPROUTS, 1.0F);
                 }
             }
         }

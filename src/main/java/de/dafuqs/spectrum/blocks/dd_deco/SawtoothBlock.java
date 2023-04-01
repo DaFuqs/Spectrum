@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
 import de.dafuqs.spectrum.blocks.decoration.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -34,6 +36,7 @@ public class SawtoothBlock extends SpectrumFacingBlock {
 	
 	public SawtoothBlock(Settings settings) {
 		super(settings);
+		setDefaultState(getDefaultState().with(FACING, Direction.EAST).with(MIRRORED, false));
 	}
 	
 	@Override
@@ -71,6 +74,19 @@ public class SawtoothBlock extends SpectrumFacingBlock {
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return state.get(MIRRORED) ? SHAPES_MIRRORED.get(state.get(FACING)) : SHAPES.get(state.get(FACING));
+	}
+	
+	@Override
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		if (entity instanceof LivingEntity) {
+			if (!world.isClient && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
+				double difX = Math.abs(entity.getX() - entity.lastRenderX);
+				double difZ = Math.abs(entity.getZ() - entity.lastRenderZ);
+				if (difX >= 0.003 || difZ >= 0.003) {
+					entity.damage(SpectrumDamageSources.SAWTOOTH, 2.0F);
+				}
+			}
+		}
 	}
 	
 }

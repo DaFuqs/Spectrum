@@ -112,12 +112,13 @@ public class ShootingStarEntity extends Entity {
 	// in the guidebook, just not that these actually give a boost, too
 	public static float getShootingStarChanceWithMultiplier(@NotNull PlayerEntity playerEntity) {
 		int multiplier = 1;
-		ItemStack handStack = playerEntity.getMainHandStack();
-		if (handStack != null && handStack.isOf(Items.SPYGLASS)) {
-			multiplier += 4;
+		for (ItemStack handStack : playerEntity.getHandItems()) {
+			if (handStack != null && handStack.isOf(Items.SPYGLASS)) {
+				multiplier += 4;
+				break;
+			}
 		}
-		StatusEffectInstance statusEffectInstance = playerEntity.getStatusEffect(StatusEffects.NIGHT_VISION);
-		if (statusEffectInstance != null && statusEffectInstance.getDuration() > 0) {
+		if (playerEntity.hasStatusEffect(StatusEffects.NIGHT_VISION)) {
 			multiplier++;
 		}
 		return SpectrumCommon.CONFIG.ShootingStarChance * multiplier;

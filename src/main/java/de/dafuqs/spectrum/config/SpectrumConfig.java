@@ -208,7 +208,7 @@ public class SpectrumConfig implements ConfigData {
 			ShootingStarChance = 0.01F;
 		}
 		if (LightningStonesChance <= 0.03) {
-			ShootingStarChance = 0.3F;
+			LightningStonesChance = 0.3F;
 		}
 		if (EndermanHoldingEnderTreasureChance <= 0) {
 			EndermanHoldingEnderTreasureChance = 0.05F;

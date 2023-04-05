@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've already used your anvil plenty (lots of anvils, to be precise). $(l:general/anvil_crushing)Item Crushing$(/l), repairing and enchanting tools damage them plenty.$(br)To make the anvil last longer - or even make it indestructible - Bedrock seems like the perfect choice."
+      "text": "You've already used your anvil plenty (lots of anvils, to be precise). $(l:general/anvil_crushing)Item Crushing$(/l), repairing and enchanting  are burning a hole in your iron supply.$(br)To make the anvil last longer - or even make it indestructible - Bedrock seems like the perfect choice."
     },
     {
       "type": "spectrum:pedestal_crafting",

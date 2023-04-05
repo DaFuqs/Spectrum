@@ -6,13 +6,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Converts $(l:general/pigment)Pigment$(/l) into pure Ink, which you can supply to your magical items.$(br)Used to fill Ink Containers, like $(l:magic/ink_flask)Ink Flasks$()."
+      "text": "Converts $(l:general/pigment)Pigment$(/l) into pure Ink, which you can supply to your magical items.$(br)Used to fill Ink Containers, like $(l:magic/ink_flask)Ink Flasks$().$(br)Unfortunately - $(l:magic/ink#transfer)you remember how ink is transferred$() - there is always residue left behind. You can't use the full amount, though the transfer is quicker, the bigger the difference."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/color_picker",
-      "text": ""
+      "text": "$(italic)Never develop a passion you can't afford. It'll eat your heart away like a bookworm."
     }
   ]
 }

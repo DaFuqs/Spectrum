@@ -13,7 +13,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/inkwell",
-      "text": "Socketed into a $(l:magic/crystal_apothecary)Crystal Apothecary$(/l) converts the geodes energy directly into Ink, allowing it to be transmitted via $(l:magic/ink_duct)Ink Ducts$(/l)."
+      "text": "Socketed into a $(l:magic/crystal_apothecary)Crystal Apothecary$(/l) converts the geode's energy directly into Ink, allowing it to be transmitted via $(l:magic/ink_duct)Ink Ducts$(/l)."
     }
   ]
 }

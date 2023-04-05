@@ -37,7 +37,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:hidden/collect_frostbite_crystal",
       "item": "spectrum:frostbite_crystal",
-      "text": "As Water tried to flow to a full block of Liquid Crystal the crystal turned solid.$(br)Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal."
+      "text": "As Water tried to flow into a full block of Liquid Crystal the crystal solidified.$(br)Since even a light touch is enough to give you a cold shiver, you called it Frostbite Crystal."
     },
     {
       "type": "spectrum:liquid_crystal_converting",

@@ -15,7 +15,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/take_off_belt",
-      "text": "Sneak to charge a high jump, getting more powerful the longer you charge$(br2)$(italic)Even if the name implies, please don't take it off."
+      "text": "Sneak to charge a high jump, getting more powerful the longer you charge$(br2)$(italic)Even if the name implies it, please don't take it off."
     },
     {
       "type": "patchouli:spotlight",

@@ -17,6 +17,7 @@
     {
       "type": "patchouli:image",
       "title": "Transfer",
+      "anchor": "transfer",
       "images": [
         "spectrum:textures/gui/guidebook/ink_transfer.png"
       ],

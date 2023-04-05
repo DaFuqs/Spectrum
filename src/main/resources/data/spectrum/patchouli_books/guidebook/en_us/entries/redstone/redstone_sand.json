@@ -10,13 +10,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:redstone_sand",
-      "text": "$(italic)You think back to the good old times  when you used to set little traps for your friends: if they touched the wrong block, they were completely buried by the sand. By now, your friends are not so easily fooled.$(br2)modern problems require modern solutions."
+      "text": "$(italic)You think back to the good old times when you used to set little traps for your friends: if they touched the wrong block, they were completely buried by sand. By now, your friends are not so easily fooled.$(br2)Modern problems require modern solutions."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/redstone_sand",
-      "text": "Redstone Sand behaves like a solid block until it gets a Redstone signal.$(br)The Redstone trigger propagates through all connected blocks, destabilizing them and laws of gravity force it to drop.$(br)$(italic)So much room for possibilities"
+      "text": "Redstone Sand behaves like a solid block until it gets a Redstone signal.$(br)The Redstone trigger propagates through all connected blocks, destabilizing them and laws of gravity force them to drop.$(br)$(italic)So much room for possibilities."
     }
   ]
 }

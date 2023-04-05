@@ -11,7 +11,7 @@
       "type": "patchouli:spotlight",
       "title": "Node Coloring",
       "item": "spectrum:purple_pigment",
-      "text": "Using $(l:general/pigment)Pigment$(/l) on Pastel Network Nodes dyes them.$(br2)Each node will only be ablt to transfer items to nodes of the same color or ones it composites into, but not the other way around ($(c_cyan)Cyan$() nodes will transfer to $(c_blue)Blue$() ones, but not $(c_blue)Blue$() nodes to $(c_cyan)Cyan$())."
+      "text": "Using $(l:general/pigment)Pigment$(/l) on Pastel Network Nodes dyes them.$(br2)Each node will only be able to transfer items to nodes of the same color or ones it composites into, but not the other way around: ($(c_cyan)Cyan$() nodes will transfer to $(c_blue)Blue$() ones, but not $(c_blue)Blue$() nodes to $(c_cyan)Cyan$())"
     },
     {
       "type": "patchouli:image",
@@ -20,7 +20,7 @@
         "spectrum:textures/gui/guidebook/composite_colors.png"
       ],
       "border": true,
-      "text": "You can very finely adjust which Nodes can interact with others, allowing you to build complex transfer chains. $(bold)White$() nodes are only able to connect to other Whites."
+      "text": "You can finely adjust which Nodes are able to interact with others, allowing you to build complex transfer chains. $(bold)White$() nodes are only able to connect to other Whites."
     },
     {
       "type": "patchouli:spotlight",

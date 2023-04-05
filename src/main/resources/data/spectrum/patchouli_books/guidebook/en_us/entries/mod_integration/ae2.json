@@ -10,6 +10,19 @@
       "text": "'Any technology advanced enough is indistinguishable from magic', you once heard.$(br)You are still not entirely sure how this storage system stores so many blocks in so little room, but since you're regularly running around with hundreds of m² dirt, you never cared to question it."
     },
     {
+      "type": "patchouli:spotlight",
+      "title": "Growth Acceleration",
+      "item": "ae2:quartz_growth_accelerator",
+      "text": "Looks like - despite the name implies - the $(thing)Quartz Growth Accelerator$() is not only able to grow Quartz! Other kinds of gemstones can be grown, too."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Certus Quartz Harvesting",
+      "item": "ae2:quartz_cluster",
+      "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
+      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests $(thing)Gemstone Buds$(), but $(thing)Certus Quartz$(), too."
+    },
+    {
       "type": "spectrum:anvil_crushing",
       "title": "Anvil Crushing",
       "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",

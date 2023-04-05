@@ -7,7 +7,7 @@
     {
       "type": "patchouli:text",
       "title": "Using Reagents",
-      "text": "Using Mermaid's Gems as a Base instead of Blaze Powder results in a much more reactive potion. Not only does this allow you to add your new range of additional magical ingredients to your Potions, but also use some of them as additional Reagent. Each of those Reagents modifies the resulting properties of your Potions. Each Reagent can only be used once per recipe."
+      "text": "Using Mermaid's Gems as a Base instead of Blaze Powder results in a much more reactive potion. Not only does this allow you to add your new range of additional magical ingredients to your Potions, but also use some of them as additional Reagents. Each of those Reagents modifies the resulting properties of your Potions. Each Reagent can only be used once per recipe."
     },
     {
       "type": "patchouli:spotlight",

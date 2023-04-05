@@ -8,9 +8,9 @@ import net.minecraft.world.event.*;
 import java.util.*;
 
 public class SpectrumGameEvents {
-
+	
 	public static GameEvent ENTITY_SPAWNED;
-	public static GameEvent CRYSTAL_APOTHECARY_HARVESTABLE_GROWN;
+	public static GameEvent BLOCK_CHANGED;
 
 	public static GameEvent HUMMINGSTONE_HUMMING;
 	public static GameEvent HUMMINGSTONE_HYMN;
@@ -19,7 +19,7 @@ public class SpectrumGameEvents {
 
 	public static void register() {
 		ENTITY_SPAWNED = register("entity_spawned");
-		CRYSTAL_APOTHECARY_HARVESTABLE_GROWN = register("crystal_apothecary_harvestable_grown");
+		BLOCK_CHANGED = register("block_changed");
 
 		HUMMINGSTONE_HUMMING = register("hummingstone_humming");
 		HUMMINGSTONE_HYMN = register("hummingstone_hymn");

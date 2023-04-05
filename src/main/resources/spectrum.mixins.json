@@ -9,7 +9,6 @@
     "ApplyBonusLootFunctionMixin",
     "BlockMixin",
     "BrewingRecipeRegistryMixin",
-    "BuddingAmethystBlockMixin",
     "ChunkNoiseSamplerMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",

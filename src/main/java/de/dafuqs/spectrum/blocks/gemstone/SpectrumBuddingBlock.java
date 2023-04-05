@@ -1,7 +1,5 @@
 package de.dafuqs.spectrum.blocks.gemstone;
 
-import de.dafuqs.spectrum.events.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.*;
 import net.minecraft.fluid.*;
@@ -17,20 +15,21 @@ public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
 	private final Block mediumBlock;
 	private final Block largeBlock;
 	private final Block clusterBlock;
-
+	
 	public SpectrumBuddingBlock(Settings settings, Block smallBlock, Block mediumBlock, Block largeBlock, Block clusterBlock, SoundEvent hitSoundEvent, SoundEvent chimeSoundEvent) {
 		super(settings, hitSoundEvent, chimeSoundEvent);
-
+		
 		this.smallBlock = smallBlock;
 		this.mediumBlock = mediumBlock;
 		this.largeBlock = largeBlock;
 		this.clusterBlock = clusterBlock;
 	}
-
+	
+	@Override
 	public PistonBehavior getPistonBehavior(BlockState state) {
 		return PistonBehavior.DESTROY;
 	}
-
+	
 	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (random.nextInt(5) == 0) {
@@ -49,11 +48,7 @@ public class SpectrumBuddingBlock extends SpectrumGemstoneBlock {
 			}
 			
 			if (block != null) {
-				BlockState newBlockState = block.getDefaultState().with(AmethystClusterBlock.FACING, direction).with(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getFluid() == Fluids.WATER);
-				world.setBlockState(blockPos, newBlockState);
-				if (newBlockState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-					world.emitGameEvent(null, SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, blockPos);
-				}
+				world.setBlockState(blockPos, block.getDefaultState().with(AmethystClusterBlock.FACING, direction).with(AmethystClusterBlock.WATERLOGGED, blockState.getFluidState().getFluid() == Fluids.WATER));
 			}
 		}
 	}

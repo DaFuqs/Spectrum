@@ -1,59 +1,35 @@
 package de.dafuqs.spectrum.blocks.energy;
 
-import de.dafuqs.spectrum.enums.ProgressionStage;
-import de.dafuqs.spectrum.events.SpectrumGameEvents;
-import de.dafuqs.spectrum.events.listeners.BlockPosEventQueue;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
-import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.Waterloggable;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import de.dafuqs.spectrum.data_loaders.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.events.*;
+import de.dafuqs.spectrum.events.listeners.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.loot.context.*;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.Text;
-import net.minecraft.util.Pair;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-import net.minecraft.world.event.BlockPositionSource;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.listener.GameEventListener;
+import net.minecraft.text.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import net.minecraft.world.event.listener.*;
 
 import java.util.*;
 
 public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity implements PlayerOwnedWithName, BlockPosEventQueue.Callback {
-	
-	public static final Map<BlockState, Pair<Item, Integer>> UNLOADED_COMPENSATION_MAP = new HashMap<>() {{
-		put(Blocks.BUDDING_AMETHYST.getDefaultState(), new Pair<>(Items.AMETHYST_SHARD, 2));
-		put(SpectrumBlocks.BUDDING_TOPAZ.getDefaultState(), new Pair<>(SpectrumItems.TOPAZ_SHARD, 2));
-		put(SpectrumBlocks.BUDDING_CITRINE.getDefaultState(), new Pair<>(SpectrumItems.CITRINE_SHARD, 2));
-		put(SpectrumBlocks.BUDDING_ONYX.getDefaultState(), new Pair<>(SpectrumItems.ONYX_SHARD, 2));
-		put(SpectrumBlocks.BUDDING_MOONSTONE.getDefaultState(), new Pair<>(SpectrumItems.MOONSTONE_SHARD, 2));
-	}};
 	
 	private static final int RANGE = 12;
 	private static final ItemStack HARVEST_ITEMSTACK = ItemStack.EMPTY;
@@ -94,49 +70,37 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	 * and puts items into it's inventory, simulating it working for
 	 * a specific amount of ticks, like when getting loaded after being
 	 * unloaded after some time
-	 * <p>
-	 * To not use too much load this function works with estimates,
-	 * guessing how much time has passed and how many clusters would have grown
-	 * <p>
-	 * There are /gamerule randomTickTime random ticks in each 16*16*16 cube per game tick (default: 3)
-	 * When a budding block it ticked, there is a 20 % chance to choose a random direction and check if a bud can grow/advance at that pos
-	 * Vanilla's and Spectrum's Buds all have 4 growth stages to get fully grown
-	 * <p>
-	 * All this results in
-	 * (<randomTickSpeed> / 16*16*16) * empty_blocks_next_to_budding_blocks * grow_chance * (1 / growth_stages_count)
-	 * "grown" clusters per tick.
-	 * Take that times the amount of ticks to compensate and take it times the amount of dropped items per each theoretically grown cluster
-	 * Finally we add a bit of randomness.
-	 *
-	 * @param ticksToCompensate The # of ticks to simulate compensation for
+	 * This function works with estimates, guessing how much time has passed and how many clusters would have grown
 	 */
 	private static void compensateGemstoneClusterDropsForUnloadedTicks(World world, BlockPos blockPos, CrystalApothecaryBlockEntity blockEntity, long ticksToCompensate) {
-		Map<BlockState, Integer> matches = new HashMap<>();
+		Map<Block, Integer> matches = new HashMap<>();
 		
-		// search for blocks in working range
-		Set<BlockState> compensationBlocks = UNLOADED_COMPENSATION_MAP.keySet();
+		// search for blocks in working range and sum them up
+		Collection<Block> compensationBlocks = CrystalApothecarySimulationsDataLoader.COMPENSATIONS.keySet();
 		for (BlockPos pos : BlockPos.iterateOutwards(blockPos, RANGE, RANGE, RANGE)) {
 			BlockState state = world.getBlockState(pos);
-			if (compensationBlocks.contains(state)) {
-				int validBlocks = countValidGemstoneClusterBlocksAroundBlockPos(world, pos);
-				if (matches.containsKey(state)) {
-					matches.put(state, matches.get(state) + validBlocks);
+			Block block = state.getBlock();
+			if (compensationBlocks.contains(block)) {
+				int validBlocks = countValidGemstoneClusterBlocksAroundBlockPos(world, pos, CrystalApothecarySimulationsDataLoader.COMPENSATIONS.get(block).validNeighbors());
+				if (matches.containsKey(block)) {
+					matches.put(block, matches.get(block) + validBlocks);
 				} else {
-					matches.put(state, validBlocks);
+					matches.put(block, validBlocks);
 				}
 			}
 		}
 		
 		// for each of those blocks generate some loot
-		// (<randomTickSpeed> / 16*16*16) * 20 % * 1/4
-		float theoreticallyGrownClustersPerBlock = (world.getGameRules().get(GameRules.RANDOM_TICK_SPEED).get() / 4096F) * 0.05F * ticksToCompensate;
-		for (Map.Entry<BlockState, Integer> match : matches.entrySet()) {
-			Pair<Item, Integer> drop = UNLOADED_COMPENSATION_MAP.get(match.getKey());
-			float theoreticallyGrownClusters = theoreticallyGrownClustersPerBlock * match.getValue();
-			float compensatedItemsCount = theoreticallyGrownClusters * drop.getRight() * (0.8F + world.random.nextFloat() * 0.4F);
-			if (compensatedItemsCount >= 1) {
-				ItemStack compensatedStack = drop.getLeft().getDefaultStack();
-				compensatedStack.setCount((int) compensatedItemsCount);
+		double gameRuleTickModifier = world.getGameRules().get(GameRules.RANDOM_TICK_SPEED).get() / 3.0;
+		for (Map.Entry<Block, Integer> match : matches.entrySet()) {
+			CrystalApothecarySimulationsDataLoader.SimulatedBlockGrowthEntry drop = CrystalApothecarySimulationsDataLoader.COMPENSATIONS.get(match.getKey());
+			
+			int compensatedItemCount = (int) (drop.compensatedStack().getCount() * match.getValue() * gameRuleTickModifier * ticksToCompensate) / drop.ticksForCompensationLootPerValidNeighbor();
+			compensatedItemCount *= 0.8 + world.random.nextFloat() * 0.4;
+			if (compensatedItemCount > 0) {
+				ItemStack compensatedStack = drop.compensatedStack().copy();
+				compensatedStack.setCount(compensatedItemCount);
+				
 				ItemStack remainingStack = InventoryHelper.smartAddToInventory(compensatedStack, blockEntity, null);
 				if (!remainingStack.isEmpty()) {
 					break; // overflow will be voided
@@ -145,11 +109,11 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		}
 	}
 	
-	public static int countValidGemstoneClusterBlocksAroundBlockPos(World world, BlockPos blockPos) {
+	public static int countValidGemstoneClusterBlocksAroundBlockPos(World world, BlockPos blockPos, Collection<Block> allowedBlocks) {
 		int count = 0;
 		for (Direction direction : Direction.values()) {
 			BlockState offsetState = world.getBlockState(blockPos.offset(direction));
-			if (offsetState.isAir() || offsetState.getBlock() == Blocks.WATER || offsetState.isIn(SpectrumBlockTags.GEMSTONE_BUDS)) {
+			if (offsetState.isAir() || offsetState.getBlock() == Blocks.WATER || allowedBlocks.contains(offsetState.getBlock())) {
 				count++;
 			}
 		}
@@ -242,7 +206,7 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 	
 	@Override
 	public boolean canAcceptEvent(World world, GameEventListener listener, GameEvent.Message message, Vec3d sourcePos) {
-		return message.getEvent() == SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN && !this.listenerPaused;
+		return message.getEvent() == SpectrumGameEvents.BLOCK_CHANGED && !this.listenerPaused && message.getEmitter().affectedState().isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE);
 	}
 	
 	@Override
@@ -309,7 +273,9 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 		if (world instanceof ServerWorld serverWorld) {
 			for (BlockPos currPos : BlockPos.iterateOutwards(this.pos, RANGE, RANGE, RANGE)) {
 				if (world.getBlockState(currPos).isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
-					this.blockPosEventTransferListener.acceptEvent(serverWorld, new GameEvent.Message(SpectrumGameEvents.CRYSTAL_APOTHECARY_HARVESTABLE_GROWN, Vec3d.ofCenter(currPos), GameEvent.Emitter.of(world.getBlockState(currPos)), this.blockPosEventTransferListener, Vec3d.ofCenter(this.pos)), Vec3d.ofCenter(this.pos));
+					this.blockPosEventTransferListener.acceptEvent(serverWorld,
+							new GameEvent.Message(SpectrumGameEvents.BLOCK_CHANGED, Vec3d.ofCenter(currPos), GameEvent.Emitter.of(world.getBlockState(currPos)),
+									this.blockPosEventTransferListener, Vec3d.ofCenter(this.pos)), Vec3d.ofCenter(this.pos));
 				}
 			}
 		}

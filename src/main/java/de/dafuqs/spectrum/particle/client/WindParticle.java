@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.particle.client;
 
-import de.dafuqs.spectrum.blocks.spirit_sallow.WindStrength;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import de.dafuqs.spectrum.blocks.spirit_sallow.*;
+import net.fabricmc.api.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.client.world.*;
+import net.minecraft.particle.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
 
 @Environment(EnvType.CLIENT)
 public class WindParticle extends SpriteBillboardParticle {
@@ -28,7 +27,7 @@ public class WindParticle extends SpriteBillboardParticle {
 	public void tick() {
 		super.tick();
 		
-		Vec3d windStrength = wind.getWindStrength(world.getTime(), world.random);
+		Vec3d windStrength = wind.getWindStrength(world);
 		this.velocityX += windStrength.getX() * 0.004;
 		this.velocityY += windStrength.getY() * 0.001;
 		this.velocityZ += windStrength.getZ() * 0.004;

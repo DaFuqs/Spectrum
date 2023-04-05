@@ -1,0 +1,118 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:budding_blocks",
+    {
+      "id": "geode:basalt_ancient_debris_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:basalt_glowstone_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:basalt_gold_nugget_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:basalt_quartz_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:blackstone_ancient_debris_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:blackstone_glowstone_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:blackstone_gold_nugget_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:blackstone_quartz_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:celestite_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:deepslate_diamond_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:deepslate_emerald_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:deepslate_lapis_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:deepslate_redstone_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:diamond_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:echo_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:emerald_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:lapis_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:nether_ancient_debris_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:nether_glowstone_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:nether_gold_nugget_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:nether_quartz_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:prismarine_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:redstone_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:sculk_diamond_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:sculk_emerald_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:sculk_lapis_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:sculk_redstone_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:wrappist_cluster",
+      "required": false
+    }
+  ]
+}

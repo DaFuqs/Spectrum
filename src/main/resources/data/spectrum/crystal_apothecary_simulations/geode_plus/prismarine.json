@@ -1,0 +1,25 @@
+{
+  "budding_block": "geode:budding_prismarine",
+  "valid_neighbor_blocks": [
+    "geode:small_prismarine_bud",
+    "geode:medium_prismarine_bud",
+    "geode:large_prismarine_bud",
+    "geode:prismarine_cluster",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "item": "minecraft:prismarine_shard",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "geode"
+      ]
+    }
+  ]
+}

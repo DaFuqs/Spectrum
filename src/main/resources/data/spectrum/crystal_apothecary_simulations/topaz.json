@@ -1,0 +1,17 @@
+{
+  "budding_block": "spectrum:budding_topaz",
+  "valid_neighbor_blocks": [
+    "spectrum:small_topaz_bud",
+    "spectrum:medium_topaz_bud",
+    "spectrum:large_topaz_bud",
+    "spectrum:topaz_cluster",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 10000,
+  "compensated_loot": {
+    "item": "spectrum:topaz_shard",
+    "count": 2
+  }
+}

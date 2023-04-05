@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:crystallarieum_growable_clusters",
-
     "spectrum:small_malachite_bud",
     "spectrum:large_malachite_bud",
     "spectrum:small_bismuth_bud",

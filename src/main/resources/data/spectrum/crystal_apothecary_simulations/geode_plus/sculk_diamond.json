@@ -1,0 +1,25 @@
+{
+  "budding_block": "geode:budding_sculk_diamond",
+  "valid_neighbor_blocks": [
+    "geode:small_diamond_bud",
+    "geode:medium_diamond_bud",
+    "geode:large_diamond_bud",
+    "geode:diamond_crystal",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "item": "minecraft:diamond",
+    "count": 1
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "geode"
+      ]
+    }
+  ]
+}

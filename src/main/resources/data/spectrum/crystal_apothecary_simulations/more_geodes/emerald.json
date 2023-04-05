@@ -1,0 +1,25 @@
+{
+  "budding_block": "geodes:budding_emerald",
+  "valid_neighbor_blocks": [
+    "geodes:small_emerald_bud",
+    "geodes:medium_emerald_bud",
+    "geodes:large_emerald_bud",
+    "geodes:emerald_cluster",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "item": "minecraft:emerald",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "geodes"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "replace": false,
+  "values": [
+    "#spectrum:gemstone_clusters",
+    "#spectrum:crystallarieum_growable_clusters",
+
+    {
+      "id": "geode:celestite_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:prismarine_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:lapis_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:emerald_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:nether_gold_nugget_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:nether_glowstone_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:nether_ancient_debris_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:wrappist_cluster",
+      "required": false
+    },
+    {
+      "id": "geode:echo_crystal",
+      "required": false
+    },
+    {
+      "id": "geode:diamond_crystal",
+      "required": false
+    },
+    {
+      "id": "geode:redstone_crystal",
+      "required": false
+    },
+    {
+      "id": "geode:nether_quartz_crystal",
+      "required": false
+    },
+
+    {
+      "id": "geodes:emerald_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:quartz_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:diamond_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:echo_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:lapis_cluster",
+      "required": false
+    },
+    {
+      "id": "geodes:gypsum_rose",
+      "required": false
+    }
+  ]
+}

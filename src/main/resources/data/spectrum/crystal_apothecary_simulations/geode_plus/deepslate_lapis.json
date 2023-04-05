@@ -1,0 +1,25 @@
+{
+  "budding_block": "geode:budding_deepslate_lapis",
+  "valid_neighbor_blocks": [
+    "geode:small_lapis_bud",
+    "geode:medium_lapis_bud",
+    "geode:large_lapis_bud",
+    "geode:lapis_cluster",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "item": "minecraft:lapis_lazuli",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "geode"
+      ]
+    }
+  ]
+}

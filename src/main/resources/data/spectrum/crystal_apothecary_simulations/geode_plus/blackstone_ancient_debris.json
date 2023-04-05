@@ -1,0 +1,25 @@
+{
+  "budding_block": "geode:budding_blackstone_ancient_debris",
+  "valid_neighbor_blocks": [
+    "geode:small_nether_ancient_debris_bud",
+    "geode:medium_nether_ancient_debris_bud",
+    "geode:large_nether_ancient_debris_bud",
+    "geode:nether_ancient_debris_cluster",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "item": "minecraft:netherite_scrap",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "geode"
+      ]
+    }
+  ]
+}

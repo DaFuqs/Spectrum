@@ -1,11 +1,15 @@
 {
   "values": [
-    "#spectrum:gemstone_buds",
-    "#spectrum:crystallarieum_growable_buds",
+    "#c:budding_blocks",
+    "#c:clusters",
+    "#c:buds",
+
     "#spectrum:infested_blocks",
     "#spectrum:spawners",
     "spectrum:black_materia",
+
     "minecraft:reinforced_deepslate",
+
     {
       "id": "botania:enchanted_soil",
       "required": false

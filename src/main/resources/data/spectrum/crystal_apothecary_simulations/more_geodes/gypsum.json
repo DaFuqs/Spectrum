@@ -1,0 +1,25 @@
+{
+  "budding_block": "geodes:budding_gypsum",
+  "valid_neighbor_blocks": [
+    "geodes:small_gypsum_bud",
+    "geodes:medium_gypsum_bud",
+    "geodes:large_gypsum_bud",
+    "geodes:gypsum_rose",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "item": "geodes:gypsum_shard",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "geodes"
+      ]
+    }
+  ]
+}

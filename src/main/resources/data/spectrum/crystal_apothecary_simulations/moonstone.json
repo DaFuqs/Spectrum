@@ -1,0 +1,17 @@
+{
+  "budding_block": "spectrum:budding_moonstone",
+  "valid_neighbor_blocks": [
+    "spectrum:small_moonstone_bud",
+    "spectrum:medium_moonstone_bud",
+    "spectrum:large_moonstone_bud",
+    "spectrum:moonstone_cluster",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 10000,
+  "compensated_loot": {
+    "item": "spectrum:moonstone_shard",
+    "count": 2
+  }
+}

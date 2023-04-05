@@ -1,0 +1,25 @@
+{
+  "budding_block": "ae2:flawed_budding_quartz",
+  "valid_neighbor_blocks": [
+    "ae2:small_quartz_bud",
+    "ae2:medium_quartz_bud",
+    "ae2:large_quartz_bud",
+    "ae2:quartz_cluster",
+    "minecraft:air",
+    "minecraft:cave_air",
+    "minecraft:water"
+  ],
+  "ticks_for_compensation_loot_per_valid_neighbor": 20000,
+  "compensated_loot": {
+    "item": "ae2:certus_quartz_crystal",
+    "count": 2
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ae2"
+      ]
+    }
+  ]
+}

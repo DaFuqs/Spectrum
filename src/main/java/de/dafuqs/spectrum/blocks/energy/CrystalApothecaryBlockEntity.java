@@ -216,12 +216,12 @@ public class CrystalApothecaryBlockEntity extends LootableContainerBlockEntity i
 			BlockState eventState = world.getBlockState(eventPos);
 			if (eventState.isIn(SpectrumBlockTags.CRYSTAL_APOTHECARY_HARVESTABLE)) {
 				// harvest
-				BlockEntity blockEntity = eventState.hasBlockEntity() ? this.world.getBlockEntity(eventPos) : null;
 				LootContext.Builder builder = (new LootContext.Builder((ServerWorld) this.world))
 						.random(this.world.random)
 						.parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(eventPos))
 						.parameter(LootContextParameters.TOOL, HARVEST_ITEMSTACK)
-						.optionalParameter(LootContextParameters.BLOCK_ENTITY, blockEntity);
+						.optionalParameter(LootContextParameters.THIS_ENTITY, getOwnerIfOnline())
+						.optionalParameter(LootContextParameters.BLOCK_ENTITY, eventState.hasBlockEntity() ? this.world.getBlockEntity(eventPos) : null);
 				
 				List<ItemStack> drops = eventState.getDroppedStacks(builder);
 				boolean anyDropsUsed = drops.size() == 0;

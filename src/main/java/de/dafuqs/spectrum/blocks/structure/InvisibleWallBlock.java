@@ -1,12 +1,9 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import net.minecraft.block.AbstractGlassBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
+import net.minecraft.block.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
 public class InvisibleWallBlock extends AbstractGlassBlock {
 	
@@ -14,12 +11,23 @@ public class InvisibleWallBlock extends AbstractGlassBlock {
 		super(settings);
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (context.isHolding(this.asItem())) {
 			return VoxelShapes.fullCube();
 		} else {
 			return VoxelShapes.empty();
 		}
+	}
+	
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.INVISIBLE;
+	}
+	
+	@Override
+	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
+		return 1.0F;
 	}
 	
 	@Override

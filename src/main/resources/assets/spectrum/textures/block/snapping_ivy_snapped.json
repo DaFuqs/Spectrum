@@ -2,8 +2,8 @@
 	"credit": "Made by Azazelthedemonlord ~ https://azazelthedemonlord.newgrounds.com/ ~ ♡",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "spectrum:block/snapping_ivy",
-		"particle": "spectrum:block/snapping_ivy"
+		"0": "snapping_ivy",
+		"particle": "snapping_ivy"
 	},
 	"elements": [
 		{

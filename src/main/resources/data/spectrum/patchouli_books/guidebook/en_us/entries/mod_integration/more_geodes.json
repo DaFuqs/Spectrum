@@ -1,0 +1,27 @@
+{
+  "name": "More Geodes",
+  "icon": "geodes:echo_cluster",
+  "flag": "mod:geodes",
+  "advancement": "spectrum:place_pedestal",
+  "category": "spectrum:mod_integration_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Scattered around the world you have discovered numerous geodes, which produce not only colored gems, but also valuable resources."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Auto-Harvesting",
+      "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
+      "item": "spectrum:crystal_apothecary",
+      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() is able to harvest $(thing)Crystals$() automatically - even if you are not near those geodes at all!"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Moving Budding Blocks",
+      "advancement": "spectrum:unlocks/enchantments/resonance",
+      "item": "spectrum:resonant_pickaxe",
+      "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest Budding Blocks."
+    }
+  ]
+}

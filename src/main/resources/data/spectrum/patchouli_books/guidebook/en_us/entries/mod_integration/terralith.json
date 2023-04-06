@@ -11,7 +11,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Rest assured, you will not be locked out of anything. If your book calls for you to look out for $(thing)Swamps$(), just look for $(thing)Mangrove Swamps$() instead. There is also another way to get that resource, once you require it."
+      "text": "Rest assured, you will not be locked out of anything. If your book calls for you to look out for $(thing)Swamps$(), just look for $(thing)Mangrove Swamps$() only. There is also another way to get that resource, once you require it."
     }
   ]
 }

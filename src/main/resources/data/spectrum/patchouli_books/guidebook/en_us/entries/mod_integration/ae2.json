@@ -13,20 +13,27 @@
       "type": "patchouli:spotlight",
       "title": "Growth Acceleration",
       "item": "ae2:quartz_growth_accelerator",
-      "text": "Looks like - despite the name implies - the $(thing)Quartz Growth Accelerator$() is not only able to grow Quartz! Other kinds of gemstones can be grown, too."
+      "text": "Looks like - despite the name implies - the $(thing)Crystal Growth Accelerator$() is not only able to grow Quartz! Other kinds of gemstones can be grown, too."
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Certus Quartz Harvesting",
+      "title": "Quartz Auto-Harvesting",
       "item": "ae2:quartz_cluster",
       "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
       "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests $(thing)Gemstone Buds$(), but $(thing)Certus Quartz$(), too."
     },
     {
+      "type": "patchouli:spotlight",
+      "title": "Moving Budding Quartz",
+      "advancement": "spectrum:unlocks/enchantments/resonance",
+      "item": "spectrum:resonant_pickaxe",
+      "text": "Tools enchanted with $(l:enchantments/resonance)Resonance$() are able to harvest $(thing)Budding Quartz$(), while preserving their $(italic)flawless$() state."
+    },
+    {
       "type": "spectrum:anvil_crushing",
       "title": "Anvil Crushing",
       "recipe": "spectrum:mod_integration/ae2/anvil_crushing/certus_quartz_dust",
-      "text": "Lots of AE2's items can be crushed to dust using an anvil: $(thing)Certus Quartz(), $(thing)Fluix(), $(thing)Skystone() and $(thing)Ender Pearls()."
+      "text": "Lots of AE2's items can be crushed to dust using an anvil: $(thing)Certus Quartz$(), $(thing)Fluix$(), $(thing)Skystone$() and $(thing)Ender Pearls$()."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -36,12 +43,14 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "title": "Certus Crushing",
       "advancement": "spectrum:midgame/collect_storm_stone",
       "recipe": "spectrum:mod_integration/ae2/fusion_shrine/fluix_dust",
       "text": "...and then create $(thing)Fluix$() from it, if you get impatient."
     },
     {
       "type": "spectrum:crystallarieum_growing",
+      "title": "Certus Charging",
       "advancement": "spectrum:unlocks/blocks/crystallarieum",
       "recipe": "spectrum:mod_integration/ae2/crystallarieum/certus_quartz_crystal",
       "text": "Being crystalline structures, $(thing)Certus Quartz$() and $(thing)Fluix Crystals$() can be grown in the Crystallarieum."

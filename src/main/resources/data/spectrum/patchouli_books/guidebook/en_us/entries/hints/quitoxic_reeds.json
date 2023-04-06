@@ -11,13 +11,13 @@
       "title": "Where to find",
       "completion_advancement": "spectrum:collect_quitoxic_reeds",
       "cost": "minecraft:clay_ball#16",
-      "text": "Time for an adventure trip on the surface. Visit a Swamp!"
+      "text": "Time for an adventure trip on the surface. Visit a Swamp or Mangrove Swamp!"
     },
     {
       "type": "spectrum:hint",
       "title": "Concise Instructions",
       "cost": "minecraft:clay_ball#48",
-      "text": "Strange looking plants have been seen in Swamps, growing on patches of Clay. They grow higher with more clay or mud blocks around, but consume that block in the process."
+      "text": "Strange looking plants have been seen in (Mangrove) Swamps, growing on patches of Clay or Mud. When growing, they will consume Clay/Mud in the process, turning it to Dirt."
     }
   ]
 }

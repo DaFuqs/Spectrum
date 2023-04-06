@@ -10,14 +10,6 @@
       "required": false
     },
     {
-      "id": "terralith:orchid_swamp",
-      "required": false
-    },
-    {
-      "id": "terralith:ice_marsh",
-      "required": false
-    },
-    {
       "id": "wildbackport:mangrove_swamp",
       "required": false
     }

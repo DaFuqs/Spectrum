@@ -245,11 +245,11 @@ public class SpectrumConfiguredFeatures {
 				mermaidsBrushIdentifier,
 				Feature.SIMPLE_BLOCK,
 				new SimpleBlockFeatureConfig(new RandomizedIntBlockStateProvider(SimpleBlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH), MermaidsBrushBlock.AGE, UniformIntProvider.create(5, 6))),
-				BiomePlacementModifier.of(),
 				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.MermaidsBrushChanceChunk),
 				CountPlacementModifier.of(UniformIntProvider.create(2, 3)),
 				SquarePlacementModifier.of(),
 				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+				BiomePlacementModifier.of(),
 				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
 		);
 		
@@ -260,10 +260,10 @@ public class SpectrumConfiguredFeatures {
 		registerConfiguredAndPlacedFeature(quitoxicReedsIdentifier,
 				Feature.BLOCK_COLUMN,
 				BlockColumnFeatureConfig.create(BiasedToBottomIntProvider.create(2, 4), BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS)),
-				BiomePlacementModifier.of(),
 				CountPlacementModifier.of(SpectrumCommon.CONFIG.QuitoxicReedsCountPerChunk),
 				SquarePlacementModifier.of(),
 				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
+				BiomePlacementModifier.of(),
 				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
 		);
 		

@@ -1,0 +1,27 @@
+{
+  "type": "spectrum:spirit_instiller",
+  "time": 40,
+  "experience": 0.1,
+  "ingredient1": {
+    "tag": "minecraft:leaves"
+  },
+  "ingredient2": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "center_ingredient": {
+    "item": "spectrum:vegetal",
+    "count": 1
+  },
+  "result": {
+    "item": "hexcasting:amethyst_edified_leaves"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "hexcasting"
+      ]
+    }
+  ]
+
+}

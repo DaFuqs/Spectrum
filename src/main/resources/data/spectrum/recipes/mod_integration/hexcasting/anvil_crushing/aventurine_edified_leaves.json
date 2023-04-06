@@ -1,0 +1,24 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "hexcasting:aventurine_edified_leaves"
+  },
+  "crushedItemsPerPointOfDamage": 2.0,
+  "experience": 0.1,
+  "result": {
+    "item": "spectrum:topaz_powder",
+    "count": 1
+  },
+  "particleEffectIdentifier": "enchanted_hit",
+  "particleCount": 10,
+  "soundEventIdentifier": "block.grass.break",
+  "required_advancement": "spectrum:place_pedestal",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "hexcasting"
+      ]
+    }
+  ]
+}

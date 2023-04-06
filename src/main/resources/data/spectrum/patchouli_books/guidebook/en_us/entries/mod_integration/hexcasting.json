@@ -7,19 +7,34 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Unlike other gemstones, $(thing)Amethyst$() seems to have the ability to power spell casting wands. While this ability has broken your brain more than once, the results are impressive.$(br)What more is there?"
+      "text": "Unlike your other gemstones, $(thing)Amethyst$() seems to have the ability to power spell casting wands. While this ability has broken your brain more than once, the results are impressive.$(br)What more is there?"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Edified Leaves Crushing",
+      "recipe": "spectrum:mod_integration/hexcasting/anvil_crushing/amethyst_edified_leaves",
+      "text": "Hexcasters are seemingly unable to identify minerals other than Amethyst. $(thing)Clearly$() these cyan-coloured leaves have the essence of $(thing)Topaz$()..."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Edified Leaves Crafting",
+      "advancement": "spectrum:unlocks/blocks/spirit_instiller",
+      "recipe": "spectrum:mod_integration/hexcasting/spirit_instiller/citrine_edified_leaves",
+      "text": "By infusing $(thing)Leaves$() with $(thing)Amethyst$(), $(thing)Citrine$() or $(thing)Topaz$(), you get out glistening, colorful $(thing)Gemstone Leaves$(), from your $(l:general/colored_trees)Colored Trees$(). Intriguingly different, yet familiar."
     },
     {
       "type": "spectrum:potion_workshop_brewing",
+      "title": "Charging Amethyst",
       "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/hexcasting/fusion_shrine/charged_amethyst_from_amethyst_shard_fusion",
-      "text": ""
+      "text": "You can charge up Amethyst Shards using the $(l:general/fusion_shrine)Fusion Shrine$()."
     },
     {
       "type": "spectrum:potion_workshop_brewing",
+      "title": "Brewing Potions",
       "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "recipe": "spectrum:mod_integration/hexcasting/potion_workshop_reacting/charged_amethyst",
-      "text": ""
+      "text": "As you expected, $(thing)Charged Amethyst$() serves as a more potent, but also more fluctuate, $(thing)Amethyst$() reagent in regards to prolonging effect durations."
     }
   ]
 }

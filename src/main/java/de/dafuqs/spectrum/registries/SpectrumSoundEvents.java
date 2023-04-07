@@ -18,16 +18,19 @@ public class SpectrumSoundEvents {
     public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
     public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_AMETHYST = register("pedestal_crafting_finished_amethyst");
     public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_CITRINE = register("pedestal_crafting_finished_citrine");
-    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_TOPAZ = register("pedestal_crafting_finished_topaz");
-    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_ONYX = register("pedestal_crafting_finished_onyx");
-    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_MOONSTONE = register("pedestal_crafting_finished_moonstone");
-    public static final SoundEvent PEDESTAL_UPGRADE = register("pedestal_upgrade");
+	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_TOPAZ = register("pedestal_crafting_finished_topaz");
+	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_ONYX = register("pedestal_crafting_finished_onyx");
+	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_MOONSTONE = register("pedestal_crafting_finished_moonstone");
+	public static final SoundEvent PEDESTAL_UPGRADE = register("pedestal_upgrade");
 	
 	public static final SoundEvent FUSION_SHRINE_CRAFTING = register("fusion_shrine_crafting");
 	public static final SoundEvent FUSION_SHRINE_CRAFTING_FINISHED = register("fusion_shrine_crafting_finished");
 	public static final SoundEvent CRAFTING_ABORTED = register("fusion_shrine_crafting_aborted");
 	public static final SoundEvent BUTTON_CLICK = register("spectrum.ui.button_click");
 	public static final SoundEvent BOTTOMLESS_BUNDLE_ZIP = register("bottomless_bundle_zip");
+	public static final SoundEvent BIDENT_MIRROR_IMAGE_THROWN = register("bident_mirror_image_thrown");
+	public static final SoundEvent BIDENT_HIT_GROUND = register("bident_hit_ground");
+	public static final SoundEvent MOONSTONE_STRIKE = register("moonstone_strike");
 	
 	public static final SoundEvent ENCHANTER_WORKING = register("enchanter_working");
 	public static final SoundEvent ENCHANTER_DING = register("enchanter_ding");
@@ -163,21 +166,21 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent BLOCK_LARGE_MOONSTONE_BUD_BREAK = register("block.large_moonstone_bud.break");
 	public static final SoundEvent BLOCK_LARGE_MOONSTONE_BUD_PLACE = register("block.large_moonstone_bud.place");
 	public static final SoundEvent BLOCK_MOONSTONE_BLOCK_CHIME = register("block.moonstone_block.chime");
-
+	
 	public static final SoundEvent SPECTRAL_BLOCK_BREAK = register("block.spectral_block.break");
 	public static final SoundEvent SPECTRAL_BLOCK_STEP = register("block.spectral_block.step");
 	public static final SoundEvent SPECTRAL_BLOCK_PLACE = register("block.spectral_block.place");
 	public static final SoundEvent SPECTRAL_BLOCK_FALL = register("block.spectral_block.fall");
 	public static final SoundEvent SPECTRAL_BLOCK_HIT = register("block.spectral_block.hit");
 	public static final SoundEvent SPECTRAL_BLOCK_CHIME = register("block.spectral_block.chime");
-
-    private static SoundEvent register(String id) {
-        Identifier identifier = SpectrumCommon.locate(id);
-        return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));
-    }
-
+	
+	private static SoundEvent register(String id) {
+		Identifier identifier = SpectrumCommon.locate(id);
+		return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));
+	}
+	
 	public static void register() {
 		SpectrumCommon.logInfo("Registering Sound Events...");
 	}
-
+	
 }

@@ -45,6 +45,24 @@
       "spectrum:ground_slam4"
     ]
   },
+  "bident_mirror_image_thrown": {
+    "subtitle": "spectrum.subtitles.bident_mirror_image_thrown",
+    "sounds": [
+      "spectrum:bident_mirror_image_thrown"
+    ]
+  },
+  "bident_hit_ground": {
+    "subtitle": "spectrum.subtitles.bident_hit_ground",
+    "sounds": [
+      "spectrum:bident_hit_ground"
+    ]
+  },
+  "moonstone_strike": {
+    "subtitle": "spectrum.subtitles.moonstone_strike",
+    "sounds": [
+      "spectrum:moonstone_strike"
+    ]
+  },
   "hummingstone_hum": {
     "subtitle": "spectrum.subtitles.hummingstone_hum",
     "sounds": [

@@ -22,15 +22,16 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
+// right click ability: able to overload an already loaded arrow
 public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
     
     private static final InkCost OVERCHARGE_COST = new InkCost(InkColors.WHITE, 1000);
     private static final int OVERCHARGE_DURATION_MAX_TICKS = 20 * 6; // 6 seconds
-
+    
     public GlassCrestCrossbowItem(Settings settings) {
         super(settings);
     }
-
+    
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
@@ -42,17 +43,17 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
         }
         return super.use(world, user, hand);
     }
-
+    
     @Environment(EnvType.CLIENT)
     public void startSoundInstance(PlayerEntity user) {
         MinecraftClient.getInstance().getSoundManager().play(new OverchargingSoundInstance(user));
     }
-
+    
     @Override
     public int getMaxUseTime(ItemStack stack) {
         return isCharged(stack) ? OVERCHARGE_DURATION_MAX_TICKS : super.getMaxUseTime(stack);
     }
-
+    
     @Override
     public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         if (isCharged(stack) && remainingUseTicks <= 0) {
@@ -63,7 +64,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
             super.usageTick(world, user, stack, remainingUseTicks);
         }
     }
-
+    
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
         if (isCharged(stack)) {
@@ -81,11 +82,11 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
         }
         super.onStoppedUsing(stack, world, user, remainingUseTicks);
     }
-
+    
     public static boolean isOvercharged(ItemStack stack) {
         return getOvercharge(stack) > 0;
     }
-
+    
     public static float getOvercharge(ItemStack stack) {
         NbtCompound compound = stack.getNbt();
         if (compound == null) {
@@ -93,44 +94,44 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
         }
         return compound.getFloat("Overcharged");
     }
-
+    
     public static void overcharge(ItemStack stack, float percent) {
         NbtCompound compound = stack.getOrCreateNbt();
         compound.putFloat("Overcharged", percent);
     }
-
+    
     public static void unOvercharge(ItemStack stack) {
         NbtCompound compound = stack.getNbt();
         if (compound != null) {
             compound.remove("Overcharged");
         }
     }
-
+    
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack itemStack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(itemStack, world, tooltip, context);
         float overcharge = getOvercharge(itemStack);
         if (overcharge == 0) {
-            tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.how_to_overcharge"));
-            tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white"));
+            tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.how_to_overcharge").formatted(Formatting.GRAY));
+            tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white").formatted(Formatting.GRAY));
         } else {
-            tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.overcharged", Support.DF.format(overcharge * 100)));
+            tooltip.add(Text.translatable("item.spectrum.glass_crest_crossbow.tooltip.overcharged", Support.DF.format(overcharge * 100)).formatted(Formatting.GRAY));
         }
     }
-
+    
     @Override
     public float getProjectileVelocityModifier(ItemStack stack) {
         float parent = super.getProjectileVelocityModifier(stack);
         float overcharge = getOvercharge(stack);
         return overcharge == 0 ? parent : parent * (1 + overcharge * 0.5F);
     }
-
+    
     @Override
     public float getDivergenceMod(ItemStack stack) {
         float parent = super.getDivergenceMod(stack);
         float overcharge = getOvercharge(stack);
         return overcharge == 0 ? parent : parent * (1 - overcharge * 0.5F);
     }
-
+    
 }

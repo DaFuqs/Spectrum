@@ -24,6 +24,7 @@ public class SpectrumEntityTypes {
 	public static EntityType GLASS_ARROW;
 	public static EntityType<MiningProjectileEntity> MINING_PROJECTILE;
 	public static EntityType<BidentEntity> BIDENT;
+	public static EntityType<BidentEntity> BIDENT_MIRROR_IMAGE;
 
 	public static void register() {
 		LIVING_MARKER = register("living_marker", 0, 2147483647, false, EntityDimensions.changing(0F, 0F), true, LivingMarkerEntity::new);
@@ -40,6 +41,7 @@ public class SpectrumEntityTypes {
 		GLASS_ARROW = register("glass_arrow", EntityType.Builder.create(GlassArrowEntity::new, SpawnGroup.MISC).setDimensions(0.5F, 0.5F).maxTrackingRange(4).trackingTickInterval(20));
 		MINING_PROJECTILE = register("mining_projectile", 4, 10, true, EntityDimensions.changing(0.3F, 0.3F), true, MiningProjectileEntity::new);
 		BIDENT = register("bident", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentEntity::new);
+		BIDENT_MIRROR_IMAGE = register("bident_mirror_image", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentMirrorImageEntity::new);
 
 		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());
 	}

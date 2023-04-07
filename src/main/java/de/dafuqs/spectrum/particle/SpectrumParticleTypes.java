@@ -37,6 +37,7 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType JADE_VINES;
 	public static DefaultParticleType JADE_VINES_BLOOM;
 	public static DefaultParticleType MOONSTONE_STRIKE;
+	public static DefaultParticleType MIRROR_IMAGE;
 
 	public static DefaultParticleType LAVA_FISHING;
 
@@ -201,17 +202,18 @@ public class SpectrumParticleTypes {
 		
 		BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
 		GREEN_BUBBLE_POP = register("green_bubble_pop", false);
-
+		
 		SPIRIT_SALLOW = register("spirit_sallow", false);
 		DECAY_PLACE = register("decay_place", false);
 		DIVINITY = register("divinity", false);
 		SHOOTING_STAR = register("shooting_star", false);
 		JADE_VINES = register("jade_vines", false);
 		JADE_VINES_BLOOM = register("jade_vines_bloom", false);
-		MOONSTONE_STRIKE = register("moonstone_strike", false);
-
+		MOONSTONE_STRIKE = register("moonstone_strike", true);
+		MIRROR_IMAGE = register("mirror_image", true);
+		
 		LAVA_FISHING = register("lava_fishing", false);
-
+		
 		MUD_SPLASH = register("mud_splash", false);
 		DRIPPING_MUD = register("dripping_mud", false);
 		FALLING_MUD = register("falling_mud", false);

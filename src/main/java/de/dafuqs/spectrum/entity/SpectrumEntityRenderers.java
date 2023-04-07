@@ -25,6 +25,7 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.GLASS_ARROW, GlassArrowEntityRenderer::new);
 		register(SpectrumEntityTypes.MINING_PROJECTILE, MagicProjectileEntityRenderer::new);
 		register(SpectrumEntityTypes.BIDENT, BidentEntityRenderer::new);
+		register(SpectrumEntityTypes.BIDENT_MIRROR_IMAGE, BidentEntityRenderer::new);
 	}
 	
 	private static <T extends Entity> void register(EntityType<? extends T> type, EntityRendererFactory<T> factory) {

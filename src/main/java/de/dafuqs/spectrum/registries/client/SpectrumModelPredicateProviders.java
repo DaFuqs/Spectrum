@@ -54,9 +54,9 @@ public class SpectrumModelPredicateProviders {
 		registerOversizedItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
 		registerOversizedItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
 		
-		registerThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT);
-		registerThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
-		registerThrowingItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
+		registerBidentThrowingItemPredicate(SpectrumItems.MALACHITE_BIDENT);
+		registerBidentThrowingItemPredicate(SpectrumItems.FEROCIOUS_GLASS_CREST_BIDENT);
+		registerBidentThrowingItemPredicate(SpectrumItems.FRACTAL_GLASS_CREST_BIDENT);
 		
 		registerMalachiteCrossbowPredicates(SpectrumItems.MALACHITE_CROSSBOW);
 		registerMalachiteCrossbowPredicates(SpectrumItems.GLASS_CREST_CROSSBOW);
@@ -119,19 +119,24 @@ public class SpectrumModelPredicateProviders {
 		});
 	}
 	
-	private static void registerThrowingItemPredicate(Item item) {
-		ModelPredicateProviderRegistry.register(item, new Identifier("throwing"), (itemStack, clientWorld, livingEntity, i) -> {
-			return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F;
+	/**
+	 * 0.0: not throwing
+	 * 0.5: throwing in hand
+	 * 1.0: as projectile
+	 */
+	private static void registerBidentThrowingItemPredicate(Item item) {
+		ModelPredicateProviderRegistry.register(item, new Identifier("bident_throwing"), (itemStack, clientWorld, livingEntity, i) -> {
+			if (currentItemRenderMode == ModelTransformation.Mode.NONE) {
+				return 1.0F;
+			}
+			return livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 0.5F : 0.0F;
 		});
 	}
 	
 	private static void registerColorPredicate(Item item) {
 		ModelPredicateProviderRegistry.register(item, new Identifier("color"), (itemStack, clientWorld, livingEntity, i) -> {
 			Optional<InkColor> color = PaintbrushItem.getColor(itemStack);
-			if (color.isEmpty()) {
-				return 0.0F;
-			}
-			return (1F + color.get().getDyeColor().getId()) / 100F;
+			return color.map(inkColor -> (1F + inkColor.getDyeColor().getId()) / 100F).orElse(0.0F);
 		});
 	}
 	

@@ -12,7 +12,11 @@
       "item": "spectrum:moonstone_core"
     },
     {
-      "item": "spectrum:bismuth_crystal",
+      "item": "spectrum:pure_redstone",
+      "count": 8
+    },
+    {
+      "item": "spectrum:star_fragment",
       "count": 4
     },
     {

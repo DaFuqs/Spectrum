@@ -12,11 +12,11 @@
       "item": "spectrum:moonstone_core"
     },
     {
-      "item": "minecraft:nether_star"
+      "item": "spectrum:pure_netherite",
+      "count": 8
     },
     {
-      "item": "spectrum:pure_netherite",
-      "count": 4
+      "item": "minecraft:nether_star"
     },
     {
       "item": "spectrum:white_pigment",

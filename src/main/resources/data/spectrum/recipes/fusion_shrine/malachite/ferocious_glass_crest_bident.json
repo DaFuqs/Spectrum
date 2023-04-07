@@ -12,6 +12,14 @@
       "item": "spectrum:moonstone_core"
     },
     {
+      "item": "spectrum:pure_prismarine",
+      "count": 8
+    },
+    {
+      "item": "spectrum:storm_stone",
+      "count": 4
+    },
+    {
       "item": "spectrum:mermaids_gem",
       "count": 4
     },

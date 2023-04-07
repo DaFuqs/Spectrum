@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "unlocked_malachite_tools": {
+    "unlocked_glass_crest_tools": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:unlocks/malachite/glass_crest_tools"
@@ -12,10 +12,10 @@
         "advancement_identifier": "spectrum:collect_mermaids_gem"
       }
     },
-    "collected_bismuth_crystal": {
+    "collected_storm_stone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_bismuth_crystal"
+        "advancement_identifier": "spectrum:lategame/collect_storm_stone"
       }
     }
   }

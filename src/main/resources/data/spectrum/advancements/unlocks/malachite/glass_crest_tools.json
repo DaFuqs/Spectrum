@@ -1,15 +1,21 @@
 {
   "criteria": {
-    "unlocked_malachite_tools": {
+    "unlocked_glass_crest_tools": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/malachite/malachite_tools"
+        "advancement_identifier": "spectrum:unlocks/malachite/glass_crest_tools"
       }
     },
     "collected_moonstone_core": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:lategame/collect_moonstone_core"
+      }
+    },
+    "collected_white_pigment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/collect_white_pigment"
       }
     }
   }

@@ -12,6 +12,10 @@
       "item": "spectrum:moonstone_core"
     },
     {
+      "item": "spectrum:pure_diamond",
+      "count": 8
+    },
+    {
       "item": "minecraft:enchanted_book",
       "recipeViewNbt": "{StoredEnchantments: [{id: \"spectrum:resonance\", lvl:1s}]}",
       "matchbook": {

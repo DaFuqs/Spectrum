@@ -12,8 +12,16 @@
       "item": "spectrum:moonstone_core"
     },
     {
+      "item": "spectrum:pure_prismarine",
+      "count": 8
+    },
+    {
       "item": "minecraft:echo_shard",
-      "count": 1
+      "count": 4
+    },
+    {
+      "item": "spectrum:mermaids_gem",
+      "count": 4
     },
     {
       "item": "spectrum:white_pigment",

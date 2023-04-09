@@ -15,7 +15,7 @@
     "collected_storm_stone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_storm_stone"
+        "advancement_identifier": "spectrum:midgame/collect_storm_stone"
       }
     }
   }

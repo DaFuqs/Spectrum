@@ -54,7 +54,10 @@
   "bident_hit_ground": {
     "subtitle": "spectrum.subtitles.bident_hit_ground",
     "sounds": [
-      "spectrum:bident_hit_ground"
+      "spectrum:ground_slam1",
+      "spectrum:ground_slam2",
+      "spectrum:ground_slam3",
+      "spectrum:ground_slam4"
     ]
   },
   "moonstone_strike": {

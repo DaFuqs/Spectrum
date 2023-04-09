@@ -45,7 +45,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Certus Crushing",
       "advancement": "spectrum:midgame/collect_storm_stone",
-      "recipe": "spectrum:mod_integration/ae2/fusion_shrine/fluix_dust",
+      "recipe": "spectrum:mod_integration/ae2/fusion_shrine/fluix_crystal",
       "text": "...and then create $(thing)Fluix$() from it, if you get impatient."
     },
     {

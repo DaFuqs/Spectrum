@@ -16,6 +16,7 @@
     "#spectrum:mob_blocks",
     "#spectrum:glowblocks",
     "#spectrum:gemstone_lamps",
+    "#spectrum:crystallarieum_growable_clusters",
     "#spectrum:crystallarieum_growable_buds",
     "#spectrum:pastel_network_nodes",
     "#spectrum:player_only_glass",
@@ -28,6 +29,11 @@
     "#spectrum:decay",
     "#spectrum:citrine_buds",
     "#spectrum:shale_clays",
+
+    "spectrum:topaz_cluster",
+    "spectrum:citrine_cluster",
+    "spectrum:onyx_cluster",
+    "spectrum:moonstone_cluster",
 
     "spectrum:shimmel",
     "spectrum:sawblade_grass",

@@ -8,11 +8,12 @@
       "item": "spectrum:storm_stone"
     },
     {
-      "item": "ae2:charged_certus_quartz_crystal"
+      "item": "ae2:certus_quartz_crystal",
+      "count": 4
     },
     {
       "item": "minecraft:quartz",
-      "count": 2
+      "count": 4
     },
     {
       "item": "minecraft:redstone"

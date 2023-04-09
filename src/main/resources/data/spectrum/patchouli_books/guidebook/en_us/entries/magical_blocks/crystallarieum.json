@@ -30,9 +30,12 @@
     "spectrum:small_lapis_bud": 0,
     "spectrum:large_lapis_bud": 0,
     "spectrum:lapis_cluster": 0,
-    "spectrum:small_netherite_bud": 0,
-    "spectrum:large_netherite_bud": 0,
-    "spectrum:netherite_cluster": 0,
+    "spectrum:small_netherite_scrap_bud": 0,
+    "spectrum:large_netherite_scrap_bud": 0,
+    "spectrum:netherite_scrap_cluster": 0,
+    "spectrum:small_echo_bud": 0,
+    "spectrum:large_echo_bud": 0,
+    "spectrum:echo_cluster": 0,
     "spectrum:small_prismarine_bud": 0,
     "spectrum:large_prismarine_bud": 0,
     "spectrum:prismarine_cluster": 0,
@@ -96,7 +99,7 @@
     {
       "type": "spectrum:crystallarieum_growing",
       "title": "Netherite Growing",
-      "recipe": "spectrum:crystallarieum/vanilla/netherite",
+      "recipe": "spectrum:crystallarieum/vanilla/netherite_scrap",
       "text": ""
     },
     {
@@ -139,6 +142,12 @@
       "type": "spectrum:crystallarieum_growing",
       "title": "Redstone Growing",
       "recipe": "spectrum:crystallarieum/vanilla/redstone",
+      "text": ""
+    },
+    {
+      "type": "spectrum:crystallarieum_growing",
+      "title": "Echo Growing",
+      "recipe": "spectrum:crystallarieum/vanilla/echo",
       "text": ""
     }
   ]

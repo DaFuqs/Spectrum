@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": {
+    "item": "spectrum:echo_cluster"
+  },
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 3.0,
+  "result": {
+    "item": "minecraft:echo_shard",
+    "count": 6
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.amethyst_cluster.break",
+  "group": "crystallarieum_growable_crushing",
+  "required_advancement": "spectrum:unlocks/blocks/crystallarieum"
+}

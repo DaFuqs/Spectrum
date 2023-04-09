@@ -9,7 +9,8 @@
     "spectrum:pure_lapis_block",
     "spectrum:pure_copper_block",
     "spectrum:pure_quartz_block",
-    "spectrum:pure_netherite_block",
+    "spectrum:pure_netherite_scrap_block",
+    "spectrum:pure_echo_block",
     "spectrum:pure_glowstone_block",
     "spectrum:pure_prismarine_block",
 

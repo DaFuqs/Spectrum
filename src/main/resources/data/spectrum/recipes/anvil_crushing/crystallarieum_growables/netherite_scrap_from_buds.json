@@ -1,0 +1,21 @@
+{
+  "type": "spectrum:anvil_crushing",
+  "ingredient": [
+    {
+      "item": "spectrum:small_netherite_scrap_bud"
+    },
+    {
+      "item": "spectrum:large_netherite_scrap_bud"
+    }
+  ],
+  "crushedItemsPerPointOfDamage": 1.0,
+  "experience": 2.0,
+  "result": {
+    "item": "minecraft:netherite_scrap",
+    "count": 1
+  },
+  "particleEffectIdentifier": "explosion",
+  "soundEventIdentifier": "block.amethyst_cluster.break",
+  "group": "crystallarieum_growable_crushing",
+  "required_advancement": "spectrum:unlocks/blocks/crystallarieum"
+}

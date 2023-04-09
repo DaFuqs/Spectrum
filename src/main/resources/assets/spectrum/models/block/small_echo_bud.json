@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:block/crystallarieum_farmable",
+  "textures": {
+    "cross": "spectrum:block/small_echo_bud"
+  }
+}

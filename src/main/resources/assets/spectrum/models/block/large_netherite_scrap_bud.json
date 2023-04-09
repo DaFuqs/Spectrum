@@ -1,0 +1,6 @@
+{
+  "parent": "spectrum:block/crystallarieum_farmable",
+  "textures": {
+    "cross": "spectrum:block/large_netherite_scrap_bud"
+  }
+}

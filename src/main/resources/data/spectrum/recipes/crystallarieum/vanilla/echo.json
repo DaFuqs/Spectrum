@@ -1,0 +1,52 @@
+{
+  "type": "spectrum:crystallarieum_growing",
+  "ingredient": {
+    "item": "minecraft:echo_shard"
+  },
+  "growth_stage_states": [
+    "spectrum:small_echo_bud",
+    "spectrum:large_echo_bud",
+    "spectrum:echo_cluster"
+  ],
+  "seconds_per_growth_stage": 960,
+  "ink_color": "brown",
+  "ink_per_second": 80,
+  "grows_without_catalyst": false,
+  "catalysts": [
+    {
+      "ingredient": {
+        "item": "spectrum:blizzard_powder"
+      },
+      "growth_acceleration_mod": 1.5,
+      "ink_consumption_mod": 2.0,
+      "consume_chance_per_second": 0.02
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:ender_pearl"
+      },
+      "growth_acceleration_mod": 1.0,
+      "ink_consumption_mod": 0.25,
+      "consume_chance_per_second": 0.02
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:experience_bottle"
+      },
+      "growth_acceleration_mod": 8.0,
+      "ink_consumption_mod": 2.0,
+      "consume_chance_per_second": 0.02
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:sculk"
+      },
+      "growth_acceleration_mod": 2.0,
+      "ink_consumption_mod": 0.125,
+      "consume_chance_per_second": 0.02
+    }
+  ],
+  "additional_recipe_manager_outputs": [
+    "spectrum:pure_echo"
+  ]
+}

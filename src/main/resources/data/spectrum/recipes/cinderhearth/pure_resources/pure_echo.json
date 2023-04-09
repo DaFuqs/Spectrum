@@ -1,0 +1,20 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:pure_echo"
+  },
+  "results": [
+    {
+      "item": "minecraft:echo_shard",
+      "count": 2
+    },
+    {
+      "item": "minecraft:echo_shard",
+      "count": 1,
+      "chance": 0.25
+    }
+  ],
+  "experience": 0.5,
+  "time": 200,
+  "required_advancement": "spectrum:lategame/collect_pure_resource"
+}

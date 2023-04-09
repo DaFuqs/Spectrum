@@ -441,6 +441,8 @@ public class SpectrumItems {
 	public static final Item PURE_GOLD = new Item(Tab.RESOURCES.settings());
 	public static final Item PURE_DIAMOND = new Item(Tab.RESOURCES.settings());
 	public static final Item PURE_IRON = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_NETHERITE_SCRAP = new Item(Tab.RESOURCES.settings());
+	public static final Item PURE_ECHO = new Item(Tab.RESOURCES.settings());
 	public static final Item PURE_NETHERITE = new Item(Tab.RESOURCES.settings());
 	
 	public static final Item PURE_CERTUS_QUARTZ = new Item(Tab.RESOURCES.settings());
@@ -495,9 +497,11 @@ public class SpectrumItems {
 		register("pure_lapis", PURE_LAPIS, DyeColor.PURPLE);
 		register("pure_copper", PURE_COPPER, DyeColor.BROWN);
 		register("pure_quartz", PURE_QUARTZ, DyeColor.BROWN);
-		register("pure_netherite", PURE_NETHERITE, DyeColor.BROWN);
 		register("pure_glowstone", PURE_GLOWSTONE, DyeColor.YELLOW);
 		register("pure_prismarine", PURE_PRISMARINE, DyeColor.CYAN);
+		register("pure_netherite_scrap", PURE_NETHERITE_SCRAP, DyeColor.BROWN);
+		register("pure_echo", PURE_ECHO, DyeColor.BROWN);
+		register("pure_netherite", PURE_NETHERITE, DyeColor.BROWN);
 		
 		register("pure_certus_quartz", PURE_CERTUS_QUARTZ, DyeColor.YELLOW);
 		register("pure_fluix", PURE_FLUIX, DyeColor.YELLOW);

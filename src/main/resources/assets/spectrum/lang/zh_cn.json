@@ -404,7 +404,6 @@
     "item.spectrum.upgrade_yield2.tooltip": "一定概率增加合成输出",
     "item.spectrum.upgrade_experience.tooltip": "略微增加合成得到的经验",
     "item.spectrum.upgrade_experience2.tooltip": "大幅增加合成得到的经验",
-    "item.spectrum.upgrade.tooltip_increase": "每升一级会成倍地增加效果",
     "block.spectrum.fusion_shrine": "融合神龛",
     "block.spectrum.fusion_shrine_basalt": "融合神龛",
     "block.spectrum.fusion_shrine_calcite": "融合神龛",

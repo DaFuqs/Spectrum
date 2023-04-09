@@ -577,7 +577,6 @@
   "item.spectrum.upgrade_yield2.tooltip": "Noticeable chance to increase output",
   "item.spectrum.upgrade_experience.tooltip": "Slightly increases experience gain / decreases consumption",
   "item.spectrum.upgrade_experience2.tooltip": "Greatly increases experience gain / decreases consumption",
-  "item.spectrum.upgrade.tooltip_increase": "Similar upgrades have a decreased effect",
   "block.spectrum.fusion_shrine": "Fusion Shrine",
   "block.spectrum.fusion_shrine_basalt": "Fusion Shrine",
   "block.spectrum.fusion_shrine_calcite": "Fusion Shrine",

@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:lategame/spectrum_lategame",
+  "parent": "spectrum:lategame/collect_dd_resources",
   "display": {
     "icon": {
       "item": "spectrum:doombloom_seed"

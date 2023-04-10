@@ -1,9 +1,10 @@
 {
-  "parent": "spectrum:lategame/spectrum_lategame",
+  "parent": "spectrum:lategame/collect_dd_resources",
   "display": {
     "icon": {
       "item": "spectrum:prickly_bayleaf"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.collect_prickly_bayleaf.title"
     },

@@ -1,0 +1,91 @@
+{
+  "parent": "spectrum:lategame/spectrum_lategame",
+  "display": {
+    "icon": {
+      "item": "spectrum:hover_block"
+    },
+    "frame": "goal",
+    "title": {
+      "translate": "advancements.spectrum.collect_dd_resources.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_dd_resources.description"
+    }
+  },
+  "criteria": {
+    "collected_bismuth": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_bismuth"
+      }
+    },
+    "collect_dragonbone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_dragonbone"
+      }
+    },
+    "collect_hummingstone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_hummingstone"
+      }
+    },
+    "collect_myceylon": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_myceylon"
+      }
+    },
+    "collect_noxwood": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_noxwood"
+      }
+    },
+    "collect_prickly_bayleaf": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_prickly_bayleaf"
+      }
+    },
+    "collect_doombloom_seed": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_doombloom_seed"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "collected_bismuth"
+    ],
+    [
+      "collect_dragonbone"
+    ],
+    [
+      "collect_hummingstone"
+    ],
+    [
+      "collect_myceylon"
+    ],
+    [
+      "collect_noxwood"
+    ],
+    [
+      "collect_prickly_bayleaf"
+    ],
+    [
+      "collect_doombloom_seed"
+    ],
+    [
+      "gotten_previous"
+    ]
+  ]
+}

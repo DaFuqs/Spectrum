@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/hurt_by_monstrosity",
+  "parent": "spectrum:lategame/hurt_by_monstrosity",
   "display": {
     "icon": {
       "item": "spectrum:bedrock_dust"
@@ -30,8 +30,10 @@
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/enter_dimension" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
     }
   }
 }

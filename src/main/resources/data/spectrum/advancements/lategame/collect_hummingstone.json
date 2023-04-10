@@ -2,27 +2,23 @@
   "parent": "spectrum:lategame/collect_dd_resources",
   "display": {
     "icon": {
-      "item": "spectrum:dragonbone_chunk"
+      "item": "spectrum:hummingstone"
     },
     "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.collect_dragonbone.title"
+      "translate": "advancements.spectrum.collect_hummingstone.title"
     },
     "description": {
-      "translate": "advancements.spectrum.collect_dragonbone.description"
+      "translate": "advancements.spectrum.collect_hummingstone.description"
     }
   },
   "criteria": {
-    "has_dragonbone": {
+    "has_hummingstone": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "spectrum:dragonbone",
-              "spectrum:cracked_dragonbone",
-              "spectrum:dragonbone_chunk"
-            ]
+            "tag": "spectrum:hummingstones"
           }
         ]
       }

@@ -1,13 +1,14 @@
 package de.dafuqs.spectrum.entity.models;
 
-import de.dafuqs.spectrum.entity.entity.EggLayingWoolyPigEntity;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.util.math.*;
 
-// Made with Blockbench 4.5.0
+@Environment(EnvType.CLIENT)
 public class EggLayingWoolyPigEntityModel extends EntityModel<EggLayingWoolyPigEntity> {
 	
 	public static ModelPart torso;
@@ -19,7 +20,7 @@ public class EggLayingWoolyPigEntityModel extends EntityModel<EggLayingWoolyPigE
 	
 	public EggLayingWoolyPigEntityModel(ModelPart root) {
 		super();
-		torso = root.getChild("torso");
+		this.torso = root.getChild("torso");
 		this.head = torso.getChild("head");
 		this.left_foreleg = torso.getChild("left_foreleg");
 		this.right_foreleg = torso.getChild("right_foreleg");

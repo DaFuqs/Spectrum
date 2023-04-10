@@ -1,11 +1,13 @@
 package de.dafuqs.spectrum.entity.models;
 
-import de.dafuqs.spectrum.entity.entity.EggLayingWoolyPigEntity;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.util.math.*;
 
+@Environment(EnvType.CLIENT)
 public class EggLayingWoolyPigHatEntityModel extends EntityModel<EggLayingWoolyPigEntity> {
 	
 	private final ModelPart torso;

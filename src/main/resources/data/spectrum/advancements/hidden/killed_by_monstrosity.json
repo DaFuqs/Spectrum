@@ -7,7 +7,7 @@
         "entity": [
           {
             "condition": "minecraft:entity_properties",
-            "entity": "killer",
+            "entity": "this",
             "predicate": {
               "type": "spectrum:monstrosity"
             }

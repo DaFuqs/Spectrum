@@ -13,18 +13,15 @@ import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.mixin.client.accessors.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.render.bossbar.*;
 import de.dafuqs.spectrum.sound.*;
 import de.dafuqs.spectrum.spells.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.client.gui.hud.*;
 import net.minecraft.client.network.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -289,23 +286,6 @@ public class SpectrumS2CPacketReceiver {
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_TAKE_OFF_BELT_SOUND_INSTANCE, (client, handler, buf, responseSender) -> {
 			client.execute(TakeOffBeltSoundInstance::startSoundInstance);
-		});
-		
-		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.UPDATE_BOSS_BAR, (client, handler, buf, responseSender) -> {
-			UUID bossBarUUID = buf.readUuid();
-			boolean hasSerpentMusic = buf.readBoolean();
-			
-			client.execute(() -> {
-				// Everything in this lambda is running on the render thread
-				BossBarHud bossBarHud = client.inGameHud.getBossBarHud();
-				Map<UUID, ClientBossBar> bossBars = ((BossBarHudAccessor) bossBarHud).getBossBars();
-				if (bossBars.containsKey(bossBarUUID)) {
-					ClientBossBar clientBossBar = bossBars.get(bossBarUUID);
-					if (clientBossBar instanceof SpectrumClientBossBar spectrumClientBossBar) {
-						spectrumClientBossBar.setSerpentMusic(hasSerpentMusic);
-					}
-				}
-			});
 		});
 		
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.UPDATE_BLOCK_ENTITY_INK, (client, handler, buf, responseSender) -> {

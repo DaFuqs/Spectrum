@@ -1,17 +1,13 @@
 package de.dafuqs.spectrum.sound;
 
 
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import de.dafuqs.spectrum.status_effects.AscensionStatusEffect;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.sound.AbstractSoundInstance;
-import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.client.sound.TickableSoundInstance;
-import net.minecraft.sound.SoundCategory;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.status_effects.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.network.*;
+import net.minecraft.client.sound.*;
+import net.minecraft.sound.*;
 
 @Environment(EnvType.CLIENT)
 public class DivinitySoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
@@ -21,7 +17,7 @@ public class DivinitySoundInstance extends AbstractSoundInstance implements Tick
 	private boolean done;
 	
 	public DivinitySoundInstance() {
-		super(SpectrumSoundEvents.DIVINITY, SoundCategory.PLAYERS, SoundInstance.createRandom());
+		super(SpectrumSoundEvents.DIVINITY, SoundCategory.RECORDS, SoundInstance.createRandom());
 		this.repeat = true;
 		this.repeatDelay = 0;
 		this.volume = 0.8F;

@@ -3,13 +3,14 @@
     "icon": {
       "item": "spectrum:brown_pigment"
     },
+    "frame": "goal",
+    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.collect_all_basic_pigments_besides_brown.title"
     },
     "description": {
       "translate": "advancements.spectrum.collect_all_basic_pigments_besides_brown.description"
-    },
-    "hidden": true
+    }
   },
   "parent": "spectrum:collect_pigment",
   "criteria": {

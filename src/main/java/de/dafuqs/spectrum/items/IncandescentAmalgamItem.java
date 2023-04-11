@@ -1,23 +1,19 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import net.minecraft.block.Block;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import net.minecraft.world.explosion.EntityExplosionBehavior;
-import net.minecraft.world.explosion.Explosion;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
+import net.minecraft.world.explosion.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class IncandescentAmalgamItem extends BlockItem implements DamageAwareItem {
 	
@@ -34,7 +30,7 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		world.createExplosion(user, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), 10.0F, true, Explosion.DestructionType.NONE);
 		
 		if (user.isAlive() && user instanceof ServerPlayerEntity serverPlayerEntity && !serverPlayerEntity.isCreative()) {
-			Support.grantAdvancementCriterion(serverPlayerEntity, "midgame/survive_drinking_incandescent_amalgam", "survived_drinking_incandescent_amalgam");
+			Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/survive_drinking_incandescent_amalgam", "survived_drinking_incandescent_amalgam");
 		}
 		
 		return stack;

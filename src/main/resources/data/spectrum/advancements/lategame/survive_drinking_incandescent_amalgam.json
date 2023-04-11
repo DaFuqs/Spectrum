@@ -3,6 +3,7 @@
     "icon": {
       "item": "spectrum:incandescent_amalgam"
     },
+    "frame": "challenge",
     "title": {
       "translate": "advancements.spectrum.survive_drinking_incandescent_amalgam.title"
     },
@@ -10,14 +11,16 @@
       "translate": "advancements.spectrum.survive_drinking_incandescent_amalgam.description"
     }
   },
-  "parent": "spectrum:tap_pure_alcohol",
+  "parent": "spectrum:lategame/collect_doombloom_seed",
   "criteria": {
     "survived_drinking_incandescent_amalgam": {
       "trigger": "minecraft:impossible"
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:tap_pure_alcohol" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_doombloom_seed"
+      }
     }
   }
 }

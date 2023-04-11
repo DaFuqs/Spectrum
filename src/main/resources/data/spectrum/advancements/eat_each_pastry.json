@@ -4,6 +4,7 @@
     "icon": {
       "item": "spectrum:triple_meat_pot_pie"
     },
+    "frame": "goal",
     "title": {
       "translate": "advancements.spectrum.eat_each_pastry.title"
     },

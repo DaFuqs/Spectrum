@@ -1,0 +1,18 @@
+{
+  "texture_sheet": "textures/gui/advancement_frames.png",
+  "frames": [
+    {
+      "name": "amethyst_shard",
+      "x": 0,
+      "y": 0,
+      "formatting": "gold"
+    },
+    {
+      "name": "pile_of_poo",
+      "x": 26,
+      "y": 0,
+      "item_offset_x": 0,
+      "item_offset_y": 1
+    }
+  ]
+}

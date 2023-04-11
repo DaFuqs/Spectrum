@@ -82,7 +82,6 @@ dependencies {
 	
 	// https://github.com/emilyploszaj/emi
 	modCompileOnly "dev.emi:emi:${emi_version}:api"
-	//modCompileOnly "dev.emi:emi:${emi_version}:api"
 
 	switch (recipe_viewer.toLowerCase(Locale.ROOT)) {
 		case "rei": modLocalRuntime("me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"); break
@@ -111,6 +110,7 @@ dependencies {
 	modCompileOnly ("curse.maven:health-overlay-fabric-313219:${project.health_overlay_version}") {transitive = false}
 
 	// Soft testing-only dependencies:
+	//modRuntimeOnly 'com.github.DaFuqs:PaginatedAdvancements:1.19-SNAPSHOT'
 	// Descriptions for all Enchantments https://maven.blamejared.com/net/darkhax/enchdesc/
 	//modCompileOnly("net.darkhax.enchdesc:EnchantmentDescriptions-Common-${project.enchantment_descriptions_mc_version}:${project.enchantment_descriptions_mod_version}")
 	//modRuntimeOnly("squeek.appleskin:appleskin-fabric:mc1.18.2-2.4.1") { exclude module: 'modmenu' }

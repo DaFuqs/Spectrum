@@ -16,6 +16,11 @@
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/knowledge_gem",
       "text": "A Gem can hold up to 10.000 experience. $(l:enchanting/enchanting_items)Enchanting$() it with $(thing)Efficiency$() increases that limit, $(thing)Quick Charge$() boosts the pushing/pulling of XP."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "XP Orb Absorption",
+      "text": "Putting a Knowledge Gem into a $(l:magical_blocks/black_hole_chest)Black Hole Chest$() allows it to absorb XP orbs, putting the experience into the gem."
     }
   ]
 }

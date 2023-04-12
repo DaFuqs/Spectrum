@@ -16,6 +16,11 @@
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/black_hole_chest",
       "text": "Black Hole Chests have a radius of 12 blocks. You can disable them by placing a block on top. It offers filters to specify which items it should accept."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "XP Orb Absorption",
+      "text": "Putting a $(l:magical_items/knowledge_gem)Knowledge Gem$() into a Black Hole Chest allows it to absorb XP orbs, putting the experience into the gem."
     }
   ]
 }

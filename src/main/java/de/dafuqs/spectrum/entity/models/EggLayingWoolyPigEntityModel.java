@@ -64,14 +64,23 @@ public class EggLayingWoolyPigEntityModel extends EntityModel<EggLayingWoolyPigE
 		return TexturedModelData.of(modelData, 128, 128);
 	}
 	
+	private float headPitchModifier;
+	
 	@Override
-	public void setAngles(EggLayingWoolyPigEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.head.pitch = headPitch * 0.017453292F;
-		this.head.yaw = netHeadYaw * 0.017453292F;
-		this.right_backleg.pitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-		this.left_backleg.pitch = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
-		this.right_foreleg.pitch = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
-		this.left_foreleg.pitch = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+	public void animateModel(EggLayingWoolyPigEntity entity, float limbAngle, float limbDistance, float tickDelta) {
+		super.animateModel(entity, limbAngle, limbDistance, tickDelta);
+		this.head.pivotY = -13.0F + entity.getNeckAngle(tickDelta) * 9.0F;
+		this.headPitchModifier = entity.getHeadAngle(tickDelta);
+	}
+	
+	@Override
+	public void setAngles(EggLayingWoolyPigEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+		this.head.pitch = this.headPitchModifier;
+		this.head.yaw = headYaw * 0.017453292F;
+		this.right_backleg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
+		this.left_backleg.pitch = MathHelper.cos(limbAngle * 0.6662F + 3.1415927F) * 1.4F * limbDistance;
+		this.right_foreleg.pitch = MathHelper.cos(limbAngle * 0.6662F + 3.1415927F) * 1.4F * limbDistance;
+		this.left_foreleg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
 	}
 	
 	@Override

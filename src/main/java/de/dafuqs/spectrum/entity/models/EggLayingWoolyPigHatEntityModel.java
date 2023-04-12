@@ -30,9 +30,18 @@ public class EggLayingWoolyPigHatEntityModel extends EntityModel<EggLayingWoolyP
 		return TexturedModelData.of(modelData, 128, 128);
 	}
 	
+	private float headPitchModifier;
+	
+	@Override
+	public void animateModel(EggLayingWoolyPigEntity entity, float limbAngle, float limbDistance, float tickDelta) {
+		super.animateModel(entity, limbAngle, limbDistance, tickDelta);
+		this.head.pivotY = -13.0F + entity.getNeckAngle(tickDelta) * 9.0F;
+		this.headPitchModifier = entity.getHeadAngle(tickDelta);
+	}
+	
 	@Override
 	public void setAngles(EggLayingWoolyPigEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.head.pitch = headPitch * 0.017453292F;
+		this.head.pitch = this.headPitchModifier;
 		this.head.yaw = netHeadYaw * 0.017453292F;
 	}
 	
@@ -44,4 +53,5 @@ public class EggLayingWoolyPigHatEntityModel extends EntityModel<EggLayingWoolyP
 		}
 		torso.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
 	}
+	
 }

@@ -20,6 +20,7 @@ public class SpectrumDamageSources {
 	public static final DamageSource INCANDESCENCE = new SpectrumDamageSource("spectrum_incandescence").setNeutral().setUsesMagic().setExplosive();
 	public static final DamageSource BRISTLE_SPROUTS = new SpectrumDamageSource("spectrum_bristle_sprouts");
 	public static final DamageSource SAWTOOTH = new SpectrumDamageSource("spectrum_sawtooth");
+	public static final DamageSource IRRADIANCE_DEFAULT = new SpectrumDamageSource("spectrum_irradiance").setBypassesArmor().setBypassesProtection().setUnblockable();
 	
 	public static DamageSource inkProjectile(InkProjectileEntity projectile, @Nullable Entity attacker) {
 		return (new ProjectileDamageSource("spectrum_ink_projectile", projectile, attacker)).setProjectile();
@@ -31,6 +32,11 @@ public class SpectrumDamageSources {
 	
 	public static DamageSource moonstoneBlast(@Nullable LivingEntity attacker) {
 		return attacker != null ? (new EntityDamageSource("spectrum_moonstone_blast.player", attacker).setExplosive()) : (new DamageSource("moonstone_blast").setExplosive());
+	}
+
+	public static DamageSource irradiance(@Nullable LivingEntity attacker) {
+		return attacker == null ? IRRADIANCE_DEFAULT :
+				new EntityDamageSource("spectrum_irradiance.player", attacker).setBypassesArmor().setBypassesProtection().setUnblockable();
 	}
 
 	public static DamageSource setHealth(LivingEntity attacker) {

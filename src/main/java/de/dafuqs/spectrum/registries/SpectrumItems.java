@@ -176,6 +176,8 @@ public class SpectrumItems {
 	public static final ArrowItem CITRINE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.CITRINE);
 	public static final ArrowItem ONYX_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.ONYX); // pulls entities
 	public static final ArrowItem MOONSTONE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowItem.Variant.MOONSTONE);
+
+	public static final GlassAmpouleItem GLASS_AMPOULE = new GlassAmpouleItem(Tab.EQUIPMENT.settings(Rarity.RARE).maxCount(8));
 	
 	// Special tools
 	public static final SwordItem DREAMFLAYER = new DreamflayerItem(SpectrumToolMaterials.ToolMaterial.DREAMFLAYER, 3, -1.8F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
@@ -676,6 +678,8 @@ public class SpectrumItems {
 		register("citrine_glass_arrow", CITRINE_GLASS_ARROW, DyeColor.YELLOW);
 		register("onyx_glass_arrow", ONYX_GLASS_ARROW, DyeColor.BLACK);
 		register("moonstone_glass_arrow", MOONSTONE_GLASS_ARROW, DyeColor.WHITE);
+
+		register("glass_ampoule", GLASS_AMPOULE, DyeColor.WHITE);
 
 		register("dreamflayer", DREAMFLAYER, DyeColor.RED);
 		register("nightfalls_blade", NIGHTFALLS_BLADE, DyeColor.GRAY);

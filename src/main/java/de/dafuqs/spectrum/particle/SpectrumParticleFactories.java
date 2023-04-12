@@ -209,6 +209,9 @@ public class SpectrumParticleFactories {
 		registerColoredExplosionParticle(SpectrumParticleTypes.RED_EXPLOSION, 0.95F, 0.0F, 0.0F);
 		registerColoredExplosionParticle(SpectrumParticleTypes.WHITE_EXPLOSION, 0.97F, 0.97F, 0.97F);
 		registerColoredExplosionParticle(SpectrumParticleTypes.YELLOW_EXPLOSION, 0.93F, 0.93F, 0.0F);
+
+		//Azzyy sucked cock here
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIGHT_TRAIL, LightTrailparticle.Factory::new);
 	}
 
 	public static void registerColoredExplosionParticle(DefaultParticleType particleType, float red, float green, float blue) {

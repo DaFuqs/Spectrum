@@ -25,6 +25,7 @@ public class SpectrumEntityTypes {
 	public static EntityType<MiningProjectileEntity> MINING_PROJECTILE;
 	public static EntityType<BidentEntity> BIDENT;
 	public static EntityType<BidentEntity> BIDENT_MIRROR_IMAGE;
+	public static EntityType<LightShardEntity> LIGHT_SHARD;
 	public static EntityType<MonstrosityEntity> MONSTROSITY;
 
 	public static void register() {
@@ -43,6 +44,7 @@ public class SpectrumEntityTypes {
 		MINING_PROJECTILE = register("mining_projectile", 4, 10, true, EntityDimensions.changing(0.3F, 0.3F), true, MiningProjectileEntity::new);
 		BIDENT = register("bident", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentEntity::new);
 		BIDENT_MIRROR_IMAGE = register("bident_mirror_image", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentMirrorImageEntity::new);
+		LIGHT_SHARD = register("light_shard", 4, 20, true, EntityDimensions.fixed(0.75F, 0.75F), true, LightShardEntity::new);
 		MONSTROSITY = register("monstrosity", EntityType.Builder.create(MonstrosityEntity::new, SpawnGroup.MONSTER).makeFireImmune().spawnableFarFromPlayer().setDimensions(20.0F, 12.0F).maxTrackingRange(10));
 		
 		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());

@@ -44,6 +44,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
         this.ignoreCameraFrustum = true;
     }
     
+    @Override
     protected void initGoals() {
         this.goalSelector.add(2, new ProjectileAttackGoal(this, 1.0, 40, 20.0F));
         this.goalSelector.add(5, new FlyGoal(this, 1.0));
@@ -74,6 +75,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
     public static DefaultAttributeContainer createMonstrosityAttributes() {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 800.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_FLYING_SPEED, 0.6)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0)

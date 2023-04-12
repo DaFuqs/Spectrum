@@ -1,0 +1,366 @@
+[
+  {
+    "advancement": "spectrum:endgame/finish_progression",
+    "frame": "paginatedadvancements:heart"
+  },
+
+  {
+    "advancement": "spectrum:spectrum",
+    "frame": "spectrum:amethyst_shard"
+  },
+  {
+    "advancement": "spectrum:midgame/spectrum_midgame",
+    "frame": "spectrum:amethyst_shard"
+  },
+  {
+    "advancement": "spectrum:lategame/spectrum_lategame",
+    "frame": "spectrum:amethyst_shard"
+  },
+  {
+    "advancement": "spectrum:endgame/spectrum_endgame",
+    "frame": "spectrum:amethyst_shard"
+  },
+  {
+    "advancement": "spectrum:craft_onyx_pedestal",
+    "frame": "spectrum:amethyst_shard"
+  },
+  {
+    "advancement": "spectrum:midgame/enter_dimension",
+    "frame": "spectrum:amethyst_shard"
+  },
+
+  {
+    "advancement": "spectrum:place_pedestal",
+    "frame": "paginatedadvancements:crested"
+  },
+  {
+    "advancement": "spectrum:build_basic_pedestal_structure",
+    "frame": "paginatedadvancements:crested"
+  },
+  {
+    "advancement": "spectrum:build_fusion_shrine",
+    "frame": "paginatedadvancements:crested"
+  },
+  {
+    "advancement": "spectrum:midgame/build_advanced_pedestal_structure",
+    "frame": "paginatedadvancements:crested"
+  },
+  {
+    "advancement": "spectrum:midgame/build_cinderhearth_structure",
+    "frame": "paginatedadvancements:crested"
+  },
+  {
+    "advancement": "spectrum:midgame/build_enchanting_structure",
+    "frame": "paginatedadvancements:crested"
+  },
+  {
+    "advancement": "spectrum:midgame/build_spirit_instiller_structure",
+    "frame": "paginatedadvancements:crested"
+  },
+  {
+    "advancement": "spectrum:lategame/build_complex_pedestal_structure",
+    "frame": "paginatedadvancements:crested"
+  },
+
+  {
+    "advancement": "spectrum:fail_to_take_item_out_of_pedestal",
+    "frame": "spectrum:pile_of_poo"
+  },
+  {
+    "advancement": "spectrum:midgame/drink_tea_with_milk",
+    "frame": "spectrum:pile_of_poo"
+  },
+  {
+    "advancement": "spectrum:lategame/put_too_many_low_gravity_blocks_into_animal",
+    "frame": "spectrum:pile_of_poo"
+  },
+  {
+    "advancement": "spectrum:lategame/trigger_unenchanted_workstaff",
+    "frame": "spectrum:pile_of_poo"
+  },
+
+  {
+    "advancement": "spectrum:collect_amaranth",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_amaranth_bushel",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_four_leaf_clover",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_gemstone_powder",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_mermaids_gem",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_pigment",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_quitoxic_reeds",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_shimmerstone",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_star_fragment",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_vegetal",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_amaranth_bushel",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_amaranth_bushel",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:collect_amaranth_bushel",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:craft_bottle_of_fading",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:craft_colored_pedestal",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:craft_colored_sapling",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:craft_using_pedestal",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:enter_ancient_ruins",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:enter_color_mixing_puzzle_structure",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:enter_wireless_redstone_puzzle_structure",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:find_ancient_ruins",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:generate_ancient_ruins_loot",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:get_radiating_ender",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:place_pedestal",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:tap_titration_barrel",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/break_decayed_bedrock",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/brew_potion_in_potion_workshop",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/brew_powerful_potion_in_potion_workshop",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/brew_potion_with_four_effects_in_potion_workshop",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/carry_too_many_heavy_gravity_blocks",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_azurite",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_blood_orchid_petal",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_midnight_chip",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_mob_head_using_treasure_hunter",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_neolith",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_resonant_lily",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_storm_stone",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/collect_stratine",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/craft_bottle_of_failing",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/craft_bottle_of_ruin",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/create_midnight_aberration",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/create_refined_azurite",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/enter_liquid_crystal",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/fill_ink_container",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/get_azure_dike_charge",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/harvest_moonstruck_nectar",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/open_deeper_down_portal",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/place_color_picker",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/plant_jade_vines",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/pluck_blood_orchid_petal",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/break_budding_block_with_resonance_tool",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/break_spawner_with_resonance_tool",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/carry_too_many_low_gravity_blocks",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_bismuth",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_bismuth_crystal",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_doombloom_seed",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_dragonbone",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_grayscale_pigments",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_hummingstone",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_malachite",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_moonstone_core",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_moonstone_shard",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_myceylon",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_mysterious_locket",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_paltaeria",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_prickly_bayleaf",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/collect_pure_resource",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/craft_resonant_pickaxe",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/grow_malachite_in_crystallarieum",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/hurt_by_monstrosity",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:lategame/strike_up_hummingstone_hymn",
+    "frame": "paginatedadvancements:squircle"
+  }
+]

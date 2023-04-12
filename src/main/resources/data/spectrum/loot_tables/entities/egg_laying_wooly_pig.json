@@ -3,6 +3,15 @@
   "pools": [
     {
       "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "spectrum:entities/egg_laying_wooly_pig_wool"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
       "bonus_rolls": 0,
       "entries": [
         {
@@ -30,7 +39,7 @@
         }
       ]
     },
-	{
+    {
       "rolls": 1,
       "bonus_rolls": 0,
       "entries": [

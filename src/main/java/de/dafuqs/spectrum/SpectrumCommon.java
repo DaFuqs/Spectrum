@@ -162,6 +162,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumItemStackDamageImmunities.registerDefaultItemStackImmunities();
 		logInfo("Registering Enchantment Drops...");
 		SpectrumLootPoolModifiers.setup();
+		logInfo("Registering Type Specific Predicates...");
+		SpectrumTypeSpecificPredicates.register();
 		
 		logInfo("Registering Items to Fuel Registry...");
 		SpectrumItems.registerFuelRegistry();

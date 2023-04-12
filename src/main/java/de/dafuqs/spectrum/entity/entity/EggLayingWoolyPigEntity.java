@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import com.google.common.collect.*;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
@@ -15,6 +16,8 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
+import net.minecraft.loot.*;
+import net.minecraft.loot.context.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
 import net.minecraft.screen.*;
@@ -37,24 +40,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	private static final TrackedData<Byte> COLOR_AND_SHEARED = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BYTE);
 	private static final TrackedData<Boolean> HATLESS = DataTracker.registerData(EggLayingWoolyPigEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final Map<DyeColor, float[]> COLORS = Maps.newEnumMap((Map) Arrays.stream(DyeColor.values()).collect(Collectors.toMap((dyeColor) -> dyeColor, EggLayingWoolyPigEntity::getDyedColor)));
-	private static final Map<DyeColor, ItemConvertible> DROPS = Util.make(Maps.newEnumMap(DyeColor.class), (map) -> {
-		map.put(DyeColor.WHITE, Blocks.WHITE_WOOL);
-		map.put(DyeColor.ORANGE, Blocks.ORANGE_WOOL);
-		map.put(DyeColor.MAGENTA, Blocks.MAGENTA_WOOL);
-		map.put(DyeColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL);
-		map.put(DyeColor.YELLOW, Blocks.YELLOW_WOOL);
-		map.put(DyeColor.LIME, Blocks.LIME_WOOL);
-		map.put(DyeColor.PINK, Blocks.PINK_WOOL);
-		map.put(DyeColor.GRAY, Blocks.GRAY_WOOL);
-		map.put(DyeColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_WOOL);
-		map.put(DyeColor.CYAN, Blocks.CYAN_WOOL);
-		map.put(DyeColor.PURPLE, Blocks.PURPLE_WOOL);
-		map.put(DyeColor.BLUE, Blocks.BLUE_WOOL);
-		map.put(DyeColor.BROWN, Blocks.BROWN_WOOL);
-		map.put(DyeColor.GREEN, Blocks.GREEN_WOOL);
-		map.put(DyeColor.RED, Blocks.RED_WOOL);
-		map.put(DyeColor.BLACK, Blocks.BLACK_WOOL);
-	});
+	private static final Identifier SHEARING_LOOT_TABLE_ID = SpectrumCommon.locate("entities/egg_laying_wooly_pig_shearing");
 	
 	private int eatGrassTimer;
 	private EatGrassGoal eatGrassGoal;
@@ -65,7 +51,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		this.eggLayTime = this.random.nextInt(12000) + 12000;
 	}
 	
-	
+	@Override
 	public ActionResult interactMob(PlayerEntity player, Hand hand) {
 		ItemStack handStack = player.getStackInHand(hand);
 		
@@ -99,10 +85,12 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 12.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.20000000298023224D);
 	}
 	
+	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return FOOD.test(stack);
 	}
 	
+	@Override
 	protected void initGoals() {
 		this.eatGrassGoal = new EatGrassGoal(this);
 		this.goalSelector.add(0, new SwimGoal(this));
@@ -239,18 +227,26 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		}
 	}
 	
-	// SHEARING
 	@Override
 	public void sheared(SoundCategory shearedSoundCategory) {
 		this.world.playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
 		this.setSheared(true);
-		int itemCount = 1 + this.random.nextInt(3);
-		for (int i = 0; i < itemCount; ++i) {
-			ItemEntity itemEntity = this.dropItem(DROPS.get(this.getColor()), 1);
+		
+		for (ItemStack droppedStack : getShearedStacks((ServerWorld) world)) {
+			ItemEntity itemEntity = this.dropStack(droppedStack, 1);
 			if (itemEntity != null) {
 				itemEntity.setVelocity(itemEntity.getVelocity().add((this.random.nextFloat() - this.random.nextFloat()) * 0.1F, this.random.nextFloat() * 0.05F, (this.random.nextFloat() - this.random.nextFloat()) * 0.1F));
 			}
 		}
+	}
+	
+	public List<ItemStack> getShearedStacks(ServerWorld world) {
+		LootContext.Builder builder = (new LootContext.Builder(world)).random(world.random)
+				.parameter(LootContextParameters.THIS_ENTITY, this)
+				.parameter(LootContextParameters.ORIGIN, this.getPos());
+		
+		LootTable lootTable = world.getServer().getLootManager().getTable(SHEARING_LOOT_TABLE_ID);
+		return lootTable.generateLoot(builder.build(LootContextTypes.GIFT));
 	}
 	
 	@Override

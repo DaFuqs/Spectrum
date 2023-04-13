@@ -36,12 +36,17 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
         return false;
     };
     
+    private static final float MAX_LIFE_LOST_PER_TICK = 20;
+    private static final float GET_STRONGER_EVERY_X_TICKS = 400;
+    private float previousHealth;
+    
     public MonstrosityEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
         super(entityType, world);
         this.moveControl = new FlightMoveControl(this, 10, false);
         this.experiencePoints = 500;
         this.noClip = true;
         this.ignoreCameraFrustum = true;
+        this.previousHealth = getHealth();
     }
     
     @Override
@@ -72,6 +77,38 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
         return birdNavigation;
     }
     
+    @Override
+    public void tick() {
+        super.tick();
+        
+        float currentHealth = this.getHealth();
+        if (currentHealth < this.previousHealth - MAX_LIFE_LOST_PER_TICK) {
+            this.setHealth(this.previousHealth - MAX_LIFE_LOST_PER_TICK);
+        }
+        this.previousHealth = currentHealth;
+        
+        if (this.age % GET_STRONGER_EVERY_X_TICKS == 0) {
+            this.growStronger(1);
+        }
+    }
+    
+    public void growStronger(int amount) {
+        //this.getAttributes().addTemporaryModifiers(itemStack2.getAttributeModifiers(equipmentSlot));
+    }
+    
+    @Override
+    public void kill() {
+        if (this.previousHealth > this.getMaxHealth() / 4) {
+            // naha, I do not feel like doing that
+            this.setHealth(this.getHealth() + this.getMaxHealth() / 2);
+            this.growStronger(8);
+            this.playSound(getHurtSound(DamageSource.OUT_OF_WORLD), 2.0F, 1.5F);
+        } else {
+            this.remove(RemovalReason.KILLED);
+            this.emitGameEvent(GameEvent.ENTITY_DIE);
+        }
+    }
+    
     public static DefaultAttributeContainer createMonstrosityAttributes() {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 800.0)
@@ -93,7 +130,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
                 this.applyDamageEffects(this, entity);
             }
         }
-        
     }
     
     private boolean destroyBlocks(Box box) {
@@ -136,12 +172,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
     }
     
     @Override
-    public void kill() {
-        this.remove(RemovalReason.KILLED);
-        this.emitGameEvent(GameEvent.ENTITY_DIE);
-    }
-    
-    @Override
     public boolean canHit() {
         return false;
     }
@@ -164,7 +194,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_ENDER_DRAGON_DEATH;
     }
-    
     
     @Override
     public void attack(LivingEntity target, float pullProgress) {

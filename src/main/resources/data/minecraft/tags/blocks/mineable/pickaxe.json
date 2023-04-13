@@ -119,6 +119,7 @@
     "spectrum:redstone_calculator",
     "spectrum:redstone_wireless",
     "spectrum:block_placer",
+    "spectrum:block_detector",
     "spectrum:black_hole_chest",
     "spectrum:ethereal_platform",
     "spectrum:universe_spyhole",

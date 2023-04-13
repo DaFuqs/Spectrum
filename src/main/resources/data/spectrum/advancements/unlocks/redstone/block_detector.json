@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "crafted_using_pedestal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_using_pedestal"
+      }
+    },
+    "has_storm_stone": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/collect_storm_stone"
+      }
+    }
+  }
+}

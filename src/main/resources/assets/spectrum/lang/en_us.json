@@ -626,6 +626,7 @@
   "block.spectrum.courier_statue": "Ancient Statue",
   "block.spectrum.treasure_chest": "Treasure Chest",
   "block.spectrum.preservation_controller": "Preservation Controller",
+  "block.spectrum.preservation_block_detector": "Preservation Block Detector",
 
   "block.spectrum.blackslag": "Blackslag",
   "block.spectrum.infested_blackslag": "Infested Blackslag",
@@ -805,6 +806,7 @@
   "block.spectrum.light_level_detector": "Block Light Detector",
   "block.spectrum.entity_detector": "Creature Detector",
   "block.spectrum.block_placer": "Block Placer",
+  "block.spectrum.block_detector": "Block Detector",
   "block.spectrum.redstone_wireless": "Wireless Redstone",
   "block.spectrum.redstone_calculator": "Redstone Calculator",
   "block.spectrum.redstone_calculator.mode_set": "Set to mode: ",

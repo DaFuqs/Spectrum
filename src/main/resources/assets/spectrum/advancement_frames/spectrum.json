@@ -3,6 +3,10 @@
     "advancement": "spectrum:endgame/finish_progression",
     "frame": "paginatedadvancements:heart"
   },
+  {
+    "advancement": "spectrum:place_moonstone_in_ancient_ruins",
+    "frame": "paginatedadvancements:heart"
+  },
 
   {
     "advancement": "spectrum:spectrum",

@@ -6,7 +6,7 @@
       "bonus_rolls": 0,
       "entries": [
         {
-          "type": "minecraft:sequence",
+          "type": "minecraft:alternatives",
           "children": [
             {
               "type": "minecraft:item",
@@ -16,9 +16,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "wooly_pig_egg_laying_wooly_pig_color": "white"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "white"
                     }
                   }
                 }
@@ -32,9 +32,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "orange"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "orange"
                     }
                   }
                 }
@@ -48,9 +48,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "magenta"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "magenta"
                     }
                   }
                 }
@@ -64,9 +64,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "light_blue"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "light_blue"
                     }
                   }
                 }
@@ -80,9 +80,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "yellow"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "yellow"
                     }
                   }
                 }
@@ -96,9 +96,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "lime"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "lime"
                     }
                   }
                 }
@@ -112,9 +112,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "pink"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "pink"
                     }
                   }
                 }
@@ -128,9 +128,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "gray"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "gray"
                     }
                   }
                 }
@@ -144,9 +144,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "light_gray"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "light_gray"
                     }
                   }
                 }
@@ -160,9 +160,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "cyan"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "cyan"
                     }
                   }
                 }
@@ -176,9 +176,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "purple"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "purple"
                     }
                   }
                 }
@@ -192,9 +192,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "blue"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "blue"
                     }
                   }
                 }
@@ -208,9 +208,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "brown"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "brown"
                     }
                   }
                 }
@@ -224,9 +224,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "green"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "green"
                     }
                   }
                 }
@@ -240,9 +240,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "red"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "red"
                     }
                   }
                 }
@@ -256,9 +256,9 @@
                   "condition": "minecraft:entity_properties",
                   "entity": "this",
                   "predicate": {
-                    "type": "spectrum:egg_laying_wooly_pig",
                     "type_specific": {
-                      "egg_laying_wooly_pig_color": "black"
+                      "type": "spectrum:egg_laying_wooly_pig",
+                      "color": "black"
                     }
                   }
                 }

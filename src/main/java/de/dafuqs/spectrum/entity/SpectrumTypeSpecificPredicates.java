@@ -11,6 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
 import javax.annotation.*;
+import java.util.*;
 
 public class SpectrumTypeSpecificPredicates {
 	
@@ -19,7 +20,7 @@ public class SpectrumTypeSpecificPredicates {
 	public static void register() {
 		BiMap<String, TypeSpecificPredicate.Deserializer> map = TypeSpecificPredicate.Deserializers.TYPES;
 		BiMap<String, TypeSpecificPredicate.Deserializer> newMap = HashBiMap.create(map);
-		newMap.put("egg_laying_wooly_pig_color", EGG_LAYING_WOOLY_PIG_COLOR);
+		newMap.put("spectrum:egg_laying_wooly_pig", EGG_LAYING_WOOLY_PIG_COLOR);
 		TypeSpecificPredicateDeserializerMixin.setTypes(newMap);
 	}
 	
@@ -38,12 +39,12 @@ public class SpectrumTypeSpecificPredicates {
 		}
 		
 		public static EggLayingWoolyPigColorPredicate fromJson(JsonObject json) {
-			return new EggLayingWoolyPigColorPredicate(DyeColor.valueOf(json.get(COLOR_KEY).getAsString()));
+			return new EggLayingWoolyPigColorPredicate(DyeColor.valueOf(json.get(COLOR_KEY).getAsString().toUpperCase(Locale.ROOT)));
 		}
 		
 		public JsonObject typeSpecificToJson() {
 			JsonObject jsonObject = new JsonObject();
-			jsonObject.add(COLOR_KEY, new JsonPrimitive(this.color.toString()));
+			jsonObject.add(COLOR_KEY, new JsonPrimitive(this.color.toString().toLowerCase(Locale.ROOT)));
 			return jsonObject;
 		}
 		

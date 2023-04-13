@@ -15,7 +15,7 @@ public class LitParticle extends AbstractSlowingParticle {
 	}
 
 	public int getBrightness(float tint) {
-		return 16777215; // #FFFFFF
+		return 15728880; // #FFFFFF
 	}
 	
 	@Override

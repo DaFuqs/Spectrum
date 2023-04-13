@@ -169,6 +169,8 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType RED_EXPLOSION;
 	public static DefaultParticleType WHITE_EXPLOSION;
 	public static DefaultParticleType YELLOW_EXPLOSION;
+
+	public static DefaultParticleType LIGHT_TRAIL;
 	
 	// Simple particles
 	public static DefaultParticleType register(String name, boolean alwaysShow) {
@@ -342,6 +344,8 @@ public class SpectrumParticleTypes {
 		RED_EXPLOSION = register("red_explosion", true);
 		WHITE_EXPLOSION = register("white_explosion", true);
 		YELLOW_EXPLOSION = register("yellow_explosion", true);
+
+		LIGHT_TRAIL = register("light_trail", true);
 	}
 	
 	@NotNull

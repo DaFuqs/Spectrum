@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -15,7 +17,7 @@ import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine {
+public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine, NaturesStaffItem.NaturesStaffTriggered {
 	
 	public static final BooleanProperty DEAD = JadeVine.DEAD;
 	
@@ -341,4 +343,15 @@ public class JadeVineRootsBlock extends BlockWithEntity implements JadeVine {
 		return false;
 	}
 	
+	@Override
+	public boolean canUseNaturesStaff(World world, BlockPos pos, BlockState state) {
+		return state.get(DEAD);
+	}
+	
+	@Override
+	public boolean onNaturesStaffUse(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		setPlantToAge((ServerWorld) world, pos, 1);
+		JadeVine.spawnParticlesServer((ServerWorld) world, pos, 16);
+		return false;
+	}
 }

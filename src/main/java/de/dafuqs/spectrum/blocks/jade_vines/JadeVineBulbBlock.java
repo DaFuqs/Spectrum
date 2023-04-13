@@ -1,7 +1,9 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.state.*;
@@ -12,7 +14,7 @@ import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
-public class JadeVineBulbBlock extends Block implements JadeVine {
+public class JadeVineBulbBlock extends Block implements JadeVine, NaturesStaffItem.NaturesStaffTriggered {
 	
 	public static final BooleanProperty DEAD = JadeVine.DEAD;
 	
@@ -80,6 +82,22 @@ public class JadeVineBulbBlock extends Block implements JadeVine {
 			world.setBlockState(blockPos, currentState.with(DEAD, false));
 			return true;
 		}
+		return false;
+	}
+	
+	@Override
+	public boolean canUseNaturesStaff(World world, BlockPos pos, BlockState state) {
+		return state.get(DEAD);
+	}
+	
+	@Override
+	public boolean onNaturesStaffUse(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		BlockPos rootsPos = pos.up();
+		BlockState rootsState = world.getBlockState(rootsPos);
+		if (rootsState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
+			jadeVineRootsBlock.onNaturesStaffUse(world, rootsPos, rootsState, player);
+		}
+		JadeVine.spawnParticlesServer((ServerWorld) world, pos, 16);
 		return false;
 	}
 	

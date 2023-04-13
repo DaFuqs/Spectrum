@@ -35,6 +35,21 @@ import java.util.*;
 
 public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkPowered {
 	
+	/**
+	 * Blocks that have an effect when a Nature's Staff is used on them
+	 */
+	public interface NaturesStaffTriggered {
+		/**
+		 * @return if the staff can be used on the state
+		 */
+		boolean canUseNaturesStaff(World world, BlockPos pos, BlockState state);
+		
+		/**
+		 * @return if effects should play on that pos
+		 */
+		boolean onNaturesStaffUse(World world, BlockPos pos, BlockState state, PlayerEntity player);
+	}
+	
 	public static final InkColor USED_COLOR = InkColors.LIME;
 	public static final int BASE_COST = 20;
 	public static ItemStack ITEM_COST = new ItemStack(SpectrumItems.VEGETAL, 1);
@@ -186,7 +201,9 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 			if (world.isClient) {
 				if (context.getPlayer().isCreative() || InkPowered.hasAvailableInk(user, USED_COLOR, getInkCost(context.getStack())) || context.getPlayer().getInventory().contains(ITEM_COST)) {
 					BlockState blockState = world.getBlockState(blockPos);
-					if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
+					if (blockState.getBlock() instanceof NaturesStaffTriggered naturesStaffTriggered && naturesStaffTriggered.canUseNaturesStaff(world, blockPos, blockState)) {
+						BoneMealItem.createParticles(world, blockPos, 3);
+					} else if (blockState.isIn(SpectrumBlockTags.NATURES_STAFF_STACKABLE)) {
 						int i = 0;
 						while (world.getBlockState(context.getBlockPos().up(i)).isOf(blockState.getBlock())) {
 							BoneMealItem.createParticles(world, context.getBlockPos().up(i), 3);
@@ -213,6 +230,14 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 				
 				if (paid) {
 					BlockState blockState = world.getBlockState(blockPos);
+					
+					if (blockState.getBlock() instanceof NaturesStaffTriggered naturesStaffTriggered && naturesStaffTriggered.canUseNaturesStaff(world, blockPos, blockState)) {
+						if (naturesStaffTriggered.onNaturesStaffUse(world, blockPos, blockState, player)) {
+							BoneMealItem.createParticles(world, blockPos, 3);
+							world.syncWorldEvent(2005, blockPos, 0);
+						}
+						return ActionResult.success(false);
+					}
 					
 					// loaded as convertible? => convert
 					BlockState destinationState = NaturesStaffConversionDataLoader.getConvertedBlockState(blockState.getBlock());

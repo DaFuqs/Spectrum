@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
+import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.advancement.criterion.*;
@@ -27,16 +28,16 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class JadeVinePlantBlock extends Block implements JadeVine {
-
+public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffItem.NaturesStaffTriggered {
+	
 	public static final EnumProperty<JadeVinesPlantPart> PART = EnumProperty.of("part", JadeVinesPlantPart.class);
 	public static final IntProperty AGE = Properties.AGE_7;
-
+	
 	public JadeVinePlantBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState((this.stateManager.getDefaultState()).with(PART, JadeVinesPlantPart.BASE).with(AGE, 1));
 	}
-
+	
 	public static List<ItemStack> getHarvestedStacks(BlockState state, ServerWorld world, BlockPos pos, @Nullable BlockEntity blockEntity, @Nullable Entity entity, ItemStack stack, Identifier lootTableIdentifier) {
 		LootContext.Builder builder = (new LootContext.Builder(world)).random(world.random)
 				.parameter(LootContextParameters.BLOCK_STATE, state)
@@ -198,19 +199,35 @@ public class JadeVinePlantBlock extends Block implements JadeVine {
 				dropStacks(state, world, pos, null, player, player.getMainHandStack());
 			}
 		}
-
+		
 		super.onBreak(world, pos, state, player);
 	}
-
+	
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		super.afterBreak(world, player, pos, Blocks.AIR.getDefaultState(), blockEntity, stack);
 	}
-
+	
+	@Override
+	public boolean canUseNaturesStaff(World world, BlockPos pos, BlockState state) {
+		return state.get(AGE) == 0;
+	}
+	
+	@Override
+	public boolean onNaturesStaffUse(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+		BlockPos rootsPos = state.get(PART).getLowestRootsPos(pos);
+		BlockState rootsState = world.getBlockState(rootsPos);
+		if (rootsState.getBlock() instanceof JadeVineRootsBlock jadeVineRootsBlock) {
+			jadeVineRootsBlock.onNaturesStaffUse(world, rootsPos, rootsState, player);
+		}
+		JadeVine.spawnParticlesServer((ServerWorld) world, pos, 16);
+		return false;
+	}
+	
 	enum JadeVinesPlantPart implements StringIdentifiable {
 		BASE,
 		MIDDLE,
 		TIP;
-
+		
 		@Contract(pure = true)
 		public @NotNull String toString() {
 			return this.asString();

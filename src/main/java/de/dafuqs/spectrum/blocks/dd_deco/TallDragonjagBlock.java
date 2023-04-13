@@ -1,8 +1,10 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
 import de.dafuqs.spectrum.deeper_down.*;
+import de.dafuqs.spectrum.items.magic_items.*;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.state.*;
@@ -14,7 +16,7 @@ import net.minecraft.world.*;
 
 import java.util.*;
 
-public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fertilizable {
+public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fertilizable, NaturesStaffItem.NaturesStaffTriggered {
     
     protected static final VoxelShape SHAPE_UPPER = Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 7.0, 14.0);
     protected static final VoxelShape SHAPE_UPPER_DEAD = Block.createCuboidShape(2.0, 0.0, 2.0, 10.0, 3.0, 14.0);
@@ -93,26 +95,37 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
         }
 
         if (success) {
-            setDead(world, pos, state);
+            setDead(world, pos, state, true);
         }
     }
-
-    private void setDead(World world, BlockPos pos, BlockState state) {
+    
+    private void setDead(World world, BlockPos pos, BlockState state, boolean dead) {
         BlockState posState = world.getBlockState(pos);
         if (posState.isOf(this)) {
-            world.setBlockState(pos, posState.with(DEAD, true));
+            world.setBlockState(pos, posState.with(DEAD, dead));
         }
         if (state.get(HALF) == DoubleBlockHalf.LOWER) {
             posState = world.getBlockState(pos.up());
             if (posState.isOf(this)) {
-                world.setBlockState(pos.up(), posState.with(DEAD, true));
+                world.setBlockState(pos.up(), posState.with(DEAD, dead));
             }
         } else {
             posState = world.getBlockState(pos.down());
             if (posState.isOf(this)) {
-                world.setBlockState(pos.down(), posState.with(DEAD, true));
+                world.setBlockState(pos.down(), posState.with(DEAD, dead));
             }
         }
     }
-
+    
+    @Override
+    public boolean canUseNaturesStaff(World world, BlockPos pos, BlockState state) {
+        return state.get(DEAD);
+    }
+    
+    @Override
+    public boolean onNaturesStaffUse(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        setDead(world, pos, state, false);
+        return true;
+    }
+    
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/orientable_vertical",
+  "textures": {
+    "front": "spectrum:block/preservation_block_detector_front_vertical",
+    "side": "spectrum:block/preservation_stone"
+  }
+}

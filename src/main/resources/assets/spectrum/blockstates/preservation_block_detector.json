@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "spectrum:block/preservation_block_detector_vertical",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "spectrum:block/preservation_block_detector",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "spectrum:block/preservation_block_detector"
+    },
+    "facing=south": {
+      "model": "spectrum:block/preservation_block_detector",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "spectrum:block/preservation_block_detector_vertical"
+    },
+    "facing=west": {
+      "model": "spectrum:block/preservation_block_detector",
+      "y": 270
+    }
+  }
+}

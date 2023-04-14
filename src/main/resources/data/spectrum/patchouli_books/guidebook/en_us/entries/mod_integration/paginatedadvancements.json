@@ -7,47 +7,67 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Oh, so you're an Advancement Hunter with style. With Paginated Advancements installed, you will find Spectrum's advancements using new, unique frames.$(br)Find out what each frame means on these following pages."
+      "text": "Oh, so you're an Advancement Hunter with style!$(br)With Paginated Advancements installed, you will find that Spectrum's advancements use new, unique frames.$(br)Find out what each frame means on these following pages."
     },
     {
       "type": "spectrum:snippet",
-      "resource": "spectrum:textures/gui/advancement_frames.png",
-      "x": 0,
-      "y": 0,
-      "width": 26,
-      "height": 26,
       "title": "Milestones",
-      "recipe": "Marks the start and end of an advancement tree: major milestones in your journey."
+      "resource_path": "spectrum:textures/gui/advancement_frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 0,
+      "texture_y": 0,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "Marks the start and end of an advancement tree: major milestones in your journey."
     },
     {
       "type": "spectrum:snippet",
-      "resource": "paginatedadvancements:textures/gui/advancement_frames.png",
-      "x": 0,
-      "y": 0,
-      "width": 26,
-      "height": 26,
-      "title": "Structure Building",
-      "recipe": "Advancements using this frame show you that you have a new structure to build."
-    },
-    {
-      "type": "spectrum:snippet",
-      "resource": "paginatedadvancements:textures/gui/frames.png",
-      "x": 26,
-      "y": 0,
-      "width": 26,
-      "height": 26,
-      "title": "Adv. with Unlocks",
+      "title": "Additional Unlocks",
+      "resource_path": "paginatedadvancements:textures/gui/frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 0,
+      "texture_y": 52,
+      "texture_width": 26,
+      "texture_height": 26,
       "text": "Advancements using this slightly altered frame have some kind of unlock attached to them: new recipes, a new revelation or something else. The default frame is used for advancements without additional unlocks, for all you completionists out there."
     },
     {
       "type": "spectrum:snippet",
-      "resource": "paginatedadvancements:textures/gui/frames.png",
-      "x": 52,
-      "y": 0,
-      "width": 26,
-      "height": 26,
+      "title": "Structure Building",
+      "resource_path": "paginatedadvancements:textures/gui/frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 104,
+      "texture_y": 52,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "Advancements using this frame show you that you have a new structure to build."
+    },
+    {
+      "type": "spectrum:snippet",
+      "title": "Unique Advancements",
+      "resource_path": "paginatedadvancements:textures/gui/frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 78,
+      "texture_y": 104,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "For affairs of heart, which require an extraordinary eye to detail."
+    },
+    {
+      "type": "spectrum:snippet",
       "title": "Shitpost Advancements",
-      "text": "These are purely optional meme advancements without any unlocks.$(br)$(italic)Sometimes I just feel like shitposting, ok?"
+      "resource_path": "spectrum:textures/gui/advancement_frames.png",
+      "resource_width": 256,
+      "resource_height": 256,
+      "texture_x": 26,
+      "texture_y": 0,
+      "texture_width": 26,
+      "texture_height": 26,
+      "text": "Granted when doing something remarkably stupid.$(br)These are purely optional meme advancements without any unlocks."
     }
   ]
 }

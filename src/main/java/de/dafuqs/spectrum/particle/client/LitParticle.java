@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.client.render.*;
+import net.minecraft.client.world.*;
+import net.minecraft.particle.*;
 
 @Environment(EnvType.CLIENT)
 public class LitParticle extends AbstractSlowingParticle {
@@ -15,7 +15,7 @@ public class LitParticle extends AbstractSlowingParticle {
 	}
 
 	public int getBrightness(float tint) {
-		return 15728880; // #FFFFFF
+		return LightmapTextureManager.MAX_LIGHT_COORDINATE;
 	}
 	
 	@Override

@@ -12,9 +12,11 @@ import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
+import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -35,8 +37,8 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	// - the player should not get XP
 	// - Yield upgrades disabled (item multiplication)
 	protected final boolean noBenefitsFromYieldUpgrades;
-
-	protected final List<FusionShrineRecipeWorldCondition> worldConditions;
+	
+	protected final List<WorldConditionPredicate> worldConditions;
 	@NotNull
 	protected final FusionShrineRecipeWorldEffect startWorldEffect;
 	@NotNull
@@ -47,19 +49,19 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	protected final Text description;
 	// copy all nbt data from the first stack in the ingredients to the output stack
 	protected final boolean copyNbt;
-
+	
 	public FusionShrineRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
 							  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean copyNbt,
-							  List<FusionShrineRecipeWorldCondition> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
+							  List<WorldConditionPredicate> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
 		super(id, group, secret, requiredAdvancementIdentifier);
-
+		
 		this.craftingInputs = craftingInputs;
 		this.fluidInput = fluidInput;
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
 		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
-
+		
 		this.worldConditions = worldConditions;
 		this.startWorldEffect = startWorldEffect;
 		this.duringWorldEffects = duringWorldEffects;
@@ -127,9 +129,9 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	 * Returns a boolean depending on if the recipes condition is set
 	 * This can be always true, a specific day or moon phase, or weather.
 	 */
-	public boolean areConditionMetCurrently(World world) {
-		for (FusionShrineRecipeWorldCondition worldCondition : this.worldConditions) {
-			if (!worldCondition.isMetCurrently(world)) {
+	public boolean areConditionMetCurrently(ServerWorld world, BlockPos pos) {
+		for (WorldConditionPredicate worldCondition : this.worldConditions) {
+			if (!worldCondition.test(world, pos)) {
 				return false;
 			}
 		}

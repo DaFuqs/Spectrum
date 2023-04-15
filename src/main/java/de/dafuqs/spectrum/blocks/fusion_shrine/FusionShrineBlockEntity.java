@@ -85,18 +85,20 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 				}
 			}
 		}
-		FusionShrineRecipe recipe = fusionShrineBlockEntity.currentRecipe;
+	}
+	
+	public void spawnCraftingParticles() {
+		BlockPos blockPos = getPos();
+		FusionShrineRecipe recipe = this.currentRecipe;
 		if (recipe != null) {
-            Fluid fluid = fusionShrineBlockEntity.getFluidVariant().getFluid();
-			if (recipe.getFluidInput().equals(fluid) && recipe.areConditionMetCurrently(world)) {
-				Optional<DyeColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
-				if (optionalFluidColor.isPresent()) {
-					ParticleEffect particleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalFluidColor.get());
-					
-					float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
-					float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
-					world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 1, blockPos.getZ() + randomZ, 0.0D, 0.1D, 0.0D);
-				}
+			Fluid fluid = this.getFluidVariant().getFluid();
+			Optional<DyeColor> optionalFluidColor = ColorRegistry.FLUID_COLORS.getMapping(fluid);
+			if (optionalFluidColor.isPresent()) {
+				ParticleEffect particleEffect = SpectrumParticleTypes.getFluidRisingParticle(optionalFluidColor.get());
+				
+				float randomX = 0.1F + world.getRandom().nextFloat() * 0.8F;
+				float randomZ = 0.1F + world.getRandom().nextFloat() * 0.8F;
+				world.addParticle(particleEffect, blockPos.getX() + randomX, blockPos.getY() + 1, blockPos.getZ() + randomZ, 0.0D, 0.1D, 0.0D);
 			}
 		}
 	}
@@ -130,9 +132,9 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
             // good for performance because of the many checks
             if (fusionShrineBlockEntity.craftingTime % 60 == 0) {
                 PlayerEntity lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline();
-
-                boolean recipeConditionsMet = recipe.canPlayerCraft(lastInteractedPlayer) && recipe.areConditionMetCurrently(world);
-                boolean structureCompleteWithSky = FusionShrineBlock.verifyStructureWithSkyAccess(world, blockPos, null);
+	
+				boolean recipeConditionsMet = recipe.canPlayerCraft(lastInteractedPlayer) && recipe.areConditionMetCurrently((ServerWorld) world, blockPos);
+				boolean structureCompleteWithSky = FusionShrineBlock.verifyStructureWithSkyAccess(world, blockPos, null);
 
                 if (!recipeConditionsMet || !structureCompleteWithSky) {
                     if (!structureCompleteWithSky) {
@@ -164,6 +166,8 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			if (fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
 				craft(world, blockPos, fusionShrineBlockEntity, recipe);
 				fusionShrineBlockEntity.inventoryChanged();
+			} else {
+				SpectrumS2CPacketSender.sendPlayFusionCraftingInProgressParticles(world, blockPos);
 			}
 			fusionShrineBlockEntity.markDirty();
 		}

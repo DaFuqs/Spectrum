@@ -10,7 +10,10 @@
   ],
   "required_advancement": "spectrum:unlocks/weather/weather_rain",
   "world_conditions": [
-    "clear_sky"
+    {
+      "type": "weather",
+      "weather_condition": "clear_sky"
+    }
   ],
   "start_crafting_effect": "single_visual_explosion_on_shrine",
   "during_crafting_effects": [],

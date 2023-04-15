@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
 import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pedestal.*;
@@ -138,6 +139,16 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread
 				ShootingStarEntity.playHitParticles(client.world, x, y, z, shootingStarType, 25);
+			});
+		});
+		
+		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_FUSION_CRAFTING_IN_PROGRESS_PARTICLE_PACKET_ID, (client, handler, buf, responseSender) -> {
+			BlockPos position = buf.readBlockPos();
+			client.execute(() -> {
+				BlockEntity blockEntity = client.world.getBlockEntity(position);
+				if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+					fusionShrineBlockEntity.spawnCraftingParticles();
+				}
 			});
 		});
 		

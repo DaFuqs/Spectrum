@@ -19,8 +19,14 @@
   },
   "required_advancement": "spectrum:collect_all_basic_pigments_besides_brown",
   "world_conditions": [
-    "new_moon",
-    "midnight"
+    {
+      "type": "time_of_day",
+      "time": "midnight"
+    },
+    {
+      "type": "moon_phase",
+      "moon_phase": "new_moon"
+    }
   ],
   "start_crafting_effect": "weather_rain",
   "during_crafting_effects": [

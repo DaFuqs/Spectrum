@@ -130,6 +130,16 @@ public class SpectrumS2CPacketSender {
 		}
 	}
 	
+	public static void sendPlayFusionCraftingInProgressParticles(World world, BlockPos blockPos) {
+		PacketByteBuf buf = PacketByteBufs.create();
+		buf.writeBlockPos(blockPos);
+		
+		// Iterate over all players tracking a position in the world and send the packet to each player
+		for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, blockPos)) {
+			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_FUSION_CRAFTING_IN_PROGRESS_PARTICLE_PACKET_ID, buf);
+		}
+	}
+	
 	public static void sendPlayFusionCraftingFinishedParticles(World world, BlockPos blockPos, @NotNull ItemStack itemStack) {
 		Optional<DyeColor> optionalItemColor = ColorRegistry.ITEM_COLORS.getMapping(itemStack.getItem());
 		
@@ -138,7 +148,7 @@ public class SpectrumS2CPacketSender {
 		
 		if (optionalItemColor.isPresent()) {
 			buf.writeInt(optionalItemColor.get().ordinal());
-        } else {
+		} else {
             buf.writeInt(DyeColor.LIGHT_GRAY.ordinal());
         }
 
@@ -369,5 +379,5 @@ public class SpectrumS2CPacketSender {
 		buf.writeBoolean(tinted);
 		ServerPlayNetworking.send(player, SpectrumS2CPackets.DISPLAY_HUD_MESSAGE, buf);
 	}
-
+	
 }

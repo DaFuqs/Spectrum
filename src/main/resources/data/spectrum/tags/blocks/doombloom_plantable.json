@@ -1,6 +1,7 @@
 {
   "values": [
     "#minecraft:dirt",
-    "spectrum:rotten_ground"
+    "spectrum:rotten_ground",
+    "minecraft:gravel"
   ]
 }

@@ -38,9 +38,13 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType JADE_VINES_BLOOM;
 	public static DefaultParticleType MOONSTONE_STRIKE;
 	public static DefaultParticleType MIRROR_IMAGE;
-
+	
+	public static DefaultParticleType AZURE_DIKE;
+	public static DefaultParticleType DRAKEBLOOD_DIKE;
+	public static DefaultParticleType MALACHITE_DIKE;
+	
 	public static DefaultParticleType LAVA_FISHING;
-
+	
 	public static DefaultParticleType MUD_SPLASH;
 	public static DefaultParticleType LANDING_MUD;
 	public static DefaultParticleType FALLING_MUD;
@@ -201,6 +205,10 @@ public class SpectrumParticleTypes {
 		SHIMMERSTONE_SPARKLE_SMALL = register("shimmerstone_sparkle_small", false);
 		SHIMMERSTONE_SPARKLE_TINY = register("shimmerstone_sparkle_tiny", false);
 		VOID_FOG = register("void_fog", false);
+		
+		AZURE_DIKE = register("azure_dike", false);
+		DRAKEBLOOD_DIKE = register("drakeblood_dike", false);
+		MALACHITE_DIKE = register("malachite_dike", false);
 		
 		BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
 		GREEN_BUBBLE_POP = register("green_bubble_pop", false);

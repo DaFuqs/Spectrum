@@ -1,58 +1,67 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
-import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.particle_spawner.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.client.networking.v1.*;
+import net.fabricmc.fabric.api.networking.v1.*;
+import net.fabricmc.fabric.mixin.client.particle.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.texture.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.network.*;
+import net.minecraft.particle.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
+import org.jetbrains.annotations.*;
+import org.lwjgl.glfw.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
+import java.util.*;
+import java.util.function.*;
 
 @Environment(EnvType.CLIENT)
 public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHandler> {
 	
-	private static final Identifier GUI_TEXTURE = SpectrumCommon.locate("textures/gui/container/particle_spawner.png");
-	// when adding new particles do not forget adding them both in
-	// - the texture file (for the gui)
-	// - the available particle list
-	private static final Identifier TEXTURE_PARTICLES = SpectrumCommon.locate("textures/gui/container/particle_spawner_particles.png");
-	private static final int PARTICLES_PER_PAGE = 6;
-	private static final List<Identifier> AVAILABLE_PARTICLES = new ArrayList<>() {{
-		add(SpectrumCommon.locate("particle/shimmerstone_sparkle"));
-		add(SpectrumCommon.locate("particle/shooting_star"));
-		add(SpectrumCommon.locate("particle/liquid_crystal_sparkle"));
-		add(SpectrumCommon.locate("particle/void_fog"));
-		add(new Identifier("particle/effect_5"));
-		add(new Identifier("particle/glint"));
-		add(new Identifier("particle/heart"));
-		add(new Identifier("particle/damage"));
-		add(new Identifier("particle/lava"));
-		add(new Identifier("particle/flame"));
-		add(new Identifier("particle/spark_2"));
-		add(new Identifier("particle/critical_hit"));
-		add(new Identifier("particle/nautilus"));
-		add(new Identifier("particle/bubble"));
-		add(new Identifier("particle/big_smoke_3"));
+	public record ParticleSpawnerEntry(ParticleType<?> particleType, Identifier textureIdentifier,
+									   @Nullable Identifier unlockIdentifier) {
+	}
+	
+	private static final List<ParticleSpawnerEntry> AVAILABLE_PARTICLES = new ArrayList<>() {{
+		add(new ParticleSpawnerEntry(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, SpectrumCommon.locate("particle/shimmerstone_sparkle"), null));
+		add(new ParticleSpawnerEntry(SpectrumParticleTypes.SHOOTING_STAR, SpectrumCommon.locate("particle/shooting_star"), null));
+		add(new ParticleSpawnerEntry(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, SpectrumCommon.locate("particle/liquid_crystal_sparkle"), null));
+		add(new ParticleSpawnerEntry(SpectrumParticleTypes.VOID_FOG, SpectrumCommon.locate("particle/void_fog"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.ANGRY_VILLAGER, new Identifier("particle/angry"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.EFFECT, new Identifier("particle/effect_5"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.ELECTRIC_SPARK, new Identifier("particle/glow"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.END_ROD, new Identifier("particle/glitter_7"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.HAPPY_VILLAGER, new Identifier("particle/glint"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.HEART, new Identifier("particle/heart"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.DAMAGE_INDICATOR, new Identifier("particle/damage"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.LAVA, new Identifier("particle/lava"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.FLAME, new Identifier("particle/flame"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.FIREWORK, new Identifier("particle/spark_2"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.CRIT, new Identifier("particle/critical_hit"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.CLOUD, new Identifier("particle/generic_7"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.NAUTILUS, new Identifier("particle/nautilus"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.NOTE, new Identifier("particle/note"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.BUBBLE, new Identifier("particle/bubble"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.CAMPFIRE_COSY_SMOKE, new Identifier("particle/big_smoke_3"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.SCULK_CHARGE_POP, new Identifier("particle/sculk_charge_pop_2"), null));
+		add(new ParticleSpawnerEntry(ParticleTypes.SCULK_SOUL, new Identifier("particle/sculk_soul_0"), null));
 	}};
+	
+	private static final Identifier GUI_TEXTURE = SpectrumCommon.locate("textures/gui/container/particle_spawner.png");
+	private static final int PARTICLES_PER_PAGE = 6;
+	
 	int textColor = 2236962;
 	boolean collisionsEnabled = false;
 	int activeParticlePage = 0;
@@ -81,6 +90,8 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	private ButtonWidget forwardButton;
 	private List<ButtonWidget> particleButtons;
 	
+	SpriteAtlasTexture spriteAtlasTexture;
+	
 	public ParticleSpawnerScreen(ParticleSpawnerScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);
 		
@@ -96,6 +107,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		client.keyboard.setRepeatEvents(true);
 		setupInputFields(handler.getBlockEntity());
 		setInitialFocus(amountField);
+		this.spriteAtlasTexture = ((ParticleManagerAccessor) client.particleManager).getParticleAtlasTexture();
 	}
 	
 	public void removed() {
@@ -156,20 +168,20 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
 		this.textRenderer.draw(matrices, this.title, (float) this.titleX, (float) this.titleY, 2236962);
 		
-		this.textRenderer.draw(matrices, Text.literal("Particles / Second"), 10, 50, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.particle_count"), 10, 50, textColor);
 		this.textRenderer.draw(matrices, Text.literal("x"), 66, 64, textColor);
 		this.textRenderer.draw(matrices, Text.literal("y"), 99, 64, textColor);
 		this.textRenderer.draw(matrices, Text.literal("z"), 134, 64, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Offset"), 10, 78, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Variance"), 21, 97, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Velocity"), 10, 117, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Variance"), 21, 137, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Scale"), 10, 161, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Variance"), 91, 161, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Duration"), 10, 181, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Variance"), 91, 181, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Gravity"), 10, 201, textColor);
-		this.textRenderer.draw(matrices, Text.literal("Collisions"), 90, 201, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.offset"), 10, 78, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.variance"), 21, 97, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.velocity"), 10, 117, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.variance"), 21, 137, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.scale"), 10, 161, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.variance"), 91, 161, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.duration"), 10, 181, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.variance"), 91, 181, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.gravity"), 10, 201, textColor);
+		this.textRenderer.draw(matrices, Text.translatable("block.spectrum.particle_spawner.collisions"), 90, 201, textColor);
 	}
 	
 	@Override
@@ -193,8 +205,16 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 			drawTexture(matrices, x + 27 + (20 * (particleSelectionIndex % PARTICLES_PER_PAGE)), y + 19, 16, 222, 22, 22);
 		}
 		
-		RenderSystem.setShaderTexture(0, TEXTURE_PARTICLES);
-		drawTexture(matrices, x + 28, y + 21, 0, activeParticlePage * 20, 20 * PARTICLES_PER_PAGE, 20);
+		RenderSystem.setShaderTexture(0, spriteAtlasTexture.getId());
+		int firstDisplayedEntryId = PARTICLES_PER_PAGE * activeParticlePage;
+		for (int j = 0; j < PARTICLES_PER_PAGE; j++) {
+			int spriteIndex = firstDisplayedEntryId + j;
+			if (spriteIndex >= AVAILABLE_PARTICLES.size()) {
+				break;
+			}
+			Sprite particleSprite = spriteAtlasTexture.getSprite(AVAILABLE_PARTICLES.get(spriteIndex).textureIdentifier);
+			drawSprite(matrices, x + 38 + j * 20 - particleSprite.getHeight() / 2, y + 31 - particleSprite.getHeight() / 2, 0, particleSprite.getWidth(), particleSprite.getHeight(), particleSprite);
+		}
 	}
 	
 	protected void setupInputFields(ParticleSpawnerBlockEntity blockEntity) {
@@ -260,14 +280,19 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		particleButtons.add(addParticleButton(i + 23 + 80, j + 16));
 		particleButtons.add(addParticleButton(i + 23 + 100, j + 16));
 		
-		int selectionIndex = AVAILABLE_PARTICLES.indexOf(blockEntity.particleSpriteIdentifier);
-		if (selectionIndex != -1) {
-			particleSelectionIndex = selectionIndex;
+		this.particleSelectionIndex = 0;
+		int particleIndex = 0;
+		for (ParticleSpawnerEntry availableParticle : AVAILABLE_PARTICLES) {
+			if (Registry.PARTICLE_TYPE.getId(availableParticle.particleType).equals(blockEntity.particleSpriteIdentifier)) {
+				this.particleSelectionIndex = particleIndex;
+				break;
+			}
+			particleIndex++;
 		}
 	}
 	
 	private void navigationButtonPressed(ButtonWidget buttonWidget) {
-		int pageCount = ((AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE) + 1);
+		int pageCount = AVAILABLE_PARTICLES.size() / PARTICLES_PER_PAGE;
 		if (buttonWidget == forwardButton) {
 			activeParticlePage = (activeParticlePage + 1) % pageCount;
 		} else {
@@ -384,9 +409,8 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		}
 	}
 	
-	@Contract("_ -> param1")
-	private @NotNull PacketByteBuf writeSettings(@NotNull PacketByteBuf packetByteBuf) {
-		packetByteBuf.writeString(AVAILABLE_PARTICLES.get(particleSelectionIndex).toString());
+	private void writeSettings(@NotNull PacketByteBuf packetByteBuf) {
+		packetByteBuf.writeString(AVAILABLE_PARTICLES.get(particleSelectionIndex).textureIdentifier.toString());
 		packetByteBuf.writeFloat(Float.parseFloat(amountField.getText()));
 		packetByteBuf.writeFloat(Float.parseFloat(positionXField.getText()));
 		packetByteBuf.writeFloat(Float.parseFloat(positionYField.getText()));
@@ -406,7 +430,6 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		packetByteBuf.writeInt(Integer.parseInt(durationVariance.getText()));
 		packetByteBuf.writeFloat(Float.parseFloat(gravity.getText()));
 		packetByteBuf.writeBoolean(collisionsEnabled);
-		return packetByteBuf;
 	}
 	
 }

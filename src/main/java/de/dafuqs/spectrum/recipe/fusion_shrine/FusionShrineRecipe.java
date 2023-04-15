@@ -167,7 +167,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 				float parts = (float) totalTicks / this.duringWorldEffects.size();
 				int index = (int) (tick / (parts));
 				FusionShrineRecipeWorldEffect effect = this.duringWorldEffects.get(index);
-				if (effect.isOneTimeEffect(effect)) {
+				if (effect.isOneTimeEffect()) {
 					if (index != (int) parts) {
 						return null;
 					}

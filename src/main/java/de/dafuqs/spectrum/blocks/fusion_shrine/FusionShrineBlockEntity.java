@@ -159,7 +159,7 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 			// play the current crafting effect
 			FusionShrineRecipeWorldEffect effect = recipe.getWorldEffectForTick(fusionShrineBlockEntity.craftingTime, fusionShrineBlockEntity.craftingTimeTotal);
 			if (effect != null) {
-				effect.doEffect((ServerWorld) world, blockPos);
+				effect.trigger((ServerWorld) world, blockPos);
 			}
 			
 			// craft when enough ticks have passed

@@ -65,26 +65,16 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 			}
 		}
 		
-		FusionShrineRecipeWorldEffect startWorldEffect;
-		if (JsonHelper.hasString(jsonObject, "start_crafting_effect")) {
-			startWorldEffect = FusionShrineRecipeWorldEffect.valueOf(JsonHelper.getString(jsonObject, "start_crafting_effect").toUpperCase(Locale.ROOT));
-		} else {
-			startWorldEffect = FusionShrineRecipeWorldEffect.NOTHING;
-		}
+		FusionShrineRecipeWorldEffect startWorldEffect = FusionShrineRecipeWorldEffect.fromString(JsonHelper.getString(jsonObject, "start_crafting_effect", null));
 		List<FusionShrineRecipeWorldEffect> duringWorldEffects = new ArrayList<>();
 		if (JsonHelper.hasArray(jsonObject, "during_crafting_effects")) {
 			JsonArray worldEffectsArray = JsonHelper.getArray(jsonObject, "during_crafting_effects");
 			for (int i = 0; i < worldEffectsArray.size(); i++) {
-				String effectString = worldEffectsArray.get(i).getAsString().toUpperCase(Locale.ROOT);
-				duringWorldEffects.add(FusionShrineRecipeWorldEffect.valueOf(effectString));
+				duringWorldEffects.add(FusionShrineRecipeWorldEffect.fromString(worldEffectsArray.get(i).getAsString()));
 			}
 		}
-		FusionShrineRecipeWorldEffect finishWorldEffect;
-		if (JsonHelper.hasString(jsonObject, "finish_crafting_effect")) {
-			finishWorldEffect = FusionShrineRecipeWorldEffect.valueOf(JsonHelper.getString(jsonObject, "finish_crafting_effect").toUpperCase(Locale.ROOT));
-		} else {
-			finishWorldEffect = FusionShrineRecipeWorldEffect.NOTHING;
-		}
+		FusionShrineRecipeWorldEffect finishWorldEffect = FusionShrineRecipeWorldEffect.fromString(JsonHelper.getString(jsonObject, "finish_crafting_effect", null));
+		
 		Text description;
 		if (JsonHelper.hasString(jsonObject, "description")) {
 			description = Text.translatable(JsonHelper.getString(jsonObject, "description"));
@@ -120,12 +110,6 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		packetByteBuf.writeBoolean(recipe.noBenefitsFromYieldUpgrades);
 		packetByteBuf.writeBoolean(recipe.playCraftingFinishedEffects);
 		
-		packetByteBuf.writeInt(recipe.startWorldEffect.ordinal());
-		packetByteBuf.writeInt(recipe.duringWorldEffects.size());
-		for (FusionShrineRecipeWorldEffect effect : recipe.duringWorldEffects) {
-			packetByteBuf.writeInt(effect.ordinal());
-		}
-		packetByteBuf.writeInt(recipe.finishWorldEffect.ordinal());
 		if (recipe.getDescription().isEmpty()) {
 			packetByteBuf.writeText(Text.literal(""));
 		} else {
@@ -150,21 +134,13 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		int craftingTime = packetByteBuf.readInt();
 		boolean noBenefitsFromYieldUpgrades = packetByteBuf.readBoolean();
 		boolean playCraftingFinishedEffects = packetByteBuf.readBoolean();
-		
-		FusionShrineRecipeWorldEffect startWorldEffect = FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()];
-		int duringWorldEventCount = packetByteBuf.readInt();
-		List<FusionShrineRecipeWorldEffect> duringWorldEffects = new ArrayList<>();
-		for (int i = 0; i < duringWorldEventCount; i++) {
-			duringWorldEffects.add(FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()]);
-		}
-		FusionShrineRecipeWorldEffect finishWorldEffect = FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()];
 
 		Text description = packetByteBuf.readText();
 		boolean copyNbt = packetByteBuf.readBoolean();
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier,
 				ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, playCraftingFinishedEffects, copyNbt,
-				List.of(), startWorldEffect, duringWorldEffects, finishWorldEffect, description);
+				List.of(), null, List.of(), null, description);
 	}
 	
 }

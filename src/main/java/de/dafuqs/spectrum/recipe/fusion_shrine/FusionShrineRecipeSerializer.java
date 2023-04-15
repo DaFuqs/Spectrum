@@ -22,7 +22,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 
 	public interface RecipeFactory<FusionShrineRecipe> {
 		FusionShrineRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-								  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean copyNbt,
+								  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean playCraftingFinishedEffects, boolean copyNbt,
 								  List<WorldConditionPredicate> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description);
 	}
 	
@@ -55,11 +55,8 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		}
 		float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
-		
-		boolean noBenefitsFromYieldUpgrades = false;
-		if (JsonHelper.hasPrimitive(jsonObject, "disable_yield_upgrades")) {
-			noBenefitsFromYieldUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
-		}
+		boolean noBenefitsFromYieldUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
+		boolean playCraftingFinishedEffects = JsonHelper.getBoolean(jsonObject, "play_crafting_finished_effects", true);
 		
 		List<WorldConditionPredicate> worldConditions = new ArrayList<>();
 		if (JsonHelper.hasArray(jsonObject, "world_conditions")) {
@@ -100,7 +97,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		}
 
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier,
-				craftingInputs, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, copyNbt,
+				craftingInputs, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, playCraftingFinishedEffects, copyNbt,
 				worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 	
@@ -121,6 +118,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		packetByteBuf.writeFloat(recipe.experience);
 		packetByteBuf.writeInt(recipe.craftingTime);
 		packetByteBuf.writeBoolean(recipe.noBenefitsFromYieldUpgrades);
+		packetByteBuf.writeBoolean(recipe.playCraftingFinishedEffects);
 		
 		packetByteBuf.writeInt(recipe.startWorldEffect.ordinal());
 		packetByteBuf.writeInt(recipe.duringWorldEffects.size());
@@ -151,6 +149,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		float experience = packetByteBuf.readFloat();
 		int craftingTime = packetByteBuf.readInt();
 		boolean noBenefitsFromYieldUpgrades = packetByteBuf.readBoolean();
+		boolean playCraftingFinishedEffects = packetByteBuf.readBoolean();
 		
 		FusionShrineRecipeWorldEffect startWorldEffect = FusionShrineRecipeWorldEffect.values()[packetByteBuf.readInt()];
 		int duringWorldEventCount = packetByteBuf.readInt();
@@ -164,7 +163,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		boolean copyNbt = packetByteBuf.readBoolean();
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier,
-				ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, copyNbt,
+				ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, playCraftingFinishedEffects, copyNbt,
 				List.of(), startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 	

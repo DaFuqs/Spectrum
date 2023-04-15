@@ -75,6 +75,10 @@
     "frame": "spectrum:pile_of_poo"
   },
   {
+    "advancement": "spectrum:lategame/equip_neat_ring",
+    "frame": "spectrum:pile_of_poo"
+  },
+  {
     "advancement": "spectrum:lategame/put_too_many_low_gravity_blocks_into_animal",
     "frame": "spectrum:pile_of_poo"
   },

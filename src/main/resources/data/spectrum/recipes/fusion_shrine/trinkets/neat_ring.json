@@ -1,6 +1,6 @@
 {
   "type": "spectrum:fusion_shrine",
-  "time": 600,
+  "time": 2400,
   "experience": 8.0,
   "fluid": "spectrum:liquid_crystal",
   "ingredients": [
@@ -34,5 +34,6 @@
     "explosions_and_lightning_around_shrine",
     "nothing"
   ],
-  "finish_crafting_effect": "ridiculously_squeaky_fart"
+  "finish_crafting_effect": "ridiculously_squeaky_fart",
+  "play_crafting_finished_effects": false
 }

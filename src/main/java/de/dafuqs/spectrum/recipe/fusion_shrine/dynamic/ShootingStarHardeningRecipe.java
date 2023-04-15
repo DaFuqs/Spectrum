@@ -1,25 +1,19 @@
 package de.dafuqs.spectrum.recipe.fusion_shrine.dynamic;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.fusion_shrine.FusionShrineBlockEntity;
-import de.dafuqs.spectrum.blocks.shooting_star.ShootingStarItem;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipeWorldEffect;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.fusion_shrine.*;
+import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.recipe.fusion_shrine.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 	
@@ -29,7 +23,7 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 	
 	public ShootingStarHardeningRecipe(Identifier identifier) {
 		super(identifier, "", false, UNLOCK_IDENTIFIER, List.of(IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SHOOTING_STARS)), IngredientStack.of(Ingredient.ofItems(Items.DIAMOND))), Fluids.WATER, getHardenedShootingStar(),
-				5, 100, true, true, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, DESCRIPTION);
+				5, 100, true, true, true, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, new ArrayList<>(), FusionShrineRecipeWorldEffect.NOTHING, DESCRIPTION);
 	}
 	
 	private static ItemStack getHardenedShootingStar() {
@@ -68,7 +62,7 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 			shootingStarStack.decrement(craftedAmount);
 			diamondStack.decrement(craftedAmount);
 			
-			spawnCraftingResultAndXP(world, fusionShrineBlockEntity, hardenedStack, craftedAmount, noBenefitsFromYieldUpgrades, experience); // spawn results
+			spawnCraftingResultAndXP(world, fusionShrineBlockEntity, hardenedStack, craftedAmount); // spawn results
 		}
 	}
 	

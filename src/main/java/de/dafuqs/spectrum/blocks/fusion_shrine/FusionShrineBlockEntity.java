@@ -189,17 +189,19 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	// at once, since we can not rely on positions in a grid like vanilla does
 	// in its crafting table
 	private static void craft(World world, BlockPos blockPos, FusionShrineBlockEntity fusionShrineBlockEntity, FusionShrineRecipe recipe) {
-        recipe.craft(world, fusionShrineBlockEntity);
-
-        scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
-
-        fusionShrineBlockEntity.fluidStorage.variant = FluidVariant.blank();
-        fusionShrineBlockEntity.fluidStorage.amount = 0;
-        world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
-
-        SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
-        fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
-    }
+		recipe.craft(world, fusionShrineBlockEntity);
+		
+		scatterContents(world, blockPos.up(), fusionShrineBlockEntity); // drop remaining items
+		
+		fusionShrineBlockEntity.fluidStorage.variant = FluidVariant.blank();
+		fusionShrineBlockEntity.fluidStorage.amount = 0;
+		world.setBlockState(blockPos, world.getBlockState(blockPos).with(FusionShrineBlock.LIGHT_LEVEL, 0), 3);
+		
+		if (recipe.shouldPlayCraftingFinishedEffects()) {
+			SpectrumS2CPacketSender.sendPlayFusionCraftingFinishedParticles(world, blockPos, recipe.getOutput());
+			fusionShrineBlockEntity.playSound(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING_FINISHED, 1.4F);
+		}
+	}
 
 	@Override
 	public UpgradeHolder getUpgradeHolder() {

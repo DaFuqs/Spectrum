@@ -37,6 +37,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	// - the player should not get XP
 	// - Yield upgrades disabled (item multiplication)
 	protected final boolean noBenefitsFromYieldUpgrades;
+	protected final boolean playCraftingFinishedEffects;
 	
 	protected final List<WorldConditionPredicate> worldConditions;
 	@NotNull
@@ -51,7 +52,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	protected final boolean copyNbt;
 	
 	public FusionShrineRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-							  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean copyNbt,
+							  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean playCraftingFinishedEffects, boolean copyNbt,
 							  List<WorldConditionPredicate> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
@@ -61,6 +62,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		this.experience = experience;
 		this.craftingTime = craftingTime;
 		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
+		this.playCraftingFinishedEffects = playCraftingFinishedEffects;
 		
 		this.worldConditions = worldConditions;
 		this.startWorldEffect = startWorldEffect;
@@ -254,24 +256,28 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		if (this.copyNbt) {
 			output.setNbt(firstStack.getNbt());
 		}
-
-		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount, noBenefitsFromYieldUpgrades, experience); // spawn results
+		
+		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results
 	}
-
-	protected void spawnCraftingResultAndXP(@NotNull World world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount, boolean yieldUpgradesDisabled, float experience) {
+	
+	protected void spawnCraftingResultAndXP(@NotNull World world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount) {
 		int resultAmountBeforeMod = recipeCount * stack.getCount();
-		double yieldModifier = yieldUpgradesDisabled ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
+		double yieldModifier = noBenefitsFromYieldUpgrades ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
-
+		
 		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.random);
 		MultiblockCrafter.spawnItemStackAsEntitySplitViaMaxCount(world, fusionShrineBlockEntity.getPos().up(2), stack, resultAmountAfterMod, MultiblockCrafter.RECIPE_STACK_VELOCITY);
-
+		
 		if (experience > 0) {
 			MultiblockCrafter.spawnExperience(world, fusionShrineBlockEntity.getPos(), intExperience);
 		}
 		
 		//only triggered on server side. Therefore, has to be sent to client via S2C packet
 		fusionShrineBlockEntity.grantPlayerFusionCraftingAdvancement(this, intExperience);
+	}
+	
+	public boolean shouldPlayCraftingFinishedEffects() {
+		return this.playCraftingFinishedEffects;
 	}
 	
 }

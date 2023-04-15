@@ -183,7 +183,7 @@ public class PresentBlock extends BlockWithEntity {
 			float randomScale = 0.5F + random.nextFloat();
 			int randomLifetime = 20 + random.nextInt(20);
 			
-			ParticleEffect particleEffect = new ParticleSpawnerParticleEffect(PARTICLE_SPRITE_IDENTIFIER, 0.98F, colorVec, randomScale, randomLifetime, true, false);
+			ParticleEffect particleEffect = new DynamicParticleEffect(0.98F, colorVec, randomScale, randomLifetime, true, false);
 			world.addParticle(particleEffect, posX, posY, posZ, randX, randY, randZ);
 		}
 	}

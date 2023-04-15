@@ -12,18 +12,18 @@ import org.jetbrains.annotations.*;
 import java.util.function.*;
 
 public class SpectrumParticleTypes {
-
-    public static ParticleType<ParticleSpawnerParticleEffect> PARTICLE_SPAWNER;
-    public static ParticleType<ParticleSpawnerParticleEffectAlwaysShow> PARTICLE_SPAWNER_ALWAYS_SHOW;
-    public static ParticleType<ItemTransmissionParticleEffect> ITEM_TRANSMISSION;
-    public static ParticleType<ExperienceTransmissionParticleEffect> EXPERIENCE_TRANSMISSION;
-    public static ParticleType<WirelessRedstoneTransmissionParticleEffect> WIRELESS_REDSTONE_TRANSMISSION;
+	
+	public static ParticleType<DynamicParticleEffect> DYNAMIC;
+	public static ParticleType<DynamicParticleEffectAlwaysShow> DYNAMIC_ALWAYS_SHOW;
+	public static ParticleType<ItemTransmissionParticleEffect> ITEM_TRANSMISSION;
+	public static ParticleType<ExperienceTransmissionParticleEffect> EXPERIENCE_TRANSMISSION;
+	public static ParticleType<WirelessRedstoneTransmissionParticleEffect> WIRELESS_REDSTONE_TRANSMISSION;
 	public static ParticleType<BlockPosEventTransmissionParticleEffect> BLOCK_POS_EVENT_TRANSMISSION;
 	public static ParticleType<ColoredTransmissionParticleEffect> COLORED_TRANSMISSION;
 	public static ParticleType<PastelTransmissionParticleEffect> PASTEL_TRANSMISSION;
 	public static ParticleType<HummingstoneTransmissionParticleEffect> HUMMINGSTONE_TRANSMISSION;
-
-    public static DefaultParticleType DIVINITY;
+	
+	public static DefaultParticleType DIVINITY;
 
     public static DefaultParticleType SHOOTING_STAR; // Dummy entry to get the sprite registered
     public static DefaultParticleType SHIMMERSTONE_SPARKLE;
@@ -39,9 +39,12 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType MOONSTONE_STRIKE;
 	public static DefaultParticleType MIRROR_IMAGE;
 	
-	public static DefaultParticleType AZURE_DIKE;
-	public static DefaultParticleType DRAKEBLOOD_DIKE;
-	public static DefaultParticleType MALACHITE_DIKE;
+	public static DefaultParticleType AZURE_DIKE_RUNES;
+	public static DefaultParticleType AZURE_DIKE_RUNES_MAJOR;
+	public static DefaultParticleType DRAKEBLOOD_DIKE_RUNES;
+	public static DefaultParticleType DRAKEBLOOD_DIKE_RUNES_MAJOR;
+	public static DefaultParticleType MALACHITE_DIKE_RUNES;
+	public static DefaultParticleType MALACHITE_DIKE_RUNES_MAJOR;
 	
 	public static DefaultParticleType LAVA_FISHING;
 	
@@ -191,8 +194,6 @@ public class SpectrumParticleTypes {
 	}
 	
 	public static void register() {
-		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerParticleEffect.FACTORY, (particleType) -> ParticleSpawnerParticleEffect.CODEC, false);
-		PARTICLE_SPAWNER_ALWAYS_SHOW = register("particle_spawner_always_show", ParticleSpawnerParticleEffectAlwaysShow.FACTORY, (particleType) -> ParticleSpawnerParticleEffectAlwaysShow.CODEC, true);
 		ITEM_TRANSMISSION = register("item_transfer", ItemTransmissionParticleEffect.FACTORY, (particleType) -> ItemTransmissionParticleEffect.CODEC, false);
 		EXPERIENCE_TRANSMISSION = register("experience_transfer", ExperienceTransmissionParticleEffect.FACTORY, (particleType) -> ExperienceTransmissionParticleEffect.CODEC, false);
 		WIRELESS_REDSTONE_TRANSMISSION = register("wireless_redstone_transmission", WirelessRedstoneTransmissionParticleEffect.FACTORY, (particleType) -> WirelessRedstoneTransmissionParticleEffect.CODEC, false);
@@ -206,9 +207,12 @@ public class SpectrumParticleTypes {
 		SHIMMERSTONE_SPARKLE_TINY = register("shimmerstone_sparkle_tiny", false);
 		VOID_FOG = register("void_fog", false);
 		
-		AZURE_DIKE = register("azure_dike", false);
-		DRAKEBLOOD_DIKE = register("drakeblood_dike", false);
-		MALACHITE_DIKE = register("malachite_dike", false);
+		AZURE_DIKE_RUNES = register("azure_dike_runes", false);
+		AZURE_DIKE_RUNES_MAJOR = register("azure_dike_runes_major", false);
+		DRAKEBLOOD_DIKE_RUNES = register("drakeblood_dike_runes", false);
+		DRAKEBLOOD_DIKE_RUNES_MAJOR = register("drakeblood_dike_runes_major", false);
+		MALACHITE_DIKE_RUNES = register("malachite_dike_runes", false);
+		MALACHITE_DIKE_RUNES_MAJOR = register("malachite_dike_runes_major", false);
 		
 		BLUE_BUBBLE_POP = register("blue_bubble_pop", false);
 		GREEN_BUBBLE_POP = register("green_bubble_pop", false);
@@ -352,8 +356,12 @@ public class SpectrumParticleTypes {
 		RED_EXPLOSION = register("red_explosion", true);
 		WHITE_EXPLOSION = register("white_explosion", true);
 		YELLOW_EXPLOSION = register("yellow_explosion", true);
-
+		
 		LIGHT_TRAIL = register("light_trail", true);
+		
+		// Since these can reference other particle types, they should always come last
+		DYNAMIC = register("particle_spawner", DynamicParticleEffect.FACTORY, (particleType) -> DynamicParticleEffect.CODEC, false);
+		DYNAMIC_ALWAYS_SHOW = register("particle_spawner_always_show", DynamicParticleEffectAlwaysShow.FACTORY, (particleType) -> DynamicParticleEffectAlwaysShow.CODEC, true);
 	}
 	
 	@NotNull

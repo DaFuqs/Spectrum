@@ -10,6 +10,7 @@ import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.particle.*;
 import net.minecraft.potion.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
@@ -20,7 +21,6 @@ import java.util.*;
 
 public class NightfallsBladeItem extends SwordItem implements PotionFillable {
 	
-	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = Identifier.tryParse("effect");
 	private static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/equipment/nightfalls_blade");
 	
 	public NightfallsBladeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
@@ -61,7 +61,7 @@ public class NightfallsBladeItem extends SwordItem implements PotionFillable {
 					if(InkPowered.tryDrainEnergy(player, instance.getInkCost().getColor(), instance.getInkCost().getCost())) {
 						World world = attacker.getWorld();
 						if (world.isClient) {
-							world.addParticle(new ParticleSpawnerParticleEffect(PARTICLE_SPRITE_IDENTIFIER, 0.1F, ColorHelper.colorIntToVec(instance.getStatusEffectInstance().getEffectType().getColor()), 0.5F, 120, true, true),
+							world.addParticle(new DynamicParticleEffect(ParticleTypes.EFFECT, 0.1F, ColorHelper.colorIntToVec(instance.getStatusEffectInstance().getEffectType().getColor()), 0.5F, 120, true, true),
 									target.getParticleX(0.5D), target.getBodyY(0.5D), target.getParticleZ(0.5D),
 									world.random.nextFloat() - 0.5, world.random.nextFloat() - 0.5, world.random.nextFloat() - 0.5
 							);

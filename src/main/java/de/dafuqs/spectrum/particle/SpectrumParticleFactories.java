@@ -12,20 +12,6 @@ import net.minecraft.particle.*;
 public class SpectrumParticleFactories {
 	
 	public static void register() {
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PARTICLE_SPAWNER, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			ParticleSpawnerParticle particle = new ParticleSpawnerParticle(world, x, y, z, velocityX, velocityY, velocityZ);
-			particle.setSprite(provider);
-			particle.apply(parameters);
-			return particle;
-		});
-		
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.PARTICLE_SPAWNER_ALWAYS_SHOW, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			ParticleSpawnerParticle particle = new ParticleSpawnerParticle(world, x, y, z, velocityX, velocityY, velocityZ);
-			particle.setSprite(provider);
-			particle.apply(parameters);
-			return particle;
-		});
-		
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.ITEM_TRANSMISSION, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
 			TransmissionParticle particle = new TransmissionParticle(world, x, y, z, parameters.getDestination(), parameters.getArrivalInTicks());
 			particle.setSprite(provider);
@@ -70,8 +56,12 @@ public class SpectrumParticleFactories {
 			return particle;
 		});
 		
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DIVINITY, HardcoreParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MOONSTONE_STRIKE, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
+			MoonstoneStrikeParticle.Factory factory = new MoonstoneStrikeParticle.Factory();
+			return factory.createParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, world, x, y, z, velocityX, velocityY, velocityZ);
+		});
 		
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DIVINITY, HardcoreParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SHOOTING_STAR, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE_SMALL, LitParticle.Factory::new);
@@ -79,7 +69,7 @@ public class SpectrumParticleFactories {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, LitParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRAGONROT, BubblePopParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.VOID_FOG, VoidFogParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MUD_POP, BubblePopParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MUD_POP, BubblePopParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.BLUE_BUBBLE_POP, BubblePopParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.GREEN_BUBBLE_POP, BubblePopParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.SPIRIT_SALLOW, WindParticle.Factory::new);
@@ -88,15 +78,13 @@ public class SpectrumParticleFactories {
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.JADE_VINES_BLOOM, ZigZagParticle.Factory::new);
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MIRROR_IMAGE, LitParticle.Factory::new);
 		
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MOONSTONE_STRIKE, provider -> (parameters, world, x, y, z, velocityX, velocityY, velocityZ) -> {
-			MoonstoneStrikeParticle.Factory factory = new MoonstoneStrikeParticle.Factory();
-			return factory.createParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, world, x, y, z, velocityX, velocityY, velocityZ);
-		});
-		
 		// Dike
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_DIKE, LitParticle.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRAKEBLOOD_DIKE, LitParticle.Factory::new);
-		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MALACHITE_DIKE, LitParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_DIKE_RUNES, LitParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.AZURE_DIKE_RUNES_MAJOR, LitParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRAKEBLOOD_DIKE_RUNES, LitParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DRAKEBLOOD_DIKE_RUNES_MAJOR, LitParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MALACHITE_DIKE_RUNES, LitParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MALACHITE_DIKE_RUNES_MAJOR, LitParticle.Factory::new);
 		
 		// Fluid Splash
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.MUD_SPLASH, WaterSplashParticle.SplashFactory::new);
@@ -214,9 +202,14 @@ public class SpectrumParticleFactories {
 		registerColoredExplosionParticle(SpectrumParticleTypes.RED_EXPLOSION, 0.95F, 0.0F, 0.0F);
 		registerColoredExplosionParticle(SpectrumParticleTypes.WHITE_EXPLOSION, 0.97F, 0.97F, 0.97F);
 		registerColoredExplosionParticle(SpectrumParticleTypes.YELLOW_EXPLOSION, 0.93F, 0.93F, 0.0F);
-
+		
 		//Azzyy sucked cock here
+		//Can confirm this sucks ~Daf
 		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.LIGHT_TRAIL, LightTrailparticle.Factory::new);
+		
+		// Since these can reference other particle types, they should always come last
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DYNAMIC, DynamicParticle.Factory::new);
+		ParticleFactoryRegistry.getInstance().register(SpectrumParticleTypes.DYNAMIC_ALWAYS_SHOW, DynamicParticle.Factory::new);
 	}
 
 	public static void registerColoredExplosionParticle(DefaultParticleType particleType, float red, float green, float blue) {

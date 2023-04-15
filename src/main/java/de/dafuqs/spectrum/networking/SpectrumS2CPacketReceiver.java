@@ -151,7 +151,7 @@ public class SpectrumS2CPacketReceiver {
 				float velocityModifier = 0.25F;
 				for (Vec3d velocity : Support.VECTORS_16) {
 					client.world.addParticle(
-							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), 0.0F, color, 1.5F, 40, false, true),
+							new DynamicParticleEffect(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 0.0F, color, 1.5F, 40, false, true),
 							sourcePos.x, sourcePos.y, sourcePos.z,
 							velocity.x * velocityModifier, 0.0F, velocity.z * velocityModifier
 					);
@@ -177,14 +177,14 @@ public class SpectrumS2CPacketReceiver {
 					
 					// color1
 					client.world.addParticle(
-							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), 0.5F, colorVec1, 1.0F, randomLifetime, false, true),
+							new DynamicParticleEffect(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 0.5F, colorVec1, 1.0F, randomLifetime, false, true),
 							position.getX() + 0.5, position.getY() + 0.5, position.getZ(),
 							0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
 					);
 					
 					// color2
 					client.world.addParticle(
-							new ParticleSpawnerParticleEffect(new Identifier("spectrum:particle/liquid_crystal_sparkle"), 0.5F, colorVec2, 1.0F, randomLifetime, false, true),
+							new DynamicParticleEffect(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 0.5F, colorVec2, 1.0F, randomLifetime, false, true),
 							position.getX() + 0.5, position.getY(), position.getZ() + 0.5,
 							0.15 - random.nextFloat() * 0.3, random.nextFloat() * 0.15 + 0.1, 0.15 - random.nextFloat() * 0.3
 					);

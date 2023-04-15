@@ -1,41 +1,34 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.inventories.ParticleSpawnerScreenHandler;
-import de.dafuqs.spectrum.particle.effect.ParticleSpawnerParticleEffect;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3f;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.particle.effect.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.screenhandler.v1.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.particle.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
 	
-	public Identifier particleSpriteIdentifier;
+	public ParticleType particleType;
 	public float particlesPerSecond; // >1 = every xth tick
 	public Vec3f particleSourcePosition;
 	public Vec3f particleSourcePositionVariance;
@@ -62,7 +55,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		availableParticleEffects.add(ParticleTypes.FLAME);
 		availableParticleEffects.add(ParticleTypes.BUBBLE);
 		
-		this.particleSpriteIdentifier = SpectrumCommon.locate("particle/shooting_star");
+		this.particleType = SpectrumParticleTypes.SHOOTING_STAR;
 		this.particlesPerSecond = 10.0F;
 		this.particleSourcePosition = new Vec3f(0, 1, 0);
 		this.particleSourcePositionVariance = new Vec3f(0.5F, 0, 0.5F);
@@ -123,7 +116,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		
 		if (randomScale > 0 && randomLifetime > 0) {
 			MinecraftClient.getInstance().player.getEntityWorld().addParticle(
-					new ParticleSpawnerParticleEffect(this.particleSpriteIdentifier, this.gravity, this.color, randomScale, randomLifetime, this.collisions, false),
+					new DynamicParticleEffect(this.particleType, this.gravity, this.color, randomScale, randomLifetime, this.collisions, false),
 					(double) pos.getX() + 0.5 + particleSourcePosition.getX() + randomOffsetX,
 					(double) pos.getY() + 0.5 + particleSourcePosition.getY() + randomOffsetY,
 					(double) pos.getZ() + 0.5 + particleSourcePosition.getZ() + randomOffsetZ,
@@ -136,7 +129,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
-		tag.putString("particle_identifier", this.particleSpriteIdentifier.toString());
+		tag.putString("particle_identifier", this.particleType.toString());
 		tag.putFloat("particles_per_tick", this.particlesPerSecond);
 		tag.putFloat("source_pos_x", this.particleSourcePosition.getX());
 		tag.putFloat("source_pos_y", this.particleSourcePosition.getY());
@@ -166,7 +159,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		if (tag.getString("particle_identifier").isEmpty()) {
 			this.initialized = false;
 		} else {
-			this.particleSpriteIdentifier = new Identifier(tag.getString("particle_identifier"));
+			this.particleType = Registry.PARTICLE_TYPE.get(new Identifier(tag.getString("particle_identifier")));
 			this.particlesPerSecond = tag.getFloat("particles_per_tick");
 			this.particleSourcePosition = new Vec3f(tag.getFloat("source_pos_x"), tag.getFloat("source_pos_y"), tag.getFloat("source_pos_z"));
 			this.particleSourcePositionVariance = new Vec3f(tag.getFloat("source_pos_variance_x"), tag.getFloat("source_pos_variance_y"), tag.getFloat("source_pos_variance_z"));
@@ -195,7 +188,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	}
 	
 	public void writeSettings(@NotNull PacketByteBuf packetByteBuf) {
-		packetByteBuf.writeString(this.particleSpriteIdentifier.toString());
+		packetByteBuf.writeString(Registry.PARTICLE_TYPE.getId(this.particleType).toString());
 		packetByteBuf.writeFloat(this.particlesPerSecond);
 		packetByteBuf.writeFloat(this.particleSourcePosition.getX());
 		packetByteBuf.writeFloat(this.particleSourcePosition.getY());
@@ -218,7 +211,8 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	}
 	
 	public void applySettings(@NotNull PacketByteBuf buf) {
-		Identifier particleSpriteIdentifier = new Identifier(buf.readString());
+		Identifier particleIdentifier = new Identifier(buf.readString());
+		ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(particleIdentifier);
 		float particlesPerSecond = buf.readFloat();
 		Vec3f particleSourcePosition = new Vec3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
 		Vec3f particleSourcePositionVariance = new Vec3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
@@ -232,14 +226,14 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		float gravity = buf.readFloat();
 		boolean collisions = buf.readBoolean();
 		
-		applySettings(particleSpriteIdentifier, particlesPerSecond, particleSourcePosition, particleSourcePositionVariance,
+		applySettings(particleType, particlesPerSecond, particleSourcePosition, particleSourcePositionVariance,
 				velocity, velocityVariance, color, scale, scaleVariance, lifetimeTicks, lifetimeVariance, gravity, collisions
 		);
 	}
 	
-	public void applySettings(Identifier particleSpriteIdentifier, float particlesPerSecond, Vec3f ParticleSourcePosition, Vec3f particleSourcePositionVariance, Vec3f velocity, Vec3f velocityVariance,
-	                          Vec3f color, float scale, float scaleVariance, int lifetimeTicks, int lifetimeVariance, float gravity, boolean collisions) {
-		this.particleSpriteIdentifier = particleSpriteIdentifier;
+	public void applySettings(ParticleType<?> particleType, float particlesPerSecond, Vec3f ParticleSourcePosition, Vec3f particleSourcePositionVariance, Vec3f velocity, Vec3f velocityVariance,
+							  Vec3f color, float scale, float scaleVariance, int lifetimeTicks, int lifetimeVariance, float gravity, boolean collisions) {
+		this.particleType = particleType;
 		this.particlesPerSecond = particlesPerSecond;
 		this.particleSourcePosition = ParticleSourcePosition;
 		this.particleSourcePositionVariance = particleSourcePositionVariance;

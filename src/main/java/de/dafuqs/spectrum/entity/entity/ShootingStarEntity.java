@@ -39,8 +39,6 @@ import java.util.stream.*;
 
 public class ShootingStarEntity extends Entity {
 	
-	private static final Identifier PARTICLE_SPRITE_IDENTIFIER = SpectrumCommon.locate("particle/shooting_star");
-	
 	private static final TrackedData<Integer> SHOOTING_STAR_TYPE = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Boolean> PLAYER_PLACED = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final TrackedData<Boolean> HARDENED = DataTracker.registerData(ShootingStarEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -136,7 +134,7 @@ public class ShootingStarEntity extends Entity {
 			float randomScale = 0.5F + random.nextFloat();
 			int randomLifetime = 10 + random.nextInt(20);
 			
-			ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, 0.98F, type.getRandomParticleColor(random), randomScale, randomLifetime, false, true);
+			ParticleEffect particleEffect = new DynamicParticleEffectAlwaysShow(0.98F, type.getRandomParticleColor(random), randomScale, randomLifetime, false, true);
 			world.addParticle(particleEffect, x, y, z, 0.35 - random.nextFloat() * 0.7, random.nextFloat() * 0.7, 0.35 - random.nextFloat() * 0.7);
 		}
 	}
@@ -343,13 +341,13 @@ public class ShootingStarEntity extends Entity {
 		float randomScale = 0.5F + random.nextFloat();
 		int randomLifetime = 30 + random.nextInt(20);
 		
-		ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, 0.05F, getShootingStarType().getRandomParticleColor(random), randomScale, randomLifetime, false, true);
+		ParticleEffect particleEffect = new DynamicParticleEffectAlwaysShow(0.05F, getShootingStarType().getRandomParticleColor(random), randomScale, randomLifetime, false, true);
 		world.addParticle(particleEffect, this.getX(), this.getY() + 0.05F, this.getZ(), 0.1 - random.nextFloat() * 0.2, 0.4 + random.nextFloat() * 0.2, 0.1 - random.nextFloat() * 0.2);
 	}
 	
 	public void playFallingParticles() {
 		float randomScale = this.random.nextFloat() * 0.4F + 0.7F;
-		ParticleEffect particleEffect = new ParticleSpawnerParticleEffectAlwaysShow(PARTICLE_SPRITE_IDENTIFIER, (float) ((random.nextDouble() - 0.5F) * 0.05F - 0.125F), getShootingStarType().getRandomParticleColor(random), randomScale, 120, false, true);
+		ParticleEffect particleEffect = new DynamicParticleEffectAlwaysShow((float) ((random.nextDouble() - 0.5F) * 0.05F - 0.125F), getShootingStarType().getRandomParticleColor(random), randomScale, 120, false, true);
 		world.addParticle(particleEffect, this.getX(), this.getY() + 0.05F, this.getZ(), 0.2 - random.nextFloat() * 0.4, 0.1, 0.2 - random.nextFloat() * 0.4);
 	}
 	

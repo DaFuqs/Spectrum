@@ -77,7 +77,7 @@ public class DikeGateBlock extends AbstractGlassBlock {
 				double d = direction.getOffsetX() == 0 ? random.nextDouble() : 0.5 + direction.getOffsetX() * 0.6;
 				double e = direction.getOffsetY() == 0 ? random.nextDouble() : 0.5 + direction.getOffsetY() * 0.6;
 				double f = direction.getOffsetZ() == 0 ? random.nextDouble() : 0.5 + direction.getOffsetZ() * 0.6;
-				world.addParticle(SpectrumParticleTypes.AZURE_DIKE, pos.getX() + d, pos.getY() + e, pos.getZ() + f, 0.0, 0.025, 0.0);
+				world.addParticle(SpectrumParticleTypes.AZURE_DIKE_RUNES, pos.getX() + d, pos.getY() + e, pos.getZ() + f, 0.0, 0.025, 0.0);
 			}
 		}
 	}
@@ -87,7 +87,7 @@ public class DikeGateBlock extends AbstractGlassBlock {
 			int charges = AzureDikeProvider.getAzureDikeCharges(livingEntity);
 			if (charges == 0) {
 				entity.damage(SpectrumDamageSources.DIKE_GATE, 1);
-				SpectrumS2CPacketSender.playParticles(serverWorld, pos, SpectrumParticleTypes.AZURE_DIKE, 10);
+				SpectrumS2CPacketSender.playParticles(serverWorld, pos, SpectrumParticleTypes.AZURE_DIKE_RUNES, 10);
 				if (entity instanceof ServerPlayerEntity serverPlayerEntity && (!decreasedSounds || ((ServerWorld) world).getTime() % 10 == 0)) {
 					serverPlayerEntity.playSound(SpectrumSoundEvents.USE_FAIL, SoundCategory.PLAYERS, 0.75F, 1.0F);
 				}

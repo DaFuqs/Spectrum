@@ -243,7 +243,7 @@ public class SpectrumBlocks {
 	public static final Block AMETHYST_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5));
 	public static final Block CITRINE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(7));
 	public static final Block ONYX_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(3));
-	public static final Block MOONSTONE_CHISELED_BASALT = new PillarBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(12));
+	public static final Block MOONSTONE_CHISELED_BASALT = new SpectrumLineFacingBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(12));
 	
 	public static final Block BASALT_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT));
 	public static final Block AZURITE_CHISELED_BASALT = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_BASALT));
@@ -275,7 +275,7 @@ public class SpectrumBlocks {
 	public static final Block AMETHYST_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(5));
 	public static final Block CITRINE_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(7));
 	public static final Block ONYX_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(3));
-	public static final Block MOONSTONE_CHISELED_CALCITE = new PillarBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(12));
+	public static final Block MOONSTONE_CHISELED_CALCITE = new SpectrumLineFacingBlock(FabricBlockSettings.copyOf(BASALT_BRICKS).luminance(5).luminance(12));
 	
 	public static final Block CALCITE_TILES = new Block(FabricBlockSettings.copyOf(POLISHED_CALCITE));
 	public static final Block AZURITE_CHISELED_CALCITE = new Block(FabricBlockSettings.copyOf(CHISELED_POLISHED_CALCITE));

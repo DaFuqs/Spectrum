@@ -1,18 +1,15 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import vazkii.patchouli.api.IMultiblock;
-import vazkii.patchouli.api.PatchouliAPI;
-import vazkii.patchouli.common.multiblock.StateMatcher;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.enums.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.api.*;
+import vazkii.patchouli.common.multiblock.*;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.*;
+import java.util.concurrent.*;
 
 public class SpectrumMultiblocks {
 	
@@ -232,8 +229,8 @@ public class SpectrumMultiblocks {
 				'K', "spectrum:notched_polished_basalt",
 				'r', "spectrum:amethyst_chiseled_basalt",
 				'O', "spectrum:onyx_chiseled_basalt",
-				'm', "spectrum:moonstone_chiseled_basalt[axis=x]",
-				'M', "spectrum:moonstone_chiseled_basalt[axis=y]",
+				'm', "spectrum:moonstone_chiseled_basalt[facing=north]",
+				'M', "spectrum:moonstone_chiseled_basalt[facing=east]",
 				'2', "spectrum:pedestal_all_basic",
 				'3', "spectrum:pedestal_onyx",
 				'4', "spectrum:pedestal_moonstone",

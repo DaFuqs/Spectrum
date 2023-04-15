@@ -34,6 +34,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 	
 	@Override
 	protected void apply(Map<Identifier, JsonElement> prepared, ResourceManager manager, Profiler profiler) {
+		ENTITY_FISHING_ENTRIES.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
 			

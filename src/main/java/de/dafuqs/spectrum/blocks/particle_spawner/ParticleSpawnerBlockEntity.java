@@ -129,7 +129,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
-		tag.putString("particle_identifier", this.particleType.toString());
+		tag.putString("particle_type_identifier", Registry.PARTICLE_TYPE.getId(this.particleType).toString());
 		tag.putFloat("particles_per_tick", this.particlesPerSecond);
 		tag.putFloat("source_pos_x", this.particleSourcePosition.getX());
 		tag.putFloat("source_pos_y", this.particleSourcePosition.getY());
@@ -156,10 +156,10 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
-		if (tag.getString("particle_identifier").isEmpty()) {
+		if (tag.getString("particle_type_identifier").isEmpty()) {
 			this.initialized = false;
 		} else {
-			this.particleType = Registry.PARTICLE_TYPE.get(new Identifier(tag.getString("particle_identifier")));
+			this.particleType = Registry.PARTICLE_TYPE.get(new Identifier(tag.getString("particle_type_identifier")));
 			this.particlesPerSecond = tag.getFloat("particles_per_tick");
 			this.particleSourcePosition = new Vec3f(tag.getFloat("source_pos_x"), tag.getFloat("source_pos_y"), tag.getFloat("source_pos_z"));
 			this.particleSourcePositionVariance = new Vec3f(tag.getFloat("source_pos_variance_x"), tag.getFloat("source_pos_variance_y"), tag.getFloat("source_pos_variance_z"));

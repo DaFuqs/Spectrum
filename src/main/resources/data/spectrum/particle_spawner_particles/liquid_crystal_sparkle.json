@@ -1,0 +1,5 @@
+{
+  "particle_type": "spectrum:liquid_crystal_sparkle",
+  "gui_texture": "spectrum:particle/liquid_crystal_sparkle",
+  "unlock_identifier": "spectrum:midgame/enter_liquid_crystal"
+}

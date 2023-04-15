@@ -28,6 +28,7 @@ public class NaturesStaffConversionDataLoader extends JsonDataLoader implements 
 	
 	@Override
 	protected void apply(Map<Identifier, JsonElement> prepared, ResourceManager manager, Profiler profiler) {
+		CONVERSIONS.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
 			Block input = Registry.BLOCK.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "input_block")));

@@ -30,6 +30,7 @@ public class CrystalApothecarySimulationsDataLoader extends JsonDataLoader imple
 	
 	@Override
 	protected void apply(Map<Identifier, JsonElement> prepared, ResourceManager manager, Profiler profiler) {
+		COMPENSATIONS.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject object = jsonElement.getAsJsonObject();
 			

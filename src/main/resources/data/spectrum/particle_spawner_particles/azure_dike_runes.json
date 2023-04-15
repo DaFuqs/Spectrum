@@ -1,0 +1,5 @@
+{
+  "particle_type": "spectrum:azure_dike_runes",
+  "gui_texture": "spectrum:particle/azure_dike_rune_0",
+  "unlock_identifier": "spectrum:midgame/get_azure_dike_charge"
+}

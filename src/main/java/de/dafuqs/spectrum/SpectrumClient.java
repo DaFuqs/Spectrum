@@ -7,6 +7,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import de.dafuqs.spectrum.compat.patchouli.*;
 import de.dafuqs.spectrum.compat.reverb.*;
+import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -24,11 +25,13 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.*;
 import net.fabricmc.fabric.api.client.item.v1.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
+import net.minecraft.resource.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -131,7 +134,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 					matrices.translate(-pos.x, -pos.y, -pos.z);
 					PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, source.getPos(), target.getPos());
 					PastelRenderHelper.renderLineTo(context.matrixStack(), context.consumers(), colors, target.getPos(), source.getPos());
-
+					
 					if (MinecraftClient.getInstance().options.debugEnabled) {
 						Vec3d offset = Vec3d.ofCenter(target.getPos()).subtract(Vec3d.of(source.getPos()));
 						Vec3d normalized = offset.normalize();
@@ -142,13 +145,15 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 				}
 			}
 		});
-
+		
+		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
+		
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();
-
+		
 		RevealingCallback.register(this);
 		ClientAdvancementPacketCallback.registerCallback(this);
-
+		
 		logInfo("Client startup completed!");
 	}
 

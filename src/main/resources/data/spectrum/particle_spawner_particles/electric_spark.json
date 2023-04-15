@@ -1,0 +1,4 @@
+{
+  "particle_type": "minecraft:electric_spark",
+  "gui_texture": "minecraft:particle/glow"
+}

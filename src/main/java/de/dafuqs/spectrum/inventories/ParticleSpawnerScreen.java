@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.inventories;
 
 import com.mojang.blaze3d.systems.*;
-import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.particle_spawner.*;
+import de.dafuqs.spectrum.data_loaders.*;
 import de.dafuqs.spectrum.networking.*;
-import de.dafuqs.spectrum.particle.*;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.client.networking.v1.*;
 import net.fabricmc.fabric.api.networking.v1.*;
@@ -18,7 +17,6 @@ import net.minecraft.client.texture.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.network.*;
-import net.minecraft.particle.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
@@ -30,48 +28,6 @@ import java.util.function.*;
 
 @Environment(EnvType.CLIENT)
 public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHandler> {
-	
-	/**
-	 * Defines an entry that appears in the particle spawners gui to be selected as particle
-	 * Theoretically the particle spawner can spawn all kinds of particle (my modifying its nbt)
-	 * But we are limiting us to a few reasonable ones there
-	 *
-	 * @param particleType      The particle type to dynamically fetch textures from
-	 * @param unlockIdentifier  The advancement identifier required to being able to select this entry
-	 * @param textureIdentifier The texture shown in its gui entry
-	 */
-	public record ParticleSpawnerEntry(ParticleType<?> particleType, @Nullable Identifier unlockIdentifier,
-									   Identifier textureIdentifier) {
-	}
-	
-	private static final List<ParticleSpawnerEntry> PARTICLE_ENTRIES = new ArrayList<>() {{
-		add(new ParticleSpawnerEntry(SpectrumParticleTypes.WHITE_SPARKLE_RISING, null, SpectrumCommon.locate("particle/white_sparkle")));
-		add(new ParticleSpawnerEntry(SpectrumParticleTypes.SHIMMERSTONE_SPARKLE, SpectrumCommon.locate("collect_shimmerstone"), SpectrumCommon.locate("particle/shimmerstone_sparkle")));
-		add(new ParticleSpawnerEntry(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, SpectrumCommon.locate("midgame/enter_liquid_crystal"), SpectrumCommon.locate("particle/liquid_crystal_sparkle")));
-		add(new ParticleSpawnerEntry(SpectrumParticleTypes.SHOOTING_STAR, SpectrumCommon.locate("collect_star_fragment"), SpectrumCommon.locate("particle/shooting_star")));
-		add(new ParticleSpawnerEntry(SpectrumParticleTypes.VOID_FOG, null, SpectrumCommon.locate("particle/void_fog")));
-		add(new ParticleSpawnerEntry(SpectrumParticleTypes.AZURE_DIKE_RUNES, SpectrumCommon.locate("midgame/get_azure_dike_charge"), SpectrumCommon.locate("particle/azure_dike_rune_0")));
-		add(new ParticleSpawnerEntry(SpectrumParticleTypes.DRAKEBLOOD_DIKE_RUNES, SpectrumCommon.locate("impossible"), SpectrumCommon.locate("particle/void_fog"))); // TODO: unlock
-		add(new ParticleSpawnerEntry(SpectrumParticleTypes.MALACHITE_DIKE_RUNES, SpectrumCommon.locate("impossible"), SpectrumCommon.locate("particle/void_fog"))); // TODO: unlock
-		add(new ParticleSpawnerEntry(ParticleTypes.ANGRY_VILLAGER, null, new Identifier("particle/angry")));
-		add(new ParticleSpawnerEntry(ParticleTypes.EFFECT, null, new Identifier("particle/effect_5")));
-		add(new ParticleSpawnerEntry(ParticleTypes.ELECTRIC_SPARK, null, new Identifier("particle/glow")));
-		add(new ParticleSpawnerEntry(ParticleTypes.END_ROD, null, new Identifier("particle/glitter_7")));
-		add(new ParticleSpawnerEntry(ParticleTypes.HAPPY_VILLAGER, null, new Identifier("particle/glint")));
-		add(new ParticleSpawnerEntry(ParticleTypes.HEART, null, new Identifier("particle/heart")));
-		add(new ParticleSpawnerEntry(ParticleTypes.DAMAGE_INDICATOR, null, new Identifier("particle/damage")));
-		add(new ParticleSpawnerEntry(ParticleTypes.LAVA, null, new Identifier("particle/lava")));
-		add(new ParticleSpawnerEntry(ParticleTypes.FLAME, null, new Identifier("particle/flame")));
-		add(new ParticleSpawnerEntry(ParticleTypes.FIREWORK, null, new Identifier("particle/spark_2")));
-		add(new ParticleSpawnerEntry(ParticleTypes.CRIT, null, new Identifier("particle/critical_hit")));
-		add(new ParticleSpawnerEntry(ParticleTypes.CLOUD, null, new Identifier("particle/generic_7")));
-		add(new ParticleSpawnerEntry(ParticleTypes.NAUTILUS, null, new Identifier("particle/nautilus")));
-		add(new ParticleSpawnerEntry(ParticleTypes.NOTE, null, new Identifier("particle/note")));
-		add(new ParticleSpawnerEntry(ParticleTypes.BUBBLE, null, new Identifier("particle/bubble")));
-		add(new ParticleSpawnerEntry(ParticleTypes.CAMPFIRE_COSY_SMOKE, null, new Identifier("particle/big_smoke_3")));
-		add(new ParticleSpawnerEntry(ParticleTypes.SCULK_CHARGE_POP, null, new Identifier("particle/sculk_charge_pop_1")));
-		add(new ParticleSpawnerEntry(ParticleTypes.SCULK_SOUL, null, new Identifier("particle/sculk_soul_1")));
-	}};
 	
 	private static final Identifier GUI_TEXTURE = SpectrumCommon.locate("textures/gui/container/particle_spawner.png");
 	private static final int PARTICLES_PER_PAGE = 6;
@@ -106,7 +62,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	
 	SpriteAtlasTexture spriteAtlasTexture;
 	
-	private static final List<ParticleSpawnerEntry> displayedParticleEntries = new ArrayList<>();
+	private List<ParticleSpawnerParticlesDataLoader.ParticleSpawnerEntry> displayedParticleEntries = new ArrayList<>();
 	
 	public ParticleSpawnerScreen(ParticleSpawnerScreenHandler handler, PlayerInventory inventory, Text title) {
 		super(handler, inventory, title);
@@ -125,12 +81,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		setupInputFields(handler.getBlockEntity());
 		setInitialFocus(amountField);
 		this.spriteAtlasTexture = ((ParticleManagerAccessor) client.particleManager).getParticleAtlasTexture();
-		
-		for (ParticleSpawnerEntry entry : PARTICLE_ENTRIES) {
-			if (AdvancementHelper.hasAdvancement(client.player, entry.unlockIdentifier)) {
-				displayedParticleEntries.add(entry);
-			}
-		}
+		this.displayedParticleEntries = ParticleSpawnerParticlesDataLoader.getAllUnlocked(client.player);
 	}
 	
 	public void removed() {
@@ -235,7 +186,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 			if (spriteIndex >= displayedParticleEntries.size()) {
 				break;
 			}
-			Sprite particleSprite = spriteAtlasTexture.getSprite(displayedParticleEntries.get(spriteIndex).textureIdentifier);
+			Sprite particleSprite = spriteAtlasTexture.getSprite(displayedParticleEntries.get(spriteIndex).textureIdentifier());
 			drawSprite(matrices, x + 38 + j * 20 - particleSprite.getHeight() / 2, y + 31 - particleSprite.getHeight() / 2, 0, particleSprite.getWidth(), particleSprite.getHeight(), particleSprite);
 		}
 	}
@@ -306,8 +257,8 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		
 		this.particleSelectionIndex = 0;
 		int particleIndex = 0;
-		for (ParticleSpawnerEntry availableParticle : displayedParticleEntries) {
-			if (availableParticle.textureIdentifier.equals(blockEntity.particleType)) {
+		for (ParticleSpawnerParticlesDataLoader.ParticleSpawnerEntry availableParticle : displayedParticleEntries) {
+			if (availableParticle.textureIdentifier().equals(blockEntity.particleType)) {
 				this.particleSelectionIndex = particleIndex;
 				break;
 			}
@@ -434,7 +385,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	}
 	
 	private void writeSettings(@NotNull PacketByteBuf packetByteBuf) {
-		packetByteBuf.writeString(Registry.PARTICLE_TYPE.getId(displayedParticleEntries.get(particleSelectionIndex).particleType).toString());
+		packetByteBuf.writeString(Registry.PARTICLE_TYPE.getId(displayedParticleEntries.get(particleSelectionIndex).particleType()).toString());
 		packetByteBuf.writeFloat(Float.parseFloat(amountField.getText()));
 		packetByteBuf.writeFloat(Float.parseFloat(positionXField.getText()));
 		packetByteBuf.writeFloat(Float.parseFloat(positionYField.getText()));

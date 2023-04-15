@@ -11,6 +11,7 @@ import net.minecraft.sound.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
+import net.minecraft.world.level.*;
 
 import java.util.*;
 
@@ -36,14 +37,29 @@ public enum FusionShrineRecipeWorldEffect {
 	public void doEffect(ServerWorld world, BlockPos shrinePos) {
 		switch (this) {
 			case WEATHER_CLEAR -> {
-				world.setWeather(6000, 0, false, false);
+				ServerWorldProperties serverWorldProperties = ((ServerWorldProperties) world.getLevelProperties());
+				serverWorldProperties.setRainTime(0);
+				serverWorldProperties.setRaining(false);
+				serverWorldProperties.setThunderTime(0);
+				serverWorldProperties.setThundering(false);
 			}
 			case WEATHER_RAIN -> {
-				world.setWeather(0, 6000, true, false);
+				ServerWorldProperties serverWorldProperties = ((ServerWorldProperties) world.getLevelProperties());
+				serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 12000, 24000));
+				serverWorldProperties.setRaining(true);
+				serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3600, 15600));
+				serverWorldProperties.setThundering(false);
+				
+				world.playSound(null, shrinePos.up(), SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 			}
 			case WEATHER_THUNDER -> {
-				world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.BLOCKS, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
-				world.setWeather(0, 6000, true, true);
+				ServerWorldProperties serverWorldProperties = ((ServerWorldProperties) world.getLevelProperties());
+				serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 12000, 180000));
+				serverWorldProperties.setRaining(true);
+				serverWorldProperties.setThunderTime(0);
+				serverWorldProperties.setThundering(false);
+				
+				world.playSound(null, shrinePos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
 			}
 			case LIGHTNING_ON_SHRINE -> {
 				LightningEntity lightningEntity = EntityType.LIGHTNING_BOLT.create(world);
@@ -52,7 +68,6 @@ public enum FusionShrineRecipeWorldEffect {
 					lightningEntity.setCosmetic(true);
 					world.spawnEntity(lightningEntity);
 				}
-				
 			}
 			case LIGHTNING_AROUND_SHRINE -> {
 				if (world.getRandom().nextFloat() < 0.05F) {

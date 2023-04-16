@@ -127,50 +127,52 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 		}
 		
 		FusionShrineRecipe recipe = fusionShrineBlockEntity.currentRecipe;
-        if (recipe != null && recipe.getFluidInput().equals(fusionShrineBlockEntity.fluidStorage.variant.getFluid())) {
-            // check the crafting conditions from time to time
-            // good for performance because of the many checks
-            if (fusionShrineBlockEntity.craftingTime % 60 == 0) {
-                PlayerEntity lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline();
-	
-				boolean recipeConditionsMet = recipe.canPlayerCraft(lastInteractedPlayer) && recipe.areConditionMetCurrently((ServerWorld) world, blockPos);
-				boolean structureCompleteWithSky = FusionShrineBlock.verifyStructureWithSkyAccess(world, blockPos, null);
-
-                if (!recipeConditionsMet || !structureCompleteWithSky) {
-                    if (!structureCompleteWithSky) {
-						SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, Vec3d.ofCenter(blockPos), SpectrumParticleTypes.RED_CRAFTING, 1, new Vec3d(0, -0.5, 0));
-						world.playSound(null, fusionShrineBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
-						world.playSound(null, fusionShrineBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
-						FusionShrineBlock.scatterContents(world, blockPos);
-						fusionShrineBlockEntity.inventoryChanged();
-					}
-					fusionShrineBlockEntity.craftingTime = 0;
-					return;
-				}
-			}
-			
-			// advance crafting
-			++fusionShrineBlockEntity.craftingTime;
-			
-			if (fusionShrineBlockEntity.craftingTime == 1 && fusionShrineBlockEntity.craftingTimeTotal > 1) {
-				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING, (ServerWorld) world, fusionShrineBlockEntity.getPos(), fusionShrineBlockEntity.craftingTimeTotal - fusionShrineBlockEntity.craftingTime);
-			}
-			
-			// play the current crafting effect
-			FusionShrineRecipeWorldEffect effect = recipe.getWorldEffectForTick(fusionShrineBlockEntity.craftingTime, fusionShrineBlockEntity.craftingTimeTotal);
-			if (effect != null) {
-				effect.trigger((ServerWorld) world, blockPos);
-			}
-			
-			// craft when enough ticks have passed
-			if (fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
-				craft(world, blockPos, fusionShrineBlockEntity, recipe);
-				fusionShrineBlockEntity.inventoryChanged();
-			} else {
-				SpectrumS2CPacketSender.sendPlayFusionCraftingInProgressParticles(world, blockPos);
-			}
-			fusionShrineBlockEntity.markDirty();
+		if (recipe == null || !recipe.getFluidInput().equals(fusionShrineBlockEntity.fluidStorage.variant.getFluid())) {
+			return;
 		}
+		
+		// check the crafting conditions from time to time
+		// good for performance because of the many checks
+		if (fusionShrineBlockEntity.craftingTime % 60 == 0) {
+			PlayerEntity lastInteractedPlayer = fusionShrineBlockEntity.getOwnerIfOnline();
+			
+			boolean recipeConditionsMet = recipe.canPlayerCraft(lastInteractedPlayer) && recipe.areConditionMetCurrently((ServerWorld) world, blockPos);
+			boolean structureCompleteWithSky = FusionShrineBlock.verifyStructureWithSkyAccess(world, blockPos, null);
+			
+			if (!recipeConditionsMet || !structureCompleteWithSky) {
+				if (!structureCompleteWithSky) {
+					SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, Vec3d.ofCenter(blockPos), SpectrumParticleTypes.RED_CRAFTING, 1, new Vec3d(0, -0.5, 0));
+					world.playSound(null, fusionShrineBlockEntity.getPos(), SpectrumSoundEvents.CRAFTING_ABORTED, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.9F + world.random.nextFloat() * 0.2F);
+					world.playSound(null, fusionShrineBlockEntity.getPos(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 0.9F + world.random.nextFloat() * 0.2F, 0.5F + world.random.nextFloat() * 0.2F);
+					FusionShrineBlock.scatterContents(world, blockPos);
+					fusionShrineBlockEntity.inventoryChanged();
+				}
+				fusionShrineBlockEntity.craftingTime = 0;
+				return;
+			}
+		}
+		
+		// advance crafting
+		++fusionShrineBlockEntity.craftingTime;
+		
+		if (fusionShrineBlockEntity.craftingTime == 1 && fusionShrineBlockEntity.craftingTimeTotal > 1) {
+			SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.FUSION_SHRINE_CRAFTING, (ServerWorld) world, fusionShrineBlockEntity.getPos(), fusionShrineBlockEntity.craftingTimeTotal - fusionShrineBlockEntity.craftingTime);
+		}
+		
+		// play the current crafting effect
+		FusionShrineRecipeWorldEffect effect = recipe.getWorldEffectForTick(fusionShrineBlockEntity.craftingTime, fusionShrineBlockEntity.craftingTimeTotal);
+		if (effect != null) {
+			effect.trigger((ServerWorld) world, blockPos);
+		}
+		
+		// craft when enough ticks have passed
+		if (fusionShrineBlockEntity.craftingTime == fusionShrineBlockEntity.craftingTimeTotal) {
+			craft(world, blockPos, fusionShrineBlockEntity, recipe);
+			fusionShrineBlockEntity.inventoryChanged();
+		} else {
+			SpectrumS2CPacketSender.sendPlayFusionCraftingInProgressParticles(world, blockPos);
+		}
+		fusionShrineBlockEntity.markDirty();
 	}
 	
 	@Nullable

@@ -175,7 +175,7 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 		return SpectrumRecipeTypes.SPIRIT_INSTILLING_ID;
 	}
 	
-	public boolean canCraftWithStacks(ItemStack instillerStack, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+	public boolean canCraftWithStacks(Inventory inventory) {
 		return true;
 	}
 	

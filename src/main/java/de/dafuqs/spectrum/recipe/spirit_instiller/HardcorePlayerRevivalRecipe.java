@@ -1,28 +1,23 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
-import com.mojang.authlib.GameProfile;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.spirit_instiller.SpiritInstillerBlockEntity;
-import de.dafuqs.spectrum.cca.HardcoreDeathComponent;
-import net.fabricmc.fabric.api.dimension.v1.FabricDimensions;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.block.Blocks;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtHelper;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.TeleportTarget;
-import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.Nullable;
+import com.mojang.authlib.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.spirit_instiller.*;
+import de.dafuqs.spectrum.cca.*;
+import net.fabricmc.fabric.api.dimension.v1.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.block.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.recipe.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.apache.commons.lang3.*;
+import org.jetbrains.annotations.*;
 
 public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	
@@ -69,7 +64,8 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	}
 	
 	@Override
-	public boolean canCraftWithStacks(ItemStack instillerStack, ItemStack leftBowlStack, ItemStack rightBowlStack) {
+	public boolean canCraftWithStacks(Inventory inventory) {
+		ItemStack instillerStack = inventory.getStack(0);
 		if (instillerStack.isOf(Blocks.PLAYER_HEAD.asItem())) {
 			GameProfile gameProfile = getSkullOwner(instillerStack);
 			if (gameProfile == null) {

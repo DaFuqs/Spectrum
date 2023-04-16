@@ -54,7 +54,6 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	private SpiritInstillerRecipe currentRecipe;
 	private int craftingTime;
 	private int craftingTimeTotal;
-	private boolean canCraft;
 	
 	public SpiritInstillerBlockEntity(BlockPos pos, BlockState state) {
 		super(SpectrumBlockEntities.SPIRIT_INSTILLER, pos, state, INVENTORY_SIZE);
@@ -76,42 +75,52 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		}
 		
 		if (spiritInstillerBlockEntity.inventoryChanged) {
+			SpiritInstillerRecipe previousRecipe = spiritInstillerBlockEntity.currentRecipe;
 			calculateCurrentRecipe(world, spiritInstillerBlockEntity);
+			
+			if (spiritInstillerBlockEntity.currentRecipe != previousRecipe) {
+				spiritInstillerBlockEntity.craftingTime = 0;
+				if (spiritInstillerBlockEntity.currentRecipe == null) {
+					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) world, spiritInstillerBlockEntity.pos);
+				} else {
+					spiritInstillerBlockEntity.craftingTimeTotal = (int) Math.ceil(spiritInstillerBlockEntity.currentRecipe.getCraftingTime() / spiritInstillerBlockEntity.upgrades.getEffectiveValue(Upgradeable.UpgradeType.SPEED));
+				}
+				spiritInstillerBlockEntity.updateInClientWorld();
+			}
 			spiritInstillerBlockEntity.inventoryChanged = false;
 		}
 		
-		if (spiritInstillerBlockEntity.currentRecipe != null && spiritInstillerBlockEntity.canCraft) {
-			if (spiritInstillerBlockEntity.craftingTime % 60 == 1) {
-				if (!checkRecipeRequirements(world, blockPos, spiritInstillerBlockEntity)) {
-					spiritInstillerBlockEntity.craftingTime = 0;
-					SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos);
-					return;
-				}
+		if (spiritInstillerBlockEntity.currentRecipe == null) {
+			return;
+		}
+		
+		if (spiritInstillerBlockEntity.craftingTime % 60 == 0) {
+			if (!checkRecipeRequirements(world, blockPos, spiritInstillerBlockEntity)) {
+				spiritInstillerBlockEntity.craftingTime = 0;
+				return;
+			}
+		}
+		
+		if (spiritInstillerBlockEntity.currentRecipe != null) {
+			spiritInstillerBlockEntity.craftingTime++;
+			
+			if (spiritInstillerBlockEntity.craftingTime == 1) {
+				SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING, (ServerWorld) spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos, Integer.MAX_VALUE);
+			} else if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.01
+					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.25)
+					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.5)
+					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.75)
+					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.83)
+					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.90)
+					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.95)
+					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.98)
+					|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.99)) {
+				spiritInstillerBlockEntity.doItemBowlOrbs(world);
+			} else if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal) {
+				craftSpiritInstillerRecipe(world, spiritInstillerBlockEntity, spiritInstillerBlockEntity.currentRecipe);
 			}
 			
-			if (spiritInstillerBlockEntity.currentRecipe != null) {
-				spiritInstillerBlockEntity.craftingTime++;
-				
-				if (spiritInstillerBlockEntity.craftingTime == 1) {
-					SpectrumS2CPacketSender.sendPlayBlockBoundSoundInstance(SpectrumSoundEvents.SPIRIT_INSTILLER_CRAFTING, (ServerWorld) spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos, Integer.MAX_VALUE);
-				} else if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal * 0.01
-						|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.25)
-						|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.5)
-						|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.75)
-						|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.83)
-						|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.90)
-						|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.95)
-						|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.98)
-						|| spiritInstillerBlockEntity.craftingTime == Math.floor(spiritInstillerBlockEntity.craftingTimeTotal * 0.99)) {
-					spiritInstillerBlockEntity.doItemBowlOrbs(world);
-				} else if (spiritInstillerBlockEntity.craftingTime == spiritInstillerBlockEntity.craftingTimeTotal) {
-					craftSpiritInstillerRecipe(world, spiritInstillerBlockEntity, spiritInstillerBlockEntity.currentRecipe);
-				}
-				
-				spiritInstillerBlockEntity.markDirty();
-			}
-		} else {
-			SpectrumS2CPacketSender.sendCancelBlockBoundSoundInstance((ServerWorld) spiritInstillerBlockEntity.world, spiritInstillerBlockEntity.pos);
+			spiritInstillerBlockEntity.markDirty();
 		}
 	}
 	
@@ -151,12 +160,6 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			}
 		}
 		
-		if (spiritInstillerBlockEntity.currentRecipe == null) {
-			spiritInstillerBlockEntity.canCraft = false;
-		} else {
-			spiritInstillerBlockEntity.canCraft = spiritInstillerBlockEntity.currentRecipe.canCraftWithStacks(instillerStack, spiritInstillerBlockEntity.autoCraftingInventory.getStack(1), spiritInstillerBlockEntity.autoCraftingInventory.getStack(2));
-		}
-		
 		spiritInstillerBlockEntity.updateInClientWorld();
 	}
 	
@@ -191,7 +194,6 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			playerCanCraft = spiritInstillerBlockEntity.currentRecipe.canPlayerCraft(lastInteractedPlayer);
 		}
 		
-		
 		boolean structureComplete = SpiritInstillerBlock.verifyStructure(world, blockPos, null, spiritInstillerBlockEntity);
 		boolean canCraft = true;
 		if (!playerCanCraft || !structureComplete) {
@@ -206,8 +208,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 			testAndUnlockUnlockBossMemoryAdvancement(serverPlayerEntity, spiritInstillerBlockEntity.currentRecipe, canCraft);
 		}
 		
-		spiritInstillerBlockEntity.canCraft = canCraft & spiritInstillerBlockEntity.currentRecipe.canPlayerCraft(lastInteractedPlayer);
-		return canCraft;
+		return canCraft & spiritInstillerBlockEntity.currentRecipe.canPlayerCraft(lastInteractedPlayer) && spiritInstillerBlockEntity.currentRecipe.canCraftWithStacks(spiritInstillerBlockEntity.autoCraftingInventory);
 	}
 	
 	public static void testAndUnlockUnlockBossMemoryAdvancement(ServerPlayerEntity player, SpiritInstillerRecipe spiritInstillerRecipe, boolean canActuallyCraft) {
@@ -240,12 +241,12 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	
 	public static void decrementItemsInInstillerAndBowls(@NotNull SpiritInstillerBlockEntity spiritInstillerBlockEntity) {
 		SpiritInstillerRecipe recipe = spiritInstillerBlockEntity.currentRecipe;
-
+		
 		double efficiencyModifier = 1.0;
 		if (!recipe.areYieldAndEfficiencyUpgradesDisabled() && spiritInstillerBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY) != 1.0) {
 			efficiencyModifier = 1.0 / spiritInstillerBlockEntity.upgrades.getEffectiveValue(UpgradeType.EFFICIENCY);
 		}
-
+		
 		BlockEntity leftBowlBlockEntity = spiritInstillerBlockEntity.world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false));
 		BlockEntity rightBowlBlockEntity = spiritInstillerBlockEntity.world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true));
 		if (leftBowlBlockEntity instanceof ItemBowlBlockEntity leftBowl && rightBowlBlockEntity instanceof ItemBowlBlockEntity rightBowl) {
@@ -294,7 +295,6 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		this.craftingTime = nbt.getShort("CraftingTime");
 		this.craftingTimeTotal = nbt.getShort("CraftingTimeTotal");
 		this.inventoryChanged = nbt.getBoolean("InventoryChanged");
-		this.canCraft = nbt.getBoolean("CanCraft");
 		if (nbt.contains("OwnerUUID")) {
 			this.ownerUUID = nbt.getUuid("OwnerUUID");
 		} else {
@@ -318,7 +318,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 				}
 			}
 		}
-
+		
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		} else {
@@ -331,7 +331,6 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		super.writeNbt(nbt);
 		nbt.putShort("CraftingTime", (short) this.craftingTime);
 		nbt.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
-		nbt.putBoolean("CanCraft", this.canCraft);
 		nbt.putBoolean("InventoryChanged", this.inventoryChanged);
 		nbt.putString("MultiblockRotation", this.multiblockRotation.toString());
 		if (this.upgrades != null) {
@@ -354,7 +353,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		nbtCompound.putShort("CraftingTime", (short) this.craftingTime);
 		nbtCompound.putShort("CraftingTimeTotal", (short) this.craftingTimeTotal);
 		nbtCompound.putString("MultiblockRotation", this.multiblockRotation.toString());
-		if (this.currentRecipe != null && canCraft) {
+		if (this.currentRecipe != null && checkRecipeRequirements(world, this.pos, this)) {
 			nbtCompound.putString("CurrentRecipe", this.currentRecipe.getId().toString());
 		}
 		return nbtCompound;
@@ -432,12 +431,12 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		this.upgrades = Upgradeable.calculateUpgradeMods2(world, pos, multiblockRotation, 4, 1, this.ownerUUID);
 		this.markDirty();
 	}
-
+	
 	@Override
 	public UpgradeHolder getUpgradeHolder() {
 		return this.upgrades;
 	}
-
+	
 	// PLAYER OWNED
 	// "owned" is not to be taken literally here. The owner
 	// is always set to the last player interacted with to trigger advancements
@@ -468,5 +467,5 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		this.autoCraftingInventory.clear();
 		markDirty();
 	}
-
+	
 }

@@ -17,6 +17,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.sound.*;
 import net.minecraft.tag.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -174,6 +175,11 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
     @Override
     public boolean canHit() {
         return false;
+    }
+    
+    @Override
+    protected Text getDefaultName() {
+        return Text.literal("§kLivingNightmare");
     }
     
     @Override

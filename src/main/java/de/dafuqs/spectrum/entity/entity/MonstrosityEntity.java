@@ -14,15 +14,13 @@ import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
-import net.minecraft.nbt.*;
-import net.minecraft.sound.*;
+import net.minecraft.particle.*;
 import net.minecraft.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
-import org.jetbrains.annotations.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -43,11 +41,15 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	public MonstrosityEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
 		super(entityType, world);
-		this.moveControl = new FlightMoveControl(this, 10, false);
+		this.moveControl = new FlightMoveControl(this, 4, false);
 		this.experiencePoints = 500;
 		this.noClip = true;
 		this.ignoreCameraFrustum = true;
 		this.previousHealth = getHealth();
+		
+		if (world.isClient()) {
+			MonstrositySoundInstance.startSoundInstance(this);
+		}
 	}
 	
 	@Override
@@ -61,36 +63,70 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.targetSelector.add(2, new RevengeGoal(this));
 	}
 	
-	@Nullable
 	@Override
-	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-		if (world.isClient()) {
-			MonstrositySoundInstance.startSoundInstance(this);
+	protected void mobTick() {
+		float currentHealth = this.getHealth();
+		if (currentHealth < this.previousHealth - MAX_LIFE_LOST_PER_TICK) {
+			this.setHealth(this.previousHealth - MAX_LIFE_LOST_PER_TICK);
 		}
-		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+		this.previousHealth = currentHealth;
+		this.tickInvincibility();
+		
+		if (this.age % GET_STRONGER_EVERY_X_TICKS == 0) {
+			this.growStronger(1);
+		}
+		
+		destroyBlocks(this.getBoundingBox());
+		
+		super.mobTick();
+		
+		if (this.age % 10 == 0) {
+			this.heal(1.0F);
+		}
 	}
 	
+	@Override
+	public void tickMovement() {
+		Vec3d vec3d = this.getVelocity().multiply(1.0, 0.6, 1.0);
+		if (!this.world.isClient && this.getTarget() != null) {
+			LivingEntity entity = this.getTarget();
+			if (entity != null) {
+				double d = vec3d.y;
+				if (this.getY() < entity.getY() || this.getY() < entity.getY() + 5.0) {
+					d = Math.max(0.0, d);
+					d += 0.3 - d * 0.6;
+				}
+				
+				vec3d = new Vec3d(vec3d.x, d, vec3d.z);
+				Vec3d vec3d2 = new Vec3d(entity.getX() - this.getX(), 0.0, entity.getZ() - this.getZ());
+				if (vec3d2.horizontalLengthSquared() > 9.0) {
+					Vec3d vec3d3 = vec3d2.normalize();
+					vec3d = vec3d.add(vec3d3.x * 0.3 - vec3d.x * 0.6, 0.0, vec3d3.z * 0.3 - vec3d.z * 0.6);
+				}
+			}
+		}
+		
+		this.setVelocity(vec3d);
+		if (vec3d.horizontalLengthSquared() > 0.05) {
+			this.setYaw((float) MathHelper.atan2(vec3d.z, vec3d.x) * 57.295776F - 90.0F);
+		}
+		
+		super.tickMovement();
+		
+		if (this.hasInvincibilityTicks()) {
+			for (int j = 0; j < 3; ++j) {
+				this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextGaussian(), this.getY() + (double) (this.random.nextFloat() * 3.3F), this.getZ() + this.random.nextGaussian(), 0.7, 0.7, 0.7);
+			}
+		}
+	}
+	
+	@Override
 	protected EntityNavigation createNavigation(World world) {
 		BirdNavigation birdNavigation = new BirdNavigation(this, world);
 		birdNavigation.setCanPathThroughDoors(false);
 		birdNavigation.setCanSwim(true);
 		birdNavigation.setCanEnterOpenDoors(true);
 		return birdNavigation;
-	}
-	
-	@Override
-	public void tick() {
-		super.tick();
-		
-		float currentHealth = this.getHealth();
-		if (currentHealth < this.previousHealth - MAX_LIFE_LOST_PER_TICK) {
-			this.setHealth(this.previousHealth - MAX_LIFE_LOST_PER_TICK);
-		}
-		this.previousHealth = currentHealth;
-		
-		if (this.age % GET_STRONGER_EVERY_X_TICKS == 0) {
-			this.growStronger(1);
-		}
 	}
 	
 	public void growStronger(int amount) {
@@ -108,25 +144,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			this.remove(RemovalReason.KILLED);
 			this.emitGameEvent(GameEvent.ENTITY_DIE);
 		}
-	}
-	
-	@Override
-	public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
-		return super.canSpawn(world, spawnReason);
-	}
-	
-	@Override
-	protected void applyDamage(DamageSource source, float amount) {
-		// when damage was dealt
-		Entity dealer = source.getAttacker();
-		if (dealer instanceof PlayerEntity && isRealPlayer(dealer)) {
-			super.applyDamage(source, amount);
-		}
-	}
-	
-	public static boolean isRealPlayer(Entity entity) {
-		// this should filter out most fake players (kibe, FAPI)
-		return entity instanceof PlayerEntity && entity.getClass().getCanonicalName().startsWith("net.minecraft");
 	}
 	
 	public static DefaultAttributeContainer createMonstrosityAttributes() {
@@ -192,36 +209,13 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 	
 	@Override
-	public boolean canHit() {
-		return false;
-	}
-	
-	@Override
 	protected Text getDefaultName() {
 		return Text.literal("§kLivingNightmare");
-	}
-	
-	@Override
-	public SoundCategory getSoundCategory() {
-		return SoundCategory.HOSTILE;
-	}
-	
-	@Override
-	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT;
-	}
-	
-	@Override
-	protected SoundEvent getHurtSound(DamageSource source) {
-		return SoundEvents.ENTITY_ENDER_DRAGON_HURT;
-	}
-	
-	protected SoundEvent getDeathSound() {
-		return SoundEvents.ENTITY_ENDER_DRAGON_DEATH;
 	}
 	
 	@Override
 	public void attack(LivingEntity target, float pullProgress) {
 	
 	}
+	
 }

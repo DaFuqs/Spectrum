@@ -1,24 +1,68 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.boss.*;
 import net.minecraft.entity.damage.*;
+import net.minecraft.entity.data.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
 import net.minecraft.text.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
 public class SpectrumBossEntity extends PathAwareEntity {
 	
+	private static final TrackedData<Integer> INVINCIBILITY_TICKS = DataTracker.registerData(SpectrumBossEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private final ServerBossBar bossBar;
 	
 	protected SpectrumBossEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
 		super(entityType, world);
 		this.bossBar = (ServerBossBar) (new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE, BossBar.Style.PROGRESS)).setDarkenSky(true);
 		this.setHealth(this.getMaxHealth());
+	}
+	
+	public static boolean isRealPlayer(Entity entity) {
+		// this should filter out most fake players (kibe, FAPI)
+		return entity instanceof PlayerEntity && entity.getClass().getCanonicalName().startsWith("net.minecraft");
+	}
+	
+	public boolean hasInvincibilityTicks() {
+		return this.dataTracker.get(INVINCIBILITY_TICKS) > 0;
+	}
+	
+	public void setInvincibilityTicks(int ticks) {
+		this.dataTracker.set(INVINCIBILITY_TICKS, ticks);
+	}
+	
+	public void tickInvincibility() {
+		dataTracker.set(INVINCIBILITY_TICKS, Math.max(0, this.dataTracker.get(INVINCIBILITY_TICKS) - 1));
+	}
+	
+	@Override
+	public boolean canHit() {
+		return super.canHit() && !hasInvincibilityTicks();
+	}
+	
+	@Override
+	protected void initDataTracker() {
+		super.initDataTracker();
+		this.dataTracker.startTracking(INVINCIBILITY_TICKS, 0);
+	}
+	
+	@Override
+	protected void applyDamage(DamageSource source, float amount) {
+		// when damage was dealt
+		Entity dealer = source.getAttacker();
+		if (!hasInvincibilityTicks() && dealer instanceof PlayerEntity && isRealPlayer(dealer)) {
+			super.applyDamage(source, amount);
+			this.setInvincibilityTicks(20);
+		}
 	}
 	
 	@Override
@@ -35,13 +79,18 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	}
 	
 	@Override
+	public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
+		return true;
+	}
+	
+	@Override
 	public boolean cannotDespawn() {
-		return super.cannotDespawn();
+		return true;
 	}
 	
 	@Override
 	protected boolean isDisallowedInPeaceful() {
-		return super.isDisallowedInPeaceful();
+		return false;
 	}
 	
 	@Override
@@ -73,6 +122,12 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	}
 	
 	@Override
+	protected void mobTick() {
+		super.mobTick();
+		this.bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+	}
+	
+	@Override
 	protected float getSoundVolume() {
 		return 4.0F;
 	}
@@ -97,5 +152,64 @@ public class SpectrumBossEntity extends PathAwareEntity {
 		return target.canTakeDamage();
 	}
 	
+	@Override
+	public SoundCategory getSoundCategory() {
+		return SoundCategory.HOSTILE;
+	}
+	
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT;
+	}
+	
+	@Override
+	protected SoundEvent getHurtSound(DamageSource source) {
+		return SoundEvents.ENTITY_ENDER_DRAGON_HURT;
+	}
+	
+	@Override
+	protected SoundEvent getSwimSound() {
+		return SoundEvents.ENTITY_HOSTILE_SWIM;
+	}
+	
+	@Override
+	protected SoundEvent getSplashSound() {
+		return SoundEvents.ENTITY_HOSTILE_SPLASH;
+	}
+	
+	@Override
+	protected SoundEvent getDeathSound() {
+		return SoundEvents.ENTITY_HOSTILE_DEATH;
+	}
+	
+	@Override
+	public LivingEntity.FallSounds getFallSounds() {
+		return new LivingEntity.FallSounds(SoundEvents.ENTITY_HOSTILE_SMALL_FALL, SoundEvents.ENTITY_HOSTILE_BIG_FALL);
+	}
+	
+	@Nullable
+	@Override
+	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+	}
+	
+	@Override
+	public boolean canBeLeashedBy(PlayerEntity player) {
+		return false;
+	}
+	
+	@Override
+	public void slowMovement(BlockState state, Vec3d multiplier) {
+	}
+	
+	@Override
+	public boolean shouldDropXp() {
+		return true;
+	}
+	
+	@Override
+	protected boolean shouldDropLoot() {
+		return true;
+	}
 	
 }

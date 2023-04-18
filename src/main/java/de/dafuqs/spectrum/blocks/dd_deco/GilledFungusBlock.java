@@ -36,7 +36,7 @@ public class GilledFungusBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        Block validBaseBlock = ((GilledFungusFeatureConfig) this.feature.get().value().config()).validBaseBlock().getBlock();
+        Block validBaseBlock = ((GilledFungusFeatureConfig) this.feature.get().value().config()).validBase();
         BlockState baseBlock = world.getBlockState(pos.down());
         return baseBlock.isOf(validBaseBlock);
     }

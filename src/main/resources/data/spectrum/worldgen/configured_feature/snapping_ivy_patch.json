@@ -1,0 +1,56 @@
+{
+  "type": "minecraft:vegetation_patch",
+  "config": {
+    "surface": "floor",
+    "depth": 1,
+    "vertical_range": 5,
+    "extra_bottom_block_chance": 0,
+    "extra_edge_column_chance": 0.3,
+    "vegetation_chance": 0.8,
+    "xz_radius": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 3,
+        "max_inclusive": 5
+      }
+    },
+    "replaceable": "#minecraft:moss_replaceable",
+    "ground_state": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 1,
+          "data": {
+            "Name": "spectrum:snapping_ivy",
+            "Properties": {
+              "axis": "x"
+            }
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "spectrum:snapping_ivy",
+            "Properties": {
+              "axis": "z"
+            }
+          }
+        }
+      ]
+    },
+    "vegetation_feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "spectrum:rotten_ground"
+            }
+          }
+        }
+      },
+      "placement": []
+    }
+  }
+}

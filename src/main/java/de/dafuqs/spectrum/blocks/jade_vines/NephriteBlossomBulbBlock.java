@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 
 public class NephriteBlossomBulbBlock extends PlantBlock implements Fertilizable {
@@ -44,6 +44,6 @@ public class NephriteBlossomBulbBlock extends PlantBlock implements Fertilizable
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		DDConfiguredFeatures.NEPHRITE_BLOSSOM_BULB.generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+		world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.NEPHRITE_BLOSSOM_BULB).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
 }

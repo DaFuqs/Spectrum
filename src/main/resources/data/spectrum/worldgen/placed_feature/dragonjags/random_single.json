@@ -1,5 +1,5 @@
 {
-  "feature": "spectrum:random_dragonjag",
+  "feature": "spectrum:dragonjags/random_single",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",

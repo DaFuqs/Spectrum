@@ -5,7 +5,7 @@
     "xz_spread": 7,
     "y_spread": 3,
     "feature": {
-      "feature": "spectrum:random_dragonjag",
+      "feature": "spectrum:dragonjags/random_single",
       "placement": [
         {
           "type": "minecraft:block_predicate_filter",

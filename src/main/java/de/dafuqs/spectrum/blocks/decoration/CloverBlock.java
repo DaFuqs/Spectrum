@@ -29,7 +29,7 @@ public class CloverBlock extends FernBlock {
 
 	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.CLOVER_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
+		world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.CLOVER_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
 	}
 
 }

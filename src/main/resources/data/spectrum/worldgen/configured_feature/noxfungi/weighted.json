@@ -4,28 +4,28 @@
     "features": [
       {
         "data": {
-          "feature": "spectrum:slate_noxfungus",
+          "feature": "spectrum:noxfungi/slate",
           "placement": []
         },
         "weight": 100
       },
       {
         "data": {
-          "feature": "spectrum:ebony_noxfungus",
+          "feature": "spectrum:noxfungi/ebony",
           "placement": []
         },
         "weight": 100
       },
       {
         "data": {
-          "feature": "spectrum:ivory_noxfungus",
+          "feature": "spectrum:noxfungi/ivory",
           "placement": []
         },
         "weight": 100
       },
       {
         "data": {
-          "feature": "spectrum:chestnut_noxfungus",
+          "feature": "spectrum:noxfungi/chestnut",
           "placement": []
         },
         "weight": 1

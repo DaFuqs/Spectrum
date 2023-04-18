@@ -19,8 +19,8 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
         StructureWorldAccess structureWorldAccess = context.getWorld();
         BlockPos blockPos = context.getOrigin();
         GilledFungusFeatureConfig hugeFungusFeatureConfig = context.getConfig();
-        Block validBaseBlock = hugeFungusFeatureConfig.validBaseBlock().getBlock();
-        BlockState baseBlock = structureWorldAccess.getBlockState(blockPos.down());
+		Block validBaseBlock = hugeFungusFeatureConfig.validBase();
+		BlockState baseBlock = structureWorldAccess.getBlockState(blockPos.down());
 
         if (!baseBlock.isOf(validBaseBlock)) {
             return false;
@@ -51,9 +51,9 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
     }
 
     private void generateStem(WorldAccess world, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight) {
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        BlockState blockState = config.stemState();
-        int i = 0;
+		BlockPos.Mutable mutable = new BlockPos.Mutable();
+		BlockState blockState = config.stem().getDefaultState();
+		int i = 0;
         for (int x = -i; x <= i; ++x) {
             for (int z = -i; z <= i; ++z) {
                 for (int y = 0; y < stemHeight; ++y) {
@@ -67,19 +67,23 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
     }
 
     private void generateHat(WorldAccess world, Random random, GilledFungusFeatureConfig config, BlockPos pos, int stemHeight) {
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        int hatWidth = Math.min(random.nextInt(2 + stemHeight / 4) + 3, 4);
-        int currentHatWidth = hatWidth;
-        int outerThreshold = hatWidth / 2;
-
-        for (int y = 0; y <= hatWidth; ++y) {
-            for (int x = -currentHatWidth; x <= currentHatWidth; ++x) {
-                for (int z = -currentHatWidth; z <= currentHatWidth; ++z) {
-
-                    boolean isCorner = Math.abs(x) == currentHatWidth && Math.abs(z) == currentHatWidth;
-                    if (isCorner) {
-                        continue;
-                    }
+		BlockPos.Mutable mutable = new BlockPos.Mutable();
+		int hatWidth = Math.min(random.nextInt(2 + stemHeight / 4) + 3, 4);
+		int currentHatWidth = hatWidth;
+		int outerThreshold = hatWidth / 2;
+	
+		BlockState stemState = config.stem().getDefaultState();
+		BlockState gillsState = config.gills().getDefaultState();
+		BlockState capState = config.cap().getDefaultState();
+	
+		for (int y = 0; y <= hatWidth; ++y) {
+			for (int x = -currentHatWidth; x <= currentHatWidth; ++x) {
+				for (int z = -currentHatWidth; z <= currentHatWidth; ++z) {
+				
+					boolean isCorner = Math.abs(x) == currentHatWidth && Math.abs(z) == currentHatWidth;
+					if (isCorner) {
+						continue;
+					}
 
                     mutable.set(pos, x, stemHeight + y, z);
                     if (isReplaceable(world, mutable, false)) {
@@ -88,14 +92,13 @@ public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
                         boolean isLowestLevel = y == 0;
 
                         if (x == 0 && z == 0) {
-                            this.setBlockState(world, mutable, currentHatWidth < 2 ? config.capState() : config.stemState());
+							this.setBlockState(world, mutable, currentHatWidth < 2 ? capState : stemState);
                         } else if (isInner && !isInnerCorner) {
                             if (!isLowestLevel || Math.abs(x) > outerThreshold || Math.abs(z) > outerThreshold) {
-                                BlockState gillsState = config.gillsState().with(PillarBlock.AXIS, Math.abs(x) < Math.abs(z) ? Direction.Axis.X : Direction.Axis.Z);
-                                this.setBlockState(world, mutable, gillsState);
+								this.setBlockState(world, mutable, gillsState.with(PillarBlock.AXIS, Math.abs(x) < Math.abs(z) ? Direction.Axis.X : Direction.Axis.Z));
                             }
                         } else {
-                            this.setBlockState(world, mutable, config.capState());
+							this.setBlockState(world, mutable, capState);
                         }
                     }
                 }

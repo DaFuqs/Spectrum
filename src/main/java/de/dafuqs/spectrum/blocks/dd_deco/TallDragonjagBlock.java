@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.*;
 import net.minecraft.entity.player.*;
@@ -11,6 +11,7 @@ import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
@@ -75,25 +76,7 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        boolean success = false;
-        switch (variant) {
-            case RED -> {
-                success = DDConfiguredFeatures.RED_DRAGONJAGS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
-            }
-            case PINK -> {
-                success = DDConfiguredFeatures.PINK_DRAGONJAGS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
-            }
-            case BLACK -> {
-                success = DDConfiguredFeatures.BLACK_DRAGONJAGS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
-            }
-            case YELLOW -> {
-                success = DDConfiguredFeatures.YELLOW_DRAGONJAGS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
-            }
-            case PURPLE -> {
-                success = DDConfiguredFeatures.PURPLE_DRAGONJAGS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
-            }
-        }
-
+		boolean success = world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.DRAGONJAGS.get(this.variant)).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
         if (success) {
             setDead(world, pos, state, true);
         }

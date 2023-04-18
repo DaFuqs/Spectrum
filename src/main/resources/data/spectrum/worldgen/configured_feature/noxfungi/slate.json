@@ -1,0 +1,9 @@
+{
+  "type": "spectrum:gilled_fungus",
+  "config": {
+    "valid_base_block": "spectrum:shimmel",
+    "cap_block": "spectrum:slate_noxcap_cap",
+    "gills_block": "spectrum:slate_noxcap_gills",
+    "stem_block": "spectrum:slate_noxcap_stem"
+  }
+}

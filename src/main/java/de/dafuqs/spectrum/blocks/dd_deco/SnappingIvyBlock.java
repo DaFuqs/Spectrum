@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -14,6 +13,7 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
@@ -58,7 +58,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        DDConfiguredFeatures.SNAPPING_IVY_PATCH.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
+        world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
     
     @Override

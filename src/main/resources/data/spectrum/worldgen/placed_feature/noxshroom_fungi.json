@@ -1,5 +1,5 @@
 {
-  "feature": "spectrum:noxshroom_fungi",
+  "feature": "spectrum:noxfungi/weighted",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",

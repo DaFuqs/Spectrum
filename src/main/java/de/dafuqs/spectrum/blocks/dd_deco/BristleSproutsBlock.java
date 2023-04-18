@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
@@ -48,7 +48,7 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        DDConfiguredFeatures.BRISTLE_SPROUTS.generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
+        world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.BRISTLE_SPROUT_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
 
     @Override

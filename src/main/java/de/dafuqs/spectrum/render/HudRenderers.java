@@ -80,13 +80,13 @@ public class HudRenderers {
 				absorptionAmount = Math.min(i, absorptionAmount);
 			}
 			
-			int y = hasArmor ? height + heartRows * SpectrumCommon.CONFIG.azureDikeHudOffsetYForEachRowOfExtraHearts + SpectrumCommon.CONFIG.azureDikeHudOffsetYWithArmor : height + SpectrumCommon.CONFIG.azureDikeHudOffsetY;
+			int y = hasArmor ? height + heartRows * SpectrumCommon.CONFIG.AzureDikeHudOffsetYForEachRowOfExtraHearts + SpectrumCommon.CONFIG.AzureDikeHudOffsetYWithArmor : height + SpectrumCommon.CONFIG.AzureDikeHudOffsetY;
 			if (absorptionAmount > 0) {
 				int absorptionRows = (int) Math.ceil(absorptionAmount / 20.0F);
 				int absorptionRowHeight = 10 - (absorptionRows - 2);
 				y -= absorptionRows * Math.max(absorptionRowHeight, 3);
 			}
-			int x = width - 9 + SpectrumCommon.CONFIG.azureDikeHudOffsetX;
+			int x = width - 9 + SpectrumCommon.CONFIG.AzureDikeHudOffsetX;
 			
 			// back row
 			if (renderBackRow) {

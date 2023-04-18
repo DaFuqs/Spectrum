@@ -50,9 +50,6 @@ public class SpectrumConfig implements ConfigData {
 			per night per player that unlocked the required progression.""")
 	public float ShootingStarChance = 0.004F;
 	
-	public int MermaidsBrushChanceChunk = 16;
-	public int QuitoxicReedsCountPerChunk = 25;
-	
 	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
 	public int VanillaRecipeCraftingTimeTicks = 40;
 	
@@ -171,10 +168,10 @@ public class SpectrumConfig implements ConfigData {
 			If the player has Azure Dike Charges: Where should they be rendered on the screen. Default: Over the food bar
 			Only touch those values if you have other mods that render GUI overlays!
 			""")
-	public int azureDikeHudOffsetX = 0;
-	public int azureDikeHudOffsetY = 0;
-	public int azureDikeHudOffsetYWithArmor = -10;
-	public int azureDikeHudOffsetYForEachRowOfExtraHearts = -10;
+	public int AzureDikeHudOffsetX = 0;
+	public int AzureDikeHudOffsetY = 0;
+	public int AzureDikeHudOffsetYWithArmor = -10;
+	public int AzureDikeHudOffsetYForEachRowOfExtraHearts = -10;
 	
 	@Override
 	public void validatePostLoad() {
@@ -216,10 +213,6 @@ public class SpectrumConfig implements ConfigData {
 		}
 		if (BigCatchMaxLevel <= 0) {
 			BigCatchMaxLevel = 3;
-		}
-		if (QuitoxicReedsCountPerChunk > 256) {
-			// 16x16 blocks in a chunk; else the worldgen feature would break
-			QuitoxicReedsCountPerChunk = 256;
 		}
 		
 		if (ShootingStarWorlds.isEmpty()) {

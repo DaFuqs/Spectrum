@@ -15,10 +15,6 @@ public class PrintConfigCommand {
 	}
 	
 	private static int execute(ServerCommandSource source) {
-		send(source, "Citrine Geode AboveBottom: " + SpectrumCommon.CONFIG.CitrineGeodeMinAboveBottomGenerationHeight + " FixedMax: " + SpectrumCommon.CONFIG.CitrineGeodeFixedMaxGenerationHeight);
-		send(source, "Topaz Geode MinFixed: " + SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight + " MaxBelow: " + SpectrumCommon.CONFIG.TopazGeodeMaxBelowTopGenerationHeight);
-		send(source, "Geode Chunk Chances: Topaz: " + SpectrumCommon.CONFIG.TopazGeodeChunkChance + " Citrine: " + SpectrumCommon.CONFIG.CitrineGeodeChunkChance);
-		
 		send(source, "ColoredTreePatchChanceChunk: " + SpectrumCommon.CONFIG.ColoredTreePatchChanceChunk);
 		send(source, "EndermanHoldingEnderTreasureChance: " + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance + " (" + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance + " in the End)");
 		

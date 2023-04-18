@@ -1,11 +1,12 @@
-package de.dafuqs.spectrum.worldgen;
+package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
-import net.minecraft.block.sapling.SaplingGenerator;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.sapling.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.gen.feature.*;
+import org.jetbrains.annotations.*;
 
 public class ColoredSaplingGenerator extends SaplingGenerator {
 	

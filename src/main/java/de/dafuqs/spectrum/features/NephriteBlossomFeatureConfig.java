@@ -1,8 +1,8 @@
-package de.dafuqs.spectrum.worldgen.features;
+package de.dafuqs.spectrum.features;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.world.gen.feature.FeatureConfig;
+import com.mojang.serialization.*;
+import com.mojang.serialization.codecs.*;
+import net.minecraft.world.gen.feature.*;
 
 public record NephriteBlossomFeatureConfig(boolean flowering) implements FeatureConfig {
     public static final Codec<NephriteBlossomFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(

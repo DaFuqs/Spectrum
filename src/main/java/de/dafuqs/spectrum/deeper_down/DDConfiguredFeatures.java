@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.deeper_down;
 
 import de.dafuqs.spectrum.blocks.dd_deco.*;
+import de.dafuqs.spectrum.features.*;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
-import de.dafuqs.spectrum.worldgen.*;
-import de.dafuqs.spectrum.worldgen.features.*;
 import net.minecraft.block.*;
 import net.minecraft.tag.*;
 import net.minecraft.util.collection.*;

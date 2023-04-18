@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.dd_deco;
 
-import de.dafuqs.spectrum.worldgen.features.*;
+import de.dafuqs.spectrum.features.*;
 import net.minecraft.block.*;
 import net.minecraft.server.world.*;
 import net.minecraft.tag.*;

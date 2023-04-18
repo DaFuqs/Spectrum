@@ -1,6 +1,6 @@
-package de.dafuqs.spectrum.worldgen;
+package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.worldgen.features.*;
+import de.dafuqs.spectrum.features.*;
 import net.minecraft.world.gen.feature.*;
 
 import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;

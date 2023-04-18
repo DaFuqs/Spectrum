@@ -21,7 +21,7 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	private static final TrackedData<Integer> INVINCIBILITY_TICKS = DataTracker.registerData(SpectrumBossEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private final ServerBossBar bossBar;
 	
-	protected SpectrumBossEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
+	protected SpectrumBossEntity(EntityType<? extends SpectrumBossEntity> entityType, World world) {
 		super(entityType, world);
 		this.bossBar = (ServerBossBar) (new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE, BossBar.Style.PROGRESS)).setDarkenSky(true);
 		this.setHealth(this.getMaxHealth());
@@ -53,6 +53,16 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	protected void initDataTracker() {
 		super.initDataTracker();
 		this.dataTracker.startTracking(INVINCIBILITY_TICKS, 0);
+	}
+	
+	@Override
+	public boolean shouldRender(double distance) {
+		return true;
+	}
+	
+	@Override
+	public boolean canTarget(EntityType<?> type) {
+		return true;
 	}
 	
 	@Override

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "tries": 5,
+    "xz_spread": 4,
+    "y_spread": 3,
+    "feature": {
+      "feature": "spectrum:colored_tree",
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:would_survive",
+            "state": {
+              "Name": "spectrum:red_sapling"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

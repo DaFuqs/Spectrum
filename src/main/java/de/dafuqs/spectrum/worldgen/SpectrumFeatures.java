@@ -8,7 +8,6 @@ import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;
 public class SpectrumFeatures {
 
 	public static Feature<WeightedRandomFeatureConfig> WEIGHTED_RANDOM_FEATURE;
-	public static Feature<WeightedRandomFeaturePatchConfig> WEIGHTED_RANDOM_FEATURE_PATCH;
 	public static Feature<GeodeFeatureConfig> AIR_CHECK_GEODE;
 	public static Feature<RandomBudsFeaturesConfig> RANDOM_BUDS;
 	public static Feature<OreFeatureConfig> AIR_CHECK_DISK;
@@ -24,7 +23,6 @@ public class SpectrumFeatures {
 
 	public static void register() {
 		WEIGHTED_RANDOM_FEATURE = registerFeature("weighted_random_feature", new WeightedRandomFeature(WeightedRandomFeatureConfig.CODEC));
-		WEIGHTED_RANDOM_FEATURE_PATCH = registerFeature("weighted_random_feature_patch", new WeightedRandomFeaturePatch(WeightedRandomFeaturePatchConfig.CODEC));
 		AIR_CHECK_GEODE = registerFeature("air_check_geode", new SolidBlockCheckGeodeFeature(GeodeFeatureConfig.CODEC));
 		RANDOM_BUDS = registerFeature("random_buds", new RandomBudsFeature(RandomBudsFeaturesConfig.CODEC));
 		AIR_CHECK_DISK = registerFeature("air_check_disk", new AirCheckDiskFeature(OreFeatureConfig.CODEC));

@@ -5,6 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
+import net.minecraft.util.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
@@ -28,7 +29,7 @@ public class CloverBlock extends FernBlock {
 
 	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		SpectrumConfiguredFeatures.CLOVER_PATCH.value().generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
+		world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.CLOVER_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos.up());
 	}
 
 }

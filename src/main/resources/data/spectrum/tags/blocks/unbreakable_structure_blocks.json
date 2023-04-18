@@ -12,6 +12,23 @@
     "spectrum:treasure_chest",
     "spectrum:dike_gate_fountain",
     "spectrum:preservation_roundel",
-    "spectrum:preservation_block_detector"
+    "spectrum:preservation_block_detector",
+
+    "spectrum:black_chiseled_preservation_stone",
+    "spectrum:blue_chiseled_preservation_stone",
+    "spectrum:brown_chiseled_preservation_stone",
+    "spectrum:cyan_chiseled_preservation_stone",
+    "spectrum:gray_chiseled_preservation_stone",
+    "spectrum:green_chiseled_preservation_stone",
+    "spectrum:light_blue_chiseled_preservation_stone",
+    "spectrum:light_gray_chiseled_preservation_stone",
+    "spectrum:lime_chiseled_preservation_stone",
+    "spectrum:magenta_chiseled_preservation_stone",
+    "spectrum:orange_chiseled_preservation_stone",
+    "spectrum:pink_chiseled_preservation_stone",
+    "spectrum:purple_chiseled_preservation_stone",
+    "spectrum:red_chiseled_preservation_stone",
+    "spectrum:white_chiseled_preservation_stone",
+    "spectrum:yellow_chiseled_preservation_stone"
   ]
 }

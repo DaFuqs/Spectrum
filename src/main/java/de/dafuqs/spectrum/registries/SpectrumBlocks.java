@@ -1034,6 +1034,23 @@ public class SpectrumBlocks {
 	public static final Block SHIMMERING_PRESERVATION_BRICKS = new Block(FabricBlockSettings.copyOf(PRESERVATION_BLOCK_SETTINGS).luminance(5));
 	public static final Block COURIER_STATUE = new StatueBlock(PRESERVATION_BLOCK_SETTINGS);
 	
+	public static final Block BLACK_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block BLUE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block BROWN_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block CYAN_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block GRAY_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block GREEN_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block LIGHT_BLUE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block LIGHT_GRAY_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block LIME_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block MAGENTA_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block ORANGE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block PINK_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block PURPLE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block RED_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block WHITE_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	public static final Block YELLOW_CHISELED_PRESERVATION_STONE = new Block(PRESERVATION_BLOCK_SETTINGS);
+	
 	public static final Block PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.of(Material.GLASS).strength(-1.0F, 3600000.0F).dropsNothing().sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(SpectrumBlocks::never).solidBlock(SpectrumBlocks::never).suffocates(SpectrumBlocks::never).blockVision(SpectrumBlocks::never));
 	public static final Block TINTED_PRESERVATION_GLASS = new GlassBlock(FabricBlockSettings.copyOf(PRESERVATION_GLASS).luminance(12).strength(Float.MAX_VALUE, 3600000.0F));
 	public static final Block PRESERVATION_ROUNDEL = new PreservationRoundelBlock(FabricBlockSettings.copyOf(PRESERVATION_STONE).nonOpaque());
@@ -2163,6 +2180,24 @@ public class SpectrumBlocks {
 		registerBlockWithItem("dike_gate_fountain", DIKE_GATE_FOUNTAIN, settings, DyeColor.BLUE);
 		registerBlockWithItem("dike_gate", DIKE_GATE, settings, DyeColor.BLUE);
 		registerBlockWithItem("preservation_controller", PRESERVATION_CONTROLLER, settings, DyeColor.BLUE);
+		
+		registerBlockWithItem("black_chiseled_preservation_stone", BLACK_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("blue_chiseled_preservation_stone", BLUE_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("brown_chiseled_preservation_stone", BROWN_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("cyan_chiseled_preservation_stone", CYAN_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("gray_chiseled_preservation_stone", GRAY_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("green_chiseled_preservation_stone", GREEN_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("light_blue_chiseled_preservation_stone", LIGHT_BLUE_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("light_gray_chiseled_preservation_stone", LIGHT_GRAY_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("lime_chiseled_preservation_stone", LIME_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("magenta_chiseled_preservation_stone", MAGENTA_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("orange_chiseled_preservation_stone", ORANGE_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("pink_chiseled_preservation_stone", PINK_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("purple_chiseled_preservation_stone", PURPLE_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("red_chiseled_preservation_stone", RED_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("white_chiseled_preservation_stone", WHITE_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		registerBlockWithItem("yellow_chiseled_preservation_stone", YELLOW_CHISELED_PRESERVATION_STONE, settings, DyeColor.BLUE);
+		
 		registerBlockWithItem("invisible_wall", INVISIBLE_WALL, settings, DyeColor.BLUE);
 		registerBlockWithItem("courier_statue", COURIER_STATUE, settings, DyeColor.BLUE);
 		registerBlockWithItem("treasure_chest", TREASURE_CHEST, settings, DyeColor.BLUE);

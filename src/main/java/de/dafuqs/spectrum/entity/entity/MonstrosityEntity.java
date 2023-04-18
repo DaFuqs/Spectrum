@@ -54,7 +54,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	public MonstrosityEntity(EntityType<? extends MonstrosityEntity> entityType, World world) {
 		super(entityType, world);
 		this.moveControl = new MonstrosityMoveControl(this);
-		this.lookControl = new EmptyLookControl(this);
 		this.experiencePoints = 500;
 		this.noClip = true;
 		this.ignoreCameraFrustum = true;
@@ -74,8 +73,9 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	protected void initGoals() {
 		this.goalSelector.add(1, new StartAttackGoal());
 		this.goalSelector.add(2, new SwoopMovementGoal());
-		this.goalSelector.add(3, new ProjectileAttackGoal(this, 1.0, 40, 20.0F));
-		this.goalSelector.add(4, new FlyGoal(this, 1.0));
+		this.goalSelector.add(3, new ProjectileAttackGoal(this, 1.0, 40, 28.0F));
+		this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0));
+		this.goalSelector.add(5, new FlyGoal(this, 1.0));
 		
 		this.targetSelector.add(1, new ActiveTargetGoal<>(this, LivingEntity.class, 0, false, false, SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE));
 		this.targetSelector.add(2, new FindTargetGoal());
@@ -400,7 +400,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 				} else if (MonstrosityEntity.this.horizontalCollision || MonstrosityEntity.this.hurtTime > 0) {
 					MonstrosityEntity.this.movementType = MovementType.CIRCLE;
 				}
-				
 			}
 		}
 	}

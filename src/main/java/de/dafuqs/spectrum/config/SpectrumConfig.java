@@ -23,20 +23,6 @@ public class SpectrumConfig implements ConfigData {
 			So enchanted books that exceed the enchantments natural max level get capped
 			If true the bedrock anvil will not cap the enchantments level to it's natural max level""")
 	public boolean BedrockAnvilCanExceedMaxVanillaEnchantmentLevel = false;
-
-	@Comment("""
-			The heights where citrine and topaz geodes will spawn
-			By default citrine will generate slightly below sea level (y=32-60)
-			while topaz will generate at the top of mountains (everywhere from y=82+)
-			if the worldgen has lots of high mountains consider raising the TopazGeodeMinFixedGenerationHeight""")
-	public int CitrineGeodeMinAboveBottomGenerationHeight = 96;
-	public int CitrineGeodeFixedMaxGenerationHeight = 55;
-	public int TopazGeodeMinFixedGenerationHeight = 82;
-	public int TopazGeodeMaxBelowTopGenerationHeight = 0;
-	
-	@Comment("Every x chunks there is a chance for a geode to generate, Moonstone geodes do not spawn in the Overworld")
-	public int TopazGeodeChunkChance = 7;
-	public int CitrineGeodeChunkChance = 50;
 	
 	@Comment("The amount of colored tree patches to generate every X chunks")
 	public int ColoredTreePatchChanceChunk = 75;

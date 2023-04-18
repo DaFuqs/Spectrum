@@ -1,0 +1,108 @@
+{
+  "type": "spectrum:air_check_geode",
+  "config": {
+    "blocks": {
+      "filling_provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:air"
+        }
+      },
+      "inner_layer_provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "spectrum:citrine_block"
+        }
+      },
+      "alternate_inner_layer_provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "spectrum:budding_citrine"
+        }
+      },
+      "middle_layer_provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:calcite"
+        }
+      },
+      "outer_layer_provider": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:smooth_basalt"
+        }
+      },
+      "inner_placements": [
+        {
+          "Name": "spectrum:small_citrine_bud",
+          "Properties": {
+            "facing": "up",
+            "waterlogged": "false"
+          }
+        },
+        {
+          "Name": "spectrum:medium_citrine_bud",
+          "Properties": {
+            "facing": "up",
+            "waterlogged": "false"
+          }
+        },
+        {
+          "Name": "spectrum:large_citrine_bud",
+          "Properties": {
+            "facing": "up",
+            "waterlogged": "false"
+          }
+        },
+        {
+          "Name": "spectrum:citrine_cluster",
+          "Properties": {
+            "facing": "up",
+            "waterlogged": "false"
+          }
+        }
+      ],
+      "cannot_replace": "#minecraft:features_cannot_replace",
+      "invalid_blocks": "#minecraft:geode_invalid_blocks"
+    },
+    "layers": {
+      "filling": 1.3,
+      "inner_layer": 1.7,
+      "middle_layer": 2.5,
+      "outer_layer": 3.1
+    },
+    "crack": {
+      "generate_crack_chance": 0.98,
+      "base_crack_size": 2,
+      "crack_point_offset": 2
+    },
+    "noise_multiplier": 0.05,
+    "use_potential_placements_chance": 0.35,
+    "use_alternate_layer0_chance": 0.1,
+    "placements_require_layer0_alternate": true,
+    "outer_wall_distance": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 4,
+        "max_inclusive": 6
+      }
+    },
+    "distribution_points": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 3,
+        "max_inclusive": 4
+      }
+    },
+    "point_offset": {
+      "type": "minecraft:uniform",
+      "value": {
+        "min_inclusive": 1,
+        "max_inclusive": 2
+      }
+    },
+    "min_gen_offset": -16,
+    "max_gen_offset": 16,
+    "invalid_blocks_threshold": 0
+  }
+}

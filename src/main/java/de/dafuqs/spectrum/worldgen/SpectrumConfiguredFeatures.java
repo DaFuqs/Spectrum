@@ -38,13 +38,10 @@ public class SpectrumConfiguredFeatures {
 	public static HashMap<DyeColor, RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for sapling growing
 	public static RegistryEntry<PlacedFeature> RANDOM_COLORED_TREES_FEATURE; // for worldgen placing
 	
-	public static final Identifier CITRINE_GEODE_IDENTIFIER = SpectrumCommon.locate("citrine_geode");
-	public static final Identifier TOPAZ_GEODE_IDENTIFIER = SpectrumCommon.locate("topaz_geode");
-	public static RegistryEntry<PlacedFeature> TOPAZ_GEODE;
-	public static RegistryEntry<PlacedFeature> CITRINE_GEODE;
-	
 	public static void register() {
-		registerGeodes();
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("citrine_geode")));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("topaz_geode")));
+		
 		registerOres();
 		registerColoredTrees();
 		registerPlants();
@@ -161,81 +158,6 @@ public class SpectrumConfiguredFeatures {
 		);
 		
 		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.COLORED_TREES_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, randomColoredTreesFeatureIdentifier));
-	}
-	
-	private static void registerGeodes() {
-		BlockState AIR = Blocks.AIR.getDefaultState();
-		BlockState CALCITE = Blocks.CALCITE.getDefaultState();
-		BlockState SMOOTH_BASALT = Blocks.SMOOTH_BASALT.getDefaultState();
-		
-		BlockState CITRINE_BLOCK = SpectrumBlocks.CITRINE_BLOCK.getDefaultState();
-		BlockState BUDDING_CITRINE = SpectrumBlocks.BUDDING_CITRINE.getDefaultState();
-		BlockState SMALL_CITRINE_BUD = SpectrumBlocks.SMALL_CITRINE_BUD.getDefaultState();
-		BlockState MEDIUM_CITRINE_BUD = SpectrumBlocks.MEDIUM_CITRINE_BUD.getDefaultState();
-		BlockState LARGE_CITRINE_BUD = SpectrumBlocks.LARGE_CITRINE_BUD.getDefaultState();
-		BlockState CITRINE_CLUSTER = SpectrumBlocks.CITRINE_CLUSTER.getDefaultState();
-		
-		BlockState TOPAZ_BLOCK = SpectrumBlocks.TOPAZ_BLOCK.getDefaultState();
-		BlockState BUDDING_TOPAZ = SpectrumBlocks.BUDDING_TOPAZ.getDefaultState();
-		BlockState SMALL_TOPAZ_BUD = SpectrumBlocks.SMALL_TOPAZ_BUD.getDefaultState();
-		BlockState MEDIUM_TOPAZ_BUD = SpectrumBlocks.MEDIUM_TOPAZ_BUD.getDefaultState();
-		BlockState LARGE_TOPAZ_BUD = SpectrumBlocks.LARGE_TOPAZ_BUD.getDefaultState();
-		BlockState TOPAZ_CLUSTER = SpectrumBlocks.TOPAZ_CLUSTER.getDefaultState();
-		
-		CITRINE_GEODE = registerConfiguredAndPlacedFeature(
-				CITRINE_GEODE_IDENTIFIER,
-				SpectrumFeatures.AIR_CHECK_GEODE,
-				new GeodeFeatureConfig(
-						new GeodeLayerConfig(
-								BlockStateProvider.of(AIR),
-								BlockStateProvider.of(CITRINE_BLOCK),
-								BlockStateProvider.of(BUDDING_CITRINE),
-								BlockStateProvider.of(CALCITE),
-								BlockStateProvider.of(SMOOTH_BASALT),
-								ImmutableList.of(SMALL_CITRINE_BUD, MEDIUM_CITRINE_BUD, LARGE_CITRINE_BUD, CITRINE_CLUSTER),
-								BlockTags.FEATURES_CANNOT_REPLACE,
-								BlockTags.GEODE_INVALID_BLOCKS),
-						new GeodeLayerThicknessConfig(1.3D, 1.7D, 2.5D, 3.1),
-						new GeodeCrackConfig(0.98D, 2.0D, 2),
-						0.35D, 0.093D, true,
-						UniformIntProvider.create(4, 6),
-						UniformIntProvider.create(3, 4),
-						UniformIntProvider.create(1, 2),
-						-16, 16, 0.05D, 0),
-				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.CitrineGeodeChunkChance),
-				SquarePlacementModifier.of(),
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(SpectrumCommon.CONFIG.CitrineGeodeMinAboveBottomGenerationHeight), YOffset.fixed(SpectrumCommon.CONFIG.CitrineGeodeFixedMaxGenerationHeight)),
-				BiomePlacementModifier.of()
-		);
-		
-		TOPAZ_GEODE = registerConfiguredAndPlacedFeature(
-				TOPAZ_GEODE_IDENTIFIER,
-				SpectrumFeatures.AIR_CHECK_GEODE,
-				new GeodeFeatureConfig(
-						new GeodeLayerConfig(
-								BlockStateProvider.of(AIR),
-								BlockStateProvider.of(TOPAZ_BLOCK),
-								BlockStateProvider.of(BUDDING_TOPAZ),
-								BlockStateProvider.of(CALCITE),
-								BlockStateProvider.of(SMOOTH_BASALT),
-								ImmutableList.of(SMALL_TOPAZ_BUD, MEDIUM_TOPAZ_BUD, LARGE_TOPAZ_BUD, TOPAZ_CLUSTER),
-								BlockTags.FEATURES_CANNOT_REPLACE,
-								BlockTags.GEODE_INVALID_BLOCKS),
-						new GeodeLayerThicknessConfig(1.9D, 2.5D, 3.9D, 5.0D),
-						new GeodeCrackConfig(0.6D, 2.0D, 2),
-						0.35D, 0.073D, true,
-						UniformIntProvider.create(4, 6),
-						UniformIntProvider.create(3, 4),
-						UniformIntProvider.create(1, 2),
-						-16, 16, 0.05D, 1),
-				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.TopazGeodeChunkChance),
-				SquarePlacementModifier.of(),
-				HeightRangePlacementModifier.uniform(YOffset.fixed(SpectrumCommon.CONFIG.TopazGeodeMinFixedGenerationHeight), YOffset.belowTop(SpectrumCommon.CONFIG.TopazGeodeMaxBelowTopGenerationHeight)),
-				BiomePlacementModifier.of()
-		);
-		
-		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, CITRINE_GEODE_IDENTIFIER));
-		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, TOPAZ_GEODE_IDENTIFIER));
 	}
 	
 	private static void registerPlants() {

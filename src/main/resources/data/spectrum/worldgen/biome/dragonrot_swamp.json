@@ -25,14 +25,64 @@
     }
   },
   "spawners": {
-    "monster": [],
-    "creature": [],
-    "ambient": [],
+    "ambient": [
+      {
+        "type": "minecraft:bat",
+        "weight": 10,
+        "minCount": 8,
+        "maxCount": 8
+      }
+    ],
     "axolotls": [],
+    "creature": [],
+    "misc": [],
+    "monster": [
+      {
+        "type": "minecraft:cave_spider",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 8
+      },
+      {
+        "type": "minecraft:skeleton",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:creeper",
+        "weight": 100,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:drowned",
+        "weight": 400,
+        "minCount": 4,
+        "maxCount": 8
+      },
+      {
+        "type": "minecraft:spider",
+        "weight": 10,
+        "minCount": 4,
+        "maxCount": 4
+      },
+      {
+        "type": "minecraft:phantom",
+        "weight": 5,
+        "minCount": 1,
+        "maxCount": 2
+      },
+      {
+        "type": "minecraft:slime",
+        "weight": 0,
+        "minCount": 0,
+        "maxCount": 0
+      }
+    ],
     "underground_water_creature": [],
-    "water_creature": [],
     "water_ambient": [],
-    "misc": []
+    "water_creature": []
   },
   "spawn_costs": {},
   "carvers": {

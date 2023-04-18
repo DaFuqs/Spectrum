@@ -9,11 +9,17 @@
   "height": 384,
   "natural": true,
   "coordinate_scale": 1.0,
-  "piglin_safe": true,
+  "piglin_safe": false,
   "bed_works": false,
   "has_skylight": false,
   "has_ceiling": true,
   "ultrawarm": false,
-  "monster_spawn_block_light_limit": 0,
-  "monster_spawn_light_level": 0
+  "monster_spawn_light_level": {
+    "type": "minecraft:uniform",
+    "value": {
+      "min_inclusive": 0,
+      "max_inclusive": 5
+    }
+  },
+  "monster_spawn_block_light_limit": 15
 }

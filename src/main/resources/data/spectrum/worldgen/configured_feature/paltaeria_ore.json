@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:scattered_ore",
+  "config": {
+    "size": 4,
+    "discard_chance_on_air_exposure": 0.3,
+    "targets": [
+      {
+        "target": {
+          "predicate_type": "minecraft:block_match",
+          "block": "minecraft:end_stone"
+        },
+        "state": {
+          "Name": "spectrum:paltaeria_ore"
+        }
+      }
+    ]
+  }
+}

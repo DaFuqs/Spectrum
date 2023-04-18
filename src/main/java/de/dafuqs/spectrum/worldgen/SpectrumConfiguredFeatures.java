@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.worldgen;
 
-import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.worldgen.features.*;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.fabricmc.fabric.api.tag.convention.v1.*;
-import net.minecraft.block.*;
-import net.minecraft.structure.rule.*;
 import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
@@ -43,7 +40,10 @@ public class SpectrumConfiguredFeatures {
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("topaz_geode")));
 		
 		// Ores
-		registerOres();
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("shimmerstone_ore")));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("azurite_ore")));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_NETHER), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("stratine_ore")));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_THE_END), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("paltaeria_ore")));
 		
 		// Colored Trees
 		registerColoredTrees();
@@ -52,64 +52,6 @@ public class SpectrumConfiguredFeatures {
 		BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.IS_OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("mermaids_brushes")));
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.SWAMP), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("quitoxic_reeds")));
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("clover_patch")));
-	}
-	
-	private static void registerOres() {
-		BlockState shimmerstoneOre = SpectrumBlocks.SHIMMERSTONE_ORE.getDefaultState();
-		BlockState deepslateShimmerstoneOre = SpectrumBlocks.DEEPSLATE_SHIMMERSTONE_ORE.getDefaultState();
-		BlockState azuriteOre = SpectrumBlocks.AZURITE_ORE.getDefaultState();
-		BlockState deepslateAzuriteOre = SpectrumBlocks.DEEPSLATE_AZURITE_ORE.getDefaultState();
-		BlockState stratineOre = SpectrumBlocks.STRATINE_ORE.getDefaultState();
-		BlockState paltaeriaOre = SpectrumBlocks.PALTAERIA_ORE.getDefaultState();
-		
-		Identifier shimmerstoneOreIdentifier = SpectrumCommon.locate("shimmerstone_ore");
-		Identifier azuriteOreIdentifier = SpectrumCommon.locate("azurite_ore");
-		Identifier stratineOreIdentifier = SpectrumCommon.locate("stratine_ore");
-		Identifier paltaeriaOreIdentifier = SpectrumCommon.locate("paltaeria_ore");
-		
-		ImmutableList<OreFeatureConfig.Target> shimmerstoneOreTargets = ImmutableList.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, shimmerstoneOre), OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, deepslateShimmerstoneOre));
-		ImmutableList<OreFeatureConfig.Target> azuriteOreTargets = ImmutableList.of(OreFeatureConfig.createTarget(OreConfiguredFeatures.STONE_ORE_REPLACEABLES, azuriteOre), OreFeatureConfig.createTarget(OreConfiguredFeatures.DEEPSLATE_ORE_REPLACEABLES, deepslateAzuriteOre));
-		
-		registerConfiguredAndPlacedFeature(
-				shimmerstoneOreIdentifier,
-				Feature.ORE,
-				new OreFeatureConfig(shimmerstoneOreTargets, 8),
-				CountPlacementModifier.of(9), // number of veins per chunk
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(48), YOffset.fixed(128)), // min and max height
-				SquarePlacementModifier.of() // spread through the chunk
-		);
-		
-		registerConfiguredAndPlacedFeature(
-				azuriteOreIdentifier,
-				Feature.ORE,
-				new OreFeatureConfig(azuriteOreTargets, 5, 0.5F),
-				CountPlacementModifier.of(6), // number of veins per chunk
-				HeightRangePlacementModifier.trapezoid(YOffset.getBottom(), YOffset.aboveBottom(32)), // min and max height
-				SquarePlacementModifier.of() // spread through the chunk
-		);
-		
-		registerConfiguredAndPlacedFeature(
-				stratineOreIdentifier,
-				Feature.ORE,
-				new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_NETHER, stratineOre, 6),
-				CountPlacementModifier.of(12), // number of veins per chunk
-				HeightRangePlacementModifier.uniform(YOffset.aboveBottom(10), YOffset.belowTop(64)), // min and max height
-				SquarePlacementModifier.of() // spread through the chunk
-		);
-		
-		registerConfiguredAndPlacedFeature(
-				paltaeriaOreIdentifier,
-				Feature.ORE,
-				new OreFeatureConfig(new BlockMatchRuleTest(Blocks.END_STONE), paltaeriaOre, 12, 0.3F),
-				CountPlacementModifier.of(4), // number of veins per chunk
-				HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.getTop()), // min and max height
-				SquarePlacementModifier.of() // spread through the chunk
-		);
-		
-		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, shimmerstoneOreIdentifier));
-		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, azuriteOreIdentifier));
-		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_NETHER), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, stratineOreIdentifier));
-		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_THE_END), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, paltaeriaOreIdentifier));
 	}
 	
 	private static void registerColoredTree(@NotNull DyeColor dyeColor) {

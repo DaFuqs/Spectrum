@@ -1,9 +1,9 @@
 {
-  "feature": "spectrum:shimmerstone_ore",
+  "feature": "spectrum:paltaeria_ore",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 24
+      "count": 4
     },
     {
       "type": "minecraft:in_square"
@@ -13,10 +13,10 @@
       "height": {
         "type": "minecraft:trapezoid",
         "min_inclusive": {
-          "below_top": 256
+          "above_bottom": 0
         },
         "max_inclusive": {
-          "below_top": 64
+          "below_top": 0
         }
       }
     },

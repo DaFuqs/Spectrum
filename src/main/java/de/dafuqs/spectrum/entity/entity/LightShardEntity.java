@@ -1,32 +1,21 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Tameable;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileUtil;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.mob.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Collections;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class LightShardEntity extends ProjectileEntity {
 
@@ -77,8 +66,7 @@ public class LightShardEntity extends ProjectileEntity {
             playSound(SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_BREAK, random.nextFloat() + 0.25F, 1.2F + random.nextFloat());
             this.remove(RemovalReason.DISCARDED);
         }
-
-
+    
         var velocity = getVelocity();
         updatePosition(getX() + velocity.getX(), getY() + velocity.getY(), getZ() + velocity.getZ());
 
@@ -196,8 +184,7 @@ public class LightShardEntity extends ProjectileEntity {
     public float getScaleOffset() {
         return scaleOffset;
     }
-
-
+    
     public float getVanishingProgress(int age) {
         return 1 - (float) Math.min(maxAge - age, getVanishingLength()) / getVanishingLength();
     }
@@ -218,16 +205,6 @@ public class LightShardEntity extends ProjectileEntity {
         var entity = entityOptional.get();
 
         return entity.isRemoved() || !entity.isAlive() || entity.isInvulnerable();
-    }
-
-    public Optional<Entity> tryGetTargetEntity(ServerWorld world) {
-        if (targetEntity.isEmpty()) {
-            if (target.isEmpty())
-                return Optional.empty();
-
-            targetEntity = Optional.ofNullable(world.getEntity(target.get()));
-        }
-        return targetEntity;
     }
 
     @Override

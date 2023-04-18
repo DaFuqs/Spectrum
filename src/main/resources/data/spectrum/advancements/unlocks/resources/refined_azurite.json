@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "todo": {
+    "collected_azurite": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:__wip"
+        "advancement_identifier": "spectrum:midgame/collect_azurite"
       }
     }
   }

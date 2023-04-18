@@ -2,7 +2,9 @@
   "criteria": {
     "reached_lategame": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:__lategame/spectrum_lategame" }
+      "conditions": {
+        "advancement_identifier": "spectrum:__wip"
+      }
     }
   }
 }

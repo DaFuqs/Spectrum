@@ -1,9 +1,8 @@
 {
   "name": "A Mysterious Locket",
   "icon": "spectrum:mysterious_locket",
-  "advancement": "spectrum:collect_mysterious_locket",
+  "advancement": "spectrum:lategame/collect_mysterious_locket",
   "category": "spectrum:general_category",
-  "secret": true,
   "sortnum": 20,
   "extra_recipe_mappings": {
     "spectrum:mysterious_locket": 0
@@ -21,24 +20,24 @@
     },
     {
       "type": "patchouli:text",
-      "title": "A Challenge?",
-      "advancement": "spectrum:endgame/learn_dreiton",
-      "text": "Now that you understand Dreiton tongue, it is easy for you to decipher the inscription on the back:$(br2)$(italic)Don't be silly Asteras - the moon can't glow, it can only reflect the sun's light."
+      "title": "The Locket's Contents",
+      "advancement": "spectrum:endgame/open_mysterious_compass",
+      "text": "The locket contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.$(br)While in the $(l:dimension/dimension)Deeper Down$(/l)it softly vibrates as you turn."
     },
     {
       "type": "patchouli:image",
-      "title": "The Locket's Contents",
-      "advancement": "spectrum:open_mysterious_locket",
+      "advancement": "spectrum:endgame/open_mysterious_compass",
       "images": [
         "spectrum:textures/gui/guidebook/locket.png"
       ],
       "border": true,
-      "text": ""
+      "text": "There also was a small note inside... who could it have belonged to?"
     },
     {
       "type": "patchouli:text",
-      "advancement": "spectrum:open_mysterious_locket",
-      "text": "The locket also contained a small crystal, bearing a dimmer, yet much warmer glow than it's lock.$(br)While in the $(l:dimension/dimension)Deeper Down$(/l)it softly vibrates as you turn."
+      "title": "A Challenge?",
+      "advancement": "spectrum:endgame/learn_dreiton",
+      "text": "Now that you understand Dreiton tongue, it is easy for you to decipher the inscription on the back:$(br2)$(italic)Don't be silly Asteras - the moon can't glow, it can only reflect the sun's light."
     }
   ]
 }

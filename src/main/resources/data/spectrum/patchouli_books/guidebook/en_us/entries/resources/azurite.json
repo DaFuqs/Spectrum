@@ -20,6 +20,7 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
+      "advancement": "spectrum:unlocks/resources/refined_azurite",
       "title": "Refining Azurite",
       "recipe": "spectrum:fusion_shrine/refined_azurite",
       "text": "Refining Azurite is not a cheap task.$(br)In this refined ingot form Azurite can be used for a lot more recipes."

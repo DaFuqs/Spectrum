@@ -10,7 +10,7 @@
       "translate": "advancements.spectrum.strike_up_hummingstone_hymn.description"
     }
   },
-  "parent": "spectrum:lategame/spectrum_lategame",
+  "parent": "spectrum:lategame/collect_hummingstone",
   "criteria": {
     "struck_up_hummingstone_hymn": {
       "trigger": "spectrum:hummingstone_hymn",
@@ -19,7 +19,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+        "advancement_identifier": "spectrum:lategame/collect_hummingstone"
       }
     }
   }

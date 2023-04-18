@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:endgame/create_mysterious_compass",
+  "parent": "spectrum:endgame/open_mysterious_compass",
   "display": {
     "icon": {
       "item": "spectrum:preservation_stone"
@@ -32,7 +32,7 @@
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:endgame/create_mysterious_compass"
+        "advancement_identifier": "spectrum:endgame/open_mysterious_compass"
       }
     }
   }

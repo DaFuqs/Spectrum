@@ -3,7 +3,7 @@
     "collected_mysterious_locket": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:collect_mysterious_locket"
+        "advancement_identifier": "spectrum:lategame/collect_mysterious_locket"
       }
     },
     "reached_endgame": {

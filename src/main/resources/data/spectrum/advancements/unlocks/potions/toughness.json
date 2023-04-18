@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "crafted_potion_in_potion_brewery": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop"
+      }
+    },
+    "collected_glass_peach": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_glass_peach"
+      }
+    }
+  }
+}

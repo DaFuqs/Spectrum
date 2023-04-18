@@ -5,21 +5,33 @@
     },
     "hidden": true,
     "title": {
-      "translate": "advancements.spectrum.create_mysterious_compass.title"
+      "translate": "advancements.spectrum.open_mysterious_compass.title"
     },
     "description": {
-      "translate": "advancements.spectrum.create_mysterious_compass.description"
+      "translate": "advancements.spectrum.open_mysterious_compass.description"
     }
   },
   "parent": "spectrum:endgame/collect_enough_hints",
   "criteria": {
-    "created_spectral_shard": {
+    "socketed_mysterious_locket": {
       "trigger": "spectrum:crafted_with_fusion_shrine",
       "conditions": {
         "items": [
           {
             "items": [
               "spectrum:mysterious_locket"
+            ]
+          }
+        ]
+      }
+    },
+    "opened_mysterious_locket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:mysterious_compass"
             ]
           }
         ]

@@ -16,6 +16,12 @@
   "criteria": {
     "code_triggered": {
       "trigger": "minecraft:impossible"
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:enter_ancient_ruins"
+      }
     }
   }
 }

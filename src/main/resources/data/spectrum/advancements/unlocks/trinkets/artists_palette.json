@@ -9,7 +9,7 @@
     "created_spectral_shard": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:__endgame/create_spectral_shard"
+        "advancement_identifier": "spectrum:endgame/create_spectral_shard"
       }
     }
   }

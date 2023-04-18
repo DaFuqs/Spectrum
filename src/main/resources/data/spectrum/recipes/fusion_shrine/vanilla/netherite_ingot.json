@@ -17,7 +17,7 @@
   "result": {
     "item": "minecraft:netherite_ingot"
   },
-  "required_advancement": "spectrum:unlocks/netherite_ingot_fusion_recipe",
+  "required_advancement": "spectrum:unlocks/resources/netherite_ingot",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [

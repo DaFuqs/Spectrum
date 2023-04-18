@@ -34,7 +34,7 @@ import java.util.*;
 
 public class SanityCommand {
 	
-	private static final List<Identifier> advancementGatingWarningWhitelist = new ArrayList<>() {{
+	private static final List<Identifier> ADVANCEMENT_GATING_WARNING_WHITELIST = new ArrayList<>() {{
 		add(SpectrumCommon.locate("collect_mysterious_locket"));
 		add(SpectrumCommon.locate("find_ancient_ruins"));
 		add(SpectrumCommon.locate("enter_ancient_ruins"));
@@ -51,6 +51,15 @@ public class SanityCommand {
 		add(SpectrumCommon.locate("midgame/build_cinderhearth_structure_without_lava"));
 		add(SpectrumCommon.locate("midgame/tap_chrysocolla"));
 		add(SpectrumCommon.locate("midgame/tap_sweetened_jade_wine"));
+		
+		add(SpectrumCommon.locate("lategame/killed_monstrosity"));
+		add(SpectrumCommon.locate("lategame/collect_doombloom_seed"));
+		add(SpectrumCommon.locate("lategame/collect_noxwood"));
+		add(SpectrumCommon.locate("lategame/collect_dragonbone"));
+		add(SpectrumCommon.locate("lategame/collect_bismuth"));
+		add(SpectrumCommon.locate("lategame/collect_myceylon"));
+		add(SpectrumCommon.locate("lategame/collect_prickly_bayleaf"));
+		add(SpectrumCommon.locate("lategame/collect_hummingstone"));
 	}};
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
@@ -215,7 +224,7 @@ public class SanityCommand {
 						}
 					}
 				}
-				if (!advancementGatingWarningWhitelist.contains(advancement.getId())) {
+				if (!ADVANCEMENT_GATING_WARNING_WHITELIST.contains(advancement.getId())) {
 					if (previousAdvancementIdentifier == null) {
 						SpectrumCommon.logWarning("[SANITY: Advancement Gating] Advancement '" + advancement.getId() + "' does not have its parent set as requirement");
 					} else {

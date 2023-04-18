@@ -14,5 +14,5 @@
   "applicable_to_potion_fillables": true,
   "ink_color": "pink",
   "ink_cost": 8,
-  "required_advancement": "spectrum:hidden/collect_glass_peach"
+  "required_advancement": "spectrum:unlocks/potions/toughness"
 }

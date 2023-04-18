@@ -18,7 +18,7 @@
   "result": {
     "item": "spectrum:refined_azurite"
   },
-  "required_advancement": "spectrum:midgame/collect_azurite",
+  "required_advancement": "spectrum:unlocks/resources/refined_azurite",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [],

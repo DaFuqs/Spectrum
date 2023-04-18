@@ -18,12 +18,15 @@
     },
     {
       "item": "spectrum:moonstone_shard"
+    },
+    {
+      "item": "spectrum:moonstone_core"
     }
   ],
   "result": {
     "item": "spectrum:spectral_shard"
   },
-  "required_advancement": "spectrum:progression/__unlock_spectral_shard",
+  "required_advancement": "spectrum:unlocks/resources/spectral_shard",
   "world_conditions": [],
   "start_crafting_effect": "nothing",
   "during_crafting_effects": [

@@ -14,5 +14,5 @@
   "result": {
     "item": "spectrum:ominous_sapling"
   },
-  "required_advancement": "spectrum:__lategame/build_complex_pedestal_structure"
+  "required_advancement": "spectrum:unlocks/blocks/ominous_sapling"
 }

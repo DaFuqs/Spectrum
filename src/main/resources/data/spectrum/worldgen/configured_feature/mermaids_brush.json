@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:randomized_int_state_provider",
+      "property": "age",
+      "values": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 5,
+          "max_inclusive": 6
+        }
+      },
+      "source": {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "spectrum:mermaids_brush"
+        }
+      }
+    }
+  }
+}

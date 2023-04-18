@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.worldgen;
 
 import com.google.common.collect.*;
 import de.dafuqs.spectrum.*;
-import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.worldgen.features.*;
@@ -39,12 +38,20 @@ public class SpectrumConfiguredFeatures {
 	public static RegistryEntry<PlacedFeature> RANDOM_COLORED_TREES_FEATURE; // for worldgen placing
 	
 	public static void register() {
+		// Geodes
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("citrine_geode")));
 		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.IN_OVERWORLD), GenerationStep.Feature.UNDERGROUND_STRUCTURES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("topaz_geode")));
 		
+		// Ores
 		registerOres();
+		
+		// Colored Trees
 		registerColoredTrees();
-		registerPlants();
+		
+		// Plants
+		BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.IS_OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("mermaids_brushes")));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.SWAMP), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("quitoxic_reeds")));
+		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, SpectrumCommon.locate("clover_patch")));
 	}
 	
 	private static void registerOres() {
@@ -161,52 +168,6 @@ public class SpectrumConfiguredFeatures {
 	}
 	
 	private static void registerPlants() {
-		// MERMAIDS BRUSH
-		Identifier mermaidsBrushIdentifier = SpectrumCommon.locate("mermaids_brush");
-		registerConfiguredAndPlacedFeature(
-				mermaidsBrushIdentifier,
-				Feature.SIMPLE_BLOCK,
-				new SimpleBlockFeatureConfig(new RandomizedIntBlockStateProvider(SimpleBlockStateProvider.of(SpectrumBlocks.MERMAIDS_BRUSH), MermaidsBrushBlock.AGE, UniformIntProvider.create(5, 6))),
-				RarityFilterPlacementModifier.of(SpectrumCommon.CONFIG.MermaidsBrushChanceChunk),
-				CountPlacementModifier.of(UniformIntProvider.create(2, 3)),
-				SquarePlacementModifier.of(),
-				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-				BiomePlacementModifier.of(),
-				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.MERMAIDS_BRUSH.getDefaultState(), BlockPos.ORIGIN)))
-		);
-		
-		BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.IS_OCEAN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, mermaidsBrushIdentifier));
-		
-		// QUITOXIC REEDS
-		Identifier quitoxicReedsIdentifier = SpectrumCommon.locate("quitoxic_reeds");
-		registerConfiguredAndPlacedFeature(quitoxicReedsIdentifier,
-				Feature.BLOCK_COLUMN,
-				BlockColumnFeatureConfig.create(BiasedToBottomIntProvider.create(2, 4), BlockStateProvider.of(SpectrumBlocks.QUITOXIC_REEDS)),
-				CountPlacementModifier.of(SpectrumCommon.CONFIG.QuitoxicReedsCountPerChunk),
-				SquarePlacementModifier.of(),
-				PlacedFeatures.OCEAN_FLOOR_WG_HEIGHTMAP,
-				BiomePlacementModifier.of(),
-				BlockFilterPlacementModifier.of(BlockPredicate.allOf(BlockPredicate.wouldSurvive(SpectrumBlocks.QUITOXIC_REEDS.getDefaultState(), BlockPos.ORIGIN)))
-		);
-		
-		BiomeModifications.addFeature(BiomeSelectors.tag(SpectrumBiomeTags.QUITOXIC_REEDS_GENERATING_IN), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, quitoxicReedsIdentifier));
-		
-		// CLOVER
-		Identifier cloversIdentifier = SpectrumCommon.locate("clovers");
-		DataPool<BlockState> cloverBlockDataPool = DataPool.<BlockState>builder().add(SpectrumBlocks.CLOVER.getDefaultState(), 9).add(SpectrumBlocks.FOUR_LEAF_CLOVER.getDefaultState(), 1).build();
-		RandomPatchFeatureConfig cloverPatchFeatureConfig = ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(cloverBlockDataPool)), List.of(Blocks.GRASS_BLOCK), 4);
-		CLOVER_PATCH = registerConfiguredFeature(
-				cloversIdentifier,
-				Feature.RANDOM_PATCH,
-				cloverPatchFeatureConfig);
-		registerPlacedFeature(
-				cloversIdentifier,
-				CLOVER_PATCH,
-				SquarePlacementModifier.of(),
-				PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP,
-				BiomePlacementModifier.of()
-		);
-		BiomeModifications.addFeature(BiomeSelectors.tag(ConventionalBiomeTags.PLAINS), GenerationStep.Feature.VEGETAL_DECORATION, RegistryKey.of(Registry.PLACED_FEATURE_KEY, cloversIdentifier));
 	}
 	
 }

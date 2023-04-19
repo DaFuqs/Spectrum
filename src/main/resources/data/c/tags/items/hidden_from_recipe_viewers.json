@@ -1,6 +1,75 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:coming_soon_tooltip"
+    "#spectrum:coming_soon_tooltip",
+
+    {
+      "id": "incubus_core:lunarian_saber",
+      "required": false
+    },
+    {
+      "id": "incubus_core:lord_azzys_elemental_flag",
+      "required": false
+    },
+    {
+      "id": "incubus_core:long_spatula",
+      "required": false
+    },
+    {
+      "id": "incubus_core:fox_effigy",
+      "required": false
+    },
+    {
+      "id": "incubus_core:everfruiting_berry_branch",
+      "required": false
+    },
+    {
+      "id": "incubus_core:debug_flame",
+      "required": false
+    },
+    {
+      "id": "incubus_core:mobilk-1",
+      "required": false
+    },
+    {
+      "id": "incubus_core:lean",
+      "required": false
+    },
+    {
+      "id": "incubus_core:rat_poison",
+      "required": false
+    },
+    {
+      "id": "incubus_core:incubus_boat",
+      "required": false
+    },
+    {
+      "id": "incubus_core:incubus_chest_boat",
+      "required": false
+    },
+    {
+      "id": "incubus_core:entity_death_message_item",
+      "required": false
+    },
+    {
+      "id": "incubus_core:test_furnace",
+      "required": false
+    },
+    {
+      "id": "incubus_core:incubus_log",
+      "required": false
+    },
+    {
+      "id": "incubus_core:incubus_planks",
+      "required": false
+    },
+    {
+      "id": "incubus_core:incubus_sign",
+      "required": false
+    },
+    {
+      "id": "incubus_core:incubus_chest",
+      "required": false
+    }
   ]
 }

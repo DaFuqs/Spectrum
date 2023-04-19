@@ -8,7 +8,7 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:life_drain",
-      "text": "Not technically a disease that you could transmit to other creatures, Life Drain is a horrible thing that turned your stomach around.$(br)It slowly $(thing)decreases your max hit points$(), leaving you very vulnerable even against miniscule hits."
+      "text": "Life Drain is a horrible thing that turned your stomach around.$(br)It slowly $(thing)decreases your max hit points$(), leaving you very vulnerable even against minuscule hits."
     },
     {
       "type": "patchouli:text",

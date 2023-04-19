@@ -34,8 +34,7 @@
                   "condition": "minecraft:block_state_property",
                   "block": "spectrum:amaranth",
                   "properties": {
-                    "age": "7",
-                    "half": "lower"
+                    "age": "7"
                   }
                 }
               ]
@@ -46,10 +45,7 @@
               "conditions": [
                 {
                   "condition": "minecraft:block_state_property",
-                  "block": "spectrum:amaranth",
-                  "properties": {
-                    "half": "lower"
-                  }
+                  "block": "spectrum:amaranth"
                 }
               ]
             }

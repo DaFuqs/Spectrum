@@ -2,7 +2,7 @@
   "name": "Ancient Ruins",
   "icon": "spectrum:preservation_controller",
   "advancement": "spectrum:find_ancient_ruins",
-  "sortnum": 19,
+  "sortnum": 16,
   "turnin": "spectrum:hidden/generate_every_ancient_ruins_loot",
   "category": "spectrum:general_category",
   "extra_recipe_mappings": {

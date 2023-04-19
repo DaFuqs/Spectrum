@@ -1,15 +1,16 @@
 {
   "name": "Moonstone Pedestal (2)",
   "icon": "spectrum:pedestal_moonstone",
-  "sortnum": 17,
+  "sortnum": 19,
   "advancement": "spectrum:lategame/build_complex_pedestal_structure_without_moonstone",
   "category": "spectrum:general_category",
   "turnin": "spectrum:lategame/build_complex_pedestal_structure",
   "pages": [
     {
       "type": "patchouli:spotlight",
+      "title": "Moonstone Pedestal",
       "item": "spectrum:moonstone_chiseled_basalt",
-      "text": "Your latest Pedestal structure feels... somewhat lacking. And now you have gotten a hold of $(l:general/moonstone_shards)Moonstone$(/l) you also know exactly what is missing: $(c_white)Moonstone$() exactly. The tricky part: Creating the required $(thing)Moonstone Chiseled Blocks$() would require you being able to use your $(thing)Moonstone Pedestal$() to it's full capability already.$(br)$(italic)Is there a way to kickstart you?"
+      "text": "Your latest structure feels... somewhat lacking. And now you also know exactly what is missing: more $(c_white)Moonstone$() exactly. The tricky part: Creating the required $(thing)Moonstone Chiseled Blocks$() would require you being able to use your $(thing)Moonstone Pedestal$() to it's full capability already.$(br)$(italic)Is there a way to kickstart you?"
     },
     {
       "type": "patchouli:multiblock",

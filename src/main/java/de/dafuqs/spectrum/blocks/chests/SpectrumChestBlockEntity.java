@@ -132,16 +132,15 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 	
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
+		this.deserializeLootTable(tag);
 		this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-		
-		if (!this.deserializeLootTable(tag)) {
-			Inventories.readNbt(tag, this.inventory);
-		}
+		Inventories.readNbt(tag, this.inventory);
 	}
 	
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
-		if (!this.serializeLootTable(tag)) {
+		this.serializeLootTable(tag);
+		if (!this.inventory.isEmpty()) {
 			Inventories.writeNbt(tag, this.inventory);
 		}
 	}

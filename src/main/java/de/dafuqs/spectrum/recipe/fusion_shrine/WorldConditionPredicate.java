@@ -20,7 +20,7 @@ public interface WorldConditionPredicate {
 	final class Deserializers {
 		public static final Map<String, Deserializer> TYPES = new HashMap<>();
 		
-		public static final Deserializer ANY = register("dimension", (json) -> WorldConditionPredicate.ANY);
+		public static final Deserializer ANY = register("any", (json) -> WorldConditionPredicate.ANY);
 		public static final Deserializer DIMENSION = register("dimension", DimensionPredicate::fromJson);
 		public static final Deserializer MOON_PHASE = register("moon_phase", MoonPhasePredicate::fromJson);
 		public static final Deserializer TIME_OF_DAY = register("time_of_day", TimeOfDayPredicate::fromJson);

@@ -10,11 +10,13 @@
   "pages": [
     {
       "type": "patchouli:spotlight",
+      "title": "Mermaid's Brushes",
       "item": "spectrum:mermaids_brush",
       "text": "$(italic)This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single blossom, which slowly develops into a filigree shaped seed.$()$(br2)Mermaid's Brushes can be harvested using shears."
     },
     {
       "type": "patchouli:spotlight",
+      "title": "Mermaid's Gems",
       "item": "spectrum:mermaids_gem",
       "text": "Fully grown, these hollow seeds float to the surface of the sea to be carried away by the soft waves.$(br2)Mermaid's Gems have a strong bond with water - obviously."
     }

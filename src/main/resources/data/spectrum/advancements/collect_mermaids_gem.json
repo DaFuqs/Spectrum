@@ -11,7 +11,7 @@
     },
     "hidden": true
   },
-  "parent": "spectrum:spectrum",
+  "parent": "spectrum:craft_using_pedestal",
   "criteria": {
     "has_mermaids_gem": {
       "trigger": "minecraft:inventory_changed",
@@ -19,7 +19,7 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:spectrum" }
+      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
     }
   }
 }

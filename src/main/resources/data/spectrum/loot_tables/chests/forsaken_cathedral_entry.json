@@ -36,6 +36,21 @@
           "name": "spectrum:upgrade_yield2"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:glass_ampoule"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": 16
+        }
+      ]
     }
   ]
 }

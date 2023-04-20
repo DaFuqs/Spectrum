@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. A pinch of $(l:resources/sparklestone)Shimmerstone$(/l) allows the package to explode in a colorful shower of particles.$(br)Click the Present onto the items you want to gift, wrap it in a $(thing)Crafting Table$(), then all you have to do is place it down for the recipient to open it and watch them jump in joy."
+      "text": "The people around you have already helped you in one or the other dicey situation. It's time to give something back. A pinch of $(l:resources/shimmerstone)Shimmerstone$(/l) allows the package to explode in a colorful shower of particles.$(br)Click the Present onto the items you want to gift, wrap it in a $(thing)Crafting Table$(), then all you have to do is place it down for the recipient to open it and watch them jump in joy."
     },
     {
       "type": "spectrum:pedestal_crafting",

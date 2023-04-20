@@ -113,12 +113,7 @@ public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 				if (world.getFluidState(pos).isStill()) {
 					block = SpectrumBlocks.BLAZING_CRYSTAL;
 				} else {
-					// blackstone in the nether, deepslate everywhere else
-					if (world.getDimension().ultrawarm()) {
-						block = Blocks.BLACKSTONE;
-					} else {
-						block = Blocks.COBBLED_DEEPSLATE;
-					}
+					block = Blocks.COBBLED_DEEPSLATE;
 				}
 				world.setBlockState(pos, block.getDefaultState());
 				this.playExtinguishSound(world, pos);

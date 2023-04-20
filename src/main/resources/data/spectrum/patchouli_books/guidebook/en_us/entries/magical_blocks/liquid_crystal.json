@@ -20,7 +20,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/liquid_crystal_bucket",
-      "text": "Combining it with various other liquids results in all kinds of interesting looking materials. Best to try it in the nether, too!"
+      "text": "Combining it with various other liquids results in all kinds of interesting looking materials."
     },
     {
       "type": "patchouli:spotlight",

@@ -11,19 +11,15 @@
     },
     "hidden": true
   },
-  "parent": "spectrum:spectrum",
+  "parent": "spectrum:craft_using_pedestal",
   "criteria": {
     "has_mermaids_gem": {
       "trigger": "minecraft:inventory_changed",
       "conditions": { "items": [{ "items": [ "spectrum:mermaids_gem" ]}] }
     },
-    "crafted_using_pedestal": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
-    },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:spectrum" }
+      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
     }
   }
 }

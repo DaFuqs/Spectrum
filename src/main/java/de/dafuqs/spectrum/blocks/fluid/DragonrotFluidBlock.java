@@ -60,6 +60,10 @@ public class DragonrotFluidBlock extends SpectrumFluidBlock {
 						if (existingEffect == null || existingEffect.getDuration() < 1000) {
 							livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.LIFE_DRAIN, 2000, 0));
 						}
+						existingEffect = livingEntity.getStatusEffect(SpectrumStatusEffects.DEADLY_POISON);
+						if (existingEffect == null || existingEffect.getDuration() < 80) {
+							livingEntity.addStatusEffect(new StatusEffectInstance(SpectrumStatusEffects.DEADLY_POISON, 160, 0));
+						}
 					}
 				}
 			} else if (entity instanceof ItemEntity itemEntity && !itemEntity.cannotPickup()) {

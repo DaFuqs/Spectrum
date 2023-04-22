@@ -447,14 +447,7 @@ public class SpectrumItems {
 	public static final Item PURE_ECHO = new Item(Tab.RESOURCES.settings());
 	public static final Item PURE_NETHERITE = new Item(Tab.RESOURCES.settings());
 	
-	public static final Item PURE_CERTUS_QUARTZ = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_FLUIX = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_GLOBETTE = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_GLOBETTE_NETHER = new Item(Tab.RESOURCES.settings());
-	public static final Item PURE_GLOBETTE_END = new Item(Tab.RESOURCES.settings());
-	
-	
-	private static void register(String name, Item item, DyeColor dyeColor) {
+	static void register(String name, Item item, DyeColor dyeColor) {
 		Registry.register(Registry.ITEM, SpectrumCommon.locate(name), item);
 		ItemColors.ITEM_COLORS.registerColorMapping(item, dyeColor);
 	}
@@ -505,12 +498,7 @@ public class SpectrumItems {
 		register("pure_echo", PURE_ECHO, DyeColor.BROWN);
 		register("pure_netherite", PURE_NETHERITE, DyeColor.BROWN);
 		
-		register("pure_certus_quartz", PURE_CERTUS_QUARTZ, DyeColor.YELLOW);
-		register("pure_fluix", PURE_FLUIX, DyeColor.YELLOW);
 		
-		register("pure_globette", PURE_GLOBETTE, DyeColor.BLUE);
-		register("pure_globette_nether", PURE_GLOBETTE_NETHER, DyeColor.RED);
-		register("pure_globette_end", PURE_GLOBETTE_END, DyeColor.GREEN);
 	}
 	
 	public static void registerStructurePlacers() {

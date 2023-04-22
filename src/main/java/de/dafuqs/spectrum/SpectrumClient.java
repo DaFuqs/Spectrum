@@ -53,20 +53,23 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	@Override
 	public void onInitializeClient() {
 		logInfo("Starting Client Startup");
-
+		
 		logInfo("Registering Model Layers...");
 		SpectrumModelLayers.register();
-
+		
 		logInfo("Setting up Block Rendering...");
 		SpectrumBlocks.registerClient();
-
+		
+		logInfo("Setting up client side Mod Compat...");
+		SpectrumModCompat.registerClient();
+		
 		logInfo("Setting up Fluid Rendering...");
 		SpectrumFluids.registerClient();
-
+		
 		logInfo("Setting up GUIs...");
 		SpectrumScreenHandlerIDs.register();
 		SpectrumScreenHandlerTypes.registerClient();
-
+		
 		logInfo("Setting up ItemPredicates...");
 		SpectrumModelPredicateProviders.registerClient();
 

@@ -10,13 +10,13 @@
       "text": "Unlike your other gemstones, $(thing)Amethyst$() seems to have the ability to power spell casting wands. While this ability has broken your brain more than once, the results are impressive.$(br)What more is there?"
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "spectrum:anvil_crushing",
       "title": "Edified Leaves Crushing",
       "recipe": "spectrum:mod_integration/hexcasting/anvil_crushing/amethyst_edified_leaves",
       "text": "Hexcasters are seemingly unable to identify minerals other than Amethyst. $(thing)Clearly$() these cyan-coloured leaves have the essence of $(thing)Topaz$()..."
     },
     {
-      "type": "patchouli:spotlight",
+      "type": "spectrum:spirit_instiller_crafting",
       "title": "Edified Leaves Crafting",
       "advancement": "spectrum:unlocks/blocks/spirit_instiller",
       "recipe": "spectrum:mod_integration/hexcasting/spirit_instiller/citrine_edified_leaves",

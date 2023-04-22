@@ -15,7 +15,7 @@
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/ashen_circlet",
-      "text": "$(li)Prevents damage from fire and hot floors.$(li)When cooled down, grants you a short protection from lava"
+      "text": "$(li)Prevents damage from fire and hot floors$(li)Increases movement speed and vision in Lava$(li)When cooled down, grants you a short protection from Lava"
     }
   ]
 }

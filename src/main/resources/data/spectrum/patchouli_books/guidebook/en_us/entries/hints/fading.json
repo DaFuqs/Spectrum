@@ -17,7 +17,7 @@
       "type": "spectrum:hint",
       "title": "Concise Instructions",
       "cost": "spectrum:shimmerstone_gem#48",
-      "text": "Place organic blocks like Leaves, Pumpkins or Melons next to a block of Fading and wait a while. The block will get consumed and replaced with a different looking variant. Break those converted blocks to get a new resource."
+      "text": "Place organic blocks like Leaves, Pumpkins or Melons next to a Block of Fading and wait a while. The block will get consumed and replaced with a different looking variant. Break those converted blocks to get a new resource."
     }
   ]
 }

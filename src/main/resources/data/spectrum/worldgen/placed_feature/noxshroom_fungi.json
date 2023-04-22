@@ -1,5 +1,5 @@
 {
-  "feature": "spectrum:noxfungi/weighted",
+  "feature": "spectrum:noxfungi/weighted_with_vanilla",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",

@@ -101,7 +101,8 @@
     ],
     [
       "spectrum:noxshroom_fungi",
-      "spectrum:noxshroom_forest_vegetation"
+      "spectrum:noxshroom_forest_vegetation",
+      "spectrum:noxstem_columns"
     ],
     [
       "spectrum:dd_water_springs"

@@ -16,37 +16,37 @@
     },
     "replaceable": "#minecraft:moss_replaceable",
     "ground_state": {
-      "type": "minecraft:weighted_state_provider",
-      "entries": [
-        {
-          "weight": 1,
-          "data": {
-            "Name": "spectrum:snapping_ivy",
-            "Properties": {
-              "axis": "x"
-            }
-          }
-        },
-        {
-          "weight": 1,
-          "data": {
-            "Name": "spectrum:snapping_ivy",
-            "Properties": {
-              "axis": "z"
-            }
-          }
-        }
-      ]
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "spectrum:rotten_ground"
+      }
     },
     "vegetation_feature": {
       "feature": {
         "type": "minecraft:simple_block",
         "config": {
           "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "spectrum:rotten_ground"
-            }
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "spectrum:snapping_ivy",
+                  "Properties": {
+                    "axis": "x"
+                  }
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "spectrum:snapping_ivy",
+                  "Properties": {
+                    "axis": "z"
+                  }
+                }
+              }
+            ]
           }
         }
       },

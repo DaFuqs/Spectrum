@@ -1,21 +1,17 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.entity.entity.LightShardEntity;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.particle.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
-import javax.annotation.Nullable;
-import java.util.Optional;
+import javax.annotation.*;
+import java.util.*;
 
 public class GlassAmpouleItem extends Item {
 
@@ -42,16 +38,16 @@ public class GlassAmpouleItem extends Item {
         return super.postHit(stack, target, attacker);
     }
 
-    public void summonBarrage(World world, LivingEntity user, @Nullable Entity target) {
+    public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target) {
         var random = user.getRandom();
         var projectiles = MathHelper.nextGaussian(random, 13, 5);
-        var pos = user.getPos().add(0, user.getHeight() / 2, 0);
-
+        var pos = user.getEyePos();
+    
         user.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, 1, 1.2F + random.nextFloat() * 0.6F);
-
+    
         for (int i = 0; i < projectiles; i++) {
             var shard = new LightShardEntity(world, user, Optional.ofNullable(target), 0.5F, 1);
-
+        
             var velocityY = 0.0;
 
             if (user.isOnGround()) {

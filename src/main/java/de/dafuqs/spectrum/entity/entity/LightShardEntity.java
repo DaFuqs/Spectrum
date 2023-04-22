@@ -145,13 +145,13 @@ public class LightShardEntity extends ProjectileEntity {
             return;
         }
 
-        if (!(attacked instanceof LivingEntity))
+        if (!(attacked instanceof LivingEntity owner))
             return;
 
         var finalDamage = damage * (random.nextFloat() + 0.5F) * (1 - getVanishingProgress(age));
-
+    
         attacked.timeUntilRegen = 0;
-        attacked.damage(SpectrumDamageSources.irradiance((LivingEntity) getOwner()), finalDamage);
+        attacked.damage(SpectrumDamageSources.irradiance(owner), finalDamage);
 
         attacked.playSound(SpectrumSoundEvents.BLOCK_MOONSTONE_CLUSTER_BREAK, 2, 0.8F + random.nextFloat());
         attacked.playSound(SoundEvents.BLOCK_GLASS_BREAK, random.nextFloat() * 0.5F + 0.2F, 0.8F + random.nextFloat());

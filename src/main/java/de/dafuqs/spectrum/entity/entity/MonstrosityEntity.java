@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.entity.entity;
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.ai.*;
+import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -41,12 +42,13 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		}
 		return false;
 	};
+	private final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setPredicate(SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE);
 	
 	private static final float MAX_LIFE_LOST_PER_TICK = 20;
 	private static final float GET_STRONGER_EVERY_X_TICKS = 400;
 	
 	private Vec3d targetPosition = Vec3d.ZERO;
-	private MovementType movementType = MovementType.CIRCLE;
+	private MovementType movementType = MovementType.SWOOPING_TO_POSITION;
 	
 	private float previousHealth;
 	private int timesGottenStronger = 0;
@@ -71,11 +73,14 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	@Override
 	protected void initGoals() {
-		this.goalSelector.add(1, new StartAttackGoal());
+		this.goalSelector.add(1, new StartSwoopAttackGoal());
 		this.goalSelector.add(2, new SwoopMovementGoal());
+		this.goalSelector.add(3, new RetreatAndAttackGoal(this, 20));
 		this.goalSelector.add(3, new ProjectileAttackGoal(this, 1.0, 40, 28.0F));
 		this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0));
 		this.goalSelector.add(5, new FlyGoal(this, 1.0));
+		// TODO: spawn mines
+		// TODO: dripstone pillar entities from the ground (with short telegraphing)
 		
 		this.targetSelector.add(1, new ActiveTargetGoal<>(this, LivingEntity.class, 0, false, false, SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE));
 		this.targetSelector.add(2, new FindTargetGoal());
@@ -128,7 +133,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	public void tick() {
 		super.tick();
-		
 		if (this.hasInvincibilityTicks()) {
 			for (int j = 0; j < 3; ++j) {
 				this.world.addParticle(ParticleTypes.ENTITY_EFFECT, this.getX() + this.random.nextGaussian(), this.getY() + (double) (this.random.nextFloat() * 3.3F), this.getZ() + this.random.nextGaussian(), 0.7, 0.7, 0.7);
@@ -173,11 +177,9 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	public static DefaultAttributeContainer createMonstrosityAttributes() {
 		return HostileEntity.createHostileAttributes()
 				.add(EntityAttributes.GENERIC_MAX_HEALTH, 800.0)
-				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0)
-				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.6)
-				.add(EntityAttributes.GENERIC_FLYING_SPEED, 0.6)
+				.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 20.0)
 				.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0)
-				.add(EntityAttributes.GENERIC_ARMOR, 12.0)
+				.add(EntityAttributes.GENERIC_ARMOR, 18.0)
 				.add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 4.0)
 				.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 2.0)
 				.add(AdditionalEntityAttributes.MAGIC_PROTECTION, 2.0)
@@ -228,11 +230,6 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 	
 	@Override
-	public void setTarget(LivingEntity entity) {
-		super.setTarget(entity);
-	}
-	
-	@Override
 	public EntityGroup getGroup() {
 		return EntityGroup.UNDEAD;
 	}
@@ -272,8 +269,9 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 	
 	private enum MovementType {
-		CIRCLE,
-		SWOOP
+		SWOOPING_TO_POSITION, // position based movement
+		START_SWOOPING, // swoop to player and try hitting them
+		RETREATING // pissing off far, far away
 	}
 	
 	private class MonstrosityMoveControl extends MoveControl {
@@ -321,35 +319,31 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 				Vec3d vec3d = MonstrosityEntity.this.getVelocity();
 				MonstrosityEntity.this.setVelocity(vec3d.add((new Vec3d(p, r, q)).subtract(vec3d).multiply(0.2)));
 			}
-			
 		}
 	}
 	
-	private class StartAttackGoal extends Goal {
+	private class StartSwoopAttackGoal extends Goal {
 		private int cooldown;
-		
-		StartAttackGoal() {
-		}
 		
 		@Override
 		public boolean canStart() {
-			LivingEntity livingEntity = MonstrosityEntity.this.getTarget();
-			return livingEntity != null && MonstrosityEntity.this.isTarget(livingEntity, TargetPredicate.DEFAULT);
+			LivingEntity target = MonstrosityEntity.this.getTarget();
+			return target != null && MonstrosityEntity.this.isTarget(target, TARGET_PREDICATE);
 		}
 		
 		@Override
 		public void start() {
 			this.cooldown = this.getTickCount(10);
-			MonstrosityEntity.this.movementType = MovementType.CIRCLE;
+			MonstrosityEntity.this.movementType = MovementType.SWOOPING_TO_POSITION;
 			this.aimAtTarget();
 		}
 		
 		@Override
 		public void tick() {
-			if (MonstrosityEntity.this.movementType == MovementType.CIRCLE) {
+			if (MonstrosityEntity.this.movementType == MovementType.SWOOPING_TO_POSITION) {
 				--this.cooldown;
 				if (this.cooldown <= 0) {
-					MonstrosityEntity.this.movementType = MovementType.SWOOP;
+					MonstrosityEntity.this.movementType = MovementType.START_SWOOPING;
 					this.aimAtTarget();
 					this.cooldown = this.getTickCount((8 + MonstrosityEntity.this.random.nextInt(4)) * 20);
 					MonstrosityEntity.this.playSound(SoundEvents.ENTITY_PHANTOM_SWOOP, 10.0F, 0.95F + MonstrosityEntity.this.random.nextFloat() * 0.1F);
@@ -371,7 +365,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		
 		@Override
 		public boolean canStart() {
-			return MonstrosityEntity.this.getTarget() != null && MonstrosityEntity.this.movementType == MovementType.SWOOP;
+			return MonstrosityEntity.this.getTarget() != null && MonstrosityEntity.this.movementType == MovementType.START_SWOOPING;
 		}
 		
 		@Override
@@ -393,8 +387,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		
 		@Override
 		public void stop() {
-			MonstrosityEntity.this.setTarget(null);
-			MonstrosityEntity.this.movementType = MovementType.CIRCLE;
+			MonstrosityEntity.this.movementType = MovementType.SWOOPING_TO_POSITION;
 		}
 		
 		@Override
@@ -403,20 +396,22 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			if (livingEntity != null) {
 				MonstrosityEntity.this.targetPosition = new Vec3d(livingEntity.getX(), livingEntity.getBodyY(0.5), livingEntity.getZ());
 				if (MonstrosityEntity.this.getBoundingBox().expand(0.2).intersects(livingEntity.getBoundingBox())) {
+					// the monstrosity hit the entity
 					MonstrosityEntity.this.tryAttack(livingEntity);
-					MonstrosityEntity.this.movementType = MovementType.CIRCLE;
+					MonstrosityEntity.this.movementType = MovementType.SWOOPING_TO_POSITION;
 					if (!MonstrosityEntity.this.isSilent()) {
 						MonstrosityEntity.this.world.syncWorldEvent(WorldEvents.PHANTOM_BITES, MonstrosityEntity.this.getBlockPos(), 0);
 					}
 				} else if (MonstrosityEntity.this.horizontalCollision || MonstrosityEntity.this.hurtTime > 0) {
-					MonstrosityEntity.this.movementType = MovementType.CIRCLE;
+					// the player hit monstrosity
+					MonstrosityEntity.this.movementType = MovementType.SWOOPING_TO_POSITION;
 				}
 			}
 		}
 	}
 	
 	private class FindTargetGoal extends Goal {
-		private final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setPredicate(SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE);
+
 		private int delay = toGoalTicks(20);
 		
 		FindTargetGoal() {
@@ -430,8 +425,8 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			}
 			
 			this.delay = toGoalTicks(60);
-			PlayerEntity newTarget = MonstrosityEntity.this.world.getClosestPlayer(this.TARGET_PREDICATE, MonstrosityEntity.this);
-			if (newTarget != null && MonstrosityEntity.this.isTarget(newTarget, TargetPredicate.DEFAULT)) {
+			PlayerEntity newTarget = MonstrosityEntity.this.world.getClosestPlayer(TARGET_PREDICATE, MonstrosityEntity.this);
+			if (newTarget != null && MonstrosityEntity.this.isTarget(newTarget, TARGET_PREDICATE)) {
 				MonstrosityEntity.this.setTarget(newTarget);
 				return true;
 			}
@@ -442,8 +437,50 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		@Override
 		public boolean shouldContinue() {
 			LivingEntity target = MonstrosityEntity.this.getTarget();
-			return target != null && MonstrosityEntity.this.isTarget(target, TargetPredicate.DEFAULT);
+			return target != null && MonstrosityEntity.this.isTarget(target, TARGET_PREDICATE);
 		}
+	}
+	
+	private class RetreatAndAttackGoal extends Goal {
+		
+		protected MobEntity mob;
+		protected float retreatDistance;
+		
+		RetreatAndAttackGoal(PathAwareEntity mob, float retreatDistance) {
+			super();
+			this.mob = mob;
+			this.retreatDistance = retreatDistance;
+		}
+		
+		@Override
+		public boolean canStart() {
+			return MonstrosityEntity.this.movementType == MovementType.START_SWOOPING && mob.getTarget() != null && world.random.nextBoolean() && mob.distanceTo(mob.getTarget()) < retreatDistance - 4;
+		}
+		
+		@Override
+		public boolean shouldContinue() {
+			return mob.getTarget() != null && mob.isTarget(mob.getTarget(), TARGET_PREDICATE) && mob.distanceTo(mob.getTarget()) < retreatDistance;
+		}
+		
+		@Override
+		public void start() {
+			super.start();
+			Vec3d differenceToTarget = mob.getPos().subtract(mob.getTarget().getPos());
+			Vec3d multipliedDifference = differenceToTarget.multiply(1, 0, 1).normalize().multiply(retreatDistance);
+			MonstrosityEntity.this.targetPosition = mob.getPos().add(multipliedDifference);
+			MonstrosityEntity.this.movementType = MovementType.RETREATING;
+		}
+		
+		@Override
+		public void stop() {
+			LivingEntity target = mob.getTarget();
+			if (target != null && mob.isTarget(target, TARGET_PREDICATE)) {
+				GlassAmpouleItem.summonBarrage(world, mob, target);
+			}
+			MonstrosityEntity.this.movementType = MovementType.START_SWOOPING;
+			super.stop();
+		}
+		
 	}
 	
 }

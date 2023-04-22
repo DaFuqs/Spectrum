@@ -6,13 +6,14 @@ import net.fabricmc.api.*;
 import net.fabricmc.fabric.mixin.client.particle.*;
 import net.minecraft.client.*;
 import net.minecraft.client.particle.*;
+import net.minecraft.client.render.*;
 import net.minecraft.client.world.*;
 import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 public class DynamicParticle extends SpriteBillboardParticle {
 	
-	protected boolean glowInTheDark;
+	protected boolean glowInTheDark = false;
 	
 	public DynamicParticle(ClientWorld clientWorld, double d, double e, double f, double velocityX, double velocityY, double velocityZ) {
 		super(clientWorld, d, e, f, velocityX, velocityY, velocityZ);
@@ -21,12 +22,11 @@ public class DynamicParticle extends SpriteBillboardParticle {
 		this.velocityX = velocityX;
 		this.velocityY = velocityY;
 		this.velocityZ = velocityZ;
-		this.glowInTheDark = false;
 	}
 	
 	public int getBrightness(float tint) {
 		if (glowInTheDark) {
-			return 16777215; // #FFFFFF
+			return LightmapTextureManager.MAX_LIGHT_COORDINATE;
 		} else {
 			return super.getBrightness(tint);
 		}
@@ -44,7 +44,7 @@ public class DynamicParticle extends SpriteBillboardParticle {
 		this.setColor(effect.color.getX(), effect.color.getY(), effect.color.getZ());
 		this.gravityStrength = effect.gravity;
 		this.collidesWithWorld = effect.collisions;
-		this.glowInTheDark = effect.glowInTheDark;
+		this.glowInTheDark = effect.glowing;
 	}
 	
 	public static class Factory<P extends DynamicParticleEffect> implements ParticleFactory<P> {

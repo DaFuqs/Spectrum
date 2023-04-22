@@ -1,0 +1,6 @@
+{
+  "particle_type": "minecraft:sculk_charge_pop",
+  "gui_texture": "minecraft:particle/sculk_charge_pop_3",
+  "unlock_identifier": "spectrum:hidden/collect_vanilla/collect_echo_shard",
+  "supports_coloring": false
+}

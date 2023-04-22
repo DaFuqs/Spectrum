@@ -225,7 +225,8 @@ public class SpectrumS2CPacketReceiver {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, (client, handler, buf, responseSender) -> {
 			BlockPos pos = buf.readBlockPos();
 			if (client.world.getBlockEntity(pos) instanceof ParticleSpawnerBlockEntity) {
-				((ParticleSpawnerBlockEntity) client.world.getBlockEntity(pos)).applySettings(buf);
+				ParticleSpawnerConfiguration configuration = ParticleSpawnerConfiguration.fromBuf(buf);
+				((ParticleSpawnerBlockEntity) client.world.getBlockEntity(pos)).applySettings(configuration);
 			}
 		});
 		

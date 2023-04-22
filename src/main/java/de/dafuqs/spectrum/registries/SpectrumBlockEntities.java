@@ -52,7 +52,6 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 	public static BlockEntityType<EnderDropperBlockEntity> ENDER_DROPPER;
 	public static BlockEntityType<EnderHopperBlockEntity> ENDER_HOPPER;
 	public static BlockEntityType<ParticleSpawnerBlockEntity> PARTICLE_SPAWNER;
-	public static BlockEntityType<CreativeParticleSpawnerBlockEntity> CREATIVE_PARTICLE_SPAWNER;
 	public static BlockEntityType<UpgradeBlockEntity> UPGRADE_BLOCK;
 	public static BlockEntityType<SpectrumSkullBlockEntity> SKULL;
 	public static BlockEntityType<ShootingStarBlockEntity> SHOOTING_STAR;
@@ -102,7 +101,6 @@ public class SpectrumBlockEntities<T extends BlockEntity> {
 		ENDER_DROPPER = register("ender_dropper", EnderDropperBlockEntity::new, SpectrumBlocks.ENDER_DROPPER);
 		ENDER_HOPPER = register("ender_hopper", EnderHopperBlockEntity::new, SpectrumBlocks.ENDER_HOPPER);
 		PARTICLE_SPAWNER = register("particle_spawner", ParticleSpawnerBlockEntity::new, SpectrumBlocks.PARTICLE_SPAWNER);
-		CREATIVE_PARTICLE_SPAWNER = register("creative_particle_spawner", CreativeParticleSpawnerBlockEntity::new, SpectrumBlocks.CREATIVE_PARTICLE_SPAWNER);
 		COMPACTING_CHEST = register("compacting_chest", CompactingChestBlockEntity::new, SpectrumBlocks.COMPACTING_CHEST);
 		RESTOCKING_CHEST = register("restocking_chest", RestockingChestBlockEntity::new, SpectrumBlocks.RESTOCKING_CHEST);
 		PRIVATE_CHEST = register("private_chest", PrivateChestBlockEntity::new, SpectrumBlocks.PRIVATE_CHEST);

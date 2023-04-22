@@ -27,7 +27,7 @@ public class DynamicParticleEffect implements ParticleEffect {
 		}), Codec.BOOL.fieldOf("collisions").forGetter((effect) -> {
 			return effect.collisions;
 		}), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> {
-			return effect.glowInTheDark;
+			return effect.glowing;
 		})).apply(instance, DynamicParticleEffect::new);
 	});
 	
@@ -68,28 +68,28 @@ public class DynamicParticleEffect implements ParticleEffect {
 	public int lifetimeTicks;
 	public float gravity;
 	public boolean collisions;
-	public boolean glowInTheDark;
+	public boolean glowing;
 	
-	public DynamicParticleEffect(float gravity, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowInTheDark) {
-		this(SpectrumParticleTypes.SHOOTING_STAR, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
+	public DynamicParticleEffect(float gravity, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowing) {
+		this(SpectrumParticleTypes.SHOOTING_STAR, gravity, color, scale, lifetimeTicks, collisions, glowing);
 	}
 	
-	public DynamicParticleEffect(Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowInTheDark) {
-		this(SpectrumParticleTypes.SHOOTING_STAR, 1.0, color, scale, lifetimeTicks, collisions, glowInTheDark);
+	public DynamicParticleEffect(Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowing) {
+		this(SpectrumParticleTypes.SHOOTING_STAR, 1.0, color, scale, lifetimeTicks, collisions, glowing);
 	}
 	
-	public DynamicParticleEffect(ParticleType<?> particleType, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowInTheDark) {
-		this(particleType, 1.0, color, scale, lifetimeTicks, collisions, glowInTheDark);
+	public DynamicParticleEffect(ParticleType<?> particleType, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowing) {
+		this(particleType, 1.0, color, scale, lifetimeTicks, collisions, glowing);
 	}
 	
-	public DynamicParticleEffect(ParticleType<?> particleType, float gravity, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowInTheDark) {
+	public DynamicParticleEffect(ParticleType<?> particleType, float gravity, Vec3f color, float scale, int lifetimeTicks, boolean collisions, boolean glowing) {
 		this.particleTypeIdentifier = Registry.PARTICLE_TYPE.getId(particleType);
 		this.gravity = gravity;
 		this.color = color;
 		this.scale = scale;
 		this.lifetimeTicks = lifetimeTicks;
 		this.collisions = collisions;
-		this.glowInTheDark = glowInTheDark;
+		this.glowing = glowing;
 	}
 	
 	protected DynamicParticleEffect(Object o, Object o1, Object o2, Object o3, Object o4, Object o5, Object o6) {
@@ -105,7 +105,7 @@ public class DynamicParticleEffect implements ParticleEffect {
 		buf.writeFloat(this.scale);
 		buf.writeInt(this.lifetimeTicks);
 		buf.writeBoolean(this.collisions);
-		buf.writeBoolean(this.glowInTheDark);
+		buf.writeBoolean(this.glowing);
 	}
 	
 	public String asString() {

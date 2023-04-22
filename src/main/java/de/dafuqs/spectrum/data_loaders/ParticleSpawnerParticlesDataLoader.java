@@ -26,10 +26,11 @@ public class ParticleSpawnerParticlesDataLoader extends JsonDataLoader implement
 	 *
 	 * @param particleType      The particle type to dynamically fetch textures from
 	 * @param textureIdentifier The texture shown in its gui entry
+	 * @param supportsColoring  Weather the Particle Spawner enables CMY coloring for this particle (should be true, if grayscale)
 	 * @param unlockIdentifier  The advancement identifier required to being able to select this entry
 	 */
 	public record ParticleSpawnerEntry(ParticleType<?> particleType, Identifier textureIdentifier,
-									   @Nullable Identifier unlockIdentifier) {
+									   boolean supportsColoring, @Nullable Identifier unlockIdentifier) {
 	}
 	
 	protected static final List<ParticleSpawnerEntry> PARTICLES = new ArrayList<>();
@@ -44,11 +45,18 @@ public class ParticleSpawnerParticlesDataLoader extends JsonDataLoader implement
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
 			
-			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(Identifier.tryParse(jsonObject.get("particle_type").getAsString()));
+			String particleTypeString = jsonObject.get("particle_type").getAsString();
+			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(Identifier.tryParse(particleTypeString));
 			Identifier guiTexture = Identifier.tryParse(jsonObject.get("gui_texture").getAsString());
 			@Nullable Identifier unlockIdentifier = jsonObject.has("unlock_identifier") ? Identifier.tryParse(jsonObject.get("unlock_identifier").getAsString()) : null;
+			boolean supportsColoring = JsonHelper.getBoolean(jsonObject, "supports_coloring", false);
 			
-			PARTICLES.add(new ParticleSpawnerEntry(particleType, guiTexture, unlockIdentifier));
+			if (particleType == null) {
+				SpectrumCommon.logError("Particle Spawner Particle '" + particleTypeString + "' not found. Will be ignored.");
+				return;
+			}
+			
+			PARTICLES.add(new ParticleSpawnerEntry(particleType, guiTexture, supportsColoring, unlockIdentifier));
 		});
 	}
 	

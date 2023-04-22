@@ -1,0 +1,5 @@
+{
+  "particle_type": "minecraft:enchant",
+  "gui_texture": "minecraft:particle/sga_k",
+  "supports_coloring": true
+}

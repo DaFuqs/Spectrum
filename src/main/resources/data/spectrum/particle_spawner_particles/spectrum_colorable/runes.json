@@ -1,0 +1,6 @@
+{
+  "particle_type": "spectrum:runes",
+  "gui_texture": "spectrum:particle/generic_rune_0",
+  "unlock_identifier": "spectrum:midgame/get_azure_dike_charge",
+  "supports_coloring": true
+}

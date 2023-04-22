@@ -1,13 +1,12 @@
 {
-  "credit": "Made with Blockbench",
-  "parent": "block/block",
+  "parent": "minecraft:block/block",
   "textures": {
     "0": "spectrum:block/particle_spawner_top_off",
     "1": "spectrum:block/polished_basalt_pillar_side",
     "2": "spectrum:block/polished_basalt",
     "3": "spectrum:block/polished_basalt_pillar_top",
     "4": "spectrum:block/particle_spawner_base",
-    "particle": "spectrum:block/particle_spawner_top_off"
+    "particle": "spectrum:block/polished_basalt"
   },
   "elements": [
     {

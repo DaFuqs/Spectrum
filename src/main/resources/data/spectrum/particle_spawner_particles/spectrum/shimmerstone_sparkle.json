@@ -1,5 +1,6 @@
 {
   "particle_type": "spectrum:shimmerstone_sparkle",
   "gui_texture": "spectrum:particle/shimmerstone_sparkle",
-  "unlock_identifier": "spectrum:collect_shimmerstone"
+  "unlock_identifier": "spectrum:collect_shimmerstone",
+  "supports_coloring": false
 }

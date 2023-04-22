@@ -27,7 +27,7 @@ public class DynamicParticleEffectAlwaysShow extends DynamicParticleEffect {
 		}), Codec.BOOL.fieldOf("collisions").forGetter((effect) -> {
 			return effect.collisions;
 		}), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> {
-			return effect.glowInTheDark;
+			return effect.glowing;
 		})).apply(instance, DynamicParticleEffectAlwaysShow::new);
 	});
 	

@@ -1,0 +1,5 @@
+{
+  "particle_type": "minecraft:enchanted_hit",
+  "gui_texture": "minecraft:particle/enchanted_hit",
+  "supports_coloring": true
+}

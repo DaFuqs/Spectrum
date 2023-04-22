@@ -1,5 +1,0 @@
-{
-  "particle_type": "minecraft:nautilus",
-  "gui_texture": "minecraft:particle/nautilus",
-  "unlock_identifier": "spectrum:hidden/collect_vanilla/collect_nautilus_shell"
-}

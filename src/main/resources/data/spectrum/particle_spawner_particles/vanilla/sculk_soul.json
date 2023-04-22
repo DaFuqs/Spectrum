@@ -1,0 +1,6 @@
+{
+  "particle_type": "minecraft:sculk_soul",
+  "gui_texture": "minecraft:particle/sculk_soul_6",
+  "unlock_identifier": "spectrum:hidden/collect_vanilla/collect_echo_shard",
+  "supports_coloring": false
+}

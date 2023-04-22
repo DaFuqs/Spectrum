@@ -1,0 +1,5 @@
+{
+  "particle_type": "minecraft:cloud",
+  "gui_texture": "minecraft:particle/generic_7",
+  "supports_coloring": true
+}

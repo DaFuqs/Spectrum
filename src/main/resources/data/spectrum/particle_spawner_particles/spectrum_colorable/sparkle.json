@@ -1,0 +1,6 @@
+{
+  "particle_type": "spectrum:white_sparkle_rising",
+  "gui_texture": "spectrum:particle/white_sparkle",
+  "unlock_identifier": "spectrum:midgame/enter_liquid_crystal",
+  "supports_coloring": true
+}

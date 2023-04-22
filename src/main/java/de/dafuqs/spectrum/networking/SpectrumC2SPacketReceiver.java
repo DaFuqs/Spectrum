@@ -1,32 +1,27 @@
 package de.dafuqs.spectrum.networking;
 
-import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
-import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.helpers.Support;
+import de.dafuqs.spectrum.blocks.chests.*;
+import de.dafuqs.spectrum.blocks.particle_spawner.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.items.magic_items.EnderSpliceItem;
-import de.dafuqs.spectrum.items.tools.WorkstaffItem;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.SharedConstants;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.networking.v1.*;
+import net.minecraft.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.recipe.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
 
-import java.util.List;
+import java.util.*;
 
 public class SpectrumC2SPacketReceiver {
 	
@@ -57,16 +52,17 @@ public class SpectrumC2SPacketReceiver {
 				ParticleSpawnerBlockEntity blockEntity = particleSpawnerScreenHandler.getBlockEntity();
 				if (blockEntity != null) {
 					/// ...apply the new settings...
-					blockEntity.applySettings(buf);
+					ParticleSpawnerConfiguration configuration = ParticleSpawnerConfiguration.fromBuf(buf);
+					blockEntity.applySettings(configuration);
 					
 					// ...and distribute it to all clients again
-					PacketByteBuf packetByteBuf = PacketByteBufs.create();
-					packetByteBuf.writeBlockPos(blockEntity.getPos());
-					blockEntity.writeSettings(packetByteBuf);
+					PacketByteBuf outgoingBuf = PacketByteBufs.create();
+					outgoingBuf.writeBlockPos(blockEntity.getPos());
+					configuration.write(outgoingBuf);
 					
 					// Iterate over all players tracking a position in the world and send the packet to each player
 					for (ServerPlayerEntity serverPlayerEntity : PlayerLookup.tracking((ServerWorld) blockEntity.getWorld(), blockEntity.getPos())) {
-						ServerPlayNetworking.send(serverPlayerEntity, SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, packetByteBuf);
+						ServerPlayNetworking.send(serverPlayerEntity, SpectrumS2CPackets.CHANGE_PARTICLE_SPAWNER_SETTINGS_CLIENT_PACKET_ID, outgoingBuf);
 					}
 				}
 			}

@@ -3,6 +3,6 @@
   "textures": {
     "top": "spectrum:block/polished_basalt",
     "side": "spectrum:block/amethyst_basalt_lamp",
-    "inside": "minecraft:block/amethyst_block"
+    "inside": "spectrum:block/amethyst_lamp_inner"
   }
 }

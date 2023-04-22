@@ -3,6 +3,6 @@
   "textures": {
     "top": "spectrum:block/polished_basalt",
     "side": "spectrum:block/moonstone_basalt_lamp",
-    "inside": "spectrum:block/moonstone_block"
+    "inside": "spectrum:block/moonstone_lamp_inner"
   }
 }

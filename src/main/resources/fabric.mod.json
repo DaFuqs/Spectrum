@@ -72,7 +72,8 @@
     "chalk-colorful-addon": "*",
     "paginatedadvancements": "*",
     "ants": "*",
-    "bettercombat": "*"
+    "bettercombat": "*",
+    "continuity": "*"
   },
   "breaks": {
     "Dashloader": "<=3.0.9",

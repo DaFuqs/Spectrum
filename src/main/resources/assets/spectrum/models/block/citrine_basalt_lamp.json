@@ -3,6 +3,6 @@
   "textures": {
     "top": "spectrum:block/polished_basalt",
     "side": "spectrum:block/citrine_basalt_lamp",
-    "inside": "spectrum:block/citrine_block"
+    "inside": "spectrum:block/citrine_lamp_inner"
   }
 }

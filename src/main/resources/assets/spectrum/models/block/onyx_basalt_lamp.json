@@ -3,6 +3,6 @@
   "textures": {
     "top": "spectrum:block/polished_basalt",
     "side": "spectrum:block/onyx_basalt_lamp",
-    "inside": "spectrum:block/onyx_block"
+    "inside": "spectrum:block/onyx_lamp_inner"
   }
 }

@@ -33,16 +33,46 @@
     "spectrum:small_redstone_bud",
     "spectrum:large_redstone_bud",
 
-    "spectrum:small_certus_quartz_bud",
-    "spectrum:large_certus_quartz_bud",
-    "spectrum:small_fluix_bud",
-    "spectrum:large_fluix_bud",
+    {
+      "id": "spectrum:small_certus_quartz_bud",
+      "required": false
+    },
+    {
+      "id": "spectrum:large_certus_quartz_bud",
+      "required": false
+    },
+    {
+      "id": "spectrum:small_fluix_bud",
+      "required": false
+    },
+    {
+      "id": "spectrum:large_fluix_bud",
+      "required": false
+    },
 
-    "spectrum:small_globette_bud",
-    "spectrum:large_globette_bud",
-    "spectrum:small_globette_end_bud",
-    "spectrum:large_globette_end_bud",
-    "spectrum:small_globette_nether_bud",
-    "spectrum:large_globette_nether_bud"
+    {
+      "id": "spectrum:small_globette_bud",
+      "required": false
+    },
+    {
+      "id": "spectrum:large_globette_bud",
+      "required": false
+    },
+    {
+      "id": "spectrum:small_globette_end_bud",
+      "required": false
+    },
+    {
+      "id": "spectrum:large_globette_end_bud",
+      "required": false
+    },
+    {
+      "id": "spectrum:small_globette_nether_bud",
+      "required": false
+    },
+    {
+      "id": "spectrum:large_globette_nether_bud",
+      "required": false
+    }
   ]
 }

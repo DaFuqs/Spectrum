@@ -18,11 +18,25 @@
     "spectrum:quartz_cluster",
     "spectrum:redstone_cluster",
 
-    "spectrum:certus_quartz_cluster",
-    "spectrum:fluix_cluster",
-
-    "spectrum:globette_cluster",
-    "spectrum:globette_end_cluster",
-    "spectrum:globette_nether_cluster"
+    {
+      "id": "spectrum:certus_quartz_cluster",
+      "required": false
+    },
+    {
+      "id": "spectrum:fluix_cluster",
+      "required": false
+    },
+    {
+      "id": "spectrum:globette_cluster",
+      "required": false
+    },
+    {
+      "id": "spectrum:globette_end_cluster",
+      "required": false
+    },
+    {
+      "id": "spectrum:globette_nether_cluster",
+      "required": false
+    }
   ]
 }

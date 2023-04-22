@@ -13,11 +13,26 @@
     "spectrum:pure_glowstone",
     "spectrum:pure_prismarine",
 
-    "spectrum:pure_certus_quartz",
-    "spectrum:pure_fluix",
+    {
+      "id": "spectrum:pure_certus_quartz",
+      "required": false
+    },
+    {
+      "id": "spectrum:pure_fluix",
+      "required": false
+    },
 
-    "spectrum:pure_globette",
-    "spectrum:pure_globette_nether",
-    "spectrum:pure_globette_end"
+    {
+      "id": "spectrum:pure_globette",
+      "required": false
+    },
+    {
+      "id": "spectrum:pure_globette_nether",
+      "required": false
+    },
+    {
+      "id": "spectrum:pure_globette_end",
+      "required": false
+    }
   ]
 }

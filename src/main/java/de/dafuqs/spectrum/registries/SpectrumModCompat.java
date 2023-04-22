@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.crystallarieum.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
@@ -17,17 +18,17 @@ import static de.dafuqs.spectrum.registries.SpectrumBlocks.*;
 
 public class SpectrumModCompat {
 	
-	protected static final List<ModCompatContainer> CONTAINERS = new ArrayList<>();
+	protected static final Map<String, ModIntegrationPack> INTEGRATION_PACKS = new HashMap<>();
 	
-	protected abstract static class ModCompatContainer {
+	protected abstract static class ModIntegrationPack {
 		abstract void register();
 		
 		abstract void registerClient();
 	}
 	
-	protected static void registerContainer(String modId, ModCompatContainer container) {
-		if (FabricLoader.getInstance().isModLoaded(modId)) {
-			CONTAINERS.add(container);
+	protected static void registerContainer(String modId, ModIntegrationPack container) {
+		if (!SpectrumCommon.CONFIG.IntegrationPacksToSkipLoading.contains(modId) && FabricLoader.getInstance().isModLoaded(modId)) {
+			INTEGRATION_PACKS.put(modId, container);
 		}
 	}
 	
@@ -35,18 +36,22 @@ public class SpectrumModCompat {
 		registerContainer("ae2", new AE2Compat());
 		registerContainer("gobber2", new GobberCompat());
 		
-		for (ModCompatContainer container : CONTAINERS) {
+		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.register();
 		}
 	}
 	
 	public static void registerClient() {
-		for (ModCompatContainer container : CONTAINERS) {
+		for (ModIntegrationPack container : INTEGRATION_PACKS.values()) {
 			container.registerClient();
 		}
 	}
 	
-	public static class AE2Compat extends ModCompatContainer {
+	public static boolean isIntegrationPackActive(String modId) {
+		return INTEGRATION_PACKS.keySet().contains(modId);
+	}
+	
+	public static class AE2Compat extends ModIntegrationPack {
 		
 		public static Block SMALL_CERTUS_QUARTZ_BUD;
 		public static Block LARGE_CERTUS_QUARTZ_BUD;
@@ -104,7 +109,7 @@ public class SpectrumModCompat {
 		}
 	}
 	
-	public static class GobberCompat extends ModCompatContainer {
+	public static class GobberCompat extends ModIntegrationPack {
 		
 		public static Block SMALL_GLOBETTE_BUD;
 		public static Block LARGE_GLOBETTE_BUD;

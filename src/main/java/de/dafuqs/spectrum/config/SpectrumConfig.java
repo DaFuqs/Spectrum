@@ -8,16 +8,19 @@ import java.util.*;
 
 @Config(name = "Spectrum")
 public class SpectrumConfig implements ConfigData {
-
+	
 	@Comment("The duration in milliseconds ingame recipe/unlock popups stay on the screen")
 	public long ToastTimeMilliseconds = 7500;
-
+	
 	@Comment("The reverb decay time for sound effects in Spectrum's dimension")
 	public float DimensionReverbDecayTime = 8.0F;
-
+	
 	@Comment("The reverb density for sound effects in Spectrum's dimension")
 	public float DimensionReverbDensity = 0.5F;
-
+	
+	@Comment("Integration Packs to skip loading on startup (in case of mod compat errors)")
+	public Set<String> IntegrationPacksToSkipLoading = new HashSet<>();
+	
 	@Comment("""
 			The vanilla anvil caps enchantment levels at the max level for the enchantment
 			So enchanted books that exceed the enchantments natural max level get capped

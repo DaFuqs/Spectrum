@@ -9,5 +9,11 @@
   "result": {
     "item": "spectrum:pure_certus_quartz",
     "count": 9
-  }
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:integration_pack_active",
+      "integration_pack": "ae2"
+    }
+  ]
 }

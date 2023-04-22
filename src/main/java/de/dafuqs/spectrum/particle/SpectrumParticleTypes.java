@@ -39,6 +39,7 @@ public class SpectrumParticleTypes {
 	public static DefaultParticleType MOONSTONE_STRIKE;
 	public static DefaultParticleType MIRROR_IMAGE;
 	
+	public static DefaultParticleType RUNES;
 	public static DefaultParticleType AZURE_DIKE_RUNES;
 	public static DefaultParticleType AZURE_DIKE_RUNES_MAJOR;
 	public static DefaultParticleType DRAKEBLOOD_DIKE_RUNES;
@@ -207,6 +208,7 @@ public class SpectrumParticleTypes {
 		SHIMMERSTONE_SPARKLE_TINY = register("shimmerstone_sparkle_tiny", false);
 		VOID_FOG = register("void_fog", false);
 		
+		RUNES = register("runes", false);
 		AZURE_DIKE_RUNES = register("azure_dike_runes", false);
 		AZURE_DIKE_RUNES_MAJOR = register("azure_dike_runes_major", false);
 		DRAKEBLOOD_DIKE_RUNES = register("drakeblood_dike_runes", false);

@@ -259,6 +259,17 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.world.spawnEntity(persistentProjectileEntity);
 	}
 	
+	@Override
+	public void writeCustomDataToNbt(NbtCompound nbt) {
+		super.writeCustomDataToNbt(nbt);
+		// TODO
+	}
+	
+	@Override
+	public void readCustomDataFromNbt(NbtCompound nbt) {
+		super.readCustomDataFromNbt(nbt);
+		// TODO
+	}
 	
 	private enum MovementType {
 		CIRCLE,

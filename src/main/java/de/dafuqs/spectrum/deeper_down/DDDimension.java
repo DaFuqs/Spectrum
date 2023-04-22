@@ -9,9 +9,9 @@ import net.minecraft.world.biome.*;
 
 public class DDDimension {
 	
-	public static final Identifier DEEPER_DOWN_EFFECTS_ID = SpectrumCommon.locate("deeper_down");
-	public static final Identifier DEEPER_DOWN_DIMENSION_ID = SpectrumCommon.locate("deeper_down_dimension");
-	public static final RegistryKey<World> DEEPER_DOWN_DIMENSION_KEY = RegistryKey.of(Registry.WORLD_KEY, DEEPER_DOWN_DIMENSION_ID);
+	public static final Identifier EFFECTS_ID = SpectrumCommon.locate("deeper_down");
+	public static final Identifier DIMENSION_ID = SpectrumCommon.locate("deeper_down");
+	public static final RegistryKey<World> DIMENSION_KEY = RegistryKey.of(Registry.WORLD_KEY, DIMENSION_ID);
 	
 	public static final RegistryKey<Biome> CRYSTAL_GARDENS = getBiomeKey("crystal_gardens");
 	public static final RegistryKey<Biome> DEEP_BARRENS = getBiomeKey("deep_barrens");
@@ -28,7 +28,7 @@ public class DDDimension {
 	}
 	
 	public static void registerClient() {
-		DimensionEffectsAccessor.getEffects().put(DEEPER_DOWN_EFFECTS_ID, new DeeperDownDimensionEffects());
+		DimensionEffectsAccessor.getEffects().put(EFFECTS_ID, new DeeperDownDimensionEffects());
 	}
 	
 }

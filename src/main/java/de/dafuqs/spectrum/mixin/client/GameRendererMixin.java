@@ -12,7 +12,7 @@ public abstract class GameRendererMixin {
 
     @ModifyReturnValue(method = "getNightVisionStrength(Lnet/minecraft/entity/LivingEntity;F)F", at = @At("RETURN"))
     private static float spectrum$nerfNightVisionInDimension(float original, LivingEntity entity, float tickDelta) {
-        if (DDDimension.DEEPER_DOWN_DIMENSION_KEY.equals(entity.world.getRegistryKey())) {
+        if (DDDimension.DIMENSION_KEY.equals(entity.world.getRegistryKey())) {
             return original / 6F;
         }
         return original;

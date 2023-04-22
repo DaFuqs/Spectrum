@@ -22,7 +22,7 @@
             "predicate": {
               "type": "spectrum:monstrosity",
               "location": {
-                "dimension": "spectrum:deeper_down_dimension"
+                "dimension": "spectrum:deeper_down"
               }
             }
           }

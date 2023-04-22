@@ -189,7 +189,7 @@ public class Support {
 				return "Nether";
 			case "minecraft:end":
 				return "End";
-			case "spectrum:deeper_down_dimension":
+			case "spectrum:deeper_down":
 				return "Deeper Down";
 			default:
 				if (dimensionKeyString.contains(":")) {

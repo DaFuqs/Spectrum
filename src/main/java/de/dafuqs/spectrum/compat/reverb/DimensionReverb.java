@@ -15,7 +15,7 @@ public class DimensionReverb {
 
 	public static void setup() {
 		if (SpectrumCommon.CONFIG.DimensionReverbDecayTime > 0 || SpectrumCommon.CONFIG.DimensionReverbDensity > 0) {
-			Registry.register(Reverb.SOUND_EFFECTS, DDDimension.DEEPER_DOWN_DIMENSION_ID, new SoundEffects(
+			Registry.register(Reverb.SOUND_EFFECTS, DDDimension.DIMENSION_ID, new SoundEffects(
 					Optional.of(new StaticReverbEffect.Builder()
 							.setDecayTime(SpectrumCommon.CONFIG.DimensionReverbDecayTime)
 							.setDensity(SpectrumCommon.CONFIG.DimensionReverbDensity).build()

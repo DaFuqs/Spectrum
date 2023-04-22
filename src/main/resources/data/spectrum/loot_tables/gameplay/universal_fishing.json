@@ -100,7 +100,7 @@
                 {
                   "condition": "minecraft:location_check",
                   "predicate": {
-                    "dimension": "spectrum:deeper_down_dimension"
+                    "dimension": "spectrum:deeper_down"
                   }
                 }
               ]

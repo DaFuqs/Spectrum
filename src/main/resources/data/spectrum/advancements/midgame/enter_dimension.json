@@ -16,7 +16,7 @@
     "enter_dimension": {
       "trigger": "minecraft:changed_dimension",
       "conditions": {
-        "to": "spectrum:deeper_down_dimension"
+        "to": "spectrum:deeper_down"
       }
     },
     "gotten_previous": {

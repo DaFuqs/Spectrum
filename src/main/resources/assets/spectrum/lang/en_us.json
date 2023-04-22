@@ -2406,6 +2406,7 @@
   "block.spectrum.forfeiture": "Forfeiture",
   "block.spectrum.decay_away": "Decay Away",
   "block.spectrum.particle_spawner": "Particle Spawner",
+  "block.spectrum.particle_spawner.tooltip": "Redstone powered, highly configurable particle display",
   "block.spectrum.creative_particle_spawner": "Creative Particle Spawner",
   "block.spectrum.creative_particle_spawner.tooltip": "Unbreakable - does not require Redstone",
   "block.spectrum.particle_spawner.particle_count": "Particles / Second",

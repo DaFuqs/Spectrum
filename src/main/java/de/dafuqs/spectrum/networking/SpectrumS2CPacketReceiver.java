@@ -159,7 +159,7 @@ public class SpectrumS2CPacketReceiver {
 				
 				Vec3f color = ColorHelper.getVec(dyeColor);
 				float velocityModifier = 0.25F;
-				for (Vec3d velocity : Support.VECTORS_16) {
+				for (Vec3d velocity : VectorPattern.SIXTEEN.getVectors()) {
 					client.world.addParticle(
 							new DynamicParticleEffect(SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 0.0F, color, 1.5F, 40, false, true),
 							sourcePos.x, sourcePos.y, sourcePos.z,

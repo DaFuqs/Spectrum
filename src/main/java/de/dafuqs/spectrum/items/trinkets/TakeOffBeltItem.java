@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.items.trinkets;
 
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.enchanter.*;
-import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
@@ -71,7 +70,7 @@ public class TakeOffBeltItem extends SpectrumTrinketItem implements EnchanterEnc
 							int sneakTimeMod = (int) sneakTicks / CHARGE_TIME_TICKS;
 							
 							entity.getWorld().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SpectrumSoundEvents.BLOCK_TOPAZ_BLOCK_HIT, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-							for (Vec3d vec : Support.VECTORS_16) {
+							for (Vec3d vec : VectorPattern.SIXTEEN.getVectors()) {
 								SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) entity.getWorld(), entity.getPos(), SpectrumParticleTypes.LIQUID_CRYSTAL_SPARKLE, 1, vec.multiply(0.5));
 							}
 							

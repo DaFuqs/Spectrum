@@ -92,7 +92,7 @@ public class SpectrumS2CPacketReceiver {
 		ClientPlayNetworking.registerGlobalReceiver(SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID, (client, handler, buf, responseSender) -> {
 			Vec3d position = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
 			ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(buf.readIdentifier());
-			ParticlePattern pattern = ParticlePattern.values()[buf.readInt()];
+			VectorPattern pattern = VectorPattern.values()[buf.readInt()];
 			double velocity = buf.readDouble();
 			if (particleType instanceof ParticleEffect particleEffect) {
 				client.execute(() -> {
@@ -380,8 +380,8 @@ public class SpectrumS2CPacketReceiver {
 				client.gameRenderer.showFloatingItem(SpectrumItems.DIVINATION_HEART.getDefaultStack());
 				client.world.playSound(player.getBlockPos(), SpectrumSoundEvents.FAILING_PLACED, SoundCategory.PLAYERS, 1.0F, 1.0F, false);
 				
-				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
-				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.RED_CRAFTING, ParticlePattern.SIXTEEN, 0.4);
+				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.WHITE_CRAFTING, VectorPattern.SIXTEEN, 0.4);
+				ParticleHelper.playParticleWithPatternAndVelocityClient(player.world, player.getPos(), SpectrumParticleTypes.RED_CRAFTING, VectorPattern.SIXTEEN, 0.4);
 			});
 		});
 		

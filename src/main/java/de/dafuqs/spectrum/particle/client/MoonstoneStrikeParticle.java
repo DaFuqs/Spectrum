@@ -21,7 +21,7 @@ public class MoonstoneStrikeParticle extends NoRenderParticle {
         if (this.age == 0) {
             world.addParticle(SpectrumParticleTypes.WHITE_EXPLOSION, this.x, this.y, this.z, 0, 0, 0);
         }
-        ParticleHelper.playParticleWithPatternAndVelocityClient(this.world, new Vec3d(this.x, this.y, this.z), SpectrumParticleTypes.WHITE_CRAFTING, ParticlePattern.EIGHT, 0.5F);
+        ParticleHelper.playParticleWithPatternAndVelocityClient(this.world, new Vec3d(this.x, this.y, this.z), SpectrumParticleTypes.WHITE_CRAFTING, VectorPattern.EIGHT, 0.5F);
 
         this.age++;
         if (this.age == MAX_AGE) {

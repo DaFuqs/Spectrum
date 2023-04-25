@@ -352,6 +352,7 @@ public class SpectrumItems {
 	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(Tab.EQUIPMENT.settings(1));
 	public static final Item RADIANCE_STAFF = new RadianceStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item NATURES_STAFF = new NaturesStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item HERDING_STAFF = new HerdingStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item CONSTRUCTORS_STAFF = new PlacementStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
@@ -686,6 +687,7 @@ public class SpectrumItems {
 		register("bag_of_holding", BAG_OF_HOLDING, DyeColor.PURPLE);
 		register("radiance_staff", RADIANCE_STAFF, DyeColor.YELLOW);
 		register("natures_staff", NATURES_STAFF, DyeColor.LIME);
+		register("herding_staff", HERDING_STAFF, DyeColor.LIME);
 		register("constructors_staff", CONSTRUCTORS_STAFF, DyeColor.LIGHT_GRAY);
 		register("exchanging_staff", EXCHANGING_STAFF, DyeColor.LIGHT_GRAY);
 		register("block_flooder", BLOCK_FLOODER, DyeColor.LIGHT_GRAY);

@@ -93,11 +93,12 @@ public class SpectrumS2CPacketSender {
 
 	/**
 	 * Play particles matching a spawn pattern
+	 *
 	 * @param world          the world
 	 * @param position       the pos of the particles
 	 * @param particleEffect The particle effect to play
 	 */
-	public static void playParticleWithPatternAndVelocity(@Nullable PlayerEntity notThisPlayerEntity, ServerWorld world, @NotNull Vec3d position, @NotNull ParticleEffect particleEffect, @NotNull ParticlePattern pattern, double velocity) {
+	public static void playParticleWithPatternAndVelocity(@Nullable PlayerEntity notThisPlayerEntity, ServerWorld world, @NotNull Vec3d position, @NotNull ParticleEffect particleEffect, @NotNull VectorPattern pattern, double velocity) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);

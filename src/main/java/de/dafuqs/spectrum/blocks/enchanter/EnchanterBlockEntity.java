@@ -711,7 +711,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 						// There was enough experience drained from the knowledge gem that the visual changed
 						// To display the updated knowledge gem size clientside the inventory has to be synched
 						// to the clients for rendering purposes
-						SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 2.5, this.pos.getZ() + 0.5), SpectrumParticleTypes.LIME_CRAFTING, ParticlePattern.SIXTEEN, 0.05F);
+						SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, new Vec3d(this.pos.getX() + 0.5, this.pos.getY() + 2.5, this.pos.getZ() + 0.5), SpectrumParticleTypes.LIME_CRAFTING, VectorPattern.SIXTEEN, 0.05F);
 						this.updateInClientWorld();
 					}
 				}

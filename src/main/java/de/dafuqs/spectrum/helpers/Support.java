@@ -19,51 +19,6 @@ import java.util.*;
 
 public class Support {
 	
-	public static final List<Vec3d> VECTORS_4 = List.of(
-			new Vec3d(1.0D, 0, 0.0D),
-			new Vec3d(0.0D, 0, 1.0D),
-			new Vec3d(-1.0, 0, 0.0D),
-			new Vec3d(0.0D, 0, -1.0D)
-	);
-	public static final List<Vec3d> VECTORS_8 = List.of(
-			new Vec3d(1.0D, 0, 0.0D),
-			new Vec3d(0.7D, 0, 0.7D),
-			new Vec3d(0.0D, 0, 1.0D),
-			new Vec3d(-0.7D, 0, 0.7D),
-			new Vec3d(-1.0D, 0, 0.0D),
-			new Vec3d(-0.7D, 0, -0.7D),
-			new Vec3d(0.0D, 0, -1.0D),
-			new Vec3d(0.7D, 0, -0.7D)
-	);
-	// Like eight, just turned clockwise
-	public static final List<Vec3d> VECTORS_8_OFFSET = List.of(
-			new Vec3d(0.75D, 0, 0.5D),
-			new Vec3d(0.5D, 0, 0.75D),
-			new Vec3d(-0.5D, 0, 0.75D),
-			new Vec3d(-0.75D, 0, 0.5D),
-			new Vec3d(-0.75D, 0, 0.5D),
-			new Vec3d(-0.5D, 0, -0.75D),
-			new Vec3d(0.5D, 0, -0.75D),
-			new Vec3d(0.75D, 0, -0.5D)
-	);
-	public static final List<Vec3d> VECTORS_16 = List.of(
-			new Vec3d(1.0D, 0, 0.0D),
-			new Vec3d(0.75D, 0, 0.5D),
-			new Vec3d(0.7D, 0, 0.7D),
-			new Vec3d(0.5D, 0, 0.75D),
-			new Vec3d(0.0D, 0, 1.0D),
-			new Vec3d(-0.5D, 0, 0.75D),
-			new Vec3d(-0.7D, 0, 0.7D),
-			new Vec3d(-0.75D, 0, 0.5D),
-			new Vec3d(-1.0D, 0, 0.0D),
-			new Vec3d(-0.75D, 0, 0.5D),
-			new Vec3d(-0.7D, 0, -0.7D),
-			new Vec3d(-0.5D, 0, -0.75D),
-			new Vec3d(0.0D, 0, -1.0D),
-			new Vec3d(0.5D, 0, -0.75D),
-			new Vec3d(0.7D, 0, -0.7D),
-			new Vec3d(0.75D, 0, -0.5D)
-	);
 	private static final Identifier PROGRESSION_FINISHED_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("endgame/finish_progression");
 	public static final DecimalFormat DF = new DecimalFormat("0");
 	public static final DecimalFormat DF1 = new DecimalFormat("0.0");

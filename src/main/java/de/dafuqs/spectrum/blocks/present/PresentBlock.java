@@ -13,7 +13,6 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.context.*;
 import net.minecraft.particle.*;
-import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
@@ -104,9 +103,9 @@ public class PresentBlock extends BlockWithEntity {
 						world.createAndScheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
 					} else {
 						if (presentBlockEntity.getOwnerName() != null) {
-							SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.present.tooltip.wrapped_placed.giver", presentBlockEntity.getOwnerName()), false);
+							player.sendMessage(Text.translatable("block.spectrum.present.tooltip.wrapped_placed.giver", presentBlockEntity.getOwnerName()), true);
 						} else {
-							SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.present.tooltip.wrapped_placed"), false);
+							player.sendMessage(Text.translatable("block.spectrum.present.tooltip.wrapped_placed"), true);
 						}
 						
 					}

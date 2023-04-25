@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.chests;
 import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.interfaces.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -12,7 +11,6 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.screen.*;
-import net.minecraft.server.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
@@ -139,7 +137,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		if (!isOwner && this.world != null) {
 			this.lastNonOwnerOpenedTick = this.world.getTime();
 			updateRedstone(this.pos, this.world.getBlockState(pos));
-			SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.private_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName)), false);
+			player.sendMessage(Text.translatable("block.spectrum.private_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName)), true);
 		}
 		
 		return isOwner;

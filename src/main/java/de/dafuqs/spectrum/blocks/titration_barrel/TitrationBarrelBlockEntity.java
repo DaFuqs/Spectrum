@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
@@ -159,9 +158,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		if (optionalRecipe.isEmpty()) {
 			if (player != null) {
 				if (inventory.isEmpty() && getFluidVariant().isBlank()) {
-					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.empty_when_tapping"), false);
+					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.empty_when_tapping"), true);
 				} else {
-					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), false);
+					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), true);
 				}
 			}
 		} else {
@@ -175,7 +174,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 						handStack.decrement(1);
 						canTap = true;
 					} else if (player != null) {
-						SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName()), false);
+						player.sendMessage(Text.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName()), true);
 					}
 				}
 				if (canTap) {
@@ -185,9 +184,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 				}
 			} else if (player != null) {
 				if (getFluidVariant().isBlank()) {
-					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.missing_liquid_when_tapping"), false);
+					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.missing_liquid_when_tapping"), true);
 				} else {
-					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), false);
+					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), true);
 				}
 			}
 		}

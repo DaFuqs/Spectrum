@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.spirit_sallow;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.interfaces.*;
-import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -30,9 +29,9 @@ public class OminousSaplingBlock extends PlantBlock implements BlockEntityProvid
 		if (!world.isClient()) {
 			OminousSaplingBlockEntity ominousSaplingBlockEntity = getBlockEntity(world, pos);
 			if (ominousSaplingBlockEntity != null) {
-				SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.of("Sapling owner UUID: " + ominousSaplingBlockEntity.getOwnerUUID()), false);
+				player.sendMessage(Text.of("Sapling owner UUID: " + ominousSaplingBlockEntity.getOwnerUUID()), true);
 			} else {
-				SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.of("Sapling block entity putt :("), false);
+				player.sendMessage(Text.of("Sapling block entity putt :("), true);
 			}
 		}
 		return ActionResult.SUCCESS;

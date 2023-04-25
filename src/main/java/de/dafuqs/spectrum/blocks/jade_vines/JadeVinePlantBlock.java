@@ -2,11 +2,9 @@ package de.dafuqs.spectrum.blocks.jade_vines;
 
 import de.dafuqs.spectrum.items.magic_items.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.api.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
-import net.minecraft.client.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
@@ -108,47 +106,34 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 						if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 							Criteria.ITEM_USED_ON_BLOCK.trigger(serverPlayerEntity, pos, handStack);
 						}
-
+						
 						handStack.decrement(1);
 						setHarvested(state, (ServerWorld) world, pos);
-
+						
 						List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, handStack, NECTAR_HARVESTING_LOOT_IDENTIFIER);
 						for (ItemStack harvestedStack : harvestedStacks) {
 							player.getInventory().offerOrDrop(harvestedStack);
 						}
-
+						player.sendMessage(Text.translatable("message.spectrum.needs_item_to_harvest").append(Items.GLASS_BOTTLE.getName()), true);
 						return ActionResult.CONSUME;
 					}
 				}
 			}
-
-			if (world.isClient) {
-				displayNeedBottleMessage();
-				return ActionResult.SUCCESS;
-			} else {
-				return ActionResult.CONSUME;
-			}
+			
+			return ActionResult.success(world.isClient);
 		} else if (growthStage.canHarvestPetals()) {
-			if (world.isClient) {
-				return ActionResult.SUCCESS;
-			} else {
+			if (!world.isClient) {
 				setHarvested(state, (ServerWorld) world, pos);
-
+				
 				List<ItemStack> harvestedStacks = getHarvestedStacks(state, (ServerWorld) world, pos, world.getBlockEntity(pos), player, player.getMainHandStack(), PETAL_HARVESTING_LOOT_IDENTIFIER);
 				for (ItemStack harvestedStack : harvestedStacks) {
 					player.getInventory().offerOrDrop(harvestedStack);
 				}
-
-				return ActionResult.CONSUME;
 			}
+			return ActionResult.success(world.isClient);
 		}
 
 		return super.onUse(state, world, pos, player, hand, hit);
-	}
-
-	@Environment(EnvType.CLIENT)
-	public static void displayNeedBottleMessage() {
-		MinecraftClient.getInstance().inGameHud.setOverlayMessage(Text.translatable("message.spectrum.needs_item_to_harvest").append(Items.GLASS_BOTTLE.getName()), false);
 	}
 
 	@Override

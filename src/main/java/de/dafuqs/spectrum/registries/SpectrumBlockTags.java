@@ -16,28 +16,33 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> ALOE_CONVERTED = getReference("aloe_converted");
 	
 	// DECAY
-	public static final TagKey<Block> DECAY = getReference("decay");
-	public static final TagKey<Block> DECAY_AWAY_CURABLES = getReference("decay_away_curables");
-	public static final TagKey<Block> FADING_CONVERSIONS = getReference("fading_conversions");
-	public static final TagKey<Block> FADING_SPECIAL_CONVERSIONS = getReference("fading_special_conversions");
-	public static final TagKey<Block> FAILING_SAFE = getReference("failing_safe");
-	public static final TagKey<Block> FAILING_CONVERSIONS = getReference("failing_conversions");
-	public static final TagKey<Block> FAILING_SPECIAL_CONVERSIONS = getReference("failing_special_conversions");
-	public static final TagKey<Block> RUIN_SAFE = getReference("ruin_safe");
-	public static final TagKey<Block> FORFEITURE_SAFE = getReference("forfeiture_safe");
-	public static final TagKey<Block> RUIN_BEDROCK_CONVERSIONS = getReference("decay_bedrock_conversions");
-	public static final TagKey<Block> BLACK_MATERIA_CONVERSIONS = getReference("black_materia_conversions");
+	public static final TagKey<Block> DECAY = getReference("decay/decay");
+	public static final TagKey<Block> DECAY_AWAY_CURABLES = getReference("decay/decay_away_curables");
+	public static final TagKey<Block> BLACK_MATERIA_CONVERSIONS = getReference("decay/black_materia_conversions");
+	
+	public static final TagKey<Block> FADING_CONVERSIONS = getReference("decay/fading_conversions");
+	public static final TagKey<Block> FADING_SPECIAL_CONVERSIONS = getReference("decay/fading_special_conversions");
+	
+	public static final TagKey<Block> FAILING_SAFE = getReference("decay/failing_safe");
+	public static final TagKey<Block> FAILING_CONVERSIONS = getReference("decay/failing_conversions");
+	public static final TagKey<Block> FAILING_SPECIAL_CONVERSIONS = getReference("decay/failing_special_conversions");
+	
+	public static final TagKey<Block> RUIN_SAFE = getReference("decay/ruin_safe");
+	public static final TagKey<Block> RUIN_CONVERSIONS = getReference("decay/ruin_conversions");
+	public static final TagKey<Block> RUIN_SPECIAL_CONVERSIONS = getReference("decay/ruin_special_conversions");
+	
+	public static final TagKey<Block> FORFEITURE_SAFE = getReference("decay/forfeiture_safe");
+	public static final TagKey<Block> FORFEITURE_CONVERSIONS = getReference("decay/forfeiture_conversions");
+	public static final TagKey<Block> FORFEITURE_SPECIAL_CONVERSIONS = getReference("decay/forfeiture_special_conversions");
 	
 	// MISC
 	public static final TagKey<Block> BLACK_SLUDGE_BLOCKS = getReference("black_sludge_blocks");
 	public static final TagKey<Block> PRIMORDIAL_FIRE_BASE_BLOCKS = getReference("primordial_fire_base_blocks");
 	public static final TagKey<Block> BLACKSLAG_ORE_REPLACEABLES = getReference("blackslag_ore_replaceables");
-	public static final TagKey<Block> MAGICAL_LEAVES = getReference("magical_leaves");
 	public static final TagKey<Block> NATURES_STAFF_TICKABLE = getReference("natures_staff_tickable");
 	public static final TagKey<Block> NATURES_STAFF_STACKABLE = getReference("natures_staff_stackable");
 	public static final TagKey<Block> BUILDING_STAFFS_BLACKLISTED = getReference("building_staffs_blacklisted");
 	public static final TagKey<Block> CRYSTAL_APOTHECARY_HARVESTABLE = getReference("crystal_apothecary_harvestable");
-	public static final TagKey<Block> GEMSTONE_BUDS = getReference("gemstone_buds");
 	public static final TagKey<Block> BASE_STONE_DEEPER_DOWN = getReference("base_stone_deeper_down");
 	public static final TagKey<Block> UNBREAKABLE_STRUCTURE_BLOCKS = getReference("unbreakable_structure_blocks");
 	public static final TagKey<Block> RESONANCE_HARVESTABLES = getReference("resonance_harvestables");

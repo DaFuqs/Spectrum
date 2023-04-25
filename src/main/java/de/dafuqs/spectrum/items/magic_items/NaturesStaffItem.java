@@ -135,6 +135,8 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+		super.appendTooltip(itemStack, world, tooltip, tooltipContext);
+		
 		int efficiencyLevel = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, itemStack);
 		if (efficiencyLevel == 0) {
 			if (InkPowered.canUseClient()) {
@@ -152,6 +154,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 		}
 	}
 	
+	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (world.isClient) {
 			startSoundInstance(user);
@@ -164,12 +167,14 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 		MinecraftClient.getInstance().getSoundManager().play(new NaturesStaffUseSoundInstance(user));
 	}
 	
+	@Override
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BOW;
 	}
 	
+	@Override
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-		// trigger the items' usage action every x ticks
+		// trigger the item's usage action every x ticks
 		if (remainingUseTicks % 10 == 0 && world.isClient) {
 			usageTickClient();
 		}
@@ -191,6 +196,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 		return Math.max(5, BASE_COST - 2 * efficiency);
 	}
 	
+	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		PlayerEntity user = context.getPlayer();
 		

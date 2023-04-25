@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.items.tools;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.fabricmc.api.*;
@@ -73,8 +72,7 @@ public class GlassCrestCrossbowItem extends MalachiteCrossbowItem {
                     float overcharge = 1 - (float) remainingUseTicks / OVERCHARGE_DURATION_MAX_TICKS;
                     overcharge(stack, overcharge);
                     if (user instanceof ServerPlayerEntity serverPlayerEntity) {
-                        SpectrumS2CPacketSender.sendHudMessage(serverPlayerEntity,
-                                Text.translatable("item.spectrum.glass_crest_crossbow.message.charge", Support.DF.format(overcharge * 100)), false);
+                        serverPlayerEntity.sendMessage(Text.translatable("item.spectrum.glass_crest_crossbow.message.charge", Support.DF.format(overcharge * 100)), true);
                     }
                 }
             }

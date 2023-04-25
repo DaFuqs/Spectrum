@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.titration_barrel;
 
 import de.dafuqs.spectrum.helpers.*;
-import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
@@ -11,7 +10,6 @@ import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
-import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
@@ -81,23 +79,23 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 								Fluid fluid = barrelEntity.fluidStorage.variant.getFluid();
 								if (fluid == Fluids.EMPTY) {
 									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
-										SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.content_count_without_fluid_full", itemCount), false);
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count_without_fluid_full", itemCount), true);
 									} else {
-										SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.content_count_without_fluid", itemCount), false);
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count_without_fluid", itemCount), true);
 									}
 								} else {
 									String fluidName = fluid.getDefaultState().getBlockState().getBlock().getName().getString();
 									if (itemCount == TitrationBarrelBlockEntity.MAX_ITEM_COUNT) {
-										SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.content_count_with_fluid_full", fluidName, itemCount), false);
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count_with_fluid_full", fluidName, itemCount), true);
 									} else {
-										SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.content_count_with_fluid", fluidName, itemCount), false);
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.content_count_with_fluid", fluidName, itemCount), true);
 									}
 								}
 							} else {
 								if (handStack.isIn(SpectrumItemTags.COLORED_PLANKS)) {
 									Optional<ITitrationBarrelRecipe> optionalRecipe = barrelEntity.getRecipeForInventory(world);
 									if (optionalRecipe.isEmpty() || !optionalRecipe.get().canPlayerCraft(player)) {
-										SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.invalid_recipe"), false);
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe"), false);
 										return ActionResult.CONSUME;
 									}
 									if (!player.isCreative()) {
@@ -137,11 +135,11 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 							unsealBarrel(world, pos, state, barrelEntity);
 						} else {
 							if (player.isCreative() && player.getMainHandStack().isOf(SpectrumItems.PAINTBRUSH)) {
-								SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.debug_added_day"), false);
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.debug_added_day"), true);
 								barrelEntity.addDayOfSealTime();
 								world.playSound(null, pos, SpectrumSoundEvents.NEW_RECIPE, SoundCategory.BLOCKS, 1.0F, 1.0F);
 							}
-							SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.days_of_sealing_before_opened", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), false);
+							player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_before_opened", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
 						}
 					}
 					case TAPPED -> {
@@ -150,9 +148,9 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 						if (player.isSneaking()) {
 							Optional<ITitrationBarrelRecipe> recipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.TITRATION_BARREL, barrelEntity.inventory, world);
 							if (recipe.isPresent()) {
-								SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput().getName().getString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), false);
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount", recipe.get().getOutput().getName().getString(), barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
 							} else {
-								SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.titration_barrel.invalid_recipe_after_opened", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), false);
+								player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_after_opened", barrelEntity.getSealMinecraftDays(), barrelEntity.getSealRealDays()), true);
 							}
 						} else {
 							ItemStack harvestedStack = barrelEntity.tryHarvest(world, pos, state, player.getStackInHand(hand), player);

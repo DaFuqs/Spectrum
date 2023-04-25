@@ -6,7 +6,6 @@ import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.inventories.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.client.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.player.*;
@@ -132,15 +131,15 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 		switch (toggle) {
 			case SELECT_1x1 -> {
 				nbt.remove(RANGE_NBT_STRING);
-				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case SELECT_3x3 -> {
 				nbt.putInt(RANGE_NBT_STRING, 1);
-				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case SELECT_5x5 -> {
 				nbt.putInt(RANGE_NBT_STRING, 2);
-				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			// switching to another enchantment
 			// fortune is handled a bit special. Its level is preserved in NBT, should the player enchant a different/higher tier
@@ -155,7 +154,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 				}
 				if(couldRemoveOtherEnchantment) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, Enchantments.FORTUNE, fortuneLevel, true, true);
-					MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+					player.sendMessage(toggle.getTriggerText(), true);
 				} else if(player instanceof ServerPlayerEntity serverPlayerEntity) {
 					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 				}
@@ -169,7 +168,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 				couldRemoveOtherEnchantment |= SpectrumEnchantmentHelper.removeEnchantment(stack, SpectrumEnchantments.RESONANCE);
 				if(couldRemoveOtherEnchantment) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, Enchantments.SILK_TOUCH, 1, true, true);
-					MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+					player.sendMessage(toggle.getTriggerText(), true);
 				} else if(player instanceof ServerPlayerEntity serverPlayerEntity) {
 					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 				}
@@ -183,26 +182,26 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 				couldRemoveOtherEnchantment |= SpectrumEnchantmentHelper.removeEnchantment(stack, Enchantments.SILK_TOUCH);
 				if(couldRemoveOtherEnchantment) {
 					SpectrumEnchantmentHelper.addOrExchangeEnchantment(stack, SpectrumEnchantments.RESONANCE, 1, true, true);
-					MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+					player.sendMessage(toggle.getTriggerText(), true);
 				} else if (player instanceof ServerPlayerEntity serverPlayerEntity) {
 					triggerUnenchantedWorkstaffAdvancement(serverPlayerEntity);
 				}
 			}
 			case ENABLE_RIGHT_CLICK_ACTIONS -> {
 				nbt.remove(RIGHT_CLICK_DISABLED_NBT_STRING);
-				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case DISABLE_RIGHT_CLICK_ACTIONS -> {
 				nbt.putBoolean(RIGHT_CLICK_DISABLED_NBT_STRING, true);
-				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case ENABLE_PROJECTILES -> {
 				nbt.remove(PROJECTILES_DISABLED_NBT_STRING);
-				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+				player.sendMessage(toggle.getTriggerText(), true);
 			}
 			case DISABLE_PROJECTILES -> {
 				nbt.putBoolean(PROJECTILES_DISABLED_NBT_STRING, true);
-				MinecraftClient.getInstance().inGameHud.setOverlayMessage(toggle.getTriggerText(), false);
+				player.sendMessage(toggle.getTriggerText(), true);
 			}
 		}
 		stack.setNbt(nbt);

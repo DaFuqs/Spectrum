@@ -5,7 +5,8 @@
     "minecraft:cake",
     "minecraft:beehive",
     "minecraft:brewing_stand",
-    "#spectrum:decay",
-    "spectrum:decay_away"
+    "#spectrum:decay/decay",
+    "spectrum:decay_away",
+    "#minecraft:slabs"
   ]
 }

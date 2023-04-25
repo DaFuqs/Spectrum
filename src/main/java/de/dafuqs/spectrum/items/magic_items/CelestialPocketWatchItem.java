@@ -51,10 +51,10 @@ public class CelestialPocketWatchItem extends Item {
 	public static boolean tryAdvanceTime(ServerWorld world, ServerPlayerEntity user) {
 		switch (canAdvanceTime(world)) {
 			case FAILED_GAME_RULE -> {
-				SpectrumS2CPacketSender.sendHudMessage(user, Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), false);
+				user.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), true);
 			}
 			case FAILED_FIXED_TIME -> {
-				SpectrumS2CPacketSender.sendHudMessage(user, Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), false);
+				user.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), true);
 			}
 			case SUCCESS -> {
 				if (InkPowered.tryDrainEnergy(user, COST)) {

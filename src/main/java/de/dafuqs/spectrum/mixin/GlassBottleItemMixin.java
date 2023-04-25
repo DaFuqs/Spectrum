@@ -51,7 +51,7 @@ public abstract class GlassBottleItemMixin {
 				&& SpectrumCommon.CONFIG.CanPickUpRuin
 				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_ruin"))) {
 			
-			if (blockState.get(RuinBlock.DECAY_STATE) == RuinBlock.DecayConversion.BEDROCK) {
+			if (blockState.get(DecayBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
 				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
 			} else {
 				world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
@@ -64,7 +64,7 @@ public abstract class GlassBottleItemMixin {
 				&& SpectrumCommon.CONFIG.CanPickUpForfeiture
 				&& AdvancementHelper.hasAdvancement(user, SpectrumCommon.locate("unlocks/items/bottle_of_forfeiture"))) {
 			
-			if (blockState.get(ForfeitureBlock.DECAY_STATE) == ForfeitureBlock.DecayConversion.BEDROCK) {
+			if (blockState.get(DecayBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
 				world.setBlockState(blockPos, Blocks.BEDROCK.getDefaultState());
 			} else {
 				world.setBlockState(blockPos, Blocks.AIR.getDefaultState());

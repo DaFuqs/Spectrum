@@ -2,7 +2,6 @@ package de.dafuqs.spectrum.blocks.ender;
 
 import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.inventories.*;
-import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
@@ -135,7 +134,7 @@ public class EnderHopperBlock extends BlockWithEntity {
 					player.incrementStat(Stats.OPEN_ENDERCHEST);
 					PiglinBrain.onGuardedBlockInteracted(player, true);
 				} else {
-					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.ender_hopper_with_owner", enderHopperBlockEntity.getOwnerName()), false);
+					player.sendMessage(Text.translatable("block.spectrum.ender_hopper_with_owner", enderHopperBlockEntity.getOwnerName()), true);
 				}
 				
 				

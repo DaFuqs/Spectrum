@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.blocks.bottomless_bundle;
 
-import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.minecraft.block.*;
@@ -11,7 +10,6 @@ import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.loot.context.*;
-import net.minecraft.server.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
@@ -74,11 +72,11 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 				world.getBlockEntity(pos, SpectrumBlockEntities.BOTTOMLESS_BUNDLE).ifPresent((bottomlessBundleBlockEntity) -> {
 					long amount = bottomlessBundleBlockEntity.storage.amount;
 					if (amount == 0) {
-						SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), false);
+						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.empty"), true);
 					} else {
 						ItemVariant variant = bottomlessBundleBlockEntity.storage.variant;
 						long maxStoredAmount = BottomlessBundleItem.getMaxStoredAmount(bottomlessBundleBlockEntity.bottomlessBundleStack);
-						SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getName()), false);
+						player.sendMessage(Text.translatable("item.spectrum.bottomless_bundle.tooltip.count_of", amount, maxStoredAmount).append(variant.getItem().getName()), true);
 					}
 				});
 			}

@@ -1,12 +1,10 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import de.dafuqs.spectrum.networking.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.server.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
@@ -38,8 +36,8 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 			if (player.isSneaking()) {
 				
 				String ownerName = getOwnerName(world, pos);
-				if (ownerName != null && !ownerName.equals("")) {
-					SpectrumS2CPacketSender.sendHudMessage((ServerPlayerEntity) player, Text.translatable("block.spectrum.player_detector").append(Text.translatable("container.spectrum.owned_by_player", ownerName)), false);
+				if (ownerName != null && !ownerName.isBlank()) {
+					player.sendMessage(Text.translatable("block.spectrum.player_detector").append(Text.translatable("container.spectrum.owned_by_player", ownerName)), true);
 				}
 				return ActionResult.CONSUME;
 			} else {

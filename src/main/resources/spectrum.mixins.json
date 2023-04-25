@@ -49,6 +49,7 @@
     "ServerPlayerInteractionManagerMixin",
     "ServerWorldMixin",
     "ShearsDispenserBehaviorMixin",
+    "TemptGoalMixin",
     "WitherEntityMixin",
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",

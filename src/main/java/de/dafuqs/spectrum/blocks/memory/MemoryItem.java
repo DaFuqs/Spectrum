@@ -1,23 +1,17 @@
 package de.dafuqs.spectrum.blocks.memory;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Pair;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class MemoryItem extends BlockItem {
 	
@@ -34,6 +28,19 @@ public class MemoryItem extends BlockItem {
 	
 	public MemoryItem(Block block, Settings settings) {
 		super(block, settings);
+	}
+	
+	
+	public static ItemStack getMemoryForEntity(LivingEntity entity) {
+		NbtCompound tag = new NbtCompound();
+		entity.saveSelfNbt(tag);
+		
+		ItemStack stack = SpectrumBlocks.MEMORY.asItem().getDefaultStack();
+		NbtCompound stackNbt = stack.getOrCreateNbt();
+		stackNbt.put("EntityTag", tag);
+		stack.setNbt(stackNbt);
+		
+		return stack;
 	}
 	
 	public static Optional<EntityType<?>> getEntityType(@Nullable NbtCompound nbt) {

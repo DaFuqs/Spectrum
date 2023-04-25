@@ -67,7 +67,7 @@ public class HerdingStaffItem extends Item implements InkPowered {
 		Vec3d pos = entity.getPos();
 		if (!world.isClient) {
 			if (turnEntityToMemory(user, entity)) {
-				SpectrumS2CPacketSender.playParticleWithPatternAndVelocity(null, (ServerWorld) world, entity.getPos(), SpectrumParticleTypes.LIGHT_GRAY_SPARKLE_RISING, VectorPattern.EIGHT, 0.2F);
+				SpectrumS2CPacketSender.playParticleWithRandomOffsetAndVelocity((ServerWorld) world, entity.getPos(), SpectrumParticleTypes.LIGHT_GRAY_SPARKLE_RISING, 10, Vec3d.ZERO, new Vec3d(0.2, 0.2, 0.2));
 				SpectrumS2CPacketSender.playParticleWithExactVelocity((ServerWorld) world, entity.getPos(), SpectrumParticleTypes.LIGHT_GRAY_EXPLOSION, 1, Vec3d.ZERO);
 				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SpectrumSoundEvents.RADIANCE_STAFF_PLACE, SoundCategory.PLAYERS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
 			} else {
@@ -94,10 +94,11 @@ public class HerdingStaffItem extends Item implements InkPowered {
 		
 		ItemStack memoryStack = MemoryItem.getMemoryForEntity(entity);
 		MemoryItem.setTicksToManifest(memoryStack, 1);
+		MemoryItem.setSpawnAsAdult(memoryStack, true);
 		
 		Vec3d entityPos = entity.getPos();
 		ItemEntity itemEntity = new ItemEntity(entity.world, entityPos.getX(), entityPos.getY(), entityPos.getZ(), memoryStack);
-		itemEntity.setVelocity(new Vec3d(0.0, 0.2, 0.0));
+		itemEntity.setVelocity(new Vec3d(0.0, 0.15, 0.0));
 		entity.world.spawnEntity(itemEntity);
 		entity.remove(Entity.RemovalReason.DISCARDED);
 		

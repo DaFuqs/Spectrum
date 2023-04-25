@@ -29,7 +29,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	protected ItemStack memoryItemStack = ItemStack.EMPTY; // zero or negative values: never hatch
 	protected UUID ownerUUID;
 	
-	// rendering color cache
+	//  color rendering cache
 	private int tint1 = -1;
 	private int tint2 = -1;
 	
@@ -193,22 +193,25 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	protected Optional<Entity> hatchEntity(ServerWorld world, BlockPos blockPos, ItemStack itemStack) {
-		if (this.memoryItemStack.getItem() instanceof MemoryItem) {
-			Optional<EntityType<?>> entityType = MemoryItem.getEntityType(memoryItemStack.getNbt());
-			if (entityType.isPresent()) {
-				// alignPosition: center the mob in the center of the blockPos
-				Entity entity = entityType.get().spawnFromItemStack(world, memoryItemStack, null, blockPos, SpawnReason.SPAWN_EGG, true, false);
-				if (entity != null) {
-					if (entity instanceof MobEntity mobEntity) {
+		NbtCompound nbt = memoryItemStack.getNbt();
+		if (nbt == null) {
+			return Optional.empty();
+		}
+		
+		Optional<EntityType<?>> entityType = MemoryItem.getEntityType(nbt);
+		if (entityType.isPresent()) {
+			// alignPosition: center the mob in the center of the blockPos
+			Entity entity = entityType.get().spawnFromItemStack(world, memoryItemStack, null, blockPos, SpawnReason.SPAWN_EGG, true, false);
+			if (entity != null) {
+				if (entity instanceof MobEntity mobEntity) {
+					if (!nbt.getBoolean("SpawnAsAdult")) {
 						mobEntity.setBaby(true);
-						if (itemStack.hasCustomName()) {
-							mobEntity.setCustomName(itemStack.getName());
-						}
 					}
-					
-					world.spawnEntityAndPassengers(entity);
-					return Optional.of(entity);
+					if (itemStack.hasCustomName()) {
+						mobEntity.setCustomName(itemStack.getName());
+					}
 				}
+				return Optional.of(entity);
 			}
 		}
 		return Optional.empty();

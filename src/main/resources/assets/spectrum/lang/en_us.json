@@ -595,6 +595,7 @@
   "block.spectrum.stonesetting_workshop": "Stonesetting Workshop",
   "block.spectrum.memory": "Memory",
   "item.spectrum.memory.tooltip.entity_type": "§7Remembers a §f%s",
+  "item.spectrum.memory.tooltip.named": "§7Remembers ",
   "item.spectrum.memory.tooltip.unrecognizable_entity_type": "The memory is blurred",
   "item.spectrum.memory.tooltip.unset_entity_type": "Forgotten",
   "item.spectrum.memory.tooltip.extra_long_time_to_manifest": "Manifesting will take weeks",

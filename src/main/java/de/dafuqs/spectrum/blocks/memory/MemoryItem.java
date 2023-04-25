@@ -17,7 +17,7 @@ public class MemoryItem extends BlockItem {
 	
 	// There are a few entities in vanilla that do not have a corresponding spawn egg
 	// therefore to make it nicer we specify custom colors for them here
-	private static final HashMap<EntityType, Pair<Integer, Integer>> customColors = new HashMap<>() {{
+	private static final HashMap<EntityType<?>, Pair<Integer, Integer>> customColors = new HashMap<>() {{
 		put(EntityType.BAT, new Pair<>(0x463d2b, 0x191307));
 		put(EntityType.SNOW_GOLEM, new Pair<>(0xc9cbcf, 0xa26e28));
 		put(EntityType.WITHER, new Pair<>(0x101211, 0x3e4140));
@@ -34,6 +34,13 @@ public class MemoryItem extends BlockItem {
 	public static ItemStack getMemoryForEntity(LivingEntity entity) {
 		NbtCompound tag = new NbtCompound();
 		entity.saveSelfNbt(tag);
+		tag.remove("Pos"); // yeet everything that we don't need and could interfere when spawning
+		tag.remove("OnGround");
+		tag.remove("Rotation");
+		tag.remove("Motion");
+		tag.remove("FallDistance");
+		tag.remove("InLove");
+		tag.remove("UUID");
 		
 		ItemStack stack = SpectrumBlocks.MEMORY.asItem().getDefaultStack();
 		NbtCompound stackNbt = stack.getOrCreateNbt();
@@ -44,13 +51,23 @@ public class MemoryItem extends BlockItem {
 	}
 	
 	public static Optional<EntityType<?>> getEntityType(@Nullable NbtCompound nbt) {
-		if (nbt != null && nbt.contains("EntityTag", 10)) {
+		if (nbt != null && nbt.contains("EntityTag", NbtElement.COMPOUND_TYPE)) {
 			NbtCompound nbtCompound = nbt.getCompound("EntityTag");
 			if (nbtCompound.contains("id", NbtElement.STRING_TYPE)) {
 				return EntityType.get(nbtCompound.getString("id"));
 			}
 		}
 		return Optional.empty();
+	}
+	
+	public static @Nullable Text getMemoryEntityCustomName(@Nullable NbtCompound nbt) {
+		if (nbt != null && nbt.contains("EntityTag", NbtElement.COMPOUND_TYPE)) {
+			NbtCompound nbtCompound = nbt.getCompound("EntityTag");
+			if (nbtCompound.contains("CustomName", NbtElement.STRING_TYPE)) {
+				return Text.Serializer.fromJson(nbtCompound.getString("CustomName"));
+			}
+		}
+		return null;
 	}
 	
 	// Same nbt format as SpawnEggs
@@ -63,11 +80,19 @@ public class MemoryItem extends BlockItem {
 	}
 	
 	public static void setTicksToManifest(@NotNull ItemStack itemStack, int newTicksToManifest) {
-		NbtCompound nbtCompound = itemStack.getNbt();
-		if (nbtCompound != null) {
-			nbtCompound.putInt("TicksToManifest", newTicksToManifest);
-			itemStack.setNbt(nbtCompound);
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+		nbtCompound.putInt("TicksToManifest", newTicksToManifest);
+		itemStack.setNbt(nbtCompound);
+	}
+	
+	public static void setSpawnAsAdult(@NotNull ItemStack itemStack, boolean spawnAsAdult) {
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+		if (spawnAsAdult) {
+			nbtCompound.putBoolean("SpawnAsAdult", true);
+		} else {
+			nbtCompound.remove("SpawnAsAdult");
 		}
+		itemStack.setNbt(nbtCompound);
 	}
 	
 	public static int getEggColor(NbtCompound nbtCompound, int tintIndex) {
@@ -81,7 +106,7 @@ public class MemoryItem extends BlockItem {
 		
 		Optional<EntityType<?>> entityType = MemoryItem.getEntityType(nbtCompound);
 		if (entityType.isPresent()) {
-			EntityType type = entityType.get();
+			EntityType<?> type = entityType.get();
 			if (customColors.containsKey(type)) {
 				// statically defined: fetch from map
 				return tintIndex == 0 ? customColors.get(type).getLeft() : customColors.get(type).getRight();
@@ -126,7 +151,12 @@ public class MemoryItem extends BlockItem {
 			if (isEntityTypeUnrecognizable(nbt)) {
 				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unrecognizable_entity_type").formatted(Formatting.GRAY));
 			} else {
-				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type", entityType.get().getName()));
+				Text customName = getMemoryEntityCustomName(nbt);
+				if (customName == null) {
+					tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type", entityType.get().getName()));
+				} else {
+					tooltip.add(Text.translatable("item.spectrum.memory.tooltip.named").append(customName).formatted(Formatting.WHITE, Formatting.ITALIC));
+				}
 			}
 		} else {
 			tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unset_entity_type").formatted(Formatting.GRAY));

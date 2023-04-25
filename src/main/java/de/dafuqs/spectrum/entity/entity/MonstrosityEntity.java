@@ -12,7 +12,6 @@ import net.minecraft.entity.ai.control.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.entity.projectile.*;
@@ -186,47 +185,33 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 				.build();
 	}
 	
-	private void damageLivingEntities(List<Entity> entities) {
-		for (Entity entity : entities) {
-			if (entity instanceof LivingEntity) {
-				entity.damage(DamageSource.mob(this), 10.0F);
-				this.applyDamageEffects(this, entity);
-			}
-		}
-	}
-	
-	private boolean destroyBlocks(Box box) {
-		int i = MathHelper.floor(box.minX);
-		int j = MathHelper.floor(box.minY);
-		int k = MathHelper.floor(box.minZ);
-		int l = MathHelper.floor(box.maxX);
-		int m = MathHelper.floor(box.maxY);
-		int n = MathHelper.floor(box.maxZ);
-		boolean bl = false;
-		boolean bl2 = false;
+	private void destroyBlocks(Box box) {
+		int minX = MathHelper.floor(box.minX);
+		int minY = MathHelper.floor(box.minY);
+		int minZ = MathHelper.floor(box.minZ);
+		int maxX = MathHelper.floor(box.maxX);
+		int maxY = MathHelper.floor(box.maxY);
+		int maxZ = MathHelper.floor(box.maxZ);
+		boolean blockDestroyed = false;
 		
-		for (int o = i; o <= l; ++o) {
-			for (int p = j; p <= m; ++p) {
-				for (int q = k; q <= n; ++q) {
-					BlockPos blockPos = new BlockPos(o, p, q);
+		for (int x = minX; x <= maxX; ++x) {
+			for (int y = minY; y <= maxY; ++y) {
+				for (int z = minZ; z <= maxZ; ++z) {
+					BlockPos blockPos = new BlockPos(x, y, z);
 					BlockState blockState = this.world.getBlockState(blockPos);
 					if (!blockState.isAir() && !blockState.isIn(BlockTags.DRAGON_TRANSPARENT)) {
 						if (this.world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING) && !blockState.isIn(BlockTags.DRAGON_IMMUNE)) {
-							bl2 = this.world.removeBlock(blockPos, false) || bl2;
-						} else {
-							bl = true;
+							blockDestroyed = this.world.removeBlock(blockPos, false) || blockDestroyed;
 						}
 					}
 				}
 			}
 		}
 		
-		if (bl2) {
-			BlockPos blockPos2 = new BlockPos(i + this.random.nextInt(l - i + 1), j + this.random.nextInt(m - j + 1), k + this.random.nextInt(n - k + 1));
-			this.world.syncWorldEvent(2008, blockPos2, 0);
+		if (blockDestroyed) {
+			BlockPos randomPos = new BlockPos(minX + this.random.nextInt(maxX - minX + 1), minY + this.random.nextInt(maxY - minY + 1), minZ + this.random.nextInt(maxZ - minZ + 1));
+			this.world.syncWorldEvent(2008, randomPos, 0);
 		}
-		
-		return bl;
 	}
 	
 	@Override

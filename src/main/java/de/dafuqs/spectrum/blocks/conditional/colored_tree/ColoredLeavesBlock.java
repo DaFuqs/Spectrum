@@ -1,21 +1,15 @@
 package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
-import com.google.common.collect.Maps;
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.item.Item;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import com.google.common.collect.*;
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.registries.client.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
-public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
+public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, ColoredTree {
 	
 	private static final Map<DyeColor, ColoredLeavesBlock> LEAVES = Maps.newEnumMap(DyeColor.class);
 	protected final DyeColor color;
@@ -29,7 +23,7 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware {
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return SpectrumCommon.locate("milestones/reveal_colored_trees");
+		return ColoredTree.getTreeCloakAdvancementIdentifier(TreePart.LEAVES, this.color);
 	}
 	
 	@Override

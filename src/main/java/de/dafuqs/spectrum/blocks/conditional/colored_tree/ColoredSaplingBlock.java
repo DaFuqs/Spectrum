@@ -2,16 +2,14 @@ package de.dafuqs.spectrum.blocks.conditional.colored_tree;
 
 import com.google.common.collect.*;
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.*;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 
 import java.util.*;
 
-public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware {
+public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware, ColoredTree {
 	
-	public static final Identifier ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_colored_saplings");
 	private static final Map<DyeColor, ColoredSaplingBlock> SAPLINGS = Maps.newEnumMap(DyeColor.class);
 	protected final DyeColor color;
 	
@@ -24,7 +22,7 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return ADVANCEMENT_IDENTIFIER;
+		return ColoredTree.getTreeCloakAdvancementIdentifier(ColoredTree.TreePart.SAPLING, this.color);
 	}
 	
 	@Override

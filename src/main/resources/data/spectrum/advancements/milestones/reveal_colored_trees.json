@@ -1,8 +1,0 @@
-{
-  "criteria": {
-    "collected_vegetal": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:craft_colored_sapling" }
-    }
-  }
-}

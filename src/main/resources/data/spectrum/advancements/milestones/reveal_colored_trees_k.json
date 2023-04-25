@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "crafted_colored_sapling": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_colored_sapling"
+      }
+    },
+    "built_advanced_pedestal_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:build_advanced_pedestal_structure"
+      }
+    }
+  }
+}

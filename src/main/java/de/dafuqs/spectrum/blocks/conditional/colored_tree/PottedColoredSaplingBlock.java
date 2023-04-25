@@ -8,16 +8,19 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class PottedColoredSaplingBlock extends FlowerPotBlock implements RevelationAware {
+public class PottedColoredSaplingBlock extends FlowerPotBlock implements RevelationAware, ColoredTree {
 	
-	public PottedColoredSaplingBlock(Block content, Settings settings) {
+	protected final DyeColor color;
+	
+	public PottedColoredSaplingBlock(Block content, Settings settings, DyeColor color) {
 		super(content, settings);
+		this.color = color;
 		RevelationAware.register(this);
 	}
 	
 	@Override
 	public Identifier getCloakAdvancementIdentifier() {
-		return ColoredSaplingBlock.ADVANCEMENT_IDENTIFIER;
+		return ColoredTree.getTreeCloakAdvancementIdentifier(TreePart.SAPLING, this.color);
 	}
 	
 	@Override
@@ -30,6 +33,11 @@ public class PottedColoredSaplingBlock extends FlowerPotBlock implements Revelat
 	@Override
 	public @Nullable Pair<Item, Item> getItemCloak() {
 		return null; // does not exist in item form
+	}
+	
+	@Override
+	public DyeColor getColor() {
+		return this.color;
 	}
 	
 }

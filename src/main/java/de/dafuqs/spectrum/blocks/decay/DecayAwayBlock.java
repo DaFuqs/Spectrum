@@ -1,24 +1,18 @@
 package de.dafuqs.spectrum.blocks.decay;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionTypes;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
+import net.minecraft.world.dimension.*;
+import org.jetbrains.annotations.*;
 
 public class DecayAwayBlock extends Block {
 	
@@ -29,6 +23,7 @@ public class DecayAwayBlock extends Block {
 		setDefaultState(getStateManager().getDefaultState().with(TARGET_CONVERSION, TargetConversion.DEFAULT));
 	}
 	
+	@Override
 	public void onPlaced(@NotNull World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (!world.isClient) {
 			world.createAndScheduleBlockTick(pos, state.getBlock(), 4);
@@ -63,14 +58,14 @@ public class DecayAwayBlock extends Block {
 	
 	public BlockState getTargetStateForCurable(BlockState blockState) {
 		if (blockState.getBlock() instanceof DecayBlock) {
-			if (blockState.isOf(SpectrumBlocks.RUIN)) {
-				if (blockState.get(ForfeitureBlock.DECAY_STATE) == ForfeitureBlock.DecayConversion.BEDROCK) {
+			if (blockState.isOf(SpectrumBlocks.RUIN) || blockState.isOf(SpectrumBlocks.FORFEITURE)) {
+				if (blockState.get(ForfeitureBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
 					return this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.BEDROCK);
 				}
 			} else if (blockState.isOf(SpectrumBlocks.FAILING)) {
-				if (blockState.get(FailingBlock.DECAY_STATE) == FailingBlock.DecayConversion.OBSIDIAN) {
+				if (blockState.get(FailingBlock.CONVERSION) == DecayBlock.Conversion.DEFAULT) {
 					return this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.OBSIDIAN);
-				} else if (blockState.get(FailingBlock.DECAY_STATE) == FailingBlock.DecayConversion.CRYING_OBSIDIAN) {
+				} else if (blockState.get(FailingBlock.CONVERSION) == DecayBlock.Conversion.SPECIAL) {
 					return this.getDefaultState().with(TARGET_CONVERSION, TargetConversion.CRYING_OBSIDIAN);
 				}
 			}
@@ -92,10 +87,12 @@ public class DecayAwayBlock extends Block {
 			this.targetState = targetState;
 		}
 		
+		@Override
 		public String toString() {
 			return this.name;
 		}
 		
+		@Override
 		public String asString() {
 			return this.name;
 		}

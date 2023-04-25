@@ -1,13 +1,13 @@
 {
 	"variants": {
-		"decay_state=default": {
-			"model": "spectrum:block/failing_default"
-		},
-		"decay_state=obsidian": {
-			"model": "spectrum:block/failing_obsidian"
-		},
-		"decay_state=crying_obsidian": {
-			"model": "spectrum:block/failing_obsidian"
-		}
-	}
+      "conversion=none": {
+        "model": "spectrum:block/failing_none"
+      },
+      "conversion=default": {
+        "model": "spectrum:block/failing_default"
+      },
+      "conversion=special": {
+        "model": "spectrum:block/failing_default"
+      }
+    }
 }

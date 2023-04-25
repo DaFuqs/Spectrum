@@ -5,16 +5,11 @@ import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.deeper_down.*;
 import de.dafuqs.spectrum.particle.*;
 import de.dafuqs.spectrum.registries.*;
-import net.fabricmc.api.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.sound.*;
-import net.minecraft.state.*;
-import net.minecraft.state.property.*;
-import net.minecraft.tag.*;
-import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.world.*;
@@ -22,17 +17,15 @@ import org.jetbrains.annotations.*;
 
 public class RuinBlock extends DecayBlock {
 	
-	// spreads indefinitely. Though not through air
-	public static final EnumProperty<DecayConversion> DECAY_STATE = EnumProperty.of("decay_state", DecayConversion.class);
-	
-	public RuinBlock(Settings settings, TagKey<Block> whiteListBlockTag, TagKey<Block> blackListBlockTag, int tier, float damageOnTouching) {
-		super(settings, whiteListBlockTag, blackListBlockTag, tier, damageOnTouching);
-		setDefaultState(getStateManager().getDefaultState().with(DECAY_STATE, DecayConversion.DEFAULT));
+	public RuinBlock(Settings settings) {
+		super(settings, null, SpectrumBlockTags.RUIN_SAFE, 3, 5F);
 		
-		BlockState destinationBlockState = this.getDefaultState().with(DECAY_STATE, DecayConversion.BEDROCK);
-		addDecayConversion(SpectrumBlockTags.RUIN_BEDROCK_CONVERSIONS, destinationBlockState);
+		setDefaultState(getStateManager().getDefaultState().with(CONVERSION, Conversion.NONE));
+		addDecayConversion(SpectrumBlockTags.RUIN_SPECIAL_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.SPECIAL));
+		addDecayConversion(SpectrumBlockTags.RUIN_CONVERSIONS, this.getDefaultState().with(CONVERSION, Conversion.DEFAULT));
 	}
 	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		super.onPlaced(world, pos, state, placer, itemStack);
 		
@@ -55,11 +48,6 @@ public class RuinBlock extends DecayBlock {
 	}
 	
 	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
-		stateManager.add(DECAY_STATE);
-	}
-	
-	@Override
 	protected boolean canSpread(BlockState blockState) {
 		return true;
 	}
@@ -74,44 +62,16 @@ public class RuinBlock extends DecayBlock {
 		return this.getDefaultState();
 	}
 	
-	@Environment(EnvType.CLIENT)
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-		if (state.get(RuinBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
-			float xOffset = random.nextFloat();
-			float zOffset = random.nextFloat();
-			world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
-		}
-	}
-	
 	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		super.onStateReplaced(state, world, pos, newState, moved);
 		
-		if (state.get(RuinBlock.DECAY_STATE).equals(DecayConversion.BEDROCK)) {
+		if (state.get(RuinBlock.CONVERSION) != Conversion.NONE) {
 			if (world.getRegistryKey() == World.OVERWORLD && pos.getY() == world.getBottomY()) {
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, false), 3);
 			} else if (world.getRegistryKey() == DDDimension.DIMENSION_KEY && pos.getY() == world.getTopY() - 1) { // highest layer cannot be built on
 				world.setBlockState(pos, SpectrumBlocks.DEEPER_DOWN_PORTAL.getDefaultState().with(DeeperDownPortalBlock.FACING_UP, true), 3);
 			}
-		}
-	}
-	
-	public enum DecayConversion implements StringIdentifiable {
-		DEFAULT("default"),
-		BEDROCK("bedrock");
-		
-		private final String name;
-		
-		DecayConversion(String name) {
-			this.name = name;
-		}
-		
-		public String toString() {
-			return this.name;
-		}
-		
-		public String asString() {
-			return this.name;
 		}
 	}
 	

@@ -1,10 +1,13 @@
 {
 	"variants": {
-		"decay_state=default": {
-			"model": "spectrum:block/ruin_default"
-		},
-		"decay_state=bedrock": {
-			"model": "spectrum:block/ruin_bedrock"
-		}
-	}
+      "conversion=none": {
+        "model": "spectrum:block/ruin_none"
+      },
+      "conversion=default": {
+        "model": "spectrum:block/ruin_default"
+      },
+      "conversion=special": {
+        "model": "spectrum:block/ruin_default"
+      }
+    }
 }

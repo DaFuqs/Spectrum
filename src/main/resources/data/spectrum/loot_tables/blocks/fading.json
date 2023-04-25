@@ -14,7 +14,7 @@
           "condition": "minecraft:block_state_property",
           "block": "spectrum:fading",
           "properties": {
-            "decay_state": "leaves"
+            "conversion": "default"
           }
         }
       ]
@@ -32,7 +32,7 @@
           "condition": "minecraft:block_state_property",
           "block": "spectrum:fading",
           "properties": {
-            "decay_state": "magic_leaves"
+            "conversion": "special"
           }
         }
       ],
@@ -42,7 +42,7 @@
           "count": {
             "type": "minecraft:uniform",
             "min": 3.0,
-            "max": 6.0
+            "max": 5.0
           },
           "add": false
         }

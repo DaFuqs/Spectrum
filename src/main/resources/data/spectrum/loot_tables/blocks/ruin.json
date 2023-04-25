@@ -15,21 +15,10 @@
           "condition": "minecraft:block_state_property",
           "block": "spectrum:ruin",
           "properties": {
-            "decay_state": "bedrock"
+            "conversion": "default"
           }
         }
       ]
-    }
-  ],
-  "functions": [
-    {
-      "function": "minecraft:set_count",
-      "count": {
-        "type": "minecraft:uniform",
-        "min": 1.0,
-        "max": 2.0
-      },
-      "add": false
     }
   ]
 }

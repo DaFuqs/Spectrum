@@ -1,30 +1,50 @@
 package de.dafuqs.spectrum.blocks.decay;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.block.piston.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.TickPriority;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public abstract class DecayBlock extends Block {
+	
+	public enum Conversion implements StringIdentifiable {
+		NONE("none"),
+		DEFAULT("default"),
+		SPECIAL("special");
+		
+		private final String name;
+		
+		Conversion(String name) {
+			this.name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return this.name;
+		}
+		
+		@Override
+		public String asString() {
+			return this.name;
+		}
+	}
+	
+	public static final EnumProperty<Conversion> CONVERSION = EnumProperty.of("conversion", Conversion.class);
 	
 	private static final boolean CREATE_DD_PORTALS = true;
 	
@@ -32,12 +52,11 @@ public abstract class DecayBlock extends Block {
 	 * Since Tag is not comparable we can not use a SortedMap for decayConversions
 	 * here and therefore have to use an additional list for check order
 	 */
-	protected final List<TagKey<Block>> decayConversionsList = new ArrayList<>();
+	protected final Map<TagKey<Block>, BlockState> decayConversions = new LinkedHashMap<>();
+	
 	/**
 	 * Decay can only convert those blocks to more decay
 	 */
-	protected final HashMap<TagKey<Block>, BlockState> decayConversions = new HashMap<>();
-	
 	protected final TagKey<Block> whiteListBlockTag;
 	/**
 	 * Decay is blocked by those blocks and can't jump over to them
@@ -54,6 +73,11 @@ public abstract class DecayBlock extends Block {
 		this.tier = tier;
 	}
 	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+		stateManager.add(CONVERSION);
+	}
+	
 	/**
 	 * If the decay jumps to sourceBlockState it will not place decay there, but destinationBlockState instead
 	 * If a source block is not in one of those tags it will just be replaced with default decay
@@ -62,15 +86,22 @@ public abstract class DecayBlock extends Block {
 	 * @param conversionState The block state the source block is converted to
 	 */
 	public void addDecayConversion(TagKey<Block> sourceBlockTag, BlockState conversionState) {
-		this.decayConversionsList.add(sourceBlockTag);
 		this.decayConversions.put(sourceBlockTag, conversionState);
 	}
 	
+	@Override
 	public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
 		if (entity instanceof LivingEntity && !entity.isFireImmune() && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity)) {
 			entity.damage(SpectrumDamageSources.DECAY, damageOnTouching);
 		}
 		super.onSteppedOn(world, pos, state, entity);
+	}
+	
+	@Environment(EnvType.CLIENT)
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		if (state.get(CONVERSION).equals(Conversion.SPECIAL)) {
+			world.addParticle(new BlockStateParticleEffect(ParticleTypes.BLOCK, state), pos.getX() + random.nextFloat(), pos.getY() + 1, pos.getZ() + random.nextFloat(), 0.0D, 0.0D, 0.0D);
+		}
 	}
 	
 	// jump to neighboring blocks
@@ -96,27 +127,31 @@ public abstract class DecayBlock extends Block {
 		if (canPlaceAt(targetBlockState, world, targetBlockPos)) {
 			BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
 			
-			if ((canSpreadToBlockEntities() || blockEntity == null)
-			      && !targetBlockState.isIn(SpectrumBlockTags.DECAY) // decay doesn't jump to other decay. Maybe: if tier is smaller it should still be converted?
+			if ((blockEntity == null || canSpreadToBlockEntities())
+					&& (!(targetBlockState.getBlock() instanceof DecayBlock decayBlock) || this.tier > decayBlock.tier) // decay can convert decay of a lower tier
 					&& (whiteListBlockTag == null || targetBlockState.isIn(whiteListBlockTag))
 					&& (blackListBlockTag == null || !targetBlockState.isIn(blackListBlockTag))
-					// bedrock is ok, but not other modded unbreakable blocks
-					&& (targetBlockState.getBlock() == Blocks.BEDROCK || (targetBlockState.getBlock().getHardness() > -1.0F && targetBlockState.getBlock().getBlastResistance() < 10000.0F))) {
+					&& (targetBlockState.getBlock() == Blocks.BEDROCK || (targetBlockState.getBlock().getHardness() > -1.0F && targetBlockState.getBlock().getBlastResistance() < 10000.0F))) { // bedrock is ok, but not other modded unbreakable blocks
 				
-				BlockState destinationBlockState = getSpreadState(state);
-				for (TagKey<Block> currentCheckTag : this.decayConversionsList) {
-					BlockState targetState = decayConversions.get(currentCheckTag);
-					if (targetBlockState.isIn(currentCheckTag)) {
-						destinationBlockState = targetState;
-						break;
-					}
-				}
-				
-				world.setBlockState(targetBlockPos, destinationBlockState);
+				world.setBlockState(targetBlockPos, getConversionFor(state, targetBlockState));
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public BlockState getConversionFor(BlockState stateToSpread, BlockState stateToSpreadTo) {
+		for (Map.Entry<TagKey<Block>, BlockState> conversion : this.decayConversions.entrySet()) {
+			if (stateToSpreadTo.isIn(conversion.getKey())) {
+				return conversion.getValue();
+			}
+		}
+		return getSpreadState(stateToSpread);
+	}
+	
+	@Override
+	public PistonBehavior getPistonBehavior(BlockState state) {
+		return PistonBehavior.BLOCK;
 	}
 	
 	@Override
@@ -137,13 +172,13 @@ public abstract class DecayBlock extends Block {
 		super.neighborUpdate(state, world, pos, previousBlock, fromPos, notify);
 		
 		if (previousBlock == Blocks.AIR) {
-			BlockState updatedBlockState = world.getBlockState(fromPos);
-			Block updatedBlock = updatedBlockState.getBlock();
+			Block newBlock = world.getBlockState(fromPos).getBlock();
 			
-			if (!(updatedBlock instanceof DecayBlock) && !(updatedBlock instanceof DecayAwayBlock) && canSpread(state)) {
-				for (TagKey<Block> blockTag : decayConversionsList) {
-					if (updatedBlockState.isIn(blockTag)) {
+			if (canSpread(state) && !(newBlock instanceof DecayBlock) && !(newBlock instanceof DecayAwayBlock)) {
+				for (Map.Entry<TagKey<Block>, BlockState> conversion : this.decayConversions.entrySet()) {
+					if (state.isIn(conversion.getKey())) {
 						world.createAndScheduleBlockTick(pos, this, 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
+						break;
 					}
 				}
 			}
@@ -151,9 +186,18 @@ public abstract class DecayBlock extends Block {
 	}
 	
 	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return this.canSpread(state);
+	}
+	
+	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		this.randomTick(state, world, pos, random);
 		
+		spreadToNeighboringBlock(state, world, pos);
+	}
+	
+	private void spreadToNeighboringBlock(BlockState state, ServerWorld world, BlockPos pos) {
 		if (canSpread(state)) {
 			List<Direction> directions = new ArrayList<>(List.of(Direction.values()));
 			Collections.shuffle(directions);
@@ -168,11 +212,8 @@ public abstract class DecayBlock extends Block {
 	}
 	
 	protected abstract float getSpreadChance();
-	
 	protected abstract boolean canSpread(BlockState blockState);
-	
 	protected abstract boolean canSpreadToBlockEntities();
-	
 	protected abstract BlockState getSpreadState(BlockState previousState);
 	
 }

@@ -1,6 +1,6 @@
 {
   "values": [
-    "#spectrum:forfeiture_safe",
+    "#spectrum:decay/forfeiture_safe",
     "minecraft:air",
     "minecraft:cave_air",
     "minecraft:light",

@@ -18,20 +18,35 @@
       "type": "patchouli:spotlight",
       "title": "Semi-permeable Glass",
       "item": "spectrum:amethyst_semi_permeable_glass",
-      "text": "$(italic)For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further.$(br)You spend more time keeping those pesky monsters out of your base than you care to admit.$()"
+      "text": "For a long time now, those annoying monsters that always appear at night are no longer a threat to you and only serve as a resource supplier, if at all. But that doesn't stop them from pursuing you further.$(br)You spend more time keeping those pesky monsters out of your base than you care to admit.$()"
     },
     {
       "type": "patchouli:text",
-      "text": "$(italic)Then you remember the gemstone glass recipe you thought up earlier.$(br2)With a bit of magical energy, it should be no problem to make it not only transparent for you, but also passable (not for them!).$(br2)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition.$()"
+      "text": "Then you remember the $(l:decoration/gemstone_glass)Gemstone Glass recipe$(/l) you thought up earlier.$(br2)With a bit of magical energy, it should be no problem to make it not only transparent for you, but also passable (not for them!).$(br2)Bonus: If you make it look exactly like regular glass you might even be able to fool your competition.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "title": "Pedestal Recipe",
-      "recipe": "spectrum:pedestal/tier3/player_only_glass/amethyst_semi_permeable_glass"
+      "title": "Gemstone Variant",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/amethyst_semi_permeable_glass",
+      "text": "Semi-permeable Glass comes in all gemstone colors. Simply replace the Amethyst with the Gem of your choice."
     },
     {
-      "type": "patchouli:text",
-      "text": "Semi-permeable Glass comes in all gemstone colors, common, tinted and glowing variants.$(br2)It looks exactly like its $(l:decoration/gemstone_glass)mundane counterpart$(), but has the special property that players can pass through it without problems, while all other creatures will bounce off it like a fly off a window."
+      "type": "spectrum:pedestal_crafting",
+      "title": "Simple Variant",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/vanilla_semi_permeable_glass",
+      "text": "While it looks exactly like its $(l:decoration/gemstone_glass)mundane counterpart$(), only players can pass through it. All other creatures will bounce, like a fly off a window."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Tinted Variant",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/tinted_semi_permeable_glass",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Glowing Variant",
+      "recipe": "spectrum:pedestal/tier3/player_only_glass/glowing_semi_permeable_glass",
+      "text": ""
     }
   ]
 }

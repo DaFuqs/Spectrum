@@ -79,6 +79,10 @@ public class MemoryItem extends BlockItem {
 		return null;
 	}
 	
+	public static boolean isBrokenPromise(@Nullable NbtCompound nbt) {
+		return nbt != null && nbt.getBoolean("BrokenPromise");
+	}
+	
 	// Same nbt format as SpawnEggs
 	// That way we can reuse entityType.spawnFromItemStack()
 	public static int getTicksToManifest(@Nullable NbtCompound nbtCompound) {
@@ -100,6 +104,16 @@ public class MemoryItem extends BlockItem {
 			nbtCompound.putBoolean("SpawnAsAdult", true);
 		} else {
 			nbtCompound.remove("SpawnAsAdult");
+		}
+		itemStack.setNbt(nbtCompound);
+	}
+	
+	public static void markAsBrokenPromise(ItemStack itemStack, boolean isBrokenPromise) {
+		NbtCompound nbtCompound = itemStack.getOrCreateNbt();
+		if (isBrokenPromise) {
+			nbtCompound.putBoolean("BrokenPromise", true);
+		} else {
+			nbtCompound.remove("BrokenPromise");
 		}
 		itemStack.setNbt(nbtCompound);
 	}
@@ -148,6 +162,7 @@ public class MemoryItem extends BlockItem {
 		itemStack.setNbt(nbtCompound);
 	}
 	
+	
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
@@ -160,11 +175,20 @@ public class MemoryItem extends BlockItem {
 			if (isEntityTypeUnrecognizable(nbt)) {
 				tooltip.add(Text.translatable("item.spectrum.memory.tooltip.unrecognizable_entity_type").formatted(Formatting.GRAY));
 			} else {
+				boolean isBrokenPromise = isBrokenPromise(nbt);
 				Text customName = getMemoryEntityCustomName(nbt);
-				if (customName == null) {
-					tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type", entityType.get().getName()));
+				if (isBrokenPromise) {
+					if (customName == null) {
+						tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type_broken_promise", entityType.get().getName()));
+					} else {
+						tooltip.add(Text.translatable("item.spectrum.memory.tooltip.named_broken_promise").append(customName).formatted(Formatting.WHITE, Formatting.ITALIC));
+					}
 				} else {
-					tooltip.add(Text.translatable("item.spectrum.memory.tooltip.named").append(customName).formatted(Formatting.WHITE, Formatting.ITALIC));
+					if (customName == null) {
+						tooltip.add(Text.translatable("item.spectrum.memory.tooltip.entity_type", entityType.get().getName()));
+					} else {
+						tooltip.add(Text.translatable("item.spectrum.memory.tooltip.named").append(customName).formatted(Formatting.WHITE, Formatting.ITALIC));
+					}
 				}
 			}
 		} else {

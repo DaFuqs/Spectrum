@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.recipe.crafting.*;
-import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.ShootingStarHardeningRecipe;
-import de.dafuqs.spectrum.recipe.pedestal.dynamic.StarCandyRecipe;
-import de.dafuqs.spectrum.recipe.spirit_instiller.HardcorePlayerRevivalRecipe;
+import de.dafuqs.spectrum.recipe.fusion_shrine.dynamic.*;
+import de.dafuqs.spectrum.recipe.pedestal.dynamic.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
-import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.JadeWineRecipe;
-import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.SuspiciousBrewRecipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.util.registry.Registry;
+import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.registry.*;
 
 public class SpectrumCustomRecipeSerializers {
 	
@@ -24,6 +23,7 @@ public class SpectrumCustomRecipeSerializers {
 		register(ClearEnderSpliceRecipe.SERIALIZER, "clear_ender_splice");
 		register(ClearPotionFillableRecipe.SERIALIZER, "clear_potion_fillable");
 		register(ClearCraftingTabletRecipe.SERIALIZER, "clear_crafting_tablet");
+		register(ColorBondingRibbonRecipe.SERIALIZER, "color_bonding_ribbon");
 		register(WrapPresentRecipe.SERIALIZER, "wrap_present");
 		
 		// Pedestal

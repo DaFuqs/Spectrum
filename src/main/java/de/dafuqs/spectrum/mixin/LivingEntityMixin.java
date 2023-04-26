@@ -1,6 +1,8 @@
 package de.dafuqs.spectrum.mixin;
 
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.memory.*;
+import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.cca.azure_dike.*;
 import de.dafuqs.spectrum.enchantments.*;
 import de.dafuqs.spectrum.helpers.*;
@@ -65,21 +67,24 @@ public abstract class LivingEntityMixin {
 
 	@Shadow
 	public abstract boolean removeStatusEffect(StatusEffect type);
-
+	
 	@Shadow
 	public abstract boolean addStatusEffect(StatusEffectInstance effect);
-
+	
 	@Shadow
 	protected ItemStack activeItemStack;
-
+	
 	@Shadow
 	public abstract boolean damage(DamageSource source, float amount);
-
+	
+	@Shadow
+	public abstract boolean hasNoDrag();
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
 	}
-
+	
 	private float spectrum$getExuberanceMod(PlayerEntity attackingPlayer) {
 		if (attackingPlayer != null && SpectrumEnchantments.EXUBERANCE.canEntityUse(attackingPlayer)) {
 			int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, attackingPlayer);
@@ -275,6 +280,25 @@ public abstract class LivingEntityMixin {
 				((StatusEffectInstanceAccessor) effect).setDuration(EffectProlongingStatusEffect.getExtendedDuration(effect.getDuration(), effectProlongingInstance.getAmplifier()));
 			}
 		}
+	}
+	
+	@Inject(method = "drop(Lnet/minecraft/entity/damage/DamageSource;)V", at = @At("HEAD"), cancellable = true)
+	protected void drop(DamageSource source, CallbackInfo ci) {
+		LivingEntity thisEntity = (LivingEntity) (Object) this;
+		boolean hasBondingRibbon = BondingRibbonComponent.hasBondingRibbon(thisEntity);
+		if (hasBondingRibbon) {
+			ItemStack memoryStack = MemoryItem.getMemoryForEntity(thisEntity);
+			MemoryItem.setTicksToManifest(memoryStack, 20);
+			MemoryItem.setSpawnAsAdult(memoryStack, true);
+			MemoryItem.markAsBrokenPromise(memoryStack, true);
+			
+			Vec3d entityPos = thisEntity.getPos();
+			ItemEntity itemEntity = new ItemEntity(thisEntity.world, entityPos.getX(), entityPos.getY(), entityPos.getZ(), memoryStack);
+			thisEntity.world.spawnEntity(itemEntity);
+			
+			ci.cancel();
+		}
+		
 	}
 	
 }

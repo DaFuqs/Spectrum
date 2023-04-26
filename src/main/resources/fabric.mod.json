@@ -3,7 +3,7 @@
   "id": "spectrum",
   "version": "${version}",
   "name": "Spectrum",
-  "description": "A full-feature minecraft magic mod about harnessing the powers of color",
+  "description": "A full-feature magic mod about harnessing the powers of color",
   "authors": [
     "DaFuqs"
   ],
@@ -40,7 +40,8 @@
     "cardinal-components": [
       "de.dafuqs.spectrum.cca.azure_dike.AzureDikeProvider",
       "de.dafuqs.spectrum.cca.HardcoreDeathComponent",
-      "de.dafuqs.spectrum.cca.LastKillComponent"
+      "de.dafuqs.spectrum.cca.LastKillComponent",
+      "de.dafuqs.spectrum.cca.BondingRibbonComponent"
     ]
   },
   "accessWidener": "spectrum.accesswidener",
@@ -51,7 +52,8 @@
     "cardinal-components": [
       "spectrum:azure_dike",
       "spectrum:hardcore_deaths",
-      "spectrum:last_kill"
+      "spectrum:last_kill",
+      "spectrum:bonding_ribbon"
     ]
   },
   "depends": {

@@ -41,6 +41,15 @@ public class MemoryItem extends BlockItem {
 		tag.remove("FallDistance");
 		tag.remove("InLove");
 		tag.remove("UUID");
+		tag.remove("Health");
+		tag.remove("Fire");
+		tag.remove("HurtByTimestamp");
+		tag.remove("DeathTime");
+		tag.remove("AbsorptionAmount");
+		tag.remove("Air");
+		tag.remove("FallFlying");
+		tag.remove("PortalCooldown");
+		tag.remove("HurtTime");
 		
 		ItemStack stack = SpectrumBlocks.MEMORY.asItem().getDefaultStack();
 		NbtCompound stackNbt = stack.getOrCreateNbt();

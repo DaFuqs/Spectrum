@@ -29,7 +29,7 @@ public class EnchantmentCanvasItem extends Item {
 	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
 		if (clickType == ClickType.RIGHT) {
 			ItemStack otherStack = slot.getStack();
-			if (tryExchangeEnchantments(stack, otherStack, player)) {
+			if (!otherStack.isEmpty() && tryExchangeEnchantments(stack, otherStack, player)) {
 				if (player != null) {
 					playExchangeSound(player);
 				}
@@ -44,7 +44,7 @@ public class EnchantmentCanvasItem extends Item {
 	 */
 	@Override
 	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-		if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
+		if (clickType == ClickType.RIGHT && !otherStack.isEmpty() && slot.canTakePartial(player)) {
 			if (tryExchangeEnchantments(stack, otherStack, player)) {
 				if (player != null) {
 					playExchangeSound(player);

@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "has_quitoxic_reeds": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }
+    "unlocked_glowblocks": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/glowblocks/any_glowblock"
+      }
     },
     "has_cyan_pigment": {
       "trigger":"revelationary:advancement_gotten",

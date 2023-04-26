@@ -1,12 +1,16 @@
 {
   "criteria": {
-    "has_quitoxic_reeds": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_quitoxic_reeds" }
+    "built_advanced_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/build_advanced_pedestal_structure"
+      }
     },
-    "has_any_pigment": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:collect_pigment" }
+    "has_quitoxic_reeds": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:collect_quitoxic_reeds"
+      }
     }
   }
 }

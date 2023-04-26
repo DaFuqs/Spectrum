@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.energy.color;
 
-import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 
 import java.util.*;
 
@@ -75,10 +74,10 @@ public abstract class InkColor {
 		return this.color;
 	}
 	
-	
 	public Identifier getRequiredAdvancement() {
 		return requiredAdvancement;
 	}
+	
 }
 
 

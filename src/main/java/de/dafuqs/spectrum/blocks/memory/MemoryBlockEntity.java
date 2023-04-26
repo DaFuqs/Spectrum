@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.memory;
 
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.interfaces.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
@@ -9,7 +9,6 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
-import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -128,31 +127,21 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 			world.setBlockState(blockPos, Blocks.AIR.getDefaultState());
 		}
 		
-		Optional<Entity> hatchedEntity = hatchEntity(world, blockPos, this.memoryItemStack);
+		Optional<Entity> hatchedEntityOptional = hatchEntity(world, blockPos, this.memoryItemStack);
 		
-		if (hatchedEntity.isPresent()) {
-			SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, hatchedEntity.get().getType(), 10);
+		if (hatchedEntityOptional.isPresent()) {
+			Entity hatchedEntity = hatchedEntityOptional.get();
+			SpectrumS2CPacketSender.playMemoryManifestingParticles(world, blockPos, hatchedEntity.getType(), 10);
 			
-			if (hatchedEntity.get() instanceof MobEntity hatchedMobEntity) {
+			if (hatchedEntity instanceof MobEntity hatchedMobEntity) {
 				hatchedMobEntity.playAmbientSound();
 				hatchedMobEntity.playSpawnEffects();
 			}
 			if (this.ownerUUID != null) {
-				if (hatchedEntity.get() instanceof AbstractHorseEntity horseBaseEntity) {
-					horseBaseEntity.setOwnerUuid(this.ownerUUID);
-				} else if (hatchedEntity.get() instanceof FoxEntity foxEntity) {
-					((FoxEntityAccessor) foxEntity).invokeAddTrustedUuid(this.ownerUUID);
-				}
-				if (hatchedEntity.get() instanceof AnimalEntity animalEntity) {
-					PlayerEntity player = getOwnerIfOnline();
-					if (player != null) {
-						animalEntity.lovePlayer(player);
-						animalEntity.resetLoveTicks();
-					}
-				}
+				EntityHelper.addPlayerTrust(hatchedEntity, this.ownerUUID);
 			}
 			
-			triggerManifestingAdvancementCriterion(hatchedEntity.get());
+			triggerManifestingAdvancementCriterion(hatchedEntity);
 		}
 	}
 	

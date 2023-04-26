@@ -157,7 +157,7 @@ public class SpectrumS2CPacketReceiver {
 			client.execute(() -> {
 				Vec3d sourcePos = new Vec3d(position.getX() + 0.5, position.getY() + 1, position.getZ() + 0.5);
 				
-				Vec3f color = ColorHelper.getVec(dyeColor);
+				Vec3f color = ColorHelper.getRGBVec(dyeColor);
 				float velocityModifier = 0.25F;
 				for (Vec3d velocity : VectorPattern.SIXTEEN.getVectors()) {
 					client.world.addParticle(
@@ -234,7 +234,7 @@ public class SpectrumS2CPacketReceiver {
 			int travelTime = buf.readInt();
 			PastelTransmission transmission = PastelTransmission.fromPacket(buf);
 			BlockPos spawnPos = transmission.getStartPos();
-			int color = ColorHelper.getColorFromInt(networkUUID.hashCode());
+			int color = ColorHelper.getRandomColor(networkUUID.hashCode());
 			
 			client.execute(() -> {
 				// Everything in this lambda is running on the render thread

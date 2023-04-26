@@ -190,48 +190,48 @@ public class ShootingStarBlock extends BlockWithEntity {
 				case GLISTERING -> {
 					int r = random.nextInt(5);
 					if (r == 0) {
-						return ColorHelper.getVec(DyeColor.YELLOW);
+						return ColorHelper.getRGBVec(DyeColor.YELLOW);
 					} else if (r == 1) {
-						return ColorHelper.getVec(DyeColor.WHITE);
+						return ColorHelper.getRGBVec(DyeColor.WHITE);
 					} else if (r == 2) {
-						return ColorHelper.getVec(DyeColor.ORANGE);
+						return ColorHelper.getRGBVec(DyeColor.ORANGE);
 					} else if (r == 3) {
-						return ColorHelper.getVec(DyeColor.LIME);
+						return ColorHelper.getRGBVec(DyeColor.LIME);
 					} else {
-						return ColorHelper.getVec(DyeColor.BLUE);
+						return ColorHelper.getRGBVec(DyeColor.BLUE);
 					}
 				}
 				case COLORFUL -> {
-					return ColorHelper.getVec(DyeColor.values()[random.nextInt(DyeColor.values().length)]);
+					return ColorHelper.getRGBVec(DyeColor.values()[random.nextInt(DyeColor.values().length)]);
 				}
 				case FIERY -> {
 					int r = random.nextInt(2);
 					if (r == 0) {
-						return ColorHelper.getVec(DyeColor.ORANGE);
+						return ColorHelper.getRGBVec(DyeColor.ORANGE);
 					} else {
-						return ColorHelper.getVec(DyeColor.RED);
+						return ColorHelper.getRGBVec(DyeColor.RED);
 					}
 				}
 				case PRISTINE -> {
 					int r = random.nextInt(3);
 					if (r == 0) {
-						return ColorHelper.getVec(DyeColor.BLUE);
+						return ColorHelper.getRGBVec(DyeColor.BLUE);
 					} else if (r == 1) {
-						return ColorHelper.getVec(DyeColor.LIGHT_BLUE);
+						return ColorHelper.getRGBVec(DyeColor.LIGHT_BLUE);
 					} else {
-						return ColorHelper.getVec(DyeColor.CYAN);
+						return ColorHelper.getRGBVec(DyeColor.CYAN);
 					}
 				}
 				default -> {
 					int r = random.nextInt(4);
 					if (r == 0) {
-						return ColorHelper.getVec(DyeColor.CYAN);
+						return ColorHelper.getRGBVec(DyeColor.CYAN);
 					} else if (r == 1) {
-						return ColorHelper.getVec(DyeColor.MAGENTA);
+						return ColorHelper.getRGBVec(DyeColor.MAGENTA);
 					} else if (r == 2) {
-						return ColorHelper.getVec(DyeColor.WHITE);
+						return ColorHelper.getRGBVec(DyeColor.WHITE);
 					} else {
-						return ColorHelper.getVec(DyeColor.YELLOW);
+						return ColorHelper.getRGBVec(DyeColor.YELLOW);
 					}
 				}
 			}

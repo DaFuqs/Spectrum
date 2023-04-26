@@ -159,7 +159,7 @@ public class PastelNetwork {
     }
 
     public int getColor() {
-        return ColorHelper.getColorFromInt(this.uuid.hashCode());
+        return ColorHelper.getRandomColor(this.uuid.hashCode());
     }
 
     @Override

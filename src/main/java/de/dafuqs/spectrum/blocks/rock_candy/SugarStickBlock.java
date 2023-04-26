@@ -83,7 +83,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 			int age = state.get(AGE);
 			
 			if (age == 2 || (age == 1 ? random.nextBoolean() : random.nextFloat() < 0.25)) {
-				world.addParticle(new DynamicParticleEffect(0.1F, ColorHelper.getVec(rockCandyVariant.getDyeColor()), 0.5F, 120, true, true),
+				world.addParticle(new DynamicParticleEffect(0.1F, ColorHelper.getRGBVec(rockCandyVariant.getDyeColor()), 0.5F, 120, true, true),
 						pos.getX() + 0.25 + random.nextFloat() * 0.5,
 						pos.getY() + 0.25 + random.nextFloat() * 0.5,
 						pos.getZ() + 0.25 + random.nextFloat() * 0.5,

@@ -1,19 +1,14 @@
 package de.dafuqs.spectrum.particle.client;
 
 import de.dafuqs.spectrum.helpers.ColorHelper;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Quaternion;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
-import net.minecraft.world.event.PositionSource;
+import net.fabricmc.api.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.event.*;
 
-import java.util.function.Consumer;
+import java.util.function.*;
 
 @Environment(EnvType.CLIENT)
 public class ColoredTransmissionParticle extends TransmissionParticle {
@@ -21,7 +16,7 @@ public class ColoredTransmissionParticle extends TransmissionParticle {
 	public ColoredTransmissionParticle(ClientWorld world, double x, double y, double z, PositionSource positionSource, int maxAge, DyeColor dyeColor) {
 		super(world, x, y, z, positionSource, maxAge);
 		
-		Vec3f color = ColorHelper.getVec(dyeColor);
+		Vec3f color = ColorHelper.getRGBVec(dyeColor);
 		this.setColor(color.getX(), color.getY(), color.getZ());
 	}
 	

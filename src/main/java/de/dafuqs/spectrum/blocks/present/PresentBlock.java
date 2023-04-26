@@ -174,7 +174,7 @@ public class PresentBlock extends BlockWithEntity {
 		double posY = pos.getY() + 0.25;
 		double posZ = pos.getZ() + 0.5;
 		Random random = world.random;
-		Vec3f colorVec = ColorHelper.getVec(color);
+		Vec3f colorVec = ColorHelper.getRGBVec(color);
 		for (int i = 0; i < amount; i++) {
 			double randX = 0.35 - random.nextFloat() * 0.7;
 			double randY = random.nextFloat() * 0.7;

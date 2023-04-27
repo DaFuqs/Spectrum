@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 2400,
+  "tier": "complex",
+  "cyan": 0,
+  "magenta": 0,
+  "yellow": 0,
+  "white": 8,
+  "black": 2,
+  "experience": 4.0,
+  "pattern": [
+    " JM",
+    " DJ",
+    "D  "
+  ],
+  "key": {
+    "M": {
+      "item": "spectrum:moonstone_core"
+    },
+    "D": {
+      "item": "spectrum:dragonbone_chunk"
+    },
+    "J": {
+      "item": "spectrum:jadeite_petals"
+    }
+  },
+  "result": {
+    "item": "spectrum:herding_staff",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/items/herding_staff"
+}

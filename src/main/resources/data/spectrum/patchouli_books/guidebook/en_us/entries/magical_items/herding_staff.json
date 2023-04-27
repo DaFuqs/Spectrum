@@ -1,0 +1,21 @@
+{
+  "name": "Herding Staff",
+  "advancement": "spectrum:unlocks/items/herding_staff",
+  "icon": "spectrum:herding_staff",
+  "category": "spectrum:magical_items_category",
+  "extra_recipe_mappings": {
+    "spectrum:herding_staff": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(italic)One to rule them all$()$(br)...well, politely, of course.$(br2)The Herding Staff allows you to move around your animals with ease, both short and long distance."
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier4/herding_staff",
+      "text": "$(li)Use it to lure in animals.$(li)Tap animals to recollect them into a $(l:creating_life/memories)Memory$()."
+    }
+  ]
+}

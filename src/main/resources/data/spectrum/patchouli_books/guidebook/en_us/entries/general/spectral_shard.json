@@ -15,13 +15,13 @@
     {
       "type": "patchouli:text",
       "title": "Spectral Shard",
-      "text": "TODO"
+      "text": "Your first attempt to reach for the stars - long, long ago - was not too successful.$(br)Looking back, you can only laugh at how simple-minded you were. You learned a lot and came a long way.$(br)Now you are here. Take 2, here we go."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/spectral_shard",
-      "text": "TODO"
+      "text": "$(italic)The feeling of perfection, this time for real."
     },
     {
       "type": "spectrum:pedestal_crafting",

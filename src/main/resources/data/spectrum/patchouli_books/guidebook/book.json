@@ -1,7 +1,7 @@
 {
   "name": "item.spectrum.guidebook",
   "landing_text": "item.spectrum.guidebook.landing_text",
-  "version": "12",
+  "version": "13",
   "book_texture": "patchouli:textures/gui/book_gray.png",
   "model": "spectrum:guidebook",
   "dont_generate_book": true,

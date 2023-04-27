@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.*;
 
 public class CloversFavorEnchantment extends SpectrumEnchantment {
 	
@@ -43,8 +40,7 @@ public class CloversFavorEnchantment extends SpectrumEnchantment {
 	
 	@Override
 	public boolean canAccept(Enchantment other) {
-		return super.canAccept(other);
+		return super.canAccept(other) && other != Enchantments.LOOTING;
 	}
-	
 	
 }

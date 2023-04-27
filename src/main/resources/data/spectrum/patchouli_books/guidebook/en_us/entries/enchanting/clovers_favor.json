@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "title": "Characteristics",
       "item": "minecraft:iron_sword{Enchantments: [{id: \"spectrum:clovers_favor\", lvl: 3s}]}",
-      "text": "Higher chance to get rare loot drops, like Iron Ingots from Zombies.$(br)May even increase your chances of getting the most valuable of drops?$(br2)Max Level: 3$(br)Applicable to melee weapons."
+      "text": "Higher chance to get rare loot drops, like Iron Ingots from Zombies.$(br)May even increase your chances of getting the most valuable of drops?$(br2)Max Level: 3$(br)Applicable to melee weapons.$(br)Mutually exclusive with Looting."
     },
     {
       "type": "spectrum:enchanter_crafting",

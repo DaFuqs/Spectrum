@@ -1,43 +1,31 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.LightType;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
-import static net.minecraft.state.property.Properties.WATERLOGGED;
+import static net.minecraft.state.property.Properties.*;
 
 public class RadianceStaffItem extends Item implements InkPowered {
 	
-	public static final int COOLDOWN_DURATION_TICKS = 10;
 	public static final int USE_DURATION = 12;
 	public static final int REACH_STEP_DISTANCE = 4;
 	public static final int MAX_REACH_STEPS = 8;
@@ -91,6 +79,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 			tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip"));
 		}
 		tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip2"));
+		tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip3"));
 	}
 	
 	public UseAction getUseAction(ItemStack stack) {
@@ -109,6 +98,34 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		if (user instanceof ServerPlayerEntity serverPlayerEntity && user.getItemUseTime() > USE_DURATION && user.getItemUseTime() % USE_DURATION == 0) {
 			usage(world, stack, serverPlayerEntity);
 		}
+	}
+	
+	@Override
+	public ActionResult useOnBlock(ItemUsageContext context) {
+		World world = context.getWorld();
+		if (world.isClient) {
+			return ActionResult.SUCCESS;
+		}
+		
+		PlayerEntity player = context.getPlayer();
+		if (player == null) {
+			return ActionResult.PASS;
+		}
+		
+		BlockPos pos = context.getBlockPos();
+		Direction direction = context.getSide();
+		
+		if (!world.getBlockState(pos).isOf(SpectrumBlocks.WAND_LIGHT_BLOCK)) { // those get destroyed instead
+			BlockPos targetPos = pos.offset(direction);
+			if (placeLight(world, targetPos, (ServerPlayerEntity) player)) {
+				RadianceStaffItem.playSoundAndParticles(world, targetPos, (ServerPlayerEntity) player, world.random.nextInt(5), world.random.nextInt(5));
+			} else {
+				RadianceStaffItem.playDenySound(world, player);
+			}
+			return ActionResult.CONSUME;
+		}
+		
+		return ActionResult.PASS;
 	}
 	
 	public void usage(World world, ItemStack stack, ServerPlayerEntity user) {

@@ -256,13 +256,14 @@
       {
         "type": "minecraft:condition",
         "if_true": {
-          "type": "minecraft:vertical_gradient",
-          "random_name": "minecraft:bedrock_floor",
-          "true_at_and_below": {
-            "above_bottom": 0
-          },
-          "false_at_and_above": {
-            "above_bottom": 5
+          "type": "minecraft:not",
+          "invert": {
+            "type": "minecraft:y_above",
+            "anchor": {
+              "absolute": -447
+            },
+            "surface_depth_multiplier": 1,
+            "add_stone_depth": false
           }
         },
         "then_run": {

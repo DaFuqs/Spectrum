@@ -161,7 +161,7 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.bismuth_crystal": "+1 Potency for positive Effects. Colors the Potion in a random color.",
   "spectrum.rei.potion_workshop_reacting.spectrum.citrine_powder": "Slight multiplicative Potency bonus.",
   "spectrum.rei.potion_workshop_reacting.spectrum.four_leaf_clover": "Provides a huge boost to a random stat.",
-  "spectrum.rei.potion_workshop_reacting.spectrum.malachite_crystal": "Doubles the Potions duration, but makes the Potion much slower to drink.",
+  "spectrum.rei.potion_workshop_reacting.spectrum.malachite_crystal": "Triples the Potions duration, but makes the Potion much slower to drink.",
   "spectrum.rei.potion_workshop_reacting.spectrum.midnight_chip": "Flat +1 to Potency and adds 30 seconds to Duration, but drastically lowers Yield.",
   "spectrum.rei.potion_workshop_reacting.spectrum.moonstone_powder": "Changes all otherwise negative Effects to their positive ones.",
   "spectrum.rei.potion_workshop_reacting.spectrum.moonstruck_nectar": "Makes the Potion much more smooth, resulting in it being way faster to drink.",
@@ -177,7 +177,7 @@
   "spectrum.rei.potion_workshop_reacting.spectrum.storm_stone": "Increases the Potions Potency at the beginning, but wearing off fast over time.",
   "spectrum.rei.potion_workshop_reacting.spectrum.stratine_fragments": "Flat +1 Potency, at the cost of adding a random negative Effect. Lowers Yield.",
   "spectrum.rei.potion_workshop_reacting.spectrum.topaz_powder": "Makes effects not show any particles when active.",
-  "spectrum.rei.potion_workshop_reacting.spectrum.vegetal": "Doubles the potions Duration at the cost of Potency.",
+  "spectrum.rei.potion_workshop_reacting.spectrum.vegetal": "Triples the potions Duration at the cost of Potency.",
   "spectrum.rei.potion_workshop_reacting.spectrum.jadeite_petals": "Add 60 seconds duration to positive effects.",
 
   "spectrum.rei.potion_workshop_reacting.botania.pixie_dust": "Converts the Potions into Lingering Potions as a single reagent. This way it allows you to directly create Tipped Arrows, too!",

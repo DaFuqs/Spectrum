@@ -2,7 +2,7 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:vegetal",
   "modifiers": {
-    "duration_multiplier": 1.5,
+    "duration_multiplier": 3.0,
     "potency_multiplier": 0.75
   },
   "required_advancement": "spectrum:collect_vegetal"

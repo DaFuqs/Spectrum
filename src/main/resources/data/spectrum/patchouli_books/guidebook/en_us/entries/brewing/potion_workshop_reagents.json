@@ -121,7 +121,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:vegetal",
       "advancement": "spectrum:collect_vegetal",
-      "text": "Doubles the potions Duration at the cost of Potency."
+      "text": "Triples the potions Duration at the cost of Potency."
     },
     {
       "type": "patchouli:spotlight",
@@ -157,7 +157,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:malachite_crystal",
       "advancement": "spectrum:lategame/grow_malachite_in_crystallarieum",
-      "text": "Doubles the Potion's duration, but makes the Potion much slower to drink."
+      "text": "Triples the Potion's duration, but makes the Potion much slower to drink."
     },
     {
       "type": "patchouli:spotlight",

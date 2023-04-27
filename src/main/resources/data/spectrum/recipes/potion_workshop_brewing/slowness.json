@@ -12,7 +12,7 @@
   },
   "effect": "minecraft:slowness",
   "base_duration_ticks": 1800,
-  "potency_modifier": 2.0,
+  "potency_modifier": 1.5,
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,

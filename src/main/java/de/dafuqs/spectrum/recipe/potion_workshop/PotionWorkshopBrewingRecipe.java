@@ -92,23 +92,24 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		this.inkColor = inkColor;
 		this.inkAmount = inkAmount;
 		
+		registerInToastManager(getType(), this);
+		
+		// remember one of each status effect recipe for quick lookup
 		if (statusEffect.getCategory() == StatusEffectCategory.BENEFICIAL) {
 			for (PotionWorkshopBrewingRecipe ae : positiveRecipes) {
 				if (ae.statusEffect == statusEffect) {
-					positiveRecipes.add(this);
-					break;
+					return;
 				}
 			}
+			positiveRecipes.add(this);
 		} else if (statusEffect.getCategory() == StatusEffectCategory.HARMFUL) {
 			for (PotionWorkshopBrewingRecipe ae : negativeRecipes) {
 				if (ae.statusEffect == statusEffect) {
-					negativeRecipes.add(this);
-					break;
+					return;
 				}
 			}
+			negativeRecipes.add(this);
 		}
-		
-		registerInToastManager(getType(), this);
 	}
 	
 	@Override

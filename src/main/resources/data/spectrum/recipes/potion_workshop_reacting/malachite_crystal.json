@@ -2,7 +2,7 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:malachite_crystal",
   "modifiers": {
-    "duration_multiplier": 2.0,
+    "duration_multiplier": 3.0,
     "additional_drink_duration_ticks": 54
   },
   "required_advancement": "spectrum:lategame/grow_malachite_in_crystallarieum"

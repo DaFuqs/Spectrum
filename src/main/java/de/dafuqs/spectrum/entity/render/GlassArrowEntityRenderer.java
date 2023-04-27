@@ -25,7 +25,7 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
     }
 
     public void render(GlassArrowEntity persistentProjectileEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-        ItemStack itemStack = persistentProjectileEntity.getVariant().getStack();
+        ItemStack itemStack = persistentProjectileEntity.getVariant().getArrow().getDefaultStack();
         renderAsItemStack(persistentProjectileEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
         super.render(persistentProjectileEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
     }

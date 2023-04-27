@@ -1,58 +1,20 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.entity.entity.GlassArrowEntity;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
-import java.util.Locale;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.world.*;
 
 public class GlassArrowItem extends ArrowItem {
 	
-	public enum Variant {
-		MALACHITE,
-		TOPAZ,
-		AMETHYST,
-		CITRINE,
-		ONYX,
-		MOONSTONE;
-
-		public static Variant fromString(String string) {
-			return valueOf(string.toUpperCase(Locale.ROOT));
-		}
-		
-		public ItemStack getStack() {
-			switch (this) {
-				case TOPAZ -> {
-					return SpectrumItems.TOPAZ_GLASS_ARROW.getDefaultStack();
-				}
-				case AMETHYST -> {
-					return SpectrumItems.AMETHYST_GLASS_ARROW.getDefaultStack();
-				}
-				case CITRINE -> {
-					return SpectrumItems.CITRINE_GLASS_ARROW.getDefaultStack();
-				}
-				case ONYX -> {
-					return SpectrumItems.ONYX_GLASS_ARROW.getDefaultStack();
-				}
-				case MOONSTONE -> {
-					return SpectrumItems.MOONSTONE_GLASS_ARROW.getDefaultStack();
-				}
-				default -> {
-					return SpectrumItems.MALACHITE_GLASS_ARROW.getDefaultStack();
-				}
-			}
-		}
-	}
+	public GlassArrowVariant variant;
 	
-	public Variant variant;
-	
-	public GlassArrowItem(Settings settings, Variant variant) {
+	public GlassArrowItem(Settings settings, GlassArrowVariant variant, ParticleEffect particleEffect) {
 		super(settings);
 		this.variant = variant;
+		variant.setData(this, particleEffect);
 	}
 	
 	public PersistentProjectileEntity createArrow(World world, ItemStack stack, LivingEntity shooter) {

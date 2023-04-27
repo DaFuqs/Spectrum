@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.items.tools.*;
-import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.spells.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -14,34 +14,34 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.sound.*;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public class GlassArrowEntity extends PersistentProjectileEntity {
 	
-	private static final TrackedData<GlassArrowItem.Variant> VARIANT = DataTracker.registerData(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
+	private static final TrackedData<GlassArrowVariant> VARIANT = DataTracker.registerData(GlassArrowEntity.class, SpectrumTrackedDataHandlerRegistry.GLASS_ARROW_VARIANT);
 	public static final float DAMAGE_MODIFIER = 1.25F;
-	
 	
 	public GlassArrowEntity(EntityType entityType, World world) {
 		super(entityType, world);
 	}
-
+	
 	public GlassArrowEntity(World world, LivingEntity owner) {
 		super(SpectrumEntityTypes.GLASS_ARROW, owner, world);
 	}
-
+	
 	public GlassArrowEntity(World world, double x, double y, double z) {
 		super(SpectrumEntityTypes.GLASS_ARROW, x, y, z, world);
 	}
-
+	
 	@Override
 	public void applyEnchantmentEffects(LivingEntity entity, float damageModifier) {
 		super.applyEnchantmentEffects(entity, damageModifier);
 		setDamage(getDamage() * DAMAGE_MODIFIER);
 	}
-
+	
 	@Override
 	public void tick() {
 		super.tick();
@@ -58,29 +58,8 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	}
 	
 	private void spawnParticles(int amount) {
-		DefaultParticleType particleType = null;
-		switch (this.getVariant()) {
-			case MALACHITE -> {
-				particleType = SpectrumParticleTypes.LIME_CRAFTING;
-			}
-			case TOPAZ -> {
-				particleType = SpectrumParticleTypes.CYAN_CRAFTING;
-			}
-			case AMETHYST -> {
-				particleType = SpectrumParticleTypes.MAGENTA_CRAFTING;
-			}
-			case CITRINE -> {
-				particleType = SpectrumParticleTypes.YELLOW_CRAFTING;
-			}
-			case ONYX -> {
-				particleType = SpectrumParticleTypes.BLACK_CRAFTING;
-			}
-			case MOONSTONE -> {
-				particleType = SpectrumParticleTypes.WHITE_CRAFTING;
-			}
-		}
-		
-		if(particleType != null) {
+		ParticleEffect particleType = this.getVariant().getParticleEffect();
+		if (particleType != null) {
 			for (int j = 0; j < amount; ++j) {
 				this.world.addParticle(particleType, this.getParticleX(0.5), this.getRandomBodyY(), this.getParticleZ(0.5), 0, 0, 0);
 			}
@@ -90,44 +69,40 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	protected void onEntityHit(EntityHitResult entityHitResult) {
 		LivingEntity livingEntityToResetHurtTime = null;
-
+		
 		// additional effects depending on arrow type
 		// mundane glass arrows do not have additional effects
-		switch (getVariant()) {
-			case TOPAZ -> {
-				if (!this.world.isClient && this.getOwner() != null) {
-					Entity entity = entityHitResult.getEntity();
-					pullEntityClose(this.getOwner(), entity, 0.2);
-				}
-			}
-			case AMETHYST -> {
-				if(!this.world.isClient) {
-					Entity entity = entityHitResult.getEntity();
-					entity.setFrozenTicks(200);
-				}
-			}
-			case ONYX -> {
+		GlassArrowVariant variant = getVariant();
+		if (variant == GlassArrowVariant.TOPAZ) {
+			if (!this.world.isClient && this.getOwner() != null) {
 				Entity entity = entityHitResult.getEntity();
-				if (entity instanceof LivingEntity livingEntity) {
-					// we're resetting hurtTime here for once so onEntityHit() can deal damage
-					// and also resetting after that again so the target is damageable again after this
-					livingEntity.hurtTime = 0;
-					livingEntityToResetHurtTime = livingEntity;
-					livingEntity.damageShield(20);
-					livingEntity.damageArmor(DamageSource.MAGIC, 20);
-				}
+				pullEntityClose(this.getOwner(), entity, 0.2);
 			}
-			case MOONSTONE -> {
-				MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
+		} else if (variant == GlassArrowVariant.AMETHYST) {
+			if (!this.world.isClient) {
+				Entity entity = entityHitResult.getEntity();
+				entity.setFrozenTicks(200);
 			}
+		} else if (variant == GlassArrowVariant.ONYX) {
+			Entity entity = entityHitResult.getEntity();
+			if (entity instanceof LivingEntity livingEntity) {
+				// we're resetting hurtTime here for once so onEntityHit() can deal damage
+				// and also resetting after that again so the target is damageable again after this
+				livingEntity.hurtTime = 0;
+				livingEntityToResetHurtTime = livingEntity;
+				livingEntity.damageShield(20);
+				livingEntity.damageArmor(DamageSource.MAGIC, 20);
+			}
+		} else if (variant == GlassArrowVariant.MOONSTONE) {
+			MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
 		}
-
+		
 		super.onEntityHit(entityHitResult);
-
+		
 		if (livingEntityToResetHurtTime != null) {
 			livingEntityToResetHurtTime.hurtTime = 0;
 		}
-
+		
 		this.playSound(SoundEvents.BLOCK_GLASS_BREAK, 0.75F, 0.9F + world.random.nextFloat() * 0.2F);
 		this.remove(RemovalReason.DISCARDED);
 	}
@@ -135,7 +110,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	protected void onBlockHit(BlockHitResult blockHitResult) {
 		super.onBlockHit(blockHitResult);
-		if(getVariant() == GlassArrowItem.Variant.MOONSTONE) {
+		if (getVariant() == GlassArrowVariant.MOONSTONE) {
 			MoonstoneStrike.create(world, this, null, this.getX(), this.getY(), this.getZ(), 4);
 		}
 	}
@@ -146,7 +121,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		double f = shooter.getZ() - entityToPull.getZ();
 		
 		double pullStrengthModifier = 1.0;
-		if(entityToPull instanceof LivingEntity livingEntity) {
+		if (entityToPull instanceof LivingEntity livingEntity) {
 			pullStrengthModifier = Math.max(0.0, 1.0 - livingEntity.getAttributeValue(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE));
 		}
 		
@@ -156,7 +131,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	
 	@Override
 	protected ItemStack asItemStack() {
-		return dataTracker.get(VARIANT).getStack();
+		return dataTracker.get(VARIANT).getArrow().getDefaultStack();
 	}
 	
 	/**
@@ -168,7 +143,7 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 		if (type == HitResult.Type.BLOCK) {
 			BlockPos hitPos = ((BlockHitResult) hitResult).getBlockPos();
 			BlockState state = this.world.getBlockState(hitPos);
-			if(state.isTranslucent(world, hitPos)) {
+			if (state.isTranslucent(world, hitPos)) {
 				return;
 			}
 		}
@@ -186,31 +161,34 @@ public class GlassArrowEntity extends PersistentProjectileEntity {
 	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
-		this.dataTracker.startTracking(VARIANT, GlassArrowItem.Variant.MALACHITE);
+		this.dataTracker.startTracking(VARIANT, GlassArrowVariant.MALACHITE);
 	}
 	
-	public void setVariant(GlassArrowItem.Variant variant) {
+	public void setVariant(GlassArrowVariant variant) {
 		this.dataTracker.set(VARIANT, variant);
-
-		if(variant == GlassArrowItem.Variant.CITRINE) {
+		
+		if (variant == GlassArrowVariant.CITRINE) {
 			setPunch(5);
 		}
 	}
 	
-	public GlassArrowItem.Variant getVariant() {
+	public GlassArrowVariant getVariant() {
 		return this.dataTracker.get(VARIANT);
 	}
 	
 	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
-		nbt.putString("Variant", this.getVariant().toString());
+		nbt.putString("Variant", SpectrumRegistries.GLASS_ARROW_VARIANT.getId(this.getVariant()).toString());
 	}
 	
 	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
-		this.setVariant(GlassArrowItem.Variant.fromString(nbt.getString("Variant")));
+		GlassArrowVariant variant = SpectrumRegistries.GLASS_ARROW_VARIANT.get(Identifier.tryParse(nbt.getString("variant")));
+		if (variant != null) {
+			this.setVariant(variant);
+		}
 	}
 	
 }

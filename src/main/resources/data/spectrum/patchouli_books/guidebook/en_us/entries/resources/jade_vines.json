@@ -30,12 +30,12 @@
       "title": "Planting & Growing",
       "item": "spectrum:germinated_jade_vine_seeds",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "Pallid, fragile but beautiful hanging plants, twining down wooden fences.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
+      "text": "Pallid, fragile but beautiful hanging plants, twining down wooden fences with generous space underneath.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Jade Jelly",
-	  "anchor": "jade_jelly",
+      "anchor": "jade_jelly",
       "item": "spectrum:jade_jelly",
       "advancement": "spectrum:hidden/collect_jade_jelly",
       "text": "As you exposed one of the plants to strong sunlight, you found that it withered. Not only did this withered shrub leave you with new Bulbs, but also this gel-like jelly.$(br2)$(italic)Unexpectedly tasty$()."
@@ -43,7 +43,7 @@
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Jaramel",
-	  "anchor": "jaramel",
+      "anchor": "jaramel",
       "recipe": "spectrum:cinderhearth/jaramel",
       "advancement": "spectrum:hidden/collect_jade_jelly",
       "text": "If the Jade Jelly is heated blazingly fast and then cooled down again, the result is a very viscous but sugar-sweet mass.$(br2)$(italic)Fancy a sugar rush?"
@@ -51,15 +51,15 @@
     {
       "type": "patchouli:spotlight",
       "title": "Petals",
-	  "anchor": "petals",
+      "anchor": "petals",
       "item": "spectrum:jade_vine_petals",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "Shiny petals can be plucked when partly grown.$(br)They can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Rarely, when searching the petals, $(thing)another Bulb$() can be found.(br)How will Jade Vines look when you let them grow further?"
+      "text": "Shiny petals can be plucked when partly grown.$(br)They can be used as $(l:decoration/jade_vine_petal_blocks)decoration$().$(br)Rarely, when searching the petals, $(thing)another Bulb$() can be found. How will Jade Vines look when you let them grow further, tough?"
     },
     {
       "type": "patchouli:spotlight",
       "title": "Moonstruck Nectar",
-	  "anchor": "nectar",
+      "anchor": "nectar",
       "item": "spectrum:moonstruck_nectar",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
       "text": "After many nights on a full moon, the plants reach full bloom. The nectar that they collect in their blossoms can be harvested with a Glass Bottle.$(br)Bears great restorative properties:$(li)can be drunk for healing$(li)able to repair any damaged item$()."

@@ -2,7 +2,7 @@
   "name": "Nature's Staff",
   "advancement": "spectrum:unlocks/items/natures_staff",
   "icon": "spectrum:natures_staff",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:natures_staff": 0
   },

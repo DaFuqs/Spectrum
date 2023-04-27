@@ -2,7 +2,7 @@
   "name": "Radiance Staff",
   "advancement": "spectrum:unlocks/items/radiance_staff",
   "icon": "spectrum:radiance_staff",
-  "category": "spectrum:equipment_category",
+  "category": "spectrum:magical_items_category",
   "extra_recipe_mappings": {
     "spectrum:radiance_staff": 0
   },

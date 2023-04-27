@@ -58,6 +58,12 @@
       "anchor": "hot_chocolate",
       "recipe": "spectrum:potion_workshop_crafting/hot_chocolate",
       "text": "Perfect to come to the calm and in the cold season."
+    },
+    {
+      "type": "spectrum:potion_workshop_crafting",
+      "anchor": "fermented_spider_eyes",
+      "recipe": "spectrum:potion_workshop_crafting/fermented_spider_eyes",
+      "text": "Takes a short while, but more efficient than just slapping those together."
     }
   ]
 }

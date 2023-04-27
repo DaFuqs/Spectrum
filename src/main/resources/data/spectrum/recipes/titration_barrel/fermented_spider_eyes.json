@@ -1,0 +1,23 @@
+{
+  "type": "spectrum:titration_barrel",
+  "ingredients": [
+    {
+      "tag": "minecraft:spider_eye",
+      "count": 2
+    },
+    {
+      "tag": "minecraft:brown_mushroom",
+      "count": 2
+    },
+    {
+      "tag": "minecraft:sugar",
+      "count": 2
+    }
+  ],
+  "fluid": "minecraft:water",
+  "min_fermentation_time_hours": 1,
+  "result": {
+    "item": "minecraft:fermented_spider_eye",
+    "count": 4
+  }
+}

@@ -392,7 +392,7 @@ public class SpectrumItems {
 	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item GILDED_BOOK = new GildedBookItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item BONDING_RIBBON = new BondingRibbonItem(Tab.EQUIPMENT.settings());
+	public static final Item EVERPROMISE_RIBBON = new EverpromiseRibbonItem(Tab.EQUIPMENT.settings());
 	
 	// Lore
 	public static final Item MYSTERIOUS_LOCKET = new MysteriousLocketItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
@@ -686,7 +686,7 @@ public class SpectrumItems {
 		register("celestial_pocketwatch", CELESTIAL_POCKETWATCH, DyeColor.MAGENTA);
 		register("gilded_book", GILDED_BOOK, DyeColor.PURPLE);
 		register("enchantment_canvas", ENCHANTMENT_CANVAS, DyeColor.PURPLE);
-		register("bonding_ribbon", BONDING_RIBBON, DyeColor.PINK);
+		register("everpromise_ribbon", EVERPROMISE_RIBBON, DyeColor.PINK);
 		register("bag_of_holding", BAG_OF_HOLDING, DyeColor.PURPLE);
 		register("radiance_staff", RADIANCE_STAFF, DyeColor.YELLOW);
 		register("natures_staff", NATURES_STAFF, DyeColor.LIME);

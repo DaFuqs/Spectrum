@@ -2,16 +2,20 @@ package de.dafuqs.spectrum.items.magic_items;
 
 import de.dafuqs.spectrum.cca.*;
 import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-public class BondingRibbonItem extends Item {
+import java.util.*;
+
+public class EverpromiseRibbonItem extends Item {
 	
-	public BondingRibbonItem(Settings settings) {
+	public EverpromiseRibbonItem(Settings settings) {
 		super(settings);
 	}
 	
@@ -37,6 +41,13 @@ public class BondingRibbonItem extends Item {
 		} else {
 			return ActionResult.PASS;
 		}
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		tooltip.add(Text.translatable("item.spectrum.everpromise_ribbon.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.everpromise_ribbon.tooltip2").formatted(Formatting.GRAY));
 	}
 	
 	

@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
 import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.magic_items.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
@@ -18,26 +19,26 @@ public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
 	}
 	
 	public boolean matches(CraftingInventory craftingInventory, World world) {
-		boolean bondingRibbonFound = false;
-		boolean dyeFound = false;
+		boolean ribbonFound = false;
+		boolean pigmentFound = false;
 		
 		for (int i = 0; i < craftingInventory.size(); ++i) {
 			ItemStack itemStack = craftingInventory.getStack(i);
 			if (!itemStack.isEmpty()) {
-				if (itemStack.getItem() instanceof BondingRibbonItem) {
+				if (itemStack.getItem() instanceof EverpromiseRibbonItem) {
 					if (!itemStack.hasCustomName()) {
 						return false;
 					}
-					if (bondingRibbonFound) {
+					if (ribbonFound) {
 						return false;
 					} else {
-						bondingRibbonFound = true;
+						ribbonFound = true;
 					}
-				} else if (itemStack.getItem() instanceof DyeItem) {
-					if (dyeFound) {
+				} else if (itemStack.getItem() instanceof PigmentItem) {
+					if (pigmentFound) {
 						return false;
 					} else {
-						dyeFound = true;
+						pigmentFound = true;
 					}
 				} else {
 					return false;
@@ -45,39 +46,39 @@ public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
 			}
 		}
 		
-		return bondingRibbonFound && dyeFound;
+		return ribbonFound && pigmentFound;
 	}
 	
 	public ItemStack craft(CraftingInventory craftingInventory) {
-		ItemStack bondingRibbon = null;
-		DyeItem dye = null;
+		ItemStack ribbon = null;
+		PigmentItem pigment = null;
 		
 		
 		for (int i = 0; i < craftingInventory.size(); ++i) {
 			ItemStack stack = craftingInventory.getStack(i);
-			if (stack.getItem() instanceof BondingRibbonItem) {
-				bondingRibbon = stack;
+			if (stack.getItem() instanceof EverpromiseRibbonItem) {
+				ribbon = stack;
 			}
-			if (stack.getItem() instanceof DyeItem dyeItem) {
-				dye = dyeItem;
+			if (stack.getItem() instanceof PigmentItem pigmentItem) {
+				pigment = pigmentItem;
 			}
 		}
 		
-		if (bondingRibbon == null || dye == null) {
+		if (ribbon == null || pigment == null) {
 			return ItemStack.EMPTY;
 		}
 		
-		bondingRibbon = bondingRibbon.copy();
-		bondingRibbon.setCount(1);
+		ribbon = ribbon.copy();
+		ribbon.setCount(1);
 		
-		Text text = bondingRibbon.getName();
+		Text text = ribbon.getName();
 		if (text instanceof MutableText mutableText) {
-			TextColor newColor = TextColor.fromRgb(ColorHelper.getInt(dye.getColor()));
+			TextColor newColor = TextColor.fromRgb(ColorHelper.getInt(pigment.getColor()));
 			Text newName = mutableText.setStyle(mutableText.getStyle().withColor(newColor));
-			bondingRibbon.setCustomName(newName);
+			ribbon.setCustomName(newName);
 		}
 		
-		return bondingRibbon;
+		return ribbon;
 	}
 	
 	public boolean fits(int width, int height) {

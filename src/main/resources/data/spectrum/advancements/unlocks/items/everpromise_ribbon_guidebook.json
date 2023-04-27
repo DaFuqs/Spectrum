@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "found_in_treasure_chest": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "spectrum:dimension/city_below"
+              }
+            }
+          }
+        ],
+        "items": [
+          {
+            "items": [
+              "spectrum:everpromise_ribbon"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

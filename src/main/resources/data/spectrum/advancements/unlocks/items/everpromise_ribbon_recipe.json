@@ -1,0 +1,45 @@
+{
+  "criteria": {
+    "built_complex_structure": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
+      }
+    },
+    "collected_jadeite_petals": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_jadeite_petals"
+      }
+    },
+    "grown_malachite": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/grow_malachite_in_crystallarieum"
+      }
+    },
+    "found_in_treasure_chest": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "spectrum:dimension/city_below"
+              }
+            }
+          }
+        ],
+        "items": [
+          {
+            "items": [
+              "spectrum:everpromise_ribbon"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

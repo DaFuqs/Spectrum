@@ -1,0 +1,32 @@
+{
+  "type": "spectrum:pedestal",
+  "time": 800,
+  "tier": "complex",
+  "cyan": 1,
+  "magenta": 1,
+  "yellow": 1,
+  "white": 8,
+  "black": 0,
+  "experience": 2.0,
+  "pattern": [
+    "PS ",
+    "PSS",
+    "MPP"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "M": {
+      "item": "spectrum:malachite_crystal"
+    },
+    "P": {
+      "item": "spectrum:jadeite_petals"
+    }
+  },
+  "result": {
+    "item": "spectrum:everpromise_ribbon",
+    "count": 1
+  },
+  "required_advancement": "spectrum:unlocks/items/everpromise_ribbon_recipe"
+}

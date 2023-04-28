@@ -1,0 +1,34 @@
+{
+  "parent": "spectrum:lategame/collect_dd_resources",
+  "display": {
+    "icon": {
+      "item": "spectrum:downstone_fragments"
+    },
+    "title": {
+      "translate": "advancements.spectrum.collect_downstone_fragments.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.collect_downstone_fragments.description"
+    }
+  },
+  "criteria": {
+    "collected_downstone_fragments": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:downstone_fragments"
+            ]
+          }
+        ]
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/spectrum_lategame"
+      }
+    }
+  }
+}

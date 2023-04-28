@@ -253,6 +253,7 @@ public class SpectrumItems {
 	public static final CloakedFloatItem PALTAERIA_FRAGMENTS = new CloakedFloatItem(Tab.RESOURCES.settings(), 0.997F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final CloakedFloatItem PALTAERIA_GEM = new CloakedFloatItem(Tab.RESOURCES.settings(16), 0.98F, ((RevelationAware) SpectrumBlocks.PALTAERIA_ORE).getCloakAdvancementIdentifier(), Items.CYAN_DYE);
 	public static final Item DRAGONBONE_CHUNK = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
+	public static final Item DOWNSTONE_FRAGMENTS = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	public static final Item RESONANCE_SHARD = new Item(Tab.RESOURCES.settings(Rarity.UNCOMMON));
 	
 	public static final Item QUITOXIC_POWDER = new CloakedItem(Tab.RESOURCES.settings(), ((RevelationAware) SpectrumBlocks.QUITOXIC_REEDS).getCloakAdvancementIdentifier(), Items.PURPLE_DYE);
@@ -501,8 +502,6 @@ public class SpectrumItems {
 		register("pure_netherite_scrap", PURE_NETHERITE_SCRAP, DyeColor.BROWN);
 		register("pure_echo", PURE_ECHO, DyeColor.BROWN);
 		register("pure_netherite", PURE_NETHERITE, DyeColor.BROWN);
-		
-		
 	}
 	
 	public static void registerStructurePlacers() {
@@ -577,6 +576,7 @@ public class SpectrumItems {
 		register("stratine_fragments", STRATINE_FRAGMENTS, DyeColor.RED);
 		register("stratine_gem", STRATINE_GEM, DyeColor.RED);
 		register("dragonbone_chunk", DRAGONBONE_CHUNK, DyeColor.GRAY);
+		register("downstone_fragments", DOWNSTONE_FRAGMENTS, DyeColor.LIGHT_GRAY);
 		register("resonance_shard", RESONANCE_SHARD, DyeColor.WHITE);
 		
 		register("quitoxic_powder", QUITOXIC_POWDER, DyeColor.PURPLE);
@@ -587,7 +587,7 @@ public class SpectrumItems {
 		register("frigid_stardust", FRIGID_STARDUST, DyeColor.PURPLE);
 		register("blood_orchid_petal", BLOOD_ORCHID_PETAL, DyeColor.RED);
 		
-		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_BULB, DyeColor.GRAY); // TODO: rename seeds to bulb on next major update
+		register("hibernating_jade_vine_seeds", HIBERNATING_JADE_VINE_BULB, DyeColor.GRAY);
 		register("germinated_jade_vine_seeds", GERMINATED_JADE_VINE_BULB, DyeColor.LIME);
 		register("jade_vine_petals", JADE_VINE_PETALS, DyeColor.LIME);
 		

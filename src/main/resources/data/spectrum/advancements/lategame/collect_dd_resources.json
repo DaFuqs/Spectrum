@@ -55,6 +55,12 @@
         "advancement_identifier": "spectrum:lategame/collect_doombloom_seed"
       }
     },
+    "collect_downstone_fragments": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:lategame/collect_downstone_fragments"
+      }
+    },
     "gotten_previous": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
@@ -83,6 +89,9 @@
     ],
     [
       "collect_doombloom_seed"
+    ],
+    [
+      "collect_downstone_fragments"
     ],
     [
       "gotten_previous"

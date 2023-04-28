@@ -1890,6 +1890,7 @@
   "block.spectrum.malachite_block": "Block of Malachite",
   "item.spectrum.malachite_crystal": "Refined Malachite",
   "item.spectrum.dragonbone_chunk": "Dragonbone Chunk",
+  "item.spectrum.downstone_fragments": "Downstone Fragments",
   "item.spectrum.resonance_shard": "Resonance Shard",
   "item.spectrum.logo_banner_pattern": "Banner Pattern",
   "item.spectrum.logo_banner_pattern.desc": "Color Theory",
@@ -2950,6 +2951,8 @@
   "advancements.spectrum.collect_dd_resources.description": "Collect all the various resources scattered around the Deeper Down",
   "advancements.spectrum.collect_hummingstone.title": "Songbird",
   "advancements.spectrum.collect_hummingstone.description": "Collect Hummingstone",
+  "advancements.spectrum.collect_downstone_fragments.title": "Bedrock 2: Electric Boogaloo",
+  "advancements.spectrum.collect_downstone_fragments.description": "Collect Downstone Fragments",
   "advancements.spectrum.place_moonstone_in_ancient_ruins.title": "A Symbol of Healing",
   "advancements.spectrum.place_moonstone_in_ancient_ruins.description": "Restore an Ancient Shrine",
 
@@ -2975,6 +2978,8 @@
   "advancements.spectrum.defeat_paintlich.description": "Win a light-hearted discussion with an Aging Celebrity",
   "advancements.spectrum.find_forsaken_cathedral.title": "Artists' Academy",
   "advancements.spectrum.find_forsaken_cathedral.description": "Find a run down Sacred Site",
+
+  "named_item.spectrum.dirt_of_shame": "Dirt of Shame",
 
   "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",

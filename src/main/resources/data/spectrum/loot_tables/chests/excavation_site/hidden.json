@@ -1,47 +1,52 @@
 {
   "pools": [
     {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:downstone_fragments"
+        }
+      ]
+    },
+    {
       "rolls": {
         "min": 2,
-        "max": 7
+        "max": 4
       },
       "bonus_rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:cobbled_deepslate"
+          "name": "spectrum:stone_shimmerstone_light"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:deepslate"
+          "name": "spectrum:granite_shimmerstone_light"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:andesite"
+          "name": "spectrum:diorite_shimmerstone_light"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:diorite"
+          "name": "spectrum:andesite_shimmerstone_light"
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:deepslate"
+          "name": "spectrum:deepslate_shimmerstone_light"
         },
         {
           "type": "minecraft:item",
-          "name": "spectrum:blackslag_coal_ore"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "spectrum:blackslag_iron_ore"
+          "name": "spectrum:blackslag_shimmerstone_light"
         }
       ],
       "functions": [
         {
           "function": "minecraft:set_count",
           "count": {
-            "min": 12,
-            "max": 27
+            "min": 3,
+            "max": 9
           }
         }
       ]

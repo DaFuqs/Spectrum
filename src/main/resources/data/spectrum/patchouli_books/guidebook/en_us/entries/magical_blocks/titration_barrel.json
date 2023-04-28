@@ -30,7 +30,7 @@
       "text": "Fermentation is not for drinks alone! Made from 3 different vegetables, Kimchi is a hearty dish, best served as a side."
     },
     {
-      "type": "spectrum:potion_workshop_crafting",
+      "type": "spectrum:titration_barrel_fermenting",
       "anchor": "fermented_spider_eyes",
       "recipe": "spectrum:titration_barrel/fermented_spider_eyes",
       "text": "Takes a short while, but more efficient than just slapping those together."

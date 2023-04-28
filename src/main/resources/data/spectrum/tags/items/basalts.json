@@ -1,0 +1,31 @@
+{
+  "values": [
+    "spectrum:polished_basalt_button",
+    "spectrum:polished_basalt_pressure_plate",
+    "spectrum:basalt_tiles",
+    "spectrum:basalt_tile_stairs",
+    "spectrum:basalt_tile_wall",
+    "spectrum:basalt_tile_slab",
+    "spectrum:cracked_basalt_bricks",
+    "spectrum:cracked_basalt_tiles",
+    "spectrum:smooth_basalt_slab",
+    "spectrum:smooth_basalt_stairs",
+    "spectrum:polished_basalt",
+    "spectrum:polished_basalt_pillar",
+    "spectrum:polished_basalt_crest",
+    "spectrum:chiseled_polished_basalt",
+    "spectrum:notched_polished_basalt",
+    "spectrum:polished_basalt_slab",
+    "spectrum:polished_basalt_stairs",
+    "spectrum:basalt_bricks",
+    "spectrum:basalt_brick_slab",
+    "spectrum:basalt_brick_stairs",
+    "spectrum:amethyst_chiseled_basalt",
+    "spectrum:topaz_chiseled_basalt",
+    "spectrum:citrine_chiseled_basalt",
+    "spectrum:onyx_chiseled_basalt",
+    "spectrum:moonstone_chiseled_basalt",
+    "spectrum:azurite_chiseled_basalt",
+    "spectrum:malachite_chiseled_basalt"
+  ]
+}

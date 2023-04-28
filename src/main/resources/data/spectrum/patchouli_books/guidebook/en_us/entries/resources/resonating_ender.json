@@ -1,5 +1,5 @@
 {
-  "name": "Resonating Ender",
+  "name": "Radiating Ender",
   "advancement": "spectrum:milestones/reveal_radiating_ender",
   "icon": "minecraft:ender_pearl",
   "category": "spectrum:resources_category",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:spotlight",
-      "title": "Resonating Ender",
+      "title": "Radiating Ender",
       "item": "spectrum:radiating_ender",
       "text": "The Endermen come to this world to place those blocks. But what is this stuff? And $(italic)WHY$() do they leave it here?$(br2)Now that you hold one in your hands... they are everywhere! How didn't you notice earlier? Anyways, you are sure that you can take advantage of this interesting material."
     }

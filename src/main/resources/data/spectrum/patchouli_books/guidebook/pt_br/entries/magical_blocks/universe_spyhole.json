@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This strange blocks lets you vision penetrate ground and rock. Placed directly on a wall or on the ground, it allows you to glimpse the other side.$(br2)$(italic)The creations that $(l:resources/resonating_ender)Resonating Ender$() allows you to create with its strange properties never cease to amaze you."
+      "text": "This strange blocks lets you vision penetrate ground and rock. Placed directly on a wall or on the ground, it allows you to glimpse the other side.$(br2)$(italic)The creations that $(l:resources/radiating_ender)Radiating Ender$() allows you to create with its strange properties never cease to amaze you."
     },
     {
       "type": "spectrum:pedestal_crafting",

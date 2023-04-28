@@ -1,20 +1,16 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
-public class EnderTreasureBlock extends Block implements RevelationAware {
+public class RadiatingEnderBlock extends Block implements RevelationAware {
 	
-	public EnderTreasureBlock(Settings settings) {
+	public RadiatingEnderBlock(Settings settings) {
 		super(settings);
 		RevelationAware.register(this);
 	}

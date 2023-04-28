@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class TimeHelper {
 	
@@ -56,6 +56,10 @@ public class TimeHelper {
 	
 	public static float minecraftDaysFromSeconds(long seconds) {
 		return seconds / 1200F;
+	}
+	
+	public static long secondsFromMinecraftDays(int minecraftDays) {
+		return minecraftDays * 1200L;
 	}
 	
 }

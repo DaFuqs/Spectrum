@@ -19,7 +19,7 @@ public class InkColors {
 	public static ElementalColor BLACK = new ElementalColor(DyeColor.BLACK, new Vec3f(0.04f, 0.04f, 0.04f), BLACK_ADVANCEMENT_ID);
 	public static ElementalColor WHITE = new ElementalColor(DyeColor.WHITE, new Vec3f(0.93f, 0.95f, 0.98f), WHITE_ADVANCEMENT_ID);
 	
-	public static CompoundColor ORANGE = new CompoundColor(DyeColor.ORANGE, new Vec3f(0.83F, 0.35F, 0.0F), BASE_ADVANCEMENT_ID, new HashMap<>() {{
+	public static CompoundColor ORANGE = new CompoundColor(DyeColor.ORANGE, new Vec3f(0.90F, 0.38F, 0.0F), BASE_ADVANCEMENT_ID, new HashMap<>() {{
 		put(MAGENTA, 1F / 3F);
 		put(YELLOW, 2F / 3F);
 	}});

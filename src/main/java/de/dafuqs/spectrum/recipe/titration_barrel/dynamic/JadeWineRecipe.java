@@ -32,27 +32,27 @@ public class JadeWineRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public JadeWineRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(0.075F, 0.1F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(0.075F, 0.1F, List.of()));
 	}
 
 	@Override
 	public ItemStack getDefaultTap(int timeMultiplier) {
-		ItemStack stack = tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F, 0.8F); // downfall & temperature are for plains
+		ItemStack stack = tapWith(1, 3, false, 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
 		stack.setCount(this.outputItemStack.getCount());
 		return stack;
 	}
 	
 	@Override
-	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature) {
+	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall) {
 		int bulbCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.GERMINATED_JADE_VINE_BULB);
 		int petalCount = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.JADE_VINE_PETALS);
 		boolean nectar = InventoryHelper.getItemCountInInventory(inventory, SpectrumItems.MOONSTRUCK_NECTAR) > 0;
 		
 		float thickness = getThickness(bulbCount, petalCount);
-		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall, temperature);
+		return tapWith(bulbCount, petalCount, nectar, thickness, secondsFermented, downfall);
 	}
-
-	public ItemStack tapWith(int bulbCount, int petalCount, boolean nectar, float thickness, long secondsFermented, float downfall, float temperature) {
+	
+	public ItemStack tapWith(int bulbCount, int petalCount, boolean nectar, float thickness, long secondsFermented, float downfall) {
 		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
 			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
 		}

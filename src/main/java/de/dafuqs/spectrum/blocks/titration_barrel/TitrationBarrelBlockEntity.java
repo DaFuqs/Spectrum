@@ -179,7 +179,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 				}
 				if (canTap) {
 					long secondsFermented = (this.tapTime - this.sealTime) / 1000;
-					harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getDownfall(), biome.getTemperature());
+					harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getDownfall());
 					this.extractedBottles += 1;
 				}
 			} else if (player != null) {

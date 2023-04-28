@@ -17,7 +17,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 
 	protected final EntryIngredient tappingIngredient;
 	protected final int minFermentationTimeHours;
-	protected final TitrationBarrelRecipe.FermentationData fermentationData;
+	protected final FermentationData fermentationData;
 
 	public TitrationBarrelDisplay(@NotNull ITitrationBarrelRecipe recipe) {
 		super(recipe, buildInputs(recipe), List.of(buildOutputs(recipe)));

@@ -21,7 +21,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 	}
 	
 	public interface RecipeFactory<TitrationBarrelRecipe> {
-		TitrationBarrelRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> ingredients, Fluid fluid, ItemStack outputItemStack, Item tappingItem, int minTimeDays, de.dafuqs.spectrum.recipe.titration_barrel.TitrationBarrelRecipe.FermentationData fermentationData);
+		TitrationBarrelRecipe create(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier, List<IngredientStack> ingredients, Fluid fluid, ItemStack outputItemStack, Item tappingItem, int minTimeDays, FermentationData fermentationData);
 	}
 	
 	@Override
@@ -50,9 +50,9 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 			tappingItem = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "tapping_item")));
 		}
 		
-		TitrationBarrelRecipe.FermentationData fermentationData = null;
+		FermentationData fermentationData = null;
 		if (JsonHelper.hasJsonObject(jsonObject, "fermentation_data")) {
-			fermentationData = TitrationBarrelRecipe.FermentationData.fromJson(JsonHelper.getObject(jsonObject, "fermentation_data"));
+			fermentationData = FermentationData.fromJson(JsonHelper.getObject(jsonObject, "fermentation_data"));
 		}
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, fluid, outputItemStack, tappingItem, minTimeDays, fermentationData);
@@ -102,9 +102,9 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		Item tappingItem = Registry.ITEM.get(Identifier.tryParse(packetByteBuf.readString()));
 		int minTimeDays = packetByteBuf.readInt();
 		
-		TitrationBarrelRecipe.FermentationData fermentationData = null;
+		FermentationData fermentationData = null;
 		if (packetByteBuf.readBoolean()) {
-			fermentationData = TitrationBarrelRecipe.FermentationData.read(packetByteBuf);
+			fermentationData = FermentationData.read(packetByteBuf);
 		}
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, ingredients, fluid, outputItemStack, tappingItem, minTimeDays, fermentationData);

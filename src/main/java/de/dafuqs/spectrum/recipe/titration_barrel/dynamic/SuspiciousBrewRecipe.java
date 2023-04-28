@@ -36,21 +36,21 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 	}};
 	
 	public SuspiciousBrewRecipe(Identifier identifier) {
-		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new TitrationBarrelRecipe.FermentationData(1.0F, 0.1F, List.of()));
+		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.0F, 0.1F, List.of()));
 	}
 
 	@Override
 	public ItemStack getDefaultTap(int timeMultiplier) {
 		ItemStack flowerStack = Items.POPPY.getDefaultStack();
 		flowerStack.setCount(4);
-		ItemStack tappedStack = tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F, 0.8F); // downfall & temperature are for plains
+		ItemStack tappedStack = tapWith(List.of(flowerStack), 1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
 		BeverageItem.setPreviewStack(tappedStack);
 		tappedStack.setCount(OUTPUT_STACK.getCount());
 		return tappedStack;
 	}
 	
 	@Override
-	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature) {
+	public ItemStack tap(Inventory inventory, long secondsFermented, float downfall) {
 		List<ItemStack> stacks = new ArrayList<>();
 		int itemCount = 0;
 		for (int i = 0; i < inventory.size(); i++) {
@@ -61,16 +61,16 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 			}
 		}
 		float thickness = getThickness(itemCount);
-		return tapWith(stacks, thickness, secondsFermented, downfall, temperature);
+		return tapWith(stacks, thickness, secondsFermented, downfall);
 	}
 	
-	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall, float temperature) {
+	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall) {
 		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
 			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
 		}
 		
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);
-		double alcPercent = getAlcPercent(thickness, downfall, ageIngameDays);
+		double alcPercent = getAlcPercent(this.fermentationData.fermentationSpeedMod(), thickness, downfall, ageIngameDays);
 		if (alcPercent >= 100) {
 			return getPureAlcohol(ageIngameDays);
 		} else {

@@ -60,6 +60,7 @@ public class SanityCommand {
 		add(SpectrumCommon.locate("lategame/collect_myceylon"));
 		add(SpectrumCommon.locate("lategame/collect_prickly_bayleaf"));
 		add(SpectrumCommon.locate("lategame/collect_hummingstone"));
+		add(SpectrumCommon.locate("lategame/collect_downstone_fragments"));
 	}};
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {

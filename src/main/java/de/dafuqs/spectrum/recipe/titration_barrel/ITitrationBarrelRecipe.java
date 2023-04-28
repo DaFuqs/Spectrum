@@ -23,7 +23,7 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	Identifier UNLOCK_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("unlocks/blocks/titration_barrel");
 	
-	ItemStack tap(Inventory inventory, long secondsFermented, float downfall, float temperature);
+	ItemStack tap(Inventory inventory, long secondsFermented, float downfall);
 	
 	Item getTappingItem();
 	
@@ -71,6 +71,6 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	
 	int getMinFermentationTimeHours();
 	
-	TitrationBarrelRecipe.FermentationData getFermentationData();
+	FermentationData getFermentationData();
 
 }

@@ -1,0 +1,54 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather_leggings"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:enchant_with_levels",
+          "levels": 30,
+          "treasure": true
+        },
+        {
+          "function": "spectrum:dye_randomly",
+          "colors": [
+            "#5cffed",
+            "#eb40f0",
+            "#eded17",
+            "#0a0a0a",
+            "#edf2fa",
+            "#e76100",
+            "#3b0338",
+            "#ffc7de",
+            "#d91a0a",
+            "#b0c7ff",
+            "#526b0f",
+            "#3d4fc2",
+            "#802bc4",
+            "#70400d",
+            "#adadad",
+            "#424242"
+          ]
+        }
+      ]
+    }
+  ]
+}

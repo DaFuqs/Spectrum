@@ -1,0 +1,51 @@
+{
+  "pools": [
+    {
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:mermaids_gem"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:glass_ampoule",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:enchantment_canvas"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:mysterious_locket"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:star_candy",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:freigeist"
+        }
+      ]
+    }
+  ]
+}

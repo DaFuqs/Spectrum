@@ -1,0 +1,44 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 4
+      },
+      "bonus_rolls": 0.5,
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "name": "minecraft:spectrum/raw_water_meats",
+          "expand": true
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:porkchop"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:beef"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mutton"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chicken"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 2,
+            "max": 6
+          }
+        }
+      ]
+    }
+  ]
+}

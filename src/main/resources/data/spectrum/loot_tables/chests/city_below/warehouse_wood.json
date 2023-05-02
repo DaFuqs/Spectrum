@@ -1,0 +1,58 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 5
+      },
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:noxwood_fences",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:noxwood_planks",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:noxwood_slabs",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:noxwood_stairs",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:noxwood_trapdoors",
+          "expand": true
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 0,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:barrel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chest"
+        },
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:noxwood_lanterns",
+          "expand": true
+        }
+      ]
+    }
+  ]
+}

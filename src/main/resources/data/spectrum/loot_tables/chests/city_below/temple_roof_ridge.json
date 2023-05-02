@@ -1,0 +1,77 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "bonus_rolls": 0.25,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "spectrum:chests/sub_tables/bedrock_tier_resources"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:gemstone_chiseled_base_blocks",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:chiseled_base_blocks",
+          "expand": true
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 1,
+            "max": 9
+          }
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:pillar_base_blocks",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
+          "weight": 5,
+          "name": "spectrum:polished_base_blocks",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
+          "name": "spectrum:crest_base_blocks",
+          "expand": true
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 5,
+            "max": 31
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:infused_beverage",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Variant: \"gin\", Color: 16437201 }"
+            },
+            {
+              "function": "spectrum:ferment_randomly",
+              "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/gin",
+              "days_fermented": {
+                "min": 6000,
+                "max": 8000
+              },
+              "thickness": 1.0,
+              "downfall": 1.0
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:infused_beverage",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Variant: \"beer\", Color: 16762703 }"
+            },
+            {
+              "function": "spectrum:ferment_randomly",
+              "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/beer",
+              "days_fermented": {
+                "min": 6000,
+                "max": 8000
+              },
+              "thickness": 1.0,
+              "downfall": 1.0
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:infused_beverage",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Variant: \"glow_berry_cider\", Color: 16769123 }"
+            },
+            {
+              "function": "spectrum:ferment_randomly",
+              "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/glow_berry_cider",
+              "days_fermented": {
+                "min": 6000,
+                "max": 8000
+              },
+              "thickness": 1.0,
+              "downfall": 1.0
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:infused_beverage",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Variant: \"glow_berry_liquor\", Color: 16760721 }"
+            },
+            {
+              "function": "spectrum:ferment_randomly",
+              "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/glow_berry_liquor",
+              "days_fermented": {
+                "min": 6000,
+                "max": 8000
+              },
+              "thickness": 1.0,
+              "downfall": 1.0
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:infused_beverage",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Variant: \"myceylon_liquor\", Color: 16040760 }"
+            },
+            {
+              "function": "spectrum:ferment_randomly",
+              "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/myceylon_liquor",
+              "days_fermented": {
+                "min": 6000,
+                "max": 8000
+              },
+              "thickness": 1.0,
+              "downfall": 1.0
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:infused_beverage",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Variant: \"rum\", Color: 10505507 }"
+            },
+            {
+              "function": "spectrum:ferment_randomly",
+              "fermentation_recipe_id": "spectrum:titration_barrel/infused_beverages/rum",
+              "days_fermented": {
+                "min": 6000,
+                "max": 8000
+              },
+              "thickness": 1.0,
+              "downfall": 1.0
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:infused_beverage",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Variant: \"greener_grasses\", Color: 833706 }"
+            },
+            {
+              "function": "spectrum:ferment_randomly",
+              "fermentation_data": {
+                "fermentation_speed_mod": 0.25,
+                "effects": [
+                  {
+                    "id": "minecraft:haste",
+                    "base_duration": 9600,
+                    "potency": [
+                      {},
+                      {
+                        "min_alc": 30
+                      },
+                      {
+                        "min_alc": 45
+                      }
+                    ]
+                  },
+                  {
+                    "id": "spectrum:another_roll",
+                    "base_duration": 4800,
+                    "potency": [
+                      {
+                        "min_alc": 25
+                      }
+                    ]
+                  }
+                ]
+              },
+              "days_fermented": {
+                "min": 6000,
+                "max": 8000
+              },
+              "thickness": 1.0,
+              "downfall": 1.0
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:infused_beverage",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Variant: \"bloodlust_brew\", Color: 11671592 }"
+            },
+            {
+              "function": "spectrum:ferment_randomly",
+              "fermentation_data": {
+                "fermentation_speed_mod": 0.5,
+                "effects": [
+                  {
+                    "id": "spectrum:frenzy",
+                    "base_duration": 9600,
+                    "potency": [
+                      {},
+                      {
+                        "min_alc": 10
+                      },
+                      {
+                        "min_alc": 15
+                      },
+                      {
+                        "min_alc": 20
+                      }
+                    ]
+                  },
+                  {
+                    "id": "spectrum:swiftness",
+                    "base_duration": 4800,
+                    "potency": [
+                      {
+                        "min_alc": 15
+                      }
+                    ]
+                  },
+                  {
+                    "id": "spectrum:vulnerability",
+                    "base_duration": 4800,
+                    "potency": [
+                      {
+                        "min_alc": 18
+                      },
+                      {
+                        "min_alc": 22
+                      }
+                    ]
+                  }
+                ]
+              },
+              "days_fermented": {
+                "min": 6000,
+                "max": 8000
+              },
+              "thickness": 1.0,
+              "downfall": 1.0
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:infused_beverage",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{Variant: \"gilded_bloom_liquor\", Color: 14858306 }"
+            },
+            {
+              "function": "spectrum:ferment_randomly",
+              "fermentation_data": {
+                "fermentation_speed_mod": 0.25,
+                "effects": [
+                  {
+                    "id": "spectrum:effect_prolonging",
+                    "base_duration": 9600,
+                    "potency": [
+                      {},
+                      {
+                        "min_alc": 40
+                      },
+                      {
+                        "min_alc": 60
+                      }
+                    ]
+                  },
+                  {
+                    "id": "spectrum:immunity",
+                    "base_duration": 2400,
+                    "potency": [
+                      {
+                        "min_alc": 22
+                      }
+                    ]
+                  },
+                  {
+                    "id": "spectrum:magic_annulation",
+                    "base_duration": 2400,
+                    "potency": [
+                      {
+                        "min_alc": 25
+                      },
+                      {
+                        "min_alc": 50
+                      }
+                    ]
+                  },
+                  {
+                    "id": "minecraft:slowness",
+                    "base_duration": 9600,
+                    "potency": [
+                      {
+                        "min_thickness": 2
+                      }
+                    ]
+                  }
+                ]
+              },
+              "days_fermented": {
+                "min": 6000,
+                "max": 8000
+              },
+              "thickness": 1.0,
+              "downfall": 1.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

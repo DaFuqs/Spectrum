@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 4
+      },
+      "bonus_rolls": 0.5,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "spectrum:chests/sub_tables/redstone_components"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sculk_sensor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:lightning_rod"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:moonstone_core"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:neolith"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:echo_shard"
+        }
+      ]
+    }
+  ]
+}

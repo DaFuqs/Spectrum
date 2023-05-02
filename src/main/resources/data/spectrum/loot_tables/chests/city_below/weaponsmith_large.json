@@ -1,0 +1,82 @@
+{
+  "pools": [
+    {
+      "rolls": {
+        "min": 0,
+        "max": 1
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:lodestone"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "bonus_rolls": 0.25,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:anvil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chipped_anvil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:damaged_anvil"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:malachite_chiseled_basalt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:malachite_chiseled_calcite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:azurite_chiseled_calcite"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:azurite_chiseled_basalt"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "min": 1,
+        "max": 2
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:obsidian"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 2,
+            "max": 4
+          }
+        }
+      ]
+    }
+  ]
+}

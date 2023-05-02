@@ -2382,6 +2382,9 @@
   "item.spectrum.infused_beverage.tooltip.variant.fruit_shnaps": "Fruit Shnaps",
   "item.spectrum.infused_beverage.tooltip.variant.glass_peach_cider": "Glass Peach Cider",
   "item.spectrum.infused_beverage.tooltip.variant.glass_peach_liquor": "Glass Peach Liquor",
+  "item.spectrum.infused_beverage.tooltip.variant.greener_grasses": "Greener GRasses",
+  "item.spectrum.infused_beverage.tooltip.variant.gilded_bloom_liquor": "Gilded Bloom Liquor",
+  "item.spectrum.infused_beverage.tooltip.variant.bloodlust_brew": "Bloodlust Brew",
   "item.spectrum.freigeist": "Freigeist",
   "item.spectrum.freigeist.tooltip": "§4♥§r You wish you were an Angel? §4♡§r",
   "item.spectrum.divination_heart": "Divination Heart",
@@ -2979,7 +2982,9 @@
   "advancements.spectrum.find_forsaken_cathedral.title": "Artists' Academy",
   "advancements.spectrum.find_forsaken_cathedral.description": "Find a run down Sacred Site",
 
+  "______special_named_items_and_lore": "Special Item Names:",
   "named_item.spectrum.dirt_of_shame": "Dirt of Shame",
+  "lore.spectrum.probably_sugar": "Sugar... probably?",
 
   "______food_tooltips": "Food Tooltips:",
   "spectrum.food.withChance": "%s [%d%%]",

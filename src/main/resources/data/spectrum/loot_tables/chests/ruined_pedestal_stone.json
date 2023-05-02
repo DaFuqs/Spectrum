@@ -40,6 +40,10 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:book"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rabbit_hide"
         }
       ],
       "functions": [

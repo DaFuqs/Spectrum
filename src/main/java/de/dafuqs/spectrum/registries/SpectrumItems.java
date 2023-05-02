@@ -61,15 +61,15 @@ public class SpectrumItems {
 		}
 		
 		public OwoItemSettings settings(int maxCount) {
-			return new OwoItemSettings().group(itemGroup).tab(tab).maxCount(maxCount);
+			return settings().maxCount(maxCount);
 		}
 		
 		public OwoItemSettings settings(Rarity rarity) {
-			return new OwoItemSettings().group(itemGroup).tab(tab).rarity(rarity);
+			return settings().rarity(rarity);
 		}
 		
 		public OwoItemSettings settings(int maxCount, Rarity rarity) {
-			return new OwoItemSettings().group(itemGroup).tab(tab).maxCount(maxCount).rarity(rarity);
+			return settings().maxCount(maxCount).rarity(rarity);
 		}
 		
 	}
@@ -85,7 +85,7 @@ public class SpectrumItems {
 	public static final Item FUSION_SHRINE_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("fusion_shrine_structure"));
 	public static final Item ENCHANTER_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("enchanter_structure"));
 	public static final Item SPIRIT_INSTILLER_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("spirit_instiller_structure"));
-	public static final Item cinderhearth_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("cinderhearth_structure"));
+	public static final Item CINDERHEARTH_STRUCTURE_PLACER = new StructurePlacerItem(Tab.GENERAL.settings(1), SpectrumCommon.locate("cinderhearth_structure"));
 	
 	// Gem shards
 	public static final Item TOPAZ_SHARD = new Item(Tab.RESOURCES.settings());
@@ -511,7 +511,7 @@ public class SpectrumItems {
 		register("fusion_shrine_structure_placer", FUSION_SHRINE_STRUCTURE_PLACER, DyeColor.WHITE);
 		register("enchanter_structure_placer", ENCHANTER_STRUCTURE_PLACER, DyeColor.WHITE);
 		register("spirit_instiller_structure_placer", SPIRIT_INSTILLER_STRUCTURE_PLACER, DyeColor.WHITE);
-		register("cinderhearth_structure_placer", cinderhearth_STRUCTURE_PLACER, DyeColor.WHITE);
+		register("cinderhearth_structure_placer", CINDERHEARTH_STRUCTURE_PLACER, DyeColor.WHITE);
 	}
 	
 	public static void registerBannerPatterns() {

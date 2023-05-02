@@ -11,6 +11,7 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
+import net.minecraft.server.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;
@@ -72,8 +73,8 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 				return false;
 			}
 			
-			ServerPlayerEntity playerToRevive = SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(gameProfile.getId());
-			playerToRevive = playerToRevive != null ? playerToRevive : SpectrumCommon.minecraftServer.getPlayerManager().getPlayer(gameProfile.getName());
+			PlayerManager playerManager = SpectrumCommon.minecraftServer.getPlayerManager();
+			ServerPlayerEntity playerToRevive = gameProfile.getId() == null ? playerManager.getPlayer(gameProfile.getName()) : playerManager.getPlayer(gameProfile.getId());
 			return playerToRevive != null && HardcoreDeathComponent.hasHardcoreDeath(gameProfile);
 		}
 		return false;
@@ -84,9 +85,9 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 		GameProfile gameProfile = null;
 		NbtCompound nbtCompound = instillerStack.getNbt();
 		if (nbtCompound != null) {
-			if (nbtCompound.contains("SkullOwner", 10)) {
+			if (nbtCompound.contains("SkullOwner", NbtElement.COMPOUND_TYPE)) {
 				gameProfile = NbtHelper.toGameProfile(nbtCompound.getCompound("SkullOwner"));
-			} else if (nbtCompound.contains("SkullOwner", 8) && !StringUtils.isBlank(nbtCompound.getString("SkullOwner"))) {
+			} else if (nbtCompound.contains("SkullOwner", NbtElement.STRING_TYPE) && !StringUtils.isBlank(nbtCompound.getString("SkullOwner"))) {
 				gameProfile = new GameProfile(null, nbtCompound.getString("SkullOwner"));
 			}
 		}

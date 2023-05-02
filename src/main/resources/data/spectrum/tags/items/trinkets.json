@@ -1,5 +1,8 @@
 {
   "values": [
+    "spectrum:pigment_palette",
+    "spectrum:artists_palette",
+
     "spectrum:glow_vision_goggles",
     "spectrum:jeopardant",
     "spectrum:seven_league_boots",
@@ -8,13 +11,17 @@
     "spectrum:take_off_belt",
     "spectrum:azure_dike_belt",
     "spectrum:azure_dike_ring",
-    "spectrum:pigment_palette",
+    "spectrum:shieldgrasp_amulet",
+    "spectrum:heartsingers_reward",
+    "spectrum:gloves_of_dawns_grasp",
+    "spectrum:ring_of_pursuit",
     "spectrum:gleaming_pin",
     "#spectrum:potion_pendants",
     "spectrum:ashen_circlet",
     "spectrum:weeping_circlet",
     "spectrum:puff_circlet",
     "spectrum:whispy_circlet",
+    "spectrum:circlet_of_arrogance",
     "spectrum:neat_ring"
   ]
 }

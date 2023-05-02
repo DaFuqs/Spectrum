@@ -1,21 +1,25 @@
 {
   "replace": false,
   "values": [
+    "#spectrum:trinkets",
     "#spectrum:bedrock_equipment",
     "#spectrum:bedrock_armor",
     "#spectrum:gemstone_armor",
+    "#spectrum:malachite_equipment",
+    "#spectrum:glass_crest_equipment",
+
     "spectrum:bottomless_bundle",
     "spectrum:memory",
     "spectrum:cracked_end_portal_frame",
     "spectrum:knowledge_gem",
     "spectrum:spectral_shard",
-    "spectrum:multitool",
-    "spectrum:tender_pickaxe",
-    "spectrum:lucky_pickaxe",
-    "spectrum:razor_falchion",
-    "spectrum:oblivion_pickaxe",
-    "spectrum:resonant_pickaxe",
     "spectrum:ender_splice",
-    "#spectrum:trinkets"
+    "spectrum:ink_flask",
+    "spectrum:ink_assortment",
+    "spectrum:creative_ink_assortment",
+    "spectrum:moonstone_core",
+    "spectrum:dreamflayer",
+    "spectrum:nightfalls_blade",
+    "spectrum:glass_ampoule"
   ]
 }

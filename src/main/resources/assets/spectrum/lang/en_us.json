@@ -556,6 +556,7 @@
   "text.autoconfig.Spectrum.option.DisarmingChancePerLevelPlayers": "Chance to disarm Players on hit with a Disarming enchanted weapon per level",
   "text.autoconfig.Spectrum.option.BlockSoundVolume": "Sound Volume of Multiblock Structure Tunes",
   "text.autoconfig.Spectrum.option.REIListsRecipesAsNotUnlocked": "Show 'recipe not unlocked yet' REI screens for not unlocked recipes",
+  "text.autoconfig.Spectrum.option.DecayIsStoppedByClaimMods": "Make Decay not spread in supported Claim's mod claims",
   "text.autoconfig.Spectrum.option.AzureDikeHudOffsetX": "X Position of the Azure Dike Overlay on the players screen. Default: On top of Hearts",
   "text.autoconfig.Spectrum.option.AzureDikeHudOffsetY": "Y Position of the Azure Dike Overlay on the players screen. Default: On top of Hearts",
   "text.autoconfig.Spectrum.option.AzureDikeHudOffsetYWithArmor": "Y Position of the Azure Dike Overlay on the players screen when not having full air. Default: On top of Armor",

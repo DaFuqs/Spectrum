@@ -164,7 +164,18 @@ public class SpectrumConfig implements ConfigData {
 	public int MaxLevelForEffectsInLesserPotionPendant = 3;
 	public int MaxLevelForEffectsInGreaterPotionPendant = 1;
 	
-	@Comment("By Default, Roughly Enough Items will show a 'recipe not unlocked yet' screen for not yet unlocked recipes. Setting this value to false will instead not show this screen, showing no recipes whatsoever, until unlocked")
+	@Comment("""
+			True will prevent the spread of Decay blocks in claims.
+			Only enable when necessary and communicate to your players that those blocks will not work in their claims.
+			If any player comes to the Spectrum devs claiming that decay does not spread for them and therefore they could not progress
+			without them gotten told that, your will get put on the 'bad pack devs' list and this config setting removed again
+			""")
+	public boolean DecayIsStoppedByClaimMods = false;
+	
+	@Comment("""
+			By Default, Roughly Enough Items will show a 'recipe not unlocked yet' screen for not yet unlocked recipes.
+			Setting this value to false will instead not show this screen, showing no recipes whatsoever, until unlocked
+			""")
 	public boolean REIListsRecipesAsNotUnlocked = true;
 	
 	@Comment("""

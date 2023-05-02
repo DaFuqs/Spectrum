@@ -1,9 +1,10 @@
 package de.dafuqs.spectrum.blocks.decay;
 
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.registries.*;
 import net.fabricmc.api.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
 import net.minecraft.block.piston.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
@@ -124,20 +125,23 @@ public abstract class DecayBlock extends Block {
 		BlockPos targetBlockPos = originPos.offset(direction);
 		
 		BlockState targetBlockState = world.getBlockState(targetBlockPos);
-		if (canPlaceAt(targetBlockState, world, targetBlockPos)) {
-			BlockEntity blockEntity = world.getBlockEntity(targetBlockPos);
-			
-			if ((blockEntity == null || canSpreadToBlockEntities())
-					&& (!(targetBlockState.getBlock() instanceof DecayBlock decayBlock) || this.tier > decayBlock.tier) // decay can convert decay of a lower tier
-					&& (whiteListBlockTag == null || targetBlockState.isIn(whiteListBlockTag))
-					&& (blackListBlockTag == null || !targetBlockState.isIn(blackListBlockTag))
-					&& (targetBlockState.getBlock() == Blocks.BEDROCK || (targetBlockState.getBlock().getHardness() > -1.0F && targetBlockState.getBlock().getBlastResistance() < 10000.0F))) { // bedrock is ok, but not other modded unbreakable blocks
-				
-				world.setBlockState(targetBlockPos, getConversionFor(state, targetBlockState));
-				return true;
-			}
+		if (canSpreadTo(world, targetBlockPos, targetBlockState)) {
+			world.setBlockState(targetBlockPos, getConversionFor(state, targetBlockState));
+			return true;
 		}
 		return false;
+	}
+	
+	public boolean canSpreadTo(World world, BlockPos targetBlockPos, BlockState stateAtTargetPos) {
+		if (SpectrumCommon.CONFIG.DecayIsStoppedByClaimMods && GenericClaimModsCompat.isProtected(world, targetBlockPos, null)) {
+			return false;
+		}
+		
+		return (canSpreadToBlockEntities() || world.getBlockEntity(targetBlockPos) == null)
+				&& (!(stateAtTargetPos.getBlock() instanceof DecayBlock decayBlock) || this.tier > decayBlock.tier) // decay can convert decay of a lower tier
+				&& (whiteListBlockTag == null || stateAtTargetPos.isIn(whiteListBlockTag))
+				&& (blackListBlockTag == null || !stateAtTargetPos.isIn(blackListBlockTag))
+				&& (stateAtTargetPos.getBlock() == Blocks.BEDROCK || (stateAtTargetPos.getBlock().getHardness() > -1.0F && stateAtTargetPos.getBlock().getBlastResistance() < 10000.0F));
 	}
 	
 	public BlockState getConversionFor(BlockState stateToSpread, BlockState stateToSpreadTo) {
@@ -154,14 +158,6 @@ public abstract class DecayBlock extends Block {
 		return PistonBehavior.BLOCK;
 	}
 	
-	@Override
-	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-		return super.canPlaceAt(state, world, pos) && (pos.getY() != world.getBottomY() || CREATE_DD_PORTALS) && !isSpawnArea(pos);
-	}
-	
-	public static boolean isSpawnArea(BlockPos pos) {
-		return Math.abs(pos.getX()) < 16 && Math.abs(pos.getZ()) < 16;
-	}
 	
 	/**
 	 * If a neighboring block is updated (placed by a player?), and that can be converted

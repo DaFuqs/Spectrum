@@ -16,7 +16,7 @@ public class SpectrumFeatures {
 	public static Feature<JadeiteLotusFeatureConfig> JADEITE_LOTUS;
 	public static Feature<BlockStateFeatureConfig> PILLAR;
 	public static Feature<ColumnsFeatureConfig> COLUMNS;
-    public static Feature<CrystalFormationFeatureFeatureConfig> BLOB;
+	public static Feature<CrystalFormationFeatureFeatureConfig> BLOB;
 	public static Feature<RandomBlockProximityPatchFeatureConfig> RANDOM_BLOCK_PROXIMITY_PATCH;
 	public static Feature<FossilFeatureConfig> EXPOSED_FOSSIL;
 	public static Feature<WallPatchFeatureConfig> SAWTOOTH_PATCH;
@@ -30,7 +30,7 @@ public class SpectrumFeatures {
 		NEPHRITE_BLOSSOM = registerFeature("nephrite_blossom", new NephriteBlossomFeature(NephriteBlossomFeatureConfig.CODEC));
 		JADEITE_LOTUS = registerFeature("jadeite_lotus", new JadeiteLotusFeature(JadeiteLotusFeatureConfig.CODEC));
 		PILLAR = registerFeature("pillar", new PillarFeature(BlockStateFeatureConfig.CODEC));
-        COLUMNS = registerFeature("columns", new ColumnsFeature(ColumnsFeatureConfig.CODEC));
+		COLUMNS = registerFeature("columns", new ColumnsFeature(ColumnsFeatureConfig.CODEC));
 		BLOB = registerFeature("crystal_formation", new CrystalFormationFeature(CrystalFormationFeatureFeatureConfig.CODEC));
 		RANDOM_BLOCK_PROXIMITY_PATCH = registerFeature("random_block_proximity_patch", new RandomBlockProximityPatchFeature(RandomBlockProximityPatchFeatureConfig.CODEC));
 		EXPOSED_FOSSIL = registerFeature("exposed_fossil", new ExposedFossilFeature(FossilFeatureConfig.CODEC));

@@ -98,7 +98,7 @@ public class SpectrumItems {
 	public static final Item AMETHYST_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("hidden/collect_shards/collect_amethyst_shard"), BuiltinGemstoneColor.MAGENTA);
 	public static final Item CITRINE_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("hidden/collect_shards/collect_citrine_shard"), BuiltinGemstoneColor.YELLOW);
 	public static final Item ONYX_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("create_onyx_shard"), BuiltinGemstoneColor.BLACK);
-    public static final Item MOONSTONE_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("lategame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
+	public static final Item MOONSTONE_POWDER = new GemstonePowderItem(Tab.RESOURCES.settings(), SpectrumCommon.locate("lategame/collect_moonstone_shard"), BuiltinGemstoneColor.WHITE);
 	
 	// Pigment
 	public static final Item BLACK_PIGMENT = new PigmentItem(Tab.RESOURCES.settings(), DyeColor.BLACK);
@@ -224,9 +224,9 @@ public class SpectrumItems {
 	
 	public static final MidnightAberrationItem MIDNIGHT_ABERRATION = new MidnightAberrationItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/create_midnight_aberration"), SpectrumItems.SPECTRAL_SHARD);
 	public static final Item MIDNIGHT_CHIP = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/create_midnight_aberration"), Items.GRAY_DYE);
-
-    public static final Item BISMUTH_FLAKE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
-    public static final Item BISMUTH_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
+	
+	public static final Item BISMUTH_FLAKE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
+	public static final Item BISMUTH_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("midgame/enter_dimension"), Items.CYAN_DYE);
 	
 	public static final Item RAW_MALACHITE = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
 	public static final Item MALACHITE_CRYSTAL = new CloakedItem(Tab.RESOURCES.settings(Rarity.UNCOMMON), SpectrumCommon.locate("milestones/reveal_malachite"), Items.GREEN_DYE);
@@ -810,8 +810,8 @@ public class SpectrumItems {
 	public static void registerFluidBuckets() {
 		register("liquid_crystal_bucket", LIQUID_CRYSTAL_BUCKET, DyeColor.LIGHT_GRAY);
 		register("mud_bucket", MUD_BUCKET, DyeColor.BROWN);
-        register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET, DyeColor.GRAY);
-        register("dragonrot_bucket", DRAGONROT_BUCKET, DyeColor.LIGHT_GRAY);
+		register("midnight_solution_bucket", MIDNIGHT_SOLUTION_BUCKET, DyeColor.GRAY);
+		register("dragonrot_bucket", DRAGONROT_BUCKET, DyeColor.LIGHT_GRAY);
 	}
 	
 	public static void registerFuelRegistry() {

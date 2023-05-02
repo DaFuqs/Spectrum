@@ -80,8 +80,8 @@ public class SpectrumFoodComponents {
 			.build();
 	
 	public static final FoodComponent BEVERAGE = new FoodComponent.Builder()
-            .hunger(2).saturationModifier(0.2F)
-            .build();
+			.hunger(2).saturationModifier(0.2F)
+			.build();
 	
 	public static final FoodComponent PURE_ALCOHOL = new FoodComponent.Builder()
 			.hunger(2).saturationModifier(0.2F).alwaysEdible()

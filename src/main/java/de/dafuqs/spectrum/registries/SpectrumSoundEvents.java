@@ -6,18 +6,18 @@ import net.minecraft.util.*;
 import net.minecraft.util.registry.*;
 
 public class SpectrumSoundEvents {
-
-    // Music
-    public static final SoundEvent SPECTRUM_THEME = register("music.spectrum_theme");
-    public static final SoundEvent BOSS_THEME = register("music.boss_theme");
-    public static final SoundEvent DEEPER_DOWN_THEME = register("music.deeper_down_theme");
-    public static final SoundEvent DIVINITY = register("music.divinity");
-
-    // Sounds
-    public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");
-    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
-    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_AMETHYST = register("pedestal_crafting_finished_amethyst");
-    public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_CITRINE = register("pedestal_crafting_finished_citrine");
+	
+	// Music
+	public static final SoundEvent SPECTRUM_THEME = register("music.spectrum_theme");
+	public static final SoundEvent BOSS_THEME = register("music.boss_theme");
+	public static final SoundEvent DEEPER_DOWN_THEME = register("music.deeper_down_theme");
+	public static final SoundEvent DIVINITY = register("music.divinity");
+	
+	// Sounds
+	public static final SoundEvent PEDESTAL_CRAFTING = register("pedestal_crafting");
+	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_GENERIC = register("pedestal_crafting_finished_generic");
+	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_AMETHYST = register("pedestal_crafting_finished_amethyst");
+	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_CITRINE = register("pedestal_crafting_finished_citrine");
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_TOPAZ = register("pedestal_crafting_finished_topaz");
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_ONYX = register("pedestal_crafting_finished_onyx");
 	public static final SoundEvent PEDESTAL_CRAFTING_FINISHED_MOONSTONE = register("pedestal_crafting_finished_moonstone");
@@ -55,9 +55,9 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent TEXT_REVEALED = register("spectrum.ui.text_revealed");
 	public static final SoundEvent USE_FAIL = register("use_fail");
 	public static final SoundEvent NEW_REVELATION = register("spectrum.ui.new_revelation");
-    public static final SoundEvent NEW_RECIPE = register("spectrum.ui.new_recipe");
-    public static final SoundEvent DIMENSION_SOUNDS = register("ambient.dimension_sounds");
-    public static final SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = register("armor_equip_glow_vision");
+	public static final SoundEvent NEW_RECIPE = register("spectrum.ui.new_recipe");
+	public static final SoundEvent DIMENSION_SOUNDS = register("ambient.dimension_sounds");
+	public static final SoundEvent ITEM_ARMOR_EQUIP_GLOW_VISION = register("armor_equip_glow_vision");
 	public static final SoundEvent PLAYER_TELEPORTS = register("player_teleports");
 	public static final SoundEvent ENDER_SPLICE_CHARGES = register("ender_splice_charges");
 	public static final SoundEvent ENDER_SPLICE_BOUND = register("ender_splice_bound");
@@ -71,29 +71,29 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent STRUCTURE_SUCCESS = register("structure_success");
 	public static final SoundEvent UNLOCK = register("unlock");
 	public static final SoundEvent HUMMINGSTONE_HUM = register("hummingstone_hum");
-
+	
 	public static final SoundEvent BLACK_HOLE_CHEST_OPEN = register("black_hole_chest_open");
 	public static final SoundEvent BLACK_HOLE_CHEST_CLOSE = register("black_hole_chest_close");
-
-    public static final SoundEvent DREAMFLAYER_ACTIVATE = register("dreamflayer_activate");
-    public static final SoundEvent DREAMFLAYER_DEACTIVATE = register("dreamflayer_deactivate");
-
-    public static final SoundEvent RADIANCE_STAFF_CHARGING = register("radiance_staff_charging");
-    public static final SoundEvent RADIANCE_STAFF_PLACE = register("radiance_staff_place");
-    public static final SoundEvent RADIANCE_STAFF_BREAK = register("radiance_staff_break");
-
-    public static final SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
-    public static final SoundEvent MUD_AMBIENT = register("mud_ambient");
-    public static final SoundEvent MIDNIGHT_SOLUTION_AMBIENT = register("midnight_solution_ambient");
-
-    public static final SoundEvent FADING_PLACED = register("fading_placed");
-    public static final SoundEvent FAILING_PLACED = register("failing_placed");
-    public static final SoundEvent RUIN_PLACED = register("ruin_placed");
-
-    public static final SoundEvent DEEPER_DOWN_PORTAL_OPEN = register("deeper_down_portal_open");
-    public static final SoundEvent SQUEAKER = register("squeaker");
-
-    public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
+	
+	public static final SoundEvent DREAMFLAYER_ACTIVATE = register("dreamflayer_activate");
+	public static final SoundEvent DREAMFLAYER_DEACTIVATE = register("dreamflayer_deactivate");
+	
+	public static final SoundEvent RADIANCE_STAFF_CHARGING = register("radiance_staff_charging");
+	public static final SoundEvent RADIANCE_STAFF_PLACE = register("radiance_staff_place");
+	public static final SoundEvent RADIANCE_STAFF_BREAK = register("radiance_staff_break");
+	
+	public static final SoundEvent LIQUID_CRYSTAL_AMBIENT = register("liquid_crystal_ambient");
+	public static final SoundEvent MUD_AMBIENT = register("mud_ambient");
+	public static final SoundEvent MIDNIGHT_SOLUTION_AMBIENT = register("midnight_solution_ambient");
+	
+	public static final SoundEvent FADING_PLACED = register("fading_placed");
+	public static final SoundEvent FAILING_PLACED = register("failing_placed");
+	public static final SoundEvent RUIN_PLACED = register("ruin_placed");
+	
+	public static final SoundEvent DEEPER_DOWN_PORTAL_OPEN = register("deeper_down_portal_open");
+	public static final SoundEvent SQUEAKER = register("squeaker");
+	
+	public static final SoundEvent BLOCK_MEMORY_ADVANCE = register("block.memory.advance");
 	
 	public static final SoundEvent BLOCK_CITRINE_BLOCK_BREAK = register("block.citrine_block.break");
 	public static final SoundEvent BLOCK_CITRINE_BLOCK_STEP = register("block.citrine_block.step");

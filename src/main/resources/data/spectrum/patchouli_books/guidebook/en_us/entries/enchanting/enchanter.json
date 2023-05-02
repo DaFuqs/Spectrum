@@ -21,7 +21,7 @@
       "name": "Enchanting Structure",
       "multiblock_id": "spectrum:enchanter_structure",
       "enable_visualize": true,
-      "text": "The Enchanter's abilities can be enhanced via $(l:magical_blocks/upgrades)Upgrades$(). Place them on the four Gemstone Blocks."
+      "text": "Dimensions: 11x11x5 Blocks$(br)It can be enhanced using $(l:magical_blocks/upgrades)Upgrades$() by placing them on the four Gemstone Blocks."
     },
     {
       "type": "patchouli:text",

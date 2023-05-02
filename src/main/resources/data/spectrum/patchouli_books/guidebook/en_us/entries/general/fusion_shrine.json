@@ -25,12 +25,12 @@
       "name": "Shrine Structure",
       "multiblock_id": "spectrum:fusion_shrine_structure",
       "enable_visualize": true,
-      "text": "As always you are able to switch Basalt with Calcite and choose the $(l:decoration/gemstone_storage_blocks)Gemstone Blocks$(/l) to your liking."
+      "text": "Dimensions: 9x9x5x5 Blocks."
     },
     {
       "type": "patchouli:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Fusion Shrine$(li)4 Polished Gemstone Blocks$(li)4 Chiseled Polished Blocks$(li)8 Polished Pillars$(li)12 Polished Slabs$(li)77 Polished Blocks"
+      "text": "$(li)1 Fusion Shrine$(li)4 Polished Gemstone Blocks$(li)4 Chiseled Polished Blocks$(li)8 Polished Pillars$(li)12 Polished Slabs$(li)77 Polished Blocks$(br2)As always you are able to switch Basalt with Calcite and choose the $(l:decoration/gemstone_storage_blocks)Gemstone Blocks$(/l) to your liking"
     },
     {
       "type": "patchouli:text",

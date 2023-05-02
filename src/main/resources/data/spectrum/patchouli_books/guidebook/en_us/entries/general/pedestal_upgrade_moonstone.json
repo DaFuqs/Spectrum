@@ -20,7 +20,7 @@
       "name": "Spectrum Palace",
       "multiblock_id": "spectrum:pedestal_complex_structure_without_moonstone_check",
       "enable_visualize": true,
-      "text": "You can switch the basalt blocks with calcite and the amethyst blocks for any other gemstone block."
+      "text": "Dimensions: 13x13x7 Blocks"
     },
     {
       "type": "patchouli:text",

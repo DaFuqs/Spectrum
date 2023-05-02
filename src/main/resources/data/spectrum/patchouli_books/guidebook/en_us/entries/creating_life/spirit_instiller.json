@@ -22,7 +22,7 @@
       "name": "Instiller Structure",
       "multiblock_id": "spectrum:spirit_instiller_structure",
       "enable_visualize": true,
-      "text": "The Spirit Instiller's abilities can be enhanced via $(l:magical_blocks/upgrades)Upgrades$(). Place them on the two Onyx Chiseled Blocks."
+      "text": "Dimensions: 8x9x5 Blocks$(br)It can be enhanced using $(l:magical_blocks/upgrades)Upgrades$() by placing them on the two Onyx Chiseled Blocks."
     },
     {
       "type": "patchouli:text",

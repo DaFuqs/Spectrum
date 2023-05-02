@@ -25,7 +25,7 @@
       "name": "Spectrum Focus",
       "multiblock_id": "spectrum:pedestal_simple_structure_check",
       "enable_visualize": true,
-      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best."
+      "text": "Dimensions: 11x11x4 Blocks. But best to leave a few additional blocks of space around, just to make sure."
     },
     {
       "type": "patchouli:text",
@@ -38,7 +38,7 @@
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_focus_customisation.png"
       ],
-      "text": "Mix up Basalt and Calcite up to create your personal variation!"
+      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up Basalt and Calcite up to create your personal variation!"
     }
   ]
 }

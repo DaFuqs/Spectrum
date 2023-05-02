@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.compat.claims;
 
 import net.fabricmc.loader.api.*;
-import net.minecraft.entity.player.*;
+import net.minecraft.entity.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -21,9 +21,9 @@ public class GenericClaimModsCompat {
 	 * @param pos   the pos that should get modified
 	 * @return if modification is allowed
 	 */
-	public static boolean isProtected(World world, BlockPos pos, @Nullable PlayerEntity player) {
+	public static boolean isProtected(World world, BlockPos pos, @Nullable Entity entity) {
 		if (IS_COMMON_PROTECTION_API_PRESENT) {
-			return !CommonProtectionApiCompat.isProtected(world, pos, player);
+			return !CommonProtectionApiCompat.isProtected(world, pos, entity);
 		}
 		return true;
 	}

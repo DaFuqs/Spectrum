@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
@@ -187,6 +188,9 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 			
 			for (BlockPos blockPos : BlockPos.iterateOutwards(blockHitResult.getBlockPos(), COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE, COLOR_SPLAT_RANGE)) {
 				if (world.getBlockState(blockPos).getBlock() instanceof ColorableBlock colorableBlock) {
+					if (GenericClaimModsCompat.isProtected(world, blockPos, this.getOwner())) {
+						continue;
+					}
 					colorableBlock.color(world, blockPos, dyeColor);
 					continue;
 				}

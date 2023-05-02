@@ -38,6 +38,7 @@ repositories {
 			includeGroup "maven.modrinth"
 		}
 	}
+	maven { url "https://maven.nucleoid.xyz/" }
 	maven {
 		name = "Curse"
 		url = 'https://cfa2.cursemaven.com'
@@ -66,11 +67,12 @@ dependencies {
 	// we need a bit of concern
 	modImplementation include("com.github.devs-immortal:Incubus-Core:${project.incubus_core_version}")
 
-
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
 	modApi("com.terraformersmc:modmenu:${project.modmenu_version}")
+
+	modImplementation "eu.pb4:common-protection-api:${project.cpa_version}"
 
 	modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 	// https://maven.blamejared.com/vazkii/patchouli/Patchouli/
@@ -79,7 +81,7 @@ dependencies {
 	// https://github.com/shedaniel/RoughlyEnoughItems
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 	modApi "dev.architectury:architectury-fabric:${project.architectury_version}"
-	
+
 	// https://github.com/emilyploszaj/emi
 	modCompileOnly "dev.emi:emi:${emi_version}:api"
 

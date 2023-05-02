@@ -53,7 +53,7 @@ public class SpectrumTypeSpecificPredicates {
 		}
 		
 		public boolean test(Entity entity, ServerWorld world, @Nullable Vec3d pos) {
-			if (!(entity instanceof EggLayingWoolyPigEntity eggLayingWoolyPigEntity)) { // TODO: does not get called yet
+			if (!(entity instanceof EggLayingWoolyPigEntity eggLayingWoolyPigEntity)) {
 				return false;
 			} else {
 				return this.color.equals(eggLayingWoolyPigEntity.getColor());

@@ -148,8 +148,9 @@ public class SpectrumCommon implements ModInitializer {
 		// Recipes
 		logInfo("Registering Recipe Types...");
 		SpectrumRecipeTypes.registerSerializer();
-		logInfo("Registering Loot Conditions...");
+		logInfo("Registering Loot Conditions & Functions...");
 		SpectrumLootConditionTypes.register();
+		SpectrumLootFunctionTypes.register();
 		
 		// GUI
 		logInfo("Registering Containers...");

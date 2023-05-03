@@ -44,10 +44,10 @@ public class LightShardRenderer extends EntityRenderer<LightShardEntity> {
         var positions = matrix.getPositionMatrix();
         var normals = matrix.getNormalMatrix();
 
-        consumer.vertex(positions, 0, 0, 0).color(1f, 1f, 1f, alpha).texture(0, 1).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normals, 0, 1, 0).next();;
-        consumer.vertex(positions, 1, 0, 0).color(1f, 1f, 1f, alpha).texture(1, 1).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normals, 0, 1, 0).next();;
-        consumer.vertex(positions, 1, 1, 0).color(1f, 1f, 1f, alpha).texture(1, 0).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normals, 0, 1, 0).next();;
-        consumer.vertex(positions, 0, 1, 0).color(1f, 1f, 1f, alpha).texture(0, 0).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normals, 0, 1, 0).next();;
+        consumer.vertex(positions, 0, 0, 0).color(1f, 1f, 1f, alpha).texture(0, 1).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normals, 0, 1, 0).next();
+        consumer.vertex(positions, 1, 0, 0).color(1f, 1f, 1f, alpha).texture(1, 1).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normals, 0, 1, 0).next();
+        consumer.vertex(positions, 1, 1, 0).color(1f, 1f, 1f, alpha).texture(1, 0).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normals, 0, 1, 0).next();
+        consumer.vertex(positions, 0, 1, 0).color(1f, 1f, 1f, alpha).texture(0, 0).overlay(OverlayTexture.DEFAULT_UV).light(light).normal(normals, 0, 1, 0).next();
 
         matrices.pop();
 

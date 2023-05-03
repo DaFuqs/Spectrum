@@ -57,12 +57,14 @@ public class GlassAmpouleItem extends Item {
                 velocityY = random.nextFloat() - 0.5;
             }
 
-            shard.setPosition(pos);
-            shard.setInitialVelocity(new Vec3d(
+            var initVel = new Vec3d(
                     random.nextFloat() * 2 - 1,
                     velocityY,
                     random.nextFloat() * 2 - 1
-            ));
+            );
+
+            shard.setPosition(pos);
+            shard.setInitialVelocity(initVel.add(user.getVelocity()));
             world.spawnEntity(shard);
         }
 

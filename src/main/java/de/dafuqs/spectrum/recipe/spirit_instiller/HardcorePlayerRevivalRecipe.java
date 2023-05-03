@@ -26,7 +26,7 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 	
 	public HardcorePlayerRevivalRecipe(Identifier identifier) {
 		super(identifier, "", false, null,
-				IngredientStack.of(Ingredient.ofItems(Blocks.PLAYER_HEAD.asItem())), IngredientStack.of(Ingredient.ofItems(Items.NETHER_STAR)), IngredientStack.of(Ingredient.ofItems(Items.ENCHANTED_GOLDEN_APPLE)),
+				IngredientStack.of(Ingredient.ofItems(Blocks.PLAYER_HEAD.asItem())), IngredientStack.of(Ingredient.ofItems(Items.TOTEM_OF_UNDYING)), IngredientStack.of(Ingredient.ofItems(Items.ENCHANTED_GOLDEN_APPLE)),
 				ItemStack.EMPTY, 1200, 100, true);
 	}
 	

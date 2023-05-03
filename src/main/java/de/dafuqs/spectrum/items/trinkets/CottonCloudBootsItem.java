@@ -7,6 +7,7 @@ import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.text.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -37,8 +38,8 @@ public class CottonCloudBootsItem extends SpectrumTrinketItem {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		tooltip.add(Text.translatable("item.spectrum.cotton_cloud_boots.tooltip"));
-		tooltip.add(Text.translatable("item.spectrum.cotton_cloud_boots.tooltip2"));
+		tooltip.add(Text.translatable("item.spectrum.cotton_cloud_boots.tooltip").formatted(Formatting.GRAY));
+		tooltip.add(Text.translatable("item.spectrum.cotton_cloud_boots.tooltip2").formatted(Formatting.GRAY));
 	}
 	
 }

@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "collected_stardust": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_stardust"
+      }
+    },
+    "collected_phantom_membrane": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_vanilla/collect_phantom_membrane"
+      }
+    },
+    "collected_brown_pigment": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:hidden/collect_pigment/collect_brown_pigment"
+      }
+    }
+  }
+}

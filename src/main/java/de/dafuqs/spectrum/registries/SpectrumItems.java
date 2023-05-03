@@ -410,6 +410,7 @@ public class SpectrumItems {
 	public static final Item GLOW_VISION_GOGGLES = new GlowVisionGogglesItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item JEOPARDANT = new AttackRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item COTTON_CLOUD_BOOTS = new CottonCloudBootsItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item RADIANCE_PIN = new RadiancePinItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item TOTEM_PENDANT = new TotemPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item TAKE_OFF_BELT = new TakeOffBeltItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
@@ -787,6 +788,7 @@ public class SpectrumItems {
 		register("glow_vision_goggles", GLOW_VISION_GOGGLES, DyeColor.WHITE);
 		register("jeopardant", JEOPARDANT, DyeColor.RED);
 		register("seven_league_boots", SEVEN_LEAGUE_BOOTS, DyeColor.PURPLE);
+		register("cotton_cloud_boots", COTTON_CLOUD_BOOTS, DyeColor.PURPLE);
 		register("radiance_pin", RADIANCE_PIN, DyeColor.BLUE);
 		register("totem_pendant", TOTEM_PENDANT, DyeColor.BLUE);
 		register("take_off_belt", TAKE_OFF_BELT, DyeColor.YELLOW);

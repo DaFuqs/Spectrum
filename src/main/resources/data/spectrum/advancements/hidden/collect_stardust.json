@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "collected_stratine": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:milestones/unlock_shooting_stars" }
+    "unlocked_shooting_stars": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:milestones/unlock_shooting_stars"
+      }
     },
     "has_stardust": {
       "trigger": "minecraft:inventory_changed",

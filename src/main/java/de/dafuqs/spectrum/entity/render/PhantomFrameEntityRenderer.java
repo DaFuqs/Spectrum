@@ -47,9 +47,9 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 		matrixStack.translate((double) direction.getOffsetX() * d, (double) direction.getOffsetY() * d, (double) direction.getOffsetZ() * d);
 		matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(itemFrameEntity.getPitch()));
 		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - itemFrameEntity.getYaw()));
-		boolean bl = itemFrameEntity.isInvisible();
+		boolean isInvisible = itemFrameEntity.isInvisible();
 		ItemStack itemStack = itemFrameEntity.getHeldItemStack();
-		if (!bl) {
+		if (!isInvisible) {
 			BlockRenderManager blockRenderManager = this.client.getBlockRenderManager();
 			BakedModelManager bakedModelManager = blockRenderManager.getModels().getModelManager();
 			ModelIdentifier modelIdentifier = this.getModelId(itemFrameEntity, itemStack);
@@ -60,16 +60,16 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 		}
 		
 		if (!itemStack.isEmpty()) {
-			boolean blockRenderManager = itemStack.isOf(Items.FILLED_MAP);
-			if (bl) {
+			boolean isRenderingMap = itemStack.isOf(Items.FILLED_MAP);
+			if (isInvisible) {
 				matrixStack.translate(0.0D, 0.0D, 0.5D);
 			} else {
 				matrixStack.translate(0.0D, 0.0D, 0.4375D);
 			}
 			
-			int bakedModelManager = blockRenderManager ? itemFrameEntity.getRotation() % 4 * 2 : itemFrameEntity.getRotation();
+			int bakedModelManager = isRenderingMap ? itemFrameEntity.getRotation() % 4 * 2 : itemFrameEntity.getRotation();
 			matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float) bakedModelManager * 360.0F / 8.0F));
-			if (blockRenderManager) {
+			if (isRenderingMap) {
 				matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180.0F));
 				float scale = 0.0078125F;
 				matrixStack.scale(scale, scale, scale);
@@ -83,7 +83,8 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 				}
 			} else {
 				int finalLight = this.getLight(itemFrameEntity, light);
-				matrixStack.scale(0.5F, 0.5F, 0.5F);
+				float scale = 0.85F;
+				matrixStack.scale(scale, scale, scale);
 				this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.FIXED, finalLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.getId());
 			}
 		}

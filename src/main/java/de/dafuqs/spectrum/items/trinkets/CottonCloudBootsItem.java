@@ -8,6 +8,7 @@ import net.minecraft.item.*;
 import net.minecraft.particle.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
@@ -23,15 +24,16 @@ public class CottonCloudBootsItem extends SpectrumTrinketItem {
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		super.tick(stack, slot, entity);
-		if (entity.isSprinting()) {
-			entity.setNoGravity(true);
-			if (entity.world.isClient) {
-				Random random = entity.world.random;
-				entity.world.addParticle(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(),
-						0.125 - random.nextFloat() * 0.25, 0.04 - random.nextFloat() * 0.08, 0.125 - random.nextFloat() * 0.25);
+		if (entity.isSprinting() && !entity.isOnGround()) {
+			Vec3d velocity = entity.getVelocity();
+			if (velocity.y < 0) {
+				entity.setVelocity(entity.getVelocity().multiply(1, 0.1, 1));
+				if (entity.world.isClient) {
+					Random random = entity.world.random;
+					entity.world.addParticle(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(),
+							0.125 - random.nextFloat() * 0.25, 0.04 - random.nextFloat() * 0.08, 0.125 - random.nextFloat() * 0.25);
+				}
 			}
-		} else {
-			entity.setNoGravity(false);
 		}
 	}
 	

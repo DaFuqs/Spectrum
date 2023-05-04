@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
@@ -29,11 +30,6 @@ public class SpectrumBossEntity extends PathAwareEntity {
 		super(entityType, world);
 		this.bossBar = (ServerBossBar) (new ServerBossBar(this.getDisplayName(), BossBar.Color.PURPLE, BossBar.Style.PROGRESS)).setDarkenSky(true);
 		this.setHealth(this.getMaxHealth());
-	}
-	
-	public static boolean isRealPlayer(Entity entity) {
-		// this should filter out most fake players (kibe, FAPI)
-		return entity instanceof PlayerEntity && entity.getClass().getCanonicalName().startsWith("net.minecraft");
 	}
 	
 	public boolean hasInvincibilityTicks() {
@@ -71,9 +67,9 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	
 	@Override
 	protected void applyDamage(DamageSource source, float amount) {
-		// when damage was dealt
+		// called when damage was dealt
 		Entity dealer = source.getAttacker();
-		if (!hasInvincibilityTicks() && dealer instanceof PlayerEntity && isRealPlayer(dealer)) {
+		if (!hasInvincibilityTicks() && dealer instanceof PlayerEntity && EntityHelper.isRealPlayerOrPet(dealer)) {
 			super.applyDamage(source, amount);
 			this.setInvincibilityTicks(20);
 		}
@@ -104,6 +100,14 @@ public class SpectrumBossEntity extends PathAwareEntity {
 			if (damageRecord.getAttacker() instanceof ServerPlayerEntity player) {
 				Criteria.ENTITY_KILLED_PLAYER.trigger(player, this, damageSource);
 			}
+		}
+	}
+	
+	@Override
+	protected void drop(DamageSource source) {
+		Entity entity = source.getAttacker();
+		if (EntityHelper.isRealPlayerOrPet(entity)) {
+			super.drop(source);
 		}
 	}
 	

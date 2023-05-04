@@ -1,6 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.additionalentityattributes.*;
+import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.ai.*;
@@ -35,11 +36,11 @@ import java.util.function.*;
 public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttackMob {
 	
 	private static final Identifier ENTERED_DD_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/spectrum_lategame");
+	private static final Identifier KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/killed_monstrosity");
+	
 	private static final Predicate<LivingEntity> SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE = (entity) -> {
 		if (entity instanceof PlayerEntity player) {
-			return !player.isSpectator() && !player.isCreative();
-			// TODO: uncomment after tests are complete
-			//return !AdvancementHelper.hasAdvancement(player, ENTERED_DD_ADVANCEMENT_IDENTIFIER);
+			return !player.isSpectator() && !player.isCreative() && !AdvancementHelper.hasAdvancement(player, KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER);
 		}
 		return false;
 	};

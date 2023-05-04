@@ -23,4 +23,16 @@ public class EntityHelper {
 		}
 	}
 	
+	public static boolean isRealPlayer(Entity entity) {
+		// this should filter out most fake players (kibe, FAPI)
+		return entity instanceof PlayerEntity && entity.getClass().getCanonicalName().startsWith("net.minecraft");
+	}
+	
+	public static boolean isRealPlayerOrPet(Entity entity) {
+		if (entity instanceof TameableEntity tameableEntity) {
+			Entity owner = tameableEntity.getOwner();
+			return isRealPlayer(owner);
+		}
+		return isRealPlayer(entity);
+	}
 }

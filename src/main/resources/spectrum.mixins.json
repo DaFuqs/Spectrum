@@ -51,6 +51,7 @@
     "ShearsDispenserBehaviorMixin",
     "TemptGoalMixin",
     "WitherEntityMixin",
+    "accessors.DamageTrackerAccessor",
     "accessors.FluidBlockAccessor",
     "accessors.FoxEntityAccessor",
     "accessors.ItemAccessor",

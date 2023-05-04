@@ -1,5 +1,7 @@
 package de.dafuqs.spectrum.entity.entity;
 
+import de.dafuqs.spectrum.mixin.accessors.*;
+import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.boss.*;
@@ -15,6 +17,8 @@ import net.minecraft.text.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class SpectrumBossEntity extends PathAwareEntity {
 	
@@ -89,6 +93,21 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	}
 	
 	@Override
+	public void onDeath(DamageSource damageSource) {
+		super.onDeath(damageSource);
+		
+		// grant the kill to all players that attacked recently
+		// => should they battle in a team the kill counts for all players
+		// instead of just the one that did the killing blow like in vanilla
+		List<DamageRecord> recentDamage = ((DamageTrackerAccessor) this.getDamageTracker()).getRecentDamage();
+		for (DamageRecord damageRecord : recentDamage) {
+			if (damageRecord.getAttacker() instanceof ServerPlayerEntity player) {
+				Criteria.ENTITY_KILLED_PLAYER.trigger(player, this, damageSource);
+			}
+		}
+	}
+	
+	@Override
 	public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
 		return true;
 	}
@@ -128,7 +147,11 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	
 	@Override
 	public void checkDespawn() {
-	
+		if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.isDisallowedInPeaceful()) {
+			this.discard();
+		} else {
+			this.despawnCounter = 0;
+		}
 	}
 	
 	@Override

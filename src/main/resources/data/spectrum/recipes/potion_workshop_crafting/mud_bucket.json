@@ -9,7 +9,7 @@
     "item": "minecraft:dirt"
   },
   "ingredient2": {
-    "item": "minecraft:coarse_dirt"
+    "item": "minecraft:mud"
   },
   "result": {
     "item": "spectrum:mud_bucket"

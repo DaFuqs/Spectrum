@@ -1,5 +1,5 @@
 {
-  "name": "Mud",
+  "name": "Liquid Mud",
   "advancement": "spectrum:unlocks/blocks/mud",
   "icon": "spectrum:mud_bucket",
   "category": "spectrum:magical_blocks_category",
@@ -8,7 +8,7 @@
   },
   "pages": [
     {
-      "title": "Mud",
+      "title": "Liquid Mud",
       "type": "patchouli:spotlight",
       "item": "spectrum:mud_bucket",
       "text": "$(italic)Mud. It is mud. Not particularly interesting in itself. What is practical is the collision of the mud with other liquids, like $(thing)Water$() or $(thing)Lava$(). This creates $(thing)Dirt$() or $(thing)Coarse Dirt$(), respectively."

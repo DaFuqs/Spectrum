@@ -32,7 +32,7 @@
     },
     {
       "type": "spectrum:potion_workshop_crafting",
-      "title": "Mud",
+      "title": "Liquid Mud",
       "recipe": "spectrum:potion_workshop_crafting/mud_bucket",
       "text": ""
     },

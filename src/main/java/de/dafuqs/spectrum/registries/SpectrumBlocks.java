@@ -211,7 +211,13 @@ public class SpectrumBlocks {
 	public static final Block EXPOSED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.EXPOSED, AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_STAIRS = new WeatheringStairsBlock(Weathering.WeatheringLevel.WEATHERED, WEATHERED_SHALE_CLAY_TILES.getDefaultState(), AbstractBlock.Settings.copy(SHALE_CLAY));
 	public static final Block WEATHERED_SHALE_CLAY_TILE_SLAB = new WeatheringSlabBlock(Weathering.WeatheringLevel.WEATHERED, AbstractBlock.Settings.copy(SHALE_CLAY));
-	
+
+	public static final Block BONE_ASH_BRICKS = new Block(FabricBlockSettings.copyOf(Blocks.BEDROCK).hardness(200F).mapColor(DyeColor.WHITE));
+	public static final Block BONE_ASH_TILES = new Block(FabricBlockSettings.copyOf(BONE_ASH_BRICKS));
+	public static final Block BONE_ASH_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(BONE_ASH_BRICKS));
+	public static final Block BONE_ASH_COLUMN = new Block(FabricBlockSettings.copyOf(BONE_ASH_BRICKS));
+	public static final Block BONE_ASH_SHINGLES = new SpectrumStairsBlock(BONE_ASH_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(BONE_ASH_BRICKS));
+
 	public static final Block SAWTOOTH = new SawtoothBlock(AbstractBlock.Settings.copy(BLACKSLAG));
 	public static final Block SLUSH = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
 	
@@ -1781,7 +1787,13 @@ public class SpectrumBlocks {
 		registerBlockWithItem("exposed_shale_clay_tile_slab", EXPOSED_SHALE_CLAY_TILE_SLAB, settings, DyeColor.BROWN);
 		registerBlockWithItem("weathered_shale_clay_tile_stairs", WEATHERED_SHALE_CLAY_TILE_STAIRS, settings, DyeColor.BROWN);
 		registerBlockWithItem("weathered_shale_clay_tile_slab", WEATHERED_SHALE_CLAY_TILE_SLAB, settings, DyeColor.BROWN);
-		
+
+		registerBlockWithItem("bone_ash_bricks", BONE_ASH_BRICKS, settings, DyeColor.CYAN);
+		registerBlockWithItem("bone_ash_tiles", BONE_ASH_TILES, settings, DyeColor.CYAN);
+		registerBlockWithItem("bone_ash_pillar", BONE_ASH_PILLAR, settings, DyeColor.CYAN);
+		registerBlockWithItem("bone_ash_column", BONE_ASH_COLUMN, settings, DyeColor.CYAN);
+		registerBlockWithItem("bone_ash_shingles", BONE_ASH_SHINGLES, settings, DyeColor.CYAN);
+
 		registerBlockWithItem("sawtooth", SAWTOOTH, settings, DyeColor.RED);
 		registerBlockWithItem("slush", SLUSH, settings, DyeColor.BROWN);
 	}

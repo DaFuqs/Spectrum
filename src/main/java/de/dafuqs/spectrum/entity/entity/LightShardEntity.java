@@ -19,7 +19,7 @@ import java.util.*;
 
 public class LightShardEntity extends ProjectileEntity {
 
-    public static final int DEFAULT_MAX_AGE = 200, DECELERATION_PHASE_LENGTH = 20;
+    public static final int DEFAULT_MAX_AGE = 200, DECELERATION_PHASE_LENGTH = 25;
     public static final float DEFAULT_ACCELERATION = 0.03F, DEFAULT_DAMAGE = 4f;
     private float scaleOffset, damage;
     private long maxAge;
@@ -71,7 +71,7 @@ public class LightShardEntity extends ProjectileEntity {
         updatePosition(getX() + velocity.getX(), getY() + velocity.getY(), getZ() + velocity.getZ());
 
         if (age < DECELERATION_PHASE_LENGTH) {
-            var deceleration = Math.max((float) age / DECELERATION_PHASE_LENGTH, 0.334);
+            var deceleration = Math.max((float) age / DECELERATION_PHASE_LENGTH, 0.5);
             setVelocity(
                     MathHelper.lerp(deceleration, initialVelocity.x, 0),
                     MathHelper.lerp(deceleration, initialVelocity.y, 0),

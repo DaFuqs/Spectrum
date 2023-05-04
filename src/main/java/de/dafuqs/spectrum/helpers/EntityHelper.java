@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.mixin.accessors.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.entity.projectile.*;
 
 import java.util.*;
 
@@ -28,9 +29,13 @@ public class EntityHelper {
 		return entity instanceof PlayerEntity && entity.getClass().getCanonicalName().startsWith("net.minecraft");
 	}
 	
-	public static boolean isRealPlayerOrPet(Entity entity) {
+	public static boolean isRealPlayerProjectileOrPet(Entity entity) {
 		if (entity instanceof TameableEntity tameableEntity) {
 			Entity owner = tameableEntity.getOwner();
+			return isRealPlayer(owner);
+		}
+		if (entity instanceof ProjectileEntity projectileEntity) {
+			Entity owner = projectileEntity.getOwner();
 			return isRealPlayer(owner);
 		}
 		return isRealPlayer(entity);

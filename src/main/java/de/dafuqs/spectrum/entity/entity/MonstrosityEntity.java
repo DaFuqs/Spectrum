@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.additionalentityattributes.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.ai.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.sound.*;
@@ -18,6 +19,7 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.tag.*;
 import net.minecraft.text.*;
@@ -35,7 +37,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	private static final Identifier ENTERED_DD_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/spectrum_lategame");
 	private static final Predicate<LivingEntity> SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE = (entity) -> {
 		if (entity instanceof PlayerEntity player) {
-			return true;
+			return !player.isSpectator() && !player.isCreative();
 			// TODO: uncomment after tests are complete
 			//return !AdvancementHelper.hasAdvancement(player, ENTERED_DD_ADVANCEMENT_IDENTIFIER);
 		}
@@ -52,6 +54,8 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	private float previousHealth;
 	private int timesGottenStronger = 0;
 	
+	private static @Nullable MonstrosityEntity currentMonstrosity = null;
+	
 	public MonstrosityEntity(EntityType<? extends MonstrosityEntity> entityType, World world) {
 		super(entityType, world);
 		this.moveControl = new MonstrosityMoveControl(this);
@@ -60,9 +64,45 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		this.ignoreCameraFrustum = true;
 		this.previousHealth = getHealth();
 		
-		if (world.isClient()) {
+		if (world.isClient) {
 			MonstrositySoundInstance.startSoundInstance(this);
 		}
+	}
+	
+	protected MonstrosityEntity(World world, double x, double y, double z) {
+		this(SpectrumEntityTypes.MONSTROSITY, world);
+		this.setPosition(x, y, z);
+		this.setYaw(this.random.nextFloat() * 360.0F);
+		this.setInvincibilityTicks(200);
+	}
+	
+	public static void checkForSpawn(ServerWorld world) {
+		/*if (world.getDifficulty() == Difficulty.PEACEFUL) {
+			return;
+		}*/
+		for (PlayerEntity playerEntity : world.getEntitiesByType(EntityType.PLAYER, Entity::isAlive)) {
+			// 1 % chance to spawn
+			if (world.getRandom().nextFloat() < 0.1 && SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE.test(playerEntity)) {
+				if (currentMonstrosity == null) {
+					currentMonstrosity = new MonstrosityEntity(world, playerEntity.getPos().getX(), playerEntity.getPos().getY() - 100, playerEntity.getPos().getZ());
+					world.spawnEntity(currentMonstrosity);
+				}
+				if (currentMonstrosity.getTarget() == null) {
+					currentMonstrosity.setTarget(playerEntity);
+					currentMonstrosity.setPosition(playerEntity.getPos().getX(), playerEntity.getPos().getY() - 100, playerEntity.getPos().getZ());
+				}
+				currentMonstrosity.playSound(currentMonstrosity.getAmbientSound(), 4.0F, 1.0F);
+			}
+			break;
+		}
+	}
+	
+	@Override
+	public void onRemoved() {
+		if (currentMonstrosity == this) {
+			currentMonstrosity = null;
+		}
+		super.onRemoved();
 	}
 	
 	@Override
@@ -157,6 +197,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	public void growStronger(int amount) {
 		this.timesGottenStronger += amount;
 		this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE).setBaseValue(6 + timesGottenStronger);
+		// TODO: spawn effects
 	}
 	
 	@Override
@@ -396,7 +437,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 	
 	private class FindTargetGoal extends Goal {
-
+		
 		private int delay = toGoalTicks(20);
 		
 		FindTargetGoal() {

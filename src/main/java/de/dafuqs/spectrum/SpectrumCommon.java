@@ -256,6 +256,10 @@ public class SpectrumCommon implements ModInitializer {
 						ShootingStarEntity.doShootingStarSpawnsForPlayers(world);
 					}
 				}
+				
+				if (world.getRegistryKey().equals(DDDimension.DIMENSION_KEY)) {
+					MonstrosityEntity.checkForSpawn(world);
+				}
 			}
 		});
 		

@@ -56,7 +56,7 @@ public class NightfallsBladeItem extends SwordItem implements PotionFillable {
 	public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		if(target.isAlive() && attacker instanceof PlayerEntity player) {
 			if (AdvancementHelper.hasAdvancement(player, UNLOCK_IDENTIFIER)) {
-				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
+				List<InkPoweredStatusEffectInstance> effects = getEffects(stack);
 				for(InkPoweredStatusEffectInstance instance : effects) {
 					if(InkPowered.tryDrainEnergy(player, instance.getInkCost().getColor(), instance.getInkCost().getCost())) {
 						World world = attacker.getWorld();

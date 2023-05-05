@@ -51,6 +51,10 @@ public interface PotionFillable {
 		}
 	}
 	
+	default List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
+		return InkPoweredStatusEffectInstance.getEffects(stack);
+	}
+	
 	default boolean isFull(ItemStack itemStack) {
 		return InkPoweredStatusEffectInstance.getEffects(itemStack).size() >= maxEffectCount();
 	}

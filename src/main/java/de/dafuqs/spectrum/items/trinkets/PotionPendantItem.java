@@ -67,8 +67,8 @@ public class PotionPendantItem extends SpectrumTrinketItem implements PotionFill
 		}
 	}
 	
-	private static void grantEffects(ItemStack stack, PlayerEntity player) {
-		for (InkPoweredStatusEffectInstance inkPoweredEffect : InkPoweredStatusEffectInstance.getEffects(stack)) {
+	private void grantEffects(ItemStack stack, PlayerEntity player) {
+		for (InkPoweredStatusEffectInstance inkPoweredEffect : getEffects(stack)) {
 			if (InkPowered.tryDrainEnergy(player, inkPoweredEffect.getInkCost())) {
 				StatusEffectInstance effect = inkPoweredEffect.getStatusEffectInstance();
 				player.addStatusEffect(new StatusEffectInstance(effect.getEffectType(), EFFECT_DURATION, effect.getAmplifier(), effect.isAmbient(), effect.shouldShowParticles(), true));

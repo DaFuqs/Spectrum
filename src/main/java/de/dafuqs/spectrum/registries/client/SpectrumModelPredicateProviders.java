@@ -77,7 +77,7 @@ public class SpectrumModelPredicateProviders {
 		ModelPredicateProviderRegistry.register(item, new Identifier("angle"), new CompassAnglePredicateProvider((world, stack, entity) -> StructureCompassItem.getStructurePos(stack)));
 	}
 	
-	private static void registerMalachiteCrossbowPredicates(MalachiteCrossbowItem crossbowItem) {
+	private static void registerMalachiteCrossbowPredicates(Item crossbowItem) {
 		ModelPredicateProviderRegistry.register(crossbowItem, new Identifier("pull"), (itemStack, clientWorld, livingEntity, i) -> {
 			if (livingEntity == null) {
 				return 0.0F;
@@ -206,7 +206,7 @@ public class SpectrumModelPredicateProviders {
 		});
 	}
 	
-	private static void registerBowPredicates(BowItem bowItem) {
+	private static void registerBowPredicates(Item bowItem) {
 		ModelPredicateProviderRegistry.register(bowItem, new Identifier("pull"), (itemStack, world, livingEntity, i) -> {
 			if (livingEntity == null) {
 				return 0.0F;
@@ -217,7 +217,7 @@ public class SpectrumModelPredicateProviders {
 		ModelPredicateProviderRegistry.register(bowItem, new Identifier("pulling"), (itemStack, clientWorld, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getActiveItem() == itemStack ? 1.0F : 0.0F);
 	}
 	
-	private static void registerCrossbowPredicates(CrossbowItem crossbowItem) {
+	private static void registerCrossbowPredicates(Item crossbowItem) {
 		ModelPredicateProviderRegistry.register(crossbowItem, new Identifier("pull"), (itemStack, clientWorld, livingEntity, i) -> {
 			if (livingEntity == null) {
 				return 0.0F;
@@ -239,7 +239,7 @@ public class SpectrumModelPredicateProviders {
 		);
 	}
 	
-	private static void registerSpectrumFishingRodItemPredicates(SpectrumFishingRodItem fishingRodItem) {
+	private static void registerSpectrumFishingRodItemPredicates(Item fishingRodItem) {
 		ModelPredicateProviderRegistry.register(fishingRodItem, new Identifier("cast"), (itemStack, clientWorld, livingEntity, i) -> {
 			if (livingEntity == null) {
 				return 0.0F;
@@ -254,7 +254,7 @@ public class SpectrumModelPredicateProviders {
 		});
 	}
 	
-	private static void registerEnderSplicePredicates(EnderSpliceItem enderSpliceItem) {
+	private static void registerEnderSplicePredicates(Item enderSpliceItem) {
 		ModelPredicateProviderRegistry.register(enderSpliceItem, new Identifier("bound"), (itemStack, clientWorld, livingEntity, i) -> {
 			NbtCompound compoundTag = itemStack.getNbt();
 			if (compoundTag != null && (compoundTag.contains("PosX") || compoundTag.contains("TargetPlayerUUID"))) {

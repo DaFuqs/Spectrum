@@ -13,10 +13,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.*;
 import net.minecraft.block.*;
 import net.minecraft.client.color.block.*;
 import net.minecraft.client.color.item.*;
-import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.potion.*;
 import net.minecraft.util.*;
 
 import java.util.*;
@@ -41,12 +39,11 @@ public class SpectrumColorProviders {
 		// Same for Amaranth
 		registerAmaranth();
 		
-		registerClover();
-		registerMemory();
-		registerPotionPentants();
-		ColorProviderRegistry.ITEM.register(SpectrumColorProviders::potionColor, SpectrumItems.NIGHTFALLS_BLADE);
-		registerInkFlask();
-		registerBrewColors();
+		registerClovers(SpectrumBlocks.CLOVER, SpectrumBlocks.FOUR_LEAF_CLOVER);
+		registerMemory(SpectrumBlocks.MEMORY);
+		registerPotionFillables(SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT, SpectrumItems.NIGHTFALLS_BLADE, SpectrumItems.FRACTAL_GLASS_AMPOULE);
+		registerSingleInkStorages(SpectrumItems.INK_FLASK);
+		registerBrewColors(SpectrumItems.INFUSED_BEVERAGE);
 	}
 	
 	private static void registerColoredLeaves() {
@@ -86,17 +83,16 @@ public class SpectrumColorProviders {
 		}
 	}
 	
-	private static void registerClover() {
+	private static void registerClovers(Block... clovers) {
 		BlockColorProvider grassBlockColorProvider = ColorProviderRegistry.BLOCK.get(Blocks.GRASS);
 		ItemColorProvider grassItemColorProvider = ColorProviderRegistry.ITEM.get(Blocks.GRASS.asItem());
 		
 		if (grassBlockColorProvider != null && grassItemColorProvider != null) {
-			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.CLOVER);
-			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, SpectrumBlocks.FOUR_LEAF_CLOVER);
+			ColorProviderRegistry.BLOCK.register(grassBlockColorProvider, clovers);
 		}
 	}
 	
-	private static void registerInkFlask() {
+	private static void registerSingleInkStorages(Item... items) {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 1) {
 				InkFlaskItem i = (InkFlaskItem) stack.getItem();
@@ -104,10 +100,10 @@ public class SpectrumColorProviders {
 				return ColorHelper.getInt(storage.getStoredColor().getDyeColor());
 			}
 			return -1;
-		}, SpectrumItems.INK_FLASK);
+		}, items);
 	}
 	
-	private static void registerPotionPentants() {
+	private static void registerPotionFillables(Item... items) {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex > 0) {
 				List<InkPoweredStatusEffectInstance> effects = InkPoweredStatusEffectInstance.getEffects(stack);
@@ -116,10 +112,10 @@ public class SpectrumColorProviders {
 				}
 			}
 			return -1;
-		}, SpectrumItems.LESSER_POTION_PENDANT, SpectrumItems.GREATER_POTION_PENDANT);
+		}, items);
 	}
 	
-	private static void registerMemory() {
+	private static void registerMemory(Block memory) {
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
 			if (world == null) {
 				return 0x0;
@@ -128,11 +124,11 @@ public class SpectrumColorProviders {
 				return memoryBlockEntity.getEggColor(tintIndex);
 			}
 			return 0x0;
-		}, SpectrumBlocks.MEMORY);
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MemoryItem.getEggColor(stack.getNbt(), tintIndex), SpectrumBlocks.MEMORY.asItem());
+		}, memory);
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> MemoryItem.getEggColor(stack.getNbt(), tintIndex), memory.asItem());
 	}
 	
-	public static void registerBrewColors() {
+	public static void registerBrewColors(Item brew) {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			if (tintIndex == 0) {
 				NbtCompound nbt = stack.getNbt();
@@ -140,22 +136,7 @@ public class SpectrumColorProviders {
 			}
 			return -1;
 			
-		}, SpectrumItems.INFUSED_BEVERAGE);
-	}
-	
-	public static int potionColor(ItemStack stack, int tintIndex) {
-		if (tintIndex == 1) {
-			NbtCompound nbtCompound = stack.getNbt();
-			if (nbtCompound != null && nbtCompound.contains("CustomPotionColor", NbtElement.INT_TYPE)) {
-				return nbtCompound.getInt("CustomPotionColor");
-			}
-			
-			List<StatusEffectInstance> effects = PotionUtil.getPotionEffects(stack);
-			if (effects.size() > 0) {
-				return PotionUtil.getColor(effects);
-			}
-		}
-		return -1;
+		}, brew);
 	}
 	
 	public static void resetToggleableProviders() {

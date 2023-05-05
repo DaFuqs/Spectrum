@@ -103,20 +103,20 @@ public class SpectrumMultiblocks {
 		};
 		
 		String[][] structure = {
-				{"_________", "_________", "__M___M__", "_________", "_________", "_________", "_________", "_________"},
-				{"_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________"},
-				{"_K_____K_", "_________", "__I___I__", "_________", "_________", "_________", "_________", "_________"},
-				{"_P_____P_", "___LLL___", "__CLSLC__", "___LLL___", "___LLL___", "___LLL___", "G_______G", "_________"},
-				{"_PXXXXXP_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "_XXX0XXX_", "__XXXXX__", "P__XXX__P", "___LLL___"}
+				{"________", "________", "__M_____", "________", "________", "________", "__M_____", "________", "________"},
+				{"________", "________", "________", "________", "________", "________", "________", "________", "________"},
+				{"________", "K_______", "__I_____", "________", "________", "________", "__I_____", "K_______", "________"},
+				{"______G_", "P_______", "__C_____", "_LLLLL__", "_LSLLL__", "_LLLLL__", "__C_____", "P_______", "______G_"},
+				{"______P_", "PXXXX___", "XXXXXX__", "XXXXXXXL", "XXXXXX0L", "XXXXXXXL", "XXXXXX__", "PXXXX___", "______P_"}
 		};
 		registerMultiBlock(SPIRIT_INSTILLER_IDENTIFIER, structure, targetBlocks);
 		
 		String[][] structureUpgrades = {
-				{"_________", "_________", "__M___M__", "_________", "_________", "_________", "_________", "_________"},
-				{"_________", "_________", "_________", "_________", "_________", "_________", "_________", "_________"},
-				{"_K_____K_", "_________", "__I___I__", "_________", "_________", "_________", "U_______U", "_________"},
-				{"_P_____P_", "___LLL___", "__CLSLC__", "___LLL___", "___LLL___", "___LLL___", "G_______G", "_________"},
-				{"_PXXXXXP_", "_XXXXXXX_", "_XXXXXXX_", "_XXXXXXX_", "_XXX0XXX_", "__XXXXX__", "P__XXX__P", "___LLL___"}
+				{"________", "________", "__M_____", "________", "________", "________", "__M_____", "________", "________"},
+				{"________", "________", "________", "________", "________", "________", "________", "________", "________"},
+				{"______U_", "K_______", "__I_____", "________", "________", "________", "__I_____", "K_______", "______U_"},
+				{"______G_", "P_______", "__C_____", "_LLLLL__", "_LSLLL__", "_LLLLL__", "__C_____", "P_______", "______G_"},
+				{"______P_", "PXXXX___", "XXXXXX__", "XXXXXXXL", "XXXXXX0L", "XXXXXXXL", "XXXXXX__", "PXXXX___", "______P_"}
 		};
 		registerMultiBlock(SPIRIT_INSTILLER_IDENTIFIER_WITH_UPGRADES, structureUpgrades, targetBlocks);
 	}
@@ -164,32 +164,32 @@ public class SpectrumMultiblocks {
 				'L', "minecraft:lava",
 				'U', "spectrum:upgrade_speed",
 				'_', StateMatcher.ANY,
-				'H', "spectrum:cinderhearth",
+				'H', "spectrum:cinderhearth[facing=south]",
 				'0', "#spectrum:polished_base_blocks",
 		};
 		
 		String[][] structure = {
-				{"C___C", "__H__", "_____", "_____"},
-				{"Xc_cX", "cG_Gc", "cGGGc", "_XXX_"},
-				{"_XXX_", "XLLLX", "XLLLX", "_XXX_"},
-				{"_____", "_X0X_", "_XXX_", "_____"}
+				{"C___", "____", "_H__", "____", "C___"},
+				{"Xcc_", "cGGX", "__GX", "cGGX", "Xcc_"},
+				{"_XX_", "XLLX", "XLLX", "XLLX", "_XX_"},
+				{"____", "_XX_", "_0X_", "_XX_", "____"}
 		};
 		registerMultiBlock(CINDERHEARTH_IDENTIFIER, structure, targetBlocks);
 		
 		String[][] withoutLavaStructure = {
-				{"C___C", "__H__", "_____", "_____"},
-				{"Xc_cX", "cG_Gc", "cGGGc", "_XXX_"},
-				{"_XXX_", "X___X", "X___X", "_XXX_"},
-				{"_____", "_X0X_", "_XXX_", "_____"}
+				{"C___", "____", "_H__", "____", "C___"},
+				{"Xcc_", "cGGX", "__GX", "cGGX", "Xcc_"},
+				{"_XX_", "X__X", "X__X", "X__X", "_XX_"},
+				{"____", "_XX_", "_0X_", "_XX_", "____"}
 		};
 		registerMultiBlock(CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER, withoutLavaStructure, targetBlocks);
 		
 		String[][] structureUpgrades = {
-				{"U___U", "_____", "_____", "_____"},
-				{"C___C", "__H__", "_____", "_____"},
-				{"Xc_cX", "cG_Gc", "cGGGc", "_XXX_"},
-				{"_XXX_", "XLLLX", "XLLLX", "_XXX_"},
-				{"_____", "_X0X_", "_XXX_", "_____"}
+				{"U___", "____", "_H__", "____", "U___"},
+				{"C___", "____", "_H__", "____", "C___"},
+				{"Xcc_", "cGGX", "__GX", "cGGX", "Xcc_"},
+				{"_XX_", "XLLX", "XLLX", "XLLX", "_XX_"},
+				{"____", "_XX_", "_0X_", "_XX_", "____"}
 		};
 		registerMultiBlock(CINDERHEARTH_IDENTIFIER_WITH_UPGRADES, structureUpgrades, targetBlocks);
 	}

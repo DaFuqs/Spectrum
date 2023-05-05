@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.items;
 
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.client.item.*;
 import net.minecraft.item.*;
@@ -13,7 +14,7 @@ import java.util.*;
 
 public class StructurePlacerItem extends Item implements CreativeOnlyItem {
 	
-	Identifier multiBlockIdentifier;
+	protected Identifier multiBlockIdentifier;
 	
 	public StructurePlacerItem(Settings settings, Identifier multiBlockIdentifier) {
 		super(settings);
@@ -25,21 +26,7 @@ public class StructurePlacerItem extends Item implements CreativeOnlyItem {
 		if (context.getPlayer() != null && context.getPlayer().isCreative()) {
 			IMultiblock iMultiblock = SpectrumMultiblocks.MULTIBLOCKS.get(multiBlockIdentifier);
 			if (iMultiblock != null) {
-				BlockRotation blockRotation;
-				switch (context.getPlayerFacing()) {
-					case EAST -> {
-						blockRotation = BlockRotation.CLOCKWISE_180;
-					}
-					case SOUTH -> {
-						blockRotation = BlockRotation.COUNTERCLOCKWISE_90;
-					}
-					case WEST -> {
-						blockRotation = BlockRotation.NONE;
-					}
-					default -> {
-						blockRotation = BlockRotation.CLOCKWISE_90;
-					}
-				}
+				BlockRotation blockRotation = Support.rotationFromDirection(context.getPlayerFacing());
 				iMultiblock.place(context.getWorld(), context.getBlockPos().up(), blockRotation);
 				return ActionResult.CONSUME;
 			}

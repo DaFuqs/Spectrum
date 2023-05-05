@@ -159,16 +159,16 @@ public class Support {
 	public static Direction directionFromRotation(@NotNull BlockRotation blockRotation) {
 		switch (blockRotation) {
 			case NONE -> {
-				return Direction.EAST;
+				return Direction.NORTH;
 			}
 			case CLOCKWISE_90 -> {
-				return Direction.SOUTH;
+				return Direction.EAST;
 			}
 			case CLOCKWISE_180 -> {
-				return Direction.WEST;
+				return Direction.SOUTH;
 			}
 			default -> {
-				return Direction.NORTH;
+				return Direction.WEST;
 			}
 		}
 	}
@@ -177,16 +177,16 @@ public class Support {
 	public static BlockRotation rotationFromDirection(@NotNull Direction direction) {
 		switch (direction) {
 			case EAST -> {
-				return BlockRotation.NONE;
-			}
-			case SOUTH -> {
 				return BlockRotation.CLOCKWISE_90;
 			}
-			case WEST -> {
+			case SOUTH -> {
 				return BlockRotation.CLOCKWISE_180;
 			}
-			default -> {
+			case WEST -> {
 				return BlockRotation.COUNTERCLOCKWISE_90;
+			}
+			default -> {
+				return BlockRotation.NONE;
 			}
 		}
 	}

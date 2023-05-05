@@ -12,12 +12,18 @@
     }
   },
   "criteria": {
-    "hatch_egg_laying_wooly_pig": {
-      "trigger":"spectrum:crafted_with_pedestal",
-      "conditions": { "items": [{ "items": [ 
-	    "spectrum:salted_jaramel_trifle", 
-	    "spectrum:salted_jaramel_tart"
-	  ]}] }
+    "crafted_salty_pastry": {
+      "trigger": "spectrum:crafted_with_pedestal",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "spectrum:salted_jaramel_trifle",
+              "spectrum:salted_jaramel_tart"
+            ]
+          }
+        ]
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

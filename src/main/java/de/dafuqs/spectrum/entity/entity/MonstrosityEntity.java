@@ -5,7 +5,6 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.ai.*;
-import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -502,7 +501,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		public void stop() {
 			LivingEntity target = mob.getTarget();
 			if (target != null && mob.isTarget(target, TARGET_PREDICATE)) {
-				GlassAmpouleItem.summonBarrage(world, mob, target);
+				LightShardEntity.summonBarrage(world, mob, target);
 			}
 			MonstrosityEntity.this.movementType = MovementType.START_SWOOPING;
 			super.stop();

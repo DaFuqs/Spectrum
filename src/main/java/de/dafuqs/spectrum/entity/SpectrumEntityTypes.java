@@ -26,8 +26,10 @@ public class SpectrumEntityTypes {
 	public static EntityType<BidentEntity> BIDENT;
 	public static EntityType<BidentEntity> BIDENT_MIRROR_IMAGE;
 	public static EntityType<LightShardEntity> LIGHT_SHARD;
+	public static EntityType<LightSpearEntity> LIGHT_SPEAR;
+	public static EntityType<LightMineEntity> LIGHT_MINE;
 	public static EntityType<MonstrosityEntity> MONSTROSITY;
-
+	
 	public static void register() {
 		LIVING_MARKER = register("living_marker", 0, 2147483647, false, EntityDimensions.changing(0F, 0F), true, LivingMarkerEntity::new);
 		SHOOTING_STAR = register("shooting_star", 15, 20, true, EntityDimensions.changing(0.8F, 0.8F), true, ShootingStarEntity::new);
@@ -45,6 +47,8 @@ public class SpectrumEntityTypes {
 		BIDENT = register("bident", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentEntity::new);
 		BIDENT_MIRROR_IMAGE = register("bident_mirror_image", 4, 10, true, EntityDimensions.changing(0.5F, 0.5F), true, BidentMirrorImageEntity::new);
 		LIGHT_SHARD = register("light_shard", 4, 20, true, EntityDimensions.fixed(0.75F, 0.75F), true, LightShardEntity::new);
+		LIGHT_SPEAR = register("light_spear", 4, 20, true, EntityDimensions.fixed(0.75F, 0.75F), true, LightSpearEntity::new);
+		LIGHT_MINE = register("light_mine", 4, 20, true, EntityDimensions.fixed(0.75F, 0.75F), true, LightMineEntity::new);
 		MONSTROSITY = register("monstrosity", EntityType.Builder.create(MonstrosityEntity::new, SpawnGroup.MISC).makeFireImmune().spawnableFarFromPlayer().setDimensions(10.0F, 10.0F).maxTrackingRange(10));
 		
 		FabricDefaultAttributeRegistry.register(EGG_LAYING_WOOLY_PIG, EggLayingWoolyPigEntity.createEggLayingWoolyPigAttributes());

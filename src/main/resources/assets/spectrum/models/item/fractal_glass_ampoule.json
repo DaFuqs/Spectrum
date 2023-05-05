@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "spectrum:item/fractal_glass_ampoule_base",
+    "layer1": "spectrum:item/fractal_glass_ampoule_overlay"
+  }
+}

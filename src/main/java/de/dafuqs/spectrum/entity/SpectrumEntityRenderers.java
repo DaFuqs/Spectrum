@@ -26,9 +26,9 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.MINING_PROJECTILE, MagicProjectileEntityRenderer::new);
 		register(SpectrumEntityTypes.BIDENT, BidentEntityRenderer::new);
 		register(SpectrumEntityTypes.BIDENT_MIRROR_IMAGE, BidentEntityRenderer::new);
-		register(SpectrumEntityTypes.LIGHT_SHARD, LightShardRenderer::new);
-		register(SpectrumEntityTypes.LIGHT_SPEAR, LightShardRenderer::new);
-		register(SpectrumEntityTypes.LIGHT_MINE, LightMineRenderer::new);
+		register(SpectrumEntityTypes.LIGHT_SHARD, LightShardEntityRenderer::new);
+		register(SpectrumEntityTypes.LIGHT_SPEAR, LightShardEntityRenderer::new);
+		register(SpectrumEntityTypes.LIGHT_MINE, LightMineEntityRenderer::new);
 		register(SpectrumEntityTypes.MONSTROSITY, MonstrosityEntityRenderer::new);
 	}
 	

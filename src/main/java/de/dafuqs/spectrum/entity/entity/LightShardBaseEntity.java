@@ -22,7 +22,7 @@ import java.util.function.*;
 public abstract class LightShardBaseEntity extends ProjectileEntity {
 	
 	public static final int DEFAULT_MAX_AGE = 200, DECELERATION_PHASE_LENGTH = 25;
-	public static final float DEFAULT_ACCELERATION = 0.03F, DEFAULT_DAMAGE = 4f;
+	public static final float DEFAULT_ACCELERATION = 0.03F;
 	protected float scaleOffset, damage, detectionRange;
 	protected long maxAge;
 	protected Optional<UUID> target = Optional.empty();
@@ -45,10 +45,6 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		
 		target.ifPresent(this::setTarget);
 		this.setOwner(owner);
-		
-		this.detectionRange = 48;
-		this.maxAge = (int) ((DEFAULT_MAX_AGE + MathHelper.nextGaussian(world.getRandom(), 10, 7)) * lifespanMod);
-		this.damage = DEFAULT_DAMAGE * damageMod;
 	}
 	
 	@Override

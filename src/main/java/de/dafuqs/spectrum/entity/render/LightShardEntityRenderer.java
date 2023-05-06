@@ -7,11 +7,11 @@ import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
-public class LightShardRenderer extends EntityRenderer<LightShardBaseEntity> {
+public class LightShardEntityRenderer extends EntityRenderer<LightShardBaseEntity> {
     
     protected static int LIGHT = 15728850;
     
-    public LightShardRenderer(EntityRendererFactory.Context ctx) {
+    public LightShardEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
     }
     

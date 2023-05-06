@@ -17,25 +17,16 @@ public class LightSpearEntity extends LightShardBaseEntity {
         super(entityType, world);
         
         damage = 8F;
-        initialVelocity = Vec3d.ZERO;
-        detectionRange = -1;
-    }
-    
-    public LightSpearEntity(World world, LivingEntity owner, float damageMod, float lifespanMod) {
-        this(world, owner, Optional.empty(), damageMod, lifespanMod);
     }
     
     public LightSpearEntity(World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifespanMod) {
         super(SpectrumEntityTypes.LIGHT_SPEAR, world);
         target.ifPresent(this::setTarget);
         this.setOwner(owner);
-        
-        var random = world.getRandom();
-        
-        scaleOffset = random.nextFloat() * 0.5F + 0.5F;
-        rotationOffset = random.nextFloat() * 360 - 180;
-        maxAge = (long) (DEFAULT_MAX_AGE * lifespanMod);
-        damage = DEFAULT_DAMAGE * damageMod;
+    
+        this.detectionRange = -1; // needs a target
+        this.maxAge = (int) ((DEFAULT_MAX_AGE + MathHelper.nextGaussian(world.getRandom(), 10, 7)) * lifespanMod);
+        this.damage = 8f * damageMod;
     }
     
     @Override

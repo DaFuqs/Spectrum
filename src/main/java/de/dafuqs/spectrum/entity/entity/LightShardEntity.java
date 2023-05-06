@@ -5,6 +5,7 @@ import de.dafuqs.spectrum.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 import javax.annotation.*;
@@ -18,7 +19,10 @@ public class LightShardEntity extends LightShardBaseEntity {
     
     public LightShardEntity(World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifespanMod) {
         super(SpectrumEntityTypes.LIGHT_SHARD, world, owner, target, damageMod, lifespanMod);
-        
+    
+        this.detectionRange = 48;
+        this.maxAge = (int) ((DEFAULT_MAX_AGE + MathHelper.nextGaussian(world.getRandom(), 10, 7)) * lifespanMod);
+        this.damage = 4 * damageMod;
     }
     
     public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target) {

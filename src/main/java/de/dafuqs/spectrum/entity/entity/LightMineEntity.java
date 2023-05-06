@@ -31,7 +31,7 @@ public class LightMineEntity extends LightShardBaseEntity {
     }
     
     public LightMineEntity(World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifespanMod) {
-        super(SpectrumEntityTypes.LIGHT_MINE, world, owner, target, damageMod, lifespanMod);
+        super(SpectrumEntityTypes.LIGHT_MINE, world, owner, target);
         
         this.effects = Sets.newHashSet();
         this.damage = 12 * damageMod;

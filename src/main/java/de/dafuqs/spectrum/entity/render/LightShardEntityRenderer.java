@@ -21,7 +21,6 @@ public class LightShardEntityRenderer extends EntityRenderer<LightShardBaseEntit
         
         light = 15728850;
         var age = shard.age;
-        var rotation = MathHelper.lerp(tickDelta, shard.lastRotationOffset, shard.rotationOffset);
         
         matrices.multiply(this.dispatcher.getRotation());
         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180f));

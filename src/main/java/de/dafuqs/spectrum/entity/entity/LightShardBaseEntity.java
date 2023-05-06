@@ -12,7 +12,6 @@ import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -28,19 +27,14 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 	protected Optional<UUID> target = Optional.empty();
 	protected Optional<Entity> targetEntity = Optional.empty();
 	protected Vec3d initialVelocity = Vec3d.ZERO;
-	public float rotationOffset;
-	public float lastRotationOffset;
 	
 	public LightShardBaseEntity(EntityType<? extends ProjectileEntity> entityType, World world) {
 		super(entityType, world);
 		
-		Random random = world.getRandom();
 		this.maxAge = (int) ((DEFAULT_MAX_AGE + MathHelper.nextGaussian(world.getRandom(), 10, 7)) * 1.0); // TODO: sync from server => client
-		this.scaleOffset = random.nextFloat() * 0.5F + 0.5F;
-		this.rotationOffset = random.nextFloat() * 360 - 180;
 	}
 	
-	public LightShardBaseEntity(EntityType<? extends ProjectileEntity> entityType, World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifespanMod) {
+	public LightShardBaseEntity(EntityType<? extends ProjectileEntity> entityType, World world, LivingEntity owner, Optional<Entity> target) {
 		super(entityType, world);
 		
 		target.ifPresent(this::setTarget);
@@ -72,8 +66,6 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 					MathHelper.lerp(deceleration, initialVelocity.y, 0),
 					MathHelper.lerp(deceleration, initialVelocity.z, 0)
 			);
-			lastRotationOffset = rotationOffset;
-			rotationOffset += (1 - deceleration);
 			velocityDirty = true;
 			scheduleVelocityUpdate();
 			return;

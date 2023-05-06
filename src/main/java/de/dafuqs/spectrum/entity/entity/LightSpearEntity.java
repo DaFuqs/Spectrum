@@ -20,8 +20,8 @@ public class LightSpearEntity extends LightShardBaseEntity {
     }
     
     public LightSpearEntity(World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifespanMod) {
-        super(SpectrumEntityTypes.LIGHT_SPEAR, world);
-        target.ifPresent(this::setTarget);
+        super(SpectrumEntityTypes.LIGHT_SPEAR, world, owner, target);
+		target.ifPresent(this::setTarget);
         this.setOwner(owner);
     
         this.detectionRange = -1; // needs a target

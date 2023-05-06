@@ -18,7 +18,7 @@ public class LightShardEntity extends LightShardBaseEntity {
     }
     
     public LightShardEntity(World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifespanMod) {
-        super(SpectrumEntityTypes.LIGHT_SHARD, world, owner, target, damageMod, lifespanMod);
+        super(SpectrumEntityTypes.LIGHT_SHARD, world, owner, target);
     
         this.detectionRange = 48;
         this.maxAge = (int) ((DEFAULT_MAX_AGE + MathHelper.nextGaussian(world.getRandom(), 10, 7)) * lifespanMod);

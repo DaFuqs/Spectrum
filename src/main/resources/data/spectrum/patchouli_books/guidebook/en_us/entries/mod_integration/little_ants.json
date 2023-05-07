@@ -7,25 +7,25 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "These industrious little buggers continuously collect leaves from trees. The results of their work are also reflected in their products. While they mostly produce $(thing)Clay$(), there might be others..."
+      "text": "These industrious little buggers continuously collect leaves from trees. The results of their work are also reflected in their products. While they mostly produce $(thing)Clay$(), there might be others...$(br2)Shoutout to MastroCaleb for this great mod!"
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:jade_vine_petal_block",
-      "required_advancement": "spectrum:hidden/collect_jade_vine_petals",
+      "advancement": "spectrum:hidden/collect_jade_vine_petals",
       "text": "The ants produce an almost silk-like material from $(thing)Jade Petals$()."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:orange_dye",
-      "required_advancement": "spectrum:collect_pigment",
+      "advancement": "spectrum:collect_pigment",
       "text": "If you harvest a full anthill that collected leaves of colored trees with a shovel, you get $(thing)Dye$()."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:orange_pigment",
-      "required_advancement": "spectrum:collect_pigment",
-      "text": "Even better, if you bribe them with $(thing)Vegetal$(), you can even salvage pure $(thing)Pigment$() instead.$(br2)$(br2)Shoutout to MastroCaleb for this great mod!"
+      "advancement": "spectrum:collect_pigment",
+      "text": "Even better, if you bribe them with $(thing)Vegetal$(), you can even salvage pure $(thing)Pigment$() instead."
     }
   ]
 }

@@ -4,6 +4,9 @@
     "spectrum:medium_topaz_bud",
     "spectrum:large_topaz_bud",
     "spectrum:topaz_cluster",
-    "spectrum:topaz_shard"
+    "spectrum:topaz_shard",
+    "spectrum:topaz_block",
+    "spectrum:budding_topaz",
+    "spectrum:topaz_storage_block"
   ]
 }

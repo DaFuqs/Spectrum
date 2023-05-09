@@ -4,6 +4,9 @@
     "spectrum:medium_onyx_bud",
     "spectrum:large_onyx_bud",
     "spectrum:onyx_cluster",
-    "spectrum:onyx_shard"
+    "spectrum:onyx_shard",
+    "spectrum:onyx_block",
+    "spectrum:budding_onyx",
+    "spectrum:onyx_storage_block"
   ]
 }

@@ -4,6 +4,9 @@
     "minecraft:medium_amethyst_bud",
     "minecraft:large_amethyst_bud",
     "minecraft:amethyst_cluster",
-    "minecraft:amethyst_shard"
+    "minecraft:amethyst_shard",
+    "minecraft:amethyst_block",
+    "minecraft:budding_amethyst",
+    "spectrum:amethyst_storage_block"
   ]
 }

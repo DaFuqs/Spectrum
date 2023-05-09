@@ -5,27 +5,116 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "spectrum:lesser_potion_pendant",
-          "functions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "function": "spectrum:fill_potion_fillable",
-              "ambient": true,
-              "show_particles": false,
-              "duration": 3600,
-              "status_effect": [
-                "minecraft:strength",
-                "minecraft:speed",
-                "minecraft:haste"
+              "type": "minecraft:item",
+              "name": "spectrum:lesser_potion_pendant",
+              "functions": [
+                {
+                  "function": "spectrum:fill_potion_fillable",
+                  "ambient": true,
+                  "show_particles": false,
+                  "duration": 3600,
+                  "status_effect": [
+                    "spectrum:immunity"
+                  ],
+                  "color": -1,
+                  "amplifier": 0,
+                  "ink_color": [
+                    "white"
+                  ],
+                  "ink_cost": 64
+                }
               ],
-              "color": -1,
-              "amplifier": 2,
-              "ink_color": [
-                "red",
-                "green",
-                "blue"
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.05
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:lesser_potion_pendant",
+              "functions": [
+                {
+                  "function": "spectrum:fill_potion_fillable",
+                  "ambient": true,
+                  "show_particles": false,
+                  "duration": 3600,
+                  "status_effect": [
+                    "spectrum:frenzy"
+                  ],
+                  "color": -1,
+                  "amplifier": 0,
+                  "ink_color": [
+                    "red"
+                  ],
+                  "ink_cost": 16
+                }
               ],
-              "ink_cost": 4
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.05
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:lesser_potion_pendant",
+              "functions": [
+                {
+                  "function": "spectrum:fill_potion_fillable",
+                  "ambient": true,
+                  "show_particles": false,
+                  "duration": 3600,
+                  "status_effect": [
+                    "spectrum:lightweight"
+                  ],
+                  "color": -1,
+                  "amplifier": {
+                    "min": 0,
+                    "max": 2
+                  },
+                  "ink_color": [
+                    "light_blue"
+                  ],
+                  "ink_cost": 8
+                }
+              ],
+              "conditions": [
+                {
+                  "condition": "minecraft:random_chance",
+                  "chance": 0.05
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "spectrum:lesser_potion_pendant",
+              "functions": [
+                {
+                  "function": "spectrum:fill_potion_fillable",
+                  "ambient": true,
+                  "show_particles": false,
+                  "duration": 3600,
+                  "status_effect": [
+                    "minecraft:strength",
+                    "minecraft:speed",
+                    "minecraft:haste"
+                  ],
+                  "color": -1,
+                  "amplifier": 2,
+                  "ink_color": [
+                    "red",
+                    "green",
+                    "blue"
+                  ],
+                  "ink_cost": 4
+                }
+              ]
             }
           ]
         }

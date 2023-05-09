@@ -264,6 +264,10 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		Vec3d vec3d = new Vec3d(posX, posY, posZ);
 		
 		for (Entity entity : list) {
+			if (!GenericClaimModsCompat.canInteractWith(world, entity, attacker)) {
+				continue;
+			}
+			
 			ColorHelper.tryColorEntity(null, entity, getDyeColor());
 			
 			if (!entity.isImmuneToExplosion()) {
@@ -284,8 +288,8 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 						//entity.damage(SpectrumDamageSources.inkProjectile(this, attacker), damage);
 						
 						double ad = ac;
-						if (entity instanceof LivingEntity) {
-							ad = ProtectionEnchantment.transformExplosionKnockback((LivingEntity) entity, ac);
+						if (entity instanceof LivingEntity livingEntity) {
+							ad = ProtectionEnchantment.transformExplosionKnockback(livingEntity, ac);
 						}
 						
 						entity.setVelocity(entity.getVelocity().add(x * ad, y * ad, z * ad));

@@ -38,7 +38,7 @@
   },
   "requirements": [
     [
-      "has_shard",
+      "has_amethyst_shard",
       "has_citrine_shard",
       "has_topaz_shard"
     ]

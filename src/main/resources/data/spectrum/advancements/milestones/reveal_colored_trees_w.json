@@ -9,7 +9,7 @@
     "build_complex_pedestal_structure": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:build_complex_pedestal_structure"
+        "advancement_identifier": "spectrum:lategame/build_complex_pedestal_structure"
       }
     }
   }

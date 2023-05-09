@@ -155,9 +155,9 @@ public class SpectrumLootPoolModifiers {
 				tableBuilder.pool(getParrotLootPool(3, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_CYAN).asItem(), 0.02F));
 				tableBuilder.pool(getParrotLootPool(4, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.PARROT_GRAY).asItem(), 0.02F));
 			} else if (id.equals(new Identifier("entities/frog"))) {
-				tableBuilder.pool(getFrogLootPool(FrogVariant.TEMPERATE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FROG_TEMPERATE).asItem(), 0.02F));
-				tableBuilder.pool(getFrogLootPool(FrogVariant.COLD, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FROG_COLD).asItem(), 0.02F));
-				tableBuilder.pool(getFrogLootPool(FrogVariant.WARM, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FROG_WARM).asItem(), 0.02F));
+				tableBuilder.pool(getFrogLootPool(FrogVariant.TEMPERATE, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FROG_TEMPERATE).asItem(), 0.2F));
+				tableBuilder.pool(getFrogLootPool(FrogVariant.COLD, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FROG_COLD).asItem(), 0.2F));
+				tableBuilder.pool(getFrogLootPool(FrogVariant.WARM, SpectrumBlocks.getMobHead(SpectrumSkullBlock.SpectrumSkullBlockType.FROG_WARM).asItem(), 0.2F));
 			} else if (GoFishCompat.isLoaded()) {
 				//Go-Fish compat: fishing of crates & go-fish fishies
 				if (id.equals(SpectrumCommon.locate("gameplay/fishing/lava/fishing"))) {
@@ -186,7 +186,8 @@ public class SpectrumLootPoolModifiers {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, dropItem).build())
-				.with(ItemEntry.builder(dropItem).build()).build();
+				.with(ItemEntry.builder(dropItem).build())
+				.build();
 	}
 	
 	private static LootPool getFoxLootPool(FoxEntity.Type foxType, Item item, float chance) {
@@ -194,7 +195,8 @@ public class SpectrumLootPoolModifiers {
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
 				.conditionally(FoxTypeLootCondition.builder(foxType).build())
-				.with(ItemEntry.builder(item).build()).build();
+				.with(ItemEntry.builder(item).build())
+				.build();
 	}
 	
 	private static LootPool getMooshroomLootPool(MooshroomEntity.Type mooshroomType, Item item, float chance) {
@@ -202,7 +204,8 @@ public class SpectrumLootPoolModifiers {
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
 				.conditionally(MooshroomTypeLootCondition.builder(mooshroomType).build())
-				.with(ItemEntry.builder(item).build()).build();
+				.with(ItemEntry.builder(item).build())
+				.build();
 	}
 	
 	private static LootPool getShulkerLootPool(DyeColor dyeColor, Item item, float chance) {
@@ -210,7 +213,8 @@ public class SpectrumLootPoolModifiers {
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
 				.conditionally(ShulkerColorLootCondition.builder(dyeColor).build())
-				.with(ItemEntry.builder(item).build()).build();
+				.with(ItemEntry.builder(item).build())
+				.build();
 	}
 
 	private static LootPool getAxolotlLootPool(AxolotlEntity.Variant variant, Item item, float chance) {
@@ -218,15 +222,17 @@ public class SpectrumLootPoolModifiers {
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
 				.conditionally(AxolotlVariantLootCondition.builder(variant).build())
-				.with(ItemEntry.builder(item).build()).build();
+				.with(ItemEntry.builder(item).build())
+				.build();
 	}
 
 	private static LootPool getFrogLootPool(FrogVariant variant, Item item, float chance) {
 		return new LootPool.Builder()
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
-				.conditionally(FrogVariantLootCondition.builder(variant).build())
-				.with(ItemEntry.builder(item).build()).build();
+				.conditionally(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().typeSpecific(TypeSpecificPredicate.frog(variant)).build()).build())
+				.with(ItemEntry.builder(item).build())
+				.build();
 	}
 
 	private static LootPool getParrotLootPool(int variant, Item item, float chance) {
@@ -234,7 +240,8 @@ public class SpectrumLootPoolModifiers {
 				.rolls(ConstantLootNumberProvider.create(1))
 				.conditionally(RandomChanceWithTreasureHunterLootCondition.builder(chance, item).build())
 				.conditionally(ParrotVariantLootCondition.builder(variant).build())
-				.with(ItemEntry.builder(item).build()).build();
+				.with(ItemEntry.builder(item).build())
+				.build();
 	}
 
 	private static class TreasureHunterDropDefinition {

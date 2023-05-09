@@ -19,6 +19,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 import oshi.util.tuples.*;
 
 import java.util.*;
@@ -318,11 +319,17 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 	
 	public boolean canCraft(PedestalBlockEntity pedestalBlockEntity) {
 		PlayerEntity playerEntity = pedestalBlockEntity.getOwnerIfOnline();
-		if (playerEntity == null) {
+		if (playerEntity == null || !canPlayerCraft(playerEntity)) {
 			return false;
+		}
+		
+		@Nullable PedestalVariant newPedestalVariant = getUpgradedPedestalVariantForOutput(this.output);
+		if (newPedestalVariant == null) {
+			return pedestalBlockEntity.getHighestAvailableRecipeTierWithStructure().ordinal() >= this.tier.ordinal();
 		} else {
 			// pedestal upgrade recipes do not require the structure
-			return canPlayerCraft(playerEntity) && (getUpgradedPedestalVariantForOutput(this.output) != null || pedestalBlockEntity.getHighestAvailableRecipeTierWithStructure().ordinal() >= this.tier.ordinal());
+			// but you can only craft it using the previous variant
+			return newPedestalVariant.getRecipeTier().ordinal() <= PedestalBlockEntity.getVariant(pedestalBlockEntity).getRecipeTier().ordinal();
 		}
 	}
 	

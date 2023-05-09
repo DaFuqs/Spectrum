@@ -1,17 +1,29 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.blocks.upgrade.Upgradeable;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.upgrade.*;
+import de.dafuqs.spectrum.interfaces.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public interface MultiblockCrafter extends Upgradeable, PlayerOwned {
 	
 	Vec3d RECIPE_STACK_VELOCITY = new Vec3d(0.0, 0.3, 0.0);
+	
+	static @Nullable Recipe getRecipeFromId(@Nullable World world, Identifier recipeIdentifier) {
+		if (world != null) {
+			return world.getRecipeManager().get(recipeIdentifier).orElse(null);
+		}
+		if (SpectrumCommon.minecraftServer != null) {
+			return SpectrumCommon.minecraftServer.getRecipeManager().get(recipeIdentifier).orElse(null);
+		}
+		return null;
+	}
 	
 	static void spawnExperience(World world, BlockPos blockPos, int spawnedXPAmount) {
 		if (spawnedXPAmount > 0) {

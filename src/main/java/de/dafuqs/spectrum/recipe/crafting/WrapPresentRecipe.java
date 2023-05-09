@@ -1,26 +1,18 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
-import de.dafuqs.spectrum.blocks.present.PresentBlock;
-import de.dafuqs.spectrum.blocks.present.PresentItem;
-import de.dafuqs.spectrum.items.PigmentItem;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialCraftingRecipe;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.blocks.present.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	
@@ -37,14 +29,15 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	
 	@Override
 	public DefaultedList<Ingredient> getIngredients() {
-		DefaultedList<Ingredient> l = DefaultedList.ofSize(1, Ingredient.EMPTY);
+		DefaultedList<Ingredient> list = DefaultedList.ofSize(1, Ingredient.EMPTY);
 		ItemStack stack = SpectrumBlocks.PRESENT.asItem().getDefaultStack();
 		PresentItem.wrap(stack, PresentBlock.Variant.RED, Map.of());
-		l.set(0, Ingredient.ofStacks(stack));
-		return l;
+		list.set(0, Ingredient.ofStacks(stack));
+		return list;
 	}
 	
-	public boolean matches(CraftingInventory craftingInventory, World world) {
+	@Override
+	public boolean matches(@NotNull CraftingInventory craftingInventory, World world) {
 		boolean presentItemFound = false;
 		boolean wrappingItemFound = false;
 		
@@ -56,7 +49,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 						return false;
 					}
 					presentItemFound = true;
-				} else if (!wrappingItemFound && getVariantForStack(itemStack) != null) {
+				} else if (!wrappingItemFound && getPresentVariantForStack(itemStack) != null) {
 					wrappingItemFound = true;
 				} else if (!(itemStack.getItem() instanceof PigmentItem)) {
 					return false;
@@ -67,7 +60,8 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 		return presentItemFound;
 	}
 	
-	public ItemStack craft(CraftingInventory craftingInventory) {
+	@Override
+	public ItemStack craft(@NotNull CraftingInventory craftingInventory) {
 		ItemStack presentStack = ItemStack.EMPTY;
 		PresentBlock.Variant variant = PresentBlock.Variant.RED;
 		Map<DyeColor, Integer> colors = new HashMap<>();
@@ -76,6 +70,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 			ItemStack stack = craftingInventory.getStack(j);
 			if (stack.getItem() instanceof PresentItem) {
 				presentStack = stack.copy();
+				PresentItem.wrap(presentStack, variant, colors);
 			} else if (stack.getItem() instanceof PigmentItem pigmentItem) {
 				DyeColor color = pigmentItem.getColor();
 				if (colors.containsKey(color)) {
@@ -84,17 +79,16 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 					colors.put(color, 1);
 				}
 			}
-			PresentBlock.Variant stackVariant = getVariantForStack(stack);
+			PresentBlock.Variant stackVariant = getPresentVariantForStack(stack);
 			if (stackVariant != null) {
 				variant = stackVariant;
 			}
 		}
 		
-		PresentItem.wrap(presentStack, variant, colors);
 		return presentStack;
 	}
 	
-	public @Nullable PresentBlock.Variant getVariantForStack(ItemStack stack) {
+	public @Nullable PresentBlock.Variant getPresentVariantForStack(@NotNull ItemStack stack) {
 		Item item = stack.getItem();
 		if (item == Items.RED_DYE) {
 			return PresentBlock.Variant.RED;
@@ -120,10 +114,12 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 		return null;
 	}
 	
+	@Override
 	public boolean fits(int width, int height) {
-		return width * height >= 2;
+		return width * height >= 1;
 	}
 	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
 	}

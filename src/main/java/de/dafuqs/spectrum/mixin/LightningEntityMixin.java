@@ -1,20 +1,15 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LightningRodBlock;
-import net.minecraft.entity.LightningEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(LightningEntity.class)
 public abstract class LightningEntityMixin {
@@ -28,7 +23,7 @@ public abstract class LightningEntityMixin {
 		
 		// do not spawn storm stones when using other forms of
 		// spawning thunder, like magic, ... in clear weather. Only when it is actually thundering
-		if (world.isThundering() && SpectrumCommon.CONFIG.LightningStonesWorlds.contains(world.getRegistryKey().getValue().toString())) {
+		if (world.isThundering() && SpectrumCommon.CONFIG.StormStonesWorlds.contains(world.getRegistryKey().getValue().toString())) {
 			spawnLightningStone(world, this.getAffectedBlockPos());
 		}
 	}
@@ -44,7 +39,7 @@ public abstract class LightningEntityMixin {
 			aboveGroundBlockPos = blockPos2.offset(Direction.fromHorizontal(world.getRandom().nextInt(6))).up();
 		} else {
 			// there is chance involved
-			if (world.random.nextFloat() > SpectrumCommon.CONFIG.LightningStonesChance) {
+			if (world.random.nextFloat() > SpectrumCommon.CONFIG.StormStonesChance) {
 				return;
 			}
 			aboveGroundBlockPos = affectedBlockPos.up();

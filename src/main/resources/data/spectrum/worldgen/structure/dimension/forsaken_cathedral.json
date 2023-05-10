@@ -1,7 +1,7 @@
 {
   "type": "minecraft:jigsaw",
   "biomes": "#spectrum:has_structure/forsaken_cathedral",
-  "step": "underground_structures",
+  "step": "top_layer_modification",
   "spawn_overrides": {},
   "terrain_adaptation": "beard_box",
   "start_pool": "spectrum:dimension/forsaken_cathedral",

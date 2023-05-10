@@ -19,8 +19,8 @@ public class PrintConfigCommand {
 		send(source, "EndermanHoldingEnderTreasureChance: " + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureChance + " (" + SpectrumCommon.CONFIG.EndermanHoldingEnderTreasureInEndChance + " in the End)");
 		
 		send(source, "ShootingStarWorlds: " + SpectrumCommon.CONFIG.ShootingStarWorlds);
-		send(source, "LightningStonesWorlds: " + SpectrumCommon.CONFIG.LightningStonesWorlds);
-		send(source, "LightningStonesChance: " + SpectrumCommon.CONFIG.LightningStonesChance);
+		send(source, "StormStonesWorlds: " + SpectrumCommon.CONFIG.StormStonesWorlds);
+		send(source, "StormStonesChance: " + SpectrumCommon.CONFIG.StormStonesChance);
 		send(source, "ShootingStarChance: " + SpectrumCommon.CONFIG.ShootingStarChance);
 		send(source, "VanillaRecipeCraftingTimeTicks: " + SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks);
 		

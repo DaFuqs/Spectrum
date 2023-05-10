@@ -42,10 +42,10 @@ public class SpectrumConfig implements ConfigData {
 	public List<String> ShootingStarWorlds = new ArrayList<>();
 	
 	@Comment("Worlds where lightning strikes can spawn Storm Stones")
-	public List<String> LightningStonesWorlds = new ArrayList<>();
+	public List<String> StormStonesWorlds = new ArrayList<>();
 	
 	@Comment("chance for a lightning strike to spawn a Storm Stone")
-	public float LightningStonesChance = 0.4F;
+	public float StormStonesChance = 0.4F;
 	
 	@Comment("""
 			Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 90 chances per night).
@@ -204,8 +204,8 @@ public class SpectrumConfig implements ConfigData {
 		if (ShootingStarChance <= 0.001) {
 			ShootingStarChance = 0.01F;
 		}
-		if (LightningStonesChance <= 0.03) {
-			LightningStonesChance = 0.3F;
+		if (StormStonesChance <= 0.03) {
+			StormStonesChance = 0.3F;
 		}
 		if (EndermanHoldingEnderTreasureChance <= 0) {
 			EndermanHoldingEnderTreasureChance = 0.05F;
@@ -234,10 +234,10 @@ public class SpectrumConfig implements ConfigData {
 			ShootingStarWorlds.add("starry_sky:starry_sky");
 			ShootingStarWorlds.add("paradise_lost:paradise_lost");
 		}
-		if (LightningStonesWorlds.isEmpty()) {
-			LightningStonesWorlds.add("minecraft:overworld");
-			LightningStonesWorlds.add("starry_sky:starry_sky");
-			LightningStonesWorlds.add("paradise_lost:paradise_lost");
+		if (StormStonesWorlds.isEmpty()) {
+			StormStonesWorlds.add("minecraft:overworld");
+			StormStonesWorlds.add("starry_sky:starry_sky");
+			StormStonesWorlds.add("paradise_lost:paradise_lost");
 		}
 	}
 	

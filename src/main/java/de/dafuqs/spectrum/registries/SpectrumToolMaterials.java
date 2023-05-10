@@ -13,7 +13,7 @@ public class SpectrumToolMaterials {
 		VOIDING(MiningLevels.DIAMOND, 1143, 20.0F, 1.0F, 5, Ingredient::empty),
 
 		BEDROCK(4, 0, 15.0F, 8.0F, 3, Ingredient::empty),
-		MALACHITE(5, 1536, 8.0F, 5.0F, 20, () -> Ingredient.ofItems(SpectrumItems.MALACHITE_CRYSTAL)),
+		MALACHITE(5, 1536, 9.0F, 5.0F, 20, () -> Ingredient.ofItems(SpectrumItems.MALACHITE_CRYSTAL)),
 		GLASS_CREST(5, 1536 * 4, 18.0F, 10.0F, 5, () -> Ingredient.ofItems(SpectrumItems.MALACHITE_CRYSTAL)),
 
 		DREAMFLAYER(MiningLevels.IRON, 650, 5.0F, 2.0F, 20, () -> Ingredient.ofItems(SpectrumItems.BISMUTH_CRYSTAL)),

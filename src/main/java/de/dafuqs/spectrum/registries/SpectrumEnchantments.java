@@ -25,56 +25,62 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment STEADFAST = new SteadfastEnchantment(Enchantment.Rarity.COMMON, SpectrumCommon.locate("unlocks/enchantments/steadfast"), EquipmentSlot.MAINHAND); // ItemStacks with this enchantment are not destroyed by cactus, fire, lava, ...
 	public static final SpectrumEnchantment INDESTRUCTIBLE = new IndestructibleEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/indestructible"), EquipmentSlot.MAINHAND); // Make tools not use up durability
 	public static final SpectrumEnchantment BIG_CATCH = new BigCatchEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/big_catch"), EquipmentSlot.MAINHAND); // Increase the chance to reel in entities instead of fishing loot
-	
+	public static final SpectrumEnchantment CRUMBLING = new CrumblingEnchantment(Enchantment.Rarity.UNCOMMON, null, EquipmentSlot.MAINHAND);
+
 	public static void register() {
-		Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("resonance"), RESONANCE);
-		Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("voiding"), VOIDING);
-		
+		register("resonance", RESONANCE);
+		register("voiding", VOIDING);
+
+		register("crumbling", CRUMBLING);
+
 		if (SpectrumCommon.CONFIG.PestControlEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("pest_control"), PEST_CONTROL);
+			register("pest_control", PEST_CONTROL);
 		}
 		if (SpectrumCommon.CONFIG.AutoSmeltEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("autosmelt"), FOUNDRY);
+			register("autosmelt", FOUNDRY);
 		}
 		if (SpectrumCommon.CONFIG.InventoryInsertionEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("inventory_insertion"), INVENTORY_INSERTION);
+			register("inventory_insertion", INVENTORY_INSERTION);
 		}
 		if (SpectrumCommon.CONFIG.ExuberanceEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("exuberance"), EXUBERANCE);
+			register("exuberance", EXUBERANCE);
 		}
 		if (SpectrumCommon.CONFIG.TreasureHunterEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("treasure_hunter"), TREASURE_HUNTER);
+			register("treasure_hunter", TREASURE_HUNTER);
 		}
 		if (SpectrumCommon.CONFIG.DisarmingEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("disarming"), DISARMING);
+			register("disarming", DISARMING);
 		}
 		if (SpectrumCommon.CONFIG.FirstStrikeEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("first_strike"), FIRST_STRIKE);
+			register("first_strike", FIRST_STRIKE);
 		}
 		if (SpectrumCommon.CONFIG.ImprovedCriticalEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("improved_critical"), IMPROVED_CRITICAL);
+			register("improved_critical", IMPROVED_CRITICAL);
 		}
 		if (SpectrumCommon.CONFIG.InertiaEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("inertia"), INERTIA);
+			register("inertia", INERTIA);
 		}
 		if (SpectrumCommon.CONFIG.CloversFavorEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("clovers_favor"), CLOVERS_FAVOR);
+			register("clovers_favor", CLOVERS_FAVOR);
 		}
 		if (SpectrumCommon.CONFIG.SniperEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("sniper"), SNIPER);
+			register("sniper", SNIPER);
 		}
 		if (SpectrumCommon.CONFIG.TightGripEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("tight_grip"), TIGHT_GRIP);
+			register("tight_grip", TIGHT_GRIP);
 		}
 		if (SpectrumCommon.CONFIG.SteadfastEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("steadfast"), STEADFAST);
+			register("steadfast", STEADFAST);
 		}
 		if (SpectrumCommon.CONFIG.IndestructibleEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("indestructible"), INDESTRUCTIBLE);
+			register("indestructible", INDESTRUCTIBLE);
 		}
 		if (SpectrumCommon.CONFIG.BigCatchEnchantmentEnabled) {
-			Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate("big_catch"), BIG_CATCH);
+			register("big_catch", BIG_CATCH);
 		}
 	}
-	
+
+	private static void register(String name, Enchantment enchantment) {
+		Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate(name), enchantment);
+	}
 }

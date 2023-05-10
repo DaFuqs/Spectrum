@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#spectrum:malachite_ores"
+    "#spectrum:malachite_ores",
+    "#spectrum:dragon_blocks"
   ]
 }

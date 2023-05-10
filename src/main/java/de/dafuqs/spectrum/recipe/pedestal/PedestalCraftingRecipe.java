@@ -328,9 +328,11 @@ public class PedestalCraftingRecipe extends GatedSpectrumRecipe {
 		if (newPedestalVariant == null) {
 			return pedestalBlockEntity.getHighestAvailableRecipeTierWithStructure().ordinal() >= this.tier.ordinal();
 		} else {
-			// pedestal upgrade recipes do not require the structure
+			// pedestal upgrade recipes do not require the structure,
 			// but you can only craft it using the previous variant
-			return newPedestalVariant.getRecipeTier().ordinal() <= PedestalBlockEntity.getVariant(pedestalBlockEntity).getRecipeTier().ordinal();
+			int currentTier = PedestalBlockEntity.getVariant(pedestalBlockEntity).getRecipeTier().ordinal();
+			int thisTier = newPedestalVariant.getRecipeTier().ordinal();
+			return thisTier == currentTier + 1;
 		}
 	}
 	

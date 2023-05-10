@@ -232,10 +232,12 @@ public class SpectrumConfig implements ConfigData {
 		if (ShootingStarWorlds.isEmpty()) {
 			ShootingStarWorlds.add("minecraft:overworld");
 			ShootingStarWorlds.add("starry_sky:starry_sky");
+			ShootingStarWorlds.add("paradise_lost:paradise_lost");
 		}
 		if (LightningStonesWorlds.isEmpty()) {
 			LightningStonesWorlds.add("minecraft:overworld");
 			LightningStonesWorlds.add("starry_sky:starry_sky");
+			LightningStonesWorlds.add("paradise_lost:paradise_lost");
 		}
 	}
 	

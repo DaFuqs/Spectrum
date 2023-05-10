@@ -12,6 +12,7 @@
     "ChunkNoiseSamplerMixin",
     "CropBlockMixin",
     "CrossbowItemMixin",
+    "EnchantmentGimperMixin",
     "EnderEyeItemMixin",
     "EndermanEntityMixin",
     "EntityApplyFluidsMixin",

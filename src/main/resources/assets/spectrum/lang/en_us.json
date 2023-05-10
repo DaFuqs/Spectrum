@@ -373,6 +373,10 @@
   "enchantment.spectrum.indestructible.desc": "Makes the tool fully unbreakable",
   "enchantment.spectrum.big_catch": "Big Catch",
   "enchantment.spectrum.big_catch.desc": "Higher chance to reel in living creatures",
+  "enchantment.spectrum.crumbling": "Crumbling",
+  "enchantment.spectrum.crumbling.desc": "Mining speed scales inversely with hardness.",
+
+
 
   "spectrum.subtitles.overcharging": "Overcharging",
   "spectrum.subtitles.hummingstone_hum": "Hummingstone hums",

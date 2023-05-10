@@ -47,6 +47,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> UNBREAKABLE_STRUCTURE_BLOCKS = getReference("unbreakable_structure_blocks");
 	public static final TagKey<Block> RESONANCE_HARVESTABLES = getReference("resonance_harvestables");
 	public static final TagKey<Block> SPAWNERS = getReference("spawners");
+	public static final TagKey<Block> CRUMBLING_SUPER_EFFECTIVE = getReference("crumbling_super_effective");
 	public static final TagKey<Block> INK_EFFECT_BLACKLISTED = getReference("ink_effect_blacklisted"); // blacklisting form block coloring, repairing, ...
 	
 	// DEBUG

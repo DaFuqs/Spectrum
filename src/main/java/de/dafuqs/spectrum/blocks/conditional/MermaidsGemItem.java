@@ -8,7 +8,7 @@ import net.minecraft.util.*;
 
 import java.util.*;
 
-public class MermaidsGemItem extends BlockItem implements RevelationAware {
+public class MermaidsGemItem extends AliasedBlockItem implements RevelationAware {
 	
 	public MermaidsGemItem(Settings settings) {
 		super(SpectrumBlocks.MERMAIDS_BRUSH, settings);

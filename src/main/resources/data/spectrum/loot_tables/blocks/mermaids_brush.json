@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:mermaids_brush",
+          "name": "spectrum:mermaids_gem",
           "conditions": [
             {
               "condition": "minecraft:alternative",

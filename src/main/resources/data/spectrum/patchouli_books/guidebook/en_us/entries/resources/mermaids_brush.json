@@ -4,15 +4,13 @@
   "advancement": "spectrum:collect_mermaids_gem",
   "category": "spectrum:resources_category",
   "extra_recipe_mappings": {
-    "spectrum:mermaids_gem": 0,
-    "spectrum:mermaids_brush": 0
+    "spectrum:mermaids_gem": 0
   },
   "pages": [
     {
-      "type": "patchouli:spotlight",
+      "type": "patchouli:text",
       "title": "Mermaid's Brushes",
-      "item": "spectrum:mermaids_brush",
-      "text": "$(italic)This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single blossom, which slowly develops into a filigree shaped seed.$()$(br2)Mermaid's Brushes can be harvested using shears."
+      "text": "This inconspicuous plant grows in the deepest depths of the oceans, forever untouched by human influence.$(br)They grow a single blossom, which slowly develops into a filigree shaped seed.$()$(br2)Mermaid's Brushes can be harvested using shears."
     },
     {
       "type": "patchouli:spotlight",

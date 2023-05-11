@@ -1,0 +1,6 @@
+{
+  "values": [
+    "minecraft:generic.attack_speed",
+    "additionalentityattributes:dig_speed"
+  ]
+}

@@ -26,12 +26,14 @@ public class SpectrumEnchantments {
 	public static final SpectrumEnchantment INDESTRUCTIBLE = new IndestructibleEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/indestructible"), EquipmentSlot.MAINHAND); // Make tools not use up durability
 	public static final SpectrumEnchantment BIG_CATCH = new BigCatchEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/big_catch"), EquipmentSlot.MAINHAND); // Increase the chance to reel in entities instead of fishing loot
 	public static final SpectrumEnchantment CRUMBLING = new CrumblingEnchantment(Enchantment.Rarity.UNCOMMON, null, EquipmentSlot.MAINHAND);
+	public static final SpectrumEnchantment INEXORABLE = new InexorableEnchantment(Enchantment.Rarity.VERY_RARE, null, EquipmentSlot.MAINHAND, EquipmentSlot.CHEST, EquipmentSlot.OFFHAND);
 
 	public static void register() {
 		register("resonance", RESONANCE);
 		register("voiding", VOIDING);
 
 		register("crumbling", CRUMBLING);
+		register("inexorable", INEXORABLE);
 
 		if (SpectrumCommon.CONFIG.PestControlEnchantmentEnabled) {
 			register("pest_control", PEST_CONTROL);

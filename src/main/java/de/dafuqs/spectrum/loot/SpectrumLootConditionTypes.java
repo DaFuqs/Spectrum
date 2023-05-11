@@ -1,11 +1,9 @@
 package de.dafuqs.spectrum.loot;
 
 import de.dafuqs.spectrum.loot.conditions.*;
-import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.condition.LootConditionType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonSerializer;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.loot.condition.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
 public class SpectrumLootConditionTypes {
 
@@ -16,7 +14,6 @@ public class SpectrumLootConditionTypes {
     public static LootConditionType FOX_TYPE_CONDITION;
     public static LootConditionType PARROT_VARIANT_CONDITION;
     public static LootConditionType MOOSHROOM_TYPE_CONDITION;
-    public static LootConditionType FROG_VARIANT_CONDITION;
 
     private static LootConditionType register(String id, JsonSerializer<? extends LootCondition> serializer) {
         return Registry.register(Registry.LOOT_CONDITION_TYPE, new Identifier(id), new LootConditionType(serializer));
@@ -30,7 +27,6 @@ public class SpectrumLootConditionTypes {
 		SHULKER_COLOR_CONDITION = register("shulker_color", new ShulkerColorLootCondition.Serializer());
 		PARROT_VARIANT_CONDITION = register("parrot_variant", new ParrotVariantLootCondition.Serializer());
         MOOSHROOM_TYPE_CONDITION = register("mooshroom_type", new MooshroomTypeLootCondition.Serializer());
-        FROG_VARIANT_CONDITION = register("frog_variant", new FrogVariantLootCondition.Serializer());
 	}
 	
 }

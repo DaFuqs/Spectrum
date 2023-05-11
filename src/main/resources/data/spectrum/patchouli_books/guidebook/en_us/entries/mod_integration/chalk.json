@@ -11,21 +11,21 @@
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "required_advancement": "spectrum:collect_pigment",
+      "advancement": "spectrum:collect_pigment",
       "title": "Unbreakable Chalk",
       "recipe": "spectrum:mod_integration/chalk/pedestal/chalk",
       "text": "By using Pigments instead of Dye, the $(thing)Chalk$() provides you with a never-ending supply of color."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "required_advancement": "spectrum:collect_pigment",
+      "advancement": "spectrum:collect_pigment",
       "title": "Unbr. Glow Chalk",
       "recipe": "spectrum:mod_integration/chalk/pedestal/glow_chalk",
       "text": "Of course you are able to create unbreakable $(thing)Glow Chalk$(), too."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "required_advancement": "spectrum:collect_pigment",
+      "advancement": "spectrum:collect_pigment",
       "flag": "mod:chalk-colorful-addon",
       "title": "Chalk Colorful Addon",
       "recipe": "spectrum:mod_integration/chalk/pedestal/red_chalk",

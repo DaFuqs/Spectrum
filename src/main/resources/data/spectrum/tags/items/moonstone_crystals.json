@@ -4,6 +4,9 @@
     "spectrum:medium_moonstone_bud",
     "spectrum:large_moonstone_bud",
     "spectrum:moonstone_cluster",
-    "spectrum:moonstone_shard"
+    "spectrum:moonstone_shard",
+    "spectrum:moonstone_block",
+    "spectrum:budding_moonstone",
+    "spectrum:moonstone_storage_block"
   ]
 }

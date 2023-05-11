@@ -78,7 +78,7 @@
     },
     "noise_multiplier": 0.05,
     "use_potential_placements_chance": 0.35,
-    "use_alternate_layer0_chance": 0.1,
+    "use_alternate_layer0_chance": 0.16,
     "placements_require_layer0_alternate": true,
     "outer_wall_distance": {
       "type": "minecraft:uniform",

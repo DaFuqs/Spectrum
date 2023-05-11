@@ -1,21 +1,16 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BlockVariantHelper {
-	
 	
 	// cache for cursedBlockColorVariant()
 	private static final Map<Block, Map<DyeColor, Block>> coloredStates = new HashMap<>();
@@ -29,8 +24,12 @@ public class BlockVariantHelper {
 		}
 		
 		BlockState blockState = world.getBlockState(blockPos);
-		Block block = blockState.getBlock();
 		
+		if (blockState.isIn(SpectrumBlockTags.INK_EFFECT_BLACKLISTED)) {
+			return Blocks.AIR.getDefaultState();
+		}
+		
+		Block block = blockState.getBlock();
 		if (coloredStates.containsKey(block)) {
 			Map<DyeColor, Block> colorMap = coloredStates.get(block);
 			if (colorMap.containsKey(newColor)) {
@@ -98,6 +97,10 @@ public class BlockVariantHelper {
 		}
 		
 		BlockState blockState = world.getBlockState(blockPos);
+		if (blockState.isIn(SpectrumBlockTags.INK_EFFECT_BLACKLISTED)) {
+			return Blocks.AIR;
+		}
+		
 		Block block = blockState.getBlock();
 		
 		if (repairedStates.containsKey(block)) {
@@ -112,7 +115,7 @@ public class BlockVariantHelper {
 		newPath = newPath.replace("chipped_", "");
 		
 		Block returnBlock = Blocks.AIR;
-		if (newPath != identifier.getPath()) {
+		if (!newPath.equals(identifier.getPath())) {
 			Identifier newIdentifier = new Identifier(identifier.getNamespace(), newPath);
 			Block newIdentifierBlock = Registry.BLOCK.get(newIdentifier);
 			if (newIdentifierBlock != block) {

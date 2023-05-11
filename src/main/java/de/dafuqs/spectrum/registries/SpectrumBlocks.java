@@ -1275,7 +1275,6 @@ public class SpectrumBlocks {
 		
 		// Worldgen
 		registerBlockWithItem("quitoxic_reeds", QUITOXIC_REEDS, Tab.RESOURCES.settings(), DyeColor.PURPLE);
-		registerBlockWithItem("mermaids_brush", MERMAIDS_BRUSH, Tab.RESOURCES.settings(), DyeColor.LIGHT_BLUE);
 		registerBlockWithItem("radiating_ender", RADIATING_ENDER, Tab.RESOURCES.settings(), DyeColor.PURPLE);
 		
 		registerBlock("amaranth", AMARANTH);
@@ -1288,6 +1287,7 @@ public class SpectrumBlocks {
 		registerBlockWithItem("black_sludge", BLACK_SLUDGE, Tab.DECORATION.settings(), DyeColor.GRAY);
 		
 		// Technical Blocks without items
+		registerBlock("mermaids_brush", MERMAIDS_BRUSH);
 		registerBlock("sag_leaf", SAG_LEAF);
 		registerBlock("sag_bubble", SAG_BUBBLE);
 		registerBlock("small_sag_bubble", SMALL_SAG_BUBBLE);

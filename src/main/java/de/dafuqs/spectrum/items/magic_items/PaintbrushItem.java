@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.items.magic_items;
 import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.compat.claims.*;
 import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
@@ -222,7 +223,7 @@ public class PaintbrushItem extends Item {
 	
 	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-		if (canColor(user)) {
+		if (canColor(user) && GenericClaimModsCompat.canInteractWith(entity.world, entity, user)) {
 			Optional<InkColor> color = getColor(stack);
 			if (color.isPresent() && payBlockColorCost(user, color.get())) {
 				boolean colored = ColorHelper.tryColorEntity(user, entity, color.get().getDyeColor());

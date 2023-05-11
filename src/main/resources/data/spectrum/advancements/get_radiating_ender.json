@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-        "item": "spectrum:radiating_ender"
+      "item": "spectrum:radiating_ender"
     },
     "title": {
       "translate": "advancements.spectrum.get_radiating_ender.title"
@@ -11,7 +11,7 @@
     },
     "hidden": true
   },
-  "parent": "spectrum:craft_using_pedestal",
+  "parent": "spectrum:place_pedestal",
   "criteria": {
     "gotten_radiating_ender": {
       "trigger": "minecraft:inventory_changed",
@@ -27,7 +27,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:craft_using_pedestal" }
+      "conditions": {
+        "advancement_identifier": "spectrum:place_pedestal"
+      }
     }
   }
 }

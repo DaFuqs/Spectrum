@@ -17,9 +17,15 @@
     ]
   },
   "criteria": {
-    "has_shard": {
+    "has_amethyst_shard": {
       "trigger": "minecraft:inventory_changed",
-      "conditions": { "items": [{ "tag": "spectrum:amethyst_crystals" }] }
+      "conditions": {
+        "items": [
+          {
+            "tag": "spectrum:amethyst_crystals"
+          }
+        ]
+      }
     },
     "has_citrine_shard": {
       "trigger": "minecraft:inventory_changed",
@@ -32,7 +38,7 @@
   },
   "requirements": [
     [
-      "has_shard",
+      "has_amethyst_shard",
       "has_citrine_shard",
       "has_topaz_shard"
     ]

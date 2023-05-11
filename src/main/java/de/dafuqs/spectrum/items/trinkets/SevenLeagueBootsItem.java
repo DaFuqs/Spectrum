@@ -22,16 +22,6 @@ public class SevenLeagueBootsItem extends SpectrumTrinketItem implements Enchant
 	}
 	
 	@Override
-	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		super.tick(stack, slot, entity);
-		if (entity.isSprinting()) {
-			entity.setNoGravity(true);
-		} else {
-			entity.setNoGravity(false);
-		}
-	}
-	
-	@Override
 	public Multimap<EntityAttribute, EntityAttributeModifier> getModifiers(ItemStack stack, SlotReference slot, LivingEntity entity, UUID uuid) {
 		Multimap<EntityAttribute, EntityAttributeModifier> modifiers = super.getModifiers(stack, slot, entity, uuid);
 		

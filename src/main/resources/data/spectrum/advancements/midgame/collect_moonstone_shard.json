@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "collected_radiating_ender": {
+    "backwards_compat_proxy": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:get_radiating_ender"
+        "advancement_identifier": "spectrum:lategame/collect_moonstone_shard"
       }
     }
   }

@@ -1,10 +1,11 @@
 package de.dafuqs.spectrum.inventories;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.util.collection.*;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Vanilla does autocrafting, too!
@@ -25,6 +26,13 @@ public class AutoCraftingInventory extends AutoInventory {
 	
 	public void setInputInventory(List<ItemStack> inputInventory) {
 		this.inputInventory = inputInventory;
+	}
+	
+	public void setInputInventory(Inventory inventory, int fromSlot, int toSlot) {
+		this.inputInventory = DefaultedList.ofSize(toSlot - fromSlot, ItemStack.EMPTY);
+		for (int i = fromSlot; i < toSlot; i++) {
+			this.inputInventory.set(i, inventory.getStack(i));
+		}
 	}
 	
 	@Override

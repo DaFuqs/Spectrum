@@ -118,7 +118,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 			world.spawnEntity(pearlEntity);
 			world.setBlockState(pos, state.with(AGE, 0), 3);
 		} else {
-			float chance = state.get(IN_LIQUID_CRYSTAL) ? 1.0F : 0.5F;
+			float chance = state.get(IN_LIQUID_CRYSTAL) ? 0.5F : 0.2F;
 			if (random.nextFloat() < chance) {
 				world.setBlockState(pos, state.with(AGE, age + 1), Block.NOTIFY_NEIGHBORS | Block.NOTIFY_LISTENERS);
 			}

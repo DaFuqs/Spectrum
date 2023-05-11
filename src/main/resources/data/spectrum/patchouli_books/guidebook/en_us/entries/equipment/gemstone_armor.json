@@ -17,10 +17,10 @@
     {
       "type": "spectrum:checklist",
       "checklist": {
-        "spectrum:hidden/collect_vanilla/collect_ender_eye": "Helmet: When nothingness meets hell",
-        "spectrum:hidden/collect_vanilla/collect_nautilus_shell": "Chestplate: The golden Ratio",
-        "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "Leggings: The source of nightmares",
-        "spectrum:hidden/collect_vanilla/collect_ghast_tear": "Boots: Mourning of the Nether"
+        "spectrum:hidden/collect_vanilla/collect_ender_eye": "Helmet: when nothingness meets hell",
+        "spectrum:hidden/collect_vanilla/collect_nautilus_shell": "Chestplate: the Golden Ratio",
+        "spectrum:hidden/collect_vanilla/collect_phantom_membrane": "Leggings: the source of nightmares",
+        "spectrum:hidden/collect_vanilla/collect_ghast_tear": "Boots: mourning of the Nether"
       },
       "text": "They can be repaired in Anvils by using $(l:general/shards)Gemstone Shards$().$(br2)To take advantage of their unique abilities you will need some special materials:"
     },

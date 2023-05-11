@@ -21,12 +21,12 @@
       "type": "patchouli:crafting",
       "recipe": "spectrum:crafting_table/special/wrap_present",
       "title": "Adding Color",
-      "text": "Place a filled Present in a crafting grid to wrap it.$(br2)You can additionally add:$(li)$(l:general/pigment)Pigment$() for a colorful particle shower in those pigments colors."
+      "text": "Place a filled Present in a crafting grid to wrap it.$(br2)You can additionally add $(l:general/pigment)Pigment$() for a colorful particle shower in those pigments colors."
     },
     {
       "type": "patchouli:text",
       "title": "Wrapping Papers",
-      "text": "$(li)Special ingredients to choose from a variety of wrapping papers:$(li2)Red Dye: Red$(li2)Blue Dye: Blue$(li2)Cyan Dye: Cyan$(li2)Green Dye: Green$(li2)Purple Dye: Purple$(li2)Cake: Cake$(li2)Flower: Stripes$(li2)Firework Star: Starry$(li2)Sapling: Winter$(li2)Spore Blossom: Rainbow"
+      "text": "You can also add a special ingredient to choose from a variety of wrapping papers:$(li2)Red Dye: Red$(li2)Blue Dye: Blue$(li2)Cyan Dye: Cyan$(li2)Green Dye: Green$(li2)Purple Dye: Purple$(li2)Cake: Cake$(li2)Flower: Stripes$(li2)Firework Star: Starry$(li2)Sapling: Winter$(li2)Spore Blossom: Rainbow"
     }
   ]
 }

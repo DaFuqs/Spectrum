@@ -19,7 +19,8 @@
     },
     {
       "type": "patchouli:spotlight",
-	  "anchor": "quitoxic_powder",
+      "title": "Quitoxic Powder",
+      "anchor": "quitoxic_powder",
       "item": "spectrum:quitoxic_powder",
       "text": "A purple glittering powder can be extracted from the stems of the alien-looking plant by crushing it with an anvil.$(br)Smell and consistency are very unusual when rubbed between your fingers.$(br2)$(italic)...wait a moment, what are fingers?"
     }

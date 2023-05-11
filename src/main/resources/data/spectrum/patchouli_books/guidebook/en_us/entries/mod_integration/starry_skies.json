@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Above the hemisphere of the Overworld exists a completely different kind of dimension: filled with numerous spheres that float away like small planets.\nYou can reach them by building a portal from $(item)Packed Ice$() (if it hasn't been changed by your modpack)."
+      "text": "Above the hemisphere of the Overworld exists a completely different kind of dimension: filled with numerous spheres that float away like small planets.$(br)You can reach them by building a portal from $(item)Packed Ice$() (if it hasn't been changed by your modpack)."
     },
     {
       "type": "patchouli:text",
-      "text": "Here you will find numerous resources that are always hard to find on the normal Overworld: spheres of gemstone, Spectrum's ores, and anything else your heart desires - unless you fall off a planet and plummet to your certain death."
+      "text": "Here you will find numerous resources that are always hard to locate on the normal Overworld: spheres of gemstone, Spectrum's ores, and anything else your heart desires - unless you fall off a planet and plummet to your certain death."
     }
   ]
 }

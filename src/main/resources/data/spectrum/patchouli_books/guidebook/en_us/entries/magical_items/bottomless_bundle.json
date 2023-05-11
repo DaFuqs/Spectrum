@@ -10,13 +10,13 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottomless_bundle",
-      "text": "$(italic)On your journeys through the underground you collect a whole lot of identical blocks, which you will never need again. But they are too good to throw away, you think.$(br2)Time to develop a storage solution that takes care of your little homemade problem.$()"
+      "text": "On your journeys through the underground you collect a whole lot of identical blocks, which you will never need again. But they are too good to throw away, you think.$(br)Time to develop a storage solution that takes care of your little homemade problem:$(br)The Bottomless Bundle stores a virtually unlimited number of items, but of only one type."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/bottomless_bundle",
-      "text": "The Bottomless Bundle stores a virtually unlimited number of items, but of only one type.$(br)Right click it on stacks or empty slots in your inventory to fill/empty it"
+      "text": "Right click it on stacks or empty slots in your inventory to fill / empty it."
     },
     {
       "type": "patchouli:image",
@@ -29,7 +29,7 @@
     {
       "type": "patchouli:text",
       "title": "",
-      "text": "$(br)A placed Bundle will always remember the last item you put into it.$(br)Even if it is emptied it will only accept new items that it was holding before, making it also usable as a filter.$(br2)$(italic)Note: If it was placed empty it will accept the first item pumped into it and get locked to that.$()"
+      "text": "A placed Bottomless Bundle will always remember the last item you put into it.$(br)Even if it is emptied it will only accept new items that it was holding before, making it also usable as a filter.$(br2)$(italic)Note: If it was placed empty it will accept the first item pumped into it and get locked to that.$()"
     },
     {
       "type": "patchouli:spotlight",

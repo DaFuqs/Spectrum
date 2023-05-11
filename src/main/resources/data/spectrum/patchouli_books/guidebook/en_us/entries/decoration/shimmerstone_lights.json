@@ -16,13 +16,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)The first nights in this new world you lit your improvised hut with torches.$(br)As atmospheric as that was, it was also one thing: primitive.$(br2)To turn away from your dark, torch-lit past, you designed lamps based on Shimmerstone.$()"
+      "text": "During the first nights in this new world you lit your improvised hut with torches. As atmospheric as that was, it was also one thing: primitive.$(br)To turn away from your dark, torch-lit past, you designed lamps based on Shimmerstone.$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/shimmerstone_lights/basalt_shimmerstone_light",
-      "text": "You can use Polished Basalt, Polished Calcite, Smooth Stone, Polished Deepslate, Polished Diorite, Polished Andesite or Polished Granite as a base."
+      "text": "You can use $(l:decoration/block_variants)Polished Basalt$(), $(l:decoration/block_variants)Polished Calcite$(), $(item)Smooth Stone$(), $(item)Polished Deepslate$(), $(item)Polished Diorite$(), $(item)Polished Andesite$() or $(item)Polished Granite$() as a base."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -12,7 +12,7 @@
       "type": "patchouli:spotlight",
       "title": "Clover",
       "item": "spectrum:clover",
-      "text": "In plains and other green biomes grow these lush green clovers, sprouting with life.$(br2)$(italic)Is today your lucky day?$()"
+      "text": "Plains and other green biomes are home to these lush green clovers, sprouting with life.$(br2)$(italic)Is today your lucky day?$()"
     },
     {
       "type": "patchouli:spotlight",

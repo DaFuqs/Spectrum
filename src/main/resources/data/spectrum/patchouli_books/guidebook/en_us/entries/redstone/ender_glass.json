@@ -10,15 +10,15 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:ender_glass",
-      "text": "$(italic)You already thought that the moment you put the recipe on paper that this creation will be something special.$(br2)The combination of the power of The End, redstone and magic gives it very strange properties."
+      "text": "You already thought the moment you put the recipe on paper that this creation will be something special.$(br2)The combination of the power of The End, redstone and magic gives it very strange properties."
     },
     {
       "type": "patchouli:text",
-      "text": "Depending on the strength of the applied redstone signal, this block takes on different properties.$(br2)Without redstone, it is completely solid; when a redstone signal reaches it, it becomes transparent, almost like glass.$(br)However, it reaches its most curious state when a redstone signal of full strength is applied..."
+      "text": "Depending on the strength of the applied redstone signal, this block takes on different properties:$(li)Without redstone, it is completely solid$(li)when a redstone signal reaches it, it becomes transparent, almost like glass$(li)however, it reaches its most curious state when a redstone signal of full strength is applied..."
     },
     {
       "type": "patchouli:text",
-      "text": "$(br2)To make it even stranger, the material seems to respond to the last applied signal alone, not the strongest.$(br2)Truly a curiosity from the End."
+      "text": "To make it even stranger, the material seems to respond to the last applied signal alone, not the strongest.$(br2)Truly a curiosity from the End."
     },
     {
       "type": "spectrum:pedestal_crafting",

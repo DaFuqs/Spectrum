@@ -180,7 +180,8 @@ public interface FusionShrineRecipeWorldEffect {
 	});
 	
 	static FusionShrineRecipeWorldEffect register(String id, FusionShrineRecipeWorldEffect effect) {
-		return TYPES.put(id, effect);
+		TYPES.put(id, effect);
+		return effect;
 	}
 	
 	static FusionShrineRecipeWorldEffect fromString(String string) {

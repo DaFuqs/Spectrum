@@ -11,6 +11,7 @@ import net.id.incubus_core.recipe.*;
 import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 import net.minecraft.recipe.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
@@ -36,7 +37,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	// In that case:
 	// - the player should not get XP
 	// - Yield upgrades disabled (item multiplication)
-	protected final boolean noBenefitsFromYieldUpgrades;
+	protected final boolean yieldUpgradesDisabled;
 	protected final boolean playCraftingFinishedEffects;
 	
 	protected final List<WorldConditionPredicate> worldConditions;
@@ -52,8 +53,8 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	protected final boolean copyNbt;
 	
 	public FusionShrineRecipe(Identifier id, String group, boolean secret, Identifier requiredAdvancementIdentifier,
-							  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean noBenefitsFromYieldUpgrades, boolean playCraftingFinishedEffects, boolean copyNbt,
-							  List<WorldConditionPredicate> worldConditions, FusionShrineRecipeWorldEffect startWorldEffect, List<FusionShrineRecipeWorldEffect> duringWorldEffects, FusionShrineRecipeWorldEffect finishWorldEffect, Text description) {
+							  List<IngredientStack> craftingInputs, Fluid fluidInput, ItemStack output, float experience, int craftingTime, boolean yieldUpgradesDisabled, boolean playCraftingFinishedEffects, boolean copyNbt,
+							  List<WorldConditionPredicate> worldConditions, @NotNull FusionShrineRecipeWorldEffect startWorldEffect, @NotNull List<FusionShrineRecipeWorldEffect> duringWorldEffects, @NotNull FusionShrineRecipeWorldEffect finishWorldEffect, @Nullable Text description) {
 		super(id, group, secret, requiredAdvancementIdentifier);
 		
 		this.craftingInputs = craftingInputs;
@@ -61,7 +62,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		this.output = output;
 		this.experience = experience;
 		this.craftingTime = craftingTime;
-		this.noBenefitsFromYieldUpgrades = noBenefitsFromYieldUpgrades;
+		this.yieldUpgradesDisabled = yieldUpgradesDisabled;
 		this.playCraftingFinishedEffects = playCraftingFinishedEffects;
 		
 		this.worldConditions = worldConditions;
@@ -185,10 +186,6 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 		}
 	}
 
-	public boolean areYieldUpgradesDisabled() {
-		return noBenefitsFromYieldUpgrades;
-	}
-
 	@Override
 	public Identifier getRecipeTypeUnlockIdentifier() {
 		return UNLOCK_IDENTIFIER;
@@ -254,7 +251,13 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 
 		ItemStack output = getOutput().copy();
 		if (this.copyNbt) {
-			output.setNbt(firstStack.getNbt());
+			// this overrides all nbt data, that are not nested compounds (like lists)
+			NbtCompound sourceNbt = firstStack.getNbt();
+			if (sourceNbt != null) {
+				output.setNbt(sourceNbt.copy());
+				// so we need to restore all previous enchantments that the original item had and are still applicable to the new item
+				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output, false, false, getOutput(), firstStack);
+			}
 		}
 		
 		spawnCraftingResultAndXP(world, fusionShrineBlockEntity, output, maxAmount); // spawn results
@@ -262,7 +265,7 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 	
 	protected void spawnCraftingResultAndXP(@NotNull World world, @NotNull FusionShrineBlockEntity fusionShrineBlockEntity, @NotNull ItemStack stack, int recipeCount) {
 		int resultAmountBeforeMod = recipeCount * stack.getCount();
-		double yieldModifier = noBenefitsFromYieldUpgrades ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
+		double yieldModifier = yieldUpgradesDisabled ? 1.0 : fusionShrineBlockEntity.getUpgradeHolder().getEffectiveValue(Upgradeable.UpgradeType.YIELD);
 		int resultAmountAfterMod = Support.getIntFromDecimalWithChance(resultAmountBeforeMod * yieldModifier, world.random);
 		
 		int intExperience = Support.getIntFromDecimalWithChance(recipeCount * experience, world.random);

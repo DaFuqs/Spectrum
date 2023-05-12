@@ -55,7 +55,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		}
 		float experience = JsonHelper.getFloat(jsonObject, "experience", 0);
 		int craftingTime = JsonHelper.getInt(jsonObject, "time", 200);
-		boolean noBenefitsFromYieldUpgrades = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
+		boolean yieldUpgradesDisabled = JsonHelper.getBoolean(jsonObject, "disable_yield_upgrades", false);
 		boolean playCraftingFinishedEffects = JsonHelper.getBoolean(jsonObject, "play_crafting_finished_effects", true);
 		
 		List<WorldConditionPredicate> worldConditions = new ArrayList<>();
@@ -87,7 +87,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		}
 
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier,
-				craftingInputs, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, playCraftingFinishedEffects, copyNbt,
+				craftingInputs, fluid, output, experience, craftingTime, yieldUpgradesDisabled, playCraftingFinishedEffects, copyNbt,
 				worldConditions, startWorldEffect, duringWorldEffects, finishWorldEffect, description);
 	}
 	
@@ -107,7 +107,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		packetByteBuf.writeItemStack(recipe.output);
 		packetByteBuf.writeFloat(recipe.experience);
 		packetByteBuf.writeInt(recipe.craftingTime);
-		packetByteBuf.writeBoolean(recipe.noBenefitsFromYieldUpgrades);
+		packetByteBuf.writeBoolean(recipe.yieldUpgradesDisabled);
 		packetByteBuf.writeBoolean(recipe.playCraftingFinishedEffects);
 		
 		if (recipe.getDescription().isEmpty()) {
@@ -132,14 +132,14 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		ItemStack output = packetByteBuf.readItemStack();
 		float experience = packetByteBuf.readFloat();
 		int craftingTime = packetByteBuf.readInt();
-		boolean noBenefitsFromYieldUpgrades = packetByteBuf.readBoolean();
+		boolean yieldUpgradesDisabled = packetByteBuf.readBoolean();
 		boolean playCraftingFinishedEffects = packetByteBuf.readBoolean();
 
 		Text description = packetByteBuf.readText();
 		boolean copyNbt = packetByteBuf.readBoolean();
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier,
-				ingredients, fluid, output, experience, craftingTime, noBenefitsFromYieldUpgrades, playCraftingFinishedEffects, copyNbt,
+				ingredients, fluid, output, experience, craftingTime, yieldUpgradesDisabled, playCraftingFinishedEffects, copyNbt,
 				List.of(), null, List.of(), null, description);
 	}
 	

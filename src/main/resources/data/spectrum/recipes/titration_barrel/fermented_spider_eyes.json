@@ -2,15 +2,15 @@
   "type": "spectrum:titration_barrel",
   "ingredients": [
     {
-      "tag": "minecraft:spider_eye",
+      "item": "minecraft:spider_eye",
       "count": 2
     },
     {
-      "tag": "minecraft:brown_mushroom",
+      "item": "minecraft:brown_mushroom",
       "count": 2
     },
     {
-      "tag": "minecraft:sugar",
+      "item": "minecraft:sugar",
       "count": 2
     }
   ],

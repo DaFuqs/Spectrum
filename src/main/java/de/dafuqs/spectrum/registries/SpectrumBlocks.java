@@ -817,7 +817,7 @@ public class SpectrumBlocks {
 	public static final Block WHITE_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.WHITE);
 	public static final Block YELLOW_LEAVES = new ColoredLeavesBlock(coloredLeavesBlockSettings, DyeColor.YELLOW);
 	
-	private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG).luminance((state) -> 5);
+	private static final FabricBlockSettings coloredLogBlockSettings = FabricBlockSettings.copyOf(Blocks.OAK_LOG);
 	public static final Block BLACK_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.BLACK);
 	public static final Block BLUE_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.BLUE);
 	public static final Block BROWN_LOG = new ColoredLogBlock(coloredLogBlockSettings, DyeColor.BROWN);

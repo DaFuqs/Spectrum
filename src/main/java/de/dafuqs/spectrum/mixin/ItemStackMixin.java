@@ -40,18 +40,33 @@ public abstract class ItemStackMixin {
 
 	@Inject(at = @At("RETURN"), method = "getAttributeModifiers(Lnet/minecraft/entity/EquipmentSlot;)Lcom/google/common/collect/Multimap;", cancellable = true)
 	public void spectrum$applyTightGripEnchantment(EquipmentSlot slot, CallbackInfoReturnable<Multimap<EntityAttribute, EntityAttributeModifier>> cir) {
-		int tightGripLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.TIGHT_GRIP, (ItemStack) (Object) this);
-		if (tightGripLevel > 0) {
+
+		var stack = (ItemStack) (Object) this;
+		int tightGripLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.TIGHT_GRIP, stack);
+		var inexorableLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, stack);
+
+		if (tightGripLevel > 0 || inexorableLevel > 0) {
+
 			ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
-			for (Map.Entry<EntityAttribute, EntityAttributeModifier> s : cir.getReturnValue().entries()) {
-				if (s.getKey().equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
-					double newAttackSpeed = s.getValue().getValue() * Math.max(0.25, 1 - tightGripLevel * SpectrumCommon.CONFIG.TightGripAttackSpeedBonusPercentPerLevel);
-					builder.put(s.getKey(), new EntityAttributeModifier(ItemAccessor.getAttackSpeedModifierId(), "Weapon modifier", newAttackSpeed, EntityAttributeModifier.Operation.ADDITION));
+			for (Map.Entry<EntityAttribute, EntityAttributeModifier> attributeEntry : cir.getReturnValue().entries()) {
+
+				if (attributeEntry.getKey().equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
+					double newAttackSpeed = attributeEntry.getValue().getValue();
+
+					if (tightGripLevel > 0) {
+						newAttackSpeed *= Math.max(0.25, 1 - tightGripLevel * SpectrumCommon.CONFIG.TightGripAttackSpeedBonusPercentPerLevel);
+					}
+
+					builder.put(attributeEntry.getKey(), new EntityAttributeModifier(ItemAccessor.getAttackSpeedModifierId(), "Weapon modifier", newAttackSpeed, EntityAttributeModifier.Operation.ADDITION));
+
 					cir.setReturnValue(builder.build());
 				} else {
-					builder.put(s.getKey(), s.getValue());
+					builder.put(attributeEntry.getKey(), attributeEntry.getValue());
+
 				}
+
 			}
+
 		}
 	}
 

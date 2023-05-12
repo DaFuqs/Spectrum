@@ -11,6 +11,7 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
@@ -29,7 +30,7 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
 	@Shadow
 	public abstract Iterable<ItemStack> getHandItems();
-	
+
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
 	
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getAttributeValue(Lnet/minecraft/entity/attribute/EntityAttribute;)D"))
@@ -111,5 +112,40 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 			LastKillComponent.rememberKillTick((PlayerEntity) (Object) this, world.getTime());
 		}
 	}
-	
+
+	@ModifyVariable(method = "getBlockBreakingSpeed",
+			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"),
+					to = @At("TAIL")
+			),
+			at = @At(value = "LOAD"),
+			ordinal = 1
+	)
+	public float applyInexorableEffects(float value) {
+		if (isInexorableActive())
+			return 1F;
+
+		return value;
+	}
+
+	@ModifyConstant(method = "getBlockBreakingSpeed", constant = @Constant(floatValue = 5.0F, ordinal = 0))
+	public float applyInexorableAntiWaterSlowdown(float value) {
+		if (isInexorableActive())
+			return 1F;
+
+		return value;
+	}
+
+	@ModifyConstant(method = "getBlockBreakingSpeed", constant = @Constant(floatValue = 5.0F, ordinal = 1))
+	public float applyInexorableAntiFlylowdown(float value) {
+		if (isInexorableActive())
+			return 1F;
+
+		return value;
+	}
+
+	@Unique
+	private boolean isInexorableActive() {
+		var player = (PlayerEntity) (Object) this;
+		return EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, player.getStackInHand(player.getActiveHand())) > 0;
+	}
 }

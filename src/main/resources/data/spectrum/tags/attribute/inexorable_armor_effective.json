@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:generic.movement_speed",
+    "minecraft:generic.flying_speed",
+    "minecraft:generic.luck",
+    "additionalentityattributes:water_speed",
+    "additionalentityattributes:lava_speed"
+  ]
+}

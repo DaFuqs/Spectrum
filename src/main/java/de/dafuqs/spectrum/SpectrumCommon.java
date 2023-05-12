@@ -38,6 +38,8 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
@@ -290,6 +292,42 @@ public class SpectrumCommon implements ModInitializer {
                 WhispyCircletItem.removeNegativeStatusEffects(entity);
             }
         });
+
+		ServerEntityEvents.EQUIPMENT_CHANGE.register((livingEntity, equipmentSlot, previousStack, currentStack) -> {
+			var oldInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, previousStack);
+			var newInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, currentStack);
+
+			var effectType = equipmentSlot == EquipmentSlot.CHEST ? SpectrumMiscTags.INEXORABLE_ARMOR_EFFECTIVE : SpectrumMiscTags.INEXORABLE_HANDHELD_EFFECTIVE;
+
+			if (oldInexorable > 0 && newInexorable <= 0) {
+				livingEntity.getStatusEffects()
+						.stream()
+						.filter(instance -> {
+							var statusEffect = instance.getEffectType();
+							var attributes = statusEffect.getAttributeModifiers().keySet();
+							return attributes.stream()
+									.anyMatch(attribute -> {
+										var attributeRegistryOptional = Registry.ATTRIBUTE.getEntryList(effectType);
+
+										return attributeRegistryOptional.map(registryEntries -> registryEntries
+												.stream()
+												.map(RegistryEntry::value)
+												.anyMatch(entityAttribute -> {
+
+													if (!statusEffect.getAttributeModifiers().containsKey(entityAttribute))
+														return false;
+
+													var value = statusEffect.getAttributeModifiers().get(entityAttribute).getValue();
+													return value < 0;
+
+												})).orElse(false);
+
+									});
+						})
+						.forEach(instance -> instance.getEffectType().onApplied(livingEntity, livingEntity.getAttributes(), instance.getAmplifier()));
+			}
+
+		});
 
         CrossbowShootingCallback.register((world, shooter, hand, crossbow, projectile, projectileEntity) -> {
             if (crossbow.getItem() instanceof GlassCrestCrossbowItem && GlassCrestCrossbowItem.isOvercharged(crossbow)) {

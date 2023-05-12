@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
@@ -10,8 +9,8 @@ import java.util.*;
 
 public class MermaidsGemItem extends AliasedBlockItem implements RevelationAware {
 	
-	public MermaidsGemItem(Settings settings) {
-		super(SpectrumBlocks.MERMAIDS_BRUSH, settings);
+	public MermaidsGemItem(Block block, Settings settings) {
+		super(block, settings);
 		RevelationAware.register(this);
 	}
 	

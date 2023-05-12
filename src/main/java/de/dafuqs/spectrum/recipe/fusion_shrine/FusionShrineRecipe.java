@@ -254,7 +254,9 @@ public class FusionShrineRecipe extends GatedSpectrumRecipe {
 			// this overrides all nbt data, that are not nested compounds (like lists)
 			NbtCompound sourceNbt = firstStack.getNbt();
 			if (sourceNbt != null) {
-				output.setNbt(sourceNbt.copy());
+				sourceNbt = sourceNbt.copy();
+				sourceNbt.remove(ItemStack.DAMAGE_KEY);
+				output.setNbt(sourceNbt);
 				// so we need to restore all previous enchantments that the original item had and are still applicable to the new item
 				output = SpectrumEnchantmentHelper.clearAndCombineEnchantments(output, false, false, getOutput(), firstStack);
 			}

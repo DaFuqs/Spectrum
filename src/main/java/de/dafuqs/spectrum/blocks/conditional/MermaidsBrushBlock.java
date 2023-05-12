@@ -18,6 +18,7 @@ import net.minecraft.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -25,8 +26,9 @@ import java.util.*;
 
 public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, RevelationAware, FluidFillable {
 	
+	private static final VoxelShape SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
+	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_mermaids_brush");
-	public static final Block CLOAK_BLOCK = Blocks.SEAGRASS;
 	
 	public static final BooleanProperty IN_LIQUID_CRYSTAL = BooleanProperty.of("in_liquid_crystal");
 	public static final IntProperty AGE = Properties.AGE_7;
@@ -35,6 +37,16 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(IN_LIQUID_CRYSTAL, false));
 		RevelationAware.register(this);
+	}
+	
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
+	
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return new ItemStack(SpectrumItems.MERMAIDS_GEM);
 	}
 	
 	@Override
@@ -58,7 +70,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-		BlockState cloakState = CLOAK_BLOCK.getDefaultState();
+		BlockState cloakState = Blocks.SEAGRASS.getDefaultState();
 		for (int i = 0; i < 8; i++) {
 			hashtable.put(this.getDefaultState().with(AGE, i).with(IN_LIQUID_CRYSTAL, false), cloakState);
 			hashtable.put(this.getDefaultState().with(AGE, i).with(IN_LIQUID_CRYSTAL, true), cloakState);
@@ -68,7 +80,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	
 	@Override
 	public Pair<Item, Item> getItemCloak() {
-		return new Pair<>(this.asItem(), Blocks.SEAGRASS.asItem());
+		return null;
 	}
 	
 	@Nullable

@@ -38,8 +38,8 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.*;
 import net.fabricmc.fabric.api.transfer.v1.item.*;
 import net.fabricmc.loader.api.*;
 import net.minecraft.block.*;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.*;
 import net.minecraft.fluid.*;
 import net.minecraft.item.*;
@@ -144,6 +144,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumFeatures.register();
 		logInfo("Registering Configured and Placed Features...");
 		SpectrumConfiguredFeatures.register();
+		logInfo("Registering Structure Types...");
+		SpectrumStructureTypes.register();
 		
 		// Dimension
 		logInfo("Registering Dimension...");

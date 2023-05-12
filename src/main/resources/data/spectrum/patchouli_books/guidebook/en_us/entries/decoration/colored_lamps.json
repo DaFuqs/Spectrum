@@ -24,13 +24,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)You've finally managed to mix colors properly. What could be more natural than to try out the properties of your new pigments right away? You've had enough of the normal Redstone Lamps by now. Time to add a splash of color!$()"
+      "text": "You've finally managed to mix colors properly. What could be more natural than to try out the properties of your new $(l:general/pigment)Pigments$() right away? You've had enough of the normal $(item)Redstone Lamps$() by now. Time to add a splash of color!$()"
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/colored_lamps/cyan_lamp",
-      "text": "They are surrounded by a vibrant light, when activated. Besides that, colored lamps function similar to their boring redstone counterpart."
+      "text": "They are surrounded by a vibrant light, when activated. Besides that, Colored Lamps function similar to their boring redstone counterpart."
     }
   ]
 }

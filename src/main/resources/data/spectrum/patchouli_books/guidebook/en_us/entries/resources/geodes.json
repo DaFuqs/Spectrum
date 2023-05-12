@@ -294,7 +294,7 @@
         },
         "symmetrical": false
       },
-      "text": "The precious gemstones are protected by layers of Basalt and Calcite."
+      "text": "The precious gemstones are protected by layers of $(item)Calcite$() and $(item)Basalt$()."
     },
     {
       "type": "patchouli:spotlight",

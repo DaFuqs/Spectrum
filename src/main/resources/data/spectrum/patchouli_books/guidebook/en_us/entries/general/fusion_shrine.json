@@ -18,7 +18,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/fusion_shrine_basalt",
-      "text": "Can be constructed out of Basalt or Calcite.$(br)Requires a focus structure and clear view of the sky."
+      "text": "Can be constructed out of $(item)Calcite$() or $(item)Basalt$().$(br)Requires a focus structure and clear view of the sky."
     },
     {
       "type": "patchouli:multiblock",
@@ -30,7 +30,7 @@
     {
       "type": "patchouli:text",
       "title": "Block Checklist",
-      "text": "$(li)1 Fusion Shrine$(li)4 Polished Gemstone Blocks$(li)4 Chiseled Polished Blocks$(li)8 Polished Pillars$(li)12 Polished Slabs$(li)77 Polished Blocks$(br2)As always you are able to switch Basalt with Calcite and choose the $(l:decoration/gemstone_storage_blocks)Gemstone Blocks$(/l) to your liking"
+      "text": "$(li)1 Fusion Shrine$(li)4 Polished Gemstone Blocks$(li)4 Chiseled Polished Blocks$(li)8 Polished Pillars$(li)12 Polished Slabs$(li)77 Polished Blocks$(br2)As always you are able to switch $(item)Basalt$() with $(item)Calcite$() and choose the $(l:decoration/gemstone_storage_blocks)Gemstone Blocks$(/l) to your liking."
     },
     {
       "type": "patchouli:text",

@@ -38,7 +38,7 @@
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_focus_customisation.png"
       ],
-      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up Basalt and Calcite up to create your personal variation!"
+      "text": "You can switch the basalt blocks with calcite and choose the gemstone blocks as you like it best. Mix up $(item)Calcite$() and $(item)Basalt$() up to create your personal variation!"
     }
   ]
 }

@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Like a caveman, you've always run around manually illuminating caves, or closing their unsightly entries in your immediate vicinity. To relieve you of this work you took the self-replicating abilities of $(l:creating_life/fading)Fading$(/l) as an inspiration and developed the Block Flooder.$(br)Thrown into a narrow path, pond or ravine, they get filled - in 5% of the cases the result even looks acceptable!"
+      "text": "Like a caveman, you've always run around manually illuminating caves, or closing their unsightly entries in your immediate vicinity. To relieve you of this work you took the self-replicating abilities of $(l:creating_life/fading)Fading$(/l) as an inspiration and developed the Block Flooder.$(br)Thrown into a narrow path, pond or ravine, those get filled - in 5% of the cases the result even looks acceptable!"
     },
     {
       "type": "spectrum:pedestal_crafting",

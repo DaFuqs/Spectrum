@@ -64,7 +64,7 @@
       "anchor": "polished_calcite",
       "title": "Polished Calcite",
       "recipe": "spectrum:smelting/calcite_to_polished_calcite",
-      "text": "The bright white of Calcite may be the brightest natural color you've stumbled across, looking very clean and radiating dignity. The white Calcite is a wonderful contrast to the dark hues of Basalt.$(br2)Both Polished Basalt and Calcite can be crafted into a wide array of decoration blocks."
+      "text": "The bright white of Calcite may be the brightest natural color you've stumbled across, looking very clean and radiating dignity. The white Calcite is a wonderful contrast to the dark hues of Basalt.$(br2)Both $(item)Polished Basalt$() and $(item)Calcite$() can be crafted into a wide array of decoration blocks."
     },
     {
       "type": "patchouli:crafting",

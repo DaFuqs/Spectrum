@@ -26,7 +26,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:orange_glowblock",
       "title": "Glowblocks",
-      "text": "$(italic)You have color as pure as can be. So why not create blocks with color as pure as can be!$(br2)You thought if you should call them Antiblocks, but since they are indeed blocks that would be silly, right?$()"
+      "text": "You have color as pure as can be. So why not create blocks with color as pure as can be!$(br2)You thought if you should call them $(thing)Antiblocks$(), but since they are indeed blocks that would be silly, right?"
     },
     {
       "type": "spectrum:pedestal_crafting",

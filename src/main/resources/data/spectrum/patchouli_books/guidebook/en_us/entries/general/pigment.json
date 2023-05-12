@@ -176,7 +176,7 @@
       "anchor": "yellow",
       "advancement": "spectrum:hidden/collect_pigment/collect_yellow_pigment",
       "item": "spectrum:yellow_pigment",
-      "text": "The vibrant yellow is almost bursting with energy.$(br2)$(c_yellow)Yellow$() represents $(italic)ENERGY$() and $(italic)Joy$()."
+      "text": "The vibrant yellow is almost bursting with energy.$(br2)$(c_yellow)Yellow$() represents $(italic)Energy$() and $(italic)Joy$()."
     },
     {
       "title": "Colored Blocks",

@@ -24,7 +24,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "As you wandered through a leafy cave, you noticed the many petals sailing through the air.$(br)You were so enchanted by this sight that you set out to design your own, colorful, variations."
+      "text": "As you wandered through a leafy cave, you noticed the many petals sailing through the air.$(br2)You were so enchanted by this sight that you set out to design your own, colorful variations."
     },
     {
       "type": "spectrum:pedestal_crafting",

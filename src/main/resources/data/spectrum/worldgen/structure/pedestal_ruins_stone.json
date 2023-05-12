@@ -1,20 +1,20 @@
 {
-  "type": "minecraft:jigsaw",
+  "type": "spectrum:block_target_jigsaw",
   "start_pool": "spectrum:pedestal_ruins_stone",
   "size": 2,
   "max_distance_from_center": 80,
-  "biomes": "#spectrum:has_structure/underground_structures",
+  "biomes": "#spectrum:has_structure/pedestal_ruins",
   "step": "underground_structures",
   "terrain_adaptation": "bury",
   "start_height": {
     "type": "minecraft:uniform",
     "max_inclusive": {
-      "absolute": 48
+      "absolute": 56
     },
     "min_inclusive": {
       "absolute": 0
     }
   },
-  "use_expansion_hack": false,
-  "spawn_overrides": { }
+  "block_target_type": "solid",
+  "spawn_overrides": {}
 }

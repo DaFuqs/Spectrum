@@ -68,7 +68,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 
 	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall) {
 		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
-			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
+			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
 		}
 		
 		float ageIngameDays = TimeHelper.minecraftDaysFromSeconds(secondsFermented);

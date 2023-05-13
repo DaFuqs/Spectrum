@@ -127,7 +127,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	
 	private ItemStack tapWith(float thickness, long secondsFermented, float downfall) {
 		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
-			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
+			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK.copy();
 		}
 		
 		ItemStack stack = this.outputItemStack.copy();

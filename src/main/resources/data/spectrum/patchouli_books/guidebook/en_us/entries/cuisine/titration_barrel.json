@@ -2,7 +2,7 @@
   "name": "Titration Barrel",
   "icon": "spectrum:titration_barrel",
   "advancement": "spectrum:unlocks/blocks/titration_barrel",
-  "category": "spectrum:magical_blocks_category",
+  "category": "spectrum:cuisine_category",
   "extra_recipe_mappings": {
     "spectrum:titration_barrel": 0,
     "spectrum:kimchi": 0,
@@ -55,7 +55,7 @@
       "advancement": "spectrum:unlocks/food/bodacious_berry_bar",
       "anchor": "bodacious_berry_bar",
       "recipe": "spectrum:pedestal/tier2/food/bodacious_berry_bar",
-      "text": "A elaborate to create feast of flavor that guarantees to make your mouth water."
+      "text": "An elaborate feast of flavor that is guaranteed to make your mouth water."
     },
     {
       "type": "spectrum:potion_workshop_crafting",

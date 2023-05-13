@@ -10,7 +10,7 @@
     {
       "type": "patchouli:text",
       "title": "Player Detector",
-      "text": "$(italic)You know people who build gigantic constructions out of redstone just to open an oversized door. And then they trigger it with an unsightly pressure plate.$(br)The Player Detector, on the other hand, is able to sense your presence - or that of other players - at a distance and sends out a corresponding redstone signal.$(br)Much better."
+      "text": "You know people who build gigantic constructions out of redstone just to open an oversized door. And then they trigger it with an unsightly pressure plate.$(br)The Player Detector, on the other hand, is able to sense your presence - or that of other players - at a distance and sends out a corresponding redstone signal.$(br)Much better."
     },
     {
       "type": "spectrum:pedestal_crafting",

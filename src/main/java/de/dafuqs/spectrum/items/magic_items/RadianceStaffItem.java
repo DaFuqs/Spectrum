@@ -37,7 +37,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		super(settings);
 	}
 	
-	public boolean placeLight(World world, BlockPos targetPos, ServerPlayerEntity playerEntity) {
+	public static boolean placeLight(World world, BlockPos targetPos, ServerPlayerEntity playerEntity) {
 		BlockState targetBlockState = world.getBlockState(targetPos);
 		if (targetBlockState.isAir()) {
 			if (playerEntity.isCreative() || InkPowered.tryDrainEnergy(playerEntity, InkColors.YELLOW, 10L) || InventoryHelper.removeFromInventoryWithRemainders(playerEntity, COST)) {

@@ -16,12 +16,18 @@
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
         "item": {
-          "items": [ "spectrum:radiance_staff" ]
+          "items": [
+            "spectrum:radiance_staff"
+          ]
         },
-        "block": {
-          "blocks": [ "spectrum:wand_light" ],
-          "state": {
-            "LEVEL_15": 15
+        "location": {
+          "block": {
+            "blocks": [
+              "spectrum:wand_light"
+            ],
+            "state": {
+              "level": "1"
+            }
           }
         }
       }

@@ -11,17 +11,22 @@
     {
       "type": "patchouli:text",
       "title": "The Art of Brewing",
-      "text": "Fermentation is a very natural process - things take time and care. Since there never is a fully controlled environment there are a lot of variables:$(li)Time: It takes time for the barrel to influence the contents. The longer you give the process, the stronger the changes will be. Most beverages get more intense and even additional effects, when given more time than strictly required"
+      "text": "Fermentation is a very natural process - things take time and care. Since there never is a fully controlled environment there are a lot of variables.$(br)You can follow the recipe to the point, or play around. Fermentation is Art!"
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)Temperature: The hotter it is, the more of your precious content simply evaporates over time. This is called the Angel's Share$(li)Humidity: The more humid the air, the more water evaporates in comparison to alcohol, making the drink stronger$(li)Water Share: An increased rate of ingredients to water is a fine balance, but one to be played with. More thickness makes the drink ferment faster, albeit at the cost of shorter status effect durations"
+      "title": "Outside Influences",
+      "text": "$(li)Time: It takes time for the barrel to influence the contents. Most beverages get more intense and even additional effects, when given more time than strictly required$(li)Temperature: The hotter it is, the more of your precious content simply evaporates over time. This is called the Angel's Share"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(li)Humidity: The more humid the air, the more water evaporates in comparison to alcohol, making the drink stronger$(li)Water Share: An increased rate of ingredients to water is a fine balance, but one to be played with. More thickness makes the drink ferment faster, albeit at the cost of shorter status effect durations"
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
       "title": "Malt Beer",
       "recipe": "spectrum:titration_barrel/infused_beverages/malt_beer",
-      "text": "Malt beer is both filling and tastes both sweet and savory. What a nice combination."
+      "text": "Malt beer is filling and tastes both sweet and savory. What a nice combination."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
@@ -50,7 +55,7 @@
     {
       "type": "spectrum:titration_barrel_fermenting",
       "advancement": "spectrum:milestones/confirmed_drinking_age",
-      "title": "",
+      "title": " ",
       "recipe": "spectrum:titration_barrel/infused_beverages/lager",
       "recipe2": "spectrum:titration_barrel/infused_beverages/porter",
       "text": "Just... don't brew them too long or they will shift and end up tasting awful."
@@ -148,6 +153,7 @@
     },
     {
       "type": "spectrum:titration_barrel_fermenting",
+      "advancement": "spectrum:unlocks/food/moonshine",
       "title": "Moonshine",
       "recipe": "spectrum:titration_barrel/infused_beverages/moonshine",
       "text": "Lies wonderfully light in the mouth. A gentle, sweetish burn, which lets you forget your worries for a bit. The things that worry you will forget you for a bit, too$().$(br2)$(italic)Tastes like walking on the moon."

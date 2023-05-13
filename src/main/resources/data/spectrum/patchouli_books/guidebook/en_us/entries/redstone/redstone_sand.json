@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:redstone_sand",
-      "text": "$(italic)You think back to the good old times when you used to set little traps for your friends: if they touched the wrong block, they were completely buried by sand. By now, your friends are not so easily fooled.$(br2)Modern problems require modern solutions."
+      "text": "You think back to the good old times when you used to set little traps for your friends: if they touched the wrong block, they were completely buried by sand. By now, your friends are not so easily fooled.$(br2)Modern problems require modern solutions."
     },
     {
       "type": "spectrum:pedestal_crafting",

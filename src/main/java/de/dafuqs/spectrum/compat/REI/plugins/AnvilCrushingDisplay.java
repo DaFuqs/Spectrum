@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import de.dafuqs.spectrum.compat.REI.GatedSpectrumDisplay;
-import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.recipe.anvil_crushing.AnvilCrushingRecipe;
-import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
+import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.recipe.anvil_crushing.*;
+import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.util.*;
 
-import java.util.Collections;
+import java.util.*;
 
 public class AnvilCrushingDisplay extends GatedSpectrumDisplay {
 	public final float experience;

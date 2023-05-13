@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import de.dafuqs.spectrum.compat.REI.GatedSpectrumDisplay;
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopRecipe;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
+import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
+import me.shedaniel.rei.api.common.util.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.*;
 
 public abstract class PotionWorkshopRecipeDisplay extends GatedSpectrumDisplay {
 	

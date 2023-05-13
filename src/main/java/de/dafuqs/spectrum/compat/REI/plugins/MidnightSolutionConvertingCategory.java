@@ -10,20 +10,20 @@ import net.minecraft.text.*;
 
 @Environment(EnvType.CLIENT)
 public class MidnightSolutionConvertingCategory extends FluidConvertingCategory<MidnightSolutionConvertingDisplay> {
-
+	
 	@Override
 	public CategoryIdentifier<? extends MidnightSolutionConvertingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.MIDNIGHT_SOLUTION_CONVERTING;
 	}
-
+	
 	@Override
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumItems.MIDNIGHT_SOLUTION_BUCKET);
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return Text.translatable("container.spectrum.rei.midnight_solution_converting.title");
 	}
-
+	
 }

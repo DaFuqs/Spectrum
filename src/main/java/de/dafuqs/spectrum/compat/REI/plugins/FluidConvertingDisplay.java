@@ -8,24 +8,24 @@ import net.minecraft.client.*;
 import net.minecraft.util.*;
 
 public abstract class FluidConvertingDisplay extends GatedSpectrumDisplay {
-
-    public FluidConvertingDisplay(FluidConvertingRecipe recipe) {
-        super(recipe, recipe.getIngredients().get(0), recipe.getOutput());
-    }
-
-    public final EntryIngredient getIn() {
-        return getInputEntries().get(0);
-    }
-
-    public final EntryIngredient getOut() {
-        return getOutputEntries().get(0);
-    }
-
-    @Override
-    public boolean isUnlocked() {
-        return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, getUnlockIdentifier()) && super.isUnlocked();
-    }
-
-    public abstract Identifier getUnlockIdentifier();
-
+	
+	public FluidConvertingDisplay(FluidConvertingRecipe recipe) {
+		super(recipe, recipe.getIngredients().get(0), recipe.getOutput());
+	}
+	
+	public final EntryIngredient getIn() {
+		return getInputEntries().get(0);
+	}
+	
+	public final EntryIngredient getOut() {
+		return getOutputEntries().get(0);
+	}
+	
+	@Override
+	public boolean isUnlocked() {
+		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, getUnlockIdentifier()) && super.isUnlocked();
+	}
+	
+	public abstract Identifier getUnlockIdentifier();
+	
 }

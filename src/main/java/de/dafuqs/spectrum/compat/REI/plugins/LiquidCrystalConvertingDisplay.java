@@ -6,19 +6,19 @@ import me.shedaniel.rei.api.common.category.*;
 import net.minecraft.util.*;
 
 public class LiquidCrystalConvertingDisplay extends FluidConvertingDisplay {
-
+	
 	public LiquidCrystalConvertingDisplay(LiquidCrystalConvertingRecipe recipe) {
 		super(recipe);
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.LIQUID_CRYSTAL_CONVERTING;
 	}
-
+	
 	@Override
 	public Identifier getUnlockIdentifier() {
 		return LiquidCrystalConvertingRecipe.UNLOCK_IDENTIFIER;
 	}
-
+	
 }

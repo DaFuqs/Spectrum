@@ -1,23 +1,21 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity;
-import de.dafuqs.spectrum.compat.REI.GatedSpectrumDisplay;
-import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
-import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
-import de.dafuqs.spectrum.recipe.enchantment_upgrade.EnchantmentUpgradeRecipe;
-import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.enchantment.Enchantment;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.blocks.enchanter.*;
+import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.recipe.enchanter.*;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
+import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.entry.*;
+import me.shedaniel.rei.api.common.util.*;
+import net.minecraft.client.*;
+import net.minecraft.enchantment.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class EnchantmentUpgradeDisplay extends GatedSpectrumDisplay {
+public class EnchantmentUpgradeDisplay extends EnchanterDisplay {
 	
 	protected final Enchantment enchantment;
 	protected final int enchantmentDestinationLevel;

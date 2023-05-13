@@ -24,7 +24,7 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 	
 	public CrystallarieumDisplay(@NotNull CrystallarieumRecipe recipe) {
 		super(recipe, inputs(recipe), outputs(recipe));
-
+		
 		this.growthStages = new ArrayList<>();
 		for (BlockState state : recipe.getGrowthStages()) {
 			growthStages.add(EntryIngredients.of(state.getBlock().asItem()));
@@ -34,25 +34,25 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		this.growsWithoutCatalyst = recipe.growsWithoutCatalyst();
 		this.secondsPerStage = recipe.getSecondsPerGrowthStage();
 	}
-
+	
 	public static List<EntryIngredient> inputs(CrystallarieumRecipe recipe) {
 		List<EntryIngredient> inputs = new ArrayList<>();
 		inputs.add(EntryIngredients.ofIngredient(recipe.getIngredientStack()));
-
+		
 		Item firstBlockStateItem = recipe.getGrowthStages().get(0).getBlock().asItem();
 		if (firstBlockStateItem != Items.AIR) {
 			inputs.add(EntryIngredients.of(firstBlockStateItem));
 		}
 		return inputs;
 	}
-
+	
 	public static List<EntryIngredient> outputs(CrystallarieumRecipe recipe) {
 		List<EntryIngredient> outputs = new ArrayList<>();
 		outputs.add(EntryIngredients.of(recipe.getOutput()));
 		for (ItemStack additionalOutput : recipe.getAdditionalOutputs()) {
 			outputs.add(EntryIngredients.of(additionalOutput));
 		}
-
+		
 		for (BlockState growthStageState : recipe.getGrowthStages()) {
 			Item blockStateItem = growthStageState.getBlock().asItem();
 			if (blockStateItem != Items.AIR) {
@@ -61,12 +61,12 @@ public class CrystallarieumDisplay extends GatedSpectrumDisplay {
 		}
 		return outputs;
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.CRYSTALLARIEUM;
 	}
-
+	
 	@Override
 	public boolean isUnlocked() {
 		return AdvancementHelper.hasAdvancement(MinecraftClient.getInstance().player, CrystallarieumRecipe.UNLOCK_IDENTIFIER) && super.isUnlocked();

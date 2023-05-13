@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import me.shedaniel.clothconfig2.ClothConfigInitializer;
-import me.shedaniel.clothconfig2.api.ScissorsHandler;
+import me.shedaniel.clothconfig2.*;
+import me.shedaniel.clothconfig2.api.*;
 import me.shedaniel.clothconfig2.api.scroll.ScrollingContainer;
-import me.shedaniel.math.Rectangle;
-import me.shedaniel.rei.api.client.REIRuntime;
-import me.shedaniel.rei.api.client.gui.widgets.WidgetWithBounds;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.OrderedText;
+import me.shedaniel.math.*;
+import me.shedaniel.rei.api.client.*;
+import me.shedaniel.rei.api.client.gui.widgets.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.text.*;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Mostly a copy of REIs ScrollableTextWidget

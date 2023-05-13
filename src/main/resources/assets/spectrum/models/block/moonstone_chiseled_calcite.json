@@ -1,6 +1,8 @@
 {
-  "parent": "block/cube_all",
+  "parent": "spectrum:templates/cube_line",
   "textures": {
-    "all": "spectrum:block/moonstone_chiseled_calcite"
+    "line": "spectrum:block/moonstone_chiseled_calcite",
+    "side": "spectrum:block/polished_calcite",
+    "particle": "spectrum:block/polished_calcite"
   }
 }

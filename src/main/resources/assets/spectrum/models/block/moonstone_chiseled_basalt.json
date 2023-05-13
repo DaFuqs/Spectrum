@@ -1,6 +1,8 @@
 {
-  "parent": "block/cube_all",
+  "parent": "spectrum:templates/cube_line",
   "textures": {
-    "all": "spectrum:block/moonstone_chiseled_basalt"
+    "line": "spectrum:block/moonstone_chiseled_basalt",
+    "side": "spectrum:block/polished_basalt",
+    "particle": "spectrum:block/polished_basalt"
   }
 }

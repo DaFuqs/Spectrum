@@ -221,7 +221,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 				text = Text.translatable("container.spectrum.rei.titration_barrel.time_hour");
 			} else if (minFermentationTimeHours == 24) {
 				text = Text.translatable("container.spectrum.rei.titration_barrel.time_day");
-			} else if (minFermentationTimeHours > 72) {
+			} else if (minFermentationTimeHours >= 72) {
 				text = Text.translatable("container.spectrum.rei.titration_barrel.time_days", Support.getWithOneDecimalAfterComma(minFermentationTimeHours / 24F));
 			} else {
 				text = Text.translatable("container.spectrum.rei.titration_barrel.time_hours", minFermentationTimeHours);

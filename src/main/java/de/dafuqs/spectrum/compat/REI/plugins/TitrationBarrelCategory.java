@@ -40,7 +40,7 @@ public class TitrationBarrelCategory extends GatedDisplayCategory<TitrationBarre
 		// input slots
 		int ingredientSize = inputs.size();
 		int startX = startPoint.x + Math.max(-5, 15 - ingredientSize * 10);
-		int startY = startPoint.y + 1 + (ingredientSize > 2 ? 0 : 10);
+		int startY = startPoint.y + (ingredientSize > 3 ? 1 : 11);
 		for (int i = 0; i < ingredientSize; i++) {
 			EntryIngredient currentIngredient = inputs.get(i);
 			int yOffset;
@@ -57,17 +57,17 @@ public class TitrationBarrelCategory extends GatedDisplayCategory<TitrationBarre
 		
 		// output arrow and slot
 		if (display.tappingIngredient.isEmpty()) {
-			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 1 + 10)).animationDurationTicks(display.minFermentationTimeHours * 20));
+			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 11)).animationDurationTicks(display.minFermentationTimeHours * 20));
 		} else {
-			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 1 + 2)).animationDurationTicks(display.minFermentationTimeHours * 20));
-			widgets.add(Widgets.createSlot(new Point(startPoint.x + 64, startPoint.y + 1 + 20)).markInput().entries(display.tappingIngredient));
+			widgets.add(Widgets.createArrow(new Point(startPoint.x + 60, startPoint.y + 3)).animationDurationTicks(display.minFermentationTimeHours * 20));
+			widgets.add(Widgets.createSlot(new Point(startPoint.x + 64, startPoint.y + 21)).markInput().entries(display.tappingIngredient));
 		}
-		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 1 + 10)));
-		widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 1 + 10)).markOutput().disableBackground().entries(display.getOutputEntries().get(0)));
+		widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 95, startPoint.y + 11)));
+		widgets.add(Widgets.createSlot(new Point(startPoint.x + 95, startPoint.y + 11)).markOutput().disableBackground().entries(display.getOutputEntries().get(0)));
 		
 		// duration text
 		MutableText text = TitrationBarrelRecipe.getDurationText(display.minFermentationTimeHours, display.fermentationData);
-		widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 1 + 40), text).leftAligned().color(0x3f3f3f).noShadow());
+		widgets.add(Widgets.createLabel(new Point(startPoint.x - 10, startPoint.y + 42), text).leftAligned().color(0x3f3f3f).noShadow());
 	}
 	
 	@Override

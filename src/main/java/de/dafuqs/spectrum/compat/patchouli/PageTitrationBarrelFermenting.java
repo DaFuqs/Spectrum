@@ -56,9 +56,9 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		// the ingredients
 		List<IngredientStack> ingredients = recipe.getIngredientStacks();
 		int ingredientSize = ingredients.size();
-		int startX = recipeX + Math.max(-5, 15 - ingredientSize * 10);
-		int startY = recipeY + (ingredientSize > 2 ? 0 : 10);
 		int ingredientSizeWithFluid = usesFluid ? ingredientSize + 1 : ingredientSize;
+		int startX = recipeX + Math.max(-5, 15 - ingredientSizeWithFluid * 10);
+		int startY = recipeY + (ingredientSizeWithFluid > 3 ? 0 : 10);
 		for (int i = 0; i < ingredientSizeWithFluid; i++) {
 			IngredientStack currentIngredient = i == ingredientSize ? bucketStack : ingredients.get(i);
 			int yOffset;
@@ -77,7 +77,8 @@ public class PageTitrationBarrelFermenting extends PageDoubleRecipeRegistry<ITit
 		if (recipe.getTappingItem() == Items.AIR) {
 			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.createIcon());
 		} else {
-			parent.renderItemStack(ms, recipeX + 54, recipeY + 20, mouseX, mouseY, recipe.getTappingItem().getDefaultStack());
+			parent.renderItemStack(ms, recipeX + 50, recipeY + 20, mouseX, mouseY, recipe.createIcon());
+			parent.renderItemStack(ms, recipeX + 60, recipeY + 20, mouseX, mouseY, recipe.getTappingItem().getDefaultStack());
 		}
 		
 		// the output

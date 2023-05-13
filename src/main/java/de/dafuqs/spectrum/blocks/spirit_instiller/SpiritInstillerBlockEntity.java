@@ -136,21 +136,21 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		spiritInstillerBlockEntity.craftingTime = 0;
 		spiritInstillerBlockEntity.currentRecipe = null;
 		
-		ItemStack instillerStack = spiritInstillerBlockEntity.getStack(0);
+		ItemStack instillerStack = spiritInstillerBlockEntity.getStack(SpiritInstillerRecipe.CENTER_INGREDIENT);
 		if (!instillerStack.isEmpty()) {
-			spiritInstillerBlockEntity.autoCraftingInventory.setStack(0, instillerStack);
+			spiritInstillerBlockEntity.autoCraftingInventory.setStack(SpiritInstillerRecipe.CENTER_INGREDIENT, instillerStack);
 			
 			// left item bowl
 			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, false)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, itemBowlBlockEntity.getStack(0));
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(SpiritInstillerRecipe.FIRST_INGREDIENT, itemBowlBlockEntity.getStack(0));
 			} else {
-				spiritInstillerBlockEntity.autoCraftingInventory.setStack(1, ItemStack.EMPTY);
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(SpiritInstillerRecipe.FIRST_INGREDIENT, ItemStack.EMPTY);
 			}
 			// right item bowl
 			if (world.getBlockEntity(getItemBowlPos(spiritInstillerBlockEntity, true)) instanceof ItemBowlBlockEntity itemBowlBlockEntity) {
-				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, itemBowlBlockEntity.getStack(0));
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(SpiritInstillerRecipe.SECOND_INGREDIENT, itemBowlBlockEntity.getStack(0));
 			} else {
-				spiritInstillerBlockEntity.autoCraftingInventory.setStack(2, ItemStack.EMPTY);
+				spiritInstillerBlockEntity.autoCraftingInventory.setStack(SpiritInstillerRecipe.SECOND_INGREDIENT, ItemStack.EMPTY);
 			}
 			
 			SpiritInstillerRecipe spiritInstillerRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.SPIRIT_INSTILLING, spiritInstillerBlockEntity.autoCraftingInventory, world).orElse(null);
@@ -168,16 +168,16 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		switch (spiritInstillerBlockEntity.multiblockRotation) {
 			case NONE, CLOCKWISE_180 -> {
 				if (right) {
-					return blockPos.up().north(2);
+					return blockPos.up().east(2);
 				} else {
-					return blockPos.up().south(2);
+					return blockPos.up().west(2);
 				}
 			}
 			default -> {
 				if (right) {
-					return blockPos.up().east(2);
+					return blockPos.up().north(2);
 				} else {
-					return blockPos.up().west(2);
+					return blockPos.up().south(2);
 				}
 			}
 		}
@@ -413,9 +413,9 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 	
 	public Vec3i getItemBowlHorizontalPositionOffset(boolean right) {
 		if (this.multiblockRotation == BlockRotation.NONE || this.multiblockRotation == BlockRotation.CLOCKWISE_180) {
-			return itemBowlOffsetsHorizontal.get(right ? 1 : 0);
-		} else {
 			return itemBowlOffsetsVertical.get(right ? 1 : 0);
+		} else {
+			return itemBowlOffsetsHorizontal.get(right ? 1 : 0);
 		}
 	}
 	

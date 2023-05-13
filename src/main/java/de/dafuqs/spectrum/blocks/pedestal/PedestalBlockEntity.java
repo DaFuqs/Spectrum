@@ -46,7 +46,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
 	public static final int OUTPUT_SLOT_ID = 15;
-	protected static AutoCraftingInventory autoCraftingInventory;
+	protected AutoCraftingInventory autoCraftingInventory;
 	protected final PropertyDelegate propertyDelegate;
 	protected UUID ownerUUID;
 	protected PedestalVariant pedestalVariant;
@@ -69,10 +69,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		} else {
 			this.pedestalVariant = BuiltinPedestalVariant.BASIC_AMETHYST;
 		}
-		
-		if (autoCraftingInventory == null) {
-			autoCraftingInventory = new AutoCraftingInventory(3, 3);
-		}
+		autoCraftingInventory = new AutoCraftingInventory(3, 3);
 		
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.propertyDelegate = new PropertyDelegate() {
@@ -302,8 +299,8 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 		
 		// unchanged vanilla recipe?
-		autoCraftingInventory.setInputInventory(pedestalBlockEntity.inventory.subList(0, 9));
-		if (pedestalBlockEntity.currentRecipe instanceof CraftingRecipe && ((CraftingRecipe) pedestalBlockEntity.currentRecipe).matches(autoCraftingInventory, world)) {
+		pedestalBlockEntity.autoCraftingInventory.setInputInventory(pedestalBlockEntity.inventory.subList(0, 9));
+		if (pedestalBlockEntity.currentRecipe instanceof CraftingRecipe && ((CraftingRecipe) pedestalBlockEntity.currentRecipe).matches(pedestalBlockEntity.autoCraftingInventory, world)) {
 			return pedestalBlockEntity.currentRecipe;
 		}
 		
@@ -311,7 +308,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		// => search valid recipe
 		PedestalCraftingRecipe pedestalCraftingRecipe = world.getRecipeManager().getFirstMatch(SpectrumRecipeTypes.PEDESTAL, pedestalBlockEntity, world).orElse(null);
 		if (pedestalCraftingRecipe == null) {
-			return world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, autoCraftingInventory, world).orElse(null);
+			return world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, pedestalBlockEntity.autoCraftingInventory, world).orElse(null);
 		}
 		
 		if (!pedestalCraftingRecipe.canCraft(pedestalBlockEntity)) {
@@ -711,7 +708,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			
 			int resultRecipeSlot = getCraftingRecipeSlotDependingOnWidth(slot, width);
 			if (resultRecipeSlot < storedRecipe.getIngredients().size()) {
-				Ingredient ingredient = (Ingredient) storedRecipe.getIngredients().get(resultRecipeSlot);
+				Ingredient ingredient = storedRecipe.getIngredients().get(resultRecipeSlot);
 				return ingredient.test(stack);
 			} else {
 				return false;

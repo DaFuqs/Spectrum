@@ -125,6 +125,9 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		}
 	}
 	
+	// TODO
+	// this gets called every tick to update the stack in the gui preview slot.
+	// This is bad. It should be calculated once only when the inventory changed
 	public void calculateDisplayedSlotStackClient() {
 		BlockEntity blockEntity = world.getBlockEntity(pedestalPos);
 		if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {

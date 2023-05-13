@@ -18,7 +18,7 @@ import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.collection.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
@@ -144,17 +144,21 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof FusionShrineBlockEntity fusionShrineBlockEntity) {
+				fusionShrineBlockEntity.setOwner(player);
+				
 				ItemStack handStack = player.getStackInHand(hand);
-				if (!FluidStorageUtil.interactWithFluidStorage(fusionShrineBlockEntity.fluidStorage, player, hand)) {
+				if (FluidStorageUtil.interactWithFluidStorage(fusionShrineBlockEntity.fluidStorage, player, hand)) {
+					fusionShrineBlockEntity.updateInClientWorld();
+				} else {
 					// if the structure is valid the player can put / retrieve blocks into the shrine
 					if (player.isSneaking() || handStack.isEmpty()) {
 						// sneaking or empty hand: remove items
 						if (retrieveLastStack(world, pos, player, hand, handStack, fusionShrineBlockEntity)) {
-							fusionShrineBlockEntity.setOwner(player);
+							fusionShrineBlockEntity.updateInClientWorld();
 						}
 					} else if (verifyStructure(world, pos, (ServerPlayerEntity) player) && !handStack.isEmpty()) {
 						if (inputHandStack(world, player, hand, handStack, fusionShrineBlockEntity)) {
-							fusionShrineBlockEntity.setOwner(player);
+							fusionShrineBlockEntity.updateInClientWorld();
 						}
 					}
 				}

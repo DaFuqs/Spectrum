@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.transfer.v1.storage.base.*;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
@@ -154,50 +155,57 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		ItemStack harvestedStack = ItemStack.EMPTY;
 		Biome biome = world.getBiome(blockPos).value();
 		
+		boolean shouldReset = false;
+		Text message = null;
+		
 		Optional<ITitrationBarrelRecipe> optionalRecipe = getRecipeForInventory(world);
 		if (optionalRecipe.isEmpty()) {
-			if (player != null) {
-				if (inventory.isEmpty() && getFluidVariant().isBlank()) {
-					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.empty_when_tapping"), true);
-				} else {
-					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), true);
-				}
+			if (inventory.isEmpty() && getFluidVariant().isBlank()) {
+				message = Text.translatable("block.spectrum.titration_barrel.empty_when_tapping");
+			} else {
+				message = Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping");
 			}
+			shouldReset = true;
 		} else {
 			ITitrationBarrelRecipe recipe = optionalRecipe.get();
 			if (this.getFluidVariant().isOf(recipe.getFluidInput()) && recipe.canPlayerCraft(player)) {
 				Item tappingItem = recipe.getTappingItem();
-				
-				boolean canTap = tappingItem == Items.AIR;
-				if (!canTap) {
+				boolean canTap = true;
+				if (tappingItem != Items.AIR) {
 					if (handStack.isOf(tappingItem)) {
 						handStack.decrement(1);
-						canTap = true;
-					} else if (player != null) {
-						player.sendMessage(Text.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName()), true);
+					} else {
+						message = Text.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName());
+						canTap = false;
 					}
 				}
 				if (canTap) {
 					long secondsFermented = (this.tapTime - this.sealTime) / 1000;
 					harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getDownfall());
 					this.extractedBottles += 1;
+					shouldReset = isEmpty(biome.getTemperature(), this.extractedBottles, recipe);
 				}
-			} else if (player != null) {
+			} else {
 				if (getFluidVariant().isBlank()) {
-					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.missing_liquid_when_tapping"), true);
+					message = Text.translatable("block.spectrum.titration_barrel.missing_liquid_when_tapping");
 				} else {
-					player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping"), true);
+					message = Text.translatable("block.spectrum.titration_barrel.invalid_recipe_when_tapping");
 				}
+				shouldReset = true;
 			}
 		}
 		
 		if (player != null) {
+			if (message != null) {
+				player.sendMessage(message, true);
+			}
+			
 			int daysSealed = getSealMinecraftDays();
 			int inventoryCount = InventoryHelper.countItemsInInventory(this.inventory);
 			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed, inventoryCount);
 		}
 		
-		if (optionalRecipe.isEmpty() || isEmpty(biome.getTemperature(), this.extractedBottles, optionalRecipe.get()) || !optionalRecipe.get().canPlayerCraft(player)) {
+		if (shouldReset) {
 			reset(world, blockPos, blockState);
 		}
 		
@@ -221,7 +229,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			}
 		}
 	}
-
+	
 	public @NotNull FluidVariant getFluidVariant() {
 		if (this.fluidStorage.amount > 0) {
 			return this.fluidStorage.variant;
@@ -229,5 +237,16 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			return FluidVariant.blank();
 		}
 	}
-
+	
+	public boolean canBeSealed(PlayerEntity player) {
+		int itemCount = InventoryHelper.countItemsInInventory(inventory);
+		Fluid fluid = fluidStorage.variant.getFluid();
+		if (itemCount == 0 && fluid == Fluids.EMPTY) {
+			return true; // tap empty barrel advancement
+		}
+		
+		Optional<ITitrationBarrelRecipe> optionalRecipe = getRecipeForInventory(world);
+		return optionalRecipe.isPresent() && optionalRecipe.get().canPlayerCraft(player);
+	}
+	
 }

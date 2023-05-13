@@ -93,15 +93,15 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 								}
 							} else {
 								if (handStack.isIn(SpectrumItemTags.COLORED_PLANKS)) {
-									Optional<ITitrationBarrelRecipe> optionalRecipe = barrelEntity.getRecipeForInventory(world);
-									if (optionalRecipe.isEmpty() || !optionalRecipe.get().canPlayerCraft(player)) {
-										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe"), false);
-										return ActionResult.CONSUME;
+									if (barrelEntity.canBeSealed(player)) {
+										if (!player.isCreative()) {
+											handStack.decrement(1);
+										}
+										sealBarrel(world, pos, state, barrelEntity, player);
+									} else {
+										player.sendMessage(Text.translatable("block.spectrum.titration_barrel.invalid_recipe"), true);
 									}
-									if (!player.isCreative()) {
-										handStack.decrement(1);
-									}
-									sealBarrel(world, pos, state, barrelEntity, player);
+									return ActionResult.CONSUME;
 								} else if (FluidStorageUtil.interactWithFluidStorage(barrelEntity.fluidStorage, player, hand)) {
 									if (barrelEntity.getFluidVariant().isBlank()) {
 										if (state.get(BARREL_STATE) == TitrationBarrelBlock.BarrelState.FILLED && barrelEntity.inventory.isEmpty()) {

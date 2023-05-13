@@ -10,7 +10,7 @@ public class SpectrumPlugins {
 	public static final CategoryIdentifier<AnvilCrushingDisplay> ANVIL_CRUSHING = CategoryIdentifier.of(SpectrumCommon.locate("anvil_crushing"));
 	public static final CategoryIdentifier<FusionShrineDisplay> FUSION_SHRINE = CategoryIdentifier.of(SpectrumCommon.locate("fusion_shrine"));
 	public static final CategoryIdentifier<NaturesStaffConversionsDisplay> NATURES_STAFF = CategoryIdentifier.of(SpectrumCommon.locate("natures_staff_conversions"));
-	public static final CategoryIdentifier<EnchanterDisplay> ENCHANTER = CategoryIdentifier.of(SpectrumCommon.locate("enchanter"));
+	public static final CategoryIdentifier<EnchanterEnchantingDisplay> ENCHANTER_CRAFTING = CategoryIdentifier.of(SpectrumCommon.locate("enchanter"));
 	public static final CategoryIdentifier<EnchantmentUpgradeDisplay> ENCHANTMENT_UPGRADE = CategoryIdentifier.of(SpectrumCommon.locate("enchantment_upgrade"));
 	public static final CategoryIdentifier<PotionWorkshopBrewingDisplay> POTION_WORKSHOP_BREWING = CategoryIdentifier.of(SpectrumCommon.locate("potion_workshop_brewing"));
 	public static final CategoryIdentifier<PotionWorkshopCraftingDisplay> POTION_WORKSHOP_CRAFTING = CategoryIdentifier.of(SpectrumCommon.locate("potion_workshop_crafting"));

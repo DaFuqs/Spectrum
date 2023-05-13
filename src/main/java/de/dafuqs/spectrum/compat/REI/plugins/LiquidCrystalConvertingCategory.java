@@ -10,20 +10,20 @@ import net.minecraft.text.*;
 
 @Environment(EnvType.CLIENT)
 public class LiquidCrystalConvertingCategory extends FluidConvertingCategory<LiquidCrystalConvertingDisplay> {
-
+	
 	@Override
 	public CategoryIdentifier<? extends LiquidCrystalConvertingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.LIQUID_CRYSTAL_CONVERTING;
 	}
-
+	
 	@Override
 	public Renderer getIcon() {
 		return EntryStacks.of(SpectrumItems.LIQUID_CRYSTAL_BUCKET);
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return Text.translatable("container.spectrum.rei.liquid_crystal_converting.title");
 	}
-
+	
 }

@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.compat.REI.GatedSpectrumDisplay;
-import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.recipe.ink_converting.InkConvertingRecipe;
-import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.minecraft.client.MinecraftClient;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.compat.REI.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.recipe.ink_converting.*;
+import me.shedaniel.rei.api.common.category.*;
+import me.shedaniel.rei.api.common.util.*;
+import net.minecraft.client.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class InkConvertingDisplay extends GatedSpectrumDisplay {
 	

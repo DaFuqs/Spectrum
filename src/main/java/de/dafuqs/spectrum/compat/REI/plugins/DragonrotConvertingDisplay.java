@@ -6,19 +6,19 @@ import me.shedaniel.rei.api.common.category.*;
 import net.minecraft.util.*;
 
 public class DragonrotConvertingDisplay extends FluidConvertingDisplay {
-
-    public DragonrotConvertingDisplay(DragonrotConvertingRecipe recipe) {
-        super(recipe);
-    }
-
-    @Override
-    public Identifier getUnlockIdentifier() {
-        return DragonrotConvertingRecipe.UNLOCK_IDENTIFIER;
-    }
-
-    @Override
-    public CategoryIdentifier<?> getCategoryIdentifier() {
-        return SpectrumPlugins.DRAGONROT_CONVERTING;
-    }
-
+	
+	public DragonrotConvertingDisplay(DragonrotConvertingRecipe recipe) {
+		super(recipe);
+	}
+	
+	@Override
+	public Identifier getUnlockIdentifier() {
+		return DragonrotConvertingRecipe.UNLOCK_IDENTIFIER;
+	}
+	
+	@Override
+	public CategoryIdentifier<?> getCategoryIdentifier() {
+		return SpectrumPlugins.DRAGONROT_CONVERTING;
+	}
+	
 }

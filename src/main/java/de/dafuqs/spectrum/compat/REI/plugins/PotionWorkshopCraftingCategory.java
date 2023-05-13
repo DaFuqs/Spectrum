@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.compat.REI.plugins;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.compat.REI.SpectrumPlugins;
-import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.compat.REI.*;
+import me.shedaniel.rei.api.common.category.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 public class PotionWorkshopCraftingCategory extends PotionWorkshopCategory {
 	

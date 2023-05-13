@@ -14,11 +14,11 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
-
+	
 	protected final EntryIngredient tappingIngredient;
 	protected final int minFermentationTimeHours;
 	protected final FermentationData fermentationData;
-
+	
 	public TitrationBarrelDisplay(@NotNull ITitrationBarrelRecipe recipe) {
 		super(recipe, buildInputs(recipe), List.of(buildOutputs(recipe)));
 		if (recipe.getTappingItem() == Items.AIR) {
@@ -29,7 +29,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 		this.minFermentationTimeHours = recipe.getMinFermentationTimeHours();
 		this.fermentationData = recipe.getFermentationData();
 	}
-
+	
 	private static EntryIngredient buildOutputs(ITitrationBarrelRecipe recipe) {
 		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
 			return EntryIngredients.ofItemStacks(titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS));
@@ -37,7 +37,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 			return EntryIngredients.of(recipe.getOutput(null));
 		}
 	}
-
+	
 	public static List<EntryIngredient> buildInputs(ITitrationBarrelRecipe recipe) {
 		List<EntryIngredient> inputs = REIHelper.toEntryIngredients(recipe.getIngredientStacks());
 		if (recipe.getFluidInput() != Fluids.EMPTY) {
@@ -45,7 +45,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 		}
 		return inputs;
 	}
-
+	
 	@Override
 	public CategoryIdentifier<?> getCategoryIdentifier() {
 		return SpectrumPlugins.TITRATION_BARREL;

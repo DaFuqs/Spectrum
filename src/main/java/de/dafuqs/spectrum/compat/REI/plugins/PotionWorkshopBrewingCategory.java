@@ -9,17 +9,17 @@ import net.minecraft.util.*;
 
 @Environment(EnvType.CLIENT)
 public class PotionWorkshopBrewingCategory extends PotionWorkshopCategory {
-
+	
 	@Override
 	public CategoryIdentifier getCategoryIdentifier() {
 		return SpectrumPlugins.POTION_WORKSHOP_BREWING;
 	}
-
+	
 	@Override
 	public Identifier getIdentifier() {
 		return SpectrumCommon.locate("potion_workshop_brewing");
 	}
-
+	
 	@Override
 	public Text getTitle() {
 		return Text.translatable("container.spectrum.rei.potion_workshop_brewing.title");

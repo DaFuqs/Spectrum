@@ -12,7 +12,7 @@ import net.minecraft.util.math.RotationAxis;
 
 public class SpiritInstillerBlockEntityRenderer implements BlockEntityRenderer<SpiritInstillerBlockEntity> {
 	
-	protected double itemStackRenderHeight = 0.95F;
+	protected double ITEM_STACK_RENDER_HEIGHT = 0.95F;
 	
 	public SpiritInstillerBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
 	
@@ -29,22 +29,22 @@ public class SpiritInstillerBlockEntityRenderer implements BlockEntityRenderer<S
 			matrixStack.push();
 			// item stack rotation
 			switch (itemFacingDirection) {
-				case CLOCKWISE_90 -> {
-					matrixStack.translate(0.5, itemStackRenderHeight, 0.7);
+				case NONE -> {
+					matrixStack.translate(0.5, ITEM_STACK_RENDER_HEIGHT, 0.7);
 					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
 					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
 				}
-				case CLOCKWISE_180 -> {
-					matrixStack.translate(0.3, itemStackRenderHeight, 0.5);
+				case CLOCKWISE_90 -> {
+					matrixStack.translate(0.3, ITEM_STACK_RENDER_HEIGHT, 0.5);
 					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
 					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(270));
 				}
-				case COUNTERCLOCKWISE_90 -> {
-					matrixStack.translate(0.5, itemStackRenderHeight, 0.3);
+				case CLOCKWISE_180 -> {
+					matrixStack.translate(0.5, ITEM_STACK_RENDER_HEIGHT, 0.3);
 					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
 				}
-				case NONE -> {
-					matrixStack.translate(0.7, itemStackRenderHeight, 0.5);
+				case COUNTERCLOCKWISE_90 -> {
+					matrixStack.translate(0.7, ITEM_STACK_RENDER_HEIGHT, 0.5);
 					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
 					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(90));
 					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));

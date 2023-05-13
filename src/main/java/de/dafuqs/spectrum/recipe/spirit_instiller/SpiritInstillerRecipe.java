@@ -62,11 +62,11 @@ public class SpiritInstillerRecipe extends GatedSpectrumRecipe {
 	public boolean matches(Inventory inv, World world) {
 		List<IngredientStack> ingredientStacks = getIngredientStacks();
 		if (inv.size() > 2) {
-			if (ingredientStacks.get(CENTER_INGREDIENT).test(inv.getStack(0))) {
-				if (ingredientStacks.get(FIRST_INGREDIENT).test(inv.getStack(1))) {
-					return ingredientStacks.get(SECOND_INGREDIENT).test(inv.getStack(2));
-				} else if (ingredientStacks.get(FIRST_INGREDIENT).test(inv.getStack(2))) {
-					return ingredientStacks.get(SECOND_INGREDIENT).test(inv.getStack(1));
+			if (ingredientStacks.get(CENTER_INGREDIENT).test(inv.getStack(CENTER_INGREDIENT))) {
+				if (ingredientStacks.get(FIRST_INGREDIENT).test(inv.getStack(FIRST_INGREDIENT))) {
+					return ingredientStacks.get(SECOND_INGREDIENT).test(inv.getStack(SECOND_INGREDIENT));
+				} else if (ingredientStacks.get(FIRST_INGREDIENT).test(inv.getStack(SECOND_INGREDIENT))) {
+					return ingredientStacks.get(SECOND_INGREDIENT).test(inv.getStack(FIRST_INGREDIENT));
 				}
 			}
 		}

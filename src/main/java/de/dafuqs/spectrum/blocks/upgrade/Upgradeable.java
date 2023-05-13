@@ -122,20 +122,20 @@ public interface Upgradeable {
 		List<BlockPos> positions = new ArrayList<>();
 		switch (multiblockRotation) {
 			case NONE -> {
-				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
+				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
 				positions.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
 			}
 			case CLOCKWISE_90 -> {
 				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
-				positions.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
+				positions.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
 			}
 			case CLOCKWISE_180 -> {
 				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
-				positions.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
+				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
 			}
 			default -> {
-				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
 				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
+				positions.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
 			}
 		}
 		

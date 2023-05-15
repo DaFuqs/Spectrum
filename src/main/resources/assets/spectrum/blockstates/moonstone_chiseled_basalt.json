@@ -1,8 +1,7 @@
 {
 	"variants": {
 		"facing=down": {
-			"model": "spectrum:block/moonstone_chiseled_basalt",
-			"x": 180
+			"model": "spectrum:block/moonstone_chiseled_basalt_down"
 		},
 		"facing=east": {
 			"model": "spectrum:block/moonstone_chiseled_basalt",
@@ -19,7 +18,7 @@
 			"y": 180
 		},
 		"facing=up": {
-			"model": "spectrum:block/moonstone_chiseled_basalt"
+          "model": "spectrum:block/moonstone_chiseled_basalt_up"
 		},
 		"facing=west": {
 			"model": "spectrum:block/moonstone_chiseled_basalt",

@@ -12,11 +12,15 @@
   },
   "pages": [
     {
+      "type": "patchouli:text",
+      "text": "These basic accessories are used as a base for more advanced Trinkets. All final Trinkets are created in the $(l:general/fusion_shrine)Fusion Shrine$()."
+    },
+    {
       "type": "spectrum:pedestal_crafting",
       "title": "Fanciful Stone Ring",
       "recipe": "spectrum:pedestal/tier3/trinkets/fanciful_stone_ring",
       "advancement": "spectrum:unlocks/trinkets/fanciful_stone_ring",
-      "text": "These basic accessories are used as a base for more advanced Trinkets. All final Trinkets are created in the $(l:general/fusion_shrine)Fusion Shrine$()."
+      "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",

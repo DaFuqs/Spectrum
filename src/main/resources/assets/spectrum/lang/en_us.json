@@ -2468,9 +2468,10 @@
   "block.spectrum.titration_barrel.invalid_recipe": "This does not seem like it would produce something drinkable...",
   "block.spectrum.titration_barrel.invalid_recipe_when_tapping": "This barrel only contained an undrinkable mixture. Eww",
   "block.spectrum.titration_barrel.empty_when_tapping": "It... was empty. Huh",
-  "block.spectrum.titration_barrel.missing_liquid_when_tapping": "The barrel seems to have liquid water so the content had gone bad. Pity",
+  "block.spectrum.titration_barrel.missing_liquid_when_tapping": "It seems to have lacked liquid, so the content has gone bad. Pity",
   "block.spectrum.titration_barrel.days_of_sealing_after_opened_with_extractable_amount": "%s was fermenting for %d mc days (%s real days)",
   "block.spectrum.titration_barrel.invalid_recipe_after_opened": "A undrinkable mixture was fermenting for %d mc days (%s real days). Eww",
+  "block.spectrum.titration_barrel.recipe_not_unlocked": "You have no idea what this is inside. Better leave it be.",
   "block.spectrum.titration_barrel.debug_added_day": "(Debug Function) Added a real life day of fermentation time",
 
   "tag.c.amethyst": "Amethyst",

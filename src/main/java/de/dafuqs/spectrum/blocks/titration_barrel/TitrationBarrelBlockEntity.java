@@ -133,7 +133,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	}
 	
 	public int getSealMinecraftDays() {
-		return (int) getSealMilliseconds() / 1000 / 60 / 20;
+		return (int) (getSealMilliseconds() / 1000 / 60 / 20);
 	}
 	
 	public String getSealRealDays() {
@@ -169,23 +169,32 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			shouldReset = true;
 		} else {
 			ITitrationBarrelRecipe recipe = optionalRecipe.get();
-			if (this.getFluidVariant().isOf(recipe.getFluidInput()) && recipe.canPlayerCraft(player)) {
-				Item tappingItem = recipe.getTappingItem();
-				boolean canTap = true;
-				if (tappingItem != Items.AIR) {
-					if (handStack.isOf(tappingItem)) {
-						handStack.decrement(1);
-					} else {
-						message = Text.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName());
-						canTap = false;
+			if (this.getFluidVariant().isOf(recipe.getFluidInput())) {
+				if (recipe.canPlayerCraft(player)) {
+					boolean canTap = true;
+					Item tappingItem = recipe.getTappingItem();
+					if (tappingItem != Items.AIR) {
+						if (handStack.isOf(tappingItem)) {
+							handStack.decrement(1);
+						} else {
+							message = Text.translatable("block.spectrum.titration_barrel.tapping_item_required").append(tappingItem.getName());
+							canTap = false;
+						}
 					}
-				}
-				if (canTap) {
-					long secondsFermented = (this.tapTime - this.sealTime) / 1000;
-					// TODO - Find a way to access the Biome Weather to get its downfall
-					harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getPrecipitation(this.pos).compareTo(Biome.Precipitation.RAIN));
-					this.extractedBottles += 1;
-					shouldReset = isEmpty(biome.getTemperature(), this.extractedBottles, recipe);
+					if (canTap) {
+						long secondsFermented = (this.tapTime - this.sealTime) / 1000;
+						// TODO - Find a way to access the Biome Weather to get its downfall
+						harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getPrecipitation(this.pos).compareTo(Biome.Precipitation.RAIN));
+
+						int daysSealed = getSealMinecraftDays();
+						int inventoryCount = InventoryHelper.countItemsInInventory(this.inventory);
+						SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed, inventoryCount);
+
+						this.extractedBottles += 1;
+						shouldReset = isEmpty(biome.getTemperature(), this.extractedBottles, recipe);
+					}
+				} else {
+					message = Text.translatable("block.spectrum.titration_barrel.recipe_not_unlocked");
 				}
 			} else {
 				if (getFluidVariant().isBlank()) {
@@ -201,10 +210,6 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 			if (message != null) {
 				player.sendMessage(message, true);
 			}
-			
-			int daysSealed = getSealMinecraftDays();
-			int inventoryCount = InventoryHelper.countItemsInInventory(this.inventory);
-			SpectrumAdvancementCriteria.TITRATION_BARREL_TAPPING.trigger((ServerPlayerEntity) player, harvestedStack, daysSealed, inventoryCount);
 		}
 		
 		if (shouldReset) {
@@ -248,7 +253,9 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		}
 		
 		Optional<ITitrationBarrelRecipe> optionalRecipe = getRecipeForInventory(world);
-		return optionalRecipe.isPresent() && optionalRecipe.get().canPlayerCraft(player);
+		return optionalRecipe.isPresent()
+				&& optionalRecipe.get().canPlayerCraft(player)
+				&& this.getFluidVariant().getFluid() == optionalRecipe.get().getFluidInput();
 	}
 	
 }

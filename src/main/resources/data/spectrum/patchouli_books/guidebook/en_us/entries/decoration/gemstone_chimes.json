@@ -14,13 +14,13 @@
     {
       "type": "patchouli:text",
       "title": "Gemstone Chimes",
-      "text": "$(italic)Having dealt with the gems long enough, you now find yourself able to shape these fragile resources in the finest of ways.$(br2)Slowly swaying in the wind, the chimes sounds remind you of the beginning of your journey - the first time you set foot in a geode."
+      "text": "Having dealt with the gems long enough, you now find yourself able to shape these fragile resources in the finest of ways.$(br2)Slowly swaying in the wind, the chimes sounds remind you of the beginning of your journey - the first time you set foot in a geode."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/gemstone_chimes/topaz_chime",
-      "text": "Each Chime emits the soothing sound of its corresponding Gemstone."
+      "text": "Each chime emits the soothing sound of its corresponding gemstone."
     }
   ]
 }

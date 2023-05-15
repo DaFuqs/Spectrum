@@ -15,12 +15,12 @@
   "pages": [
     {
       "type": "patchouli:image",
-      "title": "Wishing upon a Star",
+      "title": "Wishing upon a star",
       "images": [
         "spectrum:textures/gui/guidebook/stargazing.png"
       ],
       "border": true,
-      "text": "$(italic)The calmness of the night invites you to lie down in the grass and watch the stars."
+      "text": "The calmness of the night invites you to lie down in the grass and watch the stars."
     },
     {
       "type": "patchouli:spotlight",

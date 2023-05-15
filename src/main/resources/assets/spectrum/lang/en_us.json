@@ -1624,7 +1624,7 @@
   "item.spectrum.exchanging_staff.tooltip.range": "Exchanges blocks up to %s blocks around it",
   "item.spectrum.exchanging_staff.tooltip.crouch": "Crouch to only exchange exposed blocks",
   "item.spectrum.exchanging_staff.tooltip.target": "Target: %s",
-  "item.spectrum.constructors_staff": "Constructors' Staff",
+  "item.spectrum.constructors_staff": "Constructor's Staff",
   "item.spectrum.constructors_staff.tooltip.range": "Extends a block structure up to %s blocks",
   "item.spectrum.constructors_staff.tooltip.crouch": "Crouch to include different source blocks",
   "item.spectrum.constructors_staff.tooltip.missing_ink": "missing Ink",

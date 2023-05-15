@@ -21,7 +21,7 @@
       "title": "Stratine Gem",
       "advancement": "spectrum:hidden/collect_stratine_gem",
       "recipe": "spectrum:pedestal/tier3/stratine_gem",
-      "text": "Rarely can one carve an intact stone. It can be used in recipes for which the Fragments were simply too small. Though with effort you can merge those together."
+      "text": "Rarely can one carve an intact stone. It can be used in recipes for which the fragments are simply too small. Though with effort you can merge those together."
     },
     {
       "type": "patchouli:spotlight",

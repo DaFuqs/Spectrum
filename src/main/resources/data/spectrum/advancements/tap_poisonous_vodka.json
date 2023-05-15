@@ -21,10 +21,10 @@
           {
             "items": [
               "spectrum:infused_beverage"
-            ]
+            ],
+            "nbt": "{Variant: \"poisonous_vodka\"}"
           }
-        ],
-        "nbt": "{Variant: \"poisonous_vodka\"}"
+        ]
       }
     },
     "gotten_previous": {

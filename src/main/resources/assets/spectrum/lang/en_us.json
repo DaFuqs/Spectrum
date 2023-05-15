@@ -378,8 +378,6 @@
   "enchantment.spectrum.inexorable": "Inexorable",
   "enchantment.spectrum.inexorable.desc": "Prevents tool and movement slowdown effects",
 
-
-
   "spectrum.subtitles.overcharging": "Overcharging",
   "spectrum.subtitles.hummingstone_hum": "Hummingstone hums",
   "spectrum.subtitles.ground_slam": "Sword slamming ground",
@@ -2603,6 +2601,22 @@
   "tag.spectrum.topaz_ores": "Topaz Ores",
   "tag.spectrum.water_meats": "Water Meats",
   "tag.spectrum.workstaffs": "Workstaffs",
+  "tag.spectrum.basalts": "Basalts",
+  "tag.spectrum.calcites": "Calcites",
+  "tag.spectrum.chiseled_base_blocks": "Chiseled Spectrum Blocks",
+  "tag.spectrum.colored_fence_gates": "Colored Fence Gates",
+  "tag.spectrum.crest_base_blocks": "Crested Spectrum Blocks",
+  "tag.spectrum.gemstone_chiseled_base_blocks": "Gemstone Chiseled Blocks",
+  "tag.spectrum.glass_crest_equipment": "Glass Crest Equipment",
+  "tag.spectrum.malachite_equipment": "Malachite Equipment",
+  "tag.spectrum.noxwood_amphoras": "Noxwood Amphoras",
+  "tag.spectrum.noxwood_buttons": "Noxwood Buttons",
+  "tag.spectrum.noxwood_fence_gates": "Noxwood Fence Gates",
+  "tag.spectrum.noxwood_lanterns": "Noxwood Lanterns",
+  "tag.spectrum.pillar_base_blocks": "Pillar Base Blocks",
+  "tag.spectrum.polished_base_blocks": "Polished Spectrum Blocks",
+  "tag.spectrum.shimmerstone_lights": "Shimmerstone Lights",
+
   "tag.trinkets.chest/pin": "Pin Trinkets",
   "tag.trinkets.head/crown": "Crown Trinkets",
   "tag.trinkets.legs/pigment_palette": "Pigment Palette Trinkets",

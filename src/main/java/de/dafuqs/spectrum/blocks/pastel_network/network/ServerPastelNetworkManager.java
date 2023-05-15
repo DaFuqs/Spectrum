@@ -42,7 +42,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 
     public static ServerPastelNetworkManager fromNbt(NbtCompound nbt) {
         ServerPastelNetworkManager manager = new ServerPastelNetworkManager();
-        for (NbtElement element : nbt.getList("Networks", NbtElement.COMPOUND_TYPE)) {
+        for (NbtElement element : nbt.getList("Networks", NbtElement.LIST_TYPE)) {
             NbtCompound compound = (NbtCompound) element;
             manager.networks.add(ServerPastelNetwork.fromNbt(compound));
         }

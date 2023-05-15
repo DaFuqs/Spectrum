@@ -394,7 +394,7 @@ public class SpectrumItems {
 	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 10000);
 	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item GILDED_BOOK = new GildedBookItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
 	public static final Item EVERPROMISE_RIBBON = new EverpromiseRibbonItem(Tab.EQUIPMENT.settings());
 	
 	// Lore

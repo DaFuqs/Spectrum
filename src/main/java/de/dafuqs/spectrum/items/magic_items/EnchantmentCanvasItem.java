@@ -60,28 +60,30 @@ public class EnchantmentCanvasItem extends Item {
 		if (itemLock.isPresent() && !targetStack.isOf(itemLock.get())) {
 			return false;
 		}
-
+		
 		Map<Enchantment, Integer> canvasEnchantments = EnchantmentHelper.fromNbt(EnchantedBookItem.getEnchantmentNbt(canvasStack));
 		Map<Enchantment, Integer> targetEnchantments = EnchantmentHelper.fromNbt(targetStack.getEnchantments());
 		if (canvasEnchantments.isEmpty() && targetEnchantments.isEmpty()) {
 			return false;
 		}
 		
+		boolean drop = false;
+		if (canvasStack.getCount() >= 1) {
+			canvasStack = canvasStack.split(1);
+			drop = true;
+		}
+		
 		// if the canvas received enchantments: bind it to the other stack
 		if (itemLock.isEmpty() && !targetEnchantments.isEmpty()) {
 			bindTo(canvasStack, targetStack);
 		}
+		SpectrumEnchantmentHelper.setStoredEnchantments(targetEnchantments, canvasStack);
+		EnchantmentHelper.set(canvasEnchantments, targetStack);
 		
-		if (canvasStack.getCount() == 1) {
-			SpectrumEnchantmentHelper.setStoredEnchantments(targetEnchantments, canvasStack);
-			EnchantmentHelper.set(canvasEnchantments, targetStack);
-		} else {
-			canvasStack = canvasStack.split(1);
-			SpectrumEnchantmentHelper.setStoredEnchantments(targetEnchantments, canvasStack);
-			EnchantmentHelper.set(canvasEnchantments, targetStack);
+		if (drop) {
 			player.getInventory().offerOrDrop(canvasStack);
 		}
-
+		
 		return true;
 	}
 	

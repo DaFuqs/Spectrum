@@ -1,9 +1,9 @@
 {
   "parent": "minecraft:block/block",
   "textures": {
-    "line": "spectrum:block/moonstone_chiseled_basalt",
-    "side": "spectrum:block/polished_basalt",
-    "particle": "spectrum:block/polished_basalt"
+    "2": "spectrum:block/moonstone_chiseled_calcite",
+    "3": "spectrum:block/polished_calcite",
+    "particle": "spectrum:block/moonstone_chiseled_calcite"
   },
   "elements": [
     {
@@ -25,8 +25,8 @@
             16,
             16
           ],
-          "rotation": 180,
-          "texture": "#line",
+          "rotation": 90,
+          "texture": "#2",
           "cullface": "north"
         },
         "east": {
@@ -36,8 +36,8 @@
             16,
             16
           ],
-          "rotation": 180,
-          "texture": "#side",
+          "rotation": 90,
+          "texture": "#2",
           "cullface": "east"
         },
         "south": {
@@ -47,7 +47,8 @@
             16,
             16
           ],
-          "texture": "#line",
+          "rotation": 90,
+          "texture": "#2",
           "cullface": "south"
         },
         "west": {
@@ -57,8 +58,8 @@
             16,
             16
           ],
-          "rotation": 180,
-          "texture": "#side",
+          "rotation": 90,
+          "texture": "#2",
           "cullface": "west"
         },
         "up": {
@@ -68,7 +69,8 @@
             16,
             16
           ],
-          "texture": "#line",
+          "rotation": 90,
+          "texture": "#3",
           "cullface": "up"
         },
         "down": {
@@ -78,7 +80,8 @@
             16,
             16
           ],
-          "texture": "#line",
+          "rotation": 90,
+          "texture": "#3",
           "cullface": "down"
         }
       }

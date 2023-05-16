@@ -39,7 +39,7 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 	
 	public static void clientTick(World world, BlockPos pos, BlockState state, ParticleSpawnerBlockEntity blockEntity) {
 		BlockState blockState = world.getBlockState(pos);
-		if (blockState.getBlock() instanceof ParticleSpawnerBlock particleSpawnerBlock && particleSpawnerBlock.shouldSpawnParticles(world, pos)) {
+		if (blockState.getBlock() instanceof AbstractParticleSpawnerBlock particleSpawnerBlock && particleSpawnerBlock.shouldSpawnParticles(world, pos)) {
 			blockEntity.configuration.spawnParticles(world, pos);
 		}
 	}

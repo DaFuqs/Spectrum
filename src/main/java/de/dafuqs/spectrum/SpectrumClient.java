@@ -149,7 +149,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 			}
 		});
 		
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
+		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(ParticleSpawnerParticlesDataLoader.INSTANCE);
 		
 		logInfo("Registering Armor Renderers...");
 		SpectrumArmorRenderers.register();

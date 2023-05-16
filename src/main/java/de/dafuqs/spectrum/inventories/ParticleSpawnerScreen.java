@@ -297,6 +297,10 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 			particleIndex++;
 		}
 		
+		if (displayedParticleEntries.size() == 0) {
+			setColoringEnabled(false);
+		}
+		
 		ParticleSpawnerParticlesDataLoader.ParticleSpawnerEntry entry = displayedParticleEntries.get(this.particleSelectionIndex);
 		setColoringEnabled(entry.supportsColoring());
 	}

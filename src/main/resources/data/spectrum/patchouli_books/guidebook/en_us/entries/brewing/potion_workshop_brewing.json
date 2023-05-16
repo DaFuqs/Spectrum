@@ -4,7 +4,7 @@
   "advancement": "spectrum:unlocks/blocks/potion_workshop",
   "category": "spectrum:brewing_category",
   "priority": true,
-  "sortnum": 0,
+  "sortnum": 1,
   "extra_recipe_mappings": {
     "minecraft:potion": 0
   },
@@ -12,13 +12,13 @@
     {
       "type": "patchouli:text",
       "title": "Brewing Potions",
-      "text": "Since the Potion Workshop is basically an upgraded Brewing Stand, you are able to create all the Potion variants that were available to you before, too.$(br)In addition, the possibility to use magic items as ingredients opens new doors for you.$(br2)Some of them are easier or harder to get enhanced effects from."
+      "text": "Since the $(l:brewing/potion_workshop)Potion Workshop$() is basically an upgraded $(item)Brewing Stand$(), you are able to create all the $(item)Potion variants$() that were available to you before, too.$(br)In addition, the possibility to use magic items as ingredients opens new doors for you.$(br2)Some of them are easier or harder to get enhanced effects from."
     },
     {
       "type": "spectrum:potion_workshop_brewing",
       "title": "Vanilla Potion Variants",
       "recipe": "spectrum:potion_workshop_brewing/fire_resistance",
-      "text": "The process of creating Potions with the same effects that you could use before use the same ingredients. Unlike using the Brewing Stand, you can use $(l:brewing/potion_workshop_reagents)Reagents$(/l) to enhance their effects even further."
+      "text": "Create $(item)Potions$() by using the same ingredients as you would in the vanilla $(item)Brewing Stand$(). Additionally, you can use $(l:brewing/potion_workshop_reagents)Reagents$(/l) to enhance their effects even further."
     },
     {
       "type": "spectrum:potion_workshop_brewing",

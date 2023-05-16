@@ -1,14 +1,12 @@
 {
   "name": "Vanilla Enchantments",
   "icon": "spectrum:multitool",
-  "priority": true,
-  "sortnum": 6,
   "advancement": "spectrum:midgame/enter_liquid_crystal",
   "category": "spectrum:enchanting_category",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Enchanter is also able to create most Enchantments you are already familiar with, using your mundane crafting table.$(br2)All Enchantments can be upgraded to higher levels, too - using the same Pigment you used for creating it."
+      "text": "The Enchanter is also able to create most Enchantments you are already familiar with, using your mundane Crafting Table.$(br2)All Enchantments can be upgraded to higher levels, too - using the same $(l:general/pigment)Pigment$() you used for creating it."
     },
     {
       "type": "spectrum:enchanter_crafting",

@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This collection of small vials is able to store all kinds of Ink, albeit just small amounts of it."
+      "text": "This collection of small vials is able to store all kinds of $(l:magic/ink)Ink$(), albeit just small amounts of it."
     },
     {
       "type": "spectrum:pedestal_crafting",

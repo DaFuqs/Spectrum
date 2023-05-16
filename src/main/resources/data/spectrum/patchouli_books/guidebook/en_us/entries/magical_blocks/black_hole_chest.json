@@ -9,17 +9,18 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)The problem with hoppers is that, on the one hand, they are not only slow, but also poorly suited for larger farms due to their non-existent range.$(br2)With a bit of application of blue pigment, all items in a large radius around the crate can easily be brought to safety."
+      "text": "The problem with hoppers is that they are not only slow, but also poorly suited for larger farms due to their non-existent range.$(br2)With a bit of application of blue pigment, all items in a large radius around the crate can easily be brought to safety."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier3/black_hole_chest",
-      "text": "Black Hole Chests have a radius of 12 blocks. You can disable them by placing a block on top. It offers filters to specify which items it should accept."
+      "text": "Radius of 12 blocks. You can disable it by placing a block on top. Offers filters to specify which items it should accept."
     },
     {
       "type": "patchouli:text",
       "title": "XP Orb Absorption",
+      "advancement": "spectrum:unlocks/items/knowledge_gem",
       "text": "Putting a $(l:magical_items/knowledge_gem)Knowledge Gem$() into a Black Hole Chest allows it to absorb XP orbs, putting the experience into the gem."
     }
   ]

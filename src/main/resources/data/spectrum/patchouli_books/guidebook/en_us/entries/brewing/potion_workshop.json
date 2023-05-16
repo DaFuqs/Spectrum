@@ -1,0 +1,22 @@
+{
+  "name": "Potion Workshop",
+  "icon": "spectrum:potion_workshop",
+  "advancement": "spectrum:unlocks/blocks/potion_workshop",
+  "category": "spectrum:brewing_category",
+  "sortnum": 0,
+  "extra_recipe_mappings": {
+    "spectrum:potion_workshop": 0
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "In the meantime, you have come into possession of many new materials. It's time to take a close look at each of them to see what effect they have on your $(item)Potions$().$(br2)Your educated guess, as an expert: Awesome!"
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "title": "Pedestal Recipe",
+      "recipe": "spectrum:pedestal/tier3/potion_workshop",
+      "text": "Instead of $(item)Blaze Powder$(), the Potion Workshop runs on $(l:resources/mermaids_brush)Mermaid's Gems$(). Main advantage is that you don't have to fill your bottles with water before."
+    }
+  ]
+}

@@ -1,17 +1,13 @@
 package de.dafuqs.spectrum.blocks.particle_spawner;
 
 import de.dafuqs.spectrum.blocks.*;
-import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.*;
 import net.minecraft.client.item.*;
-import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
@@ -52,46 +48,12 @@ public class ParticleSpawnerBlock extends AbstractParticleSpawnerBlock implement
 	}
 	
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return SHAPE;
-	}
-	
-	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		BlockState placementState = this.getDefaultState();
 		if (ctx.getWorld().getReceivedRedstonePower(ctx.getBlockPos()) > 0) {
 			placementState = placementState.with(POWERED, true);
 		}
 		return placementState;
-	}
-	
-	@Override
-	public BlockRenderType getRenderType(BlockState state) {
-		return BlockRenderType.MODEL;
-	}
-	
-	@Nullable
-	@Override
-	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-		return new ParticleSpawnerBlockEntity(pos, state);
-	}
-	
-	@Nullable
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return world.isClient ? checkType(type, SpectrumBlockEntities.PARTICLE_SPAWNER, ParticleSpawnerBlockEntity::clientTick) : null;
-	}
-	
-	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-		if (world.isClient) {
-			return ActionResult.SUCCESS;
-		} else {
-			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof ParticleSpawnerBlockEntity particleSpawnerBlockEntity) {
-				player.openHandledScreen(particleSpawnerBlockEntity);
-			}
-			return ActionResult.CONSUME;
-		}
 	}
 	
 	public boolean shouldSpawnParticles(World world, BlockPos pos) {

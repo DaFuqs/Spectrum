@@ -10,7 +10,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)The Shooting Star you picked up left a fantastic shower of particles on their way to the ground. You created the Particle Spawner to replicate this spectacle - and lots of others - yourself.$()$(br2)A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal? The Particle Spawner got you covered."
+      "text": "The $(l:resources/stargazing)Shooting Star$() you picked up left a fantastic shower of particles on their way to the ground. You created the Particle Spawner to replicate this spectacle - and lots of others - yourself.$()$(br2)A chimney? Rocket launching particles? Atmospheric particle rain for your Pedestal? The Particle Spawner got you covered."
     },
     {
       "type": "spectrum:pedestal_crafting",

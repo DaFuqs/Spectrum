@@ -140,7 +140,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier,
 				ingredients, fluid, output, experience, craftingTime, yieldUpgradesDisabled, playCraftingFinishedEffects, copyNbt,
-				List.of(), null, List.of(), null, description);
+				List.of(), FusionShrineRecipeWorldEffect.NOTHING, List.of(), FusionShrineRecipeWorldEffect.NOTHING, description);
 	}
 	
 }

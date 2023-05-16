@@ -1,5 +1,5 @@
 {
   "particle_type": "minecraft:electric_spark",
   "gui_texture": "minecraft:particle/glow",
-  "supports_coloring": false
+  "supports_coloring": true
 }

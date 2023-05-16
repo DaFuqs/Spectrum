@@ -1,6 +1,5 @@
 {
   "particle_type": "spectrum:shooting_star",
   "gui_texture": "spectrum:particle/shooting_star",
-  "unlock_identifier": "spectrum:collect_star_fragment",
   "supports_coloring": true
 }

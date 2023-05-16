@@ -49,9 +49,9 @@ public class SpectrumConfig implements ConfigData {
 	
 	@Comment("""
 			Shooting star spawns are checked every night between time 13000 and 22000, every 100 ticks (so 100 chances per night).
-			By default, there is a 0.01 ^= 1.0 % chance at each of those check times. Making it ~1 shooting star spawn
+			By default, there is a 0.075 ^= 0.75 % chance at each of those check times. Making it ~1 shooting star spawn
 			per night per player that unlocked the required progression.""")
-	public float ShootingStarChance = 0.01F;
+	public float ShootingStarChance = 0.075F;
 	
 	@Comment("The time in ticks it takes a Pigment Pedestal to autocraft a vanilla crafting table recipe without upgrades")
 	public int VanillaRecipeCraftingTimeTicks = 40;

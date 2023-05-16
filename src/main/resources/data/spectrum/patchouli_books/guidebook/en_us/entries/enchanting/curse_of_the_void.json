@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Your tools with this enchantment seem to dissolve all things they mine into thin air. Broken down into the finest sand and blown away by the wind.$(br2)For this one time, however, when you want to knock half a city out of rough stone, it might even come in handy. Some things are probably curse and blessing at the same time."
+      "text": "Your tools with this enchantment seem to dissolve all things they mine into thin air. Broken down into the finest sand and blown away by the wind.$(br2)For this one time, however, when you want to knock half a city out of rough stone, it might even come in handy. Some things are probably curse and blessing at the same time."
     },
     {
       "type": "patchouli:spotlight",

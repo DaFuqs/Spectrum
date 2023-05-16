@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Ink Flask is able to hold a sizable amount of Ink of a single color."
+      "text": "The Ink Flask is able to hold a sizable amount of $(l:magic/ink)Ink$() of a single color."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/ink_flask",
-      "text": ""
+      "text": "Fill it in the $(l:magic/color_picker)Color Picker$()."
     }
   ]
 }

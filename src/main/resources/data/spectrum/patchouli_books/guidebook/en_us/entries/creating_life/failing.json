@@ -12,7 +12,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:bottle_of_failing",
-      "text": "Ambition has taken hold of you, seriously. Your first step towards changing the world.$(br)Empowered by the potent energy of your Onyx and Stratine, this second organism you created is clearly... more active than your last creation.$(br2)$(bold)And DEFINITELY hungrier.$(br)WAY hungrier."
+      "text": "Ambition has taken hold of you, seriously. Your first step towards changing the world.$(br)Empowered by the potent energy of your $(l:general/onyx_shards)Onyx$() and $(l:resources/stratine)Stratine$(), this second organism you created is clearly... more active than your last creation.$(br2)$(bold)And DEFINITELY hungrier.$(br)WAY hungrier."
     },
     {
       "type": "spectrum:pedestal_crafting",

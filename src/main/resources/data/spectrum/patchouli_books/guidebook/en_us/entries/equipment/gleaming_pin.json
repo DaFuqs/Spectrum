@@ -9,13 +9,13 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "During your explorations you were hit by arrows again and again, only to completely miss your enemy while looking around in panic - if it hadn't already disappeared behind the next corner already.$(br2)When you get hit, the Gleaming Pin emits a magic surge that passes through walls and attaches to nearby creatures so you can easily track them down."
+      "text": "During your explorations you were hit by arrows again and again, only to completely miss your enemy while looking around in panic - if it hadn't already disappeared behind the next corner already.$(br)When you get hit, the Gleaming Pin emits a magic surge that passes through walls and attaches to nearby creatures so you can easily track them down."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "title": "Fusion Recipe",
       "recipe": "spectrum:fusion_shrine/trinkets/gleaming_pin",
-      "text": "$(br)$(italic)Can't run, can't hide"
+      "text": "$(italic)Can't run, can't hide"
     },
     {
       "type": "patchouli:spotlight",

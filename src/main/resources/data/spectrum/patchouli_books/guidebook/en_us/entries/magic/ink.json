@@ -7,12 +7,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Now that you're familiar with Pigment, you see no reason to lug it around like you did in the Middle Ages. You have found a way to convert Pigment into a higher form of energy!$(br)You called it $(c_cyan)I$(c_magenta)n$(c_yellow)k$()."
+      "text": "Now that you're familiar with $(l:general/pigment)Pigment$(), you see no reason to lug it around like you did in the Middle Ages. You have found a way to convert $(l:general/pigment)Pigment$() into a higher form of energy!$(br)You called it $(c_cyan)I$(c_magenta)n$(c_yellow)k$()."
     },
     {
       "type": "patchouli:text",
       "title": "Producing & Storing",
-      "text": "Pigment can be converted to Ink using the $(l:magic/color_picker)Color Picker$(/l) and then extracted into containers, like $(l:magic/ink_flask)Ink Flasks$(/l).$(br2)The only drawback: deprived of it's physical form, there is no way to transform Ink back into Pigment."
+      "text": "$(l:general/pigment)Pigment$() can be converted to Ink using the $(l:magic/color_picker)Color Picker$(/l) and then extracted into containers, like $(l:magic/ink_flask)Ink Flasks$(/l).$(br2)The only drawback: deprived of it's physical form, there is no way to transform Ink back into $(l:general/pigment)Pigment$()."
     },
     {
       "type": "patchouli:image",
@@ -25,7 +25,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(br)When two objects that store Ink are connected - such as a Color Picker and an Ink Flask - the Ink between the two containers slowly evens out.$(br)The greater the difference, the faster the Flask is getting filled."
+      "text": "$(br)When two objects that store Ink are connected - such as a $(l:magic/color_picker)Color Picker$() and an $(l:magic/ink_flask)Ink Flask$() - the Ink between the two containers slowly evens out.$(br)The greater the difference, the faster the Flask is getting filled."
     }
   ]
 }

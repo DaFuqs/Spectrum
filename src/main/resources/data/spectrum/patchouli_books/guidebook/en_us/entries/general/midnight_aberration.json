@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The latest findings from your last experiment make you strive for more and more. Squeeze every last ounce of energy out of your gemstones.$(br2)Neolith is the key! Yes, it must be! If you combine all the gems you have collected so far with it, something must be created that holds incredible power. Alone for you and ONLY for you, master of Pigment!"
+      "text": "The latest findings from your $(l:creating_life/failing)last experiment$() make you strive for more and more. Squeeze every last ounce of energy out of your Gemstones.$(br2)$(l:creating_life/failing#neolith)Neolith$() is the key! Yes, it must be! If you combine it with all the gems you have collected so far, something must be created that holds incredible power. Alone for you and ONLY for you, Master of Pigment!"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

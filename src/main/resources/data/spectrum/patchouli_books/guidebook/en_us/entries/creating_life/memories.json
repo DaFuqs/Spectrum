@@ -1,7 +1,7 @@
 {
   "name": "Memories",
   "icon": "spectrum:memory{EntityTag: {id: \"minecraft:fox\"}, TicksToManifest: 20}",
-  "advancement": "spectrum:midgame/collect_neolith",
+  "advancement": "spectrum:unlocks/blocks/memories",
   "category": "spectrum:creating_life_category",
   "extra_recipe_mappings": {
     "spectrum:memory": 0
@@ -23,6 +23,13 @@
       "type": "patchouli:text",
       "title": "Manifesting",
       "text": "Memories need a certain amount of time to manifest, almost like an egg: you have to place them down and wait. Depending on the creature, it may be reasonably quick, or take forever.$(br2)$(italic)Placing them on top of certain blocks seems to speed up that process or stop it entirely."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "advancement": "spectrum:milestones/unlock_remembering_boss_memories",
+      "title": "Reviving Bosses",
+      "item": "minecraft:dragon_head",
+      "text": "With your vast knowledge, you are now even able to resurrect Ender Dragons, Withers and Wardens."
     }
   ]
 }

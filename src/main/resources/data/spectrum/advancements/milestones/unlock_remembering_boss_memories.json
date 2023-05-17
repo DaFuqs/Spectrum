@@ -1,8 +1,10 @@
 {
   "criteria": {
-    "built_spirit_instiller_structure": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/build_spirit_instiller_structure" }
+    "unlocked_memories": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/memories"
+      }
     },
     "reached_endgame": {
       "trigger": "revelationary:advancement_gotten",

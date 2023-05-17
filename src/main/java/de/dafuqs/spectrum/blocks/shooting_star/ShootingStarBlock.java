@@ -101,14 +101,14 @@ public class ShootingStarBlock extends BlockWithEntity {
 		}
 		
 		public static ShootingStarBlock.Type getWeightedRandomType(@NotNull Random random) {
-			int r = random.nextInt(11);
+			int r = random.nextInt(8);
 			if (r == 0) {
 				return FIERY;
-			} else if (r < 2) {
+			} else if (r < 1) {
 				return PRISTINE;
-			} else if (r < 4) {
+			} else if (r < 2) {
 				return GLISTERING;
-			} else if (r < 7) {
+			} else if (r < 5) {
 				return COLORFUL;
 			} else {
 				return GEMSTONE;

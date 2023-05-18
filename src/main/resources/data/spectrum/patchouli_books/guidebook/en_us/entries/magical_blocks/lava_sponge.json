@@ -11,7 +11,7 @@
     {
       "type": "patchouli:text",
       "title": "Lava Sponge",
-      "text": "$(italic)When you held a wet sponge in your hands, you thought that there must be a counterpart for lava, too. Even though you haven't stumbled across one yet, that hasn't stopped you from inventing one, of course.$(br2)This should make navigation in the depths of the world and beyond that hellish portal much easier."
+      "text": "When you held a $(item)Wet Sponge$() in your hands, you thought that there must be a counterpart for $(item)Lava$(), too. Even though you haven't stumbled across one yet, that hasn't stopped you from inventing one, of course.$(br2)This should make navigation in the depths of the world and beyond that hellish portal much easier."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -22,7 +22,7 @@
     {
       "type": "patchouli:text",
       "title": "Furnace Fuel",
-      "text": "The Lava Sponge can be used as highly efficient fuel in the furnace, drying it in the process."
+      "text": "The Lava Sponge can be used as highly efficient fuel in the $(item)Furnace$(), drying it in the process."
     }
   ]
 }

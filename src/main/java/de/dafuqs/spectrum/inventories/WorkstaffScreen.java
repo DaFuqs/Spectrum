@@ -1,6 +1,5 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
@@ -12,25 +11,23 @@ import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 
-import java.awt.*;
-
 @Environment(EnvType.CLIENT)
 public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHandler> {
 
 	private static final Grid RANGE_GRID = new Grid(
 			GridEntry.EMPTY,
-			GridEntry.of(InkColors.GRAY.getColor(), new Point(0, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_1x1)),
-			GridEntry.of(InkColors.GRAY.getColor(), new Point(32, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_5x5)),
+			GridEntry.text(Text.literal("1x1"), "item.spectrum.workstaff.gui.1x1", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_1x1)),
+			GridEntry.text(Text.literal("5x5"), "item.spectrum.workstaff.gui.5x5", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_5x5)),
 			GridEntry.BACK,
-			GridEntry.of(InkColors.GRAY.getColor(), new Point(16, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_3x3))
+			GridEntry.text(Text.literal("3x3"), "item.spectrum.workstaff.gui.3x3", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_3x3))
 	);
 
 	private static final Grid ENCHANTMENT_GRID = new Grid(
 			GridEntry.EMPTY,
-			GridEntry.of(InkColors.GRAY.getColor(), new Point(48, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_SILK_TOUCH)),
+			GridEntry.item(Items.FEATHER, "item.spectrum.workstaff.gui.silk_touch", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_SILK_TOUCH)),
 			GridEntry.BACK,
-			GridEntry.of(InkColors.GRAY.getColor(), new Point(64, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_RESONANCE)),
-			GridEntry.of(InkColors.GRAY.getColor(), new Point(80, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_FORTUNE))
+			GridEntry.item(SpectrumItems.RESONANCE_SHARD, "item.spectrum.workstaff.gui.resonance", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_RESONANCE)),
+			GridEntry.item(SpectrumBlocks.FOUR_LEAF_CLOVER.asItem(), "item.spectrum.workstaff.gui.fortune", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_FORTUNE))
 	);
 
 	public WorkstaffScreen(WorkstaffScreenHandler handler, PlayerInventory playerInventory, Text title) {
@@ -39,39 +36,35 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 		GridEntry rightClickGridEntry;
 		ItemStack mainHandStack = playerInventory.player.getMainHandStack();
 		if (WorkstaffItem.canTill(mainHandStack.getNbt())) {
-			rightClickGridEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(144, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_RIGHT_CLICK_ACTIONS));
+			rightClickGridEntry = GridEntry.item(SpectrumItems.MULTITOOL, "item.spectrum.workstaff.gui.disable_right_click_actions", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_RIGHT_CLICK_ACTIONS));
 		} else {
-			rightClickGridEntry = GridEntry.of(InkColors.GRAY.getColor(), new Point(128, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_RIGHT_CLICK_ACTIONS));
+			rightClickGridEntry = GridEntry.item(Items.WOODEN_HOE, "item.spectrum.workstaff.gui.enable_right_click_actions", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_RIGHT_CLICK_ACTIONS));
 		}
 		
 		if (mainHandStack.getItem() instanceof GlassCrestWorkstaffItem) {
-			
 			GridEntry projectileEntry = GlassCrestWorkstaffItem.canShoot(mainHandStack.getNbt())
-					? GridEntry.of(InkColors.GRAY.getColor(), new Point(176, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_PROJECTILES))
-					: GridEntry.of(InkColors.GRAY.getColor(), new Point(160, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_PROJECTILES));
+					? GridEntry.item(Items.SPECTRAL_ARROW, "item.spectrum.workstaff.gui.enable_projectiles", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.DISABLE_PROJECTILES))
+					: GridEntry.item(Items.ARROW, "item.spectrum.workstaff.gui.disable_projectiles", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.ENABLE_PROJECTILES));
 			
 			gridStack.push(new Grid(
 					GridEntry.CLOSE,
-					GridEntry.of(InkColors.GRAY.getColor(), new Point(112, 38), (screen) -> screen.selectGrid(RANGE_GRID)),
+					GridEntry.item(Items.STONE, "item.spectrum.workstaff.gui.range_group", (screen) -> selectGrid(RANGE_GRID)),
 					rightClickGridEntry,
 					projectileEntry,
-					GridEntry.of(InkColors.GRAY.getColor(), new Point(48, 38), (screen) -> screen.selectGrid(ENCHANTMENT_GRID))
+					GridEntry.item(Items.ENCHANTED_BOOK, "item.spectrum.workstaff.gui.enchantment_group", (screen) -> screen.selectGrid(ENCHANTMENT_GRID))
 			));
-
 		} else {
-
 			GridEntry enchantmentEntry = EnchantmentHelper.getLevel(Enchantments.FORTUNE, mainHandStack) > 0
-					? GridEntry.of(InkColors.GRAY.getColor(), new Point(48, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_SILK_TOUCH))
-					: GridEntry.of(InkColors.GRAY.getColor(), new Point(160, 38), (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_FORTUNE));
+					? GridEntry.item(Items.FEATHER, "item.spectrum.workstaff.gui.silk_touch", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_SILK_TOUCH))
+					: GridEntry.item(SpectrumBlocks.FOUR_LEAF_CLOVER.asItem(), "item.spectrum.workstaff.gui.fortune", (screen) -> WorkstaffScreen.select(WorkstaffItem.GUIToggle.SELECT_FORTUNE));
 
 			gridStack.push(new Grid(
 					GridEntry.CLOSE,
-					GridEntry.of(InkColors.GRAY.getColor(), new Point(112, 38), (screen) -> screen.selectGrid(RANGE_GRID)),
+					GridEntry.item(Items.STONE, "item.spectrum.workstaff.gui.range_group", (screen) -> screen.selectGrid(RANGE_GRID)),
 					rightClickGridEntry,
 					GridEntry.EMPTY,
 					enchantmentEntry
 			));
-
 		}
 
 	}

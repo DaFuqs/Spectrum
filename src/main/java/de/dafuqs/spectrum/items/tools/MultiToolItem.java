@@ -1,8 +1,15 @@
 package de.dafuqs.spectrum.items.tools;
 
-import net.minecraft.block.BlockState;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
 import net.minecraft.item.*;
-import net.minecraft.util.ActionResult;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+
+import java.util.*;
 
 public class MultiToolItem extends PickaxeItem {
 	
@@ -34,6 +41,21 @@ public class MultiToolItem extends PickaxeItem {
 			}
 		}
 		return actionResult;
+	}
+	
+	@Override
+	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+		super.appendTooltip(stack, world, tooltip, context);
+		
+		if (canTill(stack.getNbt())) {
+			tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.right_click_actions").formatted(Formatting.GRAY));
+		} else {
+			tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.right_click_actions_disabled").formatted(Formatting.DARK_RED));
+		}
+	}
+	
+	public static boolean canTill(NbtCompound nbt) {
+		return true;
 	}
 	
 }

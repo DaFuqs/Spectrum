@@ -12,10 +12,10 @@
         "advancement_identifier": "spectrum:midgame/fill_ink_container"
       }
     },
-    "created_refined_azurite": {
+    "collected_azurite": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/create_refined_azurite"
+        "advancement_identifier": "spectrum:midgame/collect_azurite"
       }
     }
   }

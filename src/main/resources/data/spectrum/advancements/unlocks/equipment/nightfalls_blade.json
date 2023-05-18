@@ -1,9 +1,9 @@
 {
   "criteria": {
-    "collected_refined_azurite": {
+    "collected_azurite": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/create_refined_azurite"
+        "advancement_identifier": "spectrum:midgame/collect_azurite"
       }
     },
     "created_midnight_aberration": {

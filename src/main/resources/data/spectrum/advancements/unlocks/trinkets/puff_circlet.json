@@ -18,10 +18,10 @@
         "advancement_identifier": "spectrum:hidden/collect_pigment/collect_white_pigment"
       }
     },
-    "created_refined_azurite": {
+    "collected_azurite": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:midgame/create_refined_azurite"
+        "advancement_identifier": "spectrum:midgame/collect_azurite"
       }
     }
   }

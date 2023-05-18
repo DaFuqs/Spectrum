@@ -83,7 +83,7 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 				}
 			} else {
 				int finalLight = this.getLight(itemFrameEntity, light);
-				float scale = 0.85F;
+				float scale = 0.75F;
 				matrixStack.scale(scale, scale, scale);
 				this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, finalLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.world, itemFrameEntity.getId());
 			}

@@ -1,69 +1,63 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 public class PaintbrushScreen extends QuickNavigationGridScreen<PaintbrushScreenHandler> {
 	
 	public static final QuickNavigationGridScreen.Grid MAGENTA_GRID = new QuickNavigationGridScreen.Grid(
-			QuickNavigationGridScreen.GridEntry.of(InkColors.MAGENTA.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.MAGENTA)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.RED.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.RED)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.PINK.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.PINK)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.BROWN.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.BROWN)),
+			GridEntry.colored(InkColors.MAGENTA.getColor(), "spectrum.ink.color.magenta", (screen) -> chooseColor(InkColors.MAGENTA)),
+			GridEntry.colored(InkColors.RED.getColor(), "spectrum.ink.color.red", (screen) -> chooseColor(InkColors.RED)),
+			GridEntry.colored(InkColors.PINK.getColor(), "spectrum.ink.color.pink", (screen) -> chooseColor(InkColors.PINK)),
+			GridEntry.colored(InkColors.BROWN.getColor(), "spectrum.ink.color.brown", (screen) -> chooseColor(InkColors.BROWN)),
 			GridEntry.BACK
-			);
+	);
 	
 	public static final QuickNavigationGridScreen.Grid CYAN_GRID = new QuickNavigationGridScreen.Grid(
-			QuickNavigationGridScreen.GridEntry.of(InkColors.CYAN.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.CYAN)),
+			GridEntry.colored(InkColors.CYAN.getColor(), "spectrum.ink.color.cyan", (screen) -> chooseColor(InkColors.CYAN)),
 			GridEntry.BACK,
-			QuickNavigationGridScreen.GridEntry.of(InkColors.LIGHT_BLUE.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.LIGHT_BLUE)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.BLUE.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.BLUE)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.PURPLE.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.PURPLE))
+			GridEntry.colored(InkColors.LIGHT_BLUE.getColor(), "spectrum.ink.color.light_blue", (screen) -> chooseColor(InkColors.LIGHT_BLUE)),
+			GridEntry.colored(InkColors.BLUE.getColor(), "spectrum.ink.color.blue", (screen) -> chooseColor(InkColors.BLUE)),
+			GridEntry.colored(InkColors.PURPLE.getColor(), "spectrum.ink.color.purple", (screen) -> chooseColor(InkColors.PURPLE))
 	);
 	
 	public static final QuickNavigationGridScreen.Grid YELLOW_GRID = new QuickNavigationGridScreen.Grid(
-			QuickNavigationGridScreen.GridEntry.of(InkColors.YELLOW.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.YELLOW)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.ORANGE.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.ORANGE)),
+			GridEntry.colored(InkColors.YELLOW.getColor(), "spectrum.ink.color.yellow", (screen) -> chooseColor(InkColors.YELLOW)),
+			GridEntry.colored(InkColors.ORANGE.getColor(), "spectrum.ink.color.orange", (screen) -> chooseColor(InkColors.ORANGE)),
 			GridEntry.BACK,
-			QuickNavigationGridScreen.GridEntry.of(InkColors.LIME.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.LIME)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.GREEN.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.GREEN))
+			GridEntry.colored(InkColors.LIME.getColor(), "spectrum.ink.color.lime", (screen) -> chooseColor(InkColors.LIME)),
+			GridEntry.colored(InkColors.GREEN.getColor(), "spectrum.ink.color.green", (screen) -> chooseColor(InkColors.GREEN))
 	);
 	
 	public static final QuickNavigationGridScreen.Grid BLACK_GRID = new QuickNavigationGridScreen.Grid(
-			QuickNavigationGridScreen.GridEntry.of(InkColors.BLACK.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.BLACK)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.WHITE.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.WHITE)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.LIGHT_GRAY.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.LIGHT_GRAY)),
+			GridEntry.colored(InkColors.BLACK.getColor(), "spectrum.ink.color.black", (screen) -> chooseColor(InkColors.BLACK)),
+			GridEntry.colored(InkColors.WHITE.getColor(), "spectrum.ink.color.white", (screen) -> chooseColor(InkColors.WHITE)),
+			GridEntry.colored(InkColors.LIGHT_GRAY.getColor(), "spectrum.ink.color.light_gray", (screen) -> chooseColor(InkColors.LIGHT_GRAY)),
 			GridEntry.BACK,
-			QuickNavigationGridScreen.GridEntry.of(InkColors.GRAY.getColor(), null, (screen) -> PaintbrushScreen.chooseColor(InkColors.GRAY))
-	);
-	
-	public static final QuickNavigationGridScreen.Grid MAIN_GRID = new QuickNavigationGridScreen.Grid(
-			GridEntry.CLOSE,
-			QuickNavigationGridScreen.GridEntry.of(InkColors.BLACK.getColor(), null, (screen) -> {
-				if(((PaintbrushScreenHandler) screen.getScreenHandler()).hasAccessToWhites()) {
-					screen.selectGrid(BLACK_GRID);
-				} else {
-					PaintbrushScreen.chooseColor(InkColors.BLACK);
-				}
-			}),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.MAGENTA.getColor(), null, (screen) -> screen.selectGrid(MAGENTA_GRID)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.CYAN.getColor(), null, (screen) -> screen.selectGrid(CYAN_GRID)),
-			QuickNavigationGridScreen.GridEntry.of(InkColors.YELLOW.getColor(), null, (screen) -> screen.selectGrid(YELLOW_GRID))
+			GridEntry.colored(InkColors.GRAY.getColor(), "spectrum.ink.color.gray", (screen) -> chooseColor(InkColors.GRAY))
 	);
 	
 	public PaintbrushScreen(PaintbrushScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);
-		gridStack.push(MAIN_GRID);
+		gridStack.push(new QuickNavigationGridScreen.Grid(
+				GridEntry.CLOSE,
+				handler.hasAccessToWhites() ? GridEntry.colored(InkColors.BLACK.getColor(), "spectrum.ink.color.group_blacks", (screen) -> {
+					selectGrid(BLACK_GRID);
+				}) : GridEntry.colored(InkColors.BLACK.getColor(), "spectrum.ink.color.black", (screen) -> {
+					chooseColor(InkColors.BLACK);
+				}),
+				GridEntry.colored(InkColors.MAGENTA.getColor(), "spectrum.ink.color.group_magentas", (screen) -> selectGrid(MAGENTA_GRID)),
+				GridEntry.colored(InkColors.CYAN.getColor(), "spectrum.ink.color.group_cyans", (screen) -> selectGrid(CYAN_GRID)),
+				GridEntry.colored(InkColors.YELLOW.getColor(), "spectrum.ink.color.group_yellows", (screen) -> selectGrid(YELLOW_GRID))
+		));
 	}
 	
 	protected static void chooseColor(@Nullable InkColor inkColor) {

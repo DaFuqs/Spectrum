@@ -50,9 +50,9 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
         if (canShoot(stack.getNbt())) {
-            tooltip.add(Text.translatable("item.spectrum.glass_crest_workstaff.tooltip.projectile").formatted(Formatting.GRAY));
+            tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.projectile").formatted(Formatting.GRAY));
         } else {
-            tooltip.add(Text.translatable("item.spectrum.glass_crest_workstaff.tooltip.projectiles_disabled").formatted(Formatting.DARK_RED));
+			tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.projectiles_disabled").formatted(Formatting.DARK_RED));
         }
     }
 

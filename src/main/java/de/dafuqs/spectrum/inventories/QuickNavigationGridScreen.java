@@ -1,44 +1,42 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.RenderHelper;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.util.math.Vec3f;
-import org.jetbrains.annotations.Nullable;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.client.option.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
-import java.awt.*;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends ScreenHandler> extends HandledScreen<QuickNavigationGridScreenHandler> {
 	
 	public static final int TEXT_COLOR = 0xEEEEEE;
-	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/paintbrush.png");
+	public static final Identifier BACKGROUND = new Identifier(SpectrumCommon.MOD_ID, "textures/gui/quick_navigation.png");
 	
-	protected static final Text CONTROLS_TEXT_1 = Text.translatable("item.spectrum.paintbrush.gui.controls1");
-	protected static final Text CONTROLS_TEXT_2 = Text.translatable("item.spectrum.paintbrush.gui.controls2");
+	protected static final Text CONTROLS_TEXT_1 = Text.translatable("gui.spectrum.quick_navigation.controls1");
+	protected static final Text CONTROLS_TEXT_2 = Text.translatable("gui.spectrum.quick_navigation.controls2");
 	
 	private static final List<Pair<Integer, Integer>> SQUARE_OFFSETS = List.of(
-			new Pair<>(-16, -64),
-			new Pair<>(32, -16),
-			new Pair<>(-16, 32),
-			new Pair<>(-64, -16)
+			new Pair<>(-20, -80),
+			new Pair<>(40, -20),
+			new Pair<>(-20, 40),
+			new Pair<>(-80, -20)
 	);
 	
-	public enum GUIDirection {
+	public enum GUISelection {
 		UP,
 		RIGHT,
 		DOWN,
@@ -63,110 +61,216 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			this.leftEntry = leftEntry;
 		}
 		
-		void navigate(GUIDirection direction, QuickNavigationGridScreen screen) {
+		void navigate(GUISelection direction, QuickNavigationGridScreen screen) {
 			switch (direction) {
 				case BACK -> {
 					screen.back();
 				}
 				case SELECT -> {
-					centerEntry.callback.whenSelected(screen);
+					centerEntry.whenSelected(screen);
 				}
 				case UP -> {
-					topEntry.callback.whenSelected(screen);
+					topEntry.whenSelected(screen);
 				}
 				case RIGHT -> {
-					rightEntry.callback.whenSelected(screen);
+					rightEntry.whenSelected(screen);
 				}
 				case DOWN -> {
-					bottomEntry.callback.whenSelected(screen);
+					bottomEntry.whenSelected(screen);
 				}
 				default -> {
-					leftEntry.callback.whenSelected(screen);
+					leftEntry.whenSelected(screen);
 				}
 			}
 		}
 		
-		void render(Screen screen, MatrixStack matrices, int startX, int startY) {
+		void drawForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			centerEntry.drawSmallForeground(screen, matrices, startX - 15, startY - 15);
+			
+			topEntry.drawBigForeground(screen, matrices, startX + SQUARE_OFFSETS.get(0).getLeft(), startY + SQUARE_OFFSETS.get(0).getRight());
+			rightEntry.drawBigForeground(screen, matrices, startX + SQUARE_OFFSETS.get(1).getLeft(), startY + SQUARE_OFFSETS.get(1).getRight());
+			bottomEntry.drawBigForeground(screen, matrices, startX + SQUARE_OFFSETS.get(2).getLeft(), startY + SQUARE_OFFSETS.get(2).getRight());
+			leftEntry.drawBigForeground(screen, matrices, startX + SQUARE_OFFSETS.get(3).getLeft(), startY + SQUARE_OFFSETS.get(3).getRight());
+		}
+		
+		void drawBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			RenderSystem.setShader(GameRenderer::getPositionTexShader);
 			RenderSystem.setShaderTexture(0, BACKGROUND);
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-			if (centerEntry == GridEntry.CLOSE) {
-				screen.drawTexture(matrices, startX - 5, startY - 5, 0, 0, 10, 10);
-			} else {
-				centerEntry.renderSmall(screen, matrices, startX - 14, startY - 14);
-			}
 			
-			topEntry.renderBig(screen, matrices, startX + SQUARE_OFFSETS.get(0).getLeft() - 3, startY + SQUARE_OFFSETS.get(0).getRight() - 3);
-			rightEntry.renderBig(screen, matrices, startX + SQUARE_OFFSETS.get(1).getLeft() - 3, startY + SQUARE_OFFSETS.get(1).getRight() - 3);
-			bottomEntry.renderBig(screen, matrices, startX + SQUARE_OFFSETS.get(2).getLeft() - 3, startY + SQUARE_OFFSETS.get(2).getRight() - 3);
-			leftEntry.renderBig(screen, matrices, startX + SQUARE_OFFSETS.get(3).getLeft() - 3, startY + SQUARE_OFFSETS.get(3).getRight() - 3);
+			centerEntry.drawSmallBackground(screen, matrices, startX - 15, startY - 15);
+			
+			topEntry.drawBigBackground(screen, matrices, startX + SQUARE_OFFSETS.get(0).getLeft(), startY + SQUARE_OFFSETS.get(0).getRight());
+			rightEntry.drawBigBackground(screen, matrices, startX + SQUARE_OFFSETS.get(1).getLeft(), startY + SQUARE_OFFSETS.get(1).getRight());
+			bottomEntry.drawBigBackground(screen, matrices, startX + SQUARE_OFFSETS.get(2).getLeft(), startY + SQUARE_OFFSETS.get(2).getRight());
+			leftEntry.drawBigBackground(screen, matrices, startX + SQUARE_OFFSETS.get(3).getLeft(), startY + SQUARE_OFFSETS.get(3).getRight());
 		}
 		
 	}
 	
-	public static class GridEntry {
+	public abstract static class GridEntry {
 		
-		public static GridEntry CLOSE = GridEntry.of(null, null, QuickNavigationGridScreen::close);
-		public static GridEntry BACK = GridEntry.of(null, null, QuickNavigationGridScreen::back);
-		public static GridEntry EMPTY = GridEntry.of();
+		public static GridEntry CLOSE = GridEntry.empty(QuickNavigationGridScreen::close);
+		public static GridEntry BACK = GridEntry.empty(QuickNavigationGridScreen::back);
+		public static GridEntry EMPTY = GridEntry.empty(null);
 		
 		public interface GridEntryCallback {
 			void whenSelected(QuickNavigationGridScreen screen);
 		}
 		
-		private final Vec3f color;
-		private final @Nullable Point point;
-		private final GridEntryCallback callback;
+		protected final Text text;
+		protected final int halfTextWidth;
+		protected final @Nullable GridEntryCallback onClickCallback;
 		
-		private GridEntry(Vec3f color, @Nullable Point point, GridEntryCallback callback) {
+		protected GridEntry(String text, @Nullable GridEntry.GridEntryCallback onClickCallback) {
+			this.text = Text.translatable(text);
+			this.halfTextWidth = MinecraftClient.getInstance().textRenderer.getWidth(this.text) / 2;
+			this.onClickCallback = onClickCallback;
+		}
+		
+		public static GridEntry empty(@Nullable GridEntryCallback callback) {
+			return new EmptyGridEntry(callback);
+		}
+		
+		public static GridEntry textured(int textureStartX, int textureStartY, String text, @Nullable GridEntryCallback callback) {
+			return new TexturedGridEntry(textureStartX, textureStartY, text, callback);
+		}
+		
+		public static GridEntry text(Text innerText, String text, @Nullable GridEntryCallback callback) {
+			return new TextGridEntry(innerText, text, callback);
+		}
+		
+		public static GridEntry colored(Vec3f color, String text, @Nullable GridEntryCallback callback) {
+			return new ColoredGridEntry(color, text, callback);
+		}
+		
+		public static GridEntry item(Item item, String text, @Nullable GridEntryCallback callback) {
+			return new ItemGridEntry(item, text, callback);
+		}
+		
+		public void whenSelected(QuickNavigationGridScreen screen) {
+			if (this.onClickCallback != null) {
+				this.onClickCallback.whenSelected(screen);
+			}
+		}
+		
+		void drawBigBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			screen.drawTexture(matrices, startX, startY, 10, 0, 38, 38);
+		}
+		
+		void drawSmallBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			screen.drawTexture(matrices, startX, startY, 48, 0, 28, 28);
+		}
+		
+		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			MinecraftClient.getInstance().textRenderer.draw(matrices, this.text, startX + 19 - halfTextWidth, startY + 40, TEXT_COLOR);
+		}
+		
+		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			MinecraftClient.getInstance().textRenderer.draw(matrices, this.text, startX + 14 - halfTextWidth, startY + 34, TEXT_COLOR);
+		}
+		
+	}
+	
+	public static class EmptyGridEntry extends GridEntry {
+		protected EmptyGridEntry(@Nullable GridEntry.GridEntryCallback onClickCallback) {
+			super("", onClickCallback);
+		}
+		
+		void drawBigBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
+		}
+		
+		void drawSmallBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			screen.drawTexture(matrices, startX + 9, startY + 9, 0, 0, 10, 10);
+		}
+		
+		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+		}
+		
+		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+		}
+	}
+	
+	public static class ColoredGridEntry extends GridEntry {
+		protected final Vec3f color;
+		
+		private ColoredGridEntry(Vec3f color, String text, GridEntry.GridEntryCallback callback) {
+			super(text, callback);
 			this.color = color;
-			this.point = point;
-			this.callback = callback;
 		}
 		
-		public static GridEntry of() {
-			return new GridEntry(null, null, screen -> {});
+		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			super.drawBigForeground(screen, matrices, startX, startY);
+			RenderHelper.fillQuad(matrices, startX + 3, startY + 3, 32, 32, color);
 		}
 		
-		public static GridEntry of(Vec3f color) {
-			return new GridEntry(color, null, screen -> {});
+		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			super.drawSmallForeground(screen, matrices, startX, startY);
+			RenderHelper.fillQuad(matrices, startX + 2, startY + 2, 24, 24, color);
 		}
 		
-		public static GridEntry of(Vec3f color, Point point) {
-			return new GridEntry(color, point, screen -> {});
+	}
+	
+	public static class TexturedGridEntry extends GridEntry {
+		
+		protected int textureStartX;
+		protected int textureStartY;
+		
+		private TexturedGridEntry(int textureStartX, int textureStartY, @Nullable String text, GridEntry.GridEntryCallback callback) {
+			super(text, callback);
+			this.textureStartX = textureStartX;
+			this.textureStartY = textureStartY;
 		}
 		
-		public static GridEntry of(Vec3f color, Point point, GridEntryCallback callback) {
-			return new GridEntry(color, point, callback);
+		void drawBigBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			super.drawBigBackground(screen, matrices, startX, startY);
+			screen.drawTexture(matrices, startX + 11, startY + 11, textureStartX, textureStartY, 20, 20);
 		}
 		
-		void renderBig(Screen screen, MatrixStack matrices, int startX, int startY) {
-			boolean drawFrame = false;
-			if(color != null) {
-				RenderHelper.fillQuad(matrices, startX + 3, startY + 3, 32, 32, color);
-				drawFrame = true;
-			}
-			if(point != null) {
-				screen.drawTexture(matrices, startX + 11, startY + 11, point.x, point.y, 16, 16);
-				drawFrame = true;
-			}
-			if(drawFrame) {
-				screen.drawTexture(matrices, startX, startY, 10, 0, 38, 38);
-			}
+		void drawSmallBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			super.drawSmallBackground(screen, matrices, startX, startY);
+			screen.drawTexture(matrices, startX, startY, textureStartX, textureStartY, 20, 20);
 		}
 		
-		void renderSmall(Screen screen, MatrixStack matrices, int startX, int startY) {
-			boolean drawFrame = false;
-			if(color != null) {
-				RenderHelper.fillQuad(matrices, startX + 2, startY + 2, 24, 24, color);
-				drawFrame = true;
-			}
-			if(point != null) {
-				drawFrame = true;
-			}
-			if(drawFrame) {
-				screen.drawTexture(matrices, startX, startY, 48, 0, 28, 28);
-			}
+	}
+	
+	public static class TextGridEntry extends GridEntry {
+		
+		protected Text innerText;
+		protected final int innerHalfTextWidth;
+		
+		private TextGridEntry(Text innerText, @Nullable String text, GridEntry.GridEntryCallback callback) {
+			super(text, callback);
+			this.innerText = innerText;
+			this.innerHalfTextWidth = MinecraftClient.getInstance().textRenderer.getWidth(this.innerText) / 2;
+		}
+		
+		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			MinecraftClient.getInstance().textRenderer.draw(matrices, this.innerText, startX + 19 - innerHalfTextWidth, startY + 15, TEXT_COLOR);
+		}
+		
+		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			MinecraftClient.getInstance().textRenderer.draw(matrices, this.innerText, startX + 14 - innerHalfTextWidth, startY + 10, TEXT_COLOR);
+		}
+	}
+	
+	private static class ItemGridEntry extends GridEntry {
+		
+		protected ItemStack stack;
+		
+		private ItemGridEntry(Item item, String text, GridEntry.GridEntryCallback callback) {
+			super(text, callback);
+			this.stack = item.getDefaultStack();
+		}
+		
+		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			super.drawBigForeground(screen, matrices, startX, startY);
+			MinecraftClient.getInstance().getItemRenderer().renderInGui(stack, startX + 10, startY + 10);
+		}
+		
+		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
+			super.drawBigForeground(screen, matrices, startX, startY);
+			MinecraftClient.getInstance().getItemRenderer().renderInGui(stack, startX + 5, startY + 5);
 		}
 		
 	}
@@ -187,7 +291,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 		}
 	}
 	
-	void selectGrid(Grid grid) {
+	protected void selectGrid(Grid grid) {
 		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
 		gridStack.push(grid);
 	}
@@ -198,21 +302,22 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 	
 	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-		current().render(this, matrices, backgroundWidth / 2, backgroundHeight / 2);
+		current().drawBackground(this, matrices, backgroundWidth / 2, backgroundHeight / 2);
+		current().drawForeground(this, matrices, backgroundWidth / 2, backgroundHeight / 2);
 		
-		this.textRenderer.draw(matrices, CONTROLS_TEXT_1, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_1)) / 2, 202, TEXT_COLOR);
-		this.textRenderer.draw(matrices, CONTROLS_TEXT_2, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_2)) / 2, 212, TEXT_COLOR);
+		this.textRenderer.draw(matrices, CONTROLS_TEXT_1, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_1)) / 2, 228, TEXT_COLOR);
+		this.textRenderer.draw(matrices, CONTROLS_TEXT_2, (backgroundWidth - textRenderer.getWidth(CONTROLS_TEXT_2)) / 2, 238, TEXT_COLOR);
 	}
 	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-	
+
 	}
 	
 	@Override
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		if (button == 1) {
-			current().navigate(GUIDirection.BACK, this);
+			current().navigate(GUISelection.BACK, this);
 		} else {
 			int startX = backgroundWidth / 2;
 			int startY = backgroundHeight / 2;
@@ -222,7 +327,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			
 			int centerElementSize = gridStack.size() == 1 ? 5 : 14;
 			if (mouseX >= startX - centerElementSize && mouseX <= startX + centerElementSize && mouseY >= startY - centerElementSize && mouseY <= startY + centerElementSize) {
-				current().navigate(GUIDirection.SELECT, this);
+				current().navigate(GUISelection.SELECT, this);
 				return true;
 			}
 			
@@ -231,19 +336,19 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 				if (mouseX >= startX + offset.getLeft() && mouseX <= startX + offset.getLeft() + 32 && mouseY >= startY + offset.getRight() && mouseY <= startY + offset.getRight() + 32) {
 					switch (offsetID) {
 						case 0 -> {
-							current().navigate(GUIDirection.UP, this);
+							current().navigate(GUISelection.UP, this);
 							return true;
 						}
 						case 1 -> {
-							current().navigate(GUIDirection.RIGHT, this);
+							current().navigate(GUISelection.RIGHT, this);
 							return true;
 						}
 						case 2 -> {
-							current().navigate(GUIDirection.DOWN, this);
+							current().navigate(GUISelection.DOWN, this);
 							return true;
 						}
 						case 3 -> {
-							current().navigate(GUIDirection.LEFT, this);
+							current().navigate(GUISelection.LEFT, this);
 							return true;
 						}
 					}
@@ -259,19 +364,19 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
 		GameOptions options = MinecraftClient.getInstance().options;
 		if (options.leftKey.matchesKey(keyCode, scanCode)) {
-			current().navigate(GUIDirection.LEFT, this);
+			current().navigate(GUISelection.LEFT, this);
 			return true;
 		} else if (options.forwardKey.matchesKey(keyCode, scanCode)) {
-			current().navigate(GUIDirection.UP, this);
+			current().navigate(GUISelection.UP, this);
 			return true;
 		} else if (options.rightKey.matchesKey(keyCode, scanCode)) {
-			current().navigate(GUIDirection.RIGHT, this);
+			current().navigate(GUISelection.RIGHT, this);
 			return true;
 		} else if (options.backKey.matchesKey(keyCode, scanCode)) {
-			current().navigate(GUIDirection.DOWN, this);
+			current().navigate(GUISelection.DOWN, this);
 			return true;
 		} else if (options.dropKey.matchesKey(keyCode, scanCode) || options.inventoryKey.matchesKey(keyCode, scanCode)) {
-			current().navigate(GUIDirection.SELECT, this);
+			current().navigate(GUISelection.SELECT, this);
 			return true;
 		}
 		return super.keyPressed(keyCode, scanCode, modifiers);

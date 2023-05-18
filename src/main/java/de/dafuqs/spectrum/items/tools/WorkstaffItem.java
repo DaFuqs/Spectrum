@@ -77,9 +77,6 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 			int displayedRange = 1 + range + range;
 			tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.mining_range", displayedRange, displayedRange).formatted(Formatting.GRAY));
 		}
-		if(!canTill(stack.getNbt())) {
-			tooltip.add(Text.translatable("item.spectrum.workstaff.tooltip.right_click_actions_disabled").formatted(Formatting.DARK_RED));
-		}
 	}
 	
 	/**

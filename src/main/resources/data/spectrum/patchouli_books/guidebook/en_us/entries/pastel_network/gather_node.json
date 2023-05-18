@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Gather Node will actively request from other nodes in it's $(l:pastel_network/pastel_network)Pastel Network$(/l) and put them in it's connected inventory.$(br)Specify the items to collect in it's $(thing)filter$()."
+      "text": "The Gather Node will actively request from other nodes in its $(l:pastel_network/pastel_network)Pastel Network$(/l) and put them in its connected inventory.$(br2)Specify the items to collect in its $(thing)filter$()."
     },
     {
       "type": "spectrum:pedestal_crafting",

@@ -8,11 +8,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "When you expose a $(thing)Pastel Node$() to a $(thing)Redstone signal$(), it loses its link to the connected inventory."
+      "text": "When you expose a $(item)Pastel Node$() to a $(thing)redstone signal$(), it loses its link to the connected inventory."
     },
     {
       "type": "patchouli:text",
-      "text": "$(li)$(l:pastel_network/gather_node)Gather Nodes$(/l) will stop requesting items$(br)$(li)$(l:pastel_network/provider_node)Provider Nodes$(/l) get unable to offer their items$(br)$(li)$(l:pastel_network/sender_node)Sender Nodes$(/l) will stop emptying their inventory$(br)$(li)$(l:pastel_network/storage_node)Storage Nodes$(/l) will get unable to accept and offer their items."
+      "text": "$(li)$(l:pastel_network/gather_node)Gather Nodes$(/l) will stop requesting items$(br)$(li)$(l:pastel_network/provider_node)Provider Nodes$(/l) get unable to offer their items$(br)$(li)$(l:pastel_network/sender_node)Sender Nodes$(/l) will stop emptying their inventory$(br)$(li)$(l:pastel_network/storage_node)Storage Nodes$(/l) will get unable to accept and offer their items"
     }
   ]
 }

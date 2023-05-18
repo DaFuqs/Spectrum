@@ -11,7 +11,7 @@
       "type": "patchouli:spotlight",
       "title": "Ender Dropper",
       "item": "spectrum:ender_dropper",
-      "text": "The Ender Dropper is the counterpart to the $(l:magical_blocks/ender_hopper)Ender Hopper$(). With every Redstone pulse it ejects an item from your personal $(item)Ender Chest$().$(br2)Beware: Who's stopping anyone from placing a button next to it and emptying your $(item)Ender Chest$()?"
+      "text": "The Ender Dropper is the counterpart to the $(l:magical_blocks/ender_hopper)Ender Hopper$(). With every $(thing)redstone pulse$() it ejects an item from your personal $(item)Ender Chest$().$(br2)Beware: Who's stopping anyone from placing a button next to it and emptying your $(item)Ender Chest$()?"
     },
     {
       "type": "spectrum:pedestal_crafting",

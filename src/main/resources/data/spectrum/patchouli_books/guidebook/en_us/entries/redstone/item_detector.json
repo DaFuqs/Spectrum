@@ -10,7 +10,7 @@
     {
       "type": "patchouli:text",
       "title": "Item Detector",
-      "text": "The Item Detector is used to count the items lying on the ground within a 10 block radius of it.$(br)The strength of the Redstone signal depends on how many items are lying around."
+      "text": "The Item Detector is used to count the items lying on the ground within a 10 block radius of it.$(br2)The strength of the $(thing)redstone signal$() depends on how many items are lying around."
     },
     {
       "type": "spectrum:pedestal_crafting",

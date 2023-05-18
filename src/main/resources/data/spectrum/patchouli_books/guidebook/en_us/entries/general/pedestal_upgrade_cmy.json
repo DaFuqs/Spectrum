@@ -25,7 +25,7 @@
       "name": "Spectrum Focus",
       "multiblock_id": "spectrum:pedestal_simple_structure_check",
       "enable_visualize": true,
-      "text": "Dimensions: 11x11x4 Blocks. But best to leave a few additional blocks of space around, just to make sure."
+      "text": "Dimensions: 11x11x4 blocks. But best to leave a few additional blocks of space around, just to make sure."
     },
     {
       "type": "patchouli:text",

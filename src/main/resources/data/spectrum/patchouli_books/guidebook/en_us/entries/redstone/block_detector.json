@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:block_detector",
-      "text": "Almost like an Observer, but more specific.$(br)Gives off a redstone pulse every time a block like is placed in front of it that matches the block below it (or above it, if facing down)."
+      "text": "Almost like an $(item)Observer$(), but more specific.$(br)Gives off a $(thing)redstone pulse$() every time a block is placed in front of it that matches the block below it (or above it, if facing down)."
     },
     {
       "type": "spectrum:pedestal_crafting",

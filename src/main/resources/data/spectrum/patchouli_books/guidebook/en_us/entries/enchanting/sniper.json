@@ -7,19 +7,19 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Compared to the bow, the crossbow maintains a rather inconspicuous existence.$(br2)With the Sniping Enchantment however, it turns the crossbow into a deadly ranged weapon."
+      "text": "Compared to the $(item)Bow$(), the $(item)Crossbow$() maintains a rather inconspicuous existence.$(br2)With the Sniping Enchantment however, it turns the crossbow into a deadly ranged weapon."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Characteristics",
       "item": "minecraft:crossbow{Enchantments: [{id: \"spectrum:sniper\", lvl: 2s}]}",
-      "text": "Increases damage, accuracy and projectile speed.$(br2)Max Level: 2$(br)Applicable to crossbows.$(br)Mutually exclusive with Multishot."
+      "text": "Increases damage, accuracy and projectile speed.$(br2)Max Level: 2$(br)Applicable to Crossbows.$(br)Mutually exclusive with Multishot."
     },
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_sniper",
-      "text": "You can infuse a common Book with Sniping by surrounding your Enchanter with Pigment and the other required materials."
+      "text": "You can infuse a $(item)common Book$() with Sniping by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
     }
   ]
 }

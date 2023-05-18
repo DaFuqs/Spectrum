@@ -7,19 +7,19 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)If you got a dirt block whenever you mined an ore, and it fell right into lava, you'd have a whole lot of dirt.$(br2)No idea what you would do with that much dirt. Maybe give it to a friend who has just arrived here and needs shelter on his first night?$(br)Anyway, the dropping stuff into lava thing has to stop."
+      "text": "If you got a $(item)Dirt Block$() whenever you mined an ore, and it fell right into $(item)Lava$(), you'd have a whole lot of $(item)Dirt$().$(br2)No idea what you would do with that much $(item)Dirt$(). Maybe give it to a friend who has just arrived here and needs shelter on his first night?$(br)Anyway, the dropping stuff into $(item)Lava$() thing has to stop."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Characteristics",
       "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:inventory_insertion\", lvl: 1s}]}",
-      "text": "Puts broken blocks directly into your inventory instead of dropping them onto the ground.$(br2)Max Level: 1$(br)Applicable to mining tools, Shears and Spectrum's Fishing Rods."
+      "text": "Puts broken blocks directly into your inventory instead of dropping them onto the ground.$(br2)Max Level: 1$(br)Applicable to mining tools, Shears and $(item)Spectrum's Fishing Rods$()."
     },
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_inventory_insertion",
-      "text": "You can infuse a common Book with Inventory Insertion by surrounding your Enchanter with Pigment and the other required materials."
+      "text": "You can infuse a $(item)common Book$() with Inventory Insertion by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
     }
   ]
 }

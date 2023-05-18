@@ -21,7 +21,7 @@
     {
       "type": "patchouli:text",
       "title": "Redstone Component",
-      "text": "Similar to a Trapped Chest it also outputs a redstone signal.$(br)If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
+      "text": "Similar to a Trapped Chest it also outputs a $(thing)redstone signal$().$(br)If you as the owner open it, the signal strength will be full, if a stranger wants to tamper with your belongings then only half."
     }
   ]
 }

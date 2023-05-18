@@ -8,7 +8,7 @@
     {
       "type": "patchouli:text",
       "title": "Storage Node",
-      "text": "The Storage Node will show their greatest use in combination with $(l:pastel_network/sender_node)Sender Nodes$(/l) (will push to it) and $(l:pastel_network/gather_node)Gather Nodes$(/l) (will pull from it).$(br2)It's $(thing)filter$() allows you to specify which items it will receive & provide. An empty filter make it act as a general storage for all types of items."
+      "text": "The Storage Node will show their greatest use in combination with $(l:pastel_network/sender_node)Sender Nodes$(/l) (will push to it) and $(l:pastel_network/gather_node)Gather Nodes$(/l) (will pull from it).$(br2)Its $(thing)filter$() allows you to specify which items it will receive & provide. An empty filter makes it act as a general storage for all types of items."
     },
     {
       "type": "spectrum:pedestal_crafting",

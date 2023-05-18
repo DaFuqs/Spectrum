@@ -17,7 +17,7 @@
       "name": "Spectrum Palace",
       "multiblock_id": "spectrum:pedestal_complex_structure_check",
       "enable_visualize": true,
-      "text": "Dimensions: 13x13x7 Blocks"
+      "text": "Dimensions: 13x13x7 blocks"
     },
     {
       "type": "patchouli:text",

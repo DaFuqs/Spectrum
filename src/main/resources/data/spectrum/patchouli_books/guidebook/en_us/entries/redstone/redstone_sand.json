@@ -16,7 +16,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/redstone_sand",
-      "text": "Redstone Sand behaves like a solid block until it gets a Redstone signal.$(br)The Redstone trigger propagates through all connected blocks, destabilizing them and laws of gravity force them to drop.$(br)$(italic)So much room for possibilities."
+      "text": "Redstone Sand behaves like a solid block until it gets a $(thing)redstone signal$().$(br)The $(thing)redstone trigger$() propagates through all connected blocks, destabilizing them and laws of gravity force them to drop.$(br)$(italic)So much room for possibilities."
     }
   ]
 }

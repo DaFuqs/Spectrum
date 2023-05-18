@@ -104,9 +104,9 @@ public class ShootingStarBlock extends BlockWithEntity {
 			int r = random.nextInt(8);
 			if (r == 0) {
 				return FIERY;
-			} else if (r < 1) {
+			} else if (r == 1) {
 				return PRISTINE;
-			} else if (r < 2) {
+			} else if (r < 3) {
 				return GLISTERING;
 			} else if (r < 5) {
 				return COLORFUL;

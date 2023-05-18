@@ -47,9 +47,9 @@ public interface FusionShrineRecipeWorldEffect {
 		@Override
 		public void trigger(ServerWorld world, BlockPos pos) {
 			ServerWorldProperties serverWorldProperties = ((ServerWorldProperties) world.getLevelProperties());
-			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 12000, 24000));
+			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 12000, 18000));
 			serverWorldProperties.setRaining(true);
-			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3600, 15600));
+			serverWorldProperties.setThunderTime(0);
 			serverWorldProperties.setThundering(false);
 			
 			world.playSound(null, pos.up(), SoundEvents.WEATHER_RAIN, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);
@@ -59,9 +59,9 @@ public interface FusionShrineRecipeWorldEffect {
 		@Override
 		public void trigger(ServerWorld world, BlockPos pos) {
 			ServerWorldProperties serverWorldProperties = ((ServerWorldProperties) world.getLevelProperties());
-			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 12000, 180000));
+			serverWorldProperties.setRainTime(MathHelper.nextBetween(world.random, 12000, 24000));
 			serverWorldProperties.setRaining(true);
-			serverWorldProperties.setThunderTime(0);
+			serverWorldProperties.setThunderTime(MathHelper.nextBetween(world.random, 3600, 15600));
 			serverWorldProperties.setThundering(false);
 			
 			world.playSound(null, pos.up(), SoundEvents.ENTITY_LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 0.8F, 0.9F + world.random.nextFloat() * 0.2F);

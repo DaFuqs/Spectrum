@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "In a painting you have seen a fantastic creature that seems to be made of Soul Sand and Wither Skeleton Skulls. For hours you waited in a Nether Fortress, only to almost almost lose your head yourself while searching for a Wither Skeleton with a spine loose enough to drop its skull. Heads up, you never were the one to bury your head in the sand."
+      "text": "In a painting you have seen a fantastic creature that seems to be made of $(item)Soul Sand$() and $(item)Wither Skeleton Skulls$(). For hours you waited in a Nether Fortress, only to almost lose your head yourself while searching for a Wither Skeleton with a spine loose enough to drop its skull. Heads up, you never were the one to bury your head in the sand."
     },
     {
       "type": "patchouli:spotlight",
@@ -19,19 +19,19 @@
       "type": "patchouli:spotlight",
       "title": "Characteristics",
       "item": "minecraft:iron_axe{Enchantments: [{id: \"spectrum:treasure_hunter\", lvl: 3s}]}",
-      "text": "Occasionally drops mob heads on kill.$(br2)Max Level: 3$(br)Applicable to axes and melee weapons.$(br)Mutually exclusive with Looting."
+      "text": "Occasionally drops Mob Heads on kill.$(br2)Max Level: 3$(br)Applicable to axes and melee weapons.$(br)Mutually exclusive with Looting."
     },
     {
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_treasure_hunter",
-      "text": "You can infuse a common Book with Treasure Hunter by surrounding your Enchanter with Pigment and the other required materials."
+      "text": "You can infuse a $(item)common Book$() with Treasure Hunter by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
     },
     {
       "type": "spectrum:enchanter_upgrading",
       "title": "Enchantment Upgrading",
       "recipe": "spectrum:enchantment_upgrade/spectrum/treasure_hunter_level_2",
-      "text": "Upgrading Treasure Hunter from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
+      "text": "Upgrading Treasure Hunter from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more $(l:general/pigment)Pigment$() and experience for each additional level."
     }
   ]
 }

@@ -117,7 +117,7 @@
       "type": "patchouli:spotlight",
       "title": "Mob Heads",
       "item": "spectrum:cow_head",
-      "text": "Using your new $(l:enchanting/treasure_hunter)Treasure Hunter$(/l) enchantment you are able to collect heads from all kinds of mobs.$(br)While they make for a nice display of your modest acquisitions they still inherit a small spark of that creatures existence."
+      "text": "Using your new $(l:enchanting/treasure_hunter)Treasure Hunter$(/l) enchantment you are able to collect heads from all kinds of mobs.$(br2)While they make for a nice display of your modest acquisitions they still inherit a small spark of that creatures existence."
     }
   ]
 }

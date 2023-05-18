@@ -19,13 +19,13 @@
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_big_catch",
-      "text": "You can infuse a common Book with Big Catch by surrounding your Enchanter with Pigment and the other required materials."
+      "text": "You can infuse a $(item)common Book$() with Big Catch by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
     },
     {
       "type": "spectrum:enchanter_upgrading",
       "title": "Enchantment Upgrading",
       "recipe": "spectrum:enchantment_upgrade/spectrum/big_catch_level_2",
-      "text": "Upgrading Big Catch from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more Pigment and Experience for each additional level."
+      "text": "Upgrading Big Catch from level 1 to level 2 is fairly cheap at first.$(br)This price will quickly increase to more and more $(l:general/pigment)Pigment$() and experience for each additional level."
     }
   ]
 }

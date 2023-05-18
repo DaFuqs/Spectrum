@@ -20,7 +20,7 @@
       "name": "Spectrum Temple",
       "multiblock_id": "spectrum:pedestal_advanced_structure_check",
       "enable_visualize": true,
-      "text": "Dimensions: 13x13x6 Blocks"
+      "text": "Dimensions: 13x13x6 blocks"
     },
     {
       "type": "patchouli:text",

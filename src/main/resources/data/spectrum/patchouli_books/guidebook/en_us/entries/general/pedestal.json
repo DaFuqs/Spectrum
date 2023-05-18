@@ -14,7 +14,7 @@
       "type": "patchouli:crafting",
       "title": "Pigment Pedestal",
       "recipe": "spectrum:crafting_table/pedestal_basic_amethyst",
-      "text": "The $(bold)Pigment Pedestal$() is the block where you craft most of the recipes for Spectrum.$(br2)To start crafting trigger it with a $(l:general/paintbrush)Paintbrush$() or supply a Redstone signal.$(br)It requires air, or an inventory above it. "
+      "text": "The $(bold)Pigment Pedestal$() is the block where you craft most of the recipes for Spectrum.$(br2)To start crafting trigger it with a $(l:general/paintbrush)Paintbrush$() or supply a $(thing)redstone signal$().$(br)It requires air, or an inventory above it. "
     },
     {
       "type": "patchouli:text",

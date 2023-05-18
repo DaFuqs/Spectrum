@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This dainty ring has it all: with the help of a little (or a lot!) of Pink Ink, it strengthens you from the inside out and grants you additional hearts."
+      "text": "This dainty ring has it all: with the help of a little (or a lot!) of $(c_pink)Pink Ink$(), it strengthens you from the inside out and grants you additional hearts."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

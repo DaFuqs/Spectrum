@@ -11,7 +11,7 @@
       "title": "Where to find",
       "completion_advancement": "spectrum:midgame/collect_stratine",
       "cost": "minecraft:quartz#16",
-      "text": "There is a new Ore found in the Nether."
+      "text": "There is a new ore found in the Nether."
     },
     {
       "type": "spectrum:hint",

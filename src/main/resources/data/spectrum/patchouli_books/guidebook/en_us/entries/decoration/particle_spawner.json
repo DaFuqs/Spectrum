@@ -16,7 +16,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier2/particle_spawner",
-      "text": "Use the GUI to configure the particles to your liking. Apply redstone to start the fantastic display. You will unlock more particles as you progress."
+      "text": "Use the GUI to configure the particles to your liking. Apply a $(thing)redstone signal$() to start the fantastic display. You will unlock more particles as you progress."
     }
   ]
 }

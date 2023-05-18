@@ -9,7 +9,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Created with all the knowledge you have gathered, you have created the Spirit Instiller. It serves to be able to connect the energies of two items, with the help of a third object to bind them.$(br)An almost spiritual process."
+      "text": "Created with all the knowledge you have gathered, you have created the Spirit Instiller. It serves to be able to connect the energies of two items, with the help of a third object to bind them.$(br2)An almost spiritual process."
     },
     {
       "type": "spectrum:pedestal_crafting",
@@ -22,7 +22,7 @@
       "name": "Instiller Structure",
       "multiblock_id": "spectrum:spirit_instiller_structure",
       "enable_visualize": true,
-      "text": "Dimensions: 8x9x5 Blocks$(br)It can be enhanced using $(l:magical_blocks/upgrades)Upgrades$() by placing them on the two Onyx Chiseled Blocks."
+      "text": "Dimensions: 8x9x5 blocks$(br)It can be enhanced using $(l:magical_blocks/upgrades)Upgrades$() by placing them on the two $(item)Onyx Chiseled Blocks$()."
     },
     {
       "type": "patchouli:text",

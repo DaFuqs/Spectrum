@@ -19,7 +19,7 @@
       "type": "spectrum:enchanter_crafting",
       "title": "Enchanter Recipe",
       "recipe": "spectrum:enchanter/spectrum_books/book_steadfast",
-      "text": "You can infuse a common Book with Steadfast by surrounding your Enchanter with Pigment and the other required materials."
+      "text": "You can infuse a $(item)common Book$() with Steadfast by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
     }
   ]
 }

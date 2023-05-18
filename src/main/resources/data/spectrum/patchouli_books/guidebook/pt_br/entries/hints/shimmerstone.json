@@ -12,7 +12,7 @@
       "title": "Where to find",
       "completion_advancement": "spectrum:collect_shimmerstone",
       "cost": "minecraft:copper_ingot#8",
-      "text": "There is a new Ore to be found in the Overworld at and above surface level."
+      "text": "There is a new ore to be found in the Overworld at surface level and above."
     },
     {
       "type": "spectrum:hint",

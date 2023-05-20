@@ -43,9 +43,8 @@ public abstract class ItemStackMixin {
 
 		var stack = (ItemStack) (Object) this;
 		int tightGripLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.TIGHT_GRIP, stack);
-		var inexorableLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, stack);
 
-		if (tightGripLevel > 0 || inexorableLevel > 0) {
+		if (tightGripLevel > 0) {
 
 			ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 			for (Map.Entry<EntityAttribute, EntityAttributeModifier> attributeEntry : cir.getReturnValue().entries()) {
@@ -53,9 +52,7 @@ public abstract class ItemStackMixin {
 				if (attributeEntry.getKey().equals(EntityAttributes.GENERIC_ATTACK_SPEED)) {
 					double newAttackSpeed = attributeEntry.getValue().getValue();
 
-					if (tightGripLevel > 0) {
-						newAttackSpeed *= Math.max(0.25, 1 - tightGripLevel * SpectrumCommon.CONFIG.TightGripAttackSpeedBonusPercentPerLevel);
-					}
+					newAttackSpeed *= Math.max(0.25, 1 - tightGripLevel * SpectrumCommon.CONFIG.TightGripAttackSpeedBonusPercentPerLevel);
 
 					builder.put(attributeEntry.getKey(), new EntityAttributeModifier(ItemAccessor.getAttackSpeedModifierId(), "Weapon modifier", newAttackSpeed, EntityAttributeModifier.Operation.ADDITION));
 

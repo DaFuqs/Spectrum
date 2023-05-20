@@ -362,7 +362,7 @@ public abstract class LivingEntityMixin {
 	private float applyInexorableAntiWaterSlowdown(float par1) {
 		var entity = (LivingEntity) (Object) this;
 		if (InexorableEnchantment.isArmorActive(entity)) {
-			return 0.334F;
+			return par1 + 0.2F;
 		}
 		return par1;
 	}
@@ -377,7 +377,7 @@ public abstract class LivingEntityMixin {
 	private float applyInexorableAntiLavaSlowdown(float par1) {
 		var entity = (LivingEntity) (Object) this;
 		if (InexorableEnchantment.isArmorActive(entity)) {
-			return 0.275F;
+			return par1 + 0.25F;
 		}
 		return par1;
 	}

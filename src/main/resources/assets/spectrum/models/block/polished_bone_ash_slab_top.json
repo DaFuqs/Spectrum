@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "spectrum:block/polished_bone_ashs",
+    "top": "spectrum:block/polished_bone_ashs",
+    "side": "spectrum:block/polished_bone_ashs"
+  }
+}

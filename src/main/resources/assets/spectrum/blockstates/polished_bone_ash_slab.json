@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/polished_bone_ash_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/polished_bone_ash_slab"
+    },
+    "type=top": {
+      "model": "spectrum:block/polished_bone_ash_slab_top"
+    }
+  }
+}

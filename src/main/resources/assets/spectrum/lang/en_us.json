@@ -235,7 +235,8 @@
   "entity.spectrum.mining_projectile": "Mining Projectile",
   "entity.spectrum.bident_mirror_image": "Bident Mirror Image",
   "entity.spectrum.bident": "Bident",
-  "entity.spectrum.monstrosity": "Monstrosity",
+  "entity.spectrum.monstrosity": "§kMonstrosity",
+  "entity.spectrum.guardian_turret": "Guardian Turret",
 
   "commands.spectrum.spawn_shooting_star.success": "Spawned %d shooting stars for each player",
   "commands.spectrum.progression_sanity.success": "Printed the sanity checks findings to the servers console",
@@ -437,6 +438,12 @@
   "spectrum.subtitles.dreamflayer_activates": "Dreamflayer activates",
   "spectrum.subtitles.dreamflayer_deactivates": "Dreamflayer deactivates",
   "spectrum.subtitles.deeper_down_portal_open": "Portal opens",
+
+  "spectrum.subtitles.entity.guardian_turret.ambient": "Guardian Turret lurks",
+  "spectrum.subtitles.entity.guardian_turret.death": "Guardian Turret dies",
+  "spectrum.subtitles.entity.guardian_turret.hurt": "Guardian Turret hurts",
+  "spectrum.subtitles.entity.guardian_turret.close": "Guardian Turret closes",
+  "spectrum.subtitles.entity.guardian_turret.open": "Guardian Turret opens",
   "spectrum.subtitles.entity.monstrosity.shoot": "§kLivingNightmare§r shoots",
   "spectrum.subtitles.entity.monstrosity.swoop": "§kLivingNightmare§r swoops",
   "spectrum.subtitles.entity.monstrosity.ambient": "§kLivingNightmare§r howls",

@@ -23,7 +23,8 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
         super(context);
         this.itemRenderer = context.getItemRenderer();
     }
-
+    
+    @Override
     public void render(GlassArrowEntity persistentProjectileEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
         ItemStack itemStack = persistentProjectileEntity.getVariant().getArrow().getDefaultStack();
         renderAsItemStack(persistentProjectileEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
@@ -43,7 +44,7 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
 
         float scale = getScale();
         matrixStack.scale(scale, scale, scale);
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getRadialQuaternion(0));
+        matrixStack.multiply(Vec3f.POSITIVE_Y.getRadialQuaternion(0)); // TODO: needed?
 
         float scaleX = bakedModel.getTransformation().ground.scale.getX();
         float scaleY = bakedModel.getTransformation().ground.scale.getY();
@@ -60,20 +61,21 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
         }
 
         this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.GROUND, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);
-
+    
         matrixStack.pop();
     }
-
+    
     public float getScale() {
         return 1.5F;
     }
-
+    
     public int getAdditionalPitch() {
         return -45;
     }
-
+    
+    @Override
     public Identifier getTexture(GlassArrowEntity itemEntity) {
         return SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE;
     }
-
+    
 }

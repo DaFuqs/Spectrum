@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)All it takes is a single well-considered hit... or so the saying must have gone.$(br2)Whatever.$(br)On a related note: you invented this First Strike improvement. It will be a great help especially against many weak opponents."
+      "text": "All it takes is a single well-considered hit... or so the saying must have gone.$(br2)Whatever.$(br)On a related note: you invented First Strike. It will be a great help especially against many weak opponents."
     },
     {
       "type": "patchouli:spotlight",

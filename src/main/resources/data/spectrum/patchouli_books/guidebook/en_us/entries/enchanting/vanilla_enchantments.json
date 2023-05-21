@@ -157,13 +157,6 @@
     },
     {
       "type": "spectrum:enchanter_crafting",
-      "title": "Swift Sneak",
-      "advancement": "spectrum:unlocks/enchantments/vanilla_swift_sneak",
-      "recipe": "spectrum:enchanter/vanilla_books/book_swift_sneak",
-      "text": ""
-    },
-    {
-      "type": "spectrum:enchanter_crafting",
       "title": "Multishot",
       "advancement": "spectrum:unlocks/enchantments/vanilla_projectile",
       "recipe": "spectrum:enchanter/vanilla_books/book_multishot",
@@ -258,6 +251,13 @@
       "title": "Sweeping",
       "advancement": "spectrum:unlocks/enchantments/vanilla_damage",
       "recipe": "spectrum:enchanter/vanilla_books/book_sweeping",
+      "text": ""
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Swift Sneak",
+      "advancement": "spectrum:unlocks/enchantments/vanilla_swift_sneak",
+      "recipe": "spectrum:enchanter/vanilla_books/book_swift_sneak",
       "text": ""
     },
     {

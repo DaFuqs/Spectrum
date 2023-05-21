@@ -24,12 +24,15 @@ public class ShearsDispenserBehaviorMixin {
             int age = blockState.get(SawbladeHollyBushBlock.AGE);
             if (SawbladeHollyBushBlock.canBeSheared(age)) {
                 // we do not have the real shears item used in the dispenser here, but for the default loot table that does not make much of a difference
-                for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(blockState, world, pos, world.getBlockEntity(pos), null, Items.SHEARS.getDefaultStack(), SawbladeHollyBushBlock.SAWBLADE_HOLLY_SHEARING_IDENTIFIER)) {
+                for (ItemStack stack : JadeVinePlantBlock.getHarvestedStacks(blockState, world, pos, world.getBlockEntity(pos), null, Items.SHEARS.getDefaultStack(), SawbladeHollyBushBlock.SHEARING_LOOT_TABLE_ID)) {
                     SawbladeHollyBushBlock.dropStack(world, pos, stack);
                 }
-                world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-                SawbladeHollyBushBlock.setAge(blockState, world, pos, age - 1);
+    
+                BlockState newState = blockState.with(SawbladeHollyBushBlock.AGE, age - 1);
+                world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
                 world.emitGameEvent(null, GameEvent.SHEAR, pos);
+                world.playSound(null, pos, SoundEvents.BLOCK_BEEHIVE_SHEAR, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+    
                 cir.setReturnValue(true);
             }
         }

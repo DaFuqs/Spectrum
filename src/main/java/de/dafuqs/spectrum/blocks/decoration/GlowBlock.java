@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.google.common.collect.Maps;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
+import com.google.common.collect.*;
+import net.minecraft.block.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class GlowBlock extends Block {
 	
@@ -28,6 +27,7 @@ public class GlowBlock extends Block {
 		return GLOWBLOCKS.get(color);
 	}
 	
+	@Override
 	public float getAmbientOcclusionLightLevel(BlockState state, BlockView world, BlockPos pos) {
 		return 1.0F;
 	}

@@ -1,26 +1,25 @@
 package de.dafuqs.spectrum.items.food;
 
-import de.dafuqs.spectrum.items.ApplyFoodEffectsCallback;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.progression.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 
-import java.util.List;
+import java.util.*;
 
 public class TeaItem extends DrinkItem implements ApplyFoodEffectsCallback {
 	
-	protected FoodComponent bonusFoodComponentWithScone;
+	protected final FoodComponent bonusFoodComponentWithScone;
 	
 	public TeaItem(Settings settings, FoodComponent bonusFoodComponentWithScone) {
 		super(settings);

@@ -1,31 +1,23 @@
 package de.dafuqs.spectrum.blocks.present;
 
-import de.dafuqs.spectrum.items.tooltip.PresentTooltipData;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.client.item.TooltipData;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.StackReference;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
+import de.dafuqs.spectrum.items.tooltip.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 import java.util.*;
-import java.util.stream.Stream;
+import java.util.stream.*;
 
 public class PresentItem extends BlockItem {
 	
@@ -124,6 +116,7 @@ public class PresentItem extends BlockItem {
 		return PresentBlock.Variant.RED;
 	}
 	
+	@Override
 	public boolean onStackClicked(ItemStack present, Slot slot, ClickType clickType, PlayerEntity player) {
 		if (clickType != ClickType.RIGHT) {
 			return false;
@@ -131,9 +124,7 @@ public class PresentItem extends BlockItem {
 			ItemStack itemStack = slot.getStack();
 			if (itemStack.isEmpty()) {
 				this.playRemoveOneSound(player);
-				removeFirstStack(present).ifPresent((removedStack) -> {
-					addToPresent(present, slot.insertStack(removedStack));
-				});
+				removeFirstStack(present).ifPresent((removedStack) -> addToPresent(present, slot.insertStack(removedStack)));
 			} else if (itemStack.getItem().canBeNested()) {
 				ItemStack slotStack = slot.takeStackRange(itemStack.getCount(), 64, player);
 				int acceptedStacks = addToPresent(present, slotStack);
@@ -150,6 +141,7 @@ public class PresentItem extends BlockItem {
 		}
 	}
 	
+	@Override
 	public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
 		if (clickType == ClickType.RIGHT && slot.canTakePartial(player)) {
 			if (otherStack.isEmpty()) {
@@ -179,6 +171,7 @@ public class PresentItem extends BlockItem {
 		}
 	}
 	
+	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
 		if (isWrapped(itemStack)) {
@@ -187,14 +180,17 @@ public class PresentItem extends BlockItem {
 		return TypedActionResult.pass(itemStack);
 	}
 	
+	@Override
 	public boolean isItemBarVisible(ItemStack stack) {
 		return !isWrapped(stack) && getBundledStacks(stack).findAny().isPresent();
 	}
 	
+	@Override
 	public int getItemBarStep(ItemStack stack) {
 		return Math.min(1 + (int) (12 * (getBundledStacks(stack).count() / (float) MAX_STORAGE_STACKS)), 13);
 	}
 	
+	@Override
 	public int getItemBarColor(ItemStack stack) {
 		return ITEM_BAR_COLOR;
 	}
@@ -277,6 +273,7 @@ public class PresentItem extends BlockItem {
 		}
 	}
 	
+	@Override
 	public Optional<TooltipData> getTooltipData(ItemStack stack) {
 		boolean wrapped = isWrapped(stack);
 		if (wrapped) {
@@ -284,13 +281,14 @@ public class PresentItem extends BlockItem {
 		}
 		
 		List<ItemStack> list = new ArrayList<>(MAX_STORAGE_STACKS);
-		getBundledStacks(stack).forEachOrdered(s -> list.add(s));
+		getBundledStacks(stack).forEachOrdered(list::add);
 		while (list.size() < MAX_STORAGE_STACKS) {
 			list.add(ItemStack.EMPTY);
 		}
 		return Optional.of(new PresentTooltipData(list));
 	}
 	
+	@Override
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		boolean wrapped = isWrapped(stack);
 		if (wrapped) {
@@ -319,6 +317,7 @@ public class PresentItem extends BlockItem {
 		return false;
 	}
 	
+	@Override
 	public void onItemEntityDestroyed(ItemEntity entity) {
 		ItemUsage.spawnItemContents(entity, getBundledStacks(entity.getStack()));
 	}

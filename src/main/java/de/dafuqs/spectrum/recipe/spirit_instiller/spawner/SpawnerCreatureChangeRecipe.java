@@ -1,19 +1,17 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
-import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockItem;
-import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.registry.Registries;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.blocks.mob_head.*;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.registry.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 
@@ -62,6 +60,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 		return Text.translatable("recipe.spectrum.spawner.lore.changed_creature");
 	}
 	
+	@Override
 	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		ItemStack mobHeadStack;
 		if (firstBowlStack.isIn(SpectrumItemTags.MOB_HEADS)) {

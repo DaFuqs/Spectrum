@@ -1,18 +1,14 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.entity.entity.MagicProjectileEntity;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.RotationAxis;
-import net.minecraft.util.math.random.Random;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.client.texture.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
 import org.joml.*;
 import org.joml.Math;
 

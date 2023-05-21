@@ -33,6 +33,7 @@ public class DynamicParticleEffectAlwaysShow extends DynamicParticleEffect {
 	});
 	
 	public static final ParticleEffect.Factory<DynamicParticleEffectAlwaysShow> FACTORY = new ParticleEffect.Factory<>() {
+		@Override
 		public DynamicParticleEffectAlwaysShow read(ParticleType<DynamicParticleEffectAlwaysShow> particleType, StringReader stringReader) throws CommandSyntaxException {
 			Vector3f color = AbstractDustParticleEffect.readColor(stringReader);
 			stringReader.expect(' ');
@@ -50,6 +51,7 @@ public class DynamicParticleEffectAlwaysShow extends DynamicParticleEffect {
 			return new DynamicParticleEffectAlwaysShow(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
 		}
 		
+		@Override
 		public DynamicParticleEffectAlwaysShow read(ParticleType<DynamicParticleEffectAlwaysShow> particleType, PacketByteBuf packetByteBuf) {
 			Vector3f color = AbstractDustParticleEffect.readColor(packetByteBuf);
 			Identifier textureIdentifier = packetByteBuf.readIdentifier();
@@ -79,10 +81,12 @@ public class DynamicParticleEffectAlwaysShow extends DynamicParticleEffect {
 		super(o, o1, o2, o3, o4, o5, o6);
 	}
 	
+	@Override
 	public String asString() {
 		return String.valueOf(Registries.PARTICLE_TYPE.getId(this.getType()));
 	}
 	
+	@Override
 	public ParticleType getType() {
 		return SpectrumParticleTypes.DYNAMIC_ALWAYS_SHOW;
 	}

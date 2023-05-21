@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class BlockWithTooltip extends Block {
 	
-	protected Text tooltipText;
+	protected final Text tooltipText;
 	
 	public BlockWithTooltip(Settings settings, Text tooltipText) {
 		super(settings);

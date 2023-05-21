@@ -1,12 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.Preenchanted;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
 
-import java.util.Map;
+import java.util.*;
 
 // Waiting for https://github.com/FabricMC/fabric/pull/1804
 public class BedrockShearsItem extends ShearsItem implements Preenchanted {
@@ -29,7 +27,7 @@ public class BedrockShearsItem extends ShearsItem implements Preenchanted {
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-	
+
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;

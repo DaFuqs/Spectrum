@@ -32,8 +32,6 @@ public class ColoredTransmissionParticle extends TransmissionParticle {
 		// TODO - Used to have a True bool attached, needs testing to see if it renders correctly
 		Quaternionf quaternion = new Quaternionf(vec3f.x, vec3f.y, vec3f.z, 0.0F);
 		transforms.accept(quaternion);
-		Vector3f vec3f2 = new Vector3f(-1.0F, -1.0F, 0.0F);
-		vec3f2.rotate(quaternion);
 		Vector3f[] vec3fs = new Vector3f[]{new Vector3f(-1.0F, -1.0F, 0.0F), new Vector3f(-1.0F, 1.0F, 0.0F), new Vector3f(1.0F, 1.0F, 0.0F), new Vector3f(1.0F, -1.0F, 0.0F)};
 		float i = this.getSize(tickDelta);
 		

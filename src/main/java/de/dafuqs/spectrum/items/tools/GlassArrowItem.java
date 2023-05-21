@@ -9,7 +9,7 @@ import net.minecraft.world.*;
 
 public class GlassArrowItem extends ArrowItem {
 	
-	public GlassArrowVariant variant;
+	public final GlassArrowVariant variant;
 	
 	public GlassArrowItem(Settings settings, GlassArrowVariant variant, ParticleEffect particleEffect) {
 		super(settings);
@@ -17,6 +17,7 @@ public class GlassArrowItem extends ArrowItem {
 		variant.setData(this, particleEffect);
 	}
 	
+	@Override
 	public PersistentProjectileEntity createArrow(World world, ItemStack stack, LivingEntity shooter) {
 		GlassArrowEntity entity = new GlassArrowEntity(world, shooter);
 		entity.setVariant(variant);

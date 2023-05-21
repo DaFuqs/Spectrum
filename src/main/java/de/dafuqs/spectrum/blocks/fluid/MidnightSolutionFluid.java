@@ -42,6 +42,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 		return fluid == SpectrumFluids.MIDNIGHT_SOLUTION || fluid == SpectrumFluids.FLOWING_MIDNIGHT_SOLUTION;
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
 		BlockPos topPos = pos.up();

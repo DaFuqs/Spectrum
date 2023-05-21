@@ -48,7 +48,7 @@ public class SpectrumModCompat {
 	}
 	
 	public static boolean isIntegrationPackActive(String modId) {
-		return INTEGRATION_PACKS.keySet().contains(modId);
+		return INTEGRATION_PACKS.containsKey(modId);
 	}
 	
 	public static class AE2Compat extends ModIntegrationPack {

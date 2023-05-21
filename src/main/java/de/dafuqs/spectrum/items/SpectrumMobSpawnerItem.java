@@ -1,30 +1,25 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.MobSpawnerBlockEntity;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.item.v1.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.state.property.Property;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.nbt.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.property.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class SpectrumMobSpawnerItem extends Item {
 	

@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.items.InventoryInsertionAcceptor;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(PlayerInventory.class)
 public abstract class PlayerInventoryMixin {

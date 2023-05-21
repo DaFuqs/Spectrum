@@ -8,13 +8,14 @@ import org.jetbrains.annotations.*;
 
 public class CatkinItem extends GemstonePowderItem {
 	
-	protected boolean lucid;
+	protected final boolean lucid;
 	
 	public CatkinItem(@NotNull GemstoneColor gemstoneColor, boolean lucid, Settings settings) {
 		super(settings, SpectrumCommon.locate("endgame/grow_ominous_sapling"), gemstoneColor);
 		this.lucid = lucid;
 	}
 	
+	@Override
 	public boolean hasGlint(ItemStack stack) {
 		return lucid;
 	}

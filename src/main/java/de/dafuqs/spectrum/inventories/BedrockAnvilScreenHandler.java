@@ -1,30 +1,21 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.LoreHelper;
-import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftingResultInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.EnchantedBookItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.screen.Property;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.text.Text;
-import net.minecraft.world.WorldEvents;
-import org.apache.commons.lang3.StringUtils;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.block.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.tag.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
+import org.apache.commons.lang3.*;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BedrockAnvilScreenHandler extends ScreenHandler {
 	
@@ -37,6 +28,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 	protected final CraftingResultInventory output = new CraftingResultInventory();
 	protected final ScreenHandlerContext context;
 	protected final Inventory input = new SimpleInventory(2) {
+		@Override
 		public void markDirty() {
 			super.markDirty();
 			onContentChanged(this);
@@ -62,14 +54,17 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		this.addSlot(new Slot(this.input, FIRST_INPUT_SLOT_INDEX, 27, 47));
 		this.addSlot(new Slot(this.input, SECOND_INPUT_SLOT_INDEX, 76, 47));
 		this.addSlot(new Slot(this.output, OUTPUT_SLOT_INDEX, 134, 47) {
+			@Override
 			public boolean canInsert(ItemStack stack) {
 				return false;
 			}
 			
+			@Override
 			public boolean canTakeItems(PlayerEntity playerEntity) {
 				return canTakeOutput(playerEntity, this.hasStack());
 			}
 			
+			@Override
 			public void onTakeItem(PlayerEntity player, ItemStack stack) {
 				onTakeOutput(player, stack);
 			}
@@ -91,6 +86,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		return cost * 2 + 1;
 	}
 	
+	@Override
 	public void onContentChanged(Inventory inventory) {
 		super.onContentChanged(inventory);
 		if (inventory == this.input) {
@@ -98,17 +94,18 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		}
 	}
 	
+	@Override
 	public void close(PlayerEntity player) {
 		super.onClosed(player);
-		this.context.run((world, pos) -> {
-			this.dropInventory(player, this.input);
-		});
+		this.context.run((world, pos) -> this.dropInventory(player, this.input));
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return this.context.get((world, pos) -> this.canUse(world.getBlockState(pos)) && player.squaredDistanceTo((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D) <= 64.0D, true);
 	}
-	
+
+	@Override
 	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
@@ -175,9 +172,7 @@ public class BedrockAnvilScreenHandler extends ScreenHandler {
 		}
 		
 		this.levelCost.set(0);
-		this.context.run((world, pos) -> {
-			world.syncWorldEvent(WorldEvents.ANVIL_USED, pos, 0);
-		});
+		this.context.run((world, pos) -> world.syncWorldEvent(WorldEvents.ANVIL_USED, pos, 0));
 	}
 	
 	public void updateResult() {

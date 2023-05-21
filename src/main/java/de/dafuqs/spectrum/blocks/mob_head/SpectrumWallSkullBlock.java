@@ -1,14 +1,10 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SkullBlock;
-import net.minecraft.block.WallSkullBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class SpectrumWallSkullBlock extends WallSkullBlock {
 	
@@ -16,10 +12,12 @@ public class SpectrumWallSkullBlock extends WallSkullBlock {
 		super(skullType, settings);
 	}
 	
+	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new SpectrumSkullBlockEntity(pos, state);
 	}
 	
+	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		return null;

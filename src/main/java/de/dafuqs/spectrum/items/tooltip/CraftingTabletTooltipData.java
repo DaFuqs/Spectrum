@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.items.tooltip;
 
-import net.minecraft.client.item.TooltipData;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.text.Text;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
 
 public class CraftingTabletTooltipData implements TooltipData {
 	

@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.recipe.fluid_converting;
 
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
+import de.dafuqs.spectrum.recipe.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public abstract class FluidConvertingRecipe extends GatedSpectrumRecipe {
 	

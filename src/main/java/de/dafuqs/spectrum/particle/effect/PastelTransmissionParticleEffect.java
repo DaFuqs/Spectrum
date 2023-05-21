@@ -23,71 +23,74 @@ public class PastelTransmissionParticleEffect implements ParticleEffect {
     ).apply(instance, PastelTransmissionParticleEffect::new));
 
 	public static final Factory<PastelTransmissionParticleEffect> FACTORY = new Factory<>() {
+		@Override
 		public PastelTransmissionParticleEffect read(ParticleType<PastelTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
-            List<BlockPos> posList = new ArrayList<>();
-
-            stringReader.expect(' ');
-            int travelTime = stringReader.readInt();
-
-            // TODO I don't care, really
-            stringReader.expect(' ');
-            int x1 = stringReader.readInt();
-            stringReader.expect(' ');
-            int y1 = stringReader.readInt();
-            stringReader.expect(' ');
-            int z1 = stringReader.readInt();
-
-            stringReader.expect(' ');
-            int x2 = stringReader.readInt();
-            stringReader.expect(' ');
-            int y2 = stringReader.readInt();
-            stringReader.expect(' ');
-            int z2 = stringReader.readInt();
-
-            stringReader.expect(' ');
-            int color = stringReader.readInt();
-
-            BlockPos sourcePos = new BlockPos(x1, y1, z1);
-            BlockPos destinationPos = new BlockPos(x2, y2, z2);
-            posList.add(sourcePos);
-            posList.add(destinationPos);
-            return new PastelTransmissionParticleEffect(posList, Items.STONE.getDefaultStack(), travelTime, color);
-        }
-
+			List<BlockPos> posList = new ArrayList<>();
+			
+			stringReader.expect(' ');
+			int travelTime = stringReader.readInt();
+			
+			// TODO I don't care, really
+			stringReader.expect(' ');
+			int x1 = stringReader.readInt();
+			stringReader.expect(' ');
+			int y1 = stringReader.readInt();
+			stringReader.expect(' ');
+			int z1 = stringReader.readInt();
+			
+			stringReader.expect(' ');
+			int x2 = stringReader.readInt();
+			stringReader.expect(' ');
+			int y2 = stringReader.readInt();
+			stringReader.expect(' ');
+			int z2 = stringReader.readInt();
+			
+			stringReader.expect(' ');
+			int color = stringReader.readInt();
+			
+			BlockPos sourcePos = new BlockPos(x1, y1, z1);
+			BlockPos destinationPos = new BlockPos(x2, y2, z2);
+			posList.add(sourcePos);
+			posList.add(destinationPos);
+			return new PastelTransmissionParticleEffect(posList, Items.STONE.getDefaultStack(), travelTime, color);
+		}
+		
+		@Override
 		public PastelTransmissionParticleEffect read(ParticleType<PastelTransmissionParticleEffect> particleType, PacketByteBuf buf) {
-            int posCount = buf.readInt();
-            List<BlockPos> posList = new ArrayList<>();
-            for (int i = 0; i < posCount; i++) {
-                posList.add(buf.readBlockPos());
-            }
-            ItemStack stack = buf.readItemStack();
-            int travelTime = buf.readInt();
-            int color = buf.readInt();
-            return new PastelTransmissionParticleEffect(posList, stack, travelTime, color);
-        }
+			int posCount = buf.readInt();
+			List<BlockPos> posList = new ArrayList<>();
+			for (int i = 0; i < posCount; i++) {
+				posList.add(buf.readBlockPos());
+			}
+			ItemStack stack = buf.readItemStack();
+			int travelTime = buf.readInt();
+			int color = buf.readInt();
+			return new PastelTransmissionParticleEffect(posList, stack, travelTime, color);
+		}
     };
 
     private final List<BlockPos> nodePositions;
     private final ItemStack stack;
-    private final int travelTime;
-    private final int color;
-
-    public PastelTransmissionParticleEffect(List<BlockPos> nodePositions, ItemStack stack, int travelTime, int color) {
-        this.nodePositions = nodePositions;
-        this.stack = stack;
-        this.travelTime = travelTime;
-        this.color = color;
-    }
-
-    public ParticleType getType() {
-        return SpectrumParticleTypes.PASTEL_TRANSMISSION;
-    }
-
-    @Override
-    public String asString() {
-        int nodeCount = this.nodePositions.size();
-        BlockPos source = this.nodePositions.get(0);
-        BlockPos destination = this.nodePositions.get(this.nodePositions.size() - 1);
+	private final int travelTime;
+	private final int color;
+	
+	public PastelTransmissionParticleEffect(List<BlockPos> nodePositions, ItemStack stack, int travelTime, int color) {
+		this.nodePositions = nodePositions;
+		this.stack = stack;
+		this.travelTime = travelTime;
+		this.color = color;
+	}
+	
+	@Override
+	public ParticleType getType() {
+		return SpectrumParticleTypes.PASTEL_TRANSMISSION;
+	}
+	
+	@Override
+	public String asString() {
+		int nodeCount = this.nodePositions.size();
+		BlockPos source = this.nodePositions.get(0);
+		BlockPos destination = this.nodePositions.get(this.nodePositions.size() - 1);
 		int d = source.getX();
 		int e = source.getY();
 		int f = source.getZ();

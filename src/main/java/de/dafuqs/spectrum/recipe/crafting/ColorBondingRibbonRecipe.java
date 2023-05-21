@@ -20,6 +20,7 @@ public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
 		super(identifier, category);
 	}
 	
+	@Override
 	public boolean matches(CraftingInventory craftingInventory, World world) {
 		boolean ribbonFound = false;
 		boolean pigmentFound = false;
@@ -51,6 +52,7 @@ public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
 		return ribbonFound && pigmentFound;
 	}
 	
+	@Override
 	public ItemStack craft(CraftingInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack ribbon = null;
 		PigmentItem pigment = null;
@@ -83,10 +85,12 @@ public class ColorBondingRibbonRecipe extends SpecialCraftingRecipe {
 		return ribbon;
 	}
 	
+	@Override
 	public boolean fits(int width, int height) {
 		return width * height >= 2;
 	}
 	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
 	}

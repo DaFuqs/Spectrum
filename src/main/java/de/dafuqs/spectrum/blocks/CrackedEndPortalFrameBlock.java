@@ -150,45 +150,55 @@ public class CrackedEndPortalFrameBlock extends Block {
 		return END_PORTAL;
 	}
 	
+	@Override
 	public boolean hasSidedTransparency(BlockState state) {
 		return true;
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return state.get(EYE_TYPE).equals(EndPortalFrameEye.NONE) ? FRAME_SHAPE : FRAME_WITH_EYE_SHAPE;
 	}
 	
+	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		Direction facing = ctx.getHorizontalPlayerFacing();
 		boolean facingVertical = facing.equals(Direction.EAST) || facing.equals(Direction.WEST);
 		return (this.getDefaultState().with(FACING_VERTICAL, facingVertical).with(EYE_TYPE, EndPortalFrameEye.NONE));
 	}
 	
+	@Override
 	public BlockState rotate(BlockState state, BlockRotation rotation) {
 		return state.with(FACING_VERTICAL, !state.get(FACING_VERTICAL));
 	}
 	
+	@Override
 	public BlockState mirror(BlockState state, BlockMirror mirror) {
 		return state;
 	}
 	
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING_VERTICAL, EYE_TYPE);
 	}
 	
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
 	
+	@Override
 	@Deprecated
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 	
 	}
 	
+	@Override
 	public boolean hasComparatorOutput(BlockState state) {
 		return true;
 	}
 	
+	@Override
 	public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
 		return state.get(EYE_TYPE).equals(EndPortalFrameEye.WITH_EYE_OF_ENDER) ? 15 : 0;
 	}
@@ -217,6 +227,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 		}
 	}
 	
+	@Override
 	@Deprecated
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (isVolatile(state)) {
@@ -254,6 +265,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 			return this.name;
 		}
 		
+		@Override
 		public String asString() {
 			return this.name;
 		}

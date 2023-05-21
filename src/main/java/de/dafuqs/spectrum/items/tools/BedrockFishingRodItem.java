@@ -1,21 +1,19 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.entity.entity.BedrockFishingBobberEntity;
-import de.dafuqs.spectrum.items.Preenchanted;
-import de.dafuqs.spectrum.registries.SpectrumFluidTags;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Preenchanted {
 	
@@ -37,7 +35,7 @@ public class BedrockFishingRodItem extends SpectrumFishingRodItem implements Pre
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-	
+
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;

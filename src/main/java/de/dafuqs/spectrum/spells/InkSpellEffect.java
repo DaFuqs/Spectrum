@@ -1,19 +1,17 @@
 package de.dafuqs.spectrum.spells;
 
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import net.minecraft.entity.Entity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.networking.*;
+import net.minecraft.entity.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public abstract class InkSpellEffect {
 	
-	InkColor color;
+	final InkColor color;
 	
 	public InkSpellEffect(InkColor color) {
 		this.color = color;

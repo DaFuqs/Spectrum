@@ -40,6 +40,7 @@ public class ColoredSaplingBlock extends SaplingBlock implements RevelationAware
 		return new Pair<>(this.asItem(), Blocks.OAK_SAPLING.asItem());
 	}
 	
+	@Override
 	public DyeColor getColor() {
 		return this.color;
 	}

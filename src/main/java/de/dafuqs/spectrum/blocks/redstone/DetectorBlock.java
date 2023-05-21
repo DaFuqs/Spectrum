@@ -1,26 +1,16 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager.Builder;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.StateManager.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
 public abstract class DetectorBlock extends Block {
 	
@@ -33,6 +23,7 @@ public abstract class DetectorBlock extends Block {
 		this.setDefaultState(((this.stateManager.getDefaultState()).with(POWER, 0)).with(INVERTED, false));
 	}
 	
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (player.canModifyBlocks()) {
 			if (world.isClient) {
@@ -48,26 +39,32 @@ public abstract class DetectorBlock extends Block {
 		}
 	}
 	
+	@Override
 	protected void appendProperties(Builder<Block, BlockState> builder) {
 		builder.add(POWER, INVERTED);
 	}
 	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
 	
+	@Override
 	public boolean emitsRedstonePower(BlockState state) {
 		return true;
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
 	
+	@Override
 	public boolean hasSidedTransparency(BlockState state) {
 		return true;
 	}
 	
+	@Override
 	public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
 		return state.get(POWER);
 	}
@@ -79,6 +76,7 @@ public abstract class DetectorBlock extends Block {
 		world.scheduleBlockTick(pos, state.getBlock(), getUpdateFrequencyTicks());
 	}
 	
+	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		updateState(state, world, pos);
 		world.scheduleBlockTick(pos, state.getBlock(), getUpdateFrequencyTicks());

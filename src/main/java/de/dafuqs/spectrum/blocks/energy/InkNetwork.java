@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.blocks.energy;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class InkNetwork {
 	protected static List<InkNetwork> networks = new ArrayList<>();
 	
-	protected HashSet<InkDuctBlockEntity> inkDucts = new HashSet<>();
+	protected final HashSet<InkDuctBlockEntity> inkDucts = new HashSet<>();
 	
 	public boolean canConnect(InkDuctBlockEntity newDuct) {
 		for (InkDuctBlockEntity currentDuct : inkDucts) {

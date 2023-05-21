@@ -81,6 +81,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		return Box.of(Vec3d.ofCenter(blockPos), radius, radius, radius);
 	}
 	
+	@Override
 	protected Text getContainerName() {
 		return Text.translatable("block.spectrum.black_hole_chest");
 	}
@@ -90,13 +91,15 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		return new BlackHoleChestScreenHandler(syncId, playerInventory, this);
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
 			tag.putString("Filter" + i, Registries.ITEM.getId(this.filterItems.get(i)).toString());
 		}
 	}
-
+	
+	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
@@ -105,7 +108,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 			}
 		}
 	}
-
+	
 	@Override
 	public int size() {
 		return 27 + 1; // 3 rows, 1 knowledge gem, 5 item filters (they are not real slots, though)

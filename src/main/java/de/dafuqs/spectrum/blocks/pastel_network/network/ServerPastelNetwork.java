@@ -16,8 +16,8 @@ import java.util.*;
 
 public class ServerPastelNetwork extends PastelNetwork {
 
-    protected SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
-    protected final ServerPastelTransmissionLogic serverPastelTransmissionLogic;
+    protected final SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
+	protected final ServerPastelTransmissionLogic serverPastelTransmissionLogic;
 
     public ServerPastelNetwork(World world, @Nullable UUID uuid) {
         super(world, uuid);
@@ -62,27 +62,28 @@ public class ServerPastelNetwork extends PastelNetwork {
             }
         }
         this.graph = null;
-        serverPastelTransmissionLogic.invalidateCache();
-        Pastel.getInstance(networkToIncorporate.world.isClient).remove(networkToIncorporate);
-    }
-
-    @Override
-    public void addNode(PastelNodeBlockEntity node) {
-        super.addNode(node);
-        serverPastelTransmissionLogic.invalidateCache();
-    }
-
-    public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
-        boolean hadNode = this.nodes.get(node.getNodeType()).remove(node);
-        if (!hadNode) {
-            return false;
-        }
-
-        if (hasNodes()) {
-            if (this.graph != null) {
-                // delete the now removed node from this networks graph
-                this.graph.removeVertex(node);
-                serverPastelTransmissionLogic.invalidateCache();
+		serverPastelTransmissionLogic.invalidateCache();
+		Pastel.getInstance(networkToIncorporate.world.isClient).remove(networkToIncorporate);
+	}
+	
+	@Override
+	public void addNode(PastelNodeBlockEntity node) {
+		super.addNode(node);
+		serverPastelTransmissionLogic.invalidateCache();
+	}
+	
+	@Override
+	public boolean removeNode(PastelNodeBlockEntity node, NodeRemovalReason reason) {
+		boolean hadNode = this.nodes.get(node.getNodeType()).remove(node);
+		if (!hadNode) {
+			return false;
+		}
+		
+		if (hasNodes()) {
+			if (this.graph != null) {
+				// delete the now removed node from this networks graph
+				this.graph.removeVertex(node);
+				serverPastelTransmissionLogic.invalidateCache();
             }
             Graph<PastelNodeBlockEntity, DefaultEdge> graph = getGraph();
 
@@ -98,32 +99,34 @@ public class ServerPastelNetwork extends PastelNetwork {
                         getGraph().removeVertex(disconnectedNode);
                         newNetwork.addNode(disconnectedNode);
                         disconnectedNode.setNetwork(newNetwork);
-                    }
-                }
-            }
-            return true;
-        } else if (reason == NodeRemovalReason.BROKEN || reason == NodeRemovalReason.MOVED) {
-            Pastel.getServerInstance().remove(this);
-        }
-        return false;
-    }
-
-    public void tick() {
-        this.transmissions.tick();
-        this.serverPastelTransmissionLogic.tick();
-    }
-
-    public void addTransmission(PastelTransmission transmission, int travelTime) {
-        transmission.setNetwork(this);
-        this.transmissions.put(transmission, travelTime);
-    }
-
-    public NbtCompound toNbt() {
-        NbtCompound compound = new NbtCompound();
-        compound.putUuid("UUID", this.uuid);
-        compound.putString("World", this.world.getRegistryKey().getValue().toString());
-
-        NbtList transmissionList = new NbtList();
+					}
+				}
+			}
+			return true;
+		} else if (reason == NodeRemovalReason.BROKEN || reason == NodeRemovalReason.MOVED) {
+			Pastel.getServerInstance().remove(this);
+		}
+		return false;
+	}
+	
+	@Override
+	public void tick() {
+		this.transmissions.tick();
+		this.serverPastelTransmissionLogic.tick();
+	}
+	
+	@Override
+	public void addTransmission(PastelTransmission transmission, int travelTime) {
+		transmission.setNetwork(this);
+		this.transmissions.put(transmission, travelTime);
+	}
+	
+	public NbtCompound toNbt() {
+		NbtCompound compound = new NbtCompound();
+		compound.putUuid("UUID", this.uuid);
+		compound.putString("World", this.world.getRegistryKey().getValue().toString());
+		
+		NbtList transmissionList = new NbtList();
         for (Map.Entry<PastelTransmission, Integer> transmission : this.transmissions) {
             NbtCompound transmissionCompound = new NbtCompound();
             transmissionCompound.putInt("Delay", transmission.getValue());

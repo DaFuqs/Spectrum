@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.status_effects;
 
-import de.dafuqs.spectrum.items.trinkets.WhispyCircletItem;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.effect.InstantStatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
+import de.dafuqs.spectrum.items.trinkets.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.effect.*;
 
 public class ImmunityStatusEffect extends InstantStatusEffect {
 	

@@ -19,7 +19,8 @@ public class BlackHoleChestBlock extends SpectrumChestBlock {
 	public BlackHoleChestBlock(Settings settings) {
 		super(settings);
 	}
-
+	
+	@Override
 	@Nullable
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new BlackHoleChestBlockEntity(pos, state);
@@ -31,6 +32,7 @@ public class BlackHoleChestBlock extends SpectrumChestBlock {
 		return checkType(type, SpectrumBlockEntities.BLACK_HOLE_CHEST, BlackHoleChestBlockEntity::tick);
 	}
 	
+	@Override
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BlackHoleChestBlockEntity) {
@@ -46,10 +48,12 @@ public class BlackHoleChestBlock extends SpectrumChestBlock {
 		return blockEntity instanceof BlackHoleChestBlockEntity blackHoleChestBlockEntity ? blackHoleChestBlockEntity.getEventListener() : null;
 	}
 	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}

@@ -42,16 +42,19 @@ public class SpectrumTypeSpecificPredicates {
 			return new EggLayingWoolyPigColorPredicate(DyeColor.valueOf(json.get(COLOR_KEY).getAsString().toUpperCase(Locale.ROOT)));
 		}
 		
+		@Override
 		public JsonObject typeSpecificToJson() {
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.add(COLOR_KEY, new JsonPrimitive(this.color.toString().toLowerCase(Locale.ROOT)));
 			return jsonObject;
 		}
 		
+		@Override
 		public TypeSpecificPredicate.Deserializer getDeserializer() {
 			return SpectrumTypeSpecificPredicates.EGG_LAYING_WOOLY_PIG_COLOR;
 		}
 		
+		@Override
 		public boolean test(Entity entity, ServerWorld world, @Nullable Vec3d pos) {
 			if (!(entity instanceof EggLayingWoolyPigEntity eggLayingWoolyPigEntity)) {
 				return false;

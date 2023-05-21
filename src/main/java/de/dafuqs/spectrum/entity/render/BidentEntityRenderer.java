@@ -24,6 +24,7 @@ public class BidentEntityRenderer extends EntityRenderer<BidentEntity> {
         this.itemRenderer = context.getItemRenderer();
     }
 
+    @Override
     public void render(BidentEntity bidentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
         ItemStack itemStack = bidentEntity.getStack();
         renderAsItemStack(bidentEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);

@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.entity.mob.SlimeEntity;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.sound.SoundEvent;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Invoker;
+import net.minecraft.entity.mob.*;
+import net.minecraft.particle.*;
+import net.minecraft.sound.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.gen.*;
 
 @Mixin(SlimeEntity.class)
 public interface SlimeEntityAccessor {

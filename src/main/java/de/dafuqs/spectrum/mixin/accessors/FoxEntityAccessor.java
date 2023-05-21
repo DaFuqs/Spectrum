@@ -1,16 +1,16 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.entity.passive.FoxEntity;
-import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Invoker;
+import net.minecraft.entity.passive.*;
+import org.jetbrains.annotations.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.gen.*;
 
-import java.util.UUID;
+import java.util.*;
 
 @Mixin(FoxEntity.class)
 public interface FoxEntityAccessor {
 	
 	@Invoker("addTrustedUuid")
-	public void invokeAddTrustedUuid(@Nullable UUID uuid);
+	void invokeAddTrustedUuid(@Nullable UUID uuid);
 	
 }

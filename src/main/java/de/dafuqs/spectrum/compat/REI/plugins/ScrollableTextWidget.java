@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * Mostly a copy of REIs ScrollableTextWidget
  * But since that is private here a public implementation
- * https://github.com/shedaniel/RoughlyEnoughItems/blob/7.x-1.18/default-plugin/src/main/java/me/shedaniel/rei/plugin/client/categories/DefaultInformationCategory.java
+ * <a href="https://github.com/shedaniel/RoughlyEnoughItems/blob/7.x-1.18/default-plugin/src/main/java/me/shedaniel/rei/plugin/client/categories/DefaultInformationCategory.java">REI</a>
  */
 public class ScrollableTextWidget extends WidgetWithBounds {
 	private final Rectangle bounds;

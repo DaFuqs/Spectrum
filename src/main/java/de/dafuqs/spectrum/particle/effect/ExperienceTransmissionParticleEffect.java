@@ -12,14 +12,9 @@ import net.minecraft.world.event.*;
 
 public class ExperienceTransmissionParticleEffect extends SimpleTransmissionParticleEffect {
 	
-	public static final Codec<ExperienceTransmissionParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> {
-			return effect.destination;
-		}), Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> {
-			return vibrationParticleEffect.arrivalInTicks;
-		})).apply(instance, ExperienceTransmissionParticleEffect::new);
-	});
+	public static final Codec<ExperienceTransmissionParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> instance.group(PositionSource.CODEC.fieldOf("destination").forGetter((effect) -> effect.destination), Codec.INT.fieldOf("arrival_in_ticks").forGetter((vibrationParticleEffect) -> vibrationParticleEffect.arrivalInTicks)).apply(instance, ExperienceTransmissionParticleEffect::new));
 	public static final Factory<ExperienceTransmissionParticleEffect> FACTORY = new Factory<>() {
+		@Override
 		public ExperienceTransmissionParticleEffect read(ParticleType<ExperienceTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
 			stringReader.expect(' ');
 			float f = (float) stringReader.readDouble();
@@ -33,6 +28,7 @@ public class ExperienceTransmissionParticleEffect extends SimpleTransmissionPart
 			return new ExperienceTransmissionParticleEffect(new BlockPositionSource(blockPos), i);
 		}
 		
+		@Override
 		public ExperienceTransmissionParticleEffect read(ParticleType<ExperienceTransmissionParticleEffect> particleType, PacketByteBuf packetByteBuf) {
 			PositionSource positionSource = PositionSourceType.read(packetByteBuf);
 			int i = packetByteBuf.readVarInt();
@@ -44,6 +40,7 @@ public class ExperienceTransmissionParticleEffect extends SimpleTransmissionPart
 		super(positionSource, arrivalInTicks);
 	}
 	
+	@Override
 	public ParticleType getType() {
 		return SpectrumParticleTypes.EXPERIENCE_TRANSMISSION;
 	}

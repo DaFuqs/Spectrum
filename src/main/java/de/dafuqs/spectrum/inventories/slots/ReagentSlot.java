@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import de.dafuqs.spectrum.recipe.potion_workshop.PotionWorkshopReactingRecipe;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.slot.Slot;
+import de.dafuqs.spectrum.recipe.potion_workshop.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.slot.*;
 
 public class ReagentSlot extends Slot {
 	

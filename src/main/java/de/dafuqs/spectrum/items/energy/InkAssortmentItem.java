@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.items.energy;
 
-import de.dafuqs.spectrum.energy.InkStorageItem;
-import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class InkAssortmentItem extends Item implements InkStorageItem<IndividualCappedInkStorage> {
 	

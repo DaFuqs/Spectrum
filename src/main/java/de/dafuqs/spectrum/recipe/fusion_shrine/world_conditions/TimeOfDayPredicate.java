@@ -10,7 +10,7 @@ import java.util.*;
 
 public class TimeOfDayPredicate implements WorldConditionPredicate {
 	
-	public TimeHelper.TimeOfDay timeOfDay;
+	public final TimeHelper.TimeOfDay timeOfDay;
 	
 	public TimeOfDayPredicate(TimeHelper.TimeOfDay timeOfDay) {
 		this.timeOfDay = timeOfDay;

@@ -16,9 +16,9 @@ import java.util.*;
 
 public class StatusEffectMobBlock extends MobBlock {
 	
-	protected StatusEffect statusEffect;
-	protected int amplifier;
-	protected int duration;
+	protected final StatusEffect statusEffect;
+	protected final int amplifier;
+	protected final int duration;
 	
 	public StatusEffectMobBlock(Settings settings, ParticleEffect particleEffect, StatusEffect statusEffect, int amplifier, int duration) {
 		super(settings, particleEffect);

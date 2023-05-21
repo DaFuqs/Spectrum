@@ -1,20 +1,14 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
 public interface SpiritVines {
 	
@@ -99,7 +93,7 @@ public interface SpiritVines {
 		
 		private final String name;
 		
-		private YieldType(String name) {
+		YieldType(String name) {
 			this.name = name;
 		}
 		
@@ -107,6 +101,7 @@ public interface SpiritVines {
 			return this.name;
 		}
 		
+		@Override
 		public String asString() {
 			return this.name;
 		}

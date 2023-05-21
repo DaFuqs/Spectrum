@@ -26,6 +26,7 @@ public class EnchantmentCanvasItem extends Item {
 	/**
 	 * clicked onto another stack
 	 */
+	@Override
 	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
 		if (clickType == ClickType.RIGHT) {
 			ItemStack otherStack = slot.getStack();
@@ -91,6 +92,7 @@ public class EnchantmentCanvasItem extends Item {
 		entity.playSound(SoundEvents.BLOCK_GRINDSTONE_USE, 0.8F, 0.8F + entity.getWorld().getRandom().nextFloat() * 0.4F);
 	}
 	
+	@Override
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		Optional<Item> boundItem = getItemBoundTo(stack);
 		if (boundItem.isPresent()) {

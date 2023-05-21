@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.Preenchanted;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class BedrockAxeItem extends AxeItem implements Preenchanted {
 	

@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.progression;
 
-import net.minecraft.client.color.item.ItemColorProvider;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.color.item.*;
+import net.minecraft.item.*;
 
 public class ToggleableItemColorProvider implements ItemColorProvider {
 	
-	ItemColorProvider vanillaProvider;
+	final ItemColorProvider vanillaProvider;
 	boolean shouldApply;
 	
 	public ToggleableItemColorProvider(ItemColorProvider vanillaProvider) {

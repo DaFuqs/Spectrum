@@ -1,21 +1,15 @@
 package de.dafuqs.spectrum.items.trinkets;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketItem;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.progression.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public abstract class SpectrumTrinketItem extends TrinketItem {
 	

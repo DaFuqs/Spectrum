@@ -17,7 +17,7 @@ public class WeatherPredicate implements WorldConditionPredicate {
 		NOT_THUNDER
 	}
 	
-	public WeatherCondition weatherCondition;
+	public final WeatherCondition weatherCondition;
 	
 	public WeatherPredicate(WeatherCondition weatherCondition) {
 		this.weatherCondition = weatherCondition;

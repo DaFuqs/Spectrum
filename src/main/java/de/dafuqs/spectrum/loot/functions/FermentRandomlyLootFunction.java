@@ -42,10 +42,12 @@ public class FermentRandomlyLootFunction extends ConditionalLootFunction {
 		this.downfall = downfall;
 	}
 	
+	@Override
 	public LootFunctionType getType() {
 		return SpectrumLootFunctionTypes.FERMENT_RANDOMLY;
 	}
 	
+	@Override
 	public ItemStack process(ItemStack stack, LootContext context) {
 		FermentationData fermentationData = null;
 		if (this.fermentationRecipeIdentifier != null) {

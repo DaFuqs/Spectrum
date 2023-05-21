@@ -63,6 +63,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		
 		this.propertyDelegate = new PropertyDelegate() {
+			@Override
 			public int get(int index) {
 				return switch (index) {
 					case 0 -> PotionWorkshopBlockEntity.this.brewTime;
@@ -71,6 +72,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				};
 			}
 			
+			@Override
 			public void set(int index, int value) {
 				switch (index) {
 					case 0 -> PotionWorkshopBlockEntity.this.brewTime = value;
@@ -79,6 +81,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				}
 			}
 			
+			@Override
 			public int size() {
 				return 3;
 			}
@@ -358,6 +361,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 	}
 	
+	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
@@ -380,6 +384,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 		}
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		Inventories.writeNbt(nbt, this.inventory);

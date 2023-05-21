@@ -7,38 +7,40 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class ClientPastelNetworkManager implements PastelNetworkManager {
-
-    protected List<PastelNetwork> networks = new ArrayList<>();
-
-    public void remove(PastelNetwork network) {
-        this.networks.remove(network);
-    }
-
-    public @Nullable PastelNetwork getNetwork(UUID uuid) {
-        for (PastelNetwork network : this.networks) {
-            if (network.getUUID() == uuid) {
-                return network;
-            }
-        }
-        return null;
-    }
-
-    public List<PastelNetwork> getNetworks() {
-        return networks;
-    }
-
-    public PastelNetwork joinNetwork(PastelNodeBlockEntity node, UUID uuid) {
-        PastelNetwork foundNetwork = null;
-        //noinspection ForLoopReplaceableByForEach
-        for (int i = 0; i < this.networks.size(); i++) {
-            PastelNetwork network = this.networks.get(i);
-            if (network.getUUID().equals(uuid)) {
-                network.addNode(node);
-                foundNetwork = network;
-            } else {
-                if (network.removeNode(node, NodeRemovalReason.MOVED)) {
-                    i--;
-                }
+	
+	protected final List<PastelNetwork> networks = new ArrayList<>();
+	
+	@Override
+	public void remove(PastelNetwork network) {
+		this.networks.remove(network);
+	}
+	
+	@Override
+	public @Nullable PastelNetwork getNetwork(UUID uuid) {
+		for (PastelNetwork network : this.networks) {
+			if (network.getUUID() == uuid) {
+				return network;
+			}
+		}
+		return null;
+	}
+	
+	public List<PastelNetwork> getNetworks() {
+		return networks;
+	}
+	
+	@Override
+	public PastelNetwork joinNetwork(PastelNodeBlockEntity node, UUID uuid) {
+		PastelNetwork foundNetwork = null;
+		for (int i = 0; i < this.networks.size(); i++) {
+			PastelNetwork network = this.networks.get(i);
+			if (network.getUUID().equals(uuid)) {
+				network.addNode(node);
+				foundNetwork = network;
+			} else {
+				if (network.removeNode(node, NodeRemovalReason.MOVED)) {
+					i--;
+				}
                 // network empty => delete
                 if (!network.hasNodes()) {
                     remove(network);

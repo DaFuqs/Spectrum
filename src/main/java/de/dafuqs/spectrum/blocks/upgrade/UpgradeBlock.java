@@ -76,11 +76,13 @@ public class UpgradeBlock extends BlockWithEntity {
 	public static List<Block> getUpgradeBlocks() {
 		return upgradeBlocks;
 	}
-
+	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE_UP;
 	}
-
+	
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
@@ -144,7 +146,8 @@ public class UpgradeBlock extends BlockWithEntity {
 	public int getUpgradeMod() {
 		return this.upgradeMod;
 	}
-
+	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}

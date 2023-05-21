@@ -31,19 +31,19 @@ import java.util.*;
 import java.util.function.*;
 
 public class PastelNodeBlockEntity extends BlockEntity implements FilterConfigurable, ExtendedScreenHandlerFactory {
-
-    public static int ITEM_FILTER_COUNT = 5;
-    public static int RANGE = 12;
-    protected PastelNetwork network;
-    protected @Nullable UUID networkUUIDToMerge = null;
-    protected long lastTransferTick = 0;
-    protected long cachedRedstonePowerTick = 0;
-    protected boolean cachedNoRedstonePower = true;
-
-    protected int itemCountUnderway = 0;
-
-    protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
-    protected Direction cachedDirection = null;
+	
+	public static final int ITEM_FILTER_COUNT = 5;
+	public static final int RANGE = 12;
+	protected PastelNetwork network;
+	protected @Nullable UUID networkUUIDToMerge = null;
+	protected long lastTransferTick = 0;
+	protected final long cachedRedstonePowerTick = 0;
+	protected boolean cachedNoRedstonePower = true;
+	
+	protected int itemCountUnderway = 0;
+	
+	protected BlockApiCache<Storage<ItemVariant>, Direction> connectedStorageCache = null;
+	protected Direction cachedDirection = null;
 
     private final List<Item> filterItems;
 

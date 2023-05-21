@@ -25,8 +25,8 @@ import java.util.*;
 public class HerdingStaffItem extends Item implements InkPowered {
 	
 	public static final InkColor USED_COLOR = InkColors.LIGHT_GRAY;
-	public static InkCost LURE_COST = new InkCost(USED_COLOR, 5);
-	public static InkCost TURN_TO_MEMORY_COST = new InkCost(USED_COLOR, 1000);
+	public static final InkCost LURE_COST = new InkCost(USED_COLOR, 5);
+	public static final InkCost TURN_TO_MEMORY_COST = new InkCost(USED_COLOR, 1000);
 	
 	public HerdingStaffItem(Settings settings) {
 		super(settings);
@@ -110,6 +110,7 @@ public class HerdingStaffItem extends Item implements InkPowered {
 		MinecraftClient.getInstance().getSoundManager().play(new NaturesStaffUseSoundInstance(user));
 	}
 	
+	@Override
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BOW;
 	}

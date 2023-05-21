@@ -7,7 +7,7 @@ import java.util.function.*;
 
 public enum BlockTargetType implements StringIdentifiable {
 	
-	AIR("air", (state) -> state.isAir()),
+	AIR("air", AbstractBlock.AbstractBlockState::isAir),
 	FLUID("fluid", (state) -> state.getFluidState().isEmpty()),
 	MOTION_BLOCKING("motion_blocking", (state) -> state.getMaterial().blocksMovement() || !state.getFluidState().isEmpty()),
 	SOLID("solid", (state) -> state.getMaterial().isSolid());
@@ -26,6 +26,7 @@ public enum BlockTargetType implements StringIdentifiable {
 		return this.name;
 	}
 	
+	@Override
 	public String asString() {
 		return this.name;
 	}

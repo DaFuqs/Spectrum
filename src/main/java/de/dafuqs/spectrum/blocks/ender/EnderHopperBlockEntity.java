@@ -1,31 +1,25 @@
 package de.dafuqs.spectrum.blocks.ender;
 
-import de.dafuqs.spectrum.helpers.InventoryHelper;
-import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EnderChestInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.text.Text;
-import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.text.*;
+import net.minecraft.util.function.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.*;
 
 public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWithName {
 	
@@ -70,12 +64,10 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 	}
 	
 	public static List<ItemEntity> getInputItemEntities(World world, EnderHopperBlockEntity enderHopperBlockEntity) {
-		return enderHopperBlockEntity.getInputAreaShape().getBoundingBoxes().stream().flatMap((box) -> {
-			return world.getEntitiesByClass(ItemEntity.class, box.offset(enderHopperBlockEntity.getHopperX() - 0.5D, enderHopperBlockEntity.getHopperY() - 0.5D, enderHopperBlockEntity.getHopperZ() - 0.5D), EntityPredicates.VALID_ENTITY).stream();
-		}).collect(Collectors.toList());
+		return enderHopperBlockEntity.getInputAreaShape().getBoundingBoxes().stream().flatMap((box) -> world.getEntitiesByClass(ItemEntity.class, box.offset(enderHopperBlockEntity.getHopperX() - 0.5D, enderHopperBlockEntity.getHopperY() - 0.5D, enderHopperBlockEntity.getHopperZ() - 0.5D), EntityPredicates.VALID_ENTITY).stream()).collect(Collectors.toList());
 	}
 	
-	private static boolean insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, Inventory sourceInventory) {
+	private static void insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, Inventory sourceInventory) {
 		UUID ownerUUID = enderHopperBlockEntity.getOwnerUUID();
 		if (ownerUUID != null) {
 			PlayerEntity playerEntity = enderHopperBlockEntity.getOwnerIfOnline();
@@ -89,15 +81,14 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 						if (!remainderStack.isEmpty()) {
 							enderHopperBlockEntity.setCooldown(40);
 						}
-						return true;
+						return;
 					}
 				}
 			}
 		}
-		return false;
 	}
 	
-	private static boolean insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, ItemEntity itemEntity) {
+	private static void insertIntoEnderChest(EnderHopperBlockEntity enderHopperBlockEntity, ItemEntity itemEntity) {
 		UUID ownerUUID = enderHopperBlockEntity.getOwnerUUID();
 		if (ownerUUID != null) {
 			PlayerEntity playerEntity = enderHopperBlockEntity.getOwnerIfOnline();
@@ -111,11 +102,9 @@ public class EnderHopperBlockEntity extends BlockEntity implements PlayerOwnedWi
 					} else {
 						itemEntity.setStack(remainderStack);
 					}
-					return true;
 				}
 			}
 		}
-		return false;
 	}
 	
 	public static ItemStack addToEnderInventory(ItemStack additionStack, PlayerEntity playerEntity, boolean test) {

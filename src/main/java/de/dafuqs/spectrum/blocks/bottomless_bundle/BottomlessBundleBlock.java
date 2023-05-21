@@ -28,6 +28,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 		super(settings);
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
@@ -90,6 +91,7 @@ public class BottomlessBundleBlock extends BlockWithEntity {
 		return SpectrumItems.BOTTOMLESS_BUNDLE.getDefaultStack();
 	}
 	
+	@Override
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof BottomlessBundleBlockEntity bottomlessBundleBlockEntity) {

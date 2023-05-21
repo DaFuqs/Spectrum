@@ -1,14 +1,13 @@
 package de.dafuqs.spectrum.items;
 
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import com.mojang.datafixers.util.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public interface ApplyFoodEffectsCallback {
 	

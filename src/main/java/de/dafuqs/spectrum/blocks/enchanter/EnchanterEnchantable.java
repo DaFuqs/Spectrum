@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
-import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.*;
 
 public interface EnchanterEnchantable {
 	

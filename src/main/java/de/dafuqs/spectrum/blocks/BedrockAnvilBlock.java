@@ -1,22 +1,18 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.inventories.BedrockAnvilScreenHandler;
-import net.minecraft.block.AnvilBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.FallingBlockEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.inventories.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class BedrockAnvilBlock extends AnvilBlock {
 	
@@ -27,15 +23,15 @@ public class BedrockAnvilBlock extends AnvilBlock {
 	}
 	
 	// Heavier => More damage
+	@Override
 	protected void configureFallingBlockEntity(FallingBlockEntity entity) {
 		entity.setHurtEntities(3.0F, 64);
 	}
 	
+	@Override
 	@Nullable
 	public NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
-		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> {
-			return new BedrockAnvilScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos));
-		}, TITLE);
+		return new SimpleNamedScreenHandlerFactory((syncId, inventory, player) -> new BedrockAnvilScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), TITLE);
 	}
 	
 	@Override

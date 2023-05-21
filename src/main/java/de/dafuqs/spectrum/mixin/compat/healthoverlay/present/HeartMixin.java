@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.mixin.compat.healthoverlay.present;
 
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import terrails.healthoverlay.heart.Heart;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import terrails.healthoverlay.heart.*;
 
 @Environment(EnvType.CLIENT)
 @Mixin(Heart.class)

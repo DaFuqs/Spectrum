@@ -22,7 +22,7 @@ import static de.dafuqs.spectrum.helpers.InWorldInteractionHelper.*;
 public class MilkingMobBlock extends MobBlock {
 	
 	protected static final int BUCKET_SEARCH_RANGE = 7;
-	protected int milkingRange;
+	protected final int milkingRange;
 	
 	public MilkingMobBlock(Settings settings, ParticleEffect particleEffect, int milkingRange) {
 		super(settings, particleEffect);

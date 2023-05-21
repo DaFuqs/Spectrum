@@ -43,9 +43,7 @@ public class FerociousBidentItem extends MalachiteBidentItem {
 			
 			int useTime = this.getMaxUseTime(stack) - remainingUseTicks;
 			if (useTime % 10 == 0) {
-				stack.damage(1, user, (p) -> {
-					p.sendToolBreakStatus(user.getActiveHand());
-				});
+				stack.damage(1, user, (p) -> p.sendToolBreakStatus(user.getActiveHand()));
 			}
 			yeetPlayer(player, getRiptideLevel(stack) / 10F - 0.75F);
 			player.useRiptide(20);

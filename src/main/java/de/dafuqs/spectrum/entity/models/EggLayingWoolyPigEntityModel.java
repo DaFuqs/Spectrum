@@ -11,12 +11,12 @@ import net.minecraft.util.math.*;
 @Environment(EnvType.CLIENT)
 public class EggLayingWoolyPigEntityModel extends EntityModel<EggLayingWoolyPigEntity> {
 	
-	public static ModelPart torso;
-	private final ModelPart head;
-	private final ModelPart left_foreleg;
-	private final ModelPart right_foreleg;
-	private final ModelPart left_backleg;
-	private final ModelPart right_backleg;
+	protected final ModelPart torso;
+	protected final ModelPart head;
+	protected final ModelPart left_foreleg;
+	protected final ModelPart right_foreleg;
+	protected final ModelPart left_backleg;
+	protected final ModelPart right_backleg;
 	
 	public EggLayingWoolyPigEntityModel(ModelPart root) {
 		super();

@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.items.conditional;
 
-import de.dafuqs.spectrum.items.LoomPatternProvider;
-import de.dafuqs.spectrum.items.SpectrumBannerPatternItem;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class CloakedItemWithLoomPattern extends CloakedItem implements LoomPatternProvider {
 	

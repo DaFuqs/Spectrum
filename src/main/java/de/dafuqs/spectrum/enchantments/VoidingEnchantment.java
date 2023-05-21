@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.enchantments;
 
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.util.Identifier;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.*;
 
 public class VoidingEnchantment extends SpectrumEnchantment {
 	

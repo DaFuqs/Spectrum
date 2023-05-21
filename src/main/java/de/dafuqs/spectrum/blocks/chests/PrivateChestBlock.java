@@ -1,19 +1,15 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class PrivateChestBlock extends SpectrumChestBlock {
 	
@@ -21,16 +17,19 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 		super(settings);
 	}
 	
+	@Override
 	@Nullable
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new PrivateChestBlockEntity(pos, state);
 	}
 	
+	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		return world.isClient ? checkType(type, SpectrumBlockEntities.PRIVATE_CHEST, PrivateChestBlockEntity::clientTick) : null;
 	}
 	
+	@Override
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof PrivateChestBlockEntity privateChestBlockEntity) {
@@ -47,6 +46,7 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 		}
 	}
 	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		if (itemStack.hasCustomName()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -59,6 +59,7 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 		}
 	}
 	
+	@Override
 	public boolean emitsRedstonePower(BlockState state) {
 		return true;
 	}
@@ -68,6 +69,7 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 	7: if the owner has it opened
 	15: if it was tried to open by a non-owner in the last 20 ticks
 	 */
+	@Override
 	public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof PrivateChestBlockEntity) {
@@ -82,6 +84,7 @@ public class PrivateChestBlock extends SpectrumChestBlock {
 		return 0;
 	}
 	
+	@Override
 	public int getStrongRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
 		return direction == Direction.UP ? state.getWeakRedstonePower(world, pos, direction) : 0;
 	}

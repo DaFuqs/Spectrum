@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.StairsBlock;
+import net.minecraft.block.*;
 
 public class SpectrumStairsBlock extends StairsBlock {
 	

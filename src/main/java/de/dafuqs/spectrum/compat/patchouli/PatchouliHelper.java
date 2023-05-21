@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import vazkii.patchouli.client.book.gui.GuiBookEntry;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.item.*;
+import vazkii.patchouli.client.book.gui.*;
 
-import java.util.List;
+import java.util.*;
 
 public class PatchouliHelper {
 	

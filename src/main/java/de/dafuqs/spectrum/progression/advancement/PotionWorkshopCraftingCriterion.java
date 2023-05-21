@@ -1,19 +1,16 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
-import java.util.List;
+import java.util.*;
 
 public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWorkshopCraftingCriterion.Conditions> {
 	
@@ -23,10 +20,12 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 		return new PotionWorkshopCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public PotionWorkshopCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		return new PotionWorkshopCraftingCriterion.Conditions(extended, itemPredicates);
@@ -44,6 +43,7 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 			this.itemPredicates = itemPredicates;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.addProperty("items", this.itemPredicates.toString());
@@ -51,7 +51,7 @@ public class PotionWorkshopCraftingCriterion extends AbstractCriterion<PotionWor
 		}
 		
 		public boolean matches(ItemStack itemStack) {
-			List<ItemPredicate> list = new ObjectArrayList(this.itemPredicates);
+			List<ItemPredicate> list = new ObjectArrayList<>(this.itemPredicates);
 			if (list.isEmpty()) {
 				return true;
 			} else {

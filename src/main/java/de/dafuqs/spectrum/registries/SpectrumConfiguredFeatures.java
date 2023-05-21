@@ -25,15 +25,15 @@ import static de.dafuqs.spectrum.helpers.WorldgenHelper.*;
 public class SpectrumConfiguredFeatures {
 	
 	// OVERWORLD
-	public static Identifier CLOVER_PATCH = SpectrumCommon.locate("clover_patch");
-	public static HashMap<DyeColor, RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for sapling growing
+	public static final Identifier CLOVER_PATCH = SpectrumCommon.locate("clover_patch");
+	public static final HashMap<DyeColor, RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>>> COLORED_TREE_CONFIGURED_FEATURES = new HashMap<>(); // for sapling growing
 	
 	// DEEPER DOWN
-	public static Identifier SNAPPING_IVY_PATCH = SpectrumCommon.locate("snapping_ivy_patch");
-	public static Identifier BRISTLE_SPROUT_PATCH = SpectrumCommon.locate("bristle_sprouts");
-	public static Identifier JADEITE_LOTUS = SpectrumCommon.locate("jadeite_lotus");
-	public static Identifier NEPHRITE_BLOSSOM_BULB = SpectrumCommon.locate("nephrite_blossom");
-	public static Map<Dragonjag.Variant, Identifier> DRAGONJAGS = new HashMap<>() {{
+	public static final Identifier SNAPPING_IVY_PATCH = SpectrumCommon.locate("snapping_ivy_patch");
+	public static final Identifier BRISTLE_SPROUT_PATCH = SpectrumCommon.locate("bristle_sprouts");
+	public static final Identifier JADEITE_LOTUS = SpectrumCommon.locate("jadeite_lotus");
+	public static final Identifier NEPHRITE_BLOSSOM_BULB = SpectrumCommon.locate("nephrite_blossom");
+	public static final Map<Dragonjag.Variant, Identifier> DRAGONJAGS = new HashMap<>() {{
 		put(Dragonjag.Variant.PINK, SpectrumCommon.locate("dragonjags/pink"));
 		put(Dragonjag.Variant.RED, SpectrumCommon.locate("dragonjags/red"));
 		put(Dragonjag.Variant.BLACK, SpectrumCommon.locate("dragonjags/black"));

@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.items.armor;
 
-import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.decoration.ArmorStandEntity;
+import net.minecraft.client.model.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.decoration.*;
 
 public class FullArmorModel extends BipedEntityModel<LivingEntity> {
 	final EquipmentSlot slot;

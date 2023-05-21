@@ -32,6 +32,7 @@ public class MultiToolItem extends PickaxeItem {
 	 * Like stripping logs, tilling grass paths etc.
 	 * To get tilled earth it has to converted to path and then tilled again
 	 */
+	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		ActionResult actionResult = Items.IRON_SHOVEL.useOnBlock(context);
 		if (actionResult == ActionResult.PASS) {

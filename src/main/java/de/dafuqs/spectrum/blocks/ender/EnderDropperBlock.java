@@ -28,14 +28,17 @@ public class EnderDropperBlock extends DispenserBlock {
 		super(settings);
 	}
 	
+	@Override
 	protected DispenserBehavior getBehaviorForItem(ItemStack stack) {
 		return BEHAVIOR;
 	}
 	
+	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new EnderDropperBlockEntity(pos, state);
 	}
 	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (placer instanceof ServerPlayerEntity) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -46,13 +49,13 @@ public class EnderDropperBlock extends DispenserBlock {
 		}
 	}
 	
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof EnderDropperBlockEntity) {
-				EnderDropperBlockEntity enderDropperBlockEntity = (EnderDropperBlockEntity) blockEntity;
+			if (blockEntity instanceof EnderDropperBlockEntity enderDropperBlockEntity) {
 				
 				if (!enderDropperBlockEntity.hasOwner()) {
 					enderDropperBlockEntity.setOwner(player);
@@ -61,9 +64,7 @@ public class EnderDropperBlock extends DispenserBlock {
 				if (enderDropperBlockEntity.isOwner(player)) {
 					EnderChestInventory enderChestInventory = player.getEnderChestInventory();
 					
-					player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
-						return GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, ProgressionStage.EARLYGAME);
-					}, enderDropperBlockEntity.getContainerName()));
+					player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, ProgressionStage.EARLYGAME), enderDropperBlockEntity.getContainerName()));
 					
 					PiglinBrain.onGuardedBlockInteracted(player, true);
 				} else {
@@ -74,6 +75,7 @@ public class EnderDropperBlock extends DispenserBlock {
 		}
 	}
 	
+	@Override
 	protected void dispense(ServerWorld world, BlockPos pos) {
 		BlockPointerImpl blockPointerImpl = new BlockPointerImpl(world, pos);
 		EnderDropperBlockEntity enderDropperBlockEntity = blockPointerImpl.getBlockEntity();

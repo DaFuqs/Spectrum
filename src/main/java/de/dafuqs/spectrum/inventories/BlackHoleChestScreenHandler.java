@@ -16,17 +16,18 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public class BlackHoleChestScreenHandler extends ScreenHandler {
-
+	
+	protected static final int ROWS = 3;
+	
 	protected final World world;
 	private final Inventory inventory;
-	protected int ROWS = 3;
 	protected BlackHoleChestBlockEntity blackHoleChestBlockEntity;
 	protected Inventory filterInventory;
-
+	
 	public BlackHoleChestScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packetByteBuf) {
 		this(syncId, playerInventory, packetByteBuf.readBlockPos(), FilterConfigurable.getFilterInventoryFromPacket(packetByteBuf));
 	}
-
+	
 	private BlackHoleChestScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos readBlockPos, Inventory filterInventory) {
 		this(SpectrumScreenHandlerTypes.BLACK_HOLE_CHEST, syncId, playerInventory, new SimpleInventory(BlackHoleChestBlockEntity.INVENTORY_SIZE), filterInventory);
 		BlockEntity blockEntity = playerInventory.player.world.getBlockEntity(readBlockPos);
@@ -82,6 +83,7 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 		}
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return this.inventory.canPlayerUse(player);
 	}
@@ -93,11 +95,11 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 		if (slot.hasStack()) {
 			ItemStack itemStack2 = slot.getStack();
 			itemStack = itemStack2.copy();
-			if (index < this.ROWS * 9) {
-				if (!this.insertItem(itemStack2, this.ROWS * 9, this.slots.size() - 6, true)) {
+			if (index < ROWS * 9) {
+				if (!this.insertItem(itemStack2, ROWS * 9, this.slots.size() - 6, true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (!this.insertItem(itemStack2, 0, this.ROWS * 9, false)) {
+			} else if (!this.insertItem(itemStack2, 0, ROWS * 9, false)) {
 				return ItemStack.EMPTY;
 			}
 			
@@ -114,7 +116,8 @@ public class BlackHoleChestScreenHandler extends ScreenHandler {
 	public Inventory getInventory() {
 		return this.inventory;
 	}
-
+	
+	@Override
 	public void close(PlayerEntity player) {
 		super.onClosed(player);
 		this.inventory.onClose(player);

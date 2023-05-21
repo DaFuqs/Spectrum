@@ -1,12 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.Preenchanted;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ToolMaterial;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class SpectrumPickaxeItem extends PickaxeItem implements Preenchanted {
 	
@@ -23,5 +21,5 @@ public class SpectrumPickaxeItem extends PickaxeItem implements Preenchanted {
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-	
+
 }

@@ -12,6 +12,7 @@ public class EmptyBodyControl extends BodyControl {
 		this.entity = entity;
 	}
 	
+	@Override
 	public void tick() {
 		entity.headYaw = entity.bodyYaw;
 		entity.bodyYaw = entity.getYaw();

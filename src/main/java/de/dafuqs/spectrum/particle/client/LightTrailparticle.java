@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.world.*;
+import net.minecraft.particle.*;
+import net.minecraft.util.math.*;
 
 public class LightTrailparticle extends AnimatedParticle {
     protected LightTrailparticle(ClientWorld world, double x, double y, double z,  double velocityX, double velocityY, double velocityZ, SpriteProvider spriteProvider) {
@@ -28,17 +27,18 @@ public class LightTrailparticle extends AnimatedParticle {
         setAlpha(MathHelper.lerp(fadeProgress, 0.8F, 0F));
         scale = MathHelper.lerp(fadeProgress, 0.2F, 0.1F);
     }
-
-    @Environment(EnvType.CLIENT)
-    public static class Factory implements ParticleFactory<DefaultParticleType> {
-        private final SpriteProvider spriteProvider;
-
-        public Factory(SpriteProvider spriteProvider) {
-            this.spriteProvider = spriteProvider;
-        }
-
-        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-            return new LightTrailparticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
-        }
-    }
+	
+	@Environment(EnvType.CLIENT)
+	public static class Factory implements ParticleFactory<DefaultParticleType> {
+		private final SpriteProvider spriteProvider;
+		
+		public Factory(SpriteProvider spriteProvider) {
+			this.spriteProvider = spriteProvider;
+		}
+		
+		@Override
+		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
+			return new LightTrailparticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
+		}
+	}
 }

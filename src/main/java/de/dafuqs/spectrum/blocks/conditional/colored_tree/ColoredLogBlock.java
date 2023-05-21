@@ -40,6 +40,7 @@ public class ColoredLogBlock extends PillarBlock implements RevelationAware, Col
 		return new Pair<>(this.asItem(), Blocks.OAK_LOG.asItem());
 	}
 	
+	@Override
 	public DyeColor getColor() {
 		return this.color;
 	}

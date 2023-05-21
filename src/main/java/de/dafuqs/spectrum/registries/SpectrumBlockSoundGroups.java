@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.*;
 
 public class SpectrumBlockSoundGroups {
 	

@@ -1,20 +1,17 @@
 package de.dafuqs.spectrum.blocks.lava_sponge;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
+import net.fabricmc.fabric.api.item.v1.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public class WetLavaSpongeItem extends BlockItem {
 	

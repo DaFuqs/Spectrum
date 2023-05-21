@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockSetTypes;
-import net.minecraft.block.PressurePlateBlock;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
 
 // TODO - Remove?
 public class SpectrumPressurePlateBlock extends PressurePlateBlock {

@@ -30,20 +30,24 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		this.lidAnimator = new ChestLidAnimator();
 		
 		this.stateManager = new ViewerCountManager() {
+			@Override
 			protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
 				playSound(world, pos, state, getOpenSound());
 				onOpen();
 			}
 			
+			@Override
 			protected void onContainerClose(World world, BlockPos pos, BlockState state) {
 				playSound(world, pos, state, getCloseSound());
 				onClose();
 			}
 			
+			@Override
 			protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
 				onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
 			}
 			
+			@Override
 			protected boolean isPlayerViewing(PlayerEntity player) {
 				ScreenHandler screenHandler = player.currentScreenHandler;
 				
@@ -71,6 +75,7 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		blockEntity.lidAnimator.step();
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public float getAnimationProgress(float tickDelta) {
 		return this.lidAnimator.getProgress(tickDelta);
@@ -84,6 +89,7 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 	
 	}
 	
+	@Override
 	public boolean onSyncedBlockEvent(int type, int data) {
 		if (type == 1) {
 			this.lidAnimator.setOpen(data > 0);
@@ -98,6 +104,7 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		world.addSyncedBlockEvent(pos, block, 1, newViewerCount);
 	}
 	
+	@Override
 	public void onOpen(PlayerEntity player) {
 		if (!player.isSpectator()) {
 			this.stateManager.openContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
@@ -105,6 +112,7 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		
 	}
 	
+	@Override
 	public void onClose(PlayerEntity player) {
 		if (!player.isSpectator()) {
 			this.stateManager.closeContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
@@ -130,6 +138,7 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		this.stateManager.updateViewerCount(this.getWorld(), this.getPos(), this.getCachedState());
 	}
 	
+	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		this.deserializeLootTable(tag);
@@ -137,6 +146,7 @@ public abstract class SpectrumChestBlockEntity extends LootableContainerBlockEnt
 		Inventories.readNbt(tag, this.inventory);
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		this.serializeLootTable(tag);

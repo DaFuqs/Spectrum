@@ -19,16 +19,16 @@ import dev.emi.trinkets.api.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.DamageTypeTags;
+import net.minecraft.nbt.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
@@ -71,22 +71,19 @@ public abstract class LivingEntityMixin {
 	public abstract boolean canHaveStatusEffect(StatusEffectInstance effect);
 
 	@Shadow
-	public abstract boolean removeStatusEffect(StatusEffect type);
-
-	@Shadow
-	public abstract boolean addStatusEffect(StatusEffectInstance effect);
-
-	@Shadow
 	protected ItemStack activeItemStack;
+
+	@Shadow
+	public abstract void readCustomDataFromNbt(NbtCompound nbt);
 
 	@Shadow
 	public abstract boolean damage(DamageSource source, float amount);
 
 	@Shadow
-	public abstract boolean hasNoDrag();
+	public abstract boolean removeStatusEffect(StatusEffect type);
 
-	@Shadow public abstract void readCustomDataFromNbt(NbtCompound nbt);
-
+	@Shadow
+	public abstract boolean addStatusEffect(StatusEffectInstance effect);
 
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
@@ -185,7 +182,6 @@ public abstract class LivingEntityMixin {
 				}
 
 				SpectrumDamageSources.recursiveDamage = false;
-				return;
 			}
 		}
 	}

@@ -14,7 +14,7 @@ import java.util.*;
 
 public class StructurePlacerItem extends Item implements CreativeOnlyItem {
 	
-	protected Identifier multiBlockIdentifier;
+	protected final Identifier multiBlockIdentifier;
 	
 	public StructurePlacerItem(Settings settings, Identifier multiBlockIdentifier) {
 		super(settings);

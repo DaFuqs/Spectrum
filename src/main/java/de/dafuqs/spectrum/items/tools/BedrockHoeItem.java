@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.Preenchanted;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class BedrockHoeItem extends HoeItem implements Preenchanted {
 	
@@ -29,7 +26,7 @@ public class BedrockHoeItem extends HoeItem implements Preenchanted {
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-	
+
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;

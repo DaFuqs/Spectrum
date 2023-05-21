@@ -107,6 +107,7 @@ public class RedstoneWirelessBlock extends AbstractRedstoneGateBlock implements 
 	/**
 	 * The block entity caches the output signal for performance
 	 */
+	@Override
 	protected int getOutputLevel(@NotNull BlockView world, BlockPos pos, BlockState state) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		return blockEntity instanceof RedstoneWirelessBlockEntity ? ((RedstoneWirelessBlockEntity) blockEntity).getCurrentSignal() : 0;

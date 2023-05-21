@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.blocks.melon;
 
-import net.minecraft.block.GourdBlock;
-import net.minecraft.block.StemBlock;
-import net.minecraft.item.Item;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
 
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class GlisteringStemBlock extends StemBlock {
 	

@@ -1,22 +1,17 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import de.dafuqs.revelationary.api.advancements.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 public abstract class SpectrumEnchantment extends Enchantment {
 	
-	protected Identifier unlockAdvancementIdentifier;
+	protected final Identifier unlockAdvancementIdentifier;
 	
 	protected SpectrumEnchantment(Rarity weight, EnchantmentTarget type, EquipmentSlot[] slotTypes, Identifier unlockAdvancementIdentifier) {
 		super(weight, type, slotTypes);

@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.math.BlockPos;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.nbt.*;
+import net.minecraft.util.math.*;
 
 // since SkullBlockEntity uses the fixed BlockEntityType.SKULL we have to create our own block entity :(
 // but since there is no player type / redstone interaction it should be a bit more performant than the vanilla one
@@ -17,6 +15,7 @@ public class SpectrumSkullBlockEntity extends BlockEntity {
 		super(SpectrumBlockEntities.SKULL, pos, state);
 	}
 	
+	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 	}

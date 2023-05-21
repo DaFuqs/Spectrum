@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class CompactingChestBlock extends SpectrumChestBlock {
 	
@@ -16,6 +14,7 @@ public class CompactingChestBlock extends SpectrumChestBlock {
 		super(settings);
 	}
 	
+	@Override
 	@Nullable
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new CompactingChestBlockEntity(pos, state);
@@ -27,6 +26,7 @@ public class CompactingChestBlock extends SpectrumChestBlock {
 		return checkType(type, SpectrumBlockEntities.COMPACTING_CHEST, CompactingChestBlockEntity::tick);
 	}
 	
+	@Override
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof CompactingChestBlockEntity compactingChestBlockEntity) {

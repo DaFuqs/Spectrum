@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Map;
+import java.util.*;
 
 public interface Preenchanted {
 	

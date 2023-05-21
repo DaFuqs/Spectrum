@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.Preenchanted;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.ToolMaterial;
-
-import java.util.Map;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
+import net.minecraft.util.collection.*;
+import java.util.*;
 
 public class BedrockShovelItem extends ShovelItem implements Preenchanted {
 	
@@ -29,7 +26,7 @@ public class BedrockShovelItem extends ShovelItem implements Preenchanted {
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-	
+
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;

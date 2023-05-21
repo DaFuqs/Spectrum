@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.blocks.ender;
 
-import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EnderChestInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
 
-import java.util.UUID;
+import java.util.*;
 
 public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedWithName {
 	
@@ -86,6 +86,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 		this.ownerName = playerEntity.getName().getString();
 	}
 	
+	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		
@@ -101,6 +102,7 @@ public class EnderDropperBlockEntity extends BlockEntity implements PlayerOwnedW
 		}
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		

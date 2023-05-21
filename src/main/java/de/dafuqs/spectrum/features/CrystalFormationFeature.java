@@ -12,22 +12,23 @@ import net.minecraft.world.gen.stateprovider.*;
  * A configurable GlowstoneBlobFeature that can grow both up- and downward
  */
 public class CrystalFormationFeature extends Feature<CrystalFormationFeatureFeatureConfig> {
-    
-    public CrystalFormationFeature(Codec<CrystalFormationFeatureFeatureConfig> configCodec) {
-        super(configCodec);
-    }
-    
-    public boolean generate(FeatureContext<CrystalFormationFeatureFeatureConfig> context) {
-        StructureWorldAccess structureWorldAccess = context.getWorld();
-        BlockPos blockPos = context.getOrigin();
-        Random random = context.getRandom();
-        if (!structureWorldAccess.isAir(blockPos)) {
-            return false;
-        } else {
-            CrystalFormationFeatureFeatureConfig config = context.getConfig();
-            
-            boolean upwards = false;
-            if (config.canGrowUpwards() && structureWorldAccess.getBlockState(blockPos.down()).isIn(config.canStartOnBlocks())) {
+	
+	public CrystalFormationFeature(Codec<CrystalFormationFeatureFeatureConfig> configCodec) {
+		super(configCodec);
+	}
+	
+	@Override
+	public boolean generate(FeatureContext<CrystalFormationFeatureFeatureConfig> context) {
+		StructureWorldAccess structureWorldAccess = context.getWorld();
+		BlockPos blockPos = context.getOrigin();
+		Random random = context.getRandom();
+		if (!structureWorldAccess.isAir(blockPos)) {
+			return false;
+		} else {
+			CrystalFormationFeatureFeatureConfig config = context.getConfig();
+			
+			boolean upwards = false;
+			if (config.canGrowUpwards() && structureWorldAccess.getBlockState(blockPos.down()).isIn(config.canStartOnBlocks())) {
                 upwards = true;
             } else if (!config.canGrowDownwards() || !structureWorldAccess.getBlockState(blockPos.up()).isIn(config.canStartOnBlocks())) {
                 return false;

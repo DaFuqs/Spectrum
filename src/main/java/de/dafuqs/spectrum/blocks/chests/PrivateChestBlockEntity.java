@@ -40,6 +40,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		return 0;
 	}
 	
+	@Override
 	protected void onInvOpenOrClose(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
 		super.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
 		
@@ -57,6 +58,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		}
 	}
 	
+	@Override
 	protected Text getContainerName() {
 		if (hasOwner()) {
 			return Text.translatable("block.spectrum.private_chest").append(Text.translatable("container.spectrum.owned_by_player", this.ownerName));
@@ -81,6 +83,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		this.updateRedstone(this.getPos(), this.world.getBlockState(pos));
 	}
 	
+	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		
@@ -102,6 +105,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		}
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		
@@ -120,6 +124,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		return this.ownerUUID;
 	}
 	
+	@Override
 	public String getOwnerName() {
 		return this.ownerName;
 	}

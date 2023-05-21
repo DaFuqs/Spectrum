@@ -1,12 +1,10 @@
 package de.dafuqs.spectrum.mixin.client.accessors;
 
-import net.minecraft.client.gui.hud.BossBarHud;
-import net.minecraft.client.gui.hud.ClientBossBar;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import net.minecraft.client.gui.hud.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.gen.*;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Mixin(BossBarHud.class)
 public interface BossBarHudAccessor {

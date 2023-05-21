@@ -1,13 +1,9 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.particle.AnimatedParticle;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleFactory;
-import net.minecraft.client.particle.SpriteProvider;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import net.fabricmc.api.*;
+import net.minecraft.client.particle.*;
+import net.minecraft.client.world.*;
+import net.minecraft.particle.*;
 
 @Environment(EnvType.CLIENT)
 public class HardcoreParticle extends AnimatedParticle {
@@ -37,6 +33,7 @@ public class HardcoreParticle extends AnimatedParticle {
 			this.spriteProvider = spriteProvider;
 		}
 		
+		@Override
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
 			return new HardcoreParticle(clientWorld, d, e, f, g, h, i, this.spriteProvider);
 		}

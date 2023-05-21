@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.dispenser.BlockPlacementDispenserBehavior;
-import net.minecraft.block.dispenser.DispenserBehavior;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.block.*;
+import net.minecraft.block.dispenser.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
 public class BlockPlacerBlock extends DispenserBlock {
 	

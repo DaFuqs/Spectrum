@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
+import de.dafuqs.spectrum.recipe.*;
 
 public class PagePotionWorkshopBrewing extends PagePotionWorkshop {
 	

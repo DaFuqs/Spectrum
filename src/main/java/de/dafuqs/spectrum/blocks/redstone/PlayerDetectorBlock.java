@@ -20,6 +20,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 		super(settings);
 	}
 	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (!world.isClient && placer instanceof PlayerEntity) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -29,6 +30,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 		}
 	}
 	
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
@@ -46,6 +48,7 @@ public class PlayerDetectorBlock extends DetectorBlock implements BlockEntityPro
 		}
 	}
 	
+	@Override
 	protected void updateState(BlockState state, World world, BlockPos pos) {
 		List<PlayerEntity> players = world.getEntitiesByType(EntityType.PLAYER, getBoxWithRadius(pos, 10), LivingEntity::isAlive);
 		

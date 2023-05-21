@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.registries.color;
 
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
+import net.minecraft.util.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public abstract class ColorRegistry<T> {
 	

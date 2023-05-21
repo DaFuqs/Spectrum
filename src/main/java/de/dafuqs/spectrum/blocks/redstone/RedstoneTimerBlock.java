@@ -1,34 +1,25 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.AbstractRedstoneGateBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockBox;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.tick.TickPriority;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 	
-	public static EnumProperty<TimingStep> ACTIVE_TIME = EnumProperty.of("active_time", TimingStep.class);
-	public static EnumProperty<TimingStep> INACTIVE_TIME = EnumProperty.of("inactive_time", TimingStep.class);
+	public static final EnumProperty<TimingStep> ACTIVE_TIME = EnumProperty.of("active_time", TimingStep.class);
+	public static final EnumProperty<TimingStep> INACTIVE_TIME = EnumProperty.of("inactive_time", TimingStep.class);
 	
 	public RedstoneTimerBlock(AbstractBlock.Settings settings) {
 		super(settings);
@@ -44,6 +35,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		}
 	}
 	
+	@Override
 	public ActionResult onUse(BlockState state, @NotNull World world, BlockPos pos, @NotNull PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (!player.getAbilities().allowModifyWorld) {
 			return ActionResult.PASS;
@@ -57,10 +49,12 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		}
 	}
 	
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING, POWERED, ACTIVE_TIME, INACTIVE_TIME);
 	}
 	
+	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		if (world instanceof ServerWorld serverWorld) {
@@ -71,6 +65,7 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		}
 	}
 	
+	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		BlockState newState = state.with(POWERED, !state.get(POWERED));
 		world.setBlockState(pos, newState, 3);
@@ -78,10 +73,12 @@ public class RedstoneTimerBlock extends AbstractRedstoneGateBlock {
 		world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.NORMAL);
 	}
 	
+	@Override
 	protected int getPower(World world, BlockPos pos, BlockState state) {
 		return world.getBlockState(pos).get(POWERED) ? 15 : 0;
 	}
 	
+	@Override
 	protected void updatePowered(World world, BlockPos pos, BlockState state) {
 		boolean bl = state.get(POWERED);
 		if (!world.getBlockTickScheduler().isTicking(pos, this)) {

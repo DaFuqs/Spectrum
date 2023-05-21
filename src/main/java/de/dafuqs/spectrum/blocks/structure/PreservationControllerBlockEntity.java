@@ -1,31 +1,26 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Identifier;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.nbt.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class PreservationControllerBlockEntity extends BlockEntity {
 	
@@ -82,6 +77,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		blockEntity.destinationPos = Support.directionalOffset(blockEntity.pos, blockEntity.entranceOffset, blockState.get(PreservationControllerBlock.FACING));
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		
@@ -115,6 +111,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 		}
 	}
 	
+	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		

@@ -21,10 +21,12 @@ public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriteri
 		return new UpgradePlaceCriterion.Conditions(EntityPredicate.Extended.EMPTY, blockPredicate, countRange, speedRange, experienceRange, efficiencyRange, yieldRange);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public UpgradePlaceCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		BlockPredicate blockPredicate = BlockPredicate.fromJson(jsonObject.get("block"));
 		NumberRange.IntRange countRange = NumberRange.IntRange.fromJson(jsonObject.get("count"));
@@ -57,6 +59,7 @@ public class UpgradePlaceCriterion extends AbstractCriterion<UpgradePlaceCriteri
 			this.yieldRange = yieldRange;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("block", this.blockPredicate.toJson());

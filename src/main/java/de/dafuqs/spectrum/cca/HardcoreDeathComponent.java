@@ -1,24 +1,16 @@
 package de.dafuqs.spectrum.cca;
 
-import com.mojang.authlib.GameProfile;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import dev.onyxstudios.cca.api.v3.component.Component;
-import dev.onyxstudios.cca.api.v3.component.ComponentKey;
-import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
-import dev.onyxstudios.cca.api.v3.level.LevelComponentFactoryRegistry;
-import dev.onyxstudios.cca.api.v3.level.LevelComponentInitializer;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtHelper;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.world.GameMode;
-import org.jetbrains.annotations.NotNull;
+import com.mojang.authlib.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.onyxstudios.cca.api.v3.component.*;
+import dev.onyxstudios.cca.api.v3.level.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.nbt.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class HardcoreDeathComponent implements Component, LevelComponentInitializer {
 	

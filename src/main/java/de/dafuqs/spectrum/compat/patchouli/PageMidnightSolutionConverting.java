@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.fluid_converting.MidnightSolutionConvertingRecipe;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.*;
+import net.minecraft.util.*;
 
 public class PageMidnightSolutionConverting extends PageFluidConverting<MidnightSolutionConvertingRecipe> {
 	

@@ -76,6 +76,7 @@ public abstract class SpectrumFluid extends FlowableFluid {
 		return 100.0F;
 	}
 	
+	@Override
 	public Optional<SoundEvent> getBucketFillSound() {
 		return Optional.of(SoundEvents.ITEM_BUCKET_FILL);
 	}

@@ -38,9 +38,7 @@ public class GlassCrestWorkstaffItem extends WorkstaffItem {
                 if (!world.isClient) {
                     MiningProjectileEntity.shoot(world, user, user.getStackInHand(hand));
                 }
-                stack.damage(2, user, (e) -> {
-                    e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
-                });
+                stack.damage(2, user, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
             }
         }
         return result;

@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.client.world.*;
+import net.minecraft.particle.*;
+import net.minecraft.util.math.random.*;
 
 @Environment(EnvType.CLIENT)
 public class VoidFogParticle extends SpriteBillboardParticle {

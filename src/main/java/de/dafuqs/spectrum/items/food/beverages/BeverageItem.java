@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.items.food.beverages;
 
-import de.dafuqs.spectrum.items.food.DrinkItem;
-import de.dafuqs.spectrum.items.food.beverages.properties.BeverageProperties;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.items.food.*;
+import de.dafuqs.spectrum.items.food.beverages.properties.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public abstract class BeverageItem extends DrinkItem {
 	

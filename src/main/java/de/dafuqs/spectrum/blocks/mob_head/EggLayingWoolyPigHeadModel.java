@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.blocks.mob_head;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.block.entity.SkullBlockEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.block.entity.*;
+import net.minecraft.client.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class EggLayingWoolyPigHeadModel extends SkullBlockEntityModel {
@@ -31,11 +30,13 @@ public class EggLayingWoolyPigHeadModel extends SkullBlockEntityModel {
 		return TexturedModelData.of(modelData, 128, 128);
 	}
 	
+	@Override
 	public void setHeadRotation(float animationProgress, float yaw, float pitch) {
 		this.head.yaw = yaw * 0.017453292F;
 		this.head.pitch = pitch * 0.017453292F;
 	}
 	
+	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
 		matrices.push();
 		matrices.scale(0.86F, 0.86F, 0.86F);

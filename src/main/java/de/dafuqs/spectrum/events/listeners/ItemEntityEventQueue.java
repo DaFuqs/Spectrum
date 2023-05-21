@@ -26,9 +26,9 @@ public class ItemEntityEventQueue extends EventQueue<ItemEntityEventQueue.EventE
 	}
 	
 	public static class EventEntry {
-		public GameEvent gameEvent;
-		public ItemEntity itemEntity;
-		public int distance;
+		public final GameEvent gameEvent;
+		public final ItemEntity itemEntity;
+		public final int distance;
 		
 		public EventEntry(GameEvent gameEvent, ItemEntity itemEntity, int distance) {
 			this.gameEvent = gameEvent;

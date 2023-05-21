@@ -48,9 +48,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
 		ItemStack itemStack = super.getPickStack(world, pos, state);
-		world.getBlockEntity(pos, SpectrumBlockEntities.SHOOTING_STAR).ifPresent((blockEntity) -> {
-			blockEntity.setStackNbt(itemStack);
-		});
+		world.getBlockEntity(pos, SpectrumBlockEntities.SHOOTING_STAR).ifPresent((blockEntity) -> blockEntity.setStackNbt(itemStack));
 		return itemStack;
 	}
 	
@@ -58,9 +56,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 	public void onBreak(@NotNull World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		if (!world.isClient && !player.isCreative()) {
 			ItemStack itemStack = this.shootingStarType.getBlock().asItem().getDefaultStack();
-			world.getBlockEntity(pos, SpectrumBlockEntities.SHOOTING_STAR).ifPresent((blockEntity) -> {
-				ShootingStarItem.getWithRemainingHits(itemStack, blockEntity.remainingHits, blockEntity.hardened);
-			});
+			world.getBlockEntity(pos, SpectrumBlockEntities.SHOOTING_STAR).ifPresent((blockEntity) -> ShootingStarItem.getWithRemainingHits(itemStack, blockEntity.remainingHits, blockEntity.hardened));
 			
 			ItemEntity itemEntity = new ItemEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, itemStack);
 			itemEntity.setToDefaultPickupDelay();
@@ -241,6 +237,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 	
 	public static class ShootingStarBlockDispenserBehavior extends ItemDispenserBehavior {
 		
+		@Override
 		public ItemStack dispenseSilently(@NotNull BlockPointer pointer, @NotNull ItemStack stack) {
 			Direction direction = pointer.getBlockState().get(DispenserBlock.FACING);
 			World world = pointer.getWorld();

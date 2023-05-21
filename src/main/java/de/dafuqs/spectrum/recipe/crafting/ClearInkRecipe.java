@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
-import de.dafuqs.spectrum.energy.InkStorageItem;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialCraftingRecipe;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.recipe.book.CraftingRecipeCategory;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.energy.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.*;
+import net.minecraft.registry.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
 public class ClearInkRecipe extends SpecialCraftingRecipe {
 	
@@ -19,6 +17,7 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 		super(identifier, category);
 	}
 	
+	@Override
 	public boolean matches(CraftingInventory craftingInventory, World world) {
 		boolean inkStorageItemFound = false;
 		
@@ -36,6 +35,7 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 		return inkStorageItemFound;
 	}
 	
+	@Override
 	public ItemStack craft(CraftingInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack itemStack;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
@@ -49,10 +49,12 @@ public class ClearInkRecipe extends SpecialCraftingRecipe {
 		return ItemStack.EMPTY;
 	}
 	
+	@Override
 	public boolean fits(int width, int height) {
 		return width * height >= 1;
 	}
 	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
 	}

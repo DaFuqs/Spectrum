@@ -15,87 +15,87 @@ public class SpectrumStatusEffects {
 	 * Clears negative effects on the entity
 	 * and makes it immune against new ones
 	 */
-	public static StatusEffect IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5));
+	public static final StatusEffect IMMUNITY = registerStatusEffect("immunity", new ImmunityStatusEffect(StatusEffectCategory.NEUTRAL, 0x4bbed5));
 	
 	/**
 	 * Like Saturation, but not OP
 	 */
-	public static StatusEffect NOURISHING = registerStatusEffect("nourishing", new NourishingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2324f8));
+	public static final StatusEffect NOURISHING = registerStatusEffect("nourishing", new NourishingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x2324f8));
 	
 	/**
 	 * Rerolls loot table entry counts based on chance (like with fortune/looting) and takes the best one
 	 */
-	public static StatusEffect ANOTHER_ROLL = registerStatusEffect("another_roll", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xa1ce00));
+	public static final StatusEffect ANOTHER_ROLL = registerStatusEffect("another_roll", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xa1ce00));
 	
 	/**
 	 * Stops natural regeneration
 	 * and prevents sprinting
 	 */
-	public static StatusEffect SCARRED = registerStatusEffect("scarred", new ScarredStatusEffect(StatusEffectCategory.HARMFUL, 0x5b1d1d));
+	public static final StatusEffect SCARRED = registerStatusEffect("scarred", new ScarredStatusEffect(StatusEffectCategory.HARMFUL, 0x5b1d1d));
 	
 	/**
 	 * Increases all incoming damage by potency %
 	 */
 	public static final float VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL = 0.25F;
-	public static StatusEffect VULNERABILITY = registerStatusEffect("vulnerability", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x353535));
+	public static final StatusEffect VULNERABILITY = registerStatusEffect("vulnerability", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x353535));
 	
 	/**
 	 * Removes gravity to the entity
 	 * entities will fall slower and with high potencies start levitating
 	 */
-	public static StatusEffect LIGHTWEIGHT = registerStatusEffect("lightweight", new GravityStatusEffect(StatusEffectCategory.NEUTRAL, 0x00dde4, 0.02F));
+	public static final StatusEffect LIGHTWEIGHT = registerStatusEffect("lightweight", new GravityStatusEffect(StatusEffectCategory.NEUTRAL, 0x00dde4, 0.02F));
 	
 	/**
 	 * Adds gravity to the entity
 	 * flying mobs will fall and be nearly unable to fall (phantom, ghast)
 	 */
-	public static StatusEffect DENSITY = registerStatusEffect("density", new GravityStatusEffect(StatusEffectCategory.HARMFUL, 0x671a25, -0.02F));
-
+	public static final StatusEffect DENSITY = registerStatusEffect("density", new GravityStatusEffect(StatusEffectCategory.HARMFUL, 0x671a25, -0.02F));
+	
 	/**
 	 * Increases attack speed
 	 */
-	public static StatusEffect SWIFTNESS = registerStatusEffect("swiftness", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffe566)
+	public static final StatusEffect SWIFTNESS = registerStatusEffect("swiftness", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0xffe566)
 			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "3c2c6c5e-0a9f-4a0a-8ded-314ae028a753", 2 * 0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL));
-
+	
 	/**
 	 * Decreases attack speed
 	 */
-	public static StatusEffect STIFFNESS = registerStatusEffect("stiffness", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x7e7549))
+	public static final StatusEffect STIFFNESS = registerStatusEffect("stiffness", new SpectrumStatusEffect(StatusEffectCategory.HARMFUL, 0x7e7549))
 			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "91e58b5a-d8d9-4037-a520-18c3d7230502", 2 * -0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 	
 	/**
 	 * Reduces incoming magic damage by 1 point / level
 	 */
-	public static StatusEffect MAGIC_ANNULATION = registerStatusEffect("magic_annulation", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x7a1082))
+	public static final StatusEffect MAGIC_ANNULATION = registerStatusEffect("magic_annulation", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x7a1082))
 			.addAttributeModifier(AdditionalEntityAttributes.MAGIC_PROTECTION, "2d307e1f-fcc5-4c53-9821-3a7da4a6ef19", 1, EntityAttributeModifier.Operation.ADDITION);
 	
 	/**
 	 * Like poison, but is able to kill
 	 */
-	public static StatusEffect DEADLY_POISON = registerStatusEffect("deadly_poison", new DeadlyPoisonStatusEffect(StatusEffectCategory.HARMFUL, 5149489));
+	public static final StatusEffect DEADLY_POISON = registerStatusEffect("deadly_poison", new DeadlyPoisonStatusEffect(StatusEffectCategory.HARMFUL, 5149489));
 	
 	/**
 	 * Increases toughness. Simple, effective
 	 */
-	public static StatusEffect TOUGHNESS = registerStatusEffect("toughness", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x28bbe0)
+	public static final StatusEffect TOUGHNESS = registerStatusEffect("toughness", new SpectrumStatusEffect(StatusEffectCategory.BENEFICIAL, 0x28bbe0)
 			.addAttributeModifier(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, "599817d7-e8d2-4cbc-962b-59b7050ca59c", 1.0, EntityAttributeModifier.Operation.ADDITION));
 	
 	/**
 	 * Ouch.
 	 */
-	public static StatusEffect EFFECT_PROLONGING = registerStatusEffect("effect_prolonging", new EffectProlongingStatusEffect(StatusEffectCategory.BENEFICIAL, 0xc081d5));
+	public static final StatusEffect EFFECT_PROLONGING = registerStatusEffect("effect_prolonging", new EffectProlongingStatusEffect(StatusEffectCategory.BENEFICIAL, 0xc081d5));
 	
 	/**
 	 * Ouch.
 	 */
-	public static StatusEffect LIFE_DRAIN = registerStatusEffect("life_drain", new LifeDrainStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222)
+	public static final StatusEffect LIFE_DRAIN = registerStatusEffect("life_drain", new LifeDrainStatusEffect(StatusEffectCategory.NEUTRAL, 0x222222)
 			.addAttributeModifier(EntityAttributes.GENERIC_MAX_HEALTH, LifeDrainStatusEffect.ATTRIBUTE_UUID_STRING, -1.0, EntityAttributeModifier.Operation.ADDITION));
 	
 	/**
 	 * Gives loads of buffs, but the player will be handled as if they were playing hardcore
 	 */
-	public static StatusEffect ASCENSION = registerStatusEffect("ascension", new AscensionStatusEffect(StatusEffectCategory.BENEFICIAL, 0xdff9fc));
-	public static StatusEffect DIVINITY = registerStatusEffect("divinity", new DivinityStatusEffect(StatusEffectCategory.BENEFICIAL, 0xdff9fc)
+	public static final StatusEffect ASCENSION = registerStatusEffect("ascension", new AscensionStatusEffect(StatusEffectCategory.BENEFICIAL, 0xdff9fc));
+	public static final StatusEffect DIVINITY = registerStatusEffect("divinity", new DivinityStatusEffect(StatusEffectCategory.BENEFICIAL, 0xdff9fc)
 			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_SPEED, "2a0a2299-1387-47eb-a120-58bc70a739d8", 2 * 0.10000000149011612D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
 			.addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, "b8b33b2c-1804-4ec6-9430-7d1a85f9b13b", 2 * 0.20000000298023224D, EntityAttributeModifier.Operation.MULTIPLY_TOTAL)
 			.addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, "b03b6e37-1dc5-4a93-bbae-0ea96c5bd8f8", 5.0D, EntityAttributeModifier.Operation.ADDITION)

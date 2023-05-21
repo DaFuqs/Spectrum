@@ -26,8 +26,8 @@ public class WirelessRedstoneSignalEventQueue extends EventQueue<WirelessRedston
 	}
 	
 	public static class EventEntry {
-		public RedstoneTransferGameEvent gameEvent;
-		public int distance;
+		public final RedstoneTransferGameEvent gameEvent;
+		public final int distance;
 		
 		public EventEntry(RedstoneTransferGameEvent gameEvent, int distance) {
 			this.gameEvent = gameEvent;

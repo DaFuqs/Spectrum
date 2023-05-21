@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.energy.color;
 
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import org.joml.Vector3f;
+import net.minecraft.util.*;
+import org.joml.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class CompoundColor extends InkColor {
 	

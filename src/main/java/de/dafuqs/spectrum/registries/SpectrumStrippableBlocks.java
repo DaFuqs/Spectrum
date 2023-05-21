@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.registries;
 
-import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.fabricmc.fabric.api.registry.*;
 
 public class SpectrumStrippableBlocks {
 	

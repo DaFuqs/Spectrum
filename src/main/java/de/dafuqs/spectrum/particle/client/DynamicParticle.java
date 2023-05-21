@@ -24,6 +24,7 @@ public class DynamicParticle extends SpriteBillboardParticle {
 		this.velocityZ = velocityZ;
 	}
 	
+	@Override
 	public int getBrightness(float tint) {
 		if (glowInTheDark) {
 			return LightmapTextureManager.MAX_LIGHT_COORDINATE;

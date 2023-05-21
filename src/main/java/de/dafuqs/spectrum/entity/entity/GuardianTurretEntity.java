@@ -404,9 +404,11 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			super(entity);
 		}
 		
+		@Override
 		protected void clampHeadYaw() {
 		}
 		
+		@Override
 		protected Optional<Float> getTargetYaw() {
 			Direction attachedDirection = GuardianTurretEntity.this.getAttachedFace().getOpposite();
 			Vec3f southVectorCopy = GuardianTurretEntity.SOUTH_VECTOR.copy();
@@ -423,6 +425,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			return !(Math.abs(g) > 1.0E-5F) && !(Math.abs(h) > 1.0E-5F) ? Optional.empty() : Optional.of((float) (MathHelper.atan2((-g), h) * 57.2957763671875));
 		}
 		
+		@Override
 		protected Optional<Float> getTargetPitch() {
 			return Optional.of(0.0F);
 		}
@@ -438,6 +441,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
 		}
 		
+		@Override
 		public boolean canStart() {
 			LivingEntity livingEntity = GuardianTurretEntity.this.getTarget();
 			if (livingEntity != null && livingEntity.isAlive()) {
@@ -447,19 +451,23 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			}
 		}
 		
+		@Override
 		public void start() {
 			this.counter = 20;
 			GuardianTurretEntity.this.setPeekAmount(100);
 		}
 		
+		@Override
 		public void stop() {
 			GuardianTurretEntity.this.setPeekAmount(0);
 		}
 		
+		@Override
 		public boolean shouldRunEveryTick() {
 			return true;
 		}
 		
+		@Override
 		public void tick() {
 			if (GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL) {
 				--this.counter;
@@ -490,19 +498,23 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 		PeekGoal() {
 		}
 		
+		@Override
 		public boolean canStart() {
 			return GuardianTurretEntity.this.getTarget() == null && GuardianTurretEntity.this.random.nextInt(toGoalTicks(40)) == 0 && GuardianTurretEntity.this.canStay(GuardianTurretEntity.this.getBlockPos(), GuardianTurretEntity.this.getAttachedFace());
 		}
 		
+		@Override
 		public boolean shouldContinue() {
 			return GuardianTurretEntity.this.getTarget() == null && this.counter > 0;
 		}
 		
+		@Override
 		public void start() {
 			this.counter = this.getTickCount(20 * (1 + GuardianTurretEntity.this.random.nextInt(3)));
 			GuardianTurretEntity.this.setPeekAmount(30);
 		}
 		
+		@Override
 		public void stop() {
 			if (GuardianTurretEntity.this.getTarget() == null) {
 				GuardianTurretEntity.this.setPeekAmount(0);
@@ -510,6 +522,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			
 		}
 		
+		@Override
 		public void tick() {
 			--this.counter;
 		}
@@ -523,10 +536,12 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			super(turret, PlayerEntity.class, true);
 		}
 		
+		@Override
 		public boolean canStart() {
 			return GuardianTurretEntity.this.world.getDifficulty() != Difficulty.PEACEFUL && super.canStart();
 		}
 		
+		@Override
 		protected Box getSearchBox(double distance) {
 			Direction direction = ((GuardianTurretEntity) this.mob).getAttachedFace();
 			if (direction.getAxis() == Direction.Axis.X) {
@@ -545,10 +560,12 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			super(turret, LivingEntity.class, 10, true, false, (entity) -> entity instanceof Monster);
 		}
 		
+		@Override
 		public boolean canStart() {
 			return this.mob.getScoreboardTeam() != null && super.canStart();
 		}
 		
+		@Override
 		protected Box getSearchBox(double distance) {
 			Direction direction = ((GuardianTurretEntity) this.mob).getAttachedFace();
 			if (direction.getAxis() == Direction.Axis.X) {
@@ -564,6 +581,7 @@ public class GuardianTurretEntity extends GolemEntity implements Monster {
 			super(mobEntity);
 		}
 		
+		@Override
 		public void tick() {
 		}
 	}

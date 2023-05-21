@@ -13,7 +13,7 @@ import org.jetbrains.annotations.*;
 public class EnchantmentUpgradeCategory extends EnchanterCategory<EnchantmentUpgradeDisplay> {
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<EnchantmentUpgradeDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.ENCHANTMENT_UPGRADE;
 	}
 	

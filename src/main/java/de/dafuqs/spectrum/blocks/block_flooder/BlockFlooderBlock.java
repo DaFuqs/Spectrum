@@ -28,8 +28,8 @@ public class BlockFlooderBlock extends BlockWithEntity {
 		put(BlockTags.SAND, Blocks.SAND);
 	}};
 	public static final List<TagKey<Block>> exchangeBlockTags = ImmutableList.copyOf(exchangeableBlocks.keySet()); // for quick lookup
-	public short MAX_DISTANCE = 10;
-	public BlockState DEFAULT_BLOCK_STATE = Blocks.COBBLESTONE.getDefaultState();
+	public final short MAX_DISTANCE = 10;
+	public final BlockState DEFAULT_BLOCK_STATE = Blocks.COBBLESTONE.getDefaultState();
 	
 	public BlockFlooderBlock(Settings settings) {
 		super(settings);
@@ -55,6 +55,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}

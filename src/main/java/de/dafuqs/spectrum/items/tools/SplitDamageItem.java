@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.items.tools;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Pair;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public interface SplitDamageItem {
 

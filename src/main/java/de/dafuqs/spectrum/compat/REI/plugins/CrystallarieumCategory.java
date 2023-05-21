@@ -24,7 +24,7 @@ public class CrystallarieumCategory extends GatedDisplayCategory<CrystallarieumD
 	private static final EntryIngredient CRYSTALLARIEUM = EntryIngredients.of(SpectrumBlocks.CRYSTALLARIEUM);
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<CrystallarieumDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.CRYSTALLARIEUM;
 	}
 	

@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.google.common.collect.Maps;
-import de.dafuqs.spectrum.registries.SpectrumWoodTypes;
-import net.minecraft.block.FenceGateBlock;
-import net.minecraft.block.WoodType;
-import net.minecraft.util.DyeColor;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.util.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class ColoredFenceGateBlock extends FenceGateBlock {
 	

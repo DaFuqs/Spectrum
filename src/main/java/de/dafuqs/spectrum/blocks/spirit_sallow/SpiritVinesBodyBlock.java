@@ -1,26 +1,18 @@
 package de.dafuqs.spectrum.blocks.spirit_sallow;
 
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.AbstractPlantBlock;
-import net.minecraft.block.AbstractPlantStemBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 
 public class SpiritVinesBodyBlock extends AbstractPlantBlock implements SpiritVines {
 	
@@ -32,6 +24,7 @@ public class SpiritVinesBodyBlock extends AbstractPlantBlock implements SpiritVi
 		this.gemstoneColor = gemstoneColor;
 	}
 	
+	@Override
 	protected AbstractPlantStemBlock getStem() {
 		switch (gemstoneColor) {
 			case MAGENTA -> {
@@ -52,31 +45,38 @@ public class SpiritVinesBodyBlock extends AbstractPlantBlock implements SpiritVi
 		}
 	}
 	
+	@Override
 	protected BlockState copyState(BlockState from, BlockState to) {
 		return to.with(YIELD, from.get(YIELD));
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
 		return new ItemStack(SpiritVines.getYieldItem(state, true));
 	}
 	
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		return SpiritVines.pick(state, world, pos);
 	}
 	
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(YIELD);
 	}
-	
+
+	@Override
 	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
 		return false;
 	}
 	
+	@Override
 	public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
 		return true;
 	}
 	
+	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
 		world.setBlockState(pos, state.with(YIELD, YieldType.NONE), 2);
 	}

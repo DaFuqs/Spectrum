@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import de.dafuqs.spectrum.energy.InkStorageItem;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.slot.Slot;
+import de.dafuqs.spectrum.energy.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.slot.*;
 
 public class InkInputSlot extends Slot {
 	

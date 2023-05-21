@@ -1,27 +1,22 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import de.dafuqs.spectrum.helpers.AoEHelper;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolItem;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.entity.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.particle.*;
+import net.minecraft.block.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.world.*;
 
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public class MiningProjectileEntity extends MagicProjectileEntity {
-
-	private int miningRange = 1;
+	
+	private static final int MINING_RANGE = 1;
 	private ItemStack toolStack = ItemStack.EMPTY;
 
 	public MiningProjectileEntity(EntityType<MiningProjectileEntity> type, World world) {
@@ -39,13 +34,12 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 		this.setOwner(owner);
 		this.setRotation(owner.getYaw(), owner.getPitch());
 	}
-
-	public static MiningProjectileEntity shoot(World world, LivingEntity entity, ItemStack stack) {
+	
+	public static void shoot(World world, LivingEntity entity, ItemStack stack) {
 		MiningProjectileEntity projectile = new MiningProjectileEntity(world, entity);
 		projectile.setVelocity(entity, entity.getPitch(), entity.getYaw(), 0.0F, 2.0F, 1.0F);
 		projectile.toolStack = stack.copy();
 		world.spawnEntity(projectile);
-		return projectile;
 	}
 
 	@Override
@@ -83,7 +77,7 @@ public class MiningProjectileEntity extends MagicProjectileEntity {
 				int efficiency = EnchantmentHelper.getLevel(Enchantments.EFFICIENCY, this.toolStack);
 				return state.getBlock().getHardness() <= miningLevel + efficiency;
 			};
-			AoEHelper.breakBlocksAround(player, this.toolStack, blockHitResult.getBlockPos(), this.miningRange, minablePredicate);
+			AoEHelper.breakBlocksAround(player, this.toolStack, blockHitResult.getBlockPos(), MINING_RANGE, minablePredicate);
 		}
 
 		this.discard();

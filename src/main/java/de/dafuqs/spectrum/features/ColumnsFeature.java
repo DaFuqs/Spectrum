@@ -16,28 +16,29 @@ import java.util.*;
  * a BasaltColumnsFeature with configurable block state
  */
 public class ColumnsFeature extends Feature<ColumnsFeatureConfig> {
-
-    private static final ImmutableList<Block> CANNOT_REPLACE_BLOCKS = ImmutableList.of(Blocks.LAVA, Blocks.BEDROCK, Blocks.MAGMA_BLOCK, Blocks.SOUL_SAND, Blocks.NETHER_BRICKS, Blocks.NETHER_BRICK_FENCE, Blocks.NETHER_BRICK_STAIRS, Blocks.NETHER_WART, Blocks.CHEST, Blocks.SPAWNER);
-    private static final int field_31495 = 5;
-    private static final int field_31496 = 50;
-    private static final int field_31497 = 8;
-    private static final int field_31498 = 15;
-
-    public ColumnsFeature(Codec<ColumnsFeatureConfig> codec) {
-        super(codec);
-    }
-
-    public boolean generate(FeatureContext<ColumnsFeatureConfig> context) {
-        int i = context.getGenerator().getSeaLevel();
-        BlockPos blockPos = context.getOrigin();
-        StructureWorldAccess structureWorldAccess = context.getWorld();
-        Random random = context.getRandom();
-        ColumnsFeatureConfig config = context.getConfig();
-        if (!canPlaceAt(structureWorldAccess, i, blockPos.mutableCopy())) {
-            return false;
-        } else {
-            int j = config.height().get(random);
-            boolean bl = random.nextFloat() < 0.9F;
+	
+	private static final ImmutableList<Block> CANNOT_REPLACE_BLOCKS = ImmutableList.of(Blocks.LAVA, Blocks.BEDROCK, Blocks.MAGMA_BLOCK, Blocks.SOUL_SAND, Blocks.NETHER_BRICKS, Blocks.NETHER_BRICK_FENCE, Blocks.NETHER_BRICK_STAIRS, Blocks.NETHER_WART, Blocks.CHEST, Blocks.SPAWNER);
+	private static final int field_31495 = 5;
+	private static final int field_31496 = 50;
+	private static final int field_31497 = 8;
+	private static final int field_31498 = 15;
+	
+	public ColumnsFeature(Codec<ColumnsFeatureConfig> codec) {
+		super(codec);
+	}
+	
+	@Override
+	public boolean generate(FeatureContext<ColumnsFeatureConfig> context) {
+		int i = context.getGenerator().getSeaLevel();
+		BlockPos blockPos = context.getOrigin();
+		StructureWorldAccess structureWorldAccess = context.getWorld();
+		Random random = context.getRandom();
+		ColumnsFeatureConfig config = context.getConfig();
+		if (!canPlaceAt(structureWorldAccess, i, blockPos.mutableCopy())) {
+			return false;
+		} else {
+			int j = config.height().get(random);
+			boolean bl = random.nextFloat() < 0.9F;
             int k = Math.min(j, bl ? field_31495 : field_31497);
             int l = bl ? field_31496 : field_31498;
             boolean bl2 = false;

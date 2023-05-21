@@ -29,9 +29,7 @@ public class HudRenderers {
 	
 	public static void register() {
 		// That one is on Patchouli. ty <3
-		HudRenderCallback.EVENT.register((matrixStack, tickDelta) -> {
-			renderSelectedStaffStack(matrixStack);
-		});
+		HudRenderCallback.EVENT.register((matrixStack, tickDelta) -> renderSelectedStaffStack(matrixStack));
 	}
 	
 	// this is run in InGameHudMixin instead to render behind the chat and other gui elements

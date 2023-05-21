@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.util.Identifier;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import vazkii.patchouli.api.PatchouliAPI;
+import net.minecraft.enchantment.*;
+import net.minecraft.util.*;
+import net.minecraft.registry.*;
+import vazkii.patchouli.api.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class PatchouliFlags {
 	

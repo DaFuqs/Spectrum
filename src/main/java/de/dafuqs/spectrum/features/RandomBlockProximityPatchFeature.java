@@ -10,21 +10,22 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.util.*;
 
 public class RandomBlockProximityPatchFeature extends Feature<RandomBlockProximityPatchFeatureConfig> {
-
-    public RandomBlockProximityPatchFeature(Codec<RandomBlockProximityPatchFeatureConfig> codec) {
-        super(codec);
-    }
-
-    public boolean generate(FeatureContext<RandomBlockProximityPatchFeatureConfig> context) {
-        RandomBlockProximityPatchFeatureConfig randomPatchFeatureConfig = context.getConfig();
-        Random random = context.getRandom();
-        BlockPos blockPos = context.getOrigin();
-        StructureWorldAccess structureWorldAccess = context.getWorld();
-
-        int placedFeatureCount = 0;
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        int xzSpreadPlus1 = randomPatchFeatureConfig.xzSpread() + 1;
-        int ySpreadPlus1 = randomPatchFeatureConfig.ySpread() + 1;
+	
+	public RandomBlockProximityPatchFeature(Codec<RandomBlockProximityPatchFeatureConfig> codec) {
+		super(codec);
+	}
+	
+	@Override
+	public boolean generate(FeatureContext<RandomBlockProximityPatchFeatureConfig> context) {
+		RandomBlockProximityPatchFeatureConfig randomPatchFeatureConfig = context.getConfig();
+		Random random = context.getRandom();
+		BlockPos blockPos = context.getOrigin();
+		StructureWorldAccess structureWorldAccess = context.getWorld();
+		
+		int placedFeatureCount = 0;
+		BlockPos.Mutable mutable = new BlockPos.Mutable();
+		int xzSpreadPlus1 = randomPatchFeatureConfig.xzSpread() + 1;
+		int ySpreadPlus1 = randomPatchFeatureConfig.ySpread() + 1;
 
         for (int l = 0; l < randomPatchFeatureConfig.tries(); ++l) {
             mutable.set(blockPos, random.nextInt(xzSpreadPlus1) - random.nextInt(xzSpreadPlus1), random.nextInt(ySpreadPlus1) - random.nextInt(ySpreadPlus1), random.nextInt(xzSpreadPlus1) - random.nextInt(xzSpreadPlus1));

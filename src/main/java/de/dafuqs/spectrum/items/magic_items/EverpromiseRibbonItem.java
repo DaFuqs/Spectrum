@@ -21,6 +21,7 @@ public class EverpromiseRibbonItem extends Item {
 		super(settings);
 	}
 	
+	@Override
 	public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
 		if (stack.hasCustomName() && !(entity instanceof PlayerEntity)) {
 			if (entity.isAlive()) {

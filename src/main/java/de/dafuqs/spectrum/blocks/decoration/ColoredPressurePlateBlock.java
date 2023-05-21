@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.google.common.collect.Maps;
-import de.dafuqs.spectrum.registries.SpectrumBlockSetTypes;
-import net.minecraft.block.BlockSetType;
-import net.minecraft.block.PressurePlateBlock;
-import net.minecraft.util.DyeColor;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.util.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class ColoredPressurePlateBlock extends PressurePlateBlock {
 	

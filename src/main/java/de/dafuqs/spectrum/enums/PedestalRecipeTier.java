@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.enums;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public enum PedestalRecipeTier {
 	BASIC,

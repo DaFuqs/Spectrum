@@ -1,30 +1,22 @@
 package de.dafuqs.spectrum.mixin.client;
 
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.client.SpectrumModelLayers;
-import de.dafuqs.spectrum.render.RenderingContext;
-import de.dafuqs.spectrum.render.armor.BedrockArmorCapeModel;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRenderEvents;
-import net.minecraft.client.network.AbstractClientPlayerEntity;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.PlayerModelPart;
-import net.minecraft.client.render.entity.feature.CapeFeatureRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.PlayerEntityModel;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RotationAxis;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.registries.client.*;
+import de.dafuqs.spectrum.render.*;
+import de.dafuqs.spectrum.render.armor.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.minecraft.client.network.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.client.render.entity.feature.*;
+import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.math.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Environment(EnvType.CLIENT)
 @Mixin(CapeFeatureRenderer.class)

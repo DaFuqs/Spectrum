@@ -1,14 +1,14 @@
 package de.dafuqs.spectrum.progression;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.client.color.block.BlockColorProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockRenderView;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.client.color.block.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class ToggleableBlockColorProvider implements BlockColorProvider {
 	
-	BlockColorProvider vanillaProvider;
+	final BlockColorProvider vanillaProvider;
 	boolean shouldApply;
 	
 	public ToggleableBlockColorProvider(BlockColorProvider vanillaProvider) {

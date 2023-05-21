@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.blocks.rock_candy;
 
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.StringIdentifiable;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Locale;
+import java.util.*;
 
 public interface RockCandy {
 	

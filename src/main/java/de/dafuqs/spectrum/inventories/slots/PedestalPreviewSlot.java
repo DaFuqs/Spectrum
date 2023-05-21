@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import de.dafuqs.spectrum.helpers.Support;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.ClickType;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
 public class PedestalPreviewSlot extends ReadOnlySlot implements SlotWithOnClickAction {
 	

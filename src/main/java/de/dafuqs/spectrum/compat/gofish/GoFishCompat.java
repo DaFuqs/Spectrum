@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.compat.gofish;
 
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.fabricmc.loader.api.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class GoFishCompat {
 	

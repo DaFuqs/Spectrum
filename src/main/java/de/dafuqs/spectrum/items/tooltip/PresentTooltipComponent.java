@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.items.tooltip;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
+import net.fabricmc.api.*;
+import net.minecraft.client.font.*;
+import net.minecraft.client.render.item.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.item.*;
 
-import java.util.List;
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class PresentTooltipComponent extends SpectrumTooltipComponent {

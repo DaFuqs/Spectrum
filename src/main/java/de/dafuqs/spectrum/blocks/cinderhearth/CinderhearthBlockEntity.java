@@ -117,6 +117,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		this.inkStorage = new IndividualCappedInkStorage(INK_STORAGE_SIZE, USED_INK_COLORS);
 		
 		this.propertyDelegate = new PropertyDelegate() {
+			@Override
 			public int get(int index) {
 				if (index == 0) {
 					return CinderhearthBlockEntity.this.craftingTime;
@@ -124,6 +125,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				return CinderhearthBlockEntity.this.craftingTimeTotal;
 			}
 			
+			@Override
 			public void set(int index, int value) {
 				switch (index) {
 					case 0 -> CinderhearthBlockEntity.this.craftingTime = value;
@@ -131,6 +133,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 				}
 			}
 			
+			@Override
 			public int size() {
 				return 2;
 			}
@@ -161,6 +164,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
+	@Override
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		this.writeNbt(nbtCompound);
@@ -402,17 +406,17 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		// craft
 		craftRecipe(cinderhearth, inputStack, outputs, cinderhearthRecipe.getExperience());
 	}
-
-	private static boolean craftRecipe(@NotNull CinderhearthBlockEntity cinderhearth, ItemStack inputStack, List<ItemStack> outputs, float experience) {
+	
+	private static void craftRecipe(@NotNull CinderhearthBlockEntity cinderhearth, ItemStack inputStack, List<ItemStack> outputs, float experience) {
 		DefaultedList<ItemStack> backupInventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		for (int i = 0; i < cinderhearth.inventory.size(); i++) {
 			backupInventory.set(i, cinderhearth.inventory.get(i));
 		}
-
+		
 		boolean couldAdd = InventoryHelper.addToInventory(cinderhearth, outputs, FIRST_OUTPUT_SLOT_ID, LAST_OUTPUT_SLOT_ID);
 		if (couldAdd) {
 			Item remainder = inputStack.getItem().getRecipeRemainder();
-
+			
 			// use up input ingredient
 			ItemStack inputStackCopy = inputStack.copy();
 			inputStack.decrement(1);
@@ -436,8 +440,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			int finalExperience = Support.getIntFromDecimalWithChance(experience * experienceMod, cinderhearth.world.random);
 			ExperienceStorageItem.addStoredExperience(cinderhearth.getStack(EXPERIENCE_STORAGE_ITEM_SLOT_ID), finalExperience);
 			cinderhearth.grantPlayerCinderhearthSmeltingAdvancement(inputStackCopy, outputs, finalExperience);
-
-			return true;
+			
 		} else {
 			cinderhearth.inventory = backupInventory;
 
@@ -445,7 +448,6 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 			cinderhearth.craftingTimeTotal = 0;
 			cinderhearth.currentRecipe = null;
 			cinderhearth.inventoryChanged = false;
-			return false;
 		}
 	}
 

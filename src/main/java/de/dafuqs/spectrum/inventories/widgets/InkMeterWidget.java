@@ -1,39 +1,33 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
-import de.dafuqs.spectrum.energy.InkStorageBlockEntity;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.storage.IndividualCappedInkStorage;
-import de.dafuqs.spectrum.helpers.RenderHelper;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.Selectable;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.energy.storage.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.gui.screen.narration.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.text.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class InkMeterWidget extends DrawableHelper implements Drawable, Element, Selectable {
 	
-	public static int WIDTH_PER_COLOR = 4;
-	public static int SPACE_BETWEEN_COLORS = 2;
+	public static final int WIDTH_PER_COLOR = 4;
+	public static final int SPACE_BETWEEN_COLORS = 2;
 	
-	public int x;
-	public int y;
-	public int width;
-	public int height;
+	public final int x;
+	public final int y;
+	public final int width;
+	public final int height;
 	protected boolean hovered;
 	protected boolean focused;
 	
-	protected Screen screen;
-	protected InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity;
+	protected final Screen screen;
+	protected final InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity;
 	
 	public InkMeterWidget(int x, int y, int height, Screen screen, InkStorageBlockEntity<IndividualCappedInkStorage> inkStorageBlockEntity) {
 		this.x = x;
@@ -45,6 +39,7 @@ public class InkMeterWidget extends DrawableHelper implements Drawable, Element,
 		this.inkStorageBlockEntity = inkStorageBlockEntity;
 	}
 	
+	@Override
 	public boolean isMouseOver(double mouseX, double mouseY) {
 		return mouseX >= (double) this.x && mouseX < (double) (this.x + this.width) && mouseY >= (double) this.y && mouseY < (double) (this.y + this.height);
 	}

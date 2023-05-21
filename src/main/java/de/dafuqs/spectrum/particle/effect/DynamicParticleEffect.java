@@ -8,7 +8,7 @@ import de.dafuqs.spectrum.particle.*;
 import net.minecraft.network.*;
 import net.minecraft.particle.*;
 import net.minecraft.util.*;
-import net.minecraft.util.dynamic.Codecs;
+import net.minecraft.util.dynamic.*;
 import net.minecraft.registry.*;
 import org.joml.Vector3f;
 
@@ -33,6 +33,7 @@ public class DynamicParticleEffect implements ParticleEffect {
 	});
 	
 	public static final ParticleEffect.Factory<DynamicParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
+		@Override
 		public DynamicParticleEffect read(ParticleType<DynamicParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
 			Vector3f color = AbstractDustParticleEffect.readColor(stringReader);
 			stringReader.expect(' ');
@@ -50,6 +51,7 @@ public class DynamicParticleEffect implements ParticleEffect {
 			return new DynamicParticleEffect(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
 		}
 		
+		@Override
 		public DynamicParticleEffect read(ParticleType<DynamicParticleEffect> particleType, PacketByteBuf packetByteBuf) {
 			Vector3f color = AbstractDustParticleEffect.readColor(packetByteBuf);
 			Identifier textureIdentifier = packetByteBuf.readIdentifier();
@@ -94,9 +96,10 @@ public class DynamicParticleEffect implements ParticleEffect {
 	}
 	
 	protected DynamicParticleEffect(Object o, Object o1, Object o2, Object o3, Object o4, Object o5, Object o6) {
-		new DynamicParticleEffect((Identifier) o, (float) o1, (Vector3f) o2, (float) o3, (int) o4, (boolean) o5, (boolean) o6);
+		new DynamicParticleEffect(o, o1, o2, o3, o4, o5, o6);
 	}
 	
+	@Override
 	public void write(PacketByteBuf buf) {
 		buf.writeString(this.particleTypeIdentifier.toString());
 		buf.writeFloat(this.gravity);
@@ -109,10 +112,12 @@ public class DynamicParticleEffect implements ParticleEffect {
 		buf.writeBoolean(this.glowing);
 	}
 	
+	@Override
 	public String asString() {
 		return String.valueOf(Registries.PARTICLE_TYPE.getId(this.getType()));
 	}
 	
+	@Override
 	public ParticleType<DynamicParticleEffect> getType() {
 		return SpectrumParticleTypes.DYNAMIC;
 	}

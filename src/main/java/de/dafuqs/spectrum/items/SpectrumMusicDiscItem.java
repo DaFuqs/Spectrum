@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.item.MusicDiscItem;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
 
 public class SpectrumMusicDiscItem extends MusicDiscItem {
 	

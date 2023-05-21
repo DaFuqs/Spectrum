@@ -1,22 +1,19 @@
 package de.dafuqs.spectrum.items.armor;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.items.Preenchanted;
-import de.dafuqs.spectrum.registries.client.SpectrumModelLayers;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.entity.model.BipedEntityModel;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.registries.client.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.render.entity.model.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	@Environment(EnvType.CLIENT)
@@ -50,7 +47,7 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	public boolean canRepair(ItemStack itemStack_1, ItemStack itemStack_2) {
 		return false;
 	}
-	
+
 	@Environment(EnvType.CLIENT)
 	protected BipedEntityModel<LivingEntity> provideArmorModelForSlot(EquipmentSlot slot) {
 		var models = MinecraftClient.getInstance().getEntityModelLoader();

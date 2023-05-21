@@ -66,14 +66,14 @@ public class SpectrumCommon implements ModInitializer {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
-	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(RegistryKeys.WORLD, new Identifier(MOD_ID, "deeper_down"));
+	public static final RegistryKey<World> DEEPER_DOWN = RegistryKey.of(RegistryKeys.WORLD, new Identifier(MOD_ID, "deeper_down"));
 	public static MinecraftServer minecraftServer;
 	/**
 	 * Caches the luminance states from fluids as int
 	 * for blocks that react to the light level of fluids
 	 * like the fusion shrine lighting up with lava or liquid crystal
 	 */
-	public static HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
+	public static final HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
 	
 	public static void logInfo(String message) {
 		LOGGER.info("[Spectrum] " + message);
@@ -399,7 +399,6 @@ public class SpectrumCommon implements ModInitializer {
 			ResourceManagerHelper.registerBuiltinResourcePack(locate("jinc"), modContainer.get(), Text.of("Alternate Spectrum textures"), ResourcePackActivationType.NORMAL);
 			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), Text.of("Spectrum's Programmer Art"), ResourcePackActivationType.NORMAL);
 		}
-
 		logInfo("Common startup completed!");
 	}
 	

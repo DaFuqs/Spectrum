@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
+import de.dafuqs.spectrum.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 
 public class SpectrumBannerPatternTags {
 	

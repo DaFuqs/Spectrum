@@ -1,27 +1,25 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
-import net.minecraft.world.explosion.ExplosionBehavior;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.explosion.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class ExplosionMobBlock extends MobBlock {
 	
-	protected float power;
-	protected boolean createFire;
-	protected Explosion.DestructionType destructionType;
+	protected final float power;
+	protected final boolean createFire;
+	protected final Explosion.DestructionType destructionType;
 	
 	public ExplosionMobBlock(Settings settings, ParticleEffect particleEffect, float power, boolean createFire, Explosion.DestructionType destructionType) {
 		super(settings, particleEffect);
@@ -51,12 +49,13 @@ public class ExplosionMobBlock extends MobBlock {
 	 */
 	private static class SpareBlockExplosionBehavior extends ExplosionBehavior {
 		
-		public BlockPos sparedPos;
+		public final BlockPos sparedPos;
 		
 		public SpareBlockExplosionBehavior(BlockPos sparedPos) {
 			this.sparedPos = sparedPos;
 		}
 		
+		@Override
 		public boolean canDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float power) {
 			return !pos.equals(sparedPos) && super.canDestroyBlock(explosion, world, pos, state, power);
 		}

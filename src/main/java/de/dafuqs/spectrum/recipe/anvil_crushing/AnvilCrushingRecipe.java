@@ -1,20 +1,16 @@
 package de.dafuqs.spectrum.recipe.anvil_crushing;
 
-import de.dafuqs.spectrum.recipe.GatedSpectrumRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import net.minecraft.block.Blocks;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registries;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.recipe.*;
+import net.minecraft.block.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.recipe.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.registry.*;
+import net.minecraft.world.*;
 
 public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	

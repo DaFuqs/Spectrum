@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.InkStorage;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CreativeInkStorage implements InkStorage {
 	
-	private static Map<InkColor, Long> STORAGE = new HashMap<>() {{
+	private static final Map<InkColor, Long> STORAGE = new HashMap<>() {{
 		for (InkColor inkColor : InkColor.all()) {
 			put(inkColor, Long.MAX_VALUE);
 		}

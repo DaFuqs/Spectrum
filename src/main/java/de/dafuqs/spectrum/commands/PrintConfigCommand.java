@@ -9,9 +9,7 @@ import net.minecraft.text.*;
 public class PrintConfigCommand {
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register((CommandManager.literal("spectrum_config").executes((context) -> {
-			return execute(context.getSource());
-		})));
+		dispatcher.register((CommandManager.literal("spectrum_config").executes((context) -> execute(context.getSource()))));
 	}
 	
 	private static int execute(ServerCommandSource source) {

@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.particle_spawner.ParticleSpawnerBlockEntity;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.util.math.BlockPos;
+import de.dafuqs.spectrum.blocks.particle_spawner.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.screen.*;
+import net.minecraft.util.math.*;
 
 public class ParticleSpawnerScreenHandler extends ScreenHandler {
 	

@@ -1,20 +1,19 @@
 package de.dafuqs.spectrum.blocks.energy;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.util.math.*;
 
 public class InkDuctBlockEntity extends BlockEntity {
 	
-	public static int RANGE = 64;
+	public static final int RANGE = 64;
 	
 	public InkDuctBlockEntity(BlockEntityType blockEntityType, BlockPos blockPos, BlockState blockState) {
 		super(blockEntityType, blockPos, blockState);
 	}
 	
-	public boolean canSee(InkDuctBlockEntity duct) {
-		return duct.pos.isWithinDistance(pos, RANGE);
+	public void canSee(InkDuctBlockEntity duct) {
+		duct.pos.isWithinDistance(pos, RANGE);
 	}
 	
 	private boolean canTransferTo(BlockEntity blockEntity) {

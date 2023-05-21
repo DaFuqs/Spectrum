@@ -18,7 +18,7 @@ import net.minecraft.registry.*;
 
 public class SpectrumRecipeTypes {
 	
-	public static String PEDESTAL_RECIPE_ID = "pedestal";
+	public static final String PEDESTAL_RECIPE_ID = "pedestal";
 	public static RecipeSerializer<PedestalCraftingRecipe> PEDESTAL_RECIPE_SERIALIZER;
 	public static RecipeType<PedestalCraftingRecipe> PEDESTAL;
 	

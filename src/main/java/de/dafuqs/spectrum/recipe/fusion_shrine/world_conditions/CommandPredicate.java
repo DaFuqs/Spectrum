@@ -10,7 +10,7 @@ import net.minecraft.util.math.*;
 
 public class CommandPredicate implements WorldConditionPredicate, CommandOutput {
 	
-	public String command;
+	public final String command;
 	
 	public CommandPredicate(String command) {
 		this.command = command;

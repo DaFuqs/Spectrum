@@ -26,6 +26,7 @@ public class FluidLogging {
 			this.name = name;
 		}
 		
+		@Override
 		public String asString() {
 			return this.name;
 		}
@@ -54,9 +55,9 @@ public class FluidLogging {
 		
 	}
 	
-	public static EnumProperty<State> ANY_INCLUDING_NONE = EnumProperty.of("fluid_logged", State.class);
-	public static EnumProperty<State> ANY_EXCLUDING_NONE = EnumProperty.of("fluid_logged", State.class, State.WATER, State.LIQUID_CRYSTAL);
-	public static EnumProperty<State> NONE_AND_CRYSTAL = EnumProperty.of("fluid_logged", State.class, State.NOT_LOGGED, State.LIQUID_CRYSTAL);
+	public static final EnumProperty<State> ANY_INCLUDING_NONE = EnumProperty.of("fluid_logged", State.class);
+	public static final EnumProperty<State> ANY_EXCLUDING_NONE = EnumProperty.of("fluid_logged", State.class, State.WATER, State.LIQUID_CRYSTAL);
+	public static final EnumProperty<State> NONE_AND_CRYSTAL = EnumProperty.of("fluid_logged", State.class, State.NOT_LOGGED, State.LIQUID_CRYSTAL);
 	
 	public interface SpectrumFluidLoggable extends SpectrumFluidDrainable, SpectrumFluidFillable {
 	
@@ -64,10 +65,12 @@ public class FluidLogging {
 	
 	public interface SpectrumFluidFillable extends FluidFillable {
 		
+		@Override
 		default boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
 			return state.get(ANY_INCLUDING_NONE) == State.NOT_LOGGED && (fluid == Fluids.WATER || fluid == SpectrumFluids.LIQUID_CRYSTAL);
 		}
 		
+		@Override
 		default boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
 			if (state.get(ANY_INCLUDING_NONE) == State.NOT_LOGGED) {
 				if (!world.isClient()) {
@@ -90,6 +93,7 @@ public class FluidLogging {
 	
 	public interface SpectrumFluidDrainable extends FluidDrainable {
 		
+		@Override
 		default ItemStack tryDrainFluid(WorldAccess world, BlockPos pos, BlockState state) {
 			State fluidLog = state.get(ANY_INCLUDING_NONE);
 			
@@ -110,6 +114,7 @@ public class FluidLogging {
 			return ItemStack.EMPTY;
 		}
 		
+		@Override
 		default Optional<SoundEvent> getBucketFillSound() {
 			return Fluids.WATER.getBucketFillSound();
 		}

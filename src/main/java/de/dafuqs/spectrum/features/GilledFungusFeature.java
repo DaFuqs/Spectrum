@@ -10,21 +10,22 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.util.*;
 
 public class GilledFungusFeature extends Feature<GilledFungusFeatureConfig> {
-
-    public GilledFungusFeature(Codec<GilledFungusFeatureConfig> codec) {
-        super(codec);
-    }
-
-    public boolean generate(FeatureContext<GilledFungusFeatureConfig> context) {
-        StructureWorldAccess structureWorldAccess = context.getWorld();
-        BlockPos blockPos = context.getOrigin();
-        GilledFungusFeatureConfig hugeFungusFeatureConfig = context.getConfig();
+	
+	public GilledFungusFeature(Codec<GilledFungusFeatureConfig> codec) {
+		super(codec);
+	}
+	
+	@Override
+	public boolean generate(FeatureContext<GilledFungusFeatureConfig> context) {
+		StructureWorldAccess structureWorldAccess = context.getWorld();
+		BlockPos blockPos = context.getOrigin();
+		GilledFungusFeatureConfig hugeFungusFeatureConfig = context.getConfig();
 		Block validBaseBlock = hugeFungusFeatureConfig.validBase();
 		BlockState baseBlock = structureWorldAccess.getBlockState(blockPos.down());
-
-        if (!baseBlock.isOf(validBaseBlock)) {
-            return false;
-        }
+		
+		if (!baseBlock.isOf(validBaseBlock)) {
+			return false;
+		}
 
         Random random = context.getRandom();
         ChunkGenerator chunkGenerator = context.getGenerator();

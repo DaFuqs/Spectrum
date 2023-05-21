@@ -113,12 +113,14 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		this.addProperties(propertyDelegate);
 	}
 	
+	@Override
 	public void populateRecipeFinder(RecipeMatcher recipeMatcher) {
 		if (this.inventory != null) {
 			((RecipeInputProvider) this.inventory).provideRecipeInputs(recipeMatcher);
 		}
 	}
 	
+	@Override
 	public void clearCraftingSlots() {
 		for (int i = 0; i < 9; i++) {
 			this.getSlot(i).setStack(ItemStack.EMPTY);
@@ -135,26 +137,32 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		}
 	}
 	
+	@Override
 	public boolean matches(Recipe<? super Inventory> recipe) {
 		return recipe.matches(this.inventory, this.world);
 	}
 	
+	@Override
 	public int getCraftingResultSlotIndex() {
 		return 16;
 	}
 	
+	@Override
 	public int getCraftingWidth() {
 		return 3;
 	}
 	
+	@Override
 	public int getCraftingHeight() {
 		return 3;
 	}
 	
+	@Override
 	public int getCraftingSlotCount() {
 		return 9;
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return this.inventory.canPlayerUse(player);
 	}
@@ -171,6 +179,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		return this.propertyDelegate.get(0) > 0; // craftingTime
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public RecipeBookCategory getCategory() {
 		return this.category;
@@ -265,6 +274,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 		return this.maxPedestalRecipeTier;
 	}
 	
+	@Override
 	public void close(PlayerEntity player) {
 		super.onClosed(player);
 		this.inventory.onClose(player);

@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.recipe.ink_converting;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
+import com.google.gson.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.recipe.*;
+import net.minecraft.network.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
 
 public class InkConvertingRecipeSerializer implements GatedRecipeSerializer<InkConvertingRecipe> {
 	

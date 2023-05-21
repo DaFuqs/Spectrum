@@ -432,17 +432,19 @@ public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 		for (int i = -1; i <= 2; ++i) {
 			PositionType positionType2 = this.getPositionType(pos.add(-2, i, -2), pos.add(2, i, 2));
 			switch (positionType2) {
-				case INVALID:
+				case INVALID -> {
 					return false;
-				case ABOVE_FLUID:
+				}
+				case ABOVE_FLUID -> {
 					if (positionType == PositionType.INVALID) {
 						return false;
 					}
-					break;
-				case INSIDE_FLUID:
+				}
+				case INSIDE_FLUID -> {
 					if (positionType == PositionType.ABOVE_FLUID) {
 						return false;
 					}
+				}
 			}
 			
 			positionType = positionType2;

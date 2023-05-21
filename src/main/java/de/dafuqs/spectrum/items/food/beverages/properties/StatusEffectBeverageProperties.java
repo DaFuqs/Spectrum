@@ -1,14 +1,13 @@
 package de.dafuqs.spectrum.items.food.beverages.properties;
 
-import com.google.common.collect.Lists;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.text.Text;
+import com.google.common.collect.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.potion.*;
+import net.minecraft.text.*;
 
-import java.util.List;
+import java.util.*;
 
 public class StatusEffectBeverageProperties extends BeverageProperties {
 	
@@ -32,12 +31,14 @@ public class StatusEffectBeverageProperties extends BeverageProperties {
 		return new StatusEffectBeverageProperties(itemStack.getNbt());
 	}
 	
+	@Override
 	public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
 		super.addTooltip(itemStack, tooltip);
 		PotionUtil.buildTooltip(itemStack, tooltip, 1.0F);
 	}
 	
-	public NbtCompound toNbt(NbtCompound nbtCompound) {
+	@Override
+	public void toNbt(NbtCompound nbtCompound) {
 		super.toNbt(nbtCompound);
 		
 		NbtList nbtList = nbtCompound.getList("CustomPotionEffects", 9);
@@ -46,6 +47,5 @@ public class StatusEffectBeverageProperties extends BeverageProperties {
 		}
 		nbtCompound.put("CustomPotionEffects", nbtList);
 		
-		return nbtCompound;
 	}
 }

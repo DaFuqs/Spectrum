@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.blocks.mob_blocks.FirestarterMobBlock;
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.blocks.mob_blocks.*;
+import de.dafuqs.spectrum.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class MoltenFishingBobberEntity extends SpectrumFishingBobberEntity {
 	

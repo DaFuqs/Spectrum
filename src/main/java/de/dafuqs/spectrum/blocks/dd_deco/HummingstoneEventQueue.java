@@ -37,13 +37,13 @@ class HummingstoneEventQueue extends EventQueue<HummingstoneEventQueue.EventEntr
     }
 
     protected static class EventEntry {
-        public GameEvent.Message message;
-        public int distance;
-
-        public EventEntry(GameEvent.Message message, int distance) {
-            this.message = message;
-            this.distance = distance;
-        }
-    }
+		public final GameEvent.Message message;
+		public final int distance;
+	
+		public EventEntry(GameEvent.Message message, int distance) {
+			this.message = message;
+			this.distance = distance;
+		}
+	}
 
 }

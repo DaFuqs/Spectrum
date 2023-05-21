@@ -1,21 +1,15 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.particle.ParticleTextureSheet;
-import net.minecraft.client.particle.SpriteBillboardParticle;
-import net.minecraft.client.render.Camera;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.RotationAxis;
-import net.minecraft.world.event.PositionSource;
-import org.joml.Quaternionf;
-import org.joml.Vector3f;
+import net.fabricmc.api.*;
+import net.minecraft.client.particle.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.event.*;
+import org.joml.*;
 
-import java.util.Optional;
-import java.util.function.Consumer;
+import java.util.*;
+import java.util.function.*;
 
 @Environment(EnvType.CLIENT)
 public class TransmissionParticle extends SpriteBillboardParticle {
@@ -60,8 +54,6 @@ public class TransmissionParticle extends SpriteBillboardParticle {
 		vec3f.normalize();
 		Quaternionf quaternion = new Quaternionf(vec3f.x, vec3f.y, vec3f.z, 0.0f);
 		transforms.accept(quaternion);
-		Vector3f vec3f2 = new Vector3f(-1.0F, -1.0F, 0.0F);
-		vec3f2.rotate(quaternion);
 		Vector3f[] vec3fs = new Vector3f[]{new Vector3f(-1.0F, -1.0F, 0.0F), new Vector3f(-1.0F, 1.0F, 0.0F), new Vector3f(1.0F, 1.0F, 0.0F), new Vector3f(1.0F, -1.0F, 0.0F)};
 		float i = this.getSize(tickDelta);
 		
@@ -93,6 +85,7 @@ public class TransmissionParticle extends SpriteBillboardParticle {
 		return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
+	@Override
 	public void tick() {
 		this.prevPosX = this.x;
 		this.prevPosY = this.y;

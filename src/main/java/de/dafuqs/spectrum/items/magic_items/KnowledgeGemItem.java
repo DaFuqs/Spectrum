@@ -26,7 +26,7 @@ public class KnowledgeGemItem extends Item implements ExperienceStorageItem, Enc
 	
 	// these are copies from the item model file
 	// and specify the sprite used for its texture
-	protected int[] displayTiers = {1, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000};
+	protected final int[] displayTiers = {1, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000};
 	
 	public KnowledgeGemItem(Settings settings, int maxStorageBase) {
 		super(settings);

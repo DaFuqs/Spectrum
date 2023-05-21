@@ -1,22 +1,15 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.blocks.potion_workshop.PotionWorkshopBlockEntity;
-import de.dafuqs.spectrum.inventories.slots.DisabledSlot;
-import de.dafuqs.spectrum.inventories.slots.ReagentSlot;
-import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ArrayPropertyDelegate;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.world.World;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.blocks.potion_workshop.*;
+import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.world.*;
 
 public class PotionWorkshopScreenHandler extends ScreenHandler {
 	
@@ -92,6 +85,7 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 		}
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return this.inventory.canPlayerUse(player);
 	}
@@ -145,6 +139,7 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 		return this.inventory;
 	}
 	
+	@Override
 	public void close(PlayerEntity player) {
 		super.onClosed(player);
 		this.inventory.onClose(player);

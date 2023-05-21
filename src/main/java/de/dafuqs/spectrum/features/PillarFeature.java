@@ -11,22 +11,23 @@ import org.jetbrains.annotations.*;
 
 // a version of BasaltPillarFeature with configurable block state
 public class PillarFeature extends Feature<BlockStateFeatureConfig> {
-
-    public PillarFeature(Codec<BlockStateFeatureConfig> codec) {
-        super(codec);
-    }
-
-    public boolean generate(FeatureContext<BlockStateFeatureConfig> context) {
-        BlockPos blockPos = context.getOrigin();
-        StructureWorldAccess structureWorldAccess = context.getWorld();
-        Random random = context.getRandom();
-        if (structureWorldAccess.isAir(blockPos) && !structureWorldAccess.isAir(blockPos.up())) {
-            BlockState blockState = context.getConfig().blockState();
-
-            BlockPos.Mutable mutable = blockPos.mutableCopy();
-            BlockPos.Mutable mutable2 = blockPos.mutableCopy();
-            boolean bl = true;
-            boolean bl2 = true;
+	
+	public PillarFeature(Codec<BlockStateFeatureConfig> codec) {
+		super(codec);
+	}
+	
+	@Override
+	public boolean generate(FeatureContext<BlockStateFeatureConfig> context) {
+		BlockPos blockPos = context.getOrigin();
+		StructureWorldAccess structureWorldAccess = context.getWorld();
+		Random random = context.getRandom();
+		if (structureWorldAccess.isAir(blockPos) && !structureWorldAccess.isAir(blockPos.up())) {
+			BlockState blockState = context.getConfig().blockState();
+			
+			BlockPos.Mutable mutable = blockPos.mutableCopy();
+			BlockPos.Mutable mutable2 = blockPos.mutableCopy();
+			boolean bl = true;
+			boolean bl2 = true;
             boolean bl3 = true;
             boolean bl4 = true;
 

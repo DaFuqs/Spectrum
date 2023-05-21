@@ -1,28 +1,20 @@
 package de.dafuqs.spectrum.blocks.amphora;
 
-import de.dafuqs.spectrum.enums.ProgressionStage;
-import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.BarrelBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.LootableContainerBlockEntity;
-import net.minecraft.block.entity.ViewerCountManager;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.GenericContainerScreenHandler;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class AmphoraBlockEntity extends LootableContainerBlockEntity {
 	
@@ -34,19 +26,23 @@ public class AmphoraBlockEntity extends LootableContainerBlockEntity {
 		
 		this.inventory = DefaultedList.ofSize(size(), ItemStack.EMPTY);
 		this.stateManager = new ViewerCountManager() {
+			@Override
 			protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
 				playSound(state, SoundEvents.BLOCK_BARREL_OPEN);
 				setOpen(state, true);
 			}
 			
+			@Override
 			protected void onContainerClose(World world, BlockPos pos, BlockState state) {
 				playSound(state, SoundEvents.BLOCK_BARREL_CLOSE);
 				setOpen(state, false);
 			}
 			
+			@Override
 			protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
 			}
 			
+			@Override
 			protected boolean isPlayerViewing(PlayerEntity player) {
 				if (player.currentScreenHandler instanceof GenericContainerScreenHandler) {
 					Inventory inventory = ((GenericContainerScreenHandler)player.currentScreenHandler).getInventory();
@@ -58,6 +54,7 @@ public class AmphoraBlockEntity extends LootableContainerBlockEntity {
 		};
 	}
 	
+	@Override
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		if (!this.serializeLootTable(nbt)) {
@@ -65,6 +62,7 @@ public class AmphoraBlockEntity extends LootableContainerBlockEntity {
 		}
 	}
 	
+	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
@@ -73,32 +71,39 @@ public class AmphoraBlockEntity extends LootableContainerBlockEntity {
 		}
 	}
 	
+	@Override
 	public int size() {
 		return 54;
 	}
 	
+	@Override
 	protected DefaultedList<ItemStack> getInvStackList() {
 		return this.inventory;
 	}
 	
+	@Override
 	protected void setInvStackList(DefaultedList<ItemStack> list) {
 		this.inventory = list;
 	}
 	
+	@Override
 	protected Text getContainerName() {
 		return Text.translatable("block.spectrum.amphora");
 	}
 	
+	@Override
 	protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
 		return GenericSpectrumContainerScreenHandler.createGeneric9x6(syncId, playerInventory, this, ProgressionStage.EARLYGAME);
 	}
 	
+	@Override
 	public void onOpen(PlayerEntity player) {
 		if (!this.removed && !player.isSpectator()) {
 			this.stateManager.openContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
 		}
 	}
 	
+	@Override
 	public void onClose(PlayerEntity player) {
 		if (!this.removed && !player.isSpectator()) {
 			this.stateManager.closeContainer(player, this.getWorld(), this.getPos(), this.getCachedState());

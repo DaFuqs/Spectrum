@@ -1,48 +1,32 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.PaintbrushTriggered;
-import de.dafuqs.spectrum.blocks.RedstonePoweredBlock;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AutomaticItemPlacementContext;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.DustParticleEffect;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.joml.Vector3f;
-import vazkii.patchouli.api.IMultiblock;
-import vazkii.patchouli.api.PatchouliAPI;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.api.*;
 
 public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlock, PaintbrushTriggered {
 	
@@ -152,6 +136,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		}
 	}
 	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (placer instanceof ServerPlayerEntity) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -170,6 +155,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		stateManager.add(POWERED);
 	}
 	
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		ActionResult actionResult = checkAndDoPaintbrushTrigger(state, world, pos, player, hand, hit);
 		if (actionResult.isAccepted()) {
@@ -192,6 +178,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		}
 	}
 	
+	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (newState.getBlock() instanceof PedestalBlock) {
 			if (!state.getBlock().equals(newState.getBlock())) {
@@ -214,19 +201,23 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		}
 	}
 	
+	@Override
 	@Nullable
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new PedestalBlockEntity(pos, state);
 	}
 	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
 	
+	@Override
 	public boolean hasComparatorOutput(BlockState state) {
 		return true;
 	}
 	
+	@Override
 	public int getComparatorOutput(BlockState state, @NotNull World world, BlockPos pos) {
 		return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
 	}
@@ -257,6 +248,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		}
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(@NotNull BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(PedestalBlock.POWERED)) {
@@ -274,6 +266,7 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 		}
 	}
 	
+	@Override
 	public BlockState getPlacementState(@NotNull ItemPlacementContext ctx) {
 		BlockState placementState = this.getDefaultState();
 		

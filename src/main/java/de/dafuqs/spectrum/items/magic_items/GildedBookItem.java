@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.items.magic_items;
 
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.BookItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class GildedBookItem extends BookItem {
 	
@@ -17,6 +15,7 @@ public class GildedBookItem extends BookItem {
 		super(settings);
 	}
 	
+	@Override
 	public int getEnchantability() {
 		return Items.GOLDEN_PICKAXE.getEnchantability();
 	}

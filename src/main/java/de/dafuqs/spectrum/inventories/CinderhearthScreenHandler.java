@@ -1,21 +1,17 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.cinderhearth.CinderhearthBlockEntity;
-import de.dafuqs.spectrum.inventories.slots.ExperienceStorageItemSlot;
-import de.dafuqs.spectrum.inventories.slots.InkInputSlot;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.ArrayPropertyDelegate;
-import net.minecraft.screen.PropertyDelegate;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.blocks.cinderhearth.*;
+import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.networking.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class CinderhearthScreenHandler extends ScreenHandler {
 	

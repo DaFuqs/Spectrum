@@ -1,19 +1,17 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.resource.language.I18n;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import vazkii.patchouli.api.IVariable;
-import vazkii.patchouli.client.book.BookContentsBuilder;
-import vazkii.patchouli.client.book.BookEntry;
-import vazkii.patchouli.client.book.gui.GuiBook;
-import vazkii.patchouli.client.book.gui.GuiBookEntry;
-import vazkii.patchouli.client.book.page.abstr.PageWithText;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.networking.*;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.resource.language.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import vazkii.patchouli.api.*;
+import vazkii.patchouli.client.book.*;
+import vazkii.patchouli.client.book.gui.*;
+import vazkii.patchouli.client.book.page.abstr.*;
 
 public class PageConfirmationButton extends PageWithText {
 	

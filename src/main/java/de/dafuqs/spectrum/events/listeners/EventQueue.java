@@ -36,11 +36,13 @@ public abstract class EventQueue<D> implements GameEventListener {
 			}
 		}
 	}
-
+	
+	@Override
 	public PositionSource getPositionSource() {
 		return this.positionSource;
 	}
-
+	
+	@Override
 	public int getRange() {
 		return this.range;
 	}

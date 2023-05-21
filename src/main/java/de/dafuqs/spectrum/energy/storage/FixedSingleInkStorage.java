@@ -1,10 +1,8 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.color.InkColor;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.color.*;
+import net.minecraft.nbt.*;
+import org.jetbrains.annotations.*;
 
 public class FixedSingleInkStorage extends SingleInkStorage {
 	
@@ -27,6 +25,7 @@ public class FixedSingleInkStorage extends SingleInkStorage {
 		return null;
 	}
 	
+	@Override
 	public InkColor getStoredColor() {
 		return storedColor;
 	}

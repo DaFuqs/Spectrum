@@ -188,6 +188,7 @@ public class SpectrumParticleTypes {
 	// complex particles
 	private static <T extends ParticleEffect> ParticleType<T> register(String name, ParticleEffect.Factory<T> factory, final Function<ParticleType<T>, Codec<T>> function, boolean alwaysShow) {
 		return Registry.register(Registries.PARTICLE_TYPE, SpectrumCommon.locate(name), new ParticleType<T>(alwaysShow, factory) {
+			@Override
 			public Codec<T> getCodec() {
 				return function.apply(this);
 			}

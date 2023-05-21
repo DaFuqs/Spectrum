@@ -1,17 +1,14 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
 public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraftingCriterion.Conditions> {
 	
@@ -21,10 +18,12 @@ public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraft
 		return new EnchanterCraftingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public EnchanterCraftingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("spent_experience"));
@@ -32,9 +31,7 @@ public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraft
 	}
 	
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack, int experience) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(itemStack, experience);
-		});
+		this.trigger(player, (conditions) -> conditions.matches(itemStack, experience));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
@@ -47,6 +44,7 @@ public class EnchanterCraftingCriterion extends AbstractCriterion<EnchanterCraft
 			this.experienceRange = experienceRange;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("item", this.itemPredicate.toJson());

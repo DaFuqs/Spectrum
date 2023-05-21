@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.networking;
 
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.items.tools.WorkstaffItem;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.items.tools.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.client.networking.v1.*;
+import net.fabricmc.fabric.api.networking.v1.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.network.*;
+import net.minecraft.recipe.*;
+import org.jetbrains.annotations.*;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumC2SPacketSender {

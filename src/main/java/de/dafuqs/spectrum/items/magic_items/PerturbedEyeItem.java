@@ -18,7 +18,8 @@ public class PerturbedEyeItem extends Item {
 	public PerturbedEyeItem(Settings settings) {
 		super(settings);
 	}
-
+	
+	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		World world = context.getWorld();
 		BlockPos blockPos = context.getBlockPos();
@@ -41,20 +42,21 @@ public class PerturbedEyeItem extends Item {
 							.with(CrackedEndPortalFrameBlock.EYE_TYPE, CrackedEndPortalFrameBlock.EndPortalFrameEye.WITH_PERTURBED_EYE)
 							.with(CrackedEndPortalFrameBlock.FACING_VERTICAL, facingVertical);
 				}
-
+				
 				Block.pushEntitiesUpBeforeBlockChange(blockState, targetBlockState, world, blockPos);
 				world.setBlockState(blockPos, targetBlockState, 2);
 				world.updateComparators(blockPos, Blocks.END_PORTAL_FRAME);
 				context.getStack().decrement(1);
 				world.syncWorldEvent(1503, blockPos, 0);
-
+				
 				return ActionResult.CONSUME;
 			}
 		} else {
 			return ActionResult.PASS;
 		}
 	}
-
+	
+	@Override
 	public void appendTooltip(ItemStack itemStack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		tooltip.add(Text.translatable("item.spectrum.perturbed_eye.tooltip").formatted(Formatting.GRAY));
 	}

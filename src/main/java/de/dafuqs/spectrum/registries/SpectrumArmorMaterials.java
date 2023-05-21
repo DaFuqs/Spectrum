@@ -41,37 +41,43 @@ public enum SpectrumArmorMaterials implements ArmorMaterial {
 	public int getProtectionAmount(ArmorItem.Type type) {
 		return this.protectionAmounts[type.getEquipmentSlot().getEntitySlotId()];
 	}
-
+	
 	@Override
 	public int getDurability(ArmorItem.Type type) {
 		return BASE_DURABILITY[type.getEquipmentSlot().getEntitySlotId()] * this.durabilityMultiplier;
 	}
-
+	
 	@Override
 	public int getProtection(ArmorItem.Type type) {
 		return 0;
 	}
-
+	
+	@Override
 	public int getEnchantability() {
 		return this.enchantability;
 	}
 	
+	@Override
 	public SoundEvent getEquipSound() {
 		return this.equipSound;
 	}
 	
+	@Override
 	public Ingredient getRepairIngredient() {
 		return this.repairIngredientSupplier.get();
 	}
 	
+	@Override
 	public String getName() {
 		return this.name;
 	}
 	
+	@Override
 	public float getToughness() {
 		return this.toughness;
 	}
 	
+	@Override
 	public float getKnockbackResistance() {
 		return this.knockbackResistance;
 	}

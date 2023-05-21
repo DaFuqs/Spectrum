@@ -43,10 +43,12 @@ public class SpectrumSkullBlock extends SkullBlock {
 		return witherBossPattern;
 	}
 	
+	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new SpectrumSkullBlockEntity(pos, state);
 	}
 	
+	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		return null;

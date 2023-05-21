@@ -22,10 +22,12 @@ public class DyeRandomlyLootFunction extends ConditionalLootFunction {
 		this.colors = ImmutableList.copyOf(colors);
 	}
 	
+	@Override
 	public LootFunctionType getType() {
 		return SpectrumLootFunctionTypes.DYE_RANDOMLY;
 	}
 	
+	@Override
 	public ItemStack process(ItemStack stack, LootContext context) {
 		
 		if (stack.getItem() instanceof DyeableItem dyeableItem) {

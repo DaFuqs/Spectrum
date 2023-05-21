@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ClickType;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public interface SlotWithOnClickAction {
 	

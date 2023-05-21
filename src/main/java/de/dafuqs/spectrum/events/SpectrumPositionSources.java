@@ -1,10 +1,8 @@
 package de.dafuqs.spectrum.events;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.world.event.PositionSource;
-import net.minecraft.world.event.PositionSourceType;
+import de.dafuqs.spectrum.*;
+import net.minecraft.registry.*;
+import net.minecraft.world.event.*;
 
 public class SpectrumPositionSources {
 	

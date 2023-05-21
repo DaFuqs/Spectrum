@@ -1,16 +1,11 @@
 package de.dafuqs.spectrum.cca;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import dev.onyxstudios.cca.api.v3.component.Component;
-import dev.onyxstudios.cca.api.v3.component.ComponentKey;
-import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
-import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
-import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
-import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.*;
+import dev.onyxstudios.cca.api.v3.component.*;
+import dev.onyxstudios.cca.api.v3.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.nbt.*;
+import org.jetbrains.annotations.*;
 
 public class LastKillComponent implements Component, EntityComponentInitializer {
 	

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.events;
 
-import net.minecraft.util.DyeColor;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.util.*;
+import net.minecraft.world.event.*;
 
 public class RedstoneTransferGameEvent extends GameEvent {
 	

@@ -1,21 +1,16 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ExperienceDroppingBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
+import de.dafuqs.revelationary.api.revelations.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.loot.context.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.intprovider.*;
 
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CloakedOreBlock extends ExperienceDroppingBlock implements RevelationAware {
 	
@@ -47,6 +42,7 @@ public class CloakedOreBlock extends ExperienceDroppingBlock implements Revelati
 		return new Pair<>(this.asItem(), cloakBlockState.getBlock().asItem());
 	}
 	
+	@Override
 	@Deprecated
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		// workaround: since onStacksDropped() has no way of checking if it was

@@ -13,21 +13,21 @@ import org.jgrapht.graph.*;
 import java.util.*;
 
 public class PastelNetwork {
-
-    protected Map<PastelNodeType, Set<PastelNodeBlockEntity>> nodes = new HashMap<>();
-    protected @Nullable Graph<PastelNodeBlockEntity, DefaultEdge> graph;
-    protected World world;
-    protected UUID uuid;
-    protected SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
-
-
-    public PastelNetwork(World world, @Nullable UUID uuid) {
-        this.world = world;
-        this.uuid = uuid == null ? UUID.randomUUID() : uuid;
-        for (PastelNodeType type : PastelNodeType.values()) {
-            this.nodes.put(type, new HashSet<>());
-        }
-    }
+	
+	protected final Map<PastelNodeType, Set<PastelNodeBlockEntity>> nodes = new HashMap<>();
+	protected @Nullable Graph<PastelNodeBlockEntity, DefaultEdge> graph;
+	protected final World world;
+	protected final UUID uuid;
+	protected final SchedulerMap<PastelTransmission> transmissions = new SchedulerMap<>();
+	
+	
+	public PastelNetwork(World world, @Nullable UUID uuid) {
+		this.world = world;
+		this.uuid = uuid == null ? UUID.randomUUID() : uuid;
+		for (PastelNodeType type : PastelNodeType.values()) {
+			this.nodes.put(type, new HashSet<>());
+		}
+	}
 
     public World getWorld() {
         return this.world;

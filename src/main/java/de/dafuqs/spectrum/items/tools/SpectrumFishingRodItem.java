@@ -1,28 +1,23 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
-import de.dafuqs.spectrum.helpers.SpectrumEnchantmentHelper;
-import de.dafuqs.spectrum.interfaces.PlayerEntityAccessor;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.item.FishingRodItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.compat.gofish.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.item.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.sound.*;
+import net.minecraft.stat.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public abstract class SpectrumFishingRodItem extends FishingRodItem {
 	
@@ -38,9 +33,7 @@ public abstract class SpectrumFishingRodItem extends FishingRodItem {
 		if (playerEntityAccessor.getSpectrumBobber() != null) {
 			if (!world.isClient) {
 				int damage = playerEntityAccessor.getSpectrumBobber().use(itemStack);
-				itemStack.damage(damage, user, (p) -> {
-					p.sendToolBreakStatus(hand);
-				});
+				itemStack.damage(damage, user, (p) -> p.sendToolBreakStatus(hand));
 			}
 			
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, SoundCategory.NEUTRAL, 1.0F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));

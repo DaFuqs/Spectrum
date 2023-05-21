@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.helpers;
 
-import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.systems.*;
 import net.minecraft.client.render.*;
-import net.minecraft.client.util.math.MatrixStack;
-import org.joml.Matrix4f;
-import org.joml.Vector3f;
+import net.minecraft.client.util.math.*;
+import org.joml.*;
 
 public class RenderHelper {
 	

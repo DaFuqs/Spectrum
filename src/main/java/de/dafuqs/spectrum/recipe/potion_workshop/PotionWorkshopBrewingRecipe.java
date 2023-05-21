@@ -35,7 +35,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		add(new Pair<>(0.25F, 1.0F));
 	}};
 	
-	public static Map<StatusEffect, StatusEffect> negativeToPositiveEffect = new HashMap<>() {{
+	public static final Map<StatusEffect, StatusEffect> negativeToPositiveEffect = new HashMap<>() {{
 		put(StatusEffects.BAD_OMEN, StatusEffects.HERO_OF_THE_VILLAGE);
 		put(StatusEffects.HUNGER, StatusEffects.SATURATION);
 		put(StatusEffects.INSTANT_DAMAGE, StatusEffects.INSTANT_HEALTH);
@@ -118,10 +118,12 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 		return (applicableToPotions && itemStack.isOf(Items.GLASS_BOTTLE)) || (applicableToTippedArrows && itemStack.isOf(Items.ARROW)) || (applicableToPotionFillabes && itemStack.getItem() instanceof PotionFillable);
 	}
 	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.POTION_WORKSHOP_BREWING_RECIPE_SERIALIZER;
 	}
 	
+	@Override
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.POTION_WORKSHOP_BREWING;
 	}

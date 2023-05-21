@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
+import net.minecraft.client.render.block.entity.*;
 
 @Environment(EnvType.CLIENT)
 public class PrivateChestBlockEntityRenderer extends SpectrumChestBlockEntityRenderer {

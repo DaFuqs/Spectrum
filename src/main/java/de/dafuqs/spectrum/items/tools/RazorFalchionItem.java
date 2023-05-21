@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.items.tools;
 
-import de.dafuqs.spectrum.items.Preenchanted;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class RazorFalchionItem extends SwordItem implements Preenchanted {
 	
@@ -19,7 +16,7 @@ public class RazorFalchionItem extends SwordItem implements Preenchanted {
 	public Map<Enchantment, Integer> getDefaultEnchantments() {
 		return Map.of(Enchantments.LOOTING, 3);
 	}
-	
+
 	@Override
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);

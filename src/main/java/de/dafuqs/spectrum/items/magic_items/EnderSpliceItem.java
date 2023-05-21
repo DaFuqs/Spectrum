@@ -215,6 +215,7 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		}
 	}
 	
+	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (world.isClient) {
 			startSoundInstance(user);
@@ -227,14 +228,17 @@ public class EnderSpliceItem extends Item implements EnchanterEnchantable {
 		MinecraftClient.getInstance().getSoundManager().play(new EnderSpliceChargingSoundInstance(user));
 	}
 	
+	@Override
 	public int getMaxUseTime(ItemStack stack) {
 		return 48;
 	}
 	
+	@Override
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BOW;
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void appendTooltip(ItemStack itemStack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		// If Dimension & Pos stored => Teleport to that position

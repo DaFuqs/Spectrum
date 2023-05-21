@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.blocks.item_roundel;
 
-import de.dafuqs.spectrum.blocks.InWorldInteractionBlockEntity;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.math.BlockPos;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.util.math.*;
 
 public class ItemRoundelBlockEntity extends InWorldInteractionBlockEntity {
 	

@@ -1,13 +1,9 @@
 package de.dafuqs.spectrum.registries.client;
 
-import de.dafuqs.spectrum.mixin.client.accessors.RenderLayerAccessor;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.RenderPhase;
-import net.minecraft.client.render.VertexFormat;
-import net.minecraft.client.render.VertexFormats;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.mixin.client.accessors.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.render.*;
+import net.minecraft.util.*;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumRenderLayers {

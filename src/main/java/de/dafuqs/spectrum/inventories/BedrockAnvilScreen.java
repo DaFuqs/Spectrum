@@ -1,29 +1,26 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.LoreHelper;
-import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerListener;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import org.lwjgl.glfw.GLFW;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.networking.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.client.networking.v1.*;
+import net.fabricmc.fabric.api.networking.v1.*;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.lwjgl.glfw.*;
 
 @Environment(EnvType.CLIENT)
 public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler> implements ScreenHandlerListener {
@@ -43,6 +40,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		this.backgroundHeight = 190;
 	}
 	
+	@Override
 	public void handledScreenTick() {
 		super.handledScreenTick();
 		this.nameField.tick();
@@ -110,6 +108,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		loreField.setText(string2);
 	}
 	
+	@Override
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
 		if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
 			client.player.closeHandledScreen();
@@ -155,6 +154,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		ClientPlayNetworking.send(SpectrumC2SPackets.ADD_LORE_IN_BEDROCK_ANVIL_PACKET_ID, packetByteBuf);
 	}
 	
+	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
 		RenderSystem.disableBlend();
 		
@@ -208,6 +208,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		this.loreField.render(matrices, mouseX, mouseY, delta);
 	}
 	
+	@Override
 	public void onSlotUpdate(ScreenHandler handler, int slotId, ItemStack stack) {
 		if (slotId == 0) {
 			if (stack.isEmpty()) {

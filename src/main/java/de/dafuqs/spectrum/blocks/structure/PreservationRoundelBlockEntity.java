@@ -1,31 +1,23 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import de.dafuqs.spectrum.blocks.item_roundel.ItemRoundelBlockEntity;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import de.dafuqs.spectrum.blocks.item_roundel.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.networking.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
-import net.minecraft.registry.Registry;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.registry.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity implements PlayerOwned {
 	
@@ -40,6 +32,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		super(SpectrumBlockEntities.PRESERVATION_ROUNDEL, pos, state, INVENTORY_SIZE);
 	}
 	
+	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.requiredItems = new ArrayList<>();
@@ -65,6 +58,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		}
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		if (!this.requiredItems.isEmpty()) {
@@ -151,6 +145,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		return false;
 	}
 	
+	@Override
 	public boolean renderStacksAsIndividualItems() {
 		return true;
 	}

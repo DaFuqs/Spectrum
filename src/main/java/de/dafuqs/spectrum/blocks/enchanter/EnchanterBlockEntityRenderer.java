@@ -1,23 +1,18 @@
 package de.dafuqs.spectrum.blocks.enchanter;
 
-import de.dafuqs.spectrum.helpers.ExperienceHelper;
-import de.dafuqs.spectrum.items.ExperienceStorageItem;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.client.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.block.entity.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.client.render.model.json.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import org.jetbrains.annotations.NotNull;
-import org.joml.Matrix3f;
-import org.joml.Matrix4f;
+import org.jetbrains.annotations.*;
+import org.joml.*;
 
 public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity> {
 	
@@ -78,10 +73,8 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		// The Experience Item rendered in the air
 		ItemStack experienceItemStack = blockEntity.getStack(1);
 		if (!experienceItemStack.isEmpty() && experienceItemStack.getItem() instanceof ExperienceStorageItem) {
-			renderExperienceOrb((float) blockEntity.getWorld().getTime() % 50000 + tickDelta, ExperienceHelper.getExperienceOrbSizeForExperience(ExperienceStorageItem.getStoredExperience(experienceItemStack)), matrixStack, vertexConsumerProvider, EXPERIENCE_SPRITE_BRIGHTNESS);
+			renderExperienceOrb((float) (blockEntity.getWorld().getTime() % 50000) + tickDelta, ExperienceHelper.getExperienceOrbSizeForExperience(ExperienceStorageItem.getStoredExperience(experienceItemStack)), matrixStack, vertexConsumerProvider, EXPERIENCE_SPRITE_BRIGHTNESS);
 		}
-		
-		//renderLight(blockEntity, matrixStack, vertexConsumerProvider, 3, 0, null, null, null, null);
 	}
 	
 	public void renderExperienceOrb(float timeWithTickDelta, int orbSize, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {

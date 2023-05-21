@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.render;
 
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.util.math.*;
+import net.minecraft.world.dimension.*;
 
 public class SkyLerper {
 	

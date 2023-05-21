@@ -1,22 +1,15 @@
 package de.dafuqs.spectrum.blocks.furniture;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.Waterloggable;
-import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class FlexLanternBlock extends DiagonalBlock implements Waterloggable {
 	
@@ -60,6 +53,7 @@ public class FlexLanternBlock extends DiagonalBlock implements Waterloggable {
 		}
 	}
 	
+	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		Direction direction = state.get(HANGING) ? Direction.UP : Direction.DOWN;
 		return Block.sideCoversSmallSquare(world, pos.offset(direction), direction.getOpposite());
@@ -70,6 +64,7 @@ public class FlexLanternBlock extends DiagonalBlock implements Waterloggable {
 		return PistonBehavior.DESTROY;
 	}
 	
+	@Override
 	public FluidState getFluidState(BlockState state) {
 		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
 	}

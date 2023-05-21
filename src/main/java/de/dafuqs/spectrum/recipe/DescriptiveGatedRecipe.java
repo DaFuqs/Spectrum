@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.recipe;
 
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.text.Text;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
 
 public interface DescriptiveGatedRecipe extends Recipe<Inventory>, GatedRecipe {
 	

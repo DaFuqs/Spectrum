@@ -68,9 +68,7 @@ public class WallPatchFeatureConfig implements FeatureConfig {
 	}
 	
 	public List<Direction> shuffleDirections(Random random, Direction excluded) {
-		return Util.copyShuffled(this.directions.stream().filter((direction) -> {
-			return direction != excluded;
-		}), random);
+		return Util.copyShuffled(this.directions.stream().filter((direction) -> direction != excluded), random);
 	}
 	
 	public List<Direction> shuffleDirections(Random random) {

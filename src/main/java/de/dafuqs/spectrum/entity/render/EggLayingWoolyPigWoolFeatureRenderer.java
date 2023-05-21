@@ -1,21 +1,16 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.entity.entity.EggLayingWoolyPigEntity;
-import de.dafuqs.spectrum.entity.models.EggLayingWoolyPigEntityModel;
-import de.dafuqs.spectrum.entity.models.EggLayingWoolyPigHatEntityModel;
-import de.dafuqs.spectrum.entity.models.EggLayingWoolyPigWoolEntityModel;
-import de.dafuqs.spectrum.registries.client.SpectrumModelLayers;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.LivingEntityRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRenderer;
-import net.minecraft.client.render.entity.model.EntityModelLoader;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.entity.models.*;
+import de.dafuqs.spectrum.registries.client.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.client.render.entity.feature.*;
+import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.util.*;
 
 @Environment(EnvType.CLIENT)
 public class EggLayingWoolyPigWoolFeatureRenderer extends FeatureRenderer<EggLayingWoolyPigEntity, EggLayingWoolyPigEntityModel> {
@@ -29,6 +24,7 @@ public class EggLayingWoolyPigWoolFeatureRenderer extends FeatureRenderer<EggLay
 		this.wool = new EggLayingWoolyPigWoolEntityModel(loader.getModelPart(SpectrumModelLayers.WOOLY_PIG_WOOL));
 	}
 	
+	@Override
 	public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, EggLayingWoolyPigEntity entity, float f, float g, float h, float j, float k, float l) {
 		if (entity.isInvisible()) {
 			MinecraftClient minecraftClient = MinecraftClient.getInstance();

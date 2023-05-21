@@ -1,37 +1,31 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.items.trinkets.SpectrumTrinketItem;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate.Extended;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.items.trinkets.*;
+import dev.emi.trinkets.api.*;
+import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.entity.EntityPredicate.*;
+import net.minecraft.predicate.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class TrinketChangeCriterion extends AbstractCriterion<TrinketChangeCriterion.Conditions> {
 	
 	static final Identifier ID = SpectrumCommon.locate("trinket_change");
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public TrinketChangeCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		NumberRange.IntRange totalCountRange = NumberRange.IntRange.fromJson(jsonObject.get("total_count"));
@@ -71,6 +65,7 @@ public class TrinketChangeCriterion extends AbstractCriterion<TrinketChangeCrite
 			this.spectrumCountRange = spectrumCountRange;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			
@@ -93,7 +88,7 @@ public class TrinketChangeCriterion extends AbstractCriterion<TrinketChangeCrite
 				if (i == 0) {
 					return true;
 				} else if (i != 1) {
-					List<ItemPredicate> list = new ObjectArrayList(this.itemPredicates);
+					List<ItemPredicate> list = new ObjectArrayList<>(this.itemPredicates);
 					
 					for (ItemStack trinketStack : trinketStacks) {
 						if (list.isEmpty()) {

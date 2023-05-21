@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.helpers.Support;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.util.math.random.Random;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.helpers.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.util.math.random.*;
 
 public interface ExperienceStorageItem {
 	

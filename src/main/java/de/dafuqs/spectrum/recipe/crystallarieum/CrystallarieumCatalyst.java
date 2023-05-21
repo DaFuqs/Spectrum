@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.recipe.crystallarieum;
 
-import com.google.gson.JsonObject;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.JsonHelper;
+import com.google.gson.*;
+import net.minecraft.network.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
 
 public class CrystallarieumCatalyst {
 	

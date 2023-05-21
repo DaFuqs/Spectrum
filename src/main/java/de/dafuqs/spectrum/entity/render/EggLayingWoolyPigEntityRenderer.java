@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.entity.EggLayingWoolyPigEntity;
-import de.dafuqs.spectrum.entity.models.EggLayingWoolyPigEntityModel;
-import de.dafuqs.spectrum.registries.client.SpectrumModelLayers;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.entity.models.*;
+import de.dafuqs.spectrum.registries.client.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.util.*;
 
 @Environment(EnvType.CLIENT)
 public class EggLayingWoolyPigEntityRenderer extends MobEntityRenderer<EggLayingWoolyPigEntity, EggLayingWoolyPigEntityModel> {

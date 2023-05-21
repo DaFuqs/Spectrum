@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.*;
 
 public class FirstStrikeEnchantment extends SpectrumEnchantment {
 	

@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.energy.color;
 
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Identifier;
-import org.joml.Vector3f;
+import net.minecraft.util.*;
+import org.joml.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ElementalColor extends InkColor {
 	
-	protected Map<CompoundColor, Float> mixedColors = new HashMap<>(); // colors that can be mixed from this
+	protected final Map<CompoundColor, Float> mixedColors = new HashMap<>(); // colors that can be mixed from this
 	
 	public ElementalColor(DyeColor dyeColor, Vector3f color, Identifier requiredAdvancement) {
 		super(dyeColor, color, requiredAdvancement);

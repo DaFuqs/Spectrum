@@ -19,18 +19,19 @@ public class LightShardEntity extends LightShardBaseEntity {
     
     public LightShardEntity(World world, LivingEntity owner, Optional<Entity> target, float damageMod, float lifespanMod) {
         super(SpectrumEntityTypes.LIGHT_SHARD, world, owner, target);
-    
-        this.detectionRange = 48;
-        this.maxAge = (int) ((DEFAULT_MAX_AGE + MathHelper.nextGaussian(world.getRandom(), 10, 7)) * lifespanMod);
-        this.damage = 4 * damageMod;
-    }
-    
-    public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target) {
-        summonBarrageInternal(world, user, () -> new LightShardEntity(world, user, Optional.ofNullable(target), 0.5F, 1.0F));
-    }
-    
-    public Identifier getTexture() {
-        return SpectrumCommon.locate("textures/entity/projectile/light_shard.png");
-    }
-    
+	
+		this.detectionRange = 48;
+		this.maxAge = (int) ((DEFAULT_MAX_AGE + MathHelper.nextGaussian(world.getRandom(), 10, 7)) * lifespanMod);
+		this.damage = 4 * damageMod;
+	}
+	
+	public static void summonBarrage(World world, LivingEntity user, @Nullable Entity target) {
+		summonBarrageInternal(world, user, () -> new LightShardEntity(world, user, Optional.ofNullable(target), 0.5F, 1.0F));
+	}
+	
+	@Override
+	public Identifier getTexture() {
+		return SpectrumCommon.locate("textures/entity/projectile/light_shard.png");
+	}
+	
 }

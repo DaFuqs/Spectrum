@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.google.common.collect.Maps;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.StairsBlock;
-import net.minecraft.util.DyeColor;
+import com.google.common.collect.*;
+import net.minecraft.block.*;
+import net.minecraft.util.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class ColoredStairsBlock extends StairsBlock {
 	

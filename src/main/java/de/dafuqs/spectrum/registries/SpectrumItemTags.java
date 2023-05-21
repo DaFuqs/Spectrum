@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.tag.TagKey;
+import de.dafuqs.spectrum.Æ;
+import net.minecraft.item.Æ;
+import net.minecraft.registry.Æ;
+import net.minecraft.registry.tag.Æ;
 
 public class SpectrumItemTags {
 	

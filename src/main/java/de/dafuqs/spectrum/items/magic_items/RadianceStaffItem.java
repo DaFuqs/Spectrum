@@ -82,10 +82,12 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		tooltip.add(Text.translatable("item.spectrum.radiance_staff.tooltip3"));
 	}
 	
+	@Override
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.BOW;
 	}
 	
+	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (!world.isClient) {
 			world.playSound(null, user.getX(), user.getY(), user.getZ(), SpectrumSoundEvents.RADIANCE_STAFF_CHARGING, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -93,6 +95,7 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		return ItemUsage.consumeHeldItem(world, user, hand);
 	}
 	
+	@Override
 	public void usageTick(World world, LivingEntity user, ItemStack stack, int remainingUseTicks) {
 		// trigger the items' usage action every x ticks
 		if (user instanceof ServerPlayerEntity serverPlayerEntity && user.getItemUseTime() > USE_DURATION && user.getItemUseTime() % USE_DURATION == 0) {

@@ -169,6 +169,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		return false;
 	}
 	
+	@Override
 	public void tick() {
 		super.tick();
 		if (this.hasInvincibilityTicks()) {
@@ -307,6 +308,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			super(owner);
 		}
 		
+		@Override
 		public void tick() {
 			if (MonstrosityEntity.this.horizontalCollision) {
 				MonstrosityEntity.this.setYaw(MonstrosityEntity.this.getYaw() + 180.0F);
@@ -468,8 +470,8 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	
 	private class RetreatAndAttackGoal extends Goal {
 		
-		protected MobEntity mob;
-		protected float retreatDistance;
+		protected final MobEntity mob;
+		protected final float retreatDistance;
 		
 		RetreatAndAttackGoal(PathAwareEntity mob, float retreatDistance) {
 			super();

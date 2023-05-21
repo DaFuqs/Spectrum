@@ -177,7 +177,8 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 		}
 		return false;
 	}
-
+	
+	@Override
 	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		if (!world.isClient) {
 			if (!player.isCreative()) {
@@ -188,6 +189,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 		super.onBreak(world, pos, state, player);
 	}
 	
+	@Override
 	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
 		super.afterBreak(world, player, pos, Blocks.AIR.getDefaultState(), blockEntity, stack);
 	}
@@ -217,7 +219,8 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 		public @NotNull String toString() {
 			return this.asString();
 		}
-
+		
+		@Override
 		@Contract(pure = true)
 		public @NotNull String asString() {
 			return this == BASE ? "base" : this == MIDDLE ? "middle" : "tip";

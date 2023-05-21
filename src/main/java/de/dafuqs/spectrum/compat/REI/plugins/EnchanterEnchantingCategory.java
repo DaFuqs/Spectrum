@@ -19,7 +19,7 @@ public class EnchanterEnchantingCategory extends EnchanterCategory<EnchanterEnch
 	public static final EntryIngredient ENCHANTER = EntryIngredients.of(SpectrumBlocks.ENCHANTER);
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<EnchanterEnchantingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.ENCHANTER_CRAFTING;
 	}
 	

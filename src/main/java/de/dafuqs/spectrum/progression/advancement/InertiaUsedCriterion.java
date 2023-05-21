@@ -1,22 +1,16 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.StatePredicate;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate.Extended;
-import net.minecraft.registry.Registries;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import org.jetbrains.annotations.Nullable;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
+import net.minecraft.predicate.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.entity.EntityPredicate.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
+import net.minecraft.registry.*;
+import org.jetbrains.annotations.*;
 
 public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion.Conditions> {
 	
@@ -34,10 +28,12 @@ public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion
 		}
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public InertiaUsedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Block block = getBlock(jsonObject);
 		StatePredicate statePredicate = StatePredicate.fromJson(jsonObject.get("state"));
@@ -52,9 +48,7 @@ public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion
 	}
 	
 	public void trigger(ServerPlayerEntity player, BlockState state, int amount) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(state, amount);
-		});
+		this.trigger(player, (conditions) -> conditions.matches(state, amount));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
@@ -74,6 +68,7 @@ public class InertiaUsedCriterion extends AbstractCriterion<InertiaUsedCriterion
 			return new InertiaUsedCriterion.Conditions(Extended.EMPTY, block, StatePredicate.ANY, amountRange);
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			if (this.block != null) {

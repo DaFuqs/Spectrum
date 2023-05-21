@@ -10,10 +10,12 @@ public class DeadlyPoisonStatusEffect extends SpectrumStatusEffect {
 		super(category, color);
 	}
 	
+	@Override
 	public void applyUpdateEffect(LivingEntity entity, int amplifier) {
 		entity.damage(SpectrumDamageSources.deadlyPoison(entity.world), 1.0F);
 	}
 	
+	@Override
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
 		int i = 25 >> amplifier;
 		if (i > 0) {

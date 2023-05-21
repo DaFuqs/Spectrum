@@ -80,6 +80,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		this.backgroundHeight = 243;
 	}
 	
+	@Override
 	protected void init() {
 		super.init();
 
@@ -91,10 +92,12 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		setInitialFocus(amountField);
 	}
 	
+	@Override
 	public void removed() {
 		super.removed();
 	}
 	
+	@Override
 	public void handledScreenTick() {
 		super.handledScreenTick();
 		
@@ -105,6 +108,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		}
 	}
 	
+	@Override
 	public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
 		if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
 			client.player.closeHandledScreen();
@@ -128,6 +132,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		return super.keyPressed(keyCode, scanCode, modifiers);
 	}
 	
+	@Override
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 		renderBackground(matrices);
 		super.render(matrices, mouseX, mouseY, delta);
@@ -145,6 +150,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		}
 	}
 	
+	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
 		this.textRenderer.draw(matrices, this.title, (float) this.titleX, (float) this.titleY, 2236962);
 		

@@ -64,24 +64,12 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 		
 		void navigate(GUISelection direction, QuickNavigationGridScreen screen) {
 			switch (direction) {
-				case BACK -> {
-					screen.back();
-				}
-				case SELECT -> {
-					centerEntry.whenSelected(screen);
-				}
-				case UP -> {
-					topEntry.whenSelected(screen);
-				}
-				case RIGHT -> {
-					rightEntry.whenSelected(screen);
-				}
-				case DOWN -> {
-					bottomEntry.whenSelected(screen);
-				}
-				default -> {
-					leftEntry.whenSelected(screen);
-				}
+				case BACK -> screen.back();
+				case SELECT -> centerEntry.whenSelected(screen);
+				case UP -> topEntry.whenSelected(screen);
+				case RIGHT -> rightEntry.whenSelected(screen);
+				case DOWN -> bottomEntry.whenSelected(screen);
+				default -> leftEntry.whenSelected(screen);
 			}
 		}
 		
@@ -111,9 +99,9 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 	
 	public abstract static class GridEntry {
 		
-		public static GridEntry CLOSE = GridEntry.empty(QuickNavigationGridScreen::close);
-		public static GridEntry BACK = GridEntry.empty(QuickNavigationGridScreen::back);
-		public static GridEntry EMPTY = GridEntry.empty(null);
+		public static final GridEntry CLOSE = GridEntry.empty(QuickNavigationGridScreen::close);
+		public static final GridEntry BACK = GridEntry.empty(QuickNavigationGridScreen::back);
+		public static final GridEntry EMPTY = GridEntry.empty(null);
 		
 		public interface GridEntryCallback {
 			void whenSelected(QuickNavigationGridScreen screen);
@@ -178,16 +166,20 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			super("", onClickCallback);
 		}
 
+		@Override
 		void drawBigBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
 		}
 
+		@Override
 		void drawSmallBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			screen.drawTexture(matrices, startX + 9, startY + 9, 0, 0, 10, 10);
 		}
 
+		@Override
 		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 		}
 
+		@Override
 		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 		}
 	}
@@ -200,11 +192,13 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			this.color = color;
 		}
 		
+		@Override
 		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			super.drawBigForeground(screen, matrices, startX, startY);
 			RenderHelper.fillQuad(matrices, startX + 3, startY + 3, 32, 32, color);
 		}
 		
+		@Override
 		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			super.drawSmallForeground(screen, matrices, startX, startY);
 			RenderHelper.fillQuad(matrices, startX + 2, startY + 2, 24, 24, color);
@@ -214,20 +208,21 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 
 	public static class TexturedGridEntry extends GridEntry {
 
-		protected int textureStartX;
-		protected int textureStartY;
-
+		protected final int textureStartX;
+		protected final int textureStartY;
 		private TexturedGridEntry(int textureStartX, int textureStartY, @Nullable String text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			this.textureStartX = textureStartX;
 			this.textureStartY = textureStartY;
 		}
 
+		@Override
 		void drawBigBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			super.drawBigBackground(screen, matrices, startX, startY);
 			screen.drawTexture(matrices, startX + 11, startY + 11, textureStartX, textureStartY, 20, 20);
 		}
 
+		@Override
 		void drawSmallBackground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			super.drawSmallBackground(screen, matrices, startX, startY);
 			screen.drawTexture(matrices, startX, startY, textureStartX, textureStartY, 20, 20);
@@ -237,7 +232,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 
 	public static class TextGridEntry extends GridEntry {
 
-		protected Text innerText;
+		protected final Text innerText;
 		protected final int innerHalfTextWidth;
 
 		private TextGridEntry(Text innerText, @Nullable String text, GridEntry.GridEntryCallback callback) {
@@ -246,10 +241,12 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			this.innerHalfTextWidth = MinecraftClient.getInstance().textRenderer.getWidth(this.innerText) / 2;
 		}
 
+		@Override
 		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			MinecraftClient.getInstance().textRenderer.draw(matrices, this.innerText, startX + 19 - innerHalfTextWidth, startY + 15, TEXT_COLOR);
 		}
 
+		@Override
 		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			MinecraftClient.getInstance().textRenderer.draw(matrices, this.innerText, startX + 14 - innerHalfTextWidth, startY + 10, TEXT_COLOR);
 		}
@@ -257,18 +254,19 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 
 	private static class ItemGridEntry extends GridEntry {
 
-		protected ItemStack stack;
-
+		protected final ItemStack stack;
 		private ItemGridEntry(Item item, String text, GridEntry.GridEntryCallback callback) {
 			super(text, callback);
 			this.stack = item.getDefaultStack();
 		}
 
+		@Override
 		void drawBigForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			super.drawBigForeground(screen, matrices, startX, startY);
 			MinecraftClient.getInstance().getItemRenderer().renderInGui(stack, startX + 10, startY + 10);
 		}
 
+		@Override
 		void drawSmallForeground(Screen screen, MatrixStack matrices, int startX, int startY) {
 			super.drawBigForeground(screen, matrices, startX, startY);
 			MinecraftClient.getInstance().getItemRenderer().renderInGui(stack, startX + 5, startY + 5);

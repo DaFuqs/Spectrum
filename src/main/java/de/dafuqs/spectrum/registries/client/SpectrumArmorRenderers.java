@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.registries.client;
 
-import de.dafuqs.spectrum.items.armor.BedrockArmorItem;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
-import net.minecraft.item.Item;
+import de.dafuqs.spectrum.items.armor.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.fabric.api.client.rendering.v1.*;
+import net.minecraft.item.*;
 
-import java.util.List;
+import java.util.*;
 
 public class SpectrumArmorRenderers {
 	

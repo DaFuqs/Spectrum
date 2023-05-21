@@ -217,12 +217,11 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 	@Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
 		if(world.getBlockEntity(pos) instanceof TitrationBarrelBlockEntity blockEntity) {
-			switch(state.get(BARREL_STATE)) {
-				case EMPTY: {
+			switch (state.get(BARREL_STATE)) {
+				case EMPTY -> {
 					return 0;
 				}
-				
-				case FILLED: {
+				case FILLED -> {
 					int isNotEmpty = blockEntity.inventory.isEmpty() ? 0 : 1;
 					
 					float icurr = InventoryHelper.countItemsInInventory(blockEntity.inventory);
@@ -233,15 +232,13 @@ public class TitrationBarrelBlock extends HorizontalFacingBlock implements Block
 					
 					return MathHelper.floor(((icurr / imax) + (fcurr / fmax)) / 2.0f * 14.0f) + isNotEmpty;
 				}
-				
-				case SEALED: {
+				case SEALED -> {
 					return 15;
 				}
-				
-				case TAPPED: {
+				case TAPPED -> {
 					Biome biome = world.getBiome(pos).value();
 					Optional<ITitrationBarrelRecipe> recipe = blockEntity.getRecipeForInventory(world);
-					if(recipe.isEmpty()) return 0;
+					if (recipe.isEmpty()) return 0;
 					
 					float curr = blockEntity.extractedBottles;
 					float max = recipe.get().getOutputCountAfterAngelsShare(biome.getTemperature(), blockEntity.getSealSeconds());

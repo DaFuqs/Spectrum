@@ -11,12 +11,12 @@ import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 
 @Environment(EnvType.CLIENT)
-public class MonstrosityEntityRenderer extends MobEntityRenderer<MonstrosityEntity, MonstrosityModel> {
+public class MonstrosityEntityRenderer extends MobEntityRenderer<MonstrosityEntity, MonstrosityEntityModel> {
     
     private static final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/monstrosity.png");
     
     public MonstrosityEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new MonstrosityModel(context.getPart(SpectrumModelLayers.MONSTROSITY)), 1.8F);
+        super(context, new MonstrosityEntityModel(context.getPart(SpectrumModelLayers.MONSTROSITY)), 1.8F);
     }
     
     public void render(MonstrosityEntity bidentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {

@@ -476,7 +476,7 @@
     ]
   },
   "block.citrine_block.chime": {
-    "subtitle": "subtitles.block.citrine_block.chime",
+    "subtitle": "spectrum.subtitles.block.citrine_block.chime",
     "sounds": [
       "spectrum:block/citrine/block_citrine_shimmer"
     ]
@@ -716,7 +716,7 @@
     ]
   },
   "block.topaz_block.chime": {
-    "subtitle": "subtitles.block.topaz_block.chime",
+    "subtitle": "spectrum.subtitles.block.topaz_block.chime",
     "sounds": [
       "spectrum:block/topaz/block_topaz_shimmer"
     ]
@@ -956,7 +956,7 @@
     ]
   },
   "block.onyx_block.chime": {
-    "subtitle": "subtitles.block.onyx_block.chime",
+    "subtitle": "spectrum.subtitles.block.onyx_block.chime",
     "sounds": [
       "spectrum:block/onyx/block_onyx_shimmer"
     ]
@@ -1196,7 +1196,7 @@
     ]
   },
   "block.moonstone_block.chime": {
-    "subtitle": "subtitles.block.moonstone_block.chime",
+    "subtitle": "spectrum.subtitles.block.moonstone_block.chime",
     "sounds": [
       "spectrum:block/moonstone/block_moonstone_shimmer"
     ]
@@ -1436,7 +1436,7 @@
     ]
   },
   "block.spectral_block.chime": {
-    "subtitle": "subtitles.block.spectral_block.chime",
+    "subtitle": "spectrum.subtitles.block.spectral_block.chime",
     "sounds": [
       "spectrum:block/spectral/block_spectral_shimmer"
     ]
@@ -1505,6 +1505,122 @@
       "spectrum:block/spectral/block_spectral_step12",
       "spectrum:block/spectral/block_spectral_step13",
       "spectrum:block/spectral/block_spectral_step14"
+    ]
+  },
+
+  "entity.guardian_turret.ambient": {
+    "subtitle": "spectrum.subtitles.entity.guardian_turret.ambient",
+    "sounds": [
+      "entity/shulker/ambient1",
+      "entity/shulker/ambient2",
+      "entity/shulker/ambient3",
+      "entity/shulker/ambient4",
+      "entity/shulker/ambient5",
+      "entity/shulker/ambient6",
+      "entity/shulker/ambient7"
+    ]
+  },
+  "entity.guardian_turret.death": {
+    "subtitle": "spectrum.subtitles.entity.guardian_turret.death",
+    "sounds": [
+      "entity/shulker/death1",
+      "entity/shulker/death2",
+      "entity/shulker/death3",
+      "entity/shulker/death4"
+    ]
+  },
+  "entity.guardian_turret.hurt_closed": {
+    "subtitle": "spectrum.subtitles.entity.guardian_turret.hurt",
+    "sounds": [
+      "entity/shulker/hurt_closed1",
+      "entity/shulker/hurt_closed2",
+      "entity/shulker/hurt_closed3",
+      "entity/shulker/hurt_closed4",
+      "entity/shulker/hurt_closed5"
+    ]
+  },
+  "entity.guardian_turret.hurt": {
+    "subtitle": "spectrum.subtitles.entity.guardian_turret.hurt",
+    "sounds": [
+      "entity/shulker/hurt1",
+      "entity/shulker/hurt2",
+      "entity/shulker/hurt3",
+      "entity/shulker/hurt4"
+    ]
+  },
+  "entity.guardian_turret.close": {
+    "subtitle": "spectrum.subtitles.entity.guardian_turret.close",
+    "sounds": [
+      "entity/shulker/close1",
+      "entity/shulker/close2",
+      "entity/shulker/close3",
+      "entity/shulker/close4",
+      "entity/shulker/close5"
+    ]
+  },
+  "entity.guardian_turret.open": {
+    "subtitle": "spectrum.subtitles.entity.guardian_turret.open",
+    "sounds": [
+      "entity/shulker/open1",
+      "entity/shulker/open2",
+      "entity/shulker/open3",
+      "entity/shulker/open4",
+      "entity/shulker/open5"
+    ]
+  },
+  "entity.guardian_turret.shoot": {
+    "subtitle": "spectrum.subtitles.entity.guardian_turret.shoot",
+    "sounds": [
+      "entity/shulker/shoot1",
+      "entity/shulker/shoot2",
+      "entity/shulker/shoot3",
+      "entity/shulker/shoot4"
+    ]
+  },
+
+  "entity.monstrosity.shoot": {
+    "subtitle": "spectrum.subtitles.entity.monstrosity.shoot",
+    "sounds": [
+      "mob/ghast/fireball4"
+    ]
+  },
+  "entity.monstrosity.swoop": {
+    "subtitle": "spectrum.subtitles.entity.monstrosity.swoop",
+    "sounds": [
+      {
+        "name": "mob/phantom/swoop1",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/phantom/swoop2",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/phantom/swoop3",
+        "volume": 0.7
+      },
+      {
+        "name": "mob/phantom/swoop4",
+        "volume": 0.7
+      }
+    ]
+  },
+  "entity.monstrosity.ambient": {
+    "subtitle": "spectrum.subtitles.entity.monstrosity.ambient",
+    "sounds": [
+      "mob/enderdragon/growl1",
+      "mob/enderdragon/growl2",
+      "mob/enderdragon/growl3",
+      "mob/enderdragon/growl4"
+    ]
+  },
+  "entity.monstrosity.hurt": {
+    "subtitle": "spectrum.subtitles.entity.monstrosity.hurt",
+    "sounds": [
+      "mob/enderdragon/hit1",
+      "mob/enderdragon/hit2",
+      "mob/enderdragon/hit3",
+      "mob/enderdragon/hit4"
     ]
   }
 }

@@ -8,11 +8,11 @@ import net.minecraft.client.render.entity.model.*;
 import net.minecraft.client.util.math.*;
 
 @Environment(EnvType.CLIENT)
-public class MonstrosityModel extends EntityModel<MonstrosityEntity> {
+public class MonstrosityEntityModel extends EntityModel<MonstrosityEntity> {
 	
 	private final ModelPart torso;
 	
-	public MonstrosityModel(ModelPart root) {
+	public MonstrosityEntityModel(ModelPart root) {
 		this.torso = root.getChild("torso");
 	}
 	

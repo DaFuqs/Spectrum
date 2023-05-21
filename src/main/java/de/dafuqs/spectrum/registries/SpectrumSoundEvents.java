@@ -174,6 +174,11 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SPECTRAL_BLOCK_HIT = register("block.spectral_block.hit");
 	public static final SoundEvent SPECTRAL_BLOCK_CHIME = register("block.spectral_block.chime");
 	
+	public static final SoundEvent ENTITY_MONSTROSITY_SHOOT = register("entity.monstrosity.shoot");
+	public static final SoundEvent ENTITY_MONSTROSITY_SWOOP = register("entity.monstrosity.swoop");
+	public static final SoundEvent ENTITY_MONSTROSITY_AMBIENT = register("entity.monstrosity.ambient");
+	public static final SoundEvent ENTITY_MONSTROSITY_HURT = register("entity.monstrosity.hurt");
+	
 	private static SoundEvent register(String id) {
 		Identifier identifier = SpectrumCommon.locate(id);
 		return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));

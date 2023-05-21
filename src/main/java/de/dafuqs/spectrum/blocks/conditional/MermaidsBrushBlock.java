@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
 import net.minecraft.client.*;
@@ -24,18 +25,18 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, RevelationAware, FluidFillable {
+public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, RevelationAware, FluidLogging.SpectrumFluidFillable {
 	
 	private static final VoxelShape SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("milestones/reveal_mermaids_brush");
 	
-	public static final BooleanProperty IN_LIQUID_CRYSTAL = BooleanProperty.of("in_liquid_crystal");
+	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_EXCLUDING_NONE;
 	public static final IntProperty AGE = Properties.AGE_7;
 	
 	public MermaidsBrushBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(IN_LIQUID_CRYSTAL, false));
+		this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(LOGGED, FluidLogging.State.WATER));
 		RevelationAware.register(this);
 	}
 	
@@ -72,8 +73,8 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
 		BlockState cloakState = Blocks.SEAGRASS.getDefaultState();
 		for (int i = 0; i < 8; i++) {
-			hashtable.put(this.getDefaultState().with(AGE, i).with(IN_LIQUID_CRYSTAL, false), cloakState);
-			hashtable.put(this.getDefaultState().with(AGE, i).with(IN_LIQUID_CRYSTAL, true), cloakState);
+			hashtable.put(this.getDefaultState().with(AGE, i).with(LOGGED, FluidLogging.State.WATER), cloakState);
+			hashtable.put(this.getDefaultState().with(AGE, i).with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL), cloakState);
 		}
 		return hashtable;
 	}
@@ -84,12 +85,13 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	}
 	
 	@Nullable
+	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
 		if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
-			return super.getPlacementState(ctx).with(IN_LIQUID_CRYSTAL, true);
+			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
 		} else {
-			return super.getPlacementState(ctx).with(IN_LIQUID_CRYSTAL, false);
+			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.WATER);
 		}
 	}
 	
@@ -98,7 +100,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 		if (!state.canPlaceAt(world, pos)) {
 			return Blocks.AIR.getDefaultState();
 		} else {
-			if (state.get(IN_LIQUID_CRYSTAL)) {
+			if (state.get(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL) {
 				world.createAndScheduleFluidTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickRate(world));
 			} else {
 				world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
@@ -110,16 +112,12 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	
 	@Override
 	public FluidState getFluidState(BlockState state) {
-		if (state.get(IN_LIQUID_CRYSTAL)) {
-			return SpectrumFluids.LIQUID_CRYSTAL.getStill(false);
-		} else {
-			return Fluids.WATER.getStill(false);
-		}
+		return state.get(LOGGED).getFluidState();
 	}
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(AGE, IN_LIQUID_CRYSTAL);
+		builder.add(AGE, LOGGED);
 	}
 	
 	@Override
@@ -130,7 +128,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 			world.spawnEntity(pearlEntity);
 			world.setBlockState(pos, state.with(AGE, 0), 3);
 		} else {
-			float chance = state.get(IN_LIQUID_CRYSTAL) ? 0.5F : 0.2F;
+			float chance = state.get(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? 0.5F : 0.2F;
 			if (random.nextFloat() < chance) {
 				world.setBlockState(pos, state.with(AGE, age + 1), Block.NOTIFY_NEIGHBORS | Block.NOTIFY_LISTENERS);
 			}
@@ -165,8 +163,8 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
 		int age = state.get(AGE);
 		int attempts = 7;
-		float chance = state.get(IN_LIQUID_CRYSTAL) ? 1.0F : 0.5F;
-		int nextAge = age + random.nextBetween(1, (int)Math.ceil(attempts*chance));
+		float chance = state.get(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL ? 1.0F : 0.5F;
+		int nextAge = age + random.nextBetween(1, (int) Math.ceil(attempts * chance));
 		
 		if (nextAge >= 7) {
 			ItemEntity pearlEntity = new ItemEntity(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(SpectrumItems.MERMAIDS_GEM, 1));

@@ -5,6 +5,7 @@ import de.dafuqs.revelationary.api.advancements.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.entity.ai.*;
+import de.dafuqs.spectrum.registries.*;
 import de.dafuqs.spectrum.sound.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -33,10 +34,8 @@ import java.util.*;
 import java.util.function.*;
 
 public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttackMob {
-	
-	private static final Identifier ENTERED_DD_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/spectrum_lategame");
+
 	private static final Identifier KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER = SpectrumCommon.locate("lategame/killed_monstrosity");
-	
 	private static final Predicate<LivingEntity> SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE = (entity) -> {
 		if (entity instanceof PlayerEntity player) {
 			return !player.isSpectator() && !player.isCreative() && !AdvancementHelper.hasAdvancement(player, KILLED_MONSTROSITY_ADVANCEMENT_IDENTIFIER);
@@ -45,8 +44,8 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	};
 	private final TargetPredicate TARGET_PREDICATE = TargetPredicate.createAttackable().setPredicate(SHOULD_NOT_BE_IN_DD_PLAYER_PREDICATE);
 	
-	private static final float MAX_LIFE_LOST_PER_TICK = 20;
-	private static final float GET_STRONGER_EVERY_X_TICKS = 400;
+	private static final float MAX_LIFE_LOST_PER_TICK = 20F;
+	private static final float GET_STRONGER_EVERY_X_TICKS = 400F;
 	
 	private Vec3d targetPosition = Vec3d.ZERO;
 	private MovementType movementType = MovementType.SWOOPING_TO_POSITION;
@@ -278,7 +277,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 		double f = target.getZ() - this.getZ();
 		double g = Math.sqrt(d * d + f * f);
 		persistentProjectileEntity.setVelocity(d, e + g * 0.2, f, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
-		this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+		this.playSound(SpectrumSoundEvents.ENTITY_MONSTROSITY_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
 		this.world.spawnEntity(persistentProjectileEntity);
 	}
 	
@@ -372,7 +371,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 					MonstrosityEntity.this.movementType = MovementType.START_SWOOPING;
 					this.aimAtTarget();
 					this.cooldown = this.getTickCount((8 + MonstrosityEntity.this.random.nextInt(4)) * 20);
-					MonstrosityEntity.this.playSound(SoundEvents.ENTITY_PHANTOM_SWOOP, 10.0F, 0.95F + MonstrosityEntity.this.random.nextFloat() * 0.1F);
+					MonstrosityEntity.this.playSound(SpectrumSoundEvents.ENTITY_MONSTROSITY_SWOOP, 10.0F, 0.95F + MonstrosityEntity.this.random.nextFloat() * 0.1F);
 				}
 			}
 		}

@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.entity.entity;
 
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.*;
@@ -196,12 +197,12 @@ public class SpectrumBossEntity extends PathAwareEntity {
 	
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return SoundEvents.ENTITY_ENDER_DRAGON_AMBIENT;
+		return SpectrumSoundEvents.ENTITY_MONSTROSITY_AMBIENT;
 	}
 	
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return SoundEvents.ENTITY_ENDER_DRAGON_HURT;
+		return SpectrumSoundEvents.ENTITY_MONSTROSITY_HURT;
 	}
 	
 	@Override

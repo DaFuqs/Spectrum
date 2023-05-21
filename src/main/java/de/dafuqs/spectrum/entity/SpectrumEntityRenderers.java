@@ -27,7 +27,7 @@ public class SpectrumEntityRenderers {
 		register(SpectrumEntityTypes.BIDENT, BidentEntityRenderer::new);
 		register(SpectrumEntityTypes.BIDENT_MIRROR_IMAGE, BidentEntityRenderer::new);
 		register(SpectrumEntityTypes.LIGHT_SHARD, LightShardEntityRenderer::new);
-		register(SpectrumEntityTypes.LIGHT_SPEAR, LightShardEntityRenderer::new);
+		register(SpectrumEntityTypes.LIGHT_SPEAR, LightSpearEntityRenderer::new);
 		register(SpectrumEntityTypes.LIGHT_MINE, LightMineEntityRenderer::new);
 		register(SpectrumEntityTypes.MONSTROSITY, MonstrosityEntityRenderer::new);
 	}

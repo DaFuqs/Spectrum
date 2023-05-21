@@ -2,17 +2,17 @@ package de.dafuqs.spectrum.entity.render;
 
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
+import net.fabricmc.api.*;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.entity.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import org.joml.Vector3f;
+import org.joml.*;
 
+@Environment(EnvType.CLIENT)
 public class LightMineEntityRenderer extends EntityRenderer<LightMineEntity> {
-    
-    protected static int LIGHT = 15728850;
-    
+
     public LightMineEntityRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
     }

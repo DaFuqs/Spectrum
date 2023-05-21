@@ -53,6 +53,10 @@ public class FluidLogging {
 			return this.getFluidState().isIn(fluidTag);
 		}
 		
+		@Override
+		public String toString() {
+			return this.name;
+		}
 	}
 	
 	public static final EnumProperty<State> ANY_INCLUDING_NONE = EnumProperty.of("fluid_logged", State.class);

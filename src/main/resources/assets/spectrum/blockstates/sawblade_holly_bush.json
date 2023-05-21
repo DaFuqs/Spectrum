@@ -1,52 +1,28 @@
 {
   "variants": {
-    "age=0,half=lower": {
-      "model": "spectrum:block/sawblade_holly_bush_stage0_lower"
+    "age=0": {
+      "model": "spectrum:block/sawblade_holly_bush_stage0"
     },
-    "age=1,half=lower": {
-      "model": "spectrum:block/sawblade_holly_bush_stage1_lower"
+    "age=1": {
+      "model": "spectrum:block/sawblade_holly_bush_stage1"
     },
-    "age=2,half=lower": {
-      "model": "spectrum:block/sawblade_holly_bush_stage1_lower"
+    "age=2": {
+      "model": "spectrum:block/sawblade_holly_bush_stage1"
     },
-    "age=3,half=lower": {
-      "model": "spectrum:block/sawblade_holly_bush_stage2_lower"
+    "age=3": {
+      "model": "spectrum:block/sawblade_holly_bush_stage2"
     },
-    "age=4,half=lower": {
-      "model": "spectrum:block/sawblade_holly_bush_stage2_lower"
+    "age=4": {
+      "model": "spectrum:block/sawblade_holly_bush_stage2"
     },
-    "age=5,half=lower": {
-      "model": "spectrum:block/sawblade_holly_bush_stage3_lower"
+    "age=5": {
+      "model": "spectrum:block/sawblade_holly_bush_stage2"
     },
-    "age=6,half=lower": {
-      "model": "spectrum:block/sawblade_holly_bush_stage3_lower"
+    "age=6": {
+      "model": "spectrum:block/sawblade_holly_bush_stage2"
     },
-    "age=7,half=lower": {
-      "model": "spectrum:block/sawblade_holly_bush_stage4_lower"
-    },
-    "age=0,half=upper": {
-      "model": "spectrum:block/sawblade_holly_bush_stage2_upper"
-    },
-    "age=1,half=upper": {
-      "model": "spectrum:block/sawblade_holly_bush_stage2_upper"
-    },
-    "age=2,half=upper": {
-      "model": "spectrum:block/sawblade_holly_bush_stage2_upper"
-    },
-    "age=3,half=upper": {
-      "model": "spectrum:block/sawblade_holly_bush_stage2_upper"
-    },
-    "age=4,half=upper": {
-      "model": "spectrum:block/sawblade_holly_bush_stage2_upper"
-    },
-    "age=5,half=upper": {
-      "model": "spectrum:block/sawblade_holly_bush_stage3_upper"
-    },
-    "age=6,half=upper": {
-      "model": "spectrum:block/sawblade_holly_bush_stage3_upper"
-    },
-    "age=7,half=upper": {
-      "model": "spectrum:block/sawblade_holly_bush_stage4_upper"
+    "age=7": {
+      "model": "spectrum:block/sawblade_holly_bush_stage3"
     }
   }
 }

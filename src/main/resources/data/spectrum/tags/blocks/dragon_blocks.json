@@ -1,8 +1,23 @@
 {
   "values": [
     "spectrum:dragonbone",
+    "spectrum:cracked_dragonbone",
+
+    "spectrum:polished_bone_ash",
+    "spectrum:polished_bone_ash_slab",
+    "spectrum:polished_bone_ash_stairs",
+    "spectrum:polished_bone_ash_wall",
+
     "spectrum:bone_ash_bricks",
+    "spectrum:bone_ash_brick_slab",
+    "spectrum:bone_ash_brick_stairs",
+    "spectrum:bone_ash_brick_wall",
+
     "spectrum:bone_ash_tiles",
+    "spectrum:bone_ash_tile_slab",
+    "spectrum:bone_ash_tile_stairs",
+    "spectrum:bone_ash_tile_wall",
+
     "spectrum:bone_ash_pillar",
     "spectrum:bone_ash_column",
     "spectrum:bone_ash_shingles"

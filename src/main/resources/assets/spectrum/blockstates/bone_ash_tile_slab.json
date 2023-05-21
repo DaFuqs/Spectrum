@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "spectrum:block/bone_ash_tile_slab"
+    },
+    "type=double": {
+      "model": "spectrum:block/bone_ash_tile_slab"
+    },
+    "type=top": {
+      "model": "spectrum:block/bone_ash_tile_slab_top"
+    }
+  }
+}

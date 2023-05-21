@@ -49,6 +49,7 @@ public class SpectrumBlockTags {
 	public static final TagKey<Block> SPAWNERS = getReference("spawners");
 	public static final TagKey<Block> CRUMBLING_SUPER_EFFECTIVE = getReference("crumbling_super_effective");
 	public static final TagKey<Block> INK_EFFECT_BLACKLISTED = getReference("ink_effect_blacklisted"); // blacklisting form block coloring, repairing, ...
+	public static final TagKey<Block> SPREADS_TO_BLACKSLAG = getReference("spreads_to_blackslag");
 	
 	// DEBUG
 	public static final TagKey<Block> EXEMPT_FROM_MINEABLE_DEBUG_CHECK = getReference("exempt_from_mineable_debug_check");

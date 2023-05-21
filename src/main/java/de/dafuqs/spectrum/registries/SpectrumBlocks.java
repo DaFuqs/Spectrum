@@ -152,7 +152,7 @@ public class SpectrumBlocks {
 	public static final Block MALACHITE_BLOCK = new Block(FabricBlockSettings.of(Material.AMETHYST).hardness(1.5F).sounds(BlockSoundGroup.CHAIN));
 	
 	// DD BLOCKS
-	public static final Block BLACKSLAG = new PillarBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(5.0F, 7.0F));
+	public static final Block BLACKSLAG = new BlackslagBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(5.0F, 7.0F));
 	public static final Block INFESTED_BLACKSLAG = new InfestedBlock(BLACKSLAG, AbstractBlock.Settings.of(Material.ORGANIC_PRODUCT));
 	public static final Block COBBLED_BLACKSLAG = new Block(FabricBlockSettings.copyOf(Blocks.DEEPSLATE).strength(6.0F, 7.0F));
 	public static final Block COBBLED_BLACKSLAG_STAIRS = new StairsBlock(COBBLED_BLACKSLAG.getDefaultState(), AbstractBlock.Settings.copy(COBBLED_BLACKSLAG));
@@ -523,9 +523,9 @@ public class SpectrumBlocks {
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
 	
 	//DD FLORA
-	public static final Block SAWBLADE_GRASS = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly(), null, BLACKSLAG.getDefaultState());
-	public static final Block SHIMMEL = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly(), null, BLACKSLAG.getDefaultState());
-	public static final Block OVERGROWN_BLACKSLAG = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly(), null, BLACKSLAG.getDefaultState());
+	public static final Block SAWBLADE_GRASS = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly());
+	public static final Block SHIMMEL = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly());
+	public static final Block OVERGROWN_BLACKSLAG = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly());
 	public static final Block ROTTEN_GROUND = new RottenGroundBlock(AbstractBlock.Settings.copy(Blocks.MUD).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
 	
 	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), () -> getConfiguredFeatureRegistryEntry("noxfungi/slate"));
@@ -1306,9 +1306,9 @@ public class SpectrumBlocks {
 	
 	private static void registerDDFlora(FabricItemSettings settings) {
 		registerBlockWithItem("sawblade_grass", SAWBLADE_GRASS, settings, DyeColor.LIME);
-		registerBlockWithItem("rotten_ground", ROTTEN_GROUND, settings, DyeColor.LIME);
-		registerBlockWithItem("shimmel", SHIMMEL, settings, DyeColor.LIME);
 		registerBlockWithItem("overgrown_blackslag", OVERGROWN_BLACKSLAG, settings, DyeColor.LIME);
+		registerBlockWithItem("shimmel", SHIMMEL, settings, DyeColor.LIME);
+		registerBlockWithItem("rotten_ground", ROTTEN_GROUND, settings, DyeColor.LIME);
 		
 		registerBlockWithItem("slate_noxshroom", SLATE_NOXSHROOM, settings, DyeColor.LIME);
 		registerBlockWithItem("slate_noxcap_cap", SLATE_NOXCAP_CAP, settings, DyeColor.LIME);

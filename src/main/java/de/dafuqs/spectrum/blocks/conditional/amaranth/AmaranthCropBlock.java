@@ -38,6 +38,7 @@ public class AmaranthCropBlock extends TallCropBlock implements RevelationAware 
 		RevelationAware.register(this);
 	}
 	
+	@Override
 	public int getMaxAge() {
 		return MAX_AGE;
 	}

@@ -47,6 +47,7 @@ public abstract class PotionWorkshopRecipe extends GatedSpectrumRecipe {
 		return ingredients;
 	}
 	
+	@Override
 	public boolean matches(@NotNull Inventory inv, World world) {
 		if (inv.size() > 4 && inv.getStack(0).isOf(SpectrumItems.MERMAIDS_GEM) && isValidBaseIngredient(inv.getStack(1))) {
 			
@@ -99,10 +100,12 @@ public abstract class PotionWorkshopRecipe extends GatedSpectrumRecipe {
 		return this.craftingTime;
 	}
 	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SpectrumRecipeTypes.ANVIL_CRUSHING_RECIPE_SERIALIZER;
 	}
 	
+	@Override
 	public RecipeType<?> getType() {
 		return SpectrumRecipeTypes.ANVIL_CRUSHING;
 	}

@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 
 public interface ActivatableItem {
 	

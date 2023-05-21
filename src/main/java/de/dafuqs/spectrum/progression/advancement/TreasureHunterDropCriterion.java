@@ -1,36 +1,32 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 public class TreasureHunterDropCriterion extends AbstractCriterion<TreasureHunterDropCriterion.Conditions> {
 	
 	static final Identifier ID = SpectrumCommon.locate("treasure_hunter_drop");
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public TreasureHunterDropCriterion.Conditions conditionsFromJson(@NotNull JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate droppedItemPredicate = ItemPredicate.fromJson(jsonObject.get("dropped_item"));
 		return new TreasureHunterDropCriterion.Conditions(extended, droppedItemPredicate);
 	}
 	
 	public void trigger(ServerPlayerEntity player, ItemStack droppedStack) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(droppedStack);
-		});
+		this.trigger(player, (conditions) -> conditions.matches(droppedStack));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
@@ -42,6 +38,7 @@ public class TreasureHunterDropCriterion extends AbstractCriterion<TreasureHunte
 			this.droppedItemPredicate = droppedItemPredicate;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("dropped_item", this.droppedItemPredicate.toJson());

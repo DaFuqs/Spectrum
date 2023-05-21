@@ -1,19 +1,15 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.energy.InkStorage;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
 public class InkContainerInteractionCriterion extends AbstractCriterion<InkContainerInteractionCriterion.Conditions> {
 	
@@ -23,10 +19,12 @@ public class InkContainerInteractionCriterion extends AbstractCriterion<InkConta
 		return new InkContainerInteractionCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, blackRange, blueRange, brownRange, cyanRange, grayRange, greenRange, lightBlueRange, lightGrayRange, limeRange, magentaRange, orangeRange, pinkRange, purpleRange, redRange, whiteRange, yellowRange, changeColor, changeRange);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public InkContainerInteractionCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		LongRange blackRange = LongRange.fromJson(jsonObject.get("black"));
 		LongRange blueRange = LongRange.fromJson(jsonObject.get("blue"));
@@ -123,6 +121,7 @@ public class InkContainerInteractionCriterion extends AbstractCriterion<InkConta
 			this.changeRange = changeRange;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.addProperty("item", this.itemPredicate.toString());

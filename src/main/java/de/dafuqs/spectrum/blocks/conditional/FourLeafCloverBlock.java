@@ -1,16 +1,14 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.decoration.CloverBlock;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.decoration.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 public class FourLeafCloverBlock extends CloverBlock implements RevelationAware {
 	

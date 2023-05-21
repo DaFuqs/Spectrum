@@ -21,7 +21,7 @@ import java.util.*;
 public class GlowVisionGogglesItem extends SpectrumTrinketItem implements InkPowered {
 	
 	public static final InkCost INK_COST = new InkCost(InkColors.LIGHT_BLUE, 20);
-	public static ItemStack ITEM_COST = new ItemStack(Items.GLOW_INK_SAC, 1);
+	public static final ItemStack ITEM_COST = new ItemStack(Items.GLOW_INK_SAC, 1);
 	
 	public GlowVisionGogglesItem(Settings settings) {
 		super(settings, SpectrumCommon.locate("unlocks/trinkets/glow_vision_goggles"));

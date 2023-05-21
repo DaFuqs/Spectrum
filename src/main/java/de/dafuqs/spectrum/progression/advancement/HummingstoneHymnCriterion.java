@@ -16,20 +16,20 @@ public class HummingstoneHymnCriterion extends AbstractCriterion<HummingstoneHym
 	public static HummingstoneHymnCriterion.Conditions create(LocationPredicate location) {
 		return new HummingstoneHymnCriterion.Conditions(EntityPredicate.Extended.EMPTY, location);
 	}
-
+	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
-
+	
+	@Override
 	public HummingstoneHymnCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		LocationPredicate locationPredicate = LocationPredicate.fromJson(jsonObject.get("location"));
 		return new HummingstoneHymnCriterion.Conditions(extended, locationPredicate);
 	}
 
 	public void trigger(ServerPlayerEntity player, ServerWorld world, BlockPos pos) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(world, pos);
-		});
+		this.trigger(player, (conditions) -> conditions.matches(world, pos));
 	}
 
 	public static class Conditions extends AbstractCriterionConditions {
@@ -39,7 +39,8 @@ public class HummingstoneHymnCriterion extends AbstractCriterion<HummingstoneHym
 			super(ID, player);
 			this.location = location;
 		}
-
+		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("location", this.location.toJson());

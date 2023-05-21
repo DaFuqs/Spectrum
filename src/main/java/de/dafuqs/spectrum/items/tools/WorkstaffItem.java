@@ -84,6 +84,7 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	 * Like stripping logs, tilling grass paths etc.
 	 * To get tilled earth it has to converted to path and then tilled again
 	 */
+	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		NbtCompound nbt = context.getStack().getNbt();
 		if(canTill(nbt)) {

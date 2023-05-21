@@ -1,10 +1,8 @@
 package de.dafuqs.spectrum.enchantments;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.util.Identifier;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.*;
 
 /**
  * Increases the speed of shot arrows and makes them invisible

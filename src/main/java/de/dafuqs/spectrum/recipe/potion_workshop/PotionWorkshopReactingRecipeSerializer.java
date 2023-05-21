@@ -1,21 +1,15 @@
 package de.dafuqs.spectrum.recipe.potion_workshop;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
-import net.minecraft.item.Item;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.ShapedRecipe;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
+import com.google.gson.*;
+import de.dafuqs.spectrum.recipe.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import java.util.*;
+import java.util.stream.*;
 
 public class PotionWorkshopReactingRecipeSerializer implements GatedRecipeSerializer<PotionWorkshopReactingRecipe> {
 	

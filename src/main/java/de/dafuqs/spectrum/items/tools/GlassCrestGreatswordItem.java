@@ -49,18 +49,21 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 		tooltip.add(Text.translatable("item.spectrum.glass_crest_ultra_greatsword.tooltip2"));
 		tooltip.add(Text.translatable("spectrum.tooltip.ink_powered.white"));
 	}
-
+	
+	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (world.isClient) {
 			startSoundInstance(user);
 		}
 		return ItemUsage.consumeHeldItem(world, user, hand);
 	}
-
+	
+	@Override
 	public int getMaxUseTime(ItemStack stack) {
 		return groundSlamChargeTicks;
 	}
-
+	
+	@Override
 	public UseAction getUseAction(ItemStack stack) {
 		return UseAction.SPEAR;
 	}
@@ -156,8 +159,8 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	@Override
 	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
 		DamageComposition composition = new DamageComposition();
-		composition.addPlayerOrEntity(attacker, damage * (1 - this.MAGIC_DAMAGE_SHARE));
-		composition.add(DamageSource.magic(attacker, attacker), damage * this.MAGIC_DAMAGE_SHARE);
+		composition.addPlayerOrEntity(attacker, damage * (1 - MAGIC_DAMAGE_SHARE));
+		composition.add(DamageSource.magic(attacker, attacker), damage * MAGIC_DAMAGE_SHARE);
 		return composition;
 	}
 

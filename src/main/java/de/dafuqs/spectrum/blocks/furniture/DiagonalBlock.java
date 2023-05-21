@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.blocks.furniture;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import org.jetbrains.annotations.*;
 
 public class DiagonalBlock extends Block {
 	

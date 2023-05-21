@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.ShapedRecipe;
-import net.minecraft.util.collection.DefaultedList;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Invoker;
+import com.google.gson.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.collection.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.gen.*;
 
-import java.util.Map;
+import java.util.*;
 
 @Mixin(ShapedRecipe.class)
 public interface ShapedRecipeAccessor {

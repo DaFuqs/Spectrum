@@ -16,25 +16,26 @@ import net.minecraft.util.math.*;
 
 @Environment(EnvType.CLIENT)
 public class BidentEntityRenderer extends EntityRenderer<BidentEntity> {
-
-    private final ItemRenderer itemRenderer;
-
-    public BidentEntityRenderer(EntityRendererFactory.Context context) {
-        super(context);
-        this.itemRenderer = context.getItemRenderer();
-    }
-
-    public void render(BidentEntity bidentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
-        ItemStack itemStack = bidentEntity.getStack();
-        renderAsItemStack(bidentEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
-        super.render(bidentEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
-    }
-
-    private void renderAsItemStack(BidentEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
-        SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformation.Mode.NONE;
-        BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
-
-        matrixStack.push();
+	
+	private final ItemRenderer itemRenderer;
+	
+	public BidentEntityRenderer(EntityRendererFactory.Context context) {
+		super(context);
+		this.itemRenderer = context.getItemRenderer();
+	}
+	
+	@Override
+	public void render(BidentEntity bidentEntity, float yaw, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light) {
+		ItemStack itemStack = bidentEntity.getStack();
+		renderAsItemStack(bidentEntity, tickDelta, matrixStack, vertexConsumerProvider, light, itemStack);
+		super.render(bidentEntity, yaw, tickDelta, matrixStack, vertexConsumerProvider, light);
+	}
+	
+	private void renderAsItemStack(BidentEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
+		SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformation.Mode.NONE;
+		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
+		
+		matrixStack.push();
         matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
         matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(-135 + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
 

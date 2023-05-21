@@ -1,32 +1,25 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.revelationary.advancement_criteria.AdvancementGottenCriterion;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
-import io.wispforest.owo.Owo;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementCriterion;
-import net.minecraft.advancement.AdvancementProgress;
-import net.minecraft.advancement.PlayerAdvancementTracker;
-import net.minecraft.advancement.criterion.CriterionConditions;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-import vazkii.patchouli.api.PatchouliAPI;
+import de.dafuqs.revelationary.advancement_criteria.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.registries.*;
+import io.wispforest.owo.*;
+import net.minecraft.advancement.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.stat.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.api.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GuidebookItem extends Item implements LoomPatternProvider {
 	

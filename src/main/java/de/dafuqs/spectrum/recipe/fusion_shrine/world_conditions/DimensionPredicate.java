@@ -12,7 +12,7 @@ import java.util.*;
 
 public class DimensionPredicate implements WorldConditionPredicate {
 	
-	public List<RegistryKey<World>> dimensionKeys;
+	public final List<RegistryKey<World>> dimensionKeys;
 	
 	public DimensionPredicate(List<RegistryKey<World>> dimensionKeys) {
 		this.dimensionKeys = dimensionKeys;

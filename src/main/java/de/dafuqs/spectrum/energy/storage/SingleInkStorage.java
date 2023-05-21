@@ -1,19 +1,14 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.InkStorage;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.text.Text;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
-import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
+import static de.dafuqs.spectrum.helpers.Support.*;
 
 public class SingleInkStorage implements InkStorage {
 	
@@ -84,6 +79,7 @@ public class SingleInkStorage implements InkStorage {
 		}
 	}
 	
+	@Override
 	public long drainEnergy(InkColor color, long amount) {
 		if (color == this.storedColor) {
 			long drainedAmount = Math.min(this.storedEnergy, amount);
@@ -154,6 +150,7 @@ public class SingleInkStorage implements InkStorage {
 		return compound;
 	}
 	
+	@Override
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
 		if (includeHeader) {
 			tooltip.add(Text.translatable("item.spectrum.ink_flask.tooltip", getShortenedNumberString(this.maxEnergy)));

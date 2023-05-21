@@ -1,28 +1,20 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.compat.gofish.GoFishCompat;
-import de.dafuqs.spectrum.items.tools.MoltenRodItem;
-import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeInputProvider;
-import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.SmeltingRecipe;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.compat.gofish.*;
+import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class FoundryEnchantment extends SpectrumEnchantment {
 	

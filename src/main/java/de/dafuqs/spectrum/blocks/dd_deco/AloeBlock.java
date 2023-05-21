@@ -26,27 +26,28 @@ public class AloeBlock extends PlantBlock implements Fertilizable {
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
-        builder.add(AGE);
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
-
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return world.getBaseLightLevel(pos, 0) <= MAX_LIGHT_LEVEL && super.canPlaceAt(state, world, pos);
-    }
-
-    @Override
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(SpectrumBlockTags.ALOE_PLANTABLE);
-    }
-
-    @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		super.appendProperties(builder);
+		builder.add(AGE);
+	}
+	
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
+	
+	@Override
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		return world.getBaseLightLevel(pos, 0) <= MAX_LIGHT_LEVEL && super.canPlaceAt(state, world, pos);
+	}
+	
+	@Override
+	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+		return floor.isIn(SpectrumBlockTags.ALOE_PLANTABLE);
+	}
+	
+	@Override
+	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
         return state.get(AGE) < Properties.AGE_4_MAX;
     }
 

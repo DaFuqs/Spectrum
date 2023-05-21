@@ -1,17 +1,12 @@
 package de.dafuqs.spectrum.blocks.lava_sponge;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.WetSpongeBlock;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 
 public class WetLavaSpongeBlock extends WetSpongeBlock {
 	
@@ -50,6 +45,7 @@ public class WetLavaSpongeBlock extends WetSpongeBlock {
 		world.createAndScheduleBlockTick(pos, this, getRandomTickTime(world));
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		Direction direction = Direction.random(random);

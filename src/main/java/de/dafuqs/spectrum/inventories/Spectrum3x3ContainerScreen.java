@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.ProgressionStage;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.enums.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 public class Spectrum3x3ContainerScreen extends HandledScreen<Spectrum3x3ContainerScreenHandler> {
 	
@@ -26,11 +25,13 @@ public class Spectrum3x3ContainerScreen extends HandledScreen<Spectrum3x3Contain
 		this.backgroundTexture = getBackground(tier);
 	}
 	
+	@Override
 	protected void init() {
 		super.init();
 		this.titleX = (this.backgroundWidth - this.textRenderer.getWidth(this.title)) / 2;
 	}
 	
+	@Override
 	public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
 		this.renderBackground(matrices);
 		super.render(matrices, mouseX, mouseY, delta);
@@ -40,6 +41,7 @@ public class Spectrum3x3ContainerScreen extends HandledScreen<Spectrum3x3Contain
 	/**
 	 * Draw with custom background
 	 */
+	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

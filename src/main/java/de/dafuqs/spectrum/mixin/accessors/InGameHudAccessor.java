@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.hud.InGameHud;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import net.fabricmc.api.*;
+import net.minecraft.client.gui.hud.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.gen.*;
 
 @Environment(EnvType.CLIENT)
 @Mixin(InGameHud.class)

@@ -141,10 +141,12 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 		return (fluidState.isIn(FluidTags.WATER) || fluidState.isIn(SpectrumFluidTags.LIQUID_CRYSTAL)) && world.getBlockState(pos.down()).isIn(SpectrumBlockTags.MERMAIDS_BRUSH_PLANTABLE);
 	}
 	
+	@Override
 	public boolean canFillWithFluid(BlockView world, BlockPos pos, BlockState state, Fluid fluid) {
 		return false;
 	}
 	
+	@Override
 	public boolean tryFillWithFluid(WorldAccess world, BlockPos pos, BlockState state, FluidState fluidState) {
 		return false;
 	}

@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.blocks.pedestal;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public class PedestalBlockItem extends BlockItem {
 	

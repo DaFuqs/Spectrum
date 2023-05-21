@@ -51,12 +51,11 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		this.setRotation(owner.getYaw(), owner.getPitch());
 	}
 
-	public static InkProjectileEntity shoot(World world, LivingEntity entity, InkColor color) {
+	public static void shoot(World world, LivingEntity entity, InkColor color) {
 		InkProjectileEntity projectile = new InkProjectileEntity(world, entity);
 		projectile.setVelocity(entity, entity.getPitch(), entity.getYaw(), 0.0F, 2.0F, 1.0F);
 		projectile.setColor(color);
 		world.spawnEntity(projectile);
-		return projectile;
 	}
 
 	@Override
@@ -68,6 +67,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		return this.dataTracker.get(COLOR);
 	}
 	
+	@Override
 	public DyeColor getDyeColor() {
 		return DyeColor.byId(this.dataTracker.get(COLOR));
 	}
@@ -138,8 +138,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 		}
 		
 		if (entity.damage(damageSource, (float) damage)) {
-			if (entity instanceof LivingEntity) {
-				LivingEntity livingEntity = (LivingEntity) entity;
+			if (entity instanceof LivingEntity livingEntity) {
 				
 				if (!this.world.isClient && entity2 instanceof LivingEntity) {
 					EnchantmentHelper.onUserDamaged(livingEntity, entity2);
@@ -152,10 +151,9 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 					((ServerPlayerEntity) entity2).networkHandler.sendPacket(new GameStateChangeS2CPacket(GameStateChangeS2CPacket.PROJECTILE_HIT_PLAYER, 0.0F));
 				}
 				
-				if (!this.world.isClient && entity2 instanceof ServerPlayerEntity) {
-					ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) entity2;
+				if (!this.world.isClient && entity2 instanceof ServerPlayerEntity serverPlayerEntity) {
 					if (!entity.isAlive()) {
-						SpectrumAdvancementCriteria.KILLED_BY_INK_PROJECTILE.trigger(serverPlayerEntity, Arrays.asList(entity));
+						SpectrumAdvancementCriteria.KILLED_BY_INK_PROJECTILE.trigger(serverPlayerEntity, List.of(entity));
 					}
 				}
 			}

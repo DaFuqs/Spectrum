@@ -1,29 +1,26 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.cinderhearth.CinderhearthRecipe;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import org.jetbrains.annotations.NotNull;
-import vazkii.patchouli.client.book.gui.BookTextRenderer;
-import vazkii.patchouli.client.book.gui.GuiBook;
-import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.cinderhearth.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.client.book.gui.*;
+import vazkii.patchouli.client.book.page.abstr.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PageCinderhearthSmelting extends PageDoubleRecipeRegistry<CinderhearthRecipe> {
 	
 	private static final Identifier BACKGROUND_TEXTURE = SpectrumCommon.locate("textures/gui/patchouli/cinderhearth.png");
 	
-	transient List<BookTextRenderer> chanceTextRenders = new ArrayList<>();
+	final transient List<BookTextRenderer> chanceTextRenders = new ArrayList<>();
 	
 	public PageCinderhearthSmelting() {
 		super(SpectrumRecipeTypes.CINDERHEARTH);

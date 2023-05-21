@@ -1,15 +1,14 @@
 package de.dafuqs.spectrum.blocks;
 
-import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public interface PaintbrushTriggered {
 	

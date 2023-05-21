@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.server.network.ServerPlayerEntity;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.progression.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.network.*;
+import org.jetbrains.annotations.*;
 
 public class ArtistsPaletteInkStorage extends TotalCappedElementalInkStorage {
 	

@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ClickType;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public class ShadowSlot extends ReadOnlySlot implements SlotWithOnClickAction {
 	
@@ -20,6 +20,7 @@ public class ShadowSlot extends ReadOnlySlot implements SlotWithOnClickAction {
 	 * @param player    the player, the held stack can be safely mutated
 	 * @return whether to consume the click event or not, returning false will have the event processed by items, and if left unconsumed will be processed by the screen handler
 	 */
+	@Override
 	public boolean onClicked(ItemStack heldStack, ClickType type, PlayerEntity player) {
 		ItemStack newStack = heldStack.copy();
 		newStack.setCount(1);

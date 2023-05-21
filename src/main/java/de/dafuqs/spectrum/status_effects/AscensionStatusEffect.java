@@ -11,8 +11,8 @@ import net.minecraft.server.network.*;
 
 public class AscensionStatusEffect extends SpectrumStatusEffect {
 	
-	public static int MUSIC_DURATION_TICKS = 288 * 20;
-	public static int MUSIC_INTRO_TICKS = 56 * 20; // 56 seconds
+	public static final int MUSIC_DURATION_TICKS = 288 * 20;
+	public static final int MUSIC_INTRO_TICKS = 56 * 20; // 56 seconds
 	
 	public AscensionStatusEffect(StatusEffectCategory statusEffectCategory, int color) {
 		super(statusEffectCategory, color);

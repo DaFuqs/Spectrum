@@ -1,16 +1,13 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
 public class CrystalApothecaryCollectingCriterion extends AbstractCriterion<CrystalApothecaryCollectingCriterion.Conditions> {
 	
@@ -20,10 +17,12 @@ public class CrystalApothecaryCollectingCriterion extends AbstractCriterion<Crys
 		return new CrystalApothecaryCollectingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public CrystalApothecaryCollectingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		return new CrystalApothecaryCollectingCriterion.Conditions(extended, itemPredicate);
@@ -41,6 +40,7 @@ public class CrystalApothecaryCollectingCriterion extends AbstractCriterion<Crys
 			this.itemPredicate = itemPredicate;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("item", this.itemPredicate.toJson());

@@ -1,18 +1,14 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.chests.RestockingChestBlockEntity;
-import de.dafuqs.spectrum.inventories.slots.ExtractOnlySlot;
-import de.dafuqs.spectrum.inventories.slots.StackFilterSlot;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.blocks.chests.*;
+import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.world.*;
 
 public class RestockingChestScreenHandler extends ScreenHandler {
 	
@@ -72,6 +68,7 @@ public class RestockingChestScreenHandler extends ScreenHandler {
 		}
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return this.inventory.canPlayerUse(player);
 	}
@@ -122,6 +119,7 @@ public class RestockingChestScreenHandler extends ScreenHandler {
 		return this.inventory;
 	}
 	
+	@Override
 	public void close(PlayerEntity player) {
 		super.close(player);
 		this.inventory.onClose(player);

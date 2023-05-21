@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.status_effects;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.*;
+import net.minecraft.entity.effect.*;
+import net.minecraft.entity.player.*;
 
 public class GravityStatusEffect extends SpectrumStatusEffect {
 	
-	protected float gravityPerLevel;
+	protected final float gravityPerLevel;
 	
 	public GravityStatusEffect(StatusEffectCategory statusEffectCategory, int color, float gravityPerLevel) {
 		super(statusEffectCategory, color);

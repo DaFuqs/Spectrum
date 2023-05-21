@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.items.food.beverages.properties;
 
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.potion.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-import java.util.List;
+import java.util.*;
 
 public class JadeWineBeverageProperties extends StatusEffectBeverageProperties {
 	
@@ -39,6 +39,7 @@ public class JadeWineBeverageProperties extends StatusEffectBeverageProperties {
 		return new JadeWineBeverageProperties(nbtCompound, bloominess, sweetened);
 	}
 	
+	@Override
 	public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
 		tooltip.add(Text.translatable("item.spectrum.infused_beverage.tooltip.age", ageDays, alcPercent).formatted(Formatting.GRAY));
 		tooltip.add(Text.translatable("item.spectrum.jade_wine.tooltip.bloominess", bloominess).formatted(Formatting.GRAY));
@@ -48,11 +49,11 @@ public class JadeWineBeverageProperties extends StatusEffectBeverageProperties {
 		PotionUtil.buildTooltip(itemStack, tooltip, 1.0F);
 	}
 	
-	public NbtCompound toNbt(NbtCompound nbtCompound) {
+	@Override
+	public void toNbt(NbtCompound nbtCompound) {
 		super.toNbt(nbtCompound);
 		nbtCompound.putFloat("Bloominess", bloominess);
 		nbtCompound.putBoolean("Sweetened", sweetened);
-		return nbtCompound;
 	}
 	
 }

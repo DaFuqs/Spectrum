@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.particle.client;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.world.*;
+import net.minecraft.particle.*;
+import net.minecraft.util.math.*;
 
 public class ZigZagParticle extends SpriteBillboardParticle {
 	
@@ -51,6 +50,7 @@ public class ZigZagParticle extends SpriteBillboardParticle {
 		return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
 	}
 	
+	@Override
 	public int getBrightness(float tint) {
 		float f = ((float) this.age + tint) / (float) this.maxAge;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
@@ -74,6 +74,7 @@ public class ZigZagParticle extends SpriteBillboardParticle {
 			this.spriteProvider = spriteProvider;
 		}
 		
+		@Override
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			ZigZagParticle craftingParticle = new ZigZagParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
 			craftingParticle.setMaxAge((int) (8.0D / (clientWorld.random.nextDouble() * 0.8D + 0.2D)));

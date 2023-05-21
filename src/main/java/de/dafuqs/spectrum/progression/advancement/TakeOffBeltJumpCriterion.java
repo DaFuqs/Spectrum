@@ -1,26 +1,19 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.items.trinkets.TakeOffBeltItem;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketComponent;
-import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.items.trinkets.*;
+import de.dafuqs.spectrum.registries.*;
+import dev.emi.trinkets.api.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpCriterion.Conditions> {
 	
@@ -30,10 +23,12 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 		return new TakeOffBeltJumpCriterion.Conditions(EntityPredicate.Extended.EMPTY, itemPredicate, chargesRange);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public TakeOffBeltJumpCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		NumberRange.IntRange chargesRange = NumberRange.IntRange.fromJson(jsonObject.get("charges"));
@@ -69,6 +64,7 @@ public class TakeOffBeltJumpCriterion extends AbstractCriterion<TakeOffBeltJumpC
 			this.chargesRange = chargesRange;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.addProperty("item", this.itemPredicate.toString());

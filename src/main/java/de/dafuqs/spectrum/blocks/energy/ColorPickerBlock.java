@@ -1,28 +1,21 @@
 package de.dafuqs.spectrum.blocks.energy;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class ColorPickerBlock extends BlockWithEntity {
 	
@@ -32,6 +25,7 @@ public class ColorPickerBlock extends BlockWithEntity {
 		super(settings);
 	}
 	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
@@ -66,6 +60,7 @@ public class ColorPickerBlock extends BlockWithEntity {
 		return null;
 	}
 	
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
@@ -99,7 +94,7 @@ public class ColorPickerBlock extends BlockWithEntity {
 				f += (float)itemStack.getCount() / (float)itemStack.getMaxCount();
 				++i;
 			}
-			return MathHelper.floor((f /= (float)blockEntity.inventory.size()) * 14.0f) + (i > 0 ? 1 : 0);
+			return MathHelper.floor(f / (float) blockEntity.inventory.size() * 14.0f) + (i > 0 ? 1 : 0);
 		}
 		
 		return 0;

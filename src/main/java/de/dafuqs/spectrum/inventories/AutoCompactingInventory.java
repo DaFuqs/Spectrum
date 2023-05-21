@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
 
 public class AutoCompactingInventory extends AutoInventory {
 	

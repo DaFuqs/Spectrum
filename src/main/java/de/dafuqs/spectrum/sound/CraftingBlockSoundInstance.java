@@ -1,33 +1,26 @@
 package de.dafuqs.spectrum.sound;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.sound.AbstractSoundInstance;
-import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.client.sound.TickableSoundInstance;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.client.*;
+import net.minecraft.client.sound.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Environment(EnvType.CLIENT)
 public class CraftingBlockSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {
 	
 	private static List<CraftingBlockSoundInstance> playingSoundInstances = new ArrayList<>();
 	
-	RegistryKey<World> worldKey;
-	BlockPos sourceBlockPos;
-	Block sourceBlock;
-	int maxDurationTicks;
+	final RegistryKey<World> worldKey;
+	final BlockPos sourceBlockPos;
+	final Block sourceBlock;
+	final int maxDurationTicks;
 	
 	private int ticksPlayed = 0;
 	private boolean done;

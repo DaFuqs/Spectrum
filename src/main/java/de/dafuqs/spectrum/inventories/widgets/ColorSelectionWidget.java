@@ -1,45 +1,40 @@
 package de.dafuqs.spectrum.inventories.widgets;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
-import net.minecraft.client.gui.screen.narration.NarrationPart;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Pair;
-import net.minecraft.util.math.MathHelper;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.blocks.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.gui.screen.narration.*;
+import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Consumer;
+import java.util.*;
+import java.util.function.*;
 
-import static de.dafuqs.spectrum.helpers.RenderHelper.fillQuad;
+import static de.dafuqs.spectrum.helpers.RenderHelper.*;
 
 @Environment(EnvType.CLIENT)
 public class ColorSelectionWidget extends ClickableWidget implements Drawable, Element {
 	
-	protected ColorPickerBlockEntity colorPicker;
+	protected final ColorPickerBlockEntity colorPicker;
 	
 	@Nullable
 	private Consumer<InkColor> changedListener;
-	protected Screen screen;
+	protected final Screen screen;
 	
-	List<Pair<InkColor, Boolean>> usableColors = new ArrayList<>(); // stores if a certain color should be displayed
+	final List<Pair<InkColor, Boolean>> usableColors = new ArrayList<>(); // stores if a certain color should be displayed
 	
-	int selectedDotX;
-	int selectedDotY;
+	final int selectedDotX;
+	final int selectedDotY;
 	
 	public ColorSelectionWidget(int x, int y, int selectedDotX, int selectedDotY, Screen screen, ColorPickerBlockEntity colorPicker) {
 		super(x, y, 56, 14, Text.literal(""));
@@ -63,6 +58,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 		}
 	}
 	
+	@Override
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		boolean colorUnselectionClicked = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (colorUnselectionClicked) {

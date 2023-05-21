@@ -174,6 +174,14 @@ public class SpectrumSoundEvents {
 	public static final SoundEvent SPECTRAL_BLOCK_HIT = register("block.spectral_block.hit");
 	public static final SoundEvent SPECTRAL_BLOCK_CHIME = register("block.spectral_block.chime");
 	
+	public static final SoundEvent ENTITY_GUARDIAN_TURRET_AMBIENT = register("entity.guardian_turret.ambient");
+	public static final SoundEvent ENTITY_GUARDIAN_TURRET_DEATH = register("entity.guardian_turret.death");
+	public static final SoundEvent ENTITY_GUARDIAN_TURRET_HURT_CLOSED = register("entity.guardian_turret.hurt_closed");
+	public static final SoundEvent ENTITY_GUARDIAN_TURRET_HURT = register("entity.guardian_turret.hurt");
+	public static final SoundEvent ENTITY_GUARDIAN_TURRET_CLOSE = register("entity.guardian_turret.close");
+	public static final SoundEvent ENTITY_GUARDIAN_TURRET_OPEN = register("entity.guardian_turret.open");
+	public static final SoundEvent ENTITY_GUARDIAN_TURRET_SHOOT = register("entity.guardian_turret.shoot");
+	
 	public static final SoundEvent ENTITY_MONSTROSITY_SHOOT = register("entity.monstrosity.shoot");
 	public static final SoundEvent ENTITY_MONSTROSITY_SWOOP = register("entity.monstrosity.swoop");
 	public static final SoundEvent ENTITY_MONSTROSITY_AMBIENT = register("entity.monstrosity.ambient");

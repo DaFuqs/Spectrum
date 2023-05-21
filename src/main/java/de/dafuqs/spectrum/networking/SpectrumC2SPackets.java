@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.networking;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import net.minecraft.util.*;
 
 public class SpectrumC2SPackets {
 	

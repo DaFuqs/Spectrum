@@ -1,17 +1,13 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.redstone.BlockPlacerBlockEntity;
-import de.dafuqs.spectrum.enums.ProgressionStage;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.screen.slot.Slot;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.blocks.redstone.*;
+import de.dafuqs.spectrum.enums.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import org.jetbrains.annotations.*;
 
 public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 	
@@ -78,10 +74,12 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 		return new Spectrum3x3ContainerScreenHandler(SpectrumScreenHandlerTypes.GENERIC_TIER1_3X3, syncId, playerInventory, blockPlacerBlockEntity, ProgressionStage.LATEGAME);
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return this.inventory.canPlayerUse(player);
 	}
 	
+	@Override
 	public ItemStack transferSlot(PlayerEntity player, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
@@ -112,6 +110,7 @@ public class Spectrum3x3ContainerScreenHandler extends ScreenHandler {
 		return itemStack;
 	}
 	
+	@Override
 	public void close(PlayerEntity player) {
 		super.close(player);
 		this.inventory.onClose(player);

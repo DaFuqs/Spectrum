@@ -1,24 +1,16 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.LidOpenable;
-import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.model.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.block.entity.*;
+import net.minecraft.client.render.entity.model.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 @Environment(EnvType.CLIENT)
 public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidOpenable> implements BlockEntityRenderer<T> {
@@ -34,6 +26,7 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidOpenabl
 		this.singleChestLatch = modelPart.getChild("lock");
 	}
 	
+	@Override
 	public void render(T entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		World world = entity.getWorld();
 		boolean bl = world != null;
@@ -68,8 +61,7 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidOpenabl
 	}
 	
 	protected ModelPart getModel(BlockEntityRendererFactory.Context ctx) {
-		ModelPart modelPart = ctx.getLayerModelPart(EntityModelLayers.CHEST);
-		return modelPart;
+		return ctx.getLayerModelPart(EntityModelLayers.CHEST);
 	}
 	
 }

@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.blocks.fluid;
 
-import de.dafuqs.spectrum.inventories.AutoCraftingInventory;
-import de.dafuqs.spectrum.recipe.fluid_converting.FluidConvertingRecipe;
-import net.minecraft.block.FluidBlock;
-import net.minecraft.fluid.FlowableFluid;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Pair;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.recipe.fluid_converting.*;
+import net.minecraft.block.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Collections;
+import java.util.*;
 
 public abstract class SpectrumFluidBlock extends FluidBlock {
 	

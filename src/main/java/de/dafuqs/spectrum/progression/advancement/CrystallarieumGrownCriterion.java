@@ -1,19 +1,16 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.BlockPredicate;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 
 public class CrystallarieumGrownCriterion extends AbstractCriterion<CrystallarieumGrownCriterion.Conditions> {
 	
@@ -23,10 +20,12 @@ public class CrystallarieumGrownCriterion extends AbstractCriterion<Crystallarie
 		return new CrystallarieumGrownCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, blockPredicate);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public CrystallarieumGrownCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate itemPredicate = ItemPredicate.fromJson(jsonObject.get("item"));
 		BlockPredicate blockPredicate = BlockPredicate.fromJson(jsonObject.get("block"));
@@ -47,6 +46,7 @@ public class CrystallarieumGrownCriterion extends AbstractCriterion<Crystallarie
 			this.blockPredicate = blockPredicate;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("item", this.itemPredicate.toJson());

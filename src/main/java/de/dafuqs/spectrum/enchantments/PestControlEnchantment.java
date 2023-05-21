@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.util.*;
 
 public class PestControlEnchantment extends SpectrumEnchantment {
 	

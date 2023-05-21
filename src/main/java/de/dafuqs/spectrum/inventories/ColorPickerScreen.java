@@ -1,21 +1,19 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.inventories.widgets.ColorSelectionWidget;
-import de.dafuqs.spectrum.inventories.widgets.InkGaugeWidget;
-import de.dafuqs.spectrum.inventories.widgets.StackedInkMeterWidget;
-import de.dafuqs.spectrum.networking.SpectrumC2SPacketSender;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.inventories.widgets.*;
+import de.dafuqs.spectrum.networking.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-import java.util.function.Consumer;
+import java.util.function.*;
 
 public class ColorPickerScreen extends HandledScreen<ColorPickerScreenHandler> implements Consumer<InkColor> {
 	

@@ -12,7 +12,7 @@ import java.util.*;
 
 public class SpectrumSkullBlockItem extends WallStandingBlockItem {
 	
-	protected EntityType entityType;
+	protected final EntityType entityType;
 	protected String artistCached;
 	
 	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Settings settings, EntityType entityType) {

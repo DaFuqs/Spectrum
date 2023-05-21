@@ -245,8 +245,8 @@ public class SpectrumLootPoolModifiers {
 	}
 
 	private static class TreasureHunterDropDefinition {
-		public Item skullItem;
-		public float treasureHunterMultiplier;
+		public final Item skullItem;
+		public final float treasureHunterMultiplier;
 		
 		public TreasureHunterDropDefinition(Item skullItem, float trophyHunterChance) {
 			this.skullItem = skullItem;

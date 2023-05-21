@@ -19,7 +19,7 @@ import java.util.*;
 public class CinderhearthCategory extends GatedDisplayCategory<CinderhearthDisplay> {
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<CinderhearthDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.CINDERHEARTH;
 	}
 	

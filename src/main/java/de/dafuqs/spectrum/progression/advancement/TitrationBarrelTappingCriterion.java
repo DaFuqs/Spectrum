@@ -21,10 +21,12 @@ public class TitrationBarrelTappingCriterion extends AbstractCriterion<Titration
 		return new TitrationBarrelTappingCriterion.Conditions(EntityPredicate.Extended.EMPTY, item, ingameDaysAgeRange, ingredientCountRange);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public TitrationBarrelTappingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] tappedItemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		NumberRange.IntRange ingameDaysAgeRange = NumberRange.IntRange.fromJson(jsonObject.get("age_ingame_days"));
@@ -33,9 +35,7 @@ public class TitrationBarrelTappingCriterion extends AbstractCriterion<Titration
 	}
 	
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack, int ingameDaysAge, int ingredientCount) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(itemStack, ingameDaysAge, ingredientCount);
-		});
+		this.trigger(player, (conditions) -> conditions.matches(itemStack, ingameDaysAge, ingredientCount));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
@@ -50,6 +50,7 @@ public class TitrationBarrelTappingCriterion extends AbstractCriterion<Titration
 			this.ingredientCountRange = ingredientCountRange;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.addProperty("items", this.tappedItemPredicates.toString());

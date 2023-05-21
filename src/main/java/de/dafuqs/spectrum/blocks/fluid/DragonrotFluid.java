@@ -41,6 +41,7 @@ public abstract class DragonrotFluid extends SpectrumFluid {
 		return fluid == SpectrumFluids.DRAGONROT || fluid == SpectrumFluids.FLOWING_DRAGONROT;
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
 		BlockPos topPos = pos.up();

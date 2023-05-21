@@ -76,10 +76,12 @@ public class DeeperDownPortalBlock extends Block {
 		}
 	}
 	
+	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
 		return ItemStack.EMPTY;
 	}
 	
+	@Override
 	public boolean canBucketPlace(BlockState state, Fluid fluid) {
 		return false;
 	}
@@ -175,6 +177,7 @@ public class DeeperDownPortalBlock extends Block {
 		entity.teleport(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5);
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (!state.get(DeeperDownPortalBlock.FACING_UP) || random.nextInt(8) == 0) {

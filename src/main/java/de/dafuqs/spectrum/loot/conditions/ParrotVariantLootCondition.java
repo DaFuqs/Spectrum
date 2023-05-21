@@ -1,30 +1,24 @@
 package de.dafuqs.spectrum.loot.conditions;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import de.dafuqs.spectrum.loot.SpectrumLootConditionTypes;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.ParrotEntity;
-import net.minecraft.loot.condition.LootCondition;
-import net.minecraft.loot.condition.LootConditionType;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.util.JsonHelper;
+import com.google.gson.*;
+import de.dafuqs.spectrum.loot.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.passive.*;
+import net.minecraft.loot.condition.*;
+import net.minecraft.loot.context.*;
 import net.minecraft.util.JsonSerializer;
+import net.minecraft.util.*;
 
 public class ParrotVariantLootCondition implements LootCondition {
 	
-	int variant;
+	final int variant;
 	
 	private ParrotVariantLootCondition(int variant) {
 		this.variant = variant;
 	}
 	
 	public static Builder builder(int variant) {
-		return () -> {
-			return new ParrotVariantLootCondition(variant);
-		};
+		return () -> new ParrotVariantLootCondition(variant);
 	}
 	
 	@Override
@@ -46,10 +40,12 @@ public class ParrotVariantLootCondition implements LootCondition {
 		public Serializer() {
 		}
 		
+		@Override
 		public void toJson(JsonObject jsonObject, ParrotVariantLootCondition axolotlVariantLootCondition, JsonSerializationContext jsonSerializationContext) {
 			jsonObject.addProperty("parrot_variant", axolotlVariantLootCondition.variant);
 		}
 		
+		@Override
 		public ParrotVariantLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
 			int parrotVariant = JsonHelper.getInt(jsonObject, "parrot_variant");
 			return new ParrotVariantLootCondition(parrotVariant);

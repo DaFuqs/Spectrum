@@ -1,18 +1,14 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
-import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Arm;
+import de.dafuqs.spectrum.entity.entity.*;
+import de.dafuqs.spectrum.items.tools.*;
+import net.minecraft.client.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 
 public abstract class SpectrumFishingBobberEntityRenderer extends EntityRenderer<SpectrumFishingBobberEntity> {

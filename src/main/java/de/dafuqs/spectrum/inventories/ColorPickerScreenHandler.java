@@ -1,21 +1,19 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.energy.ColorPickerBlockEntity;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.inventories.slots.ColorPickerInputSlot;
-import de.dafuqs.spectrum.inventories.slots.InkStorageSlot;
-import de.dafuqs.spectrum.networking.SpectrumS2CPacketSender;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.blocks.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.networking.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class ColorPickerScreenHandler extends ScreenHandler implements InkColorSelectedPacketReceiver {
 	
@@ -76,6 +74,7 @@ public class ColorPickerScreenHandler extends ScreenHandler implements InkColorS
 		}
 	}
 	
+	@Override
 	public ColorPickerBlockEntity getBlockEntity() {
 		return this.blockEntity;
 	}

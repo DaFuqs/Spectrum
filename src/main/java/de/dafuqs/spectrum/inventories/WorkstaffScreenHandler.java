@@ -19,6 +19,7 @@ public class WorkstaffScreenHandler extends QuickNavigationGridScreenHandler {
 		this.player = playerInventory.player;
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		for (ItemStack itemStack : player.getHandItems()) {
 			if (itemStack == workstaffStack) {

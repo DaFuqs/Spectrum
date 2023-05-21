@@ -17,10 +17,6 @@ public class BlackHoleChestScreen extends HandledScreen<BlackHoleChestScreenHand
 		super(handler, playerInventory, title);
 		this.backgroundHeight = 193;
 	}
-
-	protected void init() {
-		super.init();
-	}
 	
 	@Override
 	protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {

@@ -32,12 +32,12 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 	public static final int MAX_ITEM_COUNT = 64;
 	protected SimpleInventory inventory = new SimpleInventory(INVENTORY_SIZE);
 
-	public SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
+	public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
 		@Override
 		protected FluidVariant getBlankVariant() {
 			return FluidVariant.blank();
 		}
-
+		
 		@Override
 		protected long getCapacity(FluidVariant variant) {
 			return FluidConstants.BUCKET;
@@ -61,6 +61,7 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		super(SpectrumBlockEntities.TITRATION_BARREL, pos, state);
 	}
 	
+	@Override
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.put("Inventory", this.inventory.toNbtList());
@@ -71,14 +72,15 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 		nbt.putInt("ExtractedBottles", this.extractedBottles);
 	}
 	
+	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
-
+		
 		this.inventory = new SimpleInventory(INVENTORY_SIZE);
 		if (nbt.contains("Inventory", NbtElement.LIST_TYPE)) {
 			this.inventory.readNbtList(nbt.getList("Inventory", NbtElement.COMPOUND_TYPE));
 		}
-
+		
 		this.fluidStorage.variant = FluidVariant.fromNbt(nbt.getCompound("FluidVariant"));
 		this.fluidStorage.amount = nbt.getLong("FluidAmount");
 		this.sealTime = nbt.contains("SealTime", NbtElement.LONG_TYPE) ? nbt.getLong("SealTime") : -1;

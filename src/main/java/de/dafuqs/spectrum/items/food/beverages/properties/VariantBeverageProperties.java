@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.items.food.beverages.properties;
 
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.entity.effect.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
-import java.util.List;
+import java.util.*;
 
 public class VariantBeverageProperties extends StatusEffectBeverageProperties {
 	
@@ -31,15 +31,16 @@ public class VariantBeverageProperties extends StatusEffectBeverageProperties {
 		return new VariantBeverageProperties(nbtCompound, variant);
 	}
 	
+	@Override
 	public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
 		tooltip.add(Text.translatable("item.spectrum.infused_beverage.tooltip.variant." + variant).formatted(Formatting.YELLOW));
 		super.addTooltip(itemStack, tooltip);
 	}
 	
-	public NbtCompound toNbt(NbtCompound nbtCompound) {
+	@Override
+	public void toNbt(NbtCompound nbtCompound) {
 		super.toNbt(nbtCompound);
 		nbtCompound.putString("Variant", variant);
-		return nbtCompound;
 	}
 	
 }

@@ -52,7 +52,7 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 	
 	public static final InkColor USED_COLOR = InkColors.LIME;
 	public static final int BASE_COST = 20;
-	public static ItemStack ITEM_COST = new ItemStack(SpectrumItems.VEGETAL, 1);
+	public static final ItemStack ITEM_COST = new ItemStack(SpectrumItems.VEGETAL, 1);
 	
 	public NaturesStaffItem(Settings settings) {
 		super(settings);

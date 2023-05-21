@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.inventories;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
 
 public abstract class AutoInventory extends CraftingInventory {
 	

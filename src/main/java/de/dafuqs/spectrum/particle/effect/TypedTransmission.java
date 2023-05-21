@@ -16,17 +16,7 @@ public class TypedTransmission extends SimpleTransmission {
 		HUMMINGSTONE
 	}
 	
-	public static final Codec<TypedTransmission> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(Vec3d.CODEC.fieldOf("origin").forGetter((itemTransfer) -> {
-			return itemTransfer.origin;
-		}), PositionSource.CODEC.fieldOf("destination").forGetter((itemTransfer) -> {
-			return itemTransfer.destination;
-		}), Codec.INT.fieldOf("arrival_in_ticks").forGetter((itemTransfer) -> {
-			return itemTransfer.arrivalInTicks;
-		}), Codec.INT.fieldOf("variant").forGetter((itemTransfer) -> {
-			return itemTransfer.variant.ordinal();
-		})).apply(instance, TypedTransmission::new);
-	});
+	public static final Codec<TypedTransmission> CODEC = RecordCodecBuilder.create((instance) -> instance.group(Vec3d.CODEC.fieldOf("origin").forGetter((itemTransfer) -> itemTransfer.origin), PositionSource.CODEC.fieldOf("destination").forGetter((itemTransfer) -> itemTransfer.destination), Codec.INT.fieldOf("arrival_in_ticks").forGetter((itemTransfer) -> itemTransfer.arrivalInTicks), Codec.INT.fieldOf("variant").forGetter((itemTransfer) -> itemTransfer.variant.ordinal())).apply(instance, TypedTransmission::new));
 	
 	private final Variant variant;
 	

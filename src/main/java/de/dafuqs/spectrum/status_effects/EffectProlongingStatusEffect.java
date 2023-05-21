@@ -18,6 +18,7 @@ public class EffectProlongingStatusEffect extends SpectrumStatusEffect implement
 	
 	}
 	
+	@Override
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 	
 	}

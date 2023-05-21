@@ -21,6 +21,7 @@ public class RepriseItem extends BeverageItem {
 		super(settings);
 	}
 	
+	@Override
 	public BeverageProperties getBeverageProperties(ItemStack itemStack) {
 		return new RepriseProperties(itemStack.getNbt());
 	}
@@ -31,6 +32,7 @@ public class RepriseItem extends BeverageItem {
 			super(nbtCompound);
 		}
 		
+		@Override
 		public void addTooltip(ItemStack itemStack, List<Text> tooltip) {
 			super.addTooltip(itemStack, tooltip);
 			long teleportRange = getTeleportRange(itemStack);

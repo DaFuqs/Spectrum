@@ -1,18 +1,15 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.InkStorage;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.text.Text;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import net.fabricmc.api.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
+import static de.dafuqs.spectrum.helpers.Support.*;
 
 public class IndividualCappedInkStorage implements InkStorage {
 	
@@ -154,6 +151,7 @@ public class IndividualCappedInkStorage implements InkStorage {
 		return compound;
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
 		if (includeHeader) {
@@ -171,6 +169,7 @@ public class IndividualCappedInkStorage implements InkStorage {
 		return maxEnergyPerColor - this.storedEnergy.get(color);
 	}
 	
+	@Override
 	public void fillCompletely() {
 		this.currentTotal = 0;
 		for (InkColor color : this.storedEnergy.keySet()) {

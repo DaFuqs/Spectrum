@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
 
 public interface DamageAwareItem {
 	

@@ -16,27 +16,28 @@ public class SmallDragonjagBlock extends PlantBlock implements Dragonjag, Fertil
     protected final Dragonjag.Variant variant;
 
     public SmallDragonjagBlock(Settings settings, Dragonjag.Variant variant) {
-        super(settings);
-        this.variant = variant;
-        VARIANTS.put(variant, this);
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
-
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return Dragonjag.canPlantOnTop(floor, world, pos);
-    }
-
-    @Override
-    public Variant getVariant() {
-        return variant;
-    }
-
-    public static Block getBlockForVariant(Variant variant) {
-        return VARIANTS.get(variant);
+		super(settings);
+		this.variant = variant;
+		VARIANTS.put(variant, this);
+	}
+	
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
+	
+	@Override
+	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+		return Dragonjag.canPlantOnTop(floor, world, pos);
+	}
+	
+	@Override
+	public Variant getVariant() {
+		return variant;
+	}
+	
+	public static Block getBlockForVariant(Variant variant) {
+		return VARIANTS.get(variant);
     }
 
     @Override

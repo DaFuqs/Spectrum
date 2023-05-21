@@ -1,25 +1,17 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.predicate.NumberRange.IntRange;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import com.google.common.collect.*;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.entity.*;
+import net.minecraft.loot.context.*;
+import net.minecraft.predicate.NumberRange.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjectileKillingCriterion.Conditions> {
 	
@@ -28,10 +20,12 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 	public InkProjectileKillingCriterion() {
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public InkProjectileKillingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		EntityPredicate.Extended[] extendeds = EntityPredicate.Extended.requireInJson(jsonObject, "victims", advancementEntityPredicateDeserializer);
 		IntRange intRange = IntRange.fromJson(jsonObject.get("unique_entity_types"));
@@ -47,9 +41,7 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 			list.add(EntityPredicate.createAdvancementEntityLootContext(player, entity));
 		}
 		
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(list, set.size());
-		});
+		this.trigger(player, (conditions) -> conditions.matches(list, set.size()));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
@@ -81,16 +73,13 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 		public boolean matches(Collection<LootContext> victimContexts, int uniqueEntityTypeCount) {
 			if (this.victims.length > 0) {
 				List<LootContext> list = Lists.newArrayList(victimContexts);
-				EntityPredicate.Extended[] var4 = this.victims;
-				int var5 = var4.length;
 				
-				for (int var6 = 0; var6 < var5; ++var6) {
-					EntityPredicate.Extended extended = var4[var6];
+				for (EntityPredicate.Extended extended : this.victims) {
 					boolean bl = false;
-					Iterator iterator = list.iterator();
 					
+					Iterator<LootContext> iterator = list.iterator();
 					while (iterator.hasNext()) {
-						LootContext lootContext = (LootContext) iterator.next();
+						LootContext lootContext = iterator.next();
 						if (extended.test(lootContext)) {
 							iterator.remove();
 							bl = true;
@@ -107,6 +96,7 @@ public class InkProjectileKillingCriterion extends AbstractCriterion<InkProjecti
 			return this.uniqueEntityTypes.test(uniqueEntityTypeCount);
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("victims", EntityPredicate.Extended.toPredicatesJsonArray(this.victims, predicateSerializer));

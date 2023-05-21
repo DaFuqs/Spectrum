@@ -1,26 +1,19 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.minecraft.util.Pair;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldEvents;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.world.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FreezingMobBlock extends MobBlock {
 	
@@ -45,7 +38,7 @@ public class FreezingMobBlock extends MobBlock {
 		super(settings, particleEffect);
 	}
 	
-	public static boolean freeze(@NotNull ServerWorld world, BlockPos blockPos) {
+	public static void freeze(@NotNull ServerWorld world, BlockPos blockPos) {
 		BlockState sourceState = world.getBlockState(blockPos);
 		if (FREEZING_MAP.containsKey(sourceState.getBlock())) {
 			Pair<BlockState, Float> recipe = FREEZING_MAP.get(sourceState.getBlock());
@@ -53,7 +46,7 @@ public class FreezingMobBlock extends MobBlock {
 				// freeze
 				world.setBlockState(blockPos, recipe.getLeft());
 				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(recipe.getLeft())); // processed in WorldRenderer processGlobalEvent()
-				return true;
+				return;
 			}
 		}
 		if (FREEZING_STATE_MAP.containsKey(sourceState)) {
@@ -62,11 +55,9 @@ public class FreezingMobBlock extends MobBlock {
 				// freeze
 				world.setBlockState(blockPos, recipe.getLeft());
 				world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, blockPos, Block.getRawIdFromState(recipe.getLeft())); // processed in WorldRenderer processGlobalEvent()
-				return true;
 			}
 		}
 		
-		return false;
 	}
 	
 	@Override

@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
 
 public class FireproofItemEntity extends ItemEntity {
 	
@@ -24,6 +23,7 @@ public class FireproofItemEntity extends ItemEntity {
 		this.setStack(stack);
 	}
 	
+	@Override
 	public boolean isInvulnerableTo(DamageSource damageSource) {
 		return damageSource.isFire() || super.isInvulnerableTo(damageSource);
 	}

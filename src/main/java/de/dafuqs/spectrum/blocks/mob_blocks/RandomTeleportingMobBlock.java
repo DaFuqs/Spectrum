@@ -1,23 +1,20 @@
 package de.dafuqs.spectrum.blocks.mob_blocks;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.block.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.particle.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class RandomTeleportingMobBlock extends MobBlock {
 	
@@ -30,8 +27,8 @@ public class RandomTeleportingMobBlock extends MobBlock {
 		this.verticalRange = verticalRange;
 	}
 	
-	public static boolean teleportTo(ServerWorld world, Entity entity, int x, int y, int z) {
-		return teleportTo(world, entity, new BlockPos(x, y, z));
+	public static void teleportTo(ServerWorld world, Entity entity, int x, int y, int z) {
+		teleportTo(world, entity, new BlockPos(x, y, z));
 	}
 	
 	public static boolean teleportTo(ServerWorld world, Entity entity, BlockPos blockPos) {

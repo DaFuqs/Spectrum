@@ -62,10 +62,12 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		return IngredientStack.listIngredients(this.inputStacks);
 	}
 	
+	@Override
 	public List<IngredientStack> getIngredientStacks() {
 		return this.inputStacks;
 	}
 	
+	@Override
 	public Item getTappingItem() {
 		return tappingItem;
 	}
@@ -105,6 +107,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		return list;
 	}
 	
+	@Override
 	public Fluid getFluidInput() {
 		return fluid;
 	}

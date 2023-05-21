@@ -1,23 +1,14 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.particle.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
 public class GemstoneChimeBlock extends Block {
 	
@@ -50,23 +41,28 @@ public class GemstoneChimeBlock extends Block {
 		}
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
 	
+	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		Direction direction = Direction.UP;
 		return Block.sideCoversSmallSquare(world, pos.offset(direction), direction.getOpposite());
 	}
 	
+	@Override
 	public PistonBehavior getPistonBehavior(BlockState state) {
 		return PistonBehavior.DESTROY;
 	}
 	
+	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		return direction == Direction.UP && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}

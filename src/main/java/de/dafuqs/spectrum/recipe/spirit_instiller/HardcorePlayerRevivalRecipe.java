@@ -43,18 +43,10 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 					BlockRotation blockRotation = spiritInstillerBlockEntity.getMultiblockRotation();
 					float yaw = 0.0F;
 					switch (blockRotation) {
-						case NONE -> {
-							yaw = -90.0F;
-						}
-						case CLOCKWISE_90 -> {
-							yaw = 0.0F;
-						}
-						case CLOCKWISE_180 -> {
-							yaw = 900.0F;
-						}
-						case COUNTERCLOCKWISE_90 -> {
-							yaw = 180.0F;
-						}
+						case NONE -> yaw = -90.0F;
+						case CLOCKWISE_90 -> yaw = 0.0F;
+						case CLOCKWISE_180 -> yaw = 900.0F;
+						case COUNTERCLOCKWISE_90 -> yaw = 180.0F;
 					}
 					
 					FabricDimensions.teleport(revivedPlayer, (ServerWorld) spiritInstillerBlockEntity.getWorld(), new TeleportTarget(Vec3d.ofCenter(spiritInstillerBlockEntity.getPos().up()), new Vec3d(0, 0, 0), yaw, revivedPlayer.getPitch()));

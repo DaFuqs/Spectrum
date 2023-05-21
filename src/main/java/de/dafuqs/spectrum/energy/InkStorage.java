@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.energy;
 
-import de.dafuqs.spectrum.energy.color.InkColor;
-import net.minecraft.text.Text;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.energy.color.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This interface defines that an object can

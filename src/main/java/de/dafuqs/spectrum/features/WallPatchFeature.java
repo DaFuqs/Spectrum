@@ -17,6 +17,7 @@ public class WallPatchFeature extends Feature<WallPatchFeatureConfig> {
 		super(codec);
 	}
 	
+	@Override
 	public boolean generate(FeatureContext<WallPatchFeatureConfig> context) {
 		StructureWorldAccess structureWorldAccess = context.getWorld();
 		BlockPos blockPos = context.getOrigin();

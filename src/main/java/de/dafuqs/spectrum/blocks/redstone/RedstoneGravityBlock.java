@@ -1,16 +1,13 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FallingBlock;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import org.jetbrains.annotations.*;
 
 public class RedstoneGravityBlock extends FallingBlock {
 	

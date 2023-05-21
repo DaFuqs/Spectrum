@@ -1,25 +1,24 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.block.BlockState;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion.Conditions> {
 	
 	static final Identifier ID = SpectrumCommon.locate("block_broken");
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public BlockBrokenCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		BrokenBlockPredicate brokenBlockPredicate = BrokenBlockPredicate.fromJson(jsonObject.get("broken_block"));
 		return new BlockBrokenCriterion.Conditions(extended, brokenBlockPredicate);
@@ -38,6 +37,7 @@ public class BlockBrokenCriterion extends AbstractCriterion<BlockBrokenCriterion
 			this.brokenBlockPredicate = brokenBlockPredicate;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("broken_block", this.brokenBlockPredicate.toJson());

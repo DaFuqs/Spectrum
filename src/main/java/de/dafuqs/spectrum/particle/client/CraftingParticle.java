@@ -21,7 +21,8 @@ public class CraftingParticle extends SpriteBillboardParticle {
 	public ParticleTextureSheet getType() {
 		return ParticleTextureSheet.PARTICLE_SHEET_TRANSLUCENT;
 	}
-
+	
+	@Override
 	public int getBrightness(float tint) {
 		float f = ((float) this.age + tint) / (float) this.maxAge;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
@@ -32,7 +33,7 @@ public class CraftingParticle extends SpriteBillboardParticle {
 		if (j > 240) {
 			j = 240;
 		}
-
+		
 		return j | k << 16;
 	}
 
@@ -44,7 +45,8 @@ public class CraftingParticle extends SpriteBillboardParticle {
 		public Factory(SpriteProvider spriteProvider) {
 			this.spriteProvider = spriteProvider;
 		}
-
+		
+		@Override
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			CraftingParticle craftingParticle = new CraftingParticle(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
 			craftingParticle.setMaxAge((int) (8.0D / (clientWorld.random.nextDouble() * 0.8D + 0.2D)));

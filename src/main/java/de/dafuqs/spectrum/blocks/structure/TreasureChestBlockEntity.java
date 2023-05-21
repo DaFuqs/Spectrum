@@ -1,37 +1,27 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlockEntity;
-import de.dafuqs.spectrum.enums.ProgressionStage;
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.inventories.GenericSpectrumContainerScreenHandler;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.blocks.chests.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.inventories.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.loot.*;
+import net.minecraft.loot.context.*;
+import net.minecraft.nbt.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.network.*;
+import net.minecraft.server.world.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 	
@@ -101,6 +91,7 @@ public class TreasureChestBlockEntity extends SpectrumChestBlockEntity {
 		}
 	}
 	
+	@Override
 	public void onClose() {
 		if (!world.isClient && controllerOffset != null) {
 			BlockEntity blockEntity = world.getBlockEntity(Support.directionalOffset(this.pos, this.controllerOffset, world.getBlockState(this.pos).get(PreservationControllerBlock.FACING)));

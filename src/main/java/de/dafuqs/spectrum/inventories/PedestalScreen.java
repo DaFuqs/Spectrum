@@ -1,20 +1,17 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.registries.SpectrumMultiblocks;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.text.Text;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import vazkii.patchouli.api.IMultiblock;
-import vazkii.patchouli.api.PatchouliAPI;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.api.*;
 
 public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	
@@ -25,8 +22,8 @@ public class PedestalScreen extends HandledScreen<PedestalScreenHandler> {
 	private final Identifier backgroundTexture;
 	private final PedestalRecipeTier maxPedestalRecipeTierForVariant;
 	private final boolean structureUpdateAvailable;
-	int informationIconX = 95;
-	int informationIconY = 55;
+	final int informationIconX = 95;
+	final int informationIconY = 55;
 	
 	public PedestalScreen(PedestalScreenHandler handler, PlayerInventory playerInventory, Text title) {
 		super(handler, playerInventory, title);

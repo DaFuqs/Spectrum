@@ -1,20 +1,17 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import it.unimi.dsi.fastutil.objects.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.predicate.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
 
-import java.util.List;
+import java.util.*;
 
 public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritInstillerCraftingCriterion.Conditions> {
 	
@@ -24,10 +21,12 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 		return new Conditions(EntityPredicate.Extended.EMPTY, item, experienceRange);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		ItemPredicate[] itemPredicates = ItemPredicate.deserializeAll(jsonObject.get("items"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("gained_experience"));
@@ -35,9 +34,7 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 	}
 	
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack, int experience) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(itemStack, experience);
-		});
+		this.trigger(player, (conditions) -> conditions.matches(itemStack, experience));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
@@ -50,6 +47,7 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 			this.experienceRange = experienceRange;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.addProperty("items", this.itemPredicates.toString());
@@ -59,7 +57,7 @@ public class SpiritInstillerCraftingCriterion extends AbstractCriterion<SpiritIn
 		
 		public boolean matches(ItemStack itemStack, int experience) {
 			if (this.experienceRange.test(experience)) {
-				List<ItemPredicate> list = new ObjectArrayList(this.itemPredicates);
+				List<ItemPredicate> list = new ObjectArrayList<>(this.itemPredicates);
 				if (list.isEmpty()) {
 					return true;
 				} else {

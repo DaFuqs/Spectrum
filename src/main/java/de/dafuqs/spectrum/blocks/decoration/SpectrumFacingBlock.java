@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FacingBlock;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.math.Direction;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.state.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 
 public class SpectrumFacingBlock extends FacingBlock {
 	
@@ -23,10 +20,12 @@ public class SpectrumFacingBlock extends FacingBlock {
 		return blockState.isOf(this) && blockState.get(FACING) == direction ? this.getDefaultState().with(FACING, direction.getOpposite()) : this.getDefaultState().with(FACING, direction);
 	}
 	
+	@Override
 	public BlockState rotate(BlockState state, BlockRotation rotation) {
 		return state.with(FACING, rotation.rotate(state.get(FACING)));
 	}
 	
+	@Override
 	public BlockState mirror(BlockState state, BlockMirror mirror) {
 		return state.rotate(mirror.getRotation(state.get(FACING)));
 	}

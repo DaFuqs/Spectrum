@@ -1,13 +1,13 @@
 package de.dafuqs.spectrum.status_effects;
 
-import de.dafuqs.spectrum.cca.LastKillComponent;
-import de.dafuqs.spectrum.registries.SpectrumStatusEffects;
-import net.minecraft.entity.LivingEntity;
+import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.entity.effect.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class FrenzyStatusEffect extends SpectrumStatusEffect implements StackableStatusEffect {
 	
@@ -51,6 +51,7 @@ public class FrenzyStatusEffect extends SpectrumStatusEffect implements Stackabl
 		}
 	}
 	
+	@Override
 	public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
 		if (!SpectrumStatusEffects.effectsAreGettingStacked) {
 			super.onRemoved(entity, attributes, amplifier);

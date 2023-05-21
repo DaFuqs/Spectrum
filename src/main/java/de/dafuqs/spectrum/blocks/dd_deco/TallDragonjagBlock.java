@@ -32,36 +32,38 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
         this.variant = variant;
         VARIANTS.put(variant, this);
         this.setDefaultState(this.stateManager.getDefaultState().with(HALF, DoubleBlockHalf.LOWER).with(DEAD, false));
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(HALF) == DoubleBlockHalf.UPPER) {
-            return state.get(DEAD) ? SHAPE_UPPER_DEAD : SHAPE_UPPER;
-        }
-        return SHAPE_LOWER;
-    }
-    
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return Dragonjag.canPlantOnTop(floor, world, pos);
-    }
-    
-    @Override
-    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return SmallDragonjagBlock.getBlockForVariant(this.variant).getPickStack(world, pos, state);
-    }
-    
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(HALF, DEAD);
-    }
-    
-    @Override
-    public Dragonjag.Variant getVariant() {
-        return variant;
-    }
-    
-    public static TallDragonjagBlock getBlockForVariant(Variant variant) {
-        return VARIANTS.get(variant);
+	}
+	
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+		if (state.get(HALF) == DoubleBlockHalf.UPPER) {
+			return state.get(DEAD) ? SHAPE_UPPER_DEAD : SHAPE_UPPER;
+		}
+		return SHAPE_LOWER;
+	}
+	
+	@Override
+	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+		return Dragonjag.canPlantOnTop(floor, world, pos);
+	}
+	
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return SmallDragonjagBlock.getBlockForVariant(this.variant).getPickStack(world, pos, state);
+	}
+	
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(HALF, DEAD);
+	}
+	
+	@Override
+	public Dragonjag.Variant getVariant() {
+		return variant;
+	}
+	
+	public static TallDragonjagBlock getBlockForVariant(Variant variant) {
+		return VARIANTS.get(variant);
     }
 
     @Override

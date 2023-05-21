@@ -1,30 +1,20 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LightningEntity;
-import net.minecraft.item.Item;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.explosion.Explosion;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import net.minecraft.world.biome.*;
+import net.minecraft.world.explosion.*;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 public class StormStoneBlock extends Block implements RevelationAware {
 	
@@ -66,6 +56,7 @@ public class StormStoneBlock extends Block implements RevelationAware {
 		return SpectrumCommon.locate("milestones/reveal_storm_stones");
 	}
 	
+	@Override
 	@Deprecated
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (this.isVisibleTo(context)) {

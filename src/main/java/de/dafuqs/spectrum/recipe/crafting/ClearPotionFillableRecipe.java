@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.recipe.crafting;
 
-import de.dafuqs.spectrum.items.PotionFillable;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialCraftingRecipe;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
 public class ClearPotionFillableRecipe extends SpecialCraftingRecipe {
 	
@@ -17,6 +15,7 @@ public class ClearPotionFillableRecipe extends SpecialCraftingRecipe {
 		super(identifier);
 	}
 	
+	@Override
 	public boolean matches(CraftingInventory craftingInventory, World world) {
 		boolean potionFillableFound = false;
 		
@@ -38,6 +37,7 @@ public class ClearPotionFillableRecipe extends SpecialCraftingRecipe {
 		return potionFillableFound;
 	}
 	
+	@Override
 	public ItemStack craft(CraftingInventory craftingInventory) {
 		ItemStack itemStack;
 		for (int j = 0; j < craftingInventory.size(); ++j) {
@@ -51,10 +51,12 @@ public class ClearPotionFillableRecipe extends SpecialCraftingRecipe {
 		return ItemStack.EMPTY;
 	}
 	
+	@Override
 	public boolean fits(int width, int height) {
 		return width * height >= 1;
 	}
 	
+	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
 	}

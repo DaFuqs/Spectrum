@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.rock_candy;
 
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 
 public class RockCandyItem extends Item implements RockCandy {
 	
@@ -11,6 +11,7 @@ public class RockCandyItem extends Item implements RockCandy {
 		this.rockCandyVariant = rockCandyVariant;
 	}
 	
+	@Override
 	public RockCandyVariant getVariant() {
 		return rockCandyVariant;
 	}

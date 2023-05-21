@@ -38,11 +38,10 @@ public class BeverageProperties {
 		tooltip.add(Text.translatable("item.spectrum.infused_beverage.tooltip.age", ageDays, alcPercent).formatted(Formatting.GRAY));
 	}
 	
-	protected NbtCompound toNbt(NbtCompound nbtCompound) {
+	protected void toNbt(NbtCompound nbtCompound) {
 		nbtCompound.putLong("AgeDays", this.ageDays);
 		nbtCompound.putInt("AlcPercent", this.alcPercent);
 		nbtCompound.putFloat("Thickness", this.thickness);
-		return nbtCompound;
 	}
 	
 	public ItemStack getStack(ItemStack itemStack) {

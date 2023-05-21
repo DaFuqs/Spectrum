@@ -115,6 +115,7 @@ public class PresentBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public List<ItemStack> getDroppedStacks(BlockState state, LootContext.Builder builder) {
 		BlockEntity blockEntity = builder.getNullable(LootContextParameters.BLOCK_ENTITY);
 		if (blockEntity instanceof PresentBlockEntity presentBlockEntity) {

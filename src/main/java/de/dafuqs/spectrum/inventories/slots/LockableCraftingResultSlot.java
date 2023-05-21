@@ -1,12 +1,11 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.screen.slot.CraftingResultSlot;
-import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.util.collection.*;
 
 public class LockableCraftingResultSlot extends CraftingResultSlot {
 	
@@ -26,6 +25,7 @@ public class LockableCraftingResultSlot extends CraftingResultSlot {
 		this.locked = false;
 	}
 	
+	@Override
 	public boolean canTakeItems(PlayerEntity playerEntity) {
 		return !locked;
 	}
@@ -38,6 +38,7 @@ public class LockableCraftingResultSlot extends CraftingResultSlot {
 		this.locked = false;
 	}
 	
+	@Override
 	public void onTakeItem(PlayerEntity player, ItemStack stack) {
 		this.onCrafted(stack);
 		DefaultedList<ItemStack> defaultedList = player.world.getRecipeManager().getRemainingStacks(RecipeType.CRAFTING, this.input, player.world);

@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.particle.*;
+import net.minecraft.block.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 
 public class SparklestoneBlock extends Block {
 	
@@ -15,6 +12,7 @@ public class SparklestoneBlock extends Block {
 		super(settings);
 	}
 	
+	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		for (Direction direction : Direction.values()) {
 			if (direction != Direction.DOWN) {

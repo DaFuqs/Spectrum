@@ -950,7 +950,7 @@ function Get-BlockStateSlab($Name) {
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1.0,
+      "rolls": 1,
       "bonus_rolls": 0.0,
       "entries": [
         {

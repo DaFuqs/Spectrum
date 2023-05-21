@@ -1,54 +1,42 @@
 package de.dafuqs.spectrum.items.tools;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import de.dafuqs.spectrum.energy.InkPowered;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.items.ActivatableItem;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import de.dafuqs.spectrum.registries.SpectrumDamageSources;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.fabricmc.fabric.api.item.v1.*;
+import net.minecraft.client.item.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.entity.damage.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered, ActivatableItem, SplitDamageItem {
 
 	public static final InkColor USED_COLOR = InkColors.RED;
 	public static final long INK_COST_FOR_ACTIVATION = 200L;
 	public static final long INK_COST_PER_SECOND = 20L;
-
+	
 	/**
 	 * The less armor the attacker with this sword has and the more
 	 * the one that gets attacked, the higher the damage will be
 	 * <p>
 	 * See LivingEntityMixin spectrum$applyDreamflayerDamage
 	 */
-	public static float ARMOR_DIFFERENCE_DAMAGE_MULTIPLIER = 2.5F;
+	public static final float ARMOR_DIFFERENCE_DAMAGE_MULTIPLIER = 2.5F;
 	
 	public final float attackDamage;
 	public final float attackSpeed;
@@ -129,6 +117,7 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 		}
 	}
 	
+	@Override
 	public boolean allowNbtUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
 		return reequipAnimation(oldStack, newStack);
 	}
@@ -137,6 +126,7 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 		return !after.isOf(this) || ActivatableItem.isActivated(before) != ActivatableItem.isActivated(after);
 	}
 	
+	@Override
 	public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(ItemStack stack, EquipmentSlot slot) {
 		ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
 		if (slot == EquipmentSlot.MAINHAND) {

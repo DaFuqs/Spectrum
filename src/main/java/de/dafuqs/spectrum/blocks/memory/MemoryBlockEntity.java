@@ -175,6 +175,7 @@ public class MemoryBlockEntity extends BlockEntity implements PlayerOwned {
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
+	@Override
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		this.writeNbt(nbtCompound);

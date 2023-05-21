@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import net.minecraft.block.WoodenButtonBlock;
+import net.minecraft.block.*;
 
 public class SpectrumWoodenButtonBlock extends WoodenButtonBlock {
 	

@@ -1,29 +1,25 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.SpectrumCommon;
+import de.dafuqs.spectrum.*;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.util.SpriteIdentifier;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.util.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.server.world.*;
+import net.minecraft.state.*;
+import net.minecraft.state.property.*;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
-import static net.minecraft.client.render.TexturedRenderLayers.CHEST_ATLAS_TEXTURE;
+import static net.minecraft.client.render.TexturedRenderLayers.*;
 
 public abstract class SpectrumChestBlock extends BlockWithEntity {
 	
@@ -36,8 +32,8 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	}
 	
 	public static boolean isChestBlocked(WorldAccess world, BlockPos pos) {
-		BlockPos blockPos = pos.up();
-		return world.getBlockState(blockPos).isSolidBlock(world, blockPos);
+		BlockPos upperPos = pos.up();
+		return world.getBlockState(upperPos).isSolidBlock(world, upperPos);
 	}
 	
 	@Override
@@ -75,22 +71,27 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public BlockState rotate(BlockState state, BlockRotation rotation) {
 		return state.with(FACING, rotation.rotate(state.get(FACING)));
 	}
 	
+	@Override
 	public BlockState mirror(BlockState state, BlockMirror mirror) {
 		return state.rotate(mirror.getRotation(state.get(FACING)));
 	}
 	
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 	
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
 	
+	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.scheduledTick(state, world, pos, random);
 		BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -99,6 +100,7 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		if (itemStack.hasCustomName()) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -108,18 +110,22 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 	
+	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return CHEST_SHAPE;
 	}
 	
+	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		Direction direction = ctx.getPlayerFacing().getOpposite();
 		return this.getDefaultState().with(FACING, direction);

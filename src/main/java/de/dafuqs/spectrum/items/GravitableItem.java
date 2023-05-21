@@ -1,11 +1,11 @@
 package de.dafuqs.spectrum.items;
 
-import de.dafuqs.spectrum.progression.GravityAdvancementsManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.progression.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.server.network.*;
+import net.minecraft.world.*;
 
 public interface GravitableItem {
 	

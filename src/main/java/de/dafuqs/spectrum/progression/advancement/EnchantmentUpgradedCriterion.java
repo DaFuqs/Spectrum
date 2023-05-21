@@ -1,18 +1,14 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.predicate.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
 public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentUpgradedCriterion.Conditions> {
 	
@@ -22,10 +18,12 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 		return new EnchantmentUpgradedCriterion.Conditions(EntityPredicate.Extended.EMPTY, enchantment, enchantmentLevelRange, experienceRange);
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public EnchantmentUpgradedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Identifier identifier = new Identifier(JsonHelper.getString(jsonObject, "enchantment_identifier"));
 		Enchantment enchantment = Registry.ENCHANTMENT.get(identifier);
@@ -35,9 +33,7 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 	}
 	
 	public void trigger(ServerPlayerEntity player, Enchantment enchantment, int enchantmentLevel, int spentExperience) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(enchantment, enchantmentLevel, spentExperience);
-		});
+		this.trigger(player, (conditions) -> conditions.matches(enchantment, enchantmentLevel, spentExperience));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
@@ -52,6 +48,7 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 			this.experienceRange = experienceRange;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.addProperty("enchantment_identifier", Registry.ENCHANTMENT.getId(enchantment).toString());

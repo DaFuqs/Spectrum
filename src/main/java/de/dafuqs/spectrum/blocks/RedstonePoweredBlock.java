@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.blocks;
 
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+import net.minecraft.state.property.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public interface RedstonePoweredBlock {
 	

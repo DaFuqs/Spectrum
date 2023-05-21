@@ -56,6 +56,7 @@ public class ParticleSpawnerBlock extends AbstractParticleSpawnerBlock implement
 		return placementState;
 	}
 	
+	@Override
 	public boolean shouldSpawnParticles(World world, BlockPos pos) {
 		return world.getBlockState(pos).get(ParticleSpawnerBlock.POWERED).equals(true);
 	}

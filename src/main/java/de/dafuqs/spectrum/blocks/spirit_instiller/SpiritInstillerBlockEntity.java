@@ -461,6 +461,7 @@ public class SpiritInstillerBlockEntity extends InWorldInteractionBlockEntity im
 		this.markDirty();
 	}
 	
+	@Override
 	public void inventoryChanged() {
 		super.inventoryChanged();
 		this.inventoryChanged = true;

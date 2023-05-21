@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.recipe;
 
-import de.dafuqs.spectrum.progression.UnlockToastManager;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.progression.*;
+import net.fabricmc.api.*;
+import net.fabricmc.loader.api.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 public interface GatedRecipe extends Recipe<Inventory> {
 	

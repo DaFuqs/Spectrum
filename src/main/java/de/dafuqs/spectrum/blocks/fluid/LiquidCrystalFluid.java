@@ -43,6 +43,7 @@ public abstract class LiquidCrystalFluid extends SpectrumFluid {
 		return fluid == SpectrumFluids.LIQUID_CRYSTAL || fluid == SpectrumFluids.FLOWING_LIQUID_CRYSTAL;
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(World world, BlockPos pos, FluidState state, Random random) {
 		BlockPos topPos = pos.up();

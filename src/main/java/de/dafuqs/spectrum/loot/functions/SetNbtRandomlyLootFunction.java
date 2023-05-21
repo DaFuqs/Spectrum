@@ -22,10 +22,12 @@ public class SetNbtRandomlyLootFunction extends ConditionalLootFunction {
 		this.nbts = ImmutableList.copyOf(nbts);
 	}
 	
+	@Override
 	public LootFunctionType getType() {
 		return SpectrumLootFunctionTypes.SET_NBT_RANDOMLY;
 	}
 	
+	@Override
 	public ItemStack process(ItemStack stack, LootContext context) {
 		if (this.nbts.isEmpty()) {
 			return stack;

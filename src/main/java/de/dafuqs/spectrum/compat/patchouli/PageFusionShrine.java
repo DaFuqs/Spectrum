@@ -1,21 +1,20 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.fusion_shrine.FusionShrineRecipe;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.NotNull;
-import vazkii.patchouli.client.book.gui.GuiBook;
-import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.fusion_shrine.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.client.book.gui.*;
+import vazkii.patchouli.client.book.page.abstr.*;
 
-import java.util.List;
+import java.util.*;
 
 public class PageFusionShrine extends PageDoubleRecipeRegistry<FusionShrineRecipe> {
 	

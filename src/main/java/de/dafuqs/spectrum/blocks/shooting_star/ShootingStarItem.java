@@ -46,6 +46,7 @@ public class ShootingStarItem extends BlockItem {
 		return stack;
 	}
 	
+	@Override
 	public ActionResult useOnBlock(@NotNull ItemUsageContext context) {
 		if (context.getPlayer().isSneaking()) {
 			// place as block

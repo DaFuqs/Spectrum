@@ -39,10 +39,12 @@ public class EnderHopperBlock extends BlockWithEntity {
 		super(settings);
 	}
 	
+	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new EnderHopperBlockEntity(pos, state);
 	}
 	
+	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if (placer instanceof ServerPlayerEntity) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -53,10 +55,12 @@ public class EnderHopperBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return DOWN_SHAPE;
 	}
 	
+	@Override
 	public VoxelShape getRaycastShape(BlockState state, BlockView world, BlockPos pos) {
 		return DOWN_RAYCAST_SHAPE;
 	}
@@ -71,6 +75,7 @@ public class EnderHopperBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		this.updateEnabled(world, pos, state);
 	}
@@ -82,6 +87,7 @@ public class EnderHopperBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -94,10 +100,12 @@ public class EnderHopperBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public BlockRenderType getRenderType(BlockState state) {
 		return BlockRenderType.MODEL;
 	}
 	
+	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof EnderHopperBlockEntity) {
@@ -105,21 +113,23 @@ public class EnderHopperBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
 	
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(ENABLED);
 	}
 	
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		if (world.isClient) {
 			return ActionResult.SUCCESS;
 		} else {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
-			if (blockEntity instanceof EnderHopperBlockEntity) {
-				EnderHopperBlockEntity enderHopperBlockEntity = (EnderHopperBlockEntity) blockEntity;
+			if (blockEntity instanceof EnderHopperBlockEntity enderHopperBlockEntity) {
 				
 				if (!enderHopperBlockEntity.hasOwner()) {
 					enderHopperBlockEntity.setOwner(player);
@@ -128,9 +138,7 @@ public class EnderHopperBlock extends BlockWithEntity {
 				if (enderHopperBlockEntity.isOwner(player)) {
 					EnderChestInventory enderChestInventory = player.getEnderChestInventory();
 					
-					player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> {
-						return GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, ProgressionStage.EARLYGAME);
-					}, enderHopperBlockEntity.getContainerName()));
+					player.openHandledScreen(new SimpleNamedScreenHandlerFactory((i, playerInventory, playerEntity) -> GenericSpectrumContainerScreenHandler.createGeneric9x3(i, playerInventory, enderChestInventory, ProgressionStage.EARLYGAME), enderHopperBlockEntity.getContainerName()));
 					player.incrementStat(Stats.OPEN_ENDERCHEST);
 					PiglinBrain.onGuardedBlockInteracted(player, true);
 				} else {

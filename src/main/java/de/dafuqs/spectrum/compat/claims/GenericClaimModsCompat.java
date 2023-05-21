@@ -8,7 +8,7 @@ import org.jetbrains.annotations.*;
 
 public class GenericClaimModsCompat {
 	
-	public static boolean IS_COMMON_PROTECTION_API_PRESENT = FabricLoader.getInstance().isModLoaded("common-protection-api");
+	public static final boolean IS_COMMON_PROTECTION_API_PRESENT = FabricLoader.getInstance().isModLoaded("common-protection-api");
 	
 	/**
 	 * Call this for all kinds of world modifications

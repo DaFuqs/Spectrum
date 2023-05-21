@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.energy;
 
-import de.dafuqs.spectrum.energy.color.InkColor;
-import net.minecraft.nbt.NbtCompound;
+import de.dafuqs.spectrum.energy.color.*;
+import net.minecraft.nbt.*;
 
 public class InkCost {
 	
@@ -21,10 +21,9 @@ public class InkCost {
 		return cost;
 	}
 	
-	public NbtCompound writeNbt(NbtCompound nbt) {
+	public void writeNbt(NbtCompound nbt) {
 		nbt.putString("InkColor", color.toString());
 		nbt.putLong("InkCost", cost);
-		return nbt;
 	}
 	
 	public static InkCost fromNbt(NbtCompound nbt) {

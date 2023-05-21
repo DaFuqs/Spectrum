@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import org.jetbrains.annotations.Nullable;
+import com.google.gson.*;
+import de.dafuqs.spectrum.energy.color.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Locale;
+import java.util.*;
 
 public class ColorPredicate {
 	

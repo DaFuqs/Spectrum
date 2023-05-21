@@ -49,11 +49,7 @@ public class PaintbrushScreen extends QuickNavigationGridScreen<PaintbrushScreen
 		super(handler, playerInventory, title);
 		gridStack.push(new QuickNavigationGridScreen.Grid(
 				GridEntry.CLOSE,
-				handler.hasAccessToWhites() ? GridEntry.colored(InkColors.BLACK.getColor(), "spectrum.ink.color.group_blacks", (screen) -> {
-					selectGrid(BLACK_GRID);
-				}) : GridEntry.colored(InkColors.BLACK.getColor(), "spectrum.ink.color.black", (screen) -> {
-					chooseColor(InkColors.BLACK);
-				}),
+				handler.hasAccessToWhites() ? GridEntry.colored(InkColors.BLACK.getColor(), "spectrum.ink.color.group_blacks", (screen) -> selectGrid(BLACK_GRID)) : GridEntry.colored(InkColors.BLACK.getColor(), "spectrum.ink.color.black", (screen) -> chooseColor(InkColors.BLACK)),
 				GridEntry.colored(InkColors.MAGENTA.getColor(), "spectrum.ink.color.group_magentas", (screen) -> selectGrid(MAGENTA_GRID)),
 				GridEntry.colored(InkColors.CYAN.getColor(), "spectrum.ink.color.group_cyans", (screen) -> selectGrid(CYAN_GRID)),
 				GridEntry.colored(InkColors.YELLOW.getColor(), "spectrum.ink.color.group_yellows", (screen) -> selectGrid(YELLOW_GRID))

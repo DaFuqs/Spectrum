@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.mixin.accessors;
 
-import net.minecraft.block.FluidBlock;
-import net.minecraft.fluid.FlowableFluid;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import net.minecraft.block.*;
+import net.minecraft.fluid.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.gen.*;
 
 @Mixin(FluidBlock.class)
 public interface FluidBlockAccessor {

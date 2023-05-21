@@ -50,12 +50,14 @@ public class RedstoneWirelessBlockEntity extends BlockEntity implements Wireless
 		return world.getBlockState(pos).get(RedstoneWirelessBlock.CHANNEL);
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		tag.putInt("signal", this.currentSignal);
 		tag.putInt("cached_signal", this.cachedSignal);
 	}
 	
+	@Override
 	public void readNbt(NbtCompound tag) {
 		super.readNbt(tag);
 		this.currentSignal = tag.getInt("output_signal");

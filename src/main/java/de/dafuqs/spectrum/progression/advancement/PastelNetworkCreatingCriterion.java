@@ -14,11 +14,13 @@ import net.minecraft.util.*;
 public class PastelNetworkCreatingCriterion extends AbstractCriterion<PastelNetworkCreatingCriterion.Conditions> {
 
 	static final Identifier ID = SpectrumCommon.locate("pastel_network_creation");
-
+	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
-
+	
+	@Override
 	public PastelNetworkCreatingCriterion.Conditions conditionsFromJson(JsonObject jsonObject, Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		NumberRange.IntRange totalNodes = NumberRange.IntRange.fromJson(jsonObject.get("total_nodes"));
 		NumberRange.IntRange connectionNodes = NumberRange.IntRange.fromJson(jsonObject.get("connection_nodes"));
@@ -26,15 +28,13 @@ public class PastelNetworkCreatingCriterion extends AbstractCriterion<PastelNetw
 		NumberRange.IntRange storageNodes = NumberRange.IntRange.fromJson(jsonObject.get("storage_nodes"));
 		NumberRange.IntRange senderNodes = NumberRange.IntRange.fromJson(jsonObject.get("sender_nodes"));
 		NumberRange.IntRange gatherNodes = NumberRange.IntRange.fromJson(jsonObject.get("gather_nodes"));
-
+		
 		return new PastelNetworkCreatingCriterion.Conditions(extended, totalNodes, connectionNodes, providerNodes, storageNodes, senderNodes, gatherNodes);
 	}
 
 	public void trigger(ServerPlayerEntity player, ServerPastelNetwork network) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(network.getNodes(PastelNodeType.CONNECTION).size(), network.getNodes(PastelNodeType.PROVIDER).size(),
-					network.getNodes(PastelNodeType.STORAGE).size(), network.getNodes(PastelNodeType.SENDER).size(), network.getNodes(PastelNodeType.GATHER).size());
-		});
+		this.trigger(player, (conditions) -> conditions.matches(network.getNodes(PastelNodeType.CONNECTION).size(), network.getNodes(PastelNodeType.PROVIDER).size(),
+				network.getNodes(PastelNodeType.STORAGE).size(), network.getNodes(PastelNodeType.SENDER).size(), network.getNodes(PastelNodeType.GATHER).size()));
 	}
 
 	public static class Conditions extends AbstractCriterionConditions {
@@ -55,7 +55,8 @@ public class PastelNetworkCreatingCriterion extends AbstractCriterion<PastelNetw
 			this.senderNodes = senderNodes;
 			this.gatherNodes = gatherNodes;
 		}
-
+		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			jsonObject.add("total_nodes", this.totalNodes.toJson());

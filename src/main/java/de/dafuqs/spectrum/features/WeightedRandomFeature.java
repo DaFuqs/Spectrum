@@ -10,19 +10,20 @@ import net.minecraft.world.gen.feature.util.*;
 import java.util.*;
 
 public class WeightedRandomFeature extends Feature<WeightedRandomFeatureConfig> {
-
-    public WeightedRandomFeature(Codec<WeightedRandomFeatureConfig> codec) {
-        super(codec);
-    }
-
-    public boolean generate(FeatureContext<WeightedRandomFeatureConfig> context) {
-        Random random = context.getRandom();
-        StructureWorldAccess structureWorldAccess = context.getWorld();
-        BlockPos blockPos = context.getOrigin();
-
-        WeightedRandomFeatureConfig weightedRandomFeatureConfig = context.getConfig();
-        Optional<PlacedFeature> randomPlacedFeature = weightedRandomFeatureConfig.features().getDataOrEmpty(context.getRandom());
-        return randomPlacedFeature.map(placedFeature -> placedFeature.generateUnregistered(structureWorldAccess, context.getGenerator(), random, blockPos)).orElse(false);
-    }
-
+	
+	public WeightedRandomFeature(Codec<WeightedRandomFeatureConfig> codec) {
+		super(codec);
+	}
+	
+	@Override
+	public boolean generate(FeatureContext<WeightedRandomFeatureConfig> context) {
+		Random random = context.getRandom();
+		StructureWorldAccess structureWorldAccess = context.getWorld();
+		BlockPos blockPos = context.getOrigin();
+		
+		WeightedRandomFeatureConfig weightedRandomFeatureConfig = context.getConfig();
+		Optional<PlacedFeature> randomPlacedFeature = weightedRandomFeatureConfig.features().getDataOrEmpty(context.getRandom());
+		return randomPlacedFeature.map(placedFeature -> placedFeature.generateUnregistered(structureWorldAccess, context.getGenerator(), random, blockPos)).orElse(false);
+	}
+	
 }

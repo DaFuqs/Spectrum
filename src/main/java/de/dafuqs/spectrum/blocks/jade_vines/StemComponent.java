@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.blocks.jade_vines;
 
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.state.property.*;
+import net.minecraft.util.*;
 
 public enum StemComponent implements StringIdentifiable {
     BASE("base"),

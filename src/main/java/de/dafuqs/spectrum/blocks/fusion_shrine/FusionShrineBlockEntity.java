@@ -43,16 +43,16 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 
     private boolean inventoryChanged = true;
 
-    public SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
-        @Override
-        protected FluidVariant getBlankVariant() {
-            return FluidVariant.blank();
-        }
-
-        @Override
-        protected long getCapacity(FluidVariant variant) {
-            return FluidConstants.BUCKET;
-        }
+    public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<>() {
+		@Override
+		protected FluidVariant getBlankVariant() {
+			return FluidVariant.blank();
+		}
+	
+		@Override
+		protected long getCapacity(FluidVariant variant) {
+			return FluidConstants.BUCKET;
+		}
 
         @Override
         protected void onFinalCommit() {
@@ -309,16 +309,19 @@ public class FusionShrineBlockEntity extends InWorldInteractionBlockEntity imple
 	}
 	
 	// UPGRADEABLE
+	@Override
 	public void resetUpgrades() {
 		this.upgrades = null;
 		this.markDirty();
 	}
 	
+	@Override
 	public void calculateUpgrades() {
 		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 2, 0, this.ownerUUID);
 		this.markDirty();
 	}
 	
+	@Override
 	public void inventoryChanged() {
 		super.inventoryChanged();
 		this.inventoryChanged = true;

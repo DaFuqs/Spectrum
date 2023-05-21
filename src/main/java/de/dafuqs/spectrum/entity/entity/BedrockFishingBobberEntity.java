@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import de.dafuqs.spectrum.entity.SpectrumEntityTypes;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.world.*;
 
 public class BedrockFishingBobberEntity extends SpectrumFishingBobberEntity {
 	

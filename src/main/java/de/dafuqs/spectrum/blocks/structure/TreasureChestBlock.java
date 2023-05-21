@@ -1,21 +1,18 @@
 package de.dafuqs.spectrum.blocks.structure;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.chests.SpectrumChestBlock;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.client.util.SpriteIdentifier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.chests.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.util.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import static net.minecraft.client.render.TexturedRenderLayers.CHEST_ATLAS_TEXTURE;
+import static net.minecraft.client.render.TexturedRenderLayers.*;
 
 public class TreasureChestBlock extends SpectrumChestBlock {
 	
@@ -37,15 +34,18 @@ public class TreasureChestBlock extends SpectrumChestBlock {
 		}
 	}
 	
+	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new TreasureChestBlockEntity(pos, state);
 	}
 	
+	@Override
 	@Nullable
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
 		return world.isClient ? checkType(type, SpectrumBlockEntities.TREASURE_CHEST, TreasureChestBlockEntity::clientTick) : null;
 	}
 	
+	@Override
 	public SpriteIdentifier getTexture() {
 		return new SpriteIdentifier(CHEST_ATLAS_TEXTURE, SpectrumCommon.locate("entity/treasure_chest"));
 	}

@@ -64,11 +64,7 @@ public class SanityCommand {
 	}};
 	
 	public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-		dispatcher.register((CommandManager.literal("spectrum_sanity").requires((source) -> {
-			return source.hasPermissionLevel(2);
-		}).executes((context) -> {
-			return execute(context.getSource());
-		})));
+		dispatcher.register((CommandManager.literal("spectrum_sanity").requires((source) -> source.hasPermissionLevel(2)).executes((context) -> execute(context.getSource()))));
 	}
 	
 	private static int execute(ServerCommandSource source) {

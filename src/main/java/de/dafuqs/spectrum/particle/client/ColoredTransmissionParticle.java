@@ -30,8 +30,6 @@ public class ColoredTransmissionParticle extends TransmissionParticle {
 		vec3f.normalize();
 		Quaternion quaternion = new Quaternion(vec3f, 0.0F, true);
 		transforms.accept(quaternion);
-		Vec3f vec3f2 = new Vec3f(-1.0F, -1.0F, 0.0F);
-		vec3f2.rotate(quaternion);
 		Vec3f[] vec3fs = new Vec3f[]{new Vec3f(-1.0F, -1.0F, 0.0F), new Vec3f(-1.0F, 1.0F, 0.0F), new Vec3f(1.0F, 1.0F, 0.0F), new Vec3f(1.0F, -1.0F, 0.0F)};
 		float i = this.getSize(tickDelta);
 		

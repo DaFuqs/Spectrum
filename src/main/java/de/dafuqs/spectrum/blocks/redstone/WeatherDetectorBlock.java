@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.block.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.biome.*;
 
 public class WeatherDetectorBlock extends DetectorBlock {
 	
@@ -11,25 +11,20 @@ public class WeatherDetectorBlock extends DetectorBlock {
 		super(settings);
 	}
 	
+	@Override
 	protected void updateState(BlockState state, World world, BlockPos pos) {
 		int power = 0;
 		
 		if (world.isThundering()) {
 			Biome.Precipitation precipitation = world.getBiome(pos).value().getPrecipitation();
 			switch (precipitation) {
-				case RAIN -> {
-					power = 15;
-				}
-				case SNOW -> {
-					power = 8;
-				}
+				case RAIN -> power = 15;
+				case SNOW -> power = 8;
 			}
 		} else if (world.isRaining()) {
 			Biome.Precipitation precipitation = world.getBiome(pos).value().getPrecipitation();
 			switch (precipitation) {
-				case RAIN, SNOW -> {
-					power = 8;
-				}
+				case RAIN, SNOW -> power = 8;
 			}
 		}
 		

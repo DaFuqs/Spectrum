@@ -1,21 +1,17 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.items.LoomPatternProvider;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.LoomScreenHandler;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.registry.RegistryEntry;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.util.registry.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
-import java.util.List;
+import java.util.*;
 
 @Mixin(LoomScreenHandler.class)
 public abstract class LoomScreenHandlerMixin extends ScreenHandler {

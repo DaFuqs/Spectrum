@@ -16,7 +16,8 @@ public class CloverBlock extends FernBlock {
 	public CloverBlock(Settings settings) {
 		super(settings);
 	}
-
+	
+	@Override
 	@Deprecated
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;

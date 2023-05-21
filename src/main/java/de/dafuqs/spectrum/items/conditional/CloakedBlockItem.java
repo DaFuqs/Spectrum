@@ -1,20 +1,16 @@
 package de.dafuqs.spectrum.items.conditional;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import de.dafuqs.revelationary.api.revelations.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 public class CloakedBlockItem extends BlockItem implements RevelationAware {
 	
-	Identifier cloakAdvancementIdentifier;
-	Item cloakItem;
+	final Identifier cloakAdvancementIdentifier;
+	final Item cloakItem;
 	
 	public CloakedBlockItem(Block block, Settings settings, Identifier cloakAdvancementIdentifier, Item cloakItem) {
 		super(block, settings);

@@ -52,6 +52,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 		return this.rockCandyVariant;
 	}
 	
+	@Override
 	@Nullable
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
@@ -62,6 +63,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 		}
 	}
 	
+	@Override
 	public FluidState getFluidState(BlockState state) {
 		return state.get(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL) ? SpectrumFluids.LIQUID_CRYSTAL.getStill(false) : super.getFluidState(state);
 	}
@@ -133,23 +135,28 @@ public class SugarStickBlock extends Block implements RockCandy {
 		}
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return SHAPE;
 	}
 	
+	@Override
 	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
 		Direction direction = Direction.UP;
 		return Block.sideCoversSmallSquare(world, pos.offset(direction), direction.getOpposite());
 	}
 	
+	@Override
 	public PistonBehavior getPistonBehavior(BlockState state) {
 		return PistonBehavior.DESTROY;
 	}
 	
+	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		return direction == Direction.UP && !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}

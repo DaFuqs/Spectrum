@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items.tooltip;
 
-import net.minecraft.client.item.TooltipData;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
 
 public class VoidBundleTooltipData implements TooltipData {
 	

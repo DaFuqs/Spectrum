@@ -1,9 +1,7 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.commands.PrintConfigCommand;
-import de.dafuqs.spectrum.commands.SanityCommand;
-import de.dafuqs.spectrum.commands.ShootingStarCommand;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import de.dafuqs.spectrum.commands.*;
+import net.fabricmc.fabric.api.command.v2.*;
 
 public class SpectrumCommands {
 	

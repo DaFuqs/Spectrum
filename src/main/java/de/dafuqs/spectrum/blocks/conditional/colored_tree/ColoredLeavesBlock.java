@@ -57,6 +57,7 @@ public class ColoredLeavesBlock extends LeavesBlock implements RevelationAware, 
 		}
 	}
 	
+	@Override
 	public DyeColor getColor() {
 		return this.color;
 	}

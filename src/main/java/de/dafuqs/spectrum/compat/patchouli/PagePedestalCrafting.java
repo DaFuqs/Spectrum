@@ -1,21 +1,19 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.GemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import vazkii.patchouli.client.book.gui.GuiBook;
-import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.client.book.gui.*;
+import vazkii.patchouli.client.book.page.abstr.*;
 
 public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraftingRecipe> {
 	
@@ -47,15 +45,12 @@ public class PagePedestalCrafting extends PageDoubleRecipeRegistry<PedestalCraft
 		parent.renderItemStack(ms, recipeX + 78, recipeY + 22, mouseX, mouseY, recipe.getOutput());
 		
 		switch (recipe.getTier()) {
-			case COMPLEX -> {
-				drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 3, recipeX, recipeY, mouseX, mouseY);
-			}
-			case ADVANCED -> {
-				drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 12, recipeX, recipeY, mouseX, mouseY);
-			}
-			default -> {
-				drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 22, recipeX, recipeY, mouseX, mouseY);
-			}
+			case COMPLEX ->
+					drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 3, recipeX, recipeY, mouseX, mouseY);
+			case ADVANCED ->
+					drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 12, recipeX, recipeY, mouseX, mouseY);
+			default ->
+					drawGemstonePowderSlots(recipe, PedestalRecipeTier.getAvailableGemstoneDustColors(recipe.getTier()), ms, 22, recipeX, recipeY, mouseX, mouseY);
 		}
 		
 		DefaultedList<IngredientStack> ingredients = recipe.getIngredientStacks();

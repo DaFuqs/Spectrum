@@ -1,24 +1,21 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.blocks.chests.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class CompactingChestScreenHandler extends ScreenHandler {
 	
 	protected final World world;
 	private final Inventory inventory;
-	protected int ROWS = 3;
+	protected final int ROWS = 3;
 	protected CompactingChestBlockEntity compactingChestBlockEntity;
 	protected AutoCompactingInventory.AutoCraftingMode currentCraftingMode;
 	
@@ -78,6 +75,7 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 		}
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return this.inventory.canPlayerUse(player);
 	}
@@ -120,6 +118,7 @@ public class CompactingChestScreenHandler extends ScreenHandler {
 		return this.inventory;
 	}
 	
+	@Override
 	public void close(PlayerEntity player) {
 		super.close(player);
 		this.inventory.onClose(player);

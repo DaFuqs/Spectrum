@@ -20,6 +20,7 @@ public class SpectrumModelLayers {
 	public static final EntityModelLayer WOOLY_PIG_HAT = new EntityModelLayer(SpectrumCommon.locate("egg_laying_wooly_pig"), "hat");
 	public static final EntityModelLayer WOOLY_PIG_WOOL = new EntityModelLayer(SpectrumCommon.locate("egg_laying_wooly_pig"), "wool");
 	
+	public static final EntityModelLayer GUARDIAN_TURRET = new EntityModelLayer(SpectrumCommon.locate("guardian_turret"), "main");
 	public static final EntityModelLayer MONSTROSITY = new EntityModelLayer(SpectrumCommon.locate("monstrosity"), "main");
 	
 	/**
@@ -39,7 +40,8 @@ public class SpectrumModelLayers {
 		EntityModelLayerRegistry.registerModelLayer(WOOLY_PIG, EggLayingWoolyPigEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WOOLY_PIG_HAT, EggLayingWoolyPigHatEntityModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WOOLY_PIG_WOOL, EggLayingWoolyPigWoolEntityModel::getTexturedModelData);
-		EntityModelLayerRegistry.registerModelLayer(MONSTROSITY, MonstrosityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(GUARDIAN_TURRET, GuardianTurretEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MONSTROSITY, MonstrosityEntityModel::getTexturedModelData);
 		
 		EntityModelLayerRegistry.registerModelLayer(EGG_LAYING_WOOLY_PIG_HEAD, EggLayingWoolyPigHeadModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(WARDEN_HEAD, WardenHeadModel::getTexturedModelData);

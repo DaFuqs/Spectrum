@@ -5,7 +5,7 @@ import org.jetbrains.annotations.*;
 
 public class TimeHelper {
 	
-	public static long EPOCH_DAY_MILLIS = 86400000;
+	public static final long EPOCH_DAY_MILLIS = 86400000;
 	
 	public static TimeOfDay getTimeOfDay(@NotNull World world) {
 		return getTimeOfDay(world.getTimeOfDay());

@@ -1,23 +1,15 @@
 package de.dafuqs.spectrum.items.tools;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
-import de.dafuqs.spectrum.items.Preenchanted;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.util.collection.DefaultedList;
+import com.google.common.collect.*;
+import com.jamieswhiteshirt.reachentityattributes.*;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.item.*;
+import net.minecraft.util.collection.*;
 
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * A sword with additional reach

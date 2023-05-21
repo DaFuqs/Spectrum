@@ -25,9 +25,9 @@ public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry
 	}
 	
 	public static class EventEntry {
-		public GameEvent gameEvent;
-		public BlockPos eventSourceBlockPos;
-		public int distance;
+		public final GameEvent gameEvent;
+		public final BlockPos eventSourceBlockPos;
+		public final int distance;
 		
 		public EventEntry(GameEvent gameEvent, BlockPos eventSourceBlockPos, int distance) {
 			this.gameEvent = gameEvent;

@@ -1,17 +1,13 @@
 package de.dafuqs.spectrum.blocks.conditional.amaranth;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.registries.client.SpectrumColorProviders;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.PlantBlock;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.registries.client.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 public class AmaranthBushelBlock extends PlantBlock implements RevelationAware {
 	

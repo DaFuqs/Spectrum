@@ -1,20 +1,20 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.items.magic_items.KnowledgeGemItem;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.enchanter.EnchanterRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
-import org.jetbrains.annotations.NotNull;
-import vazkii.patchouli.client.book.gui.GuiBook;
-import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.enchanter.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import org.jetbrains.annotations.*;
+import vazkii.patchouli.client.book.gui.*;
+import vazkii.patchouli.client.book.page.abstr.*;
 
 public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecipe> {
 	
@@ -45,20 +45,19 @@ public class PageEnchanterRecipe extends PageDoubleRecipeRegistry<EnchanterRecip
 		DefaultedList<Ingredient> ingredients = recipe.getIngredients();
 		
 		int ingredientX = recipeX - 3;
-		int ingredientY = recipeY;
 		
 		// surrounding input slots
-		parent.renderIngredient(ms, ingredientX + 16, ingredientY, mouseX, mouseY, ingredients.get(1));
-		parent.renderIngredient(ms, ingredientX + 40, ingredientY, mouseX, mouseY, ingredients.get(2));
-		parent.renderIngredient(ms, ingredientX + 56, ingredientY + 16, mouseX, mouseY, ingredients.get(3));
-		parent.renderIngredient(ms, ingredientX + 56, ingredientY + 40, mouseX, mouseY, ingredients.get(4));
-		parent.renderIngredient(ms, ingredientX + 40, ingredientY + 56, mouseX, mouseY, ingredients.get(5));
-		parent.renderIngredient(ms, ingredientX + 16, ingredientY + 56, mouseX, mouseY, ingredients.get(6));
-		parent.renderIngredient(ms, ingredientX, ingredientY + 40, mouseX, mouseY, ingredients.get(7));
-		parent.renderIngredient(ms, ingredientX, ingredientY + 16, mouseX, mouseY, ingredients.get(8));
+		parent.renderIngredient(ms, ingredientX + 16, recipeY, mouseX, mouseY, ingredients.get(1));
+		parent.renderIngredient(ms, ingredientX + 40, recipeY, mouseX, mouseY, ingredients.get(2));
+		parent.renderIngredient(ms, ingredientX + 56, recipeY + 16, mouseX, mouseY, ingredients.get(3));
+		parent.renderIngredient(ms, ingredientX + 56, recipeY + 40, mouseX, mouseY, ingredients.get(4));
+		parent.renderIngredient(ms, ingredientX + 40, recipeY + 56, mouseX, mouseY, ingredients.get(5));
+		parent.renderIngredient(ms, ingredientX + 16, recipeY + 56, mouseX, mouseY, ingredients.get(6));
+		parent.renderIngredient(ms, ingredientX, recipeY + 40, mouseX, mouseY, ingredients.get(7));
+		parent.renderIngredient(ms, ingredientX, recipeY + 16, mouseX, mouseY, ingredients.get(8));
 		
 		// center input slot
-		parent.renderIngredient(ms, ingredientX + 28, ingredientY + 28, mouseX, mouseY, ingredients.get(0));
+		parent.renderIngredient(ms, ingredientX + 28, recipeY + 28, mouseX, mouseY, ingredients.get(0));
 		
 		// Knowledge Gem and Enchanter
 		ItemStack knowledgeDropStackWithXP = KnowledgeGemItem.getKnowledgeDropStackWithXP(recipe.getRequiredExperience(), true);

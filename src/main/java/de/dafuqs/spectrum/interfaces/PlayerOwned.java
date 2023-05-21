@@ -1,10 +1,10 @@
 package de.dafuqs.spectrum.interfaces;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.entity.player.PlayerEntity;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.*;
+import net.minecraft.entity.player.*;
+import org.jetbrains.annotations.*;
 
-import java.util.UUID;
+import java.util.*;
 
 public interface PlayerOwned {
 	

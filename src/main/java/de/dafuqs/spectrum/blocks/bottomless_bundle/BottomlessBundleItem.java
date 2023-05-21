@@ -125,7 +125,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		ItemStack itemStack = new ItemStack(Registry.ITEM.get(new Identifier(storedItemCompound.getString("ID"))));
 		int stackAmount = Math.min(storedAmount, itemStack.getMaxCount());
 		itemStack.setCount(stackAmount);
-
+		
 		if (storedItemCompound.contains("Tag", 10)) {
 			itemStack.setNbt(storedItemCompound.getCompound("Tag"));
 		}
@@ -134,15 +134,15 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 		return itemStack;
 	}
-
-	private static int bundleStack(ItemStack voidBundleStack, ItemStack stackToBundle) {
-		return bundleStack(voidBundleStack, stackToBundle, stackToBundle.getCount());
+	
+	private static void bundleStack(ItemStack voidBundleStack, ItemStack stackToBundle) {
+		bundleStack(voidBundleStack, stackToBundle, stackToBundle.getCount());
 	}
-
+	
 	private static int bundleStack(ItemStack voidBundleStack, ItemStack stackToBundle, int amount) {
 		NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 		NbtCompound storedItemCompound = new NbtCompound();
-
+		
 		boolean hasVoiding = EnchantmentHelper.getLevel(SpectrumEnchantments.VOIDING, voidBundleStack) > 0;
 		int maxStoredAmount = getMaxStoredAmount(voidBundleStack);
 		int newAmount = Math.min(maxStoredAmount, storedItemCompound.getInt("Count") + amount);
@@ -160,11 +160,10 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 
 		return overflowAmount;
 	}
-
-	protected static int setBundledStack(ItemStack voidBundleStack, ItemStack stackToBundle, int amount) {
+	
+	protected static void setBundledStack(ItemStack voidBundleStack, ItemStack stackToBundle, int amount) {
 		if (stackToBundle.isEmpty() || amount <= 0) {
 			voidBundleStack.removeSubNbt("StoredStack");
-			return 0;
 		} else {
 			NbtCompound voidBundleCompound = voidBundleStack.getOrCreateNbt();
 			NbtCompound storedItemCompound = new NbtCompound();
@@ -182,8 +181,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 
 			voidBundleCompound.put("StoredStack", storedItemCompound);
 			voidBundleStack.setNbt(voidBundleCompound);
-
-			return overflowAmount;
+			
 		}
 	}
 
@@ -215,6 +213,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 	}
 	
+	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		ItemStack itemStack = user.getStackInHand(hand);
 		if (user.isSneaking()) {
@@ -304,14 +303,17 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		return state.canPlaceAt(context.getWorld(), context.getBlockPos()) && context.getWorld().canPlace(state, context.getBlockPos(), shapeContext);
 	}
 	
+	@Override
 	public boolean isItemBarVisible(ItemStack stack) {
 		return getStoredAmount(stack) > 0;
 	}
 	
+	@Override
 	public int getItemBarStep(ItemStack stack) {
 		return Math.min(1 + (int) Math.round(12 * ((double) getStoredAmount(stack) / getMaxStoredAmount(stack))), 13);
 	}
 	
+	@Override
 	public int getItemBarColor(ItemStack stack) {
 		return super.getItemBarColor(stack);
 	}
@@ -321,6 +323,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		return false;
 	}
 	
+	@Override
 	public Optional<TooltipData> getTooltipData(ItemStack voidBundleStack) {
 		ItemStack itemStack = getFirstBundledStack(voidBundleStack);
 		int storedAmount = getStoredAmount(voidBundleStack);
@@ -328,6 +331,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		return Optional.of(new VoidBundleTooltipData(itemStack, storedAmount));
 	}
 	
+	@Override
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
 		boolean locked = isLocked(stack);
 		int storedAmount = getStoredAmount(stack);
@@ -351,6 +355,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 		}
 	}
 	
+	@Override
 	public void onItemEntityDestroyed(ItemEntity entity) {
 		World world = entity.world;
 		if (!world.isClient) {
@@ -374,6 +379,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	/**
 	 * When the bundle is clicked onto another stack
 	 */
+	@Override
 	public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
 		if (clickType != ClickType.RIGHT) {
 			return false;
@@ -381,9 +387,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 			ItemStack itemStack = slot.getStack();
 			if (itemStack.isEmpty()) {
 				playRemoveOneSound(player);
-				removeFirstBundledStack(stack).ifPresent((removedStack) -> {
-					addToBundle(stack, slot.insertStack(removedStack));
-				});
+				removeFirstBundledStack(stack).ifPresent((removedStack) -> addToBundle(stack, slot.insertStack(removedStack)));
 			} else if (itemStack.getItem().canBeNested()) {
 				ItemStack firstStack = getFirstBundledStack(stack);
 				if (firstStack.isEmpty() || ItemStack.canCombine(firstStack, itemStack)) {
@@ -486,6 +490,7 @@ public class BottomlessBundleItem extends BundleItem implements InventoryInserti
 	
 	public static class BottomlessBundlePlacementDispenserBehavior extends FallibleItemDispenserBehavior {
 		
+		@Override
 		protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
 			this.setSuccess(false);
 			Item item = stack.getItem();

@@ -11,7 +11,7 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;

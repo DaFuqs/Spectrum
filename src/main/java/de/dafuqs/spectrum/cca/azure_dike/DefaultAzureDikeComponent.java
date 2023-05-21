@@ -1,12 +1,12 @@
 package de.dafuqs.spectrum.cca.azure_dike;
 
-import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
-import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
-import dev.onyxstudios.cca.api.v3.entity.PlayerCopyCallback;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.network.ServerPlayerEntity;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.progression.*;
+import dev.onyxstudios.cca.api.v3.component.sync.*;
+import dev.onyxstudios.cca.api.v3.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.network.*;
+import org.jetbrains.annotations.*;
 
 public class DefaultAzureDikeComponent implements AzureDikeComponent, AutoSyncedComponent, PlayerCopyCallback {
 	

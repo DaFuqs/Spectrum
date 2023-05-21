@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.items.tools.SpectrumFishingRodItem;
-import de.dafuqs.spectrum.registries.SpectrumEnchantments;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.items.tools.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public class ExuberanceEnchantment extends SpectrumEnchantment {
 	

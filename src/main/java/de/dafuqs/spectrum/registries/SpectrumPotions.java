@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.potion.Potion;
-import net.minecraft.util.registry.Registry;
+import de.dafuqs.spectrum.*;
+import net.minecraft.potion.*;
+import net.minecraft.util.registry.*;
 
 public class SpectrumPotions {
 	

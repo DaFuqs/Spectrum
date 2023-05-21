@@ -14,7 +14,7 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
 
     private static final String NAME = "spectrum_pastel_network_manager";
 
-    protected List<ServerPastelNetwork> networks = new ArrayList<>();
+    protected final List<ServerPastelNetwork> networks = new ArrayList<>();
 
     public ServerPastelNetworkManager() {
         super();
@@ -39,46 +39,49 @@ public class ServerPastelNetworkManager extends PersistentState implements Paste
         tag.put("Networks", networkList);
         return tag;
     }
-
-    public static ServerPastelNetworkManager fromNbt(NbtCompound nbt) {
-        ServerPastelNetworkManager manager = new ServerPastelNetworkManager();
-        for (NbtElement element : nbt.getList("Networks", NbtElement.LIST_TYPE)) {
-            NbtCompound compound = (NbtCompound) element;
-            manager.networks.add(ServerPastelNetwork.fromNbt(compound));
-        }
-        return manager;
-    }
-
-    public void remove(PastelNetwork network) {
-        this.networks.remove(network);
-    }
-
-    public void tick() {
-        for (ServerPastelNetwork network : this.networks) {
-            network.tick();
-        }
-    }
-
-    public @Nullable PastelNetwork getNetwork(UUID uuid) {
-        for (PastelNetwork network : this.networks) {
-            if (network.getUUID() == uuid) {
-                return network;
-            }
-        }
-        return null;
-    }
-
-    public PastelNetwork joinNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid) {
-        if (uuid == null) {
-            for (PastelNetwork network : this.networks) {
-                if (network.canConnect(node)) {
-                    network.addNode(node);
-                    ((ServerPastelNetwork) network).checkNetworkMergesForNewNode(node);
-                    return network;
-                }
-            }
-        } else {
-            //noinspection ForLoopReplaceableByForEach
+	
+	public static ServerPastelNetworkManager fromNbt(NbtCompound nbt) {
+		ServerPastelNetworkManager manager = new ServerPastelNetworkManager();
+		for (NbtElement element : nbt.getList("Networks", NbtElement.LIST_TYPE)) {
+			NbtCompound compound = (NbtCompound) element;
+			manager.networks.add(ServerPastelNetwork.fromNbt(compound));
+		}
+		return manager;
+	}
+	
+	@Override
+	public void remove(PastelNetwork network) {
+		this.networks.remove(network);
+	}
+	
+	public void tick() {
+		for (ServerPastelNetwork network : this.networks) {
+			network.tick();
+		}
+	}
+	
+	@Override
+	public @Nullable PastelNetwork getNetwork(UUID uuid) {
+		for (PastelNetwork network : this.networks) {
+			if (network.getUUID() == uuid) {
+				return network;
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public PastelNetwork joinNetwork(PastelNodeBlockEntity node, @Nullable UUID uuid) {
+		if (uuid == null) {
+			for (ServerPastelNetwork network : this.networks) {
+				if (network.canConnect(node)) {
+					network.addNode(node);
+					network.checkNetworkMergesForNewNode(node);
+					return network;
+				}
+			}
+		} else {
+			//noinspection ForLoopReplaceableByForEach
             for (int i = 0; i < this.networks.size(); i++) {
                 PastelNetwork network = this.networks.get(i);
                 if (network.getUUID().equals(uuid)) {

@@ -44,9 +44,8 @@ public record FermentationData(float fermentationSpeedMod, float angelsSharePerc
 	}
 	
 	public JsonObject toJson() {
-		JsonObject object = new JsonObject();
 		// TODO: not necessary, but nice to have
-		return object;
+		return new JsonObject();
 	}
 	
 }

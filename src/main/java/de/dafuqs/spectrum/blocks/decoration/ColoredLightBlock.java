@@ -1,15 +1,13 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.google.common.collect.Maps;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.RedstoneLampBlock;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
+import com.google.common.collect.*;
+import net.minecraft.block.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class ColoredLightBlock extends RedstoneLampBlock {
 	

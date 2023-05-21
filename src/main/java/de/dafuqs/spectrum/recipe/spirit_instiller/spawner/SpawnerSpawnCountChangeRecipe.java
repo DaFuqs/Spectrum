@@ -1,16 +1,13 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.id.incubus_core.recipe.matchbook.Matchbook;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.registries.*;
+import net.id.incubus_core.recipe.*;
+import net.id.incubus_core.recipe.matchbook.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	
@@ -38,6 +35,7 @@ public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 		return Text.translatable("recipe.spectrum.spawner.lore.increased_spawn_count");
 	}
 	
+	@Override
 	public NbtCompound getSpawnerResultNbt(NbtCompound spawnerBlockEntityNbt, ItemStack firstBowlStack, ItemStack secondBowlStack) {
 		// Default spawner tag:
 		/* BlockEntityTag: {

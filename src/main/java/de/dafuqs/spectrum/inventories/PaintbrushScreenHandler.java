@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.revelationary.api.advancements.*;
+import de.dafuqs.spectrum.energy.color.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import org.jetbrains.annotations.*;
 
 public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler implements InkColorSelectedPacketReceiver {
 	
@@ -26,7 +24,8 @@ public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler im
 		this.paintBrushStack = paintBrushStack;
 		this.hasAccessToWhites = AdvancementHelper.hasAdvancement(playerInventory.player, InkColors.WHITE.getRequiredAdvancement());
 	}
-
+	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		for (ItemStack itemStack : player.getHandItems()) {
 			if (itemStack == paintBrushStack) {

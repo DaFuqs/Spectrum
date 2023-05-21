@@ -19,21 +19,20 @@ import dev.emi.trinkets.api.*;
 import net.minecraft.block.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.*;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
@@ -65,33 +64,30 @@ public abstract class LivingEntityMixin {
 	@Shadow
 	@Nullable
 	public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
-
+	
 	@Shadow
 	public abstract boolean canHaveStatusEffect(StatusEffectInstance effect);
-
-	@Shadow
-	public abstract boolean removeStatusEffect(StatusEffect type);
-
-	@Shadow
-	public abstract boolean addStatusEffect(StatusEffectInstance effect);
-
+	
 	@Shadow
 	protected ItemStack activeItemStack;
-
+	
+	@Shadow
+	public abstract void readCustomDataFromNbt(NbtCompound nbt);
+	
 	@Shadow
 	public abstract boolean damage(DamageSource source, float amount);
-
+	
 	@Shadow
-	public abstract boolean hasNoDrag();
-
-	@Shadow public abstract void readCustomDataFromNbt(NbtCompound nbt);
-
-
+	public abstract boolean removeStatusEffect(StatusEffect type);
+	
+	@Shadow
+	public abstract boolean addStatusEffect(StatusEffectInstance effect);
+	
 	@ModifyArg(method = "dropXp()V", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ExperienceOrbEntity;spawn(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/Vec3d;I)V"), index = 2)
 	protected int spectrum$applyExuberance(int originalXP) {
 		return (int) (originalXP * spectrum$getExuberanceMod(this.attackingPlayer));
 	}
-
+	
 	private float spectrum$getExuberanceMod(PlayerEntity attackingPlayer) {
 		if (attackingPlayer != null && SpectrumEnchantments.EXUBERANCE.canEntityUse(attackingPlayer)) {
 			int exuberanceLevel = EnchantmentHelper.getEquipmentLevel(SpectrumEnchantments.EXUBERANCE, attackingPlayer);
@@ -184,7 +180,6 @@ public abstract class LivingEntityMixin {
 				}
 
 				SpectrumDamageSources.recursiveDamage = false;
-				return;
 			}
 		}
 	}

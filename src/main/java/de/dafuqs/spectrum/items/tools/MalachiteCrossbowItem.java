@@ -49,6 +49,7 @@ public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted,
 		return ItemStack.EMPTY;
 	}
 	
+	@Override
 	public Predicate<ItemStack> getProjectiles() {
 		return PROJECTILES;
 	}

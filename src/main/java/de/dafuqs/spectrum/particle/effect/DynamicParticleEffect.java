@@ -13,25 +13,10 @@ import net.minecraft.util.registry.*;
 
 public class DynamicParticleEffect implements ParticleEffect {
 	
-	public static final Codec<DynamicParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(Vec3f.CODEC.fieldOf("color").forGetter((effect) -> {
-			return effect.color;
-		}), Codec.STRING.fieldOf("particle_type").forGetter((effect) -> {
-			return effect.particleTypeIdentifier.toString();
-		}), Codec.FLOAT.fieldOf("scale").forGetter((effect) -> {
-			return effect.scale;
-		}), Codec.INT.fieldOf("lifetime_ticks").forGetter((effect) -> {
-			return effect.lifetimeTicks;
-		}), Codec.FLOAT.fieldOf("gravity").forGetter((effect) -> {
-			return effect.gravity;
-		}), Codec.BOOL.fieldOf("collisions").forGetter((effect) -> {
-			return effect.collisions;
-		}), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> {
-			return effect.glowing;
-		})).apply(instance, DynamicParticleEffect::new);
-	});
+	public static final Codec<DynamicParticleEffect> CODEC = RecordCodecBuilder.create((instance) -> instance.group(Vec3f.CODEC.fieldOf("color").forGetter((effect) -> effect.color), Codec.STRING.fieldOf("particle_type").forGetter((effect) -> effect.particleTypeIdentifier.toString()), Codec.FLOAT.fieldOf("scale").forGetter((effect) -> effect.scale), Codec.INT.fieldOf("lifetime_ticks").forGetter((effect) -> effect.lifetimeTicks), Codec.FLOAT.fieldOf("gravity").forGetter((effect) -> effect.gravity), Codec.BOOL.fieldOf("collisions").forGetter((effect) -> effect.collisions), Codec.BOOL.fieldOf("glow_in_the_dark").forGetter((effect) -> effect.glowing)).apply(instance, DynamicParticleEffect::new));
 	
 	public static final ParticleEffect.Factory<DynamicParticleEffect> FACTORY = new ParticleEffect.Factory<>() {
+		@Override
 		public DynamicParticleEffect read(ParticleType<DynamicParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
 			Vec3f color = AbstractDustParticleEffect.readColor(stringReader);
 			stringReader.expect(' ');
@@ -49,6 +34,7 @@ public class DynamicParticleEffect implements ParticleEffect {
 			return new DynamicParticleEffect(textureIdentifier, gravity, color, scale, lifetimeTicks, collisions, glowInTheDark);
 		}
 		
+		@Override
 		public DynamicParticleEffect read(ParticleType<DynamicParticleEffect> particleType, PacketByteBuf packetByteBuf) {
 			Vec3f color = AbstractDustParticleEffect.readColor(packetByteBuf);
 			Identifier textureIdentifier = packetByteBuf.readIdentifier();
@@ -93,9 +79,10 @@ public class DynamicParticleEffect implements ParticleEffect {
 	}
 	
 	protected DynamicParticleEffect(Object o, Object o1, Object o2, Object o3, Object o4, Object o5, Object o6) {
-		new DynamicParticleEffect((Identifier) o, (float) o1, (Vec3f) o2, (float) o3, (int) o4, (boolean) o5, (boolean) o6);
+		new DynamicParticleEffect(o, o1, o2, o3, o4, o5, o6);
 	}
 	
+	@Override
 	public void write(PacketByteBuf buf) {
 		buf.writeString(this.particleTypeIdentifier.toString());
 		buf.writeFloat(this.gravity);
@@ -108,10 +95,12 @@ public class DynamicParticleEffect implements ParticleEffect {
 		buf.writeBoolean(this.glowing);
 	}
 	
+	@Override
 	public String asString() {
 		return String.valueOf(Registry.PARTICLE_TYPE.getId(this.getType()));
 	}
 	
+	@Override
 	public ParticleType<DynamicParticleEffect> getType() {
 		return SpectrumParticleTypes.DYNAMIC;
 	}

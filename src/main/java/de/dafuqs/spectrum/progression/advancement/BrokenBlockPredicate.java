@@ -1,17 +1,15 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.*;
 import com.google.gson.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.predicate.StatePredicate;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.*;
+import net.minecraft.predicate.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Set;
+import java.util.*;
 
 /**
  * Since BlockPredicate requires world and pos as input we can not use that in BrokenBlockCriterion
@@ -50,9 +48,7 @@ public class BrokenBlockPredicate {
 				
 				for (JsonElement jsonElement : jsonArray) {
 					Identifier identifier = new Identifier(JsonHelper.asString(jsonElement, "block"));
-					builder.add(Registry.BLOCK.getOrEmpty(identifier).orElseThrow(() -> {
-						return new JsonSyntaxException("Unknown block id '" + identifier + "'");
-					}));
+					builder.add(Registry.BLOCK.getOrEmpty(identifier).orElseThrow(() -> new JsonSyntaxException("Unknown block id '" + identifier + "'")));
 				}
 				
 				set = builder.build();

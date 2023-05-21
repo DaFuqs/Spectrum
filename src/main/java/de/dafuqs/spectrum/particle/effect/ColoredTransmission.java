@@ -9,17 +9,7 @@ import net.minecraft.world.event.*;
 
 public class ColoredTransmission extends SimpleTransmission {
 	
-	public static final Codec<ColoredTransmission> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(Vec3d.CODEC.fieldOf("origin").forGetter((coloredTransmission) -> {
-			return coloredTransmission.origin;
-		}), PositionSource.CODEC.fieldOf("destination").forGetter((coloredTransmission) -> {
-			return coloredTransmission.destination;
-		}), Codec.INT.fieldOf("dye_color").forGetter((coloredTransmission) -> {
-			return coloredTransmission.dyeColor.getId();
-		}), Codec.INT.fieldOf("arrival_in_ticks").forGetter((coloredTransmission) -> {
-			return coloredTransmission.arrivalInTicks;
-		})).apply(instance, ColoredTransmission::new);
-	});
+	public static final Codec<ColoredTransmission> CODEC = RecordCodecBuilder.create((instance) -> instance.group(Vec3d.CODEC.fieldOf("origin").forGetter((coloredTransmission) -> coloredTransmission.origin), PositionSource.CODEC.fieldOf("destination").forGetter((coloredTransmission) -> coloredTransmission.destination), Codec.INT.fieldOf("dye_color").forGetter((coloredTransmission) -> coloredTransmission.dyeColor.getId()), Codec.INT.fieldOf("arrival_in_ticks").forGetter((coloredTransmission) -> coloredTransmission.arrivalInTicks)).apply(instance, ColoredTransmission::new));
 	
 	protected final DyeColor dyeColor;
 	

@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.block.entity.*;
+import net.minecraft.util.registry.*;
 
-import java.util.List;
+import java.util.*;
 
 public interface LoomPatternProvider {
 	

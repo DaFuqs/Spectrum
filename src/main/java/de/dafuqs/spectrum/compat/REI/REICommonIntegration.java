@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.compat.REI;
 
-import me.shedaniel.rei.api.common.display.DisplaySerializerRegistry;
-import me.shedaniel.rei.api.common.plugins.REIServerPlugin;
-import me.shedaniel.rei.api.common.transfer.info.MenuInfoRegistry;
+import me.shedaniel.rei.api.common.display.*;
+import me.shedaniel.rei.api.common.plugins.*;
+import me.shedaniel.rei.api.common.transfer.info.*;
 
 public class REICommonIntegration implements REIServerPlugin {
 	

@@ -1,18 +1,17 @@
 package de.dafuqs.spectrum.items.tooltip;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.tooltip.TooltipComponent;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.NotNull;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.font.*;
+import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.client.gui.tooltip.*;
+import net.minecraft.client.render.item.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 public class SpectrumTooltipComponent implements TooltipComponent {
 	

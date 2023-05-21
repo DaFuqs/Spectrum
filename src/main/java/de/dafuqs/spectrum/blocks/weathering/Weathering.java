@@ -1,15 +1,12 @@
 package de.dafuqs.spectrum.blocks.weathering;
 
-import com.google.common.base.Suppliers;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.ImmutableBiMap;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Degradable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+import com.google.common.base.*;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import net.minecraft.world.biome.*;
 
 import java.util.Optional;
 import java.util.function.Supplier;
@@ -52,35 +49,37 @@ public interface Weathering extends Degradable<Weathering.WeatheringLevel> {
 
     static Optional<BlockState> getDecreasedWeatheredState(BlockState state) {
         return getDecreasedWeatheredBlock(state.getBlock()).map((block) -> block.getStateWithProperties(state));
-    }
-
-    static Optional<Block> getIncreasedWeatheredBlock(Block block) {
-        return Optional.ofNullable(WEATHERING_LEVEL_INCREASES.get().get(block));
-    }
-
-    static BlockState getUnaffectedWeatheredState(BlockState state) {
-        return getUnaffectedWeatheredBlock(state.getBlock()).getStateWithProperties(state);
-    }
-
-    default Optional<BlockState> getDegradationResult(BlockState state) {
-        return getIncreasedWeatheredBlock(state.getBlock()).map((block) -> block.getStateWithProperties(state));
-    }
-
-    default float getDegradationChanceMultiplier() {
-        return this.getDegradationLevel() == WeatheringLevel.UNAFFECTED ? 0.75F : 1.0F;
-    }
-
-    default boolean shouldTryWeather(World world, BlockPos pos) {
-        float chance = world.isSkyVisible(pos) ? 0.5F : 0.0F;
-        if (world.isRaining() && world.getBiome(pos).value().getPrecipitation() != Biome.Precipitation.NONE) {
-            chance += 0.5;
-        }
-        return world.random.nextFloat() < chance;
-    }
-
-    enum WeatheringLevel {
-        UNAFFECTED,
-        EXPOSED,
-        WEATHERED;
-    }
+	}
+	
+	static Optional<Block> getIncreasedWeatheredBlock(Block block) {
+		return Optional.ofNullable(WEATHERING_LEVEL_INCREASES.get().get(block));
+	}
+	
+	static BlockState getUnaffectedWeatheredState(BlockState state) {
+		return getUnaffectedWeatheredBlock(state.getBlock()).getStateWithProperties(state);
+	}
+	
+	@Override
+	default Optional<BlockState> getDegradationResult(BlockState state) {
+		return getIncreasedWeatheredBlock(state.getBlock()).map((block) -> block.getStateWithProperties(state));
+	}
+	
+	@Override
+	default float getDegradationChanceMultiplier() {
+		return this.getDegradationLevel() == WeatheringLevel.UNAFFECTED ? 0.75F : 1.0F;
+	}
+	
+	default boolean shouldTryWeather(World world, BlockPos pos) {
+		float chance = world.isSkyVisible(pos) ? 0.5F : 0.0F;
+		if (world.isRaining() && world.getBiome(pos).value().getPrecipitation() != Biome.Precipitation.NONE) {
+			chance += 0.5;
+		}
+		return world.random.nextFloat() < chance;
+	}
+	
+	enum WeatheringLevel {
+		UNAFFECTED,
+		EXPOSED,
+		WEATHERED
+	}
 }

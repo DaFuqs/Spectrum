@@ -1,23 +1,15 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.InkStorage;
-import de.dafuqs.spectrum.energy.color.CompoundColor;
-import de.dafuqs.spectrum.energy.color.ElementalColor;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.text.Text;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
+import net.fabricmc.api.*;
+import net.minecraft.nbt.*;
+import net.minecraft.text.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static de.dafuqs.spectrum.helpers.Support.getShortenedNumberString;
+import static de.dafuqs.spectrum.helpers.Support.*;
 
 public class TotalCappedElementalInkStorage implements InkStorage {
 	
@@ -249,6 +241,7 @@ public class TotalCappedElementalInkStorage implements InkStorage {
 		}
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void addTooltip(List<Text> tooltip, boolean includeHeader) {
 		if (includeHeader) {

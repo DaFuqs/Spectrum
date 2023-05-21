@@ -90,10 +90,12 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 		this.template = template;
 	}
 	
+	@Override
 	public LootFunctionType getType() {
 		return SpectrumLootFunctionTypes.FILL_POTION_FILLABLE;
 	}
 	
+	@Override
 	public ItemStack process(ItemStack stack, LootContext context) {
 		if (this.template == null) {
 			return stack;

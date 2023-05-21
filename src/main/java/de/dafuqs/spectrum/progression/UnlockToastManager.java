@@ -1,26 +1,20 @@
 package de.dafuqs.spectrum.progression;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.items.magic_items.PaintbrushItem;
-import de.dafuqs.spectrum.progression.toast.MessageToast;
-import de.dafuqs.spectrum.progression.toast.UnlockedRecipeGroupToast;
-import de.dafuqs.spectrum.recipe.GatedRecipe;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.items.magic_items.*;
+import de.dafuqs.spectrum.progression.toast.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.*;
+import net.minecraft.client.network.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
 import java.util.*;
 

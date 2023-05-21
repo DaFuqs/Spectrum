@@ -15,7 +15,7 @@ public class SpectrumGameEvents {
 	public static GameEvent HUMMINGSTONE_HUMMING;
 	public static GameEvent HUMMINGSTONE_HYMN;
 
-	public static HashMap<DyeColor, List<RedstoneTransferGameEvent>> WIRELESS_REDSTONE_SIGNALS = new HashMap<>(); // a list of 16 * 16 events, meaning redstone strength 0-15 with each dye color
+	public static final HashMap<DyeColor, List<RedstoneTransferGameEvent>> WIRELESS_REDSTONE_SIGNALS = new HashMap<>(); // a list of 16 * 16 events, meaning redstone strength 0-15 with each dye color
 
 	public static void register() {
 		ENTITY_SPAWNED = register("entity_spawned");

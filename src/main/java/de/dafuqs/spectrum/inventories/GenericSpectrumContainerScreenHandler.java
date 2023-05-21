@@ -1,13 +1,10 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.enums.ProgressionStage;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.screen.GenericContainerScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.enums.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.screen.*;
+import org.jetbrains.annotations.*;
 
 public class GenericSpectrumContainerScreenHandler extends GenericContainerScreenHandler {
 	

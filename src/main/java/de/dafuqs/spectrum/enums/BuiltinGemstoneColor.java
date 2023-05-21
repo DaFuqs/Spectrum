@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.enums;
 
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.item.Item;
-import net.minecraft.util.DyeColor;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public enum BuiltinGemstoneColor implements GemstoneColor {
 	CYAN(DyeColor.CYAN),
@@ -22,6 +22,7 @@ public enum BuiltinGemstoneColor implements GemstoneColor {
 		return this.dyeColor;
 	}
 	
+	@Override
 	public Item getGemstonePowderItem() {
 		switch (this) {
 			case CYAN -> {

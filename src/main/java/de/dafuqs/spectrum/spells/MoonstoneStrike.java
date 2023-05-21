@@ -21,24 +21,24 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class MoonstoneStrike {
-
-    private final World world;
-    private final double x;
-    private final double y;
-    private final double z;
-    @Nullable
-    public Entity entity;
-    public float power;
-    private final DamageSource damageSource;
-    protected final Map<PlayerEntity, Vec3d> affectedPlayers;
-
-    public MoonstoneStrike(World world, @Nullable Entity entity, double x, double y, double z, float power) {
-        this(world, entity, null, x, y, z, power);
-    }
-
-    public MoonstoneStrike(World world, @Nullable Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
-        this.affectedPlayers = Maps.newHashMap();
-        this.world = world;
+	
+	private final World world;
+	private final double x;
+	private final double y;
+	private final double z;
+	@Nullable
+	public final Entity entity;
+	public final float power;
+	private final DamageSource damageSource;
+	protected final Map<PlayerEntity, Vec3d> affectedPlayers;
+	
+	public MoonstoneStrike(World world, @Nullable Entity entity, double x, double y, double z, float power) {
+		this(world, entity, null, x, y, z, power);
+	}
+	
+	public MoonstoneStrike(World world, @Nullable Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
+		this.affectedPlayers = Maps.newHashMap();
+		this.world = world;
         this.entity = entity;
         this.power = power;
         this.x = x;
@@ -46,20 +46,19 @@ public class MoonstoneStrike {
         this.z = z;
         this.damageSource = damageSource == null ? SpectrumDamageSources.moonstoneBlast(this) : damageSource;
     }
-
-    public static MoonstoneStrike create(World world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
-        MoonstoneStrike moonstoneStrike = new MoonstoneStrike(world, entity, damageSource, x, y, z, power);
-
-        if (world.isClient) {
-            world.playSound(x, y, z, SpectrumSoundEvents.MOONSTONE_STRIKE, SoundCategory.BLOCKS, 4.0F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
-            world.addParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, x, y, z, 1.0, 0.0, 0.0);
-        } else {
-            moonstoneStrike.damageEntities();
-            SpectrumS2CPacketSender.sendMoonstoneBlast((ServerWorld) world, moonstoneStrike);
-        }
-
-        return moonstoneStrike;
-    }
+	
+	public static void create(World world, Entity entity, @Nullable DamageSource damageSource, double x, double y, double z, float power) {
+		MoonstoneStrike moonstoneStrike = new MoonstoneStrike(world, entity, damageSource, x, y, z, power);
+		
+		if (world.isClient) {
+			world.playSound(x, y, z, SpectrumSoundEvents.MOONSTONE_STRIKE, SoundCategory.BLOCKS, 4.0F, (1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.2F) * 0.7F, false);
+			world.addParticle(SpectrumParticleTypes.MOONSTONE_STRIKE, x, y, z, 1.0, 0.0, 0.0);
+		} else {
+			moonstoneStrike.damageEntities();
+			SpectrumS2CPacketSender.sendMoonstoneBlast((ServerWorld) world, moonstoneStrike);
+		}
+		
+	}
     
     public double getX() {
         return x;

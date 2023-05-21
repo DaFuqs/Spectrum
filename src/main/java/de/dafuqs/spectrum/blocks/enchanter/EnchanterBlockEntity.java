@@ -398,18 +398,10 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			int rarityCost;
 			Enchantment.Rarity rarity = enchantment.getRarity();
 			switch (rarity) {
-				case COMMON -> {
-					rarityCost = 10;
-				}
-				case UNCOMMON -> {
-					rarityCost = 25;
-				}
-				case RARE -> {
-					rarityCost = 50;
-				}
-				default -> {
-					rarityCost = 80;
-				}
+				case COMMON -> rarityCost = 10;
+				case UNCOMMON -> rarityCost = 25;
+				case RARE -> rarityCost = 50;
+				default -> rarityCost = 80;
 			}
 			
 			float levelCost = level + ((float) level / enchantment.getMaxLevel()); // the higher the level, the pricier. But not as bad for enchantments with high max levels
@@ -537,12 +529,11 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	 *
 	 * @param world                The Enchanter World
 	 * @param enchanterBlockEntity The Enchanter Block Entity
-	 * @return False if the previously valid recipe was changed
 	 */
-	private static boolean calculateCurrentRecipe(@NotNull World world, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
+	private static void calculateCurrentRecipe(@NotNull World world, @NotNull EnchanterBlockEntity enchanterBlockEntity) {
 		if (enchanterBlockEntity.currentRecipe != null) {
 			if (enchanterBlockEntity.currentRecipe.matches(enchanterBlockEntity.virtualInventoryIncludingBowlStacks, world)) {
-				return true;
+				return;
 			}
 		}
 		
@@ -594,7 +585,6 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			enchanterBlockEntity.updateInClientWorld();
 		}
 		
-		return false;
 	}
 	
 	private static void grantPlayerEnchantingAdvancementCriterion(UUID playerUUID, ItemStack resultStack, int experience) {
@@ -606,6 +596,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 	}
 	
+	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.craftingTime = nbt.getInt("crafting_time");
@@ -637,7 +628,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 				}
 			}
 		}
-
+		
 		if (nbt.contains("Upgrades", NbtElement.LIST_TYPE)) {
 			this.upgrades = UpgradeHolder.fromNbt(nbt.getList("Upgrades", NbtElement.COMPOUND_TYPE));
 		} else {
@@ -645,6 +636,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		}
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.putInt("crafting_time", this.craftingTime);
@@ -675,6 +667,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		return BlockEntityUpdateS2CPacket.create(this);
 	}
 	
+	@Override
 	public void updateInClientWorld() {
 		world.updateListeners(pos, world.getBlockState(pos), world.getBlockState(pos), Block.NO_REDRAW);
 	}
@@ -723,6 +716,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 		return false;
 	}
 	
+	@Override
 	public void inventoryChanged() {
 		virtualInventoryIncludingBowlStacks = new SimpleInventory(INVENTORY_SIZE + 8);
 		virtualInventoryIncludingBowlStacks.setStack(0, this.getStack(0)); // center item
@@ -773,11 +767,13 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 	}
 	
 	// UPGRADEABLE
+	@Override
 	public void resetUpgrades() {
 		this.upgrades = null;
 		this.markDirty();
 	}
 	
+	@Override
 	public void calculateUpgrades() {
 		this.upgrades = Upgradeable.calculateUpgradeMods4(world, pos, 3, 0, this.ownerUUID);
 		this.markDirty();

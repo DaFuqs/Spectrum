@@ -115,7 +115,7 @@ public class FusionShrineBlock extends InWorldInteractionBlock {
 				++i;
 			}
 			
-	        return MathHelper.floor((f /= ((float)inventory.size()+1)) * 14.0f) + (i > 0 ? 1 : 0);
+	        return MathHelper.floor(f / ((float) inventory.size() + 1) * 14.0f) + (i > 0 ? 1 : 0);
 		}
 		
 		return 0;

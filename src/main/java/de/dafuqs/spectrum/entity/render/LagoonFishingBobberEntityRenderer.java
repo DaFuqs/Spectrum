@@ -1,17 +1,17 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.util.*;
 
 public class LagoonFishingBobberEntityRenderer extends SpectrumFishingBobberEntityRenderer {
 	
-	protected Identifier TEXTURE = SpectrumCommon.locate("textures/entity/fishing_hooks/lagoon_fishing_hook.png");
-	protected Identifier TEXTURE_OPEN_WATERS = SpectrumCommon.locate("textures/entity/fishing_hooks/lagoon_fishing_hook_open_waters.png");
-	protected RenderLayer LAYER = RenderLayer.getEntityCutout(TEXTURE);
-	protected RenderLayer LAYER_OPEN_WATERS = RenderLayer.getEntityCutout(TEXTURE_OPEN_WATERS);
+	protected final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/fishing_hooks/lagoon_fishing_hook.png");
+	protected final Identifier TEXTURE_OPEN_WATERS = SpectrumCommon.locate("textures/entity/fishing_hooks/lagoon_fishing_hook_open_waters.png");
+	protected final RenderLayer LAYER = RenderLayer.getEntityCutout(TEXTURE);
+	protected final RenderLayer LAYER_OPEN_WATERS = RenderLayer.getEntityCutout(TEXTURE_OPEN_WATERS);
 	
 	public LagoonFishingBobberEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);
@@ -26,6 +26,7 @@ public class LagoonFishingBobberEntityRenderer extends SpectrumFishingBobberEnti
 		}
 	}
 	
+	@Override
 	public RenderLayer getLayer(SpectrumFishingBobberEntity bobber) {
 		if (bobber.isInTheOpen(bobber.getBlockPos())) {
 			return LAYER_OPEN_WATERS;

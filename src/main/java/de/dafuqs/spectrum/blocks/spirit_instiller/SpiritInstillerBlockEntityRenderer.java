@@ -11,7 +11,7 @@ import net.minecraft.util.math.*;
 
 public class SpiritInstillerBlockEntityRenderer implements BlockEntityRenderer<SpiritInstillerBlockEntity> {
 	
-	protected double ITEM_STACK_RENDER_HEIGHT = 0.95F;
+	protected final double ITEM_STACK_RENDER_HEIGHT = 0.95F;
 	
 	public SpiritInstillerBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
 	

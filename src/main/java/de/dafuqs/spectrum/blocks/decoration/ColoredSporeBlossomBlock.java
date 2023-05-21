@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import com.google.common.collect.Maps;
-import de.dafuqs.spectrum.particle.SpectrumParticleTypes;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SporeBlossomBlock;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.particle.*;
+import net.minecraft.block.*;
+import net.minecraft.particle.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class ColoredSporeBlossomBlock extends SporeBlossomBlock {
 	
@@ -144,6 +142,7 @@ public class ColoredSporeBlossomBlock extends SporeBlossomBlock {
 		}
 	}
 	
+	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		int i = pos.getX();
 		int j = pos.getY();

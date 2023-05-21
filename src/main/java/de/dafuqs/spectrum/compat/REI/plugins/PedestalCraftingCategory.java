@@ -23,7 +23,7 @@ import java.util.*;
 public class PedestalCraftingCategory extends GatedDisplayCategory<PedestalCraftingDisplay> {
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<PedestalCraftingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.PEDESTAL_CRAFTING;
 	}
 	

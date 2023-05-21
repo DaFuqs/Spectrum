@@ -1,16 +1,14 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class InWorldInteractionHelper {
 	

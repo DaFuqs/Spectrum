@@ -1,21 +1,15 @@
 package de.dafuqs.spectrum.progression.advancement;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import de.dafuqs.spectrum.SpectrumCommon;
-import net.minecraft.advancement.criterion.AbstractCriterion;
-import net.minecraft.advancement.criterion.AbstractCriterionConditions;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.predicate.StatePredicate;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
-import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
-import org.jetbrains.annotations.Nullable;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.*;
+import net.minecraft.predicate.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
+import org.jetbrains.annotations.*;
 
 public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseCriterion.Conditions> {
 	
@@ -31,10 +25,12 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 		}
 	}
 	
+	@Override
 	public Identifier getId() {
 		return ID;
 	}
 	
+	@Override
 	public NaturesStaffUseCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Block sourceBlock = getBlock(jsonObject, "source_block");
 		StatePredicate sourceStatePredicate = StatePredicate.fromJson(jsonObject.get("source_state"));
@@ -57,9 +53,7 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 	}
 	
 	public void trigger(ServerPlayerEntity player, BlockState sourceBlockState, BlockState targetBlockState) {
-		this.trigger(player, (conditions) -> {
-			return conditions.matches(sourceBlockState, targetBlockState);
-		});
+		this.trigger(player, (conditions) -> conditions.matches(sourceBlockState, targetBlockState));
 	}
 	
 	public static class Conditions extends AbstractCriterionConditions {
@@ -79,6 +73,7 @@ public class NaturesStaffUseCriterion extends AbstractCriterion<NaturesStaffUseC
 			this.targetBlockState = targetBlockState;
 		}
 		
+		@Override
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
 			if (this.sourceBlock != null) {

@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.recipe;
 
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import net.id.incubus_core.recipe.IngredientStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.revelationary.api.advancements.*;
+import net.id.incubus_core.recipe.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public abstract class GatedSpectrumRecipe implements Recipe<Inventory>, GatedRecipe {
 	

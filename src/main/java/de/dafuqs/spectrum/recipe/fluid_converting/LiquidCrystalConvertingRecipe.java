@@ -1,18 +1,14 @@
 package de.dafuqs.spectrum.recipe.fluid_converting;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.item.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import org.jetbrains.annotations.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class LiquidCrystalConvertingRecipe extends FluidConvertingRecipe {
 	

@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import de.dafuqs.spectrum.enums.GemstoneColor;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.GlassBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.enums.*;
+import net.fabricmc.api.*;
+import net.minecraft.block.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class GemstoneGlassBlock extends GlassBlock {
 	
 	@Nullable
+	final
 	GemstoneColor gemstoneColor;
 	
 	public GemstoneGlassBlock(Settings settings, @Nullable GemstoneColor gemstoneColor) {
@@ -20,6 +18,7 @@ public class GemstoneGlassBlock extends GlassBlock {
 		this.gemstoneColor = gemstoneColor;
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
 		if (stateFrom.isOf(this)) {
@@ -32,6 +31,7 @@ public class GemstoneGlassBlock extends GlassBlock {
 		return super.isSideInvisible(state, stateFrom, direction);
 	}
 	
+	@Override
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
 		return true;
 	}

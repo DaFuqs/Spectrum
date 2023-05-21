@@ -21,7 +21,7 @@ public class FusionShrineCategory extends GatedDisplayCategory<FusionShrineDispl
 	private static final EntryIngredient FUSION_SHRINE_BASALT = EntryIngredients.of(SpectrumBlocks.FUSION_SHRINE_BASALT);
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<FusionShrineDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.FUSION_SHRINE;
 	}
 	

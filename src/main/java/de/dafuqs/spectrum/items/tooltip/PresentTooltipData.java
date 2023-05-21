@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.items.tooltip;
 
-import net.minecraft.client.item.TooltipData;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
 
-import java.util.List;
+import java.util.*;
 
 public class PresentTooltipData implements TooltipData {
 	

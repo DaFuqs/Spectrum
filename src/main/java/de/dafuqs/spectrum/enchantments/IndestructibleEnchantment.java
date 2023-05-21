@@ -1,11 +1,10 @@
 package de.dafuqs.spectrum.enchantments;
 
-import de.dafuqs.spectrum.registries.SpectrumItemTags;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public class IndestructibleEnchantment extends SpectrumEnchantment {
 	

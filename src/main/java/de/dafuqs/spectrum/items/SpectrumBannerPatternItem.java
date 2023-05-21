@@ -1,17 +1,15 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.BannerPatternItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tag.TagKey;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.tag.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
+import java.util.*;
 
 public class SpectrumBannerPatternItem extends BannerPatternItem {
 	

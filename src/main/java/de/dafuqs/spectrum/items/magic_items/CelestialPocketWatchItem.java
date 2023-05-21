@@ -27,7 +27,7 @@ public class CelestialPocketWatchItem extends Item {
 	enum TimeToggleResult {
 		SUCCESS,
 		FAILED_FIXED_TIME,
-		FAILED_GAME_RULE;
+		FAILED_GAME_RULE
 	}
 
 	public CelestialPocketWatchItem(Settings settings) {
@@ -50,12 +50,10 @@ public class CelestialPocketWatchItem extends Item {
 
 	public static boolean tryAdvanceTime(ServerWorld world, ServerPlayerEntity user) {
 		switch (canAdvanceTime(world)) {
-			case FAILED_GAME_RULE -> {
-				user.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), true);
-			}
-			case FAILED_FIXED_TIME -> {
-				user.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), true);
-			}
+			case FAILED_GAME_RULE ->
+					user.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule"), true);
+			case FAILED_FIXED_TIME ->
+					user.sendMessage(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time"), true);
 			case SUCCESS -> {
 				if (InkPowered.tryDrainEnergy(user, COST)) {
 					world.playSound(null, user.getBlockPos(), SpectrumSoundEvents.CELESTIAL_POCKET_WATCH_TICKING, SoundCategory.PLAYERS, 1.0F, 1.0F);
@@ -94,15 +92,12 @@ public class CelestialPocketWatchItem extends Item {
 
 		if (world != null) {
 			switch (canAdvanceTime(world)) {
-				case FAILED_GAME_RULE -> {
-					tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule").formatted(Formatting.GRAY));
-				}
-				case FAILED_FIXED_TIME -> {
-					tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time").formatted(Formatting.GRAY));
-				}
-				case SUCCESS -> {
-					tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.working").formatted(Formatting.GRAY));
-				}
+				case FAILED_GAME_RULE ->
+						tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_gamerule").formatted(Formatting.GRAY));
+				case FAILED_FIXED_TIME ->
+						tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.use_blocked_fixed_time").formatted(Formatting.GRAY));
+				case SUCCESS ->
+						tooltip.add(Text.translatable("item.spectrum.celestial_pocketwatch.tooltip.working").formatted(Formatting.GRAY));
 			}
 		}
 	}

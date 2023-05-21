@@ -98,6 +98,7 @@ public abstract class DecayBlock extends Block {
 		super.onSteppedOn(world, pos, state, entity);
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(CONVERSION).equals(Conversion.SPECIAL)) {

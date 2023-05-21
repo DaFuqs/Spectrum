@@ -26,9 +26,9 @@ public class ExperienceOrbEventQueue extends EventQueue<ExperienceOrbEventQueue.
 	}
 	
 	public static class EventEntry {
-		public GameEvent gameEvent;
-		public ExperienceOrbEntity experienceOrbEntity;
-		public int distance;
+		public final GameEvent gameEvent;
+		public final ExperienceOrbEntity experienceOrbEntity;
+		public final int distance;
 		
 		public EventEntry(GameEvent gameEvent, ExperienceOrbEntity experienceOrbEntity, int distance) {
 			this.gameEvent = gameEvent;

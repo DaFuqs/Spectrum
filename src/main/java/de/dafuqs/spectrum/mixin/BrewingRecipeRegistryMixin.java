@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.mixin;
 
-import de.dafuqs.spectrum.registries.SpectrumPotions;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionUtil;
-import net.minecraft.recipe.BrewingRecipeRegistry;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.item.*;
+import net.minecraft.potion.*;
+import net.minecraft.recipe.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(BrewingRecipeRegistry.class)
 public abstract class BrewingRecipeRegistryMixin {

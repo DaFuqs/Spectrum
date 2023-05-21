@@ -21,9 +21,7 @@ public class BagOfHoldingItem extends Item {
 		
 		EnderChestInventory enderChestInventory = user.getEnderChestInventory();
 		if (enderChestInventory != null) {
-			user.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, playerx) -> {
-				return new BagOfHoldingScreenHandler(syncId, playerx.getInventory(), playerx.getEnderChestInventory());
-			}, Text.translatable("container.enderchest")));
+			user.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, playerx) -> new BagOfHoldingScreenHandler(syncId, playerx.getInventory(), playerx.getEnderChestInventory()), Text.translatable("container.enderchest")));
 			
 			return TypedActionResult.consume(itemStack);
 		} else {

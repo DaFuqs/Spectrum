@@ -24,7 +24,7 @@ public class AnvilCrushingCategory extends GatedDisplayCategory<AnvilCrushingDis
 	private final static EntryIngredient ANVIL = EntryIngredients.of(Items.ANVIL);
 	
 	@Override
-	public CategoryIdentifier getCategoryIdentifier() {
+	public CategoryIdentifier<AnvilCrushingDisplay> getCategoryIdentifier() {
 		return SpectrumPlugins.ANVIL_CRUSHING;
 	}
 	

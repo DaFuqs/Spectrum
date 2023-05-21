@@ -1,18 +1,15 @@
 package de.dafuqs.spectrum.compat.patchouli;
 
-import com.google.gson.annotations.SerializedName;
-import de.dafuqs.revelationary.api.advancements.AdvancementHelper;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import vazkii.patchouli.api.IVariable;
-import vazkii.patchouli.client.book.BookPage;
-import vazkii.patchouli.client.book.gui.BookTextRenderer;
-import vazkii.patchouli.client.book.gui.GuiBook;
-import vazkii.patchouli.client.book.gui.GuiBookEntry;
+import com.google.gson.annotations.*;
+import de.dafuqs.revelationary.api.advancements.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import vazkii.patchouli.api.*;
+import vazkii.patchouli.client.book.*;
+import vazkii.patchouli.client.book.gui.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class PageChecklist extends BookPage {
 	
@@ -23,6 +20,7 @@ public class PageChecklist extends BookPage {
 	transient BookTextRenderer textRender;
 	
 	@SerializedName("checklist")
+	final
 	Map<String, String> checklist = new HashMap<>();
 	
 	@Override

@@ -1,28 +1,24 @@
 package de.dafuqs.spectrum.blocks.present;
 
-import de.dafuqs.spectrum.helpers.Support;
-import de.dafuqs.spectrum.interfaces.PlayerOwned;
-import de.dafuqs.spectrum.interfaces.PlayerOwnedWithName;
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Pair;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
+import de.dafuqs.spectrum.helpers.*;
+import de.dafuqs.spectrum.interfaces.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.server.network.*;
+import net.minecraft.util.*;
+import net.minecraft.util.collection.*;
+import net.minecraft.util.math.*;
 
 import java.util.*;
 
 public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithName {
 	
-	protected DefaultedList<ItemStack> stacks = DefaultedList.ofSize(PresentItem.MAX_STORAGE_STACKS, ItemStack.EMPTY);
+	protected final DefaultedList<ItemStack> stacks = DefaultedList.ofSize(PresentItem.MAX_STORAGE_STACKS, ItemStack.EMPTY);
 	protected Map<DyeColor, Integer> colors = new HashMap<>();
 	
 	private UUID ownerUUID;
@@ -127,6 +123,7 @@ public class PresentBlockEntity extends BlockEntity implements PlayerOwnedWithNa
 		return this.ownerUUID;
 	}
 	
+	@Override
 	public String getOwnerName() {
 		return this.ownerName;
 	}

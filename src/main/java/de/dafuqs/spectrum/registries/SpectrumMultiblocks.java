@@ -15,26 +15,26 @@ public class SpectrumMultiblocks {
 	
 	public static final Map<Identifier, IMultiblock> MULTIBLOCKS = new ConcurrentHashMap<>();
 	
-	public static Identifier PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_simple_structure_check");
-	public static Identifier PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_simple_structure_place");
-	public static Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_advanced_structure_check");
-	public static Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_advanced_structure_place");
-	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_complex_structure_check");
-	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_complex_structure_place");
-	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_complex_structure_without_moonstone_check");
-	public static Identifier PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_complex_structure_without_moonstone_place");
+	public static final Identifier PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_simple_structure_check");
+	public static final Identifier PEDESTAL_SIMPLE_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_simple_structure_place");
+	public static final Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_advanced_structure_check");
+	public static final Identifier PEDESTAL_ADVANCED_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_advanced_structure_place");
+	public static final Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_complex_structure_check");
+	public static final Identifier PEDESTAL_COMPLEX_STRUCTURE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_complex_structure_place");
+	public static final Identifier PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_CHECK = SpectrumCommon.locate("pedestal_complex_structure_without_moonstone_check");
+	public static final Identifier PEDESTAL_COMPLEX_STRUCTURE_WITHOUT_MOONSTONE_IDENTIFIER_PLACE = SpectrumCommon.locate("pedestal_complex_structure_without_moonstone_place");
 	
-	public static Identifier FUSION_SHRINE_IDENTIFIER = SpectrumCommon.locate("fusion_shrine_structure");
-	public static Identifier ENCHANTER_IDENTIFIER = SpectrumCommon.locate("enchanter_structure");
-	public static Identifier SPIRIT_INSTILLER_IDENTIFIER = SpectrumCommon.locate("spirit_instiller_structure");
-	public static Identifier CINDERHEARTH_IDENTIFIER = SpectrumCommon.locate("cinderhearth_structure");
-	public static Identifier CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER = SpectrumCommon.locate("cinderhearth_without_lava_structure");
+	public static final Identifier FUSION_SHRINE_IDENTIFIER = SpectrumCommon.locate("fusion_shrine_structure");
+	public static final Identifier ENCHANTER_IDENTIFIER = SpectrumCommon.locate("enchanter_structure");
+	public static final Identifier SPIRIT_INSTILLER_IDENTIFIER = SpectrumCommon.locate("spirit_instiller_structure");
+	public static final Identifier CINDERHEARTH_IDENTIFIER = SpectrumCommon.locate("cinderhearth_structure");
+	public static final Identifier CINDERHEARTH_WITHOUT_LAVA_IDENTIFIER = SpectrumCommon.locate("cinderhearth_without_lava_structure");
 	
-	public static Identifier PEDESTAL_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("pedestal_structure_with_upgrades");
-	public static Identifier FUSION_SHRINE_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("fusion_shrine_structure_with_upgrades");
-	public static Identifier ENCHANTER_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("enchanter_structure_with_upgrades");
-	public static Identifier CINDERHEARTH_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("cinderhearth_structure_with_upgrades");
-	public static Identifier SPIRIT_INSTILLER_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("spirit_instiller_structure_with_upgrades");
+	public static final Identifier PEDESTAL_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("pedestal_structure_with_upgrades");
+	public static final Identifier FUSION_SHRINE_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("fusion_shrine_structure_with_upgrades");
+	public static final Identifier ENCHANTER_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("enchanter_structure_with_upgrades");
+	public static final Identifier CINDERHEARTH_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("cinderhearth_structure_with_upgrades");
+	public static final Identifier SPIRIT_INSTILLER_IDENTIFIER_WITH_UPGRADES = SpectrumCommon.locate("spirit_instiller_structure_with_upgrades");
 	
 	private static void registerMultiBlock(Identifier identifier, String[][] structure, Object[] targetBlocks) {
 		IMultiblock multiblock = PatchouliAPI.get().makeMultiblock(structure, targetBlocks);

@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.blocks.gemstone;
 
-import net.minecraft.block.AmethystBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.entity.projectile.*;
+import net.minecraft.sound.*;
+import net.minecraft.util.hit.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
 public class SpectrumGemstoneBlock extends AmethystBlock {
 	
@@ -20,6 +18,7 @@ public class SpectrumGemstoneBlock extends AmethystBlock {
 		this.chimeSoundEvent = chimeSoundEvent;
 	}
 	
+	@Override
 	public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
 		if (!world.isClient) {
 			BlockPos blockPos = hit.getBlockPos();

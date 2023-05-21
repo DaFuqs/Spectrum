@@ -36,37 +36,45 @@ public enum SpectrumArmorMaterials implements ArmorMaterial {
 		this.equipSound = equipSound;
 		this.toughness = toughness;
 		this.knockbackResistance = knockbackResistance;
-		this.repairIngredientSupplier = new Lazy(repairIngredientSupplier);
+		this.repairIngredientSupplier = new Lazy<>(repairIngredientSupplier);
 	}
 	
+	@Override
 	public int getDurability(EquipmentSlot slot) {
 		return BASE_DURABILITY[slot.getEntitySlotId()] * this.durabilityMultiplier;
 	}
 	
+	@Override
 	public int getProtectionAmount(EquipmentSlot slot) {
 		return this.protectionAmounts[slot.getEntitySlotId()];
 	}
 	
+	@Override
 	public int getEnchantability() {
 		return this.enchantability;
 	}
 	
+	@Override
 	public SoundEvent getEquipSound() {
 		return this.equipSound;
 	}
 	
+	@Override
 	public Ingredient getRepairIngredient() {
 		return this.repairIngredientSupplier.get();
 	}
 	
+	@Override
 	public String getName() {
 		return this.name;
 	}
 	
+	@Override
 	public float getToughness() {
 		return this.toughness;
 	}
 	
+	@Override
 	public float getKnockbackResistance() {
 		return this.knockbackResistance;
 	}

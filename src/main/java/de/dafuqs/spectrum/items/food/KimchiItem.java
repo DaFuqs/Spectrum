@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.items.food;
 
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 
 public class KimchiItem extends Item {
 	

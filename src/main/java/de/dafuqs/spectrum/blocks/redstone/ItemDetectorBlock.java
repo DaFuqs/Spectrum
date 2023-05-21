@@ -1,14 +1,12 @@
 package de.dafuqs.spectrum.blocks.redstone;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
-import java.util.List;
+import java.util.*;
 
 public class ItemDetectorBlock extends DetectorBlock {
 	
@@ -16,6 +14,7 @@ public class ItemDetectorBlock extends DetectorBlock {
 		super(settings);
 	}
 	
+	@Override
 	protected void updateState(BlockState state, World world, BlockPos pos) {
 		List<ItemEntity> items = world.getEntitiesByType(EntityType.ITEM, getBoxWithRadius(pos, 10), Entity::isAlive);
 		

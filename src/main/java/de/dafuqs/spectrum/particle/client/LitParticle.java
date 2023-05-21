@@ -13,7 +13,8 @@ public class LitParticle extends AbstractSlowingParticle {
 		super(clientWorld, x, y, z, velocityX, velocityY, velocityZ);
 		this.scale *= this.random.nextFloat() * 0.6F + 0.6F;
 	}
-
+	
+	@Override
 	public int getBrightness(float tint) {
 		return LightmapTextureManager.MAX_LIGHT_COORDINATE;
 	}

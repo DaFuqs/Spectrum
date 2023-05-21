@@ -1,13 +1,11 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LightBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.math.random.*;
+import net.minecraft.world.*;
 
 public class DecayingLightBlock extends WandLightBlock {
 	
@@ -15,6 +13,7 @@ public class DecayingLightBlock extends WandLightBlock {
 		super(settings);
 	}
 	
+	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
 		return ItemStack.EMPTY;
 	}

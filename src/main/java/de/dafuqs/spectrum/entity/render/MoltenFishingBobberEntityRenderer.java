@@ -1,15 +1,15 @@
 package de.dafuqs.spectrum.entity.render;
 
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.entity.entity.SpectrumFishingBobberEntity;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.util.Identifier;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.entity.entity.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.render.entity.*;
+import net.minecraft.util.*;
 
 public class MoltenFishingBobberEntityRenderer extends SpectrumFishingBobberEntityRenderer {
 	
-	protected Identifier TEXTURE = SpectrumCommon.locate("textures/entity/fishing_hooks/molten_fishing_hook.png");
-	protected RenderLayer LAYER = RenderLayer.getEntityCutout(TEXTURE);
+	protected final Identifier TEXTURE = SpectrumCommon.locate("textures/entity/fishing_hooks/molten_fishing_hook.png");
+	protected final RenderLayer LAYER = RenderLayer.getEntityCutout(TEXTURE);
 	
 	public MoltenFishingBobberEntityRenderer(EntityRendererFactory.Context context) {
 		super(context);
@@ -20,6 +20,7 @@ public class MoltenFishingBobberEntityRenderer extends SpectrumFishingBobberEnti
 		return TEXTURE;
 	}
 	
+	@Override
 	public RenderLayer getLayer(SpectrumFishingBobberEntity bobber) {
 		return LAYER;
 	}

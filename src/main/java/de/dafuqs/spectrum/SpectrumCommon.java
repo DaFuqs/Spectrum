@@ -63,7 +63,7 @@ public class SpectrumCommon implements ModInitializer {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
-	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
+	public static final RegistryKey<World> DEEPER_DOWN = RegistryKey.of(Registry.WORLD_KEY, new Identifier(MOD_ID, "deeper_down"));
 	
 	public static MinecraftServer minecraftServer;
 	/**
@@ -71,7 +71,7 @@ public class SpectrumCommon implements ModInitializer {
 	 * for blocks that react to the light level of fluids
 	 * like the fusion shrine lighting up with lava or liquid crystal
 	 */
-	public static HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
+	public static final HashMap<Fluid, Integer> fluidLuminance = new HashMap<>();
 	
 	public static void logInfo(String message) {
 		LOGGER.info("[Spectrum] " + message);
@@ -244,10 +244,8 @@ public class SpectrumCommon implements ModInitializer {
 			Pastel.clearServerInstance();
 			SpectrumCommon.minecraftServer = server;
 		});
-
-		ServerTickEvents.END_SERVER_TICK.register(server -> {
-			Pastel.getServerInstance().tick();
-		});
+		
+		ServerTickEvents.END_SERVER_TICK.register(server -> Pastel.getServerInstance().tick());
 
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
 			if (world.getTime() % 100 == 0) {
@@ -396,8 +394,7 @@ public class SpectrumCommon implements ModInitializer {
 			ResourceManagerHelper.registerBuiltinResourcePack(locate("jinc"), modContainer.get(), "Alternate Spectrum textures", ResourcePackActivationType.NORMAL);
 			ResourceManagerHelper.registerBuiltinResourcePack(locate("spectrum_programmer_art"), modContainer.get(), "Spectrum's Programmer Art", ResourcePackActivationType.NORMAL);
 		}
-		;
-
+		
 		logInfo("Common startup completed!");
 	}
 	

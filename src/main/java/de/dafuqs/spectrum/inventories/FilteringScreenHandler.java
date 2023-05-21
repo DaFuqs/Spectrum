@@ -15,7 +15,7 @@ public class FilteringScreenHandler extends ScreenHandler {
 
 	protected final World world;
 	protected FilterConfigurable filterConfigurable;
-	protected Inventory filterInventory;
+	protected final Inventory filterInventory;
 
 	public FilteringScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf packetByteBuf) {
 		this(SpectrumScreenHandlerTypes.FILTERING, syncId, playerInventory, FilterConfigurable.getFilterInventoryFromPacket(packetByteBuf));
@@ -50,8 +50,9 @@ public class FilteringScreenHandler extends ScreenHandler {
 		}
 
 	}
-
-
+	
+	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return true;
 	}
@@ -64,7 +65,8 @@ public class FilteringScreenHandler extends ScreenHandler {
 	public Inventory getInventory() {
 		return null;
 	}
-
+	
+	@Override
 	public void close(PlayerEntity player) {
 		super.close(player);
 	}

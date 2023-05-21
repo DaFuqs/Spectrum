@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.registries;
 
-import de.dafuqs.spectrum.blocks.conditional.colored_tree.ColoredLeavesBlock;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.minecraft.util.DyeColor;
+import de.dafuqs.spectrum.blocks.conditional.colored_tree.*;
+import net.fabricmc.fabric.api.registry.*;
+import net.minecraft.util.*;
 
 public class SpectrumCompostableBlocks {
 	

@@ -235,7 +235,7 @@ public interface FusionShrineRecipeWorldEffect {
 	
 	class CommandRecipeWorldEffect implements FusionShrineRecipeWorldEffect, CommandOutput {
 		
-		protected String command;
+		protected final String command;
 		
 		public CommandRecipeWorldEffect(String command) {
 			this.command = command;

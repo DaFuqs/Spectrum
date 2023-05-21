@@ -1,16 +1,13 @@
 package de.dafuqs.spectrum.blocks.decoration;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import net.fabricmc.api.*;
 import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.pathing.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
 
 public class AlternatePlayerOnlyGlassBlock extends GlassBlock {
 	
@@ -30,6 +27,7 @@ public class AlternatePlayerOnlyGlassBlock extends GlassBlock {
 		return false;
 	}
 	
+	@Override
 	@Deprecated
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (context instanceof EntityShapeContext entityShapeContext) {
@@ -41,10 +39,12 @@ public class AlternatePlayerOnlyGlassBlock extends GlassBlock {
 		return state.getOutlineShape(world, pos);
 	}
 	
+	@Override
 	public boolean isTranslucent(BlockState state, BlockView world, BlockPos pos) {
 		return !tinted;
 	}
 	
+	@Override
 	public int getOpacity(BlockState state, BlockView world, BlockPos pos) {
 		if (tinted) {
 			return world.getMaxLightLevel();
@@ -53,6 +53,7 @@ public class AlternatePlayerOnlyGlassBlock extends GlassBlock {
 		}
 	}
 	
+	@Override
 	@Environment(EnvType.CLIENT)
 	public boolean isSideInvisible(BlockState state, BlockState stateFrom, Direction direction) {
 		if (stateFrom.isOf(this) || stateFrom.getBlock() == alternateBlock) {

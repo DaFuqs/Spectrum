@@ -1,19 +1,19 @@
 package de.dafuqs.spectrum.inventories;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.chests.CompactingChestBlockEntity;
-import de.dafuqs.spectrum.networking.SpectrumC2SPackets;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import com.mojang.blaze3d.systems.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.chests.*;
+import de.dafuqs.spectrum.networking.*;
+import net.fabricmc.fabric.api.client.networking.v1.*;
+import net.fabricmc.fabric.api.networking.v1.*;
+import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.render.*;
+import net.minecraft.client.util.math.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.network.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
 
 public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHandler> {
 	
@@ -26,6 +26,7 @@ public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHa
 		this.autoCraftingMode = handler.getCurrentCraftingMode();
 	}
 	
+	@Override
 	protected void init() {
 		super.init();
 		

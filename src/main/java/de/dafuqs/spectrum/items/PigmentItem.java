@@ -1,21 +1,19 @@
 package de.dafuqs.spectrum.items;
 
-import com.google.common.collect.Maps;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.items.conditional.CloakedItem;
-import de.dafuqs.spectrum.registries.SpectrumBannerPatterns;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.items.conditional.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.client.item.*;
+import net.minecraft.item.*;
+import net.minecraft.text.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PigmentItem extends CloakedItem implements LoomPatternProvider {
 	

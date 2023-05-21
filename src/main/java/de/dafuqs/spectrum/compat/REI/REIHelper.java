@@ -1,13 +1,12 @@
 package de.dafuqs.spectrum.compat.REI;
 
-import me.shedaniel.rei.api.common.entry.EntryIngredient;
-import me.shedaniel.rei.api.common.util.EntryIngredients;
-import net.id.incubus_core.recipe.IngredientStack;
-import org.jetbrains.annotations.NotNull;
+import me.shedaniel.rei.api.common.entry.*;
+import me.shedaniel.rei.api.common.util.*;
+import net.id.incubus_core.recipe.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.*;
 
 public class REIHelper {
 	

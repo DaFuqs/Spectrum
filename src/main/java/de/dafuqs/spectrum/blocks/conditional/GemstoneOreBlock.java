@@ -1,9 +1,9 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.spectrum.enums.GemstoneColor;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
+import de.dafuqs.spectrum.enums.*;
+import net.minecraft.block.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.intprovider.*;
 
 public class GemstoneOreBlock extends CloakedOreBlock {
 	

@@ -1,16 +1,15 @@
 package de.dafuqs.spectrum.blocks.lava_sponge;
 
-import com.google.common.collect.Lists;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
+import com.google.common.collect.*;
+import de.dafuqs.spectrum.registries.*;
 import net.minecraft.block.*;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.tag.FluidTags;
-import net.minecraft.util.Pair;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+import net.minecraft.fluid.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
 
-import java.util.Queue;
+import java.util.*;
 
 public class LavaSpongeBlock extends SpongeBlock {
 	
@@ -18,6 +17,7 @@ public class LavaSpongeBlock extends SpongeBlock {
 		super(settings);
 	}
 	
+	@Override
 	protected void update(World world, BlockPos pos) {
 		if (this.absorbLava(world, pos)) {
 			world.setBlockState(pos, SpectrumBlocks.WET_LAVA_SPONGE.getDefaultState(), 2);

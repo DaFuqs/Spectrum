@@ -30,18 +30,21 @@ public abstract class InWorldInteractionBlockEntity extends BlockEntity implemen
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
+	@Override
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		this.writeNbt(nbtCompound);
 		return nbtCompound;
 	}
 	
+	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		this.items = DefaultedList.ofSize(inventorySize, ItemStack.EMPTY);
 		Inventories.readNbt(nbt, items);
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		Inventories.writeNbt(nbt, items);

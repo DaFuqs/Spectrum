@@ -7,7 +7,7 @@ import net.minecraft.util.math.*;
 
 public class MoonPhasePredicate implements WorldConditionPredicate {
 	
-	public Integer moonPhase;
+	public final Integer moonPhase;
 	
 	public MoonPhasePredicate(Integer moonPhase) {
 		this.moonPhase = moonPhase;

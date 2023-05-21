@@ -1,19 +1,14 @@
 package de.dafuqs.spectrum.blocks.chests;
 
-import de.dafuqs.spectrum.registries.SpectrumBlockEntities;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.screen.*;
+import net.minecraft.util.math.*;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
 public class RestockingChestBlock extends SpectrumChestBlock {
 	
@@ -23,6 +18,7 @@ public class RestockingChestBlock extends SpectrumChestBlock {
 		super(settings);
 	}
 	
+	@Override
 	@Nullable
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new RestockingChestBlockEntity(pos, state);
@@ -34,6 +30,7 @@ public class RestockingChestBlock extends SpectrumChestBlock {
 		return checkType(type, SpectrumBlockEntities.RESTOCKING_CHEST, RestockingChestBlockEntity::tick);
 	}
 	
+	@Override
 	public void openScreen(World world, BlockPos pos, PlayerEntity player) {
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof RestockingChestBlockEntity) {
@@ -43,6 +40,7 @@ public class RestockingChestBlock extends SpectrumChestBlock {
 		}
 	}
 	
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return CHEST_SHAPE;
 	}

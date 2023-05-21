@@ -18,6 +18,7 @@ public class HummingstoneTransmissionParticleEffect extends SimpleTransmissionPa
 	).apply(instance, HummingstoneTransmissionParticleEffect::new));
 	
 	public static final Factory<HummingstoneTransmissionParticleEffect> FACTORY = new Factory<>() {
+		@Override
 		public HummingstoneTransmissionParticleEffect read(ParticleType<HummingstoneTransmissionParticleEffect> particleType, StringReader stringReader) throws CommandSyntaxException {
 			stringReader.expect(' ');
 			float f = (float) stringReader.readDouble();
@@ -31,6 +32,7 @@ public class HummingstoneTransmissionParticleEffect extends SimpleTransmissionPa
 			return new HummingstoneTransmissionParticleEffect(new BlockPositionSource(blockPos), i);
 		}
 		
+		@Override
 		public HummingstoneTransmissionParticleEffect read(ParticleType<HummingstoneTransmissionParticleEffect> particleType, PacketByteBuf packetByteBuf) {
 			PositionSource positionSource = PositionSourceType.read(packetByteBuf);
 			int i = packetByteBuf.readVarInt();
@@ -42,6 +44,7 @@ public class HummingstoneTransmissionParticleEffect extends SimpleTransmissionPa
 		super(positionSource, arrivalInTicks);
 	}
 	
+	@Override
 	public ParticleType<HummingstoneTransmissionParticleEffect> getType() {
 		return SpectrumParticleTypes.HUMMINGSTONE_TRANSMISSION;
 	}

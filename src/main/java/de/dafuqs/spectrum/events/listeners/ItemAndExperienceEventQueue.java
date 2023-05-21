@@ -1,14 +1,11 @@
 package de.dafuqs.spectrum.events.listeners;
 
-import de.dafuqs.spectrum.events.SpectrumGameEvents;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.event.PositionSource;
-import net.minecraft.world.event.listener.GameEventListener;
+import de.dafuqs.spectrum.events.*;
+import net.minecraft.entity.*;
+import net.minecraft.server.world.*;
+import net.minecraft.world.*;
+import net.minecraft.world.event.*;
+import net.minecraft.world.event.listener.*;
 
 /**
  * Since Sucking chests can react to both spawned items and experience

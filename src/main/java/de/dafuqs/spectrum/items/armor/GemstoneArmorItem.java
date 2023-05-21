@@ -23,18 +23,10 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 		super(material, slot, settings);
 		this.equipmentSlot = slot;
 		switch (slot) {
-			case HEAD -> {
-				this.armorSlotID = 0;
-			}
-			case CHEST -> {
-				this.armorSlotID = 1;
-			}
-			case LEGS -> {
-				this.armorSlotID = 2;
-			}
-			default -> {
-				this.armorSlotID = 3;
-			}
+			case HEAD -> this.armorSlotID = 0;
+			case CHEST -> this.armorSlotID = 1;
+			case LEGS -> this.armorSlotID = 2;
+			default -> this.armorSlotID = 3;
 		}
 	}
 	
@@ -46,9 +38,7 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.BLOCK_AMETHYST_BLOCK_HIT, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		targetEntity.world.playSound(null, targetEntity.getBlockPos(), SoundEvents.ENTITY_SPLASH_POTION_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 		
-		itemStack.damage(2, targetEntity, (e) -> {
-			e.sendEquipmentBreakStatus(EquipmentSlot.fromTypeIndex(EquipmentSlot.Type.ARMOR, this.armorSlotID));
-		});
+		itemStack.damage(2, targetEntity, (e) -> e.sendEquipmentBreakStatus(EquipmentSlot.fromTypeIndex(EquipmentSlot.Type.ARMOR, this.armorSlotID)));
 	}
 	
 	@Override
@@ -88,18 +78,13 @@ public class GemstoneArmorItem extends ArmorItem implements ArmorWithHitEffect {
 	
 	public void addTooltip(List<Text> tooltip, @NotNull EquipmentSlot equipmentSlot) {
 		switch (equipmentSlot) {
-			case HEAD -> {
-				tooltip.add(Text.translatable("item.spectrum.fetchling_helmet.tooltip").formatted(Formatting.GRAY));
-			}
-			case CHEST -> {
-				tooltip.add(Text.translatable("item.spectrum.ferocious_chestplate.tooltip").formatted(Formatting.GRAY));
-			}
-			case LEGS -> {
-				tooltip.add(Text.translatable("item.spectrum.sylph_leggings.tooltip").formatted(Formatting.GRAY));
-			}
-			case FEET -> {
-				tooltip.add(Text.translatable("item.spectrum.oread_boots.tooltip").formatted(Formatting.GRAY));
-			}
+			case HEAD ->
+					tooltip.add(Text.translatable("item.spectrum.fetchling_helmet.tooltip").formatted(Formatting.GRAY));
+			case CHEST ->
+					tooltip.add(Text.translatable("item.spectrum.ferocious_chestplate.tooltip").formatted(Formatting.GRAY));
+			case LEGS ->
+					tooltip.add(Text.translatable("item.spectrum.sylph_leggings.tooltip").formatted(Formatting.GRAY));
+			case FEET -> tooltip.add(Text.translatable("item.spectrum.oread_boots.tooltip").formatted(Formatting.GRAY));
 		}
 	}
 	

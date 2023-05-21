@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.enums;
 
-import net.minecraft.item.Item;
-import net.minecraft.util.DyeColor;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public interface GemstoneColor {
 	

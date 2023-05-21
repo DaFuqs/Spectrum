@@ -1,18 +1,16 @@
 package de.dafuqs.spectrum.blocks.gravity;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
+import de.dafuqs.revelationary.api.revelations.*;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 public class CloakedFloatItem extends FloatItem implements RevelationAware {
 	
-	Identifier cloakAdvancementIdentifier;
-	Item cloakItem;
+	final Identifier cloakAdvancementIdentifier;
+	final Item cloakItem;
 	
 	public CloakedFloatItem(Settings settings, float gravityMod, Identifier cloakAdvancementIdentifier, Item cloakItem) {
 		super(settings, gravityMod);

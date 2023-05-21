@@ -144,6 +144,7 @@ public class CrystallarieumBlockEntity extends InWorldInteractionBlockEntity imp
 		}
 	}
 	
+	@Override
 	public void inventoryChanged() {
 		if(this.currentRecipe != null) {
 			Optional<CrystallarieumCatalyst> optionalCatalyst = this.currentRecipe.getCatalyst(getStack(CATALYST_SLOT_ID));

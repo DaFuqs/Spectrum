@@ -1,12 +1,8 @@
 package de.dafuqs.spectrum.energy.storage;
 
-import de.dafuqs.spectrum.energy.color.ElementalColor;
-import de.dafuqs.spectrum.energy.color.InkColor;
-import de.dafuqs.spectrum.energy.color.InkColors;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import de.dafuqs.spectrum.energy.color.*;
+import net.minecraft.nbt.*;
+import org.jetbrains.annotations.*;
 
 public class IndividualAndTotalCappedElementalInkStorage extends TotalCappedElementalInkStorage {
 	
@@ -62,6 +58,7 @@ public class IndividualAndTotalCappedElementalInkStorage extends TotalCappedElem
 		return this.maxEnergyPerColor;
 	}
 	
+	@Override
 	public NbtCompound toNbt() {
 		NbtCompound compound = new NbtCompound();
 		compound.putLong("MaxEnergyTotal", this.maxEnergyTotal);

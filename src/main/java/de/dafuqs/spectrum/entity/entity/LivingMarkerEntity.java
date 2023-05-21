@@ -1,18 +1,15 @@
 package de.dafuqs.spectrum.entity.entity;
 
-import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.util.Arm;
-import net.minecraft.world.World;
+import net.minecraft.block.piston.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.attribute.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class LivingMarkerEntity extends LivingEntity {
 	
@@ -20,6 +17,7 @@ public class LivingMarkerEntity extends LivingEntity {
 		super(entityType, world);
 	}
 	
+	@Override
 	public double getAttributeValue(EntityAttribute attribute) {
 		return 0;
 	}
@@ -44,23 +42,29 @@ public class LivingMarkerEntity extends LivingEntity {
 		return Arm.LEFT;
 	}
 	
+	@Override
 	public void tick() {
 	}
 	
+	@Override
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 	}
 	
+	@Override
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 	}
 	
+	@Override
 	public Packet<?> createSpawnPacket() {
 		throw new IllegalStateException("Living Markers should never be sent");
 	}
 	
+	@Override
 	protected void addPassenger(Entity passenger) {
 		passenger.stopRiding();
 	}
 	
+	@Override
 	public PistonBehavior getPistonBehavior() {
 		return PistonBehavior.IGNORE;
 	}

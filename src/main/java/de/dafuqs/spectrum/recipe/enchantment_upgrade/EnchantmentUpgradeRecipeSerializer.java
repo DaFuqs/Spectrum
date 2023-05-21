@@ -1,23 +1,19 @@
 package de.dafuqs.spectrum.recipe.enchantment_upgrade;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.item.Item;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
+import com.google.gson.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.recipe.*;
+import net.minecraft.enchantment.*;
+import net.minecraft.item.*;
+import net.minecraft.network.*;
+import net.minecraft.util.*;
+import net.minecraft.util.registry.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class EnchantmentUpgradeRecipeSerializer implements GatedRecipeSerializer<EnchantmentUpgradeRecipe> {
 	
-	public static List<EnchantmentUpgradeRecipe> enchantmentUpgradeRecipesToInject = new ArrayList<>();
+	public static final List<EnchantmentUpgradeRecipe> enchantmentUpgradeRecipesToInject = new ArrayList<>();
 	
 	public final EnchantmentUpgradeRecipeSerializer.RecipeFactory<EnchantmentUpgradeRecipe> recipeFactory;
 	

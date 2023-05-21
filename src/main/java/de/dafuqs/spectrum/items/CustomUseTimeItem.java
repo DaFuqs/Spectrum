@@ -1,7 +1,6 @@
 package de.dafuqs.spectrum.items;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 
 public class CustomUseTimeItem extends Item {
 	

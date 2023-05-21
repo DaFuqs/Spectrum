@@ -70,20 +70,19 @@ public class ServerPastelTransmissionLogic {
         return path;
     }
 
-    public boolean tick() {
-        tickLooper.tick();
-        if (!tickLooper.reachedCap()) {
-            return false;
-        }
-        tickLooper.reset();
-
-        transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER, TransferMode.PUSH_PULL);
-        transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER, TransferMode.PULL);
-        transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER, TransferMode.PULL);
-        transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE, TransferMode.PUSH);
-
-        return false;
-    }
+    public void tick() {
+		tickLooper.tick();
+		if (!tickLooper.reachedCap()) {
+			return;
+		}
+		tickLooper.reset();
+	
+		transferBetween(PastelNodeType.SENDER, PastelNodeType.GATHER, TransferMode.PUSH_PULL);
+		transferBetween(PastelNodeType.PROVIDER, PastelNodeType.GATHER, TransferMode.PULL);
+		transferBetween(PastelNodeType.STORAGE, PastelNodeType.GATHER, TransferMode.PULL);
+		transferBetween(PastelNodeType.SENDER, PastelNodeType.STORAGE, TransferMode.PUSH);
+	
+	}
 
     private void transferBetween(PastelNodeType sourceType, PastelNodeType destinationType, TransferMode transferMode) {
         for (PastelNodeBlockEntity sourceNode : network.getNodes(sourceType)) {

@@ -199,11 +199,9 @@ public class SpectrumModelPredicateProviders {
 	}
 	
 	private static void registerOversizedItemPredicate(Item item) {
-		ModelPredicateProviderRegistry.register(item, new Identifier("in_world"), (itemStack, world, livingEntity, i) -> {
-			return currentItemRenderMode == ModelTransformation.Mode.GUI
-					|| currentItemRenderMode == ModelTransformation.Mode.GROUND
-					|| currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F;
-		});
+		ModelPredicateProviderRegistry.register(item, new Identifier("in_world"), (itemStack, world, livingEntity, i) -> currentItemRenderMode == ModelTransformation.Mode.GUI
+				|| currentItemRenderMode == ModelTransformation.Mode.GROUND
+				|| currentItemRenderMode == ModelTransformation.Mode.FIXED ? 0.0F : 1.0F);
 	}
 	
 	private static void registerBowPredicates(Item bowItem) {

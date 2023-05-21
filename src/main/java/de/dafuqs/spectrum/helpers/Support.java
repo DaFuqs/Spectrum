@@ -138,20 +138,25 @@ public class Support {
 	
 	public static @NotNull String getReadableDimensionString(@NotNull String dimensionKeyString) {
 		switch (dimensionKeyString) {
-			case "minecraft:overworld":
+			case "minecraft:overworld" -> {
 				return "Overworld";
-			case "minecraft:nether":
+			}
+			case "minecraft:nether" -> {
 				return "Nether";
-			case "minecraft:end":
+			}
+			case "minecraft:end" -> {
 				return "End";
-			case "spectrum:deeper_down":
+			}
+			case "spectrum:deeper_down" -> {
 				return "Deeper Down";
-			default:
+			}
+			default -> {
 				if (dimensionKeyString.contains(":")) {
 					return dimensionKeyString.substring(dimensionKeyString.indexOf(":") + 1);
 				} else {
 					return dimensionKeyString;
 				}
+			}
 		}
 	}
 	

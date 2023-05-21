@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.blocks.gravity;
 
-import de.dafuqs.spectrum.items.GravitableItem;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import de.dafuqs.spectrum.items.*;
+import net.minecraft.entity.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
 
 public class FloatItem extends Item implements GravitableItem {
 	
@@ -25,6 +24,7 @@ public class FloatItem extends Item implements GravitableItem {
 		return (1 - gravityMod) * 2;
 	}
 	
+	@Override
 	public double getGravityModForItemEntity() {
 		return (1 - gravityMod) * 10;
 	}

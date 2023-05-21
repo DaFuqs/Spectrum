@@ -1,32 +1,20 @@
 package de.dafuqs.spectrum.helpers;
 
-import net.fabricmc.fabric.api.transfer.v1.item.ItemVariant;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.InventoryProvider;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SidedInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Pair;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.fabricmc.fabric.api.transfer.v1.item.*;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.predicate.entity.*;
+import net.minecraft.recipe.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class InventoryHelper {
 	
@@ -157,7 +145,7 @@ public class InventoryHelper {
 		return addingStack;
 	}
 	
-	public static ItemStack combineStacks(ItemStack originalStack, ItemStack addingStack) {
+	public static void combineStacks(ItemStack originalStack, ItemStack addingStack) {
 		if (ItemStack.canCombine(originalStack, addingStack)) {
 			int leftOverAmountInExistingStack = originalStack.getMaxCount() - originalStack.getCount();
 			if (leftOverAmountInExistingStack > 0) {
@@ -166,7 +154,6 @@ public class InventoryHelper {
 				addingStack.decrement(addAmount);
 			}
 		}
-		return originalStack;
 	}
 	
 	/**

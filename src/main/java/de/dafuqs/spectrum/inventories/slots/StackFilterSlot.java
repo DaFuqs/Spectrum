@@ -1,9 +1,8 @@
 package de.dafuqs.spectrum.inventories.slots;
 
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.slot.Slot;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.slot.*;
 
 public class StackFilterSlot extends Slot {
 	
@@ -14,6 +13,7 @@ public class StackFilterSlot extends Slot {
 		this.acceptedItem = acceptedItem;
 	}
 	
+	@Override
 	public boolean canInsert(ItemStack stack) {
 		return stack.getItem().equals(acceptedItem);
 	}

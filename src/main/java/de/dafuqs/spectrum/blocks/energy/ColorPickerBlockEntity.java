@@ -101,6 +101,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		}
 	}
 	
+	@Override
 	protected void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		if (!this.serializeLootTable(nbt)) {
@@ -162,6 +163,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		updateInClientWorld();
 	}
 	
+	@Override
 	public ItemStack removeStack(int slot, int amount) {
 		ItemStack itemStack = super.removeStack(slot, amount);
 		this.paused = false;
@@ -169,6 +171,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		return itemStack;
 	}
 	
+	@Override
 	public ItemStack removeStack(int slot) {
 		ItemStack itemStack = super.removeStack(slot);
 		this.paused = false;
@@ -176,6 +179,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 		return itemStack;
 	}
 	
+	@Override
 	public void setStack(int slot, ItemStack stack) {
 		super.setStack(slot, stack);
 		this.paused = false;
@@ -304,6 +308,7 @@ public class ColorPickerBlockEntity extends LootableContainerBlockEntity impleme
 	}
 	
 	// Called when the chunk is first loaded to initialize this be
+	@Override
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		this.writeNbt(nbtCompound);

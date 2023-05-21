@@ -1,36 +1,26 @@
 package de.dafuqs.spectrum.inventories;
 
-import de.dafuqs.spectrum.enums.BuiltinGemstoneColor;
-import de.dafuqs.spectrum.enums.PedestalRecipeTier;
-import de.dafuqs.spectrum.inventories.slots.LockableCraftingResultSlot;
-import de.dafuqs.spectrum.inventories.slots.ReadOnlySlot;
-import de.dafuqs.spectrum.items.CraftingTabletItem;
-import de.dafuqs.spectrum.recipe.SpectrumRecipeTypes;
-import de.dafuqs.spectrum.recipe.pedestal.PedestalCraftingRecipe;
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.CraftingResultInventory;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
-import net.minecraft.recipe.CraftingRecipe;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeMatcher;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.book.RecipeBookCategory;
-import net.minecraft.screen.AbstractRecipeScreenHandler;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.screen.slot.Slot;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
+import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.inventories.slots.*;
+import de.dafuqs.spectrum.items.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.pedestal.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.recipe.*;
+import net.minecraft.recipe.book.*;
+import net.minecraft.screen.*;
+import net.minecraft.screen.slot.*;
+import net.minecraft.server.network.*;
+import net.minecraft.sound.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Optional;
+import java.util.*;
 
 public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inventory> {
 	
@@ -201,26 +191,29 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 		}
 	}
 	
+	@Override
 	public void onContentChanged(Inventory inventory) {
-		this.context.run((world, pos) -> {
-			updateResult(this, world, this.player, this.craftingInventory);
-		});
+		this.context.run((world, pos) -> updateResult(this, world, this.player, this.craftingInventory));
 	}
 	
+	@Override
 	public void populateRecipeFinder(RecipeMatcher recipeMatcher) {
 		if (this.craftingInventory != null) {
 			this.craftingInventory.provideRecipeInputs(recipeMatcher);
 		}
 	}
 	
+	@Override
 	public void clearCraftingSlots() {
 		this.craftingInventory.clear();
 	}
 	
+	@Override
 	public boolean matches(Recipe<? super Inventory> recipe) {
 		return recipe.matches(this.craftingInventory, this.world);
 	}
 	
+	@Override
 	public void close(PlayerEntity playerEntity) {
 		// put all items in the crafting grid back into the players inventory
 		for (int i = 0; i < 9; i++) {
@@ -250,10 +243,12 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 		super.close(player);
 	}
 	
+	@Override
 	public boolean canUse(PlayerEntity player) {
 		return true;
 	}
 	
+	@Override
 	public ItemStack transferSlot(PlayerEntity player, int index) {
 		/*
 			SLOTS:
@@ -271,9 +266,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 			transferStack = clickedSlotStack.copy();
 			if (index == 14) {
 				// crafting result slot
-				this.context.run((world, pos) -> {
-					clickedSlotStack.getItem().onCraft(clickedSlotStack, world, player);
-				});
+				this.context.run((world, pos) -> clickedSlotStack.getItem().onCraft(clickedSlotStack, world, player));
 				
 				if (!this.insertItem(clickedSlotStack, 42, 51, false)) {
 					if (!this.insertItem(clickedSlotStack, 15, 42, false)) {
@@ -316,22 +309,27 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 		return transferStack;
 	}
 	
+	@Override
 	public boolean canInsertIntoSlot(ItemStack stack, Slot slot) {
 		return super.canInsertIntoSlot(stack, slot);
 	}
 	
+	@Override
 	public int getCraftingResultSlotIndex() {
 		return 14;
 	}
 	
+	@Override
 	public int getCraftingWidth() {
 		return 3;
 	}
 	
+	@Override
 	public int getCraftingHeight() {
 		return 3;
 	}
 	
+	@Override
 	public int getCraftingSlotCount() {
 		return 9;
 	}
@@ -341,6 +339,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 		return RecipeBookCategory.CRAFTING;
 	}
 	
+	@Override
 	public boolean canInsertIntoSlot(int index) {
 		return index != this.getCraftingResultSlotIndex();
 	}

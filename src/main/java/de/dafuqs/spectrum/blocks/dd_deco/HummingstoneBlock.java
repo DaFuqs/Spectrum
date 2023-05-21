@@ -68,6 +68,7 @@ public class HummingstoneBlock extends BlockWithEntity {
 		}
 	}
 	
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(HUMMING);
 	}

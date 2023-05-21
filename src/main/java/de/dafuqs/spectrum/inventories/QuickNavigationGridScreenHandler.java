@@ -1,10 +1,9 @@
 package de.dafuqs.spectrum.inventories;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerType;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.screen.*;
+import org.jetbrains.annotations.*;
 
 public abstract class QuickNavigationGridScreenHandler extends ScreenHandler {
 	

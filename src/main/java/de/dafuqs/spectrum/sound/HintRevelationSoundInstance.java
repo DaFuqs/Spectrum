@@ -1,14 +1,10 @@
 package de.dafuqs.spectrum.sound;
 
-import de.dafuqs.spectrum.registries.SpectrumItems;
-import de.dafuqs.spectrum.registries.SpectrumSoundEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.sound.AbstractSoundInstance;
-import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.client.sound.TickableSoundInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.sound.SoundCategory;
+import de.dafuqs.spectrum.registries.*;
+import net.fabricmc.api.*;
+import net.minecraft.client.sound.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.sound.*;
 
 @Environment(EnvType.CLIENT)
 public class HintRevelationSoundInstance extends AbstractSoundInstance implements TickableSoundInstance {

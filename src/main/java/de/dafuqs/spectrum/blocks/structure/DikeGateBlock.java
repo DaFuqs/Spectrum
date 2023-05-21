@@ -25,6 +25,7 @@ public class DikeGateBlock extends AbstractGlassBlock {
 		super(settings);
 	}
 	
+	@Override
 	@Deprecated
 	public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (context instanceof EntityShapeContext entityShapeContext) {

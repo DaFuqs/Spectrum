@@ -46,7 +46,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	public static final int INVENTORY_SIZE = 16; // 9 crafting, 5 gems, 1 craftingTablet, 1 output
 	public static final int CRAFTING_TABLET_SLOT_ID = 14;
 	public static final int OUTPUT_SLOT_ID = 15;
-	protected AutoCraftingInventory autoCraftingInventory;
+	protected final AutoCraftingInventory autoCraftingInventory;
 	protected final PropertyDelegate propertyDelegate;
 	protected UUID ownerUUID;
 	protected PedestalVariant pedestalVariant;
@@ -73,6 +73,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		
 		this.inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 		this.propertyDelegate = new PropertyDelegate() {
+			@Override
 			public int get(int index) {
 				return switch (index) {
 					case 0 -> PedestalBlockEntity.this.craftingTime;
@@ -80,6 +81,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				};
 			}
 			
+			@Override
 			public void set(int index, int value) {
 				switch (index) {
 					case 0 -> PedestalBlockEntity.this.craftingTime = value;
@@ -87,6 +89,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				}
 			}
 			
+			@Override
 			public int size() {
 				return 2;
 			}
@@ -294,13 +297,13 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 		
 		// unchanged pedestal recipe?
-		if (pedestalBlockEntity.currentRecipe instanceof PedestalCraftingRecipe && ((PedestalCraftingRecipe) pedestalBlockEntity.currentRecipe).matches(pedestalBlockEntity, world)) {
+		if (pedestalBlockEntity.currentRecipe instanceof PedestalCraftingRecipe && pedestalBlockEntity.currentRecipe.matches(pedestalBlockEntity, world)) {
 			return pedestalBlockEntity.currentRecipe;
 		}
 		
 		// unchanged vanilla recipe?
 		pedestalBlockEntity.autoCraftingInventory.setInputInventory(pedestalBlockEntity.inventory.subList(0, 9));
-		if (pedestalBlockEntity.currentRecipe instanceof CraftingRecipe && ((CraftingRecipe) pedestalBlockEntity.currentRecipe).matches(pedestalBlockEntity.autoCraftingInventory, world)) {
+		if (pedestalBlockEntity.currentRecipe instanceof CraftingRecipe && pedestalBlockEntity.currentRecipe.matches(pedestalBlockEntity.autoCraftingInventory, world)) {
 			return pedestalBlockEntity.currentRecipe;
 		}
 		
@@ -511,12 +514,14 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 	}
 	
 	// Called when the chunk is first loaded to initialize this be or manually synced via updateInClientWorld()
+	@Override
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		this.writeNbt(nbtCompound);
 		return nbtCompound;
 	}
 	
+	@Override
 	public void readNbt(NbtCompound nbt) {
 		super.readNbt(nbt);
 		
@@ -551,6 +556,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 	
+	@Override
 	public void writeNbt(NbtCompound nbt) {
 		super.writeNbt(nbt);
 		nbt.putFloat("StoredXP", this.storedXP);

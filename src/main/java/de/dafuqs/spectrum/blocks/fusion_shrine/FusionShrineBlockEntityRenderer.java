@@ -48,6 +48,7 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 		return colors;
 	}
 	
+	@Override
 	public void render(FusionShrineBlockEntity fusionShrineBlockEntity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, int overlay) {
 		// the fluid in the shrine
 		FluidVariant fluidVariant = fusionShrineBlockEntity.getFluidVariant();
@@ -56,11 +57,11 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 			Sprite sprite = FluidVariantRendering.getSprite(fluidVariant);
 			int color = FluidVariantRendering.getColor(fluidVariant, fusionShrineBlockEntity.getWorld(), fusionShrineBlockEntity.getPos());
 			int[] colors = unpackColor(color);
-
+			
 			renderFluid(vertexConsumerProvider.getBuffer(RenderLayer.getTranslucent()), matrixStack.peek().getPositionMatrix(), sprite, light, overlay, 0.125F, 0.875F, 0.9F, 0.125F, 0.875F, colors);
 			matrixStack.pop();
 		}
-
+		
 		if (!fusionShrineBlockEntity.isEmpty()) {
 			// the floating item stacks
 			List<ItemStack> inventoryStacks = new ArrayList<>();

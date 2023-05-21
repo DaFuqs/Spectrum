@@ -1,8 +1,8 @@
 package de.dafuqs.spectrum.mixin.client.accessors;
 
-import net.minecraft.client.render.model.json.ModelOverrideList;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.gen.Accessor;
+import net.minecraft.client.render.model.json.*;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.gen.*;
 
 @Mixin(ModelOverrideList.class)
 public interface ModelOverrideListAccessor {

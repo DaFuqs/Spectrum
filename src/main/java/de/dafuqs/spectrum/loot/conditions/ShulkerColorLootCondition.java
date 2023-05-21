@@ -46,12 +46,14 @@ public class ShulkerColorLootCondition implements LootCondition {
 		public Serializer() {
 		}
 		
+		@Override
 		public void toJson(JsonObject jsonObject, ShulkerColorLootCondition shulkerColorLootCondition, JsonSerializationContext jsonSerializationContext) {
 			if (shulkerColorLootCondition.dyeColor != null) {
 				jsonObject.addProperty("color", shulkerColorLootCondition.dyeColor.getName());
 			}
 		}
 		
+		@Override
 		public ShulkerColorLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
 			String dyeColorString = JsonHelper.getString(jsonObject, "color", "");
 			if (dyeColorString.isEmpty()) {

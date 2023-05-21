@@ -1,6 +1,6 @@
 package de.dafuqs.spectrum.blocks.rock_candy;
 
-import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
 import de.dafuqs.spectrum.helpers.ColorHelper;
 import de.dafuqs.spectrum.particle.effect.*;
 import de.dafuqs.spectrum.registries.*;
@@ -35,8 +35,8 @@ public class SugarStickBlock extends Block implements RockCandy {
 	public static final int ITEM_SEARCH_RANGE = 5;
 	public static final int REQUIRED_ITEM_COUNT_PER_STAGE = 4;
 	
+	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.NONE_AND_CRYSTAL;
 	public static final IntProperty AGE = Properties.AGE_2;
-	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = SpectrumCommon.LIQUID_CRYSTAL_LOGGED;
 	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(5.0D, 3.0D, 5.0D, 11.0D, 16.0D, 11.0D);
 	
@@ -44,7 +44,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 		super(settings);
 		this.rockCandyVariant = rockCandyVariant;
 		SUGAR_STICK_BLOCKS.put(this.rockCandyVariant, this);
-		this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(LIQUID_CRYSTAL_LOGGED, false));
+		this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(LOGGED, FluidLogging.State.NOT_LOGGED));
 	}
 	
 	@Override
@@ -56,30 +56,30 @@ public class SugarStickBlock extends Block implements RockCandy {
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
 		if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
-			return super.getPlacementState(ctx).with(LIQUID_CRYSTAL_LOGGED, true);
+			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
 		} else {
 			return super.getPlacementState(ctx);
 		}
 	}
 	
 	public FluidState getFluidState(BlockState state) {
-		return state.get(LIQUID_CRYSTAL_LOGGED) ? SpectrumFluids.LIQUID_CRYSTAL.getStill(false) : super.getFluidState(state);
+		return state.get(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL) ? SpectrumFluids.LIQUID_CRYSTAL.getStill(false) : super.getFluidState(state);
 	}
 	
 	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(AGE, LIQUID_CRYSTAL_LOGGED);
+		builder.add(AGE, LOGGED);
 	}
 	
 	@Override
 	public boolean hasRandomTicks(BlockState state) {
-		return state.get(LIQUID_CRYSTAL_LOGGED) && state.get(AGE) < Properties.AGE_2_MAX;
+		return state.get(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL) && state.get(AGE) < Properties.AGE_2_MAX;
 	}
 	
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);
-		if (!state.get(LIQUID_CRYSTAL_LOGGED)) {
+		if (state.get(LOGGED).isOf(Fluids.EMPTY)) {
 			int age = state.get(AGE);
 			
 			if (age == 2 || (age == 1 ? random.nextBoolean() : random.nextFloat() < 0.25)) {
@@ -99,7 +99,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		super.randomTick(state, world, pos, random);
 		
-		if (state.get(LIQUID_CRYSTAL_LOGGED)) {
+		if (state.get(LOGGED).isOf(SpectrumFluids.LIQUID_CRYSTAL)) {
 			int age = state.get(AGE);
 			if (age < Properties.AGE_2_MAX) {
 				List<ItemEntity> itemEntities = world.getNonSpectatingEntities(ItemEntity.class, Box.of(Vec3d.ofCenter(pos), ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE, ITEM_SEARCH_RANGE));
@@ -123,7 +123,7 @@ public class SugarStickBlock extends Block implements RockCandy {
 							}
 							
 							stack.decrement(REQUIRED_ITEM_COUNT_PER_STAGE);
-							world.setBlockState(pos, newState.with(AGE, age + 1).with(LIQUID_CRYSTAL_LOGGED, state.get(LIQUID_CRYSTAL_LOGGED)));
+							world.setBlockState(pos, newState.with(AGE, age + 1).with(LOGGED, state.get(LOGGED)));
 							world.playSound(null, pos, newState.getSoundGroup().getHitSound(), SoundCategory.BLOCKS, 0.5F, 1.0F);
 							break;
 						}

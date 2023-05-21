@@ -1,62 +1,42 @@
 package de.dafuqs.spectrum.blocks.conditional;
 
-import de.dafuqs.revelationary.api.revelations.RevelationAware;
-import de.dafuqs.spectrum.SpectrumCommon;
-import de.dafuqs.spectrum.blocks.WaterOrLiquidCrystalLogged;
-import de.dafuqs.spectrum.registries.SpectrumBlockTags;
-import de.dafuqs.spectrum.registries.SpectrumBlocks;
-import de.dafuqs.spectrum.registries.SpectrumFluidTags;
-import de.dafuqs.spectrum.registries.SpectrumFluids;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.IntProperty;
+import de.dafuqs.revelationary.api.revelations.*;
+import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.blocks.*;
+import de.dafuqs.spectrum.registries.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.fluid.*;
+import net.minecraft.item.*;
+import net.minecraft.server.world.*;
+import net.minecraft.sound.*;
+import net.minecraft.state.*;
 import net.minecraft.state.property.Properties;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Pair;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
+import net.minecraft.state.property.*;
+import net.minecraft.tag.*;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.shape.*;
+import net.minecraft.world.*;
+import org.jetbrains.annotations.*;
 
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
-public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterOrLiquidCrystalLogged {
+public class QuitoxicReedsBlock extends Block implements RevelationAware, FluidLogging.SpectrumFluidLoggable {
 	
+	public static final EnumProperty<FluidLogging.State> LOGGED = FluidLogging.ANY_INCLUDING_NONE;
 	public static final IntProperty AGE = Properties.AGE_7;
+	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop"); // I have no idea why this works anymore and at this point I am too afraid to ask
+	
 	public static final int MAX_GROWTH_HEIGHT_WATER = 5;
 	public static final int MAX_GROWTH_HEIGHT_CRYSTAL = 7;
-	public static final IntProperty FLUIDLOGGED = WaterOrLiquidCrystalLogged.FLUIDLOGGED;
-	public static final BooleanProperty ALWAYS_DROP = BooleanProperty.of("always_drop"); // I have no idea why this works anymore and at this point I am too afraid to ask
+	
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
 	
 	public QuitoxicReedsBlock(Settings settings) {
 		super(settings);
-		this.setDefaultState(this.stateManager.getDefaultState().with(FLUIDLOGGED, 0).with(ALWAYS_DROP, false).with(AGE, 0));
+		this.setDefaultState(this.stateManager.getDefaultState().with(LOGGED, FluidLogging.State.NOT_LOGGED).with(ALWAYS_DROP, false).with(AGE, 0));
 		RevelationAware.register(this);
 	}
 	
@@ -68,10 +48,10 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	@Override
 	public Map<BlockState, BlockState> getBlockStateCloaks() {
 		Hashtable<BlockState, BlockState> hashtable = new Hashtable<>();
-		for (int i = 0; i < 8; i++) {
-			hashtable.put(this.getDefaultState().with(FLUIDLOGGED, 0).with(AGE, i), Blocks.AIR.getDefaultState());
-			hashtable.put(this.getDefaultState().with(FLUIDLOGGED, 1).with(AGE, i), Blocks.WATER.getDefaultState());
-			hashtable.put(this.getDefaultState().with(FLUIDLOGGED, 2).with(AGE, i), SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState());
+		for (int i = 0; i <= Properties.AGE_7_MAX; i++) {
+			hashtable.put(this.getDefaultState().with(LOGGED, FluidLogging.State.NOT_LOGGED).with(AGE, i), Blocks.AIR.getDefaultState());
+			hashtable.put(this.getDefaultState().with(LOGGED, FluidLogging.State.WATER).with(AGE, i), Blocks.WATER.getDefaultState());
+			hashtable.put(this.getDefaultState().with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL).with(AGE, i), SpectrumBlocks.LIQUID_CRYSTAL.getDefaultState());
 		}
 		return hashtable;
 	}
@@ -81,6 +61,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 		return new Pair<>(this.asItem(), Blocks.SUGAR_CANE.asItem());
 	}
 	
+	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (!state.canPlaceAt(world, pos)) {
 			world.breakBlock(pos, true);
@@ -88,22 +69,24 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	}
 	
 	@Nullable
+	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-		if (fluidState.getFluid() == Fluids.WATER) {
-			return super.getPlacementState(ctx).with(FLUIDLOGGED, 1);
+		if (fluidState.isIn(FluidTags.WATER) && fluidState.getLevel() == 8) {
+			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.WATER);
 		} else if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
-			return super.getPlacementState(ctx).with(FLUIDLOGGED, 2);
+			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
 		} else {
-			return super.getPlacementState(ctx).with(FLUIDLOGGED, 0);
+			return super.getPlacementState(ctx).with(LOGGED, FluidLogging.State.NOT_LOGGED);
 		}
 	}
 	
+	@Override
 	public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
 		// since the quitoxic reeds are stacked and break from bottom to top
 		// bot the player that broke the other blocks is not propagated we
 		// have to apply a workaround here by counting the reeds above this
-		// and dropping that much times loot to account for it
+		// and dropping that many times loot to account for it
 		for (int i = 1; i < MAX_GROWTH_HEIGHT_CRYSTAL; i++) {
 			BlockPos offsetPos = pos.add(0, i, 0);
 			if (world.getBlockState(offsetPos).isOf(this)) {
@@ -116,11 +99,12 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 		super.onBreak(world, pos, state, player);
 	}
 	
+	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-		int fluidLog = state.get(FLUIDLOGGED);
-		if (fluidLog == 1) {
+		FluidLogging.State fluidLog = state.get(LOGGED);
+		if (fluidLog == FluidLogging.State.WATER) {
 			world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-		} else if (fluidLog == 2) {
+		} else if (fluidLog == FluidLogging.State.LIQUID_CRYSTAL) {
 			world.scheduleFluidTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickRate(world));
 		}
 		
@@ -130,19 +114,14 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
 	
+	@Override
 	public FluidState getFluidState(BlockState state) {
-		int fluidLog = state.get(FLUIDLOGGED);
-		if (fluidLog == 1) {
-			return Fluids.WATER.getStill(false);
-		} else if (fluidLog == 2) {
-			return SpectrumFluids.LIQUID_CRYSTAL.getStill(false);
-		} else {
-			return super.getFluidState(state);
-		}
+		return state.get(LOGGED).getFluidState();
 	}
 	
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		builder.add(AGE, FLUIDLOGGED, ALWAYS_DROP);
+		builder.add(AGE, LOGGED, ALWAYS_DROP);
 	}
 	
 	@Override
@@ -153,7 +132,7 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 			for (i = 1; world.getBlockState(pos.down(i)).isOf(this); ++i) {
 			}
 			
-			boolean bottomLiquidCrystalLogged = world.getBlockState(pos.down(i - 1)).get(FLUIDLOGGED) == 2;
+			boolean bottomLiquidCrystalLogged = world.getBlockState(pos.down(i - 1)).get(LOGGED) == FluidLogging.State.LIQUID_CRYSTAL;
 			
 			// grows taller on liquid crystal
 			if (i < MAX_GROWTH_HEIGHT_WATER || (bottomLiquidCrystalLogged && i < MAX_GROWTH_HEIGHT_CRYSTAL)) {
@@ -210,15 +189,16 @@ public class QuitoxicReedsBlock extends Block implements RevelationAware, WaterO
 	
 	public BlockState getStateForPos(World world, BlockPos blockPos) {
 		FluidState fluidState = world.getFluidState(blockPos);
-		if (fluidState.getFluid().equals(Fluids.WATER)) {
-			return getDefaultState().with(FLUIDLOGGED, 1);
+		if (fluidState.isIn(FluidTags.WATER) && fluidState.getLevel() == 8) {
+			return getDefaultState().with(LOGGED, FluidLogging.State.WATER);
 		} else if (fluidState.getFluid().equals(SpectrumFluids.LIQUID_CRYSTAL)) {
-			return getDefaultState().with(FLUIDLOGGED, 2);
+			return getDefaultState().with(LOGGED, FluidLogging.State.LIQUID_CRYSTAL);
 		}
 		return getDefaultState();
 	}
 	
 	@Deprecated
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		if (this.isVisibleTo(context)) {
 			return SHAPE;

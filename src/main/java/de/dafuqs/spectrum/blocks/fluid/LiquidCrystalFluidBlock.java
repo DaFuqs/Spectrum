@@ -21,6 +21,8 @@ import net.minecraft.world.*;
 
 public class LiquidCrystalFluidBlock extends SpectrumFluidBlock {
 	
+	public static final int LUMINANCE = 11;
+	
 	public LiquidCrystalFluidBlock(FlowableFluid fluid, Settings settings) {
 		super(fluid, settings);
 	}

@@ -63,10 +63,7 @@ import java.util.*;
 public class SpectrumCommon implements ModInitializer {
 	
 	public static final String MOD_ID = "spectrum";
-	/**
-	 * Like waterlogged, but for liquid crystal!
-	 */
-	public static final BooleanProperty LIQUID_CRYSTAL_LOGGED = BooleanProperty.of("liquidcrystallogged");
+
 	private static final Logger LOGGER = LoggerFactory.getLogger("Spectrum");
 	public static SpectrumConfig CONFIG;
 	public static RegistryKey<World> DEEPER_DOWN = RegistryKey.of(RegistryKeys.WORLD, new Identifier(MOD_ID, "deeper_down"));

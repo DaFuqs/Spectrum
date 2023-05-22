@@ -3,8 +3,6 @@ package de.dafuqs.spectrum.enchantments;
 import de.dafuqs.spectrum.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 
 public class TightGripEnchantment extends SpectrumEnchantment {
@@ -33,9 +31,5 @@ public class TightGripEnchantment extends SpectrumEnchantment {
 		return super.canAccept(other);
 	}
 
-	@Override
-	public boolean isAcceptableItem(ItemStack stack) {
-		return super.isAcceptableItem(stack) || stack.getItem() instanceof AxeItem;
-	}
 }
 

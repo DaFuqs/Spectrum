@@ -24,8 +24,14 @@ public class BlackslagVegetationBlock extends SnowyBlock {
 	private static boolean canSurvive(BlockState state, BlockView world, BlockPos pos) {
 		BlockPos blockPos = pos.up();
 		BlockState blockState = world.getBlockState(blockPos);
-		int i = ChunkLightProvider.getRealisticOpacity(world, state, pos, blockState, blockPos, Direction.UP, blockState.getOpacity(world, blockPos));
-		return i < world.getMaxLightLevel();
+		if (blockState.isOf(Blocks.SNOW) && blockState.get(SnowBlock.LAYERS) == 1) {
+			return true;
+		} else if (blockState.getFluidState().getLevel() == 8) {
+			return false;
+		} else {
+			int light = ChunkLightProvider.getRealisticOpacity(world, state, pos, blockState, blockPos, Direction.UP, blockState.getOpacity(world, blockPos));
+			return light < world.getMaxLightLevel();
+		}
 	}
 	
 }

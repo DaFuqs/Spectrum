@@ -232,9 +232,7 @@ public class SpectrumBlocks {
 	public static final Block BONE_ASH_TILE_WALL = new WallBlock(AbstractBlock.Settings.copy(BONE_ASH_TILES));
 
 	public static final Block BONE_ASH_PILLAR = new PillarBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
-	public static final Block BONE_ASH_COLUMN = new Block(FabricBlockSettings.copyOf(POLISHED_BONE_ASH));
-	public static final Block BONE_ASH_SHINGLES = new SpectrumStairsBlock(POLISHED_BONE_ASH.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_BONE_ASH).nonOpaque());
-
+	public static final Block BONE_ASH_SHINGLES = new ShinglesBlock(FabricBlockSettings.copyOf(POLISHED_BONE_ASH).nonOpaque());
 	public static final Block SAWTOOTH = new SawtoothBlock(AbstractBlock.Settings.copy(BLACKSLAG));
 	public static final Block SLUSH = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUDDY_MANGROVE_ROOTS));
 	
@@ -534,7 +532,7 @@ public class SpectrumBlocks {
 	}
 
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
-	
+
 	//DD FLORA
 	public static final Block SAWBLADE_GRASS = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly());
 	public static final Block SHIMMEL = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly());
@@ -1830,7 +1828,6 @@ public class SpectrumBlocks {
 		registerBlockWithItem("bone_ash_tile_wall", BONE_ASH_TILE_WALL, settings, DyeColor.CYAN);
 
 		registerBlockWithItem("bone_ash_pillar", BONE_ASH_PILLAR, settings, DyeColor.CYAN);
-		registerBlockWithItem("bone_ash_column", BONE_ASH_COLUMN, settings, DyeColor.CYAN);
 		registerBlockWithItem("bone_ash_shingles", BONE_ASH_SHINGLES, settings, DyeColor.CYAN);
 
 		registerBlockWithItem("sawtooth", SAWTOOTH, settings, DyeColor.RED);

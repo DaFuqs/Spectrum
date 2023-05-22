@@ -42,7 +42,7 @@
       "button_text": "I confirm",
       "button_text_confirmed": "Confirmed ✔",
       "confirmation": "confirm_drinking_age",
-      "text": "The $(thing)Titration Barrel$() is capable of brewing alcoholic drinks. If you are old enough to consume alcohol in your country, you can press the button below to unlock these recipes.$(br)If not don't worry - you won't miss anything important."
+      "text": "The $(item)Titration Barrel$() is capable of brewing alcoholic drinks. If you are old enough to consume alcohol in your country, you can press the button below to unlock these recipes.$(br)If not don't worry - you won't miss anything important."
     },
     {
       "type": "spectrum:titration_barrel_fermenting",

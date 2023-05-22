@@ -14,7 +14,7 @@
       "title": "Auto-Harvesting",
       "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
       "item": "spectrum:crystal_apothecary",
-      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() is able to harvest $(thing)Crystals$() automatically - even if you are not near those geodes at all!"
+      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() is able to harvest $(item)Crystals$() automatically - even if you are not near those geodes at all!"
     },
     {
       "type": "patchouli:spotlight",

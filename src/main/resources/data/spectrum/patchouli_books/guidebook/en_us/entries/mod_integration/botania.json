@@ -41,13 +41,13 @@
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:collect_pigment",
       "recipe": "spectrum:mod_integration/botania/pedestal/floral_fertilizer",
-      "text": "Using $(l:general/pigment)Pigment$(/l) instead of mundane Dye when creating $(thing)Floral Fertilizer$() is quite a bit more yielding."
+      "text": "Using $(l:general/pigment)Pigment$(/l) instead of mundane Dye when creating $(item)Floral Fertilizer$() is quite a bit more yielding."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "advancement": "spectrum:hidden/collect_jade_vine_petals",
       "recipe": "spectrum:mod_integration/botania/spirit_instiller/blacker_lotus",
-      "text": "The $(thing)Black Lotus$() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some $(thing)Jade Petals$()"
+      "text": "The $(item)Black Lotus$() is a great source of Mana, no questions asked. But yet, it still can be enhanced. Using some $(thing)Jade Petals$()"
     },
     {
       "type": "spectrum:spirit_instiller_crafting",

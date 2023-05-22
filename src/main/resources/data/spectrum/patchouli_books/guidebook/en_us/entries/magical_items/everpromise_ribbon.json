@@ -16,7 +16,7 @@
       "title": "Pedestal Recipe",
       "advancement": "spectrum:unlocks/items/everpromise_ribbon_recipe",
       "recipe": "spectrum:pedestal/tier4/everpromise_ribbon",
-      "text": "Your pet receive it's new, colored name, will immediately trust you if it does not already and - should it ever die - drop a $(thing)Broken Promise$()."
+      "text": "Your pet receive it's new, colored name, will immediately trust you if it does not already and - should it ever die - drop a $(item)Broken Promise$()."
     }
   ]
 }

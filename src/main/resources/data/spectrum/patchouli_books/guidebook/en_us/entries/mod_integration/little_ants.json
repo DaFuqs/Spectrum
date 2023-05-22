@@ -13,13 +13,13 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:jade_vine_petal_block",
       "advancement": "spectrum:hidden/collect_jade_vine_petals",
-      "text": "The ants produce an almost silk-like material from $(thing)Jade Petals$()."
+      "text": "The ants produce an almost silk-like material from $(item)Jade Petals$()."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:orange_dye",
       "advancement": "spectrum:collect_pigment",
-      "text": "If you harvest a full anthill that collected leaves of colored trees with a shovel, you get $(thing)Dye$()."
+      "text": "If you harvest a full anthill that collected leaves of colored trees with a shovel, you get $(item)Dye$()."
     },
     {
       "type": "patchouli:spotlight",

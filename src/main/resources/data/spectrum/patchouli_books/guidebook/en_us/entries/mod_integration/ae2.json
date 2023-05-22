@@ -13,14 +13,14 @@
       "type": "patchouli:spotlight",
       "title": "Growth Acceleration",
       "item": "ae2:quartz_growth_accelerator",
-      "text": "Looks like - despite the name implies - the $(thing)Crystal Growth Accelerator$() is not only able to grow Quartz! Other kinds of gemstones can be grown, too."
+      "text": "Looks like - despite the name implies - the $(item)Crystal Growth Accelerator$() is not only able to grow Quartz! Other kinds of gemstones can be grown, too."
     },
     {
       "type": "patchouli:spotlight",
       "title": "Quartz Auto-Harvesting",
       "item": "ae2:quartz_cluster",
       "advancement": "spectrum:unlocks/blocks/crystal_apothecary",
-      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests $(thing)Gemstone Buds$(), but $(thing)Certus Quartz$(), too."
+      "text": "The $(l:magic/crystal_apothecary)Crystal Apothecary$() not only harvests $(item)Gemstone Buds$(), but $(item)Certus Quartz$(), too."
     },
     {
       "type": "patchouli:spotlight",

@@ -7,21 +7,21 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Getting lost in the belows time and time again made you carry a bit of $(thing)Chalk$() with you, allowing you to mark your way back out. Sadly these little pieces of Calcite never last long before breaking."
+      "text": "Getting lost in the belows time and time again made you carry a bit of $(item)Chalk$() with you, allowing you to mark your way back out. Sadly these little pieces of Calcite never last long before breaking."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:collect_pigment",
       "title": "Unbreakable Chalk",
       "recipe": "spectrum:mod_integration/chalk/pedestal/chalk",
-      "text": "By using Pigments instead of Dye, the $(thing)Chalk$() provides you with a never-ending supply of color."
+      "text": "By using Pigments instead of Dye, the $(item)Chalk$() provides you with a never-ending supply of color."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "advancement": "spectrum:collect_pigment",
       "title": "Unbr. Glow Chalk",
       "recipe": "spectrum:mod_integration/chalk/pedestal/glow_chalk",
-      "text": "Of course you are able to create unbreakable $(thing)Glow Chalk$(), too."
+      "text": "Of course you are able to create unbreakable $(item)Glow Chalk$(), too."
     },
     {
       "type": "spectrum:pedestal_crafting",

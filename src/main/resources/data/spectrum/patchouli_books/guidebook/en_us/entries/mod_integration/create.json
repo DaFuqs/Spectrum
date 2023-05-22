@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:unlocks/blocks/potion_workshop",
       "item": "spectrum:magenta_leaves",
-      "text": "$(thing)Colored Leaves$() can be crushed, yielding $(thing)Pigment$() and $(thing)Colored Saplings$()"
+      "text": "$(item)Colored Leaves$() can be crushed, yielding $(item)Pigment$() and $(item)Colored Saplings$()"
     },
     {
       "type": "patchouli:spotlight",

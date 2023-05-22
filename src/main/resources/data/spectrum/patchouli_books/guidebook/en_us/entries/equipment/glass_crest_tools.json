@@ -46,7 +46,7 @@
       "title": "Fractal Bident",
       "advancement": "spectrum:unlocks/malachite/fractal_glass_crest_bident",
       "recipe": "spectrum:fusion_shrine/malachite/fractal_glass_crest_bident",
-      "text": "The $(thing)Echo Shards$() make this Bident throw an echo of itself when thrown that shatters upon impact - the original will never leave your hand."
+      "text": "The $(item)Echo Shards$() make this Bident throw an echo of itself when thrown that shatters upon impact - the original will never leave your hand."
     }
   ]
 }

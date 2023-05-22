@@ -20,13 +20,13 @@
       "type": "spectrum:spirit_instiller_crafting",
       "recipe": "spectrum:mod_integration/conjuring/spirit_instiller/lesser_conjuration_essence",
       "advancement": "spectrum:midgame/build_spirit_instiller_structure",
-      "text": "You're not even sure yourself how you came up with this recipe anymore.$(br)Maybe you inhaled a little too much $(thing)Quitoxic Powder$() when you combined various ingredients. But the result is interesting, no question."
+      "text": "You're not even sure yourself how you came up with this recipe anymore.$(br)Maybe you inhaled a little too much $(item)Quitoxic Powder$() when you combined various ingredients. But the result is interesting, no question."
     },
     {
       "type": "spectrum:spirit_instiller_crafting",
       "recipe": "spectrum:mod_integration/conjuring/spirit_instiller/mob_spawner",
       "advancement": "spectrum:midgame/build_spirit_instiller_structure",
-      "text": "Combining everything you learned as a Spawner expert and Pigment Tinkerer gave you the ability to create plain $(thing)Mob Spawners$() yourself.$(br)You only need to assign a Creature to spawn using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
+      "text": "Combining everything you learned as a Spawner expert and Pigment Tinkerer gave you the ability to create plain $(item)Mob Spawners$() yourself.$(br)You only need to assign a Creature to spawn using the $(l:creating_life/spirit_instiller)Spirit Instiller$(/l)."
     }
   ]
 }

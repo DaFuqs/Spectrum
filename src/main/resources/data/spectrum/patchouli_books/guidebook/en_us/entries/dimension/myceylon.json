@@ -13,7 +13,7 @@
     {
       "type": "patchouli:text",
       "title": "Myceylon",
-      "text": "Using an $(thing)Axe$() or $(l:equipment/multitool)Multitool$() you could strip small, but unexpectedly sturdy pieces of the noxshrooms. Those where both unexpectedly sturdy for a mushroom and... tasty."
+      "text": "Using an $(item)Axe$() or $(l:equipment/multitool)Multitool$() you could strip small, but unexpectedly sturdy pieces of the Noxshrooms. Those where both unexpectedly sturdy for a mushroom and... tasty."
     },
     {
       "type": "patchouli:text",

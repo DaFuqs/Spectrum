@@ -45,14 +45,14 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Growing materials in the $(l:magical_blocks/crystallarieum)Crystallarieum$(/l) yields this much more pure, crystalline variant compared to plain $(thing)Raw Ore$().$(br)On closer inspection they almost appear surrounded by an invisible sheen, gently protecting them from outside forces. This shroud also seems to be what protects $(thing)Native Copper$() from oxidization."
+      "text": "Growing materials in the $(l:magical_blocks/crystallarieum)Crystallarieum$(/l) yields this much more pure, crystalline variant compared to plain $(item)Raw Ore$().$(br)On closer inspection they almost appear surrounded by an invisible sheen, gently protecting them from outside forces. This shroud also seems to be what protects $(item)Native Copper$() from oxidization."
     },
     {
       "type": "patchouli:blasting",
       "title": "Blasting",
       "recipe": "spectrum:blasting/pure_resources/pure_iron",
       "recipe2": "spectrum:blasting/pure_resources/pure_gold",
-      "text": "Ironically, you found that these resources seemed to be able to withstand the heat of normal $(thing)Furnaces$(). But you were able to smelt them in a $(thing)Blast Furnace$(), at least."
+      "text": "Ironically, you found that these resources seemed to be able to withstand the heat of normal $(item)Furnaces$(). But you were able to smelt them in a $(item)Blast Furnace$(), at least."
     },
     {
       "type": "spectrum:cinderhearth_smelting",

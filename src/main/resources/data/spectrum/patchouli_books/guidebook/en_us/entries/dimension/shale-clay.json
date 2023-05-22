@@ -41,7 +41,7 @@
     {
       "type": "patchouli:smelting",
       "recipe": "spectrum:smelting/shale_clay_to_polished_shale_clay",
-      "text": "Creating $(thing)Polished Shale-Clay$() brings out a nice, grayish color. Though it seems to weather over time, when exposed to the elements (direct sunlight, rain), returning it's natural brownish tint."
+      "text": "Creating $(item)Polished Shale-Clay$() brings out a nice, grayish color. Though it seems to weather over time, when exposed to the elements (direct sunlight, rain), returning it's natural brownish tint."
     },
     {
       "type": "patchouli:crafting",

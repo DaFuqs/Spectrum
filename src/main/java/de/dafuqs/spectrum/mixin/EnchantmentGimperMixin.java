@@ -15,7 +15,7 @@ public class EnchantmentGimperMixin {
         var effLevel = cir.getReturnValue();
 
         if (enchantment == Enchantments.EFFICIENCY && effLevel > 0) {
-            var crumblingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.CRUMBLING, stack);
+            var crumblingLevel = EnchantmentHelper.getLevel(SpectrumEnchantments.RAZING, stack);
 
             if (crumblingLevel > 0) {
                 cir.setReturnValue(Math.max(0, effLevel - 2));

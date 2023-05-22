@@ -27,7 +27,7 @@ public class PrintConfigCommand {
 		send(source, "Decay can destroy block entities: " + SpectrumCommon.CONFIG.FadingCanDestroyBlockEntities + ", " + SpectrumCommon.CONFIG.FailingCanDestroyBlockEntities + ", " + SpectrumCommon.CONFIG.RuinCanDestroyBlockEntities + ", " + SpectrumCommon.CONFIG.ForfeitureCanDestroyBlockEntities);
 		
 		String disabledEnchantments = "";
-		if (!SpectrumCommon.CONFIG.AutoSmeltEnchantmentEnabled) {
+		if (!SpectrumCommon.CONFIG.FoundryEnchantmentEnabled) {
 			disabledEnchantments += "Foundry ";
 		}
 		if (!SpectrumCommon.CONFIG.ExuberanceEnchantmentEnabled) {
@@ -71,6 +71,12 @@ public class PrintConfigCommand {
 		}
 		if (!SpectrumCommon.CONFIG.BigCatchEnchantmentEnabled) {
 			disabledEnchantments += "BigCatch ";
+		}
+		if (!SpectrumCommon.CONFIG.RazingEnchantmentEnabled) {
+			disabledEnchantments += "Razing ";
+		}
+		if (!SpectrumCommon.CONFIG.InexorableEnchantmentEnabled) {
+			disabledEnchantments += "Inexorable ";
 		}
 		if (disabledEnchantments.length() > 0) {
 			send(source, "Disabled Enchantments: " + disabledEnchantments);

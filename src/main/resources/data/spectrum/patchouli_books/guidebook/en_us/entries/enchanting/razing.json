@@ -1,0 +1,25 @@
+{
+  "name": "Razing",
+  "icon": "minecraft:iron_pickaxe",
+  "advancement": "spectrum:unlocks/enchantments/razing",
+  "flag": "spectrum:enchantment_exists_spectrum_razing",
+  "category": "spectrum:enchanting_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Even with a list of enchantments that you can barely read anymore due to it's length, there are still few blocks that escape your gaze of superiority.$(br)$(item)Obsidian, you are getting cancelled today."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Characteristics",
+      "item": "minecraft:iron_pickaxe{Enchantments: [{id: \"spectrum:razing\", lvl: 1s}]}",
+      "text": "Higher mining speed the harder a block is to break.$(br2)Max Level: 1$(br)Applicable to mining tools.$(br)Mutually exclusive with Fortune."
+    },
+    {
+      "type": "spectrum:enchanter_crafting",
+      "title": "Enchanter Recipe",
+      "recipe": "spectrum:enchanter/spectrum_books/book_razing",
+      "text": "You can infuse a $(item)common Book$() with Razing by surrounding your $(l:enchanting/enchanter)Enchanter$() with $(l:general/pigment)Pigment$() and the other required materials."
+    }
+  ]
+}

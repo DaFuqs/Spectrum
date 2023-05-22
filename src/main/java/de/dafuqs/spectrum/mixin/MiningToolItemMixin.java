@@ -68,7 +68,7 @@ public abstract class MiningToolItemMixin {
 
 			// CRUMBLING GAMING
 
-			var crumbling = EnchantmentHelper.getLevel(SpectrumEnchantments.CRUMBLING, stack);
+			var crumbling = EnchantmentHelper.getLevel(SpectrumEnchantments.RAZING, stack);
 			if (crumbling > 0) {
 				var hardness = state.getBlock().getHardness();
 				var effectiveness = state.isIn(SpectrumBlockTags.CRUMBLING_SUPER_EFFECTIVE) ? 4.125F : 0.255F;

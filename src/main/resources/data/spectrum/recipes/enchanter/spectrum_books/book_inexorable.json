@@ -1,0 +1,47 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:white_pigment"
+    },
+    {
+      "item": "spectrum:white_pigment"
+    },
+    {
+      "item": "spectrum:dragonbone_chunk"
+    },
+    {
+      "item": "spectrum:pure_netherite"
+    },
+    {
+      "item": "spectrum:white_pigment"
+    },
+    {
+      "item": "spectrum:white_pigment"
+    },
+    {
+      "item": "spectrum:dragonbone_chunk"
+    },
+    {
+      "item": "spectrum:pure_netherite"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"spectrum:inexorable\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:unlocks/enchantments/inexorable",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:inexorable"
+      ]
+    }
+  ]
+}

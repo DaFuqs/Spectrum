@@ -101,14 +101,14 @@ public abstract class LivingEntityMixin {
 	public void spectrum$mitigateFallDamageWithPuffCirclet(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition, CallbackInfo ci) {
 		if (onGround) {
 			LivingEntity thisEntity = (LivingEntity) (Object) this;
-			if (thisEntity.fallDistance > thisEntity.getSafeFallDistance()) {
+			if (!thisEntity.isInvulnerableTo(DamageSource.FALL) && thisEntity.fallDistance > thisEntity.getSafeFallDistance()) {
 				Optional<TrinketComponent> component = TrinketsApi.getTrinketComponent(thisEntity);
 				if (component.isPresent()) {
 					if (!component.get().getEquipped(SpectrumItems.PUFF_CIRCLET).isEmpty()) {
 						int charges = AzureDikeProvider.getAzureDikeCharges(thisEntity);
 						if (charges > 0) {
 							AzureDikeProvider.absorbDamage(thisEntity, PuffCircletItem.FALL_DAMAGE_NEGATING_COST);
-
+							
 							thisEntity.fallDistance = 0;
 							thisEntity.setVelocity(thisEntity.getVelocity().x, 0.5, thisEntity.getVelocity().z);
 							if (thisEntity.world.isClient) { // it is split here so the particles spawn immediately, without network lag

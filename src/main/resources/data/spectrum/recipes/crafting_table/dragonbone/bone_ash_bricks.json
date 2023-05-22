@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    "WW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:polished_bone_ash"
+    }
+  },
+  "result": {
+    "item": "spectrum:bone_ash_bricks",
+    "count": 4
+  }
+}

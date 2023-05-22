@@ -404,6 +404,7 @@ public class SpectrumItems {
 	// Elemental Powder
 	public static final Item FIERY_POWDER = new Item(Tab.RESOURCES.settings());
 	public static final Item BLIZZARD_POWDER = new Item(Tab.RESOURCES.settings());
+	public static final Item BONE_ASH = new Item(Tab.RESOURCES.settings());
 	
 	// Catkin
 	public static final Item VIBRANT_CYAN_CATKIN = new CatkinItem(BuiltinGemstoneColor.CYAN, false, Tab.RESOURCES.settings());
@@ -689,6 +690,7 @@ public class SpectrumItems {
 		
 		register("fiery_powder", FIERY_POWDER, DyeColor.ORANGE);
 		register("blizzard_powder", BLIZZARD_POWDER, DyeColor.LIGHT_BLUE);
+		register("bone_ash", BONE_ASH, DyeColor.GRAY);
 		
 		register("moonstone_core", MOONSTONE_CORE, DyeColor.WHITE);
 	}

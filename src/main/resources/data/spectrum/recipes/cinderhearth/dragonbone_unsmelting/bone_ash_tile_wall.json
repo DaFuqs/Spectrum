@@ -1,0 +1,16 @@
+{
+  "type": "spectrum:cinderhearth",
+  "group": "bone_ash_unsmelting",
+  "ingredient": {
+    "item": "spectrum:bone_ash_tile_wall"
+  },
+  "results": [
+    {
+      "item": "spectrum:polished_bone_ash",
+      "count": 1
+    }
+  ],
+  "experience": 0.0,
+  "time": 600,
+  "required_advancement": "spectrum:lategame/collect_dragonbone"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W  ",
+    "WW ",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:bone_ash_bricks"
+    }
+  },
+  "result": {
+    "item": "spectrum:bone_ash_brick_stairs",
+    "count": 6
+  }
+}

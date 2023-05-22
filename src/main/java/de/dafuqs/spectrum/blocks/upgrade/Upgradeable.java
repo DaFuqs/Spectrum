@@ -119,46 +119,26 @@ public interface Upgradeable {
 	}
 
 	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffset, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
-		List<BlockPos> positions = new ArrayList<>();
-		switch (multiblockRotation) {
-			case NONE -> {
-				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
-				positions.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
-			}
-			case CLOCKWISE_90 -> {
-				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
-				positions.add(blockPos.add(-horizontalOffset, verticalOffset, -horizontalOffset));
-			}
-			case CLOCKWISE_180 -> {
-				positions.add(blockPos.add(-horizontalOffset, verticalOffset, horizontalOffset));
-				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
-			}
-			default -> {
-				positions.add(blockPos.add(horizontalOffset, verticalOffset, -horizontalOffset));
-				positions.add(blockPos.add(horizontalOffset, verticalOffset, horizontalOffset));
-			}
-		}
-		
-		return calculateUpgrades(world, blockPos, positions, advancementPlayerUUID);
+		return calculateUpgradeMods2(world, blockPos, multiblockRotation, horizontalOffset, horizontalOffset, verticalOffset, advancementPlayerUUID);
 	}
 
 	static @NotNull UpgradeHolder calculateUpgradeMods2(World world, BlockPos blockPos, @NotNull BlockRotation multiblockRotation, int horizontalOffsetX, int horizontalOffsetZ, int verticalOffset, @Nullable UUID advancementPlayerUUID) {
 		List<BlockPos> positions = new ArrayList<>();
 		switch (multiblockRotation) {
 			case NONE -> {
-				positions.add(blockPos.add(-horizontalOffsetZ, verticalOffset, -horizontalOffsetX));
-				positions.add(blockPos.add(-horizontalOffsetZ, verticalOffset, horizontalOffsetX));
+				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, horizontalOffsetZ));
+				positions.add(blockPos.add(horizontalOffsetX, verticalOffset, horizontalOffsetZ));
 			}
 			case CLOCKWISE_90 -> {
 				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, horizontalOffsetZ));
 				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, -horizontalOffsetZ));
 			}
 			case CLOCKWISE_180 -> {
-				positions.add(blockPos.add(horizontalOffsetZ, verticalOffset, horizontalOffsetX)); // works
-				positions.add(blockPos.add(horizontalOffsetZ, verticalOffset, -horizontalOffsetX));
+				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, horizontalOffsetZ));
+				positions.add(blockPos.add(horizontalOffsetX, verticalOffset, -horizontalOffsetZ));
 			}
 			default -> {
-				positions.add(blockPos.add(-horizontalOffsetX, verticalOffset, horizontalOffsetZ)); // works
+				positions.add(blockPos.add(horizontalOffsetX, verticalOffset, -horizontalOffsetZ));
 				positions.add(blockPos.add(horizontalOffsetX, verticalOffset, horizontalOffsetZ));
 			}
 		}

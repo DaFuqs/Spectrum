@@ -20,7 +20,7 @@
     {
       "type": "patchouli:text",
       "title": "Primordial Fire",
-      "text": "Much more aggressive than common $(thing)Fire$() started by $(thing)Flint & Steel$(), the $(thing)Primordial Fire$() started by Doomblooms seems to burn with insatisable blazing heat."
+      "text": "Much more aggressive than common $(item)Fire$() started by $(item)Flint & Steel$(), the $(item)Primordial Fire$() started by Doomblooms seems to burn with insatiable blazing heat."
     }
   ]
 }

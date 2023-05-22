@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You have come a long way and nothing could stop you. Except for the few times in Ocean Temples with mining fatigue, slowness, mining underwater, in the air and other adverse conditions...$(br)$(italic)Hm, written out like this, that was a bit more than expected$()."
+      "text": "You have come a long way and nothing could stop you. Except for the few times in Ocean Temples with mining fatigue, slowness, mining underwater, in the air and other adverse conditions...$(br2)$(italic)Hm, written out like this, that was a bit more than expected$()."
     },
     {
       "type": "patchouli:spotlight",

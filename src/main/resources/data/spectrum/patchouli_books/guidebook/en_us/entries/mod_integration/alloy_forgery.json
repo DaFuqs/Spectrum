@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "advancement": "spectrum:unlocks/blocks/lava_sponge",
       "item": "spectrum:wet_lava_sponge",
-      "text": "A dripping $(item)Lava Sponge$() contains enough heat to fuel your $(thing)Alloy Forge$() for quite some time."
+      "text": "A dripping $(item)Lava Sponge$() contains enough heat to fuel your $(item)Alloy Forge$() for quite some time."
     },
     {
       "type": "patchouli:spotlight",

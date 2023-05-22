@@ -76,13 +76,13 @@
       "type": "spectrum:crystallarieum_growing",
       "title": "Iron Growing",
       "recipe": "spectrum:crystallarieum/vanilla/iron",
-      "text": "Metallic resources can be grown by throwing unrefined materials, like $(thing)Raw Iron$() on top of it, resulting in a small $(thing)Iron Bud$() that steadily grows until it reaches maturity and can safely be harvested."
+      "text": "Metallic resources can be grown by throwing unrefined materials, like $(item)Raw Iron$() on top of it, resulting in a small $(item)Iron Bud$() that steadily grows until it reaches maturity and can safely be harvested."
     },
     {
       "type": "spectrum:crystallarieum_growing",
       "title": "Diamond Growing",
       "recipe": "spectrum:crystallarieum/vanilla/diamond",
-      "text": "Crystal-like blocks, like $(thing)Diamonds$() can be grown, too! Albeit most require more Ink than metal ones, their crystal-like nature allows you to grow them again and again - $(thing)Diamond Clusters$() yielding $(thing)Diamonds$()."
+      "text": "Crystal-like blocks, like $(item)Diamonds$() can be grown, too! Albeit most require more Ink than metal ones, their crystal-like nature allows you to grow them again and again - $(item)Diamond Clusters$() yielding $(item)Diamonds$()."
     },
     {
       "type": "spectrum:crystallarieum_growing",

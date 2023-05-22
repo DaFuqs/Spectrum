@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Unlike your other gemstones, $(thing)Amethyst$() seems to have the ability to power spell casting wands. While this ability has broken your brain more than once, the results are impressive.$(br)What more is there?"
+      "text": "Unlike your other gemstones, $(item)Amethyst$() seems to have the ability to power spell casting wands. While this ability has broken your brain more than once, the results are impressive.$(br)What more is there?"
     },
     {
       "type": "spectrum:anvil_crushing",

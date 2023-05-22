@@ -18,7 +18,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l:resources/malachite)Malachite$/l) as a material does seem perfectly suited for tools, best compared to $(thing)Diamond$(), but far more easily combinable with other materials.$(br)These combinations are where the fun begins, allowing for some uniquely intricate tools."
+      "text": "$(l:resources/malachite)Malachite$/l) as a material does seem perfectly suited for tools, best compared to $(item)Diamond$(), but far more easily combinable with other materials.$(br)These combinations are where the fun begins, allowing for some uniquely intricate tools."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -33,12 +33,12 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_bident",
-      "text": "This upgraded $(thing)Trident$() is a powerhouse, returning to you almost instantly."
+      "text": "This upgraded $(item)Trident$() is a powerhouse, returning to you almost instantly."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_crossbow",
-      "text": "Shoots projectiles at a higher Speed and precision than a mundane $(thing)Crossbow$(). Not only able to shoot flint arrows or fireworks, but also $(thing)Glass Arrows$()."
+      "text": "Shoots projectiles at a higher Speed and precision than a mundane $(item)Crossbow$(). Not only able to shoot flint arrows or fireworks, but also $(item)Glass Arrows$()."
     },
     {
       "type": "spectrum:pedestal_crafting",

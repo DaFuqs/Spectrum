@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The $(italic)things$() that grow here - to call them plants would be an outrage even to $(thing)Dead Bushes$() - look anything but healthy."
+      "text": "The $(italic)things$() that grow here - to call them plants would be an outrage even to $(item)Dead Bushes$() - look anything but healthy."
     }
   ]
 }

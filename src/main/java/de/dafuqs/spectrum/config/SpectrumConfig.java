@@ -92,7 +92,7 @@ public class SpectrumConfig implements ConfigData {
 			Enable or disable specific enchantments. Resonance and Voiding can not be disabled.
 			This does only disable the registration of said Enchantments, not all recipes based on them (except for Enchantment Upgrade Recipes)
 			""")
-	public final boolean AutoSmeltEnchantmentEnabled = true;
+	public final boolean FoundryEnchantmentEnabled = true;
 	public final boolean ExuberanceEnchantmentEnabled = true;
 	public final boolean InventoryInsertionEnchantmentEnabled = true;
 	public final boolean PestControlEnchantmentEnabled = true;
@@ -107,6 +107,8 @@ public class SpectrumConfig implements ConfigData {
 	public final boolean SteadfastEnchantmentEnabled = true;
 	public final boolean IndestructibleEnchantmentEnabled = true;
 	public final boolean BigCatchEnchantmentEnabled = true;
+	public final boolean RazingEnchantmentEnabled = true;
+	public final boolean InexorableEnchantmentEnabled = true;
 	
 	@Comment("The max levels for all Enchantments")
 	public int TreasureHunterMaxLevel = 3;

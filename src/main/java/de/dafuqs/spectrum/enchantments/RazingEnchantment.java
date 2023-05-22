@@ -4,16 +4,16 @@ import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.util.*;
 
-public class CrumblingEnchantment extends SpectrumEnchantment{
-
-    public CrumblingEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
-        super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
-    }
-
-    @Override
-    public int getMinPower(int level) {
-        return 20;
-    }
+public class RazingEnchantment extends SpectrumEnchantment {
+	
+	public RazingEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
+		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);
+	}
+	
+	@Override
+	public int getMinPower(int level) {
+		return 20;
+	}
 
     @Override
     public int getMaxPower(int level) {

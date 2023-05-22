@@ -1,0 +1,47 @@
+{
+  "type": "spectrum:enchanter",
+  "time": 300,
+  "required_experience": 100,
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "spectrum:gray_pigment"
+    },
+    {
+      "item": "spectrum:gray_pigment"
+    },
+    {
+      "item": "spectrum:bottle_of_ruin"
+    },
+    {
+      "item": "spectrum:pure_lapis"
+    },
+    {
+      "item": "spectrum:gray_pigment"
+    },
+    {
+      "item": "spectrum:gray_pigment"
+    },
+    {
+      "item": "spectrum:bottle_of_ruin"
+    },
+    {
+      "item": "spectrum:pure_lapis"
+    }
+  ],
+  "result": {
+    "item": "minecraft:enchanted_book",
+    "nbt": "{StoredEnchantments: [{id: \"spectrum:razing\", lvl: 1s}]}"
+  },
+  "required_advancement": "spectrum:unlocks/enchantments/razing",
+  "fabric:load_conditions": [
+    {
+      "condition": "spectrum:enchantments_exist",
+      "values": [
+        "spectrum:razing"
+      ]
+    }
+  ]
+}

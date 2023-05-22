@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "spectrum:bone_ash_bricks"
+    }
+  },
+  "result": {
+    "item": "spectrum:bone_ash_brick_wall",
+    "count": 6
+  }
+}

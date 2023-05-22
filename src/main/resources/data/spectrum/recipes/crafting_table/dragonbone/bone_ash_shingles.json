@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "#B ",
+    "##B"
+  ],
+  "key": {
+    "#": {
+      "item": "spectrum:polished_bone_ash"
+    },
+    "B": {
+      "item": "spectrum:dragonbone_chunk"
+    }
+  },
+  "result": {
+    "item": "spectrum:bone_ash_shingles",
+    "count": 6
+  }
+}

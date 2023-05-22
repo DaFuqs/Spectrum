@@ -1,0 +1,15 @@
+{
+  "type": "spectrum:cinderhearth",
+  "ingredient": {
+    "item": "spectrum:dragonbone_chunk"
+  },
+  "results": [
+    {
+      "item": "spectrum:bone_ash",
+      "count": 32
+    }
+  ],
+  "experience": 4.0,
+  "time": 6000,
+  "required_advancement": "spectrum:lategame/collect_dragonbone"
+}

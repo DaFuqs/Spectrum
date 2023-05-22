@@ -200,8 +200,10 @@ public class SpectrumEnchantmentHelper {
 	public static ItemStack getMaxEnchantedStack(@NotNull Item item, Enchantment... enchantments) {
 		ItemStack itemStack = item.getDefaultStack();
 		for (Enchantment enchantment : enchantments) {
-			int maxLevel = enchantment.getMaxLevel();
-			itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);
+			if (enchantment != null) {
+				int maxLevel = enchantment.getMaxLevel();
+				itemStack = addOrExchangeEnchantment(itemStack, enchantment, maxLevel, true, true);
+			}
 		}
 		return itemStack;
 	}

@@ -124,6 +124,8 @@ public class SpectrumCommon implements ModInitializer {
 		SpectrumBlockSoundGroups.register();
 		logInfo("Registering Fluids...");
 		SpectrumFluids.register();
+		logInfo("Registering Enchantments...");
+		SpectrumEnchantments.register();
 		logInfo("Registering Blocks...");
 		SpectrumBlocks.register();
 		logInfo("Registering Items...");
@@ -170,8 +172,6 @@ public class SpectrumCommon implements ModInitializer {
 		
 		logInfo("Registering Items to Fuel Registry...");
 		SpectrumItems.registerFuelRegistry();
-		logInfo("Registering Enchantments...");
-		SpectrumEnchantments.register();
 		
 		logInfo("Registering Entities...");
 		SpectrumTrackedDataHandlerRegistry.register();

@@ -78,10 +78,10 @@ public class SpectrumEnchantments {
 			register("big_catch", new BigCatchEnchantment(Enchantment.Rarity.RARE, SpectrumCommon.locate("unlocks/enchantments/big_catch"), EquipmentSlot.MAINHAND));
 		}
 		if (SpectrumCommon.CONFIG.RazingEnchantmentEnabled) {
-			register("razing", new RazingEnchantment(Enchantment.Rarity.UNCOMMON, null, EquipmentSlot.MAINHAND));
+			register("razing", new RazingEnchantment(Enchantment.Rarity.UNCOMMON, SpectrumCommon.locate("unlocks/enchantments/razing"), EquipmentSlot.MAINHAND));
 		}
 		if (SpectrumCommon.CONFIG.InexorableEnchantmentEnabled) {
-			register("inexorable", new InexorableEnchantment(Enchantment.Rarity.VERY_RARE, null, EquipmentSlot.MAINHAND, EquipmentSlot.CHEST, EquipmentSlot.OFFHAND));
+			register("inexorable", new InexorableEnchantment(Enchantment.Rarity.VERY_RARE, SpectrumCommon.locate("unlocks/enchantments/inexorable"), EquipmentSlot.MAINHAND, EquipmentSlot.CHEST, EquipmentSlot.OFFHAND));
 		}
 		
 	}

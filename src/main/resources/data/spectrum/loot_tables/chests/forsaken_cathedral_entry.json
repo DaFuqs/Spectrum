@@ -51,6 +51,21 @@
           "count": 16
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "spectrum:onyx_ore"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": 16
+        }
+      ]
     }
   ]
 }

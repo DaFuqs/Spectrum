@@ -76,28 +76,28 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	public int getMinFermentationTimeHours() {
 		return this.minFermentationTimeHours;
 	}
-
+	
 	@Override
 	public FermentationData getFermentationData() {
 		return this.fermentationData;
 	}
-
+	
 	@Override
 	public ItemStack craft(Inventory inventory) {
 		return ItemStack.EMPTY;
 	}
-
+	
 	public ItemStack getDefaultTap(int timeMultiplier) {
 		ItemStack stack = tapWith(1.0F, this.minFermentationTimeHours * 60L * 60L * timeMultiplier, 0.4F); // downfall equals the one in plains
 		stack.setCount(this.outputItemStack.getCount());
 		return stack;
 	}
-
+	
 	@Override
 	public ItemStack getOutput() {
 		return getDefaultTap(1);
 	}
-
+	
 	// used for display mods like REI to show recipe outputs with a few example fermentation times
 	public Collection<ItemStack> getOutputVariations(List<Integer> timeMultipliers) {
 		List<ItemStack> list = new ArrayList<>();
@@ -111,7 +111,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 	public Fluid getFluidInput() {
 		return fluid;
 	}
-
+	
 	@Override
 	public float getAngelsSharePerMcDay() {
 		if (this.fermentationData == null) {
@@ -163,7 +163,7 @@ public class TitrationBarrelRecipe extends GatedSpectrumRecipe implements ITitra
 		}
 		
 		if (properties instanceof VariantBeverageProperties variantBeverageProperties) {
-			float durationMultiplier = 1.5F - thickness / 2F;
+			float durationMultiplier = (float) (Support.logBase(1 + thickness, 2));
 			
 			List<StatusEffectInstance> effects = new ArrayList<>();
 			

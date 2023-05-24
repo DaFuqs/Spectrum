@@ -531,8 +531,6 @@ public class SpectrumBlocks {
 		return AbstractBlock.Settings.of(Material.PLANT, color).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS);
 	}
 
-	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
-
 	//DD FLORA
 	public static final Block SAWBLADE_GRASS = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly());
 	public static final Block SHIMMEL = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly());

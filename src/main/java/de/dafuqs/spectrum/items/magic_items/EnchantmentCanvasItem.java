@@ -12,7 +12,7 @@ import net.minecraft.screen.slot.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 
 import java.util.*;
@@ -107,7 +107,7 @@ public class EnchantmentCanvasItem extends Item {
 	
 	private void bindTo(ItemStack enchantmentExchangerStack, ItemStack targetStack) {
 		NbtCompound nbt = enchantmentExchangerStack.getOrCreateNbt();
-		nbt.putString("BoundItem", Registry.ITEM.getId(targetStack.getItem()).toString());
+		nbt.putString("BoundItem", Registries.ITEM.getId(targetStack.getItem()).toString());
 		enchantmentExchangerStack.setNbt(nbt);
 	}
 	
@@ -117,7 +117,7 @@ public class EnchantmentCanvasItem extends Item {
 			return Optional.empty();
 		}
 		String targetItemString = nbt.getString("BoundItem");
-		return Optional.of(Registry.ITEM.get(Identifier.tryParse(targetItemString)));
+		return Optional.of(Registries.ITEM.get(Identifier.tryParse(targetItemString)));
 	}
 	
 }

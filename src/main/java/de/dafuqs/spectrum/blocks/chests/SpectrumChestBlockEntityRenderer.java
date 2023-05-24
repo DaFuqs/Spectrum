@@ -17,7 +17,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
@@ -44,7 +44,7 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidOpenabl
 			matrices.push();
 			float f = (blockState.get(ChestBlock.FACING)).asRotation();
 			matrices.translate(0.5D, 0.5D, 0.5D);
-			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-f));
+			matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
 			matrices.translate(-0.5D, -0.5D, -0.5D);
 			
 			float openFactor = entity.getAnimationProgress(tickDelta);
@@ -68,8 +68,7 @@ public class SpectrumChestBlockEntityRenderer<T extends BlockEntity & LidOpenabl
 	}
 	
 	protected ModelPart getModel(BlockEntityRendererFactory.Context ctx) {
-		ModelPart modelPart = ctx.getLayerModelPart(EntityModelLayers.CHEST);
-		return modelPart;
+		return ctx.getLayerModelPart(EntityModelLayers.CHEST);
 	}
 	
 }

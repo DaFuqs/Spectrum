@@ -17,7 +17,7 @@ public class CardinalFacingBlock extends Block {
 	
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction facing = ctx.getPlayerFacing();
+		Direction facing = ctx.getHorizontalPlayerFacing();
 		boolean facingVertical = facing.equals(Direction.EAST) || facing.equals(Direction.WEST);
 		return this.getDefaultState().with(CARDINAL_FACING, facingVertical);
 	}

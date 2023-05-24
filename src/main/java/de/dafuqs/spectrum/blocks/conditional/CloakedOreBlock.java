@@ -2,7 +2,7 @@ package de.dafuqs.spectrum.blocks.conditional;
 
 import de.dafuqs.revelationary.api.revelations.RevelationAware;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.OreBlock;
+import net.minecraft.block.ExperienceDroppingBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
-public class CloakedOreBlock extends OreBlock implements RevelationAware {
+public class CloakedOreBlock extends ExperienceDroppingBlock implements RevelationAware {
 	
 	protected static boolean dropXP;
 	protected final Identifier cloakAdvancementIdentifier;

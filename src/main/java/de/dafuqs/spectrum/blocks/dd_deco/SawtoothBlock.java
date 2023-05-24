@@ -58,8 +58,8 @@ public class SawtoothBlock extends SpectrumFacingBlock {
 			return placedOnState;
 		}
 		
-		if (ctx.getPlayerFacing().getAxis().isHorizontal()) {
-			return this.getDefaultState().with(FACING, direction).with(MIRRORED, ctx.getPlayerFacing().getOffsetX() != 0);
+		if (ctx.getHorizontalPlayerFacing().getAxis().isHorizontal()) {
+			return this.getDefaultState().with(FACING, direction).with(MIRRORED, ctx.getHorizontalPlayerFacing().getOffsetX() != 0);
 		}
 		
 		boolean mirrored = ctx.getPlayerLookDirection().getAxis().isVertical();

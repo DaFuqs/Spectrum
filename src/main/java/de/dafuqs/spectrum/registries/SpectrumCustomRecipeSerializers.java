@@ -8,12 +8,12 @@ import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.spawner.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.dynamic.*;
 import net.minecraft.recipe.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumCustomRecipeSerializers {
 	
 	private static void register(RecipeSerializer recipeSerializer, String id) {
-		Registry.register(Registry.RECIPE_SERIALIZER, SpectrumCommon.locate(id), recipeSerializer);
+		Registry.register(Registries.RECIPE_SERIALIZER, SpectrumCommon.locate(id), recipeSerializer);
 	}
 	
 	public static void registerRecipeSerializers() {

@@ -6,7 +6,8 @@ import com.mojang.serialization.codecs.*;
 import net.minecraft.block.*;
 import net.minecraft.util.dynamic.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.world.gen.feature.*;
 
 import java.util.*;
@@ -20,8 +21,8 @@ public class RandomBudsFeaturesConfig implements FeatureConfig {
             Codec.BOOL.fieldOf("can_place_on_floor").orElse(false).forGetter((config) -> config.placeOnFloor),
             Codec.BOOL.fieldOf("can_place_on_ceiling").orElse(false).forGetter((config) -> config.placeOnCeiling),
             Codec.BOOL.fieldOf("can_place_on_wall").orElse(false).forGetter((config) -> config.placeOnWalls),
-            RegistryCodecs.entryList(Registry.BLOCK_KEY).fieldOf("can_be_placed_on").forGetter((config) -> config.canPlaceOn),
-            Codecs.nonEmptyList(Registry.BLOCK.getCodec().listOf()).fieldOf("blocks").forGetter((config) -> config.blocks)
+            RegistryCodecs.entryList(RegistryKeys.BLOCK).fieldOf("can_be_placed_on").forGetter((config) -> config.canPlaceOn),
+            Codecs.nonEmptyList(Registries.BLOCK.getCodec().listOf()).fieldOf("blocks").forGetter((config) -> config.blocks)
     ).apply(instance, RandomBudsFeaturesConfig::new));
     
     public final int xzSpread;

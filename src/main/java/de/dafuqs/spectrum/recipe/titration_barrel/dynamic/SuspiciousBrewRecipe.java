@@ -14,7 +14,8 @@ import net.minecraft.fluid.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.tag.*;
+import net.minecraft.recipe.book.CraftingRecipeCategory;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import org.apache.commons.lang3.tuple.Pair;
@@ -22,6 +23,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.*;
 
 public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
+
+	// TODO - Fix this recipe serializer
 	
 	public static final RecipeSerializer<SuspiciousBrewRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SuspiciousBrewRecipe::new);
 	public static final Item TAPPING_ITEM = Items.GLASS_BOTTLE;
@@ -35,7 +38,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		add(IngredientStack.of(Ingredient.fromTag(ItemTags.SMALL_FLOWERS)));
 	}};
 	
-	public SuspiciousBrewRecipe(Identifier identifier) {
+	public SuspiciousBrewRecipe(Identifier identifier, CraftingRecipeCategory craftingRecipeCategory) {
 		super(identifier, "", false, UNLOCK_IDENTIFIER, INGREDIENT_STACKS, Fluids.WATER, OUTPUT_STACK, TAPPING_ITEM, MIN_FERMENTATION_TIME_HOURS, new FermentationData(1.0F, 0.1F, List.of()));
 	}
 
@@ -63,7 +66,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		float thickness = getThickness(itemCount);
 		return tapWith(stacks, thickness, secondsFermented, downfall);
 	}
-	
+
 	public ItemStack tapWith(List<ItemStack> stacks, float thickness, long secondsFermented, float downfall) {
 		if (secondsFermented / 60 / 60 < this.minFermentationTimeHours) {
 			return NOT_FERMENTED_LONG_ENOUGH_OUTPUT_STACK;
@@ -113,7 +116,7 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 		}
 		return Optional.empty();
 	}
-	
+
 	@Override
 	public boolean matches(Inventory inventory, World world) {
 		boolean flowerFound = false;
@@ -127,18 +130,12 @@ public class SuspiciousBrewRecipe extends TitrationBarrelRecipe {
 				}
 			}
 		}
-		
+
 		return flowerFound;
 	}
-	
+
 	@Override
-	public ItemStack craft(Inventory inventory) {
-		return ItemStack.EMPTY;
-	}
-	
-	@Override
-	public RecipeSerializer<?> getSerializer() {
+	public RecipeSerializer<?> getSerializer()  {
 		return SERIALIZER;
 	}
-	
 }

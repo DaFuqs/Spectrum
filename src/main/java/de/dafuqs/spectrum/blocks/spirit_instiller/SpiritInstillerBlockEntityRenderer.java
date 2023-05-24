@@ -4,11 +4,11 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRotation;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 
 public class SpiritInstillerBlockEntityRenderer implements BlockEntityRenderer<SpiritInstillerBlockEntity> {
 	
@@ -31,27 +31,27 @@ public class SpiritInstillerBlockEntityRenderer implements BlockEntityRenderer<S
 			switch (itemFacingDirection) {
 				case CLOCKWISE_90 -> {
 					matrixStack.translate(0.5, itemStackRenderHeight, 0.7);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
-					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
 				}
 				case CLOCKWISE_180 -> {
 					matrixStack.translate(0.3, itemStackRenderHeight, 0.5);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
-					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(270));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
+					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(270));
 				}
 				case COUNTERCLOCKWISE_90 -> {
 					matrixStack.translate(0.5, itemStackRenderHeight, 0.3);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
 				}
 				case NONE -> {
 					matrixStack.translate(0.7, itemStackRenderHeight, 0.5);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
-					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(90));
-					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(90));
+					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
 				}
 			}
 			
-			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);
+			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);
 			matrixStack.pop();
 		}
 		

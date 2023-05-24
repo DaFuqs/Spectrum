@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 
 import java.util.*;
@@ -21,7 +21,7 @@ public class DimensionPredicate implements WorldConditionPredicate {
 	public static DimensionPredicate fromJson(JsonObject json) {
 		List<RegistryKey<World>> dimensionKeys = new ArrayList<>();
 		for (JsonElement element : json.get("worlds").getAsJsonArray()) {
-			dimensionKeys.add(RegistryKey.of(Registry.WORLD_KEY, Identifier.tryParse(element.getAsString())));
+			dimensionKeys.add(RegistryKey.of(RegistryKeys.WORLD, Identifier.tryParse(element.getAsString())));
 		}
 		return new DimensionPredicate(dimensionKeys);
 	}

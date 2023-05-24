@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.mob_blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
@@ -44,7 +43,7 @@ public class FallDamageNegatingMobBlock extends MobBlock {
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if (!hasCooldown(state) && fallDistance > 3F) {
-			entity.handleFallDamage(fallDistance, 0.0F, DamageSource.FALL);
+			entity.handleFallDamage(fallDistance, 0.0F, world.getDamageSources().fall());
 			if (!world.isClient) {
 				playTriggerParticles((ServerWorld) world, pos);
 				playTriggerSound(world, pos);

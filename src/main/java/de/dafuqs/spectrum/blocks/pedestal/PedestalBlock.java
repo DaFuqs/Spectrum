@@ -32,7 +32,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -41,6 +40,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 import vazkii.patchouli.api.IMultiblock;
 import vazkii.patchouli.api.PatchouliAPI;
 
@@ -260,10 +260,10 @@ public class PedestalBlock extends BlockWithEntity implements RedstonePoweredBlo
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(@NotNull BlockState state, World world, BlockPos pos, Random random) {
 		if (state.get(PedestalBlock.POWERED)) {
-			Vec3f vec3f = new Vec3f(0.5F, 0.5F, 0.5F);
+			Vector3f color = new Vector3f(0.5F, 0.5F, 0.5F);
 			float xOffset = random.nextFloat();
 			float zOffset = random.nextFloat();
-			world.addParticle(new DustParticleEffect(vec3f, 1.0F), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
+			world.addParticle(new DustParticleEffect(color, 1.0F), pos.getX() + xOffset, pos.getY() + 1, pos.getZ() + zOffset, 0.0D, 0.0D, 0.0D);
 		}
 	}
 	

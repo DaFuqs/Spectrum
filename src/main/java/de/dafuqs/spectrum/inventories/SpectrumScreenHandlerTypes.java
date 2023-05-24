@@ -2,9 +2,10 @@ package de.dafuqs.spectrum.inventories;
 
 import net.fabricmc.fabric.api.screenhandler.v1.*;
 import net.minecraft.client.gui.screen.ingame.*;
+import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.screen.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumScreenHandlerTypes {
 	
@@ -37,13 +38,14 @@ public class SpectrumScreenHandlerTypes {
 	public static ScreenHandlerType<Spectrum3x3ContainerScreenHandler> GENERIC_TIER3_3X3;
 	
 	public static <T extends ScreenHandler> ScreenHandlerType<T> registerSimple(Identifier id, ScreenHandlerType.Factory<T> factory) {
-		ScreenHandlerType<T> type = new ScreenHandlerType<>(factory);
-		return Registry.register(Registry.SCREEN_HANDLER, id, type);
+		// TODO - Should this feature set be empty?
+        ScreenHandlerType<T> type = new ScreenHandlerType<>(factory, FeatureSet.empty());
+		return Registry.register(Registries.SCREEN_HANDLER, id, type);
 	}
 	
 	public static <T extends ScreenHandler> ScreenHandlerType<T> registerExtended(Identifier id, ExtendedScreenHandlerType.ExtendedFactory<T> factory) {
 		ScreenHandlerType<T> type = new ExtendedScreenHandlerType<>(factory);
-		return Registry.register(Registry.SCREEN_HANDLER, id, type);
+		return Registry.register(Registries.SCREEN_HANDLER, id, type);
 	}
 	
 	public static void register() {

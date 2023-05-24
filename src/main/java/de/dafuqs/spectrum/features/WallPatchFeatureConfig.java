@@ -8,7 +8,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.world.gen.feature.*;
 
 import java.util.*;
@@ -16,7 +17,7 @@ import java.util.*;
 public class WallPatchFeatureConfig implements FeatureConfig {
 	
 	public static final Codec<WallPatchFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
-		return instance.group(Registry.BLOCK.getCodec().fieldOf("block").forGetter((config) -> {
+		return instance.group(Registries.BLOCK.getCodec().fieldOf("block").forGetter((config) -> {
 			return config.block;
 		}), Codec.intRange(1, 64).fieldOf("search_range").orElse(10).forGetter((config) -> {
 			return config.searchRange;
@@ -30,7 +31,7 @@ public class WallPatchFeatureConfig implements FeatureConfig {
 			return config.width;
 		}), IntProvider.NON_NEGATIVE_CODEC.fieldOf("height").forGetter((config) -> {
 			return config.height;
-		}), RegistryCodecs.entryList(Registry.BLOCK_KEY).fieldOf("can_be_placed_on").forGetter((config) -> {
+		}), RegistryCodecs.entryList(RegistryKeys.BLOCK).fieldOf("can_be_placed_on").forGetter((config) -> {
 			return config.canPlaceOn;
 		})).apply(instance, WallPatchFeatureConfig::new);
 	});

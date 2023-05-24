@@ -24,6 +24,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
@@ -373,7 +374,7 @@ public class CinderhearthBlockEntity extends LockableContainerBlockEntity implem
 		// calculate outputs
 		ItemStack inputStack = cinderhearth.getStack(INPUT_SLOT_ID);
 		float yieldMod = inputStack.isIn(SpectrumItemTags.NO_CINDERHEARTH_DOUBLING) ? 1.0F : cinderhearth.drainInkForMod(cinderhearth, UpgradeType.YIELD, true);
-		ItemStack output = blastingRecipe.getOutput().copy();
+		ItemStack output = blastingRecipe.getOutput(world.getRegistryManager()).copy();
 		List<ItemStack> outputs = new ArrayList<>();
 		if (yieldMod > 1) {
 			int outputCount = Support.getIntFromDecimalWithChance(output.getCount() * yieldMod, world.random);

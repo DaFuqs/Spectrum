@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.deeper_down;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.mixin.accessors.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.*;
 
@@ -20,7 +20,7 @@ public class DDDimension {
 	public static final RegistryKey<Biome> RAZOR_EDGE = getBiomeKey("razor_edge");
 	
 	private static RegistryKey<Biome> getBiomeKey(String name) {
-		return RegistryKey.of(Registry.BIOME_KEY, SpectrumCommon.locate(name));
+		return RegistryKey.of(RegistryKeys.BIOME, SpectrumCommon.locate(name));
 	}
 	
 	public static void register() {

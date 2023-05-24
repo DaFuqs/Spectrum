@@ -12,7 +12,7 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 import net.minecraft.world.World;
 
 public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
@@ -96,11 +96,11 @@ public class AnvilCrushingRecipe extends GatedSpectrumRecipe {
 	}
 
 	public SoundEvent getSoundEvent() {
-		return Registry.SOUND_EVENT.get(soundEvent);
+		return Registries.SOUND_EVENT.get(soundEvent);
 	}
 
 	public ParticleEffect getParticleEffect() {
-		return (ParticleEffect) Registry.PARTICLE_TYPE.get(particleEffectIdentifier);
+		return (ParticleEffect) Registries.PARTICLE_TYPE.get(particleEffectIdentifier);
 	}
 
 	public int getParticleCount() {

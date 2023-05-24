@@ -121,7 +121,7 @@ public abstract class SpectrumChestBlock extends BlockWithEntity {
 	}
 	
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction direction = ctx.getPlayerFacing().getOpposite();
+		Direction direction = ctx.getHorizontalPlayerFacing().getOpposite();
 		return this.getDefaultState().with(FACING, direction);
 	}
 	

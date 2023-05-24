@@ -26,14 +26,15 @@ import net.minecraft.entity.mob.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import org.spongepowered.asm.mixin.*;
@@ -137,7 +138,7 @@ public abstract class LivingEntityMixin {
 			amount *= 1 + (SpectrumStatusEffects.VULNERABILITY_ADDITIONAL_DAMAGE_PERCENT_PER_LEVEL * vulnerability.getAmplifier());
 		}
 
-		if (source.isOutOfWorld() || source.isUnblockable() || this.blockedByShield(source) || amount <= 0 || ((Entity) (Object) this).isInvulnerableTo(source) || source.isFire() && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
+		if (source.isIn(DamageTypeTags.BYPASSES_INVULNERABILITY) || source.isIn(DamageTypeTags.BYPASSES_SHIELD) || this.blockedByShield(source) || amount <= 0 || ((Entity) (Object) this).isInvulnerableTo(source) || source.isIn(DamageTypeTags.IS_FIRE) && hasStatusEffect(StatusEffects.FIRE_RESISTANCE)) {
 			return amount;
 		}
 
@@ -173,7 +174,7 @@ public abstract class LivingEntityMixin {
 		}
 
 		// If this entity is hit with a SplitDamageItem, damage() gets called recursively for each type of damage dealt
-		if (!SpectrumDamageSources.recursiveDamage && amount > 0 && source instanceof EntityDamageSource && source.getSource() instanceof LivingEntity livingSource) {
+		if (!SpectrumDamageSources.recursiveDamage && amount > 0 && source.getSource() instanceof LivingEntity livingSource) {
 			ItemStack mainHandStack = livingSource.getMainHandStack();
 			if (mainHandStack.getItem() instanceof SplitDamageItem splitDamageItem) {
 				SpectrumDamageSources.recursiveDamage = true;
@@ -314,8 +315,8 @@ public abstract class LivingEntityMixin {
 		var armorInexorable = InexorableEnchantment.isArmorActive(entity);
 		var toolInexorable = EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, entity.getStackInHand(entity.getActiveHand())) > 0;
 
-		var armorAttributes = Registry.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_ARMOR_EFFECTIVE);
-		var toolAttributes = Registry.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_HANDHELD_EFFECTIVE);
+		var armorAttributes = Registries.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_ARMOR_EFFECTIVE);
+		var toolAttributes = Registries.ATTRIBUTE.getEntryList(SpectrumMiscTags.INEXORABLE_HANDHELD_EFFECTIVE);
 
 		if (armorInexorable && armorAttributes.isPresent()) {
 			for (RegistryEntry<EntityAttribute> attributeRegistryEntry : armorAttributes.get()) {

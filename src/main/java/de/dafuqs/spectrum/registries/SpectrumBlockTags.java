@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.*;
 import net.minecraft.block.*;
-import net.minecraft.tag.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.tag.*;
+import net.minecraft.registry.*;
 
 public class SpectrumBlockTags {
 	
@@ -61,7 +61,7 @@ public class SpectrumBlockTags {
 	
 	
 	private static TagKey<Block> getReference(String id) {
-		return TagKey.of(Registry.BLOCK_KEY, SpectrumCommon.locate(id));
+		return TagKey.of(Registries.BLOCK.getKey(), SpectrumCommon.locate(id));
 	}
 	
 }

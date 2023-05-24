@@ -3,10 +3,11 @@ package de.dafuqs.spectrum.features;
 import com.mojang.serialization.*;
 import com.mojang.serialization.codecs.*;
 import net.minecraft.block.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.entry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.stateprovider.*;
 
@@ -17,7 +18,7 @@ public record GroundPatchFeatureConfig(TagKey<Block> replaceable, BlockStateProv
                                        float extraEdgeColumnChance) implements FeatureConfig {
     
     public static final Codec<GroundPatchFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-            TagKey.codec(Registry.BLOCK_KEY).fieldOf("replaceable").forGetter((config) -> config.replaceable),
+            TagKey.codec(RegistryKeys.BLOCK).fieldOf("replaceable").forGetter((config) -> config.replaceable),
             BlockStateProvider.TYPE_CODEC.fieldOf("ground_state").forGetter((config) -> config.groundState),
             PlacedFeature.REGISTRY_CODEC.fieldOf("vegetation_feature").forGetter((config) -> config.vegetationFeature),
             VerticalSurfaceType.CODEC.fieldOf("surface").forGetter((config) -> config.surface),

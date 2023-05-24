@@ -7,6 +7,7 @@ import net.minecraft.client.render.entity.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
+import org.joml.Vector3f;
 
 public class LightMineEntityRenderer extends EntityRenderer<LightMineEntity> {
     
@@ -25,7 +26,7 @@ public class LightMineEntityRenderer extends EntityRenderer<LightMineEntity> {
         var scaleFactor = MathHelper.sin((age + tickDelta) / 8F) / 6F + mine.getScaleOffset();
         
         matrices.multiply(this.dispatcher.getRotation());
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180f));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180f));
         matrices.scale(scaleFactor, scaleFactor, 1);
         matrices.translate(-0.5F, -0.5F, 0);
         
@@ -33,12 +34,12 @@ public class LightMineEntityRenderer extends EntityRenderer<LightMineEntity> {
         var matrix = matrices.peek();
         var positions = matrix.getPositionMatrix();
         var normals = matrix.getNormalMatrix();
-        
-        Vec3f color = ColorHelper.colorIntToVec(mine.getColor());
-        consumer.vertex(positions, 0, 0, 0).color(color.getX(), color.getY(), color.getZ(), alpha).texture(0, 1).overlay(OverlayTexture.DEFAULT_UV).light(LIGHT).normal(normals, 0, 1, 0).next();
-        consumer.vertex(positions, 1, 0, 0).color(color.getX(), color.getY(), color.getZ(), alpha).texture(1, 1).overlay(OverlayTexture.DEFAULT_UV).light(LIGHT).normal(normals, 0, 1, 0).next();
-        consumer.vertex(positions, 1, 1, 0).color(color.getX(), color.getY(), color.getZ(), alpha).texture(1, 0).overlay(OverlayTexture.DEFAULT_UV).light(LIGHT).normal(normals, 0, 1, 0).next();
-        consumer.vertex(positions, 0, 1, 0).color(color.getX(), color.getY(), color.getZ(), alpha).texture(0, 0).overlay(OverlayTexture.DEFAULT_UV).light(LIGHT).normal(normals, 0, 1, 0).next();
+
+        Vector3f color = ColorHelper.colorIntToVec(mine.getColor());
+        consumer.vertex(positions, 0, 0, 0).color(color.x(), color.y(), color.z(), alpha).texture(0, 1).overlay(OverlayTexture.DEFAULT_UV).light(LIGHT).normal(normals, 0, 1, 0).next();
+        consumer.vertex(positions, 1, 0, 0).color(color.x(), color.y(), color.z(), alpha).texture(1, 1).overlay(OverlayTexture.DEFAULT_UV).light(LIGHT).normal(normals, 0, 1, 0).next();
+        consumer.vertex(positions, 1, 1, 0).color(color.x(), color.y(), color.z(), alpha).texture(1, 0).overlay(OverlayTexture.DEFAULT_UV).light(LIGHT).normal(normals, 0, 1, 0).next();
+        consumer.vertex(positions, 0, 1, 0).color(color.x(), color.y(), color.z(), alpha).texture(0, 0).overlay(OverlayTexture.DEFAULT_UV).light(LIGHT).normal(normals, 0, 1, 0).next();
         
         matrices.pop();
         

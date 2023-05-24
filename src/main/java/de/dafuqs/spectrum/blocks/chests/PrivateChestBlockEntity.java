@@ -53,7 +53,7 @@ public class PrivateChestBlockEntity extends SpectrumChestBlockEntity implements
 		world.updateNeighborsAlways(pos.down(), state.getBlock());
 		
 		if (wasRecentlyTriedToOpenByNonOwner()) {
-			world.createAndScheduleBlockTick(pos, state.getBlock(), 10);
+			world.scheduleBlockTick(pos, state.getBlock(), 10);
 		}
 	}
 	

@@ -6,7 +6,7 @@ import net.minecraft.entity.*;
 import net.minecraft.fluid.*;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;

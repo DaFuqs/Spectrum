@@ -8,6 +8,7 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
+import net.minecraft.world.tick.TickPriority;
 
 import java.util.*;
 
@@ -29,7 +30,7 @@ public class DecayPlacerItem extends AliasedBlockItem {
 			
 			BlockState placedBlockState = context.getWorld().getBlockState(blockPos);
 			if (placedBlockState.isIn(SpectrumBlockTags.DECAY)) {
-				context.getWorld().createAndScheduleBlockTick(blockPos, placedBlockState.getBlock(), 40 + context.getWorld().random.nextInt(200), TickPriority.EXTREMELY_LOW);
+				context.getWorld().scheduleBlockTick(blockPos, placedBlockState.getBlock(), 40 + context.getWorld().random.nextInt(200), TickPriority.EXTREMELY_LOW);
 			}
 		}
 		if (!context.getWorld().isClient && actionResult.isAccepted() && context.getPlayer() != null && !context.getPlayer().isCreative()) {

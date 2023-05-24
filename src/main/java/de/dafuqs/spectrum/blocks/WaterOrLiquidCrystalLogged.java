@@ -29,11 +29,11 @@ public interface WaterOrLiquidCrystalLogged extends Waterloggable {
 			if (!world.isClient()) {
 				if (fluidState.getFluid() == Fluids.WATER) {
 					world.setBlockState(pos, state.with(FLUIDLOGGED, 1), 3);
-					world.createAndScheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
+					world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
 					
 				} else if (fluidState.getFluid() == SpectrumFluids.LIQUID_CRYSTAL) {
 					world.setBlockState(pos, state.with(FLUIDLOGGED, 2), 3);
-					world.createAndScheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
+					world.scheduleFluidTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(world));
 				}
 			}
 			

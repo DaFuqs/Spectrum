@@ -7,7 +7,7 @@ import net.minecraft.item.*;
 import net.minecraft.resource.*;
 import net.minecraft.util.*;
 import net.minecraft.util.profiler.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 import java.util.*;
 
@@ -27,8 +27,8 @@ public class ResonanceDropsDataLoader extends JsonDataLoader implements Identifi
 		RESONANCE_DROPS.clear();
 		prepared.forEach((identifier, jsonElement) -> {
 			JsonObject jsonObject = jsonElement.getAsJsonObject();
-			Item itemIn = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "input")));
-			Item itemOut = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "output")));
+			Item itemIn = Registries.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "input")));
+			Item itemOut = Registries.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "output")));
 			
 			if (itemIn != Items.AIR && itemOut != Items.AIR) {
 				RESONANCE_DROPS.put(itemIn, itemOut);

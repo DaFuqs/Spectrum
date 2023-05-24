@@ -21,7 +21,7 @@ import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -41,7 +41,7 @@ public class SpectrumS2CPacketSender {
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);
 		buf.writeDouble(position.z);
-		buf.writeIdentifier(Registry.PARTICLE_TYPE.getId(particleEffect.getType()));
+		buf.writeIdentifier(Registries.PARTICLE_TYPE.getId(particleEffect.getType()));
 		buf.writeInt(amount);
 		buf.writeDouble(randomOffset.x);
 		buf.writeDouble(randomOffset.y);
@@ -51,7 +51,7 @@ public class SpectrumS2CPacketSender {
 		buf.writeDouble(randomVelocity.z);
 		
 		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_WITH_RANDOM_OFFSET_AND_VELOCITY, buf);
 		}
 	}
@@ -79,14 +79,14 @@ public class SpectrumS2CPacketSender {
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);
 		buf.writeDouble(position.z);
-		buf.writeIdentifier(Registry.PARTICLE_TYPE.getId(particleEffect.getType()));
+		buf.writeIdentifier(Registries.PARTICLE_TYPE.getId(particleEffect.getType()));
 		buf.writeInt(amount);
 		buf.writeDouble(velocity.x);
 		buf.writeDouble(velocity.y);
 		buf.writeDouble(velocity.z);
 		
 		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_WITH_EXACT_VELOCITY, buf);
 		}
 	}
@@ -103,12 +103,12 @@ public class SpectrumS2CPacketSender {
 		buf.writeDouble(position.x);
 		buf.writeDouble(position.y);
 		buf.writeDouble(position.z);
-		buf.writeIdentifier(Registry.PARTICLE_TYPE.getId(particleEffect.getType()));
+		buf.writeIdentifier(Registries.PARTICLE_TYPE.getId(particleEffect.getType()));
 		buf.writeInt(pattern.ordinal());
 		buf.writeDouble(velocity);
 		
 		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(world, new BlockPos(position))) {
+		for (ServerPlayerEntity player : PlayerLookup.tracking(world, BlockPos.ofFloored(position))) {
 			if (!player.equals(notThisPlayerEntity)) {
 				ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PARTICLE_PACKET_WITH_PATTERN_AND_VELOCITY_ID, buf);
 			}
@@ -170,7 +170,7 @@ public class SpectrumS2CPacketSender {
 	}
 	
 	public static void playColorTransmissionParticle(ServerWorld world, @NotNull ColoredTransmission transfer) {
-		BlockPos blockPos = new BlockPos(transfer.getOrigin());
+		BlockPos blockPos = BlockPos.ofFloored(transfer.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
 		ColoredTransmission.writeToBuf(buf, transfer);
@@ -181,7 +181,7 @@ public class SpectrumS2CPacketSender {
 	}
 	
 	public static void playTransmissionParticle(ServerWorld world, @NotNull TypedTransmission transmission) {
-		BlockPos blockPos = new BlockPos(transmission.getOrigin());
+		BlockPos blockPos = BlockPos.ofFloored(transmission.getOrigin());
 		
 		PacketByteBuf buf = PacketByteBufs.create();
 		TypedTransmission.writeToBuf(buf, transmission);
@@ -193,8 +193,8 @@ public class SpectrumS2CPacketSender {
 	
 	public static void sendPlayBlockBoundSoundInstance(SoundEvent soundEvent, @NotNull ServerWorld world, BlockPos blockPos, int maxDurationTicks) {
 		PacketByteBuf buf = PacketByteBufs.create();
-		buf.writeIdentifier(Registry.SOUND_EVENT.getId(soundEvent));
-		buf.writeIdentifier(Registry.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
+		buf.writeIdentifier(Registries.SOUND_EVENT.getId(soundEvent));
+		buf.writeIdentifier(Registries.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
 		buf.writeBlockPos(blockPos);
 		buf.writeInt(maxDurationTicks);
 		
@@ -212,7 +212,7 @@ public class SpectrumS2CPacketSender {
 	public static void sendCancelBlockBoundSoundInstance(@NotNull ServerWorld world, BlockPos blockPos) {
 		PacketByteBuf buf = PacketByteBufs.create();
 		buf.writeIdentifier(new Identifier("stop"));
-		buf.writeIdentifier(Registry.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
+		buf.writeIdentifier(Registries.BLOCK.getId(world.getBlockState(blockPos).getBlock()));
 		buf.writeBlockPos(blockPos);
 		buf.writeInt(1);
 		
@@ -324,7 +324,7 @@ public class SpectrumS2CPacketSender {
 		packetByteBuf.writeFloat(potency);
 		
 		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, new BlockPos(effectPos))) {
+		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, BlockPos.ofFloored(effectPos))) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_INK_EFFECT_PARTICLES, packetByteBuf);
 		}
 	}
@@ -339,7 +339,7 @@ public class SpectrumS2CPacketSender {
 		}
 		
 		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, new BlockPos(pos))) {
+		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, pos)) {
 			ServerPlayNetworking.send(player, SpectrumS2CPackets.PLAY_PRESENT_OPENING_PARTICLES, packetByteBuf);
 		}
 	}
@@ -356,7 +356,7 @@ public class SpectrumS2CPacketSender {
 
 	public static void sendMoonstoneBlast(ServerWorld serverWorld, MoonstoneStrike moonstoneStrike) {
 		// Iterate over all players tracking a position in the world and send the packet to each player
-		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, new BlockPos(moonstoneStrike.getX(), moonstoneStrike.getY(), moonstoneStrike.getZ()))) {
+		for (ServerPlayerEntity player : PlayerLookup.tracking(serverWorld, BlockPos.ofFloored(moonstoneStrike.getX(), moonstoneStrike.getY(), moonstoneStrike.getZ()))) {
 			Vec3d playerVelocity = moonstoneStrike.getAffectedPlayers().getOrDefault(player, Vec3d.ZERO);
 
 			PacketByteBuf buf = PacketByteBufs.create();

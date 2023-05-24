@@ -35,9 +35,10 @@ import net.minecraft.resource.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
+import org.joml.*;
 
 import java.util.*;
 
@@ -107,7 +108,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 
 		ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
 			if (!foodEffectsTooltipsModLoaded && stack.isFood()) {
-				if (Registry.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+				if (Registries.ITEM.getId(stack.getItem()).getNamespace().equals(SpectrumCommon.MOD_ID)) {
 					TooltipHelper.addFoodComponentEffectTooltip(stack, lines);
 				}
 			}
@@ -164,7 +165,7 @@ public class SpectrumClient implements ClientModInitializer, RevealingCallback, 
 	public void trigger(Set<Identifier> advancements, Set<Block> blocks, Set<Item> items, boolean isJoinPacket) {
 		if (!isJoinPacket) {
 			for (Block block : blocks) {
-				if (Registry.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
+				if (Registries.BLOCK.getId(block).getNamespace().equals(SpectrumCommon.MOD_ID)) {
 					RevelationToast.showRevelationToast(MinecraftClient.getInstance(), new ItemStack(SpectrumBlocks.PEDESTAL_BASIC_AMETHYST.asItem()), SpectrumSoundEvents.NEW_REVELATION);
 					break;
 				}

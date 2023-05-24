@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries;
 import de.dafuqs.spectrum.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumSoundEvents {
 	
@@ -176,7 +176,7 @@ public class SpectrumSoundEvents {
 	
 	private static SoundEvent register(String id) {
 		Identifier identifier = SpectrumCommon.locate(id);
-		return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));
+		return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));
 	}
 	
 	public static void register() {

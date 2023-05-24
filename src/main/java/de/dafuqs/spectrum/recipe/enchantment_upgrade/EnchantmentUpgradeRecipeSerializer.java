@@ -8,9 +8,9 @@ import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +37,11 @@ public class EnchantmentUpgradeRecipeSerializer implements GatedRecipeSerializer
 		
 		Identifier enchantmentIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "enchantment"));
 		
-		if (!Registry.ENCHANTMENT.containsId(enchantmentIdentifier)) {
+		if (!Registries.ENCHANTMENT.containsId(enchantmentIdentifier)) {
 			throw new JsonParseException("Enchantment Upgrade Recipe " + identifier + " has an enchantment set that does not exist or is disabled: " + enchantmentIdentifier); // otherwise, recipe sync would break multiplayer joining with the non-existing enchantment
 		}
 		
-		Enchantment enchantment = Registry.ENCHANTMENT.get(enchantmentIdentifier);
+		Enchantment enchantment = Registries.ENCHANTMENT.get(enchantmentIdentifier);
 		
 		JsonArray levelArray = JsonHelper.getArray(jsonObject, "levels");
 		int level;
@@ -53,7 +53,7 @@ public class EnchantmentUpgradeRecipeSerializer implements GatedRecipeSerializer
 			JsonObject currentElement = levelArray.get(i).getAsJsonObject();
 			level = i + 2;
 			requiredExperience = JsonHelper.getInt(currentElement, "experience");
-			requiredItem = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(currentElement, "item")));
+			requiredItem = Registries.ITEM.get(Identifier.tryParse(JsonHelper.getString(currentElement, "item")));
 			requiredItemCount = JsonHelper.getInt(currentElement, "item_count");
 			
 			recipe = this.recipeFactory.create(SpectrumCommon.locate(identifier.getPath() + "_level_" + (i + 2)), group, secret, requiredAdvancementIdentifier, enchantment, level, requiredExperience, requiredItem, requiredItemCount);
@@ -71,10 +71,10 @@ public class EnchantmentUpgradeRecipeSerializer implements GatedRecipeSerializer
 		packetByteBuf.writeBoolean(recipe.secret);
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
-		packetByteBuf.writeIdentifier(Registry.ENCHANTMENT.getId(recipe.enchantment));
+		packetByteBuf.writeIdentifier(Registries.ENCHANTMENT.getId(recipe.enchantment));
 		packetByteBuf.writeInt(recipe.enchantmentDestinationLevel);
 		packetByteBuf.writeInt(recipe.requiredExperience);
-		packetByteBuf.writeIdentifier(Registry.ITEM.getId(recipe.requiredItem));
+		packetByteBuf.writeIdentifier(Registries.ITEM.getId(recipe.requiredItem));
 		packetByteBuf.writeInt(recipe.requiredItemCount);
 	}
 	
@@ -84,10 +84,10 @@ public class EnchantmentUpgradeRecipeSerializer implements GatedRecipeSerializer
 		boolean secret = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
 		
-		Enchantment enchantment = Registry.ENCHANTMENT.get(packetByteBuf.readIdentifier());
+		Enchantment enchantment = Registries.ENCHANTMENT.get(packetByteBuf.readIdentifier());
 		int enchantmentDestinationLevel = packetByteBuf.readInt();
 		int requiredExperience = packetByteBuf.readInt();
-		Item requiredItem = Registry.ITEM.get(packetByteBuf.readIdentifier());
+		Item requiredItem = Registries.ITEM.get(packetByteBuf.readIdentifier());
 		int requiredItemCount = packetByteBuf.readInt();
 		
 		return this.recipeFactory.create(identifier, group, secret, requiredAdvancementIdentifier, enchantment, enchantmentDestinationLevel, requiredExperience, requiredItem, requiredItemCount);

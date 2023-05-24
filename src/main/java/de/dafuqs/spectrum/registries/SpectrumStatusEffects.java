@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.effect.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumStatusEffects {
 	
@@ -132,7 +132,7 @@ public class SpectrumStatusEffects {
 	
 	
 	private static StatusEffect registerStatusEffect(String id, StatusEffect entry) {
-		return Registry.register(Registry.STATUS_EFFECT, SpectrumCommon.locate(id), entry);
+		return Registry.register(Registries.STATUS_EFFECT, SpectrumCommon.locate(id), entry);
 	}
 	
 	public static void register() {

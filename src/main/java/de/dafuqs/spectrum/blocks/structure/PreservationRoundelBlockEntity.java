@@ -14,13 +14,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.*;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		this.requiredItems = new ArrayList<>();
 		if (nbt.contains("RequiredItems", NbtElement.LIST_TYPE)) {
 			for (NbtElement e : nbt.getList("RequiredItems", NbtElement.STRING_TYPE)) {
-				Item item = Registry.ITEM.get(Identifier.tryParse(e.asString()));
+				Item item = Registries.ITEM.get(Identifier.tryParse(e.asString()));
 				if (item != Items.AIR) {
 					this.requiredItems.add(item);
 				}
@@ -69,7 +70,7 @@ public class PreservationRoundelBlockEntity extends ItemRoundelBlockEntity imple
 		if (!this.requiredItems.isEmpty()) {
 			NbtList itemList = new NbtList();
 			for (Item requiredItem : this.requiredItems) {
-				itemList.add(NbtString.of(Registry.ITEM.getId(requiredItem).toString()));
+				itemList.add(NbtString.of(Registries.ITEM.getId(requiredItem).toString()));
 			}
 			nbt.put("RequiredItems", itemList);
 		}

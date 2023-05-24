@@ -23,6 +23,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.particle.*;
 import net.minecraft.recipe.*;
@@ -324,10 +325,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (recipe != null) {
 			ItemStack output;
 			if (recipe instanceof PedestalCraftingRecipe) {
-				output = recipe.craft(inventory);
+				output = recipe.craft(inventory, null);
 			} else {
 				autoCraftingInventory.setInputInventory(inventory, 0, 9);
-				output = recipe.craft(autoCraftingInventory);
+				output = recipe.craft(autoCraftingInventory, null);
 			}
 			if (output.isEmpty()) {
 				return false;
@@ -335,7 +336,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				ItemStack existingOutput = this.getStack(OUTPUT_SLOT_ID);
 				if (existingOutput.isEmpty()) {
 					return true;
-				} else if (!existingOutput.isItemEqualIgnoreDamage(output)) {
+				} else if (ItemStack.areItemsEqual(existingOutput, output)) {
 					return false;
 				} else if (existingOutput.getCount() < maxCountPerStack && existingOutput.getCount() < existingOutput.getMaxCount()) {
 					return true;
@@ -592,7 +593,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
 			autoCraftingInventory.setInputInventory(inventory, 0, 9);
 			
-			ItemStack recipeOutput = recipe.craft(autoCraftingInventory);
+			ItemStack recipeOutput = recipe.craft(autoCraftingInventory, null);
 			PlayerEntity player = getOwnerIfOnline();
 			if (player != null) { // some recipes may assume the player is never null (since this is the case in vanilla)
 				recipeOutput.onCraft(this.world, player, recipeOutput.getCount());
@@ -749,7 +750,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 				return pedestalCraftingRecipe.craft(this);
 			} else {
 				autoCraftingInventory.setInputInventory(this, 0, 9);
-				return this.currentRecipe.craft(autoCraftingInventory);
+				return this.currentRecipe.craft(autoCraftingInventory, null);
 			}
 		}
 	}

@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.blocks.pastel_network.*;
 import de.dafuqs.spectrum.blocks.pastel_network.nodes.*;
 import net.minecraft.nbt.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 import org.jgrapht.*;
@@ -136,7 +136,7 @@ public class ServerPastelNetwork extends PastelNetwork {
     }
 
     public static ServerPastelNetwork fromNbt(NbtCompound compound) {
-        World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(Registry.WORLD_KEY, Identifier.tryParse(compound.getString("World"))));
+        World world = SpectrumCommon.minecraftServer.getWorld(RegistryKey.of(RegistryKeys.WORLD, Identifier.tryParse(compound.getString("World"))));
         UUID uuid = compound.getUuid("UUID");
         ServerPastelNetwork network = new ServerPastelNetwork(world, uuid);
 

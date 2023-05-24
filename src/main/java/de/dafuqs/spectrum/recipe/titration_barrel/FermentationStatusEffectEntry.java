@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public record FermentationStatusEffectEntry(StatusEffect statusEffect, int baseD
 	
 	public static FermentationStatusEffectEntry fromJson(JsonObject jsonObject) {
 		Identifier statusEffectIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "id"));
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(statusEffectIdentifier);
 		if (statusEffect == null) {
 			SpectrumCommon.logError("Status effect " + statusEffectIdentifier + " does not exist in the status effect registry. Falling back to WEAKNESS");
 			statusEffect = StatusEffects.WEAKNESS;
@@ -55,7 +55,7 @@ public record FermentationStatusEffectEntry(StatusEffect statusEffect, int baseD
 	}
 	
 	public void write(PacketByteBuf packetByteBuf) {
-		packetByteBuf.writeString(Registry.STATUS_EFFECT.getId(this.statusEffect).toString());
+		packetByteBuf.writeString(Registries.STATUS_EFFECT.getId(this.statusEffect).toString());
 		packetByteBuf.writeInt(baseDuration);
 		packetByteBuf.writeInt(this.potencyEntries.size());
 		for (StatusEffectPotencyEntry potencyEntry : this.potencyEntries) {
@@ -65,7 +65,7 @@ public record FermentationStatusEffectEntry(StatusEffect statusEffect, int baseD
 	
 	public static FermentationStatusEffectEntry read(PacketByteBuf packetByteBuf) {
 		Identifier statusEffectIdentifier = Identifier.tryParse(packetByteBuf.readString());
-		StatusEffect statusEffect = Registry.STATUS_EFFECT.get(statusEffectIdentifier);
+		StatusEffect statusEffect = Registries.STATUS_EFFECT.get(statusEffectIdentifier);
 		int baseDuration = packetByteBuf.readInt();
 		int potencyEntryCount = packetByteBuf.readInt();
 		List<StatusEffectPotencyEntry> potencyEntries = new ArrayList<>(potencyEntryCount);

@@ -7,8 +7,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.server.world.*;
-import net.minecraft.tag.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
@@ -51,7 +51,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
 		if (!world.isClient) {
-			world.createAndScheduleBlockTick(pos, state.getBlock(), 4);
+			world.scheduleBlockTick(pos, state.getBlock(), 4);
 		}
 	}
 	
@@ -158,7 +158,7 @@ public class BlockFlooderBlock extends BlockWithEntity {
 				if (targetState == null || targetState.isAir()) {
 					boolean scheduleUpdate = calculateTargetBlockAndPropagate(state, world, pos, world.getRandom());
 					if (scheduleUpdate) {
-						world.createAndScheduleBlockTick(pos, state.getBlock(), 2 + random.nextInt(5));
+						world.scheduleBlockTick(pos, state.getBlock(), 2 + random.nextInt(5));
 					}
 				} else {
 					world.setBlockState(pos, targetState, 3);

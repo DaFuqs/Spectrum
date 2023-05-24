@@ -10,6 +10,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.network.listener.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.screen.*;
 import net.minecraft.server.network.*;
@@ -17,6 +18,7 @@ import net.minecraft.text.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+import org.joml.Vector3f;
 
 public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory {
 	
@@ -31,10 +33,20 @@ public class ParticleSpawnerBlockEntity extends BlockEntity implements ExtendedS
 		super(blockEntityType, blockPos, blockState);
 		
 		this.configuration = new ParticleSpawnerConfiguration(
-				SpectrumParticleTypes.SHOOTING_STAR, new Vec3i(80, 40, 0), false, 10.0F,
-				new Vec3f(0.0F, 1.0F, 0.0F), new Vec3f(0, 0.0F, 0),
-				new Vec3f(0.0F, 0.1F, 0), new Vec3f(0.1F, 0.1F, 0.1F),
-				1.0F, 0.2F, 20, 10, 0.02F, true);
+				SpectrumParticleTypes.SHOOTING_STAR,
+				new Vec3i(80, 40, 0),
+				false,
+				10.0F,
+				new Vector3f(0.0F, 1.0F, 0.0F),
+				new Vector3f(0, 0.0F, 0),
+				new Vector3f(0.0F, 0.1F, 0),
+				new Vector3f(0.1F, 0.1F, 0.1F),
+				1.0F,
+				0.2F,
+				20,
+				10,
+				0.02F,
+				true);
 	}
 	
 	public static void clientTick(World world, BlockPos pos, BlockState state, ParticleSpawnerBlockEntity blockEntity) {

@@ -66,6 +66,7 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.property.Properties;
@@ -73,7 +74,7 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.intprovider.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
 import net.minecraft.world.gen.feature.*;
@@ -176,8 +177,10 @@ public class SpectrumBlocks {
 	public static final Block ANCIENT_CHISELED_POLISHED_BLACKSLAG = new Block(AbstractBlock.Settings.copy(COBBLED_BLACKSLAG).sounds(BlockSoundGroup.DEEPSLATE_BRICKS));
 	public static final Block CRACKED_BLACKSLAG_BRICKS = new Block(AbstractBlock.Settings.copy(BLACKSLAG_BRICKS));
 	public static final Block CRACKED_BLACKSLAG_TILES = new Block(AbstractBlock.Settings.copy(BLACKSLAG_TILES));
-	public static final Block POLISHED_BLACKSLAG_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
-	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
+	// TODO - Handle BlockSetTypes
+	public static final Block POLISHED_BLACKSLAG_BUTTON = new ButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F), BlockSetType.SPRUCE, 5, false);
+	// TODO - Handle BlockSetTypes
+	public static final Block POLISHED_BLACKSLAG_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F), BlockSetType.SPRUCE);
 	
 	
 	public static final Block SHALE_CLAY = new PillarBlock(AbstractBlock.Settings.copy(BLACKSLAG).sounds(BlockSoundGroup.MUD_BRICKS));
@@ -259,8 +262,10 @@ public class SpectrumBlocks {
 	public static final Block BASALT_TILE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block BASALT_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(BASALT_TILES));
 	public static final Block CRACKED_BASALT_BRICKS = new Block(FabricBlockSettings.copyOf(BASALT_BRICKS));
-	public static final Block POLISHED_BASALT_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
-	public static final Block POLISHED_BASALT_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
+	// TODO - Handle BlockSetTypes
+	public static final Block POLISHED_BASALT_BUTTON = new ButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F), BlockSetType.SPRUCE, 5, false);
+	// TODO - Handle BlockSetTypes
+	public static final Block POLISHED_BASALT_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F), BlockSetType.SPRUCE);
 	
 	public static final Block CALCITE_SLAB = new SlabBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
 	public static final Block CALCITE_WALL = new WallBlock(FabricBlockSettings.copyOf(Blocks.CALCITE));
@@ -291,8 +296,10 @@ public class SpectrumBlocks {
 	public static final Block CALCITE_TILE_WALL = new WallBlock(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CRACKED_CALCITE_TILES = new Block(FabricBlockSettings.copyOf(CALCITE_TILES));
 	public static final Block CRACKED_CALCITE_BRICKS = new Block(FabricBlockSettings.copyOf(CALCITE_BRICKS));
-	public static final Block POLISHED_CALCITE_BUTTON = new StoneButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F));
-	public static final Block POLISHED_CALCITE_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F));
+	// TODO - Handle BlockSetTypes
+	public static final Block POLISHED_CALCITE_BUTTON = new ButtonBlock(AbstractBlock.Settings.of(Material.DECORATION).noCollision().strength(0.5F), BlockSetType.SPRUCE, 5, false);
+	// TODO - Handle BlockSetTypes
+	public static final Block POLISHED_CALCITE_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.MOBS, AbstractBlock.Settings.of(Material.STONE, MapColor.BLACK).requiresTool().noCollision().strength(0.5F), BlockSetType.SPRUCE);
 	
 	// GEMSTONE LAMPS
 	public static final Block TOPAZ_CALCITE_LAMP = new Block(FabricBlockSettings.copyOf(POLISHED_BASALT).luminance(15).nonOpaque());
@@ -515,10 +522,6 @@ public class SpectrumBlocks {
 		return AbstractBlock.Settings.of(Material.PLANT, color).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS);
 	}
 	
-	private static RegistryEntry<ConfiguredFeature<?, ?>> getConfiguredFeatureRegistryEntry(String id) {
-		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate(id)));
-	}
-	
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
 	
 	//DD FLORA
@@ -527,10 +530,10 @@ public class SpectrumBlocks {
 	public static final Block OVERGROWN_BLACKSLAG = new SpectrumSpreadableBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly(), null, BLACKSLAG.getDefaultState());
 	public static final Block ROTTEN_GROUND = new RottenGroundBlock(AbstractBlock.Settings.copy(Blocks.MUD).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
 	
-	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), () -> getConfiguredFeatureRegistryEntry("noxfungi/slate"));
-	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), () -> getConfiguredFeatureRegistryEntry("noxfungi/ebony"));
-	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), () -> getConfiguredFeatureRegistryEntry("noxfungi/ivory"));
-	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.DULL_RED), () -> getConfiguredFeatureRegistryEntry("noxfungi/chestnut"));
+	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), locate("noxfungi/slate"));
+	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), locate("noxfungi/ebony"));
+	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), locate("noxfungi/ivory"));
+	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.DULL_RED), locate("noxfungi/chestnut"));
 	
 	public static final PillarBlock STRIPPED_SLATE_NOXCAP_STEM = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final PillarBlock SLATE_NOXCAP_STEM = new StrippingLootPillarBlock(noxcap(MapColor.GRAY), STRIPPED_SLATE_NOXCAP_STEM, SpectrumCommon.locate("gameplay/stripping/slate_noxcap_stripping"));
@@ -540,11 +543,16 @@ public class SpectrumBlocks {
 	public static final StairsBlock SLATE_NOXWOOD_STAIRS = new StairsBlock(SLATE_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.GRAY));
 	public static final SlabBlock SLATE_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.GRAY));
 	public static final FenceBlock SLATE_NOXWOOD_FENCE = new FenceBlock(noxcap(MapColor.GRAY));
-	public static final FenceGateBlock SLATE_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block SLATE_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.GRAY));
-	public static final Block SLATE_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.GRAY));
-	public static final Block SLATE_NOXWOOD_BUTTON = new WoodenButtonBlock(noxcap(MapColor.GRAY));
-	public static final Block SLATE_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.GRAY));
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final FenceGateBlock SLATE_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), WoodType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block SLATE_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.GRAY), BlockSetType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block SLATE_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.GRAY), BlockSetType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block SLATE_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.GRAY), BlockSetType.SPRUCE, 5, true);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block SLATE_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.GRAY), BlockSetType.SPRUCE);
 	public static final Block SLATE_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.GRAY));
 	public static final Block SLATE_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.GRAY).luminance(LIT_PROVIDER));
@@ -559,11 +567,16 @@ public class SpectrumBlocks {
 	public static final StairsBlock EBONY_NOXWOOD_STAIRS = new StairsBlock(EBONY_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final SlabBlock EBONY_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final FenceBlock EBONY_NOXWOOD_FENCE = new FenceBlock(noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final FenceGateBlock EBONY_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block EBONY_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final Block EBONY_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final Block EBONY_NOXWOOD_BUTTON = new WoodenButtonBlock(noxcap(MapColor.TERRACOTTA_BLACK));
-	public static final Block EBONY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.TERRACOTTA_BLACK));
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final FenceGateBlock EBONY_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), WoodType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block EBONY_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.TERRACOTTA_BLACK), BlockSetType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block EBONY_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.TERRACOTTA_BLACK), BlockSetType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block EBONY_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.TERRACOTTA_BLACK), BlockSetType.SPRUCE, 5, true);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block EBONY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.TERRACOTTA_BLACK), BlockSetType.SPRUCE);
 	public static final Block EBONY_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.TERRACOTTA_BLACK));
 	public static final Block EBONY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.TERRACOTTA_BLACK).luminance(LIT_PROVIDER));
@@ -578,11 +591,16 @@ public class SpectrumBlocks {
 	public static final StairsBlock IVORY_NOXWOOD_STAIRS = new StairsBlock(IVORY_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.OFF_WHITE));
 	public static final SlabBlock IVORY_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.OFF_WHITE));
 	public static final FenceBlock IVORY_NOXWOOD_FENCE = new FenceBlock(noxcap(MapColor.OFF_WHITE));
-	public static final FenceGateBlock IVORY_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block IVORY_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.OFF_WHITE));
-	public static final Block IVORY_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.OFF_WHITE));
-	public static final Block IVORY_NOXWOOD_BUTTON = new WoodenButtonBlock(noxcap(MapColor.OFF_WHITE));
-	public static final Block IVORY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.OFF_WHITE));
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final FenceGateBlock IVORY_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), WoodType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block IVORY_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.OFF_WHITE), BlockSetType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block IVORY_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.OFF_WHITE), BlockSetType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block IVORY_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.OFF_WHITE), BlockSetType.SPRUCE, 5, true);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block IVORY_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.OFF_WHITE), BlockSetType.SPRUCE);
 	public static final Block IVORY_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.OFF_WHITE));
 	public static final Block IVORY_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.OFF_WHITE).luminance(LIT_PROVIDER));
@@ -597,11 +615,16 @@ public class SpectrumBlocks {
 	public static final StairsBlock CHESTNUT_NOXWOOD_STAIRS = new StairsBlock(CHESTNUT_NOXWOOD_PLANKS.getDefaultState(), noxcap(MapColor.DULL_RED));
 	public static final SlabBlock CHESTNUT_NOXWOOD_SLAB = new SlabBlock(noxcap(MapColor.DULL_RED));
 	public static final FenceBlock CHESTNUT_NOXWOOD_FENCE = new FenceBlock(noxcap(MapColor.DULL_RED));
-	public static final FenceGateBlock CHESTNUT_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD));
-	public static final Block CHESTNUT_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.DULL_RED));
-	public static final Block CHESTNUT_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.DULL_RED));
-	public static final Block CHESTNUT_NOXWOOD_BUTTON = new WoodenButtonBlock(noxcap(MapColor.DULL_RED));
-	public static final Block CHESTNUT_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.DULL_RED));
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final FenceGateBlock CHESTNUT_NOXWOOD_FENCE_GATE = new FenceGateBlock(FabricBlockSettings.copyOf(Blocks.OAK_WOOD), WoodType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block CHESTNUT_NOXWOOD_DOOR = new DoorBlock(noxcap(MapColor.DULL_RED), BlockSetType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block CHESTNUT_NOXWOOD_TRAPDOOR = new TrapdoorBlock(noxcap(MapColor.DULL_RED), BlockSetType.SPRUCE);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block CHESTNUT_NOXWOOD_BUTTON = new ButtonBlock(noxcap(MapColor.DULL_RED), BlockSetType.SPRUCE, 5, true);
+	// TODO - Handle BlockSetTypes/WoodTypes
+	public static final Block CHESTNUT_NOXWOOD_PRESSURE_PLATE = new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING, noxcap(MapColor.DULL_RED), BlockSetType.SPRUCE);
 	public static final Block CHESTNUT_NOXWOOD_BEAM = new PillarBlock(noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_AMPHORA = new AmphoraBlock(noxcap(MapColor.DULL_RED));
 	public static final Block CHESTNUT_NOXWOOD_LANTERN = new RedstoneLampBlock(noxcap(MapColor.DULL_RED).luminance(LIT_PROVIDER));
@@ -627,7 +650,7 @@ public class SpectrumBlocks {
 	
 	public static final Block ALOE = new AloeBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.DARK_GREEN).hardness(1.0F).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().nonOpaque());
 	public static final Block SAWBLADE_HOLLY_BUSH = new SawbladeHollyBushBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.TERRACOTTA_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().ticksRandomly().breakInstantly().nonOpaque());
-	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly().nonOpaque().offsetType(OffsetType.XZ));
+	public static final Block BRISTLE_SPROUTS = new BristleSproutsBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly().nonOpaque().offset(OffsetType.XZ));
 	public static final Block DOOMBLOOM = new DoomBloomBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly().luminance((state) -> state.get(DoomBloomBlock.AGE) * 2).nonOpaque());
 	public static final Block SNAPPING_IVY = new SnappingIvyBlock(AbstractBlock.Settings.of(Material.PLANT, MapColor.PALE_GREEN).hardness(3.0F).noCollision().sounds(BlockSoundGroup.GRASS).nonOpaque());
 	
@@ -666,14 +689,14 @@ public class SpectrumBlocks {
 	public static final Block CRACKED_DRAGONBONE = new PillarBlock(AbstractBlock.Settings.copy(Blocks.OBSIDIAN).strength(100.0F, 1200.0F).sounds(BlockSoundGroup.BONE));
 	public static final Block DRAGONBONE = new DragonboneBlock(AbstractBlock.Settings.copy(Blocks.BEDROCK).strength(-1.0F, 50.0F).sounds(BlockSoundGroup.BONE));
 	
-	public static final Block BLACKSLAG_COAL_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COAL_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(0, 2));
-	public static final Block BLACKSLAG_COPPER_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COPPER_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
-	public static final Block BLACKSLAG_IRON_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
-	public static final Block BLACKSLAG_GOLD_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_GOLD_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
-	public static final Block BLACKSLAG_LAPIS_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 5));
-	public static final Block BLACKSLAG_DIAMOND_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(3, 7));
+	public static final Block BLACKSLAG_COAL_ORE = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COAL_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(0, 2));
+	public static final Block BLACKSLAG_COPPER_ORE = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_COPPER_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_IRON_ORE = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_IRON_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_GOLD_ORE = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_GOLD_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_LAPIS_ORE = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_LAPIS_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 5));
+	public static final Block BLACKSLAG_DIAMOND_ORE = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(3, 7));
 	public static final Block BLACKSLAG_REDSTONE_ORE = new RedstoneOreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_REDSTONE_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
-	public static final Block BLACKSLAG_EMERALD_ORE = new OreBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_EMERALD_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
+	public static final Block BLACKSLAG_EMERALD_ORE = new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_EMERALD_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE));
 	public static final Block BLACKSLAG_SHIMMERSTONE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_SHIMMERSTONE_ORE).strength(6.0F, 5.0F).sounds(BlockSoundGroup.DEEPSLATE), UniformIntProvider.create(2, 4), locate("milestones/reveal_shimmerstone"), BLACKSLAG.getDefaultState());
 	public static final Block BLACKSLAG_MALACHITE_ORE = new CloakedOreBlock(FabricBlockSettings.copyOf(DEEPSLATE_MALACHITE_ORE), UniformIntProvider.create(7, 11), locate("milestones/reveal_malachite"), BLACKSLAG.getDefaultState());
 	
@@ -691,7 +714,7 @@ public class SpectrumBlocks {
 	public static final Block BLAZING_CRYSTAL = new Block(FabricBlockSettings.copyOf(Blocks.GLOWSTONE));
 	
 	public static final Block RESONANT_LILY = new FlowerBlock(StatusEffects.INSTANT_HEALTH, 5, FabricBlockSettings.copyOf(Blocks.POPPY));
-	public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).offsetType(AbstractBlock.OffsetType.XYZ).ticksRandomly());
+	public static final Block QUITOXIC_REEDS = new QuitoxicReedsBlock(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS).offset(AbstractBlock.OffsetType.XYZ).ticksRandomly());
 	public static final Block MERMAIDS_BRUSH = new MermaidsBrushBlock(FabricBlockSettings.of(Material.REPLACEABLE_UNDERWATER_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.WET_GRASS).ticksRandomly().luminance(value -> 3));
 	public static final Block RADIATING_ENDER = new RadiatingEnderBlock(FabricBlockSettings.copyOf(Blocks.EMERALD_BLOCK));
 	public static final Block AMARANTH = new AmaranthCropBlock(FabricBlockSettings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
@@ -749,9 +772,9 @@ public class SpectrumBlocks {
 			.allowsSpawning((state, world, pos, entityType) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
 			.solidBlock(SpectrumBlocks::never).suffocates((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID)
 			.blockVision((state, world, pos) -> state.get(RedstoneTransparencyBlock.TRANSPARENCY_STATE) == RedstoneTransparencyBlock.TransparencyState.SOLID));
-	public static final Block CLOVER = new CloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS).offsetType(AbstractBlock.OffsetType.XZ));
-	public static final Block FOUR_LEAF_CLOVER = new FourLeafCloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS).offsetType(AbstractBlock.OffsetType.XZ));
-	public static final Block BLOOD_ORCHID = new BloodOrchidBlock(StatusEffects.BAD_OMEN, 10, FabricBlockSettings.copyOf(Blocks.POPPY).offsetType(AbstractBlock.OffsetType.NONE).ticksRandomly());
+	public static final Block CLOVER = new CloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS).offset(AbstractBlock.OffsetType.XZ));
+	public static final Block FOUR_LEAF_CLOVER = new FourLeafCloverBlock(FabricBlockSettings.copyOf(Blocks.GRASS).offset(AbstractBlock.OffsetType.XZ));
+	public static final Block BLOOD_ORCHID = new BloodOrchidBlock(StatusEffects.BAD_OMEN, 10, FabricBlockSettings.copyOf(Blocks.POPPY).offset(AbstractBlock.OffsetType.NONE).ticksRandomly());
 	
 	private static final FabricBlockSettings gemOreBlockSettings = FabricBlockSettings.copyOf(Blocks.IRON_ORE).requiresTool();
 	private static final UniformIntProvider gemOreExperienceProvider = UniformIntProvider.create(1, 4);
@@ -1060,7 +1083,7 @@ public class SpectrumBlocks {
 	public static final Block CAT_MOB_BLOCK = new FallDamageNegatingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CAT_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT);
 	public static final Block CHICKEN_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CHICKEN_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT, StatusEffects.SLOW_FALLING, 0, 100);
 	public static final Block COW_MOB_BLOCK = new MilkingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.COW_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT, 6);
-	public static final Block CREEPER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CREEPER_MOB_BLOCK), ParticleTypes.EXPLOSION, 3, false, Explosion.DestructionType.BREAK);
+	public static final Block CREEPER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.CREEPER_MOB_BLOCK), ParticleTypes.EXPLOSION, 3, false, Explosion.DestructionType.DESTROY);
 	public static final Block ENDER_DRAGON_MOB_BLOCK = new ProjectileMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ENDER_DRAGON_MOB_BLOCK), ParticleTypes.DRAGON_BREATH, EntityType.DRAGON_FIREBALL, SoundEvents.ENTITY_ENDER_DRAGON_SHOOT, 6.0F, 1.1F) {
 		@Override
 		public ProjectileEntity createProjectile(ServerWorld world, BlockPos mobBlockPos, Position position, Direction side) {
@@ -1143,7 +1166,7 @@ public class SpectrumBlocks {
 	public static final Block STRIDER_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.STRIDER_MOB_BLOCK), ParticleTypes.DRIPPING_LAVA, StatusEffects.FIRE_RESISTANCE, 0, 200);
 	public static final Block TURTLE_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.TURTLE_MOB_BLOCK), ParticleTypes.DRIPPING_WATER, StatusEffects.RESISTANCE, 1, 200);
 	public static final Block WITCH_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITCH_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT, StatusEffects.WEAKNESS, 0, 200);
-	public static final Block WITHER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_MOB_BLOCK), ParticleTypes.EXPLOSION, 7.0F, true, Explosion.DestructionType.BREAK);
+	public static final Block WITHER_MOB_BLOCK = new ExplosionMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_MOB_BLOCK), ParticleTypes.EXPLOSION, 7.0F, true, Explosion.DestructionType.DESTROY);
 	public static final Block WITHER_SKELETON_MOB_BLOCK = new StatusEffectMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.WITHER_SKELETON_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT, StatusEffects.WITHER, 0, 100);
 	public static final Block ZOMBIE_MOB_BLOCK = new VillagerConvertingMobBlock(FabricBlockSettings.copyOf(mobBlockSettings).sounds(SpectrumBlockSoundGroups.ZOMBIE_MOB_BLOCK), ParticleTypes.ENCHANTED_HIT);
 	
@@ -1160,24 +1183,24 @@ public class SpectrumBlocks {
 	}
 	
 	static void registerBlock(String name, Block block) {
-		Registry.register(Registry.BLOCK, locate(name), block);
+		Registry.register(Registries.BLOCK, locate(name), block);
 	}
 	
 	static void registerBlockItem(String name, BlockItem blockItem, DyeColor dyeColor) {
-		Registry.register(Registry.ITEM, locate(name), blockItem);
+		Registry.register(Registries.ITEM, locate(name), blockItem);
 		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 	
 	static void registerBlockWithItem(String name, Block block, FabricItemSettings itemSettings, DyeColor dyeColor) {
-		Registry.register(Registry.BLOCK, locate(name), block);
+		Registry.register(Registries.BLOCK, locate(name), block);
 		BlockItem blockItem = new BlockItem(block, itemSettings);
-		Registry.register(Registry.ITEM, locate(name), blockItem);
+		Registry.register(Registries.ITEM, locate(name), blockItem);
 		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 	
 	static void registerBlockWithItem(String name, Block block, BlockItem blockItem, DyeColor dyeColor) {
-		Registry.register(Registry.BLOCK, locate(name), block);
-		Registry.register(Registry.ITEM, locate(name), blockItem);
+		Registry.register(Registries.BLOCK, locate(name), block);
+		Registry.register(Registries.ITEM, locate(name), blockItem);
 		ItemColors.ITEM_COLORS.registerColorMapping(blockItem, dyeColor);
 	}
 	

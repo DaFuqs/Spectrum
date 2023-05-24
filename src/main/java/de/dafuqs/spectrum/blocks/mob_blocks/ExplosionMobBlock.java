@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.blocks.mob_blocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.world.ServerWorld;
@@ -11,6 +10,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
 import org.jetbrains.annotations.Nullable;
@@ -40,7 +40,7 @@ public class ExplosionMobBlock extends MobBlock {
 	public boolean trigger(ServerWorld world, final BlockPos blockPos, BlockState state, @Nullable Entity entity, Direction side) {
 		// why power + 1 you ask? Since the explosion happens inside the block, some explosion power
 		// is blocked by this block itself, weakening it. So to better match the original value we have to make it a tad stronger
-		world.createExplosion(null, DamageSource.explosion((Explosion) null), new SpareBlockExplosionBehavior(blockPos), blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, this.power + 1, this.createFire, Explosion.DestructionType.DESTROY);
+		world.createExplosion(null, world.getDamageSources().explosion(entity, null), new SpareBlockExplosionBehavior(blockPos), blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5, this.power + 1, this.createFire, World.ExplosionSourceType.BLOCK);
 		return true;
 	}
 	

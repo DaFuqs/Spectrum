@@ -1,10 +1,11 @@
 package de.dafuqs.spectrum.helpers;
 
 import de.dafuqs.spectrum.SpectrumCommon;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.registry.BuiltinRegistries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
@@ -14,9 +15,11 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import java.util.List;
 
 public class WorldgenHelper {
+
+	// TODO - Refactor
 	
 	public static <C extends FeatureConfig, F extends Feature<C>> F registerFeature(String name, F feature) {
-		return Registry.register(Registry.FEATURE, SpectrumCommon.locate(name), feature);
+		return Registry.register(Registries.FEATURE, SpectrumCommon.locate(name), feature);
 	}
 	
 	public static <FC extends FeatureConfig, F extends Feature<FC>> RegistryEntry<ConfiguredFeature<FC, ?>> registerConfiguredFeature(Identifier identifier, F feature, FC featureConfig) {

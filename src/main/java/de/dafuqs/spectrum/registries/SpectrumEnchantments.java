@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.enchantments.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumEnchantments {
 	
@@ -83,6 +83,6 @@ public class SpectrumEnchantments {
 	}
 
 	private static void register(String name, Enchantment enchantment) {
-		Registry.register(Registry.ENCHANTMENT, SpectrumCommon.locate(name), enchantment);
+		Registry.register(Registries.ENCHANTMENT, SpectrumCommon.locate(name), enchantment);
 	}
 }

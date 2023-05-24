@@ -82,7 +82,12 @@ public abstract class MudFluid extends SpectrumFluid {
 			super.appendProperties(builder);
 			builder.add(LEVEL);
 		}
-		
+
+		@Override
+		protected boolean isInfinite(World world) {
+			return false;
+		}
+
 		@Override
 		public int getLevel(FluidState fluidState) {
 			return fluidState.get(LEVEL);
@@ -96,7 +101,12 @@ public abstract class MudFluid extends SpectrumFluid {
 	}
 	
 	public static class StillMud extends MudFluid {
-		
+
+		@Override
+		protected boolean isInfinite(World world) {
+			return false;
+		}
+
 		@Override
 		public int getLevel(FluidState fluidState) {
 			return 8;

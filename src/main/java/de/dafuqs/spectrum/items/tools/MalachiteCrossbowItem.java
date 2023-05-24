@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.collection.*;
 
 import java.util.*;

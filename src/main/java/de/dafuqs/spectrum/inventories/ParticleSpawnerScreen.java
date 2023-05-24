@@ -21,6 +21,7 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
+import org.joml.Vector3f;
 import org.lwjgl.glfw.*;
 
 import java.util.*;
@@ -227,18 +228,18 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		
 		int offset = 23;
 		amountField = addTextFieldWidget(startX + 110, startY + 50 + offset, Text.literal("Particles per Second"), String.valueOf(configuration.getParticlesPerSecond()), this::isPositiveDecimalNumberUnderThousand);
-		positionXField = addTextFieldWidget(startX + 61, startY + 74 + offset, Text.literal("X Position"), String.valueOf(configuration.getSourcePosition().getX()), this::isAbsoluteDecimalNumberThousand);
-		positionYField = addTextFieldWidget(startX + 96, startY + 74 + offset, Text.literal("Y Position"), String.valueOf(configuration.getSourcePosition().getY()), this::isAbsoluteDecimalNumberThousand);
-		positionZField = addTextFieldWidget(startX + 131, startY + 74 + offset, Text.literal("Z Position"), String.valueOf(configuration.getSourcePosition().getZ()), this::isAbsoluteDecimalNumberThousand);
-		positionXVarianceField = addTextFieldWidget(startX + 69, startY + 94 + offset, Text.literal("X Position Variance"), String.valueOf(configuration.getSourcePositionVariance().getX()), this::isAbsoluteDecimalNumberThousand);
-		positionYVarianceField = addTextFieldWidget(startX + 104, startY + 94 + offset, Text.literal("Y Position Variance"), String.valueOf(configuration.getSourcePositionVariance().getY()), this::isAbsoluteDecimalNumberThousand);
-		positionZVarianceField = addTextFieldWidget(startX + 140, startY + 94 + offset, Text.literal("Z Position Variance"), String.valueOf(configuration.getSourcePositionVariance().getZ()), this::isAbsoluteDecimalNumberThousand);
-		velocityXField = addTextFieldWidget(startX + 61, startY + 114 + offset, Text.literal("X Velocity"), String.valueOf(configuration.getVelocity().getX()), this::isAbsoluteDecimalNumberThousand);
-		velocityYField = addTextFieldWidget(startX + 96, startY + 114 + offset, Text.literal("Y Velocity"), String.valueOf(configuration.getVelocity().getY()), this::isAbsoluteDecimalNumberThousand);
-		velocityZField = addTextFieldWidget(startX + 131, startY + 114 + offset, Text.literal("Z Velocity"), String.valueOf(configuration.getVelocity().getZ()), this::isAbsoluteDecimalNumberThousand);
-		velocityXVarianceField = addTextFieldWidget(startX + 69, startY + 134 + offset, Text.literal("X Velocity Variance"), String.valueOf(configuration.getVelocityVariance().getX()), this::isAbsoluteDecimalNumberThousand);
-		velocityYVarianceField = addTextFieldWidget(startX + 104, startY + 134 + offset, Text.literal("Y Velocity Variance"), String.valueOf(configuration.getVelocityVariance().getY()), this::isAbsoluteDecimalNumberThousand);
-		velocityZVarianceField = addTextFieldWidget(startX + 140, startY + 134 + offset, Text.literal("Z Velocity Variance"), String.valueOf(configuration.getVelocityVariance().getZ()), this::isAbsoluteDecimalNumberThousand);
+		positionXField = addTextFieldWidget(startX + 61, startY + 74 + offset, Text.literal("X Position"), String.valueOf(configuration.getSourcePosition().x()), this::isAbsoluteDecimalNumberThousand);
+		positionYField = addTextFieldWidget(startX + 96, startY + 74 + offset, Text.literal("Y Position"), String.valueOf(configuration.getSourcePosition().y()), this::isAbsoluteDecimalNumberThousand);
+		positionZField = addTextFieldWidget(startX + 131, startY + 74 + offset, Text.literal("Z Position"), String.valueOf(configuration.getSourcePosition().z()), this::isAbsoluteDecimalNumberThousand);
+		positionXVarianceField = addTextFieldWidget(startX + 69, startY + 94 + offset, Text.literal("X Position Variance"), String.valueOf(configuration.getSourcePositionVariance().x()), this::isAbsoluteDecimalNumberThousand);
+		positionYVarianceField = addTextFieldWidget(startX + 104, startY + 94 + offset, Text.literal("Y Position Variance"), String.valueOf(configuration.getSourcePositionVariance().y()), this::isAbsoluteDecimalNumberThousand);
+		positionZVarianceField = addTextFieldWidget(startX + 140, startY + 94 + offset, Text.literal("Z Position Variance"), String.valueOf(configuration.getSourcePositionVariance().z()), this::isAbsoluteDecimalNumberThousand);
+		velocityXField = addTextFieldWidget(startX + 61, startY + 114 + offset, Text.literal("X Velocity"), String.valueOf(configuration.getVelocity().x()), this::isAbsoluteDecimalNumberThousand);
+		velocityYField = addTextFieldWidget(startX + 96, startY + 114 + offset, Text.literal("Y Velocity"), String.valueOf(configuration.getVelocity().y()), this::isAbsoluteDecimalNumberThousand);
+		velocityZField = addTextFieldWidget(startX + 131, startY + 114 + offset, Text.literal("Z Velocity"), String.valueOf(configuration.getVelocity().z()), this::isAbsoluteDecimalNumberThousand);
+		velocityXVarianceField = addTextFieldWidget(startX + 69, startY + 134 + offset, Text.literal("X Velocity Variance"), String.valueOf(configuration.getVelocityVariance().x()), this::isAbsoluteDecimalNumberThousand);
+		velocityYVarianceField = addTextFieldWidget(startX + 104, startY + 134 + offset, Text.literal("Y Velocity Variance"), String.valueOf(configuration.getVelocityVariance().y()), this::isAbsoluteDecimalNumberThousand);
+		velocityZVarianceField = addTextFieldWidget(startX + 140, startY + 134 + offset, Text.literal("Z Velocity Variance"), String.valueOf(configuration.getVelocityVariance().z()), this::isAbsoluteDecimalNumberThousand);
 		scale = addTextFieldWidget(startX + 55, startY + 158 + offset, Text.literal("Scale"), String.valueOf(configuration.getScale()), this::isPositiveDecimalNumberUnderTen);
 		scaleVariance = addTextFieldWidget(startX + 139, startY + 158 + offset, Text.literal("Scale Variance"), String.valueOf(configuration.getScaleVariance()), this::isPositiveDecimalNumberUnderTen);
 		duration = addTextFieldWidget(startX + 55, startY + 178 + offset, Text.literal("Duration"), String.valueOf(configuration.getLifetimeTicks()), this::isPositiveWholeNumberUnderThousand);
@@ -448,10 +449,10 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 					selectedParticleSupportsColoring ? new Vec3i(Float.parseFloat(cyanField.getText()), Float.parseFloat(magentaField.getText()), Float.parseFloat(yellowField.getText())) : Vec3i.ZERO,
 					glowing,
 					Float.parseFloat(amountField.getText()),
-					new Vec3f(Float.parseFloat(positionXField.getText()), Float.parseFloat(positionYField.getText()), Float.parseFloat(positionZField.getText())),
-					new Vec3f(Float.parseFloat(positionXVarianceField.getText()), Float.parseFloat(positionYVarianceField.getText()), Float.parseFloat(positionZVarianceField.getText())),
-					new Vec3f(Float.parseFloat(velocityXField.getText()), Float.parseFloat(velocityYField.getText()), Float.parseFloat(velocityZField.getText())),
-					new Vec3f(Float.parseFloat(velocityXVarianceField.getText()), Float.parseFloat(velocityYVarianceField.getText()), Float.parseFloat(velocityZVarianceField.getText())),
+					new Vector3f(Float.parseFloat(positionXField.getText()), Float.parseFloat(positionYField.getText()), Float.parseFloat(positionZField.getText())),
+					new Vector3f(Float.parseFloat(positionXVarianceField.getText()), Float.parseFloat(positionYVarianceField.getText()), Float.parseFloat(positionZVarianceField.getText())),
+					new Vector3f(Float.parseFloat(velocityXField.getText()), Float.parseFloat(velocityYField.getText()), Float.parseFloat(velocityZField.getText())),
+					new Vector3f(Float.parseFloat(velocityXVarianceField.getText()), Float.parseFloat(velocityYVarianceField.getText()), Float.parseFloat(velocityZVarianceField.getText())),
 					Float.parseFloat(scale.getText()),
 					Float.parseFloat(scaleVariance.getText()),
 					Integer.parseInt(duration.getText()),

@@ -25,6 +25,7 @@ import java.util.*;
 
 import static de.dafuqs.spectrum.blocks.titration_barrel.TitrationBarrelBlock.*;
 
+@SuppressWarnings("UnstableApiUsage")
 public class TitrationBarrelBlockEntity extends BlockEntity {
 
 	protected static final int INVENTORY_SIZE = 5;
@@ -179,7 +180,8 @@ public class TitrationBarrelBlockEntity extends BlockEntity {
 				}
 				if (canTap) {
 					long secondsFermented = (this.tapTime - this.sealTime) / 1000;
-					harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getDownfall());
+					// TODO - Find a way to access the Biome Weather to get its downfall
+					harvestedStack = recipe.tap(this.inventory, secondsFermented, biome.getPrecipitation(this.pos).compareTo(Biome.Precipitation.RAIN));
 					this.extractedBottles += 1;
 				}
 			} else if (player != null) {

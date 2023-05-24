@@ -23,7 +23,7 @@ public class LightShardEntityRenderer extends EntityRenderer<LightShardBaseEntit
         var age = shard.age;
         
         matrices.multiply(this.dispatcher.getRotation());
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180f));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180f));
         
         var alpha = MathHelper.clamp(1 - MathHelper.lerp(tickDelta, shard.getVanishingProgress(age - 1), shard.getVanishingProgress(age)), 0F, 1F);
         var scaleFactor = MathHelper.sin((age + tickDelta) / 8F) / 6F + shard.getScaleOffset();

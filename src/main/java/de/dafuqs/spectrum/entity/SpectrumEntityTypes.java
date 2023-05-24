@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.entity.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.projectile.thrown.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumEntityTypes {
 	
@@ -60,15 +60,15 @@ public class SpectrumEntityTypes {
 		if (fireImmune) {
 			builder.fireImmune();
 		}
-		return Registry.register(Registry.ENTITY_TYPE, SpectrumCommon.locate(name), builder.build());
+		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(name), builder.build());
 	}
 	
 	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> type) {
-		return Registry.register(Registry.ENTITY_TYPE, SpectrumCommon.locate(name), type.build(name));
+		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(name), type.build(name));
 	}
 	
 	public static <X extends Entity> EntityType<X> register(String name, SpawnGroup category, EntityDimensions size, EntityType.EntityFactory<X> factory) {
-		return Registry.register(Registry.ENTITY_TYPE, SpectrumCommon.locate(name), FabricEntityTypeBuilder.create(category, factory).dimensions(size).build());
+		return Registry.register(Registries.ENTITY_TYPE, SpectrumCommon.locate(name), FabricEntityTypeBuilder.create(category, factory).dimensions(size).build());
 	}
 	
 }

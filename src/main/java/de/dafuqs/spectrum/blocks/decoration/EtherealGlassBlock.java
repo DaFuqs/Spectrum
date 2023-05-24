@@ -45,7 +45,7 @@ public class EtherealGlassBlock extends AbstractGlassBlock {
 				BlockState directionState = world.getBlockState(offsetPos);
 				if (directionState.getBlock() instanceof EtherealGlassBlock) {
 					world.setBlockState(offsetPos, directionState.with(AGE, MAX_AGE - 1).with(EXTEND, true), Block.NOTIFY_LISTENERS);
-					world.createAndScheduleBlockTick(offsetPos, this, 2);
+					world.scheduleBlockTick(offsetPos, this, 2);
 				}
 			}
 		}
@@ -61,7 +61,7 @@ public class EtherealGlassBlock extends AbstractGlassBlock {
 				BlockState directionState = world.getBlockState(offsetPos);
 				if (directionState.getBlock() instanceof EtherealGlassBlock && age > directionState.get(AGE)) {
 					world.setBlockState(offsetPos, directionState.with(AGE, age - 1).with(EXTEND, true), Block.NOTIFY_LISTENERS);
-					world.createAndScheduleBlockTick(offsetPos, this, 2);
+					world.scheduleBlockTick(offsetPos, this, 2);
 				}
 			}
 			world.setBlockState(pos, state.with(EXTEND, false));
@@ -72,12 +72,12 @@ public class EtherealGlassBlock extends AbstractGlassBlock {
 				mutable.set(pos, direction);
 				BlockState blockState = world.getBlockState(mutable);
 				if (blockState.isOf(this) && !this.increaseAge(blockState, world, mutable)) {
-					world.createAndScheduleBlockTick(mutable, this, 4);
+					world.scheduleBlockTick(mutable, this, 4);
 				}
 			}
 		}
 		if (age > 0) {
-			world.createAndScheduleBlockTick(pos, this, 10);
+			world.scheduleBlockTick(pos, this, 10);
 		}
 	}
 	

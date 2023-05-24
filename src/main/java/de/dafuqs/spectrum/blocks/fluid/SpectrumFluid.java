@@ -18,8 +18,9 @@ public abstract class SpectrumFluid extends FlowableFluid {
 	}
 	
 	@Override
-	protected boolean isInfinite() {
-		return false;
+	protected boolean isInfinite(World world) {
+		// TODO - hardcode this, or implement gamerules for it
+		return world.getGameRules().getBoolean(GameRules.WATER_SOURCE_CONVERSION);
 	}
 	
 	/**

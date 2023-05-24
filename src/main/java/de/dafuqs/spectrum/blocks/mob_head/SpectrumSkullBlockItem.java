@@ -6,17 +6,18 @@ import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.*;
 
 import java.util.*;
 
-public class SpectrumSkullBlockItem extends WallStandingBlockItem {
+public class SpectrumSkullBlockItem extends VerticallyAttachableBlockItem {
 	
 	protected EntityType entityType;
 	protected String artistCached;
 	
 	public SpectrumSkullBlockItem(Block standingBlock, Block wallBlock, Settings settings, EntityType entityType) {
-		super(standingBlock, wallBlock, settings);
+		super(standingBlock, wallBlock, settings, Direction.DOWN);
 		this.entityType = entityType;
 	}
 	

@@ -76,12 +76,12 @@ public abstract class DetectorBlock extends Block {
 	@Deprecated
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		updateState(state, world, pos);
-		world.createAndScheduleBlockTick(pos, state.getBlock(), getUpdateFrequencyTicks());
+		world.scheduleBlockTick(pos, state.getBlock(), getUpdateFrequencyTicks());
 	}
 	
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		updateState(state, world, pos);
-		world.createAndScheduleBlockTick(pos, state.getBlock(), getUpdateFrequencyTicks());
+		world.scheduleBlockTick(pos, state.getBlock(), getUpdateFrequencyTicks());
 	}
 	
 	abstract void updateState(BlockState state, World world, BlockPos pos);

@@ -25,6 +25,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+import org.joml.Vector3f;
 
 import java.util.*;
 
@@ -100,7 +101,7 @@ public class PresentBlock extends BlockWithEntity {
 						presentBlockEntity.setOpenerUUID(player);
 						state = state.with(OPENING, true);
 						world.setBlockState(pos, state, 3);
-						world.createAndScheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
+						world.scheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
 					} else {
 						if (presentBlockEntity.getOwnerName() != null) {
 							player.sendMessage(Text.translatable("block.spectrum.present.tooltip.wrapped_placed.giver", presentBlockEntity.getOwnerName()), true);
@@ -149,7 +150,7 @@ public class PresentBlock extends BlockWithEntity {
 						spawnParticles(world, pos, presentBlockEntity.colors);
 					}
 				}
-				world.createAndScheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
+				world.scheduleBlockTick(pos, state.getBlock(), TICKS_PER_OPENING_STEP);
 			}
 		}
 	}
@@ -174,7 +175,7 @@ public class PresentBlock extends BlockWithEntity {
 		double posY = pos.getY() + 0.25;
 		double posZ = pos.getZ() + 0.5;
 		Random random = world.random;
-		Vec3f colorVec = ColorHelper.getRGBVec(color);
+		Vector3f colorVec = ColorHelper.getRGBVec(color);
 		for (int i = 0; i < amount; i++) {
 			double randX = 0.35 - random.nextFloat() * 0.7;
 			double randY = random.nextFloat() * 0.7;

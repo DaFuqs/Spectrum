@@ -17,16 +17,17 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.*;
 import org.jetbrains.annotations.*;
@@ -101,12 +102,12 @@ public class NaturesStaffItem extends Item implements EnchanterEnchantable, InkP
 					RegistryEntry<Biome> j = world.getBiome(blockPos2);
 					if (j.matchesKey(BiomeKeys.WARM_OCEAN)) {
 						if (i == 0 && facing != null && facing.getAxis().isHorizontal()) {
-							blockState = Registry.BLOCK.getEntryList(BlockTags.WALL_CORALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
+							blockState = Registries.BLOCK.getEntryList(BlockTags.WALL_CORALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
 							if (blockState.contains(DeadCoralWallFanBlock.FACING)) {
 								blockState = blockState.with(DeadCoralWallFanBlock.FACING, facing);
 							}
 						} else if (random.nextInt(4) == 0) {
-							blockState = Registry.BLOCK.getEntryList(BlockTags.UNDERWATER_BONEMEALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
+							blockState = Registries.BLOCK.getEntryList(BlockTags.UNDERWATER_BONEMEALS).flatMap((blocks) -> blocks.getRandom(world.random)).map((blockEntry) -> (blockEntry.value()).getDefaultState()).orElse(blockState);
 						}
 					}
 					

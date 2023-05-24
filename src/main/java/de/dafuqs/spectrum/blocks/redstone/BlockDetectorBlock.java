@@ -40,7 +40,7 @@ public class BlockDetectorBlock extends FacingBlock {
 			world.setBlockState(pos, state.with(POWERED, false), Block.NOTIFY_LISTENERS);
 		} else {
 			world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
-			world.createAndScheduleBlockTick(pos, this, 2);
+			world.scheduleBlockTick(pos, this, 2);
 		}
 		
 		this.updateNeighbors(world, pos, state);
@@ -64,7 +64,7 @@ public class BlockDetectorBlock extends FacingBlock {
 	
 	private void scheduleTick(WorldAccess world, BlockPos pos) {
 		if (!world.isClient() && !world.getBlockTickScheduler().isQueued(pos, this)) {
-			world.createAndScheduleBlockTick(pos, this, 2);
+			world.scheduleBlockTick(pos, this, 2);
 		}
 	}
 	

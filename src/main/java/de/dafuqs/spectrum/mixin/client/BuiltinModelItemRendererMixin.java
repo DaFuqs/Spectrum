@@ -17,9 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 @Mixin(BuiltinModelItemRenderer.class)
 public abstract class BuiltinModelItemRendererMixin {
 	
-	@Inject(method = "render(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformation$Mode;Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;II)V",
-			at = @At("HEAD"), cancellable = true)
-	private void getModel(ItemStack stack, ModelTransformation.Mode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
+	@Inject(method = "render", at = @At("HEAD"), cancellable = true)
+	private void getModel(ItemStack stack, ModelTransformationMode mode, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, CallbackInfo ci) {
 		Item item = stack.getItem();
 		if (item instanceof BlockItem blockItem) {
 			Block block = blockItem.getBlock();

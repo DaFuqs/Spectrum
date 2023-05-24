@@ -26,8 +26,8 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		stack = super.finishUsing(stack, world, user);
 		
 		user.damage(SpectrumDamageSources.INCANDESCENCE, 500.0F);
-		world.createExplosion(user, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), 2.0F, false, Explosion.DestructionType.DESTROY);
-		world.createExplosion(user, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), 10.0F, true, Explosion.DestructionType.NONE);
+		world.createExplosion(user, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), 2.0F, false, World.ExplosionSourceType.BLOCK);
+		world.createExplosion(user, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(user), user.getX(), user.getY(), user.getZ(), 10.0F, true, World.ExplosionSourceType.NONE);
 		
 		if (user.isAlive() && user instanceof ServerPlayerEntity serverPlayerEntity && !serverPlayerEntity.isCreative()) {
 			Support.grantAdvancementCriterion(serverPlayerEntity, "lategame/survive_drinking_incandescent_amalgam", "survived_drinking_incandescent_amalgam");
@@ -48,8 +48,8 @@ public class IncandescentAmalgamItem extends BlockItem implements DamageAwareIte
 		itemEntity.remove(Entity.RemovalReason.KILLED);
 		
 		int stackCount = itemEntity.getStack().getCount();
-		itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), 1.0F + stackCount / 16F, false, Explosion.DestructionType.DESTROY);
-		itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), 8.0F + stackCount / 8F, true, Explosion.DestructionType.NONE);
+		itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), 1.0F + stackCount / 16F, false, World.ExplosionSourceType.BLOCK);
+		itemEntity.world.createExplosion(itemEntity, SpectrumDamageSources.INCANDESCENCE, new EntityExplosionBehavior(itemEntity), itemEntity.getX(), itemEntity.getY(), itemEntity.getZ(), 8.0F + stackCount / 8F, true, World.ExplosionSourceType.NONE);
 	}
 	
 }

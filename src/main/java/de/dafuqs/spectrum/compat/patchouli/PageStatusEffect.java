@@ -9,7 +9,7 @@ import net.minecraft.client.util.math.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import vazkii.patchouli.client.book.*;
 import vazkii.patchouli.client.book.gui.*;
 import vazkii.patchouli.client.book.page.abstr.*;
@@ -25,7 +25,7 @@ public class PageStatusEffect extends PageWithText {
 	@Override
 	public void build(BookEntry entry, BookContentsBuilder builder, int pageNum) {
 		super.build(entry, builder, pageNum);
-		statusEffect = Registry.STATUS_EFFECT.get(new Identifier(statusEffectId));
+		statusEffect = Registries.STATUS_EFFECT.get(new Identifier(statusEffectId));
 		statusEffectSprite = MinecraftClient.getInstance().getStatusEffectSpriteManager().getSprite(statusEffect);
 	}
 	

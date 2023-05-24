@@ -26,7 +26,7 @@ public class StructurePlacerItem extends Item implements CreativeOnlyItem {
 		if (context.getPlayer() != null && context.getPlayer().isCreative()) {
 			IMultiblock iMultiblock = SpectrumMultiblocks.MULTIBLOCKS.get(multiBlockIdentifier);
 			if (iMultiblock != null) {
-				BlockRotation blockRotation = Support.rotationFromDirection(context.getPlayerFacing());
+				BlockRotation blockRotation = Support.rotationFromDirection(context.getHorizontalPlayerFacing());
 				iMultiblock.place(context.getWorld(), context.getBlockPos().up(), blockRotation);
 				return ActionResult.CONSUME;
 			}

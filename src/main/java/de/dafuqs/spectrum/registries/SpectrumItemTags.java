@@ -2,8 +2,8 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.item.Item;
-import net.minecraft.tag.TagKey;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.TagKey;
 
 public class SpectrumItemTags {
 	
@@ -27,7 +27,7 @@ public class SpectrumItemTags {
 	public static final TagKey<Item> GLASS_ARROWS = getReference("glass_arrows");
 	
 	private static TagKey<Item> getReference(String id) {
-		return TagKey.of(Registry.ITEM_KEY, SpectrumCommon.locate(id));
+		return TagKey.of(Registries.ITEM.getKey(), SpectrumCommon.locate(id));
 	}
 	
 }

@@ -14,12 +14,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.NotNull;
@@ -103,7 +104,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			tag.putString("RequiredAdvancement", this.requiredAdvancement.toString());
 		}
 		if (this.requiredEffect != null) {
-			Identifier effectIdentifier = Registry.STATUS_EFFECT.getId(this.requiredEffect);
+			Identifier effectIdentifier = Registries.STATUS_EFFECT.getId(this.requiredEffect);
 			if (effectIdentifier != null) {
 				tag.putString("RequiredStatusEffect", effectIdentifier.toString());
 			}
@@ -127,7 +128,7 @@ public class PreservationControllerBlockEntity extends BlockEntity {
 			this.checkRange = new Vec3i(tag.getInt("CheckRangeX"), tag.getInt("CheckRangeY"), tag.getInt("CheckRangeZ"));
 		}
 		if (tag.contains("RequiredStatusEffect", NbtElement.STRING_TYPE)) {
-			StatusEffect statusEffect = Registry.STATUS_EFFECT.get(new Identifier(tag.getString("RequiredStatusEffect")));
+			StatusEffect statusEffect = Registries.STATUS_EFFECT.get(new Identifier(tag.getString("RequiredStatusEffect")));
 			if (this.requiredEffect != null) {
 				this.requiredEffect = statusEffect;
 			}

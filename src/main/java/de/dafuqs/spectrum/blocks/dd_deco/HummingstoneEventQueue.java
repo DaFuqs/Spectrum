@@ -30,6 +30,12 @@ class HummingstoneEventQueue extends EventQueue<HummingstoneEventQueue.EventEntr
         }
     }
 
+    @Override
+    public boolean listen(ServerWorld world, GameEvent event, GameEvent.Emitter emitter, Vec3d emitterPos) {
+        // TODO - Implement
+        return false;
+    }
+
     protected static class EventEntry {
         public GameEvent.Message message;
         public int distance;

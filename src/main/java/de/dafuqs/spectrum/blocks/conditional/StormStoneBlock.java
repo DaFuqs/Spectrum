@@ -54,11 +54,11 @@ public class StormStoneBlock extends Block implements RevelationAware {
 		
 		int power = 2;
 		Biome biomeAtPos = world.getBiome(pos).value();
-		if (!biomeAtPos.isHot(pos) && !biomeAtPos.isCold(pos)) {
+		if (!biomeAtPos.hasPrecipitation() && !biomeAtPos.isCold(pos)) {
 			// there is no rain in deserts or snow
 			power = world.isThundering() ? 4 : world.isRaining() ? 3 : 2;
 		}
-		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), power, Explosion.DestructionType.BREAK);
+		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), power, World.ExplosionSourceType.BLOCK);
 	}
 	
 	@Override

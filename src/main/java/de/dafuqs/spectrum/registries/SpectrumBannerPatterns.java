@@ -2,10 +2,11 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.SpectrumCommon;
 import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 
 public class SpectrumBannerPatterns {
 	
@@ -33,12 +34,12 @@ public class SpectrumBannerPatterns {
 	public static TagKey<BannerPattern> AMETHYST_SHARD_TAG = of("pattern_item/amethyst_shard");
 	
 	private static TagKey<BannerPattern> of(String id) {
-		return TagKey.of(Registry.BANNER_PATTERN_KEY, new Identifier(id));
+		return TagKey.of(Registries.BANNER_PATTERN.getKey(), new Identifier(id));
 	}
 	
 	private static RegistryEntry<BannerPattern> registerPattern(String id, String shortId) {
-		BannerPattern pattern = Registry.register(Registry.BANNER_PATTERN, SpectrumCommon.locate(id), new BannerPattern(SpectrumCommon.MOD_ID + "_" + shortId));
-		return Registry.BANNER_PATTERN.getEntry(Registry.BANNER_PATTERN.getKey(pattern).get()).get();
+		BannerPattern pattern = Registry.register(Registries.BANNER_PATTERN, SpectrumCommon.locate(id), new BannerPattern(SpectrumCommon.MOD_ID + "_" + shortId));
+		return Registries.BANNER_PATTERN.getEntry(Registries.BANNER_PATTERN.getKey(pattern).get()).get();
 	}
 	
 	public static void register() {

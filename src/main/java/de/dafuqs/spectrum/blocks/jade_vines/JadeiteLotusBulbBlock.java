@@ -6,7 +6,7 @@ import net.minecraft.item.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 
 public class JadeiteLotusBulbBlock extends PlantBlock implements Fertilizable {
@@ -38,7 +38,7 @@ public class JadeiteLotusBulbBlock extends PlantBlock implements Fertilizable {
 	}
 	
 	@Override
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
 		return true;
 	}
 	
@@ -54,6 +54,6 @@ public class JadeiteLotusBulbBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.JADEITE_LOTUS).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+		world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).get(SpectrumConfiguredFeatures.JADEITE_LOTUS).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
 }

@@ -22,7 +22,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.function.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 

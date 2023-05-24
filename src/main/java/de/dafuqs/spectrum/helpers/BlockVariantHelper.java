@@ -5,7 +5,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 
 import java.util.*;
@@ -38,7 +38,7 @@ public class BlockVariantHelper {
 			}
 		}
 		
-		Identifier identifier = Registry.BLOCK.getId(block);
+		Identifier identifier = Registries.BLOCK.getId(block);
 		
 		String newPath = null;
 		for (String colorString : COLOR_STRINGS) {
@@ -51,7 +51,7 @@ public class BlockVariantHelper {
 		Block returnBlock = Blocks.AIR;
 		if (newPath != null) {
 			Identifier newIdentifier = new Identifier(identifier.getNamespace(), newPath);
-			Block newIdentifierBlock = Registry.BLOCK.get(newIdentifier);
+			Block newIdentifierBlock = Registries.BLOCK.get(newIdentifier);
 			if (newIdentifierBlock != block) {
 				returnBlock = newIdentifierBlock;
 			}
@@ -107,7 +107,7 @@ public class BlockVariantHelper {
 			return repairedStates.get(block);
 		}
 		
-		Identifier identifier = Registry.BLOCK.getId(block);
+		Identifier identifier = Registries.BLOCK.getId(block);
 		
 		String newPath = identifier.getPath();
 		newPath = newPath.replace("cracked_", "");
@@ -117,7 +117,7 @@ public class BlockVariantHelper {
 		Block returnBlock = Blocks.AIR;
 		if (!newPath.equals(identifier.getPath())) {
 			Identifier newIdentifier = new Identifier(identifier.getNamespace(), newPath);
-			Block newIdentifierBlock = Registry.BLOCK.get(newIdentifier);
+			Block newIdentifierBlock = Registries.BLOCK.get(newIdentifier);
 			if (newIdentifierBlock != block) {
 				returnBlock = newIdentifierBlock;
 			}

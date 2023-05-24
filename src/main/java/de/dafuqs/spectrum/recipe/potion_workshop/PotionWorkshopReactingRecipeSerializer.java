@@ -7,9 +7,9 @@ import de.dafuqs.spectrum.recipe.GatedRecipeSerializer;
 import net.minecraft.item.Item;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,7 +59,7 @@ public class PotionWorkshopReactingRecipeSerializer implements GatedRecipeSerial
 		packetByteBuf.writeBoolean(recipe.secret);
 		writeNullableIdentifier(packetByteBuf, recipe.requiredAdvancementIdentifier);
 		
-		packetByteBuf.writeIdentifier(Registry.ITEM.getId(recipe.item));
+		packetByteBuf.writeIdentifier(Registries.ITEM.getId(recipe.item));
 		
 		packetByteBuf.writeInt(recipe.modifiers.size());
 		for (PotionMod mod : recipe.modifiers) {
@@ -73,7 +73,7 @@ public class PotionWorkshopReactingRecipeSerializer implements GatedRecipeSerial
 		boolean secret = packetByteBuf.readBoolean();
 		Identifier requiredAdvancementIdentifier = readNullableIdentifier(packetByteBuf);
 		
-		Item item = Registry.ITEM.get(packetByteBuf.readIdentifier());
+		Item item = Registries.ITEM.get(packetByteBuf.readIdentifier());
 		
 		List<PotionMod> mods = new ArrayList<>();
 		int modCount = packetByteBuf.readInt();

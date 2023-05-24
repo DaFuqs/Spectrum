@@ -11,7 +11,7 @@ import net.minecraft.state.*;
 import net.minecraft.state.property.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
@@ -65,7 +65,7 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         return !state.get(DEAD);
     }
 
@@ -76,7 +76,7 @@ public class TallDragonjagBlock extends TallPlantBlock implements Dragonjag, Fer
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-		boolean success = world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.DRAGONJAGS.get(this.variant)).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+		boolean success = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumConfiguredFeatures.DRAGONJAGS.get(this.variant)).get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
         if (success) {
             setDead(world, pos, state, true);
         }

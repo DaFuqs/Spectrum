@@ -72,7 +72,7 @@ public class JadeVinePlantBlock extends Block implements JadeVine, NaturesStaffI
 	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (!state.canPlaceAt(world, pos) || missingBottom(state, world.getBlockState(pos.down()))) {
-			world.createAndScheduleBlockTick(pos, this, 1);
+			world.scheduleBlockTick(pos, this, 1);
 		}
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}

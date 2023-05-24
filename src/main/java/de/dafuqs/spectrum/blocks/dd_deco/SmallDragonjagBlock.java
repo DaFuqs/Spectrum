@@ -40,7 +40,7 @@ public class SmallDragonjagBlock extends PlantBlock implements Dragonjag, Fertil
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }
 

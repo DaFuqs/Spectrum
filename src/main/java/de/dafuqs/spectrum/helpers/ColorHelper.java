@@ -3,7 +3,6 @@ package de.dafuqs.spectrum.helpers;
 import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.items.*;
-import de.dafuqs.spectrum.mixin.accessors.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.*;
@@ -11,21 +10,21 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.sound.*;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
+import org.joml.Vector3f;
 
 import java.awt.*;
 import java.util.*;
 
 public class ColorHelper {
 	
-	public static Vec3f getRGBVec(DyeColor dyeColor) {
+	public static Vector3f getRGBVec(DyeColor dyeColor) {
 		return InkColor.of(dyeColor).getColor();
 	}
 	
 	public static int getInt(DyeColor dyeColor) {
-		Vec3f vec = getRGBVec(dyeColor);
-		return new Color(vec.getX(), vec.getY(), vec.getZ()).getRGB() & 0x00FFFFFF;
+		Vector3f vec = getRGBVec(dyeColor);
+		return new Color(vec.x(), vec.y(), vec.z()).getRGB() & 0x00FFFFFF;
 	}
 	
 	/**
@@ -39,11 +38,11 @@ public class ColorHelper {
 	}
 	
 	@NotNull
-	public static Vec3f colorIntToVec(int color) {
+	public static Vector3f colorIntToVec(int color) {
 		Color colorObj = new Color(color);
 		float[] argb = new float[4];
 		colorObj.getColorComponents(argb);
-		return new Vec3f(argb[0], argb[1], argb[2]);
+		return new Vector3f(argb[0], argb[1], argb[2]);
 	}
 
 	public static Optional<DyeColor> getDyeColorOfItemStack(@NotNull ItemStack itemStack) {
@@ -74,7 +73,7 @@ public class ColorHelper {
 		} else if (entity instanceof ShulkerEntity shulkerEntity && shulkerEntity.isAlive()) {
 			if (shulkerEntity.getColor() != dyeColor) {
 				shulkerEntity.world.playSoundFromEntity(user, shulkerEntity, SoundEvents.ITEM_DYE_USE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-				((ShulkerEntityAccessor) shulkerEntity).invokeSetColor(dyeColor);
+				shulkerEntity.setVariant(Optional.of(dyeColor));
 				return true;
 			}
 		}

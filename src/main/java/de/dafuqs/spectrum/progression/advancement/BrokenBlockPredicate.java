@@ -5,10 +5,11 @@ import com.google.gson.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.predicate.StatePredicate;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
@@ -50,7 +51,7 @@ public class BrokenBlockPredicate {
 				
 				for (JsonElement jsonElement : jsonArray) {
 					Identifier identifier = new Identifier(JsonHelper.asString(jsonElement, "block"));
-					builder.add(Registry.BLOCK.getOrEmpty(identifier).orElseThrow(() -> {
+					builder.add(Registries.BLOCK.getOrEmpty(identifier).orElseThrow(() -> {
 						return new JsonSyntaxException("Unknown block id '" + identifier + "'");
 					}));
 				}
@@ -61,7 +62,7 @@ public class BrokenBlockPredicate {
 			TagKey<Block> tag = null;
 			if (jsonObject.has("tag")) {
 				Identifier identifier2 = new Identifier(JsonHelper.getString(jsonObject, "tag"));
-				tag = TagKey.of(Registry.BLOCK_KEY, identifier2);
+				tag = TagKey.of(RegistryKeys.BLOCK, identifier2);
 			}
 			
 			StatePredicate statePredicate = StatePredicate.fromJson(jsonObject.get("state"));
@@ -94,7 +95,7 @@ public class BrokenBlockPredicate {
 				JsonArray jsonArray = new JsonArray();
 				
 				for (Block block : this.blocks) {
-					jsonArray.add(Registry.BLOCK.getId(block).toString());
+					jsonArray.add(Registries.BLOCK.getId(block).toString());
 				}
 				
 				jsonObject.add("blocks", jsonArray);

@@ -5,17 +5,15 @@ import de.dafuqs.spectrum.progression.SpectrumAdvancementCriteria;
 import de.dafuqs.spectrum.registries.SpectrumBlockTags;
 import de.dafuqs.spectrum.registries.SpectrumEnchantments;
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,7 +30,7 @@ public abstract class MiningToolItemMixin {
 
 			if (SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.INERTIA, stack, miner) > 0) {
 				NbtCompound compound = stack.getOrCreateNbt();
-				Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
+				Identifier brokenBlockIdentifier = Registries.BLOCK.getId(state.getBlock());
 				if (compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
 					inertiaAmount = compound.getLong("Inertia_LastMinedBlockCount") + 1;
 					compound.putLong("Inertia_LastMinedBlockCount", inertiaAmount);
@@ -60,7 +58,7 @@ public abstract class MiningToolItemMixin {
 			inertiaLevel = Math.min(4, inertiaLevel); // inertia is capped at 5 levels. Higher and the formula would do weird stuff
 			if (inertiaLevel > 0) {
 				NbtCompound compound = stack.getOrCreateNbt();
-				Identifier brokenBlockIdentifier = Registry.BLOCK.getId(state.getBlock());
+				Identifier brokenBlockIdentifier = Registries.BLOCK.getId(state.getBlock());
 				if (compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
 					long lastMinedBlockCount = compound.getLong("Inertia_LastMinedBlockCount");
 					double additionalSpeedPercent = 1.5 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);

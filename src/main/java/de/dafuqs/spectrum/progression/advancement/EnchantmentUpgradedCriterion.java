@@ -9,10 +9,11 @@ import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateSerializer;
 import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 
 public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentUpgradedCriterion.Conditions> {
 	
@@ -28,7 +29,7 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 	
 	public EnchantmentUpgradedCriterion.Conditions conditionsFromJson(JsonObject jsonObject, EntityPredicate.Extended extended, AdvancementEntityPredicateDeserializer advancementEntityPredicateDeserializer) {
 		Identifier identifier = new Identifier(JsonHelper.getString(jsonObject, "enchantment_identifier"));
-		Enchantment enchantment = Registry.ENCHANTMENT.get(identifier);
+		Enchantment enchantment = Registries.ENCHANTMENT.get(identifier);
 		NumberRange.IntRange enchantmentLevelRange = NumberRange.IntRange.fromJson(jsonObject.get("enchantment_level"));
 		NumberRange.IntRange experienceRange = NumberRange.IntRange.fromJson(jsonObject.get("spent_experience"));
 		return new EnchantmentUpgradedCriterion.Conditions(extended, enchantment, enchantmentLevelRange, experienceRange);
@@ -54,7 +55,7 @@ public class EnchantmentUpgradedCriterion extends AbstractCriterion<EnchantmentU
 		
 		public JsonObject toJson(AdvancementEntityPredicateSerializer predicateSerializer) {
 			JsonObject jsonObject = super.toJson(predicateSerializer);
-			jsonObject.addProperty("enchantment_identifier", Registry.ENCHANTMENT.getId(enchantment).toString());
+			jsonObject.addProperty("enchantment_identifier", Registries.ENCHANTMENT.getId(enchantment).toString());
 			jsonObject.add("enchantment_level", this.enchantmentLevelRange.toJson());
 			jsonObject.add("spent_experience", this.experienceRange.toJson());
 			return jsonObject;

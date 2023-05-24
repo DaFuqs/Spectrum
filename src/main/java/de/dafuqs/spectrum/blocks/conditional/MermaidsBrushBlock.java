@@ -14,7 +14,7 @@ import net.minecraft.server.world.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
@@ -87,9 +87,9 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 			return Blocks.AIR.getDefaultState();
 		} else {
 			if (state.get(IN_LIQUID_CRYSTAL)) {
-				world.createAndScheduleFluidTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickRate(world));
+				world.scheduleFluidTick(pos, SpectrumFluids.LIQUID_CRYSTAL, SpectrumFluids.LIQUID_CRYSTAL.getTickRate(world));
 			} else {
-				world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+				world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 			}
 			
 			return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
@@ -140,7 +140,7 @@ public class MermaidsBrushBlock extends PlantBlock implements Fertilizable, Reve
 	}
 	
 	@Override
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
 		return true;
 	}
 	

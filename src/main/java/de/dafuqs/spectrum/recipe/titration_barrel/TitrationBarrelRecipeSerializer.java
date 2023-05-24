@@ -8,7 +8,7 @@ import net.minecraft.fluid.*;
 import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 import java.util.*;
 
@@ -36,7 +36,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		Fluid fluid = Fluids.EMPTY;
 		if (JsonHelper.hasString(jsonObject, "fluid")) {
 			Identifier fluidIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "fluid"));
-			fluid = Registry.FLUID.get(fluidIdentifier);
+			fluid = Registries.FLUID.get(fluidIdentifier);
 			if (fluid.getDefaultState().isEmpty()) {
 				SpectrumCommon.logError("Fusion Shrine Recipe " + identifier + " specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
 			}
@@ -47,7 +47,7 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		
 		Item tappingItem = Items.AIR;
 		if (JsonHelper.hasString(jsonObject, "tapping_item")) {
-			tappingItem = Registry.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "tapping_item")));
+			tappingItem = Registries.ITEM.get(Identifier.tryParse(JsonHelper.getString(jsonObject, "tapping_item")));
 		}
 		
 		FermentationData fermentationData = null;
@@ -68,10 +68,10 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		for (IngredientStack ingredientStack : recipe.inputStacks) {
 			ingredientStack.write(packetByteBuf);
 		}
-		writeNullableIdentifier(packetByteBuf, Registry.FLUID.getId(recipe.fluid));
+		writeNullableIdentifier(packetByteBuf, Registries.FLUID.getId(recipe.fluid));
 		
 		packetByteBuf.writeItemStack(recipe.outputItemStack);
-		packetByteBuf.writeString(Registry.ITEM.getId(recipe.tappingItem).toString());
+		packetByteBuf.writeString(Registries.ITEM.getId(recipe.tappingItem).toString());
 		packetByteBuf.writeInt(recipe.minFermentationTimeHours);
 		
 		if (recipe.fermentationData == null) {
@@ -95,11 +95,11 @@ public class TitrationBarrelRecipeSerializer implements GatedRecipeSerializer<Ti
 		Fluid fluid = Fluids.EMPTY;
 		Identifier fluidId = readNullableIdentifier(packetByteBuf);
 		if (fluidId != null) {
-			fluid = Registry.FLUID.get(fluidId);
+			fluid = Registries.FLUID.get(fluidId);
 		}
 		
 		ItemStack outputItemStack = packetByteBuf.readItemStack();
-		Item tappingItem = Registry.ITEM.get(Identifier.tryParse(packetByteBuf.readString()));
+		Item tappingItem = Registries.ITEM.get(Identifier.tryParse(packetByteBuf.readString()));
 		int minTimeDays = packetByteBuf.readInt();
 		
 		FermentationData fermentationData = null;

@@ -25,8 +25,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.TickPriority;
 import net.minecraft.world.World;
+import net.minecraft.world.tick.TickPriority;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -139,7 +139,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 		} else if (!bl) {
 			world.setBlockState(pos, state.with(POWERED, true), Block.NOTIFY_LISTENERS);
 			if (!bl2) {
-				world.createAndScheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
+				world.scheduleBlockTick(pos, this, this.getUpdateDelayInternal(state), TickPriority.VERY_HIGH);
 			}
 		}
 	}
@@ -153,7 +153,7 @@ public class RedstoneCalculatorBlock extends AbstractRedstoneGateBlock implement
 	}
 	
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		BlockState state = SpectrumBlocks.REDSTONE_CALCULATOR.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+		BlockState state = SpectrumBlocks.REDSTONE_CALCULATOR.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
 		int signal = calculateOutputSignal(ctx.getWorld(), ctx.getBlockPos(), state);
 		if (signal == 0) {
 			return state;

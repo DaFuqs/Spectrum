@@ -13,10 +13,11 @@ import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
 
 public class ShootingStarBlock extends BlockWithEntity {
 	
@@ -185,7 +186,7 @@ public class ShootingStarBlock extends BlockWithEntity {
 			}
 		}
 		
-		public @NotNull Vec3f getRandomParticleColor(Random random) {
+		public @NotNull Vector3f getRandomParticleColor(Random random) {
 			switch (this) {
 				case GLISTERING -> {
 					int r = random.nextInt(5);

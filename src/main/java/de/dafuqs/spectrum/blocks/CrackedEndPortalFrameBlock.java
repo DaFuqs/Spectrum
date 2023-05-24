@@ -16,7 +16,6 @@ import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
-import net.minecraft.world.explosion.*;
 
 public class CrackedEndPortalFrameBlock extends Block {
 	
@@ -160,7 +159,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	}
 	
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
-		Direction facing = ctx.getPlayerFacing();
+		Direction facing = ctx.getHorizontalPlayerFacing();
 		boolean facingVertical = facing.equals(Direction.EAST) || facing.equals(Direction.WEST);
 		return (this.getDefaultState().with(FACING_VERTICAL, facingVertical).with(EYE_TYPE, EndPortalFrameEye.NONE));
 	}
@@ -199,7 +198,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		// when placed via perturbed eye => fuse
 		if (isVolatile(state)) {
-			world.createAndScheduleBlockTick(pos, this, 40);
+			world.scheduleBlockTick(pos, this, 40);
 		}
 	}
 	
@@ -224,11 +223,11 @@ public class CrackedEndPortalFrameBlock extends Block {
 			// 10% chance to break portal
 			float randomFloat = random.nextFloat();
 			if (randomFloat < 0.05) {
-				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 4, Explosion.DestructionType.DESTROY);
+				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 4, World.ExplosionSourceType.BLOCK);
 				destroyPortals(world, pos);
 				world.breakBlock(pos, true);
 			} else if (randomFloat < 0.2) {
-				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3, Explosion.DestructionType.DESTROY);
+				world.createExplosion(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3, World.ExplosionSourceType.BLOCK);
 			} else {
 				double d = (double) pos.getX() + random.nextDouble();
 				double e = (double) pos.getY() + 0.8D;
@@ -236,7 +235,7 @@ public class CrackedEndPortalFrameBlock extends Block {
 				world.addParticle(ParticleTypes.SMOKE, d, e, f, 0.0D, 0.0D, 0.0D);
 			}
 		}
-		world.createAndScheduleBlockTick(pos, this, 10);
+		world.scheduleBlockTick(pos, this, 10);
 	}
 
 	public enum EndPortalFrameEye implements StringIdentifiable {

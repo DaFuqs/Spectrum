@@ -2,12 +2,13 @@ package de.dafuqs.spectrum.registries;
 
 import de.dafuqs.spectrum.entity.entity.*;
 import de.dafuqs.spectrum.spells.*;
+import net.id.incubus_core.mixin.entity.EntityDamageSourceMixin;
 import net.minecraft.entity.*;
 import net.minecraft.entity.damage.*;
 import org.jetbrains.annotations.*;
 
 public class SpectrumDamageSources {
-	
+	// TODO - Requires Refactor
 	public static boolean recursiveDamage = false;
 	
 	public static final DamageSource DECAY = new SpectrumDamageSource("spectrum_decay");
@@ -43,7 +44,7 @@ public class SpectrumDamageSources {
 		return new SetHealthDamageSource("spectrum_set_health", attacker);
 	}
 
-	public static class SetHealthDamageSource extends EntityDamageSource {
+	public static class SetHealthDamageSource extends DamageSource {
 
 		public SetHealthDamageSource(String name, LivingEntity attacker) {
 			super(name, attacker);
@@ -57,29 +58,12 @@ public class SpectrumDamageSources {
 		protected SpectrumDamageSource(String name) {
 			super(name);
 		}
-
-		@Override
-		public SpectrumDamageSource setUnblockable() {
-			super.setUnblockable();
-			return this;
-		}
-		
-		@Override
-		public SpectrumDamageSource setBypassesArmor() {
-			super.setBypassesArmor();
-			return this;
-		}
-		
-		public SpectrumDamageSource setFromFalling() {
-			super.setFromFalling();
-			return this;
-		}
 		
 		public SpectrumDamageSource setDropsPlayerLoot() {
 			this.dropsPlayerLoot = true;
 			return this;
 		}
-		
+
 		public boolean dropsPlayerLoot() {
 			return this.dropsPlayerLoot;
 		}

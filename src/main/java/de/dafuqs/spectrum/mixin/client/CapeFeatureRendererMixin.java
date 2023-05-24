@@ -20,7 +20,7 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -79,9 +79,9 @@ public abstract class CapeFeatureRendererMixin extends FeatureRenderer<AbstractC
             VertexConsumer vertexConsumer = vertices.getBuffer(RenderLayer.getEntitySolid(SpectrumModelLayers.BEDROCK_ARMOR_LOCATION));
             ms.push();
             ms.translate(0, 0.35, 0);
-            ms.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(frontCapeRotation));
+            ms.multiply(RotationAxis.POSITIVE_X.rotationDegrees(frontCapeRotation));
             if (!player.isInSneakingPose()) {
-                ms.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(capeZOffset / 2.0F));
+                ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(capeZOffset / 2.0F));
             }
 
             // Make some space for your legs if crouching
@@ -102,9 +102,9 @@ public abstract class CapeFeatureRendererMixin extends FeatureRenderer<AbstractC
 			// Transform and render the custom cape
 			ms.push();
 			ms.translate(0, -0.05, 0.0); // Push up and backwards, then rotate
-			ms.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(backCapeRotation));
-			ms.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(capeZOffset / 2.0F));
-			ms.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F - capeZOffset / 1.25F));
+			ms.multiply(RotationAxis.POSITIVE_X.rotationDegrees(backCapeRotation));
+			ms.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(capeZOffset / 2.0F));
+			ms.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F - capeZOffset / 1.25F));
 			ms.translate(0, 0.05, -0.325); // Move back down
 			if (player.isInSneakingPose()) {
 				ms.translate(0, 0.15, 0.125);

@@ -16,8 +16,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
-import net.minecraft.util.math.Vec3f;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 import java.awt.*;
 import java.util.List;
@@ -87,7 +87,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 		}
 		
 		void render(Screen screen, MatrixStack matrices, int startX, int startY) {
-			RenderSystem.setShader(GameRenderer::getPositionTexShader);
+			RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 			RenderSystem.setShaderTexture(0, BACKGROUND);
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 			if (centerEntry == GridEntry.CLOSE) {
@@ -114,11 +114,11 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			void whenSelected(QuickNavigationGridScreen screen);
 		}
 		
-		private final Vec3f color;
+		private final Vector3f color;
 		private final @Nullable Point point;
 		private final GridEntryCallback callback;
 		
-		private GridEntry(Vec3f color, @Nullable Point point, GridEntryCallback callback) {
+		private GridEntry(Vector3f color, @Nullable Point point, GridEntryCallback callback) {
 			this.color = color;
 			this.point = point;
 			this.callback = callback;
@@ -128,15 +128,15 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 			return new GridEntry(null, null, screen -> {});
 		}
 		
-		public static GridEntry of(Vec3f color) {
+		public static GridEntry of(Vector3f color) {
 			return new GridEntry(color, null, screen -> {});
 		}
 		
-		public static GridEntry of(Vec3f color, Point point) {
+		public static GridEntry of(Vector3f color, Point point) {
 			return new GridEntry(color, point, screen -> {});
 		}
 		
-		public static GridEntry of(Vec3f color, Point point, GridEntryCallback callback) {
+		public static GridEntry of(Vector3f color, Point point, GridEntryCallback callback) {
 			return new GridEntry(color, point, callback);
 		}
 		
@@ -179,7 +179,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 	}
 	
 	private void back() {
-		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+		client.world.playSound(null, client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 		if(gridStack.size() == 1) {
 			client.player.closeHandledScreen();
 		} else {
@@ -188,7 +188,7 @@ public class QuickNavigationGridScreen<QuickNavigationGridScreenHandler extends 
 	}
 	
 	void selectGrid(Grid grid) {
-		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F, false);
+		client.world.playSound(null, client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SWITCH, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 		gridStack.push(grid);
 	}
 	

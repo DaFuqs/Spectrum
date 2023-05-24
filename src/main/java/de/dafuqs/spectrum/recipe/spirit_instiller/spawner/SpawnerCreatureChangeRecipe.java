@@ -4,14 +4,16 @@ import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockItem;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.EntityType;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialRecipeSerializer;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Optional;
 
@@ -44,14 +46,26 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			if (spawnData.contains("entity")) {
 				NbtCompound entity = spawnData.getCompound("entity");
 				if (entity.contains("id")) {
-					Identifier entityTypeIdentifier = Registry.ENTITY_TYPE.getId(entityType.get());
+					Identifier entityTypeIdentifier = Registries.ENTITY_TYPE.getId(entityType.get());
 					return !entityTypeIdentifier.toString().equals(entity.getString("id"));
 				}
 			}
 		}
 		return true;
 	}
-	
+
+	@Override
+	public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
+		// TODO - Implement
+		return null;
+	}
+
+	@Override
+	public ItemStack getOutput(DynamicRegistryManager registryManager) {
+		// TODO - Implement
+		return null;
+	}
+
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return SERIALIZER;
@@ -77,7 +91,7 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			return spawnerBlockEntityNbt;
 		}
 		
-		Identifier entityTypeIdentifier = Registry.ENTITY_TYPE.getId(entityType.get());
+		Identifier entityTypeIdentifier = Registries.ENTITY_TYPE.getId(entityType.get());
 		
 		// Default spawner tag:
 		/* BlockEntityTag: {

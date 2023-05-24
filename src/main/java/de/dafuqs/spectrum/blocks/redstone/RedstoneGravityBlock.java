@@ -63,7 +63,7 @@ public class RedstoneGravityBlock extends FallingBlock {
 			BlockState offsetBlockState = world.getBlockState(offsetPos);
 			if (offsetBlockState.isOf(this) && !offsetBlockState.get(UNSTABLE) && canFallThrough(world.getBlockState(offsetPos.down()))) {
 				world.setBlockState(offsetPos, world.getBlockState(offsetPos).with(UNSTABLE, true));
-				world.createAndScheduleBlockTick(pos, this, this.getFallDelay());
+				world.scheduleBlockTick(pos, this, this.getFallDelay());
 			}
 		}
 	}

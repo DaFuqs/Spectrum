@@ -15,7 +15,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.property.Properties;
-import net.minecraft.tag.BlockTags;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Pair;
 import net.minecraft.util.collection.DefaultedList;
@@ -52,7 +52,7 @@ public class FirestarterMobBlock extends MobBlock {
 	
 	public static void addBlockSmeltingRecipes(RecipeManager recipeManager) {
 		for (SmeltingRecipe recipe : recipeManager.listAllOfType(RecipeType.SMELTING)) {
-			ItemStack outputStack = recipe.getOutput();
+			ItemStack outputStack = recipe.getOutput(null);
 			if (outputStack.getItem() instanceof BlockItem outputBlockItem && outputBlockItem.getBlock() != Blocks.AIR) {
 				DefaultedList<Ingredient> ingredients = recipe.getIngredients();
 				if (!ingredients.isEmpty()) {

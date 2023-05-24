@@ -34,14 +34,14 @@ public interface ITitrationBarrelRecipe extends Recipe<Inventory>, GatedRecipe {
 	// the amount of bottles able to get out of a single barrel
 	default int getOutputCountAfterAngelsShare(float temperature, long secondsFermented) {
 		if (getFermentationData() == null) {
-			return getOutput().getCount();
+			return getOutput(null).getCount();
 		}
 		
 		float angelsSharePercent = getAngelsSharePercent(secondsFermented, temperature);
 		if (angelsSharePercent > 0) {
-			return (int) (getOutput().getCount() * Math.ceil(1F - angelsSharePercent / 100F));
+			return (int) (getOutput(null).getCount() * Math.ceil(1F - angelsSharePercent / 100F));
 		} else {
-			return (int) (getOutput().getCount() * Math.floor(1F - angelsSharePercent / 100F));
+			return (int) (getOutput(null).getCount() * Math.floor(1F - angelsSharePercent / 100F));
 		}
 	}
 	

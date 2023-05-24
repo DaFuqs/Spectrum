@@ -43,7 +43,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
     
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        world.createAndScheduleBlockTick(pos, this, 1);
+        world.scheduleBlockTick(pos, this, 1);
         return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
     
@@ -78,7 +78,7 @@ public class JadeiteFlowerBlock extends SpectrumFacingBlock implements Waterlogg
             }
 
             player.playSound(SoundEvents.ENTITY_MOOSHROOM_SHEAR, SoundCategory.BLOCKS, 1, 0.9F + random.nextFloat() * 0.2F);
-            player.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, SoundCategory.BLOCKS, 0.75F, 1F + random.nextFloat() * 0.2F);
+            player.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE.value(), SoundCategory.BLOCKS, 0.75F, 1F + random.nextFloat() * 0.2F);
             handStack.damage(1, player, (p) -> p.sendToolBreakStatus(hand));
 
             return ActionResult.success(world.isClient());

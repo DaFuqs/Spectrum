@@ -5,7 +5,7 @@ import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 import java.util.*;
 
@@ -17,14 +17,14 @@ public interface FilterConfigurable {
 
     default void writeFilterNbt(NbtCompound tag, List<Item> filterItems) {
         for (int i = 0; i < filterItems.size(); i++) {
-            tag.putString("Filter" + i, Registry.ITEM.getId(filterItems.get(i)).toString());
+            tag.putString("Filter" + i, Registries.ITEM.getId(filterItems.get(i)).toString());
         }
     }
 
     default void readFilterNbt(NbtCompound tag, List<Item> filterItems) {
         for (int i = 0; i < filterItems.size(); i++) {
             if (tag.contains("Filter" + i, NbtElement.STRING_TYPE)) {
-                filterItems.set(i, Registry.ITEM.get(new Identifier(tag.getString("Filter" + i))));
+                filterItems.set(i, Registries.ITEM.get(new Identifier(tag.getString("Filter" + i))));
             }
         }
     }
@@ -33,7 +33,7 @@ public interface FilterConfigurable {
         int size = packetByteBuf.readInt();
         Inventory inventory = new SimpleInventory(size);
         for (int i = 0; i < size; i++) {
-            inventory.setStack(i, Registry.ITEM.get(packetByteBuf.readIdentifier()).getDefaultStack());
+            inventory.setStack(i, Registries.ITEM.get(packetByteBuf.readIdentifier()).getDefaultStack());
         }
         return inventory;
     }
@@ -49,7 +49,7 @@ public interface FilterConfigurable {
     static void writeScreenOpeningData(PacketByteBuf buf, List<Item> filterItems) {
         buf.writeInt(filterItems.size());
         for (Item filterItem : filterItems) {
-            buf.writeIdentifier(Registry.ITEM.getId(filterItem));
+            buf.writeIdentifier(Registries.ITEM.getId(filterItem));
         }
     }
 

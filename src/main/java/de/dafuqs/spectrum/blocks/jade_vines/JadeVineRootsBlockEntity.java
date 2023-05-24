@@ -9,12 +9,12 @@ import net.minecraft.block.FenceBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -41,7 +41,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 		}
 		if (nbt.contains("FenceBlockIdentifier", NbtElement.STRING_TYPE)) {
 			Identifier fenceBlockIdentifier = Identifier.tryParse(nbt.getString("FenceBlockIdentifier"));
-			Block block = Registry.BLOCK.get(fenceBlockIdentifier);
+			Block block = Registries.BLOCK.get(fenceBlockIdentifier);
 			if (block instanceof FenceBlock) {
 				this.fenceBlockState = block.getDefaultState();
 			}
@@ -54,7 +54,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 		nbt.putLong("LastGrowthTick", this.lastGrowthTick);
 		nbt.putBoolean("WasExposedToSunlight", this.wasExposedToSunlight);
 		if (this.fenceBlockState != null) {
-			nbt.putString("FenceBlockIdentifier", Registry.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
+			nbt.putString("FenceBlockIdentifier", Registries.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
 		}
 	}
 	
@@ -99,7 +99,7 @@ public class JadeVineRootsBlockEntity extends BlockEntity {
 	public NbtCompound toInitialChunkDataNbt() {
 		NbtCompound nbtCompound = new NbtCompound();
 		if (this.fenceBlockState != null) {
-			nbtCompound.putString("FenceBlockIdentifier", Registry.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
+			nbtCompound.putString("FenceBlockIdentifier", Registries.BLOCK.getId(this.fenceBlockState.getBlock()).toString());
 		}
 		return nbtCompound;
 	}

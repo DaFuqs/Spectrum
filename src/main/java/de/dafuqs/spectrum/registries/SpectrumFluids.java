@@ -16,8 +16,9 @@ import net.minecraft.fluid.*;
 import net.minecraft.resource.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
+import org.joml.Vector3f;
 
 import java.util.function.*;
 
@@ -27,7 +28,7 @@ public class SpectrumFluids {
 	public static final FlowableFluid LIQUID_CRYSTAL = new LiquidCrystalFluid.StillLiquidCrystal();
 	public static final FlowableFluid FLOWING_LIQUID_CRYSTAL = new LiquidCrystalFluid.FlowingLiquidCrystal();
 	public static final int LIQUID_CRYSTAL_COLOR = 0xcbbbcb;
-	public static final Vec3f LIQUID_CRYSTAL_COLOR_VEC = new Vec3f(0.7f, 0.67f, 0.81f);
+	public static final Vector3f LIQUID_CRYSTAL_COLOR_VEC = new Vector3f(0.7f, 0.67f, 0.81f);
 	public static final Identifier LIQUID_CRYSTAL_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/liquid_crystal_overlay.png");
 	public static final float LIQUID_CRYSTAL_OVERLAY_ALPHA = 0.6F;
 	
@@ -35,7 +36,7 @@ public class SpectrumFluids {
 	public static final FlowableFluid MUD = new MudFluid.StillMud();
 	public static final FlowableFluid FLOWING_MUD = new MudFluid.FlowingMud();
 	public static final int MUD_COLOR = 0x4e2e0a;
-	public static final Vec3f MUD_COLOR_VEC = new Vec3f(0.26f, 0.14f, 0.01f);
+	public static final Vector3f MUD_COLOR_VEC = new Vector3f(0.26f, 0.14f, 0.01f);
 	public static final Identifier MUD_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/mud_overlay.png");
 	public static final float MUD_OVERLAY_ALPHA = 0.995F;
 	
@@ -43,7 +44,7 @@ public class SpectrumFluids {
 	public static final FlowableFluid MIDNIGHT_SOLUTION = new MidnightSolutionFluid.StillMidnightSolution();
 	public static final FlowableFluid FLOWING_MIDNIGHT_SOLUTION = new MidnightSolutionFluid.FlowingMidnightSolution();
 	public static final int MIDNIGHT_SOLUTION_COLOR = 0x11183b;
-	public static final Vec3f MIDNIGHT_SOLUTION_COLOR_VEC = new Vec3f(0.07f, 0.07f, 0.2f);
+	public static final Vector3f MIDNIGHT_SOLUTION_COLOR_VEC = new Vector3f(0.07f, 0.07f, 0.2f);
 	public static final Identifier MIDNIGHT_SOLUTION_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/midnight_solution_overlay.png");
 	public static final float MIDNIGHT_SOLUTION_OVERLAY_ALPHA = 0.995F;
 	
@@ -51,12 +52,12 @@ public class SpectrumFluids {
 	public static final FlowableFluid DRAGONROT = new DragonrotFluid.StillDragonrot();
 	public static final FlowableFluid FLOWING_DRAGONROT = new DragonrotFluid.FlowingDragonrot();
 	public static final int DRAGONROT_COLOR = 0xe3772f;
-	public static final Vec3f DRAGONROT_COLOR_VEC = ColorHelper.colorIntToVec(DRAGONROT_COLOR);
+	public static final Vector3f DRAGONROT_COLOR_VEC = ColorHelper.colorIntToVec(DRAGONROT_COLOR);
 	public static final Identifier DRAGONROT_OVERLAY_TEXTURE = new Identifier(SpectrumCommon.MOD_ID + ":textures/misc/dragonrot_overlay.png");
 	public static final float DRAGONROT_OVERLAY_ALPHA = 0.98F;
 	
 	private static void registerFluid(String name, Fluid fluid, DyeColor dyeColor) {
-		Registry.register(Registry.FLUID, SpectrumCommon.locate(name), fluid);
+		Registry.register(Registries.FLUID, SpectrumCommon.locate(name), fluid);
 		ItemColors.FLUID_COLORS.registerColorMapping(fluid, dyeColor);
 	}
 	
@@ -97,7 +98,7 @@ public class SpectrumFluids {
 			registry.register(flowingSpriteId);
 		});
 		
-		final Identifier fluidId = Registry.FLUID.getId(still);
+		final Identifier fluidId = Registries.FLUID.getId(still);
 		final Identifier listenerId = new Identifier(fluidId.getNamespace(), fluidId.getPath() + "_reload_listener");
 		final Sprite[] fluidSprites = {null, null};
 		

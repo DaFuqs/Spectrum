@@ -35,19 +35,19 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
         boolean hasDepth = bakedModel.hasDepth();
 
         matrixStack.push();
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
-        matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(getAdditionalPitch() + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch())));
+        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
+        matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(getAdditionalPitch() + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch())));
 
-        float yScale = bakedModel.getTransformation().getTransformation(ModelTransformation.Mode.GROUND).scale.getY();
+        float yScale = bakedModel.getTransformation().getTransformation(ModelTransformationMode.GROUND).scale.y();
         matrixStack.translate(0.0, (0.25F * yScale), 0.0);
 
         float scale = getScale();
         matrixStack.scale(scale, scale, scale);
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getRadialQuaternion(0));
+        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotation(0));
 
-        float scaleX = bakedModel.getTransformation().ground.scale.getX();
-        float scaleY = bakedModel.getTransformation().ground.scale.getY();
-        float scaleZ = bakedModel.getTransformation().ground.scale.getZ();
+        float scaleX = bakedModel.getTransformation().ground.scale.x();
+        float scaleY = bakedModel.getTransformation().ground.scale.y();
+        float scaleZ = bakedModel.getTransformation().ground.scale.z();
         if (!hasDepth) {
             float r = -0.0F * (float) (0) * 0.5F * scaleX;
             float s = -0.0F * (float) (0) * 0.5F * scaleY;
@@ -56,10 +56,10 @@ public class GlassArrowEntityRenderer extends EntityRenderer<GlassArrowEntity> {
         }
         float shake = (float) entity.shake - tickDelta;
         if (shake > 0.0F) {
-            matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(-MathHelper.sin(shake * 3.0F) * shake));
+            matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-MathHelper.sin(shake * 3.0F) * shake));
         }
 
-        this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.GROUND, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);
+        this.itemRenderer.renderItem(itemStack, ModelTransformationMode.GROUND, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);
 
         matrixStack.pop();
     }

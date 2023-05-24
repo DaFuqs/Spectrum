@@ -11,7 +11,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.profiler.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -47,7 +47,7 @@ public class EntityFishingDataLoader extends JsonDataLoader implements Identifia
 			entityArray.forEach(entryElement -> {
 				JsonObject entryObject = entryElement.getAsJsonObject();
 				
-				EntityType<?> entityType = Registry.ENTITY_TYPE.get(new Identifier(JsonHelper.getString(entryObject, "id")));
+				EntityType<?> entityType = Registries.ENTITY_TYPE.get(new Identifier(JsonHelper.getString(entryObject, "id")));
 				int weight = 1;
 				if (JsonHelper.hasNumber(jsonObject, "weight")) {
 					weight = JsonHelper.getInt(entryObject, "weight");

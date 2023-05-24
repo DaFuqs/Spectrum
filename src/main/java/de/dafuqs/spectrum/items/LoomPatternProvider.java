@@ -1,7 +1,7 @@
 package de.dafuqs.spectrum.items;
 
 import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.registry.entry.RegistryEntry;
 
 import java.util.List;
 

@@ -19,6 +19,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
 
 public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements SpiritVines {
 	
@@ -80,7 +81,7 @@ public class SpiritVinesHeadBlock extends AbstractPlantStemBlock implements Spir
 		builder.add(YIELD);
 	}
 	
-	public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
 		return false;
 	}
 	

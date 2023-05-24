@@ -75,7 +75,7 @@ public abstract class MidnightSolutionFluid extends SpectrumFluid {
 		
 		boolean converted = BlackMateriaBlock.spreadBlackMateria(world, pos, world.random, MidnightSolutionFluidBlock.SPREAD_BLOCKSTATE);
 		if (converted) {
-			world.createAndScheduleFluidTick(pos, state.getFluid(), 400 + world.random.nextInt(800));
+			world.scheduleFluidTick(pos, state.getFluid(), 400 + world.random.nextInt(800));
 		}
 	}
 	

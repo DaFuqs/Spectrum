@@ -5,7 +5,7 @@ import de.dafuqs.spectrum.*;
 import net.fabricmc.fabric.api.resource.conditions.v1.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumResourceConditions {
 	
@@ -23,7 +23,7 @@ public class SpectrumResourceConditions {
 		for (JsonElement element : array) {
 			if (element.isJsonPrimitive()) {
 				Identifier identifier = Identifier.tryParse(element.getAsString());
-				Enchantment enchantment = Registry.ENCHANTMENT.get(identifier);
+				Enchantment enchantment = Registries.ENCHANTMENT.get(identifier);
 				
 				return enchantment != null;
 			} else {

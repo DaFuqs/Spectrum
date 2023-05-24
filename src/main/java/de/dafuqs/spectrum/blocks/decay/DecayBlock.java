@@ -12,11 +12,12 @@ import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
 import net.minecraft.state.*;
 import net.minecraft.state.property.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
+import net.minecraft.world.tick.TickPriority;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -173,7 +174,7 @@ public abstract class DecayBlock extends Block {
 			if (canSpread(state) && !(newBlock instanceof DecayBlock) && !(newBlock instanceof DecayAwayBlock)) {
 				for (Map.Entry<TagKey<Block>, BlockState> conversion : this.decayConversions.entrySet()) {
 					if (state.isIn(conversion.getKey())) {
-						world.createAndScheduleBlockTick(pos, this, 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
+						world.scheduleBlockTick(pos, this, 40 + world.random.nextInt(200), TickPriority.EXTREMELY_LOW);
 						break;
 					}
 				}

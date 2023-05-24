@@ -4,7 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.loot.functions.*;
 import net.minecraft.loot.function.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumLootFunctionTypes {
 	
@@ -14,7 +14,7 @@ public class SpectrumLootFunctionTypes {
 	public static LootFunctionType FILL_POTION_FILLABLE;
 	
 	private static LootFunctionType register(String id, JsonSerializer<? extends LootFunction> jsonSerializer) {
-		return Registry.register(Registry.LOOT_FUNCTION_TYPE, SpectrumCommon.locate(id), new LootFunctionType(jsonSerializer));
+		return Registry.register(Registries.LOOT_FUNCTION_TYPE, SpectrumCommon.locate(id), new LootFunctionType(jsonSerializer));
 	}
 	
 	public static void register() {

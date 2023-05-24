@@ -6,7 +6,7 @@ import de.dafuqs.spectrum.particle.effect.*;
 import net.fabricmc.fabric.api.particle.v1.*;
 import net.minecraft.particle.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.function.*;
@@ -182,12 +182,12 @@ public class SpectrumParticleTypes {
 	
 	// Simple particles
 	public static DefaultParticleType register(String name, boolean alwaysShow) {
-		return Registry.register(Registry.PARTICLE_TYPE, SpectrumCommon.locate(name), FabricParticleTypes.simple(alwaysShow));
+		return Registry.register(Registries.PARTICLE_TYPE, SpectrumCommon.locate(name), FabricParticleTypes.simple(alwaysShow));
 	}
 	
 	// complex particles
 	private static <T extends ParticleEffect> ParticleType<T> register(String name, ParticleEffect.Factory<T> factory, final Function<ParticleType<T>, Codec<T>> function, boolean alwaysShow) {
-		return Registry.register(Registry.PARTICLE_TYPE, SpectrumCommon.locate(name), new ParticleType<T>(alwaysShow, factory) {
+		return Registry.register(Registries.PARTICLE_TYPE, SpectrumCommon.locate(name), new ParticleType<T>(alwaysShow, factory) {
 			public Codec<T> getCodec() {
 				return function.apply(this);
 			}

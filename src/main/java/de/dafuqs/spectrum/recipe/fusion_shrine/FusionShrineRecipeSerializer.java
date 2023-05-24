@@ -8,7 +8,7 @@ import net.minecraft.item.*;
 import net.minecraft.network.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 import java.util.*;
 
@@ -41,7 +41,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		Fluid fluid = Fluids.EMPTY;
 		if (JsonHelper.hasString(jsonObject, "fluid")) {
 			Identifier fluidIdentifier = Identifier.tryParse(JsonHelper.getString(jsonObject, "fluid"));
-			fluid = Registry.FLUID.get(fluidIdentifier);
+			fluid = Registries.FLUID.get(fluidIdentifier);
 			if (fluid.getDefaultState().isEmpty()) {
 				throw new JsonParseException("Recipe specifies fluid " + fluidIdentifier + " that does not exist! This recipe will not be craftable.");
 			}
@@ -103,7 +103,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 			ingredientStack.write(packetByteBuf);
 		}
 		
-		packetByteBuf.writeIdentifier(Registry.FLUID.getId(recipe.fluidInput));
+		packetByteBuf.writeIdentifier(Registries.FLUID.getId(recipe.fluidInput));
 		packetByteBuf.writeItemStack(recipe.output);
 		packetByteBuf.writeFloat(recipe.experience);
 		packetByteBuf.writeInt(recipe.craftingTime);
@@ -128,7 +128,7 @@ public class FusionShrineRecipeSerializer implements GatedRecipeSerializer<Fusio
 		short craftingInputCount = packetByteBuf.readShort();
 		List<IngredientStack> ingredients = IngredientStack.decodeByteBuf(packetByteBuf, craftingInputCount);
 		
-		Fluid fluid = Registry.FLUID.get(packetByteBuf.readIdentifier());
+		Fluid fluid = Registries.FLUID.get(packetByteBuf.readIdentifier());
 		ItemStack output = packetByteBuf.readItemStack();
 		float experience = packetByteBuf.readFloat();
 		int craftingTime = packetByteBuf.readInt();

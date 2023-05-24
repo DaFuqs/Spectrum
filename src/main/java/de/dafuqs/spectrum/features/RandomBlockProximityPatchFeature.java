@@ -4,7 +4,7 @@ import com.mojang.serialization.*;
 import net.minecraft.block.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.entry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.util.*;

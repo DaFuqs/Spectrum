@@ -9,7 +9,7 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -36,9 +36,9 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 	public boolean matches(@NotNull Inventory inv, World world) {
 		return false;
 	}
-	
+
 	@Override
-	public ItemStack craft(Inventory inventory) {
+	public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
 		return ItemStack.EMPTY;
 	}
 	
@@ -46,9 +46,9 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 	public boolean fits(int width, int height) {
 		return false;
 	}
-	
+
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager manager) {
 		return item.getDefaultStack();
 	}
 	
@@ -86,7 +86,7 @@ public class PotionWorkshopReactingRecipe extends GatedSpectrumRecipe implements
 	
 	@Override
 	public Text getDescription() {
-		Identifier identifier = Registry.ITEM.getId(this.item);
+		Identifier identifier = Registries.ITEM.getId(this.item);
 		return Text.translatable("spectrum.rei.potion_workshop_reacting." + identifier.getNamespace() + "." + identifier.getPath());
 	}
 	

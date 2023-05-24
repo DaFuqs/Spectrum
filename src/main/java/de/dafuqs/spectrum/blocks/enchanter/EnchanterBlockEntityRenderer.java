@@ -10,12 +10,14 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.*;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 
 public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafuqs.spectrum.blocks.enchanter.EnchanterBlockEntity> {
 	
@@ -49,27 +51,27 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 			switch (itemFacingDirection) {
 				case NORTH -> {
 					matrixStack.translate(0.5, ITEM_STACK_RENDER_HEIGHT, 0.7);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
-					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
 				}
 				case SOUTH -> { // perfect
 					matrixStack.translate(0.5, ITEM_STACK_RENDER_HEIGHT, 0.3);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
 				}
 				case EAST -> {
 					matrixStack.translate(0.3, ITEM_STACK_RENDER_HEIGHT, 0.5);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90));
-					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(270));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
+					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(270));
 				}
 				case WEST -> {
 					matrixStack.translate(0.7, ITEM_STACK_RENDER_HEIGHT, 0.5);
-					matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(270));
-					matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(90));
-					matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180));
+					matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(270));
+					matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(90));
+					matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180));
 				}
 			}
 			
-			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);
+			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, blockEntity.getWorld(), 0);
 			matrixStack.pop();
 		}
 		
@@ -95,7 +97,7 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		
 		matrixStack.translate(0.5D, 2.5D, 0.5D);
 		matrixStack.multiply(dispatcher.camera.getRotation());
-		matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0F));
+		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0F));
 		
 		float scale = 0.5F + (float) (Math.sin(timeWithTickDelta / 8.0) / 8.0);
 		matrixStack.scale(scale, scale, scale);
@@ -204,12 +206,12 @@ public class EnchanterBlockEntityRenderer implements BlockEntityRenderer<de.dafu
 		matrixStack.push();
 		for (int i = 0; i < count; i++) {
 			matrixStack.push();
-			matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(rand.nextFloat() * 360.0F));
-			matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(rand.nextFloat() * 360.0F));
-			matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(rand.nextFloat() * 360.0F));
-			matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(rand.nextFloat() * 360.0F));
-			matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(rand.nextFloat() * 360.0F));
-			matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(rand.nextFloat() * 360.0F + f1 * 360.0F));
+			matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(rand.nextFloat() * 360.0F));
+			matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rand.nextFloat() * 360.0F));
+			matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(rand.nextFloat() * 360.0F));
+			matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(rand.nextFloat() * 360.0F));
+			matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(rand.nextFloat() * 360.0F));
+			matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(rand.nextFloat() * 360.0F + f1 * 360.0F));
 
 			float fa = rand.nextFloat() * 20.0F + 5.0F + f2 * 10.0F;
 			float f4 = rand.nextFloat() * 2.0F + 1.0F + f2 * 2.0F;

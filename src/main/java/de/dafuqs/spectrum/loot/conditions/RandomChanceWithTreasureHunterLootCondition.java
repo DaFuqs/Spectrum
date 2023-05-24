@@ -18,11 +18,12 @@ import net.minecraft.loot.condition.LootConditionType;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameter;
 import net.minecraft.loot.context.LootContextParameters;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.JsonSerializer;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 
 import java.util.Set;
 
@@ -80,13 +81,13 @@ public class RandomChanceWithTreasureHunterLootCondition implements LootConditio
 		
 		public void toJson(JsonObject jsonObject, RandomChanceWithTreasureHunterLootCondition randomChanceWithLootingLootCondition, JsonSerializationContext jsonSerializationContext) {
 			jsonObject.addProperty("chance", randomChanceWithLootingLootCondition.chance);
-			jsonObject.addProperty("advancement_trigger_itemstack", Registry.ITEM.getId(randomChanceWithLootingLootCondition.advancementTriggerItemStack.getItem()).toString());
+			jsonObject.addProperty("advancement_trigger_itemstack", Registries.ITEM.getId(randomChanceWithLootingLootCondition.advancementTriggerItemStack.getItem()).toString());
 		}
 		
 		public RandomChanceWithTreasureHunterLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {
 			return new RandomChanceWithTreasureHunterLootCondition(
 					JsonHelper.getFloat(jsonObject, "chance"),
-					Registry.ITEM.get(new Identifier(JsonHelper.getString(jsonObject, "advancement_trigger_itemstack")))
+					Registries.ITEM.get(new Identifier(JsonHelper.getString(jsonObject, "advancement_trigger_itemstack")))
 			);
 		}
 	}

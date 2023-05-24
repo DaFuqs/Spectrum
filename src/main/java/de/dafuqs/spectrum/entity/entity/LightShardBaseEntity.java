@@ -174,7 +174,7 @@ public abstract class LightShardBaseEntity extends ProjectileEntity {
 		var projectiles = MathHelper.nextGaussian(random, 13, 5);
 		var pos = user.getEyePos();
 		
-		user.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE, 1, 1.2F + random.nextFloat() * 0.6F);
+		user.playSound(SoundEvents.BLOCK_RESPAWN_ANCHOR_DEPLETE.value(), 1, 1.2F + random.nextFloat() * 0.6F);
 		
 		for (int i = 0; i < projectiles; i++) {
 			LightShardBaseEntity shard = supplier.get();

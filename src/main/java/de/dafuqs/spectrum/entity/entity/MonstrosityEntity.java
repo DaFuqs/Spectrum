@@ -21,7 +21,7 @@ import net.minecraft.nbt.*;
 import net.minecraft.particle.*;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
@@ -162,7 +162,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 			this.setVelocity(this.getVelocity().multiply(f));
 		}
 		
-		this.updateLimbs(this, false);
+		this.updateLimbs(false);
 	}
 	
 	@Override
@@ -271,7 +271,7 @@ public class MonstrosityEntity extends SpectrumBossEntity implements RangedAttac
 	}
 	
 	private void shootAt(LivingEntity target, float pullProgress, boolean powerful) {
-		ItemStack itemStack = this.getArrowType(this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW)));
+		ItemStack itemStack = this.getProjectileType(this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW)));
 		PersistentProjectileEntity persistentProjectileEntity = ProjectileUtil.createArrowProjectile(this, itemStack, pullProgress);
 		double d = target.getX() - this.getX();
 		double e = target.getBodyY(0.3) - persistentProjectileEntity.getY();

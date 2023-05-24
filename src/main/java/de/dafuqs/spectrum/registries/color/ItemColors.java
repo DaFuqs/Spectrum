@@ -3,7 +3,7 @@ package de.dafuqs.spectrum.registries.color;
 import net.minecraft.block.*;
 import net.minecraft.item.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 import java.util.*;
 
@@ -197,7 +197,7 @@ public class ItemColors extends ColorRegistry<Item> {
 	
 	@Override
 	public void registerColorMapping(Identifier identifier, DyeColor dyeColor) {
-		Item item = Registry.ITEM.get(identifier);
+		Item item = Registries.ITEM.get(identifier);
 		if (item != Items.AIR) {
 			COLORS.put(item, dyeColor);
 		}

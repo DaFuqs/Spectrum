@@ -13,7 +13,7 @@ import net.minecraft.state.property.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
@@ -47,7 +47,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     }
     
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }
     
@@ -58,7 +58,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+        world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).get(SpectrumConfiguredFeatures.SNAPPING_IVY_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
     
     @Override
@@ -68,7 +68,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
     
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(AXIS, ctx.getPlayerFacing().getAxis());
+        return this.getDefaultState().with(AXIS, ctx.getHorizontalPlayerFacing().getAxis());
     }
     
     @Override
@@ -93,7 +93,7 @@ public class SnappingIvyBlock extends PlantBlock implements Fertilizable {
         if (entity instanceof LivingEntity livingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.slowMovement(state, MOVEMENT_SLOWDOWN_VECTOR);
             if (!snapped) {
-                entity.damage(DamageSource.SWEET_BERRY_BUSH, 5.0F);
+                entity.damage(world.getDamageSources().sweetBerryBush(), 5.0F);
                 livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 120, 1));
                 
                 BlockState newState = state.with(SNAPPED, true);

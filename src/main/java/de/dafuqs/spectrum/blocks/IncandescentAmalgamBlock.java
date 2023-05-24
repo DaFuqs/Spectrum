@@ -55,7 +55,7 @@ public class IncandescentAmalgamBlock extends Block implements Waterloggable {
 	
 	public BlockState getStateForNeighborUpdate(@NotNull BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
 		if (state.get(WATERLOGGED)) {
-			world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+			world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 		}
 		return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
 	}
@@ -145,7 +145,7 @@ public class IncandescentAmalgamBlock extends Block implements Waterloggable {
 	
 	protected static void explode(World world, BlockPos pos) {
 		if (!world.isClient) {
-			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 7.0F, true, Explosion.DestructionType.DESTROY);
+			world.createExplosion(null, SpectrumDamageSources.INCANDESCENCE, new ExplosionBehavior(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 7.0F, true, World.ExplosionSourceType.BLOCK);
 		}
 	}
 	

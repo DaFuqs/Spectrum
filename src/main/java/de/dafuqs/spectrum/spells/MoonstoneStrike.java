@@ -168,7 +168,7 @@ public class MoonstoneStrike {
         if (this.entity == null) {
             return null;
         } else if (this.entity instanceof TntEntity) {
-            return ((TntEntity)this.entity).getCausingEntity();
+            return ((TntEntity)this.entity).getOwner();
         } else if (this.entity instanceof LivingEntity) {
             return (LivingEntity)this.entity;
         } else {

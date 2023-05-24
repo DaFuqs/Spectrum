@@ -11,7 +11,7 @@ import net.minecraft.server.command.*;
 import net.minecraft.server.world.*;
 import net.minecraft.text.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -58,13 +58,13 @@ public class PreservationBlockDetectorBlockEntity extends BlockEntity implements
 		}
 		if (nbt.contains("change_into_state", NbtElement.STRING_TYPE)) {
 			try {
-				this.changeIntoState = BlockArgumentParser.block(Registry.BLOCK, nbt.getString("change_into_state"), false).blockState();
+				this.changeIntoState = BlockArgumentParser.block(Registries.BLOCK.getReadOnlyWrapper(), nbt.getString("change_into_state"), false).blockState();
 			} catch (CommandSyntaxException e) {
 			}
 		}
 		if (nbt.contains("change_into_state", NbtElement.STRING_TYPE)) {
 			try {
-				this.detectedState = BlockArgumentParser.block(Registry.BLOCK, nbt.getString("detected_state"), false).blockState();
+				this.detectedState = BlockArgumentParser.block(Registries.BLOCK.getReadOnlyWrapper(), nbt.getString("detected_state"), false).blockState();
 			} catch (CommandSyntaxException e) {
 			}
 		}

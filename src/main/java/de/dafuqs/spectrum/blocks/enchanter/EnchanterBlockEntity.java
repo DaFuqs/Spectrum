@@ -26,7 +26,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
-import net.minecraft.network.*;
+import net.minecraft.network.packet.*;
 import net.minecraft.network.listener.*;
 import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.recipe.*;
@@ -109,7 +109,7 @@ public class EnchanterBlockEntity extends InWorldInteractionBlockEntity implemen
 			world.addParticle(SpectrumParticleTypes.LIME_SPARKLE_RISING, blockPos.getX() + randomX, blockPos.getY() + 2.5 + randomY, blockPos.getZ() + randomZ, 0.0D, -0.1D, 0.0D);
 			
 			if (world.getTime() % 12 == 0) {
-				((ClientWorld) world).playSound(enchanterBlockEntity.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F, true);
+				((ClientWorld) world).playSound(null, enchanterBlockEntity.pos, SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.BLOCKS, 0.8F, 0.8F + world.random.nextFloat() * 0.4F);
 				enchanterBlockEntity.doItemBowlOrbs(world);
 			}
 		}

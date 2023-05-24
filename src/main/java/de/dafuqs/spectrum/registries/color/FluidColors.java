@@ -2,9 +2,10 @@ package de.dafuqs.spectrum.registries.color;
 
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 
 import java.util.HashMap;
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class FluidColors extends ColorRegistry<Fluid> {
 	
 	@Override
 	public void registerColorMapping(Identifier identifier, DyeColor dyeColor) {
-		Fluid fluid = Registry.FLUID.get(identifier);
+		Fluid fluid = Registries.FLUID.get(identifier);
 		if (fluid != Fluids.EMPTY) {
 			COLORS.put(fluid, dyeColor);
 		}

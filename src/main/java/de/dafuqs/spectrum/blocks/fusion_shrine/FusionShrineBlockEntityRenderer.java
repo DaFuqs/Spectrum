@@ -12,6 +12,8 @@ import net.minecraft.client.texture.*;
 import net.minecraft.client.util.math.*;
 import net.minecraft.item.*;
 import net.minecraft.util.math.*;
+import org.joml.*;
+import org.joml.Math;
 
 import java.util.*;
 
@@ -81,9 +83,9 @@ public class FusionShrineBlockEntityRenderer<T extends FusionShrineBlockEntity> 
 				double currentRadiant = radiant * i + (radiant * (time / 16.0) / (8.0F / inventoryStacks.size()));
 				double height = Math.sin((time + currentRadiant) / 8.0) / 3.0; // item height
 				matrixStack.translate(distance * Math.sin(currentRadiant) + 0.5, 1.5 + height, distance * Math.cos(currentRadiant) + 0.5); // position offset
-				matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((time) * 2)); // item stack rotation
+				matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees((time) * 2)); // item stack rotation
 				
-				MinecraftClient.getInstance().getItemRenderer().renderItem(inventoryStacks.get(i), ModelTransformation.Mode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, 0);
+				MinecraftClient.getInstance().getItemRenderer().renderItem(inventoryStacks.get(i), ModelTransformationMode.GROUND, light, overlay, matrixStack, vertexConsumerProvider, fusionShrineBlockEntity.getWorld(), 0);
 				matrixStack.pop();
 			}
 		}

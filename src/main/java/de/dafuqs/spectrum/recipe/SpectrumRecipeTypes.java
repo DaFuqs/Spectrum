@@ -14,7 +14,7 @@ import de.dafuqs.spectrum.recipe.potion_workshop.*;
 import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import net.minecraft.recipe.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 
 public class SpectrumRecipeTypes {
 	
@@ -83,11 +83,11 @@ public class SpectrumRecipeTypes {
 	public static RecipeType<ITitrationBarrelRecipe> TITRATION_BARREL;
 	
 	static <S extends RecipeSerializer<T>, T extends Recipe<?>> S registerSerializer(String id, S serializer) {
-		return Registry.register(Registry.RECIPE_SERIALIZER, SpectrumCommon.locate(id), serializer);
+		return Registry.register(Registries.RECIPE_SERIALIZER, SpectrumCommon.locate(id), serializer);
 	}
 	
 	static <T extends Recipe<?>> RecipeType<T> registerRecipeType(String id) {
-		return Registry.register(Registry.RECIPE_TYPE, SpectrumCommon.locate(id), new RecipeType<T>() {
+		return Registry.register(Registries.RECIPE_TYPE, SpectrumCommon.locate(id), new RecipeType<T>() {
 			@Override
 			public String toString() {
 				return "spectrum:" + id;

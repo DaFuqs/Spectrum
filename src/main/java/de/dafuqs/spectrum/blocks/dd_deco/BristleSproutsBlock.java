@@ -6,7 +6,7 @@ import net.minecraft.entity.*;
 import net.minecraft.server.world.*;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.util.shape.*;
 import net.minecraft.world.*;
 
@@ -37,7 +37,7 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }
 
@@ -48,7 +48,7 @@ public class BristleSproutsBlock extends PlantBlock implements Fertilizable {
 
     @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(SpectrumConfiguredFeatures.BRISTLE_SPROUT_PATCH).generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
+        world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getOrEmpty(SpectrumConfiguredFeatures.BRISTLE_SPROUT_PATCH).get().generate(world, world.getChunkManager().getChunkGenerator(), random, pos);
     }
 
     @Override

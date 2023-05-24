@@ -25,7 +25,7 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.event.*;
 import net.minecraft.world.event.listener.*;
@@ -93,7 +93,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 	public void writeNbt(NbtCompound tag) {
 		super.writeNbt(tag);
 		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
-			tag.putString("Filter" + i, Registry.ITEM.getId(this.filterItems.get(i)).toString());
+			tag.putString("Filter" + i, Registries.ITEM.getId(this.filterItems.get(i)).toString());
 		}
 	}
 
@@ -101,7 +101,7 @@ public class BlackHoleChestBlockEntity extends SpectrumChestBlockEntity implemen
 		super.readNbt(tag);
 		for (int i = 0; i < ITEM_FILTER_SLOT_COUNT; i++) {
 			if (tag.contains("Filter" + i, NbtElement.STRING_TYPE)) {
-				this.filterItems.set(i, Registry.ITEM.get(new Identifier(tag.getString("Filter" + i))));
+				this.filterItems.set(i, Registries.ITEM.get(new Identifier(tag.getString("Filter" + i))));
 			}
 		}
 	}

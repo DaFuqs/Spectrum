@@ -86,7 +86,7 @@ public class RestockingChestBlockEntity extends SpectrumChestBlockEntity impleme
 			Recipe recipe = CraftingTabletItem.getStoredRecipe(world, craftingTabletItemStack);
 			if (recipe instanceof ShapelessRecipe || recipe instanceof ShapedRecipe) {
 				DefaultedList<Ingredient> ingredients = recipe.getIngredients();
-				ItemStack outputItemStack = recipe.getOutput();
+				ItemStack outputItemStack = recipe.getOutput(world.getRegistryManager());
 				ItemStack currentItemStack = restockingChestBlockEntity.inventory.get(RESULT_SLOTS[index]);
 				if (InventoryHelper.canCombineItemStacks(currentItemStack, outputItemStack) && InventoryHelper.hasInInventory(ingredients, restockingChestBlockEntity)) {
 					List<ItemStack> remainders = InventoryHelper.removeFromInventoryWithRemainders(ingredients, restockingChestBlockEntity);

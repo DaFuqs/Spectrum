@@ -107,7 +107,7 @@ public abstract class MobBlock extends Block {
 	
 	public void triggerCooldown(World world, BlockPos pos) {
 		world.setBlockState(pos, world.getBlockState(pos).with(COOLDOWN, true));
-		world.createAndScheduleBlockTick(pos, this, getCooldownTicks());
+		world.scheduleBlockTick(pos, this, getCooldownTicks());
 	}
 	
 	public int getCooldownTicks() {

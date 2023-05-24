@@ -31,17 +31,17 @@ public class BidentEntityRenderer extends EntityRenderer<BidentEntity> {
     }
 
     private void renderAsItemStack(BidentEntity entity, float tickDelta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light, ItemStack itemStack) {
-        SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformation.Mode.NONE;
+        SpectrumModelPredicateProviders.currentItemRenderMode = ModelTransformationMode.NONE;
         BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.world, null, entity.getId());
 
         matrixStack.push();
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
-        matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(-135 + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
+        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
+        matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(-135 + MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
 
         float scale = 2.0F;
         matrixStack.scale(scale, scale, scale);
 
-        this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.NONE, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);
+        this.itemRenderer.renderItem(itemStack, ModelTransformationMode.NONE, false, matrixStack, vertexConsumerProvider, light, OverlayTexture.DEFAULT_UV, bakedModel);
 
         matrixStack.pop();
     }

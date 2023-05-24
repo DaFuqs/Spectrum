@@ -110,7 +110,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, net.minecraft.util.math.random.Random random) {
-        world.createAndScheduleBlockTick(pos, this, getFireTickDelay(world.random));
+        world.scheduleBlockTick(pos, this, getFireTickDelay(world.random));
 
         if (world.getGameRules().getBoolean(GameRules.DO_FIRE_TICK)) {
             if (!state.canPlaceAt(world, pos)) {
@@ -220,7 +220,7 @@ public class PrimordialFireBlock extends AbstractFireBlock {
     @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         super.onBlockAdded(state, world, pos, oldState, notify);
-        world.createAndScheduleBlockTick(pos, this, getFireTickDelay(world.random));
+        world.scheduleBlockTick(pos, this, getFireTickDelay(world.random));
     }
 
     private static int getFireTickDelay(Random random) {

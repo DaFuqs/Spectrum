@@ -6,7 +6,9 @@ import de.dafuqs.spectrum.registries.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.recipe.*;
-import net.minecraft.tag.*;
+import net.minecraft.recipe.book.*;
+import net.minecraft.registry.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.util.*;
 import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
@@ -15,15 +17,15 @@ import org.jetbrains.annotations.*;
 import java.util.*;
 
 public class WrapPresentRecipe extends SpecialCraftingRecipe {
-	
+	// TODO - Fix this recipe serializer
 	public static final RecipeSerializer<WrapPresentRecipe> SERIALIZER = new SpecialRecipeSerializer<>(WrapPresentRecipe::new);
 	
 	public WrapPresentRecipe(Identifier identifier) {
-		super(identifier);
+		super(identifier, CraftingRecipeCategory.MISC);
 	}
 	
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getOutput(DynamicRegistryManager drm) {
 		return SpectrumBlocks.PRESENT.asItem().getDefaultStack();
 	}
 	
@@ -61,7 +63,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 	}
 	
 	@Override
-	public ItemStack craft(@NotNull CraftingInventory craftingInventory) {
+	public ItemStack craft(@NotNull CraftingInventory craftingInventory, DynamicRegistryManager drm) {
 		ItemStack presentStack = ItemStack.EMPTY;
 		PresentBlock.Variant variant = PresentBlock.Variant.RED;
 		Map<DyeColor, Integer> colors = new HashMap<>();
@@ -87,7 +89,7 @@ public class WrapPresentRecipe extends SpecialCraftingRecipe {
 		
 		return presentStack;
 	}
-	
+
 	public @Nullable PresentBlock.Variant getPresentVariantForStack(@NotNull ItemStack stack) {
 		Item item = stack.getItem();
 		if (item == Items.RED_DYE) {

@@ -6,10 +6,11 @@ import net.minecraft.network.*;
 import net.minecraft.particle.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
+import org.joml.*;
 
 public class ParticleSpawnerConfiguration {
 	
@@ -17,10 +18,10 @@ public class ParticleSpawnerConfiguration {
 	private final Vec3i cmyColor; // 0-100 cmy
 	private final boolean glowing;
 	private final float particlesPerSecond; /* >1 = every xth tick */
-	private final Vec3f sourcePosition;
-	private final Vec3f sourcePositionVariance;
-	private final Vec3f velocity;
-	private final Vec3f velocityVariance;
+	private final Vector3fc sourcePosition;
+	private final Vector3fc sourcePositionVariance;
+	private final Vector3fc velocity;
+	private final Vector3fc velocityVariance;
 	private final float scale;
 	private final float scaleVariance;
 	private final int lifetimeTicks;
@@ -28,10 +29,10 @@ public class ParticleSpawnerConfiguration {
 	private final float gravity;
 	private final boolean collisions;
 	
-	private final Vec3f rgbColor; // 0-255 rgb
+	private final Vector3fc rgbColor; // 0-255 rgb
 	
 	public ParticleSpawnerConfiguration(ParticleType<?> particleType, Vec3i cmyColor, boolean glowing, float particlesPerSecond /* >1 = every xth tick */,
-										Vec3f sourcePosition, Vec3f sourcePositionVariance, Vec3f velocity, Vec3f velocityVariance,
+										Vector3fc sourcePosition, Vector3fc sourcePositionVariance, Vector3fc velocity, Vector3fc velocityVariance,
 										float scale, float scaleVariance, int lifetimeTicks, int lifetimeVariance, float gravity, boolean collisions) {
 		
 		this.particleType = particleType;
@@ -52,11 +53,11 @@ public class ParticleSpawnerConfiguration {
 		this.rgbColor = CMYtoRGB(cmyColor);
 	}
 	
-	public static Vec3f CMYtoRGB(Vec3i cmy) {
+	public static Vector3fc CMYtoRGB(Vec3i cmy) {
 		float r = 1F - cmy.getX() / 100F;
 		float g = 1F - cmy.getY() / 100F;
 		float b = 1F - cmy.getZ() / 100F;
-		return new Vec3f(r, g, b);
+		return new Vector3f(r, g, b);
 	}
 	
 	public ParticleType<?> getParticleType() {
@@ -75,19 +76,19 @@ public class ParticleSpawnerConfiguration {
 		return particlesPerSecond;
 	}
 	
-	public Vec3f getSourcePosition() {
+	public Vector3fc getSourcePosition() {
 		return sourcePosition;
 	}
 	
-	public Vec3f getSourcePositionVariance() {
+	public Vector3fc getSourcePositionVariance() {
 		return sourcePositionVariance;
 	}
 	
-	public Vec3f getVelocity() {
+	public Vector3fc getVelocity() {
 		return velocity;
 	}
 	
-	public Vec3f getVelocityVariance() {
+	public Vector3fc getVelocityVariance() {
 		return velocityVariance;
 	}
 	
@@ -116,24 +117,24 @@ public class ParticleSpawnerConfiguration {
 	}
 	
 	public void write(PacketByteBuf buf) {
-		buf.writeString(Registry.PARTICLE_TYPE.getId(particleType).toString());
+		buf.writeString(Registries.PARTICLE_TYPE.getId(particleType).toString());
 		buf.writeInt(cmyColor.getX());
 		buf.writeInt(cmyColor.getY());
 		buf.writeInt(cmyColor.getZ());
 		buf.writeBoolean(glowing);
 		buf.writeFloat(particlesPerSecond);
-		buf.writeFloat(sourcePosition.getX());
-		buf.writeFloat(sourcePosition.getY());
-		buf.writeFloat(sourcePosition.getZ());
-		buf.writeFloat(sourcePositionVariance.getX());
-		buf.writeFloat(sourcePositionVariance.getY());
-		buf.writeFloat(sourcePositionVariance.getZ());
-		buf.writeFloat(velocity.getX());
-		buf.writeFloat(velocity.getY());
-		buf.writeFloat(velocity.getZ());
-		buf.writeFloat(velocityVariance.getX());
-		buf.writeFloat(velocityVariance.getY());
-		buf.writeFloat(velocityVariance.getZ());
+		buf.writeFloat(sourcePosition.x());
+		buf.writeFloat(sourcePosition.y());
+		buf.writeFloat(sourcePosition.z());
+		buf.writeFloat(sourcePositionVariance.x());
+		buf.writeFloat(sourcePositionVariance.y());
+		buf.writeFloat(sourcePositionVariance.z());
+		buf.writeFloat(velocity.x());
+		buf.writeFloat(velocity.y());
+		buf.writeFloat(velocity.z());
+		buf.writeFloat(velocityVariance.x());
+		buf.writeFloat(velocityVariance.y());
+		buf.writeFloat(velocityVariance.z());
 		buf.writeFloat(scale);
 		buf.writeFloat(scaleVariance);
 		buf.writeInt(lifetimeTicks);
@@ -144,14 +145,14 @@ public class ParticleSpawnerConfiguration {
 	
 	public static ParticleSpawnerConfiguration fromBuf(PacketByteBuf buf) {
 		Identifier particleIdentifier = new Identifier(buf.readString());
-		ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(particleIdentifier);
+		ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(particleIdentifier);
 		Vec3i cmyColor = new Vec3i(buf.readInt(), buf.readInt(), buf.readInt());
 		boolean glowing = buf.readBoolean();
 		float particlesPerSecond = buf.readFloat();
-		Vec3f sourcePosition = new Vec3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
-		Vec3f sourcePositionVariance = new Vec3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
-		Vec3f velocity = new Vec3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
-		Vec3f velocityVariance = new Vec3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
+		Vector3fc sourcePosition = new Vector3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
+		Vector3fc sourcePositionVariance = new Vector3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
+		Vector3fc velocity = new Vector3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
+		Vector3fc velocityVariance = new Vector3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
 		float scale = buf.readFloat();
 		float scaleVariance = buf.readFloat();
 		int lifetimeTicks = buf.readInt();
@@ -165,21 +166,21 @@ public class ParticleSpawnerConfiguration {
 	
 	public NbtCompound toNbt() {
 		NbtCompound nbt = new NbtCompound();
-		nbt.putString("particle_type_identifier", Registry.PARTICLE_TYPE.getId(particleType).toString());
+		nbt.putString("particle_type_identifier", Registries.PARTICLE_TYPE.getId(particleType).toString());
 		nbt.putFloat("particles_per_tick", particlesPerSecond);
 		nbt.putBoolean("glowing", glowing);
-		nbt.putFloat("source_pos_x", sourcePosition.getX());
-		nbt.putFloat("source_pos_y", sourcePosition.getY());
-		nbt.putFloat("source_pos_z", sourcePosition.getZ());
-		nbt.putFloat("source_pos_variance_x", sourcePositionVariance.getX());
-		nbt.putFloat("source_pos_variance_y", sourcePositionVariance.getY());
-		nbt.putFloat("source_pos_variance_z", sourcePositionVariance.getZ());
-		nbt.putFloat("source_velocity_x", velocity.getX());
-		nbt.putFloat("source_velocity_y", velocity.getY());
-		nbt.putFloat("source_velocity_z", velocity.getZ());
-		nbt.putFloat("source_velocity_variance_x", velocityVariance.getX());
-		nbt.putFloat("source_velocity_variance_y", velocityVariance.getY());
-		nbt.putFloat("source_velocity_variance_z", velocityVariance.getZ());
+		nbt.putFloat("source_pos_x", sourcePosition.x());
+		nbt.putFloat("source_pos_y", sourcePosition.y());
+		nbt.putFloat("source_pos_z", sourcePosition.z());
+		nbt.putFloat("source_pos_variance_x", sourcePositionVariance.x());
+		nbt.putFloat("source_pos_variance_y", sourcePositionVariance.y());
+		nbt.putFloat("source_pos_variance_z", sourcePositionVariance.z());
+		nbt.putFloat("source_velocity_x", velocity.x());
+		nbt.putFloat("source_velocity_y", velocity.y());
+		nbt.putFloat("source_velocity_z", velocity.z());
+		nbt.putFloat("source_velocity_variance_x", velocityVariance.x());
+		nbt.putFloat("source_velocity_variance_y", velocityVariance.y());
+		nbt.putFloat("source_velocity_variance_z", velocityVariance.z());
 		nbt.putInt("color_c", cmyColor.getX());
 		nbt.putInt("color_m", cmyColor.getY());
 		nbt.putInt("color_y", cmyColor.getZ());
@@ -193,13 +194,13 @@ public class ParticleSpawnerConfiguration {
 	}
 	
 	public static ParticleSpawnerConfiguration fromNbt(NbtCompound tag) {
-		ParticleType<?> particleType = Registry.PARTICLE_TYPE.get(new Identifier(tag.getString("particle_type_identifier")));
+		ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(new Identifier(tag.getString("particle_type_identifier")));
 		float particlesPerSecond = tag.getFloat("particles_per_tick");
 		boolean glowing = tag.getBoolean("glowing");
-		Vec3f particleSourcePosition = new Vec3f(tag.getFloat("source_pos_x"), tag.getFloat("source_pos_y"), tag.getFloat("source_pos_z"));
-		Vec3f particleSourcePositionVariance = new Vec3f(tag.getFloat("source_pos_variance_x"), tag.getFloat("source_pos_variance_y"), tag.getFloat("source_pos_variance_z"));
-		Vec3f velocity = new Vec3f(tag.getFloat("source_velocity_x"), tag.getFloat("source_velocity_y"), tag.getFloat("source_velocity_z"));
-		Vec3f velocityVariance = new Vec3f(tag.getFloat("source_velocity_variance_x"), tag.getFloat("source_velocity_variance_y"), tag.getFloat("source_velocity_variance_z"));
+		Vector3fc particleSourcePosition = new Vector3f(tag.getFloat("source_pos_x"), tag.getFloat("source_pos_y"), tag.getFloat("source_pos_z"));
+		Vector3fc particleSourcePositionVariance = new Vector3f(tag.getFloat("source_pos_variance_x"), tag.getFloat("source_pos_variance_y"), tag.getFloat("source_pos_variance_z"));
+		Vector3fc velocity = new Vector3f(tag.getFloat("source_velocity_x"), tag.getFloat("source_velocity_y"), tag.getFloat("source_velocity_z"));
+		Vector3fc velocityVariance = new Vector3f(tag.getFloat("source_velocity_variance_x"), tag.getFloat("source_velocity_variance_y"), tag.getFloat("source_velocity_variance_z"));
 		Vec3i cmyColor = new Vec3i(tag.getInt("color_c"), tag.getInt("color_m"), tag.getInt("color_y"));
 		float scale = tag.getFloat("scale");
 		float scaleVariance = tag.getFloat("scale_variance");
@@ -225,22 +226,22 @@ public class ParticleSpawnerConfiguration {
 		int randomLifetime = lifetimeVariance == 0 ? lifetimeTicks : (int) (lifetimeTicks + lifetimeVariance - random.nextDouble() * lifetimeVariance * 2.0D);
 		
 		if (randomScale > 0 && randomLifetime > 0) {
-			double randomOffsetX = sourcePositionVariance.getX() == 0 ? 0 : sourcePositionVariance.getX() - random.nextDouble() * sourcePositionVariance.getX() * 2.0D;
-			double randomOffsetY = sourcePositionVariance.getY() == 0 ? 0 : sourcePositionVariance.getY() - random.nextDouble() * sourcePositionVariance.getY() * 2.0D;
-			double randomOffsetZ = sourcePositionVariance.getZ() == 0 ? 0 : sourcePositionVariance.getZ() - random.nextDouble() * sourcePositionVariance.getZ() * 2.0D;
+			double randomOffsetX = sourcePositionVariance.x() == 0 ? 0 : sourcePositionVariance.x() - random.nextDouble() * sourcePositionVariance.x() * 2.0D;
+			double randomOffsetY = sourcePositionVariance.y() == 0 ? 0 : sourcePositionVariance.y() - random.nextDouble() * sourcePositionVariance.y() * 2.0D;
+			double randomOffsetZ = sourcePositionVariance.z() == 0 ? 0 : sourcePositionVariance.z() - random.nextDouble() * sourcePositionVariance.z() * 2.0D;
 			
-			double randomVelocityX = velocityVariance.getX() == 0 ? 0 : velocityVariance.getX() - random.nextDouble() * velocityVariance.getX() * 2.0D;
-			double randomVelocityY = velocityVariance.getY() == 0 ? 0 : velocityVariance.getY() - random.nextDouble() * velocityVariance.getY() * 2.0D;
-			double randomVelocityZ = velocityVariance.getZ() == 0 ? 0 : velocityVariance.getZ() - random.nextDouble() * velocityVariance.getZ() * 2.0D;
+			double randomVelocityX = velocityVariance.x() == 0 ? 0 : velocityVariance.x() - random.nextDouble() * velocityVariance.x() * 2.0D;
+			double randomVelocityY = velocityVariance.y() == 0 ? 0 : velocityVariance.y() - random.nextDouble() * velocityVariance.y() * 2.0D;
+			double randomVelocityZ = velocityVariance.z() == 0 ? 0 : velocityVariance.z() - random.nextDouble() * velocityVariance.z() * 2.0D;
 			
 			world.addParticle(
-					new DynamicParticleEffect(particleType, gravity, rgbColor, randomScale, randomLifetime, collisions, glowing),
-					(double) pos.getX() + 0.5 + sourcePosition.getX() + randomOffsetX,
-					(double) pos.getY() + 0.5 + sourcePosition.getY() + randomOffsetY,
-					(double) pos.getZ() + 0.5 + sourcePosition.getZ() + randomOffsetZ,
-					velocity.getX() + randomVelocityX,
-					velocity.getY() + randomVelocityY,
-					velocity.getZ() + randomVelocityZ
+					new DynamicParticleEffect(particleType, gravity, new Vector3f(rgbColor), randomScale, randomLifetime, collisions, glowing),
+					(double) pos.getX() + 0.5 + sourcePosition.x() + randomOffsetX,
+					(double) pos.getY() + 0.5 + sourcePosition.y() + randomOffsetY,
+					(double) pos.getZ() + 0.5 + sourcePosition.z() + randomOffsetZ,
+					velocity.x() + randomVelocityX,
+					velocity.y() + randomVelocityY,
+					velocity.z() + randomVelocityZ
 			);
 		}
 	}

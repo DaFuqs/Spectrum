@@ -24,10 +24,10 @@ import net.minecraft.server.*;
 import net.minecraft.server.command.*;
 import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
-import net.minecraft.tag.*;
+import net.minecraft.registry.tag.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.registry.*;
+import net.minecraft.registry.*;
 import org.apache.commons.lang3.*;
 
 import java.util.*;
@@ -75,7 +75,7 @@ public class SanityCommand {
 		SpectrumCommon.logInfo("##### SANITY CHECK START ######");
 		
 		// All blocks that do not have a mineable tag
-		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntrySet()) {
+		for (Map.Entry<RegistryKey<Block>, Block> entry : Registries.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				BlockState blockState = entry.getValue().getDefaultState();
@@ -96,7 +96,7 @@ public class SanityCommand {
 		}
 		
 		// All blocks without a loot table
-		for (Map.Entry<RegistryKey<Block>, Block> entry : Registry.BLOCK.getEntrySet()) {
+		for (Map.Entry<RegistryKey<Block>, Block> entry : Registries.BLOCK.getEntrySet()) {
 			RegistryKey<Block> registryKey = entry.getKey();
 			if (registryKey.getValue().getNamespace().equals(SpectrumCommon.MOD_ID)) {
 				Block block = entry.getValue();
@@ -265,7 +265,7 @@ public class SanityCommand {
 		}
 		
 		// Enchantments with nonexistent Advancement cloak
-		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> enchantment : Registry.ENCHANTMENT.getEntrySet()) {
+		for (Map.Entry<RegistryKey<Enchantment>, Enchantment> enchantment : Registries.ENCHANTMENT.getEntrySet()) {
 			if (enchantment.getValue() instanceof SpectrumEnchantment spectrumEnchantment) {
 				Identifier advancementIdentifier = spectrumEnchantment.getUnlockAdvancementIdentifier();
 				Advancement advancementCriterionAdvancement = advancementLoader.get(advancementIdentifier);
@@ -276,7 +276,7 @@ public class SanityCommand {
 		}
 		
 		// EnchanterEnchantables with enchantability <= 0
-		for (Map.Entry<RegistryKey<Item>, Item> item : Registry.ITEM.getEntrySet()) {
+		for (Map.Entry<RegistryKey<Item>, Item> item : Registries.ITEM.getEntrySet()) {
 			Item i = item.getValue();
 			if (i instanceof EnchanterEnchantable && i.getEnchantability() < 1) {
 				SpectrumCommon.logWarning("[SANITY: Enchantability] Item '" + item.getKey().getValue() + "' is EnchanterEnchantable, but has enchantability of < 1");
@@ -317,13 +317,13 @@ public class SanityCommand {
 			for (Ingredient inputIngredient : recipe.getIngredients()) {
 				for (ItemStack matchingItemStack : inputIngredient.getMatchingStacks()) {
 					if (ColorRegistry.ITEM_COLORS.getMapping(matchingItemStack.getItem()).isEmpty()) {
-						SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Input '" + Registry.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+						SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Input '" + Registries.ITEM.getId(matchingItemStack.getItem()) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 					}
 				}
 			}
-			Item outputItem = recipe.getOutput().getItem();
+			Item outputItem = recipe.getOutput(null).getItem();
 			if (outputItem != null && outputItem != Items.AIR && ColorRegistry.ITEM_COLORS.getMapping(outputItem).isEmpty()) {
-				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Output '" + Registry.ITEM.getId(outputItem) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
+				SpectrumCommon.logWarning("[SANITY: " + name + " Recipe] Output '" + Registries.ITEM.getId(outputItem) + "' in recipe '" + recipe.getId() + "', does not exist in the item color registry. Add it for nice effects!");
 			}
 		}
 	}

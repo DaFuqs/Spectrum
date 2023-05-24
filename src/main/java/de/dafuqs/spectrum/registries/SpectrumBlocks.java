@@ -76,7 +76,6 @@ import net.minecraft.util.math.intprovider.*;
 import net.minecraft.util.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
-import net.minecraft.world.gen.feature.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;
@@ -531,21 +530,16 @@ public class SpectrumBlocks {
 		return AbstractBlock.Settings.of(Material.PLANT, color).breakInstantly().noCollision().sounds(BlockSoundGroup.FUNGUS);
 	}
 	
-	private static RegistryEntry<ConfiguredFeature<?, ?>> getConfiguredFeatureRegistryEntry(String id) {
-		return BuiltinRegistries.CONFIGURED_FEATURE.entryOf(RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, SpectrumCommon.locate(id)));
-	}
-	
-	
 	//DD FLORA
 	public static final Block SAWBLADE_GRASS = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.AZALEA_LEAVES).ticksRandomly());
 	public static final Block SHIMMEL = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.MYCELIUM).sounds(BlockSoundGroup.WART_BLOCK).ticksRandomly());
 	public static final Block OVERGROWN_BLACKSLAG = new BlackslagVegetationBlock(AbstractBlock.Settings.copy(Blocks.PODZOL).sounds(BlockSoundGroup.VINE).velocityMultiplier(0.925F).ticksRandomly());
 	public static final Block ROTTEN_GROUND = new RottenGroundBlock(AbstractBlock.Settings.copy(Blocks.MUD).sounds(BlockSoundGroup.HONEY).velocityMultiplier(0.775F).jumpVelocityMultiplier(0.9F));
 	
-	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), () -> getConfiguredFeatureRegistryEntry("noxfungi/slate"));
-	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), () -> getConfiguredFeatureRegistryEntry("noxfungi/ebony"));
-	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), () -> getConfiguredFeatureRegistryEntry("noxfungi/ivory"));
-	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.DULL_RED), () -> getConfiguredFeatureRegistryEntry("noxfungi/chestnut"));
+	public static final Block SLATE_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.GRAY), SpectrumCommon.locate("noxfungi/slate"));
+	public static final Block EBONY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.TERRACOTTA_BLACK), SpectrumCommon.locate("noxfungi/ebony"));
+	public static final Block IVORY_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.OFF_WHITE), SpectrumCommon.locate("noxfungi/ivory"));
+	public static final Block CHESTNUT_NOXSHROOM = new GilledFungusBlock(fungus(MapColor.DULL_RED), SpectrumCommon.locate("noxfungi/chestnut"));
 	
 	public static final ToIntFunction<BlockState> LIT_PROVIDER = (state -> state.get(RedstoneLampBlock.LIT) ? 15 : 0);
 	

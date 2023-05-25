@@ -16,15 +16,13 @@
     "has_myceylon": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "conditions": {
-          "items": [
-            {
-              "items": [
-                "spectrum:myceylon"
-              ]
-            }
-          ]
-        }
+        "items": [
+          {
+            "items": [
+              "spectrum:myceylon"
+            ]
+          }
+        ]
       }
     },
     "gotten_previous": {

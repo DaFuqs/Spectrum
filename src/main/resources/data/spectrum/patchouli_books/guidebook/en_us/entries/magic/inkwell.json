@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Your hands were shaking as you brought this idea onto paper. This is going to be big.$()$(br2)Producing Ink always was a tedious process: from collecting $(l:general/shards)Gemstone Shards$(/l), $(l:general/anvil_crushing)crushing them$(/l), $(l:general/colored_trees)creating trees$(/l) to cut them down again for their $(l:general/pigment)Pigment$(/l), just to convert it into Ink in the $(l:magic/color_picker)Color Picker$(/l).$(br)$(italic)Time to cut out all these intermediate stages."
+      "text": "Your hands were shaking as you brought this idea onto paper. This is going to be big.$()$(br2)Producing Ink always was a tedious process: from collecting $(l:general/shards)Gemstone Shards$(/l), $(l:general/anvil_crushing)crushing them$(/l), $(l:general/colored_trees)creating trees$(/l) to cut them down again for their $(l:general/pigment)Pigment$(/l), just to convert it into Ink in the $(l:magic/color_picker)Color Picker$(/l).$(br)$(italic)Time to cut out all these intermediate stages."
     },
     {
       "type": "spectrum:pedestal_crafting",

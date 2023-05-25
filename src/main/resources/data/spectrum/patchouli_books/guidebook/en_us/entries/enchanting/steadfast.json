@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Knowing you, you create the perfect tool for yourself, only to have it fall into lava in a moment of derangement. And then there is the dimension of the Endermen, which dramatically punishes every mistake.$(br2)This new enchantment will protect your favorite tools in case of such an emergency (and be it throwing it against a cactus)."
+      "text": "Knowing you, you create the perfect tool for yourself, only to have it fall into lava in a moment of derangement. And then there is the dimension of the Endermen, which dramatically punishes every mistake.$(br2)This new enchantment will protect your favorite tools in case of such an emergency (and be it throwing it against a cactus)."
     },
     {
       "type": "patchouli:spotlight",

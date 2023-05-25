@@ -83,9 +83,13 @@
   },
   "pages": [
     {
+      "type": "patchouli:text",
+      "text": "A weird mix between Trees and Mushrooms is towering over this biome."
+    },
+    {
       "type": "patchouli:spotlight",
       "item": "spectrum:shimmel",
-      "text": "A weird mix between Trees and Mushrooms is towering over this biome, growing on top of a thin layer of Mycelium."
+      "text": "Blackslag, overgrown with a thin layer of a mycelium-like fungi."
     },
     {
       "type": "patchouli:spotlight",

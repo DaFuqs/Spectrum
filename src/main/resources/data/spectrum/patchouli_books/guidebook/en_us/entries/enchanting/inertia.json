@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)You'd almost think this enchantment breathes a little bit of life into your tools.$(br2)Like a living creature, the tool gradually gets used to the block you are mining and specializes in it. In return, however, the mining of other blocks becomes slower."
+      "text": "You'd almost think this enchantment breathes a little bit of life into your tools.$(br2)Like a living creature, the tool gradually gets used to the block you are mining and specializes in it. In return, however, the mining of other blocks becomes slower."
     },
     {
       "type": "patchouli:spotlight",

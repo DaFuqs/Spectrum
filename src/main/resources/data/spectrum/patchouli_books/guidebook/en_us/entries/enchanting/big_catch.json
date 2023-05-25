@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)Your new magic fishing rods have the interesting property of attracting even living creatures. Why that wasn't a thing with your boring rods? I don't know.$(br)With this enchantment, you can further increase the chance of catching living creatures."
+      "text": "Your new magic fishing rods have the interesting property of attracting even living creatures. Why that wasn't a thing with your boring rods? I don't know.$(br)With this enchantment, you can further increase the chance of catching living creatures."
     },
     {
       "type": "patchouli:spotlight",

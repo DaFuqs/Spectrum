@@ -6,11 +6,11 @@
 			"title":"酿造药剂"
 		},
 		{
-			"recipe":"spectrum:potion_workshop_brewing/fire_resistance",
-			"text":"在使用相同成分之前，制作具有相同效果的药剂的过程。与使用酿造架不同，您可以使用$(l:magical_blocks/potion_workshop_reagents)试剂$(/l)进一步增强其效果。",
-			"type":"spectrum:potion_workshop_brewing",
-			"title":"原版药水变体"
-		},
+          "recipe": "spectrum:potion_workshop_brewing/fire_resistance",
+          "text": "在使用相同成分之前，制作具有相同效果的药剂的过程。与使用酿造架不同，您可以使用$(l:brewing/potion_workshop_reagents)试剂$(/l)进一步增强其效果。",
+          "type": "spectrum:potion_workshop_brewing",
+          "title": "原版药水变体"
+        },
 		{
 			"recipe":"spectrum:potion_workshop_brewing/absorption",
 			"text":"",

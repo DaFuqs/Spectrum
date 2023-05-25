@@ -17,7 +17,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Whenever you enter a new world, you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of Mending. All this, just so you don't have to fix your tools.$(br)That's both less exciting and species-appropriate. Now that you can process Bedrock, you have a much more convenient solution, anyways."
+      "text": "Whenever you enter a new world you go about the mindless, days-long task of gathering villagers around you, turning them into zombies and healing them again, only for one of them to eventually hand you a book of $(thing)Mending$(). All this, just so you don't have to fix your tools.$(br)That's neither exciting nor species-appropriate. Now you have a much more convenient solution."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -50,8 +50,8 @@
       "text": "The Bedrock Bow comes with $(bold)Power VI$()."
     },
     {
-      "type": "patchouli:spotlight",
-      "item": "spectrum:bedrock_crossbow",
+      "type": "spectrum:fusion_shrine_crafting",
+      "recipe": "spectrum:fusion_shrine/bedrock/bedrock_crossbow",
       "text": "The Bedrock Crossbow comes with $(bold)Quick Charge IV$()."
     },
     {

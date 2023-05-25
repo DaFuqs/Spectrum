@@ -6,7 +6,7 @@
     },
     {
       "recipe": "spectrum:fusion_shrine/trinkets/greater_potion_pendant",
-      "text": "使用$(l:magical_blocks/potion_workshop)药水工场$(/l)将其装满药剂。$(br)对于每一种药剂，你的$(l:general/pigment_palette)颜料调色板$(/l)都会消耗掉特定的颜色能量。水平越高，成本越高。",
+      "text": "使用$(l:brewing/potion_workshop)药水工场$(/l)将其装满药剂。$(br)对于每一种药剂，你的$(l:general/pigment_palette)颜料调色板$(/l)都会消耗掉特定的颜色能量。水平越高，成本越高。",
       "type": "spectrum:fusion_shrine_crafting",
       "title": "融合配方"
     }

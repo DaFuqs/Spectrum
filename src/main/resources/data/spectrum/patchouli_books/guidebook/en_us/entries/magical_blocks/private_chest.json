@@ -10,7 +10,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:private_chest",
-      "text": "$(italic)It happens again and again that you just quickly put down a box to store your belongings and as you come back find everything looted.$(br)To solve this issue you have developed this special chest, which can even help you to catch the thief in the act."
+      "text": "It happens again and again that you just quickly put down a box to store your belongings and as you come back find everything looted.$(br)To solve this issue you have developed this special chest, which can even help you to catch the thief in the act."
     },
     {
       "type": "spectrum:pedestal_crafting",

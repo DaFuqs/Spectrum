@@ -12,7 +12,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The strongest material you could make so far was Netherite. However, repairing Netherite armor had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is less problematic when the armor simply $(italic)cannot$() be damaged.$(br)$(italic)Never wilt, stone blossom."
+      "text": "The strongest material you could find so far was Netherite. However, repairing $(item)Netherite Armor$() had the disadvantage that it was more expensive than making the armor itself. In addition, the protection decreased with every scratch. All this is less problematic when the armor simply $(italic)cannot$() be damaged.$(br2)$(italic)Never wilt, stone blossom."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

@@ -11,7 +11,7 @@
       "type": "patchouli:spotlight",
       "title": "Enchanting Mastery",
       "item": "minecraft:diamond_chestplate{Enchantments: [{id: \"minecraft:protection\", lvl: 3s}, {id: \"minecraft:blast_protection\", lvl: 3s}, {id: \"minecraft:projectile_protection\", lvl: 3s}, {id: \"minecraft:fire_protection\", lvl: 3s}]}",
-      "text": "$(italic)The problems you used to have with enchanting your items with multiple, conflicting enchantments are behind you.$(br)As a master of magic, nothing is left to your desires."
+      "text": "The problems you used to have with enchanting your items with multiple, conflicting enchantments are behind you.$(br)As a master of magic, nothing is left to your desires."
     },
     {
       "type": "patchouli:text",

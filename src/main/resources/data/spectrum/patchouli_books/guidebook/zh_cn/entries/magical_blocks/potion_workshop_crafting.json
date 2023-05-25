@@ -1,10 +1,10 @@
 {
 	"pages":[
 		{
-			"text":"顾名思义，药剂工场的主要重点是创造强大的魔药。$(br)但你也发现了创造其他事物的巨大效用。在花丝和颗粒可调开关和阀门的帮助下，你还可以在这里重新创造泥浆和液晶——比以前更高效。$(br)$()所有这些配方都不使用$(l:magical_blocks/potion_workshop_reagents)试剂$(/l)。",
-			"type":"patchouli:text",
-			"title":"工厂工艺"
-		},
+          "text": "顾名思义，药剂工场的主要重点是创造强大的魔药。$(br)但你也发现了创造其他事物的巨大效用。在花丝和颗粒可调开关和阀门的帮助下，你还可以在这里重新创造泥浆和液晶——比以前更高效。$(br)$()所有这些配方都不使用$(l:brewing/potion_workshop_reagents)试剂$(/l)。",
+          "type": "patchouli:text",
+          "title": "工厂工艺"
+        },
 		{
 			"recipe":"spectrum:potion_workshop_crafting/water_bucket",
 			"text":"",

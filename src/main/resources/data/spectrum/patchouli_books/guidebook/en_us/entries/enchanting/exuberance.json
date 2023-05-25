@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(italic)That fancy book table of obsidian and diamond of yours, while useful, more or less swallows every piece of experience, as soon as you acquire it. To satisfy its never diminishing hunger to supply your ever-growing list of enchanted tools.$(br2)Squeezing the last bit of experience out of your opponents will help a lot."
+      "text": "That fancy book table of yours, while useful, more or less swallows every piece of experience, as soon as you acquire it. To satisfy its never diminishing hunger to supply your ever-growing list of enchanted tools.$(br2)Squeezing the last bit of experience out of your opponents will help a lot."
     },
     {
       "type": "patchouli:spotlight",

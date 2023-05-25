@@ -7,11 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Gigantic stalactites can be found all over this area. You wonder how big these pieces can get. You've seen ones that span hundreds of blocks."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "The ground is speckled in puddles of $(item)Water$()."
+      "text": "Gigantic stalactites can be found all over this area. You wonder how big these can get. You've seen ones that span hundreds of blocks.$(br)The ground is speckled in puddles of $(item)Water$()."
     }
   ]
 }

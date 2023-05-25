@@ -13,25 +13,27 @@
     {
       "type": "patchouli:text",
       "title": "Myceylon",
-      "text": "Using an $(item)Axe$() or $(l:equipment/multitool)Multitool$() you could strip small, but unexpectedly sturdy pieces of the Noxshrooms. Those where both unexpectedly sturdy for a mushroom and... tasty."
+      "text": "Using an $(item)Axe$() or $(l:equipment/multitool)Multitool$() you could strip small, but unexpectedly sturdy pieces off the $(l:dimension/noxshroom_forest)Noxshrooms$(). Those were both unexpectedly sturdy for a mushroom and... tasty."
     },
     {
       "type": "patchouli:text",
-      "text": "Myceylon adds great flavor to baked goods and $(l:cuisine/infused_beverage)drinks$().$(br2)$(italic)Why would you peel Mushrooms?$(br)So you can enjoy the peel later."
+      "text": "Myceylon adds great flavor to baked goods and $(l:cuisine/infused_beverage)drinks$().$(br2)$(italic)Why would you peel Mushrooms?$(br)So you can enjoy the peel later, of course."
     },
     {
       "type": "spectrum:pedestal_crafting",
-      "recipe": "spectrum:pedestal/tier2/food/myceylon_apple_pie",
-      "recipe2": "spectrum:pedestal/tier2/food/myceylon_pumpkin_pie",
-      "text": ""
-    },
-    {
-      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/myceylon_pastries",
       "recipe": "spectrum:pedestal/tier2/food/myceylon_pumpkin_pie",
       "text": ""
     },
     {
       "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/myceylon_pastries",
+      "recipe": "spectrum:pedestal/tier2/food/myceylon_apple_pie",
+      "text": ""
+    },
+    {
+      "type": "spectrum:pedestal_crafting",
+      "advancement": "spectrum:unlocks/food/myceylon_pastries",
       "recipe": "spectrum:pedestal/tier2/food/myceylon_cookie",
       "text": ""
     }

@@ -1,5 +1,6 @@
 {
   "type": "spectrum:fusion_shrine",
+  "group": "bedrock_tools",
   "time": 1200,
   "experience": 16.0,
   "fluid": "spectrum:midnight_solution",

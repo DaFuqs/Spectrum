@@ -79,6 +79,14 @@
   "recipeGroup.spectrum.crafting_tablet": "Crafting Tablet",
   "recipeGroup.spectrum.bone_ash_unsmelting": "Bone Ash Unsmelting",
 
+  "biome.spectrum.deep_barrens": "Deep Barrens",
+  "biome.spectrum.crystal_gardens": "Crystal Gardens",
+  "biome.spectrum.deep_dripstone_caves": "Deep Dripstone Caves",
+  "biome.spectrum.dragonrot_swamp": "Dragonrot Swamp",
+  "biome.spectrum.forlorm_caves": "Forlorm Caves",
+  "biome.spectrum.noxshroom_forest": "Noxshroom Forest",
+  "biome.spectrum.razor_edge": "Razor Edge",
+
   "gui.spectrum.quick_navigation.controls1": "Movement Keys to move",
   "gui.spectrum.quick_navigation.controls2": "Drop/Inventory to select",
 

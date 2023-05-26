@@ -17,6 +17,8 @@ import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
 
+import static de.dafuqs.spectrum.enchantments.InertiaEnchantment.*;
+
 @Mixin(MiningToolItem.class)
 public abstract class MiningToolItemMixin {
 
@@ -29,11 +31,11 @@ public abstract class MiningToolItemMixin {
 				NbtCompound compound = stack.getOrCreateNbt();
 				Identifier brokenBlockIdentifier = Registries.BLOCK.getId(state.getBlock());
 				if (compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
-					inertiaAmount = compound.getLong("Inertia_LastMinedBlockCount") + 1;
-					compound.putLong("Inertia_LastMinedBlockCount", inertiaAmount);
+					inertiaAmount = compound.getLong(INERTIA_COUNT) + 1;
+					compound.putLong(INERTIA_COUNT, inertiaAmount);
 				} else {
-					compound.putString("Inertia_LastMinedBlock", brokenBlockIdentifier.toString());
-					compound.putLong("Inertia_LastMinedBlockCount", 1);
+					compound.putString(INERTIA_BLOCK, brokenBlockIdentifier.toString());
+					compound.putLong(INERTIA_COUNT, 1);
 					inertiaAmount = 1;
 				}
 			}
@@ -56,8 +58,8 @@ public abstract class MiningToolItemMixin {
 			if (inertiaLevel > 0) {
 				NbtCompound compound = stack.getOrCreateNbt();
 				Identifier brokenBlockIdentifier = Registries.BLOCK.getId(state.getBlock());
-				if (compound.getString("Inertia_LastMinedBlock").equals(brokenBlockIdentifier.toString())) {
-					long lastMinedBlockCount = compound.getLong("Inertia_LastMinedBlockCount");
+				if (compound.getString(INERTIA_BLOCK).equals(brokenBlockIdentifier.toString())) {
+					long lastMinedBlockCount = compound.getLong(INERTIA_COUNT);
 					double additionalSpeedPercent = 1.5 * Math.log(lastMinedBlockCount) / Math.log((6 - inertiaLevel) * (6 - inertiaLevel) + 1);
 
 					cir.setReturnValue(cir.getReturnValue() * (0.5F + (float) additionalSpeedPercent));
@@ -66,10 +68,9 @@ public abstract class MiningToolItemMixin {
 				}
 			}
 
-			// CRUMBLING GAMING
-
-			var crumbling = EnchantmentHelper.getLevel(SpectrumEnchantments.RAZING, stack);
-			if (crumbling > 0) {
+			// RAZING GAMING
+			var razing = EnchantmentHelper.getLevel(SpectrumEnchantments.RAZING, stack);
+			if (razing > 0) {
 				var hardness = state.getBlock().getHardness();
 				var effectiveness = state.isIn(SpectrumBlockTags.CRUMBLING_SUPER_EFFECTIVE) ? 4.125F : 0.255F;
 				float speedMod;

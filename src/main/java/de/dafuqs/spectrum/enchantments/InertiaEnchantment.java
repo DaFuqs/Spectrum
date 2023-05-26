@@ -4,8 +4,13 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.util.*;
+import org.spongepowered.asm.mixin.*;
 
 public class InertiaEnchantment extends SpectrumEnchantment {
+	
+	@Unique
+	public static final String INERTIA_BLOCK = "Inertia_LastMinedBlock";
+	public static final String INERTIA_COUNT = "Inertia_LastMinedBlockCount";
 	
 	public InertiaEnchantment(Rarity weight, Identifier unlockAdvancementIdentifier, EquipmentSlot... slotTypes) {
 		super(weight, EnchantmentTarget.DIGGER, slotTypes, unlockAdvancementIdentifier);

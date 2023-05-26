@@ -171,6 +171,11 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			pedestalBlockEntity.craftingTime = 0;
 			if (calculatedRecipe instanceof PedestalCraftingRecipe calculatedPedestalCraftingRecipe) {
 				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(calculatedPedestalCraftingRecipe.getCraftingTime() / pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED));
+				
+				PlayerEntity player = pedestalBlockEntity.getOwnerIfOnline();
+				if (player instanceof ServerPlayerEntity serverPlayerEntity) {
+					SpectrumAdvancementCriteria.PEDESTAL_RECIPE_CALCULATED.trigger(serverPlayerEntity, calculatedPedestalCraftingRecipe.craft(pedestalBlockEntity), (int) calculatedPedestalCraftingRecipe.getExperience(), pedestalBlockEntity.craftingTimeTotal);
+				}
 			} else {
 				pedestalBlockEntity.craftingTimeTotal = (int) Math.ceil(SpectrumCommon.CONFIG.VanillaRecipeCraftingTimeTicks / pedestalBlockEntity.upgrades.getEffectiveValue(UpgradeType.SPEED));
 			}
@@ -353,6 +358,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		if (canAcceptRecipeOutput(recipe, inventory, maxCountPerStack)) {
 			ItemStack recipeOutput = recipe.craftAndDecrement(pedestalBlockEntity);
 			ItemStack recipeOutputCopy = recipeOutput.copy();
+			int craftingDuration = pedestalBlockEntity.craftingTimeTotal;
 			
 			// if it was a recipe to upgrade the pedestal itself
 			// => upgrade
@@ -391,7 +397,7 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 			pedestalBlockEntity.storedXP += experienceAfterMod;
 			
 			// if the recipe unlocks an advancement unlock it
-			pedestalBlockEntity.grantPlayerPedestalCraftingAdvancement(recipeOutputCopy, (int) experienceAfterMod);
+			pedestalBlockEntity.grantPlayerPedestalCraftingAdvancement(recipeOutputCopy, (int) experienceAfterMod, craftingDuration);
 			
 			pedestalBlockEntity.markDirty();
 			pedestalBlockEntity.inventoryChanged = true;
@@ -642,10 +648,10 @@ public class PedestalBlockEntity extends LockableContainerBlockEntity implements
 		}
 	}
 	
-	private void grantPlayerPedestalCraftingAdvancement(ItemStack output, int experience) {
+	private void grantPlayerPedestalCraftingAdvancement(ItemStack output, int experience, int duration) {
 		ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) getOwnerIfOnline();
 		if (serverPlayerEntity != null) {
-			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, output, experience);
+			SpectrumAdvancementCriteria.PEDESTAL_CRAFTING.trigger(serverPlayerEntity, output, experience, duration);
 		}
 	}
 	

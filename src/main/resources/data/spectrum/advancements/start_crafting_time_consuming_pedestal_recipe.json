@@ -1,0 +1,45 @@
+{
+  "parent": "spectrum:craft_using_pedestal",
+  "display": {
+    "icon": {
+      "item": "spectrum:upgrade_speed"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.spectrum.start_crafting_time_consuming_pedestal_recipe.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.start_crafting_time_consuming_pedestal_recipe.description"
+    }
+  },
+  "criteria": {
+    "trying_to_craft_consuming_pedestal_recipe": {
+      "trigger": "spectrum:pedestal_recipe_calculated",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "player",
+                "advancements": {
+                  "spectrum:unlocks/upgrades/upgrade_speed": true
+                }
+              }
+            }
+          }
+        ],
+        "crafting_duration_ticks": {
+          "min": 1200
+        }
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:craft_using_pedestal"
+      }
+    }
+  }
+}

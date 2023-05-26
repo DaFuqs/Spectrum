@@ -5,6 +5,7 @@ import net.fabricmc.fabric.mixin.object.builder.*;
 
 public class SpectrumAdvancementCriteria {
 
+	public static PedestalRecipeCalculatedCriterion PEDESTAL_RECIPE_CALCULATED;
 	public static PedestalCraftingCriterion PEDESTAL_CRAFTING;
 	public static FusionShrineCraftingCriterion FUSION_SHRINE_CRAFTING;
 	public static CompletedMultiblockCriterion COMPLETED_MULTIBLOCK;
@@ -40,6 +41,7 @@ public class SpectrumAdvancementCriteria {
 	public static PastelNetworkCreatingCriterion PASTEL_NETWORK_CREATING;
 
 	public static void register() {
+		PEDESTAL_RECIPE_CALCULATED = CriteriaAccessor.callRegister(new PedestalRecipeCalculatedCriterion());
 		PEDESTAL_CRAFTING = CriteriaAccessor.callRegister(new PedestalCraftingCriterion());
 		FUSION_SHRINE_CRAFTING = CriteriaAccessor.callRegister(new FusionShrineCraftingCriterion());
 		COMPLETED_MULTIBLOCK = CriteriaAccessor.callRegister(new CompletedMultiblockCriterion());

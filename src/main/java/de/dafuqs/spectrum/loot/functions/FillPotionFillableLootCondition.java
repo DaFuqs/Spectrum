@@ -100,15 +100,15 @@ public class FillPotionFillableLootCondition extends ConditionalLootFunction {
 		if (this.template == null) {
 			return stack;
 		}
-		if (!(stack.getItem() instanceof PotionFillable potionFillable)) {
+		if (!(stack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable)) {
 			return stack;
 		}
-		if (potionFillable.isFull(stack)) {
+		if (inkPoweredPotionFillable.isFull(stack)) {
 			return stack;
 		}
 		
 		InkPoweredStatusEffectInstance effect = template.get(context);
-		potionFillable.addOrUpgradeEffects(stack, List.of(effect));
+		inkPoweredPotionFillable.addOrUpgradeEffects(stack, List.of(effect));
 		
 		return stack;
 	}

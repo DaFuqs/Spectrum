@@ -2,6 +2,7 @@ package de.dafuqs.spectrum.progression.advancement;
 
 import com.google.gson.*;
 import de.dafuqs.spectrum.*;
+import de.dafuqs.spectrum.items.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
@@ -40,8 +41,13 @@ public class PotionWorkshopBrewingCriterion extends AbstractCriterion<PotionWork
 	
 	public void trigger(ServerPlayerEntity player, ItemStack itemStack) {
 		this.trigger(player, conditions -> {
-			// instanceof PotionItem is true for Potions, Splash Potions and Lingering Potions
-			List<StatusEffectInstance> effects = PotionUtil.getPotionEffects(itemStack);
+			List<StatusEffectInstance> effects;
+			if (itemStack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
+				effects = inkPoweredPotionFillable.getVanillaEffects(itemStack);
+			} else {
+				effects = PotionUtil.getPotionEffects(itemStack);
+			}
+			
 			int maxAmplifier = 0;
 			int maxDuration = 0;
 			for (StatusEffectInstance instance : effects) {

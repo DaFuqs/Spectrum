@@ -13,7 +13,7 @@ import java.util.*;
  * set via PotionUtil.setCustomPotionEffects
  * Think Custom Potions or Trinkets
  */
-public interface PotionFillable {
+public interface InkPoweredPotionFillable {
 	
 	int maxEffectCount();
 	
@@ -53,6 +53,15 @@ public interface PotionFillable {
 	
 	default List<InkPoweredStatusEffectInstance> getEffects(ItemStack stack) {
 		return InkPoweredStatusEffectInstance.getEffects(stack);
+	}
+	
+	@Deprecated
+	default List<StatusEffectInstance> getVanillaEffects(ItemStack stack) {
+		List<StatusEffectInstance> effects = new ArrayList<>();
+		for (InkPoweredStatusEffectInstance instance : InkPoweredStatusEffectInstance.getEffects(stack)) {
+			effects.add(instance.getStatusEffectInstance());
+		}
+		return effects;
 	}
 	
 	default boolean isFull(ItemStack itemStack) {

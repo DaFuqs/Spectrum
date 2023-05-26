@@ -11,10 +11,12 @@ import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.progression.*;
 import de.dafuqs.spectrum.registries.*;
+import de.dafuqs.spectrum.status_effects.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.damage.*;
+import net.minecraft.entity.effect.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.tag.*;
@@ -31,28 +33,39 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
 	@Shadow
 	public abstract Iterable<ItemStack> getHandItems();
-
+	
 	public SpectrumFishingBobberEntity spectrum$fishingBobber;
+	
+	@Inject(method = "onKilledOther", at = @At("HEAD"))
+	private void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
+		PlayerEntity entity = (PlayerEntity) (Object) this;
+		LastKillComponent.rememberKillTick(entity, entity.getWorld().getTime());
+		
+		StatusEffectInstance frenzy = entity.getStatusEffect(SpectrumStatusEffects.FRENZY);
+		if (frenzy != null) {
+			((FrenzyStatusEffect) frenzy.getEffectType()).onKill(entity, frenzy.getAmplifier());
+		}
+	}
 	
 	@Inject(method = "attack", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;getAttributeValue(Lnet/minecraft/entity/attribute/EntityAttribute;)D"))
 	protected void spectrum$calculateModifiers(Entity target, CallbackInfo ci) {
-		if ((Object) this instanceof PlayerEntity thisPlayerEntity) {
-			Multimap<EntityAttribute, EntityAttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
-			
-			EntityAttributeModifier jeopardantModifier;
-			if (SpectrumTrinketItem.hasEquipped(thisPlayerEntity, SpectrumItems.JEOPARDANT)) {
-				jeopardantModifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:attack_ring", AttackRingItem.getAttackModifierForEntity(thisPlayerEntity), EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-			} else {
-				jeopardantModifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:attack_ring", 0, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
-			}
-			map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, jeopardantModifier);
-			
-			int improvedCriticalLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.IMPROVED_CRITICAL, thisPlayerEntity.getMainHandStack(), thisPlayerEntity);
-			EntityAttributeModifier improvedCriticalModifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:improved_critical", ImprovedCriticalEnchantment.getCritMultiplier(improvedCriticalLevel), EntityAttributeModifier.Operation.ADDITION);
-			map.put(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, improvedCriticalModifier);
-			
-			thisPlayerEntity.getAttributes().addTemporaryModifiers(map);
+		PlayerEntity player = (PlayerEntity) (Object) this;
+		
+		Multimap<EntityAttribute, EntityAttributeModifier> map = Multimaps.newMultimap(Maps.newLinkedHashMap(), ArrayList::new);
+		
+		EntityAttributeModifier jeopardantModifier;
+		if (SpectrumTrinketItem.hasEquipped(player, SpectrumItems.JEOPARDANT)) {
+			jeopardantModifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:attack_ring", AttackRingItem.getAttackModifierForEntity(player), EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
+		} else {
+			jeopardantModifier = new EntityAttributeModifier(AttackRingItem.ATTACK_RING_DAMAGE_UUID, "spectrum:attack_ring", 0, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 		}
+		map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, jeopardantModifier);
+		
+		int improvedCriticalLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.IMPROVED_CRITICAL, player.getMainHandStack(), player);
+		EntityAttributeModifier improvedCriticalModifier = new EntityAttributeModifier(ImprovedCriticalEnchantment.EXTRA_CRIT_DAMAGE_MULTIPLIER_ATTRIBUTE_UUID, "spectrum:improved_critical", ImprovedCriticalEnchantment.getAddtionalCritDamageMultiplier(improvedCriticalLevel), EntityAttributeModifier.Operation.ADDITION);
+		map.put(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, improvedCriticalModifier);
+		
+		player.getAttributes().addTemporaryModifiers(map);
 	}
 	
 	@Inject(at = @At("TAIL"), method = "jump()V")
@@ -94,7 +107,7 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 		if (experience < 0) { // draining XP, like Botanias Rosa Arcana
 			return experience;
 		}
-
+		
 		// if the player has a ExperienceStorageItem in hand add the XP to that
 		for (ItemStack stack : getHandItems()) {
 			if (!((PlayerEntity) (Object) this).isUsingItem() && stack.getItem() instanceof ExperienceStorageItem) {
@@ -107,13 +120,6 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 		return experience;
 	}
 	
-	@Inject(method = "onKilledOther", at = @At("HEAD"))
-	public void spectrum$rememberKillOther(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
-		if (world != null && !world.isClient) {
-			LastKillComponent.rememberKillTick((PlayerEntity) (Object) this, world.getTime());
-		}
-	}
-
 	@ModifyVariable(method = "getBlockBreakingSpeed",
 			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;hasStatusEffect(Lnet/minecraft/entity/effect/StatusEffect;)Z"),
 					to = @At("TAIL")
@@ -124,29 +130,30 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	public float applyInexorableEffects(float value) {
 		if (isInexorableActive())
 			return 1F;
-
+		
 		return value;
 	}
-
+	
 	@ModifyConstant(method = "getBlockBreakingSpeed", constant = @Constant(floatValue = 5.0F, ordinal = 0))
 	public float applyInexorableAntiWaterSlowdown(float value) {
 		if (isInexorableActive())
 			return 1F;
-
+		
 		return value;
 	}
-
+	
 	@ModifyConstant(method = "getBlockBreakingSpeed", constant = @Constant(floatValue = 5.0F, ordinal = 1))
-	public float applyInexorableAntiFlylowdown(float value) {
+	public float applyInexorableAntiFlySlowdown(float value) {
 		if (isInexorableActive())
 			return 1F;
-
+		
 		return value;
 	}
-
+	
 	@Unique
 	private boolean isInexorableActive() {
 		var player = (PlayerEntity) (Object) this;
 		return EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, player.getStackInHand(player.getActiveHand())) > 0;
 	}
+	
 }

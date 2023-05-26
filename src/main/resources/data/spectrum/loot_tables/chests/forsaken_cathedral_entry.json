@@ -66,6 +66,23 @@
           "count": 16
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:enchanted_book"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_enchantments",
+          "enchantments": {
+            "spectrum:indestructible": 1
+          }
+        }
+      ]
     }
   ]
 }

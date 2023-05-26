@@ -55,7 +55,7 @@ public class SanityCommand {
 		add(SpectrumCommon.locate("lategame/killed_monstrosity"));
 		add(SpectrumCommon.locate("lategame/collect_doombloom_seed"));
 		add(SpectrumCommon.locate("lategame/collect_noxwood"));
-		add(SpectrumCommon.locate("lategame/collect_dragonbone"));
+		add(SpectrumCommon.locate("lategame/break_cracked_dragonbone"));
 		add(SpectrumCommon.locate("lategame/collect_bismuth"));
 		add(SpectrumCommon.locate("lategame/collect_myceylon"));
 		add(SpectrumCommon.locate("lategame/collect_prickly_bayleaf"));

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "spectrum:bone_ash_tiles"
+  },
+  "result": "spectrum:bone_ash_tile_slab",
+  "count": 2
+}

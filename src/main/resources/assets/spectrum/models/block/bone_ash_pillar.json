@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "spectrum:block/bone_ash_pillar_top",
-    "side": "spectrum:block/bone_ash_pillar_side"
-  }
-}

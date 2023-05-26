@@ -6,10 +6,10 @@
   "results": [
     {
       "item": "spectrum:bone_ash",
-      "count": 32
+      "count": 45
     }
   ],
   "experience": 4.0,
   "time": 6000,
-  "required_advancement": "spectrum:lategame/collect_dragonbone"
+  "required_advancement": "spectrum:lategame/break_cracked_dragonbone"
 }

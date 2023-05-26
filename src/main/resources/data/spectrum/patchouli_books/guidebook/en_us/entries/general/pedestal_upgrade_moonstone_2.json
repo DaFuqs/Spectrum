@@ -10,7 +10,7 @@
       "type": "patchouli:spotlight",
       "title": "Moonstone Pedestal",
       "item": "spectrum:moonstone_chiseled_basalt",
-      "text": "Your latest structure feels... somewhat lacking. And now you also know exactly what is missing: more $(c_white)Moonstone$() exactly. The tricky part: Creating the required $(item)Moonstone Chiseled Blocks$() would require you being able to use your $(item)Moonstone Pedestal$() to it's full capability already.$(br)$(italic)Is there a way to kickstart you?"
+      "text": "Your latest structure feels... somewhat lacking. And now you also know exactly what is missing: more $(c_white)Moonstone$() exactly. The tricky part: Creating the required $(item)Moonstone Chiseled Blocks$() would require you being able to use your $(item)Moonstone Pedestal$() to it's full capability already.$(br)$(italic)Could there be a way to get around that?"
     },
     {
       "type": "patchouli:multiblock",
@@ -34,7 +34,10 @@
       "title": "Individualize!",
       "images": [
         "spectrum:textures/gui/guidebook/spectrum_complex_customisation.png"
-      ],
+      ]
+    },
+    {
+      "type": "patchouli:text",
       "text": "You can switch the basalt blocks with calcite and the amethyst blocks for any other gemstone block.$(br)Mix them up to create your personal variation!"
     }
   ]

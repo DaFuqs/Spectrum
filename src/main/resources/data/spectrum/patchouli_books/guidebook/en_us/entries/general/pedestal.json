@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(br)Most recipes require $(l:general/gemstone_powder)Gemstone Powder$() as an ingredient.$(br2)The Pedestal also acts as a $(item)Crafting Table$() and can therefore also be used to craft vanilla recipes.$(br2)You can use a $(l:magical_items/crafting_tablet)Crafting Tablet$() to automate Spectrum's and Vanilla's recipes."
+      "text": "$(br)Most recipes require $(l:general/gemstone_powder)Gemstone Powder$() as an ingredient.$(br2)The Pedestal also acts as a $(item)Crafting Table$() and can therefore also be used to craft vanilla recipes.$(br2)You can use a $(l:magical_items/crafting_tablet)Crafting Tablet$() to automate both Spectrum and Vanilla recipes."
     },
     {
       "type": "patchouli:text",

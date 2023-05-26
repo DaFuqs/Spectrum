@@ -21,7 +21,7 @@
       "title": "Paltaeria Gem",
       "advancement": "spectrum:hidden/collect_paltaeria_gem",
       "recipe": "spectrum:pedestal/tier4/paltaeria_gem",
-      "text": "Rarely you could carve an intact stone. Used in recipes for which the Fragments were simply too small. Though with effort you can merge fragments together."
+      "text": "Rarely, an intact gem can be carved out and used in recipes for which fragments are too small. With effort, said fragments can also be made whole again."
     },
     {
       "type": "patchouli:spotlight",

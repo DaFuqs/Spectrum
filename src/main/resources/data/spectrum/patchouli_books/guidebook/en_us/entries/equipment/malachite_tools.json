@@ -18,7 +18,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l:resources/malachite)Malachite$/l) as a material does seem perfectly suited for tools, best compared to $(item)Diamond$(), but far more easily combinable with other materials.$(br)These combinations are where the fun begins, allowing for some uniquely intricate tools."
+      "text": "$(l:resources/malachite)Malachite$() as a material does seem perfectly suited for tools, best compared to $(item)Diamond$(), but far more easily combinable with other materials.$(br)These combinations are where the fun begins, allowing for some uniquely intricate tools."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -28,7 +28,7 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_ultra_greatsword",
-      "text": "Its sheer size allows you to hit foes at a larger distance.$(br)Would it not be for the $(resources/paltaeria)Paltaeria$()you worked in, you probably wouldn't even be able to lift it."
+      "text": "Its sheer size allows you to hit foes at a larger distance.$(br)Would it not be for the $(l:resources/paltaeria)Paltaeria$() you worked in, you probably wouldn't even be able to lift it."
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
@@ -38,12 +38,12 @@
     {
       "type": "spectrum:fusion_shrine_crafting",
       "recipe": "spectrum:fusion_shrine/malachite/malachite_crossbow",
-      "text": "Shoots projectiles at a higher Speed and precision than a mundane $(item)Crossbow$(). Not only able to shoot flint arrows or fireworks, but also $(item)Glass Arrows$()."
+      "text": "Shoots projectiles at a higher Speed and precision compared to a mundane $(item)Crossbow$(). Not only able to shoot flint arrows or fireworks, but also $(item)Glass Arrows$()."
     },
     {
       "type": "spectrum:pedestal_crafting",
       "recipe": "spectrum:pedestal/tier1/arrows/malachite_glass_arrow",
-      "text": "When shot, these special arrows transform into pure energy, dealing increased damage, allowing them to pierce translucent blocks and do not get slowed down by fluids."
+      "text": "When shot, these special arrows transform into pure energy, piercing through transparent blocks and liquids alike without loss of speed while dealing increased damage."
     },
     {
       "type": "spectrum:pedestal_crafting",

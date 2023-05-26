@@ -94,7 +94,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:ebony_noxcap_stem",
-      "text": "The stems can be stripped with an $(item)Axe$()."
+      "text": ""
     }
   ]
 }

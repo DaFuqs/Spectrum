@@ -30,7 +30,7 @@
       "type": "spectrum:pedestal_crafting",
       "title": "Pedestal Recipe",
       "recipe": "spectrum:pedestal/tier1/colored_lamps/cyan_lamp",
-      "text": "They are surrounded by a vibrant light, when activated. Besides that, Colored Lamps function similar to their boring Redstone counterpart."
+      "text": "They are surrounded by a vibrant light when activated. Besides that, Colored Lamps function similar to their boring Redstone counterpart."
     }
   ]
 }

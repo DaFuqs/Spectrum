@@ -30,7 +30,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "This is called $(thing)Moon Phases$().$(br2)The point where the Moon almost reflects maximal light down to you, it's called $(thing)Full Moon$(), the opposite of a $(thing)New Moon$().$(br2)An entire lunar phase cycle from one new moon to the following new moon is also called a $(thing)lunation$()."
+      "text": "These are known as $(thing)Moon Phases$().$(br2)When the moon is at its brightest, it is known as a $(thing)Full Moon$(). When at its darkest, it is a $(thing)New Moon$().$(br2)An entire lunar phase cycle from one new moon to the following new moon is also called a $(thing)lunation$()."
     }
   ]
 }

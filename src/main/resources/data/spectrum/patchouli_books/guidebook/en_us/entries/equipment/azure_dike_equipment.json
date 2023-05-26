@@ -11,7 +11,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The results of combining $(l:resources/azurite)Azurite$(/l) and the protective properties of $(l:general/pigment#blue)Blue Pigment$(/l) really sparked your interest. The material seemed to surround itself with a transparent aura, which took some effort to penetrate when you reached for the lump.$(br2)$(italic)This is going to be interesting..."
+      "text": "The results of combining $(l:resources/azurite)Azurite$(/l) and the protective properties of $(l:general/pigment#blue)Blue Pigment$(/l) really sparked your interest. The material seemed to surround itself with a transparent aura which took some effort to penetrate when you reached for the lump.$(br2)$(italic)This is going to be interesting..."
     },
     {
       "type": "patchouli:text",
@@ -30,7 +30,7 @@
       "title": "Azure Dike Belt",
       "advancement": "spectrum:unlocks/trinkets/azure_dike_belt",
       "recipe": "spectrum:fusion_shrine/trinkets/azure_dike_belt",
-      "text": "$(li)Grants you $(c_green)6$() points of $(c_blue)Azure Dike$()$(li)Decreases $(c_blue)Azure Dike$() recovery after a hit, making it recharge quicker"
+      "text": "$(li)Grants you $(c_green)6$() points of $(c_blue)Azure Dike$()$(li)Increases $(c_blue)Azure Dike$() recovery after a hit, making it recharge quicker"
     },
     {
       "type": "spectrum:fusion_shrine_crafting",

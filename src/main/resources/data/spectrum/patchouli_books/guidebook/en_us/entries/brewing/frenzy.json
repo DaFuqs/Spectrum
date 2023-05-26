@@ -8,7 +8,7 @@
     {
       "type": "spectrum:status_effect",
       "status_effect_id": "spectrum:frenzy",
-      "text": "Damage, Attack Speed, Speed & Knockback Resistance are buffed the more you kill."
+      "text": "Damage, attack speed, movement speed and knockback resistance are buffed with each kill. The higher the effects level, the higher the buff. Not scoring a kill in 10 seconds will debuff you instead."
     },
     {
       "type": "patchouli:text",

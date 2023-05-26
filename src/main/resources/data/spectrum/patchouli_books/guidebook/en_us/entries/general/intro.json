@@ -11,16 +11,16 @@
         "spectrum:textures/gui/guidebook/spectrum.png"
       ],
       "border": true,
-      "text": "Spectrum is a full-feature mod about magic and exploration."
+      "text": "Spectrum is a progression- and exploration-driven magic mod where you combine colors."
     },
     {
       "type": "patchouli:text",
-      "text": "Spectrum is based on color mixing of the subtractive color system (CMYK). Subtractive color mixing may be familiar to you from painting with watercolors or printing.$(br2)Spectrum's main colors are represented by gemstones, found in geodes scattered around the world, with the vanilla Amethyst representing the Magenta part of the spectrum."
+      "text": "Its color mixing of the subtractive color system (CMYK). Subtractive color mixing may be familiar to you from painting with watercolors or printing.$(br2)Spectrum's main colors are represented by gemstones, found in geodes scattered around the world, with the vanilla Amethyst representing the Magenta part of the spectrum."
     },
     {
       "type": "patchouli:text",
       "title": "Progression System",
-      "text": "Spectrum comes with a complex progression system where you unlock new things as you progress.$(br)As you delve deeper, you will notice changes in the world. Differences, that only you can perceive.$(br2)Everything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the impenetrable bedrock floor."
+      "text": "Spectrum comes with a complex progression system where you unlock new things as you progress.$(br)As you delve deeper, you will notice changes in the world. Differences only you can perceive.$(br2)Everything you learn will bring you closer to your final destination: Finding out what is waiting for you beneath the impenetrable bedrock floor."
     },
     {
       "type": "patchouli:link",

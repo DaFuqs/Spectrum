@@ -12,7 +12,7 @@
       "type": "patchouli:spotlight",
       "title": "Item Bowls",
       "item": "spectrum:item_bowl_basalt",
-      "text": "There is one item you always forget when caving, such as a piece of chalk to mark the way back to the surface. Placed in this decorative Item Bowl should serve as a good reminder.$()$(br2)It comes in both a $(item)Polished Basalt$() and $(item)Polished Calcite$() variant."
+      "text": "TThere's always something you forget when leaving the base - maybe placing it in this decorative Item Bowl will serve as a good reminder.$()$(br2)It comes in both a $(item)Basalt$() and $(item)Calcite$() variant."
     },
     {
       "type": "spectrum:pedestal_crafting",

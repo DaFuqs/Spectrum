@@ -2,7 +2,7 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:jadeite_petals",
   "modifiers": {
-    "flat_duration_bonus_positive_effects": 1200
+    "flat_duration_bonus_positive_effects": 2400
   },
   "required_advancement": "spectrum:hidden/collect_jadeite_petals"
 }

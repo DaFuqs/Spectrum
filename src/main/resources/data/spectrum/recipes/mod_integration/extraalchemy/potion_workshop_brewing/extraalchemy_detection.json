@@ -13,6 +13,8 @@
   "applicable_to_potions": true,
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
+  "ink_color": "light_blue",
+  "ink_cost": 2,
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

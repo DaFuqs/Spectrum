@@ -14,6 +14,8 @@
   "applicable_to_tipped_arrows": true,
   "applicable_to_potion_fillables": true,
   "required_advancement": "spectrum:unlocks/potions/resistance",
+  "ink_color": "blue",
+  "ink_cost": 8,
   "fabric:load_conditions": [
     {
       "condition": "fabric:all_mods_loaded",

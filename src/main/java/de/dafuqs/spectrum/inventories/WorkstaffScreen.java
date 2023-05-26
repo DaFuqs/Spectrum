@@ -79,7 +79,7 @@ public class WorkstaffScreen extends QuickNavigationGridScreen<WorkstaffScreenHa
 	protected static void select(WorkstaffItem.GUIToggle toggle) {
 		SpectrumC2SPacketSender.sendWorkstaffToggle(toggle);
 		MinecraftClient client = MinecraftClient.getInstance();
-		client.world.playSound(client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SELECT, SoundCategory.NEUTRAL, 0.6F, 1.0F, false);
+		client.world.playSound(null, client.player.getBlockPos(), SpectrumSoundEvents.PAINTBRUSH_SELECT, SoundCategory.NEUTRAL, 0.6F, 1.0F);
 		client.player.closeHandledScreen();
 	}
 	

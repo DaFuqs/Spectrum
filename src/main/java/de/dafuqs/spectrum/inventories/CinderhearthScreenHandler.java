@@ -94,15 +94,15 @@ public class CinderhearthScreenHandler extends ScreenHandler {
 	public boolean canUse(PlayerEntity player) {
 		return this.blockEntity.canPlayerUse(player);
 	}
-	
+
 	@Override
-	public void close(PlayerEntity player) {
-		super.close(player);
+	public void onClosed(PlayerEntity player) {
+		super.onClosed(player);
 		this.blockEntity.onClose(player);
 	}
-	
+
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack itemStack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		if (slot.hasStack()) {

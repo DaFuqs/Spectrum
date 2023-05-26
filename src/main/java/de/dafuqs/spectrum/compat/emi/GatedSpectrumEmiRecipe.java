@@ -18,8 +18,8 @@ public abstract class GatedSpectrumEmiRecipe<T extends GatedRecipe> extends Spec
 		super(category, unlockIdentifier, recipe.getId(), width, height);
 		this.recipe = recipe;
 		input = recipe.getIngredients().stream().map(EmiIngredient::of).toList();
-		if (!recipe.getOutput().isEmpty()) {
-			output = List.of(EmiStack.of(recipe.getOutput()));
+		if (!recipe.getOutput(null).isEmpty()) {
+			output = List.of(EmiStack.of(recipe.getOutput(null)));
 		}
 	}
 	

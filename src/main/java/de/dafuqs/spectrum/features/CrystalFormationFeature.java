@@ -36,7 +36,7 @@ public class CrystalFormationFeature extends Feature<CrystalFormationFeatureFeat
             BlockStateProvider stateProvider = config.blockStateProvider();
             int iterations = config.iterationCountProvider().get(random);
             
-            structureWorldAccess.setBlockState(blockPos, stateProvider.getBlockState(random, blockPos), 2);
+            structureWorldAccess.setBlockState(blockPos, stateProvider.get(random, blockPos), 2);
             
             for (int i = 0; i < iterations; ++i) {
                 BlockPos offsetPos = blockPos.add(random.nextInt(8) - random.nextInt(8), upwards ? random.nextInt(12) : -random.nextInt(12), random.nextInt(8) - random.nextInt(8));
@@ -51,7 +51,7 @@ public class CrystalFormationFeature extends Feature<CrystalFormationFeatureFeat
                         }
                     }
                     if (directionTries == 1) {
-                        structureWorldAccess.setBlockState(offsetPos, stateProvider.getBlockState(random, blockPos), 2);
+                        structureWorldAccess.setBlockState(offsetPos, stateProvider.get(random, blockPos), 2);
                     }
                 }
             }

@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.world.World;
 
 public class FireproofItemEntity extends ItemEntity {
@@ -25,7 +26,7 @@ public class FireproofItemEntity extends ItemEntity {
 	}
 	
 	public boolean isInvulnerableTo(DamageSource damageSource) {
-		return damageSource.isFire() || super.isInvulnerableTo(damageSource);
+		return damageSource.isIn(DamageTypeTags.IS_FIRE) || super.isInvulnerableTo(damageSource);
 	}
 	
 }

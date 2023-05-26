@@ -57,7 +57,7 @@ public class FilteringScreenHandler extends ScreenHandler {
 	}
 
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		return ItemStack.EMPTY;
 	}
 
@@ -66,7 +66,7 @@ public class FilteringScreenHandler extends ScreenHandler {
 	}
 
 	public void close(PlayerEntity player) {
-		super.close(player);
+		super.onClosed(player);
 	}
 
 	public FilterConfigurable getFilterConfigurable() {

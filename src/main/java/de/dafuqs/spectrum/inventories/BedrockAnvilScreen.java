@@ -60,7 +60,6 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 	public void removed() {
 		super.removed();
 		handler.removeListener(this);
-		client.keyboard.setRepeatEvents(false);
 	}
 	
 	@Override
@@ -74,7 +73,6 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 	}
 	
 	protected void setup() {
-		client.keyboard.setRepeatEvents(true);
 		int i = (this.width - this.backgroundWidth) / 2;
 		int j = (this.height - this.backgroundHeight) / 2;
 		
@@ -120,10 +118,10 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 		if (keyCode == GLFW.GLFW_KEY_TAB) {
 			Element focusedElement = getFocused();
 			if (focusedElement == this.nameField) {
-				this.nameField.setTextFieldFocused(false);
+				this.nameField.setFocused(false);
 				setFocused(this.loreField);
 			} else if (focusedElement == this.loreField) {
-				this.loreField.setTextFieldFocused(false);
+				this.loreField.setFocused(false);
 				setFocused(this.nameField);
 			}
 		}
@@ -187,7 +185,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, TEXTURE);
 		int i = (this.width - this.backgroundWidth) / 2;
@@ -217,8 +215,8 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 				this.loreField.setEditable(false);
 				this.nameField.setFocusUnlocked(false);
 				this.loreField.setFocusUnlocked(false);
-				this.nameField.setTextFieldFocused(false);
-				this.loreField.setTextFieldFocused(false);
+				this.nameField.setFocused(false);
+				this.loreField.setFocused(false);
 				this.nameField.setChangedListener(null);
 				this.loreField.setChangedListener(null);
 				this.nameField.setText("");
@@ -230,7 +228,7 @@ public class BedrockAnvilScreen extends HandledScreen<BedrockAnvilScreenHandler>
 				this.loreField.setEditable(true);
 				this.nameField.setFocusUnlocked(true);
 				this.loreField.setFocusUnlocked(true);
-				this.nameField.setTextFieldFocused(true);
+				this.nameField.setFocused(true);
 				this.nameField.setText(stack.getName().getString());
 				
 				String loreString = LoreHelper.getStringFromLoreTextArray(LoreHelper.getLoreList(stack));

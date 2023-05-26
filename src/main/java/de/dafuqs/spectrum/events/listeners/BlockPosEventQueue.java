@@ -17,7 +17,7 @@ public class BlockPosEventQueue extends EventQueue<BlockPosEventQueue.EventEntry
 	public void acceptEvent(World world, GameEvent.Message event, Vec3d sourcePos) {
 		if (world instanceof ServerWorld) {
 			Vec3d emitterPos = event.getEmitterPos();
-			EventEntry eventEntry = new EventEntry(event.getEvent(), new BlockPos(emitterPos.x, emitterPos.y, emitterPos.z), MathHelper.floor(event.getEmitterPos().distanceTo(sourcePos)));
+			EventEntry eventEntry = new EventEntry(event.getEvent(), BlockPos.ofFloored(emitterPos.x, emitterPos.y, emitterPos.z), MathHelper.floor(event.getEmitterPos().distanceTo(sourcePos)));
 			int delay = eventEntry.distance * 2;
 			this.schedule(eventEntry, delay);
 			SpectrumS2CPacketSender.playTransmissionParticle((ServerWorld) world, new TypedTransmission(emitterPos, this.positionSource, delay, TypedTransmission.Variant.BLOCK_POS));

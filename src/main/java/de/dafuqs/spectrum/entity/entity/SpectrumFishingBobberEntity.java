@@ -39,6 +39,7 @@ import java.util.*;
 // yeah, this pretty much is a full reimplementation. Sadge
 // I wanted to use more of FishingBobberEntity for mod compat,
 // but most of FishingRod's methods are either private or are tricky to extend
+// TODO - Why not add an accesswidener for the fishing rod methods?
 public abstract class SpectrumFishingBobberEntity extends ProjectileEntity {
 	
 	private static final Logger LOGGER = LogUtils.getLogger();

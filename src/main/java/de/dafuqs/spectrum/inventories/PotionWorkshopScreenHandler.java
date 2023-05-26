@@ -97,7 +97,7 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 	}
 	
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack slotStackCopy = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		
@@ -146,7 +146,7 @@ public class PotionWorkshopScreenHandler extends ScreenHandler {
 	}
 	
 	public void close(PlayerEntity player) {
-		super.close(player);
+		super.onClosed(player);
 		this.inventory.onClose(player);
 	}
 	

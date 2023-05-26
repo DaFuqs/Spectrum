@@ -62,7 +62,12 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			this.changedListener.accept(newColor);
 		}
 	}
-	
+
+	@Override
+	public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+
+	}
+
 	public boolean mouseClicked(double mouseX, double mouseY, int button) {
 		boolean colorUnselectionClicked = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (colorUnselectionClicked) {
@@ -70,10 +75,10 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			onChanged(null);
 		}
 		
-		boolean colorSelectionClicked = mouseX >= (double) this.x && mouseX < (double) (this.x + this.width) && mouseY >= (double) this.y && mouseY < (double) (this.y + this.height);
+		boolean colorSelectionClicked = mouseX >= (double) this.getX() && mouseX < (double) (this.getX() + this.width) && mouseY >= (double) this.getY() && mouseY < (double) (this.getY() + this.height);
 		if (colorSelectionClicked && button == 0) {
-			int xOffset = MathHelper.floor(mouseX) - this.x;
-			int yOffset = MathHelper.floor(mouseY) - this.y;
+			int xOffset = MathHelper.floor(mouseX) - this.getX();
+			int yOffset = MathHelper.floor(mouseY) - this.getY();
 			
 			int horizontalColorOffset = xOffset / 7;
 			int verticalColorOffset = yOffset / 7;
@@ -93,17 +98,17 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			return false;
 		}
 	}
-	
+
 	@Override
-	public void appendNarrations(NarrationMessageBuilder builder) {
+	protected void appendClickableNarrations(NarrationMessageBuilder builder) {
 		builder.put(NarrationPart.TITLE, Text.translatable("spectrum.narration.color_selection", this.colorPicker.getSelectedColor()));
 	}
-	
+
 	public void draw(MatrixStack matrices) {
 		// draw selection icons
 		int i = -1;
-		int currentX = this.x + 1;
-		int currentY = this.y + 1;
+		int currentX = this.getX() + 1;
+		int currentY = this.getY() + 1;
 		for (Pair<InkColor, Boolean> color : usableColors) {
 			if (color.getRight()) {
 				fillQuad(matrices, currentX, currentY, 5, 5, color.getLeft().getColor());
@@ -112,7 +117,7 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			currentX = currentX + 7;
 			if (i == 7) {
 				currentY = currentY + 7;
-				currentX = this.x + 1;
+				currentX = this.getX() + 1;
 			}
 		}
 		
@@ -126,11 +131,11 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 	public void drawMouseoverTooltip(MatrixStack matrices, int mouseX, int mouseY) {
 		boolean overUnselection = mouseX >= (double) selectedDotX && mouseX < (double) (selectedDotX + 4) && mouseY >= (double) selectedDotY && mouseY < (double) (selectedDotY + 4);
 		if (overUnselection) {
-			screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
+			screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 		} else {
 			
-			int xOffset = MathHelper.floor(mouseX) - this.x;
-			int yOffset = MathHelper.floor(mouseY) - this.y;
+			int xOffset = MathHelper.floor(mouseX) - this.getX();
+			int yOffset = MathHelper.floor(mouseY) - this.getY();
 			
 			int horizontalColorOffset = xOffset / 7;
 			int verticalColorOffset = yOffset / 7;
@@ -138,9 +143,9 @@ public class ColorSelectionWidget extends ClickableWidget implements Drawable, E
 			InkColor newColor = InkColor.all().get(newColorIndex);
 			
 			if (AdvancementHelper.hasAdvancementClient(newColor.getRequiredAdvancement())) {
-				screen.renderTooltip(matrices, List.of(newColor.getName()), Optional.empty(), x, y);
+				screen.renderTooltip(matrices, List.of(newColor.getName()), Optional.empty(), getX(), getY());
 			} else {
-				screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), x, y);
+				screen.renderTooltip(matrices, List.of(Text.translatable("spectrum.tooltip.ink_powered.unselect_color")), Optional.empty(), getX(), getY());
 			}
 		}
 	}

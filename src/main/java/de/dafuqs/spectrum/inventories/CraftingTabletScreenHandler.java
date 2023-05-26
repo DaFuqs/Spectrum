@@ -186,7 +186,7 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 					
 					CraftingRecipe craftingRecipe = optionalCraftingRecipe.get();
 					if (craftingResultInventory.shouldCraftRecipe(world, serverPlayerEntity, craftingRecipe)) {
-						itemStack = craftingRecipe.craft(craftingInventory);
+						itemStack = craftingRecipe.craft(craftingInventory, world.getRegistryManager());
 					}
 					
 					CraftingTabletItem.setStoredRecipe(craftingTabletItemStack, optionalCraftingRecipe.get());
@@ -247,14 +247,14 @@ public class CraftingTabletScreenHandler extends AbstractRecipeScreenHandler<Inv
 				}
 			}
 		}
-		super.close(player);
+		super.onClosed(player);
 	}
 	
 	public boolean canUse(PlayerEntity player) {
 		return true;
 	}
 	
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		/*
 			SLOTS:
 			0-8: Crafting Input

@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import net.minecraft.util.*;
 
 public class SpectrumScreenHandlerIDs {
+    // TODO - Make these final?
 	
 	public static Identifier PAINTBRUSH;
 	public static Identifier WORKSTAFF;

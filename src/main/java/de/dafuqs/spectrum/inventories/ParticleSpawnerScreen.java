@@ -21,7 +21,9 @@ import net.minecraft.text.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import org.jetbrains.annotations.*;
+import org.joml.RoundingMode;
 import org.joml.Vector3f;
+import org.joml.Vector3i;
 import org.lwjgl.glfw.*;
 
 import java.util.*;
@@ -80,8 +82,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	
 	protected void init() {
 		super.init();
-		client.keyboard.setRepeatEvents(true);
-		
+
 		this.spriteAtlasTexture = ((ParticleManagerAccessor) client.particleManager).getParticleAtlasTexture();
 		this.displayedParticleEntries = ParticleSpawnerParticlesDataLoader.getAllUnlocked(client.player);
 		
@@ -92,7 +93,6 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	
 	public void removed() {
 		super.removed();
-		client.keyboard.setRepeatEvents(false);
 	}
 	
 	public void handledScreenTick() {
@@ -114,7 +114,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		if (focusedElement instanceof TextFieldWidget focusedTextFieldWidget) {
 			if (keyCode == GLFW.GLFW_KEY_TAB) {
 				int currentIndex = selectableWidgets.indexOf(focusedElement);
-				focusedTextFieldWidget.setTextFieldFocused(false);
+				focusedTextFieldWidget.setFocused(false);
 				
 				if (modifiers == 1) {
 					setFocused(selectableWidgets.get((selectableWidgets.size() + currentIndex - 1) % selectableWidgets.size()));
@@ -172,7 +172,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		RenderSystem.setShaderTexture(0, GUI_TEXTURE);
 		int x = (this.width - this.backgroundWidth) / 2;
@@ -209,20 +209,22 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 				break;
 			}
 			Sprite particleSprite = spriteAtlasTexture.getSprite(displayedParticleEntries.get(spriteIndex).textureIdentifier());
-			drawSprite(matrices, x + 38 + j * 20 - particleSprite.getHeight() / 2, y + 31 - particleSprite.getHeight() / 2, 0, particleSprite.getWidth(), particleSprite.getHeight(), particleSprite);
+			drawSprite(matrices, x + 38 + j * 20 - particleSprite.getX() / 2, y + 31 - particleSprite.getY() / 2, 0, particleSprite.getX(), particleSprite.getY(), particleSprite);
 		}
 	}
 	
 	protected void setupInputFields(ParticleSpawnerBlockEntity blockEntity) {
-		client.keyboard.setRepeatEvents(true);
 		int startX = (this.width - this.backgroundWidth) / 2 + 3;
 		int startY = (this.height - this.backgroundHeight) / 2 + 3;
 		
 		ParticleSpawnerConfiguration configuration = blockEntity.getConfiguration();
-		cyanField = addTextFieldWidget(startX + 16, startY + 51, Text.literal("Cyan"), String.valueOf(configuration.getCmyColor().getX()), this::isPositiveDecimalNumber100);
-		magentaField = addTextFieldWidget(startX + 57, startY + 51, Text.literal("Magenta"), String.valueOf(configuration.getCmyColor().getY()), this::isPositiveDecimalNumber100);
-		yellowField = addTextFieldWidget(startX + 97, startY + 51, Text.literal("Yellow"), String.valueOf(configuration.getCmyColor().getZ()), this::isPositiveDecimalNumber100);
-		glowingButton = new ButtonWidget(startX + 153, startY + 50, 16, 16, Text.literal("Glowing"), this::glowingButtonPressed);
+		cyanField = addTextFieldWidget(startX + 16, startY + 51, Text.literal("Cyan"), String.valueOf(configuration.getCmyColor().x()), this::isPositiveDecimalNumber100);
+		magentaField = addTextFieldWidget(startX + 57, startY + 51, Text.literal("Magenta"), String.valueOf(configuration.getCmyColor().y()), this::isPositiveDecimalNumber100);
+		yellowField = addTextFieldWidget(startX + 97, startY + 51, Text.literal("Yellow"), String.valueOf(configuration.getCmyColor().z()), this::isPositiveDecimalNumber100);
+		glowingButton = ButtonWidget.builder(Text.translatable("gui.spectrum.button.glowing"), this::glowingButtonPressed)
+				.size(16, 16)
+				.position(startX + 153, startY + 50)
+				.build();
 		addSelectableChild(glowingButton);
 		this.glowing = configuration.glows();
 		
@@ -246,7 +248,10 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		durationVariance = addTextFieldWidget(startX + 139, startY + 178 + offset, Text.literal("Duration Variance"), String.valueOf(configuration.getLifetimeVariance()), this::isPositiveWholeNumberUnderThousand);
 		gravity = addTextFieldWidget(startX + 55, startY + 198 + offset, Text.literal("Gravity"), String.valueOf(configuration.getGravity()), this::isBetweenZeroAndOne);
 		
-		collisionsButton = new ButtonWidget(startX + 142, startY + 194 + offset, 16, 16, Text.literal("Collisions"), this::collisionButtonPressed);
+		collisionsButton = ButtonWidget.builder(Text.translatable("gui.spectrum.button.collisions"), this::collisionButtonPressed)
+				.position(startX + 142, startY + 194 + offset)
+				.size(16, 16)
+				.build();
 		collisionsEnabled = configuration.hasCollisions();
 		addSelectableChild(collisionsButton);
 		
@@ -274,9 +279,15 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		selectableWidgets.add(gravity);
 		selectableWidgets.add(collisionsButton);
 		
-		backButton = new ButtonWidget(startX + 11, startY + 19, 12, 14, Text.literal("Back"), this::navigationButtonPressed);
+		backButton = ButtonWidget.builder(Text.translatable("gui.spectrum.button.back"), this::navigationButtonPressed)
+				.size(12, 14)
+				.position(startX + 11, startY + 19)
+				.build();
 		addSelectableChild(backButton);
-		forwardButton = new ButtonWidget(startX + 147, startY + 19, 12, 14, Text.literal("Forward"), this::navigationButtonPressed);
+		forwardButton = ButtonWidget.builder(Text.translatable("gui.spectrum.button.forward"), this::navigationButtonPressed)
+				.size(12, 14)
+				.position(startX + 147, startY + 19)
+				.build();
 		addSelectableChild(forwardButton);
 		
 		particleButtons = List.of(
@@ -329,7 +340,10 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 	}
 	
 	private @NotNull ButtonWidget addParticleButton(int x, int y) {
-		ButtonWidget button = new ButtonWidget(x, y, 20, 20, Text.literal("Particles"), this::particleButtonPressed);
+		ButtonWidget button = ButtonWidget.builder(Text.translatable("gui.spectrum.button.particles"), this::particleButtonPressed)
+				.size(20, 20)
+				.position(x, y)
+				.build();
 		addSelectableChild(button);
 		return button;
 	}
@@ -446,7 +460,7 @@ public class ParticleSpawnerScreen extends HandledScreen<ParticleSpawnerScreenHa
 		try {
 			ParticleSpawnerConfiguration configuration = new ParticleSpawnerConfiguration(
 					displayedParticleEntries.get(particleSelectionIndex).particleType(),
-					selectedParticleSupportsColoring ? new Vec3i(Float.parseFloat(cyanField.getText()), Float.parseFloat(magentaField.getText()), Float.parseFloat(yellowField.getText())) : Vec3i.ZERO,
+					selectedParticleSupportsColoring ? new Vector3i(Float.parseFloat(cyanField.getText()), Float.parseFloat(magentaField.getText()), Float.parseFloat(yellowField.getText()), RoundingMode.HALF_DOWN) : new Vector3i(0, 0, 0),
 					glowing,
 					Float.parseFloat(amountField.getText()),
 					new Vector3f(Float.parseFloat(positionXField.getText()), Float.parseFloat(positionYField.getText()), Float.parseFloat(positionZField.getText())),

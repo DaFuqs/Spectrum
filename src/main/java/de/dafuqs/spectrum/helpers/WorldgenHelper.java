@@ -6,10 +6,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.registry.BuiltinRegistries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 
 import java.util.List;
@@ -17,6 +14,7 @@ import java.util.List;
 public class WorldgenHelper {
 
 	// TODO - Refactor
+	// TODO - Only tip I can give for now is that creating worldgen via datagen is sufficient, at least for ore features
 	
 	public static <C extends FeatureConfig, F extends Feature<C>> F registerFeature(String name, F feature) {
 		return Registry.register(Registries.FEATURE, SpectrumCommon.locate(name), feature);

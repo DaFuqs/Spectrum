@@ -247,7 +247,7 @@ public class InkProjectileEntity extends MagicProjectileEntity {
 	}
 	
 	public void affectEntitiesInRange(Entity attacker) {
-		this.world.emitGameEvent(this, GameEvent.PROJECTILE_LAND, new BlockPos(this.getPos().x, this.getPos().y, this.getPos().z));
+		this.world.emitGameEvent(this, GameEvent.PROJECTILE_LAND, BlockPos.ofFloored(this.getPos().x, this.getPos().y, this.getPos().z));
 		
 		double posX = this.getPos().x;
 		double posY = this.getPos().y;

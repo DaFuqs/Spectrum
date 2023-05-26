@@ -37,7 +37,11 @@ public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHa
 		int x = (this.width - this.backgroundWidth) / 2 + 3;
 		int y = (this.height - this.backgroundHeight) / 2 + 3;
 		
-		ButtonWidget craftingModeButton = new ButtonWidget(x + 154, y + 6, 16, 16, Text.literal("Mode"), this::craftingModeButtonPressed);
+		ButtonWidget craftingModeButton = ButtonWidget.builder(Text.literal("Mode"), this::craftingModeButtonPressed)
+				.size(16, 16)
+				.position(x+154, y+6)
+				.build();
+				//new ButtonWidget(x + 154, y + 6, 16, 16, Text.literal("Mode"), this::craftingModeButtonPressed);
 		addSelectableChild(craftingModeButton);
 	}
 	
@@ -61,7 +65,7 @@ public class CompactingChestScreen extends HandledScreen<CompactingChestScreenHa
 	
 	@Override
 	protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
+		RenderSystem.setShader(GameRenderer::getPositionTexProgram);
 		RenderSystem.setShaderTexture(0, BACKGROUND);
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 		

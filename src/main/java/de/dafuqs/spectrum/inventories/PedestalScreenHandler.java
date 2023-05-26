@@ -185,7 +185,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	// 15: preview slot
 	// 16: hidden output slot
 	@Override
-	public ItemStack transferSlot(PlayerEntity player, int index) {
+	public ItemStack quickMove(PlayerEntity player, int index) {
 		ItemStack clickedStackCopy = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		
@@ -263,7 +263,7 @@ public class PedestalScreenHandler extends AbstractRecipeScreenHandler<Inventory
 	}
 	
 	public void close(PlayerEntity player) {
-		super.close(player);
+		super.onClosed(player);
 		this.inventory.onClose(player);
 	}
 	

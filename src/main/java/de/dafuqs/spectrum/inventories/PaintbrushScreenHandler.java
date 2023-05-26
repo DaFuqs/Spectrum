@@ -43,7 +43,7 @@ public class PaintbrushScreenHandler extends QuickNavigationGridScreenHandler im
 	@Override
 	public void onInkColorSelectedPacket(@Nullable InkColor inkColor) {
 		PaintbrushItem.setColor(paintBrushStack, inkColor);
-		close(player);
+		onClosed(player);
 	}
 	
 	@Override

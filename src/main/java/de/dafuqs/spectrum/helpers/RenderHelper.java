@@ -22,15 +22,13 @@ public class RenderHelper {
 		float alpha = 1.0F;
 		
 		RenderSystem.enableBlend();
-		RenderSystem.disableTexture();
 		RenderSystem.defaultBlendFunc();
-		RenderSystem.setShader(GameRenderer::getPositionColorShader);
+		RenderSystem.setShader(GameRenderer::getPositionColorProgram);
 		builder.begin(VertexFormat.DrawMode.TRIANGLES, VertexFormats.POSITION_COLOR);
 		builder.vertex(matrix, p1x, p1y, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, p2x, p2y, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, p3x, p3y, 0F).color(red, green, blue, alpha).next();
 		BufferRenderer.draw(builder.end());
-		RenderSystem.enableTexture();
 		RenderSystem.disableBlend();
 	}
 	
@@ -45,16 +43,14 @@ public class RenderHelper {
 		float alpha = 1.0F;
 		
 		RenderSystem.enableBlend();
-		RenderSystem.disableTexture();
 		RenderSystem.defaultBlendFunc();
-		RenderSystem.setShader(GameRenderer::getPositionColorShader);
+		RenderSystem.setShader(GameRenderer::getPositionColorProgram);
 		builder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
 		builder.vertex(matrix, x, y, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, x, y + height, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, x + width, y + height, 0F).color(red, green, blue, alpha).next();
 		builder.vertex(matrix, x + width, y, 0F).color(red, green, blue, alpha).next();
 		BufferRenderer.draw(builder.end());
-		RenderSystem.enableTexture();
 		RenderSystem.disableBlend();
 	}
 	

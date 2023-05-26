@@ -302,7 +302,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 		DyeColor dyeColor = ((EggLayingWoolyPigEntity) firstParent).getColor();
 		DyeColor dyeColor2 = ((EggLayingWoolyPigEntity) secondParent).getColor();
 		CraftingInventory craftingInventory = createDyeMixingCraftingInventory(dyeColor, dyeColor2);
-		Optional<Item> optionalItem = this.world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, this.world).map((recipe) -> recipe.craft(craftingInventory)).map(ItemStack::getItem);
+		Optional<Item> optionalItem = this.world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, craftingInventory, this.world).map((recipe) -> recipe.craft(craftingInventory, this.world.getRegistryManager())).map(ItemStack::getItem);
 		
 		if (optionalItem.isPresent() && optionalItem.get() instanceof DyeItem dyeItem) {
 			return dyeItem.getColor();
@@ -312,7 +312,7 @@ public class EggLayingWoolyPigEntity extends AnimalEntity implements Shearable {
 	
 	private static CraftingInventory createDyeMixingCraftingInventory(DyeColor firstColor, DyeColor secondColor) {
 		CraftingInventory craftingInventory = new CraftingInventory(new ScreenHandler(null, -1) {
-			public ItemStack transferSlot(PlayerEntity player, int index) {
+			public ItemStack quickMove(PlayerEntity player, int index) {
 				return ItemStack.EMPTY;
 			}
 			

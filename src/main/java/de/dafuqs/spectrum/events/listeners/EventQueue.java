@@ -51,15 +51,14 @@ public abstract class EventQueue<D> implements GameEventListener {
 
 	@Override
 	public boolean listen(ServerWorld world, GameEvent event, GameEvent.Emitter emitter, Vec3d emitterPos) {
-		// TODO - Fix this listener
 		Optional<Vec3d> positionSourcePosOptional = this.positionSource.getPos(world);
 		if (positionSourcePosOptional.isEmpty()) {
 			return false;
 		} else {
-			if (!this.callback.canAcceptEvent(world, this, event, positionSourcePosOptional.get())) {
+			if (!this.callback.canAcceptEvent(world, this, new GameEvent.Message(event, emitterPos, emitter, this, positionSourcePosOptional.get()), positionSourcePosOptional.get())) {
 				return false;
 			} else {
-				this.acceptEvent(world, event, positionSourcePosOptional.get());
+				this.acceptEvent(world, new GameEvent.Message(event, emitterPos, emitter, this, positionSourcePosOptional.get()), positionSourcePosOptional.get());
 				return true;
 			}
 		}

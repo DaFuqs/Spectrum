@@ -33,10 +33,10 @@ public class ShootingStarEntityRenderer extends EntityRenderer<ShootingStarEntit
 		if (blockState.getRenderType() == BlockRenderType.MODEL) {
 			World world = shootingStarEntity.getWorld();
 			
-			if (blockState != world.getBlockState(new BlockPos(shootingStarEntity.getPos())) && blockState.getRenderType() != BlockRenderType.INVISIBLE) {
+			if (blockState != world.getBlockState(BlockPos.ofFloored(shootingStarEntity.getPos())) && blockState.getRenderType() != BlockRenderType.INVISIBLE) {
 				matrixStack.push();
 				
-				BlockPos blockpos = new BlockPos(shootingStarEntity.getX(), shootingStarEntity.getBoundingBox().maxY, shootingStarEntity.getZ());
+				BlockPos blockpos = BlockPos.ofFloored(shootingStarEntity.getX(), shootingStarEntity.getBoundingBox().maxY, shootingStarEntity.getZ());
 				matrixStack.translate(-0.5, 0.0, -0.5);
 				BlockRenderManager blockRenderManager = MinecraftClient.getInstance().getBlockRenderManager();
 				blockRenderManager.getModelRenderer().render(world, blockRenderManager.getModel(blockState), blockState, blockpos, matrixStack, vertexConsumerProvider.getBuffer(RenderLayers.getMovingBlockLayer(blockState)), false, shootingStarEntity.getWorld().random, blockState.getRenderingSeed(shootingStarEntity.getBlockPos()), OverlayTexture.DEFAULT_UV);

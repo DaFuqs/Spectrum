@@ -8,7 +8,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.util.Arm;
 import net.minecraft.world.World;
 
@@ -52,8 +53,8 @@ public class LivingMarkerEntity extends LivingEntity {
 	
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 	}
-	
-	public Packet<?> createSpawnPacket() {
+
+	public Packet<ClientPlayPacketListener> createSpawnPacket() {
 		throw new IllegalStateException("Living Markers should never be sent");
 	}
 	

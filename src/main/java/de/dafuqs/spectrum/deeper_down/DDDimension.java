@@ -11,7 +11,7 @@ public class DDDimension {
 	
 	public static final Identifier EFFECTS_ID = SpectrumCommon.locate("deeper_down");
 	public static final Identifier DIMENSION_ID = SpectrumCommon.locate("deeper_down");
-	public static final RegistryKey<World> DIMENSION_KEY = RegistryKey.of(Registry.WORLD_KEY, DIMENSION_ID);
+	public static final RegistryKey<World> DIMENSION_KEY = RegistryKey.of(RegistryKeys.WORLD, DIMENSION_ID);
 	
 	public static final RegistryKey<Biome> CRYSTAL_GARDENS = getBiomeKey("crystal_gardens");
 	public static final RegistryKey<Biome> DEEP_BARRENS = getBiomeKey("deep_barrens");

@@ -35,7 +35,7 @@ public class FoundryEnchantment extends SpectrumEnchantment {
 	public static ItemStack getAutoSmeltedItemStack(ItemStack inputItemStack, World world) {
 		SmeltingRecipe smeltingRecipe = autoSmeltInventory.getRecipe(inputItemStack, world);
 		if (smeltingRecipe != null) {
-			ItemStack recipeOutputStack = smeltingRecipe.getOutput().copy();
+			ItemStack recipeOutputStack = smeltingRecipe.getOutput(world.getRegistryManager()).copy();
 			recipeOutputStack.setCount(recipeOutputStack.getCount() * inputItemStack.getCount());
 			return recipeOutputStack;
 		} else {

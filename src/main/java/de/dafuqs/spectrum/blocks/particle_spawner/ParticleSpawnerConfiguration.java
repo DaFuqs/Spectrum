@@ -15,7 +15,7 @@ import org.joml.*;
 public class ParticleSpawnerConfiguration {
 	
 	private final ParticleType<?> particleType;
-	private final Vec3i cmyColor; // 0-100 cmy
+	private final Vector3i cmyColor; // 0-100 cmy
 	private final boolean glowing;
 	private final float particlesPerSecond; /* >1 = every xth tick */
 	private final Vector3fc sourcePosition;
@@ -31,7 +31,7 @@ public class ParticleSpawnerConfiguration {
 	
 	private final Vector3fc rgbColor; // 0-255 rgb
 	
-	public ParticleSpawnerConfiguration(ParticleType<?> particleType, Vec3i cmyColor, boolean glowing, float particlesPerSecond /* >1 = every xth tick */,
+	public ParticleSpawnerConfiguration(ParticleType<?> particleType, Vector3i cmyColor, boolean glowing, float particlesPerSecond /* >1 = every xth tick */,
 										Vector3fc sourcePosition, Vector3fc sourcePositionVariance, Vector3fc velocity, Vector3fc velocityVariance,
 										float scale, float scaleVariance, int lifetimeTicks, int lifetimeVariance, float gravity, boolean collisions) {
 		
@@ -53,10 +53,10 @@ public class ParticleSpawnerConfiguration {
 		this.rgbColor = CMYtoRGB(cmyColor);
 	}
 	
-	public static Vector3fc CMYtoRGB(Vec3i cmy) {
-		float r = 1F - cmy.getX() / 100F;
-		float g = 1F - cmy.getY() / 100F;
-		float b = 1F - cmy.getZ() / 100F;
+	public static Vector3fc CMYtoRGB(Vector3i cmy) {
+		float r = 1F - cmy.x() / 100F;
+		float g = 1F - cmy.y() / 100F;
+		float b = 1F - cmy.z() / 100F;
 		return new Vector3f(r, g, b);
 	}
 	
@@ -64,7 +64,7 @@ public class ParticleSpawnerConfiguration {
 		return particleType;
 	}
 	
-	public Vec3i getCmyColor() {
+	public Vector3i getCmyColor() {
 		return cmyColor;
 	}
 	
@@ -118,9 +118,9 @@ public class ParticleSpawnerConfiguration {
 	
 	public void write(PacketByteBuf buf) {
 		buf.writeString(Registries.PARTICLE_TYPE.getId(particleType).toString());
-		buf.writeInt(cmyColor.getX());
-		buf.writeInt(cmyColor.getY());
-		buf.writeInt(cmyColor.getZ());
+		buf.writeInt(cmyColor.x());
+		buf.writeInt(cmyColor.y());
+		buf.writeInt(cmyColor.z());
 		buf.writeBoolean(glowing);
 		buf.writeFloat(particlesPerSecond);
 		buf.writeFloat(sourcePosition.x());
@@ -146,7 +146,7 @@ public class ParticleSpawnerConfiguration {
 	public static ParticleSpawnerConfiguration fromBuf(PacketByteBuf buf) {
 		Identifier particleIdentifier = new Identifier(buf.readString());
 		ParticleType<?> particleType = Registries.PARTICLE_TYPE.get(particleIdentifier);
-		Vec3i cmyColor = new Vec3i(buf.readInt(), buf.readInt(), buf.readInt());
+		Vector3i cmyColor = new Vector3i(buf.readInt(), buf.readInt(), buf.readInt());
 		boolean glowing = buf.readBoolean();
 		float particlesPerSecond = buf.readFloat();
 		Vector3fc sourcePosition = new Vector3f(buf.readFloat(), buf.readFloat(), buf.readFloat());
@@ -181,9 +181,9 @@ public class ParticleSpawnerConfiguration {
 		nbt.putFloat("source_velocity_variance_x", velocityVariance.x());
 		nbt.putFloat("source_velocity_variance_y", velocityVariance.y());
 		nbt.putFloat("source_velocity_variance_z", velocityVariance.z());
-		nbt.putInt("color_c", cmyColor.getX());
-		nbt.putInt("color_m", cmyColor.getY());
-		nbt.putInt("color_y", cmyColor.getZ());
+		nbt.putInt("color_c", cmyColor.x());
+		nbt.putInt("color_m", cmyColor.y());
+		nbt.putInt("color_y", cmyColor.z());
 		nbt.putFloat("scale", scale);
 		nbt.putFloat("scale_variance", scaleVariance);
 		nbt.putInt("lifetime", lifetimeTicks);
@@ -201,7 +201,7 @@ public class ParticleSpawnerConfiguration {
 		Vector3fc particleSourcePositionVariance = new Vector3f(tag.getFloat("source_pos_variance_x"), tag.getFloat("source_pos_variance_y"), tag.getFloat("source_pos_variance_z"));
 		Vector3fc velocity = new Vector3f(tag.getFloat("source_velocity_x"), tag.getFloat("source_velocity_y"), tag.getFloat("source_velocity_z"));
 		Vector3fc velocityVariance = new Vector3f(tag.getFloat("source_velocity_variance_x"), tag.getFloat("source_velocity_variance_y"), tag.getFloat("source_velocity_variance_z"));
-		Vec3i cmyColor = new Vec3i(tag.getInt("color_c"), tag.getInt("color_m"), tag.getInt("color_y"));
+		Vector3i cmyColor = new Vector3i(tag.getInt("color_c"), tag.getInt("color_m"), tag.getInt("color_y"));
 		float scale = tag.getFloat("scale");
 		float scaleVariance = tag.getFloat("scale_variance");
 		int lifetimeTicks = tag.getInt("lifetime");

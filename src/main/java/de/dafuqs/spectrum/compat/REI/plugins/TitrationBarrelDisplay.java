@@ -34,7 +34,7 @@ public class TitrationBarrelDisplay extends GatedSpectrumDisplay {
 		if (recipe instanceof TitrationBarrelRecipe titrationBarrelRecipe && titrationBarrelRecipe.getFermentationData() != null) {
 			return EntryIngredients.ofItemStacks(titrationBarrelRecipe.getOutputVariations(TitrationBarrelRecipe.FERMENTATION_DURATION_DISPLAY_TIME_MULTIPLIERS));
 		} else {
-			return EntryIngredients.of(recipe.getOutput());
+			return EntryIngredients.of(recipe.getOutput(null));
 		}
 	}
 

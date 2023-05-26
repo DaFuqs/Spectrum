@@ -53,7 +53,7 @@ public class LockableCraftingResultSlot extends CraftingResultSlot {
 			if (!remainingStacks.isEmpty()) {
 				if (slotStack.isEmpty()) {
 					this.input.setStack(i, remainingStacks);
-				} else if (ItemStack.areItemsEqualIgnoreDamage(slotStack, remainingStacks) && ItemStack.areNbtEqual(slotStack, remainingStacks)) {
+				} else if (ItemStack.areItemsEqual(slotStack, remainingStacks) && ItemStack.areNbtEqual(slotStack, remainingStacks)) {
 					remainingStacks.increment(slotStack.getCount());
 					this.input.setStack(i, remainingStacks);
 				} else if (!this.player.getInventory().insertStack(remainingStacks)) {

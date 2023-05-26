@@ -19,6 +19,7 @@ import net.minecraft.util.math.*;
 public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemFrameEntityRenderer<PhantomFrameEntity> {
 
 	// TODO - These need a namespace now, and probably need moving
+	// TODO - yeah i agree
 	public static final ModelIdentifier NORMAL_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=false");
 	public static final ModelIdentifier MAP_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=true");
 	public static final ModelIdentifier GLOW_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("glow_item_frame", "map=false");
@@ -86,7 +87,7 @@ public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemF
 				int finalLight = this.getLight(itemFrameEntity, light);
 				float scale = 0.85F;
 				matrixStack.scale(scale, scale, scale);
-				this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, finalLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.getId());
+				this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, finalLight, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, itemFrameEntity.world, itemFrameEntity.getId());
 			}
 		}
 

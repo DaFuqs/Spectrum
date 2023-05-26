@@ -16,10 +16,10 @@ import net.minecraft.network.packet.s2c.play.*;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
-import net.minecraft.world.explosion.*;
 
 import java.util.*;
 
+// TODO - Incubus Core requires updating
 public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity {
 	
 	private static final float MAX_DAMAGE = 5.0F;
@@ -40,7 +40,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 		this.prevX = x;
 		this.prevY = y;
 		this.prevZ = z;
-		this.setOrigin(new BlockPos(this.getPos()));
+		this.setOrigin(BlockPos.ofFloored(this.getPos()));
 		if (blockState.getBlock() instanceof FloatBlock) {
 			this.gravityModifier = ((FloatBlock) blockState.getBlock()).getGravityMod();
 		} else {
@@ -140,7 +140,7 @@ public class FloatBlockEntity extends BlockLikeEntity implements PostTickEntity 
 	public void postTickEntityCollision(Entity entity) {
 		super.postTickEntityCollision(entity);
 		if (isPaltaeriaStratineCollision(entity)) {
-			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, Explosion.DestructionType.NONE);
+			world.createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, World.ExplosionSourceType.NONE);
 			this.discard();
 			entity.discard();
 			

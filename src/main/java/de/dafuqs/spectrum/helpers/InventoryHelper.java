@@ -388,7 +388,7 @@ public class InventoryHelper {
 	@Nullable
 	public static Inventory getInventoryAt(World world, double x, double y, double z) {
 		Inventory inventory = null;
-		BlockPos blockPos = new BlockPos(x, y, z);
+		BlockPos blockPos = BlockPos.ofFloored(x, y, z);
 		BlockState blockState = world.getBlockState(blockPos);
 		Block block = blockState.getBlock();
 		if (block instanceof InventoryProvider) {

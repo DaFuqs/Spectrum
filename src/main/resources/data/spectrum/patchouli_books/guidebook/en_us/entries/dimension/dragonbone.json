@@ -1,7 +1,7 @@
 {
   "name": "Dragonbone",
   "icon": "spectrum:dragonbone",
-  "advancement": "spectrum:lategame/collect_dragonbone",
+  "advancement": "spectrum:lategame/break_cracked_dragonbone",
   "category": "spectrum:dimension_category",
   "extra_recipe_mappings": {
     "spectrum:dragonbone": 0,
@@ -21,7 +21,7 @@
     "spectrum:bone_ash_tile_slab": 0,
     "spectrum:bone_ash_tile_stairs": 0,
     "spectrum:bone_ash_tile_wall": 0,
-    "spectrum:bone_ash_pillar": 0,
+    "spectrum:polished_bone_ash_pillar": 0,
     "spectrum:bone_ash_shingles": 0
   },
   "pages": [
@@ -31,55 +31,55 @@
     },
     {
       "type": "patchouli:spotlight",
-      "advancement": "spectrum:lategame/collect_dragonbone",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "item": "spectrum:dragonbone_chunk",
       "text": "Damaging Dragonbone using $(thing)Explosions$() seems to breeze away most of the magical protective aura, making you able to finally mine it.$(br)The dropped pieces still retained some of that ancient, magical aura."
     },
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Turning to Ash",
-      "advancement": "spectrum:lategame/collect_dragonbone",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:cinderhearth/bone_ash",
       "text": "The $(l:magical_blocks/cinderhearth)Cinderhearth$() is the only thing creating heats hot enough to ash those bones."
     },
     {
       "type": "patchouli:crafting",
-      "advancement": "spectrum:lategame/collect_dragonbone",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "title": "Polishing",
       "recipe": "spectrum:crafting_table/dragonbone/polished_bone_ash"
     },
     {
       "type": "patchouli:crafting",
-      "advancement": "spectrum:lategame/collect_dragonbone",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "title": "Bricks & Tiles",
       "recipe": "spectrum:crafting_table/dragonbone/bone_ash_bricks",
       "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tiles"
     },
     {
       "type": "patchouli:crafting",
-      "advancement": "spectrum:lategame/collect_dragonbone",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "title": "Slabs & Stairs",
       "recipe": "spectrum:crafting_table/dragonbone/bone_ash_tiles",
       "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tiles"
     },
     {
       "type": "patchouli:crafting",
-      "advancement": "spectrum:lategame/collect_dragonbone",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "title": "Walls",
       "recipe": "spectrum:crafting_table/dragonbone/bone_ash_tiles",
       "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_tiles"
     },
     {
       "type": "patchouli:crafting",
-      "advancement": "spectrum:lategame/collect_dragonbone",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "title": "More Variants",
-      "recipe": "spectrum:crafting_table/dragonbone/bone_ash_pillar",
+      "recipe": "spectrum:crafting_table/dragonbone/polished_bone_ash_pillar",
       "recipe2": "spectrum:crafting_table/dragonbone/bone_ash_shingles"
     },
     {
       "type": "spectrum:cinderhearth_smelting",
       "title": "Smelting them back",
-      "advancement": "spectrum:lategame/collect_dragonbone",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
       "recipe": "spectrum:cinderhearth/dragonbone_unsmelting/bone_ash_brick_stairs",
       "text": "All blocks can be converted back to their polished variant again via the $(l:magical_blocks/cinderhearth)Cinderhearth$()."
     }

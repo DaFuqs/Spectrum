@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "spectrum:bone_ash_pillar"
+          "name": "spectrum:polished_bone_ash_pillar"
         }
       ],
       "conditions": [

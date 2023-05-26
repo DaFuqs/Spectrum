@@ -23,7 +23,7 @@
         },
         "advancement_identifiers": [
           "spectrum:lategame/revive_black_sludge_plant",
-          "spectrum:lategame/collect_dragonbone",
+          "spectrum:lategame/break_cracked_dragonbone",
           "spectrum:lategame/find_excavation_site",
           "spectrum:lategame/find_forgotten_city",
           "spectrum:lategame/reached_dd_floor",

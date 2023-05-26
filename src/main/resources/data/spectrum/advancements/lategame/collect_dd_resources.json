@@ -22,7 +22,7 @@
     "collect_dragonbone": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:lategame/collect_dragonbone"
+        "advancement_identifier": "spectrum:lategame/break_cracked_dragonbone"
       }
     },
     "collect_hummingstone": {

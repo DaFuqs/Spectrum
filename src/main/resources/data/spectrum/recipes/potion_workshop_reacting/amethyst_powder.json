@@ -2,7 +2,7 @@
   "type": "spectrum:potion_workshop_reacting",
   "item": "spectrum:amethyst_powder",
   "modifiers": {
-    "flat_duration_bonus_ticks": 600
+    "flat_duration_bonus_ticks": 1200
   },
   "required_advancement": "spectrum:hidden/collect_gemstone_dust/collect_amethyst_powder"
 }

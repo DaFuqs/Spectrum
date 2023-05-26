@@ -22,10 +22,10 @@
             "minecraft:lingering_potion"
           ]
         },
-		"max_amplifier": {
-		  "min": 3
-		}
-	  }
+        "highest_amplifier": {
+          "min": 2
+        }
+      }
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",

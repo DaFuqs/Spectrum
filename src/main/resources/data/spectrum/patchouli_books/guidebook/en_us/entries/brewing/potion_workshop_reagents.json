@@ -46,7 +46,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:amethyst_powder",
-      "text": "Adds flat 30 seconds to Duration."
+      "text": "Increases Duration by flat 60 seconds."
     },
     {
       "type": "patchouli:spotlight",
@@ -103,7 +103,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:storm_stone",
       "advancement": "spectrum:midgame/collect_storm_stone",
-      "text": "Increases the Potions Potency at the beginning, but wearing off fast over time."
+      "text": "Dramatically increases the Potions Potency at the beginning, makes it's potency wear off over time."
     },
     {
       "type": "patchouli:spotlight",
@@ -171,7 +171,7 @@
       "item": "spectrum:jadeite_petals",
       "anchor": "jadeite_petals",
       "advancement": "spectrum:hidden/collect_jadeite_petals",
-      "text": "Add 60 seconds duration to positive effects."
+      "text": "Increases the Duration of positive effects by 120 seconds."
     },
     {
       "type": "patchouli:spotlight",

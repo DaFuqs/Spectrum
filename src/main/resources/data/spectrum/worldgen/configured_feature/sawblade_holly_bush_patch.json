@@ -1,47 +1,22 @@
 {
   "type": "minecraft:random_patch",
   "config": {
-    "tries": 8,
+    "tries": 12,
     "xz_spread": 4,
     "y_spread": 1,
     "feature": {
       "feature": {
-        "type": "minecraft:block_column",
+        "type": "minecraft:simple_block",
         "config": {
-          "direction": "up",
-          "allowed_placement": {
-            "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
-          },
-          "prioritize_tip": false,
-          "layers": [
-            {
-              "height": 1,
-              "provider": {
-                "type": "minecraft:simple_state_provider",
-                "state": {
-                  "Name": "spectrum:sawblade_holly_bush",
-                  "Properties": {
-                    "age": "7",
-                    "half": "lower"
-                  }
-                }
-              }
-            },
-            {
-              "height": 1,
-              "provider": {
-                "type": "minecraft:simple_state_provider",
-                "state": {
-                  "Name": "spectrum:sawblade_holly_bush",
-                  "Properties": {
-                    "half": "upper",
-                    "age": "7"
-                  }
-                }
+          "to_place": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "spectrum:sawblade_holly_bush",
+              "Properties": {
+                "age": "7"
               }
             }
-          ]
+          }
         }
       },
       "placement": [
@@ -55,20 +30,15 @@
                 "blocks": "minecraft:air"
               },
               {
-                "type": "minecraft:matching_blocks",
+                "type": "minecraft:would_survive",
                 "offset": [
                   0,
-                  1,
+                  -1,
                   0
                 ],
-                "blocks": "minecraft:air"
-              },
-              {
-                "type": "minecraft:would_survive",
                 "state": {
-                  "Name": "spectrum:sawblade_holly_bush",
+                  "Name": "spectrum:sawblade_holly",
                   "Properties": {
-                    "half": "lower",
                     "age": "7"
                   }
                 }

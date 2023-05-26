@@ -10,6 +10,7 @@ public class SpectrumBlockTags {
 	// PLANTS
 	public static final TagKey<Block> MERMAIDS_BRUSH_PLANTABLE = getReference("mermaids_brush_plantable");
 	public static final TagKey<Block> QUITOXIC_REEDS_PLANTABLE = getReference("quitoxic_reeds_plantable");
+	public static final TagKey<Block> SAWBLADE_HOLLY_PLANTABLE = getReference("sawblade_holly_plantable");
 	public static final TagKey<Block> DOOMBLOOM_PLANTABLE = getReference("doombloom_plantable");
 	public static final TagKey<Block> SNAPPING_IVY_PLANTABLE = getReference("snapping_ivy_plantable");
 	public static final TagKey<Block> ALOE_PLANTABLE = getReference("aloe_plantable");

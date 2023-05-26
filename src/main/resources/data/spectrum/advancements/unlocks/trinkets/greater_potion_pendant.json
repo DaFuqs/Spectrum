@@ -1,15 +1,27 @@
 {
   "criteria": {
-    "unlocked_liquid_crystal": {
+    "brewed_potion_with_four_effects_in_potion_workshop": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
+        "advancement_identifier": "spectrum:midgame/brew_potion_with_four_effects_in_potion_workshop"
       }
     },
     "brewed_powerful_potion_in_potion_workshop": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
         "advancement_identifier": "spectrum:midgame/brew_powerful_potion_in_potion_workshop"
+      }
+    },
+    "brew_lasting_potion_in_potion_workshop": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_lasting_potion_in_potion_workshop"
+      }
+    },
+    "unlocked_liquid_crystal": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:unlocks/blocks/liquid_crystal"
       }
     },
     "collected_paltaeria_gem": {
@@ -30,5 +42,24 @@
         "advancement_identifier": "spectrum:hidden/collect_pigment/collect_white_pigment"
       }
     }
-  }
+  },
+  "requirements": [
+    [
+      "brewed_potion_with_four_effects_in_potion_workshop",
+      "brewed_powerful_potion_in_potion_workshop",
+      "brew_lasting_potion_in_potion_workshop"
+    ],
+    [
+      "unlocked_liquid_crystal"
+    ],
+    [
+      "collected_paltaeria_gem"
+    ],
+    [
+      "collected_moonstone"
+    ],
+    [
+      "collected_white_pigment"
+    ]
+  ]
 }

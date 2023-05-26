@@ -1,5 +1,5 @@
 {
-  "parent": "spectrum:midgame/brew_powerful_potion_in_potion_workshop",
+  "parent": "spectrum:midgame/brew_potion_in_potion_workshop",
   "display": {
     "icon": {
       "item": "spectrum:lesser_potion_pendant",
@@ -26,7 +26,9 @@
     },
     "gotten_previous": {
       "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/brew_powerful_potion_in_potion_workshop" }
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop"
+      }
     }
   }
 }

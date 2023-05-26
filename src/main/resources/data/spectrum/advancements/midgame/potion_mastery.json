@@ -1,0 +1,36 @@
+{
+  "parent": "spectrum:midgame/brew_powerful_potion_in_potion_workshop",
+  "display": {
+    "icon": {
+      "item": "minecraft:potion_workshop"
+    },
+    "hidden": true,
+    "frame": "challenge",
+    "title": {
+      "translate": "advancements.spectrum.potion_mastery.title"
+    },
+    "description": {
+      "translate": "advancements.spectrum.potion_mastery.description"
+    }
+  },
+  "criteria": {
+    "brewed_lasting_potion_in_potion_workshop": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_lasting_potion_in_potion_workshop"
+      }
+    },
+    "brewed_potion_with_four_effects_in_potion_workshop": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_potion_with_four_effects_in_potion_workshop"
+      }
+    },
+    "gotten_previous": {
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_powerful_potion_in_potion_workshop"
+      }
+    }
+  }
+}

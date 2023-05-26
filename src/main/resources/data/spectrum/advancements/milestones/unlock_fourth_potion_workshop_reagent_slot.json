@@ -1,18 +1,10 @@
 {
   "criteria": {
-    "reached_endgame": {
+    "reached_potion_mastery": {
       "trigger": "revelationary:advancement_gotten",
       "conditions": {
-        "advancement_identifier": "spectrum:endgame/spectrum_endgame"
+        "advancement_identifier": "spectrum:midgame/potion_mastery"
       }
-    },
-    "brewed_potion_with_four_effects_in_potion_workshop": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/brew_potion_with_four_effects_in_potion_workshop" }
-    },
-    "brewed_powerful_potion_in_potion_workshop": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/brew_powerful_potion_in_potion_workshop" }
     }
   }
 }

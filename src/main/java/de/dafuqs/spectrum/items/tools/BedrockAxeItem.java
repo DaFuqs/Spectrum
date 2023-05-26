@@ -4,10 +4,8 @@ import de.dafuqs.spectrum.items.Preenchanted;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.AxeItem;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Map;
 
@@ -31,14 +29,7 @@ public class BedrockAxeItem extends AxeItem implements Preenchanted {
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
 	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
-	}
-	
+
 	@Override
 	public boolean isEnchantable(ItemStack stack) {
 		return true;

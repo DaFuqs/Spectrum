@@ -19,7 +19,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -169,11 +168,11 @@ public class DreamflayerItem extends SwordItem implements FabricItem, InkPowered
 		DamageComposition composition = new DamageComposition();
 		if (ActivatableItem.isActivated(stack)) {
 			composition.addPlayerOrEntity(attacker, newDamage * 0.5F);
-			composition.add(DamageSource.magic(attacker, attacker), newDamage * 0.25F);
+			composition.add(attacker.getDamageSources().magic(), newDamage * 0.25F);
 			composition.add(SpectrumDamageSources.setHealth(attacker), newDamage * 0.25F);
 		} else {
 			composition.addPlayerOrEntity(attacker, newDamage * 0.75F);
-			composition.add(DamageSource.magic(attacker, attacker), newDamage * 0.25F);
+			composition.add(attacker.getDamageSources().magic(), newDamage * 0.25F);
 		}
 		return composition;
 	}

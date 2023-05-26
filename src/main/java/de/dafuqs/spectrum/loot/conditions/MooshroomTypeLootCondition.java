@@ -36,7 +36,7 @@ public class MooshroomTypeLootCondition implements LootCondition {
 	public boolean test(LootContext lootContext) {
 		Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
 		if (entity instanceof MooshroomEntity) {
-			return ((MooshroomEntity) entity).getMooshroomType().equals(mooshroomType);
+			return ((MooshroomEntity) entity).getVariant().equals(mooshroomType);
 		} else {
 			return false;
 		}

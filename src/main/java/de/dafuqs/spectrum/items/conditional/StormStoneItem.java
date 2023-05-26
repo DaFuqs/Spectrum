@@ -8,12 +8,12 @@ import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.explosion.Explosion;
 
 public class StormStoneItem extends CloakedItem implements DamageAwareItem {
 	
@@ -23,7 +23,7 @@ public class StormStoneItem extends CloakedItem implements DamageAwareItem {
 	
 	@Override
 	public void onItemEntityDamaged(DamageSource source, float amount, ItemEntity itemEntity) {
-		if (source.isExplosive()) {
+		if (source.isIn(DamageTypeTags.IS_EXPLOSION)) {
 			doLightningExplosion(itemEntity);
 		}
 	}
@@ -51,12 +51,12 @@ public class StormStoneItem extends CloakedItem implements DamageAwareItem {
 		// ...and boom!
 		float powerMod = 1.0F;
 		Biome biomeAtPos = world.getBiome(blockPos).value();
-		if (!biomeAtPos.isHot(blockPos) && !biomeAtPos.isCold(blockPos)) {
+		if (!biomeAtPos.hasPrecipitation() && !biomeAtPos.isCold(blockPos)) {
 			// there is no rain/thunder in deserts or snowy biomes
 			powerMod = world.isThundering() ? 1.5F : world.isRaining() ? 1.25F : 1.0F;
 		}
 		
-		world.createExplosion(itemEntity, pos.getX(), pos.getY(), pos.getZ(), count * powerMod, Explosion.DestructionType.BREAK);
+		world.createExplosion(itemEntity, pos.getX(), pos.getY(), pos.getZ(), count * powerMod, World.ExplosionSourceType.MOB);
 	}
 	
 }

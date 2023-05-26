@@ -36,7 +36,7 @@ public class FoxTypeLootCondition implements LootCondition {
 	public boolean test(LootContext lootContext) {
 		Entity entity = lootContext.get(LootContextParameters.THIS_ENTITY);
 		if (entity instanceof FoxEntity) {
-			return ((FoxEntity) entity).getFoxType().equals(foxType);
+			return ((FoxEntity) entity).getVariant().equals(foxType);
 		} else {
 			return false;
 		}
@@ -47,7 +47,7 @@ public class FoxTypeLootCondition implements LootCondition {
 		}
 		
 		public void toJson(JsonObject jsonObject, FoxTypeLootCondition foxTypeLootCondition, JsonSerializationContext jsonSerializationContext) {
-			jsonObject.addProperty("fox_type", foxTypeLootCondition.foxType.getKey());
+			jsonObject.addProperty("fox_type", foxTypeLootCondition.foxType.asString());
 		}
 		
 		public FoxTypeLootCondition fromJson(JsonObject jsonObject, JsonDeserializationContext jsonDeserializationContext) {

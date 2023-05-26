@@ -8,11 +8,9 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,13 +31,6 @@ public class LagoonRodItem extends SpectrumFishingRodItem implements Preenchante
 	@Override
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
-	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
 	}
 	
 	@Override

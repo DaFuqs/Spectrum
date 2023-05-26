@@ -18,12 +18,10 @@ import net.minecraft.util.math.*;
 
 public class PhantomFrameEntityRenderer<T extends ItemFrameEntity> extends ItemFrameEntityRenderer<PhantomFrameEntity> {
 
-	// TODO - These need a namespace now, and probably need moving
-	// TODO - yeah i agree
-	public static final ModelIdentifier NORMAL_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=false");
-	public static final ModelIdentifier MAP_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("item_frame", "map=true");
-	public static final ModelIdentifier GLOW_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("glow_item_frame", "map=false");
-	public static final ModelIdentifier MAP_GLOW_FRAME_MODEL_IDENTIFIER = new ModelIdentifier("glow_item_frame", "map=true");
+	public static final ModelIdentifier NORMAL_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("item_frame", "map=false");
+	public static final ModelIdentifier MAP_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("item_frame", "map=true");
+	public static final ModelIdentifier GLOW_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("glow_item_frame", "map=false");
+	public static final ModelIdentifier MAP_GLOW_FRAME_MODEL_IDENTIFIER = ModelIdentifier.ofVanilla("glow_item_frame", "map=true");
 
 	private final MinecraftClient client = MinecraftClient.getInstance();
 	private final ItemRenderer itemRenderer;

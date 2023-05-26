@@ -10,7 +10,6 @@ import net.minecraft.client.*;
 import net.minecraft.client.item.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
@@ -99,7 +98,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	}
 
 	public void performGroundSlam(World world, Vec3d pos, LivingEntity attacker, float strength) {
-		world.emitGameEvent(attacker, GameEvent.ENTITY_ROAR, new BlockPos(pos.x, pos.y, pos.z));
+		world.emitGameEvent(attacker, GameEvent.ENTITY_ROAR, BlockPos.ofFloored(pos.x, pos.y, pos.z));
 
 		double posX = pos.x;
 		double posY = pos.y;
@@ -131,9 +130,9 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 
 						float damage = (float) ((int) ((ac * ac + ac) / 2.0D * (double) strength + 1.0D));
 						if (entity instanceof PlayerEntity player) {
-							entity.damage(DamageSource.player(player), damage);
+							entity.damage(player.getDamageSources().playerAttack(player), damage);
 						} else {
-							entity.damage(DamageSource.mob(attacker), damage);
+							entity.damage(attacker.getDamageSources().mobAttack(attacker), damage);
 						}
 
 						double ad = ac;
@@ -157,7 +156,7 @@ public class GlassCrestGreatswordItem extends GreatswordItem implements SplitDam
 	public DamageComposition getDamageComposition(LivingEntity attacker, LivingEntity target, ItemStack stack, float damage) {
 		DamageComposition composition = new DamageComposition();
 		composition.addPlayerOrEntity(attacker, damage * (1 - this.MAGIC_DAMAGE_SHARE));
-		composition.add(DamageSource.magic(attacker, attacker), damage * this.MAGIC_DAMAGE_SHARE);
+		composition.add(attacker.getDamageSources().magic(), damage * this.MAGIC_DAMAGE_SHARE);
 		return composition;
 	}
 

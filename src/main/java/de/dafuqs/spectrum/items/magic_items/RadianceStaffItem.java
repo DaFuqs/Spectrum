@@ -134,9 +134,10 @@ public class RadianceStaffItem extends Item implements InkPowered {
 		
 		BlockPos sourcePos = user.getBlockPos();
 		Vec3d cameraVec = user.getRotationVec(0);
-		
+
+		// TODO - Test if this is accurate
 		for (int iteration = 1; iteration < maxCheckDistance; iteration++) {
-			BlockPos targetPos = sourcePos.add(cameraVec.x * (double) iteration * REACH_STEP_DISTANCE, cameraVec.y * (double) iteration * REACH_STEP_DISTANCE, cameraVec.z * (double) iteration * 4);
+			BlockPos targetPos = sourcePos.add(MathHelper.floor(cameraVec.x) * iteration * REACH_STEP_DISTANCE, MathHelper.floor(cameraVec.y) * iteration * REACH_STEP_DISTANCE, MathHelper.floor(cameraVec.z) * iteration * 4);
 			targetPos = targetPos.add(iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration), iteration - world.getRandom().nextInt(2 * iteration));
 			
 			if (world.getLightLevel(LightType.BLOCK, targetPos) < MIN_LIGHT_LEVEL) {

@@ -4,7 +4,6 @@ import de.dafuqs.arrowhead.api.*;
 import de.dafuqs.spectrum.items.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
-import net.minecraft.util.collection.*;
 
 import java.util.*;
 
@@ -27,13 +26,6 @@ public class BedrockBowItem extends BowItem implements Preenchanted, ArrowheadBo
 	@Override
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
-	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
 	}
 	
 	@Override

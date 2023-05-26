@@ -10,11 +10,9 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Map;
 import java.util.UUID;
@@ -59,13 +57,6 @@ public class GreatswordItem extends SwordItem implements Preenchanted {
 	@Override
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
-	}
-
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
 	}
 
 }

@@ -66,7 +66,6 @@ import net.minecraft.entity.projectile.*;
 import net.minecraft.entity.projectile.thrown.*;
 import net.minecraft.item.*;
 import net.minecraft.particle.*;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.*;
 import net.minecraft.sound.*;
 import net.minecraft.state.property.Properties;
@@ -77,7 +76,6 @@ import net.minecraft.util.math.intprovider.*;
 import net.minecraft.registry.*;
 import net.minecraft.world.*;
 import net.minecraft.world.explosion.*;
-import net.minecraft.world.gen.feature.*;
 import org.jetbrains.annotations.*;
 
 import java.util.*;

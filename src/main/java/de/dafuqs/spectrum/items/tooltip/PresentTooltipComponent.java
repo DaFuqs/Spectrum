@@ -29,13 +29,13 @@ public class PresentTooltipComponent extends SpectrumTooltipComponent {
 	}
 	
 	@Override
-	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
+	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer) {
 		int n = x + 1;
 		int o = y + 1;
 		for (int i = 0; i < this.itemStacks.size(); i++) {
-			this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer, z);
+			this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer);
 		}
-		this.drawOutline(x, y, this.itemStacks.size(), 1, matrices, z);
+		this.drawOutline(x, y, this.itemStacks.size(), 1, matrices);
 	}
 	
 }

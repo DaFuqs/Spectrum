@@ -7,7 +7,6 @@ import net.minecraft.enchantment.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.registry.tag.*;
-import net.minecraft.util.collection.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -28,13 +27,6 @@ public class MalachiteCrossbowItem extends CrossbowItem implements Preenchanted,
 	@Override
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
-	}
-	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
 	}
 	
 	public static ItemStack getFirstProjectile(ItemStack crossbow) {

@@ -47,7 +47,7 @@ public class VoidBundleTooltipComponent extends SpectrumTooltipComponent {
 	}
 	
 	@Override
-	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer, int z) {
+	public void drawItems(TextRenderer textRenderer, int x, int y, MatrixStack matrices, ItemRenderer itemRenderer) {
 		int n = x + 1;
 		int o = y + 1;
 		
@@ -55,22 +55,22 @@ public class VoidBundleTooltipComponent extends SpectrumTooltipComponent {
 			if (i == displayedSlotCount - 1) {
 				if (displayedSlotCount == MAX_DISPLAYED_SLOTS + 1) {
 					if (drawDots) {
-						this.drawDottedSlot(n + 5 * 18, o, matrices, z);
+						this.drawDottedSlot(n + 5 * 18, o, matrices);
 					} else {
-						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer, z);
+						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer);
 					}
 				} else {
 					if (this.itemStacks.size() - 1 < i) {
-						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer, z);
+						this.drawSlot(n + i * 18, o, i, ItemStack.EMPTY, textRenderer, matrices, itemRenderer);
 					} else {
-						this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer, z);
+						this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer);
 					}
 				}
 			} else {
-				this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer, z);
+				this.drawSlot(n + i * 18, o, i, this.itemStacks.get(i), textRenderer, matrices, itemRenderer);
 			}
 		}
-		this.drawOutline(x, y, displayedSlotCount, 1, matrices, z);
+		this.drawOutline(x, y, displayedSlotCount, 1, matrices);
 	}
 	
 }

@@ -23,9 +23,9 @@ public interface SplitDamageItem {
 
         public void addPlayerOrEntity(LivingEntity entity, float ratio) {
             if (entity instanceof PlayerEntity player) {
-                this.damageSourcesWithPercentage.add(new Pair<>(DamageSource.player(player), ratio));
+                this.damageSourcesWithPercentage.add(new Pair<>(player.getDamageSources().playerAttack(player), ratio));
             } else {
-                this.damageSourcesWithPercentage.add(new Pair<>(DamageSource.mob(entity), ratio));
+                this.damageSourcesWithPercentage.add(new Pair<>(entity.getDamageSources().mobAttack(entity), ratio));
             }
         }
 

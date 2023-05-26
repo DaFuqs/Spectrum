@@ -12,10 +12,8 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.collection.DefaultedList;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -24,8 +22,8 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	@Environment(EnvType.CLIENT)
 	private BipedEntityModel<LivingEntity> model;
 	
-	public BedrockArmorItem(ArmorMaterial material, EquipmentSlot slot, Settings settings) {
-		super(material, slot, settings);
+	public BedrockArmorItem(ArmorMaterial material, ArmorItem.Type type, Settings settings) {
+		super(material, type, settings);
 	}
 	
 	@Override
@@ -53,13 +51,6 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 		return false;
 	}
 	
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
-	}
-	
 	@Environment(EnvType.CLIENT)
 	protected BipedEntityModel<LivingEntity> provideArmorModelForSlot(EquipmentSlot slot) {
 		var models = MinecraftClient.getInstance().getEntityModelLoader();
@@ -74,7 +65,7 @@ public class BedrockArmorItem extends ArmorItem implements Preenchanted {
 	@Environment(EnvType.CLIENT)
 	public BipedEntityModel<LivingEntity> getArmorModel() {
 		if (model == null) {
-			model = provideArmorModelForSlot(slot);
+			model = provideArmorModelForSlot(getSlotType());
 		}
 		return model;
 	}

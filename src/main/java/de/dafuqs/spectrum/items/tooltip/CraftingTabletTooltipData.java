@@ -11,7 +11,7 @@ public class CraftingTabletTooltipData implements TooltipData {
 	private final Text description;
 	
 	public CraftingTabletTooltipData(Recipe recipe) {
-		this.itemStack = recipe.getOutput();
+		this.itemStack = recipe.getOutput(null);
 		this.description = Text.translatable("item.spectrum.crafting_tablet.tooltip.recipe", this.itemStack.getCount(), this.itemStack.getName().getString());
 	}
 	

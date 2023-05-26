@@ -16,7 +16,6 @@ import net.minecraft.server.network.*;
 import net.minecraft.sound.*;
 import net.minecraft.text.*;
 import net.minecraft.util.*;
-import net.minecraft.util.collection.*;
 import net.minecraft.world.*;
 import org.jetbrains.annotations.*;
 
@@ -220,13 +219,6 @@ public class WorkstaffItem extends MultiToolItem implements AoEBreakingTool, Pre
 	@Override
 	public ItemStack getDefaultStack() {
 		return getDefaultEnchantedStack(this);
-	}
-
-	@Override
-	public void appendStacks(ItemGroup group, DefaultedList<ItemStack> stacks) {
-		if (this.isIn(group)) {
-			stacks.add(getDefaultEnchantedStack(this));
-		}
 	}
 
 }

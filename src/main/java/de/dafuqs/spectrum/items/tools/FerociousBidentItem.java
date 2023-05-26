@@ -4,7 +4,6 @@ import de.dafuqs.spectrum.energy.*;
 import de.dafuqs.spectrum.energy.color.*;
 import net.minecraft.client.item.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.damage.*;
 import net.minecraft.entity.player.*;
 import net.minecraft.item.*;
 import net.minecraft.text.*;
@@ -52,7 +51,7 @@ public class FerociousBidentItem extends MalachiteBidentItem {
 			player.useRiptide(20);
 			for (LivingEntity entityAround : world.getEntitiesByType(TypeFilter.instanceOf(LivingEntity.class), player.getBoundingBox().expand(2), LivingEntity::isAlive)) {
 				if (entityAround != player) {
-					entityAround.damage(DamageSource.player(player), 2);
+					entityAround.damage(world.getDamageSources().playerAttack(player), 2);
 				}
 			}
 		}

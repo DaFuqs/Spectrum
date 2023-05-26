@@ -23,7 +23,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.JsonSerializer;
-import net.minecraft.registry.Registry;
 
 import java.util.Set;
 

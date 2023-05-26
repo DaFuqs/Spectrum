@@ -114,7 +114,7 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	
 	@Override
 	public boolean isValidBaseIngredient(ItemStack itemStack) {
-		return (applicableToPotions && itemStack.isOf(Items.GLASS_BOTTLE)) || (applicableToTippedArrows && itemStack.isOf(Items.ARROW)) || (applicableToPotionFillabes && itemStack.getItem() instanceof PotionFillable);
+		return (applicableToPotions && itemStack.isOf(Items.GLASS_BOTTLE)) || (applicableToTippedArrows && itemStack.isOf(Items.ARROW)) || (applicableToPotionFillabes && itemStack.getItem() instanceof InkPoweredPotionFillable);
 	}
 	
 	@Override
@@ -216,9 +216,9 @@ public class PotionWorkshopBrewingRecipe extends PotionWorkshopRecipe {
 	}
 	
 	public void fillPotionFillable(ItemStack potionFillableStack, PotionMod potionMod, PotionWorkshopBrewingRecipe lastRecipe, Random random) {
-		if (potionFillableStack.getItem() instanceof PotionFillable potionFillable) {
+		if (potionFillableStack.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
 			List<InkPoweredStatusEffectInstance> effects = generateEffects(potionMod, lastRecipe, random);
-			potionFillable.addOrUpgradeEffects(potionFillableStack, effects);
+			inkPoweredPotionFillable.addOrUpgradeEffects(potionFillableStack, effects);
 		}
 	}
 	

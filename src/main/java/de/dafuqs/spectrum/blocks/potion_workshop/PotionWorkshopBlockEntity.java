@@ -110,7 +110,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				if (potionWorkshopBlockEntity.brewTime == potionWorkshopBlockEntity.brewTimeTotal) {
 					if (calculatedRecipe instanceof PotionWorkshopBrewingRecipe brewingRecipe) {
 						Item baseItem = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID).getItem();
-						if (baseItem instanceof PotionFillable) {
+						if (baseItem instanceof InkPoweredPotionFillable) {
 							fillPotionFillable(potionWorkshopBlockEntity, brewingRecipe);
 						} else if (baseItem.equals(Items.ARROW)) {
 							createTippedArrows(potionWorkshopBlockEntity, brewingRecipe);
@@ -210,8 +210,8 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 				} else {
 					return false;
 				}
-			} else if (baseIngredient.getItem() instanceof PotionFillable potionFillable) {
-				return recipe.isApplicableToPotionFillabes() && !potionFillable.isFull(baseIngredient);
+			} else if (baseIngredient.getItem() instanceof InkPoweredPotionFillable inkPoweredPotionFillable) {
+				return recipe.isApplicableToPotionFillabes() && !inkPoweredPotionFillable.isFull(baseIngredient);
 			} else if (recipe.getOutput().isOf(Items.POTION)) {
 				return recipe.isApplicableToPotions();
 			} else {
@@ -303,7 +303,7 @@ public class PotionWorkshopBlockEntity extends BlockEntity implements NamedScree
 	
 	private static void fillPotionFillable(PotionWorkshopBlockEntity potionWorkshopBlockEntity, PotionWorkshopBrewingRecipe brewingRecipe) {
 		ItemStack potionFillableStack = potionWorkshopBlockEntity.inventory.get(BASE_INPUT_SLOT_ID);
-		if (potionFillableStack.getItem() instanceof PotionFillable) {
+		if (potionFillableStack.getItem() instanceof InkPoweredPotionFillable) {
 			// process reagents
 			PotionMod potionMod = getPotionModFromReagents(potionWorkshopBlockEntity);
 			

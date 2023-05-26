@@ -19,7 +19,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class NightfallsBladeItem extends SwordItem implements PotionFillable {
+public class NightfallsBladeItem extends SwordItem implements InkPoweredPotionFillable {
 	
 	private static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/equipment/nightfalls_blade");
 	

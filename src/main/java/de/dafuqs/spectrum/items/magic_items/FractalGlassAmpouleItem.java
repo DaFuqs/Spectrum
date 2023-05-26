@@ -15,7 +15,7 @@ import org.jetbrains.annotations.*;
 
 import java.util.*;
 
-public class FractalGlassAmpouleItem extends Item implements PotionFillable {
+public class FractalGlassAmpouleItem extends Item implements InkPoweredPotionFillable {
     
     public FractalGlassAmpouleItem(Settings settings) {
         super(settings);
@@ -24,7 +24,7 @@ public class FractalGlassAmpouleItem extends Item implements PotionFillable {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         var stack = user.getStackInHand(hand);
-    
+        
         List<StatusEffectInstance> e = new ArrayList<>();
         if (!world.isClient) {
             List<InkPoweredStatusEffectInstance> effects = getEffects(stack);

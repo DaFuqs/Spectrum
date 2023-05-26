@@ -3,18 +3,18 @@
   "display": {
     "icon": {
       "item": "minecraft:potion",
-      "nbt": "{CustomPotionColor: 16776960}"
+      "nbt": "{CustomPotionColor: 65535}"
     },
     "title": {
-      "translate": "advancements.spectrum.brew_powerful_potion_in_potion_workshop.title"
+      "translate": "advancements.spectrum.brew_lasting_potion_in_potion_workshop.title"
     },
     "description": {
-      "translate": "advancements.spectrum.brew_powerful_potion_in_potion_workshop.description"
+      "translate": "advancements.spectrum.brew_lasting_potion_in_potion_workshop.description"
     }
   },
   "criteria": {
     "brewed_level_four_potion_in_potion_workshop": {
-      "trigger":"spectrum:potion_workshop_brewing",
+      "trigger": "spectrum:potion_workshop_brewing",
       "conditions": {
         "item": {
           "items": [
@@ -23,14 +23,16 @@
             "minecraft:lingering_potion"
           ]
         },
-        "highest_amplifier": {
-          "min": 3
+        "longest_duration": {
+          "min": 24000
         }
       }
     },
     "gotten_previous": {
-      "trigger":"revelationary:advancement_gotten",
-      "conditions": { "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop" }
+      "trigger": "revelationary:advancement_gotten",
+      "conditions": {
+        "advancement_identifier": "spectrum:midgame/brew_potion_in_potion_workshop"
+      }
     }
   }
 }

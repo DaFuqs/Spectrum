@@ -7,6 +7,10 @@
     "advancement": "spectrum:place_moonstone_in_ancient_ruins",
     "frame": "paginatedadvancements:heart"
   },
+  {
+    "advancement": "spectrum:midgame/potion_mastery",
+    "frame": "paginatedadvancements:heart"
+  },
 
   {
     "advancement": "spectrum:spectrum",
@@ -201,6 +205,10 @@
   },
   {
     "advancement": "spectrum:midgame/brew_potion_with_four_effects_in_potion_workshop",
+    "frame": "paginatedadvancements:squircle"
+  },
+  {
+    "advancement": "spectrum:midgame/brew_lasting_potion_in_potion_workshop",
     "frame": "paginatedadvancements:squircle"
   },
   {

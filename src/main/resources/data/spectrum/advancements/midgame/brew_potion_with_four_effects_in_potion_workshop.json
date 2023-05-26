@@ -2,9 +2,9 @@
   "parent": "spectrum:midgame/brew_potion_in_potion_workshop",
   "display": {
     "icon": {
-      "item": "minecraft:potion"
+      "item": "minecraft:potion",
+      "nbt": "{CustomPotionColor: 16711935}"
     },
-    "hidden": true,
     "title": {
       "translate": "advancements.spectrum.brew_potion_with_four_effects_in_potion_workshop.title"
     },

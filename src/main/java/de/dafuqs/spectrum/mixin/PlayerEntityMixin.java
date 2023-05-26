@@ -60,9 +60,11 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 		}
 		map.put(EntityAttributes.GENERIC_ATTACK_DAMAGE, jeopardantModifier);
 		
-		int improvedCriticalLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.IMPROVED_CRITICAL, player.getMainHandStack(), player);
-		EntityAttributeModifier improvedCriticalModifier = new EntityAttributeModifier(ImprovedCriticalEnchantment.EXTRA_CRIT_DAMAGE_MULTIPLIER_ATTRIBUTE_UUID, "spectrum:improved_critical", ImprovedCriticalEnchantment.getAddtionalCritDamageMultiplier(improvedCriticalLevel), EntityAttributeModifier.Operation.ADDITION);
-		map.put(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, improvedCriticalModifier);
+		if (SpectrumEnchantments.IMPROVED_CRITICAL.canEntityUse(player)) {
+			int improvedCriticalLevel = SpectrumEnchantmentHelper.getUsableLevel(SpectrumEnchantments.IMPROVED_CRITICAL, player.getMainHandStack(), player);
+			EntityAttributeModifier improvedCriticalModifier = new EntityAttributeModifier(ImprovedCriticalEnchantment.EXTRA_CRIT_DAMAGE_MULTIPLIER_ATTRIBUTE_UUID, "spectrum:improved_critical", ImprovedCriticalEnchantment.getAddtionalCritDamageMultiplier(improvedCriticalLevel), EntityAttributeModifier.Operation.ADDITION);
+			map.put(AdditionalEntityAttributes.CRITICAL_BONUS_DAMAGE, improvedCriticalModifier);
+		}
 		
 		player.getAttributes().addTemporaryModifiers(map);
 	}
@@ -151,8 +153,8 @@ public abstract class PlayerEntityMixin implements PlayerEntityAccessor {
 	
 	@Unique
 	private boolean isInexorableActive() {
-		var player = (PlayerEntity) (Object) this;
-		return EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, player.getStackInHand(player.getActiveHand())) > 0;
+		PlayerEntity player = (PlayerEntity) (Object) this;
+		return SpectrumEnchantments.INEXORABLE.canEntityUse(player) && EnchantmentHelper.getLevel(SpectrumEnchantments.INEXORABLE, player.getStackInHand(player.getActiveHand())) > 0;
 	}
 	
 }

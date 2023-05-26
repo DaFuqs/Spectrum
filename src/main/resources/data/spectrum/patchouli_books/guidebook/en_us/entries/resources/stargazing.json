@@ -34,7 +34,7 @@
       "advancement": "spectrum:collect_star_fragment",
       "title": "Star Fragments",
       "item": "spectrum:star_fragment",
-      "text": "Shooting Stars yield precious resources: this Star Fragment, Stardust and a whole lot of other rare materials.$(br2)Picking up a Shooting Star by crouching and $(l:general/anvil_crushing)smashing it via an Anvil$(/l) will yield double the Star Fragments, albeit at the cost of the other materials."
+      "text": "Shooting Stars yield precious resources: a Star Fragment, Stardust and a whole lot of other rare materials.$(br2)Picking up a Shooting Star by crouching and $(l:general/anvil_crushing)smashing it via an Anvil$(/l) will yield double the Star Fragments, albeit at the cost of the other materials."
     },
     {
       "type": "patchouli:spotlight",

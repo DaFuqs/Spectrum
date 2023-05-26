@@ -30,7 +30,7 @@
       "title": "Planting & Growing",
       "item": "spectrum:germinated_jade_vine_seeds",
       "advancement": "spectrum:hidden/instilled_germinated_jade_vine_seeds",
-      "text": "Pallid, fragile but beautiful hanging plants, twining down wooden fences with generous space underneath.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
+      "text": "Pallid, fragile but nonetheless beautiful hanging plants, twining down wooden fences with generous space underneath.$(br)$(c_red)Not used to the intense light after all these aeons, they will die when exposed to too much sunlight.$(br)$(c_lime)They only grow one stage per night and only when exposed to the far softer, indirect light of the moon."
     },
     {
       "type": "patchouli:spotlight",

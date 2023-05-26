@@ -29,7 +29,7 @@
       "type": "patchouli:text",
       "title": "Paint Slinging",
       "advancement": "spectrum:midgame/fill_ink_container",
-      "text": "Now that you've discovered Ink, your brush has another function: you can bundle ink as a projectile and fling it.$(br)The surface (or creature!) that the projectile hits will be painted as long as the block there can absorb the paint."
+      "text": "Now that you've discovered Ink, your brush has another function: you can bundle ink as a projectile and fling it.$(br)The surface (or creature!) that the projectile hits will be painted as long as the block there is able to be recolored."
     }
   ]
 }

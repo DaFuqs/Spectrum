@@ -127,21 +127,21 @@
       "anchor": "lime",
       "advancement": "spectrum:hidden/collect_pigment/collect_lime_pigment",
       "item": "spectrum:lime_pigment",
-      "text": "The juicy lime almost smells like a warm spring morning. Or are you just imagining?$(br2)$(c_lime)Lime$() represents $(italic)Happiness$() and $(italic)Fertility$()."
+      "text": "This juicy lime almost smells like a warm spring morning. Or are you just imagining?$(br2)$(c_lime)Lime$() represents $(italic)Happiness$() and $(italic)Fertility$()."
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "magenta",
       "advancement": "spectrum:hidden/collect_pigment/collect_magenta_pigment",
       "item": "spectrum:magenta_pigment",
-      "text": "The soft magenta puts you in a calm and content, almost serene mood.$(br2)$(c_magenta)Magenta$() represents $(italic)Time$(), $(italic)Kindness$() and $(italic)Tolerance$()."
+      "text": "This soft magenta puts you in a calm and content, almost serene mood.$(br2)$(c_magenta)Magenta$() represents $(italic)Time$(), $(italic)Kindness$() and $(italic)Tolerance$()."
     },
     {
       "type": "patchouli:spotlight",
       "anchor": "orange",
       "advancement": "spectrum:hidden/collect_pigment/collect_orange_pigment",
       "item": "spectrum:orange_pigment",
-      "text": "The orange color reminds you of autumn and makes you feel a bit like you are sitting in a cozy armchair in front of a fireplace.$(br2)$(c_orange)Orange$() represents $(italic)Warmth$() and $(italic)Comfort$()."
+      "text": "This orange color reminds you of autumn and makes you feel a bit like you are sitting in a cozy armchair in front of a fireplace.$(br2)$(c_orange)Orange$() represents $(italic)Warmth$() and $(italic)Comfort$()."
     },
     {
       "type": "patchouli:spotlight",

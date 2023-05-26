@@ -13,7 +13,7 @@
       "type": "patchouli:spotlight",
       "name": "Blood Orchid Products",
       "item": "spectrum:bloodboil_syrup",
-      "text": "Extracts of the $(l:resources:blood_orchid)Blood Orchid$(/l) have an intense effect when consumed: they may to put you into $(thing)Frenzy$().$(br)Damage, attack speed, speed and knockback resistance are buffed the more you kill. But if you do not score a kill all 15 seconds you get debuffs instead. The higher the effects level, the higher the amplitude."
+      "text": "Extracts of the $(l:resources:blood_orchid)Blood Orchid$(/l) have an intense effect when consumed: they may to put you in a $(thing)Frenzy$().$(br)Damage, attack speed, movement speed and knockback resistance are buffed with each kill. The higher the effects level, the higher the buff. Not scoring a kill in 10 seconds will debuff you instead."
     },
     {
       "type": "patchouli:text",

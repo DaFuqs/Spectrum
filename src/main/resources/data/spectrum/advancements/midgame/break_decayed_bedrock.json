@@ -12,11 +12,13 @@
     }
   },
   "criteria": {
-    "broken_corrupted_bedrock": {
+    "broken_decayed_bedrock": {
       "trigger": "spectrum:block_broken",
       "conditions": {
         "broken_block": {
-          "blocks": [ "spectrum:ruin" ],
+          "blocks": [
+            "spectrum:ruin"
+          ],
           "state": {
             "conversion": "default"
           }

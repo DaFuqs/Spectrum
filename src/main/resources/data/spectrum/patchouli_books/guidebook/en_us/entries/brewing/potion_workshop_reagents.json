@@ -15,12 +15,12 @@
     {
       "type": "patchouli:text",
       "title": "Order of Application",
-      "text": "The order in which you arrange the reagents does not matter.$(br)Flat bonuses are applied first, multiplicative ones after."
+      "text": "The order in which you arrange the reagents does not matter.$(br2)$(bold)Flat bonuses are applied first, multiplicative ones second."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:redstone",
-      "text": "Doubles Duration."
+      "text": "2x multiplicative Duration bonus."
     },
     {
       "type": "patchouli:spotlight",
@@ -51,7 +51,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:citrine_powder",
-      "text": "Slight multiplicative Potency bonus."
+      "text": "1,25x multiplicative Potency bonus."
     },
     {
       "type": "patchouli:spotlight",
@@ -67,7 +67,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:shimmerstone_gem",
-      "text": "Tiny multiplicative bonus to both Duration and Potency."
+      "text": "1.2x multiplicative bonus to both Duration and Potency."
     },
     {
       "type": "patchouli:spotlight",
@@ -91,13 +91,13 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:stardust",
       "advancement": "spectrum:hidden/collect_stardust",
-      "text": "$(italic)Absorbs the last drops of what remains of your previous brew.$()$(br2)Good chance to add the main Effect of the $(item)Potion that was brewed previously$()."
+      "text": "50% chance to add the main Effect of the Potion that was brewed before."
     },
     {
       "type": "patchouli:spotlight",
       "item": "spectrum:star_fragment",
       "advancement": "spectrum:collect_star_fragment",
-      "text": "$(italic)Similar to Stardust, but much more potent.$()$(br2)Guaranteed chance to add the main Effect of the $(item)Potion that was brewed previously$(), but at decreased Potency."
+      "text": "Guaranteed to add the main Effect of the Potion that was brewed before, but at slightly decreased Potency."
     },
     {
       "type": "patchouli:spotlight",
@@ -145,7 +145,7 @@
       "type": "patchouli:spotlight",
       "item": "spectrum:bedrock_dust",
       "advancement": "spectrum:midgame/break_decayed_bedrock",
-      "text": "Big multiplicative boost to Potency, at the cost of Duration. Lowers Yield."
+      "text": "1.5x multiplicative boost to Potency, at the cost of Duration. Lowers Yield."
     },
     {
       "type": "patchouli:spotlight",
@@ -172,6 +172,13 @@
       "anchor": "jadeite_petals",
       "advancement": "spectrum:hidden/collect_jadeite_petals",
       "text": "Add 60 seconds duration to positive effects."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "spectrum:bone_ash",
+      "anchor": "bone_ash",
+      "advancement": "spectrum:lategame/break_cracked_dragonbone",
+      "text": "10% chance to add the main Effect of the Potion that was brewed before with 2x multiplicative Potency and Duration multiplier."
     }
   ]
 }

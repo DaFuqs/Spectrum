@@ -14,9 +14,23 @@
     },
     {
       "type": "spectrum:fusion_shrine_crafting",
-      "title": "Fusion Recipe",
+      "title": "Fusing a Head",
       "recipe": "spectrum:fusion_shrine/egg_laying_wooly_pig_head",
       "text": "What would your creation like to eat? It's relevant, for... $(l:creating_life/memories)reasons$()."
+    },
+    {
+      "type": "spectrum:spirit_instiller_crafting",
+      "advancement": "spectrum:midgame/remember_egg_laying_wooly_pig",
+      "title": "Remembering",
+      "recipe": "spectrum:spirit_instiller/memories/egg_laying_wooly_pig",
+      "text": "$(l:resources/amaranth)Amaranth$(), did the trick!"
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "spectrum:midgame/remember_egg_laying_wooly_pig",
+      "title": "The Creature",
+      "entity": "spectrum:egg_laying_wooly_pig",
+      "text": "Able to be $(thing)sheared$() and $(thing)milked$(), while also $(thing)laying eggs$()."
     }
   ]
 }

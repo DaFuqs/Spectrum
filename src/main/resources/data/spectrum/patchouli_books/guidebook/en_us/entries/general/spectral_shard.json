@@ -1,7 +1,7 @@
 {
   "name": "Spectral Shard",
   "advancement": "spectrum:unlocks/resources/spectral_shard",
-  "sortnum": 21,
+  "sortnum": 22,
   "secret": true,
   "icon": "spectrum:spectral_shard",
   "category": "spectrum:general_category",

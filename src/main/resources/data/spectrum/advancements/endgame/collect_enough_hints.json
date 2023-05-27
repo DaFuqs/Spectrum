@@ -17,7 +17,7 @@
       "trigger": "revelationary:advancement_count",
       "conditions": {
         "count": {
-          "min": 8
+          "min": 6
         },
         "advancement_identifiers": [
           "spectrum:lategame/revive_black_sludge_plant",

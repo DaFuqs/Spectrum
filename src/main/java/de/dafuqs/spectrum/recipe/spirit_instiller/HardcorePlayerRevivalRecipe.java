@@ -1,15 +1,18 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller;
 
+import com.google.gson.JsonObject;
 import com.mojang.authlib.*;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.spirit_instiller.*;
 import de.dafuqs.spectrum.cca.*;
+import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
 import net.fabricmc.fabric.api.dimension.v1.*;
 import net.id.incubus_core.recipe.*;
 import net.minecraft.block.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import net.minecraft.nbt.*;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
 import net.minecraft.registry.*;
 import net.minecraft.server.*;
@@ -22,9 +25,8 @@ import org.apache.commons.lang3.*;
 import org.jetbrains.annotations.*;
 
 public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
-	// TODO - Might need to implement a serializer for this
-	
-	public static final RecipeSerializer<HardcorePlayerRevivalRecipe> SERIALIZER = new SpecialRecipeSerializer<>(HardcorePlayerRevivalRecipe::new);
+
+	public static final RecipeSerializer<HardcorePlayerRevivalRecipe> SERIALIZER = new EmptyRecipeSerializer<>(HardcorePlayerRevivalRecipe::new);
 	
 	public HardcorePlayerRevivalRecipe(Identifier identifier) {
 		super(identifier, "", false, null,
@@ -94,6 +96,24 @@ public class HardcorePlayerRevivalRecipe extends SpiritInstillerRecipe {
 			}
 		}
 		return gameProfile;
+	}
+
+	public static class Serializer implements RecipeSerializer<HardcorePlayerRevivalRecipe> {
+
+		@Override
+		public HardcorePlayerRevivalRecipe read(Identifier id, JsonObject json) {
+			return null;
+		}
+
+		@Override
+		public HardcorePlayerRevivalRecipe read(Identifier id, PacketByteBuf buf) {
+			return null;
+		}
+
+		@Override
+		public void write(PacketByteBuf buf, HardcorePlayerRevivalRecipe recipe) {
+
+		}
 	}
 	
 }

@@ -1,16 +1,14 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
 import de.dafuqs.spectrum.blocks.mob_head.SpectrumSkullBlockItem;
+import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
 import de.dafuqs.spectrum.registries.SpectrumItemTags;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.minecraft.entity.EntityType;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialRecipeSerializer;
-import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -18,9 +16,8 @@ import net.minecraft.util.Identifier;
 import java.util.Optional;
 
 public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
-	// TODO - might need a recipe serializer here
-	
-	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
+
+	public static final RecipeSerializer<SpawnerCreatureChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerCreatureChangeRecipe::new);
 	
 	public SpawnerCreatureChangeRecipe(Identifier identifier) {
 		super(identifier, IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.MOB_HEADS)));
@@ -53,18 +50,6 @@ public class SpawnerCreatureChangeRecipe extends SpawnerChangeRecipe {
 			}
 		}
 		return true;
-	}
-
-	@Override
-	public ItemStack craft(Inventory inventory, DynamicRegistryManager registryManager) {
-		// TODO - Implement?
-		return null;
-	}
-
-	@Override
-	public ItemStack getOutput(DynamicRegistryManager registryManager) {
-		// TODO - Implement?
-		return null;
 	}
 
 	@Override

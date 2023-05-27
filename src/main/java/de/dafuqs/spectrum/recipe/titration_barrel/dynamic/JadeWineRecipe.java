@@ -4,6 +4,7 @@ import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.helpers.TimeHelper;
 import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.food.beverages.properties.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
@@ -19,9 +20,8 @@ import net.minecraft.world.*;
 import java.util.*;
 
 public class JadeWineRecipe extends TitrationBarrelRecipe {
-	// TODO - Needs a new serializer
-	
-	public static final RecipeSerializer<JadeWineRecipe> SERIALIZER = new SpecialRecipeSerializer<>(JadeWineRecipe::new);
+
+	public static final RecipeSerializer<JadeWineRecipe> SERIALIZER = new EmptyRecipeSerializer<>(JadeWineRecipe::new);
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("unlocks/food/jade_wine");
 	
 	public static final int MIN_FERMENTATION_TIME_HOURS = 24;

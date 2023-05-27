@@ -1,5 +1,6 @@
 package de.dafuqs.spectrum.recipe.spirit_instiller.spawner;
 
+import de.dafuqs.spectrum.recipe.EmptyRecipeSerializer;
 import de.dafuqs.spectrum.registries.SpectrumItems;
 import net.id.incubus_core.recipe.IngredientStack;
 import net.id.incubus_core.recipe.matchbook.Matchbook;
@@ -8,13 +9,12 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.SpecialRecipeSerializer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class SpawnerSpawnCountChangeRecipe extends SpawnerChangeRecipe {
 	
-	public static final RecipeSerializer<SpawnerSpawnCountChangeRecipe> SERIALIZER = new SpecialRecipeSerializer<>(SpawnerSpawnCountChangeRecipe::new);
+	public static final RecipeSerializer<SpawnerSpawnCountChangeRecipe> SERIALIZER = new EmptyRecipeSerializer<>(SpawnerSpawnCountChangeRecipe::new);
 	
 	public SpawnerSpawnCountChangeRecipe(Identifier identifier) {
 		super(identifier, IngredientStack.of(Ingredient.ofItems(SpectrumItems.NEOLITH), Matchbook.empty(), null, 4));

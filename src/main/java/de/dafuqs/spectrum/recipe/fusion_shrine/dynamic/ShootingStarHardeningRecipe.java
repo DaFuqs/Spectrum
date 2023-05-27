@@ -3,6 +3,7 @@ package de.dafuqs.spectrum.recipe.fusion_shrine.dynamic;
 import de.dafuqs.spectrum.*;
 import de.dafuqs.spectrum.blocks.fusion_shrine.*;
 import de.dafuqs.spectrum.blocks.shooting_star.*;
+import de.dafuqs.spectrum.recipe.*;
 import de.dafuqs.spectrum.recipe.fusion_shrine.*;
 import de.dafuqs.spectrum.registries.*;
 import net.id.incubus_core.recipe.*;
@@ -19,8 +20,7 @@ public class ShootingStarHardeningRecipe extends FusionShrineRecipe {
 	
 	public static final Identifier UNLOCK_IDENTIFIER = SpectrumCommon.locate("collect_all_shooting_star_variants");
 	public static final Text DESCRIPTION = Text.translatable("spectrum.recipe.fusion_shrine.explanation.shooting_star_hardening");
-	// TODO - Might require custom serializer
-	public static final RecipeSerializer<ShootingStarHardeningRecipe> SERIALIZER = new SpecialRecipeSerializer<>(ShootingStarHardeningRecipe::new);
+	public static final RecipeSerializer<ShootingStarHardeningRecipe> SERIALIZER = new EmptyRecipeSerializer<>(ShootingStarHardeningRecipe::new);
 	
 	public ShootingStarHardeningRecipe(Identifier identifier) {
 		super(identifier, "", false, UNLOCK_IDENTIFIER, List.of(IngredientStack.of(Ingredient.fromTag(SpectrumItemTags.SHOOTING_STARS)), IngredientStack.of(Ingredient.ofItems(Items.DIAMOND))), Fluids.WATER, getHardenedShootingStar(),

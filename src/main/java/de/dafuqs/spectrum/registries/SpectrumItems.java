@@ -7,8 +7,11 @@ import de.dafuqs.spectrum.blocks.conditional.*;
 import de.dafuqs.spectrum.blocks.gravity.*;
 import de.dafuqs.spectrum.blocks.jade_vines.*;
 import de.dafuqs.spectrum.blocks.rock_candy.*;
+import de.dafuqs.spectrum.energy.*;
+import de.dafuqs.spectrum.energy.color.*;
 import de.dafuqs.spectrum.entity.*;
 import de.dafuqs.spectrum.enums.*;
+import de.dafuqs.spectrum.helpers.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.armor.*;
 import de.dafuqs.spectrum.items.conditional.CloakedItem;
@@ -22,6 +25,9 @@ import de.dafuqs.spectrum.items.tools.*;
 import de.dafuqs.spectrum.items.tooltip.*;
 import de.dafuqs.spectrum.items.trinkets.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.enchantment_upgrade.*;
+import de.dafuqs.spectrum.recipe.titration_barrel.*;
 import de.dafuqs.spectrum.registries.color.*;
 import io.wispforest.owo.itemgroup.*;
 import net.fabricmc.fabric.api.registry.*;
@@ -56,7 +62,20 @@ public class SpectrumItems {
 		}
 		
 		public OwoItemSettings settings() {
-			return new OwoItemSettings().group(itemGroup).tab(tab);
+			return new OwoItemSettings().group(itemGroup).tab(tab).stackGenerator((item, entries) -> {
+				if (item instanceof Preenchanted preenchanted) {
+					entries.add(preenchanted.getDefaultEnchantedStack(item));
+				}
+
+				// TODO - Does this work with the Creative Ink Assortment?
+				if (item instanceof InkStorageItem<?> inkStorageItem) {
+					entries.add(inkStorageItem.getFullStack());
+				}
+
+				if (item instanceof MidnightAberrationItem aberrationItem) {
+					entries.add(aberrationItem.getStableStack());
+				}
+			});
 		}
 		
 		public OwoItemSettings settings(int maxCount) {
@@ -118,57 +137,57 @@ public class SpectrumItems {
 	public static final Item YELLOW_PIGMENT = new PigmentItem(Tab.RESOURCES.settings(), DyeColor.YELLOW);
 	
 	// Preenchanted tools
-	public static final Item MULTITOOL = new PreenchantedMultiToolItem(ToolMaterials.IRON, 2, -2.4F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item TENDER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item)))) {
+	public static final Item MULTITOOL = new PreenchantedMultiToolItem(ToolMaterials.IRON, 2, -2.4F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(ToolMaterials.IRON.getDurability()));
+	public static final Item TENDER_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability())) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.SILK_TOUCH, 1);
 		}
 	};
-	public static final Item LUCKY_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item)))) {
+	public static final Item LUCKY_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability())) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.FORTUNE, 3);
 		}
 	};
-	public static final Item RAZOR_FALCHION = new RazorFalchionItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 4, -2.2F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item OBLIVION_PICKAXE = new OblivionPickaxeItem(SpectrumToolMaterials.ToolMaterial.VOIDING, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item)))) {
+	public static final Item RAZOR_FALCHION = new RazorFalchionItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 4, -2.2F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability()));
+	public static final Item OBLIVION_PICKAXE = new OblivionPickaxeItem(SpectrumToolMaterials.ToolMaterial.VOIDING, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.VOIDING.getDurability()));
+	public static final Item RESONANT_PICKAXE = new SpectrumPickaxeItem(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.UNCOMMON).maxDamage(SpectrumToolMaterials.ToolMaterial.LOW_HEALTH.getDurability())) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(SpectrumEnchantments.RESONANCE, 1);
 		}
 	};
-	public static final SpectrumFishingRodItem LAGOON_ROD = new LagoonRodItem(Tab.EQUIPMENT.settings().maxDamage(256).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
+	public static final SpectrumFishingRodItem LAGOON_ROD = new LagoonRodItem(Tab.EQUIPMENT.settings().maxDamage(256));
 	public static final SpectrumFishingRodItem MOLTEN_ROD = new MoltenRodItem(Tab.EQUIPMENT.settings().maxDamage(256));
 	
 	// Bedrock Tools
 	public static final SpectrumToolMaterials.ToolMaterial BEDROCK_MATERIAL = SpectrumToolMaterials.ToolMaterial.BEDROCK;
-	public static final Item BEDROCK_PICKAXE = new BedrockPickaxeItem(BEDROCK_MATERIAL, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item BEDROCK_AXE = new BedrockAxeItem(BEDROCK_MATERIAL, 5, -3.0F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item BEDROCK_SHOVEL = new BedrockShovelItem(BEDROCK_MATERIAL, 1, -3.0F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item BEDROCK_SWORD = new BedrockSwordItem(BEDROCK_MATERIAL, 4, -2.4F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item BEDROCK_HOE = new BedrockHoeItem(BEDROCK_MATERIAL, -2, -0.0F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item BEDROCK_BOW = new BedrockBowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item BEDROCK_CROSSBOW = new BedrockCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item BEDROCK_SHEARS = new BedrockShearsItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item BEDROCK_FISHING_ROD = new BedrockFishingRodItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
+	public static final Item BEDROCK_PICKAXE = new BedrockPickaxeItem(BEDROCK_MATERIAL, 1, -2.8F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_AXE = new BedrockAxeItem(BEDROCK_MATERIAL, 5, -3.0F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_SHOVEL = new BedrockShovelItem(BEDROCK_MATERIAL, 1, -3.0F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_SWORD = new BedrockSwordItem(BEDROCK_MATERIAL, 4, -2.4F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_HOE = new BedrockHoeItem(BEDROCK_MATERIAL, -2, -0.0F, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_BOW = new BedrockBowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_CROSSBOW = new BedrockCrossbowItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_SHEARS = new BedrockShearsItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
+	public static final Item BEDROCK_FISHING_ROD = new BedrockFishingRodItem(Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(SpectrumToolMaterials.ToolMaterial.BEDROCK.getDurability()));
 	
 	public static final Item MOONSTONE_CORE = new Item(Tab.EQUIPMENT.settings(8, Rarity.RARE));
 	
 	public static final SpectrumToolMaterials.ToolMaterial MALACHITE = SpectrumToolMaterials.ToolMaterial.MALACHITE;
-	public static final Item MALACHITE_WORKSTAFF = new WorkstaffItem(MALACHITE, 1, -3.2F, Tab.EQUIPMENT.settings(1, Rarity.RARE).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item MALACHITE_ULTRA_GREATSWORD = new GreatswordItem(MALACHITE, 4, -3.0F, 1.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item MALACHITE_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item MALACHITE_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
+	public static final Item MALACHITE_WORKSTAFF = new WorkstaffItem(MALACHITE, 1, -3.2F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
+	public static final Item MALACHITE_ULTRA_GREATSWORD = new GreatswordItem(MALACHITE, 4, -3.0F, 1.0F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
+	public static final Item MALACHITE_CROSSBOW = new MalachiteCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).fireproof().maxDamage(MALACHITE.getDurability()));
+	public static final Item MALACHITE_BIDENT = new MalachiteBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(MALACHITE.getDurability()));
 	
 	// variants by socketing a moonstone core
 	public static final SpectrumToolMaterials.ToolMaterial GLASS_CREST = SpectrumToolMaterials.ToolMaterial.GLASS_CREST;
-	public static final Item GLASS_CREST_WORKSTAFF = new GlassCrestWorkstaffItem(GLASS_CREST, 1, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item GLASS_CREST_ULTRA_GREATSWORD = new GlassCrestGreatswordItem(GLASS_CREST, 4, -2.8F, 1.0F, 32, 8, Tab.EQUIPMENT.settings(1, Rarity.RARE).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item GLASS_CREST_CROSSBOW = new GlassCrestCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).fireproof().maxDamage(GLASS_CREST.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item FEROCIOUS_GLASS_CREST_BIDENT = new FerociousBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
-	public static final Item FRACTAL_GLASS_CREST_BIDENT = new FractalBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item))));
+	public static final Item GLASS_CREST_WORKSTAFF = new GlassCrestWorkstaffItem(GLASS_CREST, 1, -2.8F, Tab.EQUIPMENT.settings(1, Rarity.RARE));
+	public static final Item GLASS_CREST_ULTRA_GREATSWORD = new GlassCrestGreatswordItem(GLASS_CREST, 4, -2.8F, 1.0F, 32, 8, Tab.EQUIPMENT.settings(1, Rarity.RARE));
+	public static final Item GLASS_CREST_CROSSBOW = new GlassCrestCrossbowItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).fireproof().maxDamage(GLASS_CREST.getDurability()));
+	public static final Item FEROCIOUS_GLASS_CREST_BIDENT = new FerociousBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()));
+	public static final Item FRACTAL_GLASS_CREST_BIDENT = new FractalBidentItem(Tab.EQUIPMENT.settings(1, Rarity.RARE).maxDamage(GLASS_CREST.getDurability()));
 	
 	// able to pass through translucent blocks, like glass; render as rays of light
 	public static final Item MALACHITE_GLASS_ARROW = new GlassArrowItem(Tab.EQUIPMENT.settings(Rarity.RARE), GlassArrowVariant.MALACHITE, SpectrumParticleTypes.LIME_CRAFTING);
@@ -187,25 +206,25 @@ public class SpectrumItems {
 	public static final Item NIGHTFALLS_BLADE = new NightfallsBladeItem(SpectrumToolMaterials.ToolMaterial.NIGHTFALL, 0, -3.4F, Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	
 	// Bedrock Armor
-	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.HELMET, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item)))) {
+	public static final Item BEDROCK_HELMET = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.HELMET, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.PROJECTILE_PROTECTION, 5);
 		}
 	};
-	public static final Item BEDROCK_CHESTPLATE = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.CHESTPLATE, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item)))) {
+	public static final Item BEDROCK_CHESTPLATE = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.CHESTPLATE, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.PROTECTION, 5);
 		}
 	};
-	public static final Item BEDROCK_LEGGINGS = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.LEGGINGS, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item)))) {
+	public static final Item BEDROCK_LEGGINGS = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.LEGGINGS, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.BLAST_PROTECTION, 5);
 		}
 	};
-	public static final Item BEDROCK_BOOTS = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.BOOTS, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1).stackGenerator((item, entries) -> entries.add(((Preenchanted) item).getDefaultEnchantedStack(item)))) {
+	public static final Item BEDROCK_BOOTS = new BedrockArmorItem(SpectrumArmorMaterials.BEDROCK, ArmorItem.Type.BOOTS, Tab.EQUIPMENT.settings(Rarity.RARE).fireproof().maxDamage(-1)) {
 		@Override
 		public Map<Enchantment, Integer> getDefaultEnchantments() {
 			return Map.of(Enchantments.FIRE_PROTECTION, 5);
@@ -298,7 +317,19 @@ public class SpectrumItems {
 	public static final Item DEMON_TEA = new TeaItem(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.DEMON_TEA), SpectrumFoodComponents.DEMON_TEA_SCONE_BONUS);
 	public static final Item SCONE = new Item(Tab.CONSUMABLES.settings().food(SpectrumFoodComponents.SCONE));
 
-	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
+	public static final Item INFUSED_BEVERAGE = new InfusedBeverageItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE).stackGenerator((item, entries) -> {
+		// TODO - Are all beverages supplied this way, or do we have to do even more based hacks?
+		if (SpectrumCommon.minecraftServer != null) {
+			for (ITitrationBarrelRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.TITRATION_BARREL)) {
+				ItemStack output = recipe.getOutput(SpectrumCommon.minecraftServer.getRegistryManager()).copy();
+				if (output.getItem() instanceof BeverageItem) {
+					output.setCount(1);
+					entries.add(output);
+				}
+			}
+		}
+
+	}));
 	public static final Item SUSPICIOUS_BREW = new SuspiciousBrewItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item REPRISE = new RepriseItem(Tab.CONSUMABLES.settings(16).food(SpectrumFoodComponents.BEVERAGE).recipeRemainder(Items.GLASS_BOTTLE));
 	public static final Item PURE_ALCOHOL = new PureAlcoholItem(Tab.CONSUMABLES.settings(16, Rarity.UNCOMMON).food(SpectrumFoodComponents.PURE_ALCOHOL).recipeRemainder(Items.GLASS_BOTTLE).stackGenerator((item, entries) -> entries.add(item.getDefaultStack())));
@@ -353,13 +384,16 @@ public class SpectrumItems {
 	
 	// Magical Tools
 	public static final Item BAG_OF_HOLDING = new BagOfHoldingItem(Tab.EQUIPMENT.settings(1));
-	public static final Item RADIANCE_STAFF = new RadianceStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item NATURES_STAFF = new NaturesStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item RADIANCE_STAFF = new RadianceStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.RADIANCE_STAFF, Enchantments.INFINITY))));
+	public static final Item NATURES_STAFF = new NaturesStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.NATURES_STAFF, Enchantments.EFFICIENCY))));
 	public static final Item HERDING_STAFF = new HerdingStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item CONSTRUCTORS_STAFF = new PlacementStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item EXCHANGING_STAFF = new ExchangeStaffItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> {
+		entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(item, Enchantments.FORTUNE));
+		entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(item, Enchantments.SILK_TOUCH));
+	}));
 	public static final Item BLOCK_FLOODER = new BlockFlooderItem(Tab.EQUIPMENT.settings(Rarity.UNCOMMON));
-	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON));
+	public static final EnderSpliceItem ENDER_SPLICE = new EnderSpliceItem(Tab.EQUIPMENT.settings(16, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(item, SpectrumEnchantments.INDESTRUCTIBLE, SpectrumEnchantments.RESONANCE))));
 	public static final Item PERTURBED_EYE = new PerturbedEyeItem(Tab.EQUIPMENT.settings(Rarity.RARE));
 	public static final Item CRESCENT_CLOCK = new Item(Tab.EQUIPMENT.settings(1));
 	
@@ -389,10 +423,41 @@ public class SpectrumItems {
 	public static final Item PHANTOM_FRAME = new PhantomFrameItem(SpectrumEntityTypes.PHANTOM_FRAME, Tab.EQUIPMENT.settings());
 	public static final Item GLOW_PHANTOM_FRAME = new PhantomGlowFrameItem(SpectrumEntityTypes.GLOW_PHANTOM_FRAME, Tab.EQUIPMENT.settings());
 	
-	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(Tab.EQUIPMENT.settings(1));
-	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 10000);
+	public static final Item BOTTOMLESS_BUNDLE = new BottomlessBundleItem(Tab.EQUIPMENT.settings(1).stackGenerator((item, entries) -> {
+				entries.add(BottomlessBundleItem.getWithBlockAndCount(Items.COBBLESTONE.getDefaultStack(), 20000));
+				entries.add(BottomlessBundleItem.getWithBlockAndCount(Items.STONE.getDefaultStack(), 20000));
+				entries.add(BottomlessBundleItem.getWithBlockAndCount(Items.DEEPSLATE.getDefaultStack(), 20000));
+				entries.add(BottomlessBundleItem.getWithBlockAndCount(Items.OAK_PLANKS.getDefaultStack(), 20000));
+				entries.add(BottomlessBundleItem.getWithBlockAndCount(Items.SAND.getDefaultStack(), 20000));
+				entries.add(BottomlessBundleItem.getWithBlockAndCount(Items.GRAVEL.getDefaultStack(), 20000));
+				entries.add(BottomlessBundleItem.getWithBlockAndCount(Items.ARROW.getDefaultStack(), 20000));
+				entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(item, Enchantments.POWER, SpectrumEnchantments.VOIDING));
+	}));
+	public static final Item KNOWLEDGE_GEM = new KnowledgeGemItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> {
+		entries.add(KnowledgeGemItem.getKnowledgeDropStackWithXP(10000, false));
+		entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(item, Enchantments.EFFICIENCY, Enchantments.QUICK_CHARGE));
+	}), 10000);
 	public static final Item CELESTIAL_POCKETWATCH = new CelestialPocketWatchItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item GILDED_BOOK = new GildedBookItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item GILDED_BOOK = new GildedBookItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> {
+		// Enchanted books with the max upgrade level available via Enchantment Upgrading
+		HashMap<Enchantment, Integer> highestEnchantmentLevels = new HashMap<>();
+		for (EnchantmentUpgradeRecipe enchantmentUpgradeRecipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.ENCHANTMENT_UPGRADE)) {
+			Enchantment enchantment = enchantmentUpgradeRecipe.getEnchantment();
+			int destinationLevel = enchantmentUpgradeRecipe.getEnchantmentDestinationLevel();
+			if (highestEnchantmentLevels.containsKey(enchantment)) {
+				if (highestEnchantmentLevels.get(enchantment) < destinationLevel) {
+					highestEnchantmentLevels.put(enchantment, destinationLevel);
+				}
+			} else {
+				highestEnchantmentLevels.put(enchantment, destinationLevel);
+			}
+		}
+		for (Map.Entry<Enchantment, Integer> s : highestEnchantmentLevels.entrySet()) {
+			if (s.getValue() > s.getKey().getMaxLevel()) {
+				entries.add(EnchantedBookItem.forEnchantment(new EnchantmentLevelEntry(s.getKey(), s.getValue())));
+			}
+		}
+	}));
 	public static final Item ENCHANTMENT_CANVAS = new EnchantmentCanvasItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item EVERPROMISE_RIBBON = new EverpromiseRibbonItem(Tab.EQUIPMENT.settings());
 	
@@ -410,25 +475,29 @@ public class SpectrumItems {
 	
 	public static final Item GLOW_VISION_GOGGLES = new GlowVisionGogglesItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item JEOPARDANT = new AttackRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item SEVEN_LEAGUE_BOOTS = new SevenLeagueBootsItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.SEVEN_LEAGUE_BOOTS, Enchantments.POWER))));
 	public static final Item COTTON_CLOUD_BOOTS = new CottonCloudBootsItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item RADIANCE_PIN = new RadiancePinItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item TOTEM_PENDANT = new TotemPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final Item TAKE_OFF_BELT = new TakeOffBeltItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item TAKE_OFF_BELT = new TakeOffBeltItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.TAKE_OFF_BELT, Enchantments.POWER, Enchantments.FEATHER_FALLING))));
 	public static final Item AZURE_DIKE_BELT = new AzureDikeBeltItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
 	public static final Item AZURE_DIKE_RING = new AzureDikeRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final AzureDikeAmuletItem SHIELDGRASP_AMULET = new AzureDikeAmuletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final ExtraHealthRingItem HEARTSINGERS_REWARD_RING = new ExtraHealthRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final ExtraReachGlovesItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
-	public static final ExtraMiningSpeedRingItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final AzureDikeAmuletItem SHIELDGRASP_AMULET = new AzureDikeAmuletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())));
+	public static final ExtraHealthRingItem HEARTSINGERS_REWARD_RING = new ExtraHealthRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())));
+	public static final ExtraReachGlovesItem GLOVES_OF_DAWNS_GRASP = new ExtraReachGlovesItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())));
+	public static final ExtraMiningSpeedRingItem RING_OF_PURSUIT = new ExtraMiningSpeedRingItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())));
 	
-	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(Tab.EQUIPMENT.settings(1), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
-	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(Tab.EQUIPMENT.settings(1), 64 * 100);
-	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 64 * 64 * 100);
-	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 64 * 64 * 64 * 64 * 100);
+	public static final InkFlaskItem INK_FLASK = new InkFlaskItem(Tab.EQUIPMENT.settings(1).stackGenerator((item, entries) -> {
+		for (InkColor color : InkColor.all()) {
+			entries.add(((InkFlaskItem) item).getFullStack(color));
+		}
+	}), 64 * 64 * 100); // 64 stacks of pigments (1 pigment => 100 energy)
+	public static final InkAssortmentItem INK_ASSORTMENT = new InkAssortmentItem(Tab.EQUIPMENT.settings(1).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())), 64 * 100);
+	public static final PigmentPaletteItem PIGMENT_PALETTE = new PigmentPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())), 64 * 64 * 100);
+	public static final ArtistsPaletteItem ARTISTS_PALETTE = new ArtistsPaletteItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(((InkStorageItem<?>) item).getFullStack())), 64 * 64 * 64 * 64 * 100);
 	public static final CreativeInkAssortmentItem CREATIVE_INK_ASSORTMENT = new CreativeInkAssortmentItem(Tab.EQUIPMENT.settings(1, Rarity.EPIC));
 	
-	public static final Item GLEAMING_PIN = new GleamingPinItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON));
+	public static final Item GLEAMING_PIN = new GleamingPinItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).stackGenerator((item, entries) -> entries.add(SpectrumEnchantmentHelper.getMaxEnchantedStack(SpectrumItems.GLEAMING_PIN, Enchantments.POWER))));
 	public static final Item LESSER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 1, SpectrumCommon.CONFIG.MaxLevelForEffectsInLesserPotionPendant - 1, SpectrumCommon.locate("unlocks/trinkets/lesser_potion_pendant"));
 	public static final Item GREATER_POTION_PENDANT = new PotionPendantItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON), 3, SpectrumCommon.CONFIG.MaxLevelForEffectsInGreaterPotionPendant - 1, SpectrumCommon.locate("unlocks/trinkets/greater_potion_pendant"));
 	public static final Item ASHEN_CIRCLET = new AshenCircletItem(Tab.EQUIPMENT.settings(1, Rarity.UNCOMMON).fireproof());

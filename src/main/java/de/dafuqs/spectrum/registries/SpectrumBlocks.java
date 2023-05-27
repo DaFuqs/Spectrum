@@ -52,6 +52,8 @@ import de.dafuqs.spectrum.enums.*;
 import de.dafuqs.spectrum.items.*;
 import de.dafuqs.spectrum.items.conditional.*;
 import de.dafuqs.spectrum.particle.*;
+import de.dafuqs.spectrum.recipe.*;
+import de.dafuqs.spectrum.recipe.spirit_instiller.*;
 import de.dafuqs.spectrum.registries.color.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.*;
 import net.fabricmc.fabric.api.item.v1.*;
@@ -1234,7 +1236,21 @@ public class SpectrumBlocks {
 		registerBlockWithItem("upgrade_experience", UPGRADE_EXPERIENCE, new UpgradeBlockItem(UPGRADE_EXPERIENCE, Tab.GENERAL.settings(8), "upgrade_experience"), DyeColor.LIGHT_GRAY);
 		registerBlockWithItem("upgrade_experience2", UPGRADE_EXPERIENCE2, new UpgradeBlockItem(UPGRADE_EXPERIENCE2, Tab.GENERAL.settings(8, Rarity.UNCOMMON), "upgrade_experience2"), DyeColor.LIGHT_GRAY);
 		
-		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.GENERAL.settings(Rarity.UNCOMMON)), DyeColor.LIGHT_GRAY);
+		registerBlockWithItem("memory", MEMORY, new MemoryItem(MEMORY, Tab.GENERAL.settings(Rarity.UNCOMMON).stackGenerator((item, entries) -> {
+			// All memories that have Spirit Instiller recipes
+			// Add all of them to the item group when registered
+			if (SpectrumCommon.minecraftServer != null) {
+				var drm = SpectrumCommon.minecraftServer.getRegistryManager();
+
+
+				Item memoryItem = SpectrumBlocks.MEMORY.asItem();
+				for (SpiritInstillerRecipe recipe : SpectrumCommon.minecraftServer.getRecipeManager().listAllOfType(SpectrumRecipeTypes.SPIRIT_INSTILLING)) {
+					if (recipe.getOutput(drm).isOf(memoryItem)) {
+						entries.add(recipe.getOutput(drm));
+					}
+				}
+			}
+		})), DyeColor.LIGHT_GRAY);
 		
 		
 		registerPastelNetworkNodes(Tab.GENERAL.settings(16));
